@@ -17,5 +17,35 @@
             "power": 20,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hiyah!\n",
+				"There’s no holding anything back!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I... I concede!\n",
+				"I think you’re on a different level...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Hiyah! You put me in my place!\n",
+				"I appreciate it!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hiyah! This time, there really is no\n",
+				"holding anything back!\r"
+			]
+		}
     ]
 }

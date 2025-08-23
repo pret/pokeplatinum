@@ -34,5 +34,28 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m, like, this close to getting my\n",
+				"promotion to Commander.\r",
+				"I’ll impress our great boss by making\n",
+				"you my newest trophy!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "...I wish this never happened."
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Losing sets me back to square one...\r",
+				"I’ll probably get busted down to the\n",
+				"gruntiest of the grunts... Humph!"
+			]
+		}
     ]
 }

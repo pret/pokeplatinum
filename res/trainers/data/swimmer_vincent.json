@@ -25,5 +25,33 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"OK! Get your breathing in order!\n",
+				"OK! You’re ready to go!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I let my momentum falter...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Listen, I have something important to\n",
+				"say to you.\r",
+				"Don’t drown in your own talent.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"OK! You’re ready to go!\n",
+				"This time, I’m going for the win!\r"
+			]
+		}
     ]
 }

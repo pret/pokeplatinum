@@ -36,5 +36,38 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oh? Here comes a nice-looking\n",
+				"Trainer. This is worth evaluation.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Our research has arrived at this one\n",
+				"conclusion: you’re a tough one!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"A huge variety of Pokémon live in the\n",
+				"Great Marsh.\r",
+				"You see, countless years ago,\n",
+				"this whole area was under the sea.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, how do you do? May I investigate\n",
+				"how much tougher you’ve become since\f",
+				"our last encounter?\r"
+			]
+		}
     ]
 }

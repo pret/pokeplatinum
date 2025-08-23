@@ -1,0 +1,33 @@
+{
+  "key": 3407,
+  "messages": [
+    {
+      "id": "pl_msg_00000456_00000",
+      "en_US": "Not effective"
+    },
+    {
+      "id": "pl_msg_00000456_00001",
+      "en_US": "Not very effective"
+    },
+    {
+      "id": "pl_msg_00000456_00002",
+      "en_US": "Not very effective"
+    },
+    {
+      "id": "pl_msg_00000456_00003",
+      "en_US": "Regularly effective"
+    },
+    {
+      "id": "pl_msg_00000456_00004",
+      "en_US": "Super effective"
+    },
+    {
+      "id": "pl_msg_00000456_00005",
+      "en_US": "Super effective"
+    },
+    {
+      "id": "pl_msg_00000456_00006",
+      "en_US": "None"
+    }
+  ]
+}

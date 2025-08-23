@@ -426,7 +426,7 @@ static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *
 
 static BOOL CanReceiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
 {
-    int ownedCount = sub_020289A0(SaveData_GetUnderground(fieldSystem->saveData));
+    int ownedCount = Underground_GetGoodsCountPC(SaveData_GetUnderground(fieldSystem->saveData));
 
     return ownedCount < NUM_MAX_DECORATION_GOODS;
 }
@@ -436,7 +436,7 @@ static void GiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     int id = giftData->decorationGoodID;
 
-    sub_0202895C(SaveData_GetUnderground(fieldSystem->saveData), id);
+    Underground_TryAddGoodPC(SaveData_GetUnderground(fieldSystem->saveData), id);
 }
 
 static void PrepReceivedDecoGoodMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)

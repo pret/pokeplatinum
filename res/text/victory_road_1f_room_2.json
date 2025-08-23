@@ -1,0 +1,80 @@
+{
+  "key": 42006,
+  "messages": [
+    {
+      "id": "pl_msg_00000251_00000",
+      "en_US": [
+        "...I’m Marley.\n",
+        "...You are?\r",
+        "Oh... {STRVAR_1 3, 0, 0}, will you help me,\n",
+        "please?\r",
+        "I want to get through this tunnel.\n",
+        "Will you let me go with you?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} decided to go with\n",
+        "Marley!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00002",
+      "en_US": [
+        "Marley: ...Pokémon shouldn’t be\n",
+        "hurt... I’ll heal them..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00003",
+      "en_US": [
+        "Marley: ...You took so long...\n",
+        "Please, don’t make me wait...\r",
+        "I felt a little forlorn waiting...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00004",
+      "en_US": [
+        "Marley: ...You’re going back...\n",
+        "Too bad... Bye-bye...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00005",
+      "en_US": [
+        "Marley: ...Oh! This is it.\n",
+        "There’s a stone tablet ahead...\r",
+        "I wanted to see the Pokémon that\n",
+        "visits it, that’s all...\r",
+        "...I appreciate your escorting me...\r",
+        "...Just a little...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000251_00006",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000251_00007",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000251_00008",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000251_00009",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000251_00010",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000251_00011",
+      "garbage": 11
+    }
+  ]
+}

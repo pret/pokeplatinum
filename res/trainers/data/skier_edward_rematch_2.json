@@ -16,5 +16,18 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Knowing you to be an expert,\n",
+				"I challenge you to a rematch!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I can see why you’re an expert...\n"
+		}
     ]
 }

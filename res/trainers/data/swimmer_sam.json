@@ -25,5 +25,37 @@
             "power": 0,
             "ball_seal": 1
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Check out my dynamic form!\n",
+				"Victory is assured!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh.\n",
+				"That’s how it is.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Being a good swimmer doesn’t make\n",
+				"me any better as a Trainer...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi! You’re that kid who’s great with\n",
+				"Pokémon!\r",
+				"I’ll battle with an even more dynamic\n",
+				"form than before! Watch me now!\r"
+			]
+		}
     ]
 }

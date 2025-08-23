@@ -16,5 +16,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"On your marks, get set, go!\r",
+				"...When I say that, let’s start.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Yow-ow-ow-ow!\n",
+				"My leg’s cramped up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I forgot to do my stretching\n",
+				"exercises...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, I was waiting for you!\n",
+				"Ready? On your marks, get set...\r"
+			]
+		}
     ]
 }

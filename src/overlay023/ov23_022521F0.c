@@ -178,24 +178,24 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     BOOL v0 = 0;
     Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (param0->unk_279[param1] != ov23_0224F684(param2, param0)) {
+    if (param0->unk_279[param1] != Underground_GetSphereTypeAtSlot2(param2, param0)) {
         return 0xfffd;
     }
 
-    if (param0->unk_27E[param1] > ov23_0224F69C(param2, param0)) {
+    if (param0->unk_27E[param1] > Underground_GetSphereSizeAtSlot2(param2, param0)) {
         return 0xfffb;
     }
 
     if (param0->unk_2AC == 1) {
-        v0 = sub_02028E84(v1, param0->unk_274[param1]);
+        v0 = Underground_TryAddTrap(v1, param0->unk_274[param1]);
     } else if (param0->unk_2AC == 0) {
-        v0 = sub_02028BC8(v1, param0->unk_274[param1]);
+        v0 = Underground_TryAddGoodBag(v1, param0->unk_274[param1]);
     } else if (param0->unk_2AC == 2) {
         v0 = Underground_TryAddTreasure(v1, param0->unk_274[param1]);
     }
 
     if (v0) {
-        sub_02028C6C(v1, param2);
+        Underground_RemoveSphereAtSlot(v1, param2);
     } else {
         return 0xfffc;
     }
@@ -267,15 +267,15 @@ static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
     u32 v1 = param1;
 
     Window_FillTilemap(&v0->unk_20, 15);
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->unk_68);
-    Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->strbuf);
+    Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param1 != 0xfffffffe) {
-        StringTemplate_SetUndergroundItemName(v0->unk_70, 2, v0->unk_279[v1]);
-        StringTemplate_SetNumber(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->unk_68);
-        StringTemplate_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
-        Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->unk_6C, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        StringTemplate_SetUndergroundItemName(v0->template, 2, v0->unk_279[v1]);
+        StringTemplate_SetNumber(v0->template, 6, v0->unk_27E[v1], 2, 1, 1);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->strbuf);
+        StringTemplate_Format(v0->template, v0->fmtString, v0->strbuf);
+        Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         (void)0;
     }
@@ -295,19 +295,19 @@ static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
+static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 *v1 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v1->fieldSystem));
-    int v3 = param1, v4, v5;
+    int v3 = index, v4, v5;
     int v6, v7 = 0, v8;
 
     Window_FillTilemap(&v1->unk_20, 15);
 
-    if (param1 != 0xfffffffe) {
+    if (index != 0xfffffffe) {
         if (v1->unk_2AC == 1) {
-            v6 = ov23_0224F66C(v3, v1);
+            v6 = Underground_GetTrapAtSlot2(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225429C(v6);
 
@@ -320,7 +320,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else if (v1->unk_2AC == 0) {
-            v6 = ov23_0224F61C(v3, v1);
+            v6 = Underground_GetGoodAtSlotBag2(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = sub_0205742C(v6);
 
@@ -333,7 +333,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else {
-            v6 = ov23_0224F6C8(v3, v1);
+            v6 = Underground_GetTreasureAtSlot2(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225426C(v6);
 
@@ -347,35 +347,35 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
         }
     }
 
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->unk_68);
-    Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->strbuf);
+    Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
-    if (param1 == 0xfffffffe) {
+    if (index == 0xfffffffe) {
         (void)0;
     } else if (v7 != 0) {
-        StringTemplate_SetUndergroundItemName(v1->unk_70, 2, v7);
-        StringTemplate_SetNumber(v1->unk_70, 6, v8, 2, 1, 1);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->unk_68);
-        StringTemplate_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
-        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_6C, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        StringTemplate_SetUndergroundItemName(v1->template, 2, v7);
+        StringTemplate_SetNumber(v1->template, 6, v8, 2, 1, 1);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->strbuf);
+        StringTemplate_Format(v1->template, v1->fmtString, v1->strbuf);
+        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
 
         v1->unk_279[0] = v7;
         v1->unk_27E[0] = v8;
     } else {
         v1->unk_279[0] = v7;
 
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->unk_68);
-        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_68, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->strbuf);
+        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->strbuf, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Window_ScheduleCopyToVRAM(&v1->unk_20);
 
     if (v1->unk_2AC == 1) {
-        ov23_0224FD84(param0, param1, param2);
+        ov23_0224FD84(param0, index, onInit);
     } else if (v1->unk_2AC == 0) {
-        ov23_02250C3C(param0, param1, param2);
+        ov23_02250C3C(param0, index, onInit);
     } else {
-        ov23_02250540(param0, param1, param2);
+        ov23_02250540(param0, index, onInit);
     }
 }
 
@@ -433,7 +433,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     v0.cursorCallback = ov23_0225265C;
     v0.parent = param0;
 
-    param0->unk_268 = ov23_02252A04;
+    param0->itemGetter = ov23_02252A04;
     param0->unk_294 = ov23_02243154(13 + param0->unk_2AC);
     param0->unk_290 = ov23_0224318C(13 + param0->unk_2AC);
     param0->unk_2AE = param0->unk_290;
@@ -458,13 +458,13 @@ static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
     int v0;
 
     if (param1->unk_2AC == 1) {
-        v0 = ov23_0224F66C(param0, param1);
+        v0 = Underground_GetTrapAtSlot2(param0, param1);
         ov23_02252CF4(2, v0);
     } else if (param1->unk_2AC == 0) {
-        v0 = ov23_0224F61C(param0, param1);
+        v0 = Underground_GetGoodAtSlotBag2(param0, param1);
         ov23_02252D08(2, v0);
     } else {
-        v0 = ov23_0224F6C8(param0, param1);
+        v0 = Underground_GetTreasureAtSlot2(param0, param1);
         ov23_02252CE0(2, v0);
     }
 
@@ -478,11 +478,11 @@ static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 
     if (Underground_TryAddSphere2(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
-            sub_02028E50(v0, param0->unk_2A8);
+            Underground_RemoveTrapAtSlot(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 0) {
-            sub_02028B94(v0, param0->unk_2A8);
+            Underground_RemoveGoodAtSlotBag(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 2) {
-            sub_02028D80(v0, param0->unk_2A8);
+            Underground_RemoveTreasureAtSlot(v0, param0->unk_2A8);
         }
 
         return param0->unk_279[0];
@@ -503,9 +503,9 @@ int ov23_02252C70(void *param0)
 
 static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0)
 {
-    Strbuf_Free(param0->unk_68);
-    Strbuf_Free(param0->unk_6C);
-    StringTemplate_Free(param0->unk_70);
+    Strbuf_Free(param0->strbuf);
+    Strbuf_Free(param0->fmtString);
+    StringTemplate_Free(param0->template);
     Heap_Free(param0);
 }
 
@@ -562,8 +562,8 @@ void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
     Window_FillTilemap(&param0->unk_30, 15);
     Window_CopyToVRAM(&param0->unk_30);
 
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->unk_68);
-    Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->strbuf);
+    Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_30);
 }
 
@@ -807,7 +807,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
         v0->unk_290 = ov23_0224318C(16 + v0->unk_2AC);
         v0->unk_294 = ov23_02243154(16 + v0->unk_2AC);
-        v0->unk_60 = ov23_02252754;
+        v0->cursorCallback = ov23_02252754;
 
         if (v0->unk_2AC == 1) {
             ov23_0224FDBC(v0);
@@ -899,7 +899,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 ov23_02252C78(v0);
                 ov23_02243204();
                 SysTask_Done(param0);
-                sub_02059514();
+                CommPlayerMan_ResumeFieldSystem();
             }
         }
         break;
@@ -911,8 +911,8 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 void ov23_022534A0(FieldSystem *fieldSystem)
 {
     ListMenuTemplate v0;
-    int v1 = sub_02058D88(CommSys_CurNetId());
-    int v2 = sub_02058DC0(CommSys_CurNetId());
+    int v1 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
+    int v2 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
     int v3 = CommPlayer_GetOppositeDir(CommPlayer_Dir(CommSys_CurNetId()));
     UnkStruct_ov23_02250CD4 *v4;
     const int v5 = 6;
@@ -927,9 +927,9 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->fieldSystem = fieldSystem;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
-    v4->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v4->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v4->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
+    v4->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v4->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v4->template = StringTemplate_Default(HEAP_ID_FIELD);
     v4->unk_2AA = 0;
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);

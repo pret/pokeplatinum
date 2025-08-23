@@ -25,5 +25,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We ninjas appear where you least\n",
+				"expect us!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I didn’t expect to lose...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"While hiding, I think about what Pokémon\n",
+				"must be thinking inside their Poké Balls.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Wah! Another chance encounter with\n",
+				"a foe who defeated me before!\r"
+			]
+		}
     ]
 }

@@ -286,7 +286,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
             int v4;
 
             v3 = SaveData_GetUnderground(fieldSystem->saveData);
-            v4 = sub_020289A0(v3);
+            v4 = Underground_GetGoodsCountPC(v3);
 
             if (v4 == 0) {
                 v2->unk_08 = ov23_0224D39C(19);
@@ -374,12 +374,12 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 return 1;
             }
 
-            v9 = sub_020289B8(v10, v8);
+            v9 = Underground_GetGoodAtSlotPC(v10, v8);
 
             if (v9 != 0) {
                 BOOL v11;
 
-                v11 = sub_02028AFC(v10, v8);
+                v11 = Underground_IsGoodAtSlotPlacedInBase(v10, v8);
 
                 if (!v11) {
                     ov23_02254A14(fieldSystem, v9, v6);

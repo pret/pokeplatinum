@@ -1,0 +1,469 @@
+{
+  "key": 24598,
+  "messages": [
+    {
+      "id": "pl_msg_00000234_00000",
+      "en_US": [
+        "Our boss is about to do something\n",
+        "spectacular!\r",
+        "Don’t get in the way!\n",
+        "Of course you will, won’t you?\r",
+        "That’s why the two of us will team up\n",
+        "to take you down in an epic duel!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00001",
+      "en_US": [
+        "Our boss is about to do something\n",
+        "spectacular!\r",
+        "Don’t get in the way!\n",
+        "Of course you will, won’t you?\r",
+        "That’s why the two of us will team up\n",
+        "to take you down in an epic duel!\r",
+        "What? You only have one Pokémon?\n",
+        "Bah, come back when you’re ready!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00002",
+      "en_US": [
+        "We are not capable of slowing you.\r",
+        "We will let you pass so you can get\n",
+        "pulverized by our bosses!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00003",
+      "en_US": [
+        "Mars: Where do you think you’re going?\n",
+        "I won’t let you disturb our boss.\r",
+        "If you’re not going to listen, you’ll\n",
+        "have to go through me first.\r",
+        "After all, you’ve made me look bad\n",
+        "more times than I care to remember!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00004",
+      "en_US": [
+        "Jupiter: And I’ll be next.\r",
+        "You might be tough, but this time,\n",
+        "the gloves are coming off!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hold on one second!\r",
+        "Don’t you start the party without\n",
+        "me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00006",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000234_00007",
+      "en_US": "Jupiter: Huh?\r"
+    },
+    {
+      "id": "pl_msg_00000234_00008",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Remember me?\n",
+        "I’m here to get my revenge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00009",
+      "en_US": [
+        "Jupiter: Ha!\n",
+        "If it isn’t that little boy.\f",
+        "The little crybaby from Lake Acuity.\r",
+        "Did you toughen up a bit?\n",
+        "Sure, let’s battle two-on-two!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00010",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...Heh.\n",
+        "My Pokémon are tough, right?\f",
+        "I can get even tougher!\r",
+        "...But, you know, that’s it for us.\n",
+        "We’ve hit the wall...\r",
+        "{STRVAR_1 3, 1, 0}, I’ll help you with this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00011",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} fully healed\n",
+        "{STRVAR_1 3, 1, 0}’s Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00012",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "This is it! It’s your show now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00013",
+      "en_US": [
+        "Cyrus: ...\n",
+        "...\r",
+        "Everything is ready for the creation\n",
+        "of a new world.\r",
+        "Now, all will end.\n",
+        "And everything will begin.\r",
+        "With this, the Red Chain made from the\n",
+        "crystals of the three lake Pokémon...\r",
+        "And this, the Red Chain I replicated\n",
+        "with technological means...\r",
+        "With these Red Chains I will pry open\n",
+        "the portal to another dimension.\r",
+        "I command that you unleash your power\n",
+        "for me...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00014",
+      "en_US": [
+        "DIALGA, the mythical Pokémon, and\n",
+        "the master of time!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00015",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000234_00016",
+      "en_US": [
+        "...And the other.\r",
+        "PALKIA, the mythical Pokémon, and\n",
+        "the master of space and dimensions!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00017",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000234_00018",
+      "en_US": [
+        "Cyrus: I’ve waited so long for this\n",
+        "moment, DIALGA and PALKIA.\r",
+        "Shaping this world is a double spiral\n",
+        "of time and space.\r",
+        "Yes, the very things that you have the\n",
+        "ability to control!\r",
+        "You will do my bidding!\n",
+        "I will have your abilities as mine!\r",
+        "With the power I wield, I will create\n",
+        "an entirely new world!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00019",
+      "en_US": [
+        "The incomplete and ugly world we have\n",
+        "now can disappear.\r",
+        "I am resetting everything to zero.\n",
+        "Nothing can remain.\r",
+        "It is all for making the ultimate world.\n",
+        "A world of complete perfection.\r",
+        "Nothing so vague and incomplete as\n",
+        "spirit can remain.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00020",
+      "en_US": [
+        "Cyrus: ...I should have expected as\n",
+        "much.\r",
+        "UXIE, “The Being of Knowledge.”\r",
+        "AZELF, “The Being of Willpower.”\r",
+        "And MESPRIT, “The Being of Emotion”...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00021",
+      "en_US": [
+        "The Pokémon have come to protect\n",
+        "Sinnoh? Pathetic and worthless.\r",
+        "It takes the three of them, the three\n",
+        "lake Pokémon that symbolize spirit,\f",
+        "to balance either the Pokémon of time\f",
+        "or space.\r",
+        "But they can’t maintain balance against\n",
+        "the two.\r",
+        "Not when both DIALGA and PALKIA are\n",
+        "here.\r",
+        "Their coming here is in vain.\n",
+        "So much meaningless drama.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00022",
+      "en_US": [
+        "Now, {STRVAR_1 3, 0, 0}.\r",
+        "You’ve constantly interfered with my\n",
+        "plans, but you will be forgiven.\r",
+        "After all, there will remain no spirit\n",
+        "for all time when I am done.\r",
+        "All spirit will disappear.\n",
+        "It will be ripped away...\r",
+        "From you!\n",
+        "From your Pokémon!\f",
+        "From those precious to you...!\r",
+        "It is time!\n",
+        "My dream will be my reality!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00023",
+      "en_US": [
+        "What is this pressure I feel...?\n",
+        "Something...is enraged?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00024",
+      "en_US": [
+        "Cyrus: Interesting.\r",
+        "So, there is a Pokémon that can only\n",
+        "appear as a shadow.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00025",
+      "en_US": [
+        "Regardless, the effort is rash and\n",
+        "foolish.\r",
+        "I have harnessed the powers of DIALGA\n",
+        "and PALKIA...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00026",
+      "en_US": [
+        "I, Cyrus, won’t have any more\n",
+        "interferererererere...!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00027",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000234_00028",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000234_00029",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000234_00030",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000234_00031",
+      "garbage": 247
+    },
+    {
+      "id": "pl_msg_00000234_00032",
+      "garbage": 74
+    },
+    {
+      "id": "pl_msg_00000234_00033",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000234_00034",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00035",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000234_00036",
+      "garbage": 33
+    },
+    {
+      "id": "pl_msg_00000234_00037",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000234_00038",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000234_00039",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000234_00040",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000234_00041",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000234_00042",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000234_00043",
+      "en_US": [
+        "Mars: I’m surprised you made it here.\n",
+        "You can stay if you won’t meddle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00044",
+      "en_US": [
+        "Jupiter: Be quiet and watch what our\n",
+        "boss is about to do."
+      ]
+    },
+    {
+      "id": "pl_msg_00000234_00045",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00046",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00047",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00048",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00049",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00050",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00051",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00052",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00053",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00054",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00055",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00056",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00057",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00058",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00059",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00060",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00061",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00062",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00063",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00064",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00065",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00066",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00067",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00068",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00069",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00070",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00071",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00072",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00073",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00074",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00075",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000234_00076",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000234_00077",
+      "garbage": 25
+    }
+  ]
+}

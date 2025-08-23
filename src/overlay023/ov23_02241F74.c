@@ -10,10 +10,8 @@
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
-#include "overlay023/funcptr_ov23_022427DC.h"
 #include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
@@ -23,8 +21,8 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
-#include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
+#include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
@@ -67,8 +65,8 @@ typedef struct {
     FieldSystem *fieldSystem;
     UnkStruct_ov23_02253598 *unk_10;
     SysTask *unk_14;
-    UnkStruct_ov23_0224271C unk_18;
-    UnkStruct_ov23_0224271C unk_1C;
+    Coordinates unk_18;
+    Coordinates unk_1C;
     CommManUnderground_sub1 unk_20[20];
     u16 unk_C0;
     u8 unk_C2[8];
@@ -78,13 +76,13 @@ typedef struct {
     u8 unk_FC[8];
     u8 unk_104[8];
     u8 unk_10C[8];
-    UnkFuncPtr_ov23_022427DC unk_114;
+    CoordinatesGetter coordinatesGetter;
     UndergroundTextPrinter *commonTextPrinter;
     UndergroundTextPrinter *captureFlagTextPrinter;
     UndergroundTextPrinter *miscTextPrinter;
     UndergroundTextPrinter *decorateBaseTextPrinter;
     UndergroundTextPrinter *itemNameTextPrinter;
-    int unk_12C;
+    int orderedArrayLength;
     int unk_130;
     u8 unk_134;
     u8 unk_135[8];
@@ -132,8 +130,8 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
 
     sCommManUnderground->fieldSystem = fieldSystem;
     sCommManUnderground->unk_134 = 0;
-    sCommManUnderground->unk_1C.unk_00 = 0;
-    sCommManUnderground->unk_1C.unk_02 = 0;
+    sCommManUnderground->unk_1C.x = 0;
+    sCommManUnderground->unk_1C.z = 0;
     sCommManUnderground->unk_14B = 0;
     sCommManUnderground->unk_147 = 1;
     sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
@@ -317,10 +315,10 @@ static BOOL ov23_02242308(Strbuf *param0)
 
 BOOL ov23_0224240C(int param0, int param1)
 {
-    UnkStruct_ov23_0224271C v0;
+    Coordinates v0;
 
-    v0.unk_00 = param0;
-    v0.unk_02 = param1;
+    v0.x = param0;
+    v0.z = param1;
 
     if (TerrainCollisionManager_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
         return 1;
@@ -342,7 +340,7 @@ BOOL ov23_02242458(void)
     VecFx32 v0;
     MapObject *v1;
     int v2, v3;
-    UnkStruct_ov23_0224271C v4;
+    Coordinates v4;
 
     if ((sCommManUnderground->unk_146 != 0) || (sCommManUnderground->unk_134 != 0)) {
         if (sCommManUnderground->unk_134 > 0) {
@@ -367,15 +365,15 @@ BOOL ov23_02242458(void)
 
                 v0 = ov5_021EAFA4(gSystem.touchX, gSystem.touchY, sCommManUnderground->fieldSystem->unk_8C);
                 LandData_ObjectPosToTilePos(v0.x, v0.z, &v2, &v3);
-                v4.unk_00 = v2;
-                v4.unk_02 = v3;
+                v4.x = v2;
+                v4.z = v3;
 
-                sCommManUnderground->unk_18.unk_00 = gSystem.touchX;
-                sCommManUnderground->unk_18.unk_02 = gSystem.touchY;
-                sCommManUnderground->unk_1C.unk_00 = v2;
-                sCommManUnderground->unk_1C.unk_02 = v3;
+                sCommManUnderground->unk_18.x = gSystem.touchX;
+                sCommManUnderground->unk_18.z = gSystem.touchY;
+                sCommManUnderground->unk_1C.x = v2;
+                sCommManUnderground->unk_1C.z = v3;
 
-                CommSys_SendData(48, &v4, sizeof(UnkStruct_ov23_0224271C));
+                CommSys_SendData(48, &v4, sizeof(Coordinates));
 
                 return 1;
             }
@@ -385,21 +383,21 @@ BOOL ov23_02242458(void)
     return 0;
 }
 
-static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, UnkStruct_ov23_0224271C *param2)
+static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, Coordinates *param2)
 {
     UnkStruct_ov23_02241A80 v0;
     UnkStruct_ov23_02241A88 v1;
     int v2 = 1;
     int v3, v4, v5, v6;
 
-    v3 = param2->unk_00 - 6;
-    v4 = param2->unk_02 - 6;
+    v3 = param2->x - 6;
+    v4 = param2->z - 6;
 
     ov23_02241A80(&v0, 6);
 
     while (ov23_02241A88(&v0, &v1)) {
-        v5 = param2->unk_00 + v1.unk_00;
-        v6 = param2->unk_02 + v1.unk_02;
+        v5 = param2->x + v1.unk_00;
+        v6 = param2->z + v1.unk_02;
 
         if (param1(v5, v6)) {
             param0[v2] = (v5 - v3) + (v6 - v4) * 16;
@@ -416,7 +414,7 @@ static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, UnkStruct_
     return v2;
 }
 
-static void ov23_022425B8(int param0, UnkStruct_ov23_0224271C *param1)
+static void ov23_022425B8(int param0, Coordinates *param1)
 {
     u8 v0[8 + 1];
     UnkStruct_ov23_02241A80 v1;
@@ -435,7 +433,7 @@ static void ov23_022425B8(int param0, UnkStruct_ov23_0224271C *param1)
 
 void ov23_022425F8(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov23_0224271C *v0 = param2;
+    Coordinates *v0 = param2;
 
     if (!sub_02059094(param0)) {
         return;
@@ -453,7 +451,6 @@ void ov23_02242624(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     u8 *v1 = param2;
-    UnkStruct_ov23_0224271C v2;
 
     if (CommSys_CurNetId() != v1[0]) {
         return;
@@ -467,7 +464,6 @@ void ov23_02242654(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     u8 *v1 = param2;
-    UnkStruct_ov23_0224271C v2;
     u8 v3[9];
 
     if (CommSys_CurNetId() != v1[0]) {
@@ -477,81 +473,79 @@ void ov23_02242654(int param0, int param1, void *param2, void *param3)
     MI_CpuCopy8(&v1[1], sCommManUnderground->unk_104, param1 - 1);
     sCommManUnderground->unk_149 = param1 - 1;
 
-    sCommManUnderground->unk_14A = ov23_02242540(v3, ov23_02241D04, &sCommManUnderground->unk_1C);
+    sCommManUnderground->unk_14A = ov23_02242540(v3, UndergroundSpheres_IsBuriedSphereAtCoordinates, &sCommManUnderground->unk_1C);
     sCommManUnderground->unk_14A -= 1;
 
     MI_CpuCopy8(&v3[1], sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
-    ov23_022489F8(sCommManUnderground->fieldSystem, sCommManUnderground->unk_1C.unk_00, sCommManUnderground->unk_1C.unk_02, sCommManUnderground->unk_18.unk_00, sCommManUnderground->unk_18.unk_02, sCommManUnderground->unk_FC, sCommManUnderground->unk_148, sCommManUnderground->unk_104, sCommManUnderground->unk_149, sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
+    ov23_022489F8(sCommManUnderground->fieldSystem, sCommManUnderground->unk_1C.x, sCommManUnderground->unk_1C.z, sCommManUnderground->unk_18.x, sCommManUnderground->unk_18.z, sCommManUnderground->unk_FC, sCommManUnderground->unk_148, sCommManUnderground->unk_104, sCommManUnderground->unk_149, sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
 }
 
-static int ov23_02242704(UnkStruct_ov23_0224271C *param0)
+static int Underground_GetOrderedCoordinatesValue(Coordinates *coordinates)
 {
-    int v0 = 0, v1 = 0;
+    int x = 0, z = 0;
 
-    if (param0 == NULL) {
+    if (coordinates == NULL) {
         return 30 * 30 * 32 * 32;
     }
 
-    v0 = param0->unk_00;
-    v1 = param0->unk_02;
+    x = coordinates->x;
+    z = coordinates->z;
 
-    return (v1 * 30 * 32) + v0;
+    return (z * 30 * 32) + x;
 }
 
-int ov23_0224271C(UnkStruct_ov23_0224271C *param0)
+int Underground_CalculateCoordinatesIndexGet(Coordinates *coordinates)
 {
-    int v0;
-    int v1 = 0;
-    int v2 = sCommManUnderground->unk_12C - 1;
-    int v3 = ov23_02242704(param0);
-    UnkStruct_ov23_0224271C v4;
-    UnkFuncPtr_ov23_022427DC v5 = sCommManUnderground->unk_114;
+    int index = 0;
+    int max = sCommManUnderground->orderedArrayLength - 1;
+    int orderedValue = Underground_GetOrderedCoordinatesValue(coordinates);
+    Coordinates _;
+    CoordinatesGetter getCoordinates = sCommManUnderground->coordinatesGetter;
 
-    while (v1 < v2) {
-        v0 = (v1 + v2) / 2;
+    while (index < max) {
+        int midpoint = (index + max) / 2;
 
-        if (ov23_02242704(v5(&v4, v0)) < v3) {
-            v1 = v0 + 1;
+        if (Underground_GetOrderedCoordinatesValue(getCoordinates(&_, midpoint)) < orderedValue) {
+            index = midpoint + 1;
         } else {
-            v2 = v0;
+            max = midpoint;
         }
     }
 
-    if (ov23_02242704(v5(&v4, v1)) == v3) {
-        return v1;
+    if (Underground_GetOrderedCoordinatesValue(getCoordinates(&_, index)) == orderedValue) {
+        return index;
     }
 
     return -1;
 }
 
-int ov23_02242788(UnkStruct_ov23_0224271C *param0)
+int Underground_CalculateCoordinatesIndexInsert(Coordinates *coordinates)
 {
-    int v0;
-    int v1 = 0;
-    int v2 = sCommManUnderground->unk_12C - 2;
-    int v3 = ov23_02242704(param0);
-    UnkFuncPtr_ov23_022427DC v4 = sCommManUnderground->unk_114;
-    UnkStruct_ov23_0224271C v5;
+    int index = 0;
+    int max = sCommManUnderground->orderedArrayLength - 2;
+    int orderedValue = Underground_GetOrderedCoordinatesValue(coordinates);
+    Coordinates _;
+    CoordinatesGetter getCoordinates = sCommManUnderground->coordinatesGetter;
 
-    v2++;
+    max++; // why?
 
-    while (v1 < v2) {
-        v0 = (v1 + v2) / 2;
+    while (index < max) {
+        int midpoint = (index + max) / 2;
 
-        if (ov23_02242704(v4(&v5, v0)) < v3) {
-            v1 = v0 + 1;
+        if (Underground_GetOrderedCoordinatesValue(getCoordinates(&_, midpoint)) < orderedValue) {
+            index = midpoint + 1;
         } else {
-            v2 = v0;
+            max = midpoint;
         }
     }
 
-    return v1;
+    return index;
 }
 
-void ov23_022427DC(int param0, UnkFuncPtr_ov23_022427DC param1)
+void Underground_InitCoordinatesOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter)
 {
-    sCommManUnderground->unk_114 = param1;
-    sCommManUnderground->unk_12C = param0;
+    sCommManUnderground->coordinatesGetter = coordinatesGetter;
+    sCommManUnderground->orderedArrayLength = orderedArrayLength;
 }
 
 void ov23_022427F8(void)
@@ -584,14 +578,14 @@ void ov23_02242830(u8 param0)
         return;
     }
 
-    if (40 == sub_02028E28(v4)) {
+    if (40 == Underground_GetTrapCount(v4)) {
         v0 = v0 | 0x10;
     }
 
-    v2 = sub_02058D88(CommSys_CurNetId());
-    v3 = sub_02058DC0(CommSys_CurNetId());
+    v2 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
+    v3 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
 
-    if (ov23_02241D04(v2, v3)) {
+    if (UndergroundSpheres_IsBuriedSphereAtCoordinates(v2, v3)) {
         v0 = v0 | 0x20;
     }
 
@@ -613,11 +607,11 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_022428D8 v0;
     UnkStruct_ov23_02242830 *v1 = param2;
-    UnkStruct_ov23_0224271C v2;
+    Coordinates v2;
     int v3;
     u8 v4 = param0;
-    v2.unk_00 = CommPlayer_AddXServer(param0);
-    v2.unk_02 = CommPlayer_AddZServer(param0);
+    v2.x = CommPlayer_AddXServer(param0);
+    v2.z = CommPlayer_AddZServer(param0);
 
     if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
         return;
@@ -631,7 +625,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v3 = sub_0205900C(v2.unk_00, v2.unk_02);
+    v3 = sub_0205900C(v2.x, v2.z);
 
     if (v3 != 0xff) {
         if (ov23_0224C1C8(v3)) {
@@ -702,7 +696,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (CommPlayer_CheckNPCCollision(v2.unk_00, v2.unk_02)) {
+    if (CommPlayer_CheckNPCCollision(v2.x, v2.z)) {
         if (ov23_0224A658(param0, 0xff, 0)) {
             return;
         }
@@ -718,7 +712,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
             return;
         }
 
-        if (v1->unk_01 == (v2.unk_00 & 0xf) * 16 + (v2.unk_02 & 0xf)) {
+        if (v1->unk_01 == (v2.x & 0xf) * 16 + (v2.z & 0xf)) {
             sub_02035B48(63, &v4);
             sub_02059058(param0, 0);
         }
@@ -753,7 +747,7 @@ void ov23_02242B14(void)
         }
     }
 
-    ov23_02241810();
+    UndergroundSpheres_AdvanceBuriedSphereSparkleTimer();
     ov23_02243AE8();
     ov23_0223E878();
 
@@ -779,8 +773,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_0224B5C4());
         ov23_0224B144(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_022417C4());
-        ov23_022416E0(v0, fieldSystem);
+        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, BuriedSpheresEnv_Size());
+        BuriedSpheresEnv_Init(v0, fieldSystem);
 
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
         ov23_0223E1E4(v0, fieldSystem);
@@ -795,7 +789,7 @@ void ov23_02242C78(void)
 {
     if (sCommManUnderground) {
         ov23_022535EC();
-        ov23_022417CC();
+        UndergroundSpheres_DisableBuriedSphereSparkles();
         ov23_0224B430();
         ov23_02243520();
         CommPlayerMan_Reset();
@@ -811,7 +805,7 @@ void ov23_02242CB4(void)
     if (sCommManUnderground) {
         CommPlayerMan_Restart();
         ov23_02253604();
-        ov23_022417E0();
+        UndergroundSpheres_EnableBuriedSphereSparkles();
         ov23_0224B460();
         ov23_022435A8();
         ov23_0223E2F4();
@@ -827,7 +821,7 @@ void ov23_02242D08(void)
         ov23_0224B4E4();
         ov23_022435DC();
         CommPlayerMan_Delete(1);
-        ov23_022417F4();
+        BuriedSpheresEnv_Free();
         ov23_0223E2F8();
         ov23_0224F5B8();
         ov23_022535CC();
@@ -868,7 +862,7 @@ BOOL ov23_02242D60(Strbuf *param0)
     } else if (ov23_022415B8(param0)) {
         sCommManUnderground->unk_14C = 1;
         return 1;
-    } else if (ov23_02241D58(param0)) {
+    } else if (UndergroundSpheres_CheckForRetrievedSphereNotification(param0)) {
         sCommManUnderground->unk_14C = 1;
         return 1;
     }
@@ -903,13 +897,13 @@ int ov23_02242E40(void)
     return ov23_0224D178();
 }
 
-BOOL ov23_02242E58(int param0, int param1)
+BOOL Underground_AreCoordinatesInSecretBase(int x, int z)
 {
-    if ((32 < param0) && (64 < param1) && (479 > param0) && (479 > param1)) {
-        return 0;
+    if (x > 32 && z > 64 && x < 479 && z < 479) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 int ov23_02242E78(int param0)
@@ -928,7 +922,7 @@ int ov23_02242E78(int param0)
                     return ov23_0224121C(v1);
                 }
             case 2:
-                return ov23_02241F0C(v1);
+                return SphereRadar_GetXCoordOfBuriedSphere(v1);
             case 4:
                 return ov23_02245698(v1);
             case 3:
@@ -959,7 +953,7 @@ int ov23_02242EE0(int param0)
                     return ov23_0224123C(v1);
                 }
             case 2:
-                return ov23_02241F40(v1);
+                return SphereRadar_GetZCoordOfBuriedSphere(v1);
             case 4:
                 return ov23_022456CC(v1);
             case 3:
@@ -1142,7 +1136,7 @@ void ov23_022431C4(int param0, int param1, void *param2, void *param3)
     if (v1 == CommSys_CurNetId()) {
         ov23_022534A0(sCommManUnderground->fieldSystem);
         Link_Message(25);
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
     }
 }
 
@@ -1206,7 +1200,7 @@ BOOL ov23_02243298(int param0)
     v0 = sub_02058D48(param0);
     v1 = sub_02058D68(param0);
 
-    if (ov23_02242E58(v0, v1) && (param0 != 0)) {
+    if (Underground_AreCoordinatesInSecretBase(v0, v1) && (param0 != 0)) {
         return 0;
     }
 

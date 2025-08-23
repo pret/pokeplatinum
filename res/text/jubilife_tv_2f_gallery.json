@@ -1,0 +1,149 @@
+{
+  "key": 17419,
+  "messages": [
+    {
+      "id": "pl_msg_00000034_00000",
+      "garbage": 58
+    },
+    {
+      "id": "pl_msg_00000034_00001",
+      "en_US": [
+        "Ooh, your Pokémon are so very\n",
+        "charming! How enchanting!\r",
+        "They’re so charming I will even hang\n",
+        "a picture of one right beside me!\r",
+        "I’m only doing this especially for\n",
+        "you! Exciting, don’t you think?\r",
+        "Dress up your Pokémon in my boudoir\n",
+        "and make it a sight to behold!\r",
+        "I will snap a photo when you’re done.\n",
+        "You will do this, won’t you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00002",
+      "en_US": [
+        "Oh, you silly thing...\n",
+        "Where’s your sense of adventure?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00003",
+      "en_US": [
+        "Ooh, ooh, yes! How nice!\n",
+        "Let’s not delay!\r",
+        "Should I explain to you how to dress\n",
+        "up your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00004",
+      "en_US": [
+        "Ooh, I wonder which Pokémon you’ll\n",
+        "dress up?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00005",
+      "en_US": [
+        "Teheheh...\n",
+        "I hope you will dress it up adorably!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00006",
+      "en_US": [
+        "You have a Fashion Case, don’t you?\n",
+        "Ah, oui, wonderful!\r",
+        "Just choose the Accessories and put\n",
+        "them on your Pokémon.\r",
+        "When you’re done, I will snap a photo\n",
+        "and put it up beside me!\r",
+        "If you mix your records with others,\n",
+        "you can get their photos, too!\r",
+        "I think it will be much easier if \n",
+        "you will just try!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00007",
+      "en_US": [
+        "Ooh, nice work!\n",
+        "Let’s display the photo right away!\f",
+        "Oh, but it needs to have a title!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00008",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}...\r",
+        "Ooh, yes, yes! I get it now!\n",
+        "Your aesthetics shine through!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00009",
+      "en_US": [
+        "Oh, non, non, non!\n",
+        "It will be forlorn without a title."
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00010",
+      "en_US": [
+        "Oh... You came out without doing\n",
+        "anything... How disappointing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00011",
+      "en_US": [
+        "If you dress up any Pokémon again,\n",
+        "the photo here will be changed.\r",
+        "Would you like to dress up\n",
+        "a Pokémon, dearie?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00012",
+      "garbage": 54
+    },
+    {
+      "id": "pl_msg_00000034_00013",
+      "en_US": [
+        "Ooh, non, non, non! That’s an Egg!\n",
+        "It’s too young to be dressing up!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00014",
+      "en_US": [
+        "I put your photo up right here.\n",
+        "It just looks so perfect there!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00015",
+      "en_US": [
+        "It’s a frame for holding a Pokémon\n",
+        "portrait photo."
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00016",
+      "en_US": [
+        "They display photos from Trainers\n",
+        "you been mixin’ records with, right?\r",
+        "I hope you collect yerself some good\n",
+        "photos of dressed-up Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000034_00017",
+      "en_US": [
+        "Someone gave me a new Backdrop when I\n",
+        "went to the Global Terminal."
+      ]
+    }
+  ]
+}

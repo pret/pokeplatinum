@@ -18,5 +18,28 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"To celebrate my getting through this\n",
+				"cave, I’m going to battle you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Well, I guess losing is something\n",
+				"to commemorate, too...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Getting through that cave feels\n",
+				"like an adventure.\n"
+			]
+		}
     ]
 }

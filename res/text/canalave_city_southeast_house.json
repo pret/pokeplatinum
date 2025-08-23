@@ -1,0 +1,36 @@
+{
+  "key": 29723,
+  "messages": [
+    {
+      "id": "pl_msg_00000061_00000",
+      "en_US": [
+        "Hello, Trainer!\n",
+        "This is something I found.\r",
+        "It was mixed in with a load of cargo\n",
+        "from another country.\r",
+        "It’s not anything that I can use,\n",
+        "so I think you should take it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000061_00001",
+      "en_US": [
+        "You know how Pokémon have their\n",
+        "own abilities?\r",
+        "Well, the move Skill Swap exchanges\n",
+        "the user’s ability with that of its\f",
+        "target Pokémon.\r",
+        "How you use Skill Swap is a measure\n",
+        "of your expertise as a Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000061_00002",
+      "en_US": [
+        "Somewhere far beyond the vast sea...\r",
+        "There are other lands populated by\n",
+        "Pokémon and Trainers."
+      ]
+    }
+  ]
+}

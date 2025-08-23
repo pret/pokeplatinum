@@ -39,7 +39,7 @@
 
 FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay89);
-FS_EXTERN_OVERLAY(overlay97);
+FS_EXTERN_OVERLAY(main_menu);
 FS_EXTERN_OVERLAY(d_startmenu);
 
 #define LIGHT_COLOR(r, g, b) ((((r) << 0) & GX_RGB_R_MASK) | (((g) << 5) & GX_RGB_G_MASK) | (((b) << 10) & GX_RGB_B_MASK))
@@ -660,12 +660,12 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gf
     case RENDER_STATE_OFF:
         break;
     case RENDER_STATE_DISABLE:
-        sub_020241B4();
+        G3_ResetG3X();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
         gfx->renderState = RENDER_STATE_OFF;
         break;
     case RENDER_STATE_ENABLE:
-        sub_020241B4();
+        G3_ResetG3X();
         Camera_ComputeViewMatrix();
         MTX_Rot33Vec(&rotationMatrix, &gfx->giratinaRot);
 

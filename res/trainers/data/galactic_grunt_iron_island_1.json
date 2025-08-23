@@ -34,5 +34,14 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I want to cry...\n",
+				"My heart is shattered...\n"
+			]
+		}
     ]
 }

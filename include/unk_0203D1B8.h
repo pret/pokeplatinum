@@ -8,34 +8,34 @@
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
+#include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
-#include "overlay019/pokemon_storage_session.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
+#include "item_use_functions.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
-void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1);
+void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1);
 void *sub_0203D264(FieldSystem *fieldSystem, int param1);
 u16 sub_0203D2C4(void *param0);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs);
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2);
-void *sub_0203D3C0(int param0, FieldSystem *fieldSystem);
+void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem);
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem);
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan);
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2);
@@ -81,15 +81,15 @@ void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *tr
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);
-void sub_0203E0FC(FieldSystem *fieldSystem, int param1);
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi);
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1);
 void *sub_0203E244(FieldSystem *fieldSystem);
 void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1);
 void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1);
-void sub_0203E2AC(FieldSystem *fieldSystem, void *param1);
-void sub_0203E2D4(FieldSystem *fieldSystem, void *param1);
+void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
+void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);
 void sub_0203E2FC(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);

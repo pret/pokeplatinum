@@ -27,5 +27,23 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve cranked up my dragon Pokémon’s\n",
+				"abilities!\r",
+				"I’ve been looking forward to seeing\n",
+				"you again!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Raising abilities alone doesn’t mean\n",
+				"I can win either...\n"
+			]
+		}
     ]
 }

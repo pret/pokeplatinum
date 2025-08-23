@@ -82,5 +82,33 @@
             "power": 250,
             "ball_seal": 13
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"I can feel your determination.\n",
+				"Your will is overpowering me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"This situation...\n",
+				"This is heating up! I’m blazing now!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...!\r",
+				"I don’t believe it! I lost!\n",
+				"I didn’t take you for granted...\r",
+				"But I didn’t expect you to win!\n",
+				"I’d never even considered it!\r",
+				"I’m blown away by this!\n",
+				"You and your Pokémon are hot stuff!\n"
+			]
+		}
     ]
 }

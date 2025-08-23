@@ -27,5 +27,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let me ask to see if you know.\n",
+				"What is time?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Another memory...\n",
+				"In a chain of memories.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"For me, time is the fabric woven by\n",
+				"memories, one after another...\n"
+			]
+		}
     ]
 }

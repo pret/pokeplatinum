@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0217.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _0036
@@ -158,7 +159,7 @@ _01D4:
     End
 
 _01E3:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _01E9:

@@ -25,5 +25,74 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Emma: We’re tough because we battle\n",
+				"together!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": "Emma: Waaah!\n"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Emma: That was awesome!\n",
+				"Are you maybe a Pokémon genius?\f",
+				"You’re well deserving of respect!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"We won’t talk to people who have only\n",
+				"one Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+			"en_US": [
+				"Emma: When I battle with Lil,\n",
+				"we shouldn’t lose!\r"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Lil: We’re gonna crunch and\n",
+				"munch you all up!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": "Lil: Hwaaah!\n"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Lil: We’re going to be super-strong\n",
+				"Trainers like you!\r",
+				"I just decided now!\n",
+				"Please cheer for us!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"We don’t talk to people who have only\n",
+				"one Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+			"en_US": [
+				"Lil: You munched us all up last\n",
+				"time, but it’s our turn now!\r"
+			]
+		}
     ]
 }

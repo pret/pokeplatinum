@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0206A844.h"
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
@@ -19,13 +18,13 @@
 #include "list_menu.h"
 #include "message.h"
 #include "render_window.h"
+#include "scroll_prompts.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202854C.h"
-#include "unk_0206A780.h"
 
 typedef struct UnkStruct_ov23_022542D8_t {
     FieldSystem *fieldSystem;
@@ -43,7 +42,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
 
 typedef struct UnkStruct_ov23_02254594_t {
     FieldSystem *fieldSystem;
-    UnkStruct_0206A844 *unk_04;
+    ScrollPrompts *unk_04;
     Window unk_08;
     Window unk_18;
     StringList *unk_28;
@@ -65,7 +64,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0);
 static void ov23_022546E0(UnkStruct_ov23_02254594 *param0);
 static void ov23_0225461C(UnkStruct_ov23_02254594 *param0);
 static void ov23_02254958(UnkStruct_ov23_02254594 *param0);
-static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u16 param2, const u16 param3);
+static void ov23_022549A8(ScrollPrompts *param0, const u16 param1, const u16 param2, const u16 param3);
 static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0);
 
 static const ListMenuTemplate Unk_ov23_02256B3C = {
@@ -310,7 +309,7 @@ BOOL ov23_022545DC(UnkStruct_ov23_02254594 *param0)
     }
 
     if (param0->unk_04) {
-        sub_0206A870(param0->unk_04);
+        ScrollPrompts_UpdateAnim(param0->unk_04);
     }
 
     return 0;
@@ -366,7 +365,7 @@ static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
     if (v2 == v3 - 1) {
         v0 = 278;
     } else {
-        v0 = sub_020289B8(v1, v2);
+        v0 = Underground_GetGoodAtSlotPC(v1, v2);
         v0 = 145 + v0 - 7;
     }
 
@@ -382,7 +381,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     int v5;
 
     v0 = SaveData_GetUnderground(param0->fieldSystem->saveData);
-    v4 = sub_020289A0(v0);
+    v4 = Underground_GetGoodsCountPC(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;
 
@@ -442,8 +441,8 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         }
 
         for (v7 = 0; v7 < v4; v7++) {
-            v8 = sub_020289B8(v0, v7);
-            v9 = sub_02028AFC(v0, v7);
+            v8 = Underground_GetGoodAtSlotPC(v0, v7);
+            v9 = Underground_IsGoodAtSlotPlacedInBase(v0, v7);
 
             if (!v9) {
                 v11 = 1;
@@ -472,16 +471,16 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     v1.cursorCallback = ov23_022546A0;
     v1.parent = v0;
 
-    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, sub_02028A10, v0, 1);
+    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, Underground_MoveGoodPC, v0, 1);
 
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
 
-    param0->unk_04 = sub_0206A780(HEAP_ID_FIELD);
+    param0->unk_04 = ScrollPrompts_New(HEAP_ID_FIELD);
 
-    sub_0206A8A0(param0->unk_04, 200, 10 + 8 * 2, 118 + 8 * 2);
-    sub_0206A8C4(param0->unk_04, 0, 0);
-    sub_0206A8C4(param0->unk_04, 1, 0);
+    ScrollPrompts_SetPosition(param0->unk_04, 200, 10 + 8 * 2, 118 + 8 * 2);
+    ScrollPrompts_SetDrawFlag(param0->unk_04, SCROLL_PROMPT_TOP_ARROW, FALSE);
+    ScrollPrompts_SetDrawFlag(param0->unk_04, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
 
     param0->unk_42 = 1;
 }
@@ -497,25 +496,25 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
     Window_Remove(&param0->unk_08);
     Window_Remove(&param0->unk_18);
     StringList_Free(param0->unk_28);
-    sub_0206A844(param0->unk_04);
+    ScrollPrompts_Free(param0->unk_04);
 }
 
-static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u16 param2, const u16 param3)
+static void ov23_022549A8(ScrollPrompts *param0, const u16 param1, const u16 param2, const u16 param3)
 {
     if (param2 <= param3) {
         return;
     }
 
     if (param1 != 0) {
-        sub_0206A8C4(param0, 0, 1);
+        ScrollPrompts_SetDrawFlag(param0, SCROLL_PROMPT_TOP_ARROW, TRUE);
     } else {
-        sub_0206A8C4(param0, 0, 0);
+        ScrollPrompts_SetDrawFlag(param0, SCROLL_PROMPT_TOP_ARROW, FALSE);
     }
 
     if (param2 != (param1 + param3)) {
-        sub_0206A8C4(param0, 1, 1);
+        ScrollPrompts_SetDrawFlag(param0, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
     } else {
-        sub_0206A8C4(param0, 1, 0);
+        ScrollPrompts_SetDrawFlag(param0, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
     }
 }
 

@@ -36,5 +36,34 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"When eyes meet...\n",
+				"That’s when a battle starts!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You won’t let me win?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I suddenly remembered what it was \n",
+				"like when I had my first battle.\r",
+				"I wonder why that would be?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"When eyes meet...\n",
+				"That’s when a battle starts!\f",
+				"That’s what makes us Trainers!\r"
+			]
+		}
     ]
 }

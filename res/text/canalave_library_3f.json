@@ -1,0 +1,553 @@
+{
+  "key": 29707,
+  "messages": [
+    {
+      "id": "pl_msg_00000060_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "Over here! This way!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: OK, gramps!\n",
+        "I brought {STRVAR_1 3, 1, 0} like I said!\r",
+        "All right, I’ll be outta here!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00002",
+      "en_US": [
+        "Rowan: ...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...OK...\n",
+        "I get it...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00004",
+      "en_US": [
+        "Rowan: Hm! Everyone’s here finally.\n",
+        "{STRVAR_1 3, 0, 0}, everyone, listen.\r",
+        "You may have forgotten already, but\n",
+        "I study the evolution of Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00005",
+      "en_US": [
+        "But the more I study, the more\n",
+        "mysteries appear and multiply.\r",
+        "Pokémon that evolve, and those that\n",
+        "don’t...\r",
+        "What makes them different from each\n",
+        "other?\r",
+        "Do those that are immature as living\n",
+        "beings evolve to ones more mature?\r",
+        "If so, what do we make of the\n",
+        "legendary Pokémon that don’t evolve?\r",
+        "Are we to assume that the legendary\n",
+        "Pokémon are complete as creatures?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00006",
+      "en_US": [
+        "This is where you three come in.\r",
+        "In the three lakes of Sinnoh, there\n",
+        "are said to be mirage Pokémon.\r",
+        "If we can obtain data on them,\n",
+        "it may shed some light on how the\f",
+        "process of Pokémon evolution works.\r",
+        "I need help from each one of you\n",
+        "on this grand undertaking.\r",
+        "Help me find these Pokémon that are\n",
+        "considered to be mirages.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00007",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What are you saying?\n",
+        "I didn’t get a Pokédex!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00008",
+      "en_US": [
+        "Rowan: ...And who was it that bolted\n",
+        "from the lab before I had a chance\f",
+        "to give you a Pokédex?\r",
+        "But that’s water under the bridge!\r",
+        "Seeing Pokémon with your own eyes is\n",
+        "important for you in becoming a better\f",
+        "Trainer, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00009",
+      "en_US": [
+        "Dawn: You can count on me!\n",
+        "It will help with my Pokédex, too.\r",
+        "{STRVAR_1 3, 0, 0}, you’ll go, too,\n",
+        "won’t you?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00010",
+      "en_US": [
+        "Lucas: You bet, Professor!\r",
+        "This will add to the Pokédex\n",
+        "database and help advance your\f",
+        "research.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00011",
+      "en_US": [
+        "Rowan: Hm! I would have made all of\n",
+        "you go regardless... Anyway.\r",
+        "Now, there are three lakes.\n",
+        "Fortuitously, there are three of you.\r",
+        "You should therefore split up and\n",
+        "investigate the lakes individually.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00012",
+      "en_US": "Rowan: Dawn, you go to Lake Verity.\r"
+    },
+    {
+      "id": "pl_msg_00000060_00013",
+      "en_US": "Dawn: Will do!\r"
+    },
+    {
+      "id": "pl_msg_00000060_00014",
+      "en_US": "Rowan: Lucas, you go to Lake Verity.\r"
+    },
+    {
+      "id": "pl_msg_00000060_00015",
+      "en_US": "Lucas: Yes, sir!\r"
+    },
+    {
+      "id": "pl_msg_00000060_00016",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 0, 0}, I want you to\n",
+        "investigate Lake Acuity.\r",
+        "That would take you almost to\n",
+        "Snowpoint City.\r",
+        "The road there is harsh. I need\n",
+        "a tough Trainer to go.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00017",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Uh... Yeah, of course!\n",
+        "Gramps, you know how to call it!\f",
+        "You can tell I’m the hotness!\r",
+        "And, you know what? I was going to\n",
+        "catch those legendary Pokémon for you.\r",
+        "You know, as thanks for giving us our\n",
+        "Pokémon back on Route 201.\r",
+        "...Even though I forgot completely\n",
+        "about it until just now.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00018",
+      "en_US": [
+        "Rowan: Very well.\n",
+        "I’m counting on you.\r",
+        "And that leaves {STRVAR_1 3, 0, 0} with\n",
+        "Lake Valor.\r",
+        "The lake is between Veilstone\n",
+        "and Pastoria, if memory serves...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00019",
+      "en_US": "{SIZE 200}DDDOOOMMM!!"
+    },
+    {
+      "id": "pl_msg_00000060_00020",
+      "en_US": [
+        "Rowan: ...\n",
+        "...Has it stopped?\r",
+        "Are all of you unharmed?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00021",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What was that about?!\r",
+        "No, wait, I mean, TV! The TV!\n",
+        "News! Anything!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00022",
+      "en_US": [
+        "Announcer: What you’ve just witnessed\n",
+        "is actual footage from the scene.\r",
+        "It was taken by a cameraman who\n",
+        "happened to be there.\r",
+        "Newscaster: It’s certainly impressive.\r",
+        "Who knows what the explosion could\n",
+        "expose at the lake?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00023",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Gramps!\n",
+        "They said it was an explosion?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00024",
+      "en_US": [
+        "Rowan: Hmm...\n",
+        "But why at Lake Valor...?\r",
+        "Let’s get outside.\n",
+        "I’m concerned about the town.\r",
+        "You kids, be careful going down the\n",
+        "stairs.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00025",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 1, 0}.\n",
+        "You should leave now, too.\r",
+        "...There may be aftershocks, however.\n",
+        "Be alert always.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00026",
+      "en_US": [
+        "Every book contains someone’s\n",
+        "memories of various places and times.\r",
+        "Libraries aren’t just buildings where\n",
+        "books are kept, you know.\r",
+        "They’re where different places\n",
+        "and times are gathered together."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00027",
+      "en_US": [
+        "W-was that an earthquake?\n",
+        "I didn’t imagine it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00028",
+      "en_US": [
+        "Someone’s always checked out the\n",
+        "book I want to read..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00029",
+      "en_US": [
+        "I’m feeling wobbly...\r",
+        "Even though the tremor has ended,\n",
+        "my knees still feel like jelly..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00030",
+      "en_US": [
+        "This book is titled “Sinnoh\n",
+        "Myth.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00031",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00032",
+      "en_US": [
+        "“Sinnoh Myth”\r",
+        "Betray not your anger, lest ??? will\n",
+        "come.\r",
+        "Weep not with sorrow, or ??? will\n",
+        "draw near.\r",
+        "When joy and enjoyment come natural\n",
+        "as the very air, that is happiness.\r",
+        "Let such be blessed by the hand\n",
+        "of Master ???.\r",
+        "Those words were spoken often\n",
+        "as customary."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00033",
+      "en_US": [
+        "This book is titled “Sinnoh Region’s\n",
+        "Mythology.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00034",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00035",
+      "en_US": [
+        "“Sinnoh Region’s Mythology”\r",
+        "Long ago, when Sinnoh had just been\n",
+        "made, Pokémon and humans led\f",
+        "separate lives.\r",
+        "That is not to say they did not help\n",
+        "each other. No, indeed they did.\r",
+        "They supplied each other with goods,\n",
+        "and supported each other.\r",
+        "A Pokémon proposed to the others\n",
+        "to always be ready to help humans.\r",
+        "It asked that Pokémon be ready to\n",
+        "appear before humans always.\r",
+        "Thus, to this day, Pokémon appear\n",
+        "to us if we venture into tall grass."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00036",
+      "en_US": [
+        "This book is titled “Sinnoh’s\n",
+        "Myth.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00037",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00038",
+      "en_US": [
+        "“Sinnoh’s Myth”\r",
+        "Three Pokémon there were.\r",
+        "Into the lakes they dove.\n",
+        "Deep, deep, drawing no breath.\r",
+        "Deeper, deeper they dove.\n",
+        "Into suffocating depths they dove.\r",
+        "Deeper, then deepest they alight.\n",
+        "From the lake floor they rise.\r",
+        "Bearing with them the power to make\n",
+        "vast lands, they rise again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00039",
+      "en_US": [
+        "This book is titled “Veilstone’s\n",
+        "Myth.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00040",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00041",
+      "en_US": [
+        "“Veilstone’s Myth”\r",
+        "A young man, callow and foolish in\n",
+        "innocence, came to own a sword.\r",
+        "With it, he smote Pokémon, which gave\n",
+        "sustenance, with carefree abandon.\r",
+        "Those not taken as food, he\n",
+        "discarded, with no afterthought.\r",
+        "The following year, no Pokémon\n",
+        "appeared. Larders grew bare.\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00042",
+      "en_US": [
+        "The young man, seeking the missing\n",
+        "Pokémon, journeyed afar.\r",
+        "Long did he search. And far and wide,\n",
+        "too, until one he did find.\r",
+        "Asked he, “Why do you hide?”\n",
+        "To which the Pokémon replied...\r",
+        "“If you bear your sword to bring\n",
+        "harm upon us, with claws and\f",
+        "fangs, we will exact a toll.\r",
+        "“From your kind we will take our\n",
+        "toll, for it must be done.\r",
+        "“Done it must be to guard ourselves\n",
+        "and for it, I apologize.”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00043",
+      "en_US": [
+        "To the skies, the young man shouted\n",
+        "his dismay.\r",
+        "“In having found the sword, I have\n",
+        "lost so much.\r",
+        "“Gorged with power, I grew blind\n",
+        "to Pokémon being alive.\r",
+        "“I will never fall savage again.\n",
+        "This sword I denounce and forsake.\r",
+        "“I plead for forgiveness,\n",
+        "for I was but a fool.”\r",
+        "So saying, the young man hurled the\n",
+        "sword to the ground, snapping it.\r",
+        "Seeing this, the Pokémon disappeared\n",
+        "to a place beyond seeing..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00044",
+      "en_US": [
+        "This ancient book is titled “The\n",
+        "Original Story.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00045",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00046",
+      "en_US": [
+        "In the beginning, there was only\n",
+        "a churning turmoil of chaos.\r",
+        "At the heart of chaos, where all\n",
+        "things became one, appeared an Egg.\r",
+        "Having tumbled from the vortex, the\n",
+        "Egg gave rise to the Original One.\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00047",
+      "en_US": [
+        "From itself, two beings the Original\n",
+        "One did make.\r",
+        "Time started to spin.\n",
+        "Space began to expand.\r",
+        "From itself again, three living things\n",
+        "the Original One did make.\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00048",
+      "en_US": [
+        "The two beings wished, and from them,\n",
+        "matter came to be.\r",
+        "The three living things wished, and\n",
+        "from them, spirit came to be.\r",
+        "The world created, the Original One\n",
+        "took to unyielding sleep..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00049",
+      "en_US": [
+        "This book is titled “A Horrific\n",
+        "Myth.” Want to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00050",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00051",
+      "en_US": [
+        "Look not into the Pokémon’s eyes.\r",
+        "In but an instant, you’ll have no\n",
+        "recollection of who you are.\r",
+        "Return home, but how?\n",
+        "When there is nothing to remember?\r",
+        "Dare not touch the Pokémon’s body.\r",
+        "In but three short days, all emotions\n",
+        "will drain away.\r",
+        "Above all, above all, harm not\n",
+        "the Pokémon.\r",
+        "In a scant five days, the offender\n",
+        "will grow immobile in entirety."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00052",
+      "en_US": [
+        "This book is titled “Sinnoh Folk\n",
+        "Stories.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00053",
+      "en_US": "Which story would you like to read?"
+    },
+    {
+      "id": "pl_msg_00000060_00054",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "pl_msg_00000060_00055",
+      "en_US": [
+        "“Sinnoh Folk Story 1”\r",
+        "Pick clean the bones of Pokémon\n",
+        "caught in the sea or stream.\r",
+        "Thank them for the meals they\n",
+        "provide, and pick their bones clean.\r",
+        "When the bones are as clean as can\n",
+        "be, set them free in the water from\f",
+        "which they came.\r",
+        "The Pokémon will return, fully\n",
+        "fleshed, and it begins anew."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00056",
+      "en_US": [
+        "“Sinnoh Folk Story 2”\r",
+        "There lived a Pokémon in a forest.\r",
+        "In the forest, the Pokémon shed its\n",
+        "hide to sleep as a human.\r",
+        "Awakened, the human dons the\n",
+        "Pokémon hide to roam villages."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00057",
+      "en_US": [
+        "“Sinnoh Folk Story 3”\r",
+        "There once were Pokémon that\n",
+        "became very close to humans.\r",
+        "There once were humans and Pokémon\n",
+        "that ate together at the same table.\r",
+        "It was a time when there existed no\n",
+        "differences to distinguish the two."
+      ]
+    },
+    {
+      "id": "pl_msg_00000060_00058",
+      "en_US": [
+        "On this floor, you will find many\n",
+        "books on the myths and legends of\f",
+        "the Sinnoh region."
+      ]
+    }
+  ]
+}

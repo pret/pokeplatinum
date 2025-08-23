@@ -12,6 +12,7 @@
 #include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
@@ -99,11 +100,11 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (v1 + v2 == v8 - 1) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 if (v1 + v2 == param0->unk_14 + param0->unk_16) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 param0->unk_00(param0->unk_04, param0->unk_14 + param0->unk_16, v1 + v2);
@@ -129,7 +130,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
                     for (v4 = 0; v4 < v8 - 1; v4++) {
                         int v10;
-                        int v11 = sub_02028AFC(param0->unk_04, v4);
+                        int v11 = Underground_IsGoodAtSlotPlacedInBase(param0->unk_04, v4);
 
                         if (!v11) {
                             v10 = 1;
@@ -156,14 +157,14 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 param0->unk_1C = 0;
 
                 ListMenu_Draw(v0);
-                return 0xffffffff;
+                return LIST_NOTHING_CHOSEN;
             }
         } else {
             if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (v1 + v2 == v8 - 1) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 param0->unk_14 = v1;
@@ -172,7 +173,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 param0->unk_1A = v2;
                 param0->unk_1C = 1;
 
-                return 0xffffffff;
+                return LIST_NOTHING_CHOSEN;
             }
         }
     }
@@ -187,9 +188,9 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
     }
 
     switch (v6) {
-    case 0xffffffff:
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     default:

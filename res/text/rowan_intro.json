@@ -1,0 +1,316 @@
+{
+  "key": 62160,
+  "messages": [
+    {
+      "id": "RowanIntro_Text_HelloThere",
+      "en_US": [
+        "Hello there!\n",
+        "It’s so very nice to meet you!\r",
+        "Welcome to the world of Pokémon!\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_MyNameRowan",
+      "en_US": [
+        "My name is Rowan.\r",
+        "However, everyone just calls me\n",
+        "the Pokémon Professor.\r",
+        "Before I go any further, is this\n",
+        "your first adventure?\r",
+        "If you need advice, I’m certainly\n",
+        "capable of giving it.\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfo0",
+      "en_US": [
+        "Moves the main character.\n",
+        "Also used to choose various\n",
+        "headings and selections.\n",
+        "\n",
+        "Used to confirm a choice, check\n",
+        "things, chat, and scroll text.\n",
+        "\n",
+        "Used to exit, cancel a choice,\n",
+        "and cancel a mode."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfo1",
+      "en_US": [
+        "Press to open the menu.\n",
+        "\n",
+        "Press to use an item, such\n",
+        "as a Bicycle, that has been\n",
+        "registered in advance."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfo2",
+      "en_US": [
+        "The lower screen is called\n",
+        "the Touch Screen.\n",
+        "\n",
+        "The Touch Screen will display\n",
+        "a variety of touch buttons\n",
+        "depending on the situation."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfo3",
+      "en_US": [
+        "If this mark is shown in the\n",
+        "message window, there are active\n",
+        "buttons you can touch on the\n",
+        "Touch Screen below."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfoDsIcon",
+      "en_US": "{YESNO 0}"
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfoUnderstood",
+      "en_US": [
+        "Do you understand everything\n",
+        "so far?{YESNO 0}"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ControlInfoUseTouchscreen",
+      "en_US": [
+        "Please touch a button on the\n",
+        "Touch Screen below.{YESNO 0}"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_InfoAnythingElse",
+      "en_US": [
+        "Would you like to know more about\n",
+        "anything else?\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo0",
+      "en_US": [
+        "You are about to enter a world\n",
+        "where you will embark on a grand\n",
+        "adventure of your very own."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo1",
+      "en_US": [
+        "Speak to people and check things\n",
+        "wherever you go, be it in towns,\n",
+        "roads, or caves.\n",
+        "Gather information and hints from\n",
+        "every possible source."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo2",
+      "en_US": [
+        "New paths will open to you when\n",
+        "you help people in need, overcome\n",
+        "challenges, and solve mysteries."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo3",
+      "en_US": [
+        "At times, you will be challenged\n",
+        "by others to a battle.\n",
+        "At other times, wild creatures\n",
+        "may stand in your way.\n",
+        "\n",
+        "By overcoming such hurdles,\n",
+        "you will gain great power."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo4",
+      "en_US": [
+        "However, your adventure is not\n",
+        "solely about becoming powerful."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AdventureInfo5",
+      "en_US": [
+        "On your travels, we hope that\n",
+        "you will meet countless people\n",
+        "and, through them, achieve\n",
+        "personal growth.\n",
+        "\n",
+        "This is the most important\n",
+        "objective of this adventure."
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_WidelyInhabited",
+      "en_US": [
+        "This world is widely inhabited by\n",
+        "creatures known as Pokémon.\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_HavePokeBall",
+      "en_US": [
+        "Here, I have a Poké Ball.\r",
+        "Touch the button on the middle of\n",
+        "the Poké Ball, if you’d please.{YESNO 0}"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_PokeBallUseTouchscreen",
+      "en_US": [
+        "No, no! Not that button!\n",
+        "The button on the Poké Ball.{YESNO 0}"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_LiveAlongsidePokemon",
+      "en_US": [
+        "We humans live alongside Pokémon\n",
+        "as friends.\r",
+        "At times we play together,\n",
+        "and at other times we\f",
+        "work together.\r",
+        "Some people use their Pokémon\n",
+        "to battle and develop\f",
+        "closer bonds with them.\r",
+        "What do I do?\r",
+        "I conduct research so that we may\n",
+        "learn more about Pokémon.\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_AboutYourself",
+      "en_US": [
+        "Now, why don’t you tell me\n",
+        "a little bit about yourself?\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_GenderDialogue",
+      "en_US": [
+        "Are you a boy?\n",
+        "Or are you a girl?\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ConfirmBoy",
+      "en_US": "All right, so you’re a boy?\r"
+    },
+    {
+      "id": "RowanIntro_Text_ConfirmGirl",
+      "en_US": "All right, so you’re a girl?\r"
+    },
+    {
+      "id": "RowanIntro_Text_NameDialogue",
+      "en_US": "Tell me, what is your name?\r"
+    },
+    {
+      "id": "RowanIntro_Text_ConfirmNameMale",
+      "en_US": "Your name is {STRVAR_1 3, 0, 0}?\r"
+    },
+    {
+      "id": "RowanIntro_Text_ConfirmNameFemale",
+      "en_US": "Your name is {STRVAR_1 3, 0, 0}?\r"
+    },
+    {
+      "id": "RowanIntro_Text_SoYoure",
+      "en_US": [
+        "OK...\n",
+        "So, you’re {STRVAR_1 3, 0, 0}?\r",
+        "A fine name that is!\r",
+        "Now, this boy here...\n",
+        "I believe he’s your friend.\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_RivalNameDialogue",
+      "en_US": "What might his name be?\r"
+    },
+    {
+      "id": "RowanIntro_Text_ConfirmRivalName",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}, is it?\n",
+        "That’s your friend’s name?\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_EndDialogue",
+      "en_US": [
+        "All right, {STRVAR_1 3, 0, 0}, the time\n",
+        "has come.\r",
+        "Your very own tale of grand\n",
+        "adventure is about to unfold.\r",
+        "On your journey, you will meet\n",
+        "countless Pokémon and people.\r",
+        "I’m sure that along the way you will\n",
+        "discover many things, perhaps even\f",
+        "something about yourself.\r",
+        "Now, go on, leap into the world of\n",
+        "Pokémon!\r"
+      ]
+    },
+    {
+      "id": "RowanIntro_Text_ChoiceControlInfo",
+      "en_US": "CONTROL INFO"
+    },
+    {
+      "id": "RowanIntro_Text_ChoiceAdventureInfo",
+      "en_US": "ADVENTURE INFO"
+    },
+    {
+      "id": "RowanIntro_Text_ChoiceNoInfo",
+      "en_US": "NO INFO NEEDED"
+    },
+    {
+      "id": "RowanIntro_Text_ChoiceYes",
+      "en_US": "YES"
+    },
+    {
+      "id": "RowanIntro_Text_ChoiceNo",
+      "en_US": "NO"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceNew",
+      "en_US": "New name!"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceBarry",
+      "en_US": "Barry"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceNolan",
+      "en_US": "Nolan"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceRoy",
+      "en_US": "Roy"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceGavin",
+      "en_US": "Gavin"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceClint",
+      "en_US": "Clint"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceRalph",
+      "en_US": "Ralph"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceLewis",
+      "en_US": "Lewis"
+    },
+    {
+      "id": "RowanIntro_Text_RivalChoiceTommy",
+      "en_US": "Tommy"
+    }
+  ]
+}

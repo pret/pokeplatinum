@@ -51,5 +51,32 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I was born in Floaroma Town.\n",
+				"I’m sure thrilled to be here.\r",
+				"It took a long time to get here.\n",
+				"We’re not going to lose again!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"We went down...\n",
+				"We couldn’t stick it out...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You can level all you want, but that\n",
+				"won’t guarantee you any wins.\r",
+				"But we keep trying to get better.\n",
+				"That’s what makes us Trainers.\n"
+			]
+		}
     ]
 }

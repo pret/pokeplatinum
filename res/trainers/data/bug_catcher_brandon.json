@@ -32,5 +32,37 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hey, hey, let me show off my bug\n",
+				"Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’m not going to be able to explain\n",
+				"the charms of bug Pokémon this way!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Bug Pokémon grow quickly, and they do\n",
+				"stuff like poison and paralyze, and\f",
+				"they’re cute and yet cool.\r",
+				"You gotta believe me. They’re good!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"So, listen. Tell me you’ve grown to\n",
+				"like bug Pokémon since we last met?\r"
+			]
+		}
     ]
 }

@@ -1,0 +1,574 @@
+{
+  "key": 24307,
+  "messages": [
+    {
+      "id": "FootstepHouse_Text_PokemonAreQuiteEasyForMeToRead",
+      "en_US": [
+        "Dr. Footstep: Pokémon are quite easy\n",
+        "for me to read.\r",
+        "I need only to see their footprints,\n",
+        "and their innermost thoughts are\f",
+        "revealed to me!\r",
+        "Oh?\n",
+        "You are skeptical of my claim?\r",
+        "Then, let your {STRVAR_1 0, 0, 0} walk\n",
+        "in front of me, right here.\r",
+        "From its footprints, I will determine\n",
+        "how it feels about you.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_DoYouWantToCheckTheFeelingsOfYourPokemonAgain",
+      "en_US": [
+        "Dr. Footstep: Do you want to check\n",
+        "the feelings of your Pokémon again?\r",
+        "Then, let your {STRVAR_1 0, 0, 0} walk\n",
+        "in front of me, right here.\r",
+        "From its footprints, I will determine\n",
+        "how it feels about you.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou",
+      "en_US": [
+        "Dr. Footstep: ...And that is what\n",
+        "your {STRVAR_1 0, 0, 0} thinks of you."
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints",
+      "en_US": [
+        "Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\n",
+        "doesn’t leave any footprints.\r",
+        "It’s somewhat difficult for me to\n",
+        "determine what its thoughts are."
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_PokemonSilentType",
+      "en_US": [
+        "Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\n",
+        "happens to be quite the silent type!"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou_CloseBond",
+      "en_US": [
+        "Dr. Footstep: ...And that is what\n",
+        "your {STRVAR_1 0, 0, 0} thinks of you.\r",
+        "I must say, your {STRVAR_1 0, 0, 0} and\n",
+        "you share a very close bond.\f",
+        "This is for you.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints_CloseBond",
+      "en_US": [
+        "Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\n",
+        "doesn’t leave any footprints.\r",
+        "It’s somewhat difficult for me to\n",
+        "determine what its thoughts are.\r",
+        "However, your {STRVAR_1 0, 0, 0} and\n",
+        "you obviously share a close bond.\f",
+        "This is for you.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SilentType_CloseBond",
+      "en_US": [
+        "Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\n",
+        "happens to be quite the silent type!\r",
+        "However, your {STRVAR_1 0, 0, 0} and\n",
+        "you obviously share a close bond.\f",
+        "This is for you.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_PlayerReceivedFootprintRibbon",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} received\n",
+        "the Footprint Ribbon.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} put the Footprint Ribbon\n",
+        "on {STRVAR_1 0, 0, 0}."
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithPrint_Level1",
+      "en_US": [
+        "Aww... {STRVAR_1 3, 1, 0} only plays with\n",
+        "other Pokémon...\r",
+        "{STRVAR_1 1, 2, 0} feels neglected...\r",
+        "Maybe {STRVAR_1 3, 1, 0} doesn’t like\n",
+        "{STRVAR_1 1, 2, 0} very much?\r",
+        "{STRVAR_1 1, 2, 0} will try harder for\n",
+        "{STRVAR_1 3, 1, 0}.\r",
+        "Please be nicer to me!\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithPrint_Level2",
+      "en_US": [
+        "Others say there are people who\n",
+        "aren’t very nice to Pokémon.\r",
+        "I wonder about {STRVAR_1 3, 1, 0}...\r",
+        "Will {STRVAR_1 3, 1, 0} look after\n",
+        "{STRVAR_1 1, 2, 0} nicely?\r",
+        "Will I get to go all over with this\n",
+        "Trainer?\r",
+        "Can we be... Friends?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithPrint_Level3",
+      "en_US": [
+        "This adventure with {STRVAR_1 3, 1, 0}\n",
+        "is lots of fun.\r",
+        "{STRVAR_1 1, 2, 0} gets to go places where\n",
+        "I can’t go by myself.\r",
+        "I get to battle Pokémon I’ve never\n",
+        "ever seen before.\r",
+        "I’m gonna get stronger and stronger\n",
+        "for {STRVAR_1 3, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithPrint_Level4",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0} make\n",
+        "a perfectly matched combo!\r",
+        "I’ve seen all sorts of people\n",
+        "so far...\r",
+        "But {STRVAR_1 3, 1, 0} understands\n",
+        "{STRVAR_1 1, 2, 0}’s feelings most!\r",
+        "I’m a little hungry...\n",
+        "You can tell, right?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithPrint_Level5",
+      "en_US": [
+        "If I said there can be friendship\n",
+        "between Pokémon and people, will\f",
+        "{STRVAR_1 0, 0, 0}’s friends understand?\r",
+        "But if you see {STRVAR_1 3, 1, 0} and\n",
+        "{STRVAR_1 1, 2, 0}, you will understand.\r",
+        "Because {STRVAR_1 3, 1, 0} and\n",
+        "{STRVAR_1 1, 2, 0} are friends!\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level1",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} is bored...\n",
+        "Play with me more, more...\r",
+        "{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0},\n",
+        "let’s play nicer...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level2",
+      "en_US": [
+        "Gonna go with {STRVAR_1 3, 1, 0} all over\n",
+        "the place...\r",
+        "Be nice to {STRVAR_1 1, 2, 0}...\n",
+        "Warm and cuddly...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level3",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} get strong, make\n",
+        "{STRVAR_1 3, 1, 0} happy.\r",
+        "Round ones, square ones,\n",
+        "triangle ones, wobbly ones...\r",
+        "{STRVAR_1 1, 2, 0} wants to see different\n",
+        "kinds of Pokémon...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level4",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0}\n",
+        "make a friendly combo.\r",
+        "{STRVAR_1 3, 1, 0}’s feelings, {STRVAR_1 1, 2, 0}\n",
+        "can understand.\r",
+        "{STRVAR_1 1, 2, 0}’s feelings, {STRVAR_1 3, 1, 0}\n",
+        "understands!\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level5",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} makes {STRVAR_1 1, 2, 0}\n",
+        "very proud!\r",
+        "{STRVAR_1 0, 0, 0} boasts to friends\n",
+        "about {STRVAR_1 3, 1, 0}!\r",
+        "{STRVAR_1 3, 1, 0} and {STRVAR_1 1, 2, 0} are\n",
+        "best of friends!\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithPrint_Level1",
+      "en_US": [
+        "Why does {STRVAR_1 3, 1, 0} use only\n",
+        "other Pokémon?\r",
+        "Am I not needed much?\r",
+        "Would I have been better off if\n",
+        "I remained in the wild?\r",
+        "No, I should give this Trainer\n",
+        "a little more of a chance...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithPrint_Level2",
+      "en_US": [
+        "Humans can’t understand the cries\n",
+        "of Pokémon, nor our feelings.\r",
+        "However, there are some among us\n",
+        "that understand human speech...\r",
+        "Hehehe, {STRVAR_1 3, 1, 0}, you’re not bad\n",
+        "for a human.\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithPrint_Level3",
+      "en_US": [
+        "If a Pokémon were to travel alone,\n",
+        "it would be limited as to where\f",
+        "it could go.\r",
+        "But traveling with a human, a Pokémon\n",
+        "would be able to travel farther afield\f",
+        "to more distant cities and lands.\r",
+        "Traveling with {STRVAR_1 3, 1, 0} has been\n",
+        "rewarding and reassuring.\r",
+        "And very entertaining...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithPrint_Level4",
+      "en_US": [
+        "Some wild Pokémon frown upon others\n",
+        "for traveling with humans.\r",
+        "They jeer that the caught Pokémon\n",
+        "have “forgotten the wild.”\r",
+        "But that view is mistaken.\r",
+        "They have just never met a Trainer\n",
+        "who could be a great partner.\r",
+        "A great partner like {STRVAR_1 3, 1, 0},\n",
+        "in other words...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithPrint_Level5",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} is...\n",
+        "A remarkable human and Trainer.\r",
+        "That I can always perform the best\n",
+        "any {STRVAR_1 0, 0, 0} possibly can...\r",
+        "I attribute that entirely to my\n",
+        "partner {STRVAR_1 3, 1, 0}.\r",
+        "When we travel, I can see wild\n",
+        "Pokémon eyeing us enviously...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level1",
+      "en_US": [
+        "Does {STRVAR_1 3, 1, 0} intend to ignore\n",
+        "me forever?\r",
+        "Give me more opportunities for me\n",
+        "to shine...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level2",
+      "en_US": [
+        "If a Pokémon is treated as a friend,\n",
+        "it will return the sentiments.\r",
+        "We grow fonder of humans that treat\n",
+        "us with kindness...\r",
+        "Does {STRVAR_1 3, 1, 0} even like\n",
+        "{STRVAR_1 1, 2, 0}?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level3",
+      "en_US": [
+        "Did {STRVAR_1 1, 2, 0} get stronger?\n",
+        "Who is responsible for making me so?\r",
+        "Is it {STRVAR_1 3, 1, 0}’s doing?\n",
+        "Is the Trainer owed my thanks?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level4",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} and {STRVAR_1 1, 2, 0} are\n",
+        "alike in some ways.\r",
+        "In humanspeak, we match up well.\n",
+        "Does {STRVAR_1 3, 1, 0} think so, too?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level5",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} is very impressive,\n",
+        "especially for a human.\r",
+        "The Trainer lets {STRVAR_1 1, 2, 0} use\n",
+        "every bit of power properly.\r",
+        "It is a shame that {STRVAR_1 3, 1, 0} is\n",
+        "only a human...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level1",
+      "en_US": [
+        "That {STRVAR_1 3, 1, 0}...\n",
+        "What is that Trainer thinking?\r",
+        "Why make me join the team, then call\n",
+        "upon me for nothing?\r",
+        "Am I considered useless?\n",
+        "Is the Trainer regretting having me?\r",
+        "Does the Trainer dare disrespect\n",
+        "this {STRVAR_1 0, 0, 0} so easily?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level2",
+      "en_US": [
+        "I have little understanding of\n",
+        "{STRVAR_1 3, 1, 0} as a human...\r",
+        "{STRVAR_1 3, 1, 0} may not be too bad,\n",
+        "considering that I, an oft-shunned\f",
+        "{STRVAR_1 0, 0, 0}, am one of the team...\r",
+        "That said, I don’t intend to be all\n",
+        "cheerful around {STRVAR_1 3, 1, 0}...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level3",
+      "en_US": [
+        "Our kind prefers to lurk in dark\n",
+        "and dank places...\r",
+        "But being with {STRVAR_1 3, 1, 0}, even\n",
+        "bright and festive places seem less\f",
+        "threatening...\r",
+        "{STRVAR_1 3, 1, 0} has a strange\n",
+        "charisma...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level4",
+      "en_US": [
+        "Not for a moment did I think I would\n",
+        "be traveling with a human...\r",
+        "If my {STRVAR_1 0, 0, 0} friends were to\n",
+        "see me now, they would be shocked.\r",
+        "Or would they be envious of me...?\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level5",
+      "en_US": [
+        "That {STRVAR_1 3, 1, 0} is the most\n",
+        "impressive of humans.\r",
+        "It takes a lot to make me,\n",
+        "{STRVAR_1 1, 2, 0}, sunny and cheerful!\r",
+        "As a show of affection, I should\n",
+        "chomp down on the Trainer’s neck...\r",
+        "Hahaha... Have no fear...\n",
+        "I was merely joking...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level1",
+      "en_US": [
+        "Wooooooh...\n",
+        "{STRVAR_1 1, 2, 0} has nothing to do...\r",
+        "Keep me too bored, and I’m liable\n",
+        "to sneak up and bite...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level2",
+      "en_US": [
+        "Is there any human that would grow\n",
+        "to like us {STRVAR_1 0, 0, 0}?\r",
+        "Well? Does {STRVAR_1 3, 1, 0} like\n",
+        "{STRVAR_1 1, 2, 0}?\r",
+        "{STRVAR_1 1, 2, 0} doesn’t like...\n",
+        "Well, no, maybe not...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level3",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} treats me, {STRVAR_1 1, 2, 0},\n",
+        "nicely without being scared.\r",
+        "But {STRVAR_1 1, 2, 0} will be even scarier\n",
+        "from now on.\r",
+        "That’s what we {STRVAR_1 0, 0, 0} do...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level4",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} is starting to forget\n",
+        "a little about being in the wild...\r",
+        "But {STRVAR_1 1, 2, 0} isn’t feeling sad.\n",
+        "It’s never boring with {STRVAR_1 3, 1, 0}...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level5",
+      "en_US": [
+        "There are no Pokémon that dislike\n",
+        "humans...\r",
+        "Only humans that dislike Pokémon...\r",
+        "We {STRVAR_1 0, 0, 0} are especially\n",
+        "shunned...\r",
+        "But {STRVAR_1 3, 1, 0} always treats me\n",
+        "as a friend and partner...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level1",
+      "en_US": [
+        "Hnurrrr... Hunh?\n",
+        "This is... Where?\r",
+        "{STRVAR_1 3, 1, 0}’s house, is this?\n",
+        "It’s not? Hnurrr...\r",
+        "If you don’t need me for anything,\n",
+        "can I go back to my Ball?\r",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level2",
+      "en_US": [
+        "Hnurrr... Me? Uhm...\n",
+        "I like to sleep most the time.\f",
+        "Oh, I like to eat, too. That’s next.\r",
+        "But what I really like is to think.\n",
+        "I’m a very deep thinker.\r",
+        "When I think about the future of the\n",
+        "{STRVAR_1 0, 0, 0} species...\r",
+        "...Hnurrr...hunh?\n",
+        "Oh, I forget where the time goes.\r",
+        "Hnurrrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level3",
+      "en_US": [
+        "Hnurrr... Me? Uhm...\n",
+        "There are lots of kinds of moves.\r",
+        "I like those Dark-type moves,\n",
+        "oh, and Dragon-type moves, too...\r",
+        "How would they be for this\n",
+        "{STRVAR_1 0, 0, 0}?\r",
+        "Will they be for me?\n",
+        "Or a no, no, no sort of thing?\r",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level4",
+      "en_US": [
+        "Hnurrr... I don’t know how to begin\n",
+        "saying this...\r",
+        "I liked living quietly before I met\n",
+        "{STRVAR_1 3, 1, 0}. Sssh.\r",
+        "But I’m getting to like traveling\n",
+        "with {STRVAR_1 3, 1, 0}.\r",
+        "I think I’m getting sort of funky.\n",
+        "Do you think I’m sort of funky?\r",
+        "No? No funk for me?\n",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level5",
+      "en_US": [
+        "Hnurrr... Me? Uhm...\n",
+        "Other Pokémon, they say to me...\r",
+        "“You’re not thinking, are you?”\n",
+        "How insulting they should say so.\r",
+        "It isn’t true what they say.\n",
+        "Think, think, think, I do that.\r",
+        "All the time, I think hard how to help\n",
+        "{STRVAR_1 3, 1, 0}. I concentrate!\r",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithPrint_Level1",
+      "en_US": [
+        "Hnurrr... I did not know that?\n",
+        "I really don’t? What is this?\f",
+        "I don’t know what to say?\f",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithPrint_Level2",
+      "en_US": [
+        "Hnurrr... Well, I...\n",
+        "I think I’m motivated.\f",
+        "As motivated as the average.\f",
+        "But it’s not so simple as that.\f",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithPrint_Level3",
+      "en_US": [
+        "Hnurrr... How should I say this?\n",
+        "We both look out for each other.\f",
+        "That’s what we try to do, I think.\f",
+        "That is for the best.\f",
+        "Hnurrrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithPrint_Level4",
+      "en_US": [
+        "Hnurrr... How do I say?\n",
+        "How should I describe us?\r",
+        "We are the sound of both hands\n",
+        "clapping.\r",
+        "{STRVAR_1 3, 1, 0} and I are together\n",
+        "in synchronicity like twins.\r",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SlowType_WithPrint_Level5",
+      "en_US": [
+        "Hnurrr...\n",
+        "What is left to say, I say?\r",
+        "We have come so far now, where can\n",
+        "we go but to see this through?\r",
+        "Hall of Fame...\n",
+        "Words so sweet fall from my mouth.\r",
+        "Hnurrr...\r"
+      ]
+    },
+    {
+      "id": "FootstepHouse_Text_SilentType",
+      "en_US": [
+        "Sssshhnnn...\n",
+        "...\f",
+        "...Ssshhhnnn...\f",
+        "...\f",
+        "Ssshhhnnn...\f",
+        "...\r"
+      ]
+    }
+  ]
+}

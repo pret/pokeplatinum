@@ -35,5 +35,39 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"There’s no mountain here, but I’m\n",
+				"dressed to hike! Gahaha! Here goes!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, yeah!\n",
+				"A refreshing battle that was!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You can find the same kinds of\n",
+				"Pokémon in all sorts of places.\r",
+				"There’s no law saying a Hiker can’t\n",
+				"go searching off in the mountains!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"If you meet someone in the mountains,\n",
+				"they’re no longer strangers.\r",
+				"Meet them twice, and they’re your\n",
+				"friend!\r"
+			]
+		}
     ]
 }

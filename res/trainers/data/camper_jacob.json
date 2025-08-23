@@ -21,5 +21,33 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hey, how about you and me battle before\n",
+				"I go into Eterna Forest?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "That really dampened my spirits.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I heard that really tough Pokémon\n",
+				"appear in Eterna Forest.\r",
+				"I need to be more prepared than this!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You’ve been to Eterna Forest\n",
+				"already, right? How was it?\r"
+			]
+		}
     ]
 }

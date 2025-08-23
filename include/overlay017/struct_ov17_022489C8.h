@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_022489C8_H
 #define POKEPLATINUM_STRUCT_OV17_022489C8_H
 
-#include "overlay012/struct_ov12_02235FE0_decl.h"
-#include "overlay012/struct_ov12_02236030.h"
+#include "battle_anim/struct_ov12_02235FE0_decl.h"
+#include "battle_anim/struct_ov12_02236030.h"
 
 #include "pokemon.h"
 

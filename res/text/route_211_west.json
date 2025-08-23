@@ -1,0 +1,23 @@
+{
+  "key": 40311,
+  "messages": [
+    {
+      "id": "pl_msg_00000487_00000",
+      "garbage": 78
+    },
+    {
+      "id": "pl_msg_00000487_00001",
+      "en_US": [
+        "Rt. 211\n",
+        "Mt. Coronet"
+      ]
+    },
+    {
+      "id": "pl_msg_00000487_00002",
+      "en_US": [
+        "Rt. 211\n",
+        "Eterna City"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "key": 5138,
+  "messages": [
+    {
+      "id": "pl_msg_00000567_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} checked the PC screen.\r",
+        "Adventure Rule No. 1\n",
+        "The X Button opens the menu!\r",
+        "Adventure Rule No. 2\n",
+        "Record your progress with SAVE.\r",
+        "There is nothing else on here..."
+      ]
+    }
+  ]
+}

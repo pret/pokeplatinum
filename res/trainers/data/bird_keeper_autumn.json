@@ -25,5 +25,25 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"The sharp vision of my bird Pokémon\n",
+				"will see through your weaknesses!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Don’t you have an Achilles’ heel?"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I want to become stronger, but only\n",
+				"with my favorite Pokémon.\n"
+			]
+		}
     ]
 }

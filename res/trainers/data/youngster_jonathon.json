@@ -19,5 +19,28 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You avoided the long way around?\n",
+				"Let’s see why you’d do that!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Now I understand why you decided to\n",
+				"battle with me.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You should go whichever way you\n",
+				"want, shortcut or the long way!\n"
+			]
+		}
     ]
 }

@@ -1,0 +1,88 @@
+{
+  "key": 5163,
+  "messages": [
+    {
+      "id": "pl_msg_00000101_00000",
+      "garbage": 46
+    },
+    {
+      "id": "pl_msg_00000101_00001",
+      "en_US": [
+        "Cycling Road is only for Bicycles!\r",
+        "Please get on your Bicycle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00002",
+      "en_US": [
+        "Learn how to shift gears, and you’ll\n",
+        "be able to ride anywhere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, long time, no see!\r",
+        "Oh? You look puzzled.\n",
+        "You’re wondering who I am.\r",
+        "I’m Professor Rowan’s assistant and\n",
+        "{STRVAR_1 3, 1, 0}’s father.\r",
+        "I’ve come a long way to help you on\n",
+        "your adventure at the professor’s\f",
+        "behest.\r",
+        "{STRVAR_1 3, 0, 0}, let me ask you,\n",
+        "how many Pokémon have you met?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, long time, no see!\r",
+        "Oh? You look puzzled.\n",
+        "You’re wondering who I am.\r",
+        "I’m Professor Rowan’s assistant and\n",
+        "{STRVAR_1 3, 1, 0}’s father.\r",
+        "I’ve come a long way to help you on\n",
+        "your adventure at the professor’s\f",
+        "behest.\r",
+        "{STRVAR_1 3, 0, 0}, let me ask you,\n",
+        "how many Pokémon have you met?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00005",
+      "en_US": [
+        "Oh, my!\n",
+        "You’ve met {STRVAR_1 52, 1, 0} Pokémon!\r",
+        "Wonderful! Yes, bravo!\n",
+        "Professor Rowan should be delighted!\r",
+        "Here is something for you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00006",
+      "en_US": [
+        "A Pokémon holding an Exp. Share will get\n",
+        "some of the Exp. Points from battle.\r",
+        "It will get Exp. Points even if it didn’t\n",
+        "actually battle.\r",
+        "Therefore, it should be held by a\n",
+        "Pokémon you want to raise quickly.\r",
+        "Also, a Pokémon you get in a trade may\n",
+        "disobey you if it is too high in level.\r",
+        "Don’t worry, though. It will obey if\n",
+        "you have enough Gym Badges."
+      ]
+    },
+    {
+      "id": "pl_msg_00000101_00007",
+      "en_US": [
+        "You’ve met only {STRVAR_1 52, 1, 0} Pokémon?\r",
+        "Hmm...\n",
+        "You’ve got to find at least 35.\r",
+        "If you can’t, it will be tough to\n",
+        "complete the Sinnoh Pokédex."
+      ]
+    }
+  ]
+}

@@ -25,5 +25,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hi, what kinds of Pokémon do you\n",
+				"have with you?\r",
+				"I’ll show you my Pokémon while we\n",
+				"have a battle.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Huh? It’s over?!\n",
+				"I thought I’d win!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You’re too tough!\n",
+				"I won’t battle you again!\r",
+				"Just joking! I’ll challenge you again\n",
+				"when I level up my Pokémon.\n"
+			]
+		}
     ]
 }

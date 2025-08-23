@@ -1,0 +1,325 @@
+{
+  "key": 62272,
+  "messages": [
+    {
+      "id": "pl_msg_00000018_00000",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000018_00001",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000018_00002",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000018_00003",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000018_00004",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000018_00005",
+      "en_US": "{STRVAR_1 11, 0, 0}"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box1",
+      "en_US": "BOX 1"
+    },
+    {
+      "id": "pl_msg_00000018_00007",
+      "en_US": "BOX 2"
+    },
+    {
+      "id": "pl_msg_00000018_00008",
+      "en_US": "BOX 3"
+    },
+    {
+      "id": "pl_msg_00000018_00009",
+      "en_US": "BOX 4"
+    },
+    {
+      "id": "pl_msg_00000018_00010",
+      "en_US": "BOX 5"
+    },
+    {
+      "id": "pl_msg_00000018_00011",
+      "en_US": "BOX 6"
+    },
+    {
+      "id": "pl_msg_00000018_00012",
+      "en_US": "BOX 7"
+    },
+    {
+      "id": "pl_msg_00000018_00013",
+      "en_US": "BOX 8"
+    },
+    {
+      "id": "pl_msg_00000018_00014",
+      "en_US": "BOX 9"
+    },
+    {
+      "id": "pl_msg_00000018_00015",
+      "en_US": "BOX 10"
+    },
+    {
+      "id": "pl_msg_00000018_00016",
+      "en_US": "BOX 11"
+    },
+    {
+      "id": "pl_msg_00000018_00017",
+      "en_US": "BOX 12"
+    },
+    {
+      "id": "pl_msg_00000018_00018",
+      "en_US": "BOX 13"
+    },
+    {
+      "id": "pl_msg_00000018_00019",
+      "en_US": "BOX 14"
+    },
+    {
+      "id": "pl_msg_00000018_00020",
+      "en_US": "BOX 15"
+    },
+    {
+      "id": "pl_msg_00000018_00021",
+      "en_US": "BOX 16"
+    },
+    {
+      "id": "pl_msg_00000018_00022",
+      "en_US": "BOX 17"
+    },
+    {
+      "id": "pl_msg_00000018_00023",
+      "en_US": "BOX 18"
+    },
+    {
+      "id": "pl_msg_00000018_00024",
+      "en_US": "JUMP"
+    },
+    {
+      "id": "pl_msg_00000018_00025",
+      "en_US": "WALLPAPER"
+    },
+    {
+      "id": "pl_msg_00000018_00026",
+      "en_US": "NAME"
+    },
+    {
+      "id": "pl_msg_00000018_00027",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000018_00028",
+      "en_US": "SCENERY 1"
+    },
+    {
+      "id": "pl_msg_00000018_00029",
+      "en_US": "SCENERY 2"
+    },
+    {
+      "id": "pl_msg_00000018_00030",
+      "en_US": "SCENERY 3"
+    },
+    {
+      "id": "pl_msg_00000018_00031",
+      "en_US": "ETCETERA"
+    },
+    {
+      "id": "pl_msg_00000018_00032",
+      "en_US": "FRIENDS 1"
+    },
+    {
+      "id": "pl_msg_00000018_00033",
+      "en_US": "FRIENDS 2"
+    },
+    {
+      "id": "pl_msg_00000018_00034",
+      "en_US": "FOREST"
+    },
+    {
+      "id": "pl_msg_00000018_00035",
+      "en_US": "CITY"
+    },
+    {
+      "id": "pl_msg_00000018_00036",
+      "en_US": "DESERT"
+    },
+    {
+      "id": "pl_msg_00000018_00037",
+      "en_US": "SAVANNA"
+    },
+    {
+      "id": "pl_msg_00000018_00038",
+      "en_US": "CRAG"
+    },
+    {
+      "id": "pl_msg_00000018_00039",
+      "en_US": "VOLCANO"
+    },
+    {
+      "id": "pl_msg_00000018_00040",
+      "en_US": "SNOW"
+    },
+    {
+      "id": "pl_msg_00000018_00041",
+      "en_US": "CAVE"
+    },
+    {
+      "id": "pl_msg_00000018_00042",
+      "en_US": "BEACH"
+    },
+    {
+      "id": "pl_msg_00000018_00043",
+      "en_US": "SEAFLOOR"
+    },
+    {
+      "id": "pl_msg_00000018_00044",
+      "en_US": "RIVER"
+    },
+    {
+      "id": "pl_msg_00000018_00045",
+      "en_US": "SKY"
+    },
+    {
+      "id": "pl_msg_00000018_00046",
+      "en_US": "POKé CENTER"
+    },
+    {
+      "id": "pl_msg_00000018_00047",
+      "en_US": "MACHINE"
+    },
+    {
+      "id": "pl_msg_00000018_00048",
+      "en_US": "CHECKS"
+    },
+    {
+      "id": "pl_msg_00000018_00049",
+      "en_US": "SIMPLE"
+    },
+    {
+      "id": "pl_msg_00000018_00050",
+      "en_US": "DISTORTION"
+    },
+    {
+      "id": "pl_msg_00000018_00051",
+      "en_US": "CONTEST"
+    },
+    {
+      "id": "pl_msg_00000018_00052",
+      "en_US": "NOSTALGIC"
+    },
+    {
+      "id": "pl_msg_00000018_00053",
+      "en_US": "CROAGUNK"
+    },
+    {
+      "id": "pl_msg_00000018_00054",
+      "en_US": "TRIO"
+    },
+    {
+      "id": "pl_msg_00000018_00055",
+      "en_US": "PIKAPIKA"
+    },
+    {
+      "id": "pl_msg_00000018_00056",
+      "en_US": "LEGEND"
+    },
+    {
+      "id": "pl_msg_00000018_00057",
+      "en_US": "TEAM GALACTIC"
+    },
+    {
+      "id": "pl_msg_00000018_00058",
+      "en_US": "MOVE"
+    },
+    {
+      "id": "pl_msg_00000018_00059",
+      "en_US": "PLACE"
+    },
+    {
+      "id": "pl_msg_00000018_00060",
+      "en_US": "SHIFT"
+    },
+    {
+      "id": "pl_msg_00000018_00061",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "pl_msg_00000018_00062",
+      "en_US": "WITHDRAW"
+    },
+    {
+      "id": "pl_msg_00000018_00063",
+      "en_US": "STORE"
+    },
+    {
+      "id": "pl_msg_00000018_00064",
+      "en_US": "ITEM"
+    },
+    {
+      "id": "pl_msg_00000018_00065",
+      "en_US": "MARK"
+    },
+    {
+      "id": "pl_msg_00000018_00066",
+      "en_US": "RELEASE"
+    },
+    {
+      "id": "pl_msg_00000018_00067",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000018_00068",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000018_00069",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000018_00070",
+      "en_US": "GIVE"
+    },
+    {
+      "id": "pl_msg_00000018_00071",
+      "en_US": "TAKE"
+    },
+    {
+      "id": "pl_msg_00000018_00072",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000018_00073",
+      "en_US": "SWITCH"
+    },
+    {
+      "id": "pl_msg_00000018_00074",
+      "en_US": "BAG"
+    },
+    {
+      "id": "pl_msg_00000018_00075",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000018_00076",
+      "en_US": "SET ON LEFT"
+    },
+    {
+      "id": "pl_msg_00000018_00077",
+      "en_US": "SET ON RIGHT"
+    },
+    {
+      "id": "pl_msg_00000018_00078",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000018_00079",
+      "en_US": "No"
+    }
+  ]
+}

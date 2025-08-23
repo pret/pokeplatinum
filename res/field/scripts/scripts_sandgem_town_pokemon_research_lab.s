@@ -101,7 +101,7 @@ _015C:
     End
 
 _016A:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 1, VAR_RESULT
     Message 54
     WaitABXPadPress
@@ -535,7 +535,7 @@ _0650:
     End
 
 _065B:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 0, VAR_RESULT
     Message 28
     BufferPlayerName 0

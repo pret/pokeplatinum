@@ -82,5 +82,21 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"Oh, no!\n",
+				"You’re too much for me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Mira wonders if she can get very far in\n",
+				"the Battle Tower.\n"
+			]
+		}
     ]
 }

@@ -34,5 +34,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You know, I had confidence before\n",
+				"heading into this.\n"
+			]
+		}
     ]
 }

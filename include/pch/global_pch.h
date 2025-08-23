@@ -16,8 +16,8 @@
 #define HI_HALF(i)                    (((i) >> 16) & 0xFFFF)
 #define LO_HALF(i)                    ((i) & 0xFFFF)
 #define HI_AND_LO(h, l)               (((h) << 16) | l)
-#define max(x, y)                     (x > y ? x : y)
-#define min(x, y)                     (x < y ? x : y)
+#define max(x, y)                     ((x) > (y) ? (x) : (y))
+#define min(x, y)                     ((x) < (y) ? (x) : (y))
 
 #define ALIGN_4 __attribute__((aligned(4)))
 

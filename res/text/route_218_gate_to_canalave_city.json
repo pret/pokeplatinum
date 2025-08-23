@@ -1,0 +1,71 @@
+{
+  "key": 61171,
+  "messages": [
+    {
+      "id": "pl_msg_00000512_00000",
+      "en_US": [
+        "Boy...\n",
+        "I sure am thirsty..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000512_00001",
+      "garbage": 53
+    },
+    {
+      "id": "pl_msg_00000512_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, long time, no see!\r",
+        "Oh? You look puzzled.\n",
+        "You’re wondering who I am.\r",
+        "I’m Professor Rowan’s assistant\n",
+        "and {STRVAR_1 3, 1, 0}’s father.\r",
+        "The professor asked that I upgrade\n",
+        "your Pokédex, you see.\r",
+        "So I’d chosen this spot on a hunch\n",
+        "that you’d pass through.\r",
+        "{STRVAR_1 3, 0, 0}, may I have your\n",
+        "Pokédex for a moment?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000512_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, long time, no see!\r",
+        "Oh? You look puzzled.\n",
+        "You’re wondering who I am.\r",
+        "I’m Professor Rowan’s assistant\n",
+        "and {STRVAR_1 3, 1, 0}’s father.\r",
+        "The professor asked that I upgrade\n",
+        "your Pokédex, you see.\r",
+        "So I’d chosen this spot on a hunch\n",
+        "that you’d pass through.\r",
+        "{STRVAR_1 3, 0, 0}, may I have your\n",
+        "Pokédex for a moment?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000512_00004",
+      "en_US": [
+        "Let’s see... Was I supposed to put\n",
+        "in the software here...?\r",
+        "Ka-chunk.\n",
+        "Ka-chunk!\r",
+        "All done!\n",
+        "I’ve upgraded your Pokédex!\r",
+        "I should explain how it’s been\n",
+        "upgraded, shouldn’t I?\r",
+        "It can now display images of male\n",
+        "and female Pokémon.\r",
+        "OK, I’ll leave you to carry on with\n",
+        "your project for the professor...\r",
+        "...May I also ask you to keep an\n",
+        "eye on Team Galactic?\r",
+        "The professor is concerned about\n",
+        "what happened in Jubilife City...\r",
+        "It’s probably nothing to worry over!\n",
+        "I’ll be on my way now.\r"
+      ]
+    }
+  ]
+}

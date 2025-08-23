@@ -51,5 +51,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Show me how you’ve battled to get\n",
+				"here! Let’s do this!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "So, that’s how you battled...?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Once you emerge from Victory Road,\n",
+				"the Pokémon League lies directly\f",
+				"ahead...\r",
+				"But many Trainers fail to ever find\n",
+				"their way on Victory Road...\n"
+			]
+		}
     ]
 }

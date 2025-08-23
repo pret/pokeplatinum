@@ -1,0 +1,135 @@
+{
+  "key": 3949,
+  "messages": [
+    {
+      "id": "pl_msg_00000364_00000",
+      "en_US": [
+        "Please choose Pokémon\n",
+        "no. {STRVAR_1 50, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00001",
+      "en_US": [
+        "Are you OK with the\n",
+        "chosen {STRVAR_1 50, 0, 0} Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00002",
+      "en_US": "Please wait a moment."
+    },
+    {
+      "id": "pl_msg_00000364_00003",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000364_00004",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000364_00005",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "pl_msg_00000364_00006",
+      "en_US": "RENT"
+    },
+    {
+      "id": "pl_msg_00000364_00007",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000364_00008",
+      "en_US": "REMOVE"
+    },
+    {
+      "id": "pl_msg_00000364_00009",
+      "en_US": [
+        "Choose the Pokémon to\n",
+        "be exchanged."
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00010",
+      "en_US": [
+        "Cancel the Pokémon\n",
+        "trade?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00011",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000364_00012",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000364_00013",
+      "en_US": [
+        "Choose the Pokémon you\n",
+        "want to receive."
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00014",
+      "en_US": [
+        "Will you accept this\n",
+        "Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00015",
+      "en_US": "Please wait a moment."
+    },
+    {
+      "id": "pl_msg_00000364_00016",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} traded\n",
+        "away {STRVAR_1 0, 1, 0} and\f",
+        "received {STRVAR_1 0, 2, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000364_00017",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000364_00018",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000364_00019",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000364_00020",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000364_00021",
+      "en_US": "EXCHANGE"
+    },
+    {
+      "id": "pl_msg_00000364_00022",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000364_00023",
+      "en_US": "BACK"
+    },
+    {
+      "id": "pl_msg_00000364_00024",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000364_00025",
+      "en_US": "♂"
+    },
+    {
+      "id": "pl_msg_00000364_00026",
+      "en_US": "♀"
+    }
+  ]
+}

@@ -37,5 +37,32 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"This cold is but nothing compared\n",
+				"to the fire that burns in my heart!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Your heart burns as hot as mine!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The weather clears up sometimes.\n",
+				"The view is breathtaking then.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We’ll come at you with our hearts\n",
+				"ablaze!\r"
+			]
+		}
     ]
 }

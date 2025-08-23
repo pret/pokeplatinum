@@ -50,5 +50,27 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ve only been involved with Pokémon\n",
+				"for a short time.\r",
+				"I managed to get this far because\n",
+				"skilled friends toughened me up!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I can’t believe how tough you are!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If you have wonderful friends, there\n",
+				"is no limit to how far you can go.\n"
+			]
+		}
     ]
 }

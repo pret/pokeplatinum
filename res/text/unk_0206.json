@@ -1,0 +1,119 @@
+{
+  "key": 59653,
+  "messages": [
+    {
+      "id": "pl_msg_00000206_00000",
+      "en_US": "JUMP"
+    },
+    {
+      "id": "pl_msg_00000206_00001",
+      "en_US": "UP"
+    },
+    {
+      "id": "pl_msg_00000206_00002",
+      "en_US": "FRONT"
+    },
+    {
+      "id": "pl_msg_00000206_00003",
+      "en_US": "LEFT"
+    },
+    {
+      "id": "pl_msg_00000206_00004",
+      "en_US": "RIGHT"
+    },
+    {
+      "id": "pl_msg_00000206_00005",
+      "en_US": "Excellent!"
+    },
+    {
+      "id": "pl_msg_00000206_00006",
+      "en_US": "Good!"
+    },
+    {
+      "id": "pl_msg_00000206_00007",
+      "en_US": "Miss!"
+    },
+    {
+      "id": "pl_msg_00000206_00008",
+      "en_US": [
+        "The Dance Competition is ready to\n",
+        "get under way!\r",
+        "Can the backup dancers flawlessly\n",
+        "follow the main dancer’s steps?!\r",
+        "OK! Everybody, let’s dance!\n",
+        "Start the music!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000206_00009",
+      "en_US": "{COLOR 2}Perform {STRVAR_1 50, 0, 0} steps as the main dancer!{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000206_00010",
+      "en_US": "{COLOR 1}Copy the Pokémon before you!{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000206_00011",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000206_00012",
+      "garbage": 257
+    },
+    {
+      "id": "pl_msg_00000206_00013",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000206_00014",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000206_00015",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000206_00016",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000206_00017",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000206_00018",
+      "en_US": [
+        "That’s it for the Dance Competition!\r",
+        "Leading in points right now is\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Can anyone turn things around in the\n",
+        "Acting Competition?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000206_00019",
+      "en_US": [
+        "Welcome! Thanks for joining our\n",
+        "practice Contest!\r",
+        "Feel free to practice all you want\n",
+        "and train for the big show!\r",
+        "I’ll be taking part to practice up\n",
+        "on being an MC!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000206_00020",
+      "en_US": [
+        "Looks like everyone’s here, so let’s\n",
+        "get on with our dance practice!\r",
+        "{STRVAR_1 1, 0, 0}, you need to dance just\n",
+        "like the main dancer.\r",
+        "After dancing twice, the main dancer\n",
+        "switches with a backup dancer.\r",
+        "You get to be the main dancer last.\n",
+        "Do a dance that no one can imitate!\r",
+        "OK! Start it up!\r"
+      ]
+    }
+  ]
+}

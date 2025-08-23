@@ -25,5 +25,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"The camera is our witness!\n",
+				"It has recorded our defeat..."
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": [
+				"You have a superstar quality!\n",
+				"You sure could become a celebrity!\n"
+			]
+		}
     ]
 }

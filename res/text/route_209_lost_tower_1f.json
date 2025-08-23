@@ -1,0 +1,23 @@
+{
+  "key": 32458,
+  "messages": [
+    {
+      "id": "pl_msg_00000481_00000",
+      "en_US": [
+        "This is where spirits rest.\n",
+        "Please be quiet and respectful."
+      ]
+    },
+    {
+      "id": "pl_msg_00000481_00001",
+      "en_US": [
+        "This is the Lost Tower.\r",
+        "There is a persistent fog that thickens\n",
+        "the higher you climb.\r",
+        "If you can’t use the hidden move Defog\n",
+        "and you have no business here, there\f",
+        "is no need to go up."
+      ]
+    }
+  ]
+}

@@ -29,7 +29,7 @@ _003E:
     Call _007C
     CallIfEq VAR_0x8004, 1, _0096
     CallIfEq VAR_0x8004, 2, _00B0
-    ScrCmd_23D 0, 2, 33, 44, 0x2EE
+    TakeShipToCanalave
     ReleaseAll
     End
 

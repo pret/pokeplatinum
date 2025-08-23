@@ -1,0 +1,40 @@
+{
+  "key": 13379,
+  "messages": [
+    {
+      "id": "pl_msg_00000294_00000",
+      "en_US": [
+        "What do you want?\n",
+        "You’re investigating the explosion?\r",
+        "Bah, it doesn’t matter who you are.\n",
+        "It’s too late to make any difference.\r",
+        "Things are going to get really\n",
+        "interesting now.\r",
+        "All the legendary Pokémon are going\n",
+        "to be brought to our HQ in Veilstone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000294_00001",
+      "en_US": [
+        "Even Team Galactic has no use for\n",
+        "MAGIKARP! Worthless, all of them!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000294_00002",
+      "en_US": [
+        "Hahaha!\n",
+        "Next stop, Lake Verity!\r",
+        "The closest civilization is that hick\n",
+        "town called Twinleaf!\r",
+        "We can roll in there completely\n",
+        "unopposed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000294_00003",
+      "en_US": "A MAGIKARP is weakly flopping about..."
+    }
+  ]
+}

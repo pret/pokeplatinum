@@ -27,5 +27,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Ohh... How could I lose at dear\n",
+				"Papa’s restaurant?\n"
+			]
+		}
     ]
 }

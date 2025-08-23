@@ -48,5 +48,19 @@
             "power": 20,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "Here comes the swarm!\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Whoooh...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": "There’s a Pokémon ability named Swarm.\n"
+		}
     ]
 }

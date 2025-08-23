@@ -16,5 +16,22 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, thank you for that last battle.\r",
+				"May I please trouble you for\n",
+				"another one?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh...\n",
+				"You’re so strong...\n"
+			]
+		}
     ]
 }

@@ -1,0 +1,91 @@
+{
+  "key": 9234,
+  "messages": [
+    {
+      "id": "pl_msg_00000558_00000",
+      "en_US": [
+        "That concludes our special program,\n",
+        "“Let’s Ask Prof. Rowan!”\r",
+        "Brought to you by Jubilife TV on\n",
+        "Nationwide Net!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00001",
+      "en_US": [
+        "See you next week, same time,\n",
+        "same channel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00002",
+      "en_US": "Mom bought this TV as a gift."
+    },
+    {
+      "id": "pl_msg_00000558_00003",
+      "en_US": [
+        "The X Button\n",
+        "opens the menu!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00004",
+      "en_US": [
+        "It’s a Wii!\n",
+        "It’s controlled by a Wii Remote!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} checked the PC.\r",
+        "Pokémon Basics...\r",
+        "People live alongside Pokémon in\n",
+        "this world.\r",
+        "The people that battle Pokémon are\n",
+        "called Pokémon Trainers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00006",
+      "en_US": "{STRVAR_1 3, 0, 0}: There you are!\r"
+    },
+    {
+      "id": "pl_msg_00000558_00007",
+      "en_US": [
+        "Hey, {STRVAR_1 3, 1, 0}!\n",
+        "Did you just see the TV? Sure you did!\r",
+        "Prof. Rowan’s that really important\n",
+        "guy who studies Pokémon, right?\r",
+        "That means he must have lots and lots\n",
+        "of Pokémon.\r",
+        "So, if we ask him, I bet he’d give us\n",
+        "some Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00008",
+      "en_US": [
+        "Oh, hey!\n",
+        "Is this a new PC?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Uh...\n",
+        "Where was I?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000558_00010",
+      "en_US": [
+        "Oh, right, right! We’re going to go see\n",
+        "Prof. Rowan and get some Pokémon.\r",
+        "I’ll be waiting outside.\r",
+        "OK, {STRVAR_1 3, 1, 0}? If you’re late, I’m\n",
+        "fining you $10 million!\r"
+      ]
+    }
+  ]
+}

@@ -16,5 +16,28 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Well, what have we here?\n",
+				"A Trainer who’s lost their way?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You’re lost but you won!\n",
+				"That burns me up to eleven!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You barged right into our HQ?\n",
+				"You must not know what fear is, kid!\n"
+			]
+		}
     ]
 }

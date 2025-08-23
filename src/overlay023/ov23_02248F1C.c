@@ -228,7 +228,7 @@ static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int
     }
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (!ov23_02242E58(param1[v0][0], param1[v0][1])) {
+        if (!Underground_AreCoordinatesInSecretBase(param1[v0][0], param1[v0][1])) {
             param2[v0][0] = param1[v0][0] - 32;
             param2[v0][1] = param1[v0][1] - 64;
             param2[v0][2] = 60;
@@ -271,7 +271,7 @@ static void ov23_02249334(int param0[][4])
         v2 = ov23_02242EE0(v0);
         v3 = ov23_02242F48(v0);
 
-        if (!ov23_02242E58(v1, v2)) {
+        if (!Underground_AreCoordinatesInSecretBase(v1, v2)) {
             param0[v0][0] = v1 - 32;
             param0[v0][1] = v2 - 64;
             param0[v0][2] = v3;

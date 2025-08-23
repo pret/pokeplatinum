@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
 #include "constants/items.h"
 
 #include "struct_defs/struct_02029894.h"
@@ -26,7 +27,7 @@
 #define FLAG_CAPTURED_COUNT_BRONZE   1
 #define FLAG_CAPTURED_COUNT_NORMAL   0
 
-static void sub_02028B48(Underground *underground, int param1, int param2);
+static void Underground_UpdatePlacedGoodSlots(Underground *underground, int param1, int param2);
 
 static u16 sMiningItems[] = {
     [0] = ITEM_OVAL_STONE,
@@ -117,12 +118,10 @@ void Underground_Init(Underground *underground)
     underground->unk_9AC_0 = 1;
 }
 
-static int sub_020285D8(Underground *underground)
+static int Underground_FindEmptyGoodsSlotBag(Underground *underground)
 {
-    int i;
-
-    for (i = 0; i < 40; i++) {
-        if (underground->unk_8FC[i] == 0) {
+    for (int i = 0; i < MAX_GOODS_BAG_SLOTS; i++) {
+        if (underground->goodsBag[i] == 0) {
             return i;
         }
     }
@@ -132,10 +131,8 @@ static int sub_020285D8(Underground *underground)
 
 static int Underground_FindEmptySphereSlot(Underground *underground)
 {
-    int i;
-
-    for (i = 0; i < 40; i++) {
-        if (underground->spheres[i] == 0) {
+    for (int i = 0; i < MAX_SPHERE_SLOTS; i++) {
+        if (underground->sphereTypes[i] == SPHERE_NONE) {
             return i;
         }
     }
@@ -145,9 +142,7 @@ static int Underground_FindEmptySphereSlot(Underground *underground)
 
 static int Underground_FindEmptyTreasureSlot(Underground *underground)
 {
-    int i;
-
-    for (i = 0; i < 40; i++) {
+    for (int i = 0; i < MAX_TREASURE_SLOTS; i++) {
         if (underground->treasure[i] == 0) {
             return i;
         }
@@ -156,12 +151,10 @@ static int Underground_FindEmptyTreasureSlot(Underground *underground)
     return -1;
 }
 
-static int sub_02028638(Underground *underground)
+static int Underground_FindEmptyTrapSlot(Underground *underground)
 {
-    int i;
-
-    for (i = 0; i < 40; i++) {
-        if (underground->unk_8D4[i] == 0) {
+    for (int i = 0; i < MAX_TRAP_SLOTS; i++) {
+        if (underground->traps[i] == 0) {
             return i;
         }
     }
@@ -169,43 +162,59 @@ static int sub_02028638(Underground *underground)
     return -1;
 }
 
-void sub_02028658(SaveData *saveData, int daysPassed)
+void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
-    MATHRandContext16 v1;
-    u8 v2[] = { 0, 2, 2, 4, 4, 5 };
-    u8 v3[] = { 0, 1, 1, 3, 3, 5 };
-    int i, v5, v6, v7, j;
+    Underground *underground = SaveData_GetUnderground(saveData);
+
+    u8 growthRateRange[] = {
+        [SPHERE_NONE] = 0,
+        [PRISM_SPHERE] = 2,
+        [PALE_SPHERE] = 2,
+        [RED_SPHERE] = 4,
+        [BLUE_SPHERE] = 4,
+        [GREEN_SPHERE] = 5
+    };
+    u8 baseGrowthRate[] = {
+        [SPHERE_NONE] = 0,
+        [PRISM_SPHERE] = 1,
+        [PALE_SPHERE] = 1,
+        [RED_SPHERE] = 3,
+        [BLUE_SPHERE] = 3,
+        [GREEN_SPHERE] = 5
+    };
+
+    int i;
 
     if (daysPassed <= 0) {
         return;
     }
 
-    v5 = daysPassed;
+    int daysOfGrowth = daysPassed;
 
     if (daysPassed > 99) {
-        v5 = 99;
+        daysOfGrowth = 99;
     }
 
-    MATH_InitRand16(&v1, v0->randomSeed);
+    MATHRandContext16 rand;
+    MATH_InitRand16(&rand, underground->randomSeed);
 
-    for (i = 0; i < v5; i++) {
-        for (j = 0; j < 100; j++) {
-            if (v0->unk_558[j] != 0) {
-                v7 = v0->unk_558[j];
-                v6 = MATH_Rand16(&v1, v2[v7]) + v3[v7];
+    for (i = 0; i < daysOfGrowth; i++) {
+        for (int j = 0; j < MAX_BURIED_SPHERES; j++) {
+            if (underground->buriedSphereTypes[j] != SPHERE_NONE) {
+                int type = underground->buriedSphereTypes[j];
+                int growth = MATH_Rand16(&rand, growthRateRange[type]) + baseGrowthRate[type];
 
-                if ((v0->unk_5BC[j] + v6) < 99) {
-                    v0->unk_5BC[j] += v6;
+                if (underground->buriedSphereGrowth[j] + growth < MAX_SPHERE_SIZE) {
+                    underground->buriedSphereGrowth[j] += growth;
                 } else {
-                    v0->unk_5BC[j] = 99;
+                    underground->buriedSphereGrowth[j] = MAX_SPHERE_SIZE;
                 }
             }
         }
     }
 
-    v0->randomSeed = ARNG_Next(v0->randomSeed + daysPassed);
-    v0->unk_9AC_0 = 1;
+    underground->randomSeed = ARNG_Next(underground->randomSeed + daysPassed);
+    underground->unk_9AC_0 = 1;
 }
 
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
@@ -300,8 +309,6 @@ void sub_02028830(Underground *underground, const TrainerInfo *info)
 
 TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2)
 {
-    int v0 = (sizeof(u16) * (7 + 1));
-    int v1;
     TrainerInfo *v2;
     int v3 = underground->unk_10A - param2 - 1;
 
@@ -309,7 +316,7 @@ TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2
         v3 += 5;
     }
 
-    if (underground->unk_B0[v3][0] != 0) {
+    if (underground->unk_B0[v3][0] != CHAR_NONE) {
         v2 = TrainerInfo_New(heapID);
 
         TrainerInfo_SetName(v2, underground->unk_B0[v3]);
@@ -331,34 +338,32 @@ u32 Underground_GetRandomSeed(Underground *underground)
 int Underground_ConvertTreasureToBagItem(int treasureID)
 {
     GF_ASSERT(MINING_TREASURE_OVAL_STONE <= treasureID);
-    GF_ASSERT(treasureID < MINING_ROCK_1);
+    GF_ASSERT(treasureID < MINING_TREASURE_MAX);
 
     treasureID -= MINING_TREASURE_OVAL_STONE;
     return sMiningItems[treasureID];
 }
 
-BOOL sub_0202895C(Underground *underground, int param1)
+BOOL Underground_TryAddGoodPC(Underground *underground, int goodID)
 {
     int i;
-    BOOL v1 = FALSE;
+    BOOL added = FALSE;
 
-    for (i = 0; i < 200; i++) {
-        if (underground->unk_80C[i] == 0) {
-            underground->unk_80C[i] = param1;
-            v1 = TRUE;
+    for (i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
+        if (underground->goodsPC[i] == 0) {
+            underground->goodsPC[i] = goodID;
+            added = TRUE;
             break;
         }
     }
 
-    return v1;
+    return added;
 }
 
-BOOL sub_02028984(Underground *underground, int param1)
+BOOL Underground_IsRoomForGoodsInPC(Underground *underground, int unused)
 {
-    int i;
-
-    for (i = 0; i < 200; i++) {
-        if (underground->unk_80C[i] == 0) {
+    for (int i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
+        if (underground->goodsPC[i] == 0) {
             return TRUE;
         }
     }
@@ -366,12 +371,12 @@ BOOL sub_02028984(Underground *underground, int param1)
     return FALSE;
 }
 
-int sub_020289A0(Underground *underground)
+int Underground_GetGoodsCountPC(Underground *underground)
 {
     int i;
 
-    for (i = 0; i < 200; i++) {
-        if (underground->unk_80C[i] == 0) {
+    for (i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
+        if (underground->goodsPC[i] == 0) {
             break;
         }
     }
@@ -379,123 +384,114 @@ int sub_020289A0(Underground *underground)
     return i;
 }
 
-int sub_020289B8(Underground *underground, int param1)
+int Underground_GetGoodAtSlotPC(Underground *underground, int slot)
 {
-    return underground->unk_80C[param1];
+    return underground->goodsPC[slot];
 }
 
-int sub_020289C4(Underground *underground, int param1)
+int Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
 {
-    int v0, v1, v2;
+    GF_ASSERT(!Underground_IsGoodAtSlotPlacedInBase(underground, slot));
 
-    GF_ASSERT(!sub_02028AFC(underground, param1));
+    int goodID = underground->goodsPC[slot];
 
-    v1 = param1;
-    v2 = underground->unk_80C[v1];
-
-    for (v0 = v1; v0 < 200 - 1; v0++) {
-        underground->unk_80C[v0] = underground->unk_80C[v0 + 1];
+    for (int i = slot; i < MAX_GOODS_PC_SLOTS - 1; i++) {
+        underground->goodsPC[i] = underground->goodsPC[i + 1];
     }
 
-    underground->unk_80C[200 - 1] = 0;
-    sub_02028B48(underground, param1, -1);
+    underground->goodsPC[MAX_GOODS_PC_SLOTS - 1] = 0;
+    Underground_UpdatePlacedGoodSlots(underground, slot, -1);
 
-    return v2;
+    return goodID;
 }
 
-void sub_02028A10(Underground *underground, int param1, int param2)
+void Underground_MoveGoodPC(Underground *underground, int origSlot, int slotToMoveAfter)
 {
-    int i, v1 = 0, v2 = 0, v3 = -1;
-    u8 v4[200];
+    int i, index = 0, placedGoodSlot = -1;
+    u8 tempArr[MAX_GOODS_PC_SLOTS];
 
-    MI_CpuCopy8(underground->unk_80C, v4, 200);
+    MI_CpuCopy8(underground->goodsPC, tempArr, MAX_GOODS_PC_SLOTS);
 
-    for (i = 0; i < 200; i++) {
-        if (i != param1) {
-            underground->unk_80C[v1] = v4[i];
-            v1++;
+    for (i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
+        if (i != origSlot) {
+            underground->goodsPC[index] = tempArr[i];
+            index++;
         }
 
-        if (i == param2) {
-            underground->unk_80C[v1] = v4[param1];
-            v1++;
+        if (i == slotToMoveAfter) {
+            underground->goodsPC[index] = tempArr[origSlot];
+            index++;
         }
     }
 
-    for (i = 0; i < 15; i++) {
-        if (underground->unk_99C[i] == (param1 + 1)) {
-            v3 = i;
+    for (i = 0; i < MAX_PLACED_GOODS; i++) {
+        if (underground->placedGoodSlots[i] == origSlot + 1) {
+            placedGoodSlot = i;
             break;
         }
     }
 
-    sub_02028B48(underground, param2, 1);
-    sub_02028B48(underground, param1, -1);
+    Underground_UpdatePlacedGoodSlots(underground, slotToMoveAfter, 1);
+    Underground_UpdatePlacedGoodSlots(underground, origSlot, -1);
 
-    if (v3 != -1) {
-        if (param1 < param2) {
-            underground->unk_99C[v3] = param2 + 1;
+    if (placedGoodSlot != -1) {
+        if (origSlot < slotToMoveAfter) {
+            underground->placedGoodSlots[placedGoodSlot] = slotToMoveAfter + 1;
         } else {
-            underground->unk_99C[v3] = param2 + 2;
+            underground->placedGoodSlots[placedGoodSlot] = slotToMoveAfter + 2;
         }
     }
 }
 
 int sub_02028ACC(Underground *underground, int param1, int param2)
 {
-    int v0, v1;
-
     GF_ASSERT(param2 >= 1);
-    GF_ASSERT(param2 <= 15);
+    GF_ASSERT(param2 <= MAX_PLACED_GOODS);
 
-    underground->unk_99C[param2 - 1] = param1 + 1;
-    return underground->unk_80C[param1];
+    underground->placedGoodSlots[param2 - 1] = param1 + 1;
+    return underground->goodsPC[param1];
 }
 
-BOOL sub_02028AFC(Underground *underground, int param1)
+BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot)
 {
-    int i;
-
-    for (i = 0; i < 15; i++) {
-        if (underground->unk_99C[i] == (param1 + 1)) {
-            return 1;
+    for (int i = 0; i < MAX_PLACED_GOODS; i++) {
+        if (underground->placedGoodSlots[i] == slot + 1) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_02028B20(Underground *underground, int param1)
 {
-    if ((param1 - 1) >= 15) {
+    if (param1 - 1 >= MAX_PLACED_GOODS) {
         return;
     }
 
-    underground->unk_99C[param1 - 1] = 0;
+    underground->placedGoodSlots[param1 - 1] = 0;
 }
 
 void sub_02028B34(Underground *underground)
 {
-    MI_CpuFill8(underground->unk_99C, 0, 15);
+    MI_CpuFill8(underground->placedGoodSlots, 0, MAX_PLACED_GOODS);
 }
 
-static void sub_02028B48(Underground *underground, int param1, int param2)
+static void Underground_UpdatePlacedGoodSlots(Underground *underground, int startSlot, int modifier)
 {
-    int i;
-
-    for (i = 0; i < 15; i++) {
-        if (underground->unk_99C[i] > (param1 + 1)) {
-            underground->unk_99C[i] += param2;
+    for (int i = 0; i < MAX_PLACED_GOODS; i++) {
+        if (underground->placedGoodSlots[i] > startSlot + 1) {
+            underground->placedGoodSlots[i] += modifier;
         }
     }
 }
 
-int sub_02028B70(Underground *underground)
+int Underground_GetGoodsCountBag(Underground *underground)
 {
     int i;
 
-    for (i = 0; i < 40; i++) {
-        if (underground->unk_8FC[i] == 0) {
+    for (i = 0; i < MAX_GOODS_BAG_SLOTS; i++) {
+        if (underground->goodsBag[i] == 0) {
             break;
         }
     }
@@ -503,57 +499,53 @@ int sub_02028B70(Underground *underground)
     return i;
 }
 
-int sub_02028B88(Underground *underground, int param1)
+int Underground_GetGoodAtSlotBag(Underground *underground, int slot)
 {
-    return underground->unk_8FC[param1];
+    return underground->goodsBag[slot];
 }
 
-int sub_02028B94(Underground *underground, int param1)
+int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot)
 {
-    int i, v1, v2;
+    int goods = underground->goodsBag[slot];
 
-    v1 = param1;
-    v2 = underground->unk_8FC[v1];
-
-    for (i = v1; i < 40 - 1; i++) {
-        underground->unk_8FC[i] = underground->unk_8FC[i + 1];
+    for (int i = slot; i < MAX_GOODS_BAG_SLOTS - 1; i++) {
+        underground->goodsBag[i] = underground->goodsBag[i + 1];
     }
 
-    underground->unk_8FC[40 - 1] = 0;
-    return v2;
+    underground->goodsBag[MAX_GOODS_BAG_SLOTS - 1] = 0;
+    return goods;
 }
 
-BOOL sub_02028BC8(Underground *underground, int param1)
+BOOL Underground_TryAddGoodBag(Underground *underground, int goodID)
 {
-    int v0;
-    BOOL v1 = 0;
+    BOOL added = FALSE;
 
-    v0 = sub_020285D8(underground);
+    int slot = Underground_FindEmptyGoodsSlotBag(underground);
 
-    if (v0 != -1) {
-        underground->unk_8FC[v0] = param1;
-        v1 = 1;
+    if (slot != -1) {
+        underground->goodsBag[slot] = goodID;
+        added = TRUE;
     }
 
-    return v1;
+    return added;
 }
 
-void sub_02028BE8(Underground *underground, int param1, int param2)
+void Underground_MoveGoodBag(Underground *underground, int origSlot, int slotToMoveAfter)
 {
-    int i, v1 = 0, v2 = 0;
-    u8 v3[40];
+    int i, index = 0;
+    u8 tempArr[MAX_GOODS_BAG_SLOTS];
 
-    MI_CpuCopy8(underground->unk_8FC, v3, 40);
+    MI_CpuCopy8(underground->goodsBag, tempArr, MAX_GOODS_BAG_SLOTS);
 
-    for (i = 0; i < 40; i++) {
-        if (i != param1) {
-            underground->unk_8FC[v1] = v3[i];
-            v1++;
+    for (i = 0; i < MAX_GOODS_BAG_SLOTS; i++) {
+        if (i != origSlot) {
+            underground->goodsBag[index] = tempArr[i];
+            index++;
         }
 
-        if (i == param2) {
-            underground->unk_8FC[v1] = v3[param1];
-            v1++;
+        if (i == slotToMoveAfter) {
+            underground->goodsBag[index] = tempArr[origSlot];
+            index++;
         }
     }
 }
@@ -562,8 +554,8 @@ int Underground_GetSphereCount(Underground *underground)
 {
     int i;
 
-    for (i = 0; i < 40; i++) {
-        if (underground->spheres[i] == 0) {
+    for (i = 0; i < MAX_SPHERE_SLOTS; i++) {
+        if (underground->sphereTypes[i] == SPHERE_NONE) {
             break;
         }
     }
@@ -571,42 +563,38 @@ int Underground_GetSphereCount(Underground *underground)
     return i;
 }
 
-int sub_02028C54(Underground *underground, int param1)
+int Underground_GetSphereTypeAtSlot(Underground *underground, int slot)
 {
-    return underground->spheres[param1];
+    return underground->sphereTypes[slot];
 }
 
-int sub_02028C60(Underground *underground, int param1)
+int Underground_GetSphereSizeAtSlot(Underground *underground, int slot)
 {
-    return underground->sphereSizes[param1];
+    return underground->sphereSizes[slot];
 }
 
-int sub_02028C6C(Underground *underground, int param1)
+int Underground_RemoveSphereAtSlot(Underground *underground, int slot)
 {
-    int v0, v1, v2;
+    int sphere = underground->sphereTypes[slot];
 
-    v1 = param1;
-    v2 = underground->spheres[v1];
-
-    for (v0 = v1; v0 < 40 - 1; v0++) {
-        underground->spheres[v0] = underground->spheres[v0 + 1];
-        underground->sphereSizes[v0] = underground->sphereSizes[v0 + 1];
+    for (int i = slot; i < MAX_SPHERE_SLOTS - 1; i++) {
+        underground->sphereTypes[i] = underground->sphereTypes[i + 1];
+        underground->sphereSizes[i] = underground->sphereSizes[i + 1];
     }
 
-    underground->spheres[40 - 1] = 0;
+    underground->sphereTypes[MAX_SPHERE_SLOTS - 1] = SPHERE_NONE;
 
-    return v2;
+    return sphere;
 }
 
 BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize)
 {
-    int slot;
     BOOL added = FALSE;
 
-    slot = Underground_FindEmptySphereSlot(underground);
+    int slot = Underground_FindEmptySphereSlot(underground);
 
     if (slot != -1) {
-        underground->spheres[slot] = sphereType;
+        underground->sphereTypes[slot] = sphereType;
         underground->sphereSizes[slot] = sphereSize;
         added = TRUE;
     }
@@ -614,26 +602,26 @@ BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphe
     return added;
 }
 
-void sub_02028CD8(Underground *underground, int param1, int param2)
+void Underground_MoveSphereInInventory(Underground *underground, int origSlot, int slotToMoveAfter)
 {
-    int i, v1 = 0, v2 = 0;
-    u8 v3[40];
-    u8 v4[40];
+    int i, index = 0;
+    u8 tempTypeArr[MAX_SPHERE_SLOTS];
+    u8 tempSizeArr[MAX_SPHERE_SLOTS];
 
-    MI_CpuCopy8(underground->spheres, v3, 40);
-    MI_CpuCopy8(underground->sphereSizes, v4, 40);
+    MI_CpuCopy8(underground->sphereTypes, tempTypeArr, MAX_SPHERE_SLOTS);
+    MI_CpuCopy8(underground->sphereSizes, tempSizeArr, MAX_SPHERE_SLOTS);
 
-    for (i = 0; i < 40; i++) {
-        if (i != param1) {
-            underground->spheres[v1] = v3[i];
-            underground->sphereSizes[v1] = v4[i];
-            v1++;
+    for (i = 0; i < MAX_SPHERE_SLOTS; i++) {
+        if (i != origSlot) {
+            underground->sphereTypes[index] = tempTypeArr[i];
+            underground->sphereSizes[index] = tempSizeArr[i];
+            index++;
         }
 
-        if (i == param2) {
-            underground->spheres[v1] = v3[param1];
-            underground->sphereSizes[v1] = v4[param1];
-            v1++;
+        if (i == slotToMoveAfter) {
+            underground->sphereTypes[index] = tempTypeArr[origSlot];
+            underground->sphereSizes[index] = tempSizeArr[origSlot];
+            index++;
         }
     }
 }
@@ -642,7 +630,7 @@ int Underground_GetTreasureCount(Underground *underground)
 {
     int i;
 
-    for (i = 0; i < 40; i++) {
+    for (i = 0; i < MAX_TREASURE_SLOTS; i++) {
         if (underground->treasure[i] == 0) {
             break;
         }
@@ -651,33 +639,29 @@ int Underground_GetTreasureCount(Underground *underground)
     return i;
 }
 
-int sub_02028D74(Underground *underground, int param1)
+int Underground_GetTreasureAtSlot(Underground *underground, int slot)
 {
-    return underground->treasure[param1];
+    return underground->treasure[slot];
 }
 
-int sub_02028D80(Underground *underground, int param1)
+int Underground_RemoveTreasureAtSlot(Underground *underground, int slot)
 {
-    int i, v1, v2;
+    int treasure = underground->treasure[slot];
 
-    v1 = param1;
-    v2 = underground->treasure[v1];
-
-    for (i = v1; i < 40 - 1; i++) {
+    for (int i = slot; i < MAX_TREASURE_SLOTS - 1; i++) {
         underground->treasure[i] = underground->treasure[i + 1];
     }
 
-    underground->treasure[40 - 1] = 0;
+    underground->treasure[MAX_TREASURE_SLOTS - 1] = 0;
 
-    return v2;
+    return treasure;
 }
 
 BOOL Underground_TryAddTreasure(Underground *underground, int treasureID)
 {
-    int slot;
     BOOL added = FALSE;
 
-    slot = Underground_FindEmptyTreasureSlot(underground);
+    int slot = Underground_FindEmptyTreasureSlot(underground);
 
     if (slot != -1) {
         underground->treasure[slot] = treasureID;
@@ -687,32 +671,32 @@ BOOL Underground_TryAddTreasure(Underground *underground, int treasureID)
     return added;
 }
 
-void sub_02028DD8(Underground *underground, int param1, int param2)
+void Underground_MoveTreasureInInventory(Underground *underground, int origSlot, int slotToMoveAfter)
 {
-    int i, v1 = 0, v2 = 0;
-    u8 v3[40];
+    int i, index = 0;
+    u8 tempArr[MAX_TREASURE_SLOTS];
 
-    MI_CpuCopy8(underground->treasure, v3, 40);
+    MI_CpuCopy8(underground->treasure, tempArr, MAX_TREASURE_SLOTS);
 
-    for (i = 0; i < 40; i++) {
-        if (i != param1) {
-            underground->treasure[v1] = v3[i];
-            v1++;
+    for (i = 0; i < MAX_TREASURE_SLOTS; i++) {
+        if (i != origSlot) {
+            underground->treasure[index] = tempArr[i];
+            index++;
         }
 
-        if (i == param2) {
-            underground->treasure[v1] = v3[param1];
-            v1++;
+        if (i == slotToMoveAfter) {
+            underground->treasure[index] = tempArr[origSlot];
+            index++;
         }
     }
 }
 
-int sub_02028E28(Underground *underground)
+int Underground_GetTrapCount(Underground *underground)
 {
     int i;
 
-    for (i = 0; i < 40; i++) {
-        if (underground->unk_8D4[i] == 0) {
+    for (i = 0; i < MAX_TRAP_SLOTS; i++) {
+        if (underground->traps[i] == 0) {
             break;
         }
     }
@@ -720,60 +704,54 @@ int sub_02028E28(Underground *underground)
     return i;
 }
 
-int sub_02028E44(Underground *underground, int param1)
+int Underground_GetTrapAtSlot(Underground *underground, int slot)
 {
-    int v0;
-
-    return underground->unk_8D4[param1];
+    return underground->traps[slot];
 }
 
-int sub_02028E50(Underground *underground, int param1)
+int Underground_RemoveTrapAtSlot(Underground *underground, int slot)
 {
-    int i, v1, v2;
+    int trap = underground->traps[slot];
 
-    v1 = param1;
-    v2 = underground->unk_8D4[v1];
-
-    for (i = v1; i < 40 - 1; i++) {
-        underground->unk_8D4[i] = underground->unk_8D4[i + 1];
+    for (int i = slot; i < MAX_TRAP_SLOTS - 1; i++) {
+        underground->traps[i] = underground->traps[i + 1];
     }
 
-    underground->unk_8D4[40 - 1] = 0;
+    underground->traps[MAX_TRAP_SLOTS - 1] = 0;
 
-    return v2;
+    return trap;
 }
 
-BOOL sub_02028E84(Underground *underground, int param1)
+BOOL Underground_TryAddTrap(Underground *underground, int trapID)
 {
-    int v0;
-    BOOL v1 = 0;
+    BOOL added = FALSE;
 
-    v0 = sub_02028638(underground);
+    int slot = Underground_FindEmptyTrapSlot(underground);
 
-    if (v0 != -1) {
-        underground->unk_8D4[v0] = param1;
-        v1 = 1;
+    if (slot != -1) {
+        underground->traps[slot] = trapID;
+        added = TRUE;
     }
 
-    return v1;
+    return added;
 }
 
-void sub_02028EA8(Underground *underground, int param1, int param2)
+void Underground_MoveTrapInInventory(Underground *underground, int origSlot, int slotToMoveAfter)
 {
-    int i, v1 = 0, v2 = 0;
-    u8 v3[40];
+    int i, index = 0;
+    u8 tempArr[MAX_TRAP_SLOTS];
 
-    MI_CpuCopy8(underground->unk_8D4, v3, 40);
+    MI_CpuCopy8(underground->traps, tempArr, MAX_TRAP_SLOTS);
 
-    for (i = 0; i < 40; i++) {
-        if (i != param1) {
-            underground->unk_8D4[v1] = v3[i];
-            v1++;
+    for (i = 0; i < MAX_TRAP_SLOTS; i++) {
+        if (i != origSlot) {
+            underground->traps[index] = tempArr[i];
+            index++;
         }
 
-        if (i == param2) {
-            underground->unk_8D4[v1] = v3[param1];
-            v1++;
+        if (i == slotToMoveAfter) {
+            underground->traps[index] = tempArr[origSlot];
+            index++;
         }
     }
 }
@@ -863,47 +841,47 @@ int sub_0202907C(Underground *underground, int param1)
     return underground->unk_548[param1];
 }
 
-void sub_02029088(Underground *underground, int param1, int param2, int param3, int param4, int param5, int param6)
+void Underground_SaveBuriedSphere(Underground *underground, int type, int idx, int x, int z, int initialSize, int growth)
 {
-    GF_ASSERT(param2 < 100);
+    GF_ASSERT(idx < MAX_BURIED_SPHERES);
 
-    underground->unk_558[param2] = param1;
-    underground->unk_684[param2][0] = param3;
-    underground->unk_684[param2][1] = ((param3 & 0xf00) >> 8) + ((param4 & 0xf00) >> 4);
-    underground->unk_684[param2][2] = param4;
-    underground->unk_620[param2] = param5;
-    underground->unk_5BC[param2] = param6;
+    underground->buriedSphereTypes[idx] = type;
+    underground->buriedSphereCoordinates[idx][0] = x;
+    underground->buriedSphereCoordinates[idx][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+    underground->buriedSphereCoordinates[idx][2] = z;
+    underground->buriedSphereInitialSizes[idx] = initialSize;
+    underground->buriedSphereGrowth[idx] = growth;
 }
 
-int sub_020290DC(Underground *underground, int param1)
+int Underground_GetBuriedSphereTypeAtIndex(Underground *underground, int idx)
 {
-    return underground->unk_558[param1];
+    return underground->buriedSphereTypes[idx];
 }
 
-int sub_020290E8(Underground *underground, int param1)
+int Underground_GetBuriedSphereXCoordAtIndex(Underground *underground, int idx)
 {
-    int v0 = underground->unk_684[param1][0];
+    int x = underground->buriedSphereCoordinates[idx][0];
 
-    v0 += (underground->unk_684[param1][1] << 8) & 0xf00;
-    return v0;
+    x += (underground->buriedSphereCoordinates[idx][1] << 8) & 0xF00;
+    return x;
 }
 
-int sub_02029108(Underground *underground, int param1)
+int Underground_GetBuriedSphereZCoordAtIndex(Underground *underground, int idx)
 {
-    int v0 = underground->unk_684[param1][2];
+    int z = underground->buriedSphereCoordinates[idx][2];
 
-    v0 += (underground->unk_684[param1][1] << 4) & 0xf00;
-    return v0;
+    z += (underground->buriedSphereCoordinates[idx][1] << 4) & 0xF00;
+    return z;
 }
 
-int sub_02029128(Underground *underground, int param1)
+int Underground_GetBuriedSphereInitialSizeAtIndex(Underground *underground, int idx)
 {
-    return underground->unk_620[param1];
+    return underground->buriedSphereInitialSizes[idx];
 }
 
-int sub_02029134(Underground *underground, int param1)
+int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int idx)
 {
-    return underground->unk_5BC[param1];
+    return underground->buriedSphereGrowth[idx];
 }
 
 int sub_02029140(Underground *underground, int param1, int param2)
@@ -970,7 +948,7 @@ void sub_02029240(Underground *underground)
 
 void Underground_SetPlateMined(Underground *underground, int miningItemID)
 {
-    if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
+    if (miningItemID < MINING_TREASURE_FLAME_PLATE || miningItemID > MINING_TREASURE_IRON_PLATE) {
         return;
     }
 
@@ -979,7 +957,7 @@ void Underground_SetPlateMined(Underground *underground, int miningItemID)
 
 BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID)
 {
-    if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
+    if (miningItemID < MINING_TREASURE_FLAME_PLATE || miningItemID > MINING_TREASURE_IRON_PLATE) {
         return TRUE;
     }
 

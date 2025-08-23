@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay011/ov11_0221F840.h"
+#include "overlay011/particle_helper.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0224F18C.h"
 #include "overlay017/ov17_02250744.h"
@@ -43,7 +43,7 @@
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0224FA24(void *param0);
@@ -337,10 +337,10 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     MI_CpuFill16((void *)HW_DB_BG_PLTT, 0x7fff, 0x200);
     MI_CpuFill16((void *)HW_DB_OBJ_PLTT, 0x7fff, 0x200);
 
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
 
     return 1;
@@ -395,7 +395,7 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
 
     if (v0->unk_850 == 1) {
         PokemonSpriteManager_DrawSprites(v0->unk_10.unk_04);
-        ov11_0221F8F0();
+        ParticleHelper_DrawParticleSystems();
         SpriteSystem_DrawSprites(v0->unk_10.unk_1C);
         SpriteSystem_UpdateTransfer();
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);

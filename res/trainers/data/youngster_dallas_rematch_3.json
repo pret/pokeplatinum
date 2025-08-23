@@ -43,5 +43,19 @@
             "power": 150,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m always with my Pokémon.\r",
+				"Actually, you’re always with your\n",
+				"Pokémon too, aren’t you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’m so beyond bummed out now...\n"
+		}
     ]
 }

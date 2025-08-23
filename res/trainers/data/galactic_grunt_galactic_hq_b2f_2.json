@@ -25,5 +25,33 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What with that creepy Charon and a kid\n",
+				"like you around, the HQ’s not the\f",
+				"same anymore.\r",
+				"Like, you characters changed the,\n",
+				"well, character of the place!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, sure. Why don’t you just get\n",
+				"all cocky about it!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Without our special card key, you’re\n",
+				"not going to get very far.\r",
+				"Well, non-Team Galactic member?\n",
+				"What’s your next move?\n"
+			]
+		}
     ]
 }

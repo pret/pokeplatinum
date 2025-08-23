@@ -1,0 +1,648 @@
+{
+  "key": 32395,
+  "messages": [
+    {
+      "id": "PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerMale",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "This is it! This is Pal Park!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerFemale",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "This is it! This is Pal Park!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Oak_PokemonFromAroundTheCountryCanBeBroughtHere",
+      "en_US": [
+        "Pokémon from around the country\n",
+        "can be brought here.\r",
+        "In other words, Pokémon from\n",
+        "places like Kanto and Hoenn.\r",
+        "This place also happens to be where\n",
+        "you compete to see how quickly you\f",
+        "can catch those Pokémon!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp",
+      "en_US": [
+        "It’s good to see you’ve come\n",
+        "to join us for a visit.\r",
+        "Let me make a gift of this Trainer\n",
+        "Counter app for your Pokétch.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime",
+      "en_US": [
+        "Oak: I plan to be in Eterna City\n",
+        "for some time.\r",
+        "Being here, I should make the best\n",
+        "of my time studying the Pokémon of\f",
+        "the Sinnoh region.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_PalParkIsSoScintillating",
+      "en_US": [
+        "Pal Park is so scintillating!\r",
+        "Trainers and Pokémon are so full of\n",
+        "intensity here!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_IveNeverSeenSomePokemon",
+      "en_US": [
+        "I’ve never seen some Pokémon.\n",
+        "Would you show me if you had one?\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00007",
+      "garbage": 36
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00008",
+      "garbage": 67
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00009",
+      "garbage": 54
+    },
+    {
+      "id": "PalParkLobby_Text_APokemonThatDoesNothingButEatAndSleep",
+      "en_US": [
+        "Let me see...\r",
+        "A Pokémon that does nothing but\n",
+        "eat and sleep.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat",
+      "en_US": [
+        "Oh, a SNORLAX?\n",
+        "It sure looks like it can eat!\r",
+        "I have a Pokétch app that has\n",
+        "a SNORLAX motif.\r",
+        "You can have it for showing me\n",
+        "a real SNORLAX!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_DoesntThatKitchenTimerMakeYouWantToCookSomething",
+      "en_US": [
+        "Doesn’t that {STRVAR_1 24, 0, 0}\n",
+        "make you want to cook something?\n"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_APokemonThatChangesColorWheneverSomethingHappens",
+      "en_US": [
+        "Let me see...\r",
+        "A Pokémon that changes color\n",
+        "whenever something happens.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OhAKecleonHowColorful",
+      "en_US": [
+        "Oh, a KECLEON!\n",
+        "How colorful!\r",
+        "I have a Pokétch app that features\n",
+        "a KECLEON design.\r",
+        "You can have it for showing me\n",
+        "a real KECLEON!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ChangingColorsCanChangeYourMoodToo",
+      "en_US": [
+        "Changing colors can change your\n",
+        "mood, too."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00016",
+      "garbage": 34
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00017",
+      "garbage": 68
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00018",
+      "garbage": 37
+    },
+    {
+      "id": "PalParkLobby_Text_WhatWasThatPokemonNameNow",
+      "en_US": [
+        "What was that Pokémon’s name now...?\n",
+        "Oh, it’s on the tip of my tongue!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_PalParkIsSoScintillatingAreYouTakingTheChallengeToo",
+      "en_US": [
+        "Pal Park is so scintillating!\r",
+        "Trainers and Pokémon are so full of\n",
+        "intensity here!\r",
+        "Are you taking the challenge, too?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_WelcomeToPalPark_PlayerMale",
+      "en_US": [
+        "Welcome to Pal Park!\r",
+        "This is where top-notch Trainers come\n",
+        "to demonstrate their Pokémon-catching\f",
+        "techniques to their peers.\r",
+        "...Oh?\r",
+        "Are you maybe...\n",
+        "Ah, you are {STRVAR_1 3, 0, 0}!\r",
+        "We’ve all heard rumors about you!\n",
+        "Word is, you’re a hotshot Trainer?!\r",
+        "We’d be honored if you would\n",
+        "participate in our Catching Shows."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_WelcomeToPalPark_PlayerFemale",
+      "en_US": [
+        "Welcome to Pal Park!\r",
+        "This is where top-notch Trainers come\n",
+        "to demonstrate their Pokémon-catching\f",
+        "techniques to their peers.\r",
+        "...Oh?\r",
+        "Are you maybe...\n",
+        "Ah, you are {STRVAR_1 3, 0, 0}!\r",
+        "We’ve all heard rumors about you!\n",
+        "Word is, you’re a hotshot Trainer?!\r",
+        "We’d be honored if you would\n",
+        "participate in our Catching Shows."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YesYouAgreedToParticipateItsAHappyDayForMe",
+      "en_US": [
+        "Yes! You agreed to participate!\n",
+        "It’s a happy day for me!\r",
+        "Let’s not waste any time!\n",
+        "Let me explain how Pal Park works.\r",
+        "I wrote the Pal Park manual for\n",
+        "situations just like this.\r",
+        "What should I explain?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Manual_BasicRules",
+      "en_US": [
+        "Pal Park is a place where you are\n",
+        "timed on the catching of six Pokémon.\r",
+        "You are provided with six special\n",
+        "Poké Balls for the challenge.\r",
+        "Participating Trainers are required to\n",
+        "supply the six Pokémon that are to\f",
+        "be caught.\r",
+        "If you do not supply the stock of six\n",
+        "Pokémon, you may not participate in\f",
+        "the Catching Show.\r",
+        "...Do you want me to explain anything\n",
+        "else?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Manual_CatchingShow",
+      "en_US": [
+        "At the start of the Catching Show,\n",
+        "you will be given six Park Balls.\r",
+        "Use the Park Balls to catch the\n",
+        "six Pokémon you provide.\r",
+        "...Do you want me to explain anything\n",
+        "else?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Manual_StockingPokemon",
+      "en_US": [
+        "You may make Pokémon migrate from\n",
+        "Kanto or Hoenn. Doing so will stock\f",
+        "your Catching Game.\r",
+        "Insert a Game Boy Advance Pokémon\n",
+        "Ruby, Sapphire, Emerald, FireRed,\f",
+        "or LeafGreen in the Game Pak slot.\r",
+        "When your DS is turned on, currently\n",
+        "caught Pokémon can migrate from\f",
+        "the Game Pak to the DS Game Card.\r",
+        "...Do you want me to explain anything\n",
+        "else?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Manual_Stocking2_Unused",
+      "en_US": [
+        "Pokémon caught in Sinnoh may also\n",
+        "be used to stock your Catching Game.\r",
+        "Please ask the guy next to me who’s\n",
+        "in charge of stocking Pokémon.\r",
+        "...Do you want me to explain anything\n",
+        "else?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_WouldYouLikeToTakePartInACatchingShowNow",
+      "en_US": [
+        "Would you like to take part in\n",
+        "a Catching Show now?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_AwwThatsTooBad",
+      "en_US": [
+        "Aww, that’s too bad.\r",
+        "Well, just give me a shout if you’d\n",
+        "like to participate."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Greeting_PlayerMale",
+      "en_US": [
+        "Hi there, {STRVAR_1 3, 0, 0}!\r",
+        "Did you come to participate in\n",
+        "a Catching Show?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Greeting_PlayerFemale",
+      "en_US": [
+        "Hi there, {STRVAR_1 3, 0, 0}!\r",
+        "Did you come to participate in\n",
+        "a Catching Show?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OkHereAreYourParkBalls_PlayerMale",
+      "en_US": [
+        "OK, here are your Park Balls!\r",
+        "{STRVAR_1 3, 0, 0} received\n",
+        "six Park Balls.\r",
+        "The current record holder is\n",
+        "{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\r",
+        "OK, off you go, {STRVAR_1 3, 0, 0}.\r",
+        "Dazzle us with a masterful display\n",
+        "of Pokémon catching!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OkHereAreYourParkBalls_PlayerFemale",
+      "en_US": [
+        "OK, here are your Park Balls!\r",
+        "{STRVAR_1 3, 0, 0} received\n",
+        "six Park Balls.\r",
+        "The current record holder is\n",
+        "{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\r",
+        "OK, off you go, {STRVAR_1 3, 0, 0}.\r",
+        "Dazzle us with a masterful display\n",
+        "of Pokémon catching!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YouDontHaveEnoughPokemonForACatchingShow",
+      "en_US": [
+        "Oh, hold on. You don’t have enough\n",
+        "Pokémon for a Catching Show.\r",
+        "You’ll need to stock us with six\n",
+        "Pokémon to participate.\r",
+        "You should make some Pokémon migrate\n",
+        "from Kanto or Hoenn!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_VeryWellLetMeExplainHowThingsWorkAroundHere",
+      "en_US": [
+        "Very well, let me explain how things\n",
+        "work around here.\r",
+        "I’ll read to you from the Pal Park\n",
+        "manual I wrote."
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00036",
+      "en_US": [
+        "I’m sorry you had to retire.\n",
+        "We hope you try harder next time.\r",
+        "I’ll take what Park Balls you\n",
+        "have left.\r",
+        "Next time, please do stay to catch\n",
+        "all six Pokémon."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YouHaveNoRoomForSixMorePokemon",
+      "en_US": [
+        "Oh, your PC Boxes are filled. You\n",
+        "have no room for six more Pokémon.\r",
+        "You won’t be able to accept them,\n",
+        "even if you do catch them.\r",
+        "Make enough room in a PC Box and\n",
+        "come back for your Catching Show."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_CongratulationsThatsAllSixPokemonCaught",
+      "en_US": [
+        "Congratulations!\n",
+        "That’s all six Pokémon caught!\r",
+        "The audience sure enjoyed watching\n",
+        "your Catching Show.\r",
+        "All right, let’s see your all-important\n",
+        "score from this show!\r",
+        "...\n",
+        "...\r",
+        "Catching Points: {STRVAR_1 53, 0, 0}!\r",
+        "Time Points: {STRVAR_1 53, 1, 0}!\r",
+        "Type Points: {STRVAR_1 53, 2, 0}!\r",
+        "The total is...\r",
+        "...\n",
+        "...\r",
+        "{STRVAR_1 53, 3, 0} points!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_WowThatsAnOutstandingRecord",
+      "en_US": [
+        "Wow! That’s an outstanding record!\n",
+        "Kudos to you!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_GoodThatsADecentRecord",
+      "en_US": [
+        "Good! That’s a decent record.\n",
+        "Props to you!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_AskToStoreCaughtMon",
+      "en_US": [
+        "Would you like to put all the Pokémon\n",
+        "you’ve caught in PC Boxes?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_DoneYourPokemonHaveBeenBoxedAway",
+      "en_US": [
+        "Done!\n",
+        "Your Pokémon have been boxed away.\r",
+        "You’ll now have to save the game.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OhThenItMightBeFunForYouToGoForAnEvenBetterScore",
+      "en_US": [
+        "Oh, then it might be fun for you to\n",
+        "go for an even better score by\f",
+        "trying to catch these six again.\r",
+        "If you want to do another Catching\n",
+        "Show, just come see us!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_IfYouWantToDoAnotherCatchingShowComeSeeUsAgain",
+      "en_US": [
+        "If you want to do another Catching\n",
+        "Show, come see us again!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ItsTimeForYourPrize",
+      "en_US": [
+        "It’s time for your prize!\n",
+        "Here you are!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_AskToRedoCatchingShow",
+      "en_US": [
+        "Would you like to do another Catching\n",
+        "Show with the same Pokémon?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00047",
+      "garbage": 76
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00048",
+      "garbage": 91
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00049",
+      "garbage": 97
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00050",
+      "garbage": 69
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00051",
+      "garbage": 28
+    },
+    {
+      "id": "PalParkLobby_Text_ICameToSeePlayersCatchingShowWithDaddy",
+      "en_US": [
+        "I came to see {STRVAR_1 3, 0, 0}’s Catching\n",
+        "Show with Daddy.\r",
+        "I hope it starts soon..."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_EekPlayerYourCatchingShowWasFantastic",
+      "en_US": [
+        "Eek! {STRVAR_1 3, 0, 0}!\n",
+        "Your Catching Show was fantastic!\r",
+        "I hope I can become an expert\n",
+        "Trainer like you one day!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OhPlayerIHopeYouDoBetterNextTime",
+      "en_US": [
+        "Oh, {STRVAR_1 3, 0, 0}!\n",
+        "I hope you do better next time."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_PlayerMyDaughterIsABigFanOfYours",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, my daughter is a big\n",
+        "fan of yours.\r",
+        "A day doesn’t go by without her\n",
+        "demanding we come see Catching Shows."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_WeGetToSeeRareAndExoticPokemon",
+      "en_US": [
+        "People come here not only to see\n",
+        "the Catching Show.\r",
+        "We get to see rare and exotic\n",
+        "Pokémon on top of the catches.\r",
+        "The excitement gets me all jacked up!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints",
+      "en_US": [
+        "The current record holder is\n",
+        "{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\f",
+        "Can you top that?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00058",
+      "en_US": [
+        "Oh! You’ve topped 2,000 points!\n",
+        "You’ve earned this, then!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00059",
+      "en_US": [
+        "Keep working on getting a higher\n",
+        "score!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00060",
+      "en_US": [
+        "Oh! You’ve topped 2,500 points!\n",
+        "You’ve earned this, then!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00061",
+      "en_US": [
+        "Oh! You’ve topped 3,000 points!\n",
+        "You’ve earned this, then!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00062",
+      "en_US": [
+        "Oh! You’ve earned 3,500 points!\n",
+        "You’ve earned this, then!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00063",
+      "en_US": [
+        "You’ve set an incredible record!\n",
+        "There’s nothing left to say!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000515_00064",
+      "en_US": [
+        "Your Bag is full.\n",
+        "You should come back later."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_RarePokemonTakeLongerToAppear",
+      "en_US": [
+        "I’ve heard Trainers complain that\n",
+        "rare Pokémon take longer to appear.\r",
+        "Is it easier to start with common\n",
+        "Pokémon?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_IEspeciallyLookForwardToSeeingPokemonFromKantoAndHoenn",
+      "en_US": [
+        "The Catching Show...\r",
+        "It’s a head-on clash of will and\n",
+        "wits between Trainer and Pokémon.\r",
+        "I especially look forward to seeing\n",
+        "Pokémon from Kanto and Hoenn.\r",
+        "But it tugs at my heartstrings to\n",
+        "know they’re so far away from home."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Crown",
+      "en_US": [
+        "Your performance left my heart\n",
+        "aflutter today...\r",
+        "I must crown you with this...\n",
+        "Crown.\r",
+        "Oh, before you get the wrong idea,\n",
+        "it’s an Accessory for Pokémon.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Tiara",
+      "en_US": [
+        "Your performance left my heart\n",
+        "aflutter today...\r",
+        "I feel compelled to give you this\n",
+        "Tiara.\r",
+        "Oh, before you get the wrong idea,\n",
+        "it’s an Accessory for Pokémon.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Seafloor",
+      "en_US": [
+        "Your performance left my heart\n",
+        "aflutter today...\r",
+        "I wish you would take this\n",
+        "“Seafloor” Backdrop.\r",
+        "Please try using it when dressing up\n",
+        "your Pokémon with Accessories.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Underground",
+      "en_US": [
+        "Your performance left my heart\n",
+        "aflutter today...\r",
+        "I wish you would take this\n",
+        "“Underground” Backdrop.\r",
+        "Please try using it when dressing up\n",
+        "your Pokémon with Accessories.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Sky",
+      "en_US": [
+        "Your performance left my heart\n",
+        "aflutter today...\r",
+        "I wish you would take this\n",
+        "“Sky” Backdrop.\r",
+        "Please try using it when dressing up\n",
+        "your Pokémon with Accessories.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_NotOnlyAreThereCatchingShowsThereAreAlsoPokemonContests",
+      "en_US": [
+        "Not only are there Catching Shows,\n",
+        "there are also Pokémon Contests...\r",
+        "It’s so dreamy...\n",
+        "Sinnoh sets my heart aflutter."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00073",
+      "garbage": 60
+    },
+    {
+      "id": "PalParkLobby_Text_Unused_00074",
+      "garbage": 52
+    }
+  ]
+}

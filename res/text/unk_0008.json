@@ -1,0 +1,76 @@
+{
+  "key": 53789,
+  "messages": [
+    {
+      "id": "pl_msg_00000008_00000",
+      "en_US": "EDIT"
+    },
+    {
+      "id": "pl_msg_00000008_00001",
+      "en_US": "QUIT"
+    },
+    {
+      "id": "pl_msg_00000008_00002",
+      "en_US": "SET"
+    },
+    {
+      "id": "pl_msg_00000008_00003",
+      "en_US": "REMOVE"
+    },
+    {
+      "id": "pl_msg_00000008_00004",
+      "en_US": "SHIFT"
+    },
+    {
+      "id": "pl_msg_00000008_00005",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000008_00006",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000008_00007",
+      "en_US": "Choose a capsule."
+    },
+    {
+      "id": "pl_msg_00000008_00008",
+      "en_US": "What would you like to do?"
+    },
+    {
+      "id": "pl_msg_00000008_00009",
+      "en_US": "The capsule was removed."
+    },
+    {
+      "id": "pl_msg_00000008_00010",
+      "en_US": "Switch with which capsule?"
+    },
+    {
+      "id": "pl_msg_00000008_00011",
+      "en_US": "The capsules were switched."
+    },
+    {
+      "id": "pl_msg_00000008_00012",
+      "en_US": "Finished editing the capsule."
+    },
+    {
+      "id": "pl_msg_00000008_00013",
+      "en_US": "Confirming..."
+    },
+    {
+      "id": "pl_msg_00000008_00014",
+      "en_US": [
+        "Quit without changing the capsule\n",
+        "design?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000008_00015",
+      "en_US": "There’s no more room!"
+    },
+    {
+      "id": "pl_msg_00000008_00016",
+      "en_US": "There are no Seals left."
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "key": 50255,
+  "messages": [
+    {
+      "id": "pl_msg_00000292_00000",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "What timing!\r",
+        "Those Team Galactic scoundrels are\n",
+        "after the legendary Pokémon!\r",
+        "You’ve got to help Dawn!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00001",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "What timing!\r",
+        "Those Team Galactic scoundrels are\n",
+        "after the legendary Pokémon!\r",
+        "{STRVAR_1 3, 0, 0}, help us!\n",
+        "You’ve got to help Lucas!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00002",
+      "en_US": [
+        "Rowan: How dare you!\n",
+        "You misguided thugs!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}!\n",
+        "Dawn needs your help!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00004",
+      "en_US": [
+        "Rowan: How dare you!\n",
+        "You misguided thugs!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}!\n",
+        "Lucas needs your help!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00006",
+      "en_US": [
+        "Ow! Ouch!\n",
+        "What’s with this old-timer?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00007",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}!\n",
+        "It’s T-Team Galactic!\r",
+        "They’re taking the Pokémon of the\n",
+        "lake...\r",
+        "I...\n",
+        "I couldn’t beat this person..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00008",
+      "en_US": [
+        "Lucas: It’s Team Galactic!\n",
+        "They took the Pokémon of the lake...\r",
+        "This woman...\n",
+        "I lost to her, but just barely!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00009",
+      "en_US": [
+        "Mars: That face...!\n",
+        "It brings back bad memories!\r",
+        "I’m talking about the windworks!\r",
+        "I caught a whole lot of trouble\n",
+        "for that little incident.\r",
+        "What’s with that look on your face?\n",
+        "You do remember me, don’t you?\r",
+        "Fine, whatever.\n",
+        "I’ll tell you who I am again!\r",
+        "I’m Mars, one of Team Galactic’s\n",
+        "Commanders.\r",
+        "So, what is it? Are you some\n",
+        "lovey-dovey couple to the rescue?\r",
+        "Not a chance! Not even a teeny one!\n",
+        "You’re all going down!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00010",
+      "en_US": [
+        "I lost again...\r",
+        "So, first the windworks, and now\n",
+        "Lake Verity that I owe you for!\r",
+        "This shouldn’t be happening to Team\n",
+        "Galactic’s Commander...\r",
+        "...Calm down, Mars...\n",
+        "I’ve done my part in all of this...\r",
+        "My mission was to transport the\n",
+        "lake’s Pokémon to our HQ...\r",
+        "...That’s right! I accomplished my\n",
+        "mission without a problem!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00011",
+      "en_US": [
+        "Team! We’re pulling out!\n",
+        "The boss is waiting at the HQ!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00012",
+      "en_US": [
+        "The Pokémon of the three lakes are\n",
+        "connected somehow.\r",
+        "Thanks to Saturn’s grandstanding at\n",
+        "Lake Valor, a cavern appeared here.\r",
+        "It was the cavern where the Pokémon\n",
+        "MESPRIT slept.\r",
+        "MESPRIT appeared, too, probably to\n",
+        "go help its friends.\r",
+        "That worked out well for us.\n",
+        "It was super easy to catch.\r",
+        "So, now we’ve got them all:\n",
+        "MESPRIT, “The Being of Emotion.”\f",
+        "AZELF, “The Being of Willpower.”\f",
+        "UXIE, “The Being of Intelligence.”\r",
+        "Now that we have them all...\r",
+        "You can look forward to what plans\n",
+        "Team Galactic has for them!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00013",
+      "en_US": [
+        "Rowan: I see...\n",
+        "This also occurred at Lake Valor...\r",
+        "Another legendary Pokémon was taken\n",
+        "away by Team Galactic...\r",
+        "Both of you went up against\n",
+        "full-fledged criminals...\r",
+        "The fact that you’re unharmed is\n",
+        "reason enough to celebrate.\r",
+        "...But what about {STRVAR_1 3, 0, 0}?\r",
+        "What is happening at Lake Acuity?\n",
+        "Is {STRVAR_1 3, 0, 0} safe?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00014",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 0, 0}, I need you to\n",
+        "go to Lake Acuity right away.\r",
+        "I’m worried about {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00015",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}, what is Team\n",
+        "Galactic up to?\r",
+        "Are the abducted Pokémon of the\n",
+        "lakes going to be OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000292_00016",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}, what’s Team\n",
+        "Galactic up to?\r",
+        "They’d better not harm the Pokémon\n",
+        "they took from the lakes..."
+      ]
+    }
+  ]
+}

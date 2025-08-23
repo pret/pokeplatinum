@@ -51,5 +51,26 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What it means to battle...\n",
+				"Its joys, its sorrows...\f",
+				"I’ve experienced it all!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "My sorrow deepens...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You may be a child, but you’ve taught\n",
+				"me a whole lot. I thank you humbly.\n"
+			]
+		}
     ]
 }

@@ -1,3 +1,5 @@
+rapidjson_dep = dependency('rapidjson')
+
 # Native tools
 subdir('csv2bin')
 subdir('datagen')

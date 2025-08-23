@@ -48,7 +48,7 @@ b6c7a3b01146ef7a8e5cd0c583a6185a62fce803 *res/prebuilt/data/miniasasea.nsbtx
 0634ba96cde00f4ae9417aa3b503925272480752 *res/prebuilt/data/minihamabe.nsbtx
 71f4cedade64a030172afc432049106ad198e0e6 *res/prebuilt/data/minimum.nsbtx
 4bd3072a3c2e0d833feb9ce6c4b8264c73cf3c29 *res/prebuilt/data/minirhana.nsbtx
-8138e762591a993179132f20550ca3c94aba6b9d *res/prebuilt/data/namein.narc
+8138e762591a993179132f20550ca3c94aba6b9d *res/graphics/naming_screen/namein.narc
 5d5c14fcfa0f8534c2eec79ffa945d01f4c547b4 *res/prebuilt/data/nfont.NCGR
 9eae4f97e9e97b6cd427c95def1c166ea868da43 *res/prebuilt/data/nfont.NCLR
 bbec5b2143b48f7439efa8eb285b69635f3720fa *res/prebuilt/data/pc.nsbca
@@ -164,8 +164,8 @@ de5c1035595e3cb52990b183497e513246bd0efe *res/pokemon/pms.narc
 cd4b737f173cc6ac1a25636efa4edfd83da79599 *res/pokemon/wotbl.narc
 59f49fe682ef8cf4dfb8f6b7da2e0f51401b50cc *res/trainers/trdata.narc
 da4dc734c7051754a3280d9e918942c42d183adb *res/trainers/trpoke.narc
-f2510b7ff0305a01e0aaec1fd438ebd63a52b3bc *res/prebuilt/poketool/trmsg/trtbl.narc
-eb67fe3a80265f7d874c107850a3f6b75cadb83d *res/prebuilt/poketool/trmsg/trtblofs.narc
+f2510b7ff0305a01e0aaec1fd438ebd63a52b3bc *res/trainers/trtbl.narc
+eb67fe3a80265f7d874c107850a3f6b75cadb83d *res/trainers/trtblofs.narc
 8bac81f0ff446438c6bf34a161619dce22e9db77 *res/prebuilt/battle/graphic/b_bag_gra.narc
 036b81fe61c6347100c73b2c23d28da5abc7626c *res/prebuilt/battle/graphic/b_plist_gra.narc
 d672202157109fb1bb293070b5d35787b2b2b6d3 *res/prebuilt/battle/graphic/batt_bg.narc
@@ -199,7 +199,7 @@ d91ceca1e3ef5e57061dabc690c0f1a1556dc624 *res/prebuilt/graphic/ev_pokeselect.nar
 5c673be62fe6bddfa911e3be26762b7e47d60b41 *res/prebuilt/graphic/f_note_gra.narc
 4941a639804c2b009836d1ab9b86a2ab0bb0c436 *res/graphics/signposts/field_board.narc
 3a71f8eca65f2524f96c4bb8463800ae19a70a90 *res/prebuilt/graphic/field_encounteffect.narc
-e4ad5fcd9010114089a5ded83a077a75860d633a *res/prebuilt/graphic/fld_comact.narc
+e4ad5fcd9010114089a5ded83a077a75860d633a *res/graphics/scroll_prompts/fld_comact.narc
 1122e901209b1047fbbacb1a47311c8bd529a647 *res/prebuilt/graphic/font.narc
 02e2132b2bb08413d890c220bff7219e3725f7c2 *res/prebuilt/graphic/fontoam.narc
 e7266bd8b7095861b6e1fdaf4f13cb648a9c325d *res/prebuilt/graphic/footprint_board.narc

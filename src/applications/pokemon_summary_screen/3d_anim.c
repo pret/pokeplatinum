@@ -158,7 +158,7 @@ void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->page == SUMMARY_PAGE_CONDITION) {
-        sub_020241B4();
+        G3_ResetG3X();
         Camera_ComputeViewMatrix();
 
         G3_MtxMode(GX_MTXMODE_PROJECTION);

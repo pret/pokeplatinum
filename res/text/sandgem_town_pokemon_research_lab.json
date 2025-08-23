@@ -1,0 +1,621 @@
+{
+  "key": 5126,
+  "messages": [
+    {
+      "id": "pl_msg_00000565_00000",
+      "en_US": [
+        "Professor: Well, well, look who’s here.\r",
+        "{STRVAR_1 3, 0, 0}, was it?\n",
+        "Let’s have a look at your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00001",
+      "en_US": [
+        "...\r",
+        "Hmm...\n",
+        "I see...\r",
+        "This Pokémon seems to be rather\n",
+        "happy.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00002",
+      "en_US": [
+        "Well well!\r",
+        "You’ve made your Pokémon evolve\n",
+        "already?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00003",
+      "en_US": [
+        "Hm!\r",
+        "Entrusting you with that {STRVAR_1 0, 0, 0}\n",
+        "was no mistake, it seems!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00004",
+      "en_US": [
+        "Professor: Well, would you like to give\n",
+        "it a nickname?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00005",
+      "en_US": [
+        "Professor: Hmm, OK, I see...\n",
+        "And you’re happy with that nickname?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00006",
+      "en_US": [
+        "Professor: When I first saw you two \n",
+        "about to step into the tall grass\f",
+        "without Pokémon, I was shocked.\r",
+        "I was astounded by these foolhardy\n",
+        "children.\r",
+        "But now, you’ve astounded me in an\n",
+        "entirely different way.\r",
+        "Already, there is a bond growing\n",
+        "between you and that Pokémon.\r",
+        "I feel privileged to have met you.\r",
+        "I’m sure {STRVAR_1 0, 0, 0} feels the same\n",
+        "way about you.\r",
+        "That’s why I’ll ask you to cherish that\n",
+        "{STRVAR_1 0, 0, 0} of yours.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00007",
+      "en_US": [
+        "Dawn: I’m so glad that you’re kind\n",
+        "toward Pokémon!\r",
+        "If you weren’t, I’d have to...\n",
+        "Oh, I just can’t say it...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00008",
+      "en_US": [
+        "Lucas: Boy, am I glad you’re kind\n",
+        "toward Pokémon.\r",
+        "If you weren’t, well...\n",
+        "I don’t even want to think about it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00009",
+      "en_US": [
+        "Professor: Er-hem!\n",
+        "Let’s move on to the main topic.\r",
+        "There is something I want you to do\n",
+        "for me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00010",
+      "en_US": [
+        "Allow me to properly introduce myself\n",
+        "first.\r",
+        "My name, as you know, is Rowan.\n",
+        "I study Pokémon.\r",
+        "First of all, I want to know exactly\n",
+        "what kinds of Pokémon live in the\f",
+        "Sinnoh region.\r",
+        "To do so, it is necessary to collect\n",
+        "data using the Pokédex.\r",
+        "This is what I wish to ask of you.\r",
+        "I want to entrust you with this\n",
+        "Pokédex.\r",
+        "Will you use it to record data on all\n",
+        "the Pokémon in Sinnoh for me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00011",
+      "en_US": [
+        "Rowan: ...\r",
+        "...\r",
+        "...\r",
+        "...\r",
+        "I can stand here without speaking for\n",
+        "hours. I’m a very patient man.\r",
+        "Let me ask you again, {STRVAR_1 3, 0, 0}.\r",
+        "I want to entrust you with this\n",
+        "Pokédex.\r",
+        "Will you use it to record data on all\n",
+        "the Pokémon in Sinnoh for me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00012",
+      "en_US": [
+        "Rowan: Hm!\r",
+        "Good answer!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00013",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "the {COLOR 1}Pokédex{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00014",
+      "en_US": [
+        "Rowan: That Pokédex is a very\n",
+        "high-tech device.\r",
+        "It will automatically record data on\n",
+        "every kind of Pokémon you encounter.\r",
+        "{STRVAR_1 3, 0, 0}, I ask that you go\n",
+        "everywhere and meet every kind of\f",
+        "Pokémon in this region!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00015",
+      "en_US": "Dawn: I’ve got one, too!\r"
+    },
+    {
+      "id": "pl_msg_00000565_00016",
+      "en_US": [
+        "Lucas: I’ve got the same kind of\n",
+        "Pokédex as you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00017",
+      "en_US": [
+        "Rowan: When you walked up Route 201\n",
+        "with your Pokémon, what did you feel?\r",
+        "I’ve lived for 60 long years.\n",
+        "Even now, I get a thrill when\r",
+        "I’m with a Pokémon.\r",
+        "Now, you should know that there are\n",
+        "countless Pokémon in this world.\r",
+        "That means there are just as many\n",
+        "thrills waiting for you out there!\r",
+        "Now go!\r",
+        "{STRVAR_1 3, 0, 0}, your grand adventure\n",
+        "begins right now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00018",
+      "en_US": [
+        "Rowan: Go on!\r",
+        "{STRVAR_1 3, 0, 0}, your grand adventure\n",
+        "awaits you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00019",
+      "en_US": [
+        "Dawn: The Pokémon that I met for\n",
+        "the first time was {STRVAR_1 0, 1, 0}!\r",
+        "If you would have chosen {STRVAR_1 0, 1, 0}\n",
+        "on Route 201, we’d have the same\f",
+        "Pokémon now!\r",
+        "Not that it matters, but...\r",
+        "Anyway, I’m Dawn.\r",
+        "I also help the professor add pages\n",
+        "to the Pokédex.\r",
+        "So, in a sense, I’m just like you.\r",
+        "I just got a little head start on you,\n",
+        "that’s all.\r",
+        "I’ll be happy to teach you things.\n",
+        "Glad to meet you, {STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00020",
+      "en_US": [
+        "Lucas: The professor asked me to help,\n",
+        "so I’m filling the Pokédex pages, too.\r",
+        "That makes us comrades working toward\n",
+        "the same goal.\r",
+        "I’ll teach you stuff later, OK?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00021",
+      "en_US": [
+        "I’m {STRVAR_1 3, 0, 0}’s father.\r",
+        "I’ll be happy to assist you on your\n",
+        "quest for the professor.\r",
+        "Hahaha. Eh...\n",
+        "I’m sure we can count on you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00022",
+      "en_US": [
+        "Professor Rowan invented a new\n",
+        "Pokédex while working alongside a\f",
+        "professor from the Kanto region.\r",
+        "Oh, my name is Roseanne.\r",
+        "It’s an honor to be an assistant to\n",
+        "our professor!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00023",
+      "en_US": [
+        "Adventure Rule No. 1\n",
+        "The X Button opens the menu."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00024",
+      "en_US": [
+        "Adventure Rule No. 2\n",
+        "Record your progress with SAVE."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00025",
+      "en_US": [
+        "It’s crammed full of books with all\n",
+        "sorts of Pokémon information."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00026",
+      "en_US": [
+        "There’s a lot of reference material\n",
+        "and research reports on Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00027",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}!\r",
+        "You’ve come to show me your\n",
+        "progress on the Pokédex?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00028",
+      "en_US": [
+        "Hmm...\r",
+        "So, you’ve seen {STRVAR_1 52, 0, 0} Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00029",
+      "en_US": [
+        "What’s wrong?\r",
+        "You’re not going to tell me you’ve\n",
+        "seen too few to bother showing me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00030",
+      "en_US": [
+        "Excellent work, {STRVAR_1 3, 0, 0}!\r",
+        "The Pokémon of the Sinnoh region are\n",
+        "being added to your Pokédex.\r",
+        "This will certainly help with my studies\n",
+        "of Pokémon evolution...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00031",
+      "en_US": [
+        "Rowan: Hm! {STRVAR_1 3, 0, 0}, I’ve been\n",
+        "waiting to see you!\r",
+        "You’ve met every kind of Pokémon\n",
+        "there is in the Sinnoh region!\r",
+        "This will help immensely with my\n",
+        "studies on Pokémon evolution...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00032",
+      "en_US": [
+        "Oak: Greetings, Professor Rowan!\n",
+        "It’s been a very long time!\r",
+        "I’ll tell you, Sinnoh certainly is\n",
+        "a long trip from Kanto.\r",
+        "Of course, if it means meeting new\n",
+        "Pokémon, there’s no distance too\f",
+        "great for the likes of us to travel.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00033",
+      "en_US": [
+        "Rowan: Oh! If it isn’t my old\n",
+        "colleague, Professor Oak!\r",
+        "I should have expected as much from\n",
+        "the world’s authority on Pokémon!\r",
+        "We always used to joke, “Where\n",
+        "there are Pokémon, you’ll find Oak!”\r",
+        "It’s good to see that hasn’t changed\n",
+        "one bit!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00034",
+      "en_US": [
+        "Professor Oak, let me introduce you\n",
+        "to my young assistant.\r",
+        "This youngster has filled every page\n",
+        "of the Sinnoh Pokédex for me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00035",
+      "en_US": [
+        "Oak: Ah, well, very glad to meet you!\n",
+        "As you’ve heard, my name is Oak.\r",
+        "I’ve been hearing a great deal about\n",
+        "you from Professor Rowan lately.\r",
+        "He’s been exuberant in praise about\n",
+        "a fantastic young Trainer.\r",
+        "I see that you live up to--no--that\n",
+        "you’ve surpassed his praise.\r",
+        "You’ve also got an impeccable sense\n",
+        "of timing.\r",
+        "You see, I had an errand to run for\n",
+        "Professor Rowan on my visit here.\r",
+        "He’d asked me to bring the data\n",
+        "for the National Pokédex, you see.\r",
+        "So, since you’re here, let me upgrade\n",
+        "your Pokédex with the National Mode.\r",
+        "After all, there are many kinds of\n",
+        "Pokémon in this world of ours!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00036",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\n",
+        "with the National Mode!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00037",
+      "en_US": [
+        "Oak: I’m afraid it won’t be easy to\n",
+        "complete the National Pokédex.\r",
+        "However, I’m sure you will make an\n",
+        "honest attempt on our behalf!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00038",
+      "en_US": [
+        "Rowan: Have no fear, {STRVAR_1 3, 0, 0}\n",
+        "will get the job done.\r",
+        "By the way, Professor Oak, what\n",
+        "compelled you to visit this region?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00039",
+      "en_US": [
+        "Oak: Ah, yes. I’ve heard that the\n",
+        "Pal Park is now open.\r",
+        "If I remember correctly, it’s at the\n",
+        "end of Route 221.\r",
+        "The Pal Park has a special system\n",
+        "that attracts every imaginable kind\f",
+        "of Pokémon from every region.\r",
+        "I’ve come to make certain that\n",
+        "system is operating properly.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00040",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, you should make an\n",
+        "effort to visit the Pal Park, too.\r",
+        "Oops! I’ll be late for my meeting if\n",
+        "I don’t get going!\r",
+        "OK, it was a pleasure seeing the both\n",
+        "of you! Bye, now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00041",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, you should make an\n",
+        "effort to visit the Pal Park, too.\r",
+        "Oops! I’ll be late for my meeting if\n",
+        "I don’t get going!\r",
+        "OK, it was a pleasure seeing the both\n",
+        "of you! Bye, now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00042",
+      "en_US": [
+        "Rowan: Off he goes, as busy as\n",
+        "ever...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00043",
+      "en_US": [
+        "Now, {STRVAR_1 3, 0, 0}...\r",
+        "I have a gift here as your reward\n",
+        "for completing the Sinnoh Pokédex.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00044",
+      "en_US": [
+        "Rowan: That’s the Pokémon Radar,\n",
+        "or just Poké Radar for short.\r",
+        "Use it, and it will indicate grass\n",
+        "patches where Pokémon are lurking.\r",
+        "I’d prepared that to help my field\n",
+        "assistants put together the Sinnoh\f",
+        "Pokédex, but you took care of that!\r",
+        "I’m sure it will be useful for your\n",
+        "goal of filling the National Pokédex."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00045",
+      "en_US": [
+        "Rowan: The world is immense.\n",
+        "There are many more Pokémon.\r",
+        "That means there are many more\n",
+        "thrills for you to seek and enjoy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00046",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} checked the PC.\r",
+        "The screen is filled with special terms\n",
+        "and academic writing that is impossible\f",
+        "to figure out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00047",
+      "en_US": [
+        "Research materials are carefully\n",
+        "tucked away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00048",
+      "en_US": [
+        "The refrigerator is filled with\n",
+        "tasty sweets! Mmm..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00049",
+      "en_US": [
+        "It’s really quite something!\r",
+        "Imagine... Cataloging every kind of\n",
+        "Pokémon in the Sinnoh region!\r",
+        "And in complete contrast, there’s\n",
+        "{STRVAR_1 3, 0, 0}...\r",
+        "Anyway, you’ve been great for the\n",
+        "prof’s Pokémon-evolution research!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00050",
+      "en_US": [
+        "Yes, that’s correct.\r",
+        "Professor Rowan has been studying\n",
+        "Pokédex systems with Professor Oak.\r",
+        "Professor Oak is Professor Rowan’s\n",
+        "junior in terms of seniority."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00051",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 1, 0}!\n",
+        "You’ve come back!\r",
+        "You... You leave me speechless!\r",
+        "You’ve done it!\n",
+        "You really have done it!\r",
+        "Never has my heart pounded this hard\n",
+        "for so long in my 60 years of living!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00052",
+      "en_US": [
+        "Dawn: The professor did a lot of\n",
+        "checking up after you left.\r",
+        "He was really worried about you,\n",
+        "{STRVAR_1 3, 1, 0}...\r",
+        "He contacted acquaintances looking for\n",
+        "help, and...\r",
+        "{STRVAR_1 3, 1, 0}, I’m glad to see you safe!\n",
+        "Welcome back!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00053",
+      "en_US": [
+        "Lucas: After you left, the professor\n",
+        "did a lot of checking around.\r",
+        "He got really worried about you,\n",
+        "{STRVAR_1 3, 1, 0}.\r",
+        "He got in touch with people he knows\n",
+        "to rustle up help...\r",
+        "You didn’t need it, {STRVAR_1 3, 1, 0}.\n",
+        "I’m glad to see you back safe, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00054",
+      "en_US": [
+        "Rowan: Oh, yes, there was something\n",
+        "I had to tell you.\r",
+        "The three Pokémon of the lakes appear\n",
+        "to have returned to their homes.\r",
+        "So, tell me.\n",
+        "How are things going for you?\r",
+        "The Pokédex...?\r",
+        "Hm! A total of {STRVAR_1 52, 1, 0}!\n",
+        "...And the number of Badges?\r",
+        "Well! You’ve got seven already!\n",
+        "That only leaves Sunyshore’s Gym.\r",
+        "Hm! You’ve come this far.\n",
+        "Why not obtain Sunyshore’s Badge?\r",
+        "And why not challenge the Pokémon\n",
+        "League?\r",
+        "That will broaden your horizons\n",
+        "further than ever before.\r",
+        "Not to mention the opportunities to\n",
+        "meet even more Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00055",
+      "en_US": [
+        "Rowan: Oh, yes, {STRVAR_1 3, 0, 0}.\r",
+        "If you see Cynthia, please give her \n",
+        "my best regards."
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00056",
+      "garbage": 53
+    },
+    {
+      "id": "pl_msg_00000565_00057",
+      "garbage": 59
+    },
+    {
+      "id": "pl_msg_00000565_00058",
+      "garbage": 57
+    },
+    {
+      "id": "pl_msg_00000565_00059",
+      "en_US": [
+        "I... I’m stunned by your greatness!\r",
+        "I feel as shaken and inspired as when\n",
+        "my child was born!\r",
+        "Oh, how wonderful it is to be alive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000565_00060",
+      "en_US": [
+        "Hearing what was happening from the\n",
+        "professor gave me shivers.\r",
+        "But he strongly stated that you will\n",
+        "make everything all right.\r",
+        "I believed that you would make it, and\n",
+        "here you are!"
+      ]
+    }
+  ]
+}

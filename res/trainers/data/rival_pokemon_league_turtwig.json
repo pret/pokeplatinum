@@ -93,5 +93,28 @@
             "power": 200,
             "ball_seal": 24
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"I fully believe in this last one.\n",
+				"I have no reason to freak out.\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"We’re not finished yet! We’ll get out\n",
+				"of this spot because we’re so tight!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just went down?!\n",
+				"My team still needs raising?!\n"
+			]
+		}
     ]
 }

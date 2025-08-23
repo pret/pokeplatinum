@@ -96,5 +96,21 @@
             "power": 250,
             "ball_seal": 24
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"Oh, yeah? When the going gets tough,\n",
+				"my Pokémon get tougher!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just went down?!\n",
+				"You’re telling me I lost again?!\n"
+			]
+		}
     ]
 }

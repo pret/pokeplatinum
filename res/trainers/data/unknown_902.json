@@ -16,5 +16,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, dear... The trouble with fun is that\n",
+				"it is over so quickly.\n"
+			]
+		}
     ]
 }

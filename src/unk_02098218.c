@@ -236,13 +236,13 @@ static BOOL sub_0209843C(FieldTask *param0)
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
         v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
-        v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
-        v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
+        v0->unk_08->monGender = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
+        v0->unk_08->monForm = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:
-        if (v0->unk_08->unk_14 == 0) {
+        if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
             Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
 
             {

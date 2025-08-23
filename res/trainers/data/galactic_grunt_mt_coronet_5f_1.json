@@ -25,5 +25,30 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Team Galactic will take control of\n",
+				"everything!\r",
+				"You can try all you want, but you\n",
+				"can’t do anything alone!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"All you gave me was the taste of\n",
+				"defeat...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"...Is our boss about to ditch us\n",
+				"and claim everything for himself?"
+			]
+		}
     ]
 }

@@ -16,5 +16,32 @@
             "power": 0,
             "ball_seal": 9
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Ehehe...\n",
+				"I can battle, too!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Losing made me all hungry now.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"That cloud looks like giant ice cream!\n",
+				"I bet it tastes yummy!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve been dawdling here all this\n",
+				"time!\r"
+			]
+		}
     ]
 }

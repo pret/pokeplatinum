@@ -18,5 +18,22 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, it’s you again, dear?\r",
+				"It makes me a little nervous, but\n",
+				"may I have a rematch?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, dear... This isn’t anything like\n",
+				"battling with my friends.\n"
+			]
+		}
     ]
 }

@@ -16,5 +16,25 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Join me in this on-the-spot report,\n",
+				"live at the scene of a battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "The media is the victim!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Interviews are about taking the\n",
+				"initiative. The people need to know.\n"
+			]
+		}
     ]
 }

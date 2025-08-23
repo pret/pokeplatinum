@@ -43,5 +43,18 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": "On rainy days, I get more energetic!\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Like rain, my tears fall from losing...\n",
+				"They call me Rain Woman...\n"
+			]
+		}
     ]
 }

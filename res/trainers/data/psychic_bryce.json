@@ -35,5 +35,29 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I am a Psychic!\n",
+				"I can see your future!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"So be it! I will now divulge what\n",
+				"I know of your future... Hmm!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I see it now!\r",
+				"You will battle the Elite Four of the\n",
+				"Pokémon League!\n"
+			]
+		}
     ]
 }

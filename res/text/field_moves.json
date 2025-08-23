@@ -1,0 +1,165 @@
+{
+  "key": 38468,
+  "messages": [
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseCut",
+      "en_US": [
+        "This tree looks like it can be\n",
+        "cut down! Would you like to cut it?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedCut",
+      "en_US": "{STRVAR_1 0, 0, 0} used Cut!\r"
+    },
+    {
+      "id": "FieldMoves_Text_TreeLooksLikeCanBeCut",
+      "en_US": [
+        "This tree looks like it can be\n",
+        "cut down!"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseRockSmash",
+      "en_US": [
+        "This rock appears to be breakable.\n",
+        "Would you like to use Rock Smash?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonMayBeAbleToSmashRock",
+      "en_US": [
+        "It’s a rugged rock, but a Pokémon\n",
+        "may be able to smash it."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedRockSmash",
+      "en_US": "{STRVAR_1 0, 0, 0} used Rock Smash!\r"
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseStrength",
+      "en_US": [
+        "It’s a big boulder, but a Pokémon\n",
+        "may be able to push it aside.\r",
+        "Would you like to use Strength?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_Dummy7",
+      "garbage": 54
+    },
+    {
+      "id": "FieldMoves_Text_BoulderMayBeAbleToPush",
+      "en_US": [
+        "It’s a big boulder, but a Pokémon\n",
+        "may be able to push it aside."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_StrengthMadePossibleToMove",
+      "en_US": [
+        "Strength made it possible to move\n",
+        "boulders around."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedStrength",
+      "en_US": "{STRVAR_1 0, 0, 0} used Strength!\r"
+    },
+    {
+      "id": "FieldMoves_Text_PokemonStrengthMadePossibleToMove",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0}’s Strength made it\n",
+        "possible to move boulders around!"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseSurf",
+      "en_US": [
+        "The water is a deep blue color...\n",
+        "Would you like to surf on it?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedSurf",
+      "en_US": "{STRVAR_1 0, 0, 0} used Surf!\r"
+    },
+    {
+      "id": "FieldMoves_Text_NoSurfingWithPartner",
+      "en_US": [
+        "Surf can’t be used if you have\n",
+        "someone with you."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseDefog_Unused",
+      "en_US": [
+        "A deep fog drapes the area...\n",
+        "Would you like to use Defog?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedDefog",
+      "en_US": "{STRVAR_1 0, 0, 0} used Defog!\r"
+    },
+    {
+      "id": "FieldMoves_Text_DeepFogDrapesArea_Unused",
+      "en_US": [
+        "A deep fog drapes the area...\n",
+        "Will a Pokémon’s move lift it?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseRockClimb",
+      "en_US": [
+        "The wall is very rocky...\n",
+        "Would you like to use Rock Climb?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedRockClimb",
+      "en_US": "{STRVAR_1 0, 0, 0} used Rock Climb!\r"
+    },
+    {
+      "id": "FieldMoves_Text_RockyWallWillMoveScale",
+      "en_US": [
+        "The wall is very rocky...\n",
+        "Will a Pokémon’s move scale it?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_NoRockClimbingWithPartner",
+      "en_US": [
+        "Rock Climb can’t be used if you have\n",
+        "someone with you."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_WouldYouLikeToUseWaterfall",
+      "en_US": [
+        "It’s a large waterfall.\n",
+        "Would you like to use Waterfall?"
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedWaterfall",
+      "en_US": "{STRVAR_1 0, 0, 0} used Waterfall.\r"
+    },
+    {
+      "id": "FieldMoves_Text_WallOfWater",
+      "en_US": [
+        "A wall of water is crashing down with\n",
+        "a mighty roar."
+      ]
+    },
+    {
+      "id": "FieldMoves_Text_Dummy25",
+      "garbage": 25
+    },
+    {
+      "id": "FieldMoves_Text_PokemonUsedFlash",
+      "en_US": "{STRVAR_1 0, 0, 0} used Flash!\r"
+    }
+  ]
+}

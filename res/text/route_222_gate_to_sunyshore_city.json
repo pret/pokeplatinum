@@ -1,0 +1,25 @@
+{
+  "key": 52890,
+  "messages": [
+    {
+      "id": "pl_msg_00000520_00000",
+      "en_US": [
+        "If I had to describe Sunyshore Gym\n",
+        "in a word, it’d be...\r",
+        "Shockingly electric!\r",
+        "Whoops, that’s two words!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000520_00001",
+      "en_US": [
+        "Sunyshore’s Gym Leader Volkner’s been\n",
+        "bored lately, I hear.\r",
+        "We need tough challengers to visit so\n",
+        "he doesn’t get bored.\r",
+        "People get up to no good if they have\n",
+        "too much time on their hands."
+      ]
+    }
+  ]
+}

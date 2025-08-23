@@ -49,7 +49,7 @@ res/prebuilt/data/miniasasea.nsbtx,/data/miniasasea.nsbtx
 res/prebuilt/data/minihamabe.nsbtx,/data/minihamabe.nsbtx
 res/prebuilt/data/minimum.nsbtx,/data/minimum.nsbtx
 res/prebuilt/data/minirhana.nsbtx,/data/minirhana.nsbtx
-res/prebuilt/data/namein.narc,/data/namein.narc
+res/graphics/naming_screen/namein.narc,/data/namein.narc
 res/prebuilt/data/nfont.NCGR,/data/nfont.NCGR
 res/prebuilt/data/nfont.NCLR,/data/nfont.NCLR
 res/prebuilt/data/pc.nsbca,/data/pc.nsbca
@@ -165,8 +165,8 @@ res/pokemon/pms.narc,/poketool/personal/pms.narc
 res/pokemon/wotbl.narc,/poketool/personal/wotbl.narc
 res/trainers/trdata.narc,/poketool/trainer/trdata.narc
 res/trainers/trpoke.narc,/poketool/trainer/trpoke.narc
-res/prebuilt/poketool/trmsg/trtbl.narc,/poketool/trmsg/trtbl.narc
-res/prebuilt/poketool/trmsg/trtblofs.narc,/poketool/trmsg/trtblofs.narc
+res/trainers/trtbl.narc,/poketool/trmsg/trtbl.narc
+res/trainers/trtblofs.narc,/poketool/trmsg/trtblofs.narc
 res/prebuilt/battle/graphic/b_bag_gra.narc,/battle/graphic/b_bag_gra.narc
 res/prebuilt/battle/graphic/b_plist_gra.narc,/battle/graphic/b_plist_gra.narc
 res/prebuilt/battle/graphic/batt_bg.narc,/battle/graphic/batt_bg.narc
@@ -200,7 +200,7 @@ res/prebuilt/graphic/ev_pokeselect.narc,/graphic/ev_pokeselect.narc
 res/prebuilt/graphic/f_note_gra.narc,/graphic/f_note_gra.narc
 res/graphics/signposts/field_board.narc,/graphic/field_board.narc
 res/prebuilt/graphic/field_encounteffect.narc,/graphic/field_encounteffect.narc
-res/prebuilt/graphic/fld_comact.narc,/graphic/fld_comact.narc
+res/graphics/scroll_prompts/fld_comact.narc,/graphic/fld_comact.narc
 res/prebuilt/graphic/font.narc,/graphic/font.narc
 res/prebuilt/graphic/fontoam.narc,/graphic/fontoam.narc
 res/prebuilt/graphic/footprint_board.narc,/graphic/footprint_board.narc

@@ -1,0 +1,118 @@
+{
+  "key": 54351,
+  "messages": [
+    {
+      "id": "pl_msg_00000283_00000",
+      "en_US": [
+        "It’s a bed...\n",
+        "Want to take a rest?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} quickly fell asleep\n",
+        "in the bed...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} and the Pokémon\n",
+        "became fully healed from the rest!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00003",
+      "en_US": [
+        "There is a report titled “The Pokémon\n",
+        "Statues of Eterna.”\r",
+        "Would you like to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00004",
+      "en_US": "{STRVAR_1 3, 0, 0} put the report back."
+    },
+    {
+      "id": "pl_msg_00000283_00005",
+      "en_US": [
+        "Pokémon statue plate text no. 1\n",
+        "(from stolen plate):\r",
+        "“{COLOR 2}The{COLOR 0} creation of DIA{COLOR 2}LGA,\n",
+        "the{COLOR 0} giver of time...\r",
+        "“In laughter, there is tears...\n",
+        "And, likewise {COLOR 2}it is with time.{COLOR 0}\r",
+        "“The same time flows {COLOR 2}on.{COLOR 0}\n",
+        "{COLOR 2}For it is{COLOR 0} the blessing of DIA{COLOR 2}LGA.{COLOR 0}”\r",
+        "The blue text has been extracted using\n",
+        "a high-tech device made by the boss.\r",
+        "Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00006",
+      "en_US": [
+        "Pokémon statue plate text no. 2\n",
+        "(from stolen plate):\r",
+        "“{COLOR 2}The{COLOR 0} birth of PAL{COLOR 2}KIA.{COLOR 0}\n",
+        "{COLOR 2}The {COLOR 0}creator of parallel dimensions...\r",
+        "“Alive, yet not alive...\n",
+        "{COLOR 2}Everything d{COLOR 0}rifts in space...\r",
+        "“To arrive in the same univer{COLOR 2}se.{COLOR 0}\n",
+        "{COLOR 2}It is {COLOR 0}the blessing of PAL{COLOR 2}KIA.{COLOR 0}”\r",
+        "The blue text has been extracted using\n",
+        "a high-tech device made by the boss.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00007",
+      "en_US": [
+        "Team Galactic Nap Room\r",
+        "Ensure the bed is unoccupied\n",
+        "before getting into it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00008",
+      "en_US": [
+        "Team Galactic TV Room\r",
+        "State-of-the-art audio & video\n",
+        "system for member use only!\r",
+        "Onward to a new universe!\n",
+        "Team Galactic!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00009",
+      "en_US": [
+        "The Team Galactic credo!\n",
+        "Everything belongs to Team Galactic!\r",
+        "Look beyond the world--space will\n",
+        "become Team Galactic’s!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00010",
+      "en_US": [
+        "There is a notice tacked on to\n",
+        "the kitchen sink.\r",
+        "“Health and prosperity through\n",
+        "the partaking of favorite foods!”\r",
+        "Foul, unidentifiable substances are\n",
+        "caked around the sink..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000283_00011",
+      "en_US": [
+        "There is a notice taped on to\n",
+        "the refrigerator.\r",
+        "“Drink all you wish and gain the\n",
+        "energy to move us forward!”\r",
+        "The refrigerator is filled with murky,\n",
+        "sinister drinks and nothing else..."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "key": 39608,
+  "messages": [
+    {
+      "id": "pl_msg_00000510_00000",
+      "en_US": [
+        "That’s right, CLEFAIRY!\n",
+        "Cuter, now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000510_00001",
+      "en_US": "CLEFAIRY: Pippiih!"
+    },
+    {
+      "id": "pl_msg_00000510_00002",
+      "en_US": "CLEFAIRY: Pippippiih!"
+    },
+    {
+      "id": "pl_msg_00000510_00003",
+      "en_US": "PIKACHU: Puhppikaah!"
+    },
+    {
+      "id": "pl_msg_00000510_00004",
+      "en_US": [
+        "PIKACHU! Try to keep up!\n",
+        "You need to dazzle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000510_00005",
+      "en_US": [
+        "Rt. 218\n",
+        "Canalave City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000510_00006",
+      "en_US": [
+        "Rt. 218\n",
+        "Jubilife City"
+      ]
+    }
+  ]
+}

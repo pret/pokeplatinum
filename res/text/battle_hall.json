@@ -1,0 +1,889 @@
+{
+  "key": 5194,
+  "messages": [
+    {
+      "id": "pl_msg_00000311_00000",
+      "en_US": [
+        "Welcome to the Battle Hall!\r",
+        "I am your guide to the Single and\n",
+        "Double Battle challenges.\r",
+        "Please be aware that these challenges\n",
+        "are designed for a single Trainer.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00001",
+      "en_US": "Which challenge would you like to take?"
+    },
+    {
+      "id": "pl_msg_00000311_00002",
+      "en_US": [
+        "At the Battle Hall, you may take Single\n",
+        "or Double Battle challenges alone.\r",
+        "For the Single Battle challenge, you\n",
+        "enter one Pokémon of at least Lv. 30.\r",
+        "The Double Battle Challenge requires\n",
+        "you to enter two of the same kind of\f",
+        "Pokémon that are at least Lv. 30 each.\r",
+        "Winning-streak records are kept for\n",
+        "individual kinds of Pokémon.\r",
+        "That makes it possible for any kind of\n",
+        "Pokémon to aim for no. 1.\r",
+        "When you enter the Hall, you will be\n",
+        "asked to choose the type and rank of\f",
+        "the Pokémon you want to battle.\r",
+        "If you manage to win ten matches in\n",
+        "a row, you will earn Battle Points (BP).\r",
+        "If you want to interrupt your\n",
+        "challenge, please save the game.\r",
+        "If you don’t save, you will be\n",
+        "disqualified from your challenge.\r",
+        "Please be aware of that!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00003",
+      "en_US": [
+        "Welcome to the Battle Hall!\r",
+        "I am your guide to the Multi Battle\n",
+        "challenge.\r",
+        "Please be aware that this challenge\n",
+        "requires two Trainers.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00004",
+      "en_US": [
+        "Would you like to take the Battle Hall\n",
+        "Multi Battle challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00005",
+      "en_US": [
+        "You may team up with a friend for a\n",
+        "Multi Battle challenge using the\r",
+        "same kind of Pokémon that are at\n",
+        "least Lv. 30 each.\r",
+        "When you enter the Hall, you will be\n",
+        "asked to choose the type and rank of\f",
+        "the Pokémon you want to battle.\r",
+        "If you manage to win ten matches in\n",
+        "a row, you will earn Battle Points (BP).\r",
+        "Please note: a Battle Hall Multi Battle\n",
+        "challenge can’t be interrupted.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00006",
+      "en_US": "We hope to see you again!"
+    },
+    {
+      "id": "pl_msg_00000311_00007",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000311_00008",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000311_00009",
+      "en_US": "Right this way, please!"
+    },
+    {
+      "id": "pl_msg_00000311_00010",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000311_00011",
+      "en_US": [
+        "We’ve missed you!\r",
+        "You must save the game before you\n",
+        "resume your challenge. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00012",
+      "en_US": [
+        "Excuse me!\r",
+        "You didn’t save before you quit your\n",
+        "challenge last time.\r",
+        "Because of that, you have been\n",
+        "disqualified from your challenge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00013",
+      "en_US": [
+        "Congratulations!\r",
+        "In honor of your victory, we present\n",
+        "you this commemorative print!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00014",
+      "en_US": [
+        "The Gold Print was added to\n",
+        "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00015",
+      "en_US": [
+        "The Silver Print was added to\n",
+        "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00016",
+      "en_US": "SINGLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000311_00017",
+      "en_US": "DOUBLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000311_00018",
+      "en_US": "TAKE CHALLENGE"
+    },
+    {
+      "id": "pl_msg_00000311_00019",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000311_00020",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000311_00021",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000311_00022",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000311_00023",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000311_00024",
+      "garbage": 85
+    },
+    {
+      "id": "pl_msg_00000311_00025",
+      "garbage": 86
+    },
+    {
+      "id": "pl_msg_00000311_00026",
+      "garbage": 59
+    },
+    {
+      "id": "pl_msg_00000311_00027",
+      "garbage": 44
+    },
+    {
+      "id": "pl_msg_00000311_00028",
+      "garbage": 50
+    },
+    {
+      "id": "pl_msg_00000311_00029",
+      "garbage": 65
+    },
+    {
+      "id": "pl_msg_00000311_00030",
+      "en_US": [
+        "One Trainer should select\n",
+        "“BECOME LEADER.”\r",
+        "The other Trainer must select\n",
+        "“JOIN GROUP.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00031",
+      "en_US": [
+        "We need to launch DS Wireless\n",
+        "Communications."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00032",
+      "en_US": [
+        "You must save the game before I\n",
+        "show you in. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00033",
+      "en_US": [
+        "Please choose the Pokémon you wish to\n",
+        "enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00034",
+      "en_US": [
+        "There is an ongoing winning streak\n",
+        "saved for {STRVAR_1 0, 0, 0}.\r",
+        "Delete this record and start a new\n",
+        "challenge with {STRVAR_1 0, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00035",
+      "en_US": [
+        "Excuse me!\r",
+        "You don’t have a single eligible Pokémon\n",
+        "of at least Lv. 30!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00036",
+      "en_US": [
+        "Excuse me!\r",
+        "For Double Battles, you must have two\n",
+        "of the same kind of Pokémon that are\f",
+        "at least Lv. 30 each.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00037",
+      "en_US": "Also, Eggs are ineligible to enter.\r"
+    },
+    {
+      "id": "pl_msg_00000311_00038",
+      "en_US": [
+        "Eggs and {STRVAR_1 0, 1, 0} are not allowed\n",
+        "to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00039",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, and {STRVAR_1 0, 2, 0}\n",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00040",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "and {STRVAR_1 0, 3, 0} are not allowed\f",
+        "to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00041",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, and {STRVAR_1 0, 4, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00042",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0}, and\f",
+        "{STRVAR_1 0, 5, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00043",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, and {STRVAR_1 0, 6, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00044",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0}, and\f",
+        "{STRVAR_1 0, 7, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00045",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, and {STRVAR_1 0, 8, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00046",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0}, and\f",
+        "{STRVAR_1 0, 9, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00047",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, and {STRVAR_1 0, 10, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00048",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0}, and\f",
+        "{STRVAR_1 0, 11, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00049",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, and {STRVAR_1 0, 12, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00050",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0}, and\f",
+        "{STRVAR_1 0, 13, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00051",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0},\f",
+        "{STRVAR_1 0, 13, 0}, and {STRVAR_1 0, 14, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00052",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0},\f",
+        "{STRVAR_1 0, 13, 0}, {STRVAR_1 0, 14, 0}, and\f",
+        "{STRVAR_1 0, 15, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00053",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0},\f",
+        "{STRVAR_1 0, 13, 0}, {STRVAR_1 0, 14, 0},\f",
+        "{STRVAR_1 0, 15, 0}, and {STRVAR_1 0, 16, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00054",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0},\f",
+        "{STRVAR_1 0, 13, 0}, {STRVAR_1 0, 14, 0},\f",
+        "{STRVAR_1 0, 15, 0}, {STRVAR_1 0, 16, 0}, and\f",
+        "{STRVAR_1 0, 17, 0} are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00055",
+      "en_US": [
+        "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
+        "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
+        "{STRVAR_1 0, 5, 0}, {STRVAR_1 0, 6, 0},\f",
+        "{STRVAR_1 0, 7, 0}, {STRVAR_1 0, 8, 0},\f",
+        "{STRVAR_1 0, 9, 0}, {STRVAR_1 0, 10, 0},\f",
+        "{STRVAR_1 0, 11, 0}, {STRVAR_1 0, 12, 0},\f",
+        "{STRVAR_1 0, 13, 0}, {STRVAR_1 0, 14, 0},\f",
+        "{STRVAR_1 0, 15, 0}, {STRVAR_1 0, 16, 0},\f",
+        "{STRVAR_1 0, 17, 0}, and {STRVAR_1 0, 18, 0}\f",
+        "are not allowed to enter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00056",
+      "en_US": "Please come see me when you are ready.\r"
+    },
+    {
+      "id": "pl_msg_00000311_00057",
+      "en_US": [
+        "The Battle Hall Multi Battle challenge\n",
+        "requires both partners to enter the\f",
+        "same kind of Pokémon.\r",
+        "Please confer with your friend and\n",
+        "choose the same kind of Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00058",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000311_00059",
+      "en_US": [
+        "When it comes to food, this Hiker\n",
+        "chows down on the favorites first.\r",
+        "But here, I start with types that my\n",
+        "Pokémon doesn’t like. Why?\r",
+        "Because the opposition goes up in level\n",
+        "as you progress."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00060",
+      "en_US": [
+        "That opulent stage!\n",
+        "Every Pokémon can get up there.\r",
+        "Yes! You can try for a record with\n",
+        "your one favorite Pokémon.\r",
+        "Even a Pokémon that’s not considered a\n",
+        "good battler can make a challenge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00061",
+      "en_US": [
+        "Pachipachi...\r",
+        "My PACHIRISU is a cutie, but he’s even\n",
+        "battled the Brain here.\r",
+        "The Brain will take your Pokémon on at\n",
+        "the same level, to be fair."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00062",
+      "en_US": "PACHIRISU: Pachipachi pacchipachii!"
+    },
+    {
+      "id": "pl_msg_00000311_00063",
+      "en_US": [
+        "You should try the Battle Hall with\n",
+        "different kinds of Pokémon, too.\r",
+        "Doing that, you’ll be building your\n",
+        "overall record as well."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00064",
+      "en_US": [
+        "There’s a key point to keep in mind\n",
+        "here.\r",
+        "If it’s the same kind of Pokémon, you\n",
+        "can enter different ones.\r",
+        "That means you can have different ones\n",
+        "knowing different types of moves.\r",
+        "That could make it easier to win against\n",
+        "certain types."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00065",
+      "en_US": [
+        "You know how CROAGUNK has two types:\n",
+        "Poison and Fighting?\r",
+        "That means it can appear as a Poison\n",
+        "type and as a Fighting type."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00066",
+      "en_US": [
+        "Ohoho! Ohohohoho!\n",
+        "I’m the mysterious maid!\r",
+        "And what is mysterious about me is the\n",
+        "mysterious part!\r",
+        "And now, a piece of advice.\r",
+        "At the Battle Hall, the opposing\n",
+        "Pokémon are matched in level to yours.\r",
+        "That way, you can make challenges\n",
+        "without worrying about levels."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00067",
+      "en_US": [
+        "There’s this game that I’m totally into\n",
+        "right now.\r",
+        "My friend and I started challenges\n",
+        "with identical conditions.\r",
+        "We’re competing over who can stretch\n",
+        "their win streak the longest. It’s fun!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00068",
+      "en_US": [
+        "I keep track of the total number of\n",
+        "wins from your longest Single Battle\f",
+        "win streaks at the Battle Hall.\r",
+        "To explain, I add only the longest win\n",
+        "streaks of each kind of Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00069",
+      "en_US": [
+        "When your total win-streak record hits\n",
+        "certain figures, you will earn BP as\f",
+        "rewards.\r",
+        "{STRVAR_1 3, 0, 0}, your total win-streak\n",
+        "record is presently {STRVAR_1 55, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00070",
+      "en_US": [
+        "Your total win-streak record has\n",
+        "reached {STRVAR_1 55, 2, 0}.\f",
+        "Here is your BP reward.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00071",
+      "en_US": [
+        "When your total win-streak record\n",
+        "reaches {STRVAR_1 55, 3, 0}, you will earn BP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00072",
+      "en_US": "{STRVAR_1 3, 0, 0} received {STRVAR_1 53, 4, 0} BP!"
+    },
+    {
+      "id": "pl_msg_00000311_00073",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, your total win-streak\n",
+        "record stands at {STRVAR_1 55, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00074",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, your total win-streak\n",
+        "record stands at {STRVAR_1 55, 1, 0}.\r",
+        "...My goodness!\n",
+        "That’s a fantastic record!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00075",
+      "en_US": [
+        "Winston: The Battle Hall’s been kind of\n",
+        "boring lately.\r",
+        "There haven’t been any dazzling\n",
+        "challengers who can electrify crowds.\r",
+        "The kind of challenger who can beat the\n",
+        "Brain... Aren’t there any around?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00076",
+      "en_US": [
+        "Winston: Let me take a wild guess.\n",
+        "Are you getting into the Battle Hall?\f",
+        "It’s addictively fun, huh?\r",
+        "The more you win, the more kinds of\n",
+        "Pokémon you get to see, too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00077",
+      "en_US": [
+        "Winston: ...\n",
+        "...Oh, sorry for staring!\r",
+        "I saw you on stage the last time.\n",
+        "You’ve got some star quality.\r",
+        "I think I’m going to keep an eye on you.\n",
+        "There’s real charisma there."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00078",
+      "en_US": [
+        "Winston: I check you out every time\n",
+        "you get up on stage.\r",
+        "You’re fun to watch, let me tell you.\r",
+        "Now I’m always looking forward to\n",
+        "seeing the combo of you and your\f",
+        "Pokémon on stage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00079",
+      "en_US": [
+        "Winston: Hey, there!\n",
+        "What are you going to do this time?\r",
+        "Which Pokémon are you going for a\n",
+        "record with next?\r",
+        "When I get to thinking about that,\n",
+        "I get too wound up to sleep at night.\r",
+        "That’s why I’ve been sleeping in lately!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00080",
+      "en_US": [
+        "Winston: Awesome!\n",
+        "Seriously awesome!\f",
+        "You’re beyond awesome, even!\r",
+        "The love you show so many Pokémon...\n",
+        "It’s no easy feat, I can tell ya!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00081",
+      "en_US": [
+        "Winston: I’ve never seen Pokémon\n",
+        "battle as enjoyably as yours do.\r",
+        "You’re the first of a kind for me as\n",
+        "Trainers go.\r",
+        "You know, I brag about you to everyone\n",
+        "who’s willing to listen.\r",
+        "I was saying that you’re going to be a\n",
+        "star before you even got a record!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00082",
+      "en_US": [
+        "Winston: Go, {STRVAR_1 3, 0, 0}, go!\n",
+        "Go, {STRVAR_1 3, 0, 0}, go!\r",
+        "I’m thinking up some dance steps and\n",
+        "cheers I can do to support you.\r",
+        "If you want to see them, you’ll need to\n",
+        "keep working on your records!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00083",
+      "en_US": [
+        "Winston: You’re phenomenal.\n",
+        "All the battles you waged on stage...\f",
+        "All those moments of glory...\r",
+        "Your star burns so bright and huge!\n",
+        "I can barely open my eyes around you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00084",
+      "en_US": [
+        "Winston: The love for Pokémon you\n",
+        "exhibited at the Battle Hall is as\f",
+        "infinitely deep as it is wide...\r",
+        "You can count on me, Winston, to be\n",
+        "your lifelong fan.\r",
+        "Just as you love Pokémon, I love you\n",
+        "as the Pokémon superstar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00085",
+      "en_US": [
+        "Serena: It’s about the Battle Hall...\n",
+        "It hasn’t excited me lately.\r",
+        "There’s been no gorgeous sort of\n",
+        "challenger who can dazzle me.\r",
+        "The kind of challenger who can make me\n",
+        "a fan... Aren’t there any around?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00086",
+      "en_US": [
+        "Serena: Um... Excuse me?\r",
+        "If you don’t mind me asking, are you\n",
+        "getting into the Battle Hall?\r",
+        "It’s fun in an engrossing way, isn’t it?\n",
+        "Did you know?\r",
+        "The more you win, the more kinds of\n",
+        "Pokémon appear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00087",
+      "en_US": [
+        "Serena: Um... Excuse me?\r",
+        "I watched you when you were on stage.\n",
+        "It made me feel all tingly seeing you.\r",
+        "Um... You won’t mind if I cheer for you\n",
+        "from now on, will you? Please, may I?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00088",
+      "en_US": [
+        "Serena: Um... Excuse me?\r",
+        "I cheer for you the best I can.\r",
+        "I can’t get up on stage with you, but\n",
+        "I want to lend my support to your\f",
+        "Pokémon and you for trying so hard."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00089",
+      "en_US": [
+        "Serena: Um... Excuse me?\r",
+        "Can you tell me what kind of Pokémon\n",
+        "you’re going for a record with next?\r",
+        "When I start thinking about that, I get\n",
+        "sort of all choked up.\r",
+        "I have trouble sleeping at night when\n",
+        "I get that way."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00090",
+      "en_US": [
+        "Serena: Um... Excuse me?\r",
+        "Fantastic! It’s fantastic!\n",
+        "You’re fabulously fantastic!\r",
+        "The love you show so many Pokémon...\n",
+        "It must take extraordinary effort."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00091",
+      "en_US": [
+        "Serena: I’ve never seen Pokémon\n",
+        "battle as enjoyably as yours do.\r",
+        "You’re the first Trainer ever who’s\n",
+        "done that.\r",
+        "I... I brag about you to all my friends.\n",
+        "I hope you don’t mind.\r",
+        "I tell them I wish I could be as\n",
+        "wonderful a Trainer as you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00092",
+      "en_US": [
+        "Serena: Hurray, hurray, {STRVAR_1 3, 0, 0}!\n",
+        "Go, Pokémon, go!\r",
+        "...Oh! Um... Excuse me.\r",
+        "I was working on cheers and a dance\n",
+        "routine for you.\r",
+        "B-but, I’m sorry for being so silly and\n",
+        "giddy and..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00093",
+      "en_US": [
+        "Serena: You’re so inspiring to me.\r",
+        "All the glory you earned while battling\n",
+        "so often on that shining stage...\r",
+        "Just seeing you makes me feel all\n",
+        "happy inside. ♫"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00094",
+      "en_US": [
+        "Serena: Your Pokémon love that you’ve\n",
+        "shown at the Battle Hall is as infinitely\f",
+        "deep as it is wide...\r",
+        "It’s amazing, but you love every kind of\n",
+        "Pokémon there is.\r",
+        "I love you for being so amazing and\n",
+        "dedicated!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00095",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}.\n",
+        "Do you know what I’ve been doing?\r",
+        "I go looking for the Pokémon that take\n",
+        "the stage with you.\r",
+        "I catch them, too!\n",
+        "My Pokédex is filling up from it.\r",
+        "I guess I can thank you for that,\n",
+        "{STRVAR_1 3, 0, 0}. So, thank you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00096",
+      "en_US": [
+        "Lucas: These stage battles are lots\n",
+        "of fun just to watch!\r",
+        "You get to see so many different kinds\n",
+        "of Pokémon. It’s cool."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00097",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\r",
+        "When I come here, I cheer for everyone\n",
+        "on stage. I can’t help myself.\r",
+        "But when I see you win, it does feel\n",
+        "different.\r",
+        "It’s not just about feeling happy.\n",
+        "It evokes something in me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00098",
+      "en_US": [
+        "Oak: You keep amazing me over and over.\n",
+        "What a Trainer you turned out to be!\r",
+        "It’s not enough that you caught\n",
+        "Pokémon in numbers beyond belief.\r",
+        "That alone is fantastic enough, but\n",
+        "you’ve battled with them as well.\r",
+        "You’re what all Trainers should aspire\n",
+        "to be!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000311_00099",
+      "en_US": [
+        "Jasmine: I love showy events like\n",
+        "Battle Hall challenges and Contests.\r",
+        "They show me aspects of Pokémon that\n",
+        "I didn’t know about."
+      ]
+    }
+  ]
+}

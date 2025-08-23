@@ -17,6 +17,7 @@
 #include <exception>
 #include <functional>
 
+#include "datagen_trainer.h"
 #include "datagen.h"
 
 #define POKEPLATINUM_GENERATED_LOOKUP
@@ -33,6 +34,7 @@
 #include "generated/moves.h"
 #include "generated/species.h"
 #include "generated/trainer_classes.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer_data.h"
 
@@ -195,6 +197,51 @@ static void ParseAndPackParty(const rapidjson::Document &doc, TrainerDataType mo
     narc_pack_file(trpokeVFS, partyBuf, bufSize);
 }
 
+static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, std::string stem, rapidjson::Value *outMessages, rapidjson::Document *out)
+{
+    rapidjson::Value trainerMessages(rapidjson::kArrayType);
+    std::string ret = "";
+    for (const auto &member : doc["messages"].GetArray()) {
+        std::string type = member["type"].GetString();
+        ret += (char)(trainerID & 0xFF);
+        ret += (char)(trainerID >> 8);
+        ret += (char)LookupConst(type, TrainerMessageType);
+        ret += (char)0;
+
+        rapidjson::Value message;
+        message.SetObject();
+        std::string id = stem + type;
+        rapidjson::Value idValue(rapidjson::kStringType);
+        idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), out->GetAllocator());
+        message.AddMember("id", idValue, out->GetAllocator());
+
+        if (member.HasMember("en_US")) {
+            if (member["en_US"].IsArray()) {
+                rapidjson::Value strings(rapidjson::kArrayType);
+                int i = 0;
+                for (const auto &member2 : member["en_US"].GetArray()) {
+                    std::string str = member2.GetString();
+                    rapidjson::Value string(rapidjson::kStringType);
+                    string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), out->GetAllocator());
+                    strings.PushBack(string, out->GetAllocator());
+                }
+                message.AddMember("en_US", strings, out->GetAllocator());
+            } else {
+                std::string str = member["en_US"].GetString();
+                rapidjson::Value string(rapidjson::kStringType);
+                string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), out->GetAllocator());
+                message.AddMember("en_US", string, out->GetAllocator());
+            }
+        } else if (member.HasMember("garbage")) {
+            message.AddMember("garbage", member["garbage"].GetInt(), out->GetAllocator());
+        }
+
+        trainerMessages.PushBack(message, out->GetAllocator());
+    }
+    *outMessages = trainerMessages;
+    return ret;
+}
+
 int main(int argc, char **argv)
 {
     if (argc == 1) {
@@ -206,11 +253,23 @@ int main(int argc, char **argv)
     fs::path dataRoot = argv[2];
 
     std::vector<std::string> trainerRegistry = ReadRegistryEnvVar("TRAINERS");
+    const int trainerCount = trainerRegistry.size();
+    std::string *trMsgs = new std::string[trainerCount];
+    short *trMsgOffsets = new short[trainerCount];
+    int *order = new int[trainerCount];
+    rapidjson::Value *messagesArr = new rapidjson::Value[trainerCount];
 
     vfs_pack_ctx *trdataVFS = narc_pack_start();
     vfs_pack_ctx *trpokeVFS = narc_pack_start();
+    vfs_pack_ctx *trtblVFS = narc_pack_start();
+    vfs_pack_ctx *trtblofsVFS = narc_pack_start();
 
     rapidjson::Document doc;
+    rapidjson::Document out(rapidjson::kObjectType);
+    out.AddMember("key", 6120, out.GetAllocator());
+
+    int trainerID = 0;
+    int newTrainerIndex = 0;
     for (auto &trainerStem : trainerRegistry) {
         fs::path trainerDataPath = dataRoot / (trainerStem + ".json");
         std::string json = ReadWholeFile(trainerDataPath);
@@ -228,9 +287,65 @@ int main(int argc, char **argv)
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
+
+        rapidjson::Value trainerMessages;
+        std::string trMsg = ParseMessages(doc, trainerID, trainerStem, &trainerMessages, &out);
+        
+        if (trMsg.length()) {
+            if (trainerID < VANILLA_TRAINER_COUNT && trtblIndices[trainerID] != -1) {
+                trMsgs[trtblIndices[trainerID]] = trMsg;
+                order[trtblIndices[trainerID]] = trainerID;
+                messagesArr[trtblIndices[trainerID]] = trainerMessages;
+            } else {
+                trMsgs[VANILLA_TRAINERS_WITH_MESSAGES + newTrainerIndex] = trMsg;
+                order[VANILLA_TRAINERS_WITH_MESSAGES + newTrainerIndex] = trainerID;
+                messagesArr[VANILLA_TRAINERS_WITH_MESSAGES + newTrainerIndex] = trainerMessages;
+                newTrainerIndex++;
+            }
+        } else {
+            trMsgOffsets[trainerID] = 0;
+        }
+
+        trainerID++;
     }
+
+    std::string str = "";
+    int offset = 0;
+    rapidjson::Value messages(rapidjson::kArrayType);
+    for (int i = 0; i < trainerCount; i++) {
+        str += trMsgs[i];
+        int length = trMsgs[i].length();
+        if (length) {
+            trMsgOffsets[order[i]] = offset;
+            offset += length;
+            for (const auto &member : messagesArr[i].GetArray()) {
+                rapidjson::Value tmp;
+                tmp.CopyFrom(member, out.GetAllocator());
+                messages.PushBack(tmp, out.GetAllocator());
+            }
+        }
+    }
+    out.AddMember("messages", messages, out.GetAllocator());
+
+    char *chars = const_cast<char *>(str.c_str());
+    narc_pack_file_copy(trtblVFS, reinterpret_cast<unsigned char *>(chars), offset);
+    narc_pack_file_copy(trtblofsVFS, reinterpret_cast<unsigned char *>(trMsgOffsets), trainerCount * sizeof(short));
 
     PackNarc(trdataVFS, outputRoot / "trdata.narc");
     PackNarc(trpokeVFS, outputRoot / "trpoke.narc");
+    PackNarc(trtblVFS, outputRoot / "trtbl.narc");
+    PackNarc(trtblofsVFS, outputRoot / "trtblofs.narc");
+
+    FILE *fp = fopen((outputRoot / "npc_trainer_messages.json").string().c_str(), "w");
+    char writeBuffer[65536];
+    rapidjson::FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
+    rapidjson::Writer<rapidjson::FileWriteStream> writer(os);
+    out.Accept(writer);
+    fclose(fp);
+
+    delete[] trMsgs;
+    delete[] trMsgOffsets;
+    delete[] order;
+    delete[] messagesArr;
     return EXIT_SUCCESS;
 }

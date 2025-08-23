@@ -25,5 +25,34 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Some people compete over speed, and\n",
+				"some compete over technique.\r",
+				"Which kind are you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’re a speedy technician!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I enjoy the scenery.\r",
+				"Don’t you think the area below\n",
+				"Cycling Road looks nice?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I polished up both my speed and\n",
+				"techniques. Can you beat me now?\r"
+			]
+		}
     ]
 }

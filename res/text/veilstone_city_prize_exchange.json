@@ -1,0 +1,119 @@
+{
+  "key": 9259,
+  "messages": [
+    {
+      "id": "pl_msg_00000156_00000",
+      "en_US": [
+        "Welcome!\r",
+        "You may exchange your Coins for\n",
+        "fabulous prizes here!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00001",
+      "en_US": "Which prize would you like?"
+    },
+    {
+      "id": "pl_msg_00000156_00002",
+      "en_US": [
+        "So your choice is\n",
+        "the {STRVAR_1 8, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00003",
+      "en_US": [
+        "So your choice is {STRVAR_1 8, 0, 0}:\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00004",
+      "en_US": "Here you go!"
+    },
+    {
+      "id": "pl_msg_00000156_00005",
+      "en_US": "You don’t have enough Coins.\r"
+    },
+    {
+      "id": "pl_msg_00000156_00006",
+      "en_US": [
+        "There isn’t any room available for\n",
+        "that {STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00007",
+      "en_US": [
+        "Oh, is that so? \n",
+        "Please come back with some Coins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00008",
+      "en_US": [
+        "I woke up and realized my potential!\r",
+        "So, what potential was woken in me?\n",
+        "What’s my hidden power, you ask?\r",
+        "It’s a power that lets me see the\n",
+        "Hidden Power of a Pokémon.\r",
+        "When they learn that move, I can tell\n",
+        "what type the move will be.\r",
+        "So, want me to use my hidden power?\r",
+        "I’ll tell you what type your Pokémon’s\n",
+        "Hidden Power will be."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00009",
+      "en_US": [
+        "I’ll tell you what type your Pokémon’s\n",
+        "Hidden Power will be.\r",
+        "My own hidden power lets me do that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00010",
+      "en_US": [
+        "If this Pokémon were to learn\n",
+        "Hidden Power, the move’s type\f",
+        "would be {STRVAR_1 15, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00011",
+      "en_US": [
+        "This Pokémon’s Hidden Power is the\n",
+        "{STRVAR_1 15, 0, 0} type."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00012",
+      "en_US": [
+        "If you want to know, ask me, and I’ll\n",
+        "activate my hidden power for you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00013",
+      "en_US": [
+        "A move that an Egg can learn?!\n",
+        "That’s flat-out impossible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00014",
+      "en_US": [
+        "Oh, no. This Pokémon can’t learn the\n",
+        "move Hidden Power in the first place."
+      ]
+    },
+    {
+      "id": "pl_msg_00000156_00015",
+      "en_US": [
+        "They have prizes I really want.\n",
+        "But Coins, I have none!"
+      ]
+    }
+  ]
+}

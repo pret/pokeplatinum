@@ -18,5 +18,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I never thought I’d lose at\n",
+				"Papa’s restaurant...\n"
+			]
+		}
     ]
 }

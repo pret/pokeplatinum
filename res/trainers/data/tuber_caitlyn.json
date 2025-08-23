@@ -48,5 +48,29 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I want to become a strong Trainer\n",
+				"like Crasher Wake!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Groan...\n",
+				"You’re too much.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Maybe I’ll do like Wake...\r",
+				"I mean, Crasher Wake, and use\n",
+				"the same kinds of Pokémon.\n"
+			]
+		}
     ]
 }

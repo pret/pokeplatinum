@@ -206,7 +206,7 @@ static void ov100_021D3504(Camera *camera, VecFx32 *param1)
 
 static void ov100_021D3558(UnkStruct_ov100_021D3084 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     ov100_021D47A0(param0->unk_1D28);
@@ -546,14 +546,14 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_08 == 0) {
             if (v0->unk_1D28->unk_50.unk_03 < 8) {
                 v0->unk_1D28->unk_50.unk_03 += 1;
-                G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
             } else {
                 v0->unk_08 = 1;
             }
         } else {
             if (v0->unk_1D28->unk_50.unk_03 > 0) {
                 v0->unk_1D28->unk_50.unk_03 -= 2;
-                G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
             } else {
                 v0->unk_00++;
                 v0->unk_08 = 0;
@@ -564,14 +564,14 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_08 == 0) {
             if (v0->unk_1D28->unk_50.unk_03 < 12) {
                 v0->unk_1D28->unk_50.unk_03 += 1;
-                G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
             } else {
                 v0->unk_08 = 1;
             }
         } else {
             if (v0->unk_1D28->unk_50.unk_03 > 0) {
                 v0->unk_1D28->unk_50.unk_03 -= 2;
-                G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
             } else {
                 v0->unk_00++;
                 v0->unk_08 = 0;
@@ -581,7 +581,7 @@ BOOL ov100_021D39E4(void *param0)
     case 11:
         if (v0->unk_1D28->unk_50.unk_03 < (+16)) {
             v0->unk_1D28->unk_50.unk_03 += 2;
-            G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
         } else {
             ov100_021D34C0(v0);
             ov100_021D2F64(v0);
@@ -591,7 +591,7 @@ BOOL ov100_021D39E4(void *param0)
     case 12:
         if (v0->unk_1D28->unk_50.unk_03 != 0) {
             v0->unk_1D28->unk_50.unk_03--;
-            G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1D28->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
         } else {
             {
                 UnkStruct_ov100_021D4EBC v2 = {

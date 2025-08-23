@@ -1,0 +1,41 @@
+{
+  "key": 57042,
+  "messages": [
+    {
+      "id": "pl_msg_00000501_00000",
+      "en_US": [
+        "The reservations were full up,\n",
+        "but they managed to get us in here.\r",
+        "We’re finally alone, the two of us,\n",
+        "if you’d leave, that is.\r",
+        "This is something we don’t need\n",
+        "anymore. Will you take it?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000501_00001",
+      "en_US": [
+        "I’ve always relied on the old\n",
+        "Coin Toss to make any decision.\r",
+        "It gives me courage because I’m not\n",
+        "accountable for my decisions."
+      ]
+    },
+    {
+      "id": "pl_msg_00000501_00002",
+      "en_US": [
+        "That Coin Toss is why we ended up in\n",
+        "this musty, old, and stinky suite..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000501_00003",
+      "en_US": [
+        "We wanted to be together alone so\n",
+        "we could talk without being disturbed.\r",
+        "We really need this time together,\n",
+        "just the two of us."
+      ]
+    }
+  ]
+}

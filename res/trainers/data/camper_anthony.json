@@ -18,5 +18,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Go for it, my Pokémon!\n",
+				"I’ll do my best, too!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh...\n",
+				"We lost...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Dig for Fossils in the Underground.\r",
+				"The mining museum might be able to\n",
+				"bring back the ancient Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Go for it, my Pokémon!\n",
+				"I’ll do more than my best this time!\r"
+			]
+		}
     ]
 }

@@ -1,0 +1,953 @@
+{
+  "key": 18323,
+  "messages": [
+    {
+      "id": "pl_msg_00000023_00000",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 1, 0}!\n",
+        "Are you catching Pokémon?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00001",
+      "en_US": [
+        "Wow! You’ve already got {STRVAR_1 50, 0, 0} Pokémon\n",
+        "with you!\r",
+        "At that pace, your Pokédex should\n",
+        "be full in no time at all!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00002",
+      "en_US": [
+        "...Um...\r",
+        "I think you’d feel a lot safer if you\n",
+        "were to catch some more.\r",
+        "You know, like when you need to travel\n",
+        "to faraway places.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00003",
+      "en_US": [
+        "Oh, I know! Don’t you think it’s\n",
+        "better to know more about Pokémon?\r",
+        "Sure it is!\n",
+        "I know just the place.\r",
+        "Come on!\n",
+        "Don’t be shy. Follow me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00004",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "How many Pokémon have you caught?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00005",
+      "en_US": [
+        "Whoa! You already have {STRVAR_1 50, 0, 0} Pokémon\n",
+        "with you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00006",
+      "en_US": [
+        "Huh?\n",
+        "I think you should catch some more.\r",
+        "It might be more of a challenge\n",
+        "raising a lot of Pokémon...\r",
+        "But it’s worth it. The more Pokémon\n",
+        "you have, the happier you’ll be.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00007",
+      "en_US": [
+        "Hey, that’s right! Don’t you think it’s\n",
+        "better to know more about Pokémon?\r",
+        "Sure it is!\n",
+        "There’s this great place for that.\r",
+        "Come on! It’s all right.\n",
+        "Follow me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00008",
+      "en_US": [
+        "Dawn: That man...\n",
+        "What is he doing?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00009",
+      "en_US": "Dawn: Um..."
+    },
+    {
+      "id": "pl_msg_00000023_00010",
+      "en_US": [
+        "Lucas: That guy...\n",
+        "What’s he doing?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00011",
+      "en_US": "Lucas: Uh, excuse..."
+    },
+    {
+      "id": "pl_msg_00000023_00012",
+      "en_US": "WHAAAT?!\r"
+    },
+    {
+      "id": "pl_msg_00000023_00013",
+      "en_US": [
+        "Mysterious man: ...How did you know?\r",
+        "How did you unmask me as a member of\n",
+        "the International Police?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00014",
+      "en_US": [
+        "Dawn: Huh? What? I beg your pardon?\n",
+        "I was just making conversation...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00015",
+      "en_US": [
+        "Lucas: Huh? What? Are you kidding?\n",
+        "I was just making small talk...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00016",
+      "en_US": [
+        "Shady man: ...Heh. You claim you were\n",
+        "only making conversation, do you?\r",
+        "But, I know better not to believe that.\n",
+        "No, no, no.\r",
+        "You recognized right away that I was\n",
+        "someone extraordinary.\r",
+        "That is why you spoke to me, is it not?\n",
+        "Your power of observation is fearsome!\r",
+        "Quite admirable, you are!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00017",
+      "en_US": [
+        "Now that my cover has been blown, let\n",
+        "me introduce myself.\r",
+        "I am a globe-trotting elite of the\n",
+        "International Police.\r",
+        "My name... Ah, no, I shall inform you\n",
+        "only of my code name.\r",
+        "My code name, it is Looker.\n",
+        "It is what they all call me.\r",
+        "Incidentally, is the saying, “Don’t be\n",
+        "a thief!” familiar to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00018",
+      "en_US": [
+        "Looker: Yes, that is correct.\n",
+        "Taking what belongs to others is wrong.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00019",
+      "en_US": [
+        "Looker: No? You claim to not know it?\n",
+        "How could that be?\r",
+        "Perhaps your mama has said it, but you\n",
+        "have forgotten it, like usual?\r",
+        "Now listen, my friends. It is wrong to\n",
+        "take what belongs to others.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00020",
+      "en_US": [
+        "Unfortunately, there are apparently\n",
+        "those who do not heed those words.\r",
+        "In Sinnoh, in fact, there are criminals\n",
+        "stealing the Pokémon of others.\r",
+        "I have, therefore, been on the lookout\n",
+        "for characters arousing my suspicion.\r",
+        "Incidentally, you are Trainers, yes?\n",
+        "Perhaps you can make use of this?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00021",
+      "en_US": [
+        "That Vs. Recorder, it is a nifty device\n",
+        "for recording a match.\r",
+        "I obtained it because it is quite popular\n",
+        "these days.\r",
+        "But myself, I do not do Pokémon\n",
+        "battling very often.\r",
+        "It will be in better hands with you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00022",
+      "en_US": [
+        "Looker: Also, I have a request.\r",
+        "If you were to see me again, I ask that\n",
+        "you not talk to me, for I am on duty.\r",
+        "...Actually, yes, yes, you may speak to\n",
+        "me. You must.\r",
+        "Not because I am lonely, no, no!\n",
+        "You must inform me of bad guys!\f",
+        "You must inform me of any happenings!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00023",
+      "en_US": [
+        "Dawn: ...Working for the International\n",
+        "Police must be hard.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00024",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, here it is.\n",
+        "It’s the Trainers’ School.\f",
+        "The name says it all!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00025",
+      "en_US": [
+        "I saw your friend {STRVAR_1 3, 1, 0} go in\n",
+        "earlier.\r",
+        "He could still be in there studying.\n",
+        "OK, bye now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00026",
+      "en_US": [
+        "Lucas: ...Working for the International\n",
+        "Police sounds hard.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00027",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, here we are.\n",
+        "This is the Trainers’ School.\f",
+        "The name says it all!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00028",
+      "en_US": [
+        "Your pal {STRVAR_1 3, 1, 0} went in earlier.\n",
+        "He might still be studying in there.\r",
+        "OK, see you around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00029",
+      "en_US": [
+        "Jubilife City’s built on land they\n",
+        "carved out of a mountain.\r",
+        "The people and Pokémon of Oreburgh\n",
+        "City helped out with that undertaking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00030",
+      "en_US": [
+        "Hello! Let me ask you, have you paid\n",
+        "a visit to the TV station?\r",
+        "If you’ve never been, you owe it to\n",
+        "yourself to make the trip.\r",
+        "And, if you’ve been there before,\n",
+        "it never hurts to visit again.\r",
+        "After all, you can be a star!\n",
+        "Or at least dream of being one!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00031",
+      "en_US": [
+        "Ah, it is you! Have no fear.\n",
+        "There are no shady characters about.\r",
+        "Incidentally, have you visited the\n",
+        "Trainers’ School?\r",
+        "Did your friend not guide you there\n",
+        "earlier?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00032",
+      "en_US": [
+        "Looker: Hello, my friend.\n",
+        "Have you visited the Trainers’ School?\r",
+        "Did your friend not guide you there\n",
+        "earlier?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00033",
+      "en_US": [
+        "Ah, it is you! Have no fear.\n",
+        "There are no shady characters about.\r",
+        "Incidentally, have you not obtained\n",
+        "a Pokétch?\r",
+        "I believe a Pokétch is now free in\n",
+        "exchange for some Coupons?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00034",
+      "en_US": [
+        "Looker: Tell me, have you not obtained\n",
+        "a Pokétch?\r",
+        "I believe a Pokétch is now free in\n",
+        "exchange for some Coupons?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00035",
+      "en_US": [
+        "Ah, it is you! Have no fear.\n",
+        "There are no shady characters about.\r",
+        "Incidentally, have you not obtained\n",
+        "a Gym Badge?\r",
+        "I believe you receive one for defeating\n",
+        "the Gym Leader at a Pokémon Gym?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00036",
+      "en_US": [
+        "Looker: Tell me, have you not obtained\n",
+        "a Pal Pad?\r",
+        "Is not a Pal Pad free to anyone visiting\n",
+        "the Pokémon Center’s basement?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00037",
+      "en_US": [
+        "Ah, yes. I see that you have obtained\n",
+        "it, a Pal Pad for yourself.\r",
+        "I myself, a member of the International\n",
+        "Police, the fighters of crime around the\f",
+        "world, have one also.\r",
+        "For it is what one must have to trade\n",
+        "Pokémon with Trainers around the world.\r",
+        "Take that Pal Pad to the Global Terminal\n",
+        "for trading on an international level!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00038",
+      "en_US": [
+        "Anyway, there appears to be no one\n",
+        "shady in this Jubilife City.\r",
+        "I shall therefore take my investigation\n",
+        "elsewhere.\r",
+        "But, my friend, I suggest you remain\n",
+        "vigilant for shady grown-ups!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00039",
+      "en_US": [
+        "Oh, oh, oh?\r",
+        "You call yourself a Pokémon Trainer?\n",
+        "And yet you have no Pokétch?\r",
+        "That is, Pokémon Watch, or Pokétch\n",
+        "for short!\r",
+        "Oh my, you are a rare case\n",
+        "indeed!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00040",
+      "en_US": [
+        "You see, I invented, and now\n",
+        "manufacture, Pokétches.\r",
+        "Not only that, I’m now conducting\n",
+        "the Pokétch promotional campaign!\r",
+        "All you have to do is find three\n",
+        "clowns in Jubilife City.\r",
+        "If you can find them...\n",
+        "I will gift you with a Pokétch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00041",
+      "en_US": [
+        "The three clowns will each ask you\n",
+        "a skill-testing question.\r",
+        "The questions will all have to do\n",
+        "with Pokémon.\r",
+        "After all, a Pokétch is a tool for\n",
+        "Pokémon Trainers.\r",
+        "Collect a Coupon from each clown,\n",
+        "then come see me, OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00042",
+      "en_US": [
+        "OK, let me count your Coupons!\n",
+        "I’ll use the Pokétch here...\r",
+        "One, two, three!\n",
+        "Bravo! I say, bravo!\r",
+        "In return for these Coupons,\n",
+        "I present you this Pokémon Watch,\f",
+        "or Pokétch for short!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00043",
+      "en_US": "{STRVAR_1 3, 0, 0} received a {COLOR 1}Pokétch{COLOR 0}!{YESNO 1}"
+    },
+    {
+      "id": "pl_msg_00000023_00044",
+      "en_US": [
+        "You can add apps to your Pokétch\n",
+        "to make it even more versatile!\r",
+        "Touch the Pokétch screen and find the\n",
+        "apps that are right for you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00045",
+      "en_US": [
+        "Hi! I’m a Pokétch campaign clown!\n",
+        "Let’s roll out my question!\r",
+        "Does a Pokémon grow by defeating\n",
+        "others and gaining Exp. Points?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00046",
+      "en_US": [
+        "Ding-ding!\n",
+        "You’re absolutely correct!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00047",
+      "en_US": [
+        "Bzzzzt!\n",
+        "That’s the wrong answer..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00048",
+      "en_US": [
+        "Pokémon grow stronger by defeating\n",
+        "other Pokémon in battle.\r",
+        "Some Pokémon even grow into an\n",
+        "entirely different form in a process\f",
+        "known as evolution.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00049",
+      "en_US": [
+        "Here you go!\n",
+        "Your Pokétch Coupon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00050",
+      "en_US": [
+        "Pokémon grow stronger through\n",
+        "battling.\r",
+        "Some Pokémon even grow into an\n",
+        "entirely different form in a process\f",
+        "known as evolution."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00051",
+      "en_US": [
+        "Hi! I’m a Pokétch campaign clown!\n",
+        "Let’s roll out my question!\r",
+        "Just like Pokémon types, the moves\n",
+        "of Pokémon also have types?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00052",
+      "en_US": [
+        "Ding-ding!\n",
+        "You’re absolutely correct!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00053",
+      "en_US": [
+        "Bzzzzt!\n",
+        "That’s the wrong answer..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00054",
+      "en_US": [
+        "If the Pokémon’s type matches its\n",
+        "move’s type, that move is made much\f",
+        "more powerful!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00055",
+      "en_US": [
+        "Here you go!\n",
+        "Your Pokétch Coupon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00056",
+      "en_US": [
+        "If the Pokémon’s type matches its\n",
+        "move’s type, that move is made much\f",
+        "more powerful!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00057",
+      "en_US": [
+        "Hi! I’m a Pokétch campaign clown!\n",
+        "Let’s roll out my question!\r",
+        "Can a Pokémon hold an item?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00058",
+      "en_US": [
+        "Ding-ding!\n",
+        "You’re absolutely correct!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00059",
+      "en_US": [
+        "Bzzzzt!\n",
+        "That’s the wrong answer..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00060",
+      "en_US": [
+        "A Pokémon may hold a single item.\r",
+        "Some items become effective as soon\n",
+        "as they are held by a Pokémon.\r",
+        "Berries are eaten by Pokémon as\n",
+        "necessary during battle.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00061",
+      "en_US": [
+        "Here you go!\n",
+        "Your Pokétch Coupon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00062",
+      "en_US": [
+        "Hi, there. You should stick around.\n",
+        "We’re doing a Pokétch campaign soon.\r",
+        "Before it starts, I think you should\n",
+        "brush up at the Trainers’ School."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00063",
+      "en_US": [
+        "A Pokémon may hold a single item.\r",
+        "Some items become effective as soon\n",
+        "as they are held by Pokémon.\r",
+        "Berries are eaten by Pokémon as\n",
+        "necessary during battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00064",
+      "en_US": [
+        "Mystery man: Now, now, now, now, now!\n",
+        "Professor Rowan, you must comply.\r",
+        "Hand over all your research findings.\n",
+        "For free, naturally.\r",
+        "Failure to comply will result in a painful\n",
+        "time for your assistant.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00065",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}.\n",
+        "Well? How is the Pokédex progressing?\r",
+        "Hm!\n",
+        "That’s Oreburgh’s Gym Badge, I see.\r",
+        "But hadn’t I given you your first\n",
+        "Pokémon only recently...?\r",
+        "Perhaps being a Trainer is like second\n",
+        "nature to you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00066",
+      "en_US": [
+        "Mystery man: Oh, professor of Pokémon,\n",
+        "must you be so difficult?\r",
+        "We are speaking to you on business.\n",
+        "Because this is work for us.\r",
+        "What we’re saying is--we demand\n",
+        "you comply with our demands.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00067",
+      "en_US": [
+        "Rowan: Quiet, you lot!\n",
+        "Why must you be such a nuisance?\r",
+        "Let me list some lessons you still\n",
+        "need to learn.\r",
+        "#1: Don’t loiter about for no good\n",
+        "reason.\r",
+        "#2: Don’t interrupt others while they\n",
+        "are attempting to converse.\r",
+        "#3: If you don’t get your way, don’t\n",
+        "raise your voice to be intimidating.\r",
+        "#4: Don’t think you’ve grown strong\n",
+        "just because you’re in a group.\r",
+        "#5: What is with those outlandish\n",
+        "outfits you have on?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00068",
+      "en_US": [
+        "My goodness...\n",
+        "You call yourselves adults?\r",
+        "You kids, don’t grow up to be like these\n",
+        "sorry specimens.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00069",
+      "en_US": [
+        "Mystery man: Eeeeeh!\n",
+        "You had to make this personal!\r",
+        "You have forced our hand into making\n",
+        "a show of force!\r",
+        "We will make you regret insulting\n",
+        "Team Galactic!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00070",
+      "en_US": [
+        "Rowan: You kids, give these thugs a\n",
+        "lesson in civility, please.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00071",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 1, 0}!\n",
+        "Let’s battle together!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00072",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 1, 0}!\n",
+        "Join me and battle these guys!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00073",
+      "en_US": [
+        "Grunt 1: You leave us no option.\n",
+        "We will retreat for now.\r",
+        "We shall do so because Team Galactic\n",
+        "is benevolent to all.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00074",
+      "en_US": [
+        "Rowan: That lot...\n",
+        "They called themselves Team Galactic.\r",
+        "When Pokémon evolve, they seem to\n",
+        "release some type of energy...\r",
+        "However, I believe that it’s a mystic\n",
+        "power far beyond our control.\r",
+        "But Team Galactic seems to be studying\n",
+        "that power’s potential.\r",
+        "They want to know if it can be used as\n",
+        "energy for something...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00075",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 1, 0}, did you know?\r",
+        "The professor studies the evolution\n",
+        "of Pokémon, too.\r",
+        "According to his research, 90% of all\n",
+        "Pokémon are somehow tied to evolution!\r",
+        "Well, maybe that’s the reason those\n",
+        "people tried to take the professor’s\f",
+        "research data by force.\r",
+        "That’s really unforgivable!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00076",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 1, 0}, did you know\n",
+        "about this?\r",
+        "The professor studies the\n",
+        "evolution of Pokémon, too.\r",
+        "According to his research, 90% of all\n",
+        "Pokémon are somehow tied to evolution!\r",
+        "Maybe that’s the reason those goons\n",
+        "tried to take the professor’s\f",
+        "research data.\f",
+        "They’re not allowed to do that!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00077",
+      "en_US": [
+        "Rowan: It’s all over, so you can \n",
+        "relax now.\r",
+        "Still, thanks to you two, nothing came\n",
+        "of that situation. I appreciate that.\r",
+        "Incidentally, {STRVAR_1 3, 0, 0}.\n",
+        "Kudos to you for your battling skill.\r",
+        "It got me thinking. Why don’t you\n",
+        "collect all the Gym Badges of Sinnoh?\r",
+        "Doing so, you will be sure to encounter\n",
+        "lots of Pokémon.\r",
+        "That, of course, means your Pokédex\n",
+        "pages will continuously fill up.\r",
+        "In other words, it will be of great help\n",
+        "to my research.\r",
+        "That said, I’ve given you your first\n",
+        "Pokémon and Pokédex as yours to keep.\r",
+        "You’re free to do with them as you wish.\n",
+        "Take care now.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00078",
+      "en_US": [
+        "Oh, that was very good!\n",
+        "Nicely done! Truly excellent!\r",
+        "Oh, I beg your pardon, I’m from\n",
+        "Jubilife TV!\r",
+        "I’d like you to have something for\n",
+        "letting me see that smashing battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00079",
+      "en_US": [
+        "Contained within that Fashion Case...\r",
+        "You will find a whole spectrum of chic\n",
+        "Accessories and tasteful Backdrops!\r",
+        "Dress up your Pokémon and watch\n",
+        "their appeal grow!\r",
+        "And, right now the TV station is\n",
+        "offering its facilities so visitors\f",
+        "can dress up their Pokémon!\r",
+        "There are also prize giveaways, too!\n",
+        "Please do visit our TV station!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00080",
+      "en_US": [
+        "The way you look...\n",
+        "You’re obviously a Trainer!\r",
+        "Can you tell me what type of Pokémon\n",
+        "you like?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00081",
+      "en_US": [
+        "The Fire type?\n",
+        "You must have a fiery personality.\r",
+        "You’d better watch out that fire isn’t\n",
+        "doused by water, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00082",
+      "en_US": [
+        "A person that likes the Water type\n",
+        "must be somewhat cool.\r",
+        "But beware of being drained dry by\n",
+        "thirsty grass."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00083",
+      "en_US": [
+        "You chose the Grass type?\n",
+        "No wonder you look so calm.\r",
+        "I think you need to watch out you don’t\n",
+        "get burned by fire."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00084",
+      "en_US": [
+        "Did you see me on TV?\n",
+        "I was in an interview!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00085",
+      "en_US": [
+        "When you walk with your Pokémon,\n",
+        "they gradually grow friendlier."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00086",
+      "en_US": [
+        "OK, set six Poké Balls in my\n",
+        "belt...\r",
+        "Yeah, that’ll do it. At most, you\n",
+        "can have six Pokémon with you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00087",
+      "en_US": [
+        "Hiya, where’d you come from?\r",
+        "...\r",
+        "Twinleaf Town, huh...\n",
+        "It’s a nice place. Quiet and all.\r",
+        "Jubilife City is a big place, so it\n",
+        "might be a bit of a shock to you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00088",
+      "en_US": [
+        "Hello, Trainer!\n",
+        "Do you know much about Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00089",
+      "en_US": [
+        "Ah, I see!\n",
+        "You are knowledgeable!\r",
+        "I imagine you wouldn’t see the need\n",
+        "to visit the Trainers’ School, then.\r",
+        "But do visit if you have the time.\n",
+        "You may discover something new!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00090",
+      "en_US": [
+        "Oh, you’re not knowledgeable...\n",
+        "But not to worry!\f",
+        "There’s the Trainers’ School.\r",
+        "The school will teach you the\n",
+        "basics of Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00091",
+      "en_US": [
+        "Past here is the Global Terminal, your\n",
+        "gateway to the world!\r",
+        "Oh, I’m sorry, you don’t have\n",
+        "any Gym Badges.\r",
+        "The Global Terminal is off-limits if you\n",
+        "don’t have a Gym Badge. Sorry!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00092",
+      "en_US": [
+        "Past here is the Global Terminal.\n",
+        "It lets you trade with the whole world!\r",
+        "Trading Pokémon means connecting\n",
+        "with friends, both old and new.\r",
+        "That’s awesome!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00093",
+      "en_US": "I’m trading Pokémon with my buddy!"
+    },
+    {
+      "id": "pl_msg_00000023_00094",
+      "en_US": [
+        "I made my Pokémon hold an item before\n",
+        "trading it.\r",
+        "That will make the other Trainer\n",
+        "double happy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00095",
+      "en_US": [
+        "Jubilife City\n",
+        "City of Joy"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00096",
+      "en_US": [
+        "Jubilife Condominiums\n",
+        "Tenants Wanted!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00097",
+      "en_US": [
+        "The Pokétch Company\n",
+        "Pokémon Watches for the World!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00098",
+      "en_US": [
+        "Trainers’ School\n",
+        "The First Step for Trainers!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00099",
+      "en_US": [
+        "Jubilife TV\n",
+        "The Fun-and-Games TV Station!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000023_00100",
+      "en_US": [
+        "The Global Terminal\n",
+        "Your Gateway to the Whole World!"
+      ]
+    }
+  ]
+}

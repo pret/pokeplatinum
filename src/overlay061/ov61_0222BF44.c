@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/net.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02017498.h"
@@ -167,7 +168,7 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     InitializeTouchPad(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_117);
-    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_117);
+    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_117);
     v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_117);
     v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_117);
     v0->unk_34 = Strbuf_Init(90 * 2, HEAP_ID_117);
@@ -266,7 +267,7 @@ int ov61_0222C160(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    NetworkIcon_Destroy();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_117);
 
@@ -581,7 +582,7 @@ static BOOL ov61_0222C928(int param0, int param1)
     int v0;
     BOOL v1;
 
-    v0 = ov4_021D1F3C(param0, param1);
+    v0 = NintendoWFC_GetErrorCode(param0, param1);
 
     switch (v0) {
     case 1:
@@ -659,7 +660,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
         }
         break;
     case 2:
-        DWC_InitInetEx(&param0->unk_00->unk_20, 2, 1, 20);
+        DWC_InitInetEx(&param0->unk_00->unk_20, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         param0->unk_08 = 2;
@@ -776,7 +777,7 @@ static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
             if ((v0 < -20000) && (v0 >= -29999)) {
@@ -812,7 +813,7 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
 
 static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 {
-    int v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
+    int v0 = NintendoWFC_GetErrorCode(-param0->unk_18, param0->unk_1C);
     ov61_0222C7F8(param0, v0, -param0->unk_18);
     param0->unk_08 = 7;
 
@@ -841,7 +842,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
         sub_0203848C();
     }
 
-    sub_02039794();
+    NetworkIcon_Destroy();
     ov61_0222C86C(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_117);
     param0->unk_08 = 0;
@@ -941,7 +942,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 2:
-        sub_02039794();
+        NetworkIcon_Destroy();
         ov61_0222C8B8(param0, param0->unk_2C, 27, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;

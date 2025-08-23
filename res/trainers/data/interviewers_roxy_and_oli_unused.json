@@ -25,5 +25,63 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"You’re live on camera, but try\n",
+				"to act natural, OK?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"The camera is our witness!\n",
+				"It’s recorded our defeat...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"I’d like to take that footage and\n",
+				"have it broadcast worldwide.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Two Pokémon! If you had two Pokémon,\n",
+				"we’d have a great scene to shoot!\n"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"So, let’s begin and find out what\n",
+				"sort of a Trainer you are!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": [
+				"You have a superstar quality!\n",
+				"You sure could become a celebrity!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"I lost, but I’m totally thrilled!\n",
+				"We just made some great TV!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Oh, no. What we’re looking for is you\n",
+				"to battle with two Pokémon!\n"
+			]
+		}
     ]
 }

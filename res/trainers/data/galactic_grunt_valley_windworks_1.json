@@ -16,5 +16,14 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Yeah, like I’m really supposed to\n",
+				"win with a Pokémon like this..."
+			]
+		}
     ]
 }

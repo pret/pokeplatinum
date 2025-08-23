@@ -22,5 +22,28 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hear the howl of my iron fists!\n",
+				"Howdy! I’m crazy for karate!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Losing made it clear to me.\n",
+				"You’re crazy about Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I love seeing people who love Pokémon\n",
+				"more than anything!\n"
+			]
+		}
     ]
 }

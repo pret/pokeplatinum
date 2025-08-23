@@ -83,5 +83,22 @@
             "power": 250,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Hmm...\n",
+				"Now what should I do...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\r",
+				"You getting past the three before\n",
+				"me was no fluke. Your power is real.\n"
+			]
+		}
     ]
 }

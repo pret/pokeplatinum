@@ -1,0 +1,57 @@
+{
+  "key": 18403,
+  "messages": [
+    {
+      "id": "pl_msg_00000405_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "What, you finally come along now?\f",
+        "Slooow! Way too slow!\r",
+        "Listen, {STRVAR_1 3, 1, 0}.\n",
+        "See how the rocks are all lumpy here?\r",
+        "You can’t climb those rocks until you\n",
+        "get the Snowpoint Gym Badge.\r",
+        "Anyway, I’m off.\n",
+        "Team Galactic! I’m coming for you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000405_00001",
+      "en_US": [
+        "We’re here to make sure Snowpoint’s\n",
+        "Gym Leader doesn’t disturb us!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000405_00002",
+      "en_US": [
+        "You’re here to see the lake Pokémon,\n",
+        "too?\r",
+        "You must be bored to fight your\n",
+        "way through the snow to get here..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000405_00003",
+      "en_US": [
+        "Standing guard is a very important\n",
+        "assignment!\r",
+        "I’ll make this a success and earn\n",
+        "myself a CLEFAIRY!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000405_00004",
+      "en_US": [
+        "The Pokémon of the three lakes\n",
+        "appear to be connected somehow.\r",
+        "When they blew up Lake Valor, a cavern\n",
+        "appeared in the middle of this lake!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000405_00005",
+      "en_US": "Lake Acuity ahead"
+    }
+  ]
+}

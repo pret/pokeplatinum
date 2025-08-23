@@ -54,5 +54,25 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Oh, heavens. What is this?\n",
+				"Is this my final Pokémon?\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": "Never give up, never surrender!\n"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You are so fantastically strong.\n",
+				"I know now why I have lost.\n"
+			]
+		}
     ]
 }

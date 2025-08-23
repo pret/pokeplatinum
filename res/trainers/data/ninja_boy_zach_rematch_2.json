@@ -34,5 +34,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"The shinobi live by speed!\n",
+				"I’ll get in my attacks before you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What’s with you?\n",
+				"You didn’t give me any openings!\n"
+			]
+		}
     ]
 }
