@@ -40,7 +40,7 @@ typedef struct NamingScreenArgs {
 extern const ApplicationManagerTemplate gNamingScreenAppTemplate;
 
 NamingScreenArgs *NamingScreenArgs_Init(
-    enum HeapID heapID,
+    enum HeapId heapID,
     enum NamingScreenType type,
     int playerGenderOrMonSpecies,
     int maxChars,

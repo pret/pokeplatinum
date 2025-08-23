@@ -16,7 +16,7 @@ void TrophyGarden_AddNewMon(SaveData *saveData)
     u16 newMonIndex;
     u16 index1, index2;
     int currentMons[2];
-    int *encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD1);
+    int *encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
 
     SpecialEncounter_GetTrophyGardenMons(saveData, &index1, &index2);
 
@@ -54,7 +54,7 @@ int TrophyGarden_GetSlot1Species(SaveData *saveData)
 
     GF_ASSERT(slot1 != TROPHY_GARDEN_SLOT_NONE);
 
-    encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD1);
+    encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
     species = encData[slot1];
 
     Heap_Free(encData);

@@ -25,14 +25,14 @@ typedef struct PokedexTextManager {
     BgConfig *bgConfig;
     PokedexTextData *textData;
     int numTextData;
-    enum HeapID heapID;
+    enum HeapId heapID;
 } PokedexTextManager;
 
 typedef struct PokedexTextManagerTemplate {
     SpriteList *spriteList;
     BgConfig *bgConfig;
     int numTextData;
-    enum HeapID heapID;
+    enum HeapId heapID;
 } PokedexTextManagerTemplate;
 
 typedef struct PokedexDisplayBox {
@@ -45,7 +45,7 @@ typedef struct PokedexDisplayBox {
     int spriteResourcePriority;
     int spriteListPriority;
     enum NNS_G2D_VRAM_TYPE vramType;
-    enum HeapID heapID;
+    enum HeapId heapID;
 } PokedexDisplayBox;
 
 PokedexTextManager *PokedexTextManager_New(const PokedexTextManagerTemplate *textManTemplate);

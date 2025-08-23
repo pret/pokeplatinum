@@ -39,7 +39,7 @@ static const SpriteTemplate sArrowSpriteTemplates[] = {
     },
 };
 
-ScrollPrompts *ScrollPrompts_New(enum HeapID heapID)
+ScrollPrompts *ScrollPrompts_New(enum HeapId heapID)
 {
     SpriteResourceCapacities capacities = {
         .asStruct = {
@@ -51,10 +51,10 @@ ScrollPrompts *ScrollPrompts_New(enum HeapID heapID)
             .manimCapacity = 0,
         }
     };
-    ScrollPrompts *prompts = Heap_Alloc(heapID, sizeof(ScrollPrompts));
+    ScrollPrompts *prompts = Heap_AllocFromHeap(heapID, sizeof(ScrollPrompts));
     MI_CpuClear8(prompts, sizeof(ScrollPrompts));
 
-    ov5_021D3190(&prompts->unk_00, &capacities, 2, HEAP_ID_FIELD2);
+    ov5_021D3190(&prompts->unk_00, &capacities, 2, HEAP_ID_FIELDMAP);
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__FLD_COMACT, heapID);
 

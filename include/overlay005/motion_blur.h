@@ -18,7 +18,7 @@ typedef struct MotionBlurParams {
     GXCaptureDest captureDestination;
     int blendCoeffA;
     int blendCoeffB;
-    enum HeapID heapID;
+    enum HeapId heapID;
 } MotionBlurParams;
 
 typedef struct MotionBlur {

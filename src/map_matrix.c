@@ -27,7 +27,7 @@ static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrix
         mapMatrixData->modelNamePrefix[i] = 0;
     }
 
-    void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, mapMatrixID, HEAP_ID_FIELD2);
+    void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, mapMatrixID, HEAP_ID_FIELDMAP);
     u8 *iter = (u8 *)buffer;
 
     mapMatrixData->width = *(iter++);
@@ -59,12 +59,12 @@ static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrix
 
 MapMatrix *MapMatrix_New(void)
 {
-    return MapMatrix_NewWithHeapID(HEAP_ID_FIELD2);
+    return MapMatrix_NewWithHeapID(HEAP_ID_FIELDMAP);
 }
 
 MapMatrix *MapMatrix_NewWithHeapID(u32 heapID)
 {
-    MapMatrix *mapMatrix = Heap_Alloc(heapID, sizeof(MapMatrix));
+    MapMatrix *mapMatrix = Heap_AllocFromHeap(heapID, sizeof(MapMatrix));
     mapMatrix->width = 0;
     mapMatrix->height = 0;
     mapMatrix->matrixID = 0;
@@ -148,7 +148,7 @@ int MapMatrix_GetAltitudeAtCoords(const MapMatrix *mapMatrix, const int param1, 
 
 MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
 {
-    MainMapMatrixData *mainMapMatrixData = Heap_Alloc(heapID, sizeof(MainMapMatrixData));
+    MainMapMatrixData *mainMapMatrixData = Heap_AllocFromHeap(heapID, sizeof(MainMapMatrixData));
     void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, 0, heapID);
     u8 *iter = (u8 *)buffer;
 

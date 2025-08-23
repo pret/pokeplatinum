@@ -126,7 +126,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     SpeciesPalPark speciesData;
     u16 monSpecies;
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         catchingShow->caughtMonsOrder[i] = 0;
@@ -256,10 +256,10 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 
 static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD3);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
     int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
-    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELD2, parkBallCount);
+    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, parkBallCount);
 
     FieldBattleDTO_Init(dto, fieldSystem);
     TransferDataToMon(transferData, catchingShow->currentEncounterIndex, mon);

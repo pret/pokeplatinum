@@ -5,7 +5,7 @@
 
 typedef struct PokedexDataManager {
     int state;
-    enum HeapID heapID;
+    enum HeapId heapID;
     void *pageData;
     BOOL exit;
     BOOL unchanged;
