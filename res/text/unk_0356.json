@@ -1,0 +1,95 @@
+{
+  "key": 37436,
+  "messages": [
+    {
+      "id": "pl_msg_00000356_00000",
+      "en_US": [
+        "Welcome to Geonet, the high-tech\n",
+        "globe!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00001",
+      "en_US": "What would you like to do?"
+    },
+    {
+      "id": "pl_msg_00000356_00002",
+      "en_US": [
+        "Here, you may register the location\n",
+        "of where you live.\r",
+        "That information may be provided to\n",
+        "friends and strangers through\r",
+        "DS Wireless Communications or over\n",
+        "Nintendo WFC.\r",
+        "Would you like to register your\n",
+        "home’s location area?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00003",
+      "en_US": [
+        "Please select the location in which\n",
+        "you live."
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00004",
+      "en_US": [
+        "Please select the area in which\n",
+        "you live."
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00005",
+      "en_US": [
+        "Once registered, you may not change\n",
+        "your registered location data.\r",
+        "Should this location be registered\n",
+        "as where you live?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00006",
+      "en_US": "{STRVAR_1 36, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000356_00007",
+      "en_US": "{STRVAR_1 37, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000356_00008",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000356_00009",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000356_00010",
+      "en_US": "SEE LIST"
+    },
+    {
+      "id": "pl_msg_00000356_00011",
+      "en_US": "REGISTER"
+    },
+    {
+      "id": "pl_msg_00000356_00012",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000356_00013",
+      "en_US": [
+        "Your registered location:\n",
+        "{STRVAR_1 36, 0, 0}\n",
+        "{STRVAR_1 37, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000356_00014",
+      "en_US": [
+        "To display registered locations, line up\n",
+        "the cursor, and press the X Button."
+      ]
+    }
+  ]
+}

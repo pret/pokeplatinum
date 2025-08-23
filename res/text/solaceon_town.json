@@ -1,0 +1,138 @@
+{
+  "key": 18239,
+  "messages": [
+    {
+      "id": "pl_msg_00000575_00000",
+      "en_US": "Yahoo!\r"
+    },
+    {
+      "id": "pl_msg_00000575_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\r",
+        "I got something cool.\n",
+        "I’ll show you as a special favor!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00002",
+      "en_US": [
+        "Huh?\n",
+        "What the...\r",
+        "What’s this all about?\r",
+        "...I got some Seals, but I forgot to\n",
+        "put them on.\r",
+        "Oh, right.\n",
+        "It’s because I was at the ruins.\r",
+        "The ruins here are cool.\n",
+        "You have to check it out.\r",
+        "I even found a Hidden Machine.\n",
+        "It was Defog!\r",
+        "Anyway, I’ll battle you another time.\n",
+        "See ya!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00003",
+      "en_US": [
+        "Breathing in this refreshing air...\n",
+        "It perks up Pokémon, don’t you think?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00004",
+      "en_US": [
+        "Howdy, traveling Trainer.\n",
+        "Take it easy, slow, and casual."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00005",
+      "en_US": [
+        "Howdy, traveling Trainer.\n",
+        "There’s nothing here.\r",
+        "Well, nothing but plenty of time to\n",
+        "think, anyway.\r",
+        "Oh, right. We have the ruins here.\n",
+        "Why not take a tour through that?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00006",
+      "en_US": [
+        "I’m too little, so I don’t know\n",
+        "how to battle very good.\r",
+        "The nice Day-Care Lady is raising\n",
+        "my Pokémon for me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00007",
+      "en_US": [
+        "Every Sunday, I visit the Lost\n",
+        "Tower..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00008",
+      "en_US": [
+        "There used to be nothing here but\n",
+        "a road that went straight through.\r",
+        "Over time, Pokémon and people just\n",
+        "gathered, and the town came to be."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00009",
+      "en_US": [
+        "A traveling Trainer, huh?\r",
+        "Tell me, how many kinds of Pokémon\n",
+        "have you met so far?\r",
+        "If you’re a competent Trainer, I’d\n",
+        "think you’d’ve met at least fifty.\r",
+        "If you haven’t, go farther abroad and\n",
+        "search wider, youngster."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00010",
+      "en_US": [
+        "Your encounters with Pokémon can\n",
+        "be considered your shared history.\r",
+        "This here’s a Pokétch app called\n",
+        "Pokémon History.\r",
+        "Use it to see your history of\n",
+        "Pokémon catches.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00011",
+      "en_US": [
+        "You have your history, and each\n",
+        "Pokémon has its own history.\r",
+        "When the two collide, new drama\n",
+        "is born."
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00012",
+      "en_US": [
+        "Solaceon Town\n",
+        "Free of Worry!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00013",
+      "en_US": [
+        "Pokémon Day Care\n",
+        "Let Us Raise Your Pokémon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000575_00014",
+      "en_US": [
+        "Pokémon News Press\n",
+        "Wanted: Pro Pokémon Catcher!"
+      ]
+    }
+  ]
+}

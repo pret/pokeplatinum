@@ -1,0 +1,110 @@
+{
+  "key": 39287,
+  "messages": [
+    {
+      "id": "pl_msg_00000483_00000",
+      "en_US": [
+        "The PSYDUCK are standing firm.\n",
+        "They aren’t inclined to move at all."
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00001",
+      "en_US": [
+        "The PSYDUCK are standing firm.\n",
+        "They aren’t inclined to move.\r",
+        "Would you like to use the SecretPotion?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "SecretPotion!\r",
+        "The PSYDUCK appear to be cured\n",
+        "of their chronic headache!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00003",
+      "en_US": [
+        "Cynthia: Oh, good. You used the\n",
+        "SecretPotion I gave you.\r",
+        "PSYDUCK are known to suffer from\n",
+        "chronic headaches.\r",
+        "But no one’s been able to figure out\n",
+        "what triggers the headaches.\r",
+        "Oh, yes! Can I ask you a big favor?\r",
+        "I want you to deliver this Old Charm\n",
+        "to my grandma in Celestic Town.\r",
+        "I know there are some rare Pokémon\n",
+        "between here and Celestic Town, so\f",
+        "it will be worth your while to go."
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00004",
+      "en_US": [
+        "Cynthia: My grandma has this sort of\n",
+        "bossy atmosphere about her.\r",
+        "I think you’ll recognize her right\n",
+        "away.\r",
+        "Yes, I’m sure you will. She’s the\n",
+        "elder of Celestic Town.\r",
+        "And the location... Look on your Town\n",
+        "Map. You can’t miss it.\r",
+        "OK, I’m counting on you!\n",
+        "See you again down the road!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00005",
+      "en_US": [
+        "I know I’m asking a big favor\n",
+        "of you.\r",
+        "But I really want you to do it.\n",
+        "Will you go to Celestic Town for me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00006",
+      "garbage": 57
+    },
+    {
+      "id": "pl_msg_00000483_00007",
+      "en_US": [
+        "I’m taking a rest. If I were a bird\n",
+        "Pokémon, it would be a roost. Haha!\r",
+        "Uh... You should rest up, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00008",
+      "en_US": [
+        "If they had to keep flying forever,\n",
+        "bird Pokémon would eventually crash."
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00009",
+      "en_US": [
+        "So long as there’s a road, we’ll\n",
+        "keep on running..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00010",
+      "en_US": [
+        "Café Cabin\n",
+        "Freshly Squeezed Milk"
+      ]
+    },
+    {
+      "id": "pl_msg_00000483_00011",
+      "en_US": [
+        "Rt. 210\n",
+        "Solaceon Town"
+      ]
+    }
+  ]
+}

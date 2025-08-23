@@ -213,7 +213,7 @@ _0230:
     ApplyMovement 6, _02FC
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
-    ScrCmd_187 5, 53, 1, 39, 3
+    SetPosition 5, 53, 1, 39, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag FLAG_UNK_0x029A

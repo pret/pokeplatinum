@@ -1,0 +1,130 @@
+{
+  "key": 14690,
+  "messages": [
+    {
+      "id": "pl_msg_00000088_00000",
+      "en_US": [
+        "You kept me waiting!\r",
+        "I’m Eterna’s Gym Leader, Gardenia,\n",
+        "the Grass-type master!\r",
+        "When I first saw you, I was convinced\n",
+        "you’d find your way to me.\r",
+        "My hunch was right on the money.\n",
+        "You have a winning aura about you.\r",
+        "So, anyway, this will be fun.\n",
+        "Let’s have our battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00001",
+      "en_US": [
+        "I might’ve said it before, but you’re\n",
+        "really tough!\r",
+        "Wasn’t it hard for you to raise your\n",
+        "Pokémon to be so good?\r",
+        "I guess that’s a measure of how much\n",
+        "you love your Pokémon.\r",
+        "In recognition of that, I proudly\n",
+        "grant you this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Forest Badge from Gardenia!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00003",
+      "en_US": [
+        "With the Forest Badge, your Pokémon\n",
+        "can use the hidden move Cut outside\f",
+        "of battle.\r",
+        "Now that you have two Gym Badges,\n",
+        "all Pokémon you received in trades\f",
+        "will obey you up to Lv. 30.\r",
+        "I’ve also got something else.\n",
+        "It’s a gift from me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} contains\n",
+        "the move {STRVAR_1 6, 1, 0}.\r",
+        "It’s one of my favorite moves.\r",
+        "The heavier the foe, the more\n",
+        "damage this move will cause."
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00005",
+      "en_US": [
+        "Yup! If there’s one thing I can tell\n",
+        "about you, it’s this!\r",
+        "You and your Pokémon are gonna get\n",
+        "even tougher, and I mean seriously!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00006",
+      "en_US": [
+        "How did you know where to find me?\n",
+        "Let’s have our battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00007",
+      "en_US": [
+        "OK, the next Trainer is at the end,\n",
+        "past the two boulders...I think."
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00008",
+      "en_US": [
+        "My Grass-type Pokémon can dole out\n",
+        "some serious special attacks...\r",
+        "I won’t let you win...easily!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00009",
+      "en_US": [
+        "Oh, that’s right...\n",
+        "A hint about the next Trainer...\r",
+        "In the middle of three trees.\n",
+        "That’s it for my hint. Good luck."
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00010",
+      "en_US": [
+        "Even when you try to conceal it, you\n",
+        "can’t hide the aroma of flowers.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00011",
+      "en_US": [
+        "Your next opponent is beside four\n",
+        "flowers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00012",
+      "en_US": [
+        "Giggle! You found me!\n",
+        "Of course I’ll battle you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000088_00013",
+      "en_US": [
+        "Giggle! There’s only our Gym Leader\n",
+        "left. Go on, don’t be afraid!"
+      ]
+    }
+  ]
+}

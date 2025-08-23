@@ -1,0 +1,86 @@
+{
+  "key": 43698,
+  "messages": [
+    {
+      "id": "pl_msg_00000179_00000",
+      "en_US": [
+        "Maylene: Brrr...\r",
+        "Oh, hi, {STRVAR_1 3, 0, 0}!\n",
+        "Are you taking the Gym challenge now?\r",
+        "I’m hoping to see Candice soon, but I’m\n",
+        "staying put until I warm up again first.\r",
+        "Oh, you should know that Candice is\n",
+        "a user of Ice-type Pokémon.\r",
+        "I really admire Candice.\n",
+        "She’s so studious.\r",
+        "She wanted to practice against me to\n",
+        "learn about the Fighting type.\r",
+        "It’s because the Ice type matches up\n",
+        "badly against the Fighting type.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00001",
+      "en_US": [
+        "Maylene: Oh! That’s the Icicle Badge!\n",
+        "You must have beaten Candice.\r",
+        "With that Badge, aren’t you allowed to\n",
+        "use the hidden move Rock Climb?\r",
+        "Rock Climb can be learned by Rock-type\n",
+        "or Fighting-type Pokémon, I think."
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00002",
+      "en_US": [
+        "You know how there are many Ice-type\n",
+        "Pokémon around Snowpoint City?\f",
+        "I wonder if they also live in the temple?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00003",
+      "en_US": [
+        "Sound gets swallowed up by the snow.\n",
+        "That’s why it’s very quiet here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00004",
+      "en_US": "PSYDUCK: Gaga guwawa!"
+    },
+    {
+      "id": "pl_msg_00000179_00005",
+      "en_US": [
+        "Thank you for coming to Grace’s live\n",
+        "show in Snowpoint!\r",
+        "I’m so happy you came to see me!\n",
+        "I’ll battle you as my thank-you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00006",
+      "en_US": [
+        "I’ll let you join my fan club if you can\n",
+        "beat me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00007",
+      "en_US": [
+        "But my song!\n",
+        "It’s nicer than that Crasher Wake’s!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000179_00008",
+      "en_US": [
+        "My dream is to be the top Idol!\r",
+        "To win everyone’s heart, I’ll sing my\n",
+        "heart out in snowy Snowpoint!\r",
+        "...To a crowd of none.\n",
+        "...This is Grace. Thanks for listening..."
+      ]
+    }
+  ]
+}

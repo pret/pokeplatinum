@@ -1,0 +1,81 @@
+{
+  "key": 14693,
+  "messages": [
+    {
+      "id": "pl_msg_00000165_00000",
+      "en_US": [
+        "...All right, challenger.\r",
+        "It’s not often, but some Trainers\n",
+        "manage to come and challenge me.\r",
+        "But they’ve all been boring battles.\n",
+        "I didn’t break a sweat beating them.\r",
+        "...Sigh...\n",
+        "I’m Volkner, the Gym Leader.\r",
+        "They say I’m the top Gym Leader in\n",
+        "Sinnoh, but...\r",
+        "Anyway, I guess we’d better get this\n",
+        "done.\r",
+        "I hope you’re the Trainer who’ll make\n",
+        "me remember how fun it is to battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000165_00001",
+      "en_US": [
+        "...Hehehe.\r",
+        "Hahahah!\r",
+        "...That was the most fun I’ve had\n",
+        "in a battle since...I don’t know when!\r",
+        "It’s also made me excited to know\n",
+        "you and your team will keep battling\f",
+        "to greater heights!\r",
+        "This is your eighth Gym Badge.\n",
+        "You’ve earned this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000165_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Beacon Badge from Volkner."
+      ]
+    },
+    {
+      "id": "pl_msg_00000165_00003",
+      "en_US": [
+        "That Beacon Badge lets you use\n",
+        "the hidden move Waterfall even when\f",
+        "you’re not in a battle.\r",
+        "Waterfall happens to be key if you’re\n",
+        "going to the Pokémon League.\r",
+        "Also, because you’ve collected all\n",
+        "eight Badges, any Pokémon at any\f",
+        "level will now obey you without fail.\r",
+        "I want you to take this, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000165_00004",
+      "en_US": [
+        "What’s inside that {STRVAR_1 8, 0, 0}\n",
+        "is the move {STRVAR_1 6, 1, 0}.\r",
+        "It may raise Special Attack if it\n",
+        "lands. It’s electrifying!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000165_00005",
+      "en_US": [
+        "Your next step is the Pokémon\n",
+        "League challenge.\r",
+        "It’s time for you to cross the sea\n",
+        "and win your way through the\f",
+        "gauntlet that is Victory Road.\r",
+        "Demonstrate to the Pokémon League\n",
+        "your mastery of your team.\r",
+        "Against you, even the Elite Four will\n",
+        "be pushed to fend off your challenge!"
+      ]
+    }
+  ]
+}

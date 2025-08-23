@@ -1,0 +1,21 @@
+{
+  "key": 42007,
+  "messages": [
+    {
+      "id": "pl_msg_00000559_00000",
+      "en_US": [
+        "You’re off to hang with {STRVAR_1 3, 0, 0}\n",
+        "again, right? You two sure are tight!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000559_00001",
+      "en_US": [
+        "I went on an adventure with some\n",
+        "Pokémon a long time ago.\r",
+        "It was only to Sandgem, the next town\n",
+        "over, though. Yeah, good times..."
+      ]
+    }
+  ]
+}

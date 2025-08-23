@@ -1,0 +1,76 @@
+{
+  "key": 29794,
+  "messages": [
+    {
+      "id": "pl_msg_00000314_00000",
+      "en_US": "Cynthia: This place...\r"
+    },
+    {
+      "id": "pl_msg_00000314_00001",
+      "en_US": [
+        "Can you feel it?\n",
+        "There are no Pokémon here at all.\r",
+        "Time isn’t flowing.\n",
+        "And space isn’t stable.\f",
+        "A world where the rules are broken.\r",
+        "A space one might call the Distortion\n",
+        "World...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00002",
+      "en_US": [
+        "Let’s find GIRATINA.\r",
+        "We need it to stop the spreading\n",
+        "distortion at the Spear Pillar...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00003",
+      "en_US": [
+        "Cynthia: That was...\r",
+        "GIRATINA...!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00004",
+      "en_US": [
+        "We have to hurry!\r",
+        "If something’s not done, the distortion\n",
+        "will swallow not only our world, it will\f",
+        "overwhelm the Distortion World...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00005",
+      "en_US": [
+        "Cynthia: This rock slab...\r",
+        "It appears to move if you step on a\n",
+        "certain spot."
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00006",
+      "en_US": [
+        "Cynthia: On the ground here...\n",
+        "Why is it colored differently?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00007",
+      "en_US": [
+        "There is the portal leading back to\n",
+        "the Spear Pillar.\r",
+        "Leap into the portal and return to\n",
+        "the Spear Pillar?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000314_00008",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} headed for the Spear\n",
+        "Pillar!\r"
+      ]
+    }
+  ]
+}

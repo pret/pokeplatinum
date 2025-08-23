@@ -1,0 +1,102 @@
+{
+  "key": 54275,
+  "messages": [
+    {
+      "id": "SunyshoreMarket_Text_OhYourPokemon",
+      "en_US": [
+        "Oh?\n",
+        "Your {STRVAR_1 0, 0, 0}...\r"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_ItWorkedStupendouslyHard",
+      "en_US": [
+        "It worked stupendously hard,\n",
+        "didn’t it?\r",
+        "As its reward, please give it this\n",
+        "Effort Ribbon.\r"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_PlayerReceivedEffortRibbon",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} received\n",
+        "the Effort Ribbon.\r"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_PlayerPutEffortRibbonOn",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} put the Effort Ribbon\n",
+        "on {STRVAR_1 0, 0, 0}."
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_ItNeedsToWorkHarder",
+      "en_US": [
+        "It needs to work a little harder.\r",
+        "If it does, I’ll give your Pokémon\n",
+        "something nice."
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_EffortRibbonLooksGood",
+      "en_US": [
+        "Oh! That Effort Ribbon looks \n",
+        "good on your {STRVAR_1 0, 0, 0}!"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_BestKnownForSeals",
+      "en_US": [
+        "Sunyshore Market is best known for\n",
+        "its big selection of Seals."
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_ALittleTimeIfYouWill",
+      "en_US": [
+        "Ah, please, allow me a little of your\n",
+        "time, if you will. You won’t regret it.\r"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_NoSealCase",
+      "en_US": [
+        "Ah, please, allow me a little of your\n",
+        "time, if you will. You won’t regret it.\r",
+        "...Oh, but, no, no, no!\n",
+        "You have no Seal Case?\r",
+        "You must return to the town with the\n",
+        "ruins and obtain a Seal Case!"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_SeeTheSealMerchant",
+      "en_US": "See the Seal Merchant there?\r"
+    },
+    {
+      "id": "SunyshoreMarket_Text_DidntHaveSeals",
+      "en_US": [
+        "He didn’t have any Seals I wanted...\n",
+        "Maybe tomorrow, I guess."
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_CameThroughWithDifferentSeals",
+      "en_US": [
+        "He came through with different Seals\n",
+        "today! Just what I wanted to see!"
+      ]
+    },
+    {
+      "id": "SunyshoreMarket_Text_HugeFanOfWiFiPlaza",
+      "en_US": [
+        "I love Tap Toys!\n",
+        "Plaza Games are great, too!\r",
+        "I’m a huge fan of the Wi-Fi Plaza, so\n",
+        "I’m promoting it on my own."
+      ]
+    }
+  ]
+}

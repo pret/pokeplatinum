@@ -1,0 +1,62 @@
+{
+  "key": 57082,
+  "messages": [
+    {
+      "id": "pl_msg_00000498_00000",
+      "en_US": [
+        "Ah, hello. You wish to stay a night?\n",
+        "Ah, but you’ve no reservations.\r",
+        "I’m afraid we are totally booked.\n",
+        "You may rest a while, if you wish.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000498_00001",
+      "en_US": [
+        "We’ve restored your Pokémon\n",
+        "to full health.\r",
+        "We hope to see you again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000498_00002",
+      "en_US": [
+        "This hotel is so romantic...\r",
+        "I hope a knight on a Pokémon will\n",
+        "sweep me away for a honeymoon here!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000498_00003",
+      "en_US": [
+        "Looker: Ah, my friend, it is you!\n",
+        "Yes, I am at this hotel now.\r",
+        "I am interviewing the people to see \n",
+        "if they have seen anyone suspicious.\r",
+        "I would like your assistance.\n",
+        "Go search outside, if you will.\r",
+        "The suspect, he may have already\n",
+        "slipped away ahead unnoticed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000498_00004",
+      "en_US": [
+        "Looker: Is that so?\n",
+        "The champion of Hoenn has stayed here?\r",
+        "But that is of no importance!\r",
+        "A suspicion-arousing character, yes,\n",
+        "but your bragging is not necessary!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000498_00005",
+      "en_US": [
+        "Inside the hotel, I will search.\n",
+        "You, I ask to search outside.\r",
+        "The suspect, he may have already\n",
+        "slipped away ahead unnoticed."
+      ]
+    }
+  ]
+}

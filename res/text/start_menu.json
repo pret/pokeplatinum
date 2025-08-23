@@ -1,0 +1,53 @@
+{
+  "key": 54176,
+  "messages": [
+    {
+      "id": "StartMenu_Text_Pokedex",
+      "en_US": "POKéDEX"
+    },
+    {
+      "id": "StartMenu_Text_Pokemon",
+      "en_US": "POKéMON"
+    },
+    {
+      "id": "StartMenu_Text_Bag",
+      "en_US": "BAG"
+    },
+    {
+      "id": "StartMenu_Text_Player",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "StartMenu_Text_Save",
+      "en_US": "SAVE"
+    },
+    {
+      "id": "StartMenu_Text_Options",
+      "en_US": "OPTIONS"
+    },
+    {
+      "id": "StartMenu_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "StartMenu_Text_Chat",
+      "en_US": "CHAT"
+    },
+    {
+      "id": "StartMenu_Text_Retire",
+      "en_US": "RETIRE"
+    },
+    {
+      "id": "StartMenu_Text_SafariBalls",
+      "en_US": "SAFARI BALLS"
+    },
+    {
+      "id": "StartMenu_Text_ParkBalls",
+      "en_US": "PARK BALLS"
+    },
+    {
+      "id": "StartMenu_Text_BallStock",
+      "en_US": "Stock: {STRVAR_1 51, 0, 0}"
+    }
+  ]
+}

@@ -14,6 +14,7 @@
 #include "overlay005/ov5_021D2F14.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -56,7 +57,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020573FC.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207CB08.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "vars_flags.h"
@@ -1617,7 +1617,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
+    BagSystem_Init(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
     FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 

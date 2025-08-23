@@ -1,0 +1,236 @@
+{
+  "key": 35842,
+  "messages": [
+    {
+      "id": "pl_msg_00000128_00000",
+      "en_US": "Keira: Oh! My hero!\r"
+    },
+    {
+      "id": "pl_msg_00000128_00001",
+      "en_US": "Mom: Oh, hi, {STRVAR_1 3, 0, 0}.\r"
+    },
+    {
+      "id": "pl_msg_00000128_00002",
+      "en_US": [
+        "Keira: Wait! No! Really?!\n",
+        "Johanna is your mom?\f",
+        "So you might be a Contest star?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00003",
+      "en_US": [
+        "Mom: Oh, I don’t know about that.\r",
+        "I’ve never spoken to {STRVAR_1 3, 0, 0}\n",
+        "about Contests.\r",
+        "I’m surprised you two know each\n",
+        "other, though.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00004",
+      "en_US": [
+        "Keira: Oh, yes, that’s right!\r",
+        "I need to thank you for earlier.\n",
+        "Please take this Accessory.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00005",
+      "en_US": [
+        "Keira: Put that Accessory on your\n",
+        "Pokémon before a Contest.\r",
+        "It will lend a nice touch of\n",
+        "sophistication and glamour.\r",
+        "I’m a Contest Judge, so come join us\n",
+        "for a different kind of fun.\r",
+        "If you’re unsure of yourself,\n",
+        "we also offer practice sessions.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00006",
+      "en_US": "OK, Johanna, I’ll see you!\r"
+    },
+    {
+      "id": "pl_msg_00000128_00007",
+      "en_US": [
+        "Mom: Were you surprised to see me,\n",
+        "{STRVAR_1 3, 0, 0}?\r",
+        "I got bored, so I came out to\n",
+        "Hearthome for a little vacation.\r",
+        "I’m just as surprised to see you\n",
+        "here, my dear!\r",
+        "But are you serious about entering\n",
+        "Contests? Not dressed that way!\r",
+        "When your Pokémon is all dressed up,\n",
+        "you can’t be dressed your usual way.\r",
+        "Put this on for a little glamour.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00008",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "a Tuxedo!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "a Dress!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00010",
+      "en_US": [
+        "Mom: I’m sure it will look good\n",
+        "on you. After all, I chose it.\r",
+        "Go enjoy the Contests, honey!\r",
+        "Contests will give you a different\n",
+        "look at the many charms of Pokémon.\r",
+        "It should be an eye-opening\n",
+        "experience for you. Bye now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00011",
+      "en_US": [
+        "Yes?\n",
+        "I beg your pardon?\r",
+        "Ah, oui, Contests you are here for?\n",
+        "I hope very much you enjoy them.\r",
+        "Incidentally, Fantina, the Gym Leader\n",
+        "of Hearthome, is also a Contestant.\r",
+        "She is, how do you say, très\n",
+        "fantastique!\r",
+        "Fantina being myself, of course!\r",
+        "Mmm, let me see...\n",
+        "You also seem to be très strong.\r",
+        "Enfin, so it shall be.\n",
+        "I wait for you at the Gym!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00012",
+      "en_US": [
+        "You’re going to enter Contests?\n",
+        "But I don’t see a Poffin Case.\r",
+        "It could be tough for you to win\n",
+        "Contests without it.\r",
+        "But if you’re determined to enter,\n",
+        "don’t let me stop you.\r",
+        "It wouldn’t hurt to get in some\n",
+        "practice at the counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00013",
+      "en_US": [
+        "You’re going to enter Contests?\n",
+        "And, yup, you have a Poffin Case.\r",
+        "Let me gift you with this fabulously\n",
+        "wonderful Poffin!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00014",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "a Mild Poffin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00015",
+      "en_US": [
+        "The Mild Poffin was put away\n",
+        "in the Poffin Case.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00016",
+      "en_US": [
+        "Feed that Poffin to a Pokémon you’re\n",
+        "going to enter in Contests.\r",
+        "Oh, and a word of advice.\n",
+        "Go take a run at the Contests!\r",
+        "The best way to get ready is to\n",
+        "get some practice first.\r",
+        "You can take practice sessions at\n",
+        "the counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00017",
+      "en_US": [
+        "Feed that Poffin to a Pokémon you’re\n",
+        "going to enter in Contests.\r",
+        "Oh, and a word of advice for you.\n",
+        "Go take a run at the Contests!\r",
+        "However, the best way to get ready\n",
+        "is to get some practice first.\r",
+        "You can take practice sessions at\n",
+        "the counter on the right."
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00018",
+      "en_US": [
+        "Like everything else, the basics are\n",
+        "important.\r",
+        "It takes practice to win Contests!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00019",
+      "en_US": [
+        "Oh, no.\n",
+        "Your Poffin Case’s full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00020",
+      "en_US": [
+        "Oh, no.\n",
+        "Your Poffin Case is full.\f",
+        "I’ll give it to you another time.\r",
+        "Oh, and a word of advice.\n",
+        "Go take a run at the Contests!\r",
+        "...That isn’t much of a strategy.\n",
+        "You might want some practice first.\r",
+        "You can take practice sessions at\n",
+        "the counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00021",
+      "en_US": [
+        "A Pokémon fed Poffins does\n",
+        "better in Visual Evaluations.\r",
+        "I’d better learn how to cook\n",
+        "delicious Poffins at the Poffin House!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00022",
+      "en_US": [
+        "A Contest has three parts: Visual!\n",
+        "Dance! And Acting!\r",
+        "The Contestants get graded in those\n",
+        "categories, dohoho!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000128_00023",
+      "en_US": "They put up photos of the winners!"
+    },
+    {
+      "id": "pl_msg_00000128_00024",
+      "en_US": [
+        "It’s a photo frame for a Pokémon\n",
+        "portrait."
+      ]
+    }
+  ]
+}

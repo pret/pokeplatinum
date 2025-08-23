@@ -89,7 +89,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
         partyMan->unk_2C[v0] = param0->unk_0E[v0];
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     *(param0->unk_14) = partyMan;
     return 1;

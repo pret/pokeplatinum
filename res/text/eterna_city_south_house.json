@@ -1,0 +1,73 @@
+{
+  "key": 37946,
+  "messages": [
+    {
+      "id": "pl_msg_00000103_00000",
+      "en_US": [
+        "Oak: Ah, it’s you! Good to see you!\n",
+        "How is your Pokédex coming along?\r",
+        "Capturing every kind of Pokémon is\n",
+        "no easy feat, I’ll grant you that.\r",
+        "But I’m sure you can accomplish it!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000103_00001",
+      "en_US": [
+        "Oak: Ah, yes!\r",
+        "An acquaintance from Kanto has sent\n",
+        "me something quite interesting.\r",
+        "I think you’d make better use of it\n",
+        "than I ever could.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000103_00002",
+      "en_US": [
+        "I understand there is a Pokémon that\n",
+        "evolves when it is traded while holding\f",
+        "that Up-Grade.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000103_00003",
+      "en_US": [
+        "Incidentally, and this is an entirely\n",
+        "different topic...\r",
+        "I’ve heard that there have been\n",
+        "sightings of very rare Pokémon.\r",
+        "The legendary bird Pokémon: ARTICUNO,\n",
+        "ZAPDOS, and MOLTRES!\r",
+        "They’ve been spotted at various\n",
+        "locations here in Sinnoh, no less!\r",
+        "Why, you may be lucky enough to see\n",
+        "them yourself in your journeys!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000103_00004",
+      "en_US": [
+        "Oak: ARTICUNO, ZAPDOS, and MOLTRES\n",
+        "are extremely rare even in Kanto.\r",
+        "There have been precious few sightings\n",
+        "as it is.\r",
+        "So why would they be spotted here in\n",
+        "Sinnoh of all places?\r",
+        "There are still many, many mysteries\n",
+        "surrounding Pokémon, it seems!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000103_00005",
+      "en_US": [
+        "Oak: Ah, it’s you!\n",
+        "How goes it?\r",
+        "What’s that? You’ve caught ARTICUNO,\n",
+        "ZAPDOS, and MOLTRES?!\r",
+        "Now that is incredible!\r",
+        "Well, then, allow me to examine your\n",
+        "Pokédex.\r"
+      ]
+    }
+  ]
+}

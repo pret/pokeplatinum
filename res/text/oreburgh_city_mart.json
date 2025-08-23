@@ -1,0 +1,23 @@
+{
+  "key": 19185,
+  "messages": [
+    {
+      "id": "pl_msg_00000066_00000",
+      "en_US": [
+        "The Badges that Pokémon Gyms give you\n",
+        "are a measure of a Trainer’s worth.\r",
+        "By getting more Badges, you get to\n",
+        "buy more items in Poké Marts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000066_00001",
+      "en_US": [
+        "The Poké Mart is staffed by a lady and\n",
+        "a young fellow.\r",
+        "They offer different kinds of\n",
+        "merchandise. Did you know?"
+      ]
+    }
+  ]
+}

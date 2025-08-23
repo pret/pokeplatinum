@@ -1,0 +1,26 @@
+{
+  "key": 39552,
+  "messages": [
+    {
+      "id": "pl_msg_00000505_00000",
+      "en_US": [
+        "You can’t ride a Bike on snow.\n",
+        "It’s too dangerous."
+      ]
+    },
+    {
+      "id": "pl_msg_00000505_00001",
+      "en_US": [
+        "Rt. 216\n",
+        "Mt. Coronet"
+      ]
+    },
+    {
+      "id": "pl_msg_00000505_00002",
+      "en_US": [
+        "Snowbound Lodge\n",
+        "A Warm Bed and Little Else"
+      ]
+    }
+  ]
+}

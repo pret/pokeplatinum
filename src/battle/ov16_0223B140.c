@@ -28,10 +28,10 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
+#include "battle_anim/battle_anim_system.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay011/ov11_0221F840.h"
-#include "overlay012/battle_anim_system.h"
+#include "overlay011/particle_helper.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -89,7 +89,7 @@
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay13);
 FS_EXTERN_OVERLAY(trainer_ai);
 FS_EXTERN_OVERLAY(pokedex);
@@ -225,7 +225,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         break;
     case 8:
         Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
         ov16_0223B790(appMan);
         *param1 = 9;
         break;
@@ -297,7 +297,7 @@ void ov16_0223B384(BattleSystem *battleSys)
     ov16_0223F314(battleSys, 3);
 
     if (battleSys->overlayFlags == 0) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+        Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     } else {
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
     }
@@ -328,7 +328,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
 
     if (battleSys->overlayFlags == 0) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
@@ -476,9 +476,9 @@ void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags)
 
     if (flags == 0) {
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     } else {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+        Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
 }
@@ -516,7 +516,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     PokemonSpriteTemplate v2;
-    int v3;
+    int idx;
     RTCDate v4;
     RTCTime v5;
 
@@ -546,8 +546,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
-    for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
+    for (idx = 0; idx < 4; idx++) {
+        battleSys->pokemonSpriteDataArray[idx].tiles = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -645,8 +645,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
-        for (v3 = 0; v3 < 4; v3++) {
-            battleSys->unk_247C[v3] = v1->unk_194[v3];
+        for (idx = 0; idx < 4; idx++) {
+            battleSys->unk_247C[idx] = v1->unk_194[idx];
         }
     }
 }
@@ -744,7 +744,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_Free(battleSystem->unk_1CC[battlerId].unk_00);
+        Heap_Free(battleSystem->pokemonSpriteDataArray[battlerId].tiles);
     }
 
     Heap_Free(battleSystem->msgBuffer);
@@ -805,7 +805,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
 
     Heap_Free(battleSystem);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
     if (!sub_020389B8()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
@@ -1540,7 +1540,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
 
     if ((v0->unk_23F9 == 0) || (v0->unk_23F9 == 3)) {
         if (v0->unk_23F9 == 0) {
-            ov11_0221F8F0();
+            ParticleHelper_DrawParticleSystems();
         }
 
         PokemonSpriteManager_DrawSprites(v0->unk_88);

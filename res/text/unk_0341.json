@@ -1,0 +1,241 @@
+{
+  "key": 18718,
+  "messages": [
+    {
+      "id": "pl_msg_00000341_00000",
+      "en_US": "Set Camera"
+    },
+    {
+      "id": "pl_msg_00000341_00001",
+      "en_US": "Swaying grass"
+    },
+    {
+      "id": "pl_msg_00000341_00002",
+      "en_US": "Height Check B"
+    },
+    {
+      "id": "pl_msg_00000341_00003",
+      "en_US": "Height Check G"
+    },
+    {
+      "id": "pl_msg_00000341_00004",
+      "en_US": "Camera"
+    },
+    {
+      "id": "pl_msg_00000341_00005",
+      "en_US": "Change player’s height"
+    },
+    {
+      "id": "pl_msg_00000341_00006",
+      "en_US": "Camera Info"
+    },
+    {
+      "id": "pl_msg_00000341_00007",
+      "en_US": "Camera List"
+    },
+    {
+      "id": "pl_msg_00000341_00008",
+      "en_US": "Zone Camera List"
+    },
+    {
+      "id": "pl_msg_00000341_00009",
+      "en_US": "Animation"
+    },
+    {
+      "id": "pl_msg_00000341_00010",
+      "en_US": "Fishing"
+    },
+    {
+      "id": "pl_msg_00000341_00011",
+      "en_US": "Travelling Pokémon"
+    },
+    {
+      "id": "pl_msg_00000341_00012",
+      "en_US": "Pokémon mass outbreak"
+    },
+    {
+      "id": "pl_msg_00000341_00013",
+      "en_US": "Safari"
+    },
+    {
+      "id": "pl_msg_00000341_00014",
+      "en_US": "GBA"
+    },
+    {
+      "id": "pl_msg_00000341_00015",
+      "en_US": "Distance"
+    },
+    {
+      "id": "pl_msg_00000341_00016",
+      "en_US": "X-axis"
+    },
+    {
+      "id": "pl_msg_00000341_00017",
+      "en_US": "Y-axis"
+    },
+    {
+      "id": "pl_msg_00000341_00018",
+      "en_US": "Z-axis"
+    },
+    {
+      "id": "pl_msg_00000341_00019",
+      "en_US": "Perspective"
+    },
+    {
+      "id": "pl_msg_00000341_00020",
+      "en_US": "Type"
+    },
+    {
+      "id": "pl_msg_00000341_00021",
+      "en_US": "PER"
+    },
+    {
+      "id": "pl_msg_00000341_00022",
+      "en_US": "ORT"
+    },
+    {
+      "id": "pl_msg_00000341_00023",
+      "en_US": "Near"
+    },
+    {
+      "id": "pl_msg_00000341_00024",
+      "en_US": "Distant"
+    },
+    {
+      "id": "pl_msg_00000341_00025",
+      "en_US": "LOOK-X"
+    },
+    {
+      "id": "pl_msg_00000341_00026",
+      "en_US": "LOOK-Y"
+    },
+    {
+      "id": "pl_msg_00000341_00027",
+      "en_US": "LOOK-Z"
+    },
+    {
+      "id": "pl_msg_00000341_00028",
+      "en_US": "X"
+    },
+    {
+      "id": "pl_msg_00000341_00029",
+      "en_US": "O"
+    },
+    {
+      "id": "pl_msg_00000341_00030",
+      "en_US": "BLOCK"
+    },
+    {
+      "id": "pl_msg_00000341_00031",
+      "en_US": "LOCAL"
+    },
+    {
+      "id": "pl_msg_00000341_00032",
+      "en_US": "HEIGHT"
+    },
+    {
+      "id": "pl_msg_00000341_00033",
+      "en_US": "Trigger"
+    },
+    {
+      "id": "pl_msg_00000341_00034",
+      "en_US": "Chain"
+    },
+    {
+      "id": "pl_msg_00000341_00035",
+      "en_US": "Info"
+    },
+    {
+      "id": "pl_msg_00000341_00036",
+      "en_US": "Records"
+    },
+    {
+      "id": "pl_msg_00000341_00037",
+      "en_US": "ロッド"
+    },
+    {
+      "id": "pl_msg_00000341_00038",
+      "en_US": "100%"
+    },
+    {
+      "id": "pl_msg_00000341_00039",
+      "en_US": "Special point"
+    },
+    {
+      "id": "pl_msg_00000341_00040",
+      "en_US": "Info"
+    },
+    {
+      "id": "pl_msg_00000341_00041",
+      "en_US": "Location change"
+    },
+    {
+      "id": "pl_msg_00000341_00042",
+      "en_US": "Entry"
+    },
+    {
+      "id": "pl_msg_00000341_00043",
+      "en_US": "MESPRIT"
+    },
+    {
+      "id": "pl_msg_00000341_00044",
+      "en_US": "CRESSELIA"
+    },
+    {
+      "id": "pl_msg_00000341_00045",
+      "en_US": "DARKRAI"
+    },
+    {
+      "id": "pl_msg_00000341_00046",
+      "en_US": "MOLTRES"
+    },
+    {
+      "id": "pl_msg_00000341_00047",
+      "en_US": "ZAPDOS"
+    },
+    {
+      "id": "pl_msg_00000341_00048",
+      "en_US": "ARTICUNO"
+    },
+    {
+      "id": "pl_msg_00000341_00049",
+      "en_US": "Start"
+    },
+    {
+      "id": "pl_msg_00000341_00050",
+      "en_US": "Zone info"
+    },
+    {
+      "id": "pl_msg_00000341_00051",
+      "en_US": "Now ON"
+    },
+    {
+      "id": "pl_msg_00000341_00052",
+      "en_US": "Now OFF"
+    },
+    {
+      "id": "pl_msg_00000341_00053",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000341_00054",
+      "en_US": "Sapphire"
+    },
+    {
+      "id": "pl_msg_00000341_00055",
+      "en_US": "Ruby"
+    },
+    {
+      "id": "pl_msg_00000341_00056",
+      "en_US": "Emerald"
+    },
+    {
+      "id": "pl_msg_00000341_00057",
+      "en_US": "Red"
+    },
+    {
+      "id": "pl_msg_00000341_00058",
+      "en_US": "Green"
+    }
+  ]
+}

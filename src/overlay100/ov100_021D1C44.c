@@ -264,7 +264,7 @@ void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
 
     {
         ov100_021D4E3C(&v0->unk_08.unk_00, HEAP_ID_111);
-        ov100_021D4E70(&v0->unk_08.unk_00, 0, 191, ((0xffff / 192) * 2), FX32_CONST(4), (1 * 100), REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
+        ov100_021D4E70(&v0->unk_08.unk_00, 0, 191, (0xffff / 192) * 2, FX32_CONST(4), 1 * 100, REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
     }
 
     {
@@ -292,7 +292,7 @@ void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
     v0->unk_1EBC->unk_44.y = FX32_CONST(0);
 
     ov100_021D4DC8(1);
-    ov100_021D4DD8(param0, (+16));
+    ov100_021D4DD8(param0, +16);
 
     return v0;
 }
@@ -305,8 +305,8 @@ BOOL ov100_021D2428(void *param0)
     case 0:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_111);
         v0->unk_1EBC->unk_50.unk_03 = 0;
-        G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
-        G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
         v0->unk_00++;
     case 1:
         if (IsScreenFadeDone() == FALSE) {
@@ -412,8 +412,8 @@ BOOL ov100_021D2428(void *param0)
                 v0->unk_1EBC->unk_50.unk_03--;
             }
 
-            G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
-            G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
         } else {
             ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 23);
 
@@ -626,8 +626,8 @@ BOOL ov100_021D2428(void *param0)
 
             v0->unk_1EBC->unk_50.unk_03 = -16;
 
-            G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
-            G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
 
             {
                 u16 currentBGM = Sound_GetCurrentBGM();
@@ -650,8 +650,8 @@ BOOL ov100_021D2428(void *param0)
         }
 
         v0->unk_1EBC->unk_50.unk_03 = 0;
-        G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
-        G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
         v0->unk_00++;
         break;
     default:
@@ -732,7 +732,7 @@ BOOL ov100_021D2C8C(void *param0)
 
 static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     ov100_021D47A0(param0->unk_1EBC);

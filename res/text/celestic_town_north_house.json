@@ -1,0 +1,141 @@
+{
+  "key": 25606,
+  "messages": [
+    {
+      "id": "pl_msg_00000585_00000",
+      "en_US": [
+        "Where are you from?\r",
+        "...\r",
+        "Hm, Twinleaf Town, you say.\n",
+        "Isn’t that close to Lake Verity?\r",
+        "That lake is said to be home to MESPRIT,\n",
+        "“The Being of Emotion.”\r",
+        "That Pokémon may well be watching\n",
+        "over you.\r",
+        "Would you like to know more about\n",
+        "MESPRIT?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00001",
+      "en_US": [
+        "MESPRIT is the legendary Pokémon\n",
+        "that symbolizes the emotions.\r",
+        "Beside it are also UXIE, “The Being of\n",
+        "Knowledge,” and AZELF, “The Being of\f",
+        "Willpower.”\r",
+        "These three Pokémon are said to have\n",
+        "strong and compassionate spirits.\r",
+        "The power of their spirits maintains\n",
+        "the natural balance of Sinnoh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00002",
+      "en_US": [
+        "Hahaha!\n",
+        "Well, of course you wouldn’t.\r",
+        "It’s a tale from so long ago.\n",
+        "It’s no wonder you weren’t interested."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00003",
+      "en_US": [
+        "Using the move Surf, you’ll be able to\n",
+        "go to places that were inaccessible.\r",
+        "You’d be surprised where you can go."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00004",
+      "en_US": [
+        "Celestic Town is the oldest town in\n",
+        "all of Sinnoh.\r",
+        "The town was founded to honor\n",
+        "Pokémon from the distant past.\r",
+        "Or at least that’s the legend..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00005",
+      "en_US": [
+        "Well, hello!\n",
+        "You look good.\r",
+        "I did some research of my own since\n",
+        "that spot of trouble last time.\r",
+        "Mt. Coronet’s acting up had me very\n",
+        "concerned, too.\r",
+        "Well, this is what I found in the shrine.\r",
+        "It’s a book, and it’s quite old.\n",
+        "Let me read a bit for you.\r",
+        "“The bearer of the shining Adamant Orb\n",
+        "summons DIALGA to the Spear Pillar.\r",
+        "“The guardian Pokémon of time will\n",
+        "answer the call.\r",
+        "“The bearer of the shining Lustrous\n",
+        "Orb summons PALKIA to the Spear Pillar.\r",
+        "“The Pokémon that binds the spatial\n",
+        "dimensions will answer the call.”\r",
+        "It seems the people of long ago met\n",
+        "both DIALGA and PALKIA, the Pokémon\f",
+        "of time and space."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00006",
+      "en_US": [
+        "“PALKIA, the Pokémon that binds the\n",
+        "spatial dimensions,” it is written...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00007",
+      "en_US": [
+        "“DIALGA, the guardian Pokémon of\n",
+        "time,” it is written...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00008",
+      "garbage": 63
+    },
+    {
+      "id": "pl_msg_00000585_00009",
+      "en_US": [
+        "My big sister is studying the myths\n",
+        "of Sinnoh.\r",
+        "She wants to know how people and\n",
+        "Pokémon interacted in the days of\f",
+        "myths.\r",
+        "Were things different back then?\n",
+        "Or were they the same as now?\r",
+        "She says that’s the focus of her\n",
+        "research."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00010",
+      "en_US": [
+        "It’s hard to tell for sure, but it’s\n",
+        "probably an invaluable scroll."
+      ]
+    },
+    {
+      "id": "pl_msg_00000585_00011",
+      "en_US": [
+        "It’s an old book.\n",
+        "{STRVAR_1 3, 0, 0} began reading it.\r",
+        "“When that Pokémon was born,\n",
+        "intelligence bloomed among us,\f",
+        "enriching our lives.\r",
+        "“When that Pokémon was born,\n",
+        "emotions bloomed among us,\f",
+        "giving us joy and sorrow.\r",
+        "“When that Pokémon was born,\n",
+        "willpower bloomed among us,\f",
+        "spurring us into action...”"
+      ]
+    }
+  ]
+}

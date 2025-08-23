@@ -267,7 +267,7 @@ static int PokemonSummaryScreen_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case SUMMARY_STATE_TRANSITION_IN:
-        sub_0208C120(0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        App_StartScreenFade(FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
         *state = SUMMARY_STATE_WAIT_TRANSITION;
         break;
     case SUMMARY_STATE_WAIT_TRANSITION:
@@ -1028,7 +1028,7 @@ static int WaitForPoffinFeedMsgInput(PokemonSummaryScreen *dummy)
 
 static u8 SummaryScreenTransitionOut(PokemonSummaryScreen *dummy)
 {
-    sub_0208C120(1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    App_StartScreenFade(TRUE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     return SUMMARY_STATE_WAIT_EXIT;
 }
 

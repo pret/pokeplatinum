@@ -1,0 +1,36 @@
+{
+  "key": 29268,
+  "messages": [
+    {
+      "id": "pl_msg_00000472_00000",
+      "en_US": [
+        "You seem to be tired...\n",
+        "Rest a while."
+      ]
+    },
+    {
+      "id": "pl_msg_00000472_00001",
+      "en_US": [
+        "You and your Pokémon look\n",
+        "completely refreshed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000472_00002",
+      "en_US": [
+        "Just because you’re young doesn’t\n",
+        "mean you should push yourself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000472_00003",
+      "en_US": [
+        "Repels are useful, don’t you think?\r",
+        "When you use a Repel, weak Pokémon\n",
+        "won’t come out.\r",
+        "...But that also means there won’t be\n",
+        "any Pokémon to capture."
+      ]
+    }
+  ]
+}

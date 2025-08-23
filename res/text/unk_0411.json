@@ -1,0 +1,131 @@
+{
+  "key": 26343,
+  "messages": [
+    {
+      "id": "pl_msg_00000411_00000",
+      "en_US": "These players have been accepted."
+    },
+    {
+      "id": "pl_msg_00000411_00001",
+      "en_US": "Here are the results!"
+    },
+    {
+      "id": "pl_msg_00000411_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s Tap Toy was powered\n",
+        "up to a {STRVAR_6 2, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00003",
+      "en_US": [
+        "Would you like to keep playing\n",
+        "{STRVAR_6 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00004",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000411_00005",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000411_00006",
+      "en_US": [
+        "Someone had to drop out.\n",
+        "The Plaza Game will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00007",
+      "en_US": [
+        "Balloons popped by everyone working\n",
+        "together: {STRVAR_1 51, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00008",
+      "en_US": [
+        "Congratulations!\n",
+        "Everyone’s Tap Toy powered up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00009",
+      "en_US": [
+        "Too bad...\n",
+        "Your Tap Toy did not get powered up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00010",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000411_00011",
+      "en_US": "{STRVAR_1 36, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000411_00012",
+      "en_US": "{STRVAR_1 37, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000411_00013",
+      "en_US": "{STRVAR_1 55, 0, 0} Points"
+    },
+    {
+      "id": "pl_msg_00000411_00014",
+      "en_US": "{STRVAR_1 54, 0, 0} Points"
+    },
+    {
+      "id": "pl_msg_00000411_00015",
+      "en_US": "Waiting for communication..."
+    },
+    {
+      "id": "pl_msg_00000411_00016",
+      "en_US": "{STRVAR_6 0, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000411_00017",
+      "en_US": [
+        "Congratulations!\n",
+        "{STRVAR_1 3, 0, 0} is the winner!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00018",
+      "en_US": "{STRVAR_1 3, 0, 0} failed to win..."
+    },
+    {
+      "id": "pl_msg_00000411_00019",
+      "en_US": [
+        "Your Tap Toy can’t be powered up\n",
+        "anymore."
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00020",
+      "en_US": [
+        "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}’s Tap Toy was powered\n",
+        "up to a {STRVAR_6 2, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00021",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000411_00022",
+      "en_US": [
+        "Congratulations!\n",
+        "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} is the winner!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000411_00023",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} failed to win..."
+    }
+  ]
+}

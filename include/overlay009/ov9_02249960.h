@@ -9,10 +9,13 @@
 
 #include "field_task.h"
 
+#define DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_SIZE 4
+#define DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_MAX  (1 << DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_SIZE)
+
 typedef struct DistWorldPersistedData {
     u32 valid : 1;
     u32 unk_00_1 : 24;
-    u32 unk_00_25 : 4;
+    u32 currentFloatingPlatformIndex : DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_SIZE;
     u32 padding : 3;
     u16 cameraAngleX;
     u16 cameraAngleY;
@@ -46,11 +49,11 @@ UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1
 BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0);
 void ov9_02250780(FieldSystem *fieldSystem);
 BOOL ov9_02250F74(FieldSystem *fieldSystem);
-BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3);
-BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3);
+BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
+BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3);
 void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3);
-BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, u32 *param4);
+BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior);
 void ov9_02251094(int param0, int *param1, int *param2, int *param3);
 BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3);
 

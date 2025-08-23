@@ -1,0 +1,105 @@
+{
+  "key": 11980,
+  "messages": [
+    {
+      "id": "pl_msg_00000335_00000",
+      "en_US": "Connection List"
+    },
+    {
+      "id": "pl_msg_00000335_00001",
+      "en_US": "Long name"
+    },
+    {
+      "id": "pl_msg_00000335_00002",
+      "en_US": "Delete notation"
+    },
+    {
+      "id": "pl_msg_00000335_00003",
+      "en_US": "Microphone"
+    },
+    {
+      "id": "pl_msg_00000335_00004",
+      "en_US": "Name"
+    },
+    {
+      "id": "pl_msg_00000335_00005",
+      "en_US": "Signature"
+    },
+    {
+      "id": "pl_msg_00000335_00006",
+      "en_US": "Record 8k"
+    },
+    {
+      "id": "pl_msg_00000335_00007",
+      "en_US": "Record 4k"
+    },
+    {
+      "id": "pl_msg_00000335_00008",
+      "en_US": "Record 2k"
+    },
+    {
+      "id": "pl_msg_00000335_00009",
+      "en_US": "Record 1750"
+    },
+    {
+      "id": "pl_msg_00000335_00010",
+      "en_US": "Record 1500"
+    },
+    {
+      "id": "pl_msg_00000335_00011",
+      "en_US": "Record 1250"
+    },
+    {
+      "id": "pl_msg_00000335_00012",
+      "en_US": "Record 1k"
+    },
+    {
+      "id": "pl_msg_00000335_00013",
+      "en_US": "Record 500"
+    },
+    {
+      "id": "pl_msg_00000335_00014",
+      "en_US": "Play"
+    },
+    {
+      "id": "pl_msg_00000335_00015",
+      "en_US": "End"
+    },
+    {
+      "id": "pl_msg_00000335_00016",
+      "en_US": "Wi-Fi"
+    },
+    {
+      "id": "pl_msg_00000335_00017",
+      "en_US": "Create Friend code"
+    },
+    {
+      "id": "pl_msg_00000335_00018",
+      "en_US": "Enter Friend code"
+    },
+    {
+      "id": "pl_msg_00000335_00019",
+      "en_US": "World Trade"
+    },
+    {
+      "id": "pl_msg_00000335_00020",
+      "en_US": "Wi-Fi Tower down"
+    },
+    {
+      "id": "pl_msg_00000335_00021",
+      "en_US": "Day Care 1,000 steps"
+    },
+    {
+      "id": "pl_msg_00000335_00022",
+      "en_US": "Day Care 10,000 steps"
+    },
+    {
+      "id": "pl_msg_00000335_00023",
+      "en_US": "Set Egg"
+    },
+    {
+      "id": "pl_msg_00000335_00024",
+      "en_US": "Hatch Egg"
+    }
+  ]
+}

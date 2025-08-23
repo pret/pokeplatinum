@@ -1,0 +1,425 @@
+{
+  "key": 31012,
+  "messages": [
+    {
+      "id": "pl_msg_00000620_00000",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00001",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00002",
+      "en_US": "a Youngster"
+    },
+    {
+      "id": "pl_msg_00000620_00003",
+      "en_US": "a Lass"
+    },
+    {
+      "id": "pl_msg_00000620_00004",
+      "en_US": "a Camper"
+    },
+    {
+      "id": "pl_msg_00000620_00005",
+      "en_US": "a Picnicker"
+    },
+    {
+      "id": "pl_msg_00000620_00006",
+      "en_US": "a Bug Catcher"
+    },
+    {
+      "id": "pl_msg_00000620_00007",
+      "en_US": "an Aroma Lady"
+    },
+    {
+      "id": "pl_msg_00000620_00008",
+      "en_US": "the Twins"
+    },
+    {
+      "id": "pl_msg_00000620_00009",
+      "en_US": "a Hiker"
+    },
+    {
+      "id": "pl_msg_00000620_00010",
+      "en_US": "a Battle Girl"
+    },
+    {
+      "id": "pl_msg_00000620_00011",
+      "en_US": "a Fisherman"
+    },
+    {
+      "id": "pl_msg_00000620_00012",
+      "en_US": "a Cyclist"
+    },
+    {
+      "id": "pl_msg_00000620_00013",
+      "en_US": "a Cyclist"
+    },
+    {
+      "id": "pl_msg_00000620_00014",
+      "en_US": "a Black Belt"
+    },
+    {
+      "id": "pl_msg_00000620_00015",
+      "en_US": "an Artist"
+    },
+    {
+      "id": "pl_msg_00000620_00016",
+      "en_US": "a ₧₦ Breeder"
+    },
+    {
+      "id": "pl_msg_00000620_00017",
+      "en_US": "a ₧₦ Breeder"
+    },
+    {
+      "id": "pl_msg_00000620_00018",
+      "en_US": "a Cowgirl"
+    },
+    {
+      "id": "pl_msg_00000620_00019",
+      "en_US": "a Jogger"
+    },
+    {
+      "id": "pl_msg_00000620_00020",
+      "en_US": "a Pokéfan"
+    },
+    {
+      "id": "pl_msg_00000620_00021",
+      "en_US": "a Pokéfan"
+    },
+    {
+      "id": "pl_msg_00000620_00022",
+      "en_US": "a Poké Kid"
+    },
+    {
+      "id": "pl_msg_00000620_00023",
+      "en_US": "a Young Couple"
+    },
+    {
+      "id": "pl_msg_00000620_00024",
+      "en_US": "an Ace Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00025",
+      "en_US": "an Ace Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00026",
+      "en_US": "a Waitress"
+    },
+    {
+      "id": "pl_msg_00000620_00027",
+      "en_US": "a Veteran"
+    },
+    {
+      "id": "pl_msg_00000620_00028",
+      "en_US": "a Ninja Boy"
+    },
+    {
+      "id": "pl_msg_00000620_00029",
+      "en_US": "a Dragon Tamer"
+    },
+    {
+      "id": "pl_msg_00000620_00030",
+      "en_US": "a Bird Keeper"
+    },
+    {
+      "id": "pl_msg_00000620_00031",
+      "en_US": "a Double Team"
+    },
+    {
+      "id": "pl_msg_00000620_00032",
+      "en_US": "a Rich Boy"
+    },
+    {
+      "id": "pl_msg_00000620_00033",
+      "en_US": "a Lady"
+    },
+    {
+      "id": "pl_msg_00000620_00034",
+      "en_US": "a Gentleman"
+    },
+    {
+      "id": "pl_msg_00000620_00035",
+      "en_US": "a Socialite"
+    },
+    {
+      "id": "pl_msg_00000620_00036",
+      "en_US": "a Beauty"
+    },
+    {
+      "id": "pl_msg_00000620_00037",
+      "en_US": "a Collector"
+    },
+    {
+      "id": "pl_msg_00000620_00038",
+      "en_US": "a Policeman"
+    },
+    {
+      "id": "pl_msg_00000620_00039",
+      "en_US": "a ₧₦ Ranger"
+    },
+    {
+      "id": "pl_msg_00000620_00040",
+      "en_US": "a ₧₦ Ranger"
+    },
+    {
+      "id": "pl_msg_00000620_00041",
+      "en_US": "a Scientist"
+    },
+    {
+      "id": "pl_msg_00000620_00042",
+      "en_US": "a Swimmer♂"
+    },
+    {
+      "id": "pl_msg_00000620_00043",
+      "en_US": "a Swimmer♀"
+    },
+    {
+      "id": "pl_msg_00000620_00044",
+      "en_US": "a Tuber"
+    },
+    {
+      "id": "pl_msg_00000620_00045",
+      "en_US": "a Tuber"
+    },
+    {
+      "id": "pl_msg_00000620_00046",
+      "en_US": "a Sailor"
+    },
+    {
+      "id": "pl_msg_00000620_00047",
+      "en_US": "a Sis and Bro"
+    },
+    {
+      "id": "pl_msg_00000620_00048",
+      "en_US": "a Ruin Maniac"
+    },
+    {
+      "id": "pl_msg_00000620_00049",
+      "en_US": "a Psychic"
+    },
+    {
+      "id": "pl_msg_00000620_00050",
+      "en_US": "a Psychic"
+    },
+    {
+      "id": "pl_msg_00000620_00051",
+      "en_US": "a PI"
+    },
+    {
+      "id": "pl_msg_00000620_00052",
+      "en_US": "a Guitarist"
+    },
+    {
+      "id": "pl_msg_00000620_00053",
+      "en_US": "an Ace Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00054",
+      "en_US": "an Ace Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00055",
+      "en_US": "a Skier"
+    },
+    {
+      "id": "pl_msg_00000620_00056",
+      "en_US": "a Skier"
+    },
+    {
+      "id": "pl_msg_00000620_00057",
+      "en_US": "a Roughneck"
+    },
+    {
+      "id": "pl_msg_00000620_00058",
+      "en_US": "a Clown"
+    },
+    {
+      "id": "pl_msg_00000620_00059",
+      "en_US": "a Worker"
+    },
+    {
+      "id": "pl_msg_00000620_00060",
+      "en_US": "a School Kid"
+    },
+    {
+      "id": "pl_msg_00000620_00061",
+      "en_US": "a School Kid"
+    },
+    {
+      "id": "pl_msg_00000620_00062",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00063",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00064",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00065",
+      "en_US": "an Elite Four"
+    },
+    {
+      "id": "pl_msg_00000620_00066",
+      "en_US": "an Elite Four"
+    },
+    {
+      "id": "pl_msg_00000620_00067",
+      "en_US": "an Elite Four"
+    },
+    {
+      "id": "pl_msg_00000620_00068",
+      "en_US": "an Elite Four"
+    },
+    {
+      "id": "pl_msg_00000620_00069",
+      "en_US": "a Champion"
+    },
+    {
+      "id": "pl_msg_00000620_00070",
+      "en_US": "a Belle & Pa"
+    },
+    {
+      "id": "pl_msg_00000620_00071",
+      "en_US": "a Rancher"
+    },
+    {
+      "id": "pl_msg_00000620_00072",
+      "en_US": "a Commander"
+    },
+    {
+      "id": "pl_msg_00000620_00073",
+      "en_US": "a Galactic"
+    },
+    {
+      "id": "pl_msg_00000620_00074",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00075",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00076",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00077",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00078",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00079",
+      "en_US": "a Leader"
+    },
+    {
+      "id": "pl_msg_00000620_00080",
+      "en_US": "a Parasol Lady"
+    },
+    {
+      "id": "pl_msg_00000620_00081",
+      "en_US": "a Waiter"
+    },
+    {
+      "id": "pl_msg_00000620_00082",
+      "en_US": "the Interviewers"
+    },
+    {
+      "id": "pl_msg_00000620_00083",
+      "en_US": "a Cameraman"
+    },
+    {
+      "id": "pl_msg_00000620_00084",
+      "en_US": "a Reporter"
+    },
+    {
+      "id": "pl_msg_00000620_00085",
+      "en_US": "an Idol"
+    },
+    {
+      "id": "pl_msg_00000620_00086",
+      "en_US": "a Galactic Boss"
+    },
+    {
+      "id": "pl_msg_00000620_00087",
+      "en_US": "a Commander"
+    },
+    {
+      "id": "pl_msg_00000620_00088",
+      "en_US": "a Commander"
+    },
+    {
+      "id": "pl_msg_00000620_00089",
+      "en_US": "a Galactic"
+    },
+    {
+      "id": "pl_msg_00000620_00090",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00091",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00092",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00093",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00094",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00095",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00096",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00097",
+      "en_US": "a Tower Tycoon"
+    },
+    {
+      "id": "pl_msg_00000620_00098",
+      "en_US": "a Maid"
+    },
+    {
+      "id": "pl_msg_00000620_00099",
+      "en_US": "a Hall Matron"
+    },
+    {
+      "id": "pl_msg_00000620_00100",
+      "en_US": "a Factory Head"
+    },
+    {
+      "id": "pl_msg_00000620_00101",
+      "en_US": "an Arcade Star"
+    },
+    {
+      "id": "pl_msg_00000620_00102",
+      "en_US": "a Castle Valet"
+    },
+    {
+      "id": "pl_msg_00000620_00103",
+      "en_US": "a ₧₦ Trainer"
+    },
+    {
+      "id": "pl_msg_00000620_00104",
+      "en_US": "a ₧₦ Trainer"
+    }
+  ]
+}

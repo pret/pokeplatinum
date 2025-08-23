@@ -1,0 +1,27 @@
+{
+  "key": 25646,
+  "messages": [
+    {
+      "id": "pl_msg_00000588_00000",
+      "en_US": [
+        "I must bear down and train...\n",
+        "And for that, time is unimportant.\r",
+        "Therefore, I have no need for\n",
+        "a watch. Take this from me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000588_00001",
+      "en_US": [
+        "Analog or digital: which kind of watch\n",
+        "do you prefer?\r",
+        "Personally, I like using an hourglass\n",
+        "myself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000588_00002",
+      "en_US": "HAPPINY: Pinny haaa!"
+    }
+  ]
+}

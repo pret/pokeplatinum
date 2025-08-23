@@ -6,6 +6,8 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 
+#define RESOURCE_NONE -1
+
 typedef struct ResdatTableEntry {
     u32 charResourceID;
     u32 plttResourceID;

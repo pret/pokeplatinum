@@ -1,0 +1,41 @@
+{
+  "key": 54322,
+  "messages": [
+    {
+      "id": "pl_msg_00000186_00000",
+      "en_US": [
+        "Well, well.\r",
+        "You’re quite the adorable Trainer,\n",
+        "but you’ve also got a spine.\r",
+        "Ahaha!\n",
+        "I’m Bertha.\r",
+        "I have a preference for Ground-type\n",
+        "Pokémon.\r",
+        "Well, would you show this old lady\n",
+        "how much you’ve learned?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000186_00001",
+      "en_US": [
+        "You’re quite something, youngster.\r",
+        "I like how you and your Pokémon\n",
+        "earned the win by working as one.\r",
+        "That’s what makes you so strong.\r",
+        "Ahahaha! I think that you can\n",
+        "go as far as you want."
+      ]
+    },
+    {
+      "id": "pl_msg_00000186_00002",
+      "en_US": [
+        "The Trainer in the next room is a\n",
+        "much more formidable opponent.\r",
+        "You really must have your wits\n",
+        "about you.\r",
+        "However, I think you can go as far\n",
+        "as you desire. Ahahaha!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "key": 46115,
+  "messages": [
+    {
+      "id": "PalPark_Text_WouldYouLikeToRetireFromYourCatchingShow",
+      "en_US": [
+        "You haven’t caught all your\n",
+        "Pokémon yet, but...\r",
+        "Would you like to retire from your\n",
+        "Catching Show?"
+      ]
+    },
+    {
+      "id": "PalPark_Text_ISeeImDisappointedThatYouDroppedOut",
+      "en_US": [
+        "I see...\r",
+        "I’m disappointed that you dropped\n",
+        "out. Make up for it next time!\r"
+      ]
+    },
+    {
+      "id": "PalPark_Text_ThatTheSpirit_Male",
+      "en_US": [
+        "That’s the spirit, {STRVAR_1 3, 0, 0}!\n",
+        "I like how you don’t give up!"
+      ]
+    },
+    {
+      "id": "PalPark_Text_ThatTheSpirit_Female",
+      "en_US": [
+        "That’s the spirit, {STRVAR_1 3, 0, 0}!\n",
+        "I like how you don’t give up!"
+      ]
+    },
+    {
+      "id": "PalPark_Text_Unused_00004",
+      "garbage": 36
+    },
+    {
+      "id": "PalPark_Text_DingDongCongratulations",
+      "en_US": [
+        "Ding-dong!\n",
+        "Congratulations!\r",
+        "{STRVAR_1 3, 0, 0} has successfully\n",
+        "caught the stocked Pokémon!\r"
+      ]
+    },
+    {
+      "id": "PalPark_Text_Unused_00006",
+      "garbage": 37
+    },
+    {
+      "id": "PalPark_Text_Unused_00007",
+      "garbage": 39
+    },
+    {
+      "id": "PalPark_Text_WouldYouLikeToRetire",
+      "en_US": "Would you like to retire?"
+    },
+    {
+      "id": "PalPark_Text_LetTheCountdownBegin",
+      "en_US": "Let the countdown begin!"
+    },
+    {
+      "id": "PalPark_Text_Three",
+      "en_US": "Three..."
+    },
+    {
+      "id": "PalPark_Text_Two",
+      "en_US": "Two..."
+    },
+    {
+      "id": "PalPark_Text_One",
+      "en_US": "One..."
+    },
+    {
+      "id": "PalPark_Text_Start",
+      "en_US": "Start!"
+    }
+  ]
+}

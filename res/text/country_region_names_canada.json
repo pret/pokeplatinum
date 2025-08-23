@@ -1,0 +1,61 @@
+{
+  "key": 19873,
+  "messages": [
+    {
+      "id": "pl_msg_00000679_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000679_00001",
+      "en_US": "Alberta"
+    },
+    {
+      "id": "pl_msg_00000679_00002",
+      "en_US": "British Columbia"
+    },
+    {
+      "id": "pl_msg_00000679_00003",
+      "en_US": "Manitoba"
+    },
+    {
+      "id": "pl_msg_00000679_00004",
+      "en_US": "New Brunswick"
+    },
+    {
+      "id": "pl_msg_00000679_00005",
+      "en_US": "Newfoundland and Labrador"
+    },
+    {
+      "id": "pl_msg_00000679_00006",
+      "en_US": "Northwest Territories"
+    },
+    {
+      "id": "pl_msg_00000679_00007",
+      "en_US": "Nova Scotia"
+    },
+    {
+      "id": "pl_msg_00000679_00008",
+      "en_US": "Nunavut"
+    },
+    {
+      "id": "pl_msg_00000679_00009",
+      "en_US": "Ontario"
+    },
+    {
+      "id": "pl_msg_00000679_00010",
+      "en_US": "Prince Edward Island"
+    },
+    {
+      "id": "pl_msg_00000679_00011",
+      "en_US": "Quebec"
+    },
+    {
+      "id": "pl_msg_00000679_00012",
+      "en_US": "Saskatchewan"
+    },
+    {
+      "id": "pl_msg_00000679_00013",
+      "en_US": "Yukon Territory"
+    }
+  ]
+}

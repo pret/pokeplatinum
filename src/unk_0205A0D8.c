@@ -175,7 +175,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
         partyMan->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     param0->unk_04 = partyMan;
 }
 

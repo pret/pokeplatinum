@@ -1,0 +1,953 @@
+{
+  "key": 43554,
+  "messages": [
+    {
+      "id": "pl_msg_00000548_00000",
+      "en_US": "{COLOR 1}Pokémon Platinum{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00001",
+      "en_US": "Credits"
+    },
+    {
+      "id": "pl_msg_00000548_00002",
+      "en_US": "{COLOR 2}Director{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00003",
+      "en_US": "    Takeshi Kawachimaru"
+    },
+    {
+      "id": "pl_msg_00000548_00004",
+      "en_US": "{COLOR 2}Art Director{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00005",
+      "en_US": "    Ken Sugimori"
+    },
+    {
+      "id": "pl_msg_00000548_00006",
+      "en_US": "{COLOR 2}Game Design Leader{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00007",
+      "en_US": "    Tetsuji Ohta"
+    },
+    {
+      "id": "pl_msg_00000548_00008",
+      "en_US": "{COLOR 2}Graphic Leader{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00009",
+      "en_US": "    Hironobu Yoshida"
+    },
+    {
+      "id": "pl_msg_00000548_00010",
+      "en_US": "{COLOR 2}Programming Leader{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00011",
+      "en_US": "    Yoshinori Matsuda"
+    },
+    {
+      "id": "pl_msg_00000548_00012",
+      "en_US": "{COLOR 2}Programming{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00013",
+      "en_US": "    Keita Kagaya"
+    },
+    {
+      "id": "pl_msg_00000548_00014",
+      "en_US": "    Satoshi Nohara"
+    },
+    {
+      "id": "pl_msg_00000548_00015",
+      "en_US": "    Daisuke Goto"
+    },
+    {
+      "id": "pl_msg_00000548_00016",
+      "en_US": "    Tomoya Takahashi"
+    },
+    {
+      "id": "pl_msg_00000548_00017",
+      "en_US": "    Hisashi Sogabe"
+    },
+    {
+      "id": "pl_msg_00000548_00018",
+      "en_US": "    Katsumi Ohno"
+    },
+    {
+      "id": "pl_msg_00000548_00019",
+      "en_US": "    Tetsuya Watanabe"
+    },
+    {
+      "id": "pl_msg_00000548_00020",
+      "en_US": "    Sousuke Tamada"
+    },
+    {
+      "id": "pl_msg_00000548_00021",
+      "en_US": "    Akito Mori"
+    },
+    {
+      "id": "pl_msg_00000548_00022",
+      "en_US": "    Hiroyuki Nakamura"
+    },
+    {
+      "id": "pl_msg_00000548_00023",
+      "en_US": "    Masao Taya"
+    },
+    {
+      "id": "pl_msg_00000548_00024",
+      "en_US": "    Miyuki Iwasawa"
+    },
+    {
+      "id": "pl_msg_00000548_00025",
+      "en_US": "    Nozomu Saito"
+    },
+    {
+      "id": "pl_msg_00000548_00026",
+      "en_US": "    Tomomichi Ohta"
+    },
+    {
+      "id": "pl_msg_00000548_00027",
+      "en_US": "    Satoshi Mitsuhara"
+    },
+    {
+      "id": "pl_msg_00000548_00028",
+      "en_US": "{COLOR 2}Pokémon Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00029",
+      "en_US": "{COLOR 2}{CURSOR_X 86}&{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00030",
+      "en_US": "{COLOR 2}{CURSOR_X 68}Graphic Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00031",
+      "en_US": "    Ken Sugimori"
+    },
+    {
+      "id": "pl_msg_00000548_00032",
+      "en_US": "    Hironobu Yoshida"
+    },
+    {
+      "id": "pl_msg_00000548_00033",
+      "en_US": "    Motofumi Fujiwara"
+    },
+    {
+      "id": "pl_msg_00000548_00034",
+      "en_US": "    Hiroki Fuchino"
+    },
+    {
+      "id": "pl_msg_00000548_00035",
+      "en_US": "    Emi Yoshida"
+    },
+    {
+      "id": "pl_msg_00000548_00036",
+      "en_US": "    HyunJung Lee"
+    },
+    {
+      "id": "pl_msg_00000548_00037",
+      "en_US": "    Satoshi Ohta"
+    },
+    {
+      "id": "pl_msg_00000548_00038",
+      "en_US": "    Takao Unno"
+    },
+    {
+      "id": "pl_msg_00000548_00039",
+      "en_US": "    Kanako Eo"
+    },
+    {
+      "id": "pl_msg_00000548_00040",
+      "en_US": "    Kenkichi Toyama"
+    },
+    {
+      "id": "pl_msg_00000548_00041",
+      "en_US": "    Yusuke Omura"
+    },
+    {
+      "id": "pl_msg_00000548_00042",
+      "en_US": "    Hiroyuki Yagi"
+    },
+    {
+      "id": "pl_msg_00000548_00043",
+      "en_US": "    Hiroyuki Goto"
+    },
+    {
+      "id": "pl_msg_00000548_00044",
+      "en_US": "{COLOR 2}Pokémon Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00045",
+      "en_US": "    Atsuko Nishida"
+    },
+    {
+      "id": "pl_msg_00000548_00046",
+      "en_US": "{COLOR 2}Graphic Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00047",
+      "en_US": "    Kei Hoshiba"
+    },
+    {
+      "id": "pl_msg_00000548_00048",
+      "en_US": "{COLOR 2}Music Composition{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00049",
+      "en_US": "    Hitomi Sato"
+    },
+    {
+      "id": "pl_msg_00000548_00050",
+      "en_US": "    Satoshi Nohara"
+    },
+    {
+      "id": "pl_msg_00000548_00051",
+      "en_US": "    Junichi Masuda"
+    },
+    {
+      "id": "pl_msg_00000548_00052",
+      "en_US": "    Go Ichinose"
+    },
+    {
+      "id": "pl_msg_00000548_00053",
+      "en_US": "{COLOR 2}Sound Effects{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00054",
+      "en_US": "    Satoshi Nohara"
+    },
+    {
+      "id": "pl_msg_00000548_00055",
+      "en_US": "{COLOR 2}Pokémon Voices{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00056",
+      "en_US": "    Go Ichinose"
+    },
+    {
+      "id": "pl_msg_00000548_00057",
+      "en_US": "{COLOR 2}Game Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00058",
+      "en_US": "    Kouji Nishino"
+    },
+    {
+      "id": "pl_msg_00000548_00059",
+      "en_US": "    Hitomi Sato"
+    },
+    {
+      "id": "pl_msg_00000548_00060",
+      "en_US": "    Suguru Nakatsui"
+    },
+    {
+      "id": "pl_msg_00000548_00061",
+      "en_US": "    Hiro Nakamura"
+    },
+    {
+      "id": "pl_msg_00000548_00062",
+      "en_US": "    Toshinobu Matsumiya"
+    },
+    {
+      "id": "pl_msg_00000548_00063",
+      "en_US": "    Shigeki Morimoto"
+    },
+    {
+      "id": "pl_msg_00000548_00064",
+      "en_US": "    Kenji Matsushima"
+    },
+    {
+      "id": "pl_msg_00000548_00065",
+      "en_US": "    Teruyuki Shimoyamada"
+    },
+    {
+      "id": "pl_msg_00000548_00066",
+      "en_US": "    Tadashi Takahashi"
+    },
+    {
+      "id": "pl_msg_00000548_00067",
+      "en_US": "    Shigeru Ohmori"
+    },
+    {
+      "id": "pl_msg_00000548_00068",
+      "en_US": "    Akihito Tomisawa"
+    },
+    {
+      "id": "pl_msg_00000548_00069",
+      "en_US": "{COLOR 2}Plot Scenario{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00070",
+      "en_US": "    Toshinobu Matsumiya"
+    },
+    {
+      "id": "pl_msg_00000548_00071",
+      "en_US": "    Takeshi Kawachimaru"
+    },
+    {
+      "id": "pl_msg_00000548_00072",
+      "en_US": "    Junichi Masuda"
+    },
+    {
+      "id": "pl_msg_00000548_00073",
+      "en_US": "    Kouji Nishino"
+    },
+    {
+      "id": "pl_msg_00000548_00074",
+      "en_US": "    Shigeru Ohmori"
+    },
+    {
+      "id": "pl_msg_00000548_00075",
+      "en_US": "{COLOR 2}Game Scenario{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00076",
+      "en_US": "    Toshinobu Matsumiya"
+    },
+    {
+      "id": "pl_msg_00000548_00077",
+      "en_US": "    Hitomi Sato"
+    },
+    {
+      "id": "pl_msg_00000548_00078",
+      "en_US": "    Suguru Nakatsui"
+    },
+    {
+      "id": "pl_msg_00000548_00079",
+      "en_US": "    Akihito Tomisawa"
+    },
+    {
+      "id": "pl_msg_00000548_00080",
+      "en_US": "{COLOR 2}Map Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00081",
+      "en_US": "    Suguru Nakatsui"
+    },
+    {
+      "id": "pl_msg_00000548_00082",
+      "en_US": "    Hiro Nakamura"
+    },
+    {
+      "id": "pl_msg_00000548_00083",
+      "en_US": "    Kouji Nishino"
+    },
+    {
+      "id": "pl_msg_00000548_00084",
+      "en_US": "    Tadashi Takahashi"
+    },
+    {
+      "id": "pl_msg_00000548_00085",
+      "en_US": "    Shigeru Ohmori"
+    },
+    {
+      "id": "pl_msg_00000548_00086",
+      "en_US": "    Akihito Tomisawa"
+    },
+    {
+      "id": "pl_msg_00000548_00087",
+      "en_US": "    Teruyuki Shimoyamada"
+    },
+    {
+      "id": "pl_msg_00000548_00088",
+      "en_US": "{COLOR 2}Pokédex Text{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00089",
+      "en_US": "    Toshinobu Matsumiya"
+    },
+    {
+      "id": "pl_msg_00000548_00090",
+      "en_US": "    Kenji Matsushima"
+    },
+    {
+      "id": "pl_msg_00000548_00091",
+      "en_US": "{COLOR 2}Parametric Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00092",
+      "en_US": "    Kouji Nishino"
+    },
+    {
+      "id": "pl_msg_00000548_00093",
+      "en_US": "    Tetsuji Ohta"
+    },
+    {
+      "id": "pl_msg_00000548_00094",
+      "en_US": "    Teruyuki Shimoyamada"
+    },
+    {
+      "id": "pl_msg_00000548_00095",
+      "en_US": "    Shigeki Morimoto"
+    },
+    {
+      "id": "pl_msg_00000548_00096",
+      "en_US": "{COLOR 2}Script Design{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00097",
+      "en_US": "    Satoshi Nohara"
+    },
+    {
+      "id": "pl_msg_00000548_00098",
+      "en_US": "    Miyuki Iwasawa"
+    },
+    {
+      "id": "pl_msg_00000548_00099",
+      "en_US": "    Sousuke Tamada"
+    },
+    {
+      "id": "pl_msg_00000548_00100",
+      "en_US": "    Tomomichi Ohta"
+    },
+    {
+      "id": "pl_msg_00000548_00101",
+      "en_US": "{COLOR 2}Environment & Tool Programming{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00102",
+      "en_US": "    Hisashi Sogabe"
+    },
+    {
+      "id": "pl_msg_00000548_00103",
+      "en_US": "    Sousuke Tamada"
+    },
+    {
+      "id": "pl_msg_00000548_00104",
+      "en_US": "    Hiroyuki Nakamura"
+    },
+    {
+      "id": "pl_msg_00000548_00105",
+      "en_US": "    Akito Mori"
+    },
+    {
+      "id": "pl_msg_00000548_00106",
+      "en_US": "    Masao Taya"
+    },
+    {
+      "id": "pl_msg_00000548_00107",
+      "en_US": "    Miyuki Iwasawa"
+    },
+    {
+      "id": "pl_msg_00000548_00108",
+      "en_US": "    Nagaaki Fukase"
+    },
+    {
+      "id": "pl_msg_00000548_00109",
+      "en_US": "{COLOR 2}Conceptual Art{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00110",
+      "en_US": "    Midori Harada"
+    },
+    {
+      "id": "pl_msg_00000548_00111",
+      "en_US": "{COLOR 2}Nintendo Wi-Fi Connection{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00112",
+      "en_US": "  {COLOR 2}Server System Directors{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00113",
+      "en_US": "    Mikihiro Ishikawa"
+    },
+    {
+      "id": "pl_msg_00000548_00114",
+      "en_US": "    Daisuke Nakamura"
+    },
+    {
+      "id": "pl_msg_00000548_00115",
+      "en_US": "  {COLOR 2}Server System Programming{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00116",
+      "en_US": "    Satoru Nakata"
+    },
+    {
+      "id": "pl_msg_00000548_00117",
+      "en_US": "    Ryo Yamaguchi"
+    },
+    {
+      "id": "pl_msg_00000548_00118",
+      "en_US": "    Haruhiko Imatake"
+    },
+    {
+      "id": "pl_msg_00000548_00119",
+      "en_US": "{COLOR 2}Debug Management{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00120",
+      "en_US": "    Yuuki Tanikawa"
+    },
+    {
+      "id": "pl_msg_00000548_00121",
+      "en_US": "    Kiyoshi Ishibiki"
+    },
+    {
+      "id": "pl_msg_00000548_00122",
+      "en_US": "    Toru Inage"
+    },
+    {
+      "id": "pl_msg_00000548_00123",
+      "en_US": "    Yoshikazu Tanaka"
+    },
+    {
+      "id": "pl_msg_00000548_00124",
+      "en_US": "    Tsuyoshi Komura"
+    },
+    {
+      "id": "pl_msg_00000548_00125",
+      "en_US": "{COLOR 2}NCL Product Testing{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00126",
+      "en_US": "    Super Mario Club"
+    },
+    {
+      "id": "pl_msg_00000548_00127",
+      "en_US": "{COLOR 2}English Localization{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00128",
+      "en_US": "    Yasuhiro Usui"
+    },
+    {
+      "id": "pl_msg_00000548_00129",
+      "en_US": "    Eve Deitsch"
+    },
+    {
+      "id": "pl_msg_00000548_00130",
+      "en_US": "    Mikiko Ryu"
+    },
+    {
+      "id": "pl_msg_00000548_00131",
+      "en_US": "{COLOR 2}Translation{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00132",
+      "en_US": "    Nob Ogasawara"
+    },
+    {
+      "id": "pl_msg_00000548_00133",
+      "en_US": "{COLOR 2}English-Version Editing{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00134",
+      "en_US": "    Kellyn Ballard"
+    },
+    {
+      "id": "pl_msg_00000548_00135",
+      "en_US": "    Blaise Selby"
+    },
+    {
+      "id": "pl_msg_00000548_00136",
+      "en_US": "    Michael G. Ryan"
+    },
+    {
+      "id": "pl_msg_00000548_00137",
+      "en_US": "{COLOR 2}English-Version Artwork{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00138",
+      "en_US": "    Heather Luke"
+    },
+    {
+      "id": "pl_msg_00000548_00139",
+      "en_US": "    Bridget O’Neill"
+    },
+    {
+      "id": "pl_msg_00000548_00140",
+      "en_US": "    Eric Medalle"
+    },
+    {
+      "id": "pl_msg_00000548_00141",
+      "en_US": "{COLOR 2}NOA Localization Coordinators{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00142",
+      "en_US": "    Rie Fujiwara"
+    },
+    {
+      "id": "pl_msg_00000548_00143",
+      "en_US": "    Seth McMahill"
+    },
+    {
+      "id": "pl_msg_00000548_00144",
+      "en_US": "    Joel Simon"
+    },
+    {
+      "id": "pl_msg_00000548_00145",
+      "en_US": "{COLOR 2}NOA Product Testing{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00146",
+      "en_US": "    Masayasu Nakata"
+    },
+    {
+      "id": "pl_msg_00000548_00147",
+      "en_US": "    Kyle Hudson"
+    },
+    {
+      "id": "pl_msg_00000548_00148",
+      "en_US": "    Eric Bush"
+    },
+    {
+      "id": "pl_msg_00000548_00149",
+      "en_US": "    Sean Egan"
+    },
+    {
+      "id": "pl_msg_00000548_00150",
+      "en_US": "    Tomoko Mikami"
+    },
+    {
+      "id": "pl_msg_00000548_00151",
+      "en_US": "    Thomas Hertzog"
+    },
+    {
+      "id": "pl_msg_00000548_00152",
+      "en_US": "    Teresa Lillygren"
+    },
+    {
+      "id": "pl_msg_00000548_00153",
+      "en_US": "    Makiko Szolas"
+    },
+    {
+      "id": "pl_msg_00000548_00154",
+      "en_US": "    Joshua Newman"
+    },
+    {
+      "id": "pl_msg_00000548_00155",
+      "en_US": "    Kathy Huguenard"
+    },
+    {
+      "id": "pl_msg_00000548_00156",
+      "en_US": "    Roger Harrison"
+    },
+    {
+      "id": "pl_msg_00000548_00157",
+      "en_US": "    Patrick Taylor"
+    },
+    {
+      "id": "pl_msg_00000548_00158",
+      "en_US": "    Allen Perez"
+    },
+    {
+      "id": "pl_msg_00000548_00159",
+      "en_US": "    Israel Cruz-Morales"
+    },
+    {
+      "id": "pl_msg_00000548_00160",
+      "en_US": "{COLOR 2}Localization{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00161",
+      "en_US": "    Teruki Murakawa"
+    },
+    {
+      "id": "pl_msg_00000548_00162",
+      "en_US": "    Kimiko Nakamichi"
+    },
+    {
+      "id": "pl_msg_00000548_00163",
+      "en_US": "    Souichi Yamamoto"
+    },
+    {
+      "id": "pl_msg_00000548_00164",
+      "en_US": "    Akira Kinashi"
+    },
+    {
+      "id": "pl_msg_00000548_00165",
+      "en_US": "    Noriko Nakao"
+    },
+    {
+      "id": "pl_msg_00000548_00166",
+      "en_US": "    Haruhiko Imatake"
+    },
+    {
+      "id": "pl_msg_00000548_00167",
+      "en_US": "    Tomoko Nakayama"
+    },
+    {
+      "id": "pl_msg_00000548_00168",
+      "en_US": "    Hironori Ichibayashi"
+    },
+    {
+      "id": "pl_msg_00000548_00169",
+      "en_US": "{COLOR 2}Special Thanks{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00170",
+      "en_US": "    Kenji Tominaga"
+    },
+    {
+      "id": "pl_msg_00000548_00171",
+      "en_US": "    Yoshio Tajiri"
+    },
+    {
+      "id": "pl_msg_00000548_00172",
+      "en_US": "    Teiko Sasaki"
+    },
+    {
+      "id": "pl_msg_00000548_00173",
+      "en_US": "    Mana Ibe"
+    },
+    {
+      "id": "pl_msg_00000548_00174",
+      "en_US": "    Keiko Moritsugu"
+    },
+    {
+      "id": "pl_msg_00000548_00175",
+      "en_US": "    Kazumasa Iwao"
+    },
+    {
+      "id": "pl_msg_00000548_00176",
+      "en_US": "    Reiko Tanoue"
+    },
+    {
+      "id": "pl_msg_00000548_00177",
+      "en_US": "    Katsunori Suginaka"
+    },
+    {
+      "id": "pl_msg_00000548_00178",
+      "en_US": "    Yuichiro Mori"
+    },
+    {
+      "id": "pl_msg_00000548_00179",
+      "en_US": "    Sachiko Hamano"
+    },
+    {
+      "id": "pl_msg_00000548_00180",
+      "en_US": "    Emi Endo"
+    },
+    {
+      "id": "pl_msg_00000548_00181",
+      "en_US": "    Yoshimitsu Inoue"
+    },
+    {
+      "id": "pl_msg_00000548_00182",
+      "en_US": "    Tsubasa Suzuki"
+    },
+    {
+      "id": "pl_msg_00000548_00183",
+      "en_US": "    Hiroyuki Jinnai"
+    },
+    {
+      "id": "pl_msg_00000548_00184",
+      "en_US": "    Kenjiro Ito"
+    },
+    {
+      "id": "pl_msg_00000548_00185",
+      "en_US": "    Tomotaka Komura"
+    },
+    {
+      "id": "pl_msg_00000548_00186",
+      "en_US": "    Susumu Fukunaga"
+    },
+    {
+      "id": "pl_msg_00000548_00187",
+      "en_US": "    Mikiko Ohashi"
+    },
+    {
+      "id": "pl_msg_00000548_00188",
+      "en_US": "    Gaku Susai"
+    },
+    {
+      "id": "pl_msg_00000548_00189",
+      "en_US": "    Toshio Miyahara"
+    },
+    {
+      "id": "pl_msg_00000548_00190",
+      "en_US": "    Masami Tanaka"
+    },
+    {
+      "id": "pl_msg_00000548_00191",
+      "en_US": "    Kenichi Arai"
+    },
+    {
+      "id": "pl_msg_00000548_00192",
+      "en_US": "    Koichi Kawase"
+    },
+    {
+      "id": "pl_msg_00000548_00193",
+      "en_US": "    Michiko Takizawa"
+    },
+    {
+      "id": "pl_msg_00000548_00194",
+      "en_US": "    Ayako Kajiwara"
+    },
+    {
+      "id": "pl_msg_00000548_00195",
+      "en_US": "    Mitsuyo Matsunaga"
+    },
+    {
+      "id": "pl_msg_00000548_00196",
+      "en_US": "    Ryosuke Hanawa"
+    },
+    {
+      "id": "pl_msg_00000548_00197",
+      "en_US": "    Yuichiro Tsumita"
+    },
+    {
+      "id": "pl_msg_00000548_00198",
+      "en_US": "    Shinya Iida"
+    },
+    {
+      "id": "pl_msg_00000548_00199",
+      "en_US": "    Kenji Okubo"
+    },
+    {
+      "id": "pl_msg_00000548_00200",
+      "en_US": "    Mike Fukuda"
+    },
+    {
+      "id": "pl_msg_00000548_00201",
+      "en_US": "    Jeff Miller"
+    },
+    {
+      "id": "pl_msg_00000548_00202",
+      "en_US": "    Nicola Wright"
+    },
+    {
+      "id": "pl_msg_00000548_00203",
+      "en_US": "    Mindy Bannan"
+    },
+    {
+      "id": "pl_msg_00000548_00204",
+      "en_US": "    Jan Riggs"
+    },
+    {
+      "id": "pl_msg_00000548_00205",
+      "en_US": "    Andy Fey"
+    },
+    {
+      "id": "pl_msg_00000548_00206",
+      "en_US": "    Michaël Hugot"
+    },
+    {
+      "id": "pl_msg_00000548_00207",
+      "en_US": "    Alexander Meng"
+    },
+    {
+      "id": "pl_msg_00000548_00208",
+      "en_US": "    Zakir Rahman"
+    },
+    {
+      "id": "pl_msg_00000548_00209",
+      "en_US": "    Colin Farrell"
+    },
+    {
+      "id": "pl_msg_00000548_00210",
+      "en_US": "    Anthony Howitt"
+    },
+    {
+      "id": "pl_msg_00000548_00211",
+      "en_US": "    Atsushi Okada"
+    },
+    {
+      "id": "pl_msg_00000548_00212",
+      "en_US": "{COLOR 2}Information Supervisors{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00213",
+      "en_US": "    Yuri Sakurai"
+    },
+    {
+      "id": "pl_msg_00000548_00214",
+      "en_US": "    Naoko Yanase"
+    },
+    {
+      "id": "pl_msg_00000548_00215",
+      "en_US": "    Yufuko Saito"
+    },
+    {
+      "id": "pl_msg_00000548_00216",
+      "en_US": "    Hiromi Sagawa"
+    },
+    {
+      "id": "pl_msg_00000548_00217",
+      "en_US": "{COLOR 2}Artwork{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00218",
+      "en_US": "    Sachiko Nakamichi"
+    },
+    {
+      "id": "pl_msg_00000548_00219",
+      "en_US": "    Kiyomi Itani"
+    },
+    {
+      "id": "pl_msg_00000548_00220",
+      "en_US": "    Keiko Uetani"
+    },
+    {
+      "id": "pl_msg_00000548_00221",
+      "en_US": "{COLOR 2}Coordinators{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00222",
+      "en_US": "    Shunsuke Kohori"
+    },
+    {
+      "id": "pl_msg_00000548_00223",
+      "en_US": "    Kazuki Yoshihara"
+    },
+    {
+      "id": "pl_msg_00000548_00224",
+      "en_US": "    Hideaki Araki"
+    },
+    {
+      "id": "pl_msg_00000548_00225",
+      "en_US": "{COLOR 2}Producers{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00226",
+      "en_US": "    Junichi Masuda"
+    },
+    {
+      "id": "pl_msg_00000548_00227",
+      "en_US": "    Shusaku Egami"
+    },
+    {
+      "id": "pl_msg_00000548_00228",
+      "en_US": "    Hitoshi Yamagami"
+    },
+    {
+      "id": "pl_msg_00000548_00229",
+      "en_US": "    Hiroaki Tsuru"
+    },
+    {
+      "id": "pl_msg_00000548_00230",
+      "en_US": "{COLOR 2}Executive Producer{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00231",
+      "en_US": "    Satoshi Tajiri"
+    },
+    {
+      "id": "pl_msg_00000548_00232",
+      "en_US": "{COLOR 2}Executive Producer{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00233",
+      "en_US": "    Satoru Iwata"
+    },
+    {
+      "id": "pl_msg_00000548_00234",
+      "en_US": "{COLOR 2}Executive Producer{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000548_00235",
+      "en_US": "    Tsunekaz Ishihara"
+    },
+    {
+      "id": "pl_msg_00000548_00236",
+      "en_US": "FIN"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": 2963,
+  "messages": [
+    {
+      "id": "pl_msg_00000183_00000",
+      "en_US": [
+        "The objective is to reach the Pokémon\n",
+        "League.\r",
+        "Stay focused and never lose sight of\n",
+        "that goal.\r",
+        "It will sustain you as you fight through\n",
+        "the long and arduous Victory Road."
+      ]
+    },
+    {
+      "id": "pl_msg_00000183_00001",
+      "en_US": [
+        "Victory Road confuses me.\n",
+        "I should draw up a map."
+      ]
+    }
+  ]
+}

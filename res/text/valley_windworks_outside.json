@@ -1,0 +1,96 @@
+{
+  "key": 51110,
+  "messages": [
+    {
+      "id": "pl_msg_00000224_00000",
+      "en_US": [
+        "Don’t you dare go into the Valley\n",
+        "Windworks.\r",
+        "I got ordered to keep everyone out\n",
+        "if they’re not part of Team Galactic.\r",
+        "You’re giving me a look that makes\n",
+        "me think you’re gonna try to get in.\r",
+        "OK, then.\n",
+        "You’ll have to battle me for it!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00001",
+      "en_US": [
+        "Isn’t that just great.\n",
+        "Getting owned by some kid.\r",
+        "But you can’t do a thing if I lock\n",
+        "myself in with my Works Key!\r",
+        "That’s right, the other Works Key’s\n",
+        "not here!\r",
+        "My cohorts in the flower patch have\n",
+        "the only other one!\r",
+        "Hahaha! In that sense, I’m no longer\n",
+        "the loser!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00002",
+      "en_US": [
+        "Looker: Ah, yes.\n",
+        "It is you, yes.\r",
+        "I have heard that the Team Galactic\n",
+        "appeared at this power plant.\r",
+        "I have, therefore, come running.\n",
+        "So, the Team Galactic. Where are they?\r",
+        "...\r",
+        "You have run them off, you say?\n",
+        "You are a Trainer, but...?\r",
+        "Very well!\n",
+        "I shall go investigate inside!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00003",
+      "en_US": [
+        "Looker: Magnificent! Yes, it is!\n",
+        "What you have said, it is all true!\r",
+        "Superb! Though you are young, you are\n",
+        "a Trainer through and through!\r",
+        "Very well!\n",
+        "I shall pursue the culprits!\r",
+        "I have received tips that the Team\n",
+        "Galactic hideout is in Eterna City.\r",
+        "To there, I must be off!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00004",
+      "en_US": "Ker-chunk!\r"
+    },
+    {
+      "id": "pl_msg_00000224_00005",
+      "en_US": "It’s locked from inside!"
+    },
+    {
+      "id": "pl_msg_00000224_00006",
+      "en_US": [
+        "It’s locked from inside!\r",
+        "Use the Works Key?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00007",
+      "en_US": [
+        "Ker-chunk!\r",
+        "The door to Valley Windworks opened!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000224_00008",
+      "en_US": "Floooooon!\r"
+    },
+    {
+      "id": "pl_msg_00000224_00009",
+      "en_US": [
+        "Valley Windworks\n",
+        "Ecological, Wind-Driven Energy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "key": 20273,
+  "messages": [
+    {
+      "id": "pl_msg_00000570_00000",
+      "en_US": [
+        "I’m going to dress up my Pokémon with\n",
+        "cute Accessories and take it to the\f",
+        "TV station in Jubilife City.\r",
+        "That way, everyone in the region\n",
+        "will be able to see my Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000570_00001",
+      "en_US": [
+        "You can’t buy Berries or Accessories\n",
+        "at Poké Marts.\r",
+        "It’s better for me that way.\n",
+        "I won’t waste money impulse shopping."
+      ]
+    }
+  ]
+}

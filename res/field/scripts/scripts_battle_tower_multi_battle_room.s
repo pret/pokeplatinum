@@ -35,13 +35,13 @@ _008E:
     End
 
 _0090:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     ScrCmd_06B 8, 0, 0
     Return
 
 _009E:
-    ScrCmd_187 2, 5, 0, 5, 3
-    ScrCmd_187 3, 5, 0, 6, 3
+    SetPosition 2, 5, 0, 5, 3
+    SetPosition 3, 5, 0, 6, 3
     GoTo _008E
     End
 
@@ -151,9 +151,9 @@ _025B:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 0
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0

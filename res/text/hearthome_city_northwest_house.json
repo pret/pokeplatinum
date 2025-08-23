@@ -1,0 +1,92 @@
+{
+  "key": 33858,
+  "messages": [
+    {
+      "id": "pl_msg_00000126_00000",
+      "en_US": [
+        "Hiya!\n",
+        "Oh, you’re a Trainer!\r",
+        "That means you’re using Pokémon Boxes!\n",
+        "I love meeting end users!\r",
+        "Oh, what’s up?\n",
+        "Why that astonished look?\r",
+        "Oh, right, sorry!\n",
+        "There I go running my mouth again!\r",
+        "My name’s Bebe!\r",
+        "You know the PC Pokémon Boxes?\n",
+        "I’m the system administrator!\r",
+        "I know this is out of the blue, but do\n",
+        "you want a Pokémon named EEVEE?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00001",
+      "en_US": [
+        "Bebe: So, how about it?\n",
+        "Do you want that Pokémon EEVEE?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00002",
+      "en_US": [
+        "Bebe: Here you go!\r",
+        "That EEVEE, I got it from a good friend\n",
+        "in Johto who has a whole lot of them.\r",
+        "Who knows how many EEVEE he’s raised\n",
+        "over the years.\r",
+        "Sorry, that doesn’t mean anything to\n",
+        "you.\r",
+        "Please, be good to it!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00003",
+      "en_US": "{STRVAR_1 3, 0, 0} accepted the EEVEE!\r"
+    },
+    {
+      "id": "pl_msg_00000126_00004",
+      "en_US": [
+        "Would you like to give a nickname\n",
+        "to the EEVEE that Bebe gave you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00005",
+      "en_US": [
+        "Bebe: Here you go!\r",
+        "Wait, I can’t do that! You can’t take\n",
+        "any more Pokémon with you!\r",
+        "Right about now, my Pokémon Boxes\n",
+        "come in handy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00006",
+      "en_US": [
+        "Bebe: Oh, OK...\n",
+        "Guess I’ll have to raise it myself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00007",
+      "en_US": [
+        "Bebe: My buddy Bill developed the\n",
+        "basic Pokémon Box storage system.\r",
+        "I tinkered with it here and there to\n",
+        "make it easier to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000126_00008",
+      "en_US": [
+        "Bebe: Oh? Now that’s a National Pokédex\n",
+        "I’m seeing. Good for you!\r",
+        "You’ll be using my Pokémon Boxes a\n",
+        "whole lot more if you’ve got that.\r",
+        "Well, I always thought a good Trainer\n",
+        "ought to juggle Boxes smartly, though.\f",
+        "I shouldn’t be the one to say so."
+      ]
+    }
+  ]
+}
