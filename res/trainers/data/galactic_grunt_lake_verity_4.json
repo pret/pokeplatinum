@@ -25,5 +25,28 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"If this mission is successful, we\n",
+				"will get a nice bonus.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"There goes our bonus...\n",
+				"This is an epic tragedy...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I want Team Galactic to become\n",
+				"powerful. That is all I want.\n"
+			]
+		}
     ]
 }

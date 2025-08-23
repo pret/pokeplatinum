@@ -25,5 +25,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"So, listen. Tell me you’ve grown to\n",
+				"like bug Pokémon since we last met.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’m not going to be able to explain\n",
+				"the charms of bug Pokémon this way!\n"
+			]
+		}
     ]
 }

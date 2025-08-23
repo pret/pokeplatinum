@@ -16,5 +16,37 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’re a Pokémon Trainer, and so am I!\n",
+				"Our eyes met, so battle we must!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Too strong!\n",
+				"Too strong!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Don’t be shy about talking to\n",
+				"Trainers you’d like to battle.\r",
+				"Pokémon grow stronger and stronger\n",
+				"from battling."
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Did you get better since we met?\n",
+				"I... Well, here, just look!\r"
+			]
+		}
     ]
 }

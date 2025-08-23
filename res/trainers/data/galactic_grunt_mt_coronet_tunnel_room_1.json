@@ -34,5 +34,26 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I can’t believe you chased me here...\n",
+				"OK, let’s see how tough you are.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Where do you get that power?!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Mt. Coronet...\r",
+				"I might be just a grunt, but even I\n",
+				"can tell it has a weird energy!\n"
+			]
+		}
     ]
 }

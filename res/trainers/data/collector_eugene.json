@@ -16,5 +16,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I don’t care if I lose.\n",
+				"I’m still a happy guy.\n"
+			]
+		}
     ]
 }

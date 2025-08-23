@@ -34,5 +34,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I let my bird Pokémon do as they\n",
+				"wish. And so, we train here daily!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Sheesh... I arrive in a new place and\n",
+				"it turns out to be the Battle Zone...\n"
+			]
+		}
     ]
 }

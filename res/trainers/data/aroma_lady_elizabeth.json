@@ -20,5 +20,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I love Pokémon that smell sweet.\n",
+				"Like this one--get a whiff of this!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Did you understand what I meant?\n",
+				"Didn’t my Pokémon smell nice?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If you plant lots of Berries, you\n",
+				"can be surrounded by sweet scents.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Sniff... Oh?\n",
+				"Your Pokémon smells nice!\r"
+			]
+		}
     ]
 }

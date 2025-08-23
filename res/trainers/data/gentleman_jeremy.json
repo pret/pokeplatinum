@@ -18,5 +18,37 @@
             "power": 0,
             "ball_seal": 22
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"If it pleases you, may I challenge you\n",
+				"to a battle?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Bravo! Your technique is impeccable\n",
+				"for someone so young.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Hahaha! I was invited by the master of\n",
+				"the Pokémon Mansion.\r",
+				"He’s promised to show me through\n",
+				"his prized garden of Pokémon.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"If it pleases you, would you care for\n",
+				"a rematch with me?\r"
+			]
+		}
     ]
 }

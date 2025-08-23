@@ -27,5 +27,32 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Protect the natural environment.\n",
+				"That’s what we Rangers do!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "We’ve got to get tougher than this..."
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I love how natural it is here.\n",
+				"I wish I could live out here.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What do you think? The environment\n",
+				"is unharmed in this area.\r"
+			]
+		}
     ]
 }

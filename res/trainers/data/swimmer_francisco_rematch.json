@@ -34,5 +34,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"It’s me again! The harsh sea here\n",
+				"should have toughened me up!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The world remains as harsh as\n",
+				"ever...\n"
+			]
+		}
     ]
 }

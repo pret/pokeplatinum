@@ -16,5 +16,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"How is this madness possible?\n",
+				"The two of us, losing to children?\n"
+			]
+		}
     ]
 }

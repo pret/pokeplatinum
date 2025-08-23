@@ -20,5 +20,11 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "My luck’s run out...\n"
+		}
     ]
 }

@@ -82,5 +82,22 @@
             "power": 200,
             "ball_seal": 14
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"You methodically corner me!\n",
+				"Just like before!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I even felt thrilled during our\n",
+				"match.\r",
+				"That was a very good battle.\n"
+			]
+		}
     ]
 }

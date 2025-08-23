@@ -25,5 +25,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I love my inflatable tube.\n",
+				"So I admire jellyfish Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’m drifting away...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I wish Professor Rowan would\n",
+				"give me a Pokédex.\r",
+				"But that old guy looks kind of\n",
+				"scary.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I love my inflatable tube.\n",
+				"So I admire jellyfish Pokémon.\r",
+				"Won’t you hang out with us and just\n",
+				"bob around on the waves?\r"
+			]
+		}
     ]
 }

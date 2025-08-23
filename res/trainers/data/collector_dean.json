@@ -25,5 +25,42 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m proud of my Pokémon!\n",
+				"Here, I’ll show you why!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Youch! You sure showed me how tough\n",
+				"you were.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oh, what have we here?\n",
+				"That’s a Pokédex!\r",
+				"It records Pokémon data upon\n",
+				"sight? I’ve never seen one before!\r",
+				"I heard you can move the sun or\n",
+				"moon icon to check the Pokémon\f",
+				"habitat map by time of day!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I take down details in my notebook\n",
+				"about Pokémon I’ve battled.\r",
+				"I’ll write more data down about your\n",
+				"Pokémon!\r"
+			]
+		}
     ]
 }

@@ -65,5 +65,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"Oh, yeah?\n",
+				"I’ll show you something wicked, too!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"What the?! We’re in trouble?!\n",
+				"But there’s no giving up on me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just happened?!\n",
+				"You’re telling me I lost?!\n"
+			]
+		}
     ]
 }

@@ -18,5 +18,19 @@
             "power": 50,
             "ball_seal": 17
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You again?\r",
+				"You must really like that dragon\n",
+				"Pokémon I use.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Oh... My... Gosh...\n"
+		}
     ]
 }

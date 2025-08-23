@@ -26,5 +26,29 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Judo chop!\n",
+				"Pokémon battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wrroar!\n",
+				"Judo chop defeated!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ll forget that we lost!\r",
+				"...Wait, if I did that, we’d never\n",
+				"learn from our mistakes...\n"
+			]
+		}
     ]
 }

@@ -51,5 +51,14 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...!\n",
+				"Again and again...\n"
+			]
+		}
     ]
 }

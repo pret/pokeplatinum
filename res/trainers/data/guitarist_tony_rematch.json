@@ -25,5 +25,22 @@
             "power": 0,
             "ball_seal": 18
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Rock ’n’ roll!\n",
+				"We’ll beat it out again!\f",
+				"Our rhythm of battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Can you hear it?\n",
+				"That’s my guitar weeping...\n"
+			]
+		}
     ]
 }

@@ -37,5 +37,28 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Eek! That’s so bright!\r",
+				"Surprise attack!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your strength is dazzling!\n",
+				"I have to shield my eyes!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m going over the reasons why I\n",
+				"lost. That way, I’ll win next time.\n"
+			]
+		}
     ]
 }

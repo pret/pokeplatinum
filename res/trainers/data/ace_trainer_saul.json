@@ -23,5 +23,35 @@
             "power": 50,
             "ball_seal": 12
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ve got the urge to battle with you.\n",
+				"Hope you’re willing to oblige!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I shouldn’t have paid attention\n",
+				"to my urge...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"So long as my partner’s alongside me,\n",
+				"I’m willing to take on the world!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"The urge to battle you again has\n",
+				"struck me. Want to humor me?\r"
+			]
+		}
     ]
 }

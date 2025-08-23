@@ -25,5 +25,29 @@
             "power": 0,
             "ball_seal": 20
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+			"en_US": [
+				"Teri: Yay! We’re gonna battle with\n",
+				"lots of Pokémon again!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": "Teri: Even with both of us we lost.\n"
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+			"en_US": [
+				"Tia: Yay! We’re gonna have another\n",
+				"battle with three Trainers!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": "Tia: We two couldn’t win.\n"
+		}
     ]
 }

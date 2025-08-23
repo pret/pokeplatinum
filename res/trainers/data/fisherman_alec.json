@@ -25,5 +25,34 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hi, traveler!\n",
+				"How would you like to battle?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve bested this fisherman traveler.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I like to fish.\n",
+				"You’re a traveler.\r",
+				"Farewell, until we meet again!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, traveler!\r",
+				"I’ve forgotten your name, but we’ve\n",
+				"battled before, haven’t we?\r"
+			]
+		}
     ]
 }

@@ -18,5 +18,37 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I don’t care who you are--no one\n",
+				"interferes with my treasure hunting!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"My Pokémon!\n",
+				"My treasures!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I heard there’s an intriguing stone\n",
+				"monument around, so I came running.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m still here...and still searching\n",
+				"for treasures.\r",
+				"However, a battle with you\n",
+				"is a treasure I can’t pass up!\r"
+			]
+		}
     ]
 }

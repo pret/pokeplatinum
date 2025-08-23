@@ -51,5 +51,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We’re all good to go!\n",
+				"We just have to battle now!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Aww...\n",
+				"I’m out of useful items!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"We came completely unprepared for\n",
+				"this little adventure...\n"
+			]
+		}
     ]
 }

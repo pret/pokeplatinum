@@ -35,5 +35,68 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Al: I intend to perfect my Double\n",
+				"Battle technique.\r",
+				"That will make me better all around.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"Al: You! You’re an expert\n",
+				"double battler, too!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Al: Your mastery over several\n",
+				"Pokémon at once...\r",
+				"You’re a remarkable Trainer!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Al: You have but one Pokémon?\r",
+				"I would say that you are taking\n",
+				"Victory Road too lightly, kid.\n"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Kay: I want to improve my doubles\n",
+				"technique as much as I can.\r",
+				"That will improve me as a Trainer.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": [
+				"Kay: My goodness!\n",
+				"You’re great at doubles, too!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Kay: Depending on the combinations,\n",
+				"every kind of Pokémon can excel.\r",
+				"At least, that’s what I think.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Kay: You’re really going through\n",
+				"Victory Road with only one Pokémon?\n"
+			]
+		}
     ]
 }

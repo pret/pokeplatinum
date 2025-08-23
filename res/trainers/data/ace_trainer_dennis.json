@@ -51,5 +51,39 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ll take on anyone!\n",
+				"It can only make me stronger!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You won and I lost, but the both of\n",
+				"us gained something from this.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"In a Pokémon battle, it doesn’t\n",
+				"matter how old or young you are.\r",
+				"Your gender doesn’t matter, either.\n",
+				"Nothing like that means anything!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ll battle against people who’ve\n",
+				"beaten me again and again.\r",
+				"By doing that, we both grow a little\n",
+				"as Trainers.\r"
+			]
+		}
     ]
 }

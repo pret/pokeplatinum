@@ -51,5 +51,23 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Your young power against my veteran\n",
+				"technique...\r",
+				"Let us battle again to see who wins\n",
+				"this time!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The power of youth...\n",
+				"It’s startling.\n"
+			]
+		}
     ]
 }

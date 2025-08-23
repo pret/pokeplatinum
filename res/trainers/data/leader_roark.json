@@ -50,5 +50,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Think you can take down the \n",
+				"next Pokémon like you did earlier?\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"No way! Not yet!\n",
+				"Not giving up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"W-what? That can’t be!\n",
+				"My buffed-up Pokémon!\n"
+			]
+		}
     ]
 }

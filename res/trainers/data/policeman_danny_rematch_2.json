@@ -25,5 +25,18 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Whoa! Hold it right there!\n",
+				"I’ve spotted a sneaky Trainer!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Beaten by sneakiness again...\n"
+		}
     ]
 }

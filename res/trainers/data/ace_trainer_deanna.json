@@ -37,5 +37,39 @@
             "power": 50,
             "ball_seal": 19
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Worthy opponents... The search for\n",
+				"them drives me to travel far.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’ve certainly found a tough\n",
+				"adversary in you...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"How much you believe in your\n",
+				"Pokémon...\r",
+				"That’s a critical factor in how a\n",
+				"battle will turn out.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We’ve faced many challengers since\n",
+				"we met, but they were all weak...\r",
+				"I relish the tough resistance that\n",
+				"only you can provide!\r"
+			]
+		}
     ]
 }

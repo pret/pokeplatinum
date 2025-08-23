@@ -27,5 +27,25 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Learning how to manage tough Pokémon\n",
+				"is the shortcut to getting tough.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I lost? But how is that possible?!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Getting the best out of any Pokémon...\n",
+				"That’s what makes a good Trainer...\n"
+			]
+		}
     ]
 }

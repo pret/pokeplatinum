@@ -23,5 +23,21 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little again?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, boo!\n",
+				"How insulting!\n"
+			]
+		}
     ]
 }

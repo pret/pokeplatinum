@@ -35,5 +35,69 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Pat: It’s a doubles team of aces!\n",
+				"We’re gonna overwhelm you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"Pat: You and your Pokémon will gain\n",
+				"power by helping each other out.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Pat: The combination of you and\n",
+				"your awesome Pokémon...\r",
+				"It’s the ultimate tag team!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Pat: If you don’t mind, we’re hoping\n",
+				"for some two-on-two battle action.\n"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Jo: We form a combination that’s\n",
+				"in perfect sync!\r",
+				"How do you expect to counter that?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": [
+				"Jo: You and your Pokémon make\n",
+				"a beautiful combination!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Jo: Yup, the way you battle is\n",
+				"fantastic!\r",
+				"You should try to take the Elite Four\n",
+				"right now--not later!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Jo: We want to have a battle\n",
+				"without an advantage.\r",
+				"Please come back when you have\n",
+				"at least two Pokémon!\n"
+			]
+		}
     ]
 }

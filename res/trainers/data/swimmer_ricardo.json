@@ -16,5 +16,34 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"It might not look like it, but I’m\n",
+				"traveling now.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve got the upper hand on me.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"But you can be sure that there will\n",
+				"be bigger challenges in front of you.\r",
+				"Go! Go as far as you can! You alone can\n",
+				"broaden your horizons.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m still on my journey...\n",
+				"Let’s have a battle!\r"
+			]
+		}
     ]
 }

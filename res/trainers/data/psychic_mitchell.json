@@ -26,5 +26,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’d sensed the presence of a\n",
+				"Trainer for a while. It was you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Defeating you will be no easy matter.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Is it possible to become more\n",
+				"powerful by understanding Pokémon?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I was certain that you’d return.\n",
+				"I sensed your presence, you see.\r"
+			]
+		}
     ]
 }

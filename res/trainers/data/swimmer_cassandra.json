@@ -25,5 +25,41 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Did you know, I was crowned the\n",
+				"champion of a swimsuit contest!\r",
+				"So now, I’m trying to win a title\n",
+				"at a Pokémon Contest!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’m speechless!\n",
+				"I never lose when I’m in my swimsuit!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I shouldn’t be worried about what bikini\n",
+				"to wear.\r",
+				"The first thing to do is consider what\n",
+				"Pokémon I should be using!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m so wonderful, I won a swimsuit\n",
+				"contest.\r",
+				"I’m going to take you on so that I can\n",
+				"win a Pokémon Contest!\r"
+			]
+		}
     ]
 }
