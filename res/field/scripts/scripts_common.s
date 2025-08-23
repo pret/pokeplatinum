@@ -10,7 +10,7 @@
     CommonScriptEntry _03E8
     CommonScriptEntry _043B
     CommonScriptEntry _0479
-    CommonScriptEntry CommonScript_SaveGame
+    CommonScriptEntry SaveGame
     CommonScriptEntry EmptyScript2
     CommonScriptEntry _05EA
     CommonScriptEntry ObtainPoketchApp
@@ -337,7 +337,7 @@ LabelCommonEntryScript _048B:
     CloseMessage
     End
 
-LabelCommonEntryScript CommonScript_SaveGame:
+LabelCommonEntryScript SaveGame:
     SetFlag FLAG_SAVE_EXTRA_BLOCK
     Call CommonScript_SaveGame_Dialog
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
