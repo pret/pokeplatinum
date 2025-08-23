@@ -16,5 +16,15 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"My Pokémon can’t be faulted with\n",
+				"anything.\r",
+				"Your brilliance carried the day.\n"
+			]
+		}
     ]
 }

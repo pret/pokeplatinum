@@ -11,6 +11,7 @@ class MessagesEncoder : public MessagesConverter
 
     void ReadMessagesFromText(string& filename);
     void ReadMessagesFromGMM(string& filename);
+    void ReadMessagesFromJson(string& filename);
     void WriteMessagesToBin(string& filename);
     u16string EncodeMessage(const string& message, int & i);
     void CharmapRegisterCharacter(string& code, uint16_t value) override;

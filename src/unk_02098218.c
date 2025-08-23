@@ -242,7 +242,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_00++;
     } break;
     case 4:
-        if (v0->unk_08->unk_14 == 0) {
+        if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
             Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->textInputStr);
 
             {

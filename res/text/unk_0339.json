@@ -1,0 +1,241 @@
+{
+  "key": 20204,
+  "messages": [
+    {
+      "id": "pl_msg_00000339_00000",
+      "en_US": "Script Battle"
+    },
+    {
+      "id": "pl_msg_00000339_00001",
+      "en_US": "Script Contest"
+    },
+    {
+      "id": "pl_msg_00000339_00002",
+      "en_US": "Add 99 Spheres to the Bag"
+    },
+    {
+      "id": "pl_msg_00000339_00003",
+      "en_US": "Add 1 treasure to the Bag"
+    },
+    {
+      "id": "pl_msg_00000339_00004",
+      "en_US": "Add 2 treasures to the Bag"
+    },
+    {
+      "id": "pl_msg_00000339_00005",
+      "en_US": "Friends Max"
+    },
+    {
+      "id": "pl_msg_00000339_00006",
+      "en_US": "Record Max"
+    },
+    {
+      "id": "pl_msg_00000339_00007",
+      "en_US": "Friends Max"
+    },
+    {
+      "id": "pl_msg_00000339_00008",
+      "en_US": "High odds to dig"
+    },
+    {
+      "id": "pl_msg_00000339_00009",
+      "en_US": "Channel"
+    },
+    {
+      "id": "pl_msg_00000339_00010",
+      "en_US": "Mystery"
+    },
+    {
+      "id": "pl_msg_00000339_00011",
+      "en_US": "Quick Battle Client"
+    },
+    {
+      "id": "pl_msg_00000339_00012",
+      "en_US": "Single Client"
+    },
+    {
+      "id": "pl_msg_00000339_00013",
+      "en_US": "Double Client"
+    },
+    {
+      "id": "pl_msg_00000339_00014",
+      "en_US": "Mix Client"
+    },
+    {
+      "id": "pl_msg_00000339_00015",
+      "en_US": "Multi Client"
+    },
+    {
+      "id": "pl_msg_00000339_00016",
+      "en_US": "Multi 2 Client"
+    },
+    {
+      "id": "pl_msg_00000339_00017",
+      "en_US": "Quick Battle Host"
+    },
+    {
+      "id": "pl_msg_00000339_00018",
+      "en_US": "Single Host"
+    },
+    {
+      "id": "pl_msg_00000339_00019",
+      "en_US": "Double Host"
+    },
+    {
+      "id": "pl_msg_00000339_00020",
+      "en_US": "Mix Host"
+    },
+    {
+      "id": "pl_msg_00000339_00021",
+      "en_US": "Multi Host"
+    },
+    {
+      "id": "pl_msg_00000339_00022",
+      "en_US": "Multi 2 Host"
+    },
+    {
+      "id": "pl_msg_00000339_00023",
+      "en_US": "Quick Contest Client"
+    },
+    {
+      "id": "pl_msg_00000339_00024",
+      "en_US": "Quick Contest Host"
+    },
+    {
+      "id": "pl_msg_00000339_00025",
+      "en_US": "Coolness"
+    },
+    {
+      "id": "pl_msg_00000339_00026",
+      "en_US": "Beauty"
+    },
+    {
+      "id": "pl_msg_00000339_00027",
+      "en_US": "Cuteness"
+    },
+    {
+      "id": "pl_msg_00000339_00028",
+      "en_US": "Toughness"
+    },
+    {
+      "id": "pl_msg_00000339_00029",
+      "en_US": "Smartness"
+    },
+    {
+      "id": "pl_msg_00000339_00030",
+      "en_US": "Normal"
+    },
+    {
+      "id": "pl_msg_00000339_00031",
+      "en_US": "Super"
+    },
+    {
+      "id": "pl_msg_00000339_00032",
+      "en_US": "Hard"
+    },
+    {
+      "id": "pl_msg_00000339_00033",
+      "en_US": "Master"
+    },
+    {
+      "id": "pl_msg_00000339_00034",
+      "en_US": "Underground debug"
+    },
+    {
+      "id": "pl_msg_00000339_00035",
+      "en_US": "communication traffic"
+    },
+    {
+      "id": "pl_msg_00000339_00036",
+      "en_US": "{STRVAR_1 52, 0, 0} bytes are being sent every time."
+    },
+    {
+      "id": "pl_msg_00000339_00037",
+      "en_US": ":"
+    },
+    {
+      "id": "pl_msg_00000339_00038",
+      "en_US": "Delivery debug"
+    },
+    {
+      "id": "pl_msg_00000339_00039",
+      "en_US": "Add Items to PC"
+    },
+    {
+      "id": "pl_msg_00000339_00040",
+      "en_US": "Nullify goods penalty"
+    },
+    {
+      "id": "pl_msg_00000339_00041",
+      "en_US": "Add a Trap to BAG"
+    },
+    {
+      "id": "pl_msg_00000339_00042",
+      "en_US": "Bury fossil(undergroud)"
+    },
+    {
+      "id": "pl_msg_00000339_00043",
+      "en_US": "Underground"
+    },
+    {
+      "id": "pl_msg_00000339_00044",
+      "en_US": "Underground 1"
+    },
+    {
+      "id": "pl_msg_00000339_00045",
+      "en_US": "Underground 2"
+    },
+    {
+      "id": "pl_msg_00000339_00046",
+      "en_US": "To be Host"
+    },
+    {
+      "id": "pl_msg_00000339_00047",
+      "en_US": "To be Client"
+    },
+    {
+      "id": "pl_msg_00000339_00048",
+      "en_US": "Back to switching Host/Client option"
+    },
+    {
+      "id": "pl_msg_00000339_00049",
+      "en_US": "Flag level"
+    },
+    {
+      "id": "pl_msg_00000339_00050",
+      "en_US": "Bronze"
+    },
+    {
+      "id": "pl_msg_00000339_00051",
+      "en_US": "Silver"
+    },
+    {
+      "id": "pl_msg_00000339_00052",
+      "en_US": "Gold"
+    },
+    {
+      "id": "pl_msg_00000339_00053",
+      "en_US": "Platinum"
+    },
+    {
+      "id": "pl_msg_00000339_00054",
+      "en_US": "Default"
+    },
+    {
+      "id": "pl_msg_00000339_00055",
+      "en_US": "Wi-Fi Match"
+    },
+    {
+      "id": "pl_msg_00000339_00056",
+      "en_US": "Register friends"
+    },
+    {
+      "id": "pl_msg_00000339_00057",
+      "en_US": "Take a Flag (2 players needed)"
+    },
+    {
+      "id": "pl_msg_00000339_00058",
+      "en_US": "Bury 99 Fossils"
+    }
+  ]
+}

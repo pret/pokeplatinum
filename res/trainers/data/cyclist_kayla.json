@@ -16,5 +16,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"If you beat me, you can count on\n",
+				"something rotten coming your way!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Kerrrash!"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Aww!\n",
+				"Why did you beat me?!\r",
+				"I hope you get so lost in Wayward Cave\n",
+				"you cry! Boo-hoo-hoo!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I had to get my revenge on you.\r",
+				"I trained my Pokémon while wandering\f",
+				"lost in Wayward Cave!\r"
+			]
+		}
     ]
 }

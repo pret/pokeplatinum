@@ -43,5 +43,29 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ll punish you in place of our\n",
+				"boss for defying Team Galactic!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Grr...\n",
+				"I took the punishment...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"We’re Team Galactic!\n",
+				"The no. 1 syndicate in the world!\r",
+				"To defy us is to defy the universe!\n"
+			]
+		}
     ]
 }

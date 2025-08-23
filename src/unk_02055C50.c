@@ -378,7 +378,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        PlayerAvatar_SetRequestStateBit(v0->playerAvatar, (1 << 4));
+        PlayerAvatar_SetTransitionState(v0->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
         PlayerAvatar_RequestChangeState(v0->playerAvatar);
         MapObject_SetPauseMovementOff(Player_MapObject(v0->playerAvatar));
         v1->unk_00 = 1;
@@ -465,8 +465,8 @@ void sub_020562AC(FieldSystem *fieldSystem)
 void sub_020562D8(FieldSystem *fieldSystem)
 {
     int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
-    u32 v1 = sub_0205EED8(v0);
+    u32 v1 = Player_ConvertStateToTransition(v0);
 
-    PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, v1);
+    PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, v1);
     PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 }

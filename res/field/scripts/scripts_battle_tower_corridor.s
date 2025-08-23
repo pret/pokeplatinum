@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/map_object.h"
 
 
     ScriptEntry _000E

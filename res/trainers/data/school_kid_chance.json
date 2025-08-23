@@ -24,5 +24,30 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Are you lost?\n",
+				"Are you enjoying yourself?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Let me guess.\n",
+				"You are enjoying yourself.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Whatever happens in life, it’s better to\n",
+				"try to enjoy it the best one can.\r",
+				"Being in the dark here, I came to\n",
+				"realize that.\n"
+			]
+		}
     ]
 }

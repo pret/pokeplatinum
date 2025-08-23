@@ -16,5 +16,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Are you going to the Pal Park, too?\r",
+				"For you, I’m willing to show off my\n",
+				"prized Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"So? Hot stuff, huh?\n",
+				"That’s why I’m so proud of my Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Pal Park, huh? I wonder what kinds\n",
+				"of Pokémon you can see there?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Listen, did you go to the Pal Park?\n",
+				"What was it like? What was it like?\r"
+			]
+		}
     ]
 }

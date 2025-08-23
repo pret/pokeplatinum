@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/net.h"
+
 #include "main_menu/mystery_gift_app.h"
 #include "overlay004/ov4_021D0D80.h"
 
@@ -64,7 +66,7 @@ static int ov97_02238DA4(MysteryGiftAppData *param0)
 
     v0 = DWC_GetLastErrorEx(&v2, &v1);
 
-    param0->wifiCommErrorStringID = ov4_021D1F3C(-v2, v1);
+    param0->wifiCommErrorStringID = NintendoWFC_GetErrorCode(-v2, v1);
     param0->wifiCommErrorCode = -v2;
     param0->wifiCommErrorType = v1;
     param0->wifiCommErrored = 1;
@@ -175,11 +177,11 @@ static void ov97_02238E88(void)
 
 static void ov97_02238E94(void)
 {
-    sub_02039794();
+    NetworkIcon_Destroy();
     sub_02038514();
-    sub_020995C4();
+    Overlay_UnloadHttpOverlay();
     sub_02099560();
-    sub_020334CC();
+    WirelessDriver_Shutdown();
 }
 
 int ov97_02238EAC(ApplicationManager *appMan, int *param1)
@@ -196,20 +198,20 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 4096:
-        sub_02033478();
+        WirelessDriver_Init();
         sub_02099550();
-        sub_020995B4();
+        Overlay_LoadHttpOverlay();
         *param1 = 4097;
         break;
     case 4097:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             DWC_SetMemFunc(ov97_02238D74, ov97_02238D94);
             sub_020384C0(v2->saveData);
             *param1 = 4098;
         }
         break;
     case 4098:
-        DWC_InitInetEx(&v2->unk_164C, 2, 1, 20);
+        DWC_InitInetEx(&v2->unk_164C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         sub_02039734();

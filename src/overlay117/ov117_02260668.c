@@ -480,7 +480,7 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     return 1;
 }
@@ -581,7 +581,7 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     ov117_02264930(v0);
 
     {
-        sub_020241B4();
+        G3_ResetG3X();
         Camera_SetAsActive(v0->camera1);
         Camera_ComputeProjectionMatrix(1, v0->camera1);
         Camera_ComputeViewMatrix();
@@ -610,11 +610,11 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     {
         int v4;
 
-        sub_020241B4();
+        G3_ResetG3X();
         v4 = ParticleSystem_DrawAll();
 
         if (v4 > 0) {
-            sub_020241B4();
+            G3_ResetG3X();
         }
 
         ParticleSystem_UpdateAll();

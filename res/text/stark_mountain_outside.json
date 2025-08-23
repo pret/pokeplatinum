@@ -1,0 +1,119 @@
+{
+  "key": 50102,
+  "messages": [
+    {
+      "id": "pl_msg_00000261_00000",
+      "en_US": [
+        "Grunt 1: This is it!\n",
+        "Stark Mountain!\r",
+        "Now we need to get deep inside.\n",
+        "Let’s do this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00001",
+      "en_US": [
+        "Grunt 2: Yeah, but...\n",
+        "Can that old guy really take over?\f",
+        "Can he replace Master Cyrus?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00002",
+      "en_US": [
+        "Grunt 1: Yeah, I hear you...\r",
+        "That elder Charon is a Commander,\n",
+        "but he can’t replace Master Cyrus.\r",
+        "...Maybe this is a good time for me to\n",
+        "be done with this Team Galactic thing...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00003",
+      "en_US": [
+        "Looker: Whew! The air outside, it is\n",
+        "delicious, yes!\r",
+        "...Gweh! Gah! Geff! Bleah!\r",
+        "I have inhaled the volcanic ash by\n",
+        "the lungful!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00004",
+      "en_US": [
+        "Now, you two.\n",
+        "This is what they were after.\r",
+        "The Magma Stone.\r",
+        "Moving this is said to awaken the\n",
+        "Pokémon HEATRAN.\r",
+        "The old tales say that its awakening,\n",
+        "it will make Stark Mountain erupt.\r",
+        "...But I have moved it. It is here.\n",
+        "Will this cause the eruption?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00005",
+      "en_US": [
+        "Buck: Hey, don’t sweat it, stranger.\r",
+        "Give me that Magma Stone.\n",
+        "I’ll go put it back for you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00006",
+      "en_US": [
+        "Looker: That boy, he has quite the\n",
+        "energy, yes?\r",
+        "{STRVAR_1 3, 0, 0}, I should tell you why\n",
+        "I have arrived here.\r",
+        "After we parted at the Mt. Coronet,\n",
+        "I investigated their hideout.\r",
+        "I uncovered Charon’s plot, which led\n",
+        "me to a stakeout of this place.\r",
+        "That Charon is now securely within our\n",
+        "custody.\r",
+        "It is safe to say the Team Galactic is\n",
+        "a threat no longer.\r",
+        "That being said, it looks like my work\n",
+        "here is finally finished.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00007",
+      "en_US": [
+        "Buck: Hey, stranger!\n",
+        "I put the Magma Stone where it belongs.\r",
+        "It’ll be OK now.\n",
+        "HEATRAN won’t wake up. Probably.\r",
+        "But, hey, {STRVAR_1 3, 0, 0}!\n",
+        "You’re an amazing Trainer!\r",
+        "Swing by my place later.\n",
+        "It’s in the Survival Area.\r",
+        "Be seeing you, stranger, {STRVAR_1 3, 0, 0}!\n",
+        "Bye-bye!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00008",
+      "en_US": [
+        "Looker: I, also, will take my leave.\r",
+        "“The more wonderful the meeting, the\n",
+        "sadder the parting.”\r",
+        "That is a quote I have heard many years\n",
+        "ago in a foreign land.\r",
+        "Its meaning...\n",
+        "I understand it better now.\r",
+        "Farewell, {STRVAR_1 3, 0, 0}, my friend!\n",
+        "Long may you cherish Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000261_00009",
+      "en_US": [
+        "Stark Mountain\n",
+        "Eruption Zone!"
+      ]
+    }
+  ]
+}

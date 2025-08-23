@@ -1,0 +1,60 @@
+{
+  "key": 13391,
+  "messages": [
+    {
+      "id": "pl_msg_00000295_00000",
+      "en_US": [
+        "The mission is proceeding without\n",
+        "a hitch. The boss should be pleased.\r",
+        "Everything is for everyone, and\n",
+        "for the good of Team Galactic!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000295_00001",
+      "en_US": [
+        "I recognize your face!\r",
+        "You’re the child who raided the Team\n",
+        "Galactic building in Eterna!\r",
+        "Humph! Mars should be ashamed of\n",
+        "herself, being beaten by a child.\r",
+        "But anything and anyone that opposes\n",
+        "Team Galactic must be crushed!\r",
+        "Even the very thought of opposition\n",
+        "will not be tolerated!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000295_00002",
+      "en_US": [
+        "Gah! Even I, a Commander, only\n",
+        "managed to buy us time?\r",
+        "But that’s fine.\r",
+        "A child like you will never be able to\n",
+        "stem the flow of time!\r",
+        "Team Galactic will get the three\n",
+        "legendary Pokémon of the lakes!\r",
+        "With their power, we will create an\n",
+        "entirely new universe!\r",
+        "You will bear witness, as you are\n",
+        "helpless to stop us!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000295_00003",
+      "garbage": 46
+    },
+    {
+      "id": "pl_msg_00000295_00004",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000295_00005",
+      "garbage": 44
+    },
+    {
+      "id": "pl_msg_00000295_00006",
+      "en_US": "A MAGIKARP is weakly flopping about..."
+    }
+  ]
+}

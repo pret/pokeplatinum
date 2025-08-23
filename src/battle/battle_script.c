@@ -36,8 +36,8 @@
 #include "battle/ov16_02268520.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/struct_ov12_02237728.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/struct_ov12_02237728.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -10908,7 +10908,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v19 = v2->tmpPtr[1];
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                if (v19->unk_14 == 0) {
+                if (v19->returnCode == NAMING_SCREEN_CODE_OK) {
                     Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v19->textInputStr);
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }

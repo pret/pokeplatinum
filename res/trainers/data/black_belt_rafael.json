@@ -33,5 +33,26 @@
             "power": 40,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We’re the Karate Quads!\r",
+				"I will strike a blow for hope with my\n",
+				"fist! Hiyah, hoooooooooooooope!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "We came up short, but not by much.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ll have to redo my training, though.\n",
+				"Maylene’s gonna trample me again...\n"
+			]
+		}
     ]
 }

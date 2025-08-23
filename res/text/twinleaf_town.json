@@ -1,0 +1,121 @@
+{
+  "key": 18219,
+  "messages": [
+    {
+      "id": "pl_msg_00000554_00000",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000554_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What was that about?!\r",
+        "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
+        "Hey! I’m going to see Prof. Rowan!\n",
+        "You should come, too! And quickly!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, jeez!\n",
+        "Forgot something!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00003",
+      "en_US": [
+        "Hiya, {STRVAR_1 3, 0, 0}.\n",
+        "{STRVAR_1 3, 1, 0} was looking for you.\r",
+        "I think he’s home now.\n",
+        "Why don’t you go check it out?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00004",
+      "en_US": [
+        "Hiya, {STRVAR_1 3, 0, 0}.\n",
+        "{STRVAR_1 3, 1, 0} was looking for you.\r",
+        "I think he’s home now.\n",
+        "Why don’t you go check it out?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00005",
+      "en_US": [
+        "Hiya, {STRVAR_1 3, 0, 0}.\n",
+        "You’re looking for {STRVAR_1 3, 1, 0}?\r",
+        "He just went tearing off a little\n",
+        "while ago.\r",
+        "He’s probably not gone too far.\n",
+        "Why not go chase after him?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}? He went tearing off\n",
+        "in a huge rush a while ago.\r",
+        "...Ouch. He ran right into me earlier.\n",
+        "It’s still hurting.\f",
+        "That kid’s growing up tough."
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00007",
+      "en_US": [
+        "Everyone goes off on adventures,\n",
+        "and then they gradually grow up..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00008",
+      "en_US": [
+        "It’s true that wild Pokémon do attack\n",
+        "people sometimes...\r",
+        "But, Pokémon also open their hearts\n",
+        "to you, so you can become friends."
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00009",
+      "en_US": [
+        "Oh! A Pokémon!\n",
+        "You look good together!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00010",
+      "en_US": [
+        "Oh, you’re helping put together\n",
+        "a Pokédex?\r",
+        "That means you’re going to travel\n",
+        "all over the place with Pokémon!\r",
+        "That sounds like a lot of fun!\n",
+        "I’m a little envious, to be honest!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00011",
+      "en_US": [
+        "Technology just blows me away!\r",
+        "I mean, now you can play with people\n",
+        "around the world...wirelessly!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00012",
+      "en_US": [
+        "Twinleaf Town\n",
+        "Fresh and Free!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000554_00013",
+      "en_US": "{STRVAR_1 3, 0, 0}’s House"
+    },
+    {
+      "id": "pl_msg_00000554_00014",
+      "en_US": "{STRVAR_1 3, 0, 0}’s House"
+    }
+  ]
+}

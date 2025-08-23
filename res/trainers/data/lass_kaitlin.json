@@ -44,5 +44,29 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I found a Trainer while looking for\n",
+				"some Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Hunh? You’re finished so soon?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I walk through tall grass until I\n",
+				"find the Pokémon I want.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": "I found a familiar-looking Trainer!\r"
+		}
     ]
 }

@@ -1,0 +1,66 @@
+{
+  "key": 44594,
+  "messages": [
+    {
+      "id": "pl_msg_00000571_00000",
+      "en_US": [
+        "If you’ve got Pokémon with you,\n",
+        "it’s safe for even a kid like you\f",
+        "to go off traveling alone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000571_00001",
+      "en_US": [
+        "I had a battle the other day, and my\n",
+        "Pokémon’s HP got low.\r",
+        "I thought we were done for.\r",
+        "And then, all of a sudden, my Pokémon\n",
+        "ate the Berry it was holding! Whew!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000571_00002",
+      "en_US": [
+        "There’ve been problems with the\n",
+        "electric power lately.\r",
+        "Is there some trouble at the Valley\n",
+        "Windworks?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000571_00003",
+      "en_US": [
+        "It’s a long way from here to Eterna\n",
+        "City.\r",
+        "You should be prepared for a long\n",
+        "journey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000571_00004",
+      "en_US": [
+        "Po-Po-Pokémon!\r",
+        "I want to become more like a PIKACHU!\n",
+        "Will you battle me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000571_00005",
+      "en_US": "Pi-Pikachu!\r"
+    },
+    {
+      "id": "pl_msg_00000571_00006",
+      "en_US": "Pi-Pikachu!"
+    },
+    {
+      "id": "pl_msg_00000571_00007",
+      "en_US": [
+        "I can make static electricity, but I’m\n",
+        "not very much like a Pokémon yet.\r",
+        "Don’t give up, me!\n",
+        "Become a Pokémon, me!"
+      ]
+    }
+  ]
+}

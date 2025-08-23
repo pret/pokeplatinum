@@ -680,7 +680,7 @@ int ov69_0225C700(ApplicationManager *appMan, int *param1)
     v0->wiFiHistory = SaveData_WiFiHistory(v1->saveData);
     v0->options = SaveData_GetOptions(v1->saveData);
     v0->unk_14 = WiFiHistory_GetCountry(v0->wiFiHistory);
-    v0->unk_18 = sub_0202C8C4(v0->wiFiHistory);
+    v0->unk_18 = WiFiHistory_GetRegion(v0->wiFiHistory);
     v0->unk_1C = v1->unk_08;
 
     ov69_0225D2A8(v0, v1);
@@ -1116,7 +1116,7 @@ static void ov69_0225CF30(UnkStruct_ov69_0225CE64 *param0)
 
 static void ov69_0225CF50(UnkStruct_ov69_0225CE64 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     ov69_0225DAF8(&param0->unk_BC30);
     ov69_0225D728(&param0->unk_1DC);

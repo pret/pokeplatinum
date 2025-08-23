@@ -16,7 +16,7 @@
 
 static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
-static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
+static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, enum SpriteResourceType type, int id);
 
 void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 heapID)
 {
@@ -117,7 +117,7 @@ Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromRes
     return v1;
 }
 
-void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *param1, u32 param2, u32 heapID)
+void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *capacities, u32 maxElements, u32 heapID)
 {
     SpriteResourceTable *v0;
     SpriteResourceTable *v1;
@@ -125,10 +125,10 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *para
     u32 v3;
     u32 v4, v5;
 
-    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, heapID);
+    param0->unk_00 = SpriteList_InitRendering(maxElements, &param0->unk_04, heapID);
     param0->heapID = heapID;
 
-    if ((param1->asStruct.mcellCapacity == 0) || (param1->asStruct.manimCapacity == 0)) {
+    if ((capacities->asStruct.mcellCapacity == 0) || (capacities->asStruct.manimCapacity == 0)) {
         param0->unk_1C4 = 6 - 2;
         param0->unk_194[4] = NULL;
         param0->unk_194[5] = NULL;
@@ -137,15 +137,15 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *para
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        param0->unk_194[v4] = SpriteResourceCollection_New(param1->asArray[v4], v4, heapID);
+        param0->unk_194[v4] = SpriteResourceCollection_New(capacities->asArray[v4], v4, heapID);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        if (param1->asArray[v4] == 0) {
+        if (capacities->asArray[v4] == 0) {
             continue;
         }
 
-        param0->unk_1AC[v4] = SpriteResourceList_New(param1->asArray[v4], heapID);
+        param0->unk_1AC[v4] = SpriteResourceList_New(capacities->asArray[v4], heapID);
 
         for (v5 = 0; v5 < param0->unk_1AC[v4]->capacity; v5++) {
             param0->unk_1AC[v4]->resources[v5] = NULL;
@@ -177,24 +177,24 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     GF_ASSERT(0);
 }
 
-void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5, int param6)
+void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, int paletteIdx, int vramType, int id)
 {
     SpriteResource *v0;
     int v1;
 
-    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[1], param6) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[1], id) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->heapID);
+    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], narc, memberIdx, compressed, id, vramType, paletteIdx, param0->heapID);
 
     if (v0 != NULL) {
         v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         ov5_021D3478(param0->unk_1AC[1], v0);
-        SpriteTransfer_GetPlttOffset(v0, param5);
+        SpriteTransfer_GetPlttOffset(v0, vramType);
         return;
     }
 
@@ -206,9 +206,9 @@ void ov5_021D3360(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     ov5_021D34AC(param0, param1, param2, param3, 2, param4);
 }
 
-void ov5_021D3374(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
+void ov5_021D3374(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, int id)
 {
-    ov5_021D3518(param0, param1, param2, param3, 2, param4);
+    ov5_021D3518(param0, narc, memberIdx, compressed, SPRITE_RESOURCE_CELL, id);
 }
 
 void ov5_021D3388(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4)
@@ -216,9 +216,9 @@ void ov5_021D3388(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     ov5_021D34AC(param0, param1, param2, param3, 3, param4);
 }
 
-void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
+void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, int id)
 {
-    ov5_021D3518(param0, param1, param2, param3, 3, param4);
+    ov5_021D3518(param0, narc, memberIdx, compressed, SPRITE_RESOURCE_ANIM, id);
 }
 
 void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL param3, int param4, int param5)
@@ -241,16 +241,16 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
     GF_ASSERT(0);
 }
 
-void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
+void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, int vramType, int id)
 {
     SpriteResource *v0;
 
-    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], id) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->heapID);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], narc, memberIdx, compressed, id, vramType, param0->heapID);
 
     if (v0 != NULL) {
         SpriteTransfer_RequestCharAtEnd(v0);
@@ -301,20 +301,20 @@ static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2,
     GF_ASSERT(0);
 }
 
-static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5)
+static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *narc, int memberIdx, BOOL compressed, enum SpriteResourceType type, int id)
 {
     SpriteResource *v0;
     int v1;
 
-    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[param4], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[type], id) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = SpriteResourceCollection_AddFrom(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->heapID);
+    v0 = SpriteResourceCollection_AddFrom(param0->unk_194[type], narc, memberIdx, compressed, id, type, param0->heapID);
 
     if (v0 != NULL) {
-        v1 = ov5_021D3478(param0->unk_1AC[param4], v0);
+        v1 = ov5_021D3478(param0->unk_1AC[type], v0);
 
         GF_ASSERT(v1 == 1);
         return;

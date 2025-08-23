@@ -34,5 +34,34 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Say, listen, do you realize you’re\n",
+				"breaking hearts by being successful?\r",
+				"It’s your fault that Team Galactic\n",
+				"members are in so much pain...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"See? You’ve left me brokenhearted,\n",
+				"too...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Someone’s joy is another person’s\n",
+				"sorrow...\r",
+				"Everyone be happy and laughing?\n",
+				"How ridiculous!\r",
+				"Team Galactic should be doing all the\n",
+				"laughing!\n"
+			]
+		}
     ]
 }

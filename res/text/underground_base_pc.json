@@ -1,0 +1,343 @@
+{
+  "key": 9886,
+  "messages": [
+    {
+      "id": "pl_msg_00000639_00000",
+      "en_US": "DECORATE"
+    },
+    {
+      "id": "pl_msg_00000639_00001",
+      "en_US": "STORE GOODS"
+    },
+    {
+      "id": "pl_msg_00000639_00002",
+      "en_US": "RECEIVE GOODS"
+    },
+    {
+      "id": "pl_msg_00000639_00003",
+      "en_US": "CHECK FLAGS"
+    },
+    {
+      "id": "pl_msg_00000639_00004",
+      "en_US": "USE RADAR"
+    },
+    {
+      "id": "pl_msg_00000639_00005",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000639_00006",
+      "en_US": [
+        "Decoration goods stored on the PC\n",
+        "can be brought out and displayed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00007",
+      "en_US": "Store decoration goods on the PC."
+    },
+    {
+      "id": "pl_msg_00000639_00008",
+      "en_US": [
+        "Take out stored decoration goods\n",
+        "from the PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00009",
+      "en_US": "Check your collection of Flags."
+    },
+    {
+      "id": "pl_msg_00000639_00010",
+      "en_US": [
+        "Search for hidden things in the\n",
+        "underground passages."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00011",
+      "en_US": "Switch off the PC."
+    },
+    {
+      "id": "pl_msg_00000639_00012",
+      "en_US": "{STRVAR_1 1, 1, 0}’s Base"
+    },
+    {
+      "id": "pl_msg_00000639_00013",
+      "en_US": "Flags obtained:"
+    },
+    {
+      "id": "pl_msg_00000639_00014",
+      "en_US": "{STRVAR_1 55, 6, 0}"
+    },
+    {
+      "id": "pl_msg_00000639_00015",
+      "en_US": "Most recent Flag:"
+    },
+    {
+      "id": "pl_msg_00000639_00016",
+      "en_US": "{STRVAR_1 1, 0, 0}’s Flag"
+    },
+    {
+      "id": "pl_msg_00000639_00017",
+      "en_US": "ID: {STRVAR_1 54, 5, 0}"
+    },
+    {
+      "id": "pl_msg_00000639_00018",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000639_00019",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000639_00020",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000639_00021",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000639_00022",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000639_00023",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000639_00024",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000639_00025",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000639_00026",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000639_00027",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000639_00028",
+      "en_US": [
+        "Goods on\n",
+        "hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00029",
+      "en_US": [
+        "Treasures\n",
+        "on hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00030",
+      "en_US": [
+        "Traps on\n",
+        "hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00031",
+      "en_US": [
+        "Spheres\n",
+        "on hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00032",
+      "en_US": [
+        "Goods in\n",
+        "PC"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00033",
+      "en_US": [
+        "Treasures\n",
+        "in PC"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00034",
+      "en_US": [
+        "Traps in\n",
+        "PC"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00035",
+      "en_US": [
+        "Spheres\n",
+        "in PC"
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00036",
+      "en_US": [
+        "The {STRVAR_1 25, 2, 0} was withdrawn\n",
+        "from the PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00037",
+      "en_US": [
+        "The {STRVAR_1 25, 2, 0} was stored\n",
+        "on the PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00038",
+      "en_US": "Your PC is full."
+    },
+    {
+      "id": "pl_msg_00000639_00039",
+      "en_US": [
+        "You can’t carry any more\n",
+        "goods with you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00040",
+      "en_US": "TREASURE SEARCH"
+    },
+    {
+      "id": "pl_msg_00000639_00041",
+      "en_US": "SPHERE SEARCH"
+    },
+    {
+      "id": "pl_msg_00000639_00042",
+      "en_US": "TRAP SEARCH"
+    },
+    {
+      "id": "pl_msg_00000639_00043",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000639_00044",
+      "en_US": [
+        "Scan for Treasure hidden in the\n",
+        "underground passages."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00045",
+      "en_US": [
+        "Scan for Spheres you buried\n",
+        "yourself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00046",
+      "en_US": [
+        "Scan for Traps hidden in the\n",
+        "underground passages."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00047",
+      "en_US": "Turns off the Radar."
+    },
+    {
+      "id": "pl_msg_00000639_00048",
+      "en_US": [
+        "The Treasure Search System was\n",
+        "booted up.\r",
+        "The Radar is now scanning for\n",
+        "Treasure and Spheres."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00049",
+      "en_US": [
+        "The Sphere Search System was\n",
+        "booted up.\r",
+        "The Radar is now scanning for\n",
+        "Spheres you buried yourself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00050",
+      "en_US": [
+        "The Trap Search System was\n",
+        "booted up.\r",
+        "The Radar is now scanning for\n",
+        "Traps."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00051",
+      "en_US": "-------"
+    },
+    {
+      "id": "pl_msg_00000639_00052",
+      "en_US": "ID:-------"
+    },
+    {
+      "id": "pl_msg_00000639_00053",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000639_00054",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000639_00055",
+      "en_US": [
+        "Displayed decoration goods can’t\n",
+        "be withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00056",
+      "en_US": [
+        "It’s unsafe if you get a visitor\n",
+        "while you are decorating.\r",
+        "Please keep the entrance closed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00057",
+      "en_US": [
+        "The Treasure Search System was\n",
+        "booted up.\r",
+        "...\r",
+        "Nothing showed up on the Radar\n",
+        "because the entrance is closed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00058",
+      "en_US": [
+        "The Sphere Search System was\n",
+        "booted up.\r",
+        "...\r",
+        "Nothing showed up on the Radar\n",
+        "because the entrance is closed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00059",
+      "en_US": [
+        "The Trap Search System was\n",
+        "booted up.\r",
+        "...\r",
+        "Nothing showed up on the Radar\n",
+        "because the entrance is closed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000639_00060",
+      "en_US": [
+        "Please store goods in the PC before\n",
+        "decorating."
+      ]
+    }
+  ]
+}

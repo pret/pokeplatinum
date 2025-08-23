@@ -25,5 +25,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "Excuse me for wearing my bikini!\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Was I multitasking too much, battling\n",
+				"and swimming at the same time?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"When I’m in my bikini, I’m at a loss\n",
+				"about where to carry my Poké Balls!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Giggle...\n",
+				"Excuse me for wearing my bikini!\r"
+			]
+		}
     ]
 }

@@ -1,0 +1,1020 @@
+{
+  "key": 37978,
+  "messages": [
+    {
+      "id": "pl_msg_00000634_00000",
+      "en_US": [
+        "Hey, there!\n",
+        "What’s up?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00001",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000634_00002",
+      "en_US": [
+        "...\n",
+        "This person seems to be occupied."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00003",
+      "en_US": "GREET"
+    },
+    {
+      "id": "pl_msg_00000634_00004",
+      "en_US": "QUESTION"
+    },
+    {
+      "id": "pl_msg_00000634_00005",
+      "en_US": "GIVE GOODS"
+    },
+    {
+      "id": "pl_msg_00000634_00006",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000634_00007",
+      "en_US": [
+        "You’re going to show me your Trainer\n",
+        "Case?\r",
+        "I’ll show you my Trainer Case as\n",
+        "well!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00008",
+      "en_US": [
+        "Huh? I can’t seem to find my Trainer\n",
+        "Case.\r",
+        "Sorry about that!\n",
+        "Maybe next time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00009",
+      "en_US": [
+        "Thank you!\n",
+        "Please don’t be a stranger!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00010",
+      "en_US": "Would you like to do something else?"
+    },
+    {
+      "id": "pl_msg_00000634_00011",
+      "en_US": [
+        "Oh, that’s OK.\n",
+        "Next time will be fine."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00012",
+      "en_US": [
+        "Huh? You want to give me your\n",
+        "{STRVAR_1 25, 2, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00013",
+      "en_US": [
+        "Thanks, but no.\n",
+        "I can’t take that from you.\r",
+        "Maybe another time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00014",
+      "en_US": [
+        "Thank you!\r",
+        "Your {STRVAR_1 25, 2, 0}\n",
+        "was given to {STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00015",
+      "en_US": "OK, see you!"
+    },
+    {
+      "id": "pl_msg_00000634_00016",
+      "en_US": [
+        "Sorry!\n",
+        "Something’s come up!"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_ItemWasObtained",
+      "en_US": [
+        "{STRVAR_1 25, 2, 0}\n",
+        "was obtained."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00018",
+      "en_US": [
+        "{STRVAR_1 25, 3, 0} was\n",
+        "found in the ground!\r",
+        "{STRVAR_1 3, 1, 0} disengaged\n",
+        "the {STRVAR_1 25, 3, 0}!"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_WallIsBulging",
+      "en_US": [
+        "The wall is bulging slightly.\n",
+        "Try digging into it?"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_TooBadBagIsFull1",
+      "en_US": [
+        "Too bad!\n",
+        "Your Bag is full!"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_TooBadBagIsFull2",
+      "en_US": [
+        "Too bad!\n",
+        "Your Bag is full!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00022",
+      "en_US": "Hello!"
+    },
+    {
+      "id": "pl_msg_00000634_00023",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000634_00024",
+      "en_US": [
+        "I’ll let you see my Trainer Case.\r",
+        "May I see your Trainer Case?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00025",
+      "en_US": [
+        "Oh, you’re busy? Sorry to bug you!\n",
+        "Maybe next time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00026",
+      "en_US": [
+        "Glad to have met you,\n",
+        "{STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00027",
+      "en_US": "So..."
+    },
+    {
+      "id": "pl_msg_00000634_00028",
+      "en_US": [
+        "Oh, right! You can have this\n",
+        "{STRVAR_1 25, 2, 0}!\r",
+        "I’d really like you to have it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00029",
+      "en_US": [
+        "Oh?\n",
+        "Do you have one already?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00030",
+      "en_US": [
+        "Oh? You don’t have room for it in\n",
+        "your Bag.\r",
+        "OK, next time, then!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00031",
+      "en_US": [
+        "OK, here you go!\n",
+        "Take care of it!\r",
+        "You received {STRVAR_1 3, 0, 0}’s\n",
+        "{STRVAR_1 25, 2, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00032",
+      "en_US": "OK, see you around!"
+    },
+    {
+      "id": "pl_msg_00000634_00033",
+      "en_US": "The {STRVAR_1 25, 3, 0} was used!"
+    },
+    {
+      "id": "pl_msg_00000634_00034",
+      "en_US": "Discovered a small cavern!\r"
+    },
+    {
+      "id": "pl_msg_00000634_00035",
+      "en_US": [
+        "Would you like to make your\n",
+        "Secret Base here?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00036",
+      "en_US": "Would you like to move here?"
+    },
+    {
+      "id": "pl_msg_00000634_00037",
+      "en_US": [
+        "Leave the entrance open?\n",
+        "Or close it so you can decorate?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00038",
+      "en_US": "Leave door open"
+    },
+    {
+      "id": "pl_msg_00000634_00039",
+      "en_US": "Close and decorate"
+    },
+    {
+      "id": "pl_msg_00000634_00040",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000634_00041",
+      "en_US": [
+        "It’s your own Secret Base.\n",
+        "Would you like to go in?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00042",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000634_00043",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000634_00044",
+      "en_US": "You entered your own Secret Base."
+    },
+    {
+      "id": "pl_msg_00000634_00045",
+      "en_US": [
+        "Discovered a small cavern!\n",
+        "Would you like to go in?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00046",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000634_00047",
+      "en_US": [
+        "Open the door and exit the\n",
+        "Secret Base?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00048",
+      "en_US": [
+        "DS Wireless Communications will be\n",
+        "launched."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00049",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000634_00050",
+      "en_US": "Exit the Secret Base?"
+    },
+    {
+      "id": "pl_msg_00000634_00051",
+      "en_US": [
+        "It’s an earthquake!\r",
+        "Escaped into the corridor\n",
+        "to avoid danger!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00052",
+      "en_US": [
+        "Would you like to return to the\n",
+        "surface from where you entered?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00053",
+      "garbage": 33
+    },
+    {
+      "id": "pl_msg_00000634_00054",
+      "en_US": "That can’t be used here!"
+    },
+    {
+      "id": "UndergroundCommon_Text_CantBePlacedThere",
+      "en_US": "That can’t be placed there."
+    },
+    {
+      "id": "pl_msg_00000634_00056",
+      "en_US": "Closed up the hole."
+    },
+    {
+      "id": "pl_msg_00000634_00057",
+      "en_US": [
+        "Someone is inside your Secret Base.\n",
+        "You may not move your base now."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_SphereWasBuried",
+      "en_US": [
+        "The {STRVAR_1 25, 0, 0} {STRVAR_1 51, 1, 0}\n",
+        "was buried right in front of you."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_SomethingAlreadyBuried",
+      "en_US": [
+        "Something was already buried in\n",
+        "the ground."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_CantBuryInWall",
+      "en_US": "You can’t bury anything in a wall."
+    },
+    {
+      "id": "pl_msg_00000634_00061",
+      "garbage": 14
+    },
+    {
+      "id": "UndergroundCommon_Text_SomethingPingedInWall",
+      "en_US": [
+        "Something pinged in the wall!\n",
+        "{STRVAR_1 50, 0, 0} confirmed!"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_WallCollapsed",
+      "en_US": "The wall collapsed!"
+    },
+    {
+      "id": "UndergroundCommon_Text_EverythingDugUp",
+      "en_US": "Everything was dug up!"
+    },
+    {
+      "id": "UndergroundCommon_Text_TooBadBagIsFull3",
+      "en_US": [
+        "Too bad!\n",
+        "Your Bag is full!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00066",
+      "en_US": [
+        "You can’t return to the surface\n",
+        "from a Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00067",
+      "en_US": [
+        "This appears to be {STRVAR_1 3, 0, 0}’s\n",
+        "Secret Base.\r",
+        "Take the Trainer’s Flag?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00068",
+      "en_US": [
+        "Blocked the entrance to decorate\n",
+        "the Secret Base."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_YouObtainedSphere",
+      "en_US": "You obtained {STRVAR_1 25, 2, 0}, size {STRVAR_1 51, 1, 0}!"
+    },
+    {
+      "id": "pl_msg_00000634_00070",
+      "en_US": [
+        "Oops!\n",
+        "{STRVAR_1 25, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00071",
+      "en_US": "Helped out {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000634_00072",
+      "en_US": [
+        "I’m digging for Treasure right now.\n",
+        "Want to dig with me?\r",
+        "There just might be another dig spot\n",
+        "close by..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00073",
+      "en_US": [
+        "You can’t put down a Trap inside\n",
+        "a Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00074",
+      "en_US": [
+        "You can’t drill holes inside\n",
+        "a Secret Base!"
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_ItsSizeGrewBiggerBy",
+      "en_US": [
+        "Its size grew bigger by {STRVAR_1 51, 0, 0} since\n",
+        "it was buried!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00076",
+      "en_US": "Blow the Trap away!"
+    },
+    {
+      "id": "pl_msg_00000634_00077",
+      "en_US": "Remove the Trap by touch!"
+    },
+    {
+      "id": "pl_msg_00000634_00078",
+      "en_US": [
+        "A Trap was found, but your Bag is\n",
+        "full. The Trap was left as is."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00079",
+      "en_US": [
+        "The {STRVAR_1 25, 0, 0} was placed in\n",
+        "the Bag’s {COLOR 2}♈{COLOR 0}ITEMS Pocket."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00080",
+      "en_US": [
+        "Your Bag is full. The {STRVAR_1 25, 0, 0}\n",
+        "couldn’t be put away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00081",
+      "en_US": [
+        "The {STRVAR_1 25, 0, 0} was placed in the\n",
+        "Bag’s {COLOR 2}♌{COLOR 0}MEDICINE Pocket."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00082",
+      "garbage": 17
+    },
+    {
+      "id": "UndergroundCommon_Text_NoRoomForSphere",
+      "en_US": [
+        "A Sphere was found, but your Bag is\n",
+        "full. The Sphere was left as is."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_CantBuryInSecretBase",
+      "en_US": [
+        "You can’t bury a Sphere inside\n",
+        "a Secret Base."
+      ]
+    },
+    {
+      "id": "UndergroundCommon_Text_MiningTutorial",
+      "en_US": [
+        "...\r",
+        "Oh? There is a note tucked inside\n",
+        "the Explorer Kit.\r",
+        "“Digging for Treasure and Spheres!”\r",
+        "I’ve put a sledgehammer and pickax\n",
+        "in your Explorer Kit!\r",
+        "Use them, and you’ll be able to touch\n",
+        "walls to dig out all sorts of stuff!\r",
+        "I’m sure you can dig them out before\n",
+        "the wall comes tumbling down!\r",
+        "You can do it!\n",
+        "Good luck, youngster!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00086",
+      "en_US": [
+        "I can’t accept anything that\n",
+        "important!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00087",
+      "en_US": [
+        "Thanks for the offer, but I’ll pass.\n",
+        "See you again tomorrow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00088",
+      "en_US": [
+        "...\r",
+        "The wall started to crumble.\n",
+        "It’s too dangerous to go in."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00089",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000634_00090",
+      "en_US": "{STRVAR_1 3, 0, 0} disengaged the Trap!"
+    },
+    {
+      "id": "pl_msg_00000634_00091",
+      "en_US": "{STRVAR_1 3, 1, 0} has entered."
+    },
+    {
+      "id": "pl_msg_00000634_00092",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000634_00093",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000634_00094",
+      "garbage": 15
+    },
+    {
+      "id": "UndergroundCommon_Text_ItemWasObtainedExclamationPoint",
+      "en_US": [
+        "{STRVAR_1 25, 2, 0}\n",
+        "was obtained!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00096",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000634_00097",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000634_00098",
+      "en_US": "{STRVAR_1 3, 0, 0} escaped from the Trap."
+    },
+    {
+      "id": "pl_msg_00000634_00099",
+      "en_US": "{STRVAR_1 3, 0, 0} triggered a Trap!"
+    },
+    {
+      "id": "pl_msg_00000634_00100",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} triggered\n",
+        "{STRVAR_1 3, 1, 0}’s Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00101",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000634_00102",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000634_00103",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000634_00104",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} entered\n",
+        "{STRVAR_1 3, 1, 0}’s Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00105",
+      "en_US": "{STRVAR_1 3, 0, 0} is digging for Treasure!"
+    },
+    {
+      "id": "pl_msg_00000634_00106",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000634_00107",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000634_00108",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "{STRVAR_1 3, 1, 0}’s Flag!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00109",
+      "en_US": "{STRVAR_1 3, 0, 0} took back the Flag!"
+    },
+    {
+      "id": "pl_msg_00000634_00110",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} took\n",
+        "{STRVAR_1 3, 1, 0}’s Flag!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00111",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} talked with\n",
+        "{STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00112",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} talked with\n",
+        "someone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00113",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000634_00114",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000634_00115",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} has left the\n",
+        "underground tunnels."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00116",
+      "en_US": "{STRVAR_1 3, 0, 0} helped {STRVAR_1 3, 1, 0}!"
+    },
+    {
+      "id": "pl_msg_00000634_00117",
+      "en_US": [
+        "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
+        "“Hello! Nice to meet you!”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00118",
+      "en_US": [
+        "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
+        "“Good-bye! I’m going back up!”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00119",
+      "en_US": [
+        "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
+        "“Let’s go to the Union Room!”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00120",
+      "en_US": [
+        "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
+        "“Please come here!”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00121",
+      "en_US": "TRAPS"
+    },
+    {
+      "id": "pl_msg_00000634_00122",
+      "en_US": "SPHERES"
+    },
+    {
+      "id": "pl_msg_00000634_00123",
+      "en_US": "GOODS"
+    },
+    {
+      "id": "pl_msg_00000634_00124",
+      "en_US": "TREASURES"
+    },
+    {
+      "id": "pl_msg_00000634_00125",
+      "en_US": "{STRVAR_1 1, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000634_00126",
+      "en_US": "GO UP"
+    },
+    {
+      "id": "pl_msg_00000634_00127",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "pl_msg_00000634_00128",
+      "en_US": "{STRVAR_1 8, 2, 0} {STRVAR_1 51, 6, 0}"
+    },
+    {
+      "id": "pl_msg_00000634_00129",
+      "en_US": [
+        "What would you like to do with\n",
+        "this {STRVAR_1 25, 2, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00130",
+      "en_US": "Threw away the {STRVAR_1 25, 2, 0}."
+    },
+    {
+      "id": "pl_msg_00000634_00131",
+      "en_US": [
+        "The {STRVAR_1 25, 3, 0} was set in\n",
+        "the ground."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00132",
+      "en_US": "TRASH"
+    },
+    {
+      "id": "pl_msg_00000634_00133",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000634_00134",
+      "en_US": "BURY"
+    },
+    {
+      "id": "pl_msg_00000634_00135",
+      "en_US": "PUT IN BAG"
+    },
+    {
+      "id": "pl_msg_00000634_00136",
+      "en_US": [
+        "What’s that?\n",
+        "You wanted to ask me something?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00137",
+      "en_US": [
+        "{STRVAR_1 29, 5, 0}?\n",
+        "Let me see..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00138",
+      "en_US": [
+        "Yeah, I guess I have an answer.\r",
+        "What would your answer be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00139",
+      "en_US": [
+        "Hmm...\n",
+        "I can’t really decide.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00140",
+      "en_US": [
+        "Oh, really?\n",
+        "{STRVAR_1 30, 5, 0}?\r",
+        "Well, for me...\n",
+        "{STRVAR_1 30, 6, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00141",
+      "en_US": [
+        "Oh, really?\n",
+        "{STRVAR_1 30, 5, 0}?\r",
+        "Well, for me...\n",
+        "{STRVAR_1 30, 6, 0}!\r",
+        "...Oh!\n",
+        "It’s the same answer!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00142",
+      "en_US": "I see..."
+    },
+    {
+      "id": "pl_msg_00000634_00143",
+      "en_US": [
+        "Hi, may I ask you a question?\r",
+        "Let’s see...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00144",
+      "en_US": [
+        "How’s this? {STRVAR_1 29, 5, 0}!\n",
+        "What’s your choice?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00145",
+      "en_US": [
+        "Oh, don’t worry! You don’t have to\n",
+        "answer if you don’t want to.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00146",
+      "en_US": [
+        "You’ve decided?\r",
+        "Well, let me see...\n",
+        "If it were me..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00147",
+      "en_US": [
+        "{STRVAR_1 30, 5, 0} would be\n",
+        "my answer, I guess.\r",
+        "What did you choose?\r",
+        "...\n",
+        "{STRVAR_1 30, 6, 0}! OK!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00148",
+      "en_US": [
+        "{STRVAR_1 30, 5, 0} would be\n",
+        "my answer, I guess.\r",
+        "What did you choose?\r",
+        "...\n",
+        "{STRVAR_1 30, 6, 0}! OK!\r",
+        "Oh, right.\n",
+        "It’s the same as me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00149",
+      "en_US": "I see..."
+    },
+    {
+      "id": "pl_msg_00000634_00150",
+      "en_US": [
+        "Thanks for answering!\r",
+        "I hope to see you around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00151",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000634_00152",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000634_00153",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000634_00154",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000634_00155",
+      "en_US": [
+        "Pardon me?\n",
+        "You wanted to ask me something?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00156",
+      "en_US": [
+        "{STRVAR_1 29, 5, 0}?\n",
+        "Well, let me think..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00157",
+      "en_US": [
+        "Yes, I’ve decided!\r",
+        "If it were you, what would you\n",
+        "choose?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00158",
+      "en_US": [
+        "I don’t know...\n",
+        "I can’t really decide.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00159",
+      "en_US": [
+        "Is that right?\n",
+        "{STRVAR_1 30, 5, 0}?\r",
+        "My answer would be...\n",
+        "{STRVAR_1 30, 6, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00160",
+      "en_US": [
+        "Is that right?\n",
+        "{STRVAR_1 30, 5, 0}?\r",
+        "My answer would be...\n",
+        "{STRVAR_1 30, 6, 0}!\r",
+        "...Oh!\n",
+        "It’s the same answer!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00161",
+      "en_US": "I see..."
+    },
+    {
+      "id": "pl_msg_00000634_00162",
+      "en_US": [
+        "Hi, may I ask you a question?\r",
+        "Let’s see...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00163",
+      "en_US": [
+        "How’s this? {STRVAR_1 29, 5, 0}!\n",
+        "What’s your choice out of these?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00164",
+      "en_US": [
+        "Not to worry! You don’t have to\n",
+        "answer if you don’t want to.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00165",
+      "en_US": [
+        "You’ve decided?\r",
+        "Well, let me think...\n",
+        "If it were me..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00166",
+      "en_US": [
+        "{STRVAR_1 30, 5, 0}, maybe?\r",
+        "What did you choose?\r",
+        "...\n",
+        "{STRVAR_1 30, 6, 0}! OK!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00167",
+      "en_US": [
+        "{STRVAR_1 30, 5, 0}, maybe?\r",
+        "What did you choose?\r",
+        "...\n",
+        "{STRVAR_1 30, 6, 0}! OK!\r",
+        "Oh, right.\n",
+        "It’s the same as me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000634_00168",
+      "en_US": "I see..."
+    },
+    {
+      "id": "pl_msg_00000634_00169",
+      "en_US": [
+        "Thanks for answering!\r",
+        "I hope to see you around!\r"
+      ]
+    }
+  ]
+}

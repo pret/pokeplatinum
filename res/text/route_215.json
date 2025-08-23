@@ -1,0 +1,68 @@
+{
+  "key": 39564,
+  "messages": [
+    {
+      "id": "pl_msg_00000504_00000",
+      "garbage": 46
+    },
+    {
+      "id": "pl_msg_00000504_00001",
+      "en_US": [
+        "Do unto others as they do unto\n",
+        "you... Yup, it’s Payback!\r",
+        "It’s good for Pokémon battles,\n",
+        "but if you do that in real life...\r",
+        "There’ll be no end to the fighting,\n",
+        "that’s for sure.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00002",
+      "en_US": [
+        "As I said, Payback is harsh.\r",
+        "Use it after the foe, and its power\n",
+        "gets doubled!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00003",
+      "en_US": [
+        "Jogging is good for you, but you have\n",
+        "to make sure you’re not overdoing it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00004",
+      "en_US": [
+        "I slow down and stop at times, sure.\n",
+        "I’m only human, after all."
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00005",
+      "en_US": [
+        "Celestic Town\n",
+        "Solaceon Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00006",
+      "en_US": [
+        "Rt. 215\n",
+        "Veilstone City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000504_00007",
+      "en_US": [
+        "Trainer Tips\r",
+        "Pokémon attacks are classified as\n",
+        "being either physical or special.\r",
+        "A physical attack is based on the\n",
+        "Attack stat of the Pokémon.\r",
+        "Likewise, a special attack is based\n",
+        "on the Special Attack stat."
+      ]
+    }
+  ]
+}

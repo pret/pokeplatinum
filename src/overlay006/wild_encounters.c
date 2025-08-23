@@ -377,7 +377,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     return gettingEncounter;
 }
 
-BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, const int fishingRodType, FieldBattleDTO **battleParams)
+BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, enum EncounterFishingRodType fishingRodType, FieldBattleDTO **battleParams)
 {
     EncounterSlot encounterTable[MAX_GRASS_ENCOUNTERS];
 

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0217.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _0036

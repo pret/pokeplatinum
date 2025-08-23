@@ -37,5 +37,30 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"When Trainers lock eyes...\r",
+				"That’s right! It’s time to let\n",
+				"their Pokémon go wild!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your Pokémon have a real peppy feel to\n",
+				"them!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Whether you’re talking to people or\n",
+				"Pokémon, it’s important to always look\f",
+				"them square in the eyes.\n"
+			]
+		}
     ]
 }

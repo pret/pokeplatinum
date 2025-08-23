@@ -36,5 +36,26 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Now we shall battle, and from it will\n",
+				"emerge one loser...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "...!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I can use psychic powers, but\n",
+				"battling isn’t so simple...\r",
+				"It takes much more to win!\n"
+			]
+		}
     ]
 }

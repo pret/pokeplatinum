@@ -16,5 +16,34 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m determined to go to the Pokémon\n",
+				"League, no matter how hard it is.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Th-this is so hard...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Losing won’t make me quit.\n",
+				"I mean, this is my dream!\r",
+				"The Pokémon League isn’t going\n",
+				"anywhere, either.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"It doesn’t matter how long it takes,\n",
+				"I’m going to the Pokémon League!\r"
+			]
+		}
     ]
 }

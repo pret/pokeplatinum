@@ -1,0 +1,3651 @@
+{
+  "key": 24316,
+  "messages": [
+    {
+      "id": "pl_msg_00000391_00000",
+      "en_US": "???"
+    },
+    {
+      "id": "pl_msg_00000391_00001",
+      "en_US": [
+        "The best Ball with the ultimate level of\n",
+        "performance. It will catch any wild\n",
+        "Pokémon without fail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00002",
+      "en_US": [
+        "An ultra-performance Ball that\n",
+        "provides a higher Pokémon catch rate\n",
+        "than a Great Ball."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00003",
+      "en_US": [
+        "A good, high-performance Ball that\n",
+        "provides a higher Pokémon catch rate\n",
+        "than a standard Poké Ball."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00004",
+      "en_US": [
+        "A device for catching wild Pokémon.\n",
+        "It is thrown like a ball at the target.\n",
+        "It is designed as a capsule system."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00005",
+      "en_US": [
+        "A special Poké Ball that is used only in\n",
+        "the Great Marsh. It is decorated in a\n",
+        "camouflage pattern."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00006",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "works especially well on Water- and\n",
+        "Bug-type Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00007",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "works especially well on Pokémon that\n",
+        "live in the sea."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00008",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "works especially well on weaker\n",
+        "Pokémon in the wild."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00009",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "works especially well on Pokémon\n",
+        "species that were previously caught."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00010",
+      "en_US": [
+        "A somewhat different Ball that\n",
+        "becomes progressively better the\n",
+        "more turns there are in a battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00011",
+      "en_US": [
+        "A comfortable Poké Ball that makes a\n",
+        "caught wild Pokémon quickly grow\n",
+        "friendly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00012",
+      "en_US": [
+        "A somewhat rare Poké Ball that has\n",
+        "been specially made to commemorate\n",
+        "an event of some sort."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00013",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "makes it easier to catch wild Pokémon\n",
+        "at night or in dark places like caves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00014",
+      "en_US": [
+        "A remedial Poké Ball that restores the\n",
+        "caught Pokémon’s HP and eliminates\n",
+        "any status problem."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00015",
+      "en_US": [
+        "A somewhat different Poké Ball that\n",
+        "provides a better catch rate if it is\n",
+        "used at the start of a wild encounter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00016",
+      "en_US": [
+        "A quite rare Poké Ball that has been\n",
+        "specially crafted to commemorate\n",
+        "an occasion of some sort."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00017",
+      "en_US": [
+        "A spray-type medicine for wounds.\n",
+        "It restores the HP of one Pokémon by\n",
+        "just 20 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00018",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It lifts the effect of poison from one\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00019",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It heals a single Pokémon that is\n",
+        "suffering from a burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00020",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It defrosts a Pokémon that has been\n",
+        "frozen solid."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00021",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It awakens a Pokémon from the\n",
+        "clutches of sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00022",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It eliminates paralysis from a single\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00023",
+      "en_US": [
+        "A medicine that fully restores the HP\n",
+        "and heals any status problems of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00024",
+      "en_US": [
+        "A spray-type medicine for wounds.\n",
+        "It completely restores the HP of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00025",
+      "en_US": [
+        "A spray-type medicine for wounds.\n",
+        "It restores the HP of one Pokémon by\n",
+        "200 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00026",
+      "en_US": [
+        "A spray-type medicine for wounds.\n",
+        "It restores the HP of one Pokémon by\n",
+        "50 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00027",
+      "en_US": [
+        "A spray-type medicine.\n",
+        "It heals all the status problems of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00028",
+      "en_US": [
+        "A medicine that revives a fainted\n",
+        "Pokémon. It restores half the\n",
+        "Pokémon’s maximum HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00029",
+      "en_US": [
+        "A medicine that revives a fainted\n",
+        "Pokémon. It fully restores the\n",
+        "Pokémon’s HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00030",
+      "en_US": [
+        "Water with a high mineral content.\n",
+        "It restores the HP of one Pokémon by\n",
+        "50 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00031",
+      "en_US": [
+        "A fizzy soda drink.\n",
+        "It restores the HP of one Pokémon by\n",
+        "60 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00032",
+      "en_US": [
+        "A very sweet drink.\n",
+        "It restores the HP of one Pokémon by\n",
+        "80 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00033",
+      "en_US": [
+        "Milk with a very high nutrition content.\n",
+        "It restores the HP of one Pokémon by\n",
+        "100 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00034",
+      "en_US": [
+        "A very bitter medicine powder.\n",
+        "It restores the HP of one Pokémon by\n",
+        "50 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00035",
+      "en_US": [
+        "A very bitter root.\n",
+        "It restores the HP of one Pokémon by\n",
+        "200 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00036",
+      "en_US": [
+        "A very bitter medicine powder.\n",
+        "It heals all the status problems of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00037",
+      "en_US": [
+        "A very bitter medicinal herb.\n",
+        "It revives a fainted Pokémon, fully\n",
+        "restoring its HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00038",
+      "en_US": [
+        "It restores the PP of a Pokémon’s\n",
+        "selected move by a maximum of\n",
+        "10 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00039",
+      "en_US": [
+        "It fully restores the PP of a single\n",
+        "selected move that has been learned\n",
+        "by the target Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00040",
+      "en_US": [
+        "It restores the PP of all the\n",
+        "moves learned by the targeted Pokémon\n",
+        "by 10 points each."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00041",
+      "en_US": [
+        "It fully restores the PP of all the\n",
+        "moves learned by the targeted\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00042",
+      "en_US": [
+        "Lavaridge Town’s local specialty.\n",
+        "It heals all the status problems of\n",
+        "one Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00043",
+      "en_US": [
+        "A 100% pure juice made of Berries.\n",
+        "It restores the HP of one Pokémon by\n",
+        "just 20 points."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00044",
+      "en_US": [
+        "It revives all fainted Pokémon.\n",
+        "In doing so, it also fully restores\n",
+        "their HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00045",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base HP of a single\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00046",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base Attack stat of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00047",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base Defense stat of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00048",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base Speed stat of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00049",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base Sp. Atk (Special\n",
+        "Attack) stat of a single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00050",
+      "en_US": [
+        "A candy that is packed with energy.\n",
+        "It raises the level of a single Pokémon\n",
+        "by one."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00051",
+      "en_US": [
+        "It slightly raises the maximum PP of\n",
+        "a selected move that has been learned\n",
+        "by the target Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00052",
+      "en_US": [
+        "A nutritious drink for Pokémon.\n",
+        "It raises the base Sp. Def (Special\n",
+        "Defense) stat of a single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00053",
+      "en_US": [
+        "It maximally raises the top PP of a\n",
+        "selected move that has been learned\n",
+        "by the target Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00054",
+      "en_US": [
+        "Old Chateau’s hidden specialty.\n",
+        "It heals all the status problems of a\n",
+        "single Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00055",
+      "en_US": [
+        "An item that prevents stat reduction\n",
+        "among the Trainer’s party Pokémon\n",
+        "for five turns after use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00056",
+      "en_US": [
+        "An item that raises the critical-hit\n",
+        "ratio of a Pokémon in battle. It wears\n",
+        "off if the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00057",
+      "en_US": [
+        "An item that raises the Attack stat\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00058",
+      "en_US": [
+        "An item that raises the Defense stat\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00059",
+      "en_US": [
+        "An item that raises the Speed stat\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00060",
+      "en_US": [
+        "An item that raises the accuracy\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00061",
+      "en_US": [
+        "An item that raises the Sp. Atk stat\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00062",
+      "en_US": [
+        "An item that raises the Sp. Def stat\n",
+        "of a Pokémon in battle. It wears off if\n",
+        "the Pokémon is withdrawn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00063",
+      "en_US": [
+        "A doll that attracts Pokémon.\n",
+        "Use it to flee from any battle with a\n",
+        "wild Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00064",
+      "en_US": [
+        "An item that attracts Pokémon.\n",
+        "Use it to flee from any battle with a\n",
+        "wild Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00065",
+      "en_US": [
+        "A blue flute made from blown glass.\n",
+        "Its melody awakens a single Pokémon\n",
+        "from sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00066",
+      "en_US": [
+        "A yellow flute made from blown glass.\n",
+        "Its melody snaps a single Pokémon out\n",
+        "of confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00067",
+      "en_US": [
+        "A red flute made from blown glass.\n",
+        "Its melody snaps a single Pokémon out\n",
+        "of infatuation."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00068",
+      "en_US": [
+        "A black flute made from blown glass.\n",
+        "Its melody makes wild Pokémon less\n",
+        "likely to appear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00069",
+      "en_US": [
+        "A white flute made from blown glass.\n",
+        "Its melody makes wild Pokémon more\n",
+        "likely to appear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00070",
+      "en_US": [
+        "Pure salt that was discovered deep\n",
+        "inside the Shoal Cave.\n",
+        "It is extremely salty."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00071",
+      "en_US": [
+        "A pretty seashell that was found deep\n",
+        "inside the Shoal Cave.\n",
+        "It is striped in blue and white."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00072",
+      "en_US": [
+        "A small red shard.\n",
+        "It appears to be from some sort of\n",
+        "implement made long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00073",
+      "en_US": [
+        "A small blue shard.\n",
+        "It appears to be from some sort of\n",
+        "implement made long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00074",
+      "en_US": [
+        "A small yellow shard.\n",
+        "It appears to be from some sort of\n",
+        "implement made long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00075",
+      "en_US": [
+        "A small green shard.\n",
+        "It appears to be from some sort of\n",
+        "implement made long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00076",
+      "en_US": [
+        "An item that prevents weak wild\n",
+        "Pokémon from appearing for 200 steps\n",
+        "after its use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00077",
+      "en_US": [
+        "An item that prevents weak wild\n",
+        "Pokémon from appearing for 250 steps\n",
+        "after its use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00078",
+      "en_US": [
+        "A long, durable rope.\n",
+        "Use it to escape instantly from a cave\n",
+        "or a dungeon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00079",
+      "en_US": [
+        "An item that prevents weak wild\n",
+        "Pokémon from appearing for 100 steps\n",
+        "after its use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00080",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is as red as the sun."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00081",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is as black as the night sky."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00082",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is colored orange."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00083",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It has a thunderbolt pattern."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00084",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is a clear, light blue."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00085",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It has a leaf pattern."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00086",
+      "en_US": [
+        "A small and rare mushroom.\n",
+        "It is quite popular among certain\n",
+        "maniacal fan segments."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00087",
+      "en_US": [
+        "A large and rare mushroom.\n",
+        "It is very popular among certain\n",
+        "maniacal fan segments."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00088",
+      "en_US": [
+        "A somewhat-small pearl that sparkles\n",
+        "in a pretty silver color.\n",
+        "It can be sold cheaply to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00089",
+      "en_US": [
+        "A quite-large pearl that sparkles in a\n",
+        "pretty silver color. It can be sold at\n",
+        "a high price to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00090",
+      "en_US": [
+        "Lovely, red-colored sand with a loose,\n",
+        "silky feel. It can be sold at a high\n",
+        "price to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00091",
+      "en_US": [
+        "A shard of a pretty gem that sparkles\n",
+        "in a red color. It can be sold at a\n",
+        "high price to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00092",
+      "en_US": [
+        "A nugget of pure gold that gives off a\n",
+        "lustrous gleam. It can be sold at a\n",
+        "high price to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00093",
+      "en_US": [
+        "A pretty, heart-shaped scale that is\n",
+        "extremely rare. It glows faintly in the\n",
+        "colors of the rainbow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00094",
+      "en_US": [
+        "A sweet honey with a lush aroma that\n",
+        "attracts wild Pokémon when it is used\n",
+        "in grass, caves, or on special trees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00095",
+      "en_US": [
+        "A plant fertilizer spread on soft soil.\n",
+        "It speeds up the growth of Berries.\n",
+        "However, it also dries the soil faster."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00096",
+      "en_US": [
+        "A plant fertilizer spread on soft soil.\n",
+        "It slows the growth of Berries and\n",
+        "causes the soil to dry slower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00097",
+      "en_US": [
+        "A plant fertilizer spread on soft soil.\n",
+        "It extends the time ripened Berries\n",
+        "remain on their plants before falling."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00098",
+      "en_US": [
+        "A plant fertilizer spread on soft soil.\n",
+        "It ups the number of times new plants\n",
+        "grow where mature plants withered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00099",
+      "en_US": [
+        "A fossil of an ancient Pokémon that\n",
+        "lived in the sea. It appears to be\n",
+        "part of a plant root."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00100",
+      "en_US": [
+        "A fossil of an ancient Pokémon that\n",
+        "lived in the sea. It appears to be\n",
+        "part of a claw."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00101",
+      "en_US": [
+        "A fossil of an ancient Pokémon that\n",
+        "lived in the sea. It appears to be\n",
+        "part of a seashell."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00102",
+      "en_US": [
+        "A fossil of an ancient Pokémon that\n",
+        "lived in the sea. It appears to be\n",
+        "part of a shell."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00103",
+      "en_US": [
+        "A piece of amber that contains the\n",
+        "genetic material of an ancient Pokémon.\n",
+        "It is clear with a reddish tint."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00104",
+      "en_US": [
+        "A fossil from a prehistoric Pokémon\n",
+        "that lived on the land. It appears to\n",
+        "be part of a collar."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00105",
+      "en_US": [
+        "A fossil from a prehistoric Pokémon\n",
+        "that lived on the land. It appears to\n",
+        "be part of a head."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00106",
+      "en_US": [
+        "A bone that is extremely valuable for\n",
+        "Pokémon archaeology. It can be sold\n",
+        "for a high price to shops."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00107",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It shines with a dazzling light."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00108",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is as dark as dark can be."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00109",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It sparkles like eyes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00110",
+      "en_US": [
+        "A peculiar stone that makes certain\n",
+        "species of Pokémon evolve.\n",
+        "It is shaped like an egg."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00111",
+      "en_US": [
+        "A vital item that is needed to keep a\n",
+        "stone tower from collapsing. Voices\n",
+        "can be heard from it occasionally."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00112",
+      "en_US": [
+        "A glowing orb to be held by GIRATINA.\n",
+        "It boosts the power of Dragon- and\n",
+        "Ghost-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00113",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00114",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00115",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00116",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00117",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00118",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00119",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00120",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00121",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00122",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00123",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00124",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00125",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00126",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00127",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00128",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00129",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00130",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00131",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00132",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00133",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00134",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000391_00135",
+      "en_US": [
+        "A brightly gleaming orb to be held by\n",
+        "DIALGA. It boosts the power of Dragon-\n",
+        "and Steel-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00136",
+      "en_US": [
+        "A beautifully glowing orb to be held by\n",
+        "PALKIA. It boosts the power of Dragon-\n",
+        "and Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00137",
+      "en_US": [
+        "Stationery featuring a print of a\n",
+        "refreshingly green field.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00138",
+      "en_US": [
+        "Stationery featuring a print of flames\n",
+        "in blazing red.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00139",
+      "en_US": [
+        "Stationery featuring a print of a blue\n",
+        "world underwater.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00140",
+      "en_US": [
+        "Stationery featuring a print of pretty\n",
+        "floral patterns.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00141",
+      "en_US": [
+        "Stationery featuring a print of a dimly\n",
+        "lit coal mine.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00142",
+      "en_US": [
+        "Stationery featuring a print of cool\n",
+        "mechanical designs.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00143",
+      "en_US": [
+        "Stationery featuring a print of giant\n",
+        "heart patterns.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00144",
+      "en_US": [
+        "Stationery featuring a print of a\n",
+        "chilly, snow-covered world.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00145",
+      "en_US": [
+        "Stationery featuring a print depicting\n",
+        "the huge expanse of space.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00146",
+      "en_US": [
+        "Stationery featuring a print of\n",
+        "colorful letter sets.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00147",
+      "en_US": [
+        "Stationery featuring a print of a vivid\n",
+        "rainbow pattern.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00148",
+      "en_US": [
+        "Stationery featuring a print of a\n",
+        "tough-looking brick pattern.\n",
+        "Let a Pokémon hold it for delivery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00149",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "paralysis."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00150",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00151",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "poison."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00152",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "a burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00153",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to defrost it.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00154",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to restore a\n",
+        "move’s PP by 10."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00155",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to heal the\n",
+        "user by just 10 HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00156",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00157",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to recover from\n",
+        "any status problem."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00158",
+      "en_US": [
+        "A Poffin ingredient. It may be used\n",
+        "or held by a Pokémon to heal the\n",
+        "user’s HP a little."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00159",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores the user’s HP in\n",
+        "a pinch, but may also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00160",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores the user’s HP in\n",
+        "a pinch, but may also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00161",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores the user’s HP in\n",
+        "a pinch, but may also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00162",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores the user’s HP in\n",
+        "a pinch, but may also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00163",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores the user’s HP in\n",
+        "a pinch, but may also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00164",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Razz Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00165",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Bluk Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00166",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Nanab Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00167",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Wepear Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00168",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Pinap Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00169",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00170",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base Attack stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00171",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base Defense stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00172",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base Sp. Atk stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00173",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00174",
+      "en_US": [
+        "A Poffin ingredient. Using it on a\n",
+        "Pokémon makes it more friendly, but\n",
+        "it also lowers its base Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00175",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Cornn Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00176",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Magost Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00177",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Rabuta Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00178",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Nomel Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00179",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Spelon Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00180",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Pamtre Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00181",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Watmel Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00182",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Durin Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00183",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "Bury it in soft soil to grow a\n",
+        "Belue Plant."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00184",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Fire-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00185",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Water-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00186",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Electric-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00187",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Grass-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00188",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Ice-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00189",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Fighting-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00190",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Poison-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00191",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Ground-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00192",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Flying-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00193",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Psychic-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00194",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Bug-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00195",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Rock-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00196",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Ghost-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00197",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Dragon-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00198",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Dark-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00199",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "supereffective Steel-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00200",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it weakens a foe’s\n",
+        "Normal-type attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00201",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "Attack stat in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00202",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "Defense stat in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00203",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "Speed stat in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00204",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "Sp. Atk stat in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00205",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "Sp. Def stat in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00206",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it raises its\n",
+        "critical-hit ratio in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00207",
+      "en_US": [
+        "A Poffin ingredient.\n",
+        "If held by a Pokémon, it sharply raises\n",
+        "one of its stats in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00208",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it restores its HP if it is\n",
+        "hit by a foe’s supereffective attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00209",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it raises the accuracy of a\n",
+        "move just once in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00210",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, it gets to move first just\n",
+        "once in a pinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00211",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, and if a foe’s physical attack\n",
+        "lands, the foe also takes damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00212",
+      "en_US": [
+        "A Poffin ingredient. If held by a\n",
+        "Pokémon, and if a foe’s special attack\n",
+        "lands, the foe also takes damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00213",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It casts a tricky glare that lowers\n",
+        "the opponent’s accuracy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00214",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It restores any lowered stat in\n",
+        "battle. It can be used only once."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00215",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "a stiff and heavy brace that promotes\n",
+        "strong growth but lowers Speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00216",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "The holder gets a share of a battle’s\n",
+        "Exp. Points without battling."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00217",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "A light, sharp claw that lets the\n",
+        "bearer move first occasionally."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00218",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "a bell with a comforting chime that\n",
+        "calms the holder and makes it friendly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00219",
+      "en_US": [
+        "An item to be held by a Pokémon. It\n",
+        "snaps the holder out of infatuation.\n",
+        "It can be used only once."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00220",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "This headband ups Attack, but allows\n",
+        "the use of only one kind of move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00221",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It may cause the foe to flinch when\n",
+        "the holder inflicts damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00222",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a shiny, silver powder that ups\n",
+        "the power of Bug-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00223",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It doubles a battle’s prize money if\n",
+        "the holding Pokémon joins in."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00224",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It helps keep wild Pokémon away if the\n",
+        "holder is the first one in the party."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00225",
+      "en_US": [
+        "A wondrous orb to be held by LATIOS or\n",
+        "LATIAS. It raises both the Sp. Atk and\n",
+        "Sp. Def stats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00226",
+      "en_US": [
+        "An item to be held by CLAMPERL.\n",
+        "A fang that gleams a sharp silver, it\n",
+        "raises the Sp. Atk stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00227",
+      "en_US": [
+        "An item to be held by CLAMPERL.\n",
+        "A scale that shines a faint pink, it\n",
+        "raises the Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00228",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It enables the holder to flee from any\n",
+        "wild Pokémon without fail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00229",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "The Pokémon holding this peculiar stone\n",
+        "is prevented from evolving."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00230",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "The holder may endure a potential KO\n",
+        "attack, leaving it with just 1 HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00231",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is an egg filled with happiness that\n",
+        "earns extra Exp. Points in battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00232",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a lens that boosts the holder’s\n",
+        "critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00233",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a special metallic film that ups\n",
+        "the power of Steel-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00234",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "The holder’s HP is gradually restored\n",
+        "during battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00235",
+      "en_US": [
+        "A thick and tough scale.\n",
+        "Dragon-type Pokémon may be holding\n",
+        "this item when caught."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00236",
+      "en_US": [
+        "An item to be held by PIKACHU.\n",
+        "It is a puzzling orb that raises\n",
+        "the Attack and Sp. Atk stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00237",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a loose, silky sand that boosts\n",
+        "the power of Ground-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00238",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is an unbreakable stone that ups\n",
+        "the power of Rock-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00239",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a seed imbued with life that ups\n",
+        "the power of Grass-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00240",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a shady-looking pair of glasses\n",
+        "that boosts Dark-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00241",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a belt that boosts determination\n",
+        "and Fighting-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00242",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a powerful magnet that boosts\n",
+        "the power of Electric-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00243",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a teardrop-shaped gem that ups\n",
+        "the power of Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00244",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a long, sharp beak that boosts\n",
+        "the power of Flying-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00245",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a small, poisonous barb that ups\n",
+        "the power of Poison-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00246",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a piece of ice that repels heat\n",
+        "and boosts Ice-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00247",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a sinister, eerie tag that boosts\n",
+        "the power of Ghost-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00248",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "a spoon imbued with telekinetic power\n",
+        "that boosts Psychic-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00249",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a combustible fuel that boosts\n",
+        "the power of Fire-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00250",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a hard and sharp fang that ups\n",
+        "the power of Dragon-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00251",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a sumptuous scarf that boosts\n",
+        "the power of Normal-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00252",
+      "en_US": [
+        "A transparent device filled with all\n",
+        "sorts of data.\n",
+        "It was produced by Silph Co."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00253",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "The holder’s HP is restored a little\n",
+        "every time it inflicts damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00254",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "incense with a curious aroma that\n",
+        "boosts the power of Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00255",
+      "en_US": [
+        "An item to be held by a Pokémon. The\n",
+        "tricky aroma of this incense lowers the\n",
+        "foe’s accuracy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00256",
+      "en_US": [
+        "An item to be held by CHANSEY. It is a\n",
+        "pair of gloves that boosts CHANSEY’s\n",
+        "critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00257",
+      "en_US": [
+        "An item to be held by DITTO.\n",
+        "Extremely fine yet hard, this odd\n",
+        "powder boosts the Defense stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00258",
+      "en_US": [
+        "An item to be held by CUBONE or\n",
+        "MAROWAK. It is a hard bone of some\n",
+        "sort that boosts the Attack stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00259",
+      "en_US": [
+        "An item to be held by FARFETCH’D. It is\n",
+        "a very long and stiff stalk of leek\n",
+        "that boosts the critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00260",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the “Cool” aspect of the\n",
+        "holder in a Contest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00261",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the “Beauty” aspect of the\n",
+        "holder in a Contest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00262",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the “Cute” aspect of the\n",
+        "holder in a Contest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00263",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the “Smart” aspect of the\n",
+        "holder in a Contest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00264",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the “Tough” aspect of the\n",
+        "holder in a Contest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00265",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a magnifying lens that slightly\n",
+        "boosts the accuracy of moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00266",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a headband that slightly boosts\n",
+        "the power of physical moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00267",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "a thick pair of glasses that slightly\n",
+        "boosts the power of special moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00268",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "a well-worn belt that slightly boosts\n",
+        "the power of supereffective moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00269",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of barrier moves like Light\n",
+        "Screen and Reflect used by the holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00270",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It boosts the power of moves, but at\n",
+        "the cost of some HP on each hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00271",
+      "en_US": [
+        "A single-use item to be held by a\n",
+        "Pokémon. It allows the immediate use of\n",
+        "a move that charges on the first turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00272",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a bizarre orb that badly poisons\n",
+        "the holder in battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00273",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a bizarre orb that inflicts a\n",
+        "burn on the holder in battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00274",
+      "en_US": [
+        "An item to be held by DITTO.\n",
+        "Extremely fine yet hard, this odd\n",
+        "powder boosts the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00275",
+      "en_US": [
+        "An item to be held by a Pokémon. If it\n",
+        "has full HP, the holder will endure one\n",
+        "potential KO attack, leaving 1 HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00276",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "If the holder moves after the foe, its\n",
+        "accuracy will be boosted."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00277",
+      "en_US": [
+        "A Pokémon hold item that boosts a move\n",
+        "used consecutively. Its effect is\n",
+        "reset if another move is used."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00278",
+      "en_US": [
+        "A Pokémon hold item that cuts Speed.\n",
+        "It makes Flying-type and levitating\n",
+        "holders susceptible to Ground moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00279",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is tremendously heavy and makes\n",
+        "the holder move slower than usual."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00280",
+      "en_US": [
+        "A long, thin, bright red string to\n",
+        "be held by a Pokémon. If the holder\n",
+        "becomes infatuated, the foe does too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00281",
+      "en_US": [
+        "A hold item that gradually restores\n",
+        "the HP of Poison-type Pokémon.\n",
+        "It inflicts damage on all other types."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00282",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of the move Hail used by the\n",
+        "holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00283",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of the move Sandstorm used\n",
+        "by the holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00284",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of the move Sunny Day used\n",
+        "by the holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00285",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of the move Rain Dance used\n",
+        "by the holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00286",
+      "en_US": [
+        "A Pokémon hold item that extends the\n",
+        "duration of multiturn attacks like\n",
+        "Bind and Wrap."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00287",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "This scarf boosts Speed, but allows\n",
+        "the use of only one kind of move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00288",
+      "en_US": [
+        "A hold item that damages the holder on\n",
+        "every turn. It may latch on to foes\n",
+        "that touch the holder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00289",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "Attack gain on leveling, but reduces\n",
+        "the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00290",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "Defense gain on leveling, but reduces\n",
+        "the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00291",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "Sp. Atk gain on leveling, but reduces\n",
+        "the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00292",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "Sp. Def gain on leveling, but reduces\n",
+        "the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00293",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "Speed gain on leveling, but reduces\n",
+        "the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00294",
+      "en_US": [
+        "A Pokémon hold item that promotes\n",
+        "HP gain on leveling, but reduces the\n",
+        "Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00295",
+      "en_US": [
+        "A tough, discarded carapace to be held\n",
+        "by a Pokémon. It enables the holder to\n",
+        "switch with a waiting Pokémon in battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00296",
+      "en_US": [
+        "A Pokémon hold item that boosts the\n",
+        "power of HP-stealing moves to let the\n",
+        "holder recover more HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00297",
+      "en_US": [
+        "An item to be held by a Pokémon. These\n",
+        "distinctive glasses boost Sp. Atk, but\n",
+        "allow only one kind of move to be used."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00298",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Fire-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00299",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00300",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Electric-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00301",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Grass-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00302",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Ice-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00303",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Fighting-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00304",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Poison-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00305",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Ground-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00306",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Flying-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00307",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Psychic-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00308",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Bug-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00309",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Rock-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00310",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Ghost-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00311",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Dragon-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00312",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Dark-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00313",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a stone tablet that boosts the\n",
+        "power of Steel-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00314",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "an exotic-smelling incense that boosts\n",
+        "the power of Psychic-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00315",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "an exotic-smelling incense that boosts\n",
+        "the power of Rock-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00316",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "an exotic-smelling incense that makes\n",
+        "the holder bloated and slow moving."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00317",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "an exotic-smelling incense that boosts\n",
+        "the power of Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00318",
+      "en_US": [
+        "An item to be held by a Pokémon. It is\n",
+        "an exotic-smelling incense that boosts\n",
+        "the power of Grass-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00319",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It doubles a battle’s prize money if\n",
+        "the holding Pokémon joins in."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00320",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It helps keep wild Pokémon away if the\n",
+        "holder is the first one in the party."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00321",
+      "en_US": [
+        "A protective item of some sort.\n",
+        "It is extremely stiff and heavy.\n",
+        "It is loved by a certain Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00322",
+      "en_US": [
+        "A box packed with a tremendous\n",
+        "amount of electric energy.\n",
+        "It is loved by a certain Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00323",
+      "en_US": [
+        "A box packed with a tremendous\n",
+        "amount of magma energy.\n",
+        "It is loved by a certain Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00324",
+      "en_US": [
+        "A transparent device overflowing with\n",
+        "dubious data.\n",
+        "Its producer is unknown."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00325",
+      "en_US": [
+        "A cloth imbued with horrifyingly strong\n",
+        "spiritual energy.\n",
+        "It is loved by a certain Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00326",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It is a sharply hooked claw that ups\n",
+        "the holder’s critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00327",
+      "en_US": [
+        "An item to be held by a Pokémon.\n",
+        "It may cause the foe to flinch when\n",
+        "the holder inflicts damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00328",
+      "en_US": [
+        "The user focuses its mind before\n",
+        "launching this attack. It will fail if\n",
+        "the user is hit before it is used."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00329",
+      "en_US": [
+        "Sharp, huge claws hook and slash\n",
+        "the foe quickly and with great\n",
+        "power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00330",
+      "en_US": [
+        "The foe is hit with a pulsing blast\n",
+        "of water. It may also confuse the\n",
+        "target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00331",
+      "en_US": [
+        "The user quietly focuses its mind and\n",
+        "calms its spirit to raise its Sp. Atk\n",
+        "and Sp. Def stats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00332",
+      "en_US": [
+        "The foe is scared off, to be replaced\n",
+        "by another Pokémon in its party.\n",
+        "In the wild, the battle ends."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00333",
+      "en_US": [
+        "A move that leaves the foe badly\n",
+        "poisoned. This poison damage\n",
+        "worsens every turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00334",
+      "en_US": [
+        "Summons a hailstorm that lasts for\n",
+        "five turns. The hailstorm damages\n",
+        "all types except Ice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00335",
+      "en_US": [
+        "The user tenses its muscles to bulk up\n",
+        "its body, boosting both its Attack and\n",
+        "Defense stats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00336",
+      "en_US": [
+        "The user forcefully shoots seeds at\n",
+        "the foe. Two to five seeds are shot in\n",
+        "rapid succession."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00337",
+      "en_US": [
+        "A variable move that changes type\n",
+        "and power depending on the hidden\n",
+        "ability of the Pokémon using it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00338",
+      "en_US": [
+        "The user intensifies the sun for\n",
+        "five turns, powering up Fire-type\n",
+        "moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00339",
+      "en_US": [
+        "The foe is taunted into a rage that\n",
+        "allows it to use only attack moves for\n",
+        "two to four turns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00340",
+      "en_US": [
+        "The foe is struck with an icy-cold\n",
+        "beam of energy. It may also freeze\n",
+        "the target solid."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00341",
+      "en_US": [
+        "A howling blizzard is summoned to\n",
+        "strike the foe. It may also freeze\n",
+        "the target solid."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00342",
+      "en_US": [
+        "The foe is attacked with a powerful\n",
+        "beam. The user must rest on the next\n",
+        "turn to regain its energy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00343",
+      "en_US": [
+        "A wondrous wall of light is put up to\n",
+        "suppress damage from special attacks\n",
+        "for five turns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00344",
+      "en_US": [
+        "It enables the user to evade all\n",
+        "attacks. Its chance of failing rises\n",
+        "if it is used in succession."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00345",
+      "en_US": [
+        "The user summons a heavy rain that\n",
+        "falls for five turns, powering up\n",
+        "Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00346",
+      "en_US": [
+        "A nutrient-draining attack. The user’s\n",
+        "HP is restored by half the damage\n",
+        "taken by the target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00347",
+      "en_US": [
+        "The user creates a protective field\n",
+        "that prevents status problems like\n",
+        "poison, paralysis, burn, and sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00348",
+      "en_US": [
+        "A full-power attack that grows more\n",
+        "powerful the less the user likes its\n",
+        "Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00349",
+      "en_US": [
+        "A two-turn attack. The user gathers\n",
+        "light, then blasts a bundled beam on\n",
+        "the second turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00350",
+      "en_US": [
+        "The foe is slammed with a sturdy\n",
+        "tail of steel. It may also lower the\n",
+        "target’s Defense stat if it hits."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00351",
+      "en_US": [
+        "A strong electric blast is loosed at\n",
+        "the foe. It may also leave the foe\n",
+        "paralyzed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00352",
+      "en_US": [
+        "A wicked thunderbolt is dropped on the\n",
+        "foe to inflict damage. It may also\n",
+        "leave the target paralyzed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00353",
+      "en_US": [
+        "The user sets off an earthquake\n",
+        "that hits all the Pokémon in the\n",
+        "battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00354",
+      "en_US": [
+        "A full-power attack that grows more\n",
+        "powerful the more the user likes its\n",
+        "Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00355",
+      "en_US": [
+        "The user burrows, then attacks on the\n",
+        "second turn. It can also be used to\n",
+        "exit dungeons."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00356",
+      "en_US": [
+        "The foe is hit by a strong telekinetic\n",
+        "force. It may also reduce the foe’s\n",
+        "Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00357",
+      "en_US": [
+        "The user hurls a shadowy blob at the\n",
+        "foe. It may also lower the foe’s\n",
+        "Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00358",
+      "en_US": [
+        "The user attacks with tough fists,\n",
+        "etc. It can also break any barrier\n",
+        "such as Light Screen and Reflect."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00359",
+      "en_US": [
+        "The user begins moving so quickly\n",
+        "that it creates illusory copies to\n",
+        "raise its evasiveness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00360",
+      "en_US": [
+        "A wondrous wall of light is put up to\n",
+        "suppress damage from physical attacks\n",
+        "for five turns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00361",
+      "en_US": [
+        "The user strikes the foe with a quick\n",
+        "jolt of electricity. This attack cannot\n",
+        "be evaded."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00362",
+      "en_US": [
+        "The foe is scorched with an intense\n",
+        "blast of fire. The target may also be\n",
+        "left with a burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00363",
+      "en_US": [
+        "Unsanitary sludge is hurled at\n",
+        "the foe. It may also poison the\n",
+        "target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00364",
+      "en_US": [
+        "A five-turn sandstorm is summoned\n",
+        "to hurt all combatants except the\n",
+        "Rock, Ground, and Steel types."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00365",
+      "en_US": [
+        "The foe is attacked with an intense\n",
+        "blast of all-consuming fire. It may\n",
+        "also leave the target with a burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00366",
+      "en_US": [
+        "Large boulders are hurled at the foe\n",
+        "to inflict damage. It lowers the foe’s\n",
+        "Speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00367",
+      "en_US": [
+        "The user confounds the foe with speed,\n",
+        "then strikes. The attack lands without\n",
+        "fail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00368",
+      "en_US": [
+        "The user torments and enrages the\n",
+        "foe, making it incapable of using the\n",
+        "same move twice in a row."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00369",
+      "en_US": [
+        "An attack move that doubles its power\n",
+        "if the user is poisoned, paralyzed, or\n",
+        "has a burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00370",
+      "en_US": [
+        "An attack move with effects that\n",
+        "vary depending on the user’s\n",
+        "environment."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00371",
+      "en_US": [
+        "The user goes to sleep for two\n",
+        "turns. It fully restores the user’s HP\n",
+        "and heals any status problem."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00372",
+      "en_US": [
+        "If it is the opposite gender of the\n",
+        "user, the foe becomes infatuated\n",
+        "and less likely to attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00373",
+      "en_US": [
+        "The user attacks and steals the foe’s\n",
+        "held item simultaneously. It can’t\n",
+        "steal if the user holds an item."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00374",
+      "en_US": [
+        "The foe is hit with wings of steel.\n",
+        "It may also raise the user’s Defense\n",
+        "stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00375",
+      "en_US": [
+        "The user employs its psychic power to\n",
+        "exchange abilities with the foe.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00376",
+      "en_US": [
+        "The user steals the effects of any\n",
+        "healing or status-changing move the\n",
+        "foe attempts to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00377",
+      "en_US": [
+        "The user attacks the foe at full\n",
+        "power using fiery energy. It also\n",
+        "sharply reduces the user’s Sp. Atk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00378",
+      "en_US": [
+        "The user lands and rests its body.\n",
+        "It restores the user’s HP by up to\n",
+        "half of its max HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00379",
+      "en_US": [
+        "The user attacks at full power.\n",
+        "It may also lower the foe’s Sp. Def\n",
+        "stat if it hits."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00380",
+      "en_US": [
+        "The user draws power from nature and\n",
+        "fires it at the foe. It may also lower\n",
+        "the target’s Sp. Def."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00381",
+      "en_US": [
+        "A restrained attack that prevents the\n",
+        "foe from fainting. The target is left\n",
+        "with at least 1 HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00382",
+      "en_US": [
+        "If the foe’s HP is down to under half,\n",
+        "this attack will hit with double the\n",
+        "power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00383",
+      "en_US": [
+        "The user flings its held item at the\n",
+        "foe to attack. Its power and effects\n",
+        "depend on the item."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00384",
+      "en_US": [
+        "The user attacks with an electric\n",
+        "charge. The user may use any remaining\n",
+        "electricity to raise its Sp. Atk stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00385",
+      "en_US": [
+        "The user endures any attack, leaving\n",
+        "1 HP. Its chance of failing rises if it\n",
+        "is used in succession."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00386",
+      "en_US": [
+        "The foe is attacked with a shock\n",
+        "wave generated by the user’s gaping\n",
+        "mouth."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00387",
+      "en_US": [
+        "An energy-draining punch. The user’s\n",
+        "HP is restored by half the damage\n",
+        "taken by the target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00388",
+      "en_US": [
+        "The user shoots a sinister, bluish\n",
+        "white flame at the foe to inflict a\n",
+        "burn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00389",
+      "en_US": [
+        "The foe is attacked with powdery\n",
+        "scales blown by wind. It may also\n",
+        "raise all the user’s stats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00390",
+      "en_US": [
+        "It prevents the foe from using its\n",
+        "held item. Its Trainer is also\n",
+        "prevented from using items on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00391",
+      "en_US": [
+        "The user explodes to inflict damage on\n",
+        "all Pokémon in battle. The user faints\n",
+        "upon using this move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00392",
+      "en_US": [
+        "The user slashes with a sharp claw\n",
+        "made from shadows. It has a high\n",
+        "critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00393",
+      "en_US": [
+        "The user stores power, then attacks.\n",
+        "If the user can use this attack after\n",
+        "the foe, its power is doubled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00394",
+      "en_US": [
+        "The user recycles a single-use item\n",
+        "that has been used in battle so it can\n",
+        "be used again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00395",
+      "en_US": [
+        "The user charges the foe using every\n",
+        "bit of its power. It must rest on the\n",
+        "next turn to recover."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00396",
+      "en_US": [
+        "The user polishes its body to reduce\n",
+        "drag. It sharply raises the Speed\n",
+        "stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00397",
+      "en_US": [
+        "The user flashes a light that cuts the\n",
+        "foe’s accuracy. It can also be used to\n",
+        "illuminate caves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00398",
+      "en_US": [
+        "The user stabs the foe with a\n",
+        "sharpened stone from below. It has\n",
+        "a high critical-hit ratio."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00399",
+      "en_US": [
+        "An attack move that inflicts double\n",
+        "the damage if the user has been hurt\n",
+        "by the foe in the same turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00400",
+      "en_US": [
+        "A weak electric charge is launched\n",
+        "at the foe. It causes paralysis if it\n",
+        "hits."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00401",
+      "en_US": [
+        "The user tackles the foe from a\n",
+        "high-speed spin. The slower the user,\n",
+        "the greater the damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00402",
+      "en_US": [
+        "A frenetic dance to uplift the fighting\n",
+        "spirit. It sharply raises the user’s\n",
+        "Attack stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00403",
+      "en_US": [
+        "The user lays a trap of levitating\n",
+        "stones around the foe. The trap hurts\n",
+        "foes that switch into battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00404",
+      "en_US": [
+        "The user hypnotizes itself into\n",
+        "copying any stat change made\n",
+        "by the foe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00405",
+      "en_US": [
+        "If it is the opposite gender of the\n",
+        "user, the foe is charmed into sharply\n",
+        "lowering its Sp. Atk stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00406",
+      "en_US": [
+        "The user releases a horrible aura\n",
+        "imbued with dark thoughts. It may also\n",
+        "make the target flinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00407",
+      "en_US": [
+        "Large boulders are hurled at the foe\n",
+        "to inflict damage. It may also make the\n",
+        "target flinch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00408",
+      "en_US": [
+        "The user slashes at the foe by\n",
+        "crossing its scythes or claws as if\n",
+        "they were a pair of scissors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00409",
+      "en_US": [
+        "While it is asleep, the user\n",
+        "randomly uses one of the moves\n",
+        "it knows."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00410",
+      "en_US": [
+        "The user draws power from the Berry\n",
+        "it is holding to attack. The Berry\n",
+        "determines its type and power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00411",
+      "en_US": [
+        "The foe is stabbed with a tentacle or\n",
+        "arm seeped with poison. It may also\n",
+        "poison the foe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00412",
+      "en_US": [
+        "An attack that works only on a\n",
+        "sleeping foe. It absorbs half the\n",
+        "damage caused to heal the user’s HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00413",
+      "en_US": [
+        "The user snares the foe with grass\n",
+        "and trips it. The heavier the foe, the\n",
+        "greater the damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00414",
+      "en_US": [
+        "The user enrages the foe into\n",
+        "confusion. However, it also sharply\n",
+        "raises the foe’s Attack stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00415",
+      "en_US": [
+        "The user pecks the foe. If the foe is\n",
+        "holding a Berry, the user plucks it and\n",
+        "gains its effect."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00416",
+      "en_US": [
+        "After making its attack, the user\n",
+        "rushes back to switch places with a\n",
+        "party Pokémon in waiting."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00417",
+      "en_US": [
+        "The user makes a copy of itself using\n",
+        "some of its HP. The copy serves as\n",
+        "the user’s decoy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00418",
+      "en_US": [
+        "The user gathers all its light energy\n",
+        "and releases it in one shot. It may\n",
+        "also lower the foe’s Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00419",
+      "en_US": [
+        "The user creates a bizarre space in\n",
+        "which slower Pokémon get to move\n",
+        "first for five turns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00420",
+      "en_US": [
+        "The foe is cut with a scythe or a claw.\n",
+        "It can also be used to cut down thin\n",
+        "trees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00421",
+      "en_US": [
+        "The user soars, then strikes on the\n",
+        "second turn. It can also be used to\n",
+        "fly to any familiar town."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00422",
+      "en_US": [
+        "It swamps the entire battlefield with\n",
+        "a giant wave. It can also be used\n",
+        "to cross water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00423",
+      "en_US": [
+        "The foe is slugged with a punch thrown\n",
+        "at maximum power. It can also be used\n",
+        "to move boulders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00424",
+      "en_US": [
+        "Obstacles are moved, reducing the\n",
+        "foe’s evasion stat. It can also be\n",
+        "used to clear deep fog."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00425",
+      "en_US": [
+        "The user slugs the foe with a\n",
+        "shattering punch. It can also smash\n",
+        "cracked boulders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00426",
+      "en_US": [
+        "The user charges the foe at an\n",
+        "awesome speed. It can also be used\n",
+        "to climb a waterfall."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00427",
+      "en_US": [
+        "A charging attack that may also leave\n",
+        "the foe confused. It can also be used\n",
+        "to scale rocky walls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00428",
+      "en_US": [
+        "A bag filled with convenient tools\n",
+        "for exploring. It provides access to\n",
+        "the Underground."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00429",
+      "en_US": [
+        "A sturdy, spacious bag that is used\n",
+        "to carry loot obtained in the coal\n",
+        "mine."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00430",
+      "en_US": [
+        "It lists the rules for holding battles.\n",
+        "For linked battles, you may choose\n",
+        "which set of rules you wish to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00431",
+      "en_US": [
+        "A tool that can search out Pokémon\n",
+        "that are hiding in grass. Its battery is\n",
+        "recharged as you walk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00432",
+      "en_US": [
+        "A card that lists the Battle Points\n",
+        "you have earned.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00433",
+      "en_US": [
+        "A notebook that keeps a day-to-day\n",
+        "record of your adventure so far.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00434",
+      "en_US": [
+        "A case for storing Seals that can be\n",
+        "applied to the capsule cases of Poké\n",
+        "Balls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00435",
+      "en_US": [
+        "A fancy case for the tidy and\n",
+        "organized storage of colorful Pokémon\n",
+        "Accessories."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00436",
+      "en_US": [
+        "A tiny bag that can hold ten Seals for\n",
+        "decorating Poké Balls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00437",
+      "en_US": [
+        "A convenient notepad that is used for\n",
+        "registering your friends, Friend Codes,\n",
+        "and keeping a record of game play."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00438",
+      "en_US": [
+        "A large key for operating the doors of\n",
+        "the Valley Windworks in the canyon.\n",
+        "It was held by a Team Galactic Grunt."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00439",
+      "en_US": [
+        "An ancient good-luck charm made of\n",
+        "Pokémon bones to be taken to the elder\n",
+        "of Celestic Town."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00440",
+      "en_US": [
+        "A card key for disengaging security\n",
+        "systems in the Galactic HQ. Losing it\n",
+        "can result in punishment, apparently."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00441",
+      "en_US": [
+        "A mythical chain that is said to link\n",
+        "the legendary Pokémon that created\n",
+        "the Sinnoh region."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00442",
+      "en_US": [
+        "A very convenient map that can be\n",
+        "viewed anytime. It even shows your \n",
+        "present location."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00443",
+      "en_US": [
+        "A device that indicates Trainers who\n",
+        "want to battle. Its battery charges\n",
+        "while you walk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00444",
+      "en_US": [
+        "A case for holding Coins obtained at\n",
+        "the Game Corner.\n",
+        "It holds up to 50,000 Coins."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00445",
+      "en_US": [
+        "An old and beat-up fishing rod.\n",
+        "Use it by any body of water to fish for\n",
+        "wild aquatic Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00446",
+      "en_US": [
+        "A new, good-quality fishing rod.\n",
+        "Use it by any body of water to fish for\n",
+        "wild aquatic Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00447",
+      "en_US": [
+        "An awesome, high-tech fishing rod.\n",
+        "Use it by any body of water to fish for\n",
+        "wild aquatic Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00448",
+      "en_US": [
+        "A watering can shaped like a PSYDUCK.\n",
+        "It helps promote healthy growth of\n",
+        "Berries planted in soft soil."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00449",
+      "en_US": [
+        "A case for storing Poffin cooked from\n",
+        "Berries.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00450",
+      "en_US": [
+        "A folding Bicycle that enables much\n",
+        "faster movement than the Running\n",
+        "Shoes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00451",
+      "en_US": [
+        "A key to one of the suites at the\n",
+        "luxury hotel by a lake. For some odd\n",
+        "reason, it often disappears."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00452",
+      "en_US": [
+        "A letter from Prof. Oak.\n",
+        "Written in it is a request for you to\n",
+        "go to Rt. 224."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00453",
+      "en_US": [
+        "A feather that glows like the moon.\n",
+        "It is said to possess the power to\n",
+        "dispel nightmares."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00454",
+      "en_US": [
+        "A card needed for entering the inn in\n",
+        "Canalave City. Oddly, the last date\n",
+        "marked on it was 50 years ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00455",
+      "en_US": [
+        "A flute that puts out echoing sounds\n",
+        "that do not seem to be of this world.\n",
+        "It is unknown who made it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00456",
+      "en_US": [
+        "The ticket required for sailing on the\n",
+        "ferry S.S. Anne. It has a drawing of a\n",
+        "ship on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00457",
+      "en_US": [
+        "The pass required for entering Pokémon\n",
+        "Contests. It has a drawing of an award\n",
+        "ribbon on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00458",
+      "en_US": [
+        "A stone formed when boulders melted in\n",
+        "intensely hot magma, then hardened.\n",
+        "Magma remains sealed inside."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00459",
+      "en_US": [
+        "A parcel entrusted in your care.\n",
+        "You are supposed to deliver it to your\n",
+        "childhood friend who left Twinleaf Town."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00460",
+      "en_US": [
+        "A coupon to be exchanged for a\n",
+        "Pokémon Watch (Pokétch for short).\n",
+        "Three coupons are needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00461",
+      "en_US": [
+        "A coupon to be exchanged for a\n",
+        "Pokémon Watch (Pokétch for short).\n",
+        "Three coupons are needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00462",
+      "en_US": [
+        "A coupon to be exchanged for a\n",
+        "Pokémon Watch (Pokétch for short).\n",
+        "Three coupons are needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00463",
+      "en_US": [
+        "The key to Team Galactic’s sinister\n",
+        "warehouse located at the edge of\n",
+        "Veilstone City."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00464",
+      "en_US": [
+        "A fantastic medicine dispensed by the\n",
+        "pharmacy in Cianwood City. It fully\n",
+        "heals a Pokémon of any ailment."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00465",
+      "en_US": [
+        "An amazing device that can record a\n",
+        "battle either between friends or at a\n",
+        "special battle facility."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00466",
+      "en_US": [
+        "A flower sometimes bundled in bouquets\n",
+        "to convey gratitude on special\n",
+        "occasions like birthdays."
+      ]
+    },
+    {
+      "id": "pl_msg_00000391_00467",
+      "en_US": [
+        "A high-tech key that has to be used at\n",
+        "a specific location. It emits a special\n",
+        "electric signal to open a door."
+      ]
+    }
+  ]
+}

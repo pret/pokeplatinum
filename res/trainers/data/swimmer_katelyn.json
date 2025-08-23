@@ -49,5 +49,32 @@
             "power": 0,
             "ball_seal": 15
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I may not look it now, but I’m a\n",
+				"star. I’m always with my Pokémon.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I lost, but at least I had fun.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If it were an underwater Pokémon\n",
+				"show, I would have shined.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, hi! Are you back to see our\n",
+				"Pokémon show again?\r"
+			]
+		}
     ]
 }

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokedex/footprint.h"
 #include "applications/pokedex/ov21_021DE668.h"
-#include "applications/pokedex/pokedex_footprint.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_text_manager.h"

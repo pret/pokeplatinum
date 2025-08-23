@@ -3,6 +3,7 @@ on:
   pull_request:
     branches: [main]
     paths: ['**.c', '**.h']
+  workflow_dispatch: {}
 
 jobs:
   pr-lint:
@@ -15,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: cpp-linter/cpp-linter-action@v2
+      - uses: cpp-linter/cpp-linter-action@v2.15.1
         id: linter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -21,5 +21,31 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"My body isn’t the only thing I\n",
+				"work on toughening up here.\r",
+				"I also work on my Pokémon and my\n",
+				"spirit!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wow, Trainer! You just might be\n",
+				"tougher than our Gym Leader!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Maybe I’ll do like Wake,\r",
+				"I mean, Crasher Wake, and wear\n",
+				"the same kind of mask.\n"
+			]
+		}
     ]
 }

@@ -1,0 +1,1011 @@
+{
+  "key": 57678,
+  "messages": [
+    {
+      "id": "pl_msg_00000453_00000",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000453_00001",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000453_00002",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00003",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00004",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00005",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00006",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00007",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00008",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00009",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00010",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00011",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00012",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00013",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00014",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00015",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00016",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00017",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00018",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00019",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00020",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00021",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00022",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00023",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00024",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00025",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00026",
+      "en_US": "/"
+    },
+    {
+      "id": "pl_msg_00000453_00027",
+      "en_US": "♂"
+    },
+    {
+      "id": "pl_msg_00000453_00028",
+      "en_US": "♀"
+    },
+    {
+      "id": "pl_msg_00000453_00029",
+      "en_US": "Choose a Pokémon."
+    },
+    {
+      "id": "pl_msg_00000453_00030",
+      "en_US": "Move to where?"
+    },
+    {
+      "id": "pl_msg_00000453_00031",
+      "en_US": "Give to which Pokémon?"
+    },
+    {
+      "id": "pl_msg_00000453_00032",
+      "en_US": "Use on which Pokémon?"
+    },
+    {
+      "id": "pl_msg_00000453_00033",
+      "en_US": "Teach which Pokémon?"
+    },
+    {
+      "id": "pl_msg_00000453_00034",
+      "en_US": "Choose Pokémon and confirm."
+    },
+    {
+      "id": "pl_msg_00000453_00035",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000453_00036",
+      "en_US": "Use on which Pokémon?"
+    },
+    {
+      "id": "pl_msg_00000453_00037",
+      "en_US": [
+        "Do what with\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00038",
+      "en_US": [
+        "Do what with\n",
+        "an item?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00039",
+      "en_US": [
+        "Do what with\n",
+        "the Mail?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00040",
+      "en_US": [
+        "Restore\n",
+        "which move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00041",
+      "en_US": [
+        "Boost the PP\n",
+        "of which move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00042",
+      "en_US": [
+        "Set this\n",
+        "customized Ball?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00043",
+      "en_US": [
+        "Send the removed Mail to\n",
+        "your PC?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00044",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000453_00045",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000453_00046",
+      "en_US": "The Mail was sent to your PC."
+    },
+    {
+      "id": "pl_msg_00000453_00047",
+      "en_US": [
+        "If the Mail is removed, its written\n",
+        "message will be lost. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00048",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000453_00049",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000453_00050",
+      "en_US": "Your PC’s Mailbox is full."
+    },
+    {
+      "id": "pl_msg_00000453_00051",
+      "en_US": [
+        "Mail was taken from the\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00052",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} wants to learn the\n",
+        "move {STRVAR_1 6, 1, 0}.\r",
+        "However, {STRVAR_1 1, 0, 0} already\n",
+        "knows four moves.\r",
+        "Should a move be deleted and\n",
+        "replaced with {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00053",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000453_00054",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000453_00055",
+      "en_US": [
+        "Stop trying to teach\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00056",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000453_00057",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000453_00058",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn the\n",
+        "move {STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00059",
+      "en_US": [
+        "Which move should be\n",
+        "forgotten?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00060",
+      "en_US": [
+        "1, {PAUSE 20}2, and{PAUSE 20}... {PAUSE 20}... {PAUSE 20}... Poof!{WAIT 3}{WAIT 5}\r",
+        "{STRVAR_1 1, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00061",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!{WAIT 4}{WAIT 2}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00062",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} and {STRVAR_1 6, 1, 0}\n",
+        "are not compatible.\r",
+        "{STRVAR_1 6, 1, 0} can’t be learned."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00063",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} already knows\n",
+        "{STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00064",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s HP was restored\n",
+        "by {STRVAR_1 52, 1, 0} point(s)."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00065",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was cured of its\n",
+        "poisoning."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00066",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was cured of\n",
+        "paralysis."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00067",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s\n",
+        "burn was healed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00068",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was\n",
+        "thawed out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00069",
+      "en_US": "PP was restored."
+    },
+    {
+      "id": "pl_msg_00000453_00070",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "regained health."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00071",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "became healthy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00072",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0}’s PP\n",
+        "increased."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00073",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} snapped out of its\n",
+        "confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00074",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} got over its\n",
+        "infatuation."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00075",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s base {STRVAR_1 13, 1, 0}\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00076",
+      "en_US": [
+        "This can’t be used until a new\n",
+        "Badge is obtained."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00077",
+      "en_US": [
+        "Must remove Mail before the\n",
+        "Pokémon is allowed to hold an item."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00078",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is already holding\n",
+        "{STRVAR_1 8, 1, 0}.\r",
+        "Would you like to switch the\n",
+        "two items?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00079",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000453_00080",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000453_00081",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} isn’t holding\n",
+        "anything."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00082",
+      "en_US": [
+        "Received the {STRVAR_1 8, 1, 0}\n",
+        "from {STRVAR_1 1, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00083",
+      "en_US": "The Bag is full."
+    },
+    {
+      "id": "pl_msg_00000453_00084",
+      "en_US": [
+        "The {STRVAR_1 8, 1, 0} was taken and\n",
+        "replaced with the {STRVAR_1 8, 2, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00085",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000453_00086",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00087",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00088",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000453_00089",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00090",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00091",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "woke up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00092",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000453_00093",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000453_00094",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00095",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00096",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000453_00097",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00098",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00099",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000453_00100",
+      "en_US": [
+        "No more than two Pokémon\n",
+        "may enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00101",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000453_00102",
+      "en_US": "You’re already surfing."
+    },
+    {
+      "id": "pl_msg_00000453_00103",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000453_00104",
+      "en_US": "You can’t use that here."
+    },
+    {
+      "id": "pl_msg_00000453_00105",
+      "en_US": "It won’t have any effect."
+    },
+    {
+      "id": "pl_msg_00000453_00106",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000453_00107",
+      "en_US": "Two Pokémon are needed."
+    },
+    {
+      "id": "pl_msg_00000453_00108",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000453_00109",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000453_00110",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became more friendly.\r",
+        "However, its base {STRVAR_1 13, 1, 0} fell!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00111",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} adores you!\r",
+        "Its base {STRVAR_1 13, 1, 0} fell!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00112",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became more friendly.\r",
+        "Its base {STRVAR_1 13, 1, 0} can’t go lower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00113",
+      "en_US": "{STRVAR_1 1, 0, 0} is already in battle!"
+    },
+    {
+      "id": "pl_msg_00000453_00114",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} has no energy left\n",
+        "to battle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00115",
+      "en_US": "{STRVAR_1 1, 0, 0} can’t be switched out!"
+    },
+    {
+      "id": "pl_msg_00000453_00116",
+      "en_US": "An Egg can’t battle!"
+    },
+    {
+      "id": "pl_msg_00000453_00117",
+      "en_US": [
+        "You can’t switch {STRVAR_1 3, 0, 0}’s\n",
+        "Pokémon with one of yours!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00118",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was given the\n",
+        "{STRVAR_1 8, 1, 0} to hold."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00119",
+      "en_US": "Three Pokémon are needed."
+    },
+    {
+      "id": "pl_msg_00000453_00120",
+      "en_US": "Four Pokémon are needed."
+    },
+    {
+      "id": "pl_msg_00000453_00121",
+      "en_US": "Five Pokémon are needed."
+    },
+    {
+      "id": "pl_msg_00000453_00122",
+      "en_US": "Six Pokémon are needed."
+    },
+    {
+      "id": "pl_msg_00000453_00123",
+      "en_US": [
+        "No more than one Pokémon\n",
+        "may enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00124",
+      "en_US": [
+        "No more than three Pokémon\n",
+        "may enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00125",
+      "en_US": [
+        "No more than four Pokémon\n",
+        "may enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00126",
+      "en_US": [
+        "No more than five Pokémon\n",
+        "may enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00127",
+      "en_US": [
+        "Mail was transferred from\n",
+        "the Mailbox."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00128",
+      "en_US": [
+        "This Pokémon is holding an item.\n",
+        "It cannot hold Mail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00129",
+      "en_US": "The Ball Capsule was set."
+    },
+    {
+      "id": "pl_msg_00000453_00130",
+      "en_US": "Two capsules can’t be set."
+    },
+    {
+      "id": "pl_msg_00000453_00131",
+      "en_US": [
+        "This can’t be used on\n",
+        "that Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00132",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000453_00133",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00134",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00135",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000453_00136",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000453_00137",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000453_00138",
+      "en_US": "Not enough HP..."
+    },
+    {
+      "id": "pl_msg_00000453_00139",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000453_00140",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000453_00141",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000453_00142",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000453_00143",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000453_00144",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000453_00145",
+      "en_US": "SWITCH"
+    },
+    {
+      "id": "pl_msg_00000453_00146",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "pl_msg_00000453_00147",
+      "en_US": "ITEM"
+    },
+    {
+      "id": "pl_msg_00000453_00148",
+      "en_US": "MAIL"
+    },
+    {
+      "id": "pl_msg_00000453_00149",
+      "en_US": "READ"
+    },
+    {
+      "id": "pl_msg_00000453_00150",
+      "en_US": "TAKE"
+    },
+    {
+      "id": "pl_msg_00000453_00151",
+      "en_US": "STORE"
+    },
+    {
+      "id": "pl_msg_00000453_00152",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000453_00153",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000453_00154",
+      "en_US": "ENTER"
+    },
+    {
+      "id": "pl_msg_00000453_00155",
+      "en_US": "NO ENTRY"
+    },
+    {
+      "id": "pl_msg_00000453_00156",
+      "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00157",
+      "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00158",
+      "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00159",
+      "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00160",
+      "en_US": "GIVE"
+    },
+    {
+      "id": "pl_msg_00000453_00161",
+      "en_US": "TAKE"
+    },
+    {
+      "id": "pl_msg_00000453_00162",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00163",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00164",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00165",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00166",
+      "en_US": "SET"
+    },
+    {
+      "id": "pl_msg_00000453_00167",
+      "en_US": "NOT ENTERED"
+    },
+    {
+      "id": "pl_msg_00000453_00168",
+      "en_US": "BANNED"
+    },
+    {
+      "id": "pl_msg_00000453_00169",
+      "en_US": "FIRST"
+    },
+    {
+      "id": "pl_msg_00000453_00170",
+      "en_US": "SECOND"
+    },
+    {
+      "id": "pl_msg_00000453_00171",
+      "en_US": "THIRD"
+    },
+    {
+      "id": "pl_msg_00000453_00172",
+      "en_US": "FOURTH"
+    },
+    {
+      "id": "pl_msg_00000453_00173",
+      "en_US": "FIFTH"
+    },
+    {
+      "id": "pl_msg_00000453_00174",
+      "en_US": "SIXTH"
+    },
+    {
+      "id": "pl_msg_00000453_00175",
+      "en_US": "ABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00176",
+      "en_US": "UNABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00177",
+      "en_US": "LEARNED"
+    },
+    {
+      "id": "pl_msg_00000453_00178",
+      "en_US": "ABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00179",
+      "en_US": "UNABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00180",
+      "en_US": "ABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00181",
+      "en_US": "UNABLE!"
+    },
+    {
+      "id": "pl_msg_00000453_00182",
+      "en_US": "Identical Pokémon are not permitted."
+    },
+    {
+      "id": "pl_msg_00000453_00183",
+      "en_US": [
+        "Some Pokémon are holding identical\n",
+        "items."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00184",
+      "en_US": [
+        "The total of all party members’\n",
+        "levels has gone over {STRVAR_1 52, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00185",
+      "en_US": "MAX HP"
+    },
+    {
+      "id": "pl_msg_00000453_00186",
+      "en_US": "ATTACK"
+    },
+    {
+      "id": "pl_msg_00000453_00187",
+      "en_US": "DEFENSE"
+    },
+    {
+      "id": "pl_msg_00000453_00188",
+      "en_US": "SP. ATK"
+    },
+    {
+      "id": "pl_msg_00000453_00189",
+      "en_US": "SP. DEF"
+    },
+    {
+      "id": "pl_msg_00000453_00190",
+      "en_US": "SPEED"
+    },
+    {
+      "id": "pl_msg_00000453_00191",
+      "en_US": "+ {STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00192",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000453_00193",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was elevated to\n",
+        "Lv. {STRVAR_1 52, 1, 0}.{WAIT 4}{WAIT 2}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00194",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!{WAIT 4}{WAIT 2}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00195",
+      "en_US": [
+        "The Ball Capsule will be detached.\n",
+        "Will that be OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00196",
+      "en_US": [
+        "You can’t use that when you have\n",
+        "someone with you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00197",
+      "en_US": "Please select an Egg."
+    },
+    {
+      "id": "pl_msg_00000453_00198",
+      "en_US": [
+        "What will you do\n",
+        "with the Egg?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00199",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000453_00200",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000453_00201",
+      "en_US": [
+        "You must use the same kind\n",
+        "of Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00202",
+      "en_US": "{STRVAR_1 0, 0, 0} changed Forme!"
+    },
+    {
+      "id": "pl_msg_00000453_00203",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} cannot hold\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000453_00204",
+      "en_US": [
+        "The {STRVAR_1 8, 0, 0} cannot be\n",
+        "given here.\n"
+      ]
+    }
+  ]
+}

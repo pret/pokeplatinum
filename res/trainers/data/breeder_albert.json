@@ -43,5 +43,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let me see how much you’ve raised\n",
+				"your Pokémon.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Good stuff! Your Pokémon are in\n",
+				"impeccable condition.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It’s obvious you raise your Pokémon\n",
+				"with a lot of love.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve raised my Pokémon since we met.\n",
+				"How much have you raised yours?\r"
+			]
+		}
     ]
 }

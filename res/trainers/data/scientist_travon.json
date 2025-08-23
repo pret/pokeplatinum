@@ -21,5 +21,31 @@
             "power": 20,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Our mission is to implement our\n",
+				"operations without question.\r",
+				"It is all for the new world order\n",
+				"that our boss will lead!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "This won’t go unpunished...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m willing to do anything to get ahead\n",
+				"in Team Galactic.\r",
+				"One day you’ll see what we are all\n",
+				"about.\r",
+				"It’s wonder, compassion, splendor,\n",
+				"humor, power, awe, and tragedy!\n"
+			]
+		}
     ]
 }

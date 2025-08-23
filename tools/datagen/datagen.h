@@ -20,6 +20,8 @@
 
 #include <rapidjson/document.h>
 #include <rapidjson/error/en.h>
+#include "rapidjson/filewritestream.h"
+#include <rapidjson/writer.h>
 #include <narc/narc.h>
 // clang-format on
 

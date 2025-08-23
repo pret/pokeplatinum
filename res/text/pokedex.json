@@ -1,0 +1,529 @@
+{
+  "key": 10789,
+  "messages": [
+    {
+      "id": "pl_msg_pokedex_seen",
+      "en_US": "SEEN"
+    },
+    {
+      "id": "pl_msg_pokedex_obtained",
+      "en_US": "OBTAINED"
+    },
+    {
+      "id": "pl_msg_pokedex_garbage1",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_pokedex_garbage2",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_pokedex_garbage3",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_pokedex_switch",
+      "en_US": [
+        "SWITCH\n",
+        "POKéDEX"
+      ]
+    },
+    {
+      "id": "pl_msg_pokedex_garbage4",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_pokedex_search",
+      "en_US": [
+        "SEARCH\n",
+        "POKéMON"
+      ]
+    },
+    {
+      "id": "pl_msg_pokedex_garbage5",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_pokedex_ht",
+      "en_US": "HT"
+    },
+    {
+      "id": "pl_msg_pokedex_wt",
+      "en_US": "WT"
+    },
+    {
+      "id": "pl_msg_pokedex_ft",
+      "en_US": "ft."
+    },
+    {
+      "id": "pl_msg_pokedex_lbs",
+      "en_US": "lbs."
+    },
+    {
+      "id": "pl_msg_pokedex_male",
+      "en_US": "Male"
+    },
+    {
+      "id": "pl_msg_pokedex_female",
+      "en_US": "Female"
+    },
+    {
+      "id": "pl_msg_pokedex_westsea",
+      "en_US": "West sea"
+    },
+    {
+      "id": "pl_msg_pokedex_eastsea",
+      "en_US": "East sea"
+    },
+    {
+      "id": "pl_msg_pokedex_plantcloak",
+      "en_US": "Plant cloak"
+    },
+    {
+      "id": "pl_msg_pokedex_sandycloak",
+      "en_US": "Sandy cloak"
+    },
+    {
+      "id": "pl_msg_pokedex_trashcloak",
+      "en_US": "Trash cloak"
+    },
+    {
+      "id": "pl_msg_pokedex_oneform",
+      "en_US": "One form"
+    },
+    {
+      "id": "pl_msg_pokedex_blank",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_pokedex_english",
+      "en_US": "English Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_french",
+      "en_US": "French Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_german",
+      "en_US": "German Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_italian",
+      "en_US": "Italian Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_spanish",
+      "en_US": "Spanish Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_pokemon",
+      "en_US": "Pokémon"
+    },
+    {
+      "id": "pl_msg_pokedex_garbage6",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_pokedex_check",
+      "en_US": [
+        "CHECK\n",
+        "POKéDEX"
+      ]
+    },
+    {
+      "id": "pl_msg_pokedex_garbage7",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_pokedex_garbage8",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_pokedex_garbage9",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_pokedex_next",
+      "en_US": "NEXT"
+    },
+    {
+      "id": "pl_msg_pokedex_back",
+      "en_US": "BACK"
+    },
+    {
+      "id": "pl_msg_pokedex_areaunknown",
+      "en_US": "Area Unknown"
+    },
+    {
+      "id": "pl_msg_pokedex_morning",
+      "en_US": "Morning"
+    },
+    {
+      "id": "pl_msg_pokedex_day",
+      "en_US": "Day"
+    },
+    {
+      "id": "pl_msg_pokedex_night",
+      "en_US": "Night"
+    },
+    {
+      "id": "pl_msg_pokedex_garbage10",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_pokedex_garbage11",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_pokedex_chorus",
+      "en_US": "CHORUS"
+    },
+    {
+      "id": "pl_msg_pokedex_pan",
+      "en_US": "PAN"
+    },
+    {
+      "id": "pl_msg_pokedex_heightcheck_topscreen",
+      "en_US": "Height Check"
+    },
+    {
+      "id": "pl_msg_pokedex_weightcheck_topscreen",
+      "en_US": "Weight Check"
+    },
+    {
+      "id": "pl_msg_pokedex_heightcheck_button",
+      "en_US": "Height Check"
+    },
+    {
+      "id": "pl_msg_pokedex_weightcheck_button",
+      "en_US": "Weight Check"
+    },
+    {
+      "id": "pl_msg_pokedex_name",
+      "en_US": "NAME"
+    },
+    {
+      "id": "pl_msg_pokedex_type",
+      "en_US": "TYPE"
+    },
+    {
+      "id": "pl_msg_pokedex_form",
+      "en_US": "FORM"
+    },
+    {
+      "id": "pl_msg_pokedex_order",
+      "en_US": "ORDER"
+    },
+    {
+      "id": "pl_msg_pokedex_ok",
+      "en_US": "OK"
+    },
+    {
+      "id": "pl_msg_pokedex_garbage12",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_pokedex_dash",
+      "en_US": "-"
+    },
+    {
+      "id": "pl_msg_pokedex_abc",
+      "en_US": "ABC"
+    },
+    {
+      "id": "pl_msg_pokedex_def",
+      "en_US": "DEF"
+    },
+    {
+      "id": "pl_msg_pokedex_ghi",
+      "en_US": "GHI"
+    },
+    {
+      "id": "pl_msg_pokedex_jkl",
+      "en_US": "JKL"
+    },
+    {
+      "id": "pl_msg_pokedex_mno",
+      "en_US": "MNO"
+    },
+    {
+      "id": "pl_msg_pokedex_pqr",
+      "en_US": "PQR"
+    },
+    {
+      "id": "pl_msg_pokedex_stu",
+      "en_US": "STU"
+    },
+    {
+      "id": "pl_msg_pokedex_vwx",
+      "en_US": "VWX"
+    },
+    {
+      "id": "pl_msg_pokedex_yz",
+      "en_US": "YZ"
+    },
+    {
+      "id": "pl_msg_pokedex_garbage13",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_pokedex_normal",
+      "en_US": "Normal"
+    },
+    {
+      "id": "pl_msg_pokedex_fire",
+      "en_US": "Fire"
+    },
+    {
+      "id": "pl_msg_pokedex_water",
+      "en_US": "Water"
+    },
+    {
+      "id": "pl_msg_pokedex_electric",
+      "en_US": "Electric"
+    },
+    {
+      "id": "pl_msg_pokedex_grass",
+      "en_US": "Grass"
+    },
+    {
+      "id": "pl_msg_pokedex_ice",
+      "en_US": "Ice"
+    },
+    {
+      "id": "pl_msg_pokedex_fight",
+      "en_US": "Fight"
+    },
+    {
+      "id": "pl_msg_pokedex_poison",
+      "en_US": "Poison"
+    },
+    {
+      "id": "pl_msg_pokedex_ground",
+      "en_US": "Ground"
+    },
+    {
+      "id": "pl_msg_pokedex_flying",
+      "en_US": "Flying"
+    },
+    {
+      "id": "pl_msg_pokedex_psychic",
+      "en_US": "Psychic"
+    },
+    {
+      "id": "pl_msg_pokedex_bug",
+      "en_US": "Bug"
+    },
+    {
+      "id": "pl_msg_pokedex_rock",
+      "en_US": "Rock"
+    },
+    {
+      "id": "pl_msg_pokedex_ghost",
+      "en_US": "Ghost"
+    },
+    {
+      "id": "pl_msg_pokedex_dragon",
+      "en_US": "Dragon"
+    },
+    {
+      "id": "pl_msg_pokedex_dark",
+      "en_US": "Dark"
+    },
+    {
+      "id": "pl_msg_pokedex_steel",
+      "en_US": "Steel"
+    },
+    {
+      "id": "pl_msg_pokedex_numerical",
+      "en_US": "Numerical"
+    },
+    {
+      "id": "pl_msg_pokedex_alphabetical",
+      "en_US": "A to Z"
+    },
+    {
+      "id": "pl_msg_pokedex_heaviest",
+      "en_US": "Heaviest"
+    },
+    {
+      "id": "pl_msg_pokedex_lightest",
+      "en_US": "Lightest"
+    },
+    {
+      "id": "pl_msg_pokedex_tallest",
+      "en_US": "Tallest"
+    },
+    {
+      "id": "pl_msg_pokedex_smallest",
+      "en_US": "Smallest"
+    },
+    {
+      "id": "pl_msg_pokedex_alphabetical_description",
+      "en_US": [
+        "List by the first letter\n",
+        "in the name."
+      ]
+    },
+    {
+      "id": "pl_msg_pokedex_type_description",
+      "en_US": "List by type."
+    },
+    {
+      "id": "pl_msg_pokedex_body_description",
+      "en_US": "List by body style."
+    },
+    {
+      "id": "pl_msg_pokedex_listing_description",
+      "en_US": "Select the Pokédex listing mode."
+    },
+    {
+      "id": "pl_msg_pokedex_garbage14",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_pokedex_garbage15",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_pokedex_nonefound",
+      "en_US": "No matching Pokémon were found."
+    },
+    {
+      "id": "pl_msg_pokedex_searching",
+      "en_US": "Searching..."
+    },
+    {
+      "id": "pl_msg_pokedex_lucasheight",
+      "en_US": "4’8”"
+    },
+    {
+      "id": "pl_msg_pokedex_dawnheight",
+      "en_US": "4’6”"
+    },
+    {
+      "id": "pl_msg_pokedex_lucasweight",
+      "en_US": "83.8 lbs."
+    },
+    {
+      "id": "pl_msg_pokedex_dawnweight",
+      "en_US": "75.0 lbs."
+    },
+    {
+      "id": "pl_msg_pokedex_noname",
+      "en_US": "-----"
+    },
+    {
+      "id": "pl_msg_pokedex_none",
+      "en_US": "---"
+    },
+    {
+      "id": "pl_msg_pokedex_anotherform",
+      "en_US": "See another form."
+    },
+    {
+      "id": "pl_msg_pokedex_info",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_pokedex_area",
+      "en_US": "AREA"
+    },
+    {
+      "id": "pl_msg_pokedex_cry",
+      "en_US": "CRY"
+    },
+    {
+      "id": "pl_msg_pokedex_size",
+      "en_US": "SIZE"
+    },
+    {
+      "id": "pl_msg_pokedex_forms",
+      "en_US": "FORMS"
+    },
+    {
+      "id": "pl_msg_pokedex_quit",
+      "en_US": "QUIT"
+    },
+    {
+      "id": "pl_msg_pokedex_cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_pokedex_results",
+      "en_US": "RESULTS"
+    },
+    {
+      "id": "pl_msg_pokedex_registered",
+      "en_US": "Pokédex registration completed."
+    },
+    {
+      "id": "pl_msg_pokedex_normalforme",
+      "en_US": "Normal Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_attackforme",
+      "en_US": "Attack Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_defenseforme",
+      "en_US": "Defense Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_speedforme",
+      "en_US": "Speed Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_landforme",
+      "en_US": "Land Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_skyforme",
+      "en_US": "Sky Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_alteredforme",
+      "en_US": "Altered Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_originforme",
+      "en_US": "Origin Forme"
+    },
+    {
+      "id": "pl_msg_pokedex_rotom",
+      "en_US": "ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_rotomheat",
+      "en_US": "HEAT ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_rotomwash",
+      "en_US": "WASH ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_rotomfrost",
+      "en_US": "FROST ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_rotomfan",
+      "en_US": "FAN ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_rotommow",
+      "en_US": "MOW ROTOM"
+    },
+    {
+      "id": "pl_msg_pokedex_japanese",
+      "en_US": "Japanese Pokédex"
+    },
+    {
+      "id": "pl_msg_pokedex_nonealphabetical",
+      "en_US": "- - - - -"
+    },
+    {
+      "id": "pl_msg_pokedex_nonetype",
+      "en_US": "- - - -"
+    }
+  ]
+}

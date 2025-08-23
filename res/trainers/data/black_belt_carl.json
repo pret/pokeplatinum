@@ -26,5 +26,34 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"All right, my Pokémon squad!\n",
+				"Get out there and kick up a storm!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "The squad failed to hit its stride...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Hmm...\r",
+				"Gazing out over the sea doesn’t do a\n",
+				"thing for toughening up my Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Ah, it’s been a long time!\r",
+				"I have been toughening my fists\n",
+				"against the sea, just as before!\r"
+			]
+		}
     ]
 }

@@ -1,158 +1,159 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_market.h"
 #include "generated/ribbons.h"
+#include "constants/pokemon.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry _0096
-    ScriptEntry _00A9
-    ScriptEntry _0175
-    ScriptEntry _0018
-    ScriptEntry _01D4
+    ScriptEntry SunyshoreMarket_EffortRibbonWoman
+    ScriptEntry SunyshoreMarket_Sailor
+    ScriptEntry SunyshoreMarket_SealShop
+    ScriptEntry SunyshoreMarket_PokefanM
+    ScriptEntry SunyshoreMarket_Dummy
+    ScriptEntry SunyshoreMarket_BattleGirl
 
-_0018:
+SunyshoreMarket_Dummy:
     End
 
-_001A:
+SunyshoreMarket_EffortRibbonWoman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000
     GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_HOENN_EFFORT
-    GoToIfEq VAR_RESULT, 1, _0086
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreMarket_PokemonAlreadyHasEffortRibbon
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 0
-    ScrCmd_233 VAR_RESULT, VAR_0x8000
-    GoToIfLt VAR_RESULT, 0x1FE, _007B
-    Message 1
+    Message SunyshoreMarket_Text_OhYourPokemon
+    GetPartyMonEVTotal VAR_RESULT, VAR_0x8000
+    GoToIfLt VAR_RESULT, MAX_EVS_ALL_STATS, SunyshoreMarket_NotEnoughEVs
+    Message SunyshoreMarket_Text_ItWorkedStupendouslyHard
     SetPartyMonRibbon VAR_0x8000, RIBBON_HOENN_EFFORT
     PlaySound SEQ_FANFA1
     BufferPlayerName 1
-    Message 2
+    Message SunyshoreMarket_Text_PlayerReceivedEffortRibbon
     WaitSound
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 3
+    Message SunyshoreMarket_Text_PlayerPutEffortRibbonOn
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_007B:
-    Message 4
+SunyshoreMarket_NotEnoughEVs:
+    Message SunyshoreMarket_Text_ItNeedsToWorkHarder
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0086:
+SunyshoreMarket_PokemonAlreadyHasEffortRibbon:
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 5
+    Message SunyshoreMarket_Text_EffortRibbonLooksGood
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0096:
+SunyshoreMarket_Sailor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 6
+    Message SunyshoreMarket_Text_BestKnownForSeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A9:
+SunyshoreMarket_SealShop:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00D9
-    Message 7
+    GoToIfEq VAR_RESULT, FALSE, SunyshoreMarket_NoSealCase
+    Message SunyshoreMarket_Text_ALittleTimeIfYouWill
     CallCommonScript 0x7E3
     CloseMessageWithoutErasing
-    Call _00E4
+    Call SunyshoreMarket_OpenSealShopMenu
     ReleaseAll
     End
 
-_00D9:
-    Message 8
+SunyshoreMarket_NoSealCase:
+    Message SunyshoreMarket_Text_NoSealCase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00E4:
+SunyshoreMarket_OpenSealShopMenu:
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _016F
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _014B
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _0151
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, _0157
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, _015D
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, _0163
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, _0169
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_SealShopSunday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, SunyshoreMarket_SealShopMonday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_SealShopTuesday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_SealShopWednesday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, SunyshoreMarket_SealShopThursday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, SunyshoreMarket_SealShopFriday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, SunyshoreMarket_SealShopSaturday
     End
 
-_014B:
+SunyshoreMarket_SealShopMonday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
     Return
 
-_0151:
+SunyshoreMarket_SealShopTuesday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
     Return
 
-_0157:
+SunyshoreMarket_SealShopWednesday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
     Return
 
-_015D:
+SunyshoreMarket_SealShopThursday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
     Return
 
-_0163:
+SunyshoreMarket_SealShopFriday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
     Return
 
-_0169:
+SunyshoreMarket_SealShopSaturday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
     Return
 
-_016F:
+SunyshoreMarket_SealShopSunday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
     Return
 
-_0175:
+SunyshoreMarket_PokefanM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 9
+    Message SunyshoreMarket_Text_SeeTheSealMerchant
     GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, _01BE
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, _01BE
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, _01BE
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, _01BE
-    GoTo _01C9
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoTo SunyshoreMarket_PokefanM_SecondWeekHalfMessage
 
-_01BE:
-    Message 10
+SunyshoreMarket_PokefanM_FirstWeekHalfMessage:
+    Message SunyshoreMarket_Text_DidntHaveSeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_01C9:
-    Message 11
+SunyshoreMarket_PokefanM_SecondWeekHalfMessage:
+    Message SunyshoreMarket_Text_CameThroughWithDifferentSeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_01D4:
+SunyshoreMarket_BattleGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 12
+    Message SunyshoreMarket_Text_HugeFanOfWiFiPlaza
     WaitABXPadPress
     CloseMessage
     ReleaseAll

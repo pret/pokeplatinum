@@ -20,7 +20,7 @@
 
 #include "heap.h"
 
-static void ov21_021D4628(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D423C *param1, PokedexUpdater *param2);
+static void ov21_021D4628(PokedexScreenManager *param0, UnkStruct_ov21_021D423C *param1, PokedexUpdater *param2);
 
 BOOL ov21_021D4340(UnkStruct_ov21_021D4340_1 *param0)
 {
@@ -235,7 +235,7 @@ BOOL ov21_021D4558(UnkStruct_ov21_021D4340_1 *param0)
     return 0;
 }
 
-static void ov21_021D4628(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D423C *param1, PokedexUpdater *pokedexUpdater)
+static void ov21_021D4628(PokedexScreenManager *param0, UnkStruct_ov21_021D423C *param1, PokedexUpdater *pokedexUpdater)
 {
     PokedexUpdaterTemplate pokedexUpdaterTemplate;
 
@@ -246,7 +246,7 @@ static void ov21_021D4628(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D42
         pokedexUpdaterTemplate.graphicsFunc = param0->graphicsFunc;
 
         PokedexUpdater_PopulateUpdater(pokedexUpdater, &pokedexUpdaterTemplate);
-        ov21_021D426C(param1, param0->unk_20, param0->unk_24);
+        ov21_021D426C(param1, param0->screenStates, param0->numStates);
     }
 }
 

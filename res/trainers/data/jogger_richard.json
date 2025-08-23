@@ -16,5 +16,42 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I jog every morning to keep my\n",
+				"Pokémon fit.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oops!\n",
+				"You threw off my running rhythm.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Nothing beats being fit and healthy!\r",
+				"Come on, won’t you run with me?\n",
+				"To a better tomorrow!\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_MORNING_UNUSED",
+			"en_US": "Do you jog every morning, too?\n"
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"When I go on my jogs, I pass by lots\n",
+				"of people.\r",
+				"I have trouble remembering faces,\n",
+				"but we did meet before, right?\r"
+			]
+		}
     ]
 }

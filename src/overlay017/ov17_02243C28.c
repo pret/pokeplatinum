@@ -5,7 +5,7 @@
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "overlay012/battle_anim_system.h"
+#include "battle_anim/battle_anim_system.h"
 #include "overlay017/ov17_0223F7E4.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_0224F18C.h"

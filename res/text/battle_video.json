@@ -1,0 +1,63 @@
+{
+  "key": 45383,
+  "messages": [
+    {
+      "id": "pl_msg_00000605_00000",
+      "en_US": [
+        "Press the A Button to save a Battle\n",
+        "Video of this battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000605_00001",
+      "en_US": [
+        "Would you like to save the last battle\n",
+        "as your Battle Video?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000605_00002",
+      "en_US": [
+        "Delete your existing Battle Video and\n",
+        "save the last battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000605_00003",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000605_00004",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000605_00005",
+      "en_US": "Please wait a moment."
+    },
+    {
+      "id": "pl_msg_00000605_00006",
+      "en_US": "The Battle Video has been saved."
+    },
+    {
+      "id": "pl_msg_00000605_00007",
+      "en_US": [
+        "There was an error.\n",
+        "The Battle Video couldn’t be saved."
+      ]
+    },
+    {
+      "id": "pl_msg_00000605_00008",
+      "en_US": [
+        "Saving...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000605_00009",
+      "en_US": [
+        "Awaiting your friend’s decision.\n",
+        "Please wait."
+      ]
+    }
+  ]
+}

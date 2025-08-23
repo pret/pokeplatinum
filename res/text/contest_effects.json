@@ -1,0 +1,372 @@
+{
+  "key": 38210,
+  "messages": [
+    {
+      "id": "pl_msg_00000210_00000",
+      "en_US": "Perform first"
+    },
+    {
+      "id": "pl_msg_00000210_00001",
+      "en_US": "next turn."
+    },
+    {
+      "id": "pl_msg_00000210_00002",
+      "en_US": "Perform last"
+    },
+    {
+      "id": "pl_msg_00000210_00003",
+      "en_US": "next turn."
+    },
+    {
+      "id": "pl_msg_00000210_00004",
+      "en_US": "Each doubled"
+    },
+    {
+      "id": "pl_msg_00000210_00005",
+      "en_US": "Judge: +2"
+    },
+    {
+      "id": "pl_msg_00000210_00006",
+      "en_US": "If the Voltage"
+    },
+    {
+      "id": "pl_msg_00000210_00007",
+      "en_US": "goes up: +2"
+    },
+    {
+      "id": "pl_msg_00000210_00008",
+      "en_US": "A basic act."
+    },
+    {
+      "id": "pl_msg_00000210_00009",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000210_00010",
+      "en_US": "If Judges are"
+    },
+    {
+      "id": "pl_msg_00000210_00011",
+      "en_US": "not doubled: +3"
+    },
+    {
+      "id": "pl_msg_00000210_00012",
+      "en_US": "Performable two"
+    },
+    {
+      "id": "pl_msg_00000210_00013",
+      "en_US": "turns in a row."
+    },
+    {
+      "id": "pl_msg_00000210_00014",
+      "en_US": "Voltage pts."
+    },
+    {
+      "id": "pl_msg_00000210_00015",
+      "en_US": "are added."
+    },
+    {
+      "id": "pl_msg_00000210_00016",
+      "en_US": "If all choose"
+    },
+    {
+      "id": "pl_msg_00000210_00017",
+      "en_US": "same Judge: +15"
+    },
+    {
+      "id": "pl_msg_00000210_00018",
+      "en_US": "Lowers Voltage"
+    },
+    {
+      "id": "pl_msg_00000210_00019",
+      "en_US": "of Judges by 1."
+    },
+    {
+      "id": "pl_msg_00000210_00020",
+      "en_US": "Double score in"
+    },
+    {
+      "id": "pl_msg_00000210_00021",
+      "en_US": "next turn."
+    },
+    {
+      "id": "pl_msg_00000210_00022",
+      "en_US": "Get Voltage"
+    },
+    {
+      "id": "pl_msg_00000210_00023",
+      "en_US": "from one ahead."
+    },
+    {
+      "id": "pl_msg_00000210_00024",
+      "en_US": "No Voltage up"
+    },
+    {
+      "id": "pl_msg_00000210_00025",
+      "en_US": "this turn."
+    },
+    {
+      "id": "pl_msg_00000210_00026",
+      "en_US": "Random order"
+    },
+    {
+      "id": "pl_msg_00000210_00027",
+      "en_US": "next turn."
+    },
+    {
+      "id": "pl_msg_00000210_00028",
+      "en_US": "Double score"
+    },
+    {
+      "id": "pl_msg_00000210_00029",
+      "en_US": "for final act."
+    },
+    {
+      "id": "pl_msg_00000210_00030",
+      "en_US": "High score for"
+    },
+    {
+      "id": "pl_msg_00000210_00031",
+      "en_US": "low Voltage."
+    },
+    {
+      "id": "pl_msg_00000210_00032",
+      "en_US": "If first"
+    },
+    {
+      "id": "pl_msg_00000210_00033",
+      "en_US": "performance: +2"
+    },
+    {
+      "id": "pl_msg_00000210_00034",
+      "en_US": "If final"
+    },
+    {
+      "id": "pl_msg_00000210_00035",
+      "en_US": "performance: +2"
+    },
+    {
+      "id": "pl_msg_00000210_00036",
+      "en_US": "No Voltage down"
+    },
+    {
+      "id": "pl_msg_00000210_00037",
+      "en_US": "this turn."
+    },
+    {
+      "id": "pl_msg_00000210_00038",
+      "en_US": "If Voltage goes"
+    },
+    {
+      "id": "pl_msg_00000210_00039",
+      "en_US": "up in a row: +3"
+    },
+    {
+      "id": "pl_msg_00000210_00040",
+      "en_US": "High score for"
+    },
+    {
+      "id": "pl_msg_00000210_00041",
+      "en_US": "a later turn."
+    },
+    {
+      "id": "pl_msg_00000210_00042",
+      "en_US": "After Voltage"
+    },
+    {
+      "id": "pl_msg_00000210_00043",
+      "en_US": "hits max: +3"
+    },
+    {
+      "id": "pl_msg_00000210_00044",
+      "en_US": "If rated the"
+    },
+    {
+      "id": "pl_msg_00000210_00045",
+      "en_US": "worst: +3"
+    },
+    {
+      "id": "pl_msg_00000210_00046",
+      "en_US": [
+        "Enables the user to\n",
+        "perform first in the\n",
+        "next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00047",
+      "en_US": [
+        "Enables the user to\n",
+        "perform last in the\n",
+        "next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00048",
+      "en_US": [
+        "Earn +2 for each\n",
+        "time the same Judge\n",
+        "is chosen."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00049",
+      "en_US": [
+        "Earn +2 if the\n",
+        "Judge’s Voltage goes\n",
+        "up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00050",
+      "en_US": [
+        "A basic performance\n",
+        "using a move known\n",
+        "by the Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00051",
+      "en_US": [
+        "Earn +3 if no other\n",
+        "Pokémon has chosen\n",
+        "the same Judge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00052",
+      "en_US": [
+        "Allows performance\n",
+        "of the same move\n",
+        "twice in a row."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00053",
+      "en_US": [
+        "Increased Voltage is\n",
+        "added to the\n",
+        "performance score."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00054",
+      "en_US": [
+        "Earn +15 if all the\n",
+        "Pokémon choose the\n",
+        "same Judge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00055",
+      "en_US": [
+        "Lowers the Voltage\n",
+        "of all Judges by one\n",
+        "each."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00056",
+      "en_US": [
+        "Earn double the\n",
+        "score in the next\n",
+        "turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00057",
+      "en_US": [
+        "Steals the Voltage\n",
+        "of the Pokémon that\n",
+        "just went."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00058",
+      "en_US": [
+        "Prevents the Voltage\n",
+        "from going up in the\n",
+        "same turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00059",
+      "en_US": [
+        "Makes the order of\n",
+        "contestants random\n",
+        "in the next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00060",
+      "en_US": [
+        "Earns double the\n",
+        "score on the final\n",
+        "performance."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00061",
+      "en_US": [
+        "Raises the score if\n",
+        "the Voltage is low."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00062",
+      "en_US": [
+        "Earn +2 if the\n",
+        "Pokémon performs\n",
+        "first in the turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00063",
+      "en_US": [
+        "Earn +2 if the\n",
+        "Pokémon performs\n",
+        "last in the turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00064",
+      "en_US": [
+        "Prevents the Voltage\n",
+        "from going down in\n",
+        "the same turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00065",
+      "en_US": [
+        "Earn +3 if two\n",
+        "Pokémon raise the\n",
+        "Voltage in a row."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00066",
+      "en_US": [
+        "Earn a higher score\n",
+        "the later the\n",
+        "Pokémon performs."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00067",
+      "en_US": [
+        "Earn +3 if the\n",
+        "Pokémon that just\n",
+        "went hit max Voltage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000210_00068",
+      "en_US": [
+        "Earn +3 if the\n",
+        "Pokémon gets the\n",
+        "lowest score."
+      ]
+    }
+  ]
+}

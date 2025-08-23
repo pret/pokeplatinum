@@ -1,0 +1,116 @@
+{
+  "key": 44521,
+  "messages": [
+    {
+      "id": "pl_msg_00000533_00000",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000533_00001",
+      "en_US": "ID: {STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000533_00002",
+      "en_US": [
+        "When the group is ready:\n",
+        "A Button: Proceed   B Button: Cancel"
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00003",
+      "en_US": "Are these members OK?"
+    },
+    {
+      "id": "pl_msg_00000533_00004",
+      "en_US": "Cancel record mixing?"
+    },
+    {
+      "id": "pl_msg_00000533_00005",
+      "en_US": "Record mixing will be canceled."
+    },
+    {
+      "id": "pl_msg_00000533_00006",
+      "en_US": [
+        "There is a member who can no\n",
+        "longer remain available."
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00007",
+      "en_US": [
+        "There are no members.\n",
+        "Record mixing will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00008",
+      "en_US": [
+        "Please wait.\n",
+        "... ... B Button: Cancel"
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00009",
+      "en_US": [
+        "A member is no longer available.\n",
+        "Record mixing will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00010",
+      "en_US": "Cancel record mixing?"
+    },
+    {
+      "id": "pl_msg_00000533_00011",
+      "en_US": "Record mixing will be canceled."
+    },
+    {
+      "id": "pl_msg_00000533_00012",
+      "en_US": [
+        "Mixing records...\n",
+        "Don’t turn off the power!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00013",
+      "en_US": [
+        "Record mixing completed!\n",
+        "Returning to the Union Room."
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00014",
+      "en_US": [
+        "If the leader quits, the group will\n",
+        "disband. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00015",
+      "en_US": "{STRVAR_1 3, 0, 0} has left."
+    },
+    {
+      "id": "pl_msg_00000533_00016",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} the leader has left.\n",
+        "The group will disband."
+      ]
+    },
+    {
+      "id": "pl_msg_00000533_00017",
+      "en_US": "Seeking record-mixing friends!"
+    },
+    {
+      "id": "pl_msg_00000533_00018",
+      "en_US": "Record mixing under way!"
+    },
+    {
+      "id": "pl_msg_00000533_00019",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000533_00020",
+      "en_US": "No"
+    }
+  ]
+}

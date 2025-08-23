@@ -1,0 +1,26 @@
+{
+  "key": 27003,
+  "messages": [
+    {
+      "id": "pl_msg_00000544_00000",
+      "en_US": [
+        "You don’t have three Coins.\n",
+        "You cannot play right now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000544_00001",
+      "en_US": [
+        "You have 50,000 Coins now.\n",
+        "You cannot hold any more."
+      ]
+    },
+    {
+      "id": "pl_msg_00000544_00002",
+      "en_US": [
+        "You have no Coins.\n",
+        "You cannot play now."
+      ]
+    }
+  ]
+}

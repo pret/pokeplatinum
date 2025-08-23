@@ -95,17 +95,17 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/trainer_ai.h"
-#include "overlay012/battle_anim_system.h"
-#include "overlay012/const_ov12_0223B0A0.h"
-#include "overlay012/const_ov12_0223B0B8.h"
-#include "overlay012/const_ov12_0223B0DC.h"
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/ov12_02237EFC.h"
-#include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_02236030.h"
-#include "overlay012/struct_ov12_02237728.h"
-#include "overlay012/struct_ov12_02237F38.h"
-#include "overlay012/struct_ov12_022380DC.h"
+#include "battle_anim/battle_anim_system.h"
+#include "battle_anim/const_ov12_0223B0A0.h"
+#include "battle_anim/const_ov12_0223B0B8.h"
+#include "battle_anim/const_ov12_0223B0DC.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/ov12_02237EFC.h"
+#include "battle_anim/ov12_022380BC.h"
+#include "battle_anim/struct_ov12_02236030.h"
+#include "battle_anim/struct_ov12_02237728.h"
+#include "battle_anim/struct_ov12_02237F38.h"
+#include "battle_anim/struct_ov12_022380DC.h"
 #include "overlay013/battle_bag.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/battle_party.h"
@@ -6135,15 +6135,15 @@ static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *para
 
     for (i = 0; i < 4; i++) {
         param2->pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
-        param2->unk_28[i] = param1->unk_18[i];
-        param2->unk_30[i] = param1->unk_20[i];
-        param2->unk_34[i] = param1->unk_24[i];
-        param2->unk_38[i] = param1->unk_28[i];
-        param2->unk_3C[i] = param1->unk_2C[i];
+        param2->species[i] = param1->unk_18[i];
+        param2->genders[i] = param1->unk_20[i];
+        param2->shinyFlags[i] = param1->unk_24[i];
+        param2->forms[i] = param1->unk_28[i];
+        param2->personalities[i] = param1->unk_2C[i];
     }
 
-    ov16_0223F87C(battleSys, &(param2->unk_4C[0]));
-    ov16_0223F8AC(battleSys, &(param2->unk_18[0]));
+    ov16_0223F87C(battleSys, &(param2->types[0]));
+    ov16_0223F8AC(battleSys, &(param2->sprites[0]));
 }
 
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4)

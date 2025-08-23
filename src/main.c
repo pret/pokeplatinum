@@ -19,6 +19,7 @@
 #include "main.h"
 #include "math_util.h"
 #include "overlay_manager.h"
+#include "play_time_manager.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -27,7 +28,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_02017428.h"
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
 #include "unk_0202CC64.h"
@@ -144,7 +144,7 @@ void NitroMain(void)
         }
 
         UpdateRTC();
-        sub_02017458();
+        PlayTime_IncrementTimer();
         sub_020241CC();
         SysTaskManager_ExecuteTasks(gSystem.printTaskMgr);
 
@@ -268,18 +268,18 @@ static void HeapCanaryFailed(int resetParam, int param1)
     int elapsed;
 
     if (param1 == 3) {
-        sub_02039834(HEAP_ID_SYSTEM, 3, 0);
+        NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
-        if (sub_020389B8() == TRUE) {
-            sub_02039834(HEAP_ID_SYSTEM, 6, 0);
+        if (CommMan_IsConnectedToWifi() == TRUE) {
+            NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 6, 0);
         } else {
-            sub_02039834(HEAP_ID_SYSTEM, 2, 0);
+            NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
-        if (sub_020389B8() == TRUE) {
-            sub_02039834(HEAP_ID_SYSTEM, 5, 0);
+        if (CommMan_IsConnectedToWifi() == TRUE) {
+            NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 5, 0);
         } else {
-            sub_02039834(HEAP_ID_SYSTEM, 0, 0);
+            NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 0, 0);
         }
     }
 

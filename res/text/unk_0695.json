@@ -1,0 +1,323 @@
+{
+  "key": 53978,
+  "messages": [
+    {
+      "id": "pl_msg_00000695_00000",
+      "en_US": [
+        "Unable to connect to Nintendo\n",
+        "Wi-Fi Connection.\n",
+        "\n",
+        "For help, check the software\n",
+        "Instruction Booklet or visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00001",
+      "en_US": [
+        "Either Nintendo Wi-Fi Connection\n",
+        "is experiencing high traffic\n",
+        "volumes or the service is down.\n",
+        "Please try again later. \n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00002",
+      "en_US": [
+        "This Nintendo Wi-Fi Connection ID\n",
+        "was removed because it was\n",
+        "inactive for a long time. \n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00003",
+      "en_US": [
+        "Nintendo Wi-Fi Connection service\n",
+        "for this software has been\n",
+        "discontinued.\n",
+        "\n",
+        "Visit support.nintendo.com\n",
+        "for a list of current Nintendo\n",
+        "Wi-Fi Connection-compatible\n",
+        "software. Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00004",
+      "en_US": [
+        "The access point is busy.\n",
+        "Unable to connect.\n",
+        "Please try again later.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00005",
+      "en_US": [
+        "No access point in range.\n",
+        "Please try again when closer to\n",
+        "an access point.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00006",
+      "en_US": [
+        "No compatible access point in\n",
+        "range. \n",
+        "Check your connection settings\n",
+        "and try again. \n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00007",
+      "en_US": [
+        "Unable to connect to the\n",
+        "Nintendo Wi-Fi USB Connector. \n",
+        "Confirm connection settings in the\n",
+        "Nintendo Wi-Fi Connection setup. \n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00008",
+      "en_US": [
+        "Unable to connect to Nintendo\n",
+        "Wi-Fi Connection. \n",
+        "Confirm connection settings and\n",
+        "access point settings.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00009",
+      "en_US": [
+        "There is no response.\n",
+        "Either the player is not\n",
+        "connected to Nintendo Wi-Fi\n",
+        "Connection or you have been\n",
+        "removed from the player’s\n",
+        "friend roster.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00010",
+      "en_US": [
+        "Communication error.\n",
+        "You have been disconnected from\n",
+        "Nintendo Wi-Fi Connection.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00011",
+      "en_US": [
+        "Communication error.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00012",
+      "en_US": [
+        "Download failed.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00013",
+      "en_US": [
+        "Communication error.\n",
+        "You have been disconnected from\n",
+        "Nintendo Wi-Fi Connection.\n",
+        "Please try again.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00014",
+      "en_US": "Communication error..."
+    },
+    {
+      "id": "pl_msg_00000695_00015",
+      "garbage": 72
+    },
+    {
+      "id": "pl_msg_00000695_00016",
+      "en_US": [
+        "Your Nintendo Wi-Fi Connection\n",
+        "User Information may have been\n",
+        "erased.\n",
+        "Check your connection settings.\n",
+        "\n",
+        "For help, visit\n",
+        "support.nintendo.com."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00017",
+      "en_US": "Connect to Nintendo Wi-Fi Connection?"
+    },
+    {
+      "id": "pl_msg_00000695_00018",
+      "en_US": [
+        "Nintendo Wi-Fi Connection treats\n",
+        "your DS Card and Nintendo DS\n",
+        "system as a set.\n",
+        "Save this Nintendo DS system’s\n",
+        "Nintendo Wi-Fi Connection User\n",
+        "Information to this DS Card\n",
+        "and connect to Nintendo Wi-Fi\n",
+        "Connection?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00019",
+      "en_US": [
+        "Nintendo Wi-Fi Connection User\n",
+        "Information for this Nintendo DS\n",
+        "system has been saved to the DS\n",
+        "Card.\n",
+        "\n",
+        "From now on, please use this\n",
+        "Nintendo DS system to connect\n",
+        "to Nintendo Wi-Fi Connection."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00020",
+      "en_US": [
+        "Unable to connect to Nintendo\n",
+        "Wi-Fi Connection because the\n",
+        "Nintendo Wi-Fi Connection User\n",
+        "Information from the Nintendo\n",
+        "DS system and the DS Card do not\n",
+        "match."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00021",
+      "en_US": [
+        "Update Nintendo Wi-Fi Connection\n",
+        "User Information saved on the\n",
+        "DS Card?\n",
+        "When you update your Nintendo\n",
+        "Wi-Fi Connection User\n",
+        "Information, you will lose all\n",
+        "data that was used to connect\n",
+        "to Nintendo Wi-Fi Connection."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00022",
+      "en_US": [
+        "Do you still want to update?\n",
+        "\n",
+        "Warning:\n",
+        "All of the friends registered in\n",
+        "your Pal Pad will be deleted.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00023",
+      "en_US": [
+        "Connecting to Nintendo Wi-Fi\n",
+        "Connection... Please wait a moment..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00024",
+      "en_US": [
+        "You cannot access Nintendo Wi-Fi\n",
+        "Connection using this user name.\n",
+        "\n",
+        "Please change your user name\n",
+        "and try again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00025",
+      "en_US": [
+        "OK to disconnect from Nintendo\n",
+        "Wi-Fi Connection?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00026",
+      "en_US": [
+        "Disconnecting from Nintendo Wi-Fi\n",
+        "Connection..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00027",
+      "en_US": [
+        "You have been disconnected from\n",
+        "Nintendo Wi-Fi Connection."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00028",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000695_00029",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000695_00030",
+      "en_US": [
+        "Saving...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000695_00031",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000695_00032",
+      "en_US": [
+        "There was a communication error\n",
+        "in the Wi-Fi Plaza.\n",
+        "Error code: {STRVAR_1 54, 0, 0}"
+      ]
+    }
+  ]
+}

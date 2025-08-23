@@ -16,5 +16,28 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"While I’m making sure the lifts are\n",
+				"safe, I’ll focus on a battle with you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"A-OK! Looks safe to me!\n",
+				"Not a problem in sight!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I routinely check the lifts here.\n",
+				"You can be sure of their safety!\n"
+			]
+		}
     ]
 }

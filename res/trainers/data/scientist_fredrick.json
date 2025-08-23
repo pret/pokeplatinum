@@ -38,5 +38,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hey, now! Our HQ is a state-of-the-\n",
+				"art facility!\r",
+				"A snot-nosed kid like you ought to\n",
+				"keep your dirty hands to yourself!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You and your Pokémon weren’t part\n",
+				"of my calculations...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Our boss is trying to create an\n",
+				"entirely new world.\r",
+				"A world only for us!\n",
+				"For Team Galactic!\n"
+			]
+		}
     ]
 }

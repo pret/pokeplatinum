@@ -1,0 +1,53 @@
+{
+  "key": 21176,
+  "messages": [
+    {
+      "id": "pl_msg_00000491_00000",
+      "en_US": [
+        "You know how you can catch Pokémon\n",
+        "in the trophy garden?\r",
+        "If you put this on a caught Pokémon,\n",
+        "it warms up to you faster.\r",
+        "I’ll share one with you, so give it\n",
+        "a try.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000491_00001",
+      "en_US": [
+        "I hope you become a Trainer that\n",
+        "Pokémon can love and trust."
+      ]
+    },
+    {
+      "id": "pl_msg_00000491_00002",
+      "en_US": [
+        "I’m not loafing.\n",
+        "I’m just taking a personal break.\r",
+        "It’s my official policy to sleep in a bed\n",
+        "when I’m officially loafing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000491_00003",
+      "en_US": [
+        "It’s a bed...\n",
+        "Want to take a rest?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000491_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} quickly fell asleep in\n",
+        "the bed...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000491_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} and the Pokémon became\n",
+        "fully healed from the nap!"
+      ]
+    }
+  ]
+}

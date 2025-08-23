@@ -16,5 +16,34 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We set off the Galactic Bomb!\n",
+				"Its blast force was phenomenal!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your Pokémon attack with phenomenal\n",
+				"power...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"But so what?\n",
+				"You aim to take us all on?\r",
+				"Dream on!\n",
+				"Team Galactic is huge in number.\r",
+				"Even as we speak, other members should\n",
+				"be near Twinleaf Town.\r",
+				"That’s right, they’re on the way to\n",
+				"Lake Verity!\n"
+			]
+		}
     ]
 }

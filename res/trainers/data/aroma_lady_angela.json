@@ -21,5 +21,28 @@
             "power": 20,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Even concealed, there is no hiding\n",
+				"the aroma of flowers.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Just like your inability to conceal\n",
+				"your abundant skill.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Your next opponent is under four\n",
+				"flowers.\n"
+			]
+		}
     ]
 }

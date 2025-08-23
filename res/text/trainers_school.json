@@ -1,0 +1,266 @@
+{
+  "key": 17459,
+  "messages": [
+    {
+      "id": "pl_msg_00000049_00000",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "Did you come to study, too?\r",
+        "I went ahead and memorized everything\n",
+        "that was up on the blackboard.\r",
+        "After all, it’s the Trainer’s job to\n",
+        "avoid having their precious Pokémon\f",
+        "hurt in battle, right?\r",
+        "So, {STRVAR_1 3, 0, 0}, what brings you?\n",
+        "Huh?\f",
+        "You’ve got something for me?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00001",
+      "en_US": "{STRVAR_1 3, 0, 0} delivered the Parcel."
+    },
+    {
+      "id": "pl_msg_00000049_00002",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: So, what is this...?\r",
+        "Score!\n",
+        "It’s a Town Map!\r",
+        "Huh?!\n",
+        "Why are there two in here?\r",
+        "I like it a lot, but I don’t need two.\n",
+        "Here, {STRVAR_1 3, 0, 0}, you take one!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00003",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: Hmm...\r",
+        "Well, according to the Town Map,\n",
+        "I guess Oreburgh City is where\f",
+        "I should be going next.\r",
+        "There’s a Gym, so it’d be perfect for\n",
+        "raising the Pokémon I just caught.\r",
+        "Well, I’m on the road to becoming\n",
+        "the greatest Trainer of all time!\r",
+        "See you around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00004",
+      "en_US": [
+        "It’s perfectly fine for Trainers and\n",
+        "Pokémon to develop at their own pace.\r",
+        "If there is anything you’re not familiar\n",
+        "with, you can look it up here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00005",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000049_00006",
+      "en_US": [
+        "We learned about Pokémon types\n",
+        "today. Umm...\r",
+        "Grass is weak to Fire,\r",
+        "Fire is weak to Water,\r",
+        "and Water is weak to Grass!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00007",
+      "en_US": [
+        "Pokémon are smart enough to use\n",
+        "items they’re holding.\r",
+        "But they won’t know what to do with\n",
+        "man-made items like Potions and\f",
+        "Antidotes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00008",
+      "en_US": [
+        "I wrote an essay in my notebook on \n",
+        "what makes a true Pokémon Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00009",
+      "en_US": [
+        "Doing it is the best way to learn!\n",
+        "Can we get a battle with you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00010",
+      "en_US": [
+        "Go!\n",
+        "My Pokémon, go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00011",
+      "en_US": [
+        "Aww! But battling is the best way\n",
+        "to learn about Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00012",
+      "en_US": [
+        "It’s hard to win if you don’t have\n",
+        "some Pokémon to choose from."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00013",
+      "en_US": [
+        "Whew! You’re really good!\r",
+        "We’ve been studying every day, but\n",
+        "we were no match for you at all!\r",
+        "You’d be able to use this Potion\n",
+        "properly. Here you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00014",
+      "en_US": [
+        "When a Potion is used, it restores the\n",
+        "HP, the health, of a Pokémon.\r",
+        "Being a good Trainer isn’t only about\n",
+        "ordering your Pokémon around.\r",
+        "A superior Trainer knows how to use\n",
+        "items to the full advantage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00015",
+      "en_US": [
+        "I just became friends with my\n",
+        "Pokémon.\r",
+        "I’m not sure if we can do this\n",
+        "properly, but may we battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00016",
+      "en_US": [
+        "I need to try the things I learned\n",
+        "before I forget them!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00017",
+      "en_US": [
+        "Boo!\n",
+        "Where’s your sense of adventure?\r",
+        "Don’t be shy about talking to people\n",
+        "and getting into battles!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00018",
+      "en_US": [
+        "I wonder if we could have done better\n",
+        "against you?\r",
+        "Like if I used Potions right when we\n",
+        "needed to."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00019",
+      "en_US": [
+        "We were actually confident that we\n",
+        "would do pretty good.\r",
+        "But I’m completely impressed by how\n",
+        "tough you are.\r",
+        "If you’d like, talk to my friend and\n",
+        "get a nice item from him."
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00020",
+      "en_US": [
+        "The blackboard lists status changes\n",
+        "that may affect Pokémon in battle.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00021",
+      "en_US": "Which would you like to read about?"
+    },
+    {
+      "id": "pl_msg_00000049_00022",
+      "en_US": [
+        "If a Pokémon is poisoned, it will\n",
+        "steadily lose HP.\r",
+        "The effects of poison remain after\n",
+        "a battle.\r",
+        "A poisoned Pokémon’s HP will drop\n",
+        "while it is traveling.\r",
+        "Heal a poisoning using an Antidote.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00023",
+      "en_US": [
+        "If a Pokémon becomes paralyzed,\n",
+        "its Speed stat drops.\r",
+        "In addition, it may not be able to\n",
+        "move while it is in battle.\r",
+        "Paralysis remains after battle.\n",
+        "Cure it using a Parlyz Heal.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00024",
+      "en_US": [
+        "If a Pokémon falls asleep, it will be\n",
+        "unable to attack.\r",
+        "The Pokémon may wake up on its own,\n",
+        "but if a battle ends while it is\f",
+        "sleeping, it will stay asleep.\r",
+        "Wake it up using an Awakening.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00025",
+      "en_US": [
+        "A burn reduces the Attack stat and\n",
+        "steadily reduces the victim’s HP.\r",
+        "A burn lingers after battle.\n",
+        "Cure a burn using a Burn Heal.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00026",
+      "en_US": [
+        "If a Pokémon is frozen, it becomes\n",
+        "completely helpless.\r",
+        "The Pokémon may thaw out on its own,\n",
+        "but if a battle ends while it is\f",
+        "frozen, it will stay frozen.\r",
+        "Thaw it out using an Ice Heal.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000049_00027",
+      "en_US": [
+        "It’s a notebook filled with writing.\n",
+        "Let’s see...\r",
+        "Pokémon are to be caught using\n",
+        "Poké Balls.\r",
+        "Up to six Pokémon can accompany\n",
+        "a Trainer.\r",
+        "A Trainer is someone who catches\n",
+        "Pokémon, raises them, and battles\f",
+        "with them.\r",
+        "A Trainer’s mission is to defeat the\n",
+        "strong Trainers who await challengers\f",
+        "in Pokémon Gyms."
+      ]
+    }
+  ]
+}

@@ -16,5 +16,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hi, hi!\n",
+				"I’m a Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"So sad...\n",
+				"So bitter...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I don’t want to be a Trainer.\n",
+				"I want to be a Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, hi!\n",
+				"I’m a Pokémon!\r",
+				"...You knew that, didn’t you?\r"
+			]
+		}
     ]
 }

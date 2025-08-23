@@ -1,0 +1,177 @@
+{
+  "key": 54315,
+  "messages": [
+    {
+      "id": "pl_msg_00000264_00000",
+      "en_US": [
+        "Charon: ...Cyrus disappeared.\n",
+        "Mars and Jupiter quit.\r",
+        "Saturn said he would look after what\n",
+        "remains of Team Galactic.\r",
+        "But he won’t join me.\n",
+        "So foolish of him!\r",
+        "So very foolish of the rest of them!\n",
+        "Throwing away Team Galactic!\r",
+        "After all the effort we took as a team\n",
+        "to make it grow...\r",
+        "That power could have made us rich\n",
+        "beyond imagination.\r",
+        "But, enough of that.\n",
+        "The Magma Stone will be mine.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00001",
+      "en_US": [
+        "Buck: Hey, you! Team Galactic!\n",
+        "What’s going on here?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00002",
+      "en_US": [
+        "Charon: Eh? What’s this, then?\n",
+        "Chased me here, have you?\r",
+        "I like seeing children try their best,\n",
+        "but too bad for you--you’re too late.\r",
+        "With this Magma Stone I will let awaken\n",
+        "the legendary HEATRAN!\r",
+        "I will control the volcano’s eruptions\n",
+        "to extort money by the millions!\r",
+        "Fear me! For I am Charon!\n",
+        "The boss of the reborn Team Galactic!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00003",
+      "en_US": "???: Go, go, go!\r"
+    },
+    {
+      "id": "pl_msg_00000264_00004",
+      "en_US": [
+        "Charon: No! The Magma Stone!\r",
+        "What?! What is going on?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00005",
+      "en_US": "???: Excellent work, CROAGUNK!\r"
+    },
+    {
+      "id": "pl_msg_00000264_00006",
+      "en_US": [
+        "Looker: Pah!\r",
+        "Disguising myself as a boulder for\n",
+        "stakeout was not easy!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00007",
+      "en_US": [
+        "Now, old-timer, the International Police\n",
+        "cordially requests your cooperation.\r",
+        "I am sure you have much to tell us\n",
+        "about the new Team Galactic.\r",
+        "With Cyrus, Mars, and Jupiter gone,\n",
+        "you are all that is left.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00008",
+      "en_US": [
+        "Grunt 1: Hey!\n",
+        "It’s the International Police!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00009",
+      "en_US": [
+        "Grunt 2: Yeah!\n",
+        "It’s the International Police all right!\r",
+        "There’s only one thing to be done!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00010",
+      "en_US": [
+        "Grunt 1: Run away!\n",
+        "Grunt 2: Run away!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00011",
+      "en_US": [
+        "Charon: Gah... What a mess...\r",
+        "...Uh, International Police?\n",
+        "What are you saying? I know nothing!\r",
+        "A new Team Galactic?\n",
+        "Extorting with HEATRAN?\r",
+        "Merely the blathering of this harmless\n",
+        "old man! All said in jest!\r",
+        "Besides, among Team Galactic’s\n",
+        "Commanders, I was the most junior...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00012",
+      "en_US": [
+        "Looker: You can tell us all about it.\n",
+        "We have plenty of time.\r",
+        "Oh, no, no. No resisting arrest.\n",
+        "You can’t win three-on-one, no?\r",
+        "OK, Officers, over here, if you\n",
+        "will.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00013",
+      "en_US": [
+        "Looker: He is an old man.\n",
+        "This heat cannot be good for him.\r",
+        "Quickly, take him somewhere cool.\n",
+        "Yes, the cooler will do!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00014",
+      "en_US": [
+        "Looker: {STRVAR_1 3, 0, 0}!\r",
+        "And you, unfamiliar boy!\n",
+        "I wish to say something.\r",
+        "First, it is too hot!\n",
+        "Let us exit this environment!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00015",
+      "en_US": "Gwogobo gwobobobo!\r"
+    },
+    {
+      "id": "pl_msg_00000264_00016",
+      "en_US": [
+        "HEATRAN disappeared into\n",
+        "the volcano..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00017",
+      "en_US": "Buck: Oof!\r"
+    },
+    {
+      "id": "pl_msg_00000264_00018",
+      "en_US": [
+        "Buck: Whoa! Wow!\r",
+        "Hehehe! That was wicked!\n",
+        "The volcano’s in shock from that!\r",
+        "It might be so shocked, it’ll erupt!\n",
+        "Nah, that can’t happen!\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\n",
+        "Say hi to that zippity Trainer buddy!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000264_00019",
+      "garbage": 127
+    }
+  ]
+}

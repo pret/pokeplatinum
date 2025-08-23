@@ -34,5 +34,37 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Waah! Now! Just now!\n",
+				"I was just about to reel it in!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You need to have more respect for\n",
+				"a grown-up...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Go on. Don’t be shy about going up to\n",
+				"people to hear what they have to say...\r",
+				"Just don’t you talk to me.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Waah! Now! Just now!\n",
+				"I was just about to reel it in!\r",
+				"...Right. You again!\r"
+			]
+		}
     ]
 }

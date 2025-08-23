@@ -1,0 +1,121 @@
+{
+  "key": 50243,
+  "messages": [
+    {
+      "id": "pl_msg_00000291_00000",
+      "en_US": "{STRVAR_1 3, 0, 0}: What’s going on...?\r"
+    },
+    {
+      "id": "pl_msg_00000291_00001",
+      "en_US": [
+        "...The flowing time...\n",
+        "...The expanding space...\r",
+        "I will make it all mine one day...\n",
+        "Cyrus is my name. Remember it...\r",
+        "Until then, sleep while you can,\n",
+        "legendary Pokémon of the lake bed...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00002",
+      "en_US": [
+        "Allow me to pass.\n",
+        "Step aside.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What was that about?\n",
+        "Weird guy...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00004",
+      "en_US": [
+        "OK, {STRVAR_1 3, 1, 0}!\n",
+        "Let’s catch that legendary Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00005",
+      "en_US": "Kyauuun!\r"
+    },
+    {
+      "id": "pl_msg_00000291_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: !\n",
+        "Did you hear that, {STRVAR_1 3, 1, 0}?!\r",
+        "That was the legendary Pokémon crying!\n",
+        "That had to be it!\r",
+        "OK! This is our chance!\n",
+        "Let’s catch it!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00007",
+      "en_US": [
+        "...Wait!\n",
+        "What...?!\r",
+        "We don’t have anything on us!\r",
+        "You know, Poké Balls!\n",
+        "P-O-K-accent-E Balls!\r",
+        "If we don’t have those, we can’t catch\n",
+        "Pokémon or take them around with us!\r",
+        "...Do you think Prof. Rowan’d give us\n",
+        "some if we asked him?\r",
+        "You know, you remember what he said,\n",
+        "don’t you?\r",
+        "He said to visit him at his lab if we\n",
+        "needed anything.\r",
+        "OK, {STRVAR_1 3, 1, 0}!\n",
+        "I’ll race you!\r",
+        "First one to the professor’s lab in\n",
+        "Sandgem Town rules!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00008",
+      "en_US": [
+        "Rowan: Hmmm...\r",
+        "No legendary Pokémon, nothing out\n",
+        "of the ordinary...\r",
+        "{STRVAR_1 3, 0, 0}, how was Lake Valor?\n",
+        "Anything to report?\r",
+        "What? You’re just going there now?\n",
+        "You’ve got to move faster than that!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00009",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 0, 0}, how was Lake\n",
+        "Valor? Anything to report?\r",
+        "What? You’re just going there now?\n",
+        "You’ve got to move faster than that!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00010",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}, how was\n",
+        "Lake Valor?\r",
+        "There’s nothing wrong here.\n",
+        "The lake hasn’t changed at all.\r",
+        "We haven’t found a legendary\n",
+        "Pokémon, either, though..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000291_00011",
+      "en_US": [
+        "Lucas: Hiya, {STRVAR_1 3, 0, 0}!\n",
+        "How’s Lake Valor?\r",
+        "There’s nothing wrong here.\n",
+        "The lake is ordinary, as usual.\r",
+        "There’s no legendary Pokémon,\n",
+        "either..."
+      ]
+    }
+  ]
+}

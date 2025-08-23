@@ -1,0 +1,26 @@
+{
+  "key": 33826,
+  "messages": [
+    {
+      "id": "pl_msg_00000120_00000",
+      "en_US": [
+        "Hearthome City is a great place.\r",
+        "Every year, it gets voted the most\n",
+        "desirable place to live in Sinnoh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000120_00001",
+      "en_US": [
+        "If you say Hearthome City, I only\n",
+        "say this: Pokémon Contests!\r",
+        "I’m going to enter my darling\n",
+        "Pokémon in them!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000120_00002",
+      "en_US": "CLEFAIRY: Pippii?!"
+    }
+  ]
+}

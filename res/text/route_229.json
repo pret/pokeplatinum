@@ -1,0 +1,39 @@
+{
+  "key": 38588,
+  "messages": [
+    {
+      "id": "pl_msg_00000531_00000",
+      "en_US": [
+        "Were you looking for me?\n",
+        "Did you miss me?\r",
+        "I wish I had a new nugget of wisdom\n",
+        "to share with you, but alas, I don’t!\r",
+        "So, I’ll have to make it up to you\n",
+        "with this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000531_00001",
+      "en_US": [
+        "Oh, why not? Take another!\n",
+        "It makes up for the wisdom I lack!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000531_00002",
+      "en_US": [
+        "Those are my Nuggets!\n",
+        "Try to spend them wisely!\r",
+        "Nuggets of gold have to be worth\n",
+        "more than nuggets of my wisdom!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000531_00003",
+      "en_US": [
+        "Rt. 229\n",
+        "Resort Area"
+      ]
+    }
+  ]
+}

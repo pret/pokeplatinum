@@ -1,0 +1,89 @@
+{
+  "key": 54347,
+  "messages": [
+    {
+      "id": "pl_msg_00000174_00000",
+      "en_US": [
+        "...\n",
+        "...\r",
+        "...So, you’re the latest challenger\n",
+        "up against the Sunyshore Gym...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00001",
+      "en_US": [
+        "All right, I’ve decided!\r",
+        "If I find you to be weak, I’m going to\n",
+        "challenge the Pokémon League.\r",
+        "I’m all done with renovating the Gym,\n",
+        "so I don’t need to be here.\r",
+        "More than anything, I want to have\n",
+        "battles that can thrill me again.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00002",
+      "en_US": [
+        "As the toughest Gym Leader in Sinnoh,\n",
+        "I’m going to unleash everything in\f",
+        "my arsenal on you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} took a look through\n",
+        "the binoculars.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00004",
+      "en_US": [
+        "The Vista Lighthouse represents\n",
+        "safety and protection to us Sailors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00005",
+      "en_US": [
+        "I love how far away you can see with\n",
+        "the binoculars.\r",
+        "I’m going to go that far away with\n",
+        "my Pokémon one day!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000174_00006",
+      "garbage": 69
+    },
+    {
+      "id": "pl_msg_00000174_00007",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000174_00008",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000174_00009",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000174_00010",
+      "garbage": 90
+    },
+    {
+      "id": "pl_msg_00000174_00011",
+      "garbage": 89
+    },
+    {
+      "id": "pl_msg_00000174_00012",
+      "garbage": 45
+    },
+    {
+      "id": "pl_msg_00000174_00013",
+      "garbage": 27
+    }
+  ]
+}

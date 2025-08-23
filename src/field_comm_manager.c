@@ -247,7 +247,7 @@ static void Task_ServerWait(void)
 
 static void Task_StartBattleClient(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 

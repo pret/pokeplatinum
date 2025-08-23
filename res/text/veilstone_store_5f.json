@@ -1,0 +1,86 @@
+{
+  "key": 9227,
+  "messages": [
+    {
+      "id": "pl_msg_00000152_00000",
+      "en_US": [
+        "I’ve had enough of shopping for\n",
+        "a while.\r",
+        "I’ll grab a drink and unwind a bit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00001",
+      "en_US": [
+        "I’ve shopped here loyally for years.\n",
+        "Now they consider me a regular! Ha!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00002",
+      "en_US": [
+        "Ah, young Pokémon Trainer...\r",
+        "As your senior in life, let me make\n",
+        "a gift of this Sticky Barb!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00003",
+      "en_US": [
+        "That Sticky Barb is a hold item.\n",
+        "If the Pokémon holding it is hit...\r",
+        "The Sticky Barb sticks to the foe\n",
+        "and inflicts damage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00004",
+      "en_US": [
+        "Two buff guys standing side by side.\n",
+        "That’s all. What? What’s the problem?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00005",
+      "en_US": [
+        "B1F: Food & Produce\r",
+        "1F: Trainers’ Zone\r",
+        "2F: Battle Collection\r",
+        "3F: TM Corner\r",
+        "4F: Poké Dolls & Goods\r",
+        "5F: Rooftop Plaza"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00006",
+      "en_US": [
+        "It’s a Vending Machine.\n",
+        "Which drink would you like?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00007",
+      "en_US": [
+        "Clang!\r",
+        "A can of {STRVAR_1 8, 0, 0} dropped\n",
+        "down.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00008",
+      "en_US": [
+        "Clang!\r",
+        "Bonus! Another can of {STRVAR_1 8, 0, 0}\n",
+        "dropped down.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000152_00009",
+      "en_US": "Not enough money..."
+    },
+    {
+      "id": "pl_msg_00000152_00010",
+      "en_US": "Decided not to buy a drink."
+    }
+  ]
+}

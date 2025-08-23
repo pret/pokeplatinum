@@ -23,5 +23,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Can you answer this for me?\n",
+				"What is space?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"And another...\n",
+				"A new memory was born.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"For me, space is where memories are\n",
+				"made...\n"
+			]
+		}
     ]
 }

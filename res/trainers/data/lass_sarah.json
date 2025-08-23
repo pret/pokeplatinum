@@ -17,5 +17,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oh, a weak-looking Trainer...\n",
+				"Do you want to have a go?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Aww...\n",
+				"I should have said no.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oh, you’re so mean!\n",
+				"I just started training Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, pretty-tough Trainer!\n",
+				"Will you give me a rematch?\r"
+			]
+		}
     ]
 }

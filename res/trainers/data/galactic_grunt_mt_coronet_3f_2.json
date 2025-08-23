@@ -16,5 +16,32 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We Grunts have two jobs.\r",
+				"One, ensure the success of our\n",
+				"operation at the summit.\r",
+				"Two, utterly destroy any intruders\n",
+				"to stop their meddling!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I don’t accept this!\n",
+				"I will not accept this!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Join Team Galactic and then abide\n",
+				"by our rules.\r",
+				"That would solve all our problems!\n"
+			]
+		}
     ]
 }

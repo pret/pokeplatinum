@@ -32,6 +32,8 @@
 #include "unk_0202854C.h"
 #include "vars_flags.h"
 
+#include "res/text/bank/underground_common.h"
+
 typedef struct BuriedSphere {
     u16 x;
     u16 z;
@@ -75,7 +77,7 @@ static void UndergroundSpheres_PrintSphereGrowth(int growth)
 {
     if (growth > 0) {
         UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 0, growth);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 75, TRUE, UndergroundSpheres_ResumeFieldSystem);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ItsSizeGrewBiggerBy, TRUE, UndergroundSpheres_ResumeFieldSystem);
     } else {
         UndergroundSpheres_ResumeFieldSystem(growth);
     }
@@ -272,12 +274,12 @@ void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src,
                     numberToPrint = MAX_SPHERE_SIZE - sphere->initialSize;
                 }
 
-                UndergroundTextPrinter_PrintTextWithCallbackParam(CommManUnderground_GetCommonTextPrinter(), 69, TRUE, UndergroundSpheres_PrintSphereGrowth, numberToPrint);
+                UndergroundTextPrinter_PrintTextWithCallbackParam(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_YouObtainedSphere, TRUE, UndergroundSpheres_PrintSphereGrowth, numberToPrint);
                 UndergroundTextPrinter_SetDummyField(CommManUnderground_GetCommonTextPrinter());
                 UndergroundSpheres_RemoveBuriedSphere(sphere);
                 UndergroundSpheres_SaveBuriedSpheres();
             } else {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 83, TRUE, UndergroundSpheres_ResumeFieldSystem);
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForSphere, TRUE, UndergroundSpheres_ResumeFieldSystem);
             }
         }
     }
@@ -340,17 +342,17 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
     sphere.growth = 0;
 
     if (Underground_AreCoordinatesInSecretBase(x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 84, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInSecretBase, FALSE, NULL);
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 55, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBePlacedThere, FALSE, NULL);
         return;
     }
 
     if (TerrainCollisionManager_CheckCollision(buriedSpheresEnv->fieldSystem, x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 60, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInWall, FALSE, NULL);
         return;
     }
 
@@ -370,7 +372,7 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
 
             success = TRUE;
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 59, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_SomethingAlreadyBuried, FALSE, NULL);
         }
     } else {
         UndergroundSpheres_AddBuriedSphere(&sphere);
@@ -380,7 +382,7 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
     if (success) {
         UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 0, sphereType);
         UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, sphereSize);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 58, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SphereWasBuried, FALSE, NULL);
         Underground_RemoveSelectedSphere(sphereType);
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
@@ -485,7 +487,7 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf)
 
             StringTemplate_SetUndergroundItemNameWithArticle(template, 2, buriedSpheresEnv->retrievedSpheres[netID]);
             StringTemplate_CapitalizeArgAtIndex(template, 2);
-            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 95, fmtString);
+            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_ItemWasObtainedExclamationPoint, fmtString);
             StringTemplate_Format(template, strbuf, fmtString);
 
             buriedSpheresEnv->retrievedSpheres[netID] = SPHERE_NONE;

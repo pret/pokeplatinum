@@ -1,0 +1,57 @@
+{
+  "key": 11987,
+  "messages": [
+    {
+      "id": "pl_msg_00000577_00000",
+      "en_US": [
+        "The Day-Care Man was saying Pokémon\n",
+        "grow at different rates."
+      ]
+    },
+    {
+      "id": "pl_msg_00000577_00001",
+      "en_US": [
+        "It’s quite far from Solaceon Town to\n",
+        "Veilstone City.\r",
+        "There’s a café along the way where\n",
+        "you can get some rest, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000577_00002",
+      "en_US": [
+        "The Hidden Machine Defog can be found\n",
+        "in the Solaceon Ruins.\r",
+        "But my Pokémon can’t learn the hidden\n",
+        "move.\r",
+        "I’m going to give the ruins a miss, this\n",
+        "time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000577_00003",
+      "en_US": [
+        "Pikachu!\r",
+        "I want to become more like a PIKACHU!\n",
+        "Will you battle me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000577_00004",
+      "en_US": "Pi-Pikachu!\r"
+    },
+    {
+      "id": "pl_msg_00000577_00005",
+      "en_US": "Pi-Pikachu!"
+    },
+    {
+      "id": "pl_msg_00000577_00006",
+      "en_US": [
+        "I need to find a way to get more into\n",
+        "the character of a Pokémon...\r",
+        "Maybe I should get the Day Care to\n",
+        "raise me?"
+      ]
+    }
+  ]
+}

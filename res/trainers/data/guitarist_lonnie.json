@@ -21,5 +21,31 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Whether you’re a Trainer or a\n",
+				"Guitarist, it takes dedication to\f",
+				"improve your mad skills!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"My skills seem to have let me down.\n",
+				"I must have been out of tune!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The way you battle, I can feel the\n",
+				"very heart of rock and roll.\r",
+				"Tell me, are you maybe a fan of\n",
+				"rocking out?\n"
+			]
+		}
     ]
 }

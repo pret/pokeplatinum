@@ -1,0 +1,29 @@
+{
+  "key": 12640,
+  "messages": [
+    {
+      "id": "pl_msg_00000539_00000",
+      "en_US": [
+        "The battery isn’t charged enough.\r",
+        "Number of steps required to fully\n",
+        "charge the battery: {STRVAR_1 51, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000539_00001",
+      "en_US": [
+        "There are no Trainers within range\n",
+        "who can battle...\r",
+        "Let’s try using it somewhere else."
+      ]
+    },
+    {
+      "id": "pl_msg_00000539_00002",
+      "en_US": [
+        "The other Trainers don’t appear\n",
+        "to be ready for battle.\r",
+        "Let’s wait till later."
+      ]
+    }
+  ]
+}

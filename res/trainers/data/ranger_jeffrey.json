@@ -18,5 +18,36 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Heya, Trainer!\n",
+				"Are you being good to Mother Nature?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Good. You seem to be a kindhearted\n",
+				"Trainer.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Listen, people and Pokémon, we’re all a\n",
+				"part of Mother Nature.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Heya, long time!\r",
+				"Are you enjoying your nature-filled\n",
+				"adventure with Pokémon?\r"
+			]
+		}
     ]
 }

@@ -1,0 +1,71 @@
+{
+  "key": 8124,
+  "messages": [
+    {
+      "id": "pl_msg_00000408_00000",
+      "en_US": "MAILBOX"
+    },
+    {
+      "id": "pl_msg_00000408_00001",
+      "en_US": "READ"
+    },
+    {
+      "id": "pl_msg_00000408_00002",
+      "en_US": "ERASE"
+    },
+    {
+      "id": "pl_msg_00000408_00003",
+      "en_US": "GIVE"
+    },
+    {
+      "id": "pl_msg_00000408_00004",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000408_00005",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000408_00006",
+      "en_US": [
+        "What would you like to do with\n",
+        "{STRVAR_1 3, 0, 0}’s Mail?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000408_00007",
+      "en_US": [
+        "The message will be lost.\n",
+        "Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000408_00008",
+      "en_US": [
+        "The message was erased.\r",
+        "Let a Pokémon hold this Mail?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000408_00009",
+      "en_US": [
+        "The Mail’s message was erased,\n",
+        "and it was put in the Bag."
+      ]
+    },
+    {
+      "id": "pl_msg_00000408_00010",
+      "en_US": [
+        "Your Bag is full...\n",
+        "The Mail was discarded."
+      ]
+    },
+    {
+      "id": "pl_msg_00000408_00011",
+      "en_US": [
+        "Stopped making the Pokémon\n",
+        "hold Mail."
+      ]
+    }
+  ]
+}

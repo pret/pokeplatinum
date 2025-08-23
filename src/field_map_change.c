@@ -16,7 +16,7 @@
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 #include "overlay006/ov6_02247100.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
@@ -702,11 +702,11 @@ void FieldTask_ChangeMapByLocation(FieldTask *task, const Location *nextLocation
     FieldTask_InitCall(task, FieldTask_ChangeMapSub, mapChangeSub);
 }
 
-void FieldTask_ChangeMapToLocation(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapToLocation(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
     FieldTask_ChangeMapByLocation(task, &location);
 }
 
@@ -743,21 +743,21 @@ static BOOL FieldTask_ChangeMapFull(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int param2, int x, int z, int dir)
+void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     MapChangeSubData *mapChangeSub = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeSubData));
 
     mapChangeSub->state = 0;
 
-    Location_Set(&mapChangeSub->nextLocation, mapId, param2, x, z, dir);
+    Location_Set(&mapChangeSub->nextLocation, mapId, warpId, x, z, dir);
     FieldTask_InitCall(task, FieldTask_ChangeMapFull, mapChangeSub);
 }
 
-void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
 
     MapChangeFlyData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeFlyData));
 
@@ -768,11 +768,11 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeFly, mapChangeData);
 }
 
-void FieldTask_ChangeMapChangeFly(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
 
     MapChangeFlyData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeFlyData));
 
@@ -806,7 +806,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         }
 
         Sound_PlayMapBGM(fieldSystem, location->mapId);
-        sub_0207056C(fieldSystem);
+        FieldSystem_SetFlyFlags(fieldSystem);
         FieldTransition_StartMapAndFadeInFly(task);
         mapChangeData->state++;
         break;
@@ -877,7 +877,7 @@ static void FieldTask_FadeInFly(FieldTask *task)
         return;
     }
 
-    mapChangeData->task = FieldTask_InitFlyLandingTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
     FieldTask_InitCall(task, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
@@ -885,8 +885,8 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
 {
     MapChangeFlyData *mapChangeData = FieldTask_GetEnv(task);
 
-    if (ov6_02245CF0(mapChangeData->task) == 1) {
-        ov6_02245CFC(mapChangeData->task);
+    if (FlyLanding_IsAnimFinished(mapChangeData->task) == TRUE) {
+        FlyLanding_SetTaskDone(mapChangeData->task);
         return TRUE;
     }
 
@@ -1550,7 +1550,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
     return FALSE;
 }
 
-void sub_02054800(FieldTask *task, int mapId, int param2, int x, int z, int param5)
+void FieldTask_StartChangeMapColosseum(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location nextLocation;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
@@ -1562,7 +1562,7 @@ void sub_02054800(FieldTask *task, int mapId, int param2, int x, int z, int para
 
     MapChangeData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeData));
 
-    Location_Set(&nextLocation, mapId, param2, x, z, param5);
+    Location_Set(&nextLocation, mapId, warpId, x, z, dir);
 
     mapChangeData->state = 0;
     mapChangeData->nextLocation = nextLocation;

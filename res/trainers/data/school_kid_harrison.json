@@ -21,5 +21,14 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Ugh...\n",
+				"I didn’t use items effectively.\n"
+			]
+		}
     ]
 }
