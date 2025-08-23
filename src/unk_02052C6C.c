@@ -5,7 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02099F80.h"
@@ -20,6 +19,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "location.h"
@@ -37,7 +37,6 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
@@ -77,7 +76,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     v1 = SaveData_GetParty(fieldSystem->saveData);
 
     GetCurrentDate(&v2);
-    sub_0202DFA8(v0, v1, &v2);
+    HallOfFame_AddEntry(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
     Heap_Free(v0);
 }
