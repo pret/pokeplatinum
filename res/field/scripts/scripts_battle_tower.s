@@ -273,7 +273,7 @@ _045C:
     End
 
 _049C:
-    CallCommonScript CommonScript_SaveGame
+    CallCommonScript SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 

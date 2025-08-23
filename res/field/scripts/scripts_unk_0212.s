@@ -229,7 +229,7 @@ _02A8:
 _02BD:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    CallCommonScript CommonScript_SaveGame
+    CallCommonScript SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _02E2
     GoTo _0291
