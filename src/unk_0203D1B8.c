@@ -91,6 +91,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "global_trade.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "item_use_functions.h"
 #include "mail.h"
