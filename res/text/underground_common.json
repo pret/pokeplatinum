@@ -325,7 +325,7 @@
       "en_US": "That can’t be used here!"
     },
     {
-      "id": "pl_msg_00000634_00055",
+      "id": "UndergroundCommon_Text_CantBePlacedThere",
       "en_US": "That can’t be placed there."
     },
     {
@@ -340,21 +340,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00058",
+      "id": "UndergroundCommon_Text_SphereWasBuried",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} {STRVAR_1 51, 1, 0}\n",
         "was buried right in front of you."
       ]
     },
     {
-      "id": "pl_msg_00000634_00059",
+      "id": "UndergroundCommon_SomethingAlreadyBuried",
       "en_US": [
         "Something was already buried in\n",
         "the ground."
       ]
     },
     {
-      "id": "pl_msg_00000634_00060",
+      "id": "UndergroundCommon_Text_CantBuryInWall",
       "en_US": "You can’t bury anything in a wall."
     },
     {
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00075",
+      "id": "UndergroundCommon_Text_ItsSizeGrewBiggerBy",
       "en_US": [
         "Its size grew bigger by {STRVAR_1 51, 0, 0} since\n",
         "it was buried!"
@@ -491,14 +491,14 @@
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000634_00083",
+      "id": "UndergroundCommon_Text_NoRoomForSphere",
       "en_US": [
         "A Sphere was found, but your Bag is\n",
         "full. The Sphere was left as is."
       ]
     },
     {
-      "id": "pl_msg_00000634_00084",
+      "id": "UndergroundCommon_Text_CantBuryInSecretBase",
       "en_US": [
         "You can’t bury a Sphere inside\n",
         "a Secret Base."
@@ -568,7 +568,7 @@
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000634_00095",
+      "id": "UndergroundCommon_Text_ItemWasObtainedExclamationPoint",
       "en_US": [
         "{STRVAR_1 25, 2, 0}\n",
         "was obtained!"
