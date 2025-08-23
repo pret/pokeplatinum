@@ -145,7 +145,7 @@ int sub_02017658(ApplicationManager *appMan, int *param1)
 static void sub_0201767C(UnkStruct_02017498 *param0)
 {
     if (param0->unk_88 == 0) {
-        param0->unk_18 = Heap_AllocFromHeap(HEAP_ID_116, 0x20000 + 32);
+        param0->unk_18 = Heap_Alloc(HEAP_ID_116, 0x20000 + 32);
         param0->unk_1C = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_18 + 31) / 32 * 32), 0x20000);
 
         sub_02099550();

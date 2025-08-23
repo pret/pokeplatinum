@@ -1849,11 +1849,11 @@ const ApplicationManagerTemplate gWonderCardsAppTemplate = {
     FS_OVERLAY_ID_NONE
 };
 
-void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID)
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapID heapID)
 {
     ov97_02232074(bgConfig);
 
-    WonderCardsAppData *appData = Heap_AllocFromHeapAtEnd(heapID, sizeof(WonderCardsAppData));
+    WonderCardsAppData *appData = Heap_AllocAtEnd(heapID, sizeof(WonderCardsAppData));
     memset(appData, 0, sizeof(WonderCardsAppData));
 
     appData->bgConfig = bgConfig;

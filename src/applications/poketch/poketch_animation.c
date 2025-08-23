@@ -58,7 +58,7 @@ PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2d
     BOOL success = FALSE;
 
     do {
-        animMan = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimationManager));
+        animMan = Heap_Alloc(heapID, sizeof(PoketchAnimation_AnimationManager));
 
         if (animMan == NULL) {
             break;
@@ -70,19 +70,19 @@ PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2d
         animMan->oamMan = oamMan;
         animMan->heapID = heapID;
         animMan->numSlots = NNS_G2dGetOamManagerOamCapacity(oamMan);
-        animMan->oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * animMan->numSlots);
+        animMan->oam = Heap_Alloc(heapID, sizeof(GXOamAttr) * animMan->numSlots);
 
         if (animMan->oam == NULL) {
             break;
         }
 
-        animMan->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimatedSpriteData) * animMan->numSlots);
+        animMan->animatedSpritePool = Heap_Alloc(heapID, sizeof(PoketchAnimation_AnimatedSpriteData) * animMan->numSlots);
 
         if (animMan->animatedSpritePool == NULL) {
             break;
         }
 
-        animMan->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimatedSpriteData *) * animMan->numSlots);
+        animMan->animatedSpritePtrArray = Heap_Alloc(heapID, sizeof(PoketchAnimation_AnimatedSpriteData *) * animMan->numSlots);
 
         if (animMan->animatedSpritePtrArray == NULL) {
             break;
@@ -299,7 +299,7 @@ void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *ani
     animatedSprite->rotZ = rotation;
 }
 
-BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID)
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapID heapID)
 {
     spriteData->heapID = heapID;
     spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcID, spriteID, heapID);

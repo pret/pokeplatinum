@@ -158,7 +158,7 @@ BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *par
     BattlerData *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlerData));
+    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattlerData));
     MI_CpuClearFast(v0, sizeof(BattlerData));
 
     v0->battler = param1->unk_00;

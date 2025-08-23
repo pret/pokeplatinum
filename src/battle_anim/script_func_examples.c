@@ -61,7 +61,7 @@ static void BattleAnimTask_AnimExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *system)
 {
-    AnimExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(AnimExampleContext));
+    AnimExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(AnimExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
@@ -86,7 +86,7 @@ static void BattleAnimTask_SoundExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system)
 {
-    SoundExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(SoundExampleContext));
+    SoundExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(SoundExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
@@ -111,7 +111,7 @@ static void BattleAnimtTask_GenericExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system)
 {
-    GenericExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(GenericExampleContext));
+    GenericExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(GenericExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
@@ -150,7 +150,7 @@ void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226AAC));
+    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226AAC));
 
     GF_ASSERT(v0 != NULL);
 

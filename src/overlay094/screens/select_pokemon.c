@@ -476,7 +476,7 @@ static void ov94_022401E0(GTSApplicationState *param0)
         param0->unk_112 = 0;
     }
 
-    param0->boxCriteria = Heap_AllocFromHeap(HEAP_ID_62, sizeof(GTSBoxPokemonCriteria));
+    param0->boxCriteria = Heap_Alloc(HEAP_ID_62, sizeof(GTSBoxPokemonCriteria));
 }
 
 static void ov94_02240268(GTSApplicationState *param0)
@@ -1122,7 +1122,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
     NARC *v6; // compiler
     PokemonIcon *icons;
 
-    appState->selectPokemonIconHeapPtr = icons = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, sizeof(PokemonIcon) * MAX_MONS_PER_BOX);
+    appState->selectPokemonIconHeapPtr = icons = Heap_AllocAtEnd(HEAP_ID_APPLICATION, sizeof(PokemonIcon) * MAX_MONS_PER_BOX);
     v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((boxID >= 0) && (boxID < MAX_PC_BOXES)) {

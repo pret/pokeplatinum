@@ -21,7 +21,7 @@ void ChatotCry_Init(ChatotCry *param0)
 
 ChatotCry *ChatotCry_New(int heapID)
 {
-    ChatotCry *cry = Heap_AllocFromHeap(heapID, sizeof(ChatotCry));
+    ChatotCry *cry = Heap_Alloc(heapID, sizeof(ChatotCry));
 
     ChatotCry_Init(cry);
     return cry;

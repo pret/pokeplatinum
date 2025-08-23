@@ -3307,7 +3307,7 @@ static void BoxAppMan_Load(BoxApplicationManager *boxAppMan, PokemonStorageSessi
     boxAppMan->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
-    boxAppMan->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
+    boxAppMan->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(boxAppMan->MessageVariableBuffer);
     boxAppMan->namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, boxAppMan->options);
@@ -3391,7 +3391,7 @@ static void BoxAppMan_InitCursor(BoxApplicationManager *boxAppMan)
 
 static void BoxMonSelection_Init(BoxMonSelection *selection)
 {
-    selection->boxMon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
+    selection->boxMon = Heap_Alloc(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
     selection->selectedMonCount = 0;
     selection->cursorMonIsPartyMon = FALSE;
 }

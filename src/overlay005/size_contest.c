@@ -98,8 +98,8 @@ static u8 GetApproxIntervalIdx(u16 sizeFactor)
 
 static u32 CalcMillimeterSize(u16 species, u16 sizeFactor)
 {
-    HeightWeightData *heightWeightData = Pokedex_HeightWeightData(HEAP_ID_FIELD);
-    Pokedex_HeightWeightData_Load(heightWeightData, FALSE, HEAP_ID_FIELD);
+    HeightWeightData *heightWeightData = Pokedex_HeightWeightData(HEAP_ID_FIELD1);
+    Pokedex_HeightWeightData_Load(heightWeightData, FALSE, HEAP_ID_FIELD1);
 
     u32 height = Pokedex_HeightWeightData_Height(heightWeightData, species);
     Pokedex_HeightWeightData_Release(heightWeightData);

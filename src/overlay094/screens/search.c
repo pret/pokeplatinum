@@ -374,7 +374,7 @@ static void ov94_0223E9B8(GTSApplicationState *param0)
 
     param0->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
     param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_SeekPokemon);
-    param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
+    param0->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(GTSApplicationState_sub3));
 

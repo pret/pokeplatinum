@@ -20,8 +20,8 @@ void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 res
         Text_ResetAllPrinters();
     }
 
-    Font_LoadTextPalette(palLocation, PLTT_OFFSET(FIELD_MESSAGE_PALETTE_INDEX), HEAP_ID_FIELD);
-    Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(12), HEAP_ID_FIELD);
+    Font_LoadTextPalette(palLocation, PLTT_OFFSET(FIELD_MESSAGE_PALETTE_INDEX), HEAP_ID_FIELD1);
+    Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(12), HEAP_ID_FIELD1);
 }
 
 void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
@@ -35,7 +35,7 @@ void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
 
 void FieldMessage_DrawWindow(Window *window, const Options *options)
 {
-    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 1024 - (18 + 12), 10, Options_Frame(options), HEAP_ID_FIELD);
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 1024 - (18 + 12), 10, Options_Frame(options), HEAP_ID_FIELD1);
     FieldMessage_ClearWindow(window);
     Window_DrawMessageBoxWithScrollCursor(window, FALSE, 1024 - (18 + 12), 10);
 }
@@ -96,7 +96,7 @@ void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 sign
 // used only in one instance, together with FieldMessage_AddSignpostWindow
 void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx)
 {
-    LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType, signpostNARCMemberIdx, HEAP_ID_FIELD);
+    LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType, signpostNARCMemberIdx, HEAP_ID_FIELD1);
     Window_FillTilemap(window, 15);
     Window_DrawSignpost(window, FALSE, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType);
 }

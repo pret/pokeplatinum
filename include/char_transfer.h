@@ -10,7 +10,7 @@ typedef struct CharTransferTemplate {
     int maxTasks;
     int sizeMain;
     int sizeSub;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } CharTransferTemplate;
 
 typedef struct CharTransferTemplateWithModes {

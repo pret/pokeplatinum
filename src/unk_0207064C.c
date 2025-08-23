@@ -27,7 +27,7 @@ typedef struct {
 
 void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5)
 {
-    FlyTaskEnv *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(FlyTaskEnv));
+    FlyTaskEnv *v0 = Heap_AllocAtEnd(heapID, sizeof(FlyTaskEnv));
 
     memset(v0, 0, sizeof(FlyTaskEnv));
 

@@ -25,7 +25,7 @@
 
 UnkStruct_02030A80 *sub_02030A80(int heapID)
 {
-    UnkStruct_02030A80 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02030A80));
+    UnkStruct_02030A80 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
 
     return v0;

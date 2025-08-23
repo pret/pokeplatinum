@@ -855,9 +855,9 @@ static void CustomBgScrollContext_DoDMA(void *param)
     CustomBgScrollContext_DoDMAImpl(ctx);
 }
 
-CustomBgScrollContext *CustomBgScrollContext_New(u32 offsetReg, u32 initValue, enum HeapId heapID)
+CustomBgScrollContext *CustomBgScrollContext_New(u32 offsetReg, u32 initValue, enum HeapID heapID)
 {
-    CustomBgScrollContext *ctx = Heap_AllocFromHeap(heapID, sizeof(CustomBgScrollContext));
+    CustomBgScrollContext *ctx = Heap_Alloc(heapID, sizeof(CustomBgScrollContext));
     memset(ctx, 0, sizeof(CustomBgScrollContext));
 
     GF_ASSERT(ctx);
@@ -913,9 +913,9 @@ static void BgScrollContext_DoDMA(void *param)
     ScreenScrollManager_RestartDMA(ctx->screenScrollMgr);
 }
 
-BgScrollContext *BgScrollContext_New(u8 startY, u8 endY, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bgID, u32 priority, u32 initValue, enum HeapId heapID)
+BgScrollContext *BgScrollContext_New(u8 startY, u8 endY, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bgID, u32 priority, u32 initValue, enum HeapID heapID)
 {
-    BgScrollContext *ctx = Heap_AllocFromHeap(heapID, sizeof(BgScrollContext));
+    BgScrollContext *ctx = Heap_Alloc(heapID, sizeof(BgScrollContext));
     GF_ASSERT(ctx);
 
     memset(ctx, 0, sizeof(BgScrollContext));
@@ -1073,9 +1073,9 @@ void PaletteFadeContext_Free(PaletteFadeContext *ctx)
     Heap_Free(ctx);
 }
 
-PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapId heapID, enum PaletteBufferID bufferID, u16 index, u16 count, s8 stepFrames, s8 step, u8 startFrac, u8 endFrac, u16 color, int priority)
+PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapID heapID, enum PaletteBufferID bufferID, u16 index, u16 count, s8 stepFrames, s8 step, u8 startFrac, u8 endFrac, u16 color, int priority)
 {
-    PaletteFadeContext *ctx = Heap_AllocFromHeap(heapID, sizeof(PaletteFadeContext));
+    PaletteFadeContext *ctx = Heap_Alloc(heapID, sizeof(PaletteFadeContext));
     GF_ASSERT(ctx != NULL);
 
     ctx->paletteData = paletteData;

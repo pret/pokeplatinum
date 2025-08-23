@@ -195,7 +195,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        Egg_CreateHatchedMon(v0->unk_0C.unk_00, HEAP_ID_FIELDMAP);
+        Egg_CreateHatchedMon(v0->unk_0C.unk_00, HEAP_ID_FIELD2);
         FieldTransition_FinishMap(param0);
         v0->unk_00++;
         break;
@@ -211,7 +211,7 @@ static BOOL sub_0209843C(FieldTask *param0)
             TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
             int v4 = 6;
             int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-            int heapID = HEAP_ID_FIELDMAP;
+            int heapID = HEAP_ID_FIELD2;
             int isEgg = FALSE;
 
             Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
@@ -235,7 +235,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
+        v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->monGender = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->monForm = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
@@ -273,7 +273,7 @@ void sub_020985AC(FieldTask *param0, void *param1)
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209843C));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0209843C));
     memset(v0, 0, sizeof(UnkStruct_0209843C));
 
     v1 = (UnkStruct_0203E2FC *)param1;

@@ -44,7 +44,7 @@ static void ov12_022237EC(SPLEmitter *param0)
     return;
 }
 
-ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapId heapID, int narcMemberIndex, BOOL uploadResImmediately)
+ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapID heapID, int narcMemberIndex, BOOL uploadResImmediately)
 {
     ParticleSystem *ps = ParticleHelper_CreateParticleSystem(heapID);
     void *resource = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_WAZAEFFECT__EFFECTDATA__WAZA_PARTICLE, narcMemberIndex, heapID);
@@ -53,7 +53,7 @@ ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapId heapID, int 
     return ps;
 }
 
-ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapId heapID, enum NarcID narcID, int memberIndex, BOOL uploadResImmediately)
+ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapID heapID, enum NarcID narcID, int memberIndex, BOOL uploadResImmediately)
 {
     ParticleSystem *ps = ParticleHelper_CreateParticleSystem(heapID);
     void *resource = ParticleSystem_LoadResourceFromNARC(narcID, memberIndex, heapID);
@@ -62,12 +62,12 @@ ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapId heapID, en
     return ps;
 }
 
-void *BattleParticleUtil_ReadMemberFromNARC(NARC *narc, int memberIdx, enum HeapId heapID)
+void *BattleParticleUtil_ReadMemberFromNARC(NARC *narc, int memberIdx, enum HeapID heapID)
 {
     return NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 }
 
-ParticleSystem *ov12_0222384C(NARC *param0, enum HeapId heapID, int param2, int param3)
+ParticleSystem *ov12_0222384C(NARC *param0, enum HeapID heapID, int param2, int param3)
 {
     ParticleSystem *v0;
     void *v1;

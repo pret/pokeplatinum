@@ -35,7 +35,7 @@ static void ov28_022575EC(const UnkStruct_ov28_02256E9C *param0, const UnkStruct
 
 BOOL ov28_02256E9C(UnkStruct_ov28_02256E9C **param0, u32 param1)
 {
-    *param0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256E9C));
+    *param0 = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256E9C));
 
     if (*param0) {
         (*param0)->unk_0A = param1;

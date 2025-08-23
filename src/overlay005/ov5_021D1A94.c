@@ -35,18 +35,18 @@ UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int p
     UnkStruct_ov5_021D1A94 *v0;
     u32 v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1A94));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021D1A94));
 
     v0->fieldSystem = fieldSystem;
     v0->heapID = heapID;
     v0->unk_08 = param2;
-    v0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1BEC) * param2);
+    v0->unk_0C = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     MI_CpuClear32(v0->unk_0C, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     v1 = SysTaskManager_GetRequiredSize(param2);
 
-    v0->unk_10 = Heap_AllocFromHeap(heapID, v1);
+    v0->unk_10 = Heap_Alloc(heapID, v1);
     v0->unk_10 = SysTaskManager_Init(param2, v0->unk_10);
 
     return v0;
@@ -108,7 +108,7 @@ UnkStruct_ov5_021D1BEC *ov5_021D1B6C(UnkStruct_ov5_021D1A94 *param0, const UnkSt
             GF_ASSERT(v1->unk_08 != NULL);
 
             if (param1->unk_04 != 0) {
-                v1->unk_10 = Heap_AllocFromHeap(param0->heapID, param1->unk_04);
+                v1->unk_10 = Heap_Alloc(param0->heapID, param1->unk_04);
             }
 
             if (param1->unk_08) {

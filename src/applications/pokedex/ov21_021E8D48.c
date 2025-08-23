@@ -112,7 +112,7 @@ static void ov21_021E968C(UnkStruct_ov21_021E968C *param0);
 static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E9968(Window *param0, int param1, int param2);
-static void ov21_021E998C(Window *param0, enum HeapId heapID);
+static void ov21_021E998C(Window *param0, enum HeapID heapID);
 static void ov21_021E9A0C(int param0);
 static void ov21_021E9A38(void);
 static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param2, NARC *param3);
@@ -123,7 +123,7 @@ static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1);
 
 UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
 {
-    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
+    UnkStruct_ov21_021E8D48 *v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
 
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8D48));
 
@@ -727,7 +727,7 @@ static void ov21_021E9968(Window *param0, int param1, int param2)
     ov21_021E998C(param0, param1);
 }
 
-static void ov21_021E998C(Window *param0, enum HeapId heapID)
+static void ov21_021E998C(Window *param0, enum HeapID heapID)
 {
     Strbuf *v0 = Strbuf_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);

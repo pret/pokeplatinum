@@ -2070,7 +2070,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
 
             {
-                MysteryGiftAnimationManager *animMan = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, sizeof(MysteryGiftAnimationManager));
+                MysteryGiftAnimationManager *animMan = Heap_Alloc(HEAP_ID_MYSTERY_GIFT_APP, sizeof(MysteryGiftAnimationManager));
 
                 memset(animMan, 0, sizeof(MysteryGiftAnimationManager));
 
@@ -2560,7 +2560,7 @@ static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData)
     case WIRELESS_DISTRIBUTION_STATE_38:
         if (WirelessDriver_IsReady() == 1) {
             Unk_ov97_0223F1B4 = 0;
-            Unk_ov97_0223F1AC = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, ov97_02238D4C());
+            Unk_ov97_0223F1AC = Heap_Alloc(HEAP_ID_MYSTERY_GIFT_APP, ov97_02238D4C());
             ov97_02238A4C(appData->wirelessDistributionBuffer, ov97_02230280, Unk_ov97_0223F1AC);
             sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_39;
             sub_02039734();

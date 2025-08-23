@@ -50,8 +50,8 @@ typedef struct {
     CursorTransformation unk_38;
 } UnkStruct_ov21_021E14D4;
 
-static UnkStruct_ov21_021E0D68 *ov21_021E0D04(enum HeapId heapID, PokedexApp *param1);
-static PokedexGraphicData **ov21_021E0D40(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021E0D68 *ov21_021E0D04(enum HeapID heapID, PokedexApp *param1);
+static PokedexGraphicData **ov21_021E0D40(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021E0D68(UnkStruct_ov21_021E0D68 *param0);
 static void ov21_021E0D7C(PokedexGraphicData **param0);
 static int ov21_021E0D90(void);
@@ -77,7 +77,7 @@ static BOOL ov21_021E1840(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
 static void ov21_021E0F4C(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E0D68 *param2, int heapID);
 static void ov21_021E0F94(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1);
 static void ov21_021E0FBC(PokedexGraphicData **param0, int heapID);
-static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1, enum HeapId heapID);
+static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1, enum HeapID heapID);
 static void ov21_021E1188(PokedexGraphicData **param0, int param1, int param2, int param3, int param4);
 static int LanguageMessage(int param0);
 static void ov21_021E18A0(PokedexGraphicData **param0, int param1, int param2, int param3);
@@ -92,7 +92,7 @@ static void ov21_021E1210(PokedexGraphicData **param0);
 static void ov21_021E1228(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1);
 static void ov21_021E1260(PokedexGraphicData **param0);
 
-void ov21_021E0C68(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021E0C68(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021E0D68 *v0;
     PokedexGraphicData **v1;
@@ -161,12 +161,12 @@ void ov21_021E0CF8(PokedexScreenManager *param0, int param1)
     v0->unk_1C = 0;
 }
 
-static UnkStruct_ov21_021E0D68 *ov21_021E0D04(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021E0D68 *ov21_021E0D04(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E0D68 *v0;
     PokedexScreenManager *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E0D68));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E0D68));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E0D68));
@@ -181,12 +181,12 @@ static UnkStruct_ov21_021E0D68 *ov21_021E0D04(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static PokedexGraphicData **ov21_021E0D40(enum HeapId heapID, PokedexApp *param1)
+static PokedexGraphicData **ov21_021E0D40(enum HeapID heapID, PokedexApp *param1)
 {
     PokedexGraphicData **v0;
     PokedexScreenManager *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData *));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData *));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData *));
@@ -247,7 +247,7 @@ static int ov21_021E0DAC(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E14D4));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E14D4));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E14D4));
         graphicsMan->state++;
         break;
@@ -406,7 +406,7 @@ static void ov21_021E0FBC(PokedexGraphicData **param0, int heapID)
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 3);
 }
 
-static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1, enum HeapId heapID)
+static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1, enum HeapID heapID)
 {
     Strbuf *v0 = Strbuf_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);

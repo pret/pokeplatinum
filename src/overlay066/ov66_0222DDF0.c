@@ -413,7 +413,7 @@ static const UnkStruct_ov66_022589B4 Unk_ov66_022589B4[8] = {
 
 UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, u32 heapID)
 {
-    UnkStruct_ov66_0222DFF8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0222DFF8));
+    UnkStruct_ov66_0222DFF8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222DFF8));
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DFF8));
 
     v0->saveData = saveData;
@@ -2521,7 +2521,7 @@ static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)
 
 static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID)
 {
-    UnkStruct_ov66_0222E71C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0222E71C));
+    UnkStruct_ov66_0222E71C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222E71C));
 
     MI_CpuCopyFast(&param1->unk_20, v0, sizeof(UnkStruct_ov66_0222E71C));
     MI_CpuCopy8(param1->unk_10, v0->unk_08, sizeof(u16) * (7 + 1));

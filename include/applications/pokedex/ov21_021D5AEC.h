@@ -7,7 +7,7 @@
 
 #include "heap.h"
 
-void ov21_021D5AEC(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID);
+void ov21_021D5AEC(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID);
 void ov21_021D5B50(PokedexScreenManager *param0);
 BOOL ov21_021D5B68(const UnkStruct_ov21_021D5B68 *param0);
 

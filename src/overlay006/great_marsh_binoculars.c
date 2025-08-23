@@ -42,11 +42,11 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem)
 {
     u8 i;
-    GreatMarshBinoculars *binocularsData = Heap_AllocFromHeapAtEnd(heapID, sizeof(GreatMarshBinoculars));
+    GreatMarshBinoculars *binocularsData = Heap_AllocAtEnd(heapID, sizeof(GreatMarshBinoculars));
     binocularsData->fieldSystem = fieldSystem;
 
     u8 randIndex;
-    BinocularCoords *coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, HEAP_ID_FIELD);
+    BinocularCoords *coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, HEAP_ID_FIELD1);
 
     for (i = 0; i < BINOCULARS_CYCLE_COUNT; i++) {
         randIndex = LCRNG_RandMod(36);

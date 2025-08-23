@@ -704,7 +704,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222AC70 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AC70));
+    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AC70));
 
     GF_ASSERT(v1 != NULL);
 
@@ -830,7 +830,7 @@ static void BattleAnimTask_Strength(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_Strength(BattleAnimSystem *system)
 {
-    StrengthContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(StrengthContext));
+    StrengthContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(StrengthContext));
 
     ctx->blinkCounter = 0;
     ctx->state = STRENGTH_STATE_SHRINK;
@@ -948,7 +948,7 @@ static void BattleAnimTask_BulkUp(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
 {
-    BulkUpContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(BulkUpContext));
+    BulkUpContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(BulkUpContext));
 
     ctx->state = BULK_UP_STATE_SQUISH_Y;
     ctx->battleAnimSys = system;
@@ -1073,7 +1073,7 @@ static void BattleAnimTask_DoubleTeam(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
 {
-    DoubleTeamContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(DoubleTeamContext));
+    DoubleTeamContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(DoubleTeamContext));
 
     ctx->state = 0;
     ctx->iteration = 0;

@@ -40,7 +40,7 @@ static const int Unk_020F2FB0[] = {
 
 UnkStruct_0208B878 *sub_0208B284(UnkStruct_0208B284 param0, SpriteSystem *param1, SpriteManager *param2, PaletteData *param3)
 {
-    UnkStruct_0208B878 *v0 = Heap_AllocFromHeap(param0.heapID, sizeof(UnkStruct_0208B878));
+    UnkStruct_0208B878 *v0 = Heap_Alloc(param0.heapID, sizeof(UnkStruct_0208B878));
     v0->unk_10.unk_00 = param0.unk_00;
     v0->unk_10.heapID = param0.heapID;
     v0->unk_10.unk_08 = param0.unk_08;

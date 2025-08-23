@@ -206,7 +206,7 @@ static const struct {
 
 BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *param1, const BoxApplicationManager *param2)
 {
-    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
@@ -325,7 +325,7 @@ void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFu
 
         for (u32 i = 0; i < 4; i++) {
             if (param0->unk_08[i] == NULL) {
-                taskParams = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
+                taskParams = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
 
                 if (taskParams != NULL) {
                     taskParams->function = function;

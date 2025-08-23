@@ -93,7 +93,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     PokemonSpriteTemplate v1;
     int v2;
 
-    v0 = (EvolutionData *)Heap_AllocFromHeap(heapID, sizeof(EvolutionData));
+    v0 = (EvolutionData *)Heap_Alloc(heapID, sizeof(EvolutionData));
 
     MI_CpuClearFast(v0, sizeof(EvolutionData));
     MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
@@ -138,7 +138,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     v0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
     v0->unk_0C = StringTemplate_Default(heapID);
     v0->unk_10 = Strbuf_Init(2 * 160, heapID);
-    v0->unk_3C = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
+    v0->unk_3C = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
 
@@ -316,7 +316,7 @@ static void sub_0207B180(EvolutionData *param0)
                 PokemonSprite_StartFade(param0->unk_1C[0], 0, 16, 4, 0x7fff);
                 PokemonSprite_StartFade(param0->unk_1C[1], 0, 16, 4, 0x7fff);
 
-                GF_ASSERT(Heap_FndGetTotalFreeSizeForExpHeap(param0->heapID) > 0x8000);
+                GF_ASSERT(HeapExp_FndGetTotalFreeSize(param0->heapID) > 0x8000);
                 Sound_PlayEffect(SEQ_SE_DP_W025);
             }
             param0->unk_66 = 40;

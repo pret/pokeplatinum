@@ -181,9 +181,9 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
 
-    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), HEAP_ID_FIELDMAP);
+    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), HEAP_ID_FIELD2);
     ov5_021D32E8(&param0->unk_74, narc, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
     ov5_021D3374(&param0->unk_74, narc, 1, 0, 14528);
     ov5_021D339C(&param0->unk_74, narc, 0, 0, 14528);
@@ -272,7 +272,7 @@ static void ov23_0224F560(Sprite *param0)
 
 void ov23_0224F588(Underground *underground)
 {
-    Unk_ov23_022577B8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov23_022577B8));
+    Unk_ov23_022577B8 = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov23_022577B8));
     MI_CpuClear8(Unk_ov23_022577B8, sizeof(UnkStruct_ov23_022577B8));
     Unk_ov23_022577B8->selectedSlot = 0;
     Unk_ov23_022577B8->selectedID = 0;
@@ -419,16 +419,16 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     ov23_022430D0(2);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->template = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->template = StringTemplate_Default(HEAP_ID_FIELD1);
     v0->unk_04 = SysTask_Start(ov23_0224F914, v0, 10000);
 
     ov23_022431EC(v0, v0->unk_04, ov23_02251270);
@@ -468,7 +468,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     const int v1 = 4;
     u8 v2[7];
     int v3 = ov23_0224F7D4(v2);
-    param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -482,7 +482,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
                 const TrainerInfo *v5 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-                Strbuf *v6 = TrainerInfo_NameNewStrbuf(v5, HEAP_ID_FIELD);
+                Strbuf *v6 = TrainerInfo_NameNewStrbuf(v5, HEAP_ID_FIELD1);
 
                 StringList_AddFromStrbuf(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
                 Strbuf_Free(v6);
@@ -508,7 +508,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_54 = Menu_New(&v0, 28, 4, param0->unk_29C, HEAP_ID_FIELDMAP, PAD_BUTTON_B | PAD_BUTTON_X);
+    param0->unk_54 = Menu_New(&v0, 28, 4, param0->unk_29C, HEAP_ID_FIELD2, PAD_BUTTON_B | PAD_BUTTON_X);
     param0->unk_48 = NULL;
 
     Window_ScheduleCopyToVRAM(&param0->unk_10);
@@ -632,7 +632,7 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
         break;
     default:
         if ((v0->unk_2A0 == (u32)ov23_0224FDE0) || (v0->unk_2A0 == (u32)ov23_022501BC) || (v0->unk_2A0 == (u32)ov23_02250CD4) || (v0->unk_2A0 == (u32)ov23_02250598)) {
-            v0->unk_08 = ScrollPrompts_New(HEAP_ID_FIELD);
+            v0->unk_08 = ScrollPrompts_New(HEAP_ID_FIELD1);
             ScrollPrompts_SetPosition(v0->unk_08, 200, 20, 122);
             ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
             ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
@@ -723,7 +723,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
         break;
     }
 
-    param0->unk_44 = StringList_New(v1, HEAP_ID_FIELD);
+    param0->unk_44 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -747,7 +747,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
     v0.window = &param0->unk_20;
     v0.parent = param0;
 
-    param0->unk_50 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
+    param0->unk_50 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 }
 
 static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
@@ -835,7 +835,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAP_NAMES, MESSAGE_LOADER_BANK_HANDLE);
 
-    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -864,7 +864,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 5;
 }
 
@@ -1027,7 +1027,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEM_NAMES, MESSAGE_LOADER_BANK_HANDLE);
 
-    param0->unk_40 = StringList_New(v4 + 1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v4 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1059,7 +1059,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v5, v3.count);
 
-    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
+    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 6;
 }
 
@@ -1204,7 +1204,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEM_NAMES, MESSAGE_LOADER_BANK_HANDLE);
 
-    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1232,7 +1232,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 7;
 }
 
@@ -1316,7 +1316,7 @@ static BOOL Underground_HandleTreasureSelectedMenu(SysTask *param0, void *param1
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
+            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD1)) {
                 Underground_RemoveTreasureAtSlot(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->selectedSlot);
                 UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 0, Unk_ov23_022577B8->selectedID);
 
@@ -1370,7 +1370,7 @@ static void ov23_02250998(SysTask *param0, void *param1)
     UnkStruct_ov23_02250CD4 *v0 = param1;
 
     if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter()) == FALSE) {
-        v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &sWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD);
+        v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &sWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
         v0->unk_2AA = 12;
     }
 }
@@ -1411,16 +1411,16 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->template = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     CommPlayerMan_PauseFieldSystem();
 
@@ -1606,7 +1606,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
 
-    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1635,7 +1635,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 8;
 }
 
@@ -1835,7 +1835,7 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -1845,9 +1845,9 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_25C = 0;
     v0->unk_48 = NULL;
     v0->cursorCallback = NULL;
-    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->template = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     ov23_02250CD4(v0);
 

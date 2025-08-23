@@ -136,7 +136,7 @@ static void ov62_02247F7C(UnkStruct_0208C06C *param0)
 
 static BOOL ov62_02247FA8(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02247F7C *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02247F7C));
+    UnkStruct_ov62_02247F7C *v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02247F7C));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02247F7C));
     param0->unk_860 = v0;

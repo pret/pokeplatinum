@@ -1053,7 +1053,7 @@ u8 Item_IsHerbalMedicine(u16 item)
         || item == ITEM_REVIVAL_HERB;
 }
 
-void *ItemTable_Load(enum HeapId heapID)
+void *ItemTable_Load(enum HeapID heapID)
 {
     int maxItem = Item_FileID(NUM_ITEMS, ITEM_FILE_TYPE_DATA);
     return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, heapID, 0, sizeof(ItemData) * maxItem);

@@ -1130,7 +1130,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->saveData = v0->saveData;
-    param0->unk_2274 = Heap_AllocFromHeap(HEAP_ID_26, Party_SaveSize());
+    param0->unk_2274 = Heap_Alloc(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());
@@ -2481,7 +2481,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
-    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
+    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
     Pokemon_ClearBallCapsuleData(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);

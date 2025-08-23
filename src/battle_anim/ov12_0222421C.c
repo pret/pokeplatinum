@@ -670,7 +670,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 void ov12_02224F14(SPLEmitter *param0)
 {
     BattleAnimSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
-    UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
+    UnkStruct_ov12_02225640 *v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;
     v1->unk_04 = BattleAnimSystem_GetCurrentParticleSystem(v1->unk_00);

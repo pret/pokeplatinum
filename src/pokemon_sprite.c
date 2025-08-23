@@ -397,9 +397,9 @@ static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 
-void *PokemonSpriteManager_New(enum HeapId heapID)
+void *PokemonSpriteManager_New(enum HeapID heapID)
 {
-    PokemonSpriteManager *monSpriteMan = Heap_AllocFromHeap(heapID, sizeof(PokemonSpriteManager));
+    PokemonSpriteManager *monSpriteMan = Heap_Alloc(heapID, sizeof(PokemonSpriteManager));
 
     monSpriteMan->heapID = heapID;
     monSpriteMan->dummy330 = 0;
@@ -407,11 +407,11 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
     monSpriteMan->charSize = MON_SPRITE_CHAR_BUF_SIZE;
     monSpriteMan->plttBaseAddr = 0;
     monSpriteMan->plttSize = PALETTE_SIZE_BYTES * MAX_MON_SPRITES;
-    monSpriteMan->charRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_CHAR_BUF_SIZE);
-    monSpriteMan->plttRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
+    monSpriteMan->charRawData = Heap_Alloc(heapID, MON_SPRITE_CHAR_BUF_SIZE);
+    monSpriteMan->plttRawData = Heap_Alloc(heapID, MON_SPRITE_PLTT_BUF_SIZE);
 
     MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(u32));
-    monSpriteMan->plttRawDataUnfaded = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
+    monSpriteMan->plttRawDataUnfaded = Heap_Alloc(heapID, MON_SPRITE_PLTT_BUF_SIZE);
     MI_CpuClearFast(monSpriteMan->plttRawDataUnfaded, sizeof(u32));
 
     for (int i = 0; i < MAX_MON_SPRITES; i++) {

@@ -909,8 +909,8 @@ void *BattleAnimUtil_Alloc(BattleAnimSystem *system, int size)
 {
     GF_ASSERT(system != NULL);
 
-    enum HeapId heapID = BattleAnimSystem_GetHeapID(system);
-    void *ptr = Heap_AllocFromHeap(heapID, size);
+    enum HeapID heapID = BattleAnimSystem_GetHeapID(system);
+    void *ptr = Heap_Alloc(heapID, size);
 
     GF_ASSERT(ptr != NULL);
     memset(ptr, 0, size);

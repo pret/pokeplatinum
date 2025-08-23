@@ -116,7 +116,7 @@ static void ov95_02249F38(SysTask *param0, void *param1);
 
 void *ov95_02249740(TradeSequenceData *param0)
 {
-    UnkStruct_ov95_022497D8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_022497D8));
+    UnkStruct_ov95_022497D8 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_022497D8));
 
     if (v0) {
         int v1;

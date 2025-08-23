@@ -121,7 +121,7 @@ static void ov95_0224B3BC(SysTask *param0);
 
 void *ov95_0224ABC0(TradeSequenceData *param0)
 {
-    UnkStruct_ov95_0224AC64 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224AC64));
+    UnkStruct_ov95_0224AC64 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224AC64));
 
     if (v0) {
         int v1;
@@ -373,7 +373,7 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
 
     {
-        u8 *v7 = Heap_AllocFromHeap(HEAP_ID_58, 96);
+        u8 *v7 = Heap_Alloc(HEAP_ID_58, 96);
 
         if (v7) {
             MI_CpuClear32(v7, 96);
@@ -473,7 +473,7 @@ static void ov95_0224B194(UnkStruct_ov95_0224AC64 *param0)
 
 static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
 {
-    UnkStruct_ov95_0224B1A8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B1A8));
+    UnkStruct_ov95_0224B1A8 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B1A8));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -521,7 +521,7 @@ static void ov95_0224B258(SysTask *param0)
 
 static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
 {
-    UnkStruct_ov95_0224B274 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B274));
+    UnkStruct_ov95_0224B274 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B274));
 
     if (v0) {
         v0->unk_00 = param1;
@@ -568,7 +568,7 @@ static void ov95_0224B308(SysTask *param0)
 
 static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3, SysTask **param4)
 {
-    UnkStruct_ov95_0224B324 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B324));
+    UnkStruct_ov95_0224B324 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B324));
 
     if (v0) {
         v0->unk_00 = param4;

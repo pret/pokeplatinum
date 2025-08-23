@@ -6,7 +6,7 @@
 
 #include "heap.h"
 
-void ov21_021E737C(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID);
+void ov21_021E737C(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID);
 void ov21_021E73D4(PokedexScreenManager *param0);
 
 #endif // POKEPLATINUM_OV21_021E737C_H

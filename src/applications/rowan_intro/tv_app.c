@@ -39,7 +39,7 @@ enum RowanIntroTvState {
 };
 
 typedef struct {
-    enum HeapId heapID;
+    enum HeapID heapID;
     BgConfig *bgConfig;
     MessageLoader *msgLoader;
     enum RowanIntroTvState state;
@@ -62,7 +62,7 @@ static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *tv);
 BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
     RowanIntroTv *tv;
-    // changing this to enum HeapId breaks the checksum.
+    // changing this to enum HeapID breaks the checksum.
     int heapID = HEAP_ID_ROWAN_INTRO_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
@@ -179,7 +179,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
 BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
     RowanIntroTv *tv = ApplicationManager_Data(appMan);
-    enum HeapId heapID = tv->heapID;
+    enum HeapID heapID = tv->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
