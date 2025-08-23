@@ -79,7 +79,7 @@
 #include "trainer_card_screen/trainer_card_screen.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "coins.h"
 #include "dexmode_checker.h"
 #include "evolution.h"
@@ -283,14 +283,14 @@ void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
     void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELD2);
 
-    BagSystem_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
-    BagSystem_SetMapLoadType(v1, fieldSystem->mapLoadType);
+    BagContext_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    BagContext_SetMapLoadType(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-        BagSystem_SetIsCycling(v1);
+        BagContext_SetIsCycling(v1);
     }
 
-    sub_0207CB6C(v1, param1);
+    BagContext_SetItemUseContext(v1, param1);
     sub_0203D1E4(fieldSystem, v1);
 
     return v1;
@@ -317,7 +317,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
     v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD3);
 
-    BagSystem_Init(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
+    BagContext_Init(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, v0);
 
     return v0;
@@ -325,9 +325,9 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
 u16 sub_0203D2C4(void *param0)
 {
-    u16 v0 = BagSystem_GetItem(param0);
+    u16 v0 = BagContext_GetItem(param0);
 
-    if ((v0 != 0) && (BagSystem_GetExitCode(param0) == 5)) {
+    if ((v0 != 0) && (BagContext_GetExitCode(param0) == 5)) {
         GF_ASSERT(0);
     }
 

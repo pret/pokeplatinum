@@ -24,7 +24,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "bg_window.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -866,7 +866,7 @@ static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELD2);
 
-    BagSystem_FormatUsageMessage(usageContext->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(usageContext->fieldSystem->saveData)), 11);
+    BagContext_FormatUsageMessage(usageContext->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(usageContext->fieldSystem->saveData)), HEAP_ID_FIELD2);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);
 
     return FALSE;
@@ -1108,7 +1108,7 @@ static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 e
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELD2);
 
-    BagSystem_FormatErrorMessage(SaveData_GetTrainerInfo(usageContext->fieldSystem->saveData), v0->unk_10, usageContext->unk_28, error, HEAP_ID_FIELD2);
+    BagContext_FormatErrorMessage(SaveData_GetTrainerInfo(usageContext->fieldSystem->saveData), v0->unk_10, usageContext->unk_28, error, HEAP_ID_FIELD2);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);
 }
 

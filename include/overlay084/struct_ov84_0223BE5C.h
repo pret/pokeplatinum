@@ -10,6 +10,6 @@ typedef struct {
     u8 pocketType;
     u8 unk_09;
     u8 padding_0A[2];
-} BagInterfacePocketInfo;
+} BagInterfacePocket;
 
 #endif // POKEPLATINUM_STRUCT_OV84_0223BE5C_H

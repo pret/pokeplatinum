@@ -18,7 +18,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -845,7 +845,7 @@ static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0)
 
 u16 ov84_0223BE5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (param2 == 0) {
         return v0->items[param1].item;
@@ -866,7 +866,7 @@ static void ov84_0223BE94(MessageLoader *param0, Strbuf *param1, u16 param2, u32
 
 static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     u16 v1, v2;
 
     param0->unk_C4->currPocketIdx = 0;
@@ -917,7 +917,7 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     u32 v1;
 
     if (param0->unk_C4->bagCursor == NULL) {
@@ -939,7 +939,7 @@ static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     u32 v1;
 
     v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
@@ -1106,7 +1106,7 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
     Window_FillTilemap(&v0->unk_04[1], 0);
 
     if (param1 != 0xfffffffe) {
-        BagInterfacePocketInfo *v1;
+        BagInterfacePocket *v1;
 
         v1 = &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx];
         ov84_0223F528(v0, v1->items[param1].item);
@@ -1124,7 +1124,7 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
 static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
-    BagInterfacePocketInfo *v1 = &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v1 = &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx];
 
     if ((v0->unk_47A == 1) && (v0->unk_47C == param1)) {
         ListMenu_SetAltTextColors(param0, 8, 0, 9);
@@ -1211,7 +1211,7 @@ static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     u32 v1;
     u16 v2, v3;
 
@@ -1796,7 +1796,7 @@ static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (ListMenu_GetIndexOfChoice(param0->unk_15C, v0->unk_06 + v0->unk_04) == 0xfffffffe) {
         return 0;
@@ -1815,7 +1815,7 @@ static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     param0->unk_47A = 1;
     param0->unk_47B = v0->unk_06 + v0->unk_04;
@@ -1828,7 +1828,7 @@ static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     u32 v1;
     u16 v2, v3;
 
@@ -1894,7 +1894,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
     u16 v1 = v0->unk_06 + v0->unk_04;
 
     if (!((param0->unk_47B == v1) || (param0->unk_47B == (v1 - 1)))) {
@@ -1908,7 +1908,7 @@ static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     ListMenu_Free(param0->unk_15C, &v0->unk_06, &v0->unk_04);
     param0->unk_15C = NULL;
@@ -1927,7 +1927,7 @@ static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D4E8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (param0->unk_47A == 0) {
         ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (v0->unk_04 - 1) * 16);
@@ -1980,7 +1980,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
                     v3[v1] = 2;
                 } else if (param0->unk_C4->selectedItem == 449) {
                     v3[v1] = 4;
-                } else if ((param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4) && (sub_02068B50(param0->unk_C4->unk_70) == 1)) {
+                } else if ((param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4) && (sub_02068B50(param0->unk_C4->itemUseCtx) == 1)) {
                     v3[v1] = 3;
                 } else {
                     v3[v1] = 0;
@@ -2094,10 +2094,10 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
     itemUseFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
 
     if (itemUseFunc != NULL) {
-        u32 v2 = itemUseFunc(param0->unk_C4->unk_70);
+        u32 v2 = itemUseFunc(param0->unk_C4->itemUseCtx);
 
         if (v2 != 0) {
-            BagSystem_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, v2, HEAP_ID_6);
+            BagContext_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, v2, HEAP_ID_6);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             param0->unk_426 = ov84_022400A0(param0);
@@ -2130,7 +2130,7 @@ static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    BagInterfacePocket *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     param0->unk_483 = 0;
 
@@ -2139,7 +2139,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    if (BagSystem_FormatUsageMessage(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->selectedItem, 6) == 1) {
+    if (BagContext_FormatUsageMessage(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->selectedItem, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);
@@ -2830,11 +2830,11 @@ static int ov84_0223E920(UnkStruct_ov84_0223B5A0 *param0)
     TrainerInfo_GiveMoney(param0->unk_CC, param0->unk_488 * param0->unk_48C);
 
     if (param0->unk_488 == 1) {
-        if (param0->unk_C4->unk_75 != 0xff) {
-            param0->unk_C4->unk_75++;
+        if (param0->unk_C4->soldAmount != 0xff) {
+            param0->unk_C4->soldAmount++;
         }
     } else {
-        param0->unk_C4->unk_75 = 2;
+        param0->unk_C4->soldAmount = 2;
     }
 
     ov84_02240248(param0, 1);
@@ -2886,7 +2886,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
         if (v0 == 1) {
             if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 0) {
                 if (Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
-                    BagSystem_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, -1, HEAP_ID_6);
+                    BagContext_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, -1, HEAP_ID_6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
                     Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 
