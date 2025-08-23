@@ -39,7 +39,7 @@ static int ov12_02238088(int param0);
 UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *param1)
 {
     UnkStruct_ov12_02237F98 *v0 = NULL;
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02237F98));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -135,7 +135,7 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *para
 
     v0 == NULL;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02238004));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
         GF_ASSERT(0);

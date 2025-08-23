@@ -1261,7 +1261,7 @@ static void BattleAnimTask_RotateMon(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system)
 {
-    RotateMonContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(RotateMonContext));
+    RotateMonContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(RotateMonContext));
 
     ctx->state = 0;
     ctx->system = system;
@@ -1318,7 +1318,7 @@ static void BattleAnimTask_Submission(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_Submission(BattleAnimSystem *system)
 {
-    SubmissionContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(SubmissionContext));
+    SubmissionContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(SubmissionContext));
     ctx->battleAnimSys = system;
 
     RevolutionContext_InitOvalRevolutions(
@@ -2330,7 +2330,7 @@ static void BattleAnimTask_ShakeAndScaleAttacker(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_ShakeAndScaleAttacker(BattleAnimSystem *system)
 {
-    ShakeAndScaleAttackerContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(ShakeAndScaleAttackerContext));
+    ShakeAndScaleAttackerContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(ShakeAndScaleAttackerContext));
 
     ctx->unused1 = 0;
     ctx->state = SHAKE_AND_SCALE_ATTACKER_STATE_SCALE_1;
@@ -2423,7 +2423,7 @@ static void BattleAnimTask_ShakeAndScaleAttacker2(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_ShakeAndScaleAttacker2(BattleAnimSystem *system)
 {
-    ShakeAndScaleAttacker2Context *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(ShakeAndScaleAttacker2Context));
+    ShakeAndScaleAttacker2Context *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(ShakeAndScaleAttacker2Context));
 
     ctx->unused1 = 0;
     ctx->state = SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_1;

@@ -129,7 +129,7 @@ static void NitroStaticInit(void)
 
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    PoketchMoveTester *moveTester = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
+    PoketchMoveTester *moveTester = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
 
     if (moveTester != NULL) {
         if (Init(moveTester, poketchSys, bgConfig, appID)) {

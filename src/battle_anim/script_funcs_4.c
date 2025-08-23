@@ -203,7 +203,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222D6B0 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D6B0));
+    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D6B0));
 
     GF_ASSERT(v1 != NULL);
 
@@ -422,7 +422,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222D934 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D934));
+    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D934));
 
     GF_ASSERT(v1 != NULL);
 
@@ -639,7 +639,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222DE24 *v2;
     SpriteTemplate v3;
 
-    v2 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222DE24));
+    v2 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222DE24));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_01 = 0;

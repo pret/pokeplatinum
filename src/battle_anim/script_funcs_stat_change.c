@@ -88,7 +88,7 @@ static void StatChangeParam_SetInitAlpha(StatChangeParam *param, u16 overlayAlph
 
 static void StatChangeContext_LoadBg(StatChangeContext *ctx, enum BgLayer bgLayer)
 {
-    enum HeapId heapID = BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys);
+    enum HeapID heapID = BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys);
     int bgPriority = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_POKEMON);
 
     Bg_SetPriority(bgLayer, bgPriority);

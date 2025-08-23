@@ -8,9 +8,9 @@
 static u32 ParticleHelper_AllocTexVram(u32 param0, BOOL param1);
 static u32 ParticleHelper_AllocPalVram(u32 param0, BOOL param1);
 
-ParticleSystem *ParticleHelper_CreateParticleSystem(enum HeapId heapID)
+ParticleSystem *ParticleHelper_CreateParticleSystem(enum HeapID heapID)
 {
-    void *heap = Heap_AllocFromHeap(heapID, 0x4800);
+    void *heap = Heap_Alloc(heapID, 0x4800);
     ParticleSystem *ps = ParticleSystem_New(ParticleHelper_AllocTexVram, ParticleHelper_AllocPalVram, heap, 0x4800, TRUE, heapID);
     Camera *camera = ParticleSystem_GetCamera(ps);
 
@@ -21,9 +21,9 @@ ParticleSystem *ParticleHelper_CreateParticleSystem(enum HeapId heapID)
     return ps;
 }
 
-ParticleSystem *ov11_0221F888(enum HeapId heapID)
+ParticleSystem *ov11_0221F888(enum HeapID heapID)
 {
-    void *heap = Heap_AllocFromHeap(heapID, 0x4200);
+    void *heap = Heap_Alloc(heapID, 0x4200);
     if (heap == NULL) {
         return NULL;
     }

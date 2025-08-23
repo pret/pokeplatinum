@@ -445,7 +445,7 @@ static void ov62_0223A154(SaveData *saveData, const PCBoxes *pcBoxes, int boxID,
 
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02239DBC *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02239DBC));
+    UnkStruct_ov62_02239DBC *v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02239DBC));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02239DBC));
 

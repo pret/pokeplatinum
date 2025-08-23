@@ -33,7 +33,7 @@ static u32 GetNumBattlePoints(SaveData *saveData);
 
 BagSystem *BagSystem_New(u8 heapID)
 {
-    BagSystem *bagSystem = Heap_AllocFromHeap(heapID, sizeof(BagSystem));
+    BagSystem *bagSystem = Heap_Alloc(heapID, sizeof(BagSystem));
     memset(bagSystem, 0, sizeof(BagSystem));
     return bagSystem;
 }

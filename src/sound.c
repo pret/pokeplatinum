@@ -872,7 +872,7 @@ BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutC
     }
 
     if (channel == WAVE_OUT_CHANNEL_PRIMARY) {
-        *reverseBuffer = Heap_AllocFromHeap(heapID, fileSize);
+        *reverseBuffer = Heap_Alloc(heapID, fileSize);
         if (*reverseBuffer == NULL) {
             GF_ASSERT(FALSE);
             return FALSE;

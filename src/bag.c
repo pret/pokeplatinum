@@ -18,16 +18,16 @@
 #define BAG_MAX_QUANTITY_ITEM 999
 #define BAG_MAX_QUANTITY_TMHM 99
 
-static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID);
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapID heapID);
 
 int Bag_SaveSize(void)
 {
     return sizeof(Bag);
 }
 
-Bag *Bag_New(enum HeapId heapID)
+Bag *Bag_New(enum HeapID heapID)
 {
-    Bag *bag = Heap_AllocFromHeap(heapID, sizeof(Bag));
+    Bag *bag = Heap_Alloc(heapID, sizeof(Bag));
     Bag_Init(bag);
 
     return bag;
@@ -53,7 +53,7 @@ void Bag_RegisterItem(Bag *bag, u32 item)
     bag->registeredItem = item;
 }
 
-static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID)
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapID heapID)
 {
     u32 pocket = Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, heapID);
 
@@ -119,7 +119,7 @@ static BagItem *Pocket_FindSlotToAddItem(BagItem *pocket, u32 pocketSize, u16 it
     return slot == BAG_SLOT_INVALID ? NULL : &pocket[slot];
 }
 
-static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     BagItem *pocketItems;
     u32 pocketSize;
@@ -132,12 +132,12 @@ static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapId
     return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_QUANTITY_ITEM);
 }
 
-BOOL Bag_CanFitItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+BOOL Bag_CanFitItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     return Bag_FindSlotToAddItem(bag, item, count, heapID) != NULL;
 }
 
-BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     BagItem *slot = Bag_FindSlotToAddItem(bag, item, count, heapID);
     if (slot == NULL) {
@@ -167,7 +167,7 @@ static BagItem *Pocket_FindSlotWithItemQuantity(BagItem *pocket, u32 pocketSize,
     return NULL;
 }
 
-static BagItem *Bag_FindSlotWithItemQuantity(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+static BagItem *Bag_FindSlotWithItemQuantity(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     BagItem *pocket;
     u32 pocketSize;
@@ -176,7 +176,7 @@ static BagItem *Bag_FindSlotWithItemQuantity(Bag *bag, u16 item, u16 count, enum
     return Pocket_FindSlotWithItemQuantity(pocket, pocketSize, item, count);
 }
 
-BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     BagItem *slot = Bag_FindSlotWithItemQuantity(bag, item, count, heapID);
     if (slot == NULL) {
@@ -196,7 +196,7 @@ BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
     return TRUE;
 }
 
-BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, enum HeapId heapID)
+BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, enum HeapID heapID)
 {
     BagItem *slot = Pocket_FindSlotWithItemQuantity(pocket, pocketSize, item, count);
     if (slot == NULL) {
@@ -214,7 +214,7 @@ BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, 
     return TRUE;
 }
 
-BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
+BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 {
     return Bag_FindSlotWithItemQuantity(bag, item, count, heapID) != NULL;
 }
@@ -270,7 +270,7 @@ BOOL Bag_HasItemsInPocket(Bag *bag, u32 pocketID)
     return FALSE;
 }
 
-u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapId heapID)
+u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapID heapID)
 {
     BagItem *slot = Bag_FindSlotWithItemQuantity(bag, item, 1, heapID);
     if (slot == NULL) {
@@ -280,7 +280,7 @@ u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapId heapID)
     return slot->quantity;
 }
 
-u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapId heapID)
+u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapID heapID)
 {
     BagItem *slot = Pocket_FindSlotWithItemQuantity(pocket, pocketSize, item, 1);
     if (slot == NULL) {
@@ -319,7 +319,7 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
     }
 }
 
-void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID)
+void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapID heapID)
 {
     BagSystem *v0;
     int i;
@@ -408,7 +408,7 @@ Bag *SaveData_GetBag(SaveData *saveData)
 
 BagCursor *BagCursor_New(u32 heapID)
 {
-    BagCursor *cursor = Heap_AllocFromHeap(heapID, sizeof(BagCursor));
+    BagCursor *cursor = Heap_Alloc(heapID, sizeof(BagCursor));
     MI_CpuClear16(cursor, sizeof(BagCursor));
     return cursor;
 }

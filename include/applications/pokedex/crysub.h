@@ -6,7 +6,7 @@
 
 #include "heap.h"
 
-void CrySub_Init(PokedexScreenManager *screenMan, PokedexApp *pokedexApp, enum HeapId heapID);
+void CrySub_Init(PokedexScreenManager *screenMan, PokedexApp *pokedexApp, enum HeapID heapID);
 void CrySub_Free(PokedexScreenManager *screenMan);
 int CrySub_GetPitch(const PokedexScreenManager *screenMan);
 

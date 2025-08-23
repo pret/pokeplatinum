@@ -108,7 +108,7 @@ const int sRodTypeHookTimingWindow[];
 
 void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum EncounterFishingRodType rodType)
 {
-    FishingContext *fishingContext = Heap_AllocFromHeapAtEnd(heapID, sizeof(FishingContext));
+    FishingContext *fishingContext = Heap_AllocAtEnd(heapID, sizeof(FishingContext));
 
     memset(fishingContext, 0, sizeof(FishingContext));
 
@@ -486,7 +486,7 @@ static BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject 
 
 static void *FishingTask_New(u32 fishingTaskSize)
 {
-    void *fishingTask = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, fishingTaskSize);
+    void *fishingTask = Heap_AllocAtEnd(HEAP_ID_FIELD1, fishingTaskSize);
 
     GF_ASSERT(fishingTask != NULL);
     memset(fishingTask, 0, fishingTaskSize);
@@ -514,10 +514,10 @@ static int TryPressAOrB(void)
 
 static void FishingTask_Init(FishingTask *fishingTask)
 {
-    fishingTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
-    fishingTask->formattedFishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    fishingTask->fishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD);
+    fishingTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
+    fishingTask->formattedFishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
+    fishingTask->fishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
+    fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD1);
 }
 
 static void FishingTask_Free(FishingTask *fishingTask)

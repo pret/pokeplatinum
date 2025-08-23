@@ -79,7 +79,7 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
     int targetMapPropModelID;
     int goalDistance;
 
-    boatCutscene = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(BoatCutscene));
+    boatCutscene = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(BoatCutscene));
 
     boatCutscene->travelDir = travelDir;
     boatCutscene->exitDir = exitDir;
@@ -145,7 +145,7 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
 
 static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 travelDir, ModelAttributes *areaModelAttrs)
 {
-    BoatTravelCutscene *taskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(BoatTravelCutscene));
+    BoatTravelCutscene *taskEnv = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(BoatTravelCutscene));
 
     taskEnv->areaModelAttrs = areaModelAttrs;
     taskEnv->travelDir = travelDir;
@@ -213,7 +213,7 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
         }
     } break;
     case BOAT_CUTSCENE_STATE_FADE_OUT_START:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD2);
         Sound_FadeOutBGM(0, 6);
         boatCutscene->state = BOAT_CUTSCENE_STATE_FADE_OUT_END;
         break;

@@ -6,7 +6,7 @@
 
 #include "heap.h"
 
-void ov21_021E6014(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID);
+void ov21_021E6014(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID);
 void ov21_021E6074(PokedexScreenManager *param0);
 
 #endif // POKEPLATINUM_POKEDEX_HEIGHT_CHECK_H

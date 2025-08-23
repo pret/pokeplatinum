@@ -27,7 +27,7 @@ UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Opt
     int v0;
     UnkStruct_ov62_02246B00 *v1 = NULL;
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov62_02246B00));
+    v1 = Heap_Alloc(heapID, sizeof(UnkStruct_ov62_02246B00));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
     v1->unk_18 = Strbuf_Init(param1 + 1, heapID);

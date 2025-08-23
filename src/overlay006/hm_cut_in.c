@@ -368,18 +368,18 @@ static void FlyLanding_InitResourceData(FlyResources *flyResources, int maxSprit
     flyResources->resource2ID = resource2ID;
     flyResources->resource3ID = resource3ID;
     flyResources->resource4ID = resource4ID;
-    flyResources->spriteList = SpriteList_InitRendering(maxSpriteListElements, &flyResources->g2dRenderer, HEAP_ID_FIELD);
+    flyResources->spriteList = SpriteList_InitRendering(maxSpriteListElements, &flyResources->g2dRenderer, HEAP_ID_FIELD1);
 
     SetSubScreenViewRect(&flyResources->g2dRenderer, 0, FX32_CONST(512));
 
-    flyResources->charLocation = SpriteResourceCollection_New(resource1Count, SPRITE_RESOURCE_CHAR, HEAP_ID_FIELD);
-    flyResources->paletteLocation = SpriteResourceCollection_New(resource2Count, SPRITE_RESOURCE_PLTT, HEAP_ID_FIELD);
-    flyResources->cellLocation = SpriteResourceCollection_New(resource3Count, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
-    flyResources->animLocation = SpriteResourceCollection_New(resource4Count, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
-    flyResources->charSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource1Count);
-    flyResources->paletteSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource2Count);
-    flyResources->cellSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource3Count);
-    flyResources->animSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource4Count);
+    flyResources->charLocation = SpriteResourceCollection_New(resource1Count, SPRITE_RESOURCE_CHAR, HEAP_ID_FIELD1);
+    flyResources->paletteLocation = SpriteResourceCollection_New(resource2Count, SPRITE_RESOURCE_PLTT, HEAP_ID_FIELD1);
+    flyResources->cellLocation = SpriteResourceCollection_New(resource3Count, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
+    flyResources->animLocation = SpriteResourceCollection_New(resource4Count, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD1);
+    flyResources->charSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD1, (sizeof(SpriteResourceWithLocation)) * resource1Count);
+    flyResources->paletteSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD1, (sizeof(SpriteResourceWithLocation)) * resource2Count);
+    flyResources->cellSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD1, (sizeof(SpriteResourceWithLocation)) * resource3Count);
+    flyResources->animSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD1, (sizeof(SpriteResourceWithLocation)) * resource4Count);
 
     for (i = 0; i < resource1Count; flyResources->charSourceWrapper[i].resourceId = resource1ID, i++) {}
 
@@ -436,7 +436,7 @@ static void FlyLanding_LoadCharResources(FlyResources *flyResources, NARC *narc,
         if (flyResources->charSourceWrapper[i].resourceId == flyResources->resource1ID) {
             flyResources->charSourceWrapper[i].resourceId = resourceId;
             flyResources->charSourceWrapper[i].memberIdx = 0;
-            flyResources->charSourceWrapper[i].spriteResource = SpriteResourceCollection_AddTilesFrom(flyResources->charLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+            flyResources->charSourceWrapper[i].spriteResource = SpriteResourceCollection_AddTilesFrom(flyResources->charLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
             return;
         }
     }
@@ -566,7 +566,7 @@ static Sprite *FlyLanding_CreateSprite(FlyResources *flyResources, const VecFx32
     spriteListTemplate.position = *position;
     spriteListTemplate.priority = listPriority;
     spriteListTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    spriteListTemplate.heapID = HEAP_ID_FIELD;
+    spriteListTemplate.heapID = HEAP_ID_FIELD1;
 
     sprite = SpriteList_Add(&spriteListTemplate);
     GF_ASSERT(sprite != NULL);
@@ -734,7 +734,7 @@ static void FlyLanding_InitEnv(UnkStruct_ov101_021D5D90 *param0)
     Sprite_SetDrawFlag(env->birdSprite, TRUE);
 
     env->unk_6C = PushPlayerUp(env->resourcesWithPlayer.unk_00, env->resourcesWithPlayer.playerSprite);
-    env->task = ov5_021F0EB0(env->resourcesWithPlayer.fieldSystem, HEAP_ID_FIELD);
+    env->task = ov5_021F0EB0(env->resourcesWithPlayer.fieldSystem, HEAP_ID_FIELD1);
 
     ov5_021F0F10(env->task, 1, -(FX32_ONE * 120), 12);
 
@@ -1019,17 +1019,17 @@ static int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended
 
 static NARC *FlyLanding_GetCutInNarc(void)
 {
-    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
+    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);
 }
 
 static void FadeIn(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_FIELD1);
 }
 
 static void FadeOut(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD1);
 }
 
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
@@ -1072,7 +1072,7 @@ void SysTask_HMCutIn_SetTaskDone(SysTask *cutInTask)
 
 static HMCutIn *CreateHMCutIn(FieldSystem *fieldSystem)
 {
-    HMCutIn *cutIn = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(HMCutIn));
+    HMCutIn *cutIn = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(HMCutIn));
 
     memset(cutIn, 0, sizeof(HMCutIn));
     cutIn->fieldSystem = fieldSystem;
@@ -1701,7 +1701,7 @@ static void CutIn_InitSpriteResources(HMCutIn *cutIn)
     CutIn_LoadSpriteResources(cutIn, narc);
 
     NARC_dtor(narc);
-    cutIn->unk_244 = sub_020711EC(HEAP_ID_FIELD, 32);
+    cutIn->unk_244 = sub_020711EC(HEAP_ID_FIELD1, 32);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
@@ -1722,7 +1722,7 @@ static void CutIn_DeleteSprites(HMCutIn *cutIn)
 
 static NARC *CutIn_GetCutInNarc(void)
 {
-    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
+    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);
 }
 
 static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
@@ -1730,24 +1730,24 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
     int i;
 
     CutIn_BuildPokemonSpriteTemplate(cutIn, &cutIn->pokemonSpriteTemplate);
-    cutIn->spriteList = SpriteList_InitRendering(32, &cutIn->g2dRenderer, HEAP_ID_FIELD);
+    cutIn->spriteList = SpriteList_InitRendering(32, &cutIn->g2dRenderer, HEAP_ID_FIELD1);
     SetSubScreenViewRect(&cutIn->g2dRenderer, 0, FX32_CONST(512));
 
-    cutIn->charLocation = SpriteResourceCollection_New(4, 0, HEAP_ID_FIELD);
-    cutIn->paletteLocation = SpriteResourceCollection_New(3, 1, HEAP_ID_FIELD);
-    cutIn->cellLocation = SpriteResourceCollection_New(4, 2, HEAP_ID_FIELD);
-    cutIn->animLocation = SpriteResourceCollection_New(2, 3, HEAP_ID_FIELD);
+    cutIn->charLocation = SpriteResourceCollection_New(4, 0, HEAP_ID_FIELD1);
+    cutIn->paletteLocation = SpriteResourceCollection_New(3, 1, HEAP_ID_FIELD1);
+    cutIn->cellLocation = SpriteResourceCollection_New(4, 2, HEAP_ID_FIELD1);
+    cutIn->animLocation = SpriteResourceCollection_New(2, 3, HEAP_ID_FIELD1);
 
     // Char Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, sCutInWindParticleChar[i].memberIdx, FALSE, sCutInWindParticleChar[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, sCutInWindParticleChar[i].memberIdx, FALSE, sCutInWindParticleChar[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     }
 
     // Char Index 1: Player
     if (cutIn->playerGender == 0) {
-        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 13, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 13, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     } else {
-        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 16, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 16, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     }
 
     i++;
@@ -1756,13 +1756,13 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Palette Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
     }
 
     // Palette Index 1: Player Female
     if (cutIn->playerGender == 0) {
     } else {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
         i++;
     }
 
@@ -1771,34 +1771,34 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Cell Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, sCutInWindParticleCell[i].memberIdx, FALSE, sCutInWindParticleCell[i].resourceId, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, sCutInWindParticleCell[i].memberIdx, FALSE, sCutInWindParticleCell[i].resourceId, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
     }
 
     // Cell Index 1: Player
     if (cutIn->playerGender == 0) {
-        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 14, FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 14, FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
     } else {
-        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 17, FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+        cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 17, FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
     }
 
     i++;
     // Cell Index 2: Player's Pokemon
-    cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 6, FALSE, 3, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+    cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 6, FALSE, 3, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
 
     // Animation Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, sCutInWindParticleAnim[i].memberIdx, FALSE, sCutInWindParticleAnim[i].resourceId, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
+        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, sCutInWindParticleAnim[i].memberIdx, FALSE, sCutInWindParticleAnim[i].resourceId, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD1);
     }
 
     // Animation Index 1: Player
     if (cutIn->playerGender == 0) {
-        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 15, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
+        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 15, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD1);
     } else {
-        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 18, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
+        cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 18, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD1);
     }
 
-    cutIn->pokemonCharSource = CutIn_GetPokemonSpriteSource(cutIn->pokemon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
-    cutIn->pokemonPaletteSource = CutIn_GetPokemonPaletteSource(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->pokemonCharSource = CutIn_GetPokemonSpriteSource(cutIn->pokemon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD1);
+    cutIn->pokemonPaletteSource = CutIn_GetPokemonPaletteSource(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD1);
 }
 
 static void CutIn_DeleteSpriteResources(HMCutIn *cutIn)
@@ -1891,7 +1891,7 @@ static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charRes
     spriteListTemplate.position = *position;
     spriteListTemplate.priority = listPriority;
     spriteListTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    spriteListTemplate.heapID = HEAP_ID_FIELD;
+    spriteListTemplate.heapID = HEAP_ID_FIELD1;
 
     sprite = SpriteList_Add(&spriteListTemplate);
     GF_ASSERT(sprite != NULL);
@@ -1953,7 +1953,7 @@ static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn)
 
     for (i = 0; i < 4; i++) {
         if (cutIn->charSource[i] == NULL) {
-            cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 7, FALSE, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+            cutIn->charSource[i] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 7, FALSE, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
             break;
         }
     }
@@ -1962,7 +1962,7 @@ static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn)
 
     for (i = 0; i < 4; i++) {
         if (cutIn->cellSource[i] == NULL) {
-            cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 8, FALSE, 0, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+            cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 8, FALSE, 0, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
             break;
         }
     }
@@ -1973,7 +1973,7 @@ static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn)
 
 static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **paletteData)
 {
-    void *nclrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
+    void *nclrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD1);
 
     NNS_G2dGetUnpackedPaletteData(nclrFile, paletteData);
 
@@ -1983,7 +1983,7 @@ static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData *
 
 static void CutIn_LoadBgPatternChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData)
 {
-    void *ncgrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
+    void *ncgrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD1);
     NNS_G2dGetUnpackedCharacterData(ncgrFile, charData);
 
     Bg_LoadTiles(bgConfig, BG_LAYER_MAIN_3, (*charData)->pRawData, (*charData)->szByte, 0);
@@ -1997,7 +1997,7 @@ static void CutIn_LoadBgPatternPalette(BgConfig *bgConfig, NARC *narc, u32 membe
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 0, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 3, 0);
 
-    nscrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
+    nscrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD1);
     NNS_G2dGetUnpackedScreenData(nscrFile, screenData);
 
     Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_MAIN_3, (void *)(*screenData)->rawData, (*screenData)->szByte);
@@ -2090,7 +2090,7 @@ static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTempla
 
 static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID)
 {
-    void *spriteSource = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
+    void *spriteSource = Heap_Alloc(HEAP_ID_FIELD1, (32 * 10) * 10);
 
     GF_ASSERT(spriteSource != NULL);
 
@@ -2108,7 +2108,7 @@ static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate
 
 static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc)
 {
-    SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 5, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 5, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     return spriteResource;
 }
 
@@ -2128,7 +2128,7 @@ static void CutIn_LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource)
 
 static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)
 {
-    SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 3, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 3, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
     return spriteResource;
 }
 
@@ -2531,7 +2531,7 @@ static void Fly_PrepareBirdForDescent(HMCutIn *cutIn)
 
     env->unk_60 = PushPlayerUp(cutIn->unk_244, cutIn->playerSprite);
     cutIn->forceDrawPlayerSprite = TRUE;
-    env->task = ov5_021F0EB0(cutIn->fieldSystem, HEAP_ID_FIELD);
+    env->task = ov5_021F0EB0(cutIn->fieldSystem, HEAP_ID_FIELD1);
 
     ov5_021F0F10(env->task, 1, FX32_CONST(-120), 12);
 
@@ -2899,7 +2899,7 @@ static const UnkStruct_ov101_021D86B0 s_ = {
 
 SysTask *FieldTask_FlyLanding_InitTask(FieldSystem *fieldSystem, int playerGender)
 {
-    FlyLandingEnv *taskEnv = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(FlyLandingEnv));
+    FlyLandingEnv *taskEnv = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(FlyLandingEnv));
 
     taskEnv->playerGender = playerGender;
     taskEnv->fieldSystem = fieldSystem;
@@ -2947,7 +2947,7 @@ static BOOL FlyLanding_HidePlayerMapObj(FlyLandingEnv *taskEnv)
 
 static BOOL FlyLanding_LoadResources(FlyLandingEnv *taskEnv)
 {
-    taskEnv->unk_1D4 = sub_020711EC(HEAP_ID_FIELD, 32);
+    taskEnv->unk_1D4 = sub_020711EC(HEAP_ID_FIELD1, 32);
     FlyLanding_InitResourceData(&taskEnv->unk_18, 32, 2, 2, 2, 1, 4, 3, 4, 2);
 
     {
@@ -3042,7 +3042,7 @@ static BOOL (*const sFlyLandingFuncs[])(FlyLandingEnv *) = {
 
 static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size)
 {
-    void *ptr = Heap_AllocFromHeapAtEnd(heapID, size);
+    void *ptr = Heap_AllocAtEnd(heapID, size);
 
     GF_ASSERT(ptr != NULL);
     memset(ptr, 0, size);

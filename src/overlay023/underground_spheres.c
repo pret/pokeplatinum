@@ -482,8 +482,8 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf)
 
     for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if (buriedSpheresEnv->retrievedSpheres[netID] != SPHERE_NONE) {
-            template = StringTemplate_Default(HEAP_ID_FIELD);
-            fmtString = Strbuf_Init(100, HEAP_ID_FIELD);
+            template = StringTemplate_Default(HEAP_ID_FIELD1);
+            fmtString = Strbuf_Init(100, HEAP_ID_FIELD1);
 
             StringTemplate_SetUndergroundItemNameWithArticle(template, 2, buriedSpheresEnv->retrievedSpheres[netID]);
             StringTemplate_CapitalizeArgAtIndex(template, 2);
@@ -540,7 +540,7 @@ void SphereRadar_Start(void)
     GF_ASSERT(!buriedSpheresEnv->sphereRadarTimer);
     GF_ASSERT(!buriedSpheresEnv->sysTask);
 
-    SphereRadarTimer *radarTimer = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(SphereRadarTimer));
+    SphereRadarTimer *radarTimer = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(SphereRadarTimer));
     MI_CpuFill8(radarTimer, 0, sizeof(SphereRadarTimer));
     radarTimer->timer = 100;
 

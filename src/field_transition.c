@@ -47,7 +47,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
 
 void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM)
 {
-    EncounterEffectTaskData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(EncounterEffectTaskData));
+    EncounterEffectTaskData *data = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(EncounterEffectTaskData));
 
     data->taskState = 0;
     data->done = FALSE;
@@ -118,7 +118,7 @@ void FieldTransition_FadeOut(FieldTask *task)
         return;
     }
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
@@ -130,7 +130,7 @@ void FieldTransition_FadeIn(FieldTask *task)
         return;
     }
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 

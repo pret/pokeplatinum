@@ -95,7 +95,7 @@ static void ov95_022484B0(SysTask *param0, void *param1);
 
 void *ov95_02247B6C(TradeSequenceData *param0)
 {
-    UnkStruct_ov95_02247C6C *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02247C6C));
+    UnkStruct_ov95_02247C6C *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02247C6C));
 
     if (v0) {
         int v1;
@@ -502,7 +502,7 @@ static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
 
 static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov95_02248364 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248364));
+    UnkStruct_ov95_02248364 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248364));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -548,7 +548,7 @@ static void ov95_022483E4(SysTask *param0, void *param1)
 
 static void ov95_02248420(UnkStruct_ov95_02247C6C *param0)
 {
-    UnkStruct_ov95_02248420 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248420));
+    UnkStruct_ov95_02248420 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248420));
 
     if (v0) {
         v0->unk_00 = param0;

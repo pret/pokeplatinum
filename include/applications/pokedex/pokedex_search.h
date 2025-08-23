@@ -15,7 +15,7 @@ enum FilterMethod {
     MAX_FILTER_METHOD
 };
 
-void PokedexSearch_TransitionFunctions(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID);
+void PokedexSearch_TransitionFunctions(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID);
 void PokedexSearch_FreeData(PokedexScreenManager *param0);
 void PokedexSearch_SetFilterMethod(PokedexScreenManager *param0, enum FilterMethod filterMethod);
 enum FilterMethod PokedexSearch_GetFilterMethod(const PokedexScreenManager *param0);

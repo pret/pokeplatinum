@@ -43,7 +43,7 @@ static void NitroStaticInit(void)
 
 static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
 {
-    PoketchPartyStatus *partyStatusData = (PoketchPartyStatus *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatus));
+    PoketchPartyStatus *partyStatusData = (PoketchPartyStatus *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatus));
 
     if (partyStatusData != NULL) {
         if (PoketchPartyStatus_Init(partyStatusData, poketchSys, bgConfig, unused)

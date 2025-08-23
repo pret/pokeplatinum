@@ -234,7 +234,7 @@ static void BoatCutscene_CanalaveShip_LoadAnimations(BoatCutscene_CanalaveShip *
     NNSG3dResTex *texture;
     void *animation;
     NARC *narc = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, HEAP_ID_BOAT_CUTSCENE);
-    Heap_FndInitAllocatorForExpHeap(&cutsceneData->allocator, HEAP_ID_BOAT_CUTSCENE, 4);
+    HeapExp_FndInitAllocator(&cutsceneData->allocator, HEAP_ID_BOAT_CUTSCENE, 4);
 
     cutsceneData->modelFile = NARC_AllocAndReadWholeMember(narc, narcMemberIndexes[cutsceneData->travelDir].modelMemberIndex, HEAP_ID_BOAT_CUTSCENE);
     Easy3D_InitRenderObjFromResource(&cutsceneData->renderObj, &cutsceneData->model, &cutsceneData->modelFile);

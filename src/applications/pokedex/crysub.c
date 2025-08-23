@@ -185,9 +185,9 @@ typedef struct PokedexCrySubGraphics {
     BOOL pokeballActive;
 } PokedexCrySubGraphics;
 
-static PokedexCrySubData *LoadAppData(enum HeapId heapID, PokedexApp *pokedexApp);
-static PokedexGraphicData **LoadAppGraphics(enum HeapId heapID, PokedexApp *pokedexApp);
-static UnkStruct_ov21_021D4660 *ScreenStates(enum HeapId heapID, PokedexApp *pokedexApp);
+static PokedexCrySubData *LoadAppData(enum HeapID heapID, PokedexApp *pokedexApp);
+static PokedexGraphicData **LoadAppGraphics(enum HeapID heapID, PokedexApp *pokedexApp);
+static UnkStruct_ov21_021D4660 *ScreenStates(enum HeapID heapID, PokedexApp *pokedexApp);
 static void FreePokedexCrySubData(PokedexCrySubData *pokedexCrySubData);
 static void FreeGraphicData(PokedexGraphicData **graphicData);
 static void FreeScreenStates(UnkStruct_ov21_021D4660 *screenStates);
@@ -202,7 +202,7 @@ static void SetSpriteOAMModesXLU(PokedexCrySubGraphics *pokedexCrySubGraphics);
 static void SetSpriteOAMModesNormal(PokedexCrySubGraphics *pokedexCrySubGraphics);
 static void InitBlendTransition(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, const PokedexCrySubData *pokedexCrySubData, BOOL isEntering);
 static BOOL AdvanceBlendTransition(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, const PokedexCrySubData *pokedexCrySubData, BOOL isEntering);
-static void SetTouchScreen(PokedexCrySubPageData *pokedexCrySubPageData, PokedexCrySubData *pokedexCrySubData, enum HeapId heapID);
+static void SetTouchScreen(PokedexCrySubPageData *pokedexCrySubPageData, PokedexCrySubData *pokedexCrySubData, enum HeapID heapID);
 static void ResetButtons(PokedexCrySubPageData *pokedexCrySubPageData, PokedexCrySubData *pokedexCrySubData);
 static void FreeTouchScreen(PokedexCrySubPageData *pokedexCrySubPageData);
 static void AdjustmentTouchActions(u32 adjustor, enum TouchScreenButtonState buttonState, void *data);
@@ -239,22 +239,22 @@ static void StopReverbFilter(PokedexCrySubPageData *pokedexCrySubPageData);
 static void UpdateWheelPosition(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, const PokedexCrySubPageData *pokedexCrySubPageData);
 static void UpdateEchoVolume(PokedexCrySubPageData *pokedexCrySubPageData, int touchX);
 static void UpdatePan(PokedexCrySubPageData *pokedexCrySubPageData, int touchX);
-static void LoadCrySubGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID);
-static void FreeGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID);
-static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapId heapID);
+static void LoadCrySubGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID);
+static void FreeGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID);
+static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapID heapID);
 static void FreeBackgroundTileMaps(PokedexGraphicData **graphicData);
-static void LoadCryDialSprite(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID);
+static void LoadCryDialSprite(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID);
 static void FreeDialSpriteResource(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData);
-static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapId heapID);
+static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapID heapID);
 static void FreeSprites(PokedexCrySubGraphics *pokedexCrySubGraphics);
-static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapId heapID);
+static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapID heapID);
 static void FreeSwitchLabel(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData);
-static void LoadCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID);
+static void LoadCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID);
 static void FreeCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics);
 static void PokeballPaletteActive(PokedexCrySubGraphics *pokedexCrySubGraphics);
 static void PokeballPaletteDefault(PokedexCrySubGraphics *pokedexCrySubGraphics);
 
-void CrySub_Init(PokedexScreenManager *screenMan, PokedexApp *pokedexApp, enum HeapId heapID)
+void CrySub_Init(PokedexScreenManager *screenMan, PokedexApp *pokedexApp, enum HeapID heapID)
 {
     PokedexCrySubData *pokedexCrySubData = LoadAppData(heapID, pokedexApp);
     PokedexGraphicData **pokedexGraphicData = LoadAppGraphics(heapID, pokedexApp);
@@ -287,9 +287,9 @@ int CrySub_GetPitch(const PokedexScreenManager *screenMan)
     return pokedexCrySubData->pitch;
 }
 
-static PokedexCrySubData *LoadAppData(enum HeapId heapID, PokedexApp *pokedexApp)
+static PokedexCrySubData *LoadAppData(enum HeapID heapID, PokedexApp *pokedexApp)
 {
-    PokedexCrySubData *pokedexCrySubData = Heap_AllocFromHeap(heapID, sizeof(PokedexCrySubData));
+    PokedexCrySubData *pokedexCrySubData = Heap_Alloc(heapID, sizeof(PokedexCrySubData));
 
     GF_ASSERT(pokedexCrySubData);
     memset(pokedexCrySubData, 0, sizeof(PokedexCrySubData));
@@ -301,9 +301,9 @@ static PokedexCrySubData *LoadAppData(enum HeapId heapID, PokedexApp *pokedexApp
     return pokedexCrySubData;
 }
 
-static PokedexGraphicData **LoadAppGraphics(enum HeapId heapID, PokedexApp *pokedexApp)
+static PokedexGraphicData **LoadAppGraphics(enum HeapID heapID, PokedexApp *pokedexApp)
 {
-    PokedexGraphicData **graphicData = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    PokedexGraphicData **graphicData = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(graphicData);
     memset(graphicData, 0, sizeof(PokedexGraphicData **));
@@ -313,7 +313,7 @@ static PokedexGraphicData **LoadAppGraphics(enum HeapId heapID, PokedexApp *poke
     return graphicData;
 }
 
-static UnkStruct_ov21_021D4660 *ScreenStates(enum HeapId heapID, PokedexApp *pokedexApp)
+static UnkStruct_ov21_021D4660 *ScreenStates(enum HeapID heapID, PokedexApp *pokedexApp)
 {
     return NULL;
 }
@@ -346,7 +346,7 @@ static BOOL CrySubDataEnter(PokedexDataManager *dataMan, void *data)
     PokedexCrySubPageData *pokedexCrySubPageData = dataMan->pageData;
     enum Species species = PokedexSort_CurrentSpecies(pokedexCrySubData->sortData);
 
-    pokedexCrySubPageData = Heap_AllocFromHeap(dataMan->heapID, sizeof(PokedexCrySubPageData));
+    pokedexCrySubPageData = Heap_Alloc(dataMan->heapID, sizeof(PokedexCrySubPageData));
     memset(pokedexCrySubPageData, 0, sizeof(PokedexCrySubPageData));
 
     SetTouchScreen(pokedexCrySubPageData, pokedexCrySubData, dataMan->heapID);
@@ -417,7 +417,7 @@ static BOOL CrySubGraphicsEnter(void *graphics, PokedexGraphicsManager *graphics
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(PokedexCrySubGraphics));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(PokedexCrySubGraphics));
         memset(graphicsMan->pageGraphics, 0, sizeof(PokedexCrySubGraphics));
         graphicsMan->state++;
         break;
@@ -554,10 +554,10 @@ static BOOL AdvanceBlendTransition(PokedexCrySubGraphics *pokedexCrySubGraphics,
     return FALSE;
 }
 
-static void SetTouchScreen(PokedexCrySubPageData *pokedexCrySubPageData, PokedexCrySubData *pokedexCrySubData, enum HeapId heapID)
+static void SetTouchScreen(PokedexCrySubPageData *pokedexCrySubPageData, PokedexCrySubData *pokedexCrySubData, enum HeapID heapID)
 {
-    pokedexCrySubPageData->asjustorHitTables = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * MAX_CRYSUBADJUSTORS);
-    pokedexCrySubPageData->buttonHitTables = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * MAX_CRYSUBBUTTONS);
+    pokedexCrySubPageData->asjustorHitTables = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * MAX_CRYSUBADJUSTORS);
+    pokedexCrySubPageData->buttonHitTables = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * MAX_CRYSUBBUTTONS);
 
     PokedexMain_SetHitTableRect(&pokedexCrySubPageData->asjustorHitTables[CRYSUB_SWITCH], SWITCH_Y - (SWITCH_HEIGHT / 2), SWITCH_Y + (SWITCH_HEIGHT / 2), SWITCH_X - (SWITCH_WIDTH / 2), SWITCH_X + (SWITCH_WIDTH / 2));
 
@@ -815,7 +815,7 @@ static void AdjustorOOB(enum CrySubAdjustors adjustor, PokedexCrySubData *pokede
     }
 }
 
-static void LoadCrySubGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID)
+static void LoadCrySubGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID)
 {
     LoadBackgroundTileMaps(graphicData, heapID);
     LoadCryDialSprite(pokedexCrySubGraphics, graphicData, heapID);
@@ -824,7 +824,7 @@ static void LoadCrySubGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, Pok
     LoadCryPalette(pokedexCrySubGraphics, graphicData, heapID);
 }
 
-static void FreeGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID)
+static void FreeGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID)
 {
     FreeSprites(pokedexCrySubGraphics);
     FreeSwitchLabel(pokedexCrySubGraphics, graphicData);
@@ -833,7 +833,7 @@ static void FreeGraphics(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGr
     FreeCryPalette(pokedexCrySubGraphics);
 }
 
-static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapId heapID)
+static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapID heapID)
 {
     NNSG2dScreenData *screenData;
 
@@ -862,7 +862,7 @@ static void FreeBackgroundTileMaps(PokedexGraphicData **graphicData)
     Bg_SetPriority(BG_LAYER_SUB_3, 1);
 }
 
-static void LoadCryDialSprite(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapId heapID)
+static void LoadCryDialSprite(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapID heapID)
 {
     PokedexGraphicData *graphicsData = *graphics;
     NARC *narc = PokedexGraphics_GetNARC(*graphics);
@@ -893,7 +893,7 @@ static void FreeDialSpriteResource(PokedexCrySubGraphics *pokedexCrySubGraphics,
     SpriteResourceCollection_Remove(graphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapId heapID)
+static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapID heapID)
 {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
@@ -970,7 +970,7 @@ static void FreeSprites(PokedexCrySubGraphics *pokedexCrySubGraphics)
     Sprite_Delete(pokedexCrySubGraphics->loopButtonSprite);
 }
 
-static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapId heapID)
+static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics, enum HeapID heapID)
 {
     PokedexDisplayBox displayBox;
     PokedexGraphicData *graphicData = *graphics;
@@ -1330,7 +1330,7 @@ static void SetLoop(PokedexCrySubPageData *pokedexCrySubPageData, BOOL loop)
     pokedexCrySubPageData->cryCooldown = CRY_COOLDOWN;
 }
 
-static void LoadCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapId heapID)
+static void LoadCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID)
 {
     pokedexCrySubGraphics->backgroundPalette = PokedexGraphics_GetGraphicNarcPaletteData(*graphicData, 20, &pokedexCrySubGraphics->paletteData, heapID);
 }

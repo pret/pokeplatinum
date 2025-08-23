@@ -155,7 +155,7 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
 
         CommTool_Init(HEAP_ID_COMMUNICATION);
 
-        Unk_021C07C8 = (u32)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommunicationSystem) + 32);
+        Unk_021C07C8 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationSystem) + 32);
         sCommunicationSystem = (CommunicationSystem *)(32 - (Unk_021C07C8 % 32) + Unk_021C07C8);
 
         MI_CpuClear8(sCommunicationSystem, sizeof(CommunicationSystem));
@@ -169,10 +169,10 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
         sCommunicationSystem->allocSize = sCommunicationSystem->maxPacketSize * maxMachines;
         sCommunicationSystem->transmissionType = TRANSMISSION_TYPE_SERVER_CLIENT;
         sCommunicationSystem->unk_6A6 = 38;
-        sCommunicationSystem->recvBufferRing = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize * 2);
-        sCommunicationSystem->tempBuffer = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize);
-        sCommunicationSystem->recvBufferRingServer = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
-        sCommunicationSystem->unk_488 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
+        sCommunicationSystem->recvBufferRing = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize * 2);
+        sCommunicationSystem->tempBuffer = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize);
+        sCommunicationSystem->recvBufferRingServer = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
+        sCommunicationSystem->unk_488 = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
 
         if (sub_0203895C() == 10) {
             CommQueueMan_Init(&sCommunicationSystem->commQueueManSend, 100, &sCommunicationSystem->sendRing);

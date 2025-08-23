@@ -240,7 +240,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *usageContext)
 
 static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    UnkStruct_0206851C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0206851C));
+    UnkStruct_0206851C *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0206851C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -300,7 +300,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -534,7 +534,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -559,7 +559,7 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    UnkStruct_02097728 *v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(usageContext->item), HEAP_ID_FIELDMAP);
+    UnkStruct_02097728 *v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(usageContext->item), HEAP_ID_FIELD2);
 
     menu->unk_260 = sub_0203C540(usageContext->item, 3, 0);
     menu->taskData = v2;
@@ -601,7 +601,7 @@ static void UsePoffinCaseFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    UnkStruct_0203D9B8 *v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELDMAP);
+    UnkStruct_0203D9B8 *v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELD2);
 
     menu->taskData = v2;
     sub_0203B674(menu, sub_0203C710);
@@ -615,7 +615,7 @@ static BOOL UsePoffinCaseInField(ItemFieldUseContext *usageContext)
 
 static void *sub_02068B9C(void *some_param)
 {
-    return sub_0203D9B8(some_param, HEAP_ID_FIELDMAP);
+    return sub_0203D9B8(some_param, HEAP_ID_FIELD2);
 }
 
 static void UsePalPadFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -644,7 +644,7 @@ static void UsePokeRadarFromMenu(ItemMenuUseContext *usageContext, const ItemUse
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    int *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
+    int *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
 
     (*v2) = 0;
     FieldSystem_StartFieldMap(fieldSystem);
@@ -656,7 +656,7 @@ static void UsePokeRadarFromMenu(ItemMenuUseContext *usageContext, const ItemUse
 
 static BOOL UsePokeRadarInField(ItemFieldUseContext *usageContext)
 {
-    int *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
+    int *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
 
     *v0 = 0;
     FieldSystem_CreateTask(usageContext->fieldSystem, RefreshRadarChain, v0);
@@ -732,7 +732,7 @@ static void UseHoneyFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     FieldSystem_StartFieldMap(fieldSystem);
 
     v3 = ov5_021F0484();
-    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v3);
+    v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, v3);
 
     memset(v2, 0, v3);
 
@@ -740,7 +740,7 @@ static void UseHoneyFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     menu->taskData = v2;
     menu->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELDMAP);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELD2);
 }
 
 static void UseVsSeekerFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -771,13 +771,13 @@ static void UseOldRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCon
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = FieldTask_Fishing;
-    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_OLD_ROD);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELD2, FISHING_TYPE_OLD_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseOldRodInField(ItemFieldUseContext *usageContext)
 {
-    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_OLD_ROD);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD1, FISHING_TYPE_OLD_ROD);
 
     FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
@@ -791,13 +791,13 @@ static void UseGoodRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = FieldTask_Fishing;
-    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_GOOD_ROD);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELD2, FISHING_TYPE_GOOD_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseGoodRodInField(ItemFieldUseContext *usageContext)
 {
-    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_GOOD_ROD);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD1, FISHING_TYPE_GOOD_ROD);
 
     FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
@@ -811,13 +811,13 @@ static void UseSuperRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = FieldTask_Fishing;
-    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_SUPER_ROD);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELD2, FISHING_TYPE_SUPER_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseSuperRodInField(ItemFieldUseContext *usageContext)
 {
-    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_SUPER_ROD);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD1, FISHING_TYPE_SUPER_ROD);
 
     FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
@@ -860,10 +860,10 @@ static u32 CanUseFishingRod(const ItemUseContext *usageContext)
 
 static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
+    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELD2);
 
     BagSystem_FormatUsageMessage(usageContext->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(usageContext->fieldSystem->saveData)), 11);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);
@@ -911,7 +911,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -942,7 +942,7 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUs
     menu->taskData = NULL;
     menu->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELDMAP);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELD2);
 }
 
 static u32 CanUseEscapeRope(const ItemUseContext *usageContext)
@@ -961,7 +961,7 @@ static u32 CanUseEscapeRope(const ItemUseContext *usageContext)
 static BOOL sub_020690F0(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELDMAP);
+    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELD2);
 
     FieldTask_InitJump(task, ov6_02247120, v1);
     return FALSE;
@@ -1034,7 +1034,7 @@ static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     menu = FieldTask_GetEnv(usageContext->fieldTask);
 
-    menu->taskData = sub_0203E598(fieldSystem, HEAP_ID_FIELDMAP, 466);
+    menu->taskData = sub_0203E598(fieldSystem, HEAP_ID_FIELD2, 466);
 
     sub_0203B674(menu, sub_0203B7C0);
 }
@@ -1047,7 +1047,7 @@ static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)
 
 static void *sub_02069228(void *some_param)
 {
-    return sub_0203E598(some_param, HEAP_ID_FIELDMAP, 466);
+    return sub_0203E598(some_param, HEAP_ID_FIELD2, 466);
 }
 
 BOOL sub_02069238(FieldSystem *fieldSystem)
@@ -1068,7 +1068,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     }
 
     item = (u16)Bag_GetRegisteredItem(SaveData_GetBag(fieldSystem->saveData));
-    itemUseFuncIdx = (u16)Item_LoadParam(item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
+    itemUseFuncIdx = (u16)Item_LoadParam(item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELD2);
     checkUse = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
     useInField = (ItemFieldUseFunc)GetItemUseFunction(USE_ITEM_TASK_FIELD, itemUseFuncIdx);
 
@@ -1076,7 +1076,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    usageContext = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ItemFieldUseContext));
+    usageContext = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ItemFieldUseContext));
     memset(usageContext, 0, sizeof(ItemFieldUseContext));
 
     usageContext->fieldSystem = fieldSystem;
@@ -1107,12 +1107,12 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
 
 static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 error)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
+    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELD2);
 
-    BagSystem_FormatErrorMessage(SaveData_GetTrainerInfo(usageContext->fieldSystem->saveData), v0->unk_10, usageContext->unk_28, error, HEAP_ID_FIELDMAP);
+    BagSystem_FormatErrorMessage(SaveData_GetTrainerInfo(usageContext->fieldSystem->saveData), v0->unk_10, usageContext->unk_28, error, HEAP_ID_FIELD2);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);
 }
 

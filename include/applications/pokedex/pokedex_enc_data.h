@@ -50,7 +50,7 @@ enum PokedexEncFileCatgegory {
  * @param encounterCategory
  * @param heapID
  */
-void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapId heapID);
+void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapID heapID);
 
 /**
  * @brief Frees encounter data from the heap
@@ -69,7 +69,7 @@ void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocation
  * @param numDungeons
  * @return Array of coordinates for each dungeon
  */
-DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int *numDungeons);
+DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapID heapID, int *numDungeons);
 
 /**
  * @brief Reads field coordinates data from zukan_enc_platinum.narc
@@ -81,7 +81,7 @@ DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int
  * @param numFields
  * @return Array of coordinates for each field
  */
-FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *numFields);
+FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapID heapID, int *numFields);
 
 /**
  * @brief Updates fieldMap with the coordinates occupied by the field

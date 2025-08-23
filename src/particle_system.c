@@ -86,7 +86,7 @@ void ParticleSystem_ZeroAll(void)
     }
 }
 
-ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapId heapID)
+ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapID heapID)
 {
     ParticleSystem *particleSystem;
     int id;
@@ -101,7 +101,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
         return NULL;
     }
 
-    particleSystem = Heap_AllocFromHeap(heapID, sizeof(ParticleSystem));
+    particleSystem = Heap_Alloc(heapID, sizeof(ParticleSystem));
     if (particleSystem == NULL) {
         GF_ASSERT(FALSE);
     }
@@ -308,7 +308,7 @@ static void *ParticleSystem15_AllocMemory(u32 size)
     return ParticleSystem_AllocMemory(sParticleSystems[15], size);
 }
 
-void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID)
+void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapID heapID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, memberIndex, heapID);
 }

@@ -31,7 +31,7 @@ NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWif
     sub_020394D0(vramType, isWifi, (16 * 2 * 14), heapID);
     sub_02039530(vramType, isWifi, heapID);
 
-    v0 = (NetworkIcon *)Heap_AllocFromHeapAtEnd(heapID, sizeof(NetworkIcon));
+    v0 = (NetworkIcon *)Heap_AllocAtEnd(heapID, sizeof(NetworkIcon));
 
     v0->unk_18 = SysTask_ExecuteAfterVBlank(sub_02039428, v0, 5);
     v0->x = x;
@@ -134,7 +134,7 @@ void sub_02039474(NetworkIcon *param0, BOOL param1, u32 heapID)
 
 void *sub_020394A8(u32 heapID)
 {
-    void *heapPtr = Heap_AllocFromHeapAtEnd(heapID, 600);
+    void *heapPtr = Heap_AllocAtEnd(heapID, 600);
 
     ReadFileToBuffer("data/pl_wm.NCLR", &heapPtr);
     DC_FlushRange(heapPtr, 600);
@@ -144,7 +144,7 @@ void *sub_020394A8(u32 heapID)
 
 static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID)
 {
-    void *heapPtr = Heap_AllocFromHeapAtEnd(heapID, 600);
+    void *heapPtr = Heap_AllocAtEnd(heapID, 600);
 
     if (heapPtr) {
         NNSG2dPaletteData *paletteData;
@@ -165,7 +165,7 @@ static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID
 
 static void sub_02039530(int vramType, BOOL isWifi, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
+    void *v0 = Heap_AllocAtEnd(heapID, 600);
 
     if (v0) {
         NNSG2dCharacterData *v1;

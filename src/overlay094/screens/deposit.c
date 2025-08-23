@@ -482,7 +482,7 @@ static void ov94_022418B8(GTSApplicationState *appState)
 {
     appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewStrbuf(appState->gtsMessageLoader, GTS_Text_DepositPokemon);
-    appState->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
+    appState->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
     MI_CpuClearFast(appState->unk_10E4, sizeof(GTSApplicationState_sub3));
 
@@ -986,7 +986,7 @@ u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
 u8 *ov94_02242548(int heapID)
 {
     u32 nationalDexSize, nationalDexLength;
-    u8 *nationalDex = Heap_AllocFromHeap(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);
+    u8 *nationalDex = Heap_Alloc(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);
 
     MI_CpuClearFast(nationalDex, NATIONAL_DEX_COUNT + 1);
 

@@ -18,7 +18,7 @@ typedef struct ScrollPrompts {
     ManagedSprite *arrowSprites[SCROLL_PROMPT_ARROW_COUNT];
 } ScrollPrompts;
 
-ScrollPrompts *ScrollPrompts_New(enum HeapId heapID);
+ScrollPrompts *ScrollPrompts_New(enum HeapID heapID);
 void ScrollPrompts_Free(ScrollPrompts *prompts);
 void ScrollPrompts_UpdateAnim(ScrollPrompts *prompts);
 void ScrollPrompts_SetPosition(ScrollPrompts *prompts, s16 x, s16 topArrowY, s16 bottomArrowY);

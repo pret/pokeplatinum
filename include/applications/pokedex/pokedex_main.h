@@ -48,9 +48,9 @@ typedef struct {
 int PokedexMain_Init(ApplicationManager *appMan, int *state);
 int PokedexMain_Main(ApplicationManager *appMan, int *state);
 int PokedexMain_Exit(ApplicationManager *appMan, int *state);
-PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayArgs *pokedexOverlayArgs);
+PokedexApp *PokedexMain_NewPokedexApp(enum HeapID heapID, const PokedexOverlayArgs *pokedexOverlayArgs);
 BOOL ov21_021D10B8(PokedexApp *pokedexApp);
-void PokedexMain_InitGX(enum HeapId heapID);
+void PokedexMain_InitGX(enum HeapID heapID);
 void PokedexMain_FreeGraphics(void);
 void ov21_021D12D8(PokedexApp *pokedexApp);
 PokedexUpdater *ov21_021D12EC(PokedexApp *pokedexApp);
@@ -94,6 +94,6 @@ u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, cons
 u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID);
+Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
 
 #endif // POKEPLATINUM_POKEDEX_MAIN_H

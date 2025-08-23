@@ -115,7 +115,7 @@ static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
 
 UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *saveData, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
 {
-    UnkStruct_ov66_02230C90 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230C90));
+    UnkStruct_ov66_02230C90 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230C90));
     memset(v0, 0, sizeof(UnkStruct_ov66_02230C90));
 
     v0->unk_3C = param3;
@@ -319,7 +319,7 @@ static void ov66_02230E28(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02230E68 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230E68));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230E68));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230E68));
 
     v0 = param1->unk_00;
@@ -401,7 +401,7 @@ static void ov66_02230F1C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02230F50 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230F50));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230F50));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230F50));
 
     v0 = param1->unk_00;
@@ -448,7 +448,7 @@ static void ov66_02230FA0(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02230FA0 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230FA0));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230FA0));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230FA0));
 
     v0 = param1->unk_00;
@@ -489,7 +489,7 @@ static void ov66_02231024(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02231024 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231024));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02231024));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231024));
 
     v0 = param1->unk_00;
@@ -533,7 +533,7 @@ static void ov66_0223108C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov115_02260440 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov115_02260440));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov115_02260440));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov115_02260440));
 
     v0 = param1->unk_00;
@@ -600,7 +600,7 @@ static void ov66_02231134(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02231134 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231134));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02231134));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231134));
 
     v0 = param1->unk_00;
@@ -667,7 +667,7 @@ static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov117_02260440 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov117_02260440));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov117_02260440));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov117_02260440));
 
     v0 = param1->unk_00;
@@ -733,7 +733,7 @@ static void ov66_0223127C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_0223127C *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0223127C));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0223127C));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_0223127C));
 
     v0 = param1->unk_00;
@@ -798,7 +798,7 @@ static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02231300 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231300));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02231300));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231300));
 
     v0 = param1->unk_00;
@@ -848,7 +848,7 @@ static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02231374 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231374));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02231374));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
@@ -861,7 +861,7 @@ static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     UnkStruct_ov66_02231374 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231374));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02231374));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;

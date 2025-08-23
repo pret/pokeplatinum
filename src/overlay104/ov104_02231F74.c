@@ -221,7 +221,7 @@ static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u
     sub_02014CF8(&v0, 0, param3);
     sub_02014CF8(&v0, 1, param4);
 
-    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
+    v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
     Strbuf_Copy(param0, v1);
     Strbuf_Free(v1);
 }
@@ -279,7 +279,7 @@ UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 pa
     UnkStruct_ov104_02232B5C *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
 
     if (v0 == NULL) {
         return NULL;
@@ -853,7 +853,7 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapId heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
@@ -901,7 +901,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     {
         u32 v9, v10;
 
-        v4 = Heap_AllocFromHeap(heapID, (10 * 10 * ((8 / 2) * 8)));
+        v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
@@ -1071,7 +1071,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD_TASK);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD3);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

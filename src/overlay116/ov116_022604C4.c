@@ -792,7 +792,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
         G3X_SetEdgeColorTable(v0);
     }
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_48.unk_24, HEAP_ID_106, 32);
+    HeapExp_FndInitAllocator(&param0->unk_48.unk_24, HEAP_ID_106, 32);
 }
 
 void ov116_0226139C(UnkStruct_ov116_0226139C *param0)

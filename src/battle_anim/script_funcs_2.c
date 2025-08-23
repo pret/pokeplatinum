@@ -938,7 +938,7 @@ static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_QuickAttack(BattleAnimSystem *system)
 {
-    QuickAttackContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(QuickAttackContext));
+    QuickAttackContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(QuickAttackContext));
 
     ctx->battleAnimSys = system;
     ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
@@ -1045,7 +1045,7 @@ static void BattleAnimTask_DrillPeck(SysTask *task, void *param)
 void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *system)
 {
     // BUG: Should be sizeof(DrillPeckContext), not sizeof(QuickAttackContext)
-    DrillPeckContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(QuickAttackContext));
+    DrillPeckContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(QuickAttackContext));
 
     ctx->battleAnimSys = system;
     ctx->state = DRILL_PECK_STATE_MOVE_BWD;
@@ -1230,7 +1230,7 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     int v3;
     int v4;
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222FC44));
+    v0 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222FC44));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -1339,7 +1339,7 @@ static void BattleAnimTask_Confusion(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_Confusion(BattleAnimSystem *system)
 {
-    ConfusionContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(ConfusionContext));
+    ConfusionContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(ConfusionContext));
 
     ctx->battleAnimSys = system;
     ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
@@ -1488,7 +1488,7 @@ static void BattleAnimTask_AcidArmor(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system)
 {
-    AcidArmorContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(AcidArmorContext));
+    AcidArmorContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(AcidArmorContext));
     memset(ctx, 0, sizeof(AcidArmorContext));
 
     ctx->battleAnimSys = system;
@@ -1667,7 +1667,7 @@ static void BattleAnimTask_NightShadeDefender(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *system)
 {
-    NightShaderAttackerContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(NightShaderAttackerContext));
+    NightShaderAttackerContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(NightShaderAttackerContext));
     memset(ctx, 0, sizeof(NightShaderAttackerContext));
 
     ctx->battleAnimSys = system;
@@ -1705,7 +1705,7 @@ void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *system)
 
 void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
 {
-    NightShadeDefenderContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(NightShadeDefenderContext));
+    NightShadeDefenderContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(NightShadeDefenderContext));
     memset(ctx, 0, sizeof(NightShadeDefenderContext));
 
     ctx->battleAnimSys = system;

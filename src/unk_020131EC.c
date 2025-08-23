@@ -116,11 +116,11 @@ static void sub_02013338(enum NarcID narcID, int param1, int param2, int param3,
     sub_02013260(param3, param4, param5, param6, v1, param7);
 }
 
-static void *sub_02013388(enum NarcID narcID, int param1, enum HeapId heapID, int param3, int param4, int param5, int param6, u32 param7, BOOL param8, int param9, int param10)
+static void *sub_02013388(enum NarcID narcID, int param1, enum HeapID heapID, int param3, int param4, int param5, int param6, u32 param7, BOOL param8, int param9, int param10)
 {
     void *v0;
     int v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_02013338(narcID, param1, heapID, param3, param4, param5, param6, v0, param7, param8, param9, param10);
 
@@ -173,11 +173,11 @@ void sub_020133D4(enum NarcID narcID, int param1, int param2, int param3, int pa
     Heap_Free(v0);
 }
 
-static void *sub_020134A8(enum NarcID narcID, int param1, enum HeapId heapID, int param3, int param4, int param5, int param6)
+static void *sub_020134A8(enum NarcID narcID, int param1, enum HeapID heapID, int param3, int param4, int param5, int param6)
 {
     void *v0;
     int v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_020133D4(narcID, param1, heapID, param3, param4, param5, param6, v0);
 
@@ -238,12 +238,12 @@ void sub_02013584(enum NarcID narcID, int param1, int heapID, int param3, int pa
     Heap_Free(v3);
 }
 
-void sub_020135F0(enum NarcID narcID, int param1, enum HeapId heapID, const UnkStruct_02013610 *param3, void *param4)
+void sub_020135F0(enum NarcID narcID, int param1, enum HeapID heapID, const UnkStruct_02013610 *param3, void *param4)
 {
     sub_02013584(narcID, param1, heapID, param3->unk_00, param3->unk_04, param3->unk_08, param3->unk_0C, param4);
 }
 
-void sub_02013610(enum NarcID narcID, int param1, enum HeapId heapID, void *param3)
+void sub_02013610(enum NarcID narcID, int param1, enum HeapID heapID, void *param3)
 {
     const UnkStruct_02013610 v0 = {
         0x0,
@@ -255,18 +255,18 @@ void sub_02013610(enum NarcID narcID, int param1, enum HeapId heapID, void *para
     sub_020135F0(narcID, param1, heapID, &v0, param3);
 }
 
-void *sub_0201363C(enum NarcID narcID, int param1, enum HeapId heapID)
+void *sub_0201363C(enum NarcID narcID, int param1, enum HeapID heapID)
 {
     void *v0 = NULL;
     int v1 = (10 * 10 * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_02013610(narcID, param1, heapID, v0);
 
     return v0;
 }
 
-void *sub_02013660(enum NarcID narcID, int param1, enum HeapId heapID)
+void *sub_02013660(enum NarcID narcID, int param1, enum HeapID heapID)
 {
     NNSG2dPaletteData *v0;
     void *v1;
@@ -274,7 +274,7 @@ void *sub_02013660(enum NarcID narcID, int param1, enum HeapId heapID)
     int v3;
     BOOL v4;
 
-    v2 = Heap_AllocFromHeap(heapID, 0x20);
+    v2 = Heap_Alloc(heapID, 0x20);
     v1 = NARC_AllocAndReadWholeMemberByIndexPair(narcID, param1, heapID);
     v4 = NNS_G2dGetUnpackedPaletteData(v1, &v0);
 
@@ -286,7 +286,7 @@ void *sub_02013660(enum NarcID narcID, int param1, enum HeapId heapID)
     return v2;
 }
 
-void sub_020136A4(enum NarcID narcID, int param1, enum HeapId heapID, int param3, int param4, int param5, int param6, void *param7, u32 param8, BOOL param9, int param10, int param11)
+void sub_020136A4(enum NarcID narcID, int param1, enum HeapID heapID, int param3, int param4, int param5, int param6, void *param7, u32 param8, BOOL param9, int param10, int param11)
 {
     int v0;
     int v1;
@@ -313,12 +313,12 @@ void sub_020136A4(enum NarcID narcID, int param1, enum HeapId heapID, int param3
     Heap_Free(v3);
 }
 
-void sub_02013720(enum NarcID narcID, int charID, enum HeapId heapID, const UnkStruct_02013610 *param3, void *param4, u32 personality, BOOL param6, int param7, int param8)
+void sub_02013720(enum NarcID narcID, int charID, enum HeapID heapID, const UnkStruct_02013610 *param3, void *param4, u32 personality, BOOL param6, int param7, int param8)
 {
     sub_020136A4(narcID, charID, heapID, param3->unk_00, param3->unk_04, param3->unk_08, param3->unk_0C, param4, personality, param6, param7, param8);
 }
 
-void sub_02013750(enum NarcID narcID, int charID, enum HeapId heapID, void *param3, u32 personality, BOOL param5, int param6, int param7)
+void sub_02013750(enum NarcID narcID, int charID, enum HeapID heapID, void *param3, u32 personality, BOOL param5, int param6, int param7)
 {
     const UnkStruct_02013610 v0 = {
         0x0,

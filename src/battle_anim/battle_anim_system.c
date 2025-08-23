@@ -321,10 +321,10 @@ static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask 
     SysTask_Done(task);
 }
 
-BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
+BattleAnimSystem *BattleAnimSystem_New(enum HeapID heapID)
 {
     int i;
-    BattleAnimSystem *system = Heap_AllocFromHeap(heapID, sizeof(BattleAnimSystem));
+    BattleAnimSystem *system = Heap_Alloc(heapID, sizeof(BattleAnimSystem));
 
     if (system == NULL) {
         GF_ASSERT(system != NULL);
@@ -335,7 +335,7 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
 
     system->heapID = heapID;
     system->isContest = FALSE;
-    system->context = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimContext));
+    system->context = Heap_Alloc(system->heapID, sizeof(BattleAnimContext));
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_WECHAR] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, heapID);
@@ -379,7 +379,7 @@ BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system)
     return system->isContest;
 }
 
-enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *system)
+enum HeapID BattleAnimSystem_GetHeapID(BattleAnimSystem *system)
 {
     GF_ASSERT(system != NULL);
     return system->heapID;
@@ -672,7 +672,7 @@ static BOOL (*const sBattleAnimSoundFuncs[BATTLE_ANIM_SOUND_TASK_COUNT])(BattleA
 
 static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *ctx = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimSoundContext));
+    BattleAnimSoundContext *ctx = Heap_Alloc(system->heapID, sizeof(BattleAnimSoundContext));
     if (ctx == NULL) {
         GF_ASSERT(FALSE);
         return NULL;
@@ -1825,7 +1825,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         system->heapID);
 
     if (trackBattler == TRUE) {
-        system->bgTrackingTask = Heap_AllocFromHeap(system->heapID, sizeof(SpriteTrackingTask));
+        system->bgTrackingTask = Heap_Alloc(system->heapID, sizeof(SpriteTrackingTask));
         system->bgTrackingTask->bg = system->bgConfig;
         system->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(system, battler);
         system->bgTrackingTask->data.frameCount = 0;
@@ -2033,7 +2033,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
             return;
         }
 
-        system->spriteTrackingTasks[spriteID] = Heap_AllocFromHeap(system->heapID, sizeof(SpriteTrackingTask));
+        system->spriteTrackingTasks[spriteID] = Heap_Alloc(system->heapID, sizeof(SpriteTrackingTask));
         system->spriteTrackingTasks[spriteID]->sprite = sprite;
         system->spriteTrackingTasks[spriteID]->data.sprite = BattleAnimSystem_GetBattlerSprite(system, battler);
         system->spriteTrackingTasks[spriteID]->data.frameCount = 0;
@@ -2360,7 +2360,7 @@ static void BattleBgSwitch_ApplyFlags(BattleBgSwitch *bgSwitch)
 
 static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system)
 {
-    BattleBgSwitch *bgSwitch = Heap_AllocFromHeap(system->heapID, sizeof(BattleBgSwitch));
+    BattleBgSwitch *bgSwitch = Heap_Alloc(system->heapID, sizeof(BattleBgSwitch));
     if (bgSwitch == NULL) {
         GF_ASSERT(FALSE);
         return NULL;
@@ -2770,7 +2770,7 @@ static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *bgSwitch)
 
 static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *bgSwitch)
 {
-    BattleBgAnim *bgAnim = Heap_AllocFromHeap(bgSwitch->battleAnimSystem->heapID, sizeof(BattleBgAnim));
+    BattleBgAnim *bgAnim = Heap_Alloc(bgSwitch->battleAnimSystem->heapID, sizeof(BattleBgAnim));
 
     bgAnim->bgConfig = bgSwitch->battleAnimSystem->bgConfig;
     bgAnim->offsetX = bgSwitch->battleAnimSystem->scriptVars[BATTLE_ANIM_VAR_BG_MOVE_START_X];
@@ -2805,9 +2805,9 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
     BattleBgAnim *v3;
 
     system = param0->battleAnimSystem;
-    v3 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(BattleBgAnim));
+    v3 = Heap_Alloc(param0->battleAnimSystem->heapID, sizeof(BattleBgAnim));
 
-    v3->unk_1C = Heap_AllocFromHeap(system->heapID, sizeof(UnkStruct_ov12_022224F8));
+    v3->unk_1C = Heap_Alloc(system->heapID, sizeof(UnkStruct_ov12_022224F8));
     system->bgAnim = v3;
 
     param0->unk_44_1 = 1;
@@ -3933,7 +3933,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
-    UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
+    UnkStruct_ov12_02223764 *v2 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02223764));
 
     v2->heapID = heapID;
     v2->unk_04 = param2;

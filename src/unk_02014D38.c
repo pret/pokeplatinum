@@ -145,7 +145,7 @@ void include_unk_020E5538(void)
 UnkStruct_02014D38 *sub_02014D38(u32 heapID)
 {
     int v0;
-    UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014D38));
+    UnkStruct_02014D38 *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02014D38));
 
     for (v0 = 0; v0 < 11; v0++) {
         v1->heapID = heapID;
@@ -346,7 +346,7 @@ UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
     UnkStruct_02014FB0 *v0;
     u32 fileSize;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014FB0));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02014FB0));
     memset(v0, 0, sizeof(UnkStruct_02014FB0));
 
     v0->unk_04 = LoadMemberFromNARC_OutFileSize(NARC_INDEX_RESOURCE__ENG__PMS_AIKOTOBA__PMS_AIKOTOBA, 0, 0, heapID, 0, &fileSize);
