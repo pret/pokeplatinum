@@ -309,7 +309,7 @@ static int PokemonParty_Init(ApplicationManager *appMan, int *param1)
     }
 
     SetVBlankCallback(sub_0207E898, v0);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
     NARC_dtor(v1);
 
     return 1;

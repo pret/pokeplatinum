@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wifi_plaza_entrance.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _0006

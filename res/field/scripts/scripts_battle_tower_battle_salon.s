@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _01AC

@@ -9,16 +9,15 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
-#include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -46,7 +45,7 @@
 #include "field/field_system.h"
 #include "library_tv/library_tv.h"
 #include "overlay005/daycare.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay007/accessory_shop.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
@@ -67,7 +66,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay091/ov91_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
-#include "overlay094/ov94_0223BCB0.h"
+#include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
@@ -82,6 +81,7 @@
 #include "bag_system.h"
 #include "coins.h"
 #include "dexmode_checker.h"
+#include "evolution.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
@@ -90,6 +90,7 @@
 #include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "global_trade.h"
 #include "heap.h"
 #include "item_use_functions.h"
 #include "mail.h"
@@ -118,7 +119,6 @@
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020553DC.h"
@@ -126,7 +126,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207AE68.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -200,8 +199,8 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
-    UnkStruct_ov6_02246254 unk_48;
-    UnkStruct_0207AE68 *unk_60;
+    TradeAnimationTemplate unk_48;
+    EvolutionData *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
 
@@ -941,9 +940,9 @@ static ApplicationManagerTemplate Unk_02100AA4 = {
 };
 
 static const ApplicationManagerTemplate Unk_020EA268 = {
-    ov95_02246C20,
-    ov95_02246E7C,
-    ov95_02246E1C,
+    TradeSequence_Init,
+    TradeSequence_Main,
+    TradeSequence_Exit,
     FS_OVERLAY_ID(overlay95)
 };
 
@@ -992,7 +991,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
     switch (v2->unk_00) {
     case 0:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             FieldTransition_FinishMap(param0);
         }
 
@@ -1015,29 +1014,29 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00++;
         break;
     case 4:
-        v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
+        v2->unk_48.otherTrainer = v2->unk_04.unk_38;
+        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
+        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
-        v2->unk_48.unk_10 = 1;
+        v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
-        case 0:
-        case 1:
+        case TIMEOFDAY_MORNING:
+        case TIMEOFDAY_DAY:
         default:
-            v2->unk_48.unk_0C = 0;
+            v2->unk_48.background = TRADE_BACKGROUND_DAY;
             break;
-        case 2:
-            v2->unk_48.unk_0C = 1;
+        case TIMEOFDAY_TWILIGHT:
+            v2->unk_48.background = TRADE_BACKGROUND_EVENING;
             break;
-        case 3:
-        case 4:
-            v2->unk_48.unk_0C = 2;
+        case TIMEOFDAY_NIGHT:
+        case TIMEOFDAY_LATE_NIGHT:
+            v2->unk_48.background = TRADE_BACKGROUND_NIGHT;
             break;
         }
 
-        if (sub_020389B8()) {
-            v2->unk_48.unk_0C = 3;
+        if (CommMan_IsConnectedToWifi()) {
+            v2->unk_48.background = TRADE_BACKGROUND_WIFI;
         }
 
         FieldTask_RunApplication(param0, &Unk_020EA268, &v2->unk_48);
@@ -1050,14 +1049,14 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
         if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+            v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
         }
     } break;
     case 6:
-        if (sub_0207B0D0(v2->unk_60)) {
+        if (Evolution_IsDone(v2->unk_60)) {
             Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(HEAP_ID_26);
@@ -1072,7 +1071,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
             GameRecords *v6 = SaveData_GetGameRecords(fieldSystem->saveData);
             GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_16);
 
-            if (sub_020389B8()) {
+            if (CommMan_IsConnectedToWifi()) {
                 GameRecords_IncrementRecordValue(v6, RECORD_UNK_113);
             }
         }
@@ -1331,40 +1330,38 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
 }
 
-void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 {
-    UnkStruct_0203E0FC *v0;
-
     FS_EXTERN_OVERLAY(overlay94);
 
-    const ApplicationManagerTemplate v1 = {
-        ov94_0223BCB0,
-        ov94_0223BE2C,
-        ov94_0223BF54,
+    const ApplicationManagerTemplate gtsTemplate = {
+        GTSApplication_Init,
+        GTSApplication_Main,
+        GTSApplication_Exit,
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
+    GTSPlayerData *playerData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(GTSPlayerData));
 
-    v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
-    v0->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
-    v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
-    v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->journalEntry;
-    v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-    v0->saveData = fieldSystem->saveData;
-    v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->unk_38 = WiFiList_GetUserGsProfileId(v0->unk_14);
-    v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_40 = param1;
+    playerData->globalTrade = SaveData_GetGlobalTrade(fieldSystem->saveData);
+    playerData->systemData = SaveData_GetSystemData(fieldSystem->saveData);
+    playerData->party = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
+    playerData->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+    playerData->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    playerData->wiFiList = SaveData_GetWiFiList(fieldSystem->saveData);
+    playerData->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
+    playerData->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    playerData->options = SaveData_GetOptions(fieldSystem->saveData);
+    playerData->records = SaveData_GetGameRecords(fieldSystem->saveData);
+    playerData->journalEntry = fieldSystem->journalEntry;
+    playerData->showContestData = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    playerData->saveData = fieldSystem->saveData;
+    playerData->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    playerData->dwcProfileId = WiFiList_GetUserGsProfileId(playerData->wiFiList);
+    playerData->bag = SaveData_GetBag(fieldSystem->saveData);
+    playerData->connectToWiFi = connectToWiFi;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gtsTemplate, playerData);
 }
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)

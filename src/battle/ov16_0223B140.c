@@ -10,7 +10,6 @@
 #include "generated/game_records.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_02099F80.h"
@@ -37,6 +36,7 @@
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "communication_system.h"
+#include "evolution.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
@@ -83,7 +83,6 @@
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
 #include "unk_0207A6DC.h"
-#include "unk_0207AE68.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -179,7 +178,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         ov16_0223D10C(appMan, v0);
         sub_02038F8C(v0->wiFiHistory);
 
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_020);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_025);
@@ -264,16 +263,16 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         if (v2) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
+            v0->unk_170 = Evolution_Begin(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
             *param1 = 14;
         } else {
             *param1 = 15;
         }
     } break;
     case 14: {
-        UnkStruct_0207AE68 *v5 = (UnkStruct_0207AE68 *)v0->unk_170;
+        EvolutionData *v5 = (EvolutionData *)v0->unk_170;
 
-        if (sub_0207B0D0(v5) == 1) {
+        if (Evolution_IsDone(v5) == 1) {
             sub_0207B0E0(v5);
             Heap_Destroy(HEAP_ID_73);
             *param1 = 13;
@@ -807,7 +806,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
@@ -1629,7 +1628,7 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
 
 static void NitroStaticInit(void)
 {
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         Overlay_LoadByID(FS_OVERLAY_ID(pokedex), 2);
     }
 }
@@ -1999,7 +1998,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     ov16_0223C2C0(battleSys, v1);
 
     if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
-        sub_02039794();
+        NetworkIcon_Destroy();
         return 0;
     }
 
@@ -2072,7 +2071,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     int v3;
 
     if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
-        sub_02039794();
+        NetworkIcon_Destroy();
         return 0;
     }
 
@@ -2147,14 +2146,14 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
 
     switch (v0->resultMask) {
     case BATTLE_RESULT_WIN:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_LOSSES);
@@ -2162,7 +2161,7 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
         break;
     case BATTLE_RESULT_DRAW:
     case BATTLE_RESULT_PLAYER_FLED:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_023);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_028);
@@ -2306,9 +2305,9 @@ static void ov16_0223DECC(void)
 {
     sub_02039734();
 
-    if (sub_020389B8()) {
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+    if (CommMan_IsConnectedToWifi()) {
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
-        sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }

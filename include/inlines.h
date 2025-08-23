@@ -25,14 +25,14 @@
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
 static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);
 
-static inline void inline_ov61_0222C3B0(UnkStruct_ov61_0222C3B0 *param0, NARC *param1, int param2, int param3)
+static inline void inline_ov61_0222C3B0(UnkStruct_ov61_0222C3B0 *param0, NARC *param1, int param2, int heapID)
 {
     NNSG2dPaletteData *v0;
     void *v1;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov61_0222C3B0));
 
-    v1 = Graphics_GetPlttDataFromOpenNARC(param1, param2, &v0, param3);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param1, param2, &v0, heapID);
 
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_08, 4 * 0x20);
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_88, 4 * 0x20);
@@ -174,42 +174,42 @@ inline u16 LCRNG_RandMod(const u16 param)
     }
 }
 
-static inline u32 inline_0202D4B0_sub1(u32 param0, u32 param1, u32 param2, int param3)
+static inline u32 Date_EncodeParams(u32 year, u32 month, u32 day, int week)
 {
-    return (param0 << 24) | ((param1 & 0xff) << 16) | ((param2 & 0xff) << 8) | param3;
+    return (year << 24) | ((month & 0xff) << 16) | ((day & 0xff) << 8) | week;
 }
 
-static inline u32 inline_0202D4B0(RTCDate *param0)
+static inline u32 Date_Encode(RTCDate *rtcDate)
 {
-    return inline_0202D4B0_sub1(param0->year, param0->month, param0->day, param0->week);
+    return Date_EncodeParams(rtcDate->year, rtcDate->month, rtcDate->day, rtcDate->week);
 }
 
-static inline u8 inline_0202D558_sub1(u32 param0)
+static inline u8 Date_DecodeYear(u32 date)
 {
-    return param0 >> 24;
+    return date >> 24;
 }
 
-static inline u8 inline_0202D558_sub2(u32 param0)
+static inline u8 Date_DecodeMonth(u32 date)
 {
-    return (param0 >> 16) & 0xff;
+    return (date >> 16) & 0xff;
 }
 
-static inline u8 inline_0202D558_sub3(u32 param0)
+static inline u8 Date_DecodeDay(u32 date)
 {
-    return (param0 >> 8) & 0xff;
+    return (date >> 8) & 0xff;
 }
 
-static inline u8 inline_0202D558_sub4(u32 param0)
+static inline u8 Date_DecodeWeek(u32 date)
 {
-    return param0 & 0xff;
+    return date & 0xff;
 }
 
-static inline void inline_0202D558(u32 param0, RTCDate *param1)
+static inline void Date_Decode(u32 date, RTCDate *rtcDate)
 {
-    param1->year = inline_0202D558_sub1(param0);
-    param1->month = inline_0202D558_sub2(param0);
-    param1->day = inline_0202D558_sub3(param0);
-    param1->week = inline_0202D558_sub4(param0);
+    rtcDate->year = Date_DecodeYear(date);
+    rtcDate->month = Date_DecodeMonth(date);
+    rtcDate->day = Date_DecodeDay(date);
+    rtcDate->week = Date_DecodeWeek(date);
 }
 
 #endif // POKEPLATINUM_INLINES_H

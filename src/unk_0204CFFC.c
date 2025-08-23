@@ -795,32 +795,29 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2B7(ScriptContext *param0)
+BOOL ScrCmd_CheckPartyHasBadEgg(ScriptContext *param0)
 {
-    Pokemon *v0;
-    Party *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3, v4, v5;
+    u16 *destVar = ScriptContext_GetVarPointer(param0);
 
-    v5 = Party_GetCurrentCount(SaveData_GetParty(param0->fieldSystem->saveData));
-    v1 = SaveData_GetParty(param0->fieldSystem->saveData);
+    u16 partyCount = Party_GetCurrentCount(SaveData_GetParty(param0->fieldSystem->saveData));
+    Party *party = SaveData_GetParty(param0->fieldSystem->saveData);
 
-    for (v3 = 0; v3 < 80; v3++) {
-        for (v4 = 0; v4 < v5; v4++) {
-            v0 = Party_GetPokemonBySlotIndex(v1, v4);
+    for (u16 i = 0; i < 80; i++) {
+        for (u16 slot = 0; slot < partyCount; slot++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
-            if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (Pokemon_GetValue(v0, MON_DATA_IS_DATA_INVALID, NULL) != 0) {
-                    *v2 = 1;
-                    return 0;
+            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_IS_DATA_INVALID, NULL)) {
+                    *destVar = TRUE;
+                    return FALSE;
                 }
             }
         }
     }
 
-    *v2 = 0;
+    *destVar = FALSE;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_0A0(ScriptContext *param0)

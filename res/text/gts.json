@@ -1,0 +1,796 @@
+{
+  "key": 54625,
+  "messages": [
+    {
+      "id": "pl_msg_00000671_00000",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000671_00001",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000671_00002",
+      "en_US": "{STRVAR_1 1, 0, 0} was not traded.\r"
+    },
+    {
+      "id": "pl_msg_00000671_00003",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} appears to have\n",
+        "fled...\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_AreYouSeekingOrOfferingAPokemon",
+      "en_US": "Are you seeking or offering a Pokémon?"
+    },
+    {
+      "id": "GTS_Text_Selection_DoWhat",
+      "en_US": "Do what with this {STRVAR_1 1, 0, 0}?"
+    },
+    {
+      "id": "GTS_Text_WillYouTakeThis",
+      "en_US": "Will you take this {STRVAR_1 1, 0, 0}?"
+    },
+    {
+      "id": "GTS_Text_IsItOKToDisconnect",
+      "en_US": [
+        "Is it OK to disconnect from\n",
+        "Nintendo Wi-Fi Connection?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00008",
+      "en_US": "What kind of Pokémon are you seeking?"
+    },
+    {
+      "id": "GTS_Text_PleaseChoosePokemon",
+      "en_US": "Please choose the Pokémon you want."
+    },
+    {
+      "id": "GTS_Text_PleaseChooseGender",
+      "en_US": "Please choose its gender."
+    },
+    {
+      "id": "GTS_Text_PleaseChooseLevel",
+      "en_US": "Please choose the level."
+    },
+    {
+      "id": "pl_msg_00000671_00012",
+      "en_US": "Please choose the Pokémon you want!"
+    },
+    {
+      "id": "pl_msg_00000671_00013",
+      "en_US": "Searching for the Pokémon you want..."
+    },
+    {
+      "id": "pl_msg_00000671_00014",
+      "en_US": "None were found!"
+    },
+    {
+      "id": "pl_msg_00000671_00015",
+      "en_US": "Stop searching?"
+    },
+    {
+      "id": "Gts_Text_TradeForThisPokemon",
+      "en_US": "Trade for this Pokémon?"
+    },
+    {
+      "id": "GTS_Text_ChooseYourListedPokemon",
+      "en_US": "Choose the Pokémon you are trading."
+    },
+    {
+      "id": "pl_msg_00000671_00018",
+      "en_US": "Do what with this {STRVAR_1 1, 0, 0}?"
+    },
+    {
+      "id": "pl_msg_00000671_00019",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000671_00020",
+      "garbage": 17
+    },
+    {
+      "id": "GTS_Text_ChooseYourOfferPokemon",
+      "en_US": "Choose the Pokémon you want to offer."
+    },
+    {
+      "id": "pl_msg_00000671_00022",
+      "en_US": "Offer {STRVAR_1 1, 0, 0}?"
+    },
+    {
+      "id": "GTS_Text_ConfirmCriteria",
+      "en_US": "Are these conditions OK?"
+    },
+    {
+      "id": "GTS_Text_CheckingStatus",
+      "en_US": "Checking GTS’s status..."
+    },
+    {
+      "id": "pl_msg_00000671_00025",
+      "en_US": [
+        "The Ball Capsule will be detached.\n",
+        "Is that OK?"
+      ]
+    },
+    {
+      "id": "GTS_Text_Error_PokemonCannotBeOffered",
+      "en_US": [
+        "That Pokémon may not be offered\n",
+        "for trade!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00027",
+      "en_US": [
+        "An Egg may not be offered\n",
+        "for trade!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00028",
+      "en_US": [
+        "Your party is full.\n",
+        "You can’t receive a Pokémon!\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_Error_StorageBoxesFull",
+      "en_US": [
+        "Your Storage Boxes are full.\n",
+        "You can’t receive a Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00030",
+      "en_US": "A trade partner has been found!"
+    },
+    {
+      "id": "GTS_Text_NintendoWifiConnection",
+      "en_US": "Nintendo Wi-Fi Connection"
+    },
+    {
+      "id": "pl_msg_00000671_00032",
+      "en_US": "Touch to select your trade partner."
+    },
+    {
+      "id": "pl_msg_00000671_00033",
+      "en_US": "Please change your conditions."
+    },
+    {
+      "id": "GTS_Text_PleaseWaitAWhile",
+      "en_US": "Please wait a while."
+    },
+    {
+      "id": "GTS_Text_Error_PartyFullMail",
+      "en_US": [
+        "Your party is full.\r",
+        "You can’t receive a Pokémon that\n",
+        "is holding Mail.\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_Error_NoRoomInParty",
+      "en_US": "There is no room in your party."
+    },
+    {
+      "id": "pl_msg_00000671_00037",
+      "en_US": [
+        "It has a special Ribbon.\n",
+        "It can’t be offered for a trade.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00038",
+      "en_US": "GTS check failed."
+    },
+    {
+      "id": "GTS_Text_MainMenu_Title",
+      "en_US": "GLOBAL TRADE SYSTEM"
+    },
+    {
+      "id": "GTS_Text_Summary",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "GTS_Text_SeekPokemon",
+      "en_US": "SEEK POKéMON"
+    },
+    {
+      "id": "GTS_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000671_00043",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00044",
+      "en_US": "{STRVAR_1 0, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00045",
+      "en_US": "Lv. {STRVAR_1 52, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00046",
+      "en_US": "ITEM"
+    },
+    {
+      "id": "pl_msg_00000671_00047",
+      "en_US": "{STRVAR_1 8, 3, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00048",
+      "en_US": "OFFERER"
+    },
+    {
+      "id": "pl_msg_00000671_00049",
+      "en_US": "{STRVAR_1 3, 4, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00050",
+      "en_US": "POKéMON WANTED"
+    },
+    {
+      "id": "pl_msg_00000671_00051",
+      "en_US": "{STRVAR_1 0, 5, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00052",
+      "en_US": "Lv. {STRVAR_1 52, 6, 0} and up"
+    },
+    {
+      "id": "pl_msg_00000671_00053",
+      "en_US": "Any level"
+    },
+    {
+      "id": "GTS_Text_MenuOption_TakeBack",
+      "en_US": "TAKE BACK"
+    },
+    {
+      "id": "GTS_Text_MenuOption_LeaveAsIs",
+      "en_US": "LEAVE AS IS"
+    },
+    {
+      "id": "pl_msg_00000671_00056",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000671_00057",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000671_00058",
+      "en_US": "SEARCH FOR POKéMON"
+    },
+    {
+      "id": "GTS_Text_Criteria_Pokemon",
+      "en_US": "POKéMON"
+    },
+    {
+      "id": "pl_msg_00000671_00060",
+      "en_US": "{STRVAR_1 0, 0, 0}"
+    },
+    {
+      "id": "GTS_Text_Criteria_Gender",
+      "en_US": "GENDER"
+    },
+    {
+      "id": "pl_msg_00000671_00062",
+      "garbage": 5
+    },
+    {
+      "id": "GTS_Text_Criteria_Level",
+      "en_US": "LEVEL"
+    },
+    {
+      "id": "pl_msg_00000671_00064",
+      "garbage": 5
+    },
+    {
+      "id": "GTS_Text_Criteria_Search",
+      "en_US": "SEARCH"
+    },
+    {
+      "id": "GTS_Text_Criteria_Back",
+      "en_US": "BACK"
+    },
+    {
+      "id": "pl_msg_00000671_00067",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00068",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00069",
+      "garbage": 8
+    },
+    {
+      "id": "GTS_Text_Item",
+      "en_US": "ITEM"
+    },
+    {
+      "id": "pl_msg_00000671_00071",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00072",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000671_00073",
+      "garbage": 5
+    },
+    {
+      "id": "Gts_Text_WantedPokemon",
+      "en_US": "WANTED"
+    },
+    {
+      "id": "pl_msg_00000671_00075",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00076",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00077",
+      "garbage": 5
+    },
+    {
+      "id": "Gts_Text_OTLocation",
+      "en_US": "OT’S LOCATION"
+    },
+    {
+      "id": "Text_Gts_Template_Country",
+      "en_US": "{STRVAR_1 36, 8, 0}"
+    },
+    {
+      "id": "Text_Gts_Template_City",
+      "en_US": "{STRVAR_1 37, 9, 0}"
+    },
+    {
+      "id": "pl_msg_00000671_00081",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000671_00082",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000671_00083",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00084",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "pl_msg_00000671_00085",
+      "en_US": "TRADE"
+    },
+    {
+      "id": "pl_msg_00000671_00086",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000671_00087",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000671_00088",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000671_00089",
+      "en_US": "IN PARTY"
+    },
+    {
+      "id": "GTS_Text_DepositPokemon",
+      "en_US": "DEPOSIT POKéMON"
+    },
+    {
+      "id": "pl_msg_00000671_00091",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00092",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000671_00093",
+      "garbage": 3
+    },
+    {
+      "id": "GTS_Text_Option_Summary",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "GTS_Text_Option_Offer",
+      "en_US": "OFFER"
+    },
+    {
+      "id": "GTS_Text_Option_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "GTS_Text_Setup_Wanted",
+      "en_US": "WANTED"
+    },
+    {
+      "id": "pl_msg_00000671_00098",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000671_00099",
+      "garbage": 5
+    },
+    {
+      "id": "GTS_Text_OfferPokemonHeader",
+      "en_US": "OFFER POKéMON"
+    },
+    {
+      "id": "pl_msg_00000671_00101",
+      "garbage": 5
+    },
+    {
+      "id": "GTS_Text_LevelTemplate",
+      "en_US": "Lv. {STRVAR_1 52, 3, 0}"
+    },
+    {
+      "id": "GTS_Text_CancelPokemonSelection",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "GTS_Text_CharPad_ABC",
+      "en_US": "ABC"
+    },
+    {
+      "id": "pl_msg_00000671_00105",
+      "en_US": "DEF"
+    },
+    {
+      "id": "pl_msg_00000671_00106",
+      "en_US": "GHI"
+    },
+    {
+      "id": "pl_msg_00000671_00107",
+      "en_US": "JKL"
+    },
+    {
+      "id": "pl_msg_00000671_00108",
+      "en_US": "MNO"
+    },
+    {
+      "id": "pl_msg_00000671_00109",
+      "en_US": "PQR"
+    },
+    {
+      "id": "pl_msg_00000671_00110",
+      "en_US": "STU"
+    },
+    {
+      "id": "pl_msg_00000671_00111",
+      "en_US": "VWX"
+    },
+    {
+      "id": "pl_msg_00000671_00112",
+      "en_US": "YZ"
+    },
+    {
+      "id": "pl_msg_00000671_00113",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000671_00114",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000671_00115",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000671_00116",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000671_00117",
+      "garbage": 0
+    },
+    {
+      "id": "GTS_Text_Either",
+      "en_US": "EITHER"
+    },
+    {
+      "id": "GTS_Text_MaleIcon",
+      "en_US": "♂"
+    },
+    {
+      "id": "GTS_Text_FemaleIcon",
+      "en_US": "♀"
+    },
+    {
+      "id": "GTS_Text_Species_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Any",
+      "en_US": "ANY"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_UnderLevel10",
+      "en_US": "Lv. 9 and under"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level10AndUp",
+      "en_US": "Lv. 10 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level20AndUp",
+      "en_US": "Lv. 20 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level30AndUp",
+      "en_US": "Lv. 30 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level40AndUp",
+      "en_US": "Lv. 40 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level50AndUp",
+      "en_US": "Lv. 50 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level60AndUp",
+      "en_US": "Lv. 60 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level70AndUp",
+      "en_US": "Lv. 70 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level80AndUp",
+      "en_US": "Lv. 80 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level90AndUp",
+      "en_US": "Lv. 90 and up"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Level100",
+      "en_US": "Lv. 100"
+    },
+    {
+      "id": "GTS_Text_LevelPreference_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000671_00135",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000671_00136",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000671_00137",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000671_00138",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000671_00139",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000671_00140",
+      "garbage": 23
+    },
+    {
+      "id": "GTS_Text_Error_TradedToSomeoneElse",
+      "en_US": [
+        "Unfortunately, it was traded to\n",
+        "another Trainer.\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_Saving",
+      "en_US": [
+        "Saving...\n",
+        "Do not turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00143",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000671_00144",
+      "en_US": [
+        "The GTS is currently\n",
+        "undergoing maintenance.\r",
+        "Please try again later.\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_Error_GTSCrowded",
+      "en_US": [
+        "The GTS is very crowded now.\n",
+        "Please try again later.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00146",
+      "en_US": "The search failed..."
+    },
+    {
+      "id": "pl_msg_00000671_00147",
+      "en_US": "Communication error..."
+    },
+    {
+      "id": "GTS_Text_Error_CommsErrorPadded",
+      "en_US": "Communication error...\r"
+    },
+    {
+      "id": "pl_msg_00000671_00149",
+      "en_US": [
+        "Unable to connect to the GTS.\n",
+        "Returning to the reception counter.\r"
+      ]
+    },
+    {
+      "id": "GTS_Text_Error_DisconnectedFromGTSReturning",
+      "en_US": [
+        "You were disconnected from the GTS.\n",
+        "Returning to the reception counter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00151",
+      "en_US": "You were disconnected from the GTS."
+    },
+    {
+      "id": "pl_msg_00000671_00152",
+      "en_US": "Returning to the reception counter."
+    },
+    {
+      "id": "GTS_Text_LevelRange_Any",
+      "en_US": "ANY"
+    },
+    {
+      "id": "GTS_Text_LevelRange_1to10",
+      "en_US": "Lv. 1 to 10"
+    },
+    {
+      "id": "GTS_Text_LevelRange_11to20",
+      "en_US": "Lv. 11 to 20"
+    },
+    {
+      "id": "GTS_Text_LevelRange_21to30",
+      "en_US": "Lv. 21 to 30"
+    },
+    {
+      "id": "GTS_Text_LevelRange_31to40",
+      "en_US": "Lv. 31 to 40"
+    },
+    {
+      "id": "GTS_Text_LevelRange_41to50",
+      "en_US": "Lv. 41 to 50"
+    },
+    {
+      "id": "GTS_Text_LevelRange_51to60",
+      "en_US": "Lv. 51 to 60"
+    },
+    {
+      "id": "GTS_Text_LevelRange_61to70",
+      "en_US": "Lv. 61 to 70"
+    },
+    {
+      "id": "GTS_Text_LevelRange_71to80",
+      "en_US": "Lv. 71 to 80"
+    },
+    {
+      "id": "GTS_Text_LevelRange_81to90",
+      "en_US": "Lv. 81 to 90"
+    },
+    {
+      "id": "GTS_Text_LevelRange_91to100",
+      "en_US": "Lv. 91 to 100"
+    },
+    {
+      "id": "GTS_Text_LevelRange_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "GTS_Text_Criteria_Location",
+      "en_US": "LOCATION"
+    },
+    {
+      "id": "pl_msg_00000671_00166",
+      "en_US": "{STRVAR_1 36, 0, 0}"
+    },
+    {
+      "id": "GTS_Text_Any",
+      "en_US": "ANY"
+    },
+    {
+      "id": "GTS_Text_Country_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000671_00169",
+      "en_US": "Please choose a Pokémon location."
+    },
+    {
+      "id": "pl_msg_00000671_00170",
+      "en_US": [
+        "This Pokémon cannot be traded in this\n",
+        "Forme!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00171",
+      "en_US": [
+        "This Pokémon cannot be traded while\n",
+        "holding that item!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00172",
+      "en_US": "O.T."
+    },
+    {
+      "id": "pl_msg_00000671_00173",
+      "en_US": [
+        "There was an error while attempting to\n",
+        "send an authentication Wii message.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00174",
+      "en_US": "There was a communication error.\r"
+    },
+    {
+      "id": "pl_msg_00000671_00175",
+      "en_US": [
+        "The data was corrupted.\n",
+        "It could not be sent.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00176",
+      "en_US": [
+        "The server is undergoing maintenance.\n",
+        "Please connect again later.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00177",
+      "en_US": [
+        "There was a Wii message\n",
+        "authentication error.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00178",
+      "en_US": [
+        "Disconnecting from Nintendo Wi-Fi\n",
+        "Connection..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000671_00179",
+      "en_US": [
+        "You have disconnected from Nintendo\n",
+        "Wi-Fi Connection."
+      ]
+    }
+  ]
+}

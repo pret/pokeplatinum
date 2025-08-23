@@ -134,7 +134,7 @@ Static main
 	Object main.nef.p/src_unk_0202D05C.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
 	Object main.nef.p/src_special_encounter.c.o
-	Object main.nef.p/src_unk_0202DA40.c.o
+	Object main.nef.p/src_global_trade.c.o
 	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_unk_0202DF8C.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
@@ -296,7 +296,7 @@ Static main
 	Object main.nef.p/src_dexmode_checker.c.o
 	Object main.nef.p/src_unk_0207A2A8.c.o
 	Object main.nef.p/src_unk_0207A6DC.c.o
-	Object main.nef.p/src_unk_0207AE68.c.o
+	Object main.nef.p/src_evolution.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
 	Object main.nef.p/src_bag_system.c.o
@@ -1120,7 +1120,7 @@ Overlay overlay60
 {
 	After overlay4
 	Object main.nef.p/src_overlay060_ov60_0221F800.c.o
-	Object main.nef.p/src_overlay060_ov60_0221F968.c.o
+	Object main.nef.p/src_overlay060_http.c.o
 	Library	libdwcgsghttp.a
 	Library libdwcnd.a
 	Library libdwcnhttp.a
@@ -1415,19 +1415,19 @@ Overlay boat_cutscene
 Overlay overlay94
 {
 	After battle_anim
-	Object main.nef.p/src_overlay094_ov94_0223B140.c.o
-	Object main.nef.p/src_overlay094_ov94_0223BCB0.c.o
-	Object main.nef.p/src_overlay094_ov94_0223C610.c.o
-	Object main.nef.p/src_overlay094_ov94_0223D0C4.c.o
-	Object main.nef.p/src_overlay094_ov94_0223DC04.c.o
-	Object main.nef.p/src_overlay094_ov94_0223E46C.c.o
-	Object main.nef.p/src_overlay094_ov94_0223FB48.c.o
-	Object main.nef.p/src_overlay094_ov94_022414B8.c.o
-	Object main.nef.p/src_overlay094_ov94_02242AD0.c.o
+	Object main.nef.p/src_overlay094_networking.c.o
+	Object main.nef.p/src_overlay094_application.c.o
+	Object main.nef.p/src_overlay094_screens_main_menu.c.o
+	Object main.nef.p/src_overlay094_screens_listing.c.o
+	Object main.nef.p/src_overlay094_screens_search_listing.c.o
+	Object main.nef.p/src_overlay094_screens_search.c.o
+	Object main.nef.p/src_overlay094_screens_select_pokemon.c.o
+	Object main.nef.p/src_overlay094_screens_deposit.c.o
+	Object main.nef.p/src_overlay094_screens_network_handler.c.o
 	Object main.nef.p/src_overlay094_ov94_02243EF8.c.o
-	Object main.nef.p/src_overlay094_ov94_022443E0.c.o
-	Object main.nef.p/src_overlay094_ov94_022444C8.c.o
-	Object main.nef.p/src_overlay094_ov94_02244950.c.o
+	Object main.nef.p/src_overlay094_screens_pokemon_summary.c.o
+	Object main.nef.p/src_overlay094_screens_trade.c.o
+	Object main.nef.p/src_overlay094_screens_wfc_init.c.o
 }
 
 Overlay overlay95

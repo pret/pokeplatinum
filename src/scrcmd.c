@@ -399,7 +399,7 @@ static BOOL ScrCmd_0AF(ScriptContext *ctx);
 static BOOL ScrCmd_0B0(ScriptContext *ctx);
 static BOOL ScrCmd_0B1(ScriptContext *ctx);
 static BOOL ScrCmd_336(ScriptContext *ctx);
-static BOOL ScrCmd_0B2(ScriptContext *ctx);
+static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
@@ -705,8 +705,8 @@ static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
 static BOOL ScrCmd_2BE(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
-static BOOL ScrCmd_2C1(ScriptContext *ctx);
-static BOOL ScrCmd_2C2(ScriptContext *ctx);
+static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
+static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuXOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
@@ -716,8 +716,8 @@ static BOOL ScrCmd_2C7(ScriptContext *ctx);
 static BOOL ScrCmd_2CA(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
-static BOOL ScrCmd_2D6(ScriptContext *ctx);
-static BOOL ScrCmd_2D7(ScriptContext *ctx);
+static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
 BOOL ScrCmd_2C8(ScriptContext *ctx);
 BOOL ScrCmd_2E2(ScriptContext *ctx);
@@ -948,7 +948,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0AF,
     ScrCmd_0B0,
     ScrCmd_0B1,
-    ScrCmd_0B2,
+    ScrCmd_TryStartGTSApp,
     ScrCmd_0B3,
     ScrCmd_StartChooseStarterScene,
     ScrCmd_SaveChosenStarter,
@@ -1465,7 +1465,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_LockLastTalked,
     ScrCmd_2B5,
     ScrCmd_2B6,
-    ScrCmd_2B7,
+    ScrCmd_CheckPartyHasBadEgg,
     ScrCmd_2B8,
     ScrCmd_ShowUnionRoomMenu,
     ScrCmd_2BA,
@@ -1475,8 +1475,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2BE,
     ScrCmd_2BF,
     ScrCmd_2C0,
-    ScrCmd_2C1,
-    ScrCmd_2C2,
+    ScrCmd_OpenSaveInfo,
+    ScrCmd_CloseSaveInfo,
     ScrCmd_Unused_2C3,
     ScrCmd_2C4,
     ScrCmd_2C5,
@@ -1496,8 +1496,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2D3,
     ScrCmd_2D4,
     ScrCmd_2D5,
-    ScrCmd_2D6,
-    ScrCmd_2D7,
+    ScrCmd_SaveExtraData,
+    ScrCmd_CheckIsMiscSaveInit,
     ScrCmd_PokeMartFrontier,
     ScrCmd_2D9,
     ScrCmd_2DA,
@@ -4214,17 +4214,17 @@ static BOOL ScrCmd_336(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0B2(ScriptContext *ctx)
+static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 connectToWiFi = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
-        *v1 = 1;
-        sub_0203E0FC(ctx->fieldSystem, v0);
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
+        *destVar = TRUE;
+        FieldSystem_LaunchGTSApp(ctx->fieldSystem, connectToWiFi);
         ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
-        *v1 = 0;
+        *destVar = FALSE;
     }
 
     return TRUE;
@@ -4963,23 +4963,23 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx)
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *destVarResult = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVarResult = FieldSystem_Save(fieldSystem);
+    *destVar = FieldSystem_Save(fieldSystem);
     return FALSE;
 }
 
-static BOOL ScrCmd_2D6(ScriptContext *ctx)
+static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx)
 {
     SaveDataExtra_Init(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
-static BOOL ScrCmd_2D7(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = SaveData_MiscSaveBlock_InitFlag(ctx->fieldSystem->saveData);
+    *destVar = SaveData_MiscSaveBlock_InitFlag(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
@@ -7244,7 +7244,7 @@ static BOOL ScrCmd_2A3(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02039074(ctx->fieldSystem->saveData);
+    *v0 = WiFiList_HasValidLogin(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
@@ -7337,7 +7337,7 @@ static BOOL ScrCmd_2B0(ScriptContext *ctx)
 
 static BOOL ScrCmd_2B1(ScriptContext *ctx)
 {
-    sub_02039794();
+    NetworkIcon_Destroy();
     return FALSE;
 }
 
@@ -7388,7 +7388,7 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C1(ScriptContext *ctx)
+static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
@@ -7401,7 +7401,7 @@ static BOOL ScrCmd_2C1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C2(ScriptContext *ctx)
+static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
@@ -7709,7 +7709,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         *v2 = 1;
         sub_0203E6C0(ctx->fieldSystem, v1, v0);
         ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
@@ -7725,7 +7725,7 @@ static BOOL ScrCmd_2F7(ScriptContext *ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         sub_0205749C(ctx->task, *v1);
     }
 
