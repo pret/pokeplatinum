@@ -39,7 +39,8 @@ species_text_bank_names = [
 ]
 
 trainer_text_bank_names = [
-    'npc_trainer_messages.json'
+    'npc_trainer_messages.json',
+    'npc_trainer_names.json'
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
@@ -106,7 +107,8 @@ trainer_text_banks = custom_target('trainer_text_banks',
     command: [
         'mv',
         '@OUTDIR@/../trainers/npc_trainer_messages.json',
-        '@OUTDIR@/npc_trainer_messages.json',
+        '@OUTDIR@/../trainers/npc_trainer_names.json',
+        '@OUTDIR@',
     ],
     env: trainer_env,
     depends: [ datagen_trainer_out ],
