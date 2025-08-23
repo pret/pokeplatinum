@@ -283,7 +283,7 @@ pokeplatinum_c = files(
     'evolution.c',
     'unk_0207C63C.c',
     'type_icon.c',
-    'bag_system.c',
+    'bag_context.c',
     'bag.c',
     'unk_0207DA28.c',
     'unk_0207DFAC.c',

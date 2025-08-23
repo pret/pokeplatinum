@@ -7,7 +7,7 @@
 
 #include "overlay084/struct_ov84_0223B5A0.h"
 
-#include "bag_system.h"
+#include "bag_context.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"

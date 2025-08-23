@@ -5,7 +5,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "bg_window.h"
 #include "font_special_chars.h"
 #include "game_options.h"
@@ -23,7 +23,7 @@ typedef struct {
     BgConfig *unk_00;
     Window unk_04[11];
     Window unk_B4[1];
-    BagSystem *unk_C4;
+    BagContext *unk_C4;
     Bag *unk_C8;
     TrainerInfo *unk_CC;
     Options *options;

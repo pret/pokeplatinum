@@ -10,7 +10,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -391,7 +391,7 @@ void ov84_0223FB50(UnkStruct_ov84_0223B5A0 *param0)
 void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 {
     MenuTemplate v0;
-    BagInterfacePocketInfo *v1;
+    BagInterfacePocket *v1;
     Strbuf *v2;
     Strbuf *v3;
     u16 v4;
@@ -499,7 +499,7 @@ void ov84_0223FE18(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FE94(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     Strbuf *v1;
     Strbuf *v2;
     u16 v3;
@@ -550,7 +550,7 @@ void ov84_0223FFC0(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FFF0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    BagInterfacePocketInfo *v0;
+    BagInterfacePocket *v0;
     Strbuf *v1;
     u16 v2;
 

@@ -6,7 +6,7 @@
 #include "overlay005/fieldmap.h"
 #include "overlay007/shop_menu.h"
 
-#include "bag_system.h"
+#include "bag_context.h"
 #include "field_task.h"
 #include "heap.h"
 
@@ -36,7 +36,7 @@ static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu
         return SHOP_STATE_REINIT_FIELD_MAP;
     }
 
-    shopMenu->itemSoldCount = sub_0207CBAC(shopMenu->unk_04);
+    shopMenu->itemSoldCount = BagContext_GetSoldAmount(shopMenu->unk_04);
 
     Heap_Free(shopMenu->unk_04);
     FieldSystem_StartFieldMap(fieldSystem);
