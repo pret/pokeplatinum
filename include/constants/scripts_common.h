@@ -8,7 +8,7 @@
 #define UNK_03E8                            0x7D3
 #define UNK_043B                            0x7D4
 #define UNK_0479                            0x7D5
-#define CommonScript_SaveGame               0x7D6
+#define SaveGame                            0x7D6
 #define EmptyScript2                        0x7D7
 #define UNK_05EA                            0x7D8
 #define ObtainPoketchApp                    0x7D9
