@@ -381,19 +381,19 @@
       ]
     },
     {
-      "id": "FishingMessage_NoNibbles",
+      "id": "CommonStrings_Text_NotEvenANibble",
       "en_US": "Not even a nibble..."
     },
     {
-      "id": "FishingMessage_FishGotAway",
+      "id": "CommonStrings_Text_ThePokemonGotAway",
       "en_US": "The Pokémon got away..."
     },
     {
-      "id": "FishingMessage_TooFast",
+      "id": "CommonStrings_Text_ReeledItInTooQuickly",
       "en_US": "Reeled it in too quickly..."
     },
     {
-      "id": "FishingMessage_CaughtFish",
+      "id": "CommonStrings_Text_LandedAPokemon",
       "en_US": "Landed a Pokémon!"
     },
     {

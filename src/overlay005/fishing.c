@@ -66,7 +66,7 @@ typedef struct {
     int state;
     u32 fishingRodItemID;
     BOOL isFishEncountered;
-    enum ENCOUNTER_FISHING_ROD_TYPE rodType;
+    enum EncounterFishingRodType rodType;
     FieldBattleDTO *fishEncounterDTO;
     SysTask *sysTask;
 } FishingContext;
@@ -79,7 +79,7 @@ typedef struct {
     int counter;
     int fishDelayCounter;
     int fishHookedCounter;
-    enum ENCOUNTER_FISHING_ROD_TYPE rodType;
+    enum EncounterFishingRodType rodType;
     FieldSystem *fieldSystem;
     UnkStruct_ov101_021D5D90 *unk_24;
     u8 printerID;
@@ -99,14 +99,14 @@ static void FishingTask_Free(FishingTask *fishingTask);
 static void ShowFishingWindow(FishingTask *fishingTask);
 static void PrintFishingMessage(FishingTask *fishingTask, u32 messageID);
 static int TryCloseFishingMessage(FishingTask *fishingTask);
-static u16 ConvertRodTypeToRodItem(enum ENCOUNTER_FISHING_ROD_TYPE rodType);
+static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType);
 static BOOL IsDoneFishing(SysTask *task);
 static int HasCaughtFish(SysTask *task);
 
 BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
 const int sRodTypeHookTimingWindow[];
 
-void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum ENCOUNTER_FISHING_ROD_TYPE rodType)
+void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum EncounterFishingRodType rodType)
 {
     FishingContext *fishingContext = Heap_AllocFromHeapAtEnd(heapID, sizeof(FishingContext));
 
@@ -164,7 +164,7 @@ BOOL FieldTask_Fishing(FieldTask *taskMan)
     return FALSE;
 }
 
-SysTask *StartFishingTask(FieldSystem *fieldSystem, enum ENCOUNTER_FISHING_ROD_TYPE rodType, BOOL isFishEncountered)
+SysTask *StartFishingTask(FieldSystem *fieldSystem, enum EncounterFishingRodType rodType, BOOL isFishEncountered)
 {
     SysTask *task;
     FishingTask *fishingTask = FishingTask_New(sizeof(FishingTask));
@@ -322,7 +322,7 @@ static BOOL FishingTask_ReelFishIn(FishingTask *fishingTask, PlayerAvatar *playe
     if (fishingTask->counter > 15) {
         fishingTask->counter = 0;
         fishingTask->fishingTask = FUNC_FishingTask_WaitCloseFishingMessage;
-        PrintFishingMessage(fishingTask, FishingMessage_CaughtFish);
+        PrintFishingMessage(fishingTask, CommonStrings_Text_LandedAPokemon);
     }
 
     return FALSE;
@@ -349,7 +349,7 @@ static BOOL FishingTask_SetCaughtFish(FishingTask *fishingTask, PlayerAvatar *pl
 static BOOL FishingTask_ReeledInEarly(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
-    PrintFishingMessage(fishingTask, FishingMessage_TooFast);
+    PrintFishingMessage(fishingTask, CommonStrings_Text_ReeledItInTooQuickly);
 
     fishingTask->counter = 16;
     fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
@@ -360,7 +360,7 @@ static BOOL FishingTask_ReeledInEarly(FishingTask *fishingTask, PlayerAvatar *pl
 static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
-    PrintFishingMessage(fishingTask, FishingMessage_FishGotAway);
+    PrintFishingMessage(fishingTask, CommonStrings_Text_ThePokemonGotAway);
 
     fishingTask->counter = 16;
     fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
@@ -394,7 +394,7 @@ static BOOL FishingTask_WaitForNoFish(FishingTask *fishingTask, PlayerAvatar *pl
     }
 
     sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
-    PrintFishingMessage(fishingTask, FishingMessage_NoNibbles);
+    PrintFishingMessage(fishingTask, CommonStrings_Text_NotEvenANibble);
 
     fishingTask->counter = 16;
     fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
@@ -559,7 +559,7 @@ static int TryCloseFishingMessage(FishingTask *fishingTask)
     return FALSE;
 }
 
-static u16 ConvertRodTypeToRodItem(enum ENCOUNTER_FISHING_ROD_TYPE rodType)
+static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType)
 {
     switch (rodType) {
     default:
