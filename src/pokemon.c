@@ -929,7 +929,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_CLASSIC_RIBBON:
     case MON_DATA_PREMIER_RIBBON:
     case MON_DATA_UNUSED_RIBBON_53:
-        result = GetRibbon(monDataBlockA->ribbonsA, param, MON_DATA_SINNOH_CHAMP_RIBBON);
+        result = GetRibbon(monDataBlockA->ribbonsDS1, param, MON_DATA_SINNOH_CHAMP_RIBBON);
         break;
 
     case MON_DATA_MOVE1:
@@ -1028,7 +1028,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_NATIONAL_RIBBON:
     case MON_DATA_EARTH_RIBBON:
     case MON_DATA_WORLD_RIBBON:
-        result = GetRibbon(monDataBlockB->ribbonsB, param, MON_DATA_COOL_RIBBON);
+        result = GetRibbon(monDataBlockB->ribbonsGBA, param, MON_DATA_COOL_RIBBON);
         break;
 
     case MON_DATA_FATEFUL_ENCOUNTER:
@@ -1110,7 +1110,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_SUPER_TOUGH_RIBBON_ULTRA:
     case MON_DATA_SUPER_TOUGH_RIBBON_MASTER:
     case MON_DATA_UNUSED_RIBBON_143:
-        result = GetRibbon(monDataBlockC->ribbonsC, param, MON_DATA_SUPER_COOL_RIBBON);
+        result = GetRibbon(monDataBlockC->ribbonsDS2, param, MON_DATA_SUPER_COOL_RIBBON);
         break;
 
     case MON_DATA_OT_NAME:
@@ -1152,20 +1152,20 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_EGG_LOCATION:
-    case MON_DATA_PLATHGSS_EGG_LOCATION:
-        if (monDataBlockD->DP_EggLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->PlatHGSS_EggLocation) {
-            result = monDataBlockB->PlatHGSS_EggLocation;
+    case MON_DATA_EGG_LOCATION_PTHGSS:
+        if (monDataBlockD->EggLocation_DP == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->EggLocation_PtHGSS) {
+            result = monDataBlockB->EggLocation_PtHGSS;
         } else {
-            result = monDataBlockD->DP_EggLocation;
+            result = monDataBlockD->EggLocation_DP;
         }
         break;
 
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_PLATHGSS_MET_LOCATION:
-        if (monDataBlockD->DP_MetLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->PlatHGSS_MetLocation) {
-            result = monDataBlockB->PlatHGSS_MetLocation;
+    case MON_DATA_MET_LOCATION_PTHGSS:
+        if (monDataBlockD->MetLocation_DP == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->MetLocation_PtHGSS) {
+            result = monDataBlockB->MetLocation_PtHGSS;
         } else {
-            result = monDataBlockD->DP_MetLocation;
+            result = monDataBlockD->MetLocation_DP;
         }
         break;
 
@@ -1482,9 +1482,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_SINNOH_CHAMP_RIBBON);
 
         if (*u8Value) {
-            monDataBlockA->ribbonsA |= bit;
+            monDataBlockA->ribbonsDS1 |= bit;
         } else {
-            monDataBlockA->ribbonsA &= (bit ^ 0xFFFFFFFF);
+            monDataBlockA->ribbonsDS1 &= (bit ^ 0xFFFFFFFF);
         }
 
         break;
@@ -1584,9 +1584,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_COOL_RIBBON);
 
         if (*u8Value) {
-            monDataBlockB->ribbonsB |= bit;
+            monDataBlockB->ribbonsGBA |= bit;
         } else {
-            monDataBlockB->ribbonsB &= (bit ^ 0xFFFFFFFF);
+            monDataBlockB->ribbonsGBA &= (bit ^ 0xFFFFFFFF);
         }
 
         break;
@@ -1671,9 +1671,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_SUPER_COOL_RIBBON);
 
         if (*u8Value) {
-            monDataBlockC->ribbonsC |= bit;
+            monDataBlockC->ribbonsDS2 |= bit;
         } else {
-            monDataBlockC->ribbonsC &= (bit ^ 0xFFFFFFFFFFFFFFFF);
+            monDataBlockC->ribbonsDS2 &= (bit ^ 0xFFFFFFFFFFFFFFFF);
         }
 
         break;
@@ -1714,24 +1714,24 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_EGG_LOCATION:
-    case MON_DATA_PLATHGSS_EGG_LOCATION:
+    case MON_DATA_EGG_LOCATION_PTHGSS:
         if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            monDataBlockD->DP_EggLocation = *u16Value;
-            monDataBlockB->PlatHGSS_EggLocation = *u16Value;
+            monDataBlockD->EggLocation_DP = *u16Value;
+            monDataBlockB->EggLocation_PtHGSS = *u16Value;
         } else {
-            monDataBlockD->DP_EggLocation = FATEFUL_ENCOUNTER_LOCATION;
-            monDataBlockB->PlatHGSS_EggLocation = *u16Value;
+            monDataBlockD->EggLocation_DP = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->EggLocation_PtHGSS = *u16Value;
         }
         break;
 
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_PLATHGSS_MET_LOCATION:
+    case MON_DATA_MET_LOCATION_PTHGSS:
         if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            monDataBlockD->DP_MetLocation = *u16Value;
-            monDataBlockB->PlatHGSS_MetLocation = *u16Value;
+            monDataBlockD->MetLocation_DP = *u16Value;
+            monDataBlockB->MetLocation_PtHGSS = *u16Value;
         } else {
-            monDataBlockD->DP_MetLocation = FATEFUL_ENCOUNTER_LOCATION;
-            monDataBlockB->PlatHGSS_MetLocation = *u16Value;
+            monDataBlockD->MetLocation_DP = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->MetLocation_PtHGSS = *u16Value;
         }
         break;
 

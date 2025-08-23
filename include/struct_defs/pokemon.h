@@ -36,7 +36,7 @@ typedef struct PokemonDataBlockA {
     /* 0x1A */ u8 tough; //!< The Pokemon's current Tough stat.
     /* 0x1B */ u8 sheen; //!< The Pokemon's current Sheen. Effectively controls the maximum number of Poffins that can be eaten.
 
-    /* 0x1C */ u32 ribbonsA; //!< A bitmask of non-Super Contest ribbons introduced in Generation 4. Sinnoh Champ, Ability, Great Ability, Double Ability, Multi Ability, Pair Ability, World Ability, Alert, Shock, Downcast, Careless, Relax, Snooze, Smile, Gorgeous, Royal, Gorgeous Royal, Footprint, Record, History, Legend, Red, Green, Blue, Festival, Carnival, Classic and Premier Ribbons.
+    /* 0x1C */ u32 ribbonsDS1; //!< A bitmask of non-Super Contest ribbons introduced in Generation 4. Sinnoh Champ, Ability, Great Ability, Double Ability, Multi Ability, Pair Ability, World Ability, Alert, Shock, Downcast, Careless, Relax, Snooze, Smile, Gorgeous, Royal, Gorgeous Royal, Footprint, Record, History, Legend, Red, Green, Blue, Festival, Carnival, Classic and Premier Ribbons.
 } PokemonDataBlockA;
 
 /**
@@ -56,15 +56,15 @@ typedef struct PokemonDataBlockB {
                u32 isEgg : 1; //!< Whether or not the Pokemon is an egg.
                u32 hasNickname : 1; //!< Whether or not the Pokemon has a nickname.
 
-    /* 0x14 */ u32 ribbonsB; //!< A bitmask of ribbons introduced in Generation 3. Cool, Beauty, Cute, Smart, Tough, Champion, Winning, Victory, Artist, Effort, Marine, Land, Sky, Country, National, Earth and World Ribbons.
+    /* 0x14 */ u32 ribbonsGBA; //!< A bitmask of ribbons introduced in Generation 3. Cool, Beauty, Cute, Smart, Tough, Champion, Winning, Victory, Artist, Effort, Marine, Land, Sky, Country, National, Earth and World Ribbons.
     /* 0x18 */ u8 fatefulEncounter : 1; //!< Whether or not the Pokemon is a Fateful Encounter (i.e., received via out-of-game event).
                u8 gender : 2; //!< The Pokemon's gender; should only ever be 0, 1, or 2. See enum Gender.
                u8 form : 5; //!< The Pokemon's form.
     /* 0x19 */ u8 unused1; //!< First 6 bits track Shiny Leaves from HGSS.
     /* 0x1A */ u16 unused2; //!< Unused space.
 
-    /* 0x1C */ u16 PlatHGSS_EggLocation; //!< Egg location for places not available in DP.
-    /* 0x1E */ u16 PlatHGSS_MetLocation; //!< Met location for places not available in DP.
+    /* 0x1C */ u16 EggLocation_PtHGSS; //!< Egg location for places not available in DP.
+    /* 0x1E */ u16 MetLocation_PtHGSS; //!< Met location for places not available in DP.
 } PokemonDataBlockB;
 
 /**
@@ -76,7 +76,7 @@ typedef struct PokemonDataBlockC {
     /* 0x16 */ u8 unused; //!< Unused space.
     /* 0x17 */ u8 originGame; //!< The game code for the Pokemon's originating game.
 
-    /* 0x18 */ u64 ribbonsC; //!< A bitmask of ribbons given to the Pokemon from Sinnoh's Super Contests.
+    /* 0x18 */ u64 ribbonsDS2; //!< A bitmask of ribbons given to the Pokemon from Sinnoh's Super Contests.
 } PokemonDataBlockC;
 
 /**
@@ -93,8 +93,8 @@ typedef struct PokemonDataBlockD {
     /* 0x14 */ u8 metMonth; //!< The month in which the Pokemon was first met.
     /* 0x15 */ u8 metDay; //!< The day on which the Pokemon was first met.
 
-    /* 0x16 */ u16 DP_EggLocation; //!< The location in which the Pokemon's Egg was obtained.
-    /* 0x18 */ u16 DP_MetLocation; //!< The location in which the Pokemon was first met.
+    /* 0x16 */ u16 EggLocation_DP; //!< The location in which the Pokemon's Egg was obtained.
+    /* 0x18 */ u16 MetLocation_DP; //!< The location in which the Pokemon was first met.
 
     /* 0x1A */ u8 pokerus; //!< The Pokemon's Pokerus value.
     /* 0x1B */ u8 pokeball; //!< The Pokemon's Pokeball ID.
