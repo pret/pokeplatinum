@@ -42,24 +42,24 @@
 #include "res/text/bank/common_strings.h"
 
 enum FishingActions {
-    FUNC_ov5_021F0A30,
-    FUNC_ov5_021F0A48,
-    FUNC_ov5_021F0A80,
-    FUNC_ov5_021F0AB8,
-    FUNC_ov5_021F0AEC,
-    FUNC_ov5_021F0B30,
-    FUNC_ov5_021F0B5C,
-    FUNC_ov5_021F0B7C,
-    FUNC_ov5_021F0BB0,
-    FUNC_ov5_021F0BC8,
-    FUNC_ov5_021F0BD4,
-    FUNC_ov5_021F0BF4,
-    FUNC_ov5_021F0C34,
-    FUNC_ov5_021F0C40,
-    FUNC_ov5_021F0C84,
-    FUNC_ov5_021F0CB0,
-    FUNC_ov5_021F0CEC,
-    FUNC_ov5_021F0D00
+    FUNC_FishingTask_Start,
+    FUNC_FishingTask_PreparePlayerAvatar,
+    FUNC_FishingTask_CastRod,
+    FUNC_FishingTask_SetFishWait,
+    FUNC_FishingTask_WaitForFish,
+    FUNC_FishingTask_CheckForReelInFish,
+    FUNC_FishingTask_CaughtFish,
+    FUNC_FishingTask_ReelFishIn,
+    FUNC_FishingTask_WaitCloseFishingMessage,
+    FUNC_FishingTask_SetCaughtFish,
+    FUNC_FishingTask_ReeledInEarly,
+    FUNC_FishingTask_FishGotAway,
+    FUNC_FishingTask_SetNoFishWait,
+    FUNC_FishingTask_WaitForNoFish,
+    FUNC_FishingTask_WaitCloseMessage,
+    FUNC_FishingTask_PutRodAway,
+    FUNC_FishingTask_DelayBeforeFishFishing,
+    FUNC_FishingTask_FinishFishing
 };
 
 typedef struct {
@@ -73,12 +73,12 @@ typedef struct {
 
 typedef struct {
     BOOL isFishEncountered;
-    int unk_04;
+    BOOL doneFishing;
     BOOL caughtFish;
     enum FishingActions fishingTask;
-    int unk_10;
-    int unk_14;
-    int unk_18;
+    int counter;
+    int fishDelayCounter;
+    int fishHookedCounter;
     enum ENCOUNTER_FISHING_ROD_TYPE rodType;
     FieldSystem *fieldSystem;
     UnkStruct_ov101_021D5D90 *unk_24;
@@ -100,11 +100,11 @@ static void ShowFishingWindow(FishingTask *fishingTask);
 static void PrintFishingMessage(FishingTask *fishingTask, u32 messageID);
 static int TryCloseFishingMessage(FishingTask *fishingTask);
 static u16 ConvertRodTypeToRodItem(enum ENCOUNTER_FISHING_ROD_TYPE rodType);
-static int ov5_021F09D8(SysTask *task);
+static BOOL IsDoneFishing(SysTask *task);
 static int HasCaughtFish(SysTask *task);
 
 BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
-const int Unk_ov5_021FFA00[];
+const int sRodTypeHookTimingWindow[];
 
 void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum ENCOUNTER_FISHING_ROD_TYPE rodType)
 {
@@ -118,7 +118,7 @@ void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum ENCOUNTER_F
     return fishingContext;
 }
 
-BOOL ov5_021F08F8(FieldTask *taskMan)
+BOOL FieldTask_Fishing(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     FishingContext *fishingContext = FieldTask_GetEnv(taskMan);
@@ -132,7 +132,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
         fishingContext->state++;
         break;
     case 1:
-        if (ov5_021F09D8(fishingContext->sysTask) == 1) {
+        if (IsDoneFishing(fishingContext->sysTask) == TRUE) {
             int caughtFish = HasCaughtFish(fishingContext->sysTask);
 
             FishingSysTask_Free(fishingContext->sysTask);
@@ -178,10 +178,10 @@ SysTask *StartFishingTask(FieldSystem *fieldSystem, enum ENCOUNTER_FISHING_ROD_T
     return task;
 }
 
-int ov5_021F09D8(SysTask *task)
+BOOL IsDoneFishing(SysTask *task)
 {
     FishingTask *fishingTask = SysTask_GetParam(task);
-    return fishingTask->unk_04;
+    return fishingTask->doneFishing;
 }
 
 BOOL HasCaughtFish(SysTask *task)
@@ -207,163 +207,163 @@ static void GoFish(SysTask *task, void *fishingTaskParam)
     while (sFishingActions[fishingTask->fishingTask](fishingTask, playerAvatar, playerMapObject)) {}
 }
 
-static BOOL ov5_021F0A30(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_Start(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     FishingTask_Init(fishingTask);
     MapObject_SetPauseMovementOff(playerMapObject);
-    fishingTask->fishingTask = FUNC_ov5_021F0A48;
+    fishingTask->fishingTask = FUNC_FishingTask_PreparePlayerAvatar;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0A48(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_PreparePlayerAvatar(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (LocalMapObj_IsAnimationSet(playerMapObject) == TRUE) {
         sub_020656AC(playerMapObject);
-        PlayerAvatar_SetRequestStateBit(playerAvatar, (1 << 5));
+        PlayerAvatar_SetTransitionState(playerAvatar, PLAYER_TRANSITION_FISHING);
         PlayerAvatar_RequestChangeState(playerAvatar);
-        sub_02062A0C(playerMapObject, 0x1);
-        fishingTask->fishingTask = FUNC_ov5_021F0A80;
+        sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_01);
+        fishingTask->fishingTask = FUNC_FishingTask_CastRod;
     }
 
     return FALSE;
 }
 
-static BOOL ov5_021F0A80(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_CastRod(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10++;
+    fishingTask->counter++;
 
-    if (fishingTask->unk_10 == 10) {
+    if (fishingTask->counter == 10) {
         Sound_PlayEffect(SEQ_SE_DP_FW104);
     }
 
-    if (fishingTask->unk_10 < 34) {
+    if (fishingTask->counter < 34) {
         return FALSE;
     }
 
     if (fishingTask->isFishEncountered == TRUE) {
-        fishingTask->fishingTask = FUNC_ov5_021F0AB8;
+        fishingTask->fishingTask = FUNC_FishingTask_SetFishWait;
     } else {
-        fishingTask->fishingTask = FUNC_ov5_021F0C34;
+        fishingTask->fishingTask = FUNC_FishingTask_SetNoFishWait;
     }
 
-    fishingTask->unk_10 = 0;
+    fishingTask->counter = 0;
     return TRUE;
 }
 
-static BOOL ov5_021F0AB8(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_SetFishWait(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_14 = ((LCRNG_Next() % 4) + 1) * 30;
-    fishingTask->unk_18 = Unk_ov5_021FFA00[fishingTask->rodType];
-    fishingTask->fishingTask = FUNC_ov5_021F0AEC;
+    fishingTask->fishDelayCounter = ((LCRNG_Next() % 4) + 1) * 30;
+    fishingTask->fishHookedCounter = sRodTypeHookTimingWindow[fishingTask->rodType];
+    fishingTask->fishingTask = FUNC_FishingTask_WaitForFish;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0AEC(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_WaitForFish(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_14--;
+    fishingTask->fishDelayCounter--;
 
     if (TryPressA() == TRUE) {
-        fishingTask->fishingTask = FUNC_ov5_021F0BD4;
+        fishingTask->fishingTask = FUNC_FishingTask_ReeledInEarly;
         return TRUE;
     }
 
-    if (fishingTask->unk_14 > 0) {
+    if (fishingTask->fishDelayCounter > 0) {
         return FALSE;
     }
 
-    sub_02062A0C(playerMapObject, 0x2);
+    sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_02);
 
     fishingTask->unk_24 = ov5_021F5D8C(playerMapObject, 0, 1, 0);
-    fishingTask->fishingTask = FUNC_ov5_021F0B30;
+    fishingTask->fishingTask = FUNC_FishingTask_CheckForReelInFish;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0B30(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_CheckForReelInFish(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_18--;
+    fishingTask->fishHookedCounter--;
 
     if (TryPressA() == TRUE) {
-        fishingTask->fishingTask = FUNC_ov5_021F0B5C;
+        fishingTask->fishingTask = FUNC_FishingTask_CaughtFish;
         return TRUE;
     }
 
-    if (fishingTask->unk_18 > 0) {
+    if (fishingTask->fishHookedCounter > 0) {
         return FALSE;
     }
 
-    fishingTask->fishingTask = FUNC_ov5_021F0BF4;
+    fishingTask->fishingTask = FUNC_FishingTask_FishGotAway;
 
     return FALSE;
 }
 
-static BOOL ov5_021F0B5C(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_CaughtFish(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     ov5_021F5C58(fishingTask->unk_24);
-    sub_02062A0C(playerMapObject, 0x3);
+    sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_03);
 
-    fishingTask->unk_10 = 0;
-    fishingTask->fishingTask = FUNC_ov5_021F0B7C;
+    fishingTask->counter = 0;
+    fishingTask->fishingTask = FUNC_FishingTask_ReelFishIn;
 
     return FALSE;
 }
 
-static BOOL ov5_021F0B7C(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_ReelFishIn(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10++;
+    fishingTask->counter++;
 
     if (fishingTask->unk_24 != NULL) {
         sub_0207136C(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 
-    if (fishingTask->unk_10 > 15) {
-        fishingTask->unk_10 = 0;
-        fishingTask->fishingTask = FUNC_ov5_021F0BB0;
-        PrintFishingMessage(fishingTask, pl_msg_00000213_00057);
+    if (fishingTask->counter > 15) {
+        fishingTask->counter = 0;
+        fishingTask->fishingTask = FUNC_FishingTask_WaitCloseFishingMessage;
+        PrintFishingMessage(fishingTask, FishingMessage_CaughtFish);
     }
 
     return FALSE;
 }
 
-static BOOL ov5_021F0BB0(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_WaitCloseFishingMessage(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (TryCloseFishingMessage(fishingTask) == FALSE) {
         return FALSE;
     }
 
-    fishingTask->fishingTask = FUNC_ov5_021F0BC8;
+    fishingTask->fishingTask = FUNC_FishingTask_SetCaughtFish;
     return TRUE;
 }
 
-static BOOL ov5_021F0BC8(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_SetCaughtFish(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     fishingTask->caughtFish = TRUE;
-    fishingTask->fishingTask = FUNC_ov5_021F0CB0;
+    fishingTask->fishingTask = FUNC_FishingTask_PutRodAway;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0BD4(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_ReeledInEarly(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    sub_02062A0C(playerMapObject, 0x0);
-    PrintFishingMessage(fishingTask, pl_msg_00000213_00056);
+    sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
+    PrintFishingMessage(fishingTask, FishingMessage_TooFast);
 
-    fishingTask->unk_10 = 16;
-    fishingTask->fishingTask = FUNC_ov5_021F0C84;
+    fishingTask->counter = 16;
+    fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0BF4(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    sub_02062A0C(playerMapObject, 0x0);
-    PrintFishingMessage(fishingTask, pl_msg_00000213_00055);
+    sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
+    PrintFishingMessage(fishingTask, FishingMessage_FishGotAway);
 
-    fishingTask->unk_10 = 16;
-    fishingTask->fishingTask = FUNC_ov5_021F0C84;
+    fishingTask->counter = 16;
+    fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fishingTask->fieldSystem->saveData), RECORD_FISH_GOT_AWAY);
 
@@ -372,56 +372,56 @@ static BOOL ov5_021F0BF4(FishingTask *fishingTask, PlayerAvatar *playerAvatar, M
     return TRUE;
 }
 
-static BOOL ov5_021F0C34(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_SetNoFishWait(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10 = 30 * 4;
-    fishingTask->fishingTask = FUNC_ov5_021F0C40;
+    fishingTask->counter = 30 * 4;
+    fishingTask->fishingTask = FUNC_FishingTask_WaitForNoFish;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0C40(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_WaitForNoFish(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10--;
+    fishingTask->counter--;
 
     if (TryPressA() == TRUE) {
-        fishingTask->fishingTask = FUNC_ov5_021F0BD4;
+        fishingTask->fishingTask = FUNC_FishingTask_ReeledInEarly;
         return TRUE;
     }
 
-    if (fishingTask->unk_10) {
+    if (fishingTask->counter) {
         return FALSE;
     }
 
-    sub_02062A0C(playerMapObject, 0x0);
-    PrintFishingMessage(fishingTask, pl_msg_00000213_00054);
+    sub_02062A0C(playerMapObject, MAP_OBJ_UNK_A0_00);
+    PrintFishingMessage(fishingTask, FishingMessage_NoNibbles);
 
-    fishingTask->unk_10 = 16;
-    fishingTask->fishingTask = FUNC_ov5_021F0C84;
+    fishingTask->counter = 16;
+    fishingTask->fishingTask = FUNC_FishingTask_WaitCloseMessage;
 
     return FALSE;
 }
 
-static BOOL ov5_021F0C84(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_WaitCloseMessage(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10++;
+    fishingTask->counter++;
 
-    if (fishingTask->unk_10 < 16) {
+    if (fishingTask->counter < 16) {
         return FALSE;
     }
 
-    fishingTask->unk_10 = 16;
+    fishingTask->counter = 16;
 
     if (TryCloseFishingMessage(fishingTask) == FALSE) {
         return FALSE;
     }
 
-    fishingTask->fishingTask = FUNC_ov5_021F0CB0;
+    fishingTask->fishingTask = FUNC_FishingTask_PutRodAway;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0CB0(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_PutRodAway(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (fishingTask->unk_24 != NULL) {
         ov5_021F5C58(fishingTask->unk_24);
@@ -430,58 +430,58 @@ static BOOL ov5_021F0CB0(FishingTask *fishingTask, PlayerAvatar *playerAvatar, M
     FishingTask_Free(fishingTask);
 
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
-    u32 v1 = sub_0205EED8(playerState);
+    u32 playerTransition = Player_ConvertStateToTransition(playerState);
 
-    PlayerAvatar_SetRequestStateBit(playerAvatar, v1);
+    PlayerAvatar_SetTransitionState(playerAvatar, playerTransition);
     PlayerAvatar_RequestChangeState(playerAvatar);
 
-    fishingTask->unk_10 = 0;
-    fishingTask->fishingTask = FUNC_ov5_021F0CEC;
+    fishingTask->counter = 0;
+    fishingTask->fishingTask = FUNC_FishingTask_DelayBeforeFishFishing;
 
     return TRUE;
 }
 
-static BOOL ov5_021F0CEC(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_DelayBeforeFishFishing(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
-    fishingTask->unk_10++;
+    fishingTask->counter++;
 
-    if (fishingTask->unk_10 > 2) {
-        fishingTask->fishingTask = FUNC_ov5_021F0D00;
+    if (fishingTask->counter > 2) {
+        fishingTask->fishingTask = FUNC_FishingTask_FinishFishing;
     }
 
     return FALSE;
 }
 
-static BOOL ov5_021F0D00(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
+static BOOL FishingTask_FinishFishing(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (fishingTask->unk_24 != NULL) {
         sub_0207136C(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 
-    fishingTask->unk_04 = 1;
+    fishingTask->doneFishing = TRUE;
     return FALSE;
 }
 
 static BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *) = {
-    [FUNC_ov5_021F0A30] = ov5_021F0A30,
-    [FUNC_ov5_021F0A48] = ov5_021F0A48,
-    [FUNC_ov5_021F0A80] = ov5_021F0A80,
-    [FUNC_ov5_021F0AB8] = ov5_021F0AB8,
-    [FUNC_ov5_021F0AEC] = ov5_021F0AEC,
-    [FUNC_ov5_021F0B30] = ov5_021F0B30,
-    [FUNC_ov5_021F0B5C] = ov5_021F0B5C,
-    [FUNC_ov5_021F0B7C] = ov5_021F0B7C,
-    [FUNC_ov5_021F0BB0] = ov5_021F0BB0,
-    [FUNC_ov5_021F0BC8] = ov5_021F0BC8,
-    [FUNC_ov5_021F0BD4] = ov5_021F0BD4,
-    [FUNC_ov5_021F0BF4] = ov5_021F0BF4,
-    [FUNC_ov5_021F0C34] = ov5_021F0C34,
-    [FUNC_ov5_021F0C40] = ov5_021F0C40,
-    [FUNC_ov5_021F0C84] = ov5_021F0C84,
-    [FUNC_ov5_021F0CB0] = ov5_021F0CB0,
-    [FUNC_ov5_021F0CEC] = ov5_021F0CEC,
-    [FUNC_ov5_021F0D00] = ov5_021F0D00
+    [FUNC_FishingTask_Start] = FishingTask_Start,
+    [FUNC_FishingTask_PreparePlayerAvatar] = FishingTask_PreparePlayerAvatar,
+    [FUNC_FishingTask_CastRod] = FishingTask_CastRod,
+    [FUNC_FishingTask_SetFishWait] = FishingTask_SetFishWait,
+    [FUNC_FishingTask_WaitForFish] = FishingTask_WaitForFish,
+    [FUNC_FishingTask_CheckForReelInFish] = FishingTask_CheckForReelInFish,
+    [FUNC_FishingTask_CaughtFish] = FishingTask_CaughtFish,
+    [FUNC_FishingTask_ReelFishIn] = FishingTask_ReelFishIn,
+    [FUNC_FishingTask_WaitCloseFishingMessage] = FishingTask_WaitCloseFishingMessage,
+    [FUNC_FishingTask_SetCaughtFish] = FishingTask_SetCaughtFish,
+    [FUNC_FishingTask_ReeledInEarly] = FishingTask_ReeledInEarly,
+    [FUNC_FishingTask_FishGotAway] = FishingTask_FishGotAway,
+    [FUNC_FishingTask_SetNoFishWait] = FishingTask_SetNoFishWait,
+    [FUNC_FishingTask_WaitForNoFish] = FishingTask_WaitForNoFish,
+    [FUNC_FishingTask_WaitCloseMessage] = FishingTask_WaitCloseMessage,
+    [FUNC_FishingTask_PutRodAway] = FishingTask_PutRodAway,
+    [FUNC_FishingTask_DelayBeforeFishFishing] = FishingTask_DelayBeforeFishFishing,
+    [FUNC_FishingTask_FinishFishing] = FishingTask_FinishFishing
 };
 
 static void *FishingTask_New(u32 fishingTaskSize)
@@ -573,8 +573,8 @@ static u16 ConvertRodTypeToRodItem(enum ENCOUNTER_FISHING_ROD_TYPE rodType)
     }
 }
 
-static const int Unk_ov5_021FFA00[] = {
-    [FISHING_TYPE_OLD_ROD] = 0x2D,
-    [FISHING_TYPE_GOOD_ROD] = 0x1E,
-    [FISHING_TYPE_SUPER_ROD] = 0xF
+static const int sRodTypeHookTimingWindow[] = {
+    [FISHING_TYPE_OLD_ROD] = 45,
+    [FISHING_TYPE_GOOD_ROD] = 30,
+    [FISHING_TYPE_SUPER_ROD] = 15
 };

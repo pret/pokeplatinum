@@ -441,7 +441,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
-            PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, 1 << 0);
+            PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
@@ -451,7 +451,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
-            PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, 1 << 1);
+            PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             RadarChain_Clear(fieldSystem->chain);
@@ -770,7 +770,7 @@ static void UseOldRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCon
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = ov5_021F08F8;
+    menu->callback = FieldTask_Fishing;
     menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_OLD_ROD);
     menu->state = START_MENU_STATE_10;
 }
@@ -779,7 +779,7 @@ static BOOL UseOldRodInField(ItemFieldUseContext *usageContext)
 {
     void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_OLD_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
+    FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
 }
 
@@ -790,7 +790,7 @@ static void UseGoodRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = ov5_021F08F8;
+    menu->callback = FieldTask_Fishing;
     menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_GOOD_ROD);
     menu->state = START_MENU_STATE_10;
 }
@@ -799,7 +799,7 @@ static BOOL UseGoodRodInField(ItemFieldUseContext *usageContext)
 {
     void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_GOOD_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
+    FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
 }
 
@@ -810,7 +810,7 @@ static void UseSuperRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = ov5_021F08F8;
+    menu->callback = FieldTask_Fishing;
     menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_SUPER_ROD);
     menu->state = START_MENU_STATE_10;
 }
@@ -819,7 +819,7 @@ static BOOL UseSuperRodInField(ItemFieldUseContext *usageContext)
 {
     void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_SUPER_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
+    FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_Fishing, fishingContext);
     return FALSE;
 }
 

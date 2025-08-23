@@ -87,8 +87,8 @@ typedef struct UnkStruct_0206D140_t {
 typedef struct {
     u16 species;
     u8 gender;
-    u8 unk_03;
-    u8 unk_04;
+    u8 language;
+    u8 metGame;
     u16 fishingRodItemID;
     BOOL unk_08;
 } UnkStruct_0206D374;
@@ -479,12 +479,12 @@ static void sub_0206CE38(Pokemon *param0, u16 *species, u8 *gender, u8 *language
     *metGame = Pokemon_GetValue(param0, MON_DATA_MET_GAME, NULL);
 }
 
-static void sub_0206CE74(StringTemplate *param0, int param1, u16 species, u8 gender, u8 param4, u8 param5)
+static void sub_0206CE74(StringTemplate *param0, int param1, u16 species, u8 gender, u8 language, u8 metGame)
 {
     u16 speciesName[11];
 
     MessageLoader_GetSpeciesName(species, HEAP_ID_FIELD, speciesName);
-    sub_0206CD94(param0, param1, speciesName, gender, param4, 1);
+    sub_0206CD94(param0, param1, speciesName, gender, language, 1);
 }
 
 static void sub_0206CEA4(StringTemplate *param0, int param1, u16 param2)
@@ -771,17 +771,17 @@ static BOOL sub_0206D320(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return Pokedex_HasSeenSpecies(pokedex, v1->species);
 }
 
-void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 fishingRodItemID, Pokemon *mon)
+void sub_0206D340(FieldSystem *fieldSystem, BOOL monExists, u16 fishingRodItemID, Pokemon *mon)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D374 *v1 = &v0.val3;
 
-    if (param1) {
-        sub_0206CE38(mon, &v1->species, &v1->gender, &v1->unk_03, &v1->unk_04);
+    if (monExists) {
+        sub_0206CE38(mon, &v1->species, &v1->gender, &v1->language, &v1->metGame);
     }
 
     v1->fishingRodItemID = fishingRodItemID;
-    v1->unk_08 = param1;
+    v1->unk_08 = monExists;
 
     sub_0206CD70(fieldSystem, 2, 3, v1);
 }
@@ -794,7 +794,7 @@ static int sub_0206D374(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     if (v0->unk_08) {
         StringTemplate_SetItemName(param1, 1, v0->fishingRodItemID);
-        sub_0206CE74(param1, 2, v0->species, v0->gender, v0->unk_03, v0->unk_04);
+        sub_0206CE74(param1, 2, v0->species, v0->gender, v0->language, v0->metGame);
         return 4;
     } else {
         return 5;

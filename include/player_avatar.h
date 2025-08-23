@@ -80,7 +80,7 @@ void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y);
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
 int Player_MoveStateFromGender(int param0, int param1);
-u32 sub_0205EED8(int param0);
+u32 Player_ConvertStateToTransition(int param0);
 PlayerAvatar *sub_0205EF3C(FieldSystem *fieldSystem);
 void sub_0205EF40(PlayerAvatar *playerAvatar, int param1);
 int sub_0205EF58(PlayerAvatar *playerAvatar);
