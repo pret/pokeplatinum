@@ -428,7 +428,7 @@ void ov84_0223FB70(BagController *param0, u8 *param1, u8 param2)
         Window_FillTilemap(&param0->windows[1], 0);
         ov84_0223F584(param0, param0->bagCtx->selectedItem);
         Window_ScheduleCopyToVRAM(&param0->windows[1]);
-        ov84_02240D5C(param0, param0->bagCtx->selectedItem, 1);
+        BagUI_UpdateTypeAndCategoryIcons(param0, param0->bagCtx->selectedItem, 1);
     } else {
         Window_DrawMessageBoxWithScrollCursor(&param0->windows[v5], 1, 1024 - 9 - (18 + 12), 12);
         Window_FillTilemap(&param0->windows[v5], 15);
@@ -472,7 +472,7 @@ void ov84_0223FD84(BagController *param0)
     Window_FillTilemap(&param0->windows[1], 0);
     ov84_0223F528(param0, param0->bagCtx->selectedItem);
     Window_ScheduleCopyToVRAM(&param0->windows[1]);
-    ov84_02240D5C(param0, 0, 0);
+    BagUI_UpdateTypeAndCategoryIcons(param0, 0, 0);
 }
 
 void ov84_0223FE18(BagController *param0)
