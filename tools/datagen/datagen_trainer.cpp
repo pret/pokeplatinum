@@ -197,7 +197,7 @@ static void ParseAndPackParty(const rapidjson::Document &doc, TrainerDataType mo
     narc_pack_file(trpokeVFS, partyBuf, bufSize);
 }
 
-static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, std::string stem, rapidjson::Value *outMessages, rapidjson::Document *out)
+static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, std::string stem, rapidjson::Value *outMessages, rapidjson::Document *messagesTextBank)
 {
     rapidjson::Value trainerMessages(rapidjson::kArrayType);
     std::string ret = "";
@@ -208,12 +208,11 @@ static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, 
         ret += (char)LookupConst(type, TrainerMessageType);
         ret += (char)0;
 
-        rapidjson::Value message;
-        message.SetObject();
-        std::string id = stem + type;
+        rapidjson::Value message(rapidjson::kObjectType);
+        std::string id = "NPCTrainerMessages_Text_" + stem + "_" + type;
         rapidjson::Value idValue(rapidjson::kStringType);
-        idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), out->GetAllocator());
-        message.AddMember("id", idValue, out->GetAllocator());
+        idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), messagesTextBank->GetAllocator());
+        message.AddMember("id", idValue, messagesTextBank->GetAllocator());
 
         if (member.HasMember("en_US")) {
             if (member["en_US"].IsArray()) {
@@ -222,24 +221,52 @@ static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, 
                 for (const auto &member2 : member["en_US"].GetArray()) {
                     std::string str = member2.GetString();
                     rapidjson::Value string(rapidjson::kStringType);
-                    string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), out->GetAllocator());
-                    strings.PushBack(string, out->GetAllocator());
+                    string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), messagesTextBank->GetAllocator());
+                    strings.PushBack(string, messagesTextBank->GetAllocator());
                 }
-                message.AddMember("en_US", strings, out->GetAllocator());
+                message.AddMember("en_US", strings, messagesTextBank->GetAllocator());
             } else {
                 std::string str = member["en_US"].GetString();
                 rapidjson::Value string(rapidjson::kStringType);
-                string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), out->GetAllocator());
-                message.AddMember("en_US", string, out->GetAllocator());
+                string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), messagesTextBank->GetAllocator());
+                message.AddMember("en_US", string, messagesTextBank->GetAllocator());
             }
         } else if (member.HasMember("garbage")) {
-            message.AddMember("garbage", member["garbage"].GetInt(), out->GetAllocator());
+            message.AddMember("garbage", member["garbage"].GetInt(), messagesTextBank->GetAllocator());
         }
 
-        trainerMessages.PushBack(message, out->GetAllocator());
+        trainerMessages.PushBack(message, messagesTextBank->GetAllocator());
     }
     *outMessages = trainerMessages;
     return ret;
+}
+
+static std::string ParseName(const rapidjson::Document &doc, int trainerID)
+{
+    std::string name = doc["name"].GetString();
+    u8 trClass = LookupConst(doc["class"].GetString(), TrainerClass);
+
+    static constexpr std::array<u8, 6> noTrNameClasses = {
+        TRAINER_CLASS_RIVAL,
+        TRAINER_CLASS_TOWER_TYCOON,
+        TRAINER_CLASS_HALL_MATRON,
+        TRAINER_CLASS_FACTORY_HEAD,
+        TRAINER_CLASS_ARCADE_STAR,
+        TRAINER_CLASS_CASTLE_VALET
+    };
+    static constexpr std::array<int, 5> noTrNameIDs = {
+        861,
+        862,
+        863,
+        864,
+        865
+    };
+
+    if (std::find(std::begin(noTrNameClasses), std::end(noTrNameClasses), trClass) == std::end(noTrNameClasses) &&
+        std::find(std::begin(noTrNameIDs), std::end(noTrNameIDs), trainerID) == std::end(noTrNameIDs)) {
+        name = "{TRNAME}" + name;
+    }
+    return name;
 }
 
 int main(int argc, char **argv)
@@ -265,11 +292,14 @@ int main(int argc, char **argv)
     vfs_pack_ctx *trtblofsVFS = narc_pack_start();
 
     rapidjson::Document doc;
-    rapidjson::Document out(rapidjson::kObjectType);
-    out.AddMember("key", 6120, out.GetAllocator());
+    rapidjson::Document messagesTextBank(rapidjson::kObjectType);
+    rapidjson::Document namesTextBank(rapidjson::kObjectType);
+    messagesTextBank.AddMember("key", 6120, messagesTextBank.GetAllocator());
+    namesTextBank.AddMember("key", 55533, namesTextBank.GetAllocator());
 
     int trainerID = 0;
     int newTrainerIndex = 0;
+    rapidjson::Value nameMessages(rapidjson::kArrayType);
     for (auto &trainerStem : trainerRegistry) {
         fs::path trainerDataPath = dataRoot / (trainerStem + ".json");
         std::string json = ReadWholeFile(trainerDataPath);
@@ -289,7 +319,21 @@ int main(int argc, char **argv)
         }
 
         rapidjson::Value trainerMessages;
-        std::string trMsg = ParseMessages(doc, trainerID, trainerStem, &trainerMessages, &out);
+        std::string trMsg = ParseMessages(doc, trainerID, trainerStem, &trainerMessages, &messagesTextBank);
+
+        std::string trName = ParseName(doc, trainerID);
+        rapidjson::Value nameMessage(rapidjson::kObjectType);
+
+        std::string id = "NPCTrainerNames_Text_" + trainerStem;
+        rapidjson::Value idValue(rapidjson::kStringType);
+        idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), namesTextBank.GetAllocator());
+        nameMessage.AddMember("id", idValue, namesTextBank.GetAllocator());
+
+        rapidjson::Value string(rapidjson::kStringType);
+        string.SetString(trName.c_str(), static_cast<rapidjson::SizeType>(trName.length()), namesTextBank.GetAllocator());
+        nameMessage.AddMember("en_US", string, namesTextBank.GetAllocator());
+
+        nameMessages.PushBack(nameMessage, namesTextBank.GetAllocator());
         
         if (trMsg.length()) {
             if (trainerID < VANILLA_TRAINER_COUNT && trtblIndices[trainerID] != -1) {
@@ -308,6 +352,8 @@ int main(int argc, char **argv)
 
         trainerID++;
     }
+    
+    namesTextBank.AddMember("messages", nameMessages, namesTextBank.GetAllocator());
 
     std::string str = "";
     int offset = 0;
@@ -320,12 +366,12 @@ int main(int argc, char **argv)
             offset += length;
             for (const auto &member : messagesArr[i].GetArray()) {
                 rapidjson::Value tmp;
-                tmp.CopyFrom(member, out.GetAllocator());
-                messages.PushBack(tmp, out.GetAllocator());
+                tmp.CopyFrom(member, messagesTextBank.GetAllocator());
+                messages.PushBack(tmp, messagesTextBank.GetAllocator());
             }
         }
     }
-    out.AddMember("messages", messages, out.GetAllocator());
+    messagesTextBank.AddMember("messages", messages, messagesTextBank.GetAllocator());
 
     char *chars = const_cast<char *>(str.c_str());
     narc_pack_file_copy(trtblVFS, reinterpret_cast<unsigned char *>(chars), offset);
@@ -336,11 +382,18 @@ int main(int argc, char **argv)
     PackNarc(trtblVFS, outputRoot / "trtbl.narc");
     PackNarc(trtblofsVFS, outputRoot / "trtblofs.narc");
 
-    FILE *fp = fopen((outputRoot / "npc_trainer_messages.json").string().c_str(), "w");
     char writeBuffer[65536];
-    rapidjson::FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
-    rapidjson::Writer<rapidjson::FileWriteStream> writer(os);
-    out.Accept(writer);
+
+    FILE *fp = fopen((outputRoot / "npc_trainer_messages.json").string().c_str(), "w");
+    rapidjson::FileWriteStream messagesStream(fp, writeBuffer, sizeof(writeBuffer));
+    rapidjson::Writer<rapidjson::FileWriteStream> messagesWriter(messagesStream);
+    messagesTextBank.Accept(messagesWriter);
+    fclose(fp);
+
+    fp = fopen((outputRoot / "npc_trainer_names.json").string().c_str(), "w");
+    rapidjson::FileWriteStream namesStream(fp, writeBuffer, sizeof(writeBuffer));
+    rapidjson::Writer<rapidjson::FileWriteStream> namesWriter(namesStream);
+    namesTextBank.Accept(namesWriter);
     fclose(fp);
 
     delete[] trMsgs;
