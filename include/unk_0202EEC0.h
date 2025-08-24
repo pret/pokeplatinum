@@ -10,7 +10,7 @@ void PalParkTransfer_Init(MigratedPokemon *transferData);
 void ClearPalParkTransferPokemonData(MigratedPokemon *transferData);
 void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int param2);
 void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId);
-void MigratedPokemon_ToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon);
+void MigratedPokemon_ConvertToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon);
 int GetPalParkTransferMonCount(const MigratedPokemon *transferData);
 int PalParkTransfer_GetSecondsSinceLastTransfer(const MigratedPokemon *transferData, u32 gbaTrainerId);
 BOOL MacAddressMatchesLastPalParkTransfer(const MigratedPokemon *transferData);

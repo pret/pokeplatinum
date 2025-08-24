@@ -141,7 +141,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
 
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         catchingShow->caughtMonsOrder[i] = 0;
-        MigratedPokemon_ToPokemon(transferData, i, mon);
+        MigratedPokemon_ConvertToPokemon(transferData, i, mon);
 
         species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
@@ -280,7 +280,7 @@ static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *field
     FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELD2, FieldSystem_GetParkBallCount(fieldSystem));
 
     FieldBattleDTO_Init(dto, fieldSystem);
-    MigratedPokemon_ToPokemon(transferData, catchingShow->currentEncounterIndex, mon);
+    MigratedPokemon_ConvertToPokemon(transferData, catchingShow->currentEncounterIndex, mon);
     FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_ENEMY_1);
     Heap_Free(mon);
 

@@ -89,7 +89,7 @@ void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaT
     OS_GetMacAddress(transferData->macAddress);
 }
 
-void MigratedPokemon_ToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon)
+void MigratedPokemon_ConvertToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon)
 {
     GF_ASSERT(slot < CATCHING_SHOW_MONS);
     *mon = transferData->mons[slot];
