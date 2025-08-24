@@ -1,0 +1,63 @@
+{
+  "key": 21538,
+  "messages": [
+    {
+      "id": "pl_msg_00000171_00000",
+      "en_US": [
+        "Hmmm... The Pokémon BURMY is an\n",
+        "interesting example...\r",
+        "It hints at how the environment can\n",
+        "shape people’s personalities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00001",
+      "en_US": [
+        "You know that Pokémon BURMY, and how\n",
+        "it comes in different forms?\r",
+        "Do you have all the forms of that\n",
+        "BURMY?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00002",
+      "en_US": [
+        "Aww, you don’t even have a single\n",
+        "BURMY?\r",
+        "What, you don’t like them?\n",
+        "They’re all mooshy and cute!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00003",
+      "en_US": [
+        "Hmm...\r",
+        "It’d be cool if you had all the\n",
+        "different-looking BURMY."
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00004",
+      "en_US": [
+        "Cool! That’s all the different kinds\n",
+        "of BURMY! I feel giddy!\r",
+        "Since I feel so giddy, take this!\n",
+        "Go ahead, take it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00005",
+      "en_US": [
+        "Whoops, your Bag is crammed full!\n",
+        "I’ll give this to you later."
+      ]
+    },
+    {
+      "id": "pl_msg_00000171_00006",
+      "en_US": [
+        "You’re good!\n",
+        "You’d make an awesome Bug Maniac!"
+      ]
+    }
+  ]
+}

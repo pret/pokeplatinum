@@ -25,5 +25,31 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Team Galactic is all powerful!\r",
+				"Only a fool would show defiance to\n",
+				"the mighty might of Team Galactic!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Not standing up to the mighty is\n",
+				"foolish, you say...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It doesn’t matter if you’re an adult\n",
+				"or a kid if you have Pokémon...\r",
+				"Pokémon are the equalizers.\n",
+				"I should have realized sooner..."
+			]
+		}
     ]
 }

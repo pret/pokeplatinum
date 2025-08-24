@@ -47,7 +47,7 @@ _0075:
     End
 
 _0091:
-    ScrCmd_313 0
+    RecordHeapMemory
     CallIfEq VAR_MAP_LOCAL_4, 0, _0570
     CallIfEq VAR_MAP_LOCAL_4, 1, _0575
     GoTo _00B7
@@ -230,7 +230,7 @@ _038E:
     End
 
 _03C1:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CallIfEq VAR_UNK_0x40B8, 0, _048A
     CallIfEq VAR_UNK_0x40B8, 1, _049E
@@ -241,9 +241,9 @@ _03C1:
     ScrCmd_2C4 3
     CallIfEq VAR_UNK_0x40B8, 2, _042A
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
-    ScrCmd_313 1
+    AssertHeapMemory
     End
 
 _042A:
@@ -395,7 +395,7 @@ _05AB:
     Return
 
 _05B0:
-    ScrCmd_313 0
+    RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40B7, 0
     Message 11
@@ -405,9 +405,9 @@ _05B0:
     End
 
 _05D7:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return

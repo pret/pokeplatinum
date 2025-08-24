@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 
 #include "field_task.h"
 #include "heap.h"
@@ -29,26 +29,26 @@ BOOL ov5_021F101C(FieldTask *param0)
 
     switch (*v2) {
     case 0:
-        v1->unk_04 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021F101C));
+        v1->unk_04 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov5_021F101C));
         (*v2)++;
         break;
     case 1: {
         int v4 = ov5_021F0484();
 
-        v3->unk_04 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v4);
+        v3->unk_04 = Heap_AllocAtEnd(HEAP_ID_FIELD2, v4);
         memset(v3->unk_04, 0, v4);
     }
         (*v2)++;
         break;
     case 2: {
         int v5 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
-        v3->unk_00 = ov6_02243F88(fieldSystem, 0, v1->unk_00, v5);
+        v3->unk_00 = SysTask_HMCutIn_New(fieldSystem, 0, v1->unk_00, v5);
     }
         (*v2)++;
         break;
     case 3:
-        if (ov6_02243FBC(v3->unk_00)) {
-            ov6_02243FC8(v3->unk_00);
+        if (CheckHMCutInFinished(v3->unk_00)) {
+            SysTask_HMCutIn_SetTaskDone(v3->unk_00);
             (*v2)++;
         }
         break;

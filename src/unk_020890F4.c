@@ -99,7 +99,7 @@ static int sub_0208924C(ApplicationManager *appMan, int *param1)
     v0 = sub_02089BEC(v1);
 
     if (v1->unk_3B8.unk_30 != 0) {
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     return v0 ? 1 : 0;
@@ -110,7 +110,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     UnkStruct_02089688 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_3B8.unk_30 != 0) {
-        sub_02039794();
+        NetworkIcon_Destroy();
     }
 
     sub_0208A6CC(v0);
@@ -156,7 +156,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     int i;
     UnkStruct_02089438 *v1 = NULL;
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02089438));
+    v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
     v1->unk_1C = Strbuf_Init(param1 + 1, heapID);

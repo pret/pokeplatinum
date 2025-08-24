@@ -168,14 +168,14 @@ void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, const 
 
     GF_ASSERT(configID < NELEMS(sCameraTypes));
 
-    fieldSystem->camera = Camera_Alloc(HEAP_ID_FIELD);
+    fieldSystem->camera = Camera_Alloc(HEAP_ID_FIELD1);
 
     Camera_InitWithTarget(target, config->distance, &config->cameraAngle, config->verticalFov, config->projection, TRUE, fieldSystem->camera);
     Camera_SetAsActive(fieldSystem->camera);
     Camera_SetClipping(config->nearPlaneDist, config->farPlaneDist, fieldSystem->camera);
 
     if (withHistory) {
-        Camera_InitHistory(FIELD_CAMERA_HISTORY_SIZE, FIELD_CAMERA_DELAY, CAMERA_DELAY_Y, HEAP_ID_FIELD, fieldSystem->camera);
+        Camera_InitHistory(FIELD_CAMERA_HISTORY_SIZE, FIELD_CAMERA_DELAY, CAMERA_DELAY_Y, HEAP_ID_FIELD1, fieldSystem->camera);
     }
 }
 

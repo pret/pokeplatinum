@@ -27,5 +27,26 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I take Pokémon that are tough to begin\n",
+				"with and toughen them up even more.\r",
+				"You can help me!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "There’s no way I could have won!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"How should I teach the most powerful\n",
+				"of the Dragon-type moves...?\n"
+			]
+		}
     ]
 }

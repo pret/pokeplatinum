@@ -87,12 +87,12 @@ void sub_0207C770(void)
     int v0;
     const MtxFx43 *v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
@@ -130,12 +130,12 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v1 = Heap_Alloc(heapID, 0x4800);
     v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     }
 
     return v0;
@@ -163,7 +163,7 @@ static void sub_0207C854(SPLEmitter *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
-    VEC_Set(&v0, 0, (8 * 172), 0);
+    VEC_Set(&v0, 0, 8 * 172, 0);
     SPLEmitter_SetPos(param0, &v0);
 }
 
@@ -173,7 +173,7 @@ UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_0207C8C4 *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0207C8C4));
+    UnkStruct_0207C8C4 *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0207C8C4));
 
     GF_ASSERT(v4 != NULL);
 

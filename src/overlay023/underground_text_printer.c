@@ -52,7 +52,7 @@ const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void)
 UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int strbufSize)
 {
     int size = strbufSize;
-    UndergroundTextPrinter *textPrinter = Heap_AllocFromHeap(heapID, sizeof(UndergroundTextPrinter));
+    UndergroundTextPrinter *textPrinter = Heap_Alloc(heapID, sizeof(UndergroundTextPrinter));
 
     MI_CpuClear8(textPrinter, sizeof(UndergroundTextPrinter));
 

@@ -8,9 +8,10 @@
 #include "struct_defs/struct_02095C48.h"
 #include "struct_defs/struct_020F568C.h"
 
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
+#include "character_sprite.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math_util.h"
@@ -20,7 +21,6 @@
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "strbuf.h"
-#include "unk_020131EC.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 
@@ -417,7 +417,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
 
     v9 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0, 0, heapID, 1);
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
-    v2 = Heap_AllocFromHeapAtEnd(heapID, v6 + 1);
+    v2 = Heap_AllocAtEnd(heapID, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
         v5 = 1;
@@ -659,7 +659,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, int heapID, int param6, int param7, int param8)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
@@ -669,11 +669,11 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 
-    if (param4 != NULL) {
-        GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.narcID, v0.character, heapID, param4->unk_00);
-        param4->unk_08 = v0.palette;
-        param4->unk_04 = v0.narcID;
+    if (pokemonSpriteData != NULL) {
+        GF_ASSERT(pokemonSpriteData->tiles != NULL);
+        CharacterSprite_LoadSpriteFrame0(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
+        pokemonSpriteData->palette = v0.palette;
+        pokemonSpriteData->narcID = v0.narcID;
     }
 
     v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
@@ -691,8 +691,8 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
 
     v6 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1, 0, heapID, 1);
     v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
-    v7 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
-    v8 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
+    v7 = Heap_AllocAtEnd(heapID, v5 + 1);
+    v8 = Heap_AllocAtEnd(heapID, v5 + 1);
 
     for (v0 = 0; v0 < v5; v0++) {
         if (param4 != v6[v0].unk_04_10) {

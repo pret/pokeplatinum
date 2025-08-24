@@ -12,7 +12,7 @@ _0006:
     GoToIfSet FLAG_UNK_0x0001, _00D3
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _004C
-    GoToIfUnset FLAG_UNK_0x00AB, _0057
+    GoToIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, _0057
     CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0057
     GoTo _0095
@@ -25,35 +25,35 @@ _004C:
     End
 
 _0057:
-    CallIfUnset FLAG_UNK_0x00AB, _00DE
-    SetFlag FLAG_UNK_0x00AB
+    CallIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, _00DE
+    SetFlag FLAG_LOCAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
     Message 1
     PlaySound SEQ_FANFA4
     WaitSound
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1EA
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
 _0095:
-    CallIfUnset FLAG_UNK_0x00AC, _00E4
-    SetFlag FLAG_UNK_0x00AC
+    CallIfUnset FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED, _00E4
+    SetFlag FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
     Message 2
     PlaySound SEQ_FANFA4
     WaitSound
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1EB
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -66,11 +66,11 @@ _00D3:
     End
 
 _00DE:
-    ScrCmd_260 26
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_LOCAL_DEX_DIPLOMA_RECEIVED
     Return
 
 _00E4:
-    ScrCmd_260 27
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_NATIONAL_DEX_DIPLOMA_RECEIVED
     Return
 
     .balign 4, 0

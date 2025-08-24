@@ -1488,7 +1488,7 @@ static void ov62_022427D0(UnkStruct_0208C06C *param0, int param1)
 
         Heap_Free(v0);
 
-        v4->unk_4DC = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
+        v4->unk_4DC = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
         MI_CpuFill8(v4->unk_4DC, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
 
         for (v5 = 0; v5 < v4->unk_4C8.unk_00; v5++) {
@@ -2494,7 +2494,7 @@ BOOL (*const Unk_ov62_02249618[])(UnkStruct_0208C06C *) = {
 
 static BOOL ov62_02243DC8(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02241204 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02241204));
+    UnkStruct_ov62_02241204 *v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02241204));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02241204));
     param0->unk_860 = v0;
@@ -2609,7 +2609,7 @@ static BOOL ov62_02243FA8(UnkStruct_0208C06C *param0)
     }
         param0->unk_08++;
     case 1:
-        ov62_022314F0(&v0->unk_00, &v0->unk_04, (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), 0);
+        ov62_022314F0(&v0->unk_00, &v0->unk_04, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_08++;
         break;
@@ -2651,7 +2651,7 @@ static BOOL ov62_022440D4(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231A1C(param0);
-        ov62_02231560(&v0->unk_00, &v0->unk_04, (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), 0);
+        ov62_02231560(&v0->unk_00, &v0->unk_04, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 0);
         ov62_02246B4C(v0->unk_4AC);
         param0->unk_08++;
     case 1:
@@ -2835,7 +2835,7 @@ static BOOL ov62_022444BC(UnkStruct_0208C06C *param0)
             break;
         }
 
-        ov62_02231560(&v0->unk_00, &v0->unk_04, (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), 0);
+        ov62_02231560(&v0->unk_00, &v0->unk_04, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 0);
 
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);

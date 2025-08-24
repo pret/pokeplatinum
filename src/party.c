@@ -19,9 +19,9 @@ int Party_SaveSize(void)
     return sizeof(Party);
 }
 
-Party *Party_New(enum HeapId heapID)
+Party *Party_New(enum HeapID heapID)
 {
-    Party *party = Heap_AllocFromHeap(heapID, sizeof(Party));
+    Party *party = Heap_Alloc(heapID, sizeof(Party));
     Party_Init(party);
 
     return party;
@@ -109,7 +109,7 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
 
-    tempPokemon = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(Pokemon));
+    tempPokemon = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(Pokemon));
     *tempPokemon = party->pokemon[slotA];
 
     party->pokemon[slotA] = party->pokemon[slotB];

@@ -25,5 +25,27 @@
             "power": 10,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Spark!\r",
+				"This is what our Gym Leader did\n",
+				"to the Gym out of boredom!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Spark...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"We were lacking energy...\r",
+				"No, we lacked more than that. We\n",
+				"didn’t want the win enough.\n"
+			]
+		}
     ]
 }

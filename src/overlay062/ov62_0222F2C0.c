@@ -169,7 +169,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     SysTask_Done(param0->unk_41E8);
     SpriteSystem_FreeResourcesAndManager(param0->unk_14.unk_04, param0->unk_14.unk_08);
     SpriteSystem_Free(param0->unk_14.unk_04);
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     {
         u32 v1;
@@ -554,7 +554,7 @@ BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1)
         return 1;
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
     PokemonSpriteManager_DrawSprites(param0->unk_14.unk_50);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 

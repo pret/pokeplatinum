@@ -435,7 +435,7 @@ static void ov13_02225C4C(BattleParty *param0, u16 *param1, u8 param2, u8 param3
 
 static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3)
 {
-    u16 *v0 = Heap_AllocFromHeap(param0->context->heapID, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
+    u16 *v0 = Heap_Alloc(param0->context->heapID, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
 
     ov13_02225C4C(param0, v0, param1, param2, param3);
 

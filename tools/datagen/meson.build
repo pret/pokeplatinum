@@ -10,7 +10,6 @@
 subproject('narc')
 subproject('rapidjson')
 
-rapidjson_dep = dependency('rapidjson')
 libnarc_dep = dependency('libnarc')
 
 datagen_cpp_args = [

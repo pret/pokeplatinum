@@ -1,0 +1,900 @@
+{
+  "key": 45127,
+  "messages": [
+    {
+      "id": "PokemonSummary_Text_NicknameTemplate",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_MaleSymbol",
+      "en_US": "♂"
+    },
+    {
+      "id": "PokemonSummary_Text_FemaleSymbol",
+      "en_US": "♀"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMonLevel",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelItem",
+      "en_US": "Item"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_None",
+      "en_US": "None"
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleInfo",
+      "en_US": "POKéMON INFO"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelDexNum",
+      "en_US": "Pokédex No."
+    },
+    {
+      "id": "PokemonSummary_Text_DexNumberTemplate",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelSpeciesName",
+      "en_US": "Name"
+    },
+    {
+      "id": "PokemonSummary_Text_SpeciesNameTemplate",
+      "en_US": "{STRVAR_1 0, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelType",
+      "en_US": "Type"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelOtName",
+      "en_US": "OT"
+    },
+    {
+      "id": "PokemonSummary_Text_OtnameTemplate",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelOtId",
+      "en_US": "ID No."
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateOtId",
+      "en_US": "{STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelExp",
+      "en_US": "Exp. Points"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateExp",
+      "en_US": "{STRVAR_1 56, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelExpNextLv",
+      "en_US": "To Next Lv."
+    },
+    {
+      "id": "pl_msg_00000455_00020",
+      "garbage": 2
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateExpNextLv",
+      "en_US": "{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_ThreeQuestionMarks",
+      "en_US": "???"
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleMemo",
+      "en_US": "TRAINER MEMO"
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Hardy",
+      "en_US": "{COLOR 2}Hardy{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Lonely",
+      "en_US": "{COLOR 2}Lonely{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Brave",
+      "en_US": "{COLOR 2}Brave{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Adamant",
+      "en_US": "{COLOR 2}Adamant{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Naughty",
+      "en_US": "{COLOR 2}Naughty{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Bold",
+      "en_US": "{COLOR 2}Bold{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Docile",
+      "en_US": "{COLOR 2}Docile{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Relaxed",
+      "en_US": "{COLOR 2}Relaxed{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Impish",
+      "en_US": "{COLOR 2}Impish{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Lax",
+      "en_US": "{COLOR 2}Lax{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Timid",
+      "en_US": "{COLOR 2}Timid{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Hasty",
+      "en_US": "{COLOR 2}Hasty{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Serious",
+      "en_US": "{COLOR 2}Serious{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Jolly",
+      "en_US": "{COLOR 2}Jolly{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Naive",
+      "en_US": "{COLOR 2}Naive{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Modest",
+      "en_US": "{COLOR 2}Modest{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Mild",
+      "en_US": "{COLOR 2}Mild{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Quiet",
+      "en_US": "{COLOR 2}Quiet{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Bashful",
+      "en_US": "{COLOR 2}Bashful{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Rash",
+      "en_US": "{COLOR 2}Rash{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Calm",
+      "en_US": "{COLOR 2}Calm{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Gentle",
+      "en_US": "{COLOR 2}Gentle{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Sassy",
+      "en_US": "{COLOR 2}Sassy{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Careful",
+      "en_US": "{COLOR 2}Careful{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_Nature_Quirky",
+      "en_US": "{COLOR 2}Quirky{COLOR 0} nature."
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_WildEncounter",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Met at Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_WildEncounterTraded",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Apparently met at\n",
+        "Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_WildEncounterGift",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Arrived at Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_EggHatched",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg hatched."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg apparently hatched."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedGift",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg received.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg hatched."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedGiftTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg received.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg apparently hatched."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEncounter",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Had a fateful encounter\n",
+        "at Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEncounterTraded",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Apparently had a\n",
+        "fateful encounter at\n",
+        "Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatched",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg apparently hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedArrived",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg arrived.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedArrivedTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg arrived.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg apparently hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedGift",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedGiftTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
+        "Egg obtained.\n",
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Egg apparently hatched.\n",
+        "Fateful encounter."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_Migrated",
+      "en_US": [
+        "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
+        "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
+        "Arrived at Lv. {STRVAR_1 52, 3, 0}."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_LikesSpicyFood",
+      "en_US": "Likes {COLOR 2}spicy{COLOR 0} food."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesDryFood",
+      "en_US": "Likes {COLOR 2}dry{COLOR 0} food."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesSweetFood",
+      "en_US": "Likes {COLOR 2}sweet{COLOR 0} food."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesBitterFood",
+      "en_US": "Likes {COLOR 2}bitter{COLOR 0} food."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesSourFood",
+      "en_US": "Likes {COLOR 2}sour{COLOR 0} food."
+    },
+    {
+      "id": "PokemonSummary_Text_HappilyEatsAnything",
+      "en_US": "Happily eats anything."
+    },
+    {
+      "id": "PokemonSummary_Text_LovesToEat",
+      "en_US": "Loves to eat."
+    },
+    {
+      "id": "PokemonSummary_Text_OftenDozesOff",
+      "en_US": "Often dozes off."
+    },
+    {
+      "id": "PokemonSummary_Text_OftenScattersThings",
+      "en_US": "Often scatters things."
+    },
+    {
+      "id": "PokemonSummary_Text_ScattersThingsOften",
+      "en_US": "Scatters things often."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesToRelax",
+      "en_US": "Likes to relax."
+    },
+    {
+      "id": "PokemonSummary_Text_ProudOfItsPower",
+      "en_US": "Proud of its power."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesToTrashAbout",
+      "en_US": "Likes to thrash about."
+    },
+    {
+      "id": "PokemonSummary_Text_ALittleQuickTempered",
+      "en_US": "A little quick tempered."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesToFight",
+      "en_US": "Likes to fight."
+    },
+    {
+      "id": "PokemonSummary_Text_QuickTempered",
+      "en_US": "Quick tempered."
+    },
+    {
+      "id": "PokemonSummary_Text_SturdyBody",
+      "en_US": "Sturdy body."
+    },
+    {
+      "id": "PokemonSummary_Text_CapableOfTakingHits",
+      "en_US": "Capable of taking hits."
+    },
+    {
+      "id": "PokemonSummary_Text_HighlyPersistent",
+      "en_US": "Highly persistent."
+    },
+    {
+      "id": "PokemonSummary_Text_GoodEndurance",
+      "en_US": "Good endurance."
+    },
+    {
+      "id": "PokemonSummary_Text_GoodPerseverance",
+      "en_US": "Good perseverance."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesToRun",
+      "en_US": "Likes to run."
+    },
+    {
+      "id": "PokemonSummary_Text_AlertToSounds",
+      "en_US": "Alert to sounds."
+    },
+    {
+      "id": "PokemonSummary_Text_ImpetuousAndSilly",
+      "en_US": "Impetuous and silly."
+    },
+    {
+      "id": "PokemonSummary_Text_SomewhatOfAClown",
+      "en_US": "Somewhat of a clown."
+    },
+    {
+      "id": "PokemonSummary_Text_QuickToFlee",
+      "en_US": "Quick to flee."
+    },
+    {
+      "id": "PokemonSummary_Text_HighlyCurious",
+      "en_US": "Highly curious."
+    },
+    {
+      "id": "PokemonSummary_Text_Mischievous",
+      "en_US": "Mischievous."
+    },
+    {
+      "id": "PokemonSummary_Text_ThoroughlyCunning",
+      "en_US": "Thoroughly cunning."
+    },
+    {
+      "id": "PokemonSummary_Text_OftenLostInThought",
+      "en_US": "Often lost in thought."
+    },
+    {
+      "id": "PokemonSummary_Text_VeryFinicky",
+      "en_US": "Very finicky."
+    },
+    {
+      "id": "PokemonSummary_Text_StrongWilled",
+      "en_US": "Strong willed."
+    },
+    {
+      "id": "PokemonSummary_Text_SomewhatVain",
+      "en_US": "Somewhat vain."
+    },
+    {
+      "id": "PokemonSummary_Text_StronglyDefiant",
+      "en_US": "Strongly defiant."
+    },
+    {
+      "id": "PokemonSummary_Text_HatesToLose",
+      "en_US": "Hates to lose."
+    },
+    {
+      "id": "PokemonSummary_Text_SomewhatStubborn",
+      "en_US": "Somewhat stubborn."
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_Egg",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "A mysterious Pokémon\n",
+        "Egg received from\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}.\n"
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_EggTraded",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "A mysterious Pokémon\n",
+        "Egg obtained in\n",
+        "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}.\n"
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEgg",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "A very mysterious\n",
+        "Pokémon Egg obtained\n",
+        "at {COLOR 1}{STRVAR_1 4, 8, 0}{COLOR 0}.\n"
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggArrived",
+      "en_US": [
+        "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
+        "A very mysterious\n",
+        "Pokémon Egg that came\n",
+        "from {COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}.\n"
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_EggWatch_ItWillHatchSoon",
+      "en_US": [
+        "“The Egg Watch”\n",
+        "Sounds can be heard\n",
+        "coming from inside!\n",
+        "It will hatch soon!"
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_EggWatch_CloseToHatching",
+      "en_US": [
+        "“The Egg Watch”\n",
+        "It appears to move\n",
+        "occasionally. It may\n",
+        "be close to hatching."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_EggWatch_NotCloseToHatching",
+      "en_US": [
+        "“The Egg Watch”\n",
+        "What will hatch from\n",
+        "this? It doesn’t seem\n",
+        "close to hatching."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_EggWatch_LongTimeToHatch",
+      "en_US": [
+        "“The Egg Watch”\n",
+        "It looks like this Egg\n",
+        "will take a long time to\n",
+        "hatch."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleSkills",
+      "en_US": "POKéMON SKILLS"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelHp",
+      "en_US": "HP"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelAttack",
+      "en_US": "Attack"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelDefense",
+      "en_US": "Defense"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelSpAttack",
+      "en_US": "Sp. Atk"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelSpDefense",
+      "en_US": "Sp. Def"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelSpeed",
+      "en_US": "Speed"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelAbility",
+      "en_US": "Ability"
+    },
+    {
+      "id": "PokemonSummary_Text_Slash",
+      "en_US": "/"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxHp",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentHp",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateAttack",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateDefense",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateSpAttack",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateSpDefense",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateSpeed",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateAbility",
+      "en_US": "{STRVAR_1 5, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleCondition",
+      "en_US": "CONDITION"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelSheen",
+      "en_US": "SHEEN"
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleBattleMoves",
+      "en_US": "BATTLE MOVES"
+    },
+    {
+      "id": "PokemonSummary_Text_SelectBattleMoveInfo",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000455_00130",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000455_00131",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000455_00132",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000455_00133",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000455_00134",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelPp",
+      "en_US": "PP"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentPp_0",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentPp_1",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentPp_2",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentPp_3",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateCurrentPp_4",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxPp_0",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxPp_1",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxPp_2",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxPp_3",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateMaxPp_4",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_MoveCancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelMovePower",
+      "en_US": "POWER"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelMoveAccuracy",
+      "en_US": "ACCURACY"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelMoveCategory",
+      "en_US": "CATEGORY"
+    },
+    {
+      "id": "PokemonSummary_Text_MovePowerTemplate",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_MoveAccuracyTemplate",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_MoveSwitch",
+      "en_US": "SWITCH"
+    },
+    {
+      "id": "PokemonSummary_Text_TwoDashes",
+      "en_US": "--"
+    },
+    {
+      "id": "PokemonSummary_Text_ThreeDashes",
+      "en_US": "---"
+    },
+    {
+      "id": "PokemonSummary_Text_SelectBattleMoveOk",
+      "en_US": "OK"
+    },
+    {
+      "id": "PokemonSummary_Text_HmMovesCantBeForgotten",
+      "en_US": [
+        "HM moves can’t be\n",
+        "forgotten now."
+      ]
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleContestMoves",
+      "en_US": "CONTEST MOVES"
+    },
+    {
+      "id": "PokemonSummary_Text_SelectContestMoveInfo",
+      "en_US": "INFO"
+    },
+    {
+      "id": "PokemonSummary_Text_SelectContestMoveOk",
+      "en_US": "OK"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelAppealPoints",
+      "en_US": "APPEAL POINTS"
+    },
+    {
+      "id": "PokemonSummary_Text_PromptExit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "PokemonSummary_Text_CloseWindow",
+      "en_US": "Close window."
+    },
+    {
+      "id": "PokemonSummary_Text_PoffinFeedOk",
+      "en_US": "OK"
+    },
+    {
+      "id": "pl_msg_00000455_00164",
+      "garbage": 3
+    },
+    {
+      "id": "PokemonSummary_Text_FavoriteFood",
+      "en_US": "FAVORITE FOOD"
+    },
+    {
+      "id": "PokemonSummary_Text_LikesItSpicy",
+      "en_US": "Likes it {COLOR 2}spicy{COLOR 0}."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesItDry",
+      "en_US": "Likes it {COLOR 2}dry{COLOR 0}."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesItSweet",
+      "en_US": "Likes it {COLOR 2}sweet{COLOR 0}."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesItBitter",
+      "en_US": "Likes it {COLOR 2}bitter{COLOR 0}."
+    },
+    {
+      "id": "PokemonSummary_Text_LikesItSour",
+      "en_US": "Likes it {COLOR 2}sour{COLOR 0}."
+    },
+    {
+      "id": "PokemonSummary_Text_EatsAnything",
+      "en_US": "Eats anything."
+    },
+    {
+      "id": "PokemonSummary_Text_CoolnessEnhanced",
+      "en_US": "Coolness was enhanced!"
+    },
+    {
+      "id": "PokemonSummary_Text_ToughnessEnhanced",
+      "en_US": "Toughness was enhanced!"
+    },
+    {
+      "id": "PokemonSummary_Text_BeautyEnhanced",
+      "en_US": "Beauty was enhanced!"
+    },
+    {
+      "id": "PokemonSummary_Text_CutenessEnhanced",
+      "en_US": "Cuteness was enhanced!"
+    },
+    {
+      "id": "PokemonSummary_Text_SmartnessEnhanced",
+      "en_US": "Smartness was enhanced!"
+    },
+    {
+      "id": "PokemonSummary_Text_NothingChanged",
+      "en_US": "Nothing changed!"
+    },
+    {
+      "id": "PokemonSummary_Text_PokemonWontEatMore",
+      "en_US": "It won’t eat any more..."
+    },
+    {
+      "id": "PokemonSummary_Text_PageTitleRibbons",
+      "en_US": "RIBBONS"
+    },
+    {
+      "id": "PokemonSummary_Text_RibbonSelectInfo",
+      "en_US": "INFO"
+    },
+    {
+      "id": "PokemonSummary_Text_RibbonSelectCancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "PokemonSummary_Text_LabelRibbonCount",
+      "en_US": "No. of Ribbons:"
+    },
+    {
+      "id": "PokemonSummary_Text_TemplateRibbonCount",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_RibbonIndexNumber",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "PokemonSummary_Text_RibbonNumberSlash",
+      "en_US": "/"
+    },
+    {
+      "id": "PokemonSummary_Text_RibbonMaxNumber",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    }
+  ]
+}

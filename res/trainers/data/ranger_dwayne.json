@@ -36,5 +36,35 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We go on patrol to make sure there’s\n",
+				"nothing strange going on.\r",
+				"And occasionally, we battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Thanks much!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Using the Pokémon ability Pickup for\n",
+				"gathering dropped items is a good thing.\r",
+				"I think it’s ecological, even.\n",
+				"I am cleaning up the environment!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Patrols day in and day out!\n",
+				"And the occasional battle!\r"
+			]
+		}
     ]
 }

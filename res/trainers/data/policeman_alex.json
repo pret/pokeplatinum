@@ -25,5 +25,44 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m keeping my eyes open for crime.\n",
+				"Anyone arousing suspicion here?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Now, just hold on. I didn’t say that\n",
+				"you were shady looking!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Don’t go hanging out with any\n",
+				"shady-looking characters! You hear?\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_NIGHT_UNUSED",
+			"en_US": [
+				"Patrolling night and day sure is\n",
+				"exhausting... Yawn...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Any shady-looking characters around?\n",
+				"I’m always on the lookout for punks.\r",
+				"Expecting some shady dude to actually\n",
+				"pop up... Does that make me weird?\r"
+			]
+		}
     ]
 }

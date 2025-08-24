@@ -4,12 +4,12 @@
 #include <nitro/math.h>
 
 #include "field/field_system_decl.h"
-#include "overlay023/struct_ov23_0224271C_decl.h"
+#include "overlay023/underground_defs.h"
 
 #include "strbuf.h"
 
-#define MAX_BURIED_OBJECTS 8
-#define MAX_BURIED_ITEMS   4
+#define MINING_MAX_BURIED_OBJECTS 8
+#define MINING_MAX_BURIED_ITEMS   4
 
 #define INITIAL_WALL_INTEGRITY 196
 
@@ -21,7 +21,7 @@ int ov23_0223E2E8(void);
 void ov23_0223E2F0(void);
 void ov23_0223E2F4(void);
 void ov23_0223E2F8(void);
-BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1);
+BOOL ov23_0223E354(int param0, Coordinates *param1);
 void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2);
 void ov23_0223E878(void);
 void ov23_0223E9D4(int param0, int param1, void *param2, void *param3);
@@ -60,7 +60,8 @@ enum MiningObjectIDs {
     MINING_LARGE_RED_SPHERE,
     MINING_LARGE_BLUE_SPHERE,
     MINING_LARGE_GREEN_SPHERE,
-    MINING_TREASURE_OVAL_STONE,
+    MINING_SPHERES_MAX,
+    MINING_TREASURE_OVAL_STONE = MINING_SPHERES_MAX,
     MINING_TREASURE_ODD_KEYSTONE,
     MINING_TREASURE_SUN_STONE,
     MINING_TREASURE_STAR_PIECE,
@@ -109,7 +110,8 @@ enum MiningObjectIDs {
     MINING_TREASURE_DRACO_PLATE,
     MINING_TREASURE_DREAD_PLATE,
     MINING_TREASURE_IRON_PLATE,
-    MINING_ROCK_1,
+    MINING_TREASURE_MAX,
+    MINING_ROCK_1 = MINING_TREASURE_MAX,
     MINING_ROCK_2,
     MINING_ROCK_3,
     MINING_ROCK_4,

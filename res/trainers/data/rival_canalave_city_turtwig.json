@@ -79,5 +79,28 @@
             "power": 100,
             "ball_seal": 10
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"We’ve gotten out of tighter spots\n",
+				"than this plenty of times before!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"We’re not done yet! Neither me nor\n",
+				"my Pokémon have given up!"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just happened?!\n",
+				"You’re telling me I lost?!\n"
+			]
+		}
     ]
 }

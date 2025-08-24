@@ -1,0 +1,258 @@
+{
+  "key": 9219,
+  "messages": [
+    {
+      "id": "GameCorner_Text_WelcomeToTheVeilstoneGameCorner",
+      "en_US": "Welcome to the Veilstone Game Corner!\r"
+    },
+    {
+      "id": "GameCorner_Text_DidYouWantSomeCoins_NoCoinCase",
+      "en_US": [
+        "Did you want some Coins for the\n",
+        "slots?\r",
+        "Oh, I’m sorry, you don’t have\n",
+        "a Coin Case to hold your Coins."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_DidYouWantSomeCoins_1000For50Coins",
+      "en_US": [
+        "Did you want some game Coins?\r",
+        "It’s $1000 for 50 Coins.\n",
+        "Would you like some?"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins",
+      "en_US": [
+        "Thank you very much!\n",
+        "Here are your Coins!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_UmYouDontAppearToHaveEnoughMoney",
+      "en_US": [
+        "Um... You don’t appear to have\n",
+        "enough money..."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_OhYourCoinCaseIsFull",
+      "en_US": [
+        "Oh?\n",
+        "Your Coin Case is full."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_OhYouDontNeedCoinsThen",
+      "en_US": [
+        "Oh... You don’t need Coins, then?\n",
+        "Please come again!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_TenStraightBonusRoundsOnTheSlots",
+      "en_US": [
+        "Ten straight bonus rounds on\n",
+        "the slots! That’s amazing!\r",
+        "I would say you had an explosion\n",
+        "of good luck!\r",
+        "So, please take this Technical Machine\n",
+        "as a memento!\r"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_PleaseKeepPlayingTheSlots",
+      "en_US": [
+        "Please keep playing the slots for\n",
+        "another explosion of good luck!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_OhYourBagIsFullWeWillHoldTheTMForYou",
+      "en_US": [
+        "Oh, your Bag is full...\n",
+        "We will hold the TM for you."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_WeReStillAmazedByYourTenStraightBonusRounds",
+      "en_US": [
+        "We’re still amazed by your ten straight\n",
+        "bonus rounds on the slots before.\r",
+        "I would say you had an explosion\n",
+        "of good luck!\r",
+        "So, please take this Technical Machine\n",
+        "as a memento!\r"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_YouCantPlayIfYouDontHaveACoinCase",
+      "en_US": [
+        "You can’t play if you don’t have\n",
+        "a Coin Case."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner",
+      "en_US": [
+        "I’ll explain how the slot machines\n",
+        "work at this Game Corner.\r",
+        "During regular play, you should\n",
+        "stop the reels from the left.\r",
+        "During the bonus round, watch\n",
+        "where CLEFAIRY points and stop\f",
+        "the reels in that order."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase",
+      "en_US": [
+        "Hey, kid, if you want to play here,\n",
+        "you need a Coin Case.\r",
+        "I think the young man next door\n",
+        "had one."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_IveBeenWinningATonToday",
+      "en_US": [
+        "I’ve been winning a ton today.\n",
+        "Here, take some Coins!\r",
+        "{STRVAR_1 3, 0, 0} received 20 Coins\n",
+        "from the man.\r",
+        "{STRVAR_1 3, 0, 0} put the Coins away in\n",
+        "the Coin Case."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_ListenWhenClefairyAppears",
+      "en_US": [
+        "Listen, when CLEFAIRY appears, that’s\n",
+        "your chance to line up sevens.\r",
+        "Line those babies up and you’re into\n",
+        "the bonus round!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas",
+      "en_US": [
+        "Woohoo! CLEFAIRY! Look at it!\n",
+        "It’s driving me bananas!\r",
+        "Oh, if only you had a Coin Case!\n",
+        "Then you’d know what fun this is!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_WooHooClefairyLookYeahahItsACarnival",
+      "en_US": [
+        "Woohoo! CLEFAIRY! Look!\n",
+        "Yeahah! It’s a carnival!\r",
+        "Let me share some of my joy with\n",
+        "you!\r",
+        "{STRVAR_1 3, 0, 0} received 50 Coins\n",
+        "from the man.\r",
+        "{STRVAR_1 3, 0, 0} put the Coins away in\n",
+        "the Coin Case."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_WooHooClefairyItsAdorable",
+      "en_US": [
+        "Woohoo! CLEFAIRY! It’s adorable!\n",
+        "Just seeing it gets my pulse racing!\r",
+        "Oh, let me impart a piece of advice\n",
+        "to you!\r",
+        "If the moon turns red, you don’t\n",
+        "want to get a replay because it\f",
+        "makes CLEFAIRY tired!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_IWantCoinsOfCourse",
+      "en_US": [
+        "I want Coins, of course, but\n",
+        "setting records is hot, too!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_WhenAPokeBallAppears",
+      "en_US": [
+        "When a Poké Ball appears, it’s a\n",
+        "chance to line up slot marks.\r",
+        "Replays and PIKACHU line up even if\n",
+        "you don’t make an effort.\r",
+        "But you need to aim for better marks,\n",
+        "like Poké Balls and Moon Stones."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere",
+      "en_US": [
+        "A friend in my group scored a ton of\n",
+        "Coins here.\r",
+        "Why mess with a good thing?\n",
+        "I’ll try the same spot, too!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_SighNothingGoingMyWayToday",
+      "en_US": [
+        "Sigh...\n",
+        "Nothing’s going my way today...\r",
+        "Are you a Trainer?\n",
+        "Did you battle the Gym Leader?\r",
+        "She happens to be my daughter.\n",
+        "She’s some kind of tough!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_Looker",
+      "en_US": [
+        "Looker: Ah, it is you, yes.\r",
+        "Examine, if you will, the reels.\n",
+        "The Team Galactic logo, it is here.\r",
+        "Further investigation is needed, and\n",
+        "I am just the man to do it.\r",
+        "Also, where the masses gather, so too\n",
+        "does information.\r",
+        "...Ack. My streak is broken."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_Looker_PostStarkMountain",
+      "en_US": [
+        "Looker: Ah, it is you, yes.\r",
+        "I have decided to use the opportunity\n",
+        "of being here in Sinnoh.\r",
+        "I am therefore trying to teach moves\n",
+        "to Pokémon that I have captured.\r",
+        "Also, if I have nothing to do, it means\n",
+        "the world, it is at peace.\r",
+        "...Ack. My streak is broken."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_ShootFor10",
+      "en_US": [
+        "Shoot for 10!\n",
+        "Line up those bonus rounds!\r",
+        "If you accomplish the feat of completing\n",
+        "10 uninterrupted bonus rounds,\f",
+        "please go to the counter.\r",
+        "You will be presented with a fabulous\n",
+        "prize!\r",
+        "The current record sits at\n",
+        "{STRVAR_1 52, 0, 0} straight bonus rounds!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_Unused_00026",
+      "garbage": 0
+    },
+    {
+      "id": "GameCorner_Text_Unused_00027",
+      "garbage": 0
+    }
+  ]
+}

@@ -16,5 +16,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You beat me, but...\n",
+				"I feel totally amped to jam harder!\n"
+			]
+		}
     ]
 }

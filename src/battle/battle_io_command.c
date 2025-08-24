@@ -61,11 +61,12 @@
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_02237728.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/ov12_022380BC.h"
+#include "battle_anim/struct_ov12_02237728.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "flags.h"
 #include "heap.h"
 #include "narc.h"
@@ -74,7 +75,6 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 
@@ -158,7 +158,7 @@ BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *par
     BattlerData *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlerData));
+    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattlerData));
     MI_CpuClearFast(v0, sizeof(BattlerData));
 
     v0->battler = param1->unk_00;
@@ -738,13 +738,13 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    sub_02013750(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->spindaSpots);
 
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
-    ov16_0223F2E4(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
+    PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
+    PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
     v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
-    ov16_0223F2FC(ov16_0223E0C8(battleSys), param1->battler, v3);
+    PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
     PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);

@@ -8,7 +8,7 @@
 
 #include "game_opening/const_ov77_021D742C.h"
 #include "overlay065/ov65_0222DCE0.h"
-#include "overlay094/ov94_0223B140.h"
+#include "overlay094/networking.h"
 #include "overlay098/ov98_022471C8.h"
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"
@@ -120,8 +120,8 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_80 == 1) {
         DWC_UpdateConnection();
-        ov94_0223B15C();
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        GTSNetworking_ProcessCurrentRequest();
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     switch (*param1) {
@@ -130,7 +130,7 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             Unk_ov98_02249E20 = v0->unk_10;
             DWC_SetMemFunc(ov98_02246EAC, ov98_02246ED4);
             v0->unk_80 = 1;
@@ -190,12 +190,12 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
     if (param0->unk_80 == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay94), 2);
 
-        param0->unk_0C = Heap_AllocFromHeap(HEAP_ID_108, 0x20000 + 32);
+        param0->unk_0C = Heap_Alloc(HEAP_ID_108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
-        sub_020995B4();
-        sub_02033478();
+        Overlay_LoadHttpOverlay();
+        WirelessDriver_Init();
         SleepUnlock(4);
     }
 }
@@ -206,9 +206,9 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
         NNS_FndDestroyExpHeap(param0->unk_10);
 
         Heap_Free(param0->unk_0C);
-        sub_020995C4();
+        Overlay_UnloadHttpOverlay();
         sub_02099560();
-        sub_020334CC();
+        WirelessDriver_Shutdown();
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay94));
 
         param0->unk_80 = 0;
@@ -270,7 +270,7 @@ static void ov98_02246ED4(DWCAllocType param0, void *param1, u32 param2)
 
 void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 {
-    char *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
+    char *v0 = Heap_Alloc(HEAP_ID_108, sizeof(char) * 100);
 
     ov98_022499C8(param0->unk_114, v0, HEAP_ID_108);
     sub_02030D38(param0->saveData, v0);
@@ -296,7 +296,7 @@ void ov98_02246F5C(UnkStruct_ov98_02246E88 *param0)
 
 void ov98_02246F74(UnkStruct_ov98_02246E88 *param0)
 {
-    ov98_022499C8(param0->unk_114, param0->unk_9C.unk_1C, HEAP_ID_108);
+    ov98_022499C8(param0->unk_114, param0->unk_9C.email, HEAP_ID_108);
 }
 
 void ov98_02246F88(UnkStruct_ov98_02246E88 *param0)
@@ -420,7 +420,7 @@ void ov98_02247134(UnkStruct_ov98_02246E88 *param0)
 
 static void *ov98_02247168(UnkStruct_ov98_02246E88 *param0)
 {
-    UnkStruct_ov98_02247168 *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
+    UnkStruct_ov98_02247168 *v0 = Heap_Alloc(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247168));
 
     v0->saveData = param0->saveData;
@@ -436,7 +436,7 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
 {
     UnkStruct_ov98_02247168 *v0 = param0->unk_98;
 
-    if (sub_02039074(param0->saveData)) {
+    if (WiFiList_HasValidLogin(param0->saveData)) {
         SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->saveData));
     }
 

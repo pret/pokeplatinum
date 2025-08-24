@@ -25,5 +25,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hi, wave-riding Trainer!\n",
+				"How about a battle on the sea?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You sure schooled me there.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Maybe I should switch to surfing,\n",
+				"too...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, we meet again!\n",
+				"Wave-riding Trainer!\r"
+			]
+		}
     ]
 }

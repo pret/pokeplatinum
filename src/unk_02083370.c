@@ -410,7 +410,7 @@ int sub_02083A78(void *param0)
     GameWindowLayout *v0 = param0;
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
 
-    sub_0207893C(v1);
+    Pokemon_ClearBallCapsuleData(v1);
 
     v0->partyManagementData->menuSelectionResult = 0;
     return 32;
@@ -624,7 +624,7 @@ static void sub_02084134(GameWindowLayout *param0)
 
     v1 = &param0->unk_7F8;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_12, sizeof(StrBufWrapper));
+    v0 = Heap_Alloc(HEAP_ID_12, sizeof(StrBufWrapper));
     *v0 = param0->unk_704[v1->unk_300[0]];
 
     param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];

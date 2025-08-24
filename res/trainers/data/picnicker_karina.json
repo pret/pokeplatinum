@@ -21,5 +21,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, boo!\n",
+				"How insulting!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Listen very closely...\n",
+				"Can you hear the cries of Pokémon?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little again?\r"
+			]
+		}
     ]
 }

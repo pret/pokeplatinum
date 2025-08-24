@@ -1,0 +1,313 @@
+{
+  "key": 23677,
+  "messages": [
+    {
+      "id": "pl_msg_00000434_00000",
+      "en_US": "Lovely place"
+    },
+    {
+      "id": "pl_msg_00000434_00001",
+      "en_US": "Pokémon Ranger"
+    },
+    {
+      "id": "pl_msg_00000434_00002",
+      "en_US": "Faraway place"
+    },
+    {
+      "id": "pl_msg_00000434_00003",
+      "en_US": "Pokémon Movie"
+    },
+    {
+      "id": "pl_msg_00000434_00004",
+      "en_US": "Pokémon Movie 06"
+    },
+    {
+      "id": "pl_msg_00000434_00005",
+      "en_US": "Pokémon Movie 07"
+    },
+    {
+      "id": "pl_msg_00000434_00006",
+      "en_US": "Pokémon Movie 08"
+    },
+    {
+      "id": "pl_msg_00000434_00007",
+      "en_US": "Pokémon Movie 09"
+    },
+    {
+      "id": "pl_msg_00000434_00008",
+      "en_US": "Pokémon Movie 10"
+    },
+    {
+      "id": "pl_msg_00000434_00009",
+      "en_US": "Pokémon Movie 11"
+    },
+    {
+      "id": "pl_msg_00000434_00010",
+      "en_US": "Pokémon Movie 12"
+    },
+    {
+      "id": "pl_msg_00000434_00011",
+      "en_US": "Pokémon Movie 13"
+    },
+    {
+      "id": "pl_msg_00000434_00012",
+      "en_US": "Pokémon Movie 14"
+    },
+    {
+      "id": "pl_msg_00000434_00013",
+      "en_US": "Pokémon Movie 15"
+    },
+    {
+      "id": "pl_msg_00000434_00014",
+      "en_US": "Pokémon Movie 16"
+    },
+    {
+      "id": "pl_msg_00000434_00015",
+      "en_US": "Pokémon Cartoon"
+    },
+    {
+      "id": "pl_msg_00000434_00016",
+      "en_US": "Space World"
+    },
+    {
+      "id": "pl_msg_00000434_00017",
+      "en_US": "Space World 06"
+    },
+    {
+      "id": "pl_msg_00000434_00018",
+      "en_US": "Space World 07"
+    },
+    {
+      "id": "pl_msg_00000434_00019",
+      "en_US": "Space World 08"
+    },
+    {
+      "id": "pl_msg_00000434_00020",
+      "en_US": "Space World 09"
+    },
+    {
+      "id": "pl_msg_00000434_00021",
+      "en_US": "Space World 10"
+    },
+    {
+      "id": "pl_msg_00000434_00022",
+      "en_US": "Space World 11"
+    },
+    {
+      "id": "pl_msg_00000434_00023",
+      "en_US": "Space World 12"
+    },
+    {
+      "id": "pl_msg_00000434_00024",
+      "en_US": "Space World 13"
+    },
+    {
+      "id": "pl_msg_00000434_00025",
+      "en_US": "Space World 14"
+    },
+    {
+      "id": "pl_msg_00000434_00026",
+      "en_US": "Space World 15"
+    },
+    {
+      "id": "pl_msg_00000434_00027",
+      "en_US": "Space World 16"
+    },
+    {
+      "id": "pl_msg_00000434_00028",
+      "en_US": "Pokémon Festa"
+    },
+    {
+      "id": "pl_msg_00000434_00029",
+      "en_US": "Pokémon Festa 06"
+    },
+    {
+      "id": "pl_msg_00000434_00030",
+      "en_US": "Pokémon Festa 07"
+    },
+    {
+      "id": "pl_msg_00000434_00031",
+      "en_US": "Pokémon Festa 08"
+    },
+    {
+      "id": "pl_msg_00000434_00032",
+      "en_US": "Pokémon Festa 09"
+    },
+    {
+      "id": "pl_msg_00000434_00033",
+      "en_US": "Pokémon Festa 10"
+    },
+    {
+      "id": "pl_msg_00000434_00034",
+      "en_US": "Pokémon Festa 11"
+    },
+    {
+      "id": "pl_msg_00000434_00035",
+      "en_US": "Pokémon Festa 12"
+    },
+    {
+      "id": "pl_msg_00000434_00036",
+      "en_US": "Pokémon Festa 13"
+    },
+    {
+      "id": "pl_msg_00000434_00037",
+      "en_US": "Pokémon Festa 14"
+    },
+    {
+      "id": "pl_msg_00000434_00038",
+      "en_US": "Pokémon Festa 15"
+    },
+    {
+      "id": "pl_msg_00000434_00039",
+      "en_US": "Pokémon Festa 16"
+    },
+    {
+      "id": "pl_msg_00000434_00040",
+      "en_US": "POKéPARK"
+    },
+    {
+      "id": "pl_msg_00000434_00041",
+      "en_US": "POKéPARK 06"
+    },
+    {
+      "id": "pl_msg_00000434_00042",
+      "en_US": "POKéPARK 07"
+    },
+    {
+      "id": "pl_msg_00000434_00043",
+      "en_US": "POKéPARK 08"
+    },
+    {
+      "id": "pl_msg_00000434_00044",
+      "en_US": "POKéPARK 09"
+    },
+    {
+      "id": "pl_msg_00000434_00045",
+      "en_US": "POKéPARK 10"
+    },
+    {
+      "id": "pl_msg_00000434_00046",
+      "en_US": "POKéPARK 11"
+    },
+    {
+      "id": "pl_msg_00000434_00047",
+      "en_US": "POKéPARK 12"
+    },
+    {
+      "id": "pl_msg_00000434_00048",
+      "en_US": "POKéPARK 13"
+    },
+    {
+      "id": "pl_msg_00000434_00049",
+      "en_US": "POKéPARK 14"
+    },
+    {
+      "id": "pl_msg_00000434_00050",
+      "en_US": "POKéPARK 15"
+    },
+    {
+      "id": "pl_msg_00000434_00051",
+      "en_US": "POKéPARK 16"
+    },
+    {
+      "id": "pl_msg_00000434_00052",
+      "en_US": "Pokémon Center"
+    },
+    {
+      "id": "pl_msg_00000434_00053",
+      "en_US": "PC Tokyo"
+    },
+    {
+      "id": "pl_msg_00000434_00054",
+      "en_US": "PC Osaka"
+    },
+    {
+      "id": "pl_msg_00000434_00055",
+      "en_US": "PC Fukuoka"
+    },
+    {
+      "id": "pl_msg_00000434_00056",
+      "en_US": "PC Nagoya"
+    },
+    {
+      "id": "pl_msg_00000434_00057",
+      "en_US": "PC Sapporo"
+    },
+    {
+      "id": "pl_msg_00000434_00058",
+      "en_US": "PC Yokohama"
+    },
+    {
+      "id": "pl_msg_00000434_00059",
+      "en_US": "Nintendo World"
+    },
+    {
+      "id": "pl_msg_00000434_00060",
+      "en_US": "Pokémon Event"
+    },
+    {
+      "id": "pl_msg_00000434_00061",
+      "en_US": "Pokémon Event 06"
+    },
+    {
+      "id": "pl_msg_00000434_00062",
+      "en_US": "Pokémon Event 07"
+    },
+    {
+      "id": "pl_msg_00000434_00063",
+      "en_US": "Pokémon Event 08"
+    },
+    {
+      "id": "pl_msg_00000434_00064",
+      "en_US": "Pokémon Event 09"
+    },
+    {
+      "id": "pl_msg_00000434_00065",
+      "en_US": "Pokémon Event 10"
+    },
+    {
+      "id": "pl_msg_00000434_00066",
+      "en_US": "Pokémon Event 11"
+    },
+    {
+      "id": "pl_msg_00000434_00067",
+      "en_US": "Pokémon Event 12"
+    },
+    {
+      "id": "pl_msg_00000434_00068",
+      "en_US": "Pokémon Event 13"
+    },
+    {
+      "id": "pl_msg_00000434_00069",
+      "en_US": "Pokémon Event 14"
+    },
+    {
+      "id": "pl_msg_00000434_00070",
+      "en_US": "Pokémon Event 15"
+    },
+    {
+      "id": "pl_msg_00000434_00071",
+      "en_US": "Pokémon Event 16"
+    },
+    {
+      "id": "pl_msg_00000434_00072",
+      "en_US": "Wi-Fi Event"
+    },
+    {
+      "id": "pl_msg_00000434_00073",
+      "en_US": "Wi-Fi Gift"
+    },
+    {
+      "id": "pl_msg_00000434_00074",
+      "en_US": "Pokémon Fan Club"
+    },
+    {
+      "id": "pl_msg_00000434_00075",
+      "en_US": "Event Site"
+    },
+    {
+      "id": "pl_msg_00000434_00076",
+      "en_US": "Concert Event"
+    }
+  ]
+}

@@ -86,7 +86,7 @@ static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RT
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 {
-    sub_02028658(FieldSystem_GetSaveData(fieldSystem), daysPassed);
+    Underground_UpdateBuriedSphereSizes(FieldSystem_GetSaveData(fieldSystem), daysPassed);
     sub_0203F1FC(fieldSystem);
     TrainerCard_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
     RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), daysPassed);
@@ -123,7 +123,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
     SystemVars_UpdateVillaVisitor(fieldSystem->saveData);
     FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);
-    sub_0202C9A0(SaveData_WiFiHistory(fieldSystem->saveData));
+    WiFiHistory_UpdateGeonetCommunicationMap(SaveData_WiFiHistory(fieldSystem->saveData));
     sub_0206F2F0(fieldSystem->saveData);
 }
 

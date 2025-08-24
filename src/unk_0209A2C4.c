@@ -3,6 +3,8 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "main_menu/application_template.h"
+
 #include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -18,7 +20,7 @@
 #include "system.h"
 #include "text.h"
 
-FS_EXTERN_OVERLAY(overlay97);
+FS_EXTERN_OVERLAY(main_menu);
 
 typedef struct {
     int heapID;
@@ -45,8 +47,6 @@ static void sub_0209A4E4(UnkStruct_0209A3D0 *param0);
 static void sub_0209A530(UnkStruct_0209A3D0 *param0);
 static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0);
 static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int param3);
-
-extern const ApplicationManagerTemplate gMainMenuAppTemplate;
 
 static const WindowTemplate Unk_020F8A58 = {
     0x0,
@@ -126,7 +126,7 @@ int sub_0209A3A4(ApplicationManager *appMan, int *param1)
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
-    EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMainMenuAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(main_menu), &gMainMenuAppTemplate);
 
     return 1;
 }

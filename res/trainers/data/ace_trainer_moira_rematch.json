@@ -51,5 +51,18 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hello again! Please don’t hold\n",
+				"anything back, just like before.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Hmm...\n"
+		}
     ]
 }

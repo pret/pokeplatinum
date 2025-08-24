@@ -123,12 +123,12 @@ static BOOL ov23_0224A294(int param0, int param1)
 
 static void ov23_0224A300(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 static void ov23_0224A308(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 static void ov23_0224A310(int param0)
@@ -210,7 +210,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
     if ((v1->unk_00 == 4) && (v1->unk_01 == CommSys_CurNetId())) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 72, TRUE, ov23_0224A300);
     }
 
@@ -240,7 +240,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 2, TRUE, ov23_0224A300);
     }
 
@@ -311,7 +311,7 @@ static void ov23_0224A5CC(SysTask *param0, void *param1)
 static void ov23_0224A620(int param0)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
-    UnkStruct_ov23_0224A5CC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224A5CC));
+    UnkStruct_ov23_0224A5CC *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_0224A5CC));
 
     v1->unk_00 = 0;
     v1->unk_04 = param0;
@@ -404,7 +404,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             ov23_0224B040(v1->unk_01);
 
             if (v1->unk_01 == CommSys_CurNetId()) {
-                sub_020594FC();
+                CommPlayerMan_PauseFieldSystem();
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 2, TRUE, ov23_0224A308);
                 Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
             }
@@ -418,7 +418,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
         if (commPlayerMan->unk_290[v1->unk_02] == NULL) {
             if (v1->unk_01 == CommSys_CurNetId()) {
-                sub_02059514();
+                CommPlayerMan_ResumeFieldSystem();
             }
 
             return;
@@ -429,7 +429,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_020297EC(v4);
-                sub_020594FC();
+                CommPlayerMan_PauseFieldSystem();
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 13, TRUE, ov23_0224A300);
                 Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
@@ -483,7 +483,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 }
             }
 
-            sub_020594FC();
+            CommPlayerMan_PauseFieldSystem();
             Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
             if (flagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
@@ -821,7 +821,7 @@ void ov23_0224AF4C(int param0)
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (v0->unk_28[param0] != NULL) {
-        if (sub_020714F0(v0->unk_28[param0])) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v0->unk_28[param0])) {
             sub_0207136C(v0->unk_28[param0]);
         } else {
             GF_ASSERT(0);

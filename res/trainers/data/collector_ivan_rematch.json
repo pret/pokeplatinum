@@ -16,5 +16,18 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Pal Park, huh? I wonder what kinds\n",
+				"of Pokémon you can see there?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’re one enthusiastic Trainer.\n"
+		}
     ]
 }

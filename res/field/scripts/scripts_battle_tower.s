@@ -246,13 +246,13 @@ _03B0:
     GoToIfEq VAR_0x8008, 1, _04A8
     GoToIfEq VAR_0x8008, 2, _04B3
     ScrCmd_1DD 53, 0, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 1, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 2, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 43, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 4, _09B3
@@ -288,13 +288,13 @@ _04B3:
     End
 
 _04BE:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 30, 0, 0
     ReturnToField
     ScrCmd_1DD 31, 0, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 
@@ -431,9 +431,9 @@ _0724:
     Return
 
 _0734:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return
@@ -441,10 +441,10 @@ _0734:
 _0746:
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -577,13 +577,13 @@ _096F:
     Return
 
 _097F:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0B3 VAR_MAP_LOCAL_0
     ScrCmd_1DD 16, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, VAR_MAP_LOCAL_1
     Return
@@ -615,7 +615,7 @@ _09FB:
     Message 56
     Call _0734
     WaitABPressTime 30
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 2, 0, 0
@@ -710,10 +710,10 @@ _0B94:
     GoToIfEq VAR_0x8008, 1, _04A8
     GoToIfEq VAR_0x8008, 2, _04B3
     ScrCmd_1DD 53, 0, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 1, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     GoToIfEq VAR_MAP_LOCAL_1, 1, _0C53
     Call _0172
@@ -872,7 +872,7 @@ _0EA2:
 
 _0EBF:
     LockAll
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call _0724
     ScrCmd_1DD 100, 0, VAR_RESULT
@@ -1156,11 +1156,11 @@ _12F9:
     End
 
 _1304:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1D9 VAR_0x8000, VAR_0x8001
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     Return
@@ -1268,14 +1268,14 @@ _13E0:
     End
 
 _140A:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
     SetVar VAR_0x8000, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _1549
     GetPartyMonSpecies VAR_0x8000, VAR_0x8004

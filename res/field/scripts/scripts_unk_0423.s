@@ -114,7 +114,7 @@ _01A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0430
     GoTo _01C4
     End
@@ -222,7 +222,7 @@ _0328:
     Return
 
 _0333:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_2A4 VAR_RESULT
@@ -234,7 +234,7 @@ _035A:
     ScrCmd_0A3
 _035C:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_168 0, 0, 8, 2, 77
     Call _0320
@@ -407,22 +407,22 @@ _0526:
     WaitMovement
     Call _0328
     SetVar VAR_MAP_LOCAL_3, 0
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
 Unk423_Unused:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F7 VAR_0x8004
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_168 0, 0, 5, 2, 77
     Call _0320

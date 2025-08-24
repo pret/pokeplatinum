@@ -47,7 +47,7 @@ _0085:
     ScrCmd_299 1
     UpdateBPDisplay
     Message 10
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     HideBattlePoints
     CloseMessage
@@ -57,7 +57,7 @@ _0085:
     ScrCmd_2E4 2, VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
     ScrCmd_2E3
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_0x8000, 0
     Call _017A

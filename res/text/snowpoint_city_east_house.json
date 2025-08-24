@@ -1,0 +1,159 @@
+{
+  "key": 50203,
+  "messages": [
+    {
+      "id": "pl_msg_00000181_00000",
+      "en_US": [
+        "Hello, hello. Would you like to hear\n",
+        "a trendy saying?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00001",
+      "en_US": [
+        "Very well...\r",
+        "The trendy thing to say for you\n",
+        "would be...\r",
+        "{STRVAR_1 28, 0, 0}!\r",
+        "That’s a trendy sort of thing\n",
+        "to say."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00002",
+      "en_US": [
+        "Oh, come on now. With an attitude like\n",
+        "that, you’ll fall behind the times!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00003",
+      "en_US": [
+        "I hope you’ll use trendy sayings\n",
+        "in a trendy way."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00004",
+      "en_US": [
+        "Hello, hello. Are you using trendy\n",
+        "sayings?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00005",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000181_00006",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000181_00007",
+      "en_US": [
+        "Share colored Shards with me, and I’ll\n",
+        "teach your Pokémon some moves.\r",
+        "Want me to teach a move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00008",
+      "en_US": "Be seeing you, then!"
+    },
+    {
+      "id": "pl_msg_00000181_00009",
+      "en_US": "Which Pokémon will it be?\r"
+    },
+    {
+      "id": "pl_msg_00000181_00010",
+      "en_US": [
+        "There are no moves that can be taught\n",
+        "to this Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00011",
+      "en_US": "You don’t have enough Shards."
+    },
+    {
+      "id": "pl_msg_00000181_00012",
+      "en_US": [
+        "Teach which move to\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00013",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000181_00014",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000181_00015",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00016",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00017",
+      "en_US": [
+        "Stop trying to teach\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00018",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00019",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} is the move that\n",
+        "you want forgotten?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00020",
+      "en_US": "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!"
+    },
+    {
+      "id": "pl_msg_00000181_00021",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00022",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000181_00023",
+      "en_US": [
+        "It’s beyond my ability to teach moves\n",
+        "to an Egg!"
+      ]
+    }
+  ]
+}

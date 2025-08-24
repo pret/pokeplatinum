@@ -1,0 +1,151 @@
+{
+  "key": 29699,
+  "messages": [
+    {
+      "id": "pl_msg_00000058_00000",
+      "en_US": [
+        "Hello.\n",
+        "This is the Canalave Library.\r",
+        "Please keep quiet while you’re on\n",
+        "the premises."
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00001",
+      "en_US": [
+        "H-hello!\n",
+        "This is the Canalave Library.\r",
+        "Please keep quiet while you’re on\n",
+        "the premises.\r",
+        "It certainly wasn’t me who screamed,\r",
+        "{SIZE 200}“Gyaaah!!”{SIZE 100}\r",
+        "{SIZE 200}{SIZE 100}or shouted,\r",
+        "{SIZE 200}“Help meee!!”{SIZE 100}\r",
+        "{SIZE 200}{SIZE 100}No, really, that wasn’t me\n",
+        "screaming!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00002",
+      "en_US": "...\r"
+    },
+    {
+      "id": "pl_msg_00000058_00003",
+      "en_US": [
+        "What is it? Please don’t disturb\n",
+        "me when I’m reading.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00004",
+      "en_US": [
+        "I’ve been asking people not to\n",
+        "disturb me while I’m reading...\r",
+        "I shouldn’t even have bothered...\n",
+        "I’m all agitated now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00005",
+      "en_US": [
+        "The ceiling-high bookshelves are\n",
+        "crammed with books."
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00006",
+      "en_US": [
+        "The shelves are lined with books\n",
+        "worn from being read by many people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00007",
+      "en_US": [
+        "Lucian: ...Ah, hello.\n",
+        "You’re here to read, too?\r",
+        "Books are wonderful things.\r",
+        "The thoughts of people written in books\n",
+        "stretch beyond time and space.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00008",
+      "en_US": [
+        "I imagine we’ll see each other again\n",
+        "at the Pokémon League. Take care.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00009",
+      "en_US": [
+        "I was just reading a collection of\n",
+        "letters written by an artist long ago.\r",
+        "More precisely, they were written to\n",
+        "the artist’s younger brother.\r",
+        "“The stars above tantalize from\n",
+        "across infinite space.\r",
+        "“Feeling their gaze from so far away,\n",
+        "I am charmed again by life.”\r",
+        "The artist must have come to a\n",
+        "conclusion seeing the night sky...\r",
+        "It’s an affirmation of life.\n",
+        "It’s very moving.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00010",
+      "en_US": [
+        "I was just reading an analytical tome on\n",
+        "humankind.\r",
+        "It examines the human species from\n",
+        "cultural and social perspectives.\r",
+        "This is a thought-provoking quote: \n",
+        "“It all began without humans.\f",
+        "The end will also be without humans.”\r",
+        "The world we share with Pokémon...\n",
+        "Does it exist for us?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00011",
+      "en_US": [
+        "I was just reading a collection of\n",
+        "observations on Pokémon in the wild.\r",
+        "One article addresses the question why\n",
+        "Pokémon would go into a Poké Ball.\r",
+        "According to the article, this behavior\n",
+        "is based on instinct.\r",
+        "A weakened Pokémon will curl up tight\n",
+        "in an effort to heal itself.\r",
+        "The Poké Ball was invented to take\n",
+        "advantage of that protective instinct.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00012",
+      "en_US": [
+        "I was just reading a collection of\n",
+        "essays on the science-fiction genre.\r",
+        "There was one quote attributed to a\n",
+        "novelist I found remarkable.\r",
+        "“Though love may lose, kindness wins.”\r",
+        "I find that philosophical and, at the\n",
+        "same time, compassionate.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000058_00013",
+      "en_US": [
+        "I was just reading a book of philosophy\n",
+        "from an ancient, far-off land.\r",
+        "Their “universe” was a word that\n",
+        "described both space and time.\r",
+        "That people even back then understood\n",
+        "the basic tenets of the universe...\r",
+        "It fills me with a serene sense of\n",
+        "inspiration.\r"
+      ]
+    }
+  ]
+}

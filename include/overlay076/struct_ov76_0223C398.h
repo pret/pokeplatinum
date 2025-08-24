@@ -6,8 +6,8 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 
-#include "overlay012/struct_ball_rotation_decl.h"
-#include "overlay012/struct_ov12_02235FE0_decl.h"
+#include "battle_anim/struct_ball_rotation_decl.h"
+#include "battle_anim/struct_ov12_02235FE0_decl.h"
 #include "overlay022/struct_ov22_02258A48.h"
 
 #include "bg_window.h"

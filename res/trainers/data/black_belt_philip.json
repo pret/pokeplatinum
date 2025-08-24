@@ -17,5 +17,32 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I can withstand this cold. That means\n",
+				"I can take any kind of attack!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Huh? It’s over, you say?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oh, gosh, this is bad! I think I’m\n",
+				"losing feeling all over my body!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh? I’ve seen your face before.\n",
+				"What say we battle?\r"
+			]
+		}
     ]
 }

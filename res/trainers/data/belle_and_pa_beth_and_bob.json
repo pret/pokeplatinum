@@ -25,5 +25,65 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"It makes no difference where we are.\r",
+				"If you have Pokémon with you,\n",
+				"I reckon you ought to battle.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"You’ve got a lot of giddyap and go\n",
+				"in you!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Over a long life, you’ll be certain\n",
+				"to have some sad farewells.\r",
+				"But I reckon there are also some\n",
+				"new beginnings.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Hahaha! I’m afraid y’all are no match\n",
+				"for us with jus’ one of them Pokémon!"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"My Pokémon is a lively one.\n",
+				"Lemme show you how much!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": "Well! Aren’t you the lively one!"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Them graves here in Lost Tower...\n",
+				"Right’n here, inside my heart...\r",
+				"Those are the places where my\n",
+				"Pokémon remain...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"You haven’t got yerself two\n",
+				"Pokémon?\n"
+			]
+		}
     ]
 }

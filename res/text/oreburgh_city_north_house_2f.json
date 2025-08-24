@@ -1,0 +1,55 @@
+{
+  "key": 25623,
+  "messages": [
+    {
+      "id": "pl_msg_00000075_00000",
+      "en_US": [
+        "All Pokémon have a special power\n",
+        "called an ability."
+      ]
+    },
+    {
+      "id": "pl_msg_00000075_00001",
+      "en_US": [
+        "My favorite Pokémon ability is my\n",
+        "PACHIRISU’s Pickup.\r",
+        "My darling picks up a lot of dropped\n",
+        "items without me noticing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000075_00002",
+      "en_US": [
+        "The view is good from the second floor,\n",
+        "but it’s a pain going outside.\r",
+        "If you don’t mind, how about showing me\n",
+        "a Pokémon called GEODUDE?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000075_00003",
+      "en_US": [
+        "The view is good from the second floor,\n",
+        "but it’s a pain going outside.\r",
+        "If you don’t mind, how about showing me\n",
+        "a Pokémon called GEODUDE?\r",
+        "Oh! That Pokémon!\n",
+        "That’s a GEODUDE!\r",
+        "Wow, that’s cool...\n",
+        "It’s so cute...\r",
+        "That does it!\n",
+        "I’ll go out and catch Pokémon, too!\r",
+        "Thank you, my friend!\n",
+        "This is a token of my thanks!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000075_00004",
+      "en_US": [
+        "Yeah, there are so many kinds of\n",
+        "Pokémon out in the world.\r",
+        "I want to see them all now!"
+      ]
+    }
+  ]
+}

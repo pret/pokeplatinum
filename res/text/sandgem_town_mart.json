@@ -1,0 +1,22 @@
+{
+  "key": 53008,
+  "messages": [
+    {
+      "id": "pl_msg_00000562_00000",
+      "en_US": [
+        "If a Pokémon loses all its HP,\n",
+        "it can’t battle anymore.\r",
+        "I’m buying lots of Potions to avoid\n",
+        "having that happen!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000562_00001",
+      "en_US": [
+        "If you come across a Pokémon you’ve\n",
+        "just gotta have, toss a Poké Ball!\r",
+        "Never leave home without one!"
+      ]
+    }
+  ]
+}

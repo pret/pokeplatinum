@@ -1,0 +1,217 @@
+{
+  "key": 33003,
+  "messages": [
+    {
+      "id": "pl_msg_00000417_00000",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing\n",
+        "record set by a Battle Tower master!\r",
+        "Tanya: A Battle Tower master?\r",
+        "Serge: You heard right, Tanya!\n",
+        "I’m talking about {STRVAR_1 3, 0, 0}’s\f",
+        "{STRVAR_1 0, 1, 0}-led team.\r",
+        "They set a new Single Battle record\n",
+        "of {STRVAR_1 53, 2, 0} straight wins at the tower!\r",
+        "Tanya: They must really enjoy\n",
+        "climbing to high places.\r",
+        "Serge: No, no, you’ve got that all\n",
+        "wrong!\r",
+        "They accomplished a super feat!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00001",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing\n",
+        "record set by a Battle Tower master!\r",
+        "Tanya: A Battle Tower master?\r",
+        "Serge: You heard right, Tanya!\n",
+        "I’m talking about {STRVAR_1 3, 0, 0}’s\f",
+        "{STRVAR_1 0, 1, 0}-led team.\r",
+        "They set a new Double Battle record\n",
+        "of {STRVAR_1 53, 2, 0} straight wins at the tower!\r",
+        "Tanya: They must have been scared\n",
+        "of Single Battles.\r",
+        "Serge: No, no, that’s not so!\n",
+        "Double Battles are rough, too!\r",
+        "They accomplished a super feat!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00002",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing\n",
+        "record on Pokémon size. It’s huge!\r",
+        "Tanya: This is about a huge\n",
+        "Pokémon?\r",
+        "Serge: You said it, Tanya!\n",
+        "The record was set by {STRVAR_1 3, 0, 0}.\r",
+        "{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0} reached\n",
+        "the record size of {STRVAR_1 52, 2, 0}.{STRVAR_1 50, 3, 0} inches!\r",
+        "Tanya: That will never fit in the\n",
+        "palms of my hands.\r",
+        "Serge: No, no, Tanya, one’d never\n",
+        "fit in your hands either way!\r",
+        "{STRVAR_1 3, 0, 0} sure set a super record!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00003",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing record\n",
+        "set by a slot-game master!\r",
+        "Tanya: Ooh! Did the record setter have\n",
+        "lots of SPOINK and GRUMPIG?\r",
+        "Serge: Huh? Oh, right! I said slot,\n",
+        "not slop, Tanya!\r",
+        "Nope, this is about {STRVAR_1 3, 0, 0}’s\n",
+        "big day at the Game Corner.\r",
+        "{STRVAR_1 3, 0, 0} started out with\n",
+        "{STRVAR_1 54, 2, 0} Coins.\r",
+        "In {STRVAR_1 59, 1, 0} minutes, guess how\n",
+        "many Coins the Trainer ended with?\r",
+        "Tanya: The Trainer lost them all?\r",
+        "Serge: No, no, no! We wouldn’t be\n",
+        "reporting a tragedy like that!\r",
+        "The Trainer started with {STRVAR_1 54, 2, 0} Coins\n",
+        "and ended up with {STRVAR_1 54, 3, 0} Coins!\r",
+        "Tanya: I’m sure that will buy a lot\n",
+        "of slops!\r",
+        "Serge: No, no, Tanya, this isn’t\n",
+        "about slops at all!\r",
+        "It was a great day at the slots!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00004",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing record\n",
+        "set by a Ribbon master!\r",
+        "Tanya: Ooh! Did you say Ribbon?\n",
+        "I don’t have one on?\r",
+        "Serge: Huh? It’s OK, Tanya!\n",
+        "I’m talking about Pokémon Ribbons.\r",
+        "You see, {STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}\n",
+        "earned the {STRVAR_1 39, 2, 0}.\r",
+        "That {STRVAR_1 0, 1, 0} must be festooned\n",
+        "with Ribbons all over, I bet!\r",
+        "Tanya: How could that possibly look\n",
+        "fashionable?\r",
+        "Serge: No, no, Tanya, don’t be so\n",
+        "contrary!\r",
+        "It’s about achievements, not looks!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00005",
+      "garbage": 228
+    },
+    {
+      "id": "pl_msg_00000417_00006",
+      "garbage": 243
+    },
+    {
+      "id": "pl_msg_00000417_00007",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at an amazing record\n",
+        "set by a Trap-busting master!\r",
+        "Tanya: Ooh! A Trap buster?\n",
+        "Tell me more!\r",
+        "Serge: ...Tanya, you seem overly\n",
+        "excited about this...\r",
+        "...Anyway, {STRVAR_1 3, 0, 0} set an\n",
+        "inspiring record for busting Traps.\r",
+        "Tanya: More! Details!\n",
+        "Tell me more!\r",
+        "Serge: {STRVAR_1 3, 0, 0} disarmed {STRVAR_1 52, 2, 0}\n",
+        "Traps, including the {STRVAR_1 25, 1, 0}!\r",
+        "Tanya: I want to hear more!\r",
+        "Serge: ...More? But, how...?\r",
+        "Tanya: What were {STRVAR_1 3, 0, 0}’s\n",
+        "thoughts while disarming Traps?\r",
+        "Serge: How am I supposed to know\n",
+        "something like that...?\r",
+        "Tanya: Everyone! Let’s do away with\n",
+        "Traps! Let’s go underground!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00008",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at a super record\n",
+        "set by a Flag-capturing master!\r",
+        "Tanya: Capture the Flag?\r",
+        "Serge: You heard right, Tanya!\n",
+        "It’s about getting Flags from Secret\f",
+        "Bases underground!\r",
+        "In just one session, {STRVAR_1 3, 0, 0}\n",
+        "captured {STRVAR_1 52, 1, 0} Flags!\r",
+        "Tanya: Isn’t that greedy?\r",
+        "Serge: No, no, that’s not so!\n",
+        "That’s the way that game’s played!\r",
+        "It was a grand undertaking!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00009",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at a wicked record\n",
+        "set by a Battle Point-scoring master!\r",
+        "Tanya: Battle Points?\r",
+        "Serge: That’s exactly right, Tanya!\n",
+        "Battle Points from the Battle Frontier.\r",
+        "{STRVAR_1 3, 0, 0} scored a mind-blazing\n",
+        "{STRVAR_1 53, 1, 0} BP in just one day!\r",
+        "Tanya: Is the Trainer maybe thinking\n",
+        "BP are worth money?\r",
+        "Serge: No, no, hold on, there!\n",
+        "It’s harder to earn BP than money!\r",
+        "It’s worth more than money!\n",
+        "See you again, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000417_00010",
+      "en_US": [
+        "Serge: It’s time for Rack ’Em Up\n",
+        "Records!\r",
+        "Today, we’ll look at a superb record\n",
+        "set by a GTS master!\r",
+        "Tanya: GTS?\n",
+        "Gross and Terribly STUNKY?\r",
+        "Serge: No, no, Tanya!\n",
+        "It’s not some mysterious Pokémon!\r",
+        "{STRVAR_1 3, 0, 0} traded {STRVAR_1 53, 1, 0} Pokémon\n",
+        "over the GTS in just one day!\r",
+        "Tanya: Other people’s Pokémon must\n",
+        "seem stronger to that Trainer.\r",
+        "Serge: No, no, that’s not right!\n",
+        "That’s not how to look at it.\r",
+        "This is something special!\n",
+        "See you again, folks!"
+      ]
+    }
+  ]
+}

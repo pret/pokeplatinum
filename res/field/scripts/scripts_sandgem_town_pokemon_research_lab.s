@@ -101,7 +101,7 @@ _015C:
     End
 
 _016A:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 1, VAR_RESULT
     Message 54
     WaitABXPadPress
@@ -170,11 +170,11 @@ _022B:
 _0261:
     SetVar VAR_RESULT, 0
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB 0, VAR_RESULT
     SetVar VAR_0x8002, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 5
     ShowYesNoMenu VAR_RESULT
@@ -535,7 +535,7 @@ _0650:
     End
 
 _065B:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 0, VAR_RESULT
     Message 28
     BufferPlayerName 0

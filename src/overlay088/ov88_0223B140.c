@@ -21,6 +21,7 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "char_transfer.h"
+#include "character_sprite.h"
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -66,7 +67,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "trainer_memo.h"
-#include "unk_020131EC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
@@ -1130,7 +1130,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->saveData = v0->saveData;
-    param0->unk_2274 = Heap_AllocFromHeap(HEAP_ID_26, Party_SaveSize());
+    param0->unk_2274 = Heap_Alloc(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());
@@ -1208,7 +1208,7 @@ static void ov88_0223C63C(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, 26
+            20, 2048, 2048, HEAP_ID_26
         };
 
         CharTransfer_Init(&v0);
@@ -1253,10 +1253,10 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
     Pokemon_BuildSpriteTemplate(param3, param1, 2);
 
     {
-        int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        int personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+        enum Species species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        CharacterSprite_LoadPokemonSpriteRect(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, personality, FALSE, FACE_FRONT, species);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);
@@ -2481,8 +2481,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
-    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
-    sub_0207893C(v1);
+    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
+    Pokemon_ClearBallCapsuleData(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);
     TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), param4->unk_38);

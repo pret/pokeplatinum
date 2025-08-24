@@ -1,0 +1,112 @@
+{
+  "key": 39279,
+  "messages": [
+    {
+      "id": "pl_msg_00000108_00000",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "This Gym is some kind of wicked!\n",
+        "What’s wicked about it?\r",
+        "I’ll tell you!\n",
+        "First, it’s pitch-black!\r",
+        "Oh, no worries, though!\n",
+        "I have a flashlight right here for you.\r",
+        "Also, there are the usual Gym Trainers.\n",
+        "They have flashlights, too.\r",
+        "If you cast a light on one, or they\n",
+        "catch you in the light, the battle’s on!\r",
+        "OK, now this is really important!\n",
+        "It’s about the tiles on the floor.\r",
+        "First, find the one {COLOR 2}blue{COLOR 0} tile in the\n",
+        "room, and memorize the mark on it.\r",
+        "Next, head for the {COLOR 1}red{COLOR 0} door with the\n",
+        "same mark on it.\r",
+        "Advance through the correct red doors\n",
+        "to reach the Gym Leader.\r",
+        "If you choose a wrong red door, you\n",
+        "get sent back here, though.\r",
+        "That’s how this place is.\n",
+        "Go get ’em, Champ-to-be!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000108_00001",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "You must really like hearing me talk.\r",
+        "If you want to hear my long spiel again,\n",
+        "just say, “Yes!”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000108_00002",
+      "en_US": [
+        "Hey, there! Hello, Champ-to-be!\n",
+        "Let me tell you how this Gym is wicked!\r",
+        "I’ll tell you!\n",
+        "First, it’s pitch-black!\r",
+        "Also, there are the usual Gym Trainers.\n",
+        "They have flashlights, too.\r",
+        "If you cast a light on one, or they\n",
+        "catch you in the light, the battle’s on!\r",
+        "OK, now this is really important!\n",
+        "It’s about the tiles on the floor.\r",
+        "First, find the one {COLOR 2}blue{COLOR 0} tile in the\n",
+        "room, and memorize the mark on it.\r",
+        "Next, head for the {COLOR 1}red{COLOR 0} door with the\n",
+        "same mark on it.\r",
+        "Advance through the correct red doors\n",
+        "to reach the Gym Leader.\r",
+        "If you choose a wrong red door, you\n",
+        "get sent back here, though.\r",
+        "Oops! How silly of me!\n",
+        "I forgot to tell you something vital!\r",
+        "The Gym Leader here is a user of\n",
+        "Ghost-type Pokémon.\r",
+        "Beware, Normal-type moves have no\n",
+        "effect at all on ghosts!\r",
+        "It’s as if they weren’t there!\n",
+        "But you’ll have to see for yourself.\r",
+        "Go get ’em, challenger!\n",
+        "I believe in you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000108_00003",
+      "en_US": "OK, go get ’em!"
+    },
+    {
+      "id": "pl_msg_00000108_00004",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve beaten the Gym Leader!\r",
+        "There seems to be no end to how\n",
+        "tough you are getting!\r",
+        "At least that’s how I see it!\r",
+        "...You do realize I say that to\n",
+        "everyone, right?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000108_00005",
+      "en_US": [
+        "Hearthome City Pokémon Gym\n",
+        "Leader: Fantina\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000108_00006",
+      "en_US": [
+        "Hearthome City Pokémon Gym\n",
+        "Leader: Fantina\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

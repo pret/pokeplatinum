@@ -9,12 +9,15 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "pch/global_pch.h"
+
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "charcode.h"
 #include "charcode_util.h"
 #include "font.h"
 #include "game_options.h"
+#include "genders.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -32,6 +35,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "species.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,18 +50,29 @@
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
 
-#define NAMING_SCREEN_CONTROL_DAKU            0xD001
-#define NAMING_SCREEN_CONTROL_HANDAKU         0xD002
-#define NAMING_SCREEN_CONTROL_SPACE           0xD003
-#define NAMING_SCREEN_CONTROL_SKIP            0xD004
-#define NAMING_SCREEN_BUTTON_START            0xE001
-#define NAMING_SCREEN_BUTTON_PAGE_UPPER       0xE002
-#define NAMING_SCREEN_BUTTON_PAGE_LOWER       0xE003
-#define NAMING_SCREEN_BUTTON_PAGE_OTHERS      0xE004
-#define NAMING_SCREEN_BUTTON_PAGE_JP_UNUSED   0xE005
-#define NAMING_SCREEN_BUTTON_PAGE_JP_UNUSED_2 0xE006
-#define NAMING_SCREEN_BUTTON_BACK             0xE007
-#define NAMING_SCREEN_BUTTON_OK               0xE008
+#include "res/graphics/naming_screen/namein.naix.h"
+#include "res/text/bank/generic_names.h"
+#include "res/text/bank/naming_screen.h"
+
+// if these are modified, NamingScreen_InitializeCharsGraphics
+// and calls to NamingScreen_PrintChars need to be adjusted.
+#define NMS_NUM_ROWS 6
+#define NMS_NUM_COLS 13
+
+enum NamingScreenControlChars {
+    NMS_CONTROL_DAKU = 0xD001,
+    NMS_CONTROL_HANDAKU,
+    NMS_CONTROL_SPACE,
+    NMS_CONTROL_SKIP,
+    NMS_BUTTON_START = 0xE001,
+    NMS_BUTTON_PAGE_UPPER,
+    NMS_BUTTON_PAGE_LOWER,
+    NMS_BUTTON_PAGE_OTHERS,
+    NMS_BUTTON_PAGE_JP_UNUSED,
+    NMS_BUTTON_PAGE_JP_UNUSED_2,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_OK,
+};
 
 enum NamingScreenAppState {
     NMS_APP_STATE_WAIT_FADE_IN = 0,
@@ -67,10 +82,10 @@ enum NamingScreenAppState {
 };
 
 enum NamingScreenState {
-    NMS_STATE_PLACEHOLDER_4 = 4,
-    NMS_STATE_PLACEHOLDER_5,
-    NMS_STATE_PLACEHOLDER_6,
-    NMS_STATE_PLACEHOLDER_7,
+    NMS_STATE_PROCESS_INPUTS = 4,
+    NMS_STATE_PRINT_BATTLE_MESSAGE,
+    NMS_STATE_WAIT_BATTLE_MESSAGE,
+    NMS_STATE_START_FADE_OUT,
 };
 
 enum ChangeCharsState {
@@ -82,57 +97,106 @@ enum ChangeCharsState {
 };
 
 enum NamingScreenSprite {
-    NMS_SPRITE_OVERLAY = 7,
+    NMS_SPRITE_UPPER_BUTTON = 0,
+    NMS_SPRITE_LOWER_BUTTON,
+    NMS_SPRITE_OTHERS_BUTTON,
+    NMS_SPRITE_JP_UNUSED_BUTTON,
+    NMS_SPRITE_JP_UNUSED_2_BUTTON,
+    NMS_SPRITE_BACK_BUTTON,
+    NMS_SPRITE_OK_BUTTON,
+    // all sprites before this one are treated as children of this one,
+    // and their positions will move when the overlay moves
+    NMS_SPRITE_OVERLAY,
+    NMS_SPRITE_CURSOR,
+    NMS_SPRITE_COUNT,
 };
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
+#define NMS_SPRITE_BUTTON_START      NMS_SPRITE_BACK_BUTTON
+#define NMS_SPRITE_BUTTON_END        NMS_SPRITE_OK_BUTTON
+#define NMS_SPRITE_PAGE_BUTTON_START NMS_SPRITE_UPPER_BUTTON
+#define NMS_SPRITE_PAGE_BUTTON_END   NMS_SPRITE_OTHERS_BUTTON
+
+enum NamingScreenWindows {
+    // there are two keyboards. when transitioning, both
+    // are active (one moves in the other moves out).
+    // otherwise, only one is active.
+    // these must stay beside each other.
+    NMS_WINDOW_KEYBOARD_0 = 0,
+    NMS_WINDOW_KEYBOARD_1,
+    // this window is never used, only created and destroyed
+    NMS_WINDOW_DUMMY,
+    NMS_WINDOW_ENTERED_TEXT,
+    // these windows are used in PrintCharOnWindowAndOBJ, but I don't know what they do.
+    // commenting out that function, and making these never get used, the result is that
+    // nothing changes
+    NMS_WINDOW_UNK_0,
+    NMS_WINDOW_UNK_1,
+    NMS_WINDOW_UNK_2,
+    NMS_WINDOW_UNK_3,
+    NMS_WINDOW_GROUP_TEXT,
+    NMS_WINDOW_PROMPT,
+    NMS_WINDOW_COUNT,
+};
+
+enum NamingScreenDpadMovement {
+    NMS_DPAD_MOVEMENT_NONE = 0,
+    NMS_DPAD_MOVEMENT_UP,
+    NMS_DPAD_MOVEMENT_DOWN,
+    NMS_DPAD_MOVEMENT_LEFT,
+    NMS_DPAD_MOVEMENT_RIGHT,
+    NMS_DPAD_MOVEMENT_COUNT,
+};
+
+typedef struct NamingScreenCursor {
+    int x;
+    int y;
+    int prevX;
+    int prevY;
+    int deltaX;
     BOOL hasCharacterBeenEntered;
-    int unk_18;
-} UnkStruct_02087A10_sub1;
+    BOOL ignoreInput;
+} NamingScreenCursor;
 
 typedef struct NamingScreen {
     enum NamingScreenType type;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
+    int playerGenderOrMonSpecies;
+    int monForm;
+    int maxChars;
+    int monGender;
+    BOOL printedFromBattleGMM;
     Options *options;
-    UnkStruct_02087A10_sub1 unk_1C;
-    u16 unk_38;
-    u16 unk_3A[6][13];
-    u16 unk_D6;
+    NamingScreenCursor keyboardCursor;
+    u16 plttGlowEffectAngle;
+    charcode_t keyboardChars[NMS_NUM_ROWS][NMS_NUM_COLS];
+    u16 dummy5;
     charcode_t entryBuf[32];
     charcode_t entryBufBak[32];
     u16 textCursorPos;
-    u16 tmpBuf[3];
+    charcode_t tmpBuf[3];
     BgConfig *bgConfig;
-    BOOL unk_164;
+    BOOL dummy4;
     StringTemplate *strTemplate;
     MessageLoader *namingScreenMsgLoader;
     MessageLoader *genericNamesMsgLoader;
     MessageLoader *battleStringsMsgLoader;
-    Strbuf *unk_178;
-    Strbuf *unk_17C;
-    Strbuf *unk_180;
-    Strbuf *unk_184;
-    SpriteList *unk_188;
-    G2dRenderer unk_18C;
-    SpriteResourceCollection *unk_318[4];
-    SpriteResource *unk_328[2][4];
-    SpriteResourcesHeader unk_348;
-    SpriteResourcesHeader unk_36C;
-    Sprite *miscSprites[14];
+    Strbuf *promptString;
+    Strbuf *unkJapaneseString;
+    Strbuf *battleMessageStrbuf;
+    Strbuf *groupTextStrbuf;
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *spriteResourceCollections[4];
+    SpriteResource *spriteResources[2][4];
+    SpriteResourcesHeader mainSpriteResourceHeader;
+    SpriteResourcesHeader subResourceSpriteHeader;
+    // I don't know where 14 comes from.
+    // only the first 9 elements are used. (NMS_SPRITE_COUNT)
+    Sprite *uiSprites[14];
     Sprite *textCursorSprites[12];
     Sprite *entitySprite[2];
-    SysTask *unk_400[7];
-    Window unk_41C[10];
-    int unk_4BC;
+    SysTask *spriteFollowTasks[NMS_SPRITE_OVERLAY];
+    Window windows[NMS_WINDOW_COUNT];
+    int battleMessagePrinter;
     union {
         enum NamingScreenState main;
         enum ChangeCharsState changeChars;
@@ -142,29 +206,29 @@ typedef struct NamingScreen {
     // alternates between 0 and 1. (see NamingScreen_AnimateChangeChars)
     enum BgLayer freeCharsBgLayer;
     VecFx32 charsPosition[2];
-    int unk_4E4;
-    int unk_4E8;
-    int unk_4EC;
-    int unk_4F0;
-    BOOL spritesToUpdate[7];
+    int dummy3;
+    int dummy0;
+    int dummy1;
+    int dummy2;
+    BOOL spritesToUpdate[NMS_SPRITE_OVERLAY];
     void *charDataAlloc;
     NNSG2dCharacterData *charData;
-    void *unk_518;
-    NNSG2dCharacterData *unk_51C;
-    void *unk_520;
-    NNSG2dPaletteData *unk_524;
+    void *monIconRawCharData;
+    NNSG2dCharacterData *monIconCharData;
+    void *monIconRawPlttData;
+    NNSG2dPaletteData *plttData;
     u8 pixelBuf[256];
-    UnkStruct_020157E4 *unk_628;
-    BOOL unk_62C;
+    UnkStruct_020157E4 *touchscreenIconBlinker;
+    BOOL isTouchInput;
     int delayUpdateCounter;
 } NamingScreen;
 
-typedef struct {
-    Sprite *unk_00;
-    Sprite *unk_04;
-    int unk_08;
-    int unk_0C;
-} UnkStruct_020879DC;
+typedef struct SubspritePosControllerParameters {
+    Sprite *parent;
+    Sprite *child;
+    int dx;
+    int i;
+} SubspritePosControllerParameters;
 
 typedef struct OverlayWiggleParameters {
     Sprite *overlaySprite;
@@ -174,12 +238,24 @@ typedef struct OverlayWiggleParameters {
 } OverlayWiggleParameters;
 
 typedef struct NamingScreenTouchHitbox {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02_0 : 2;
-    u8 unk_04_0 : 5;
-    u8 unk_05_0 : 5;
+    u8 x;
+    u8 y;
+    u16 sizeParam : 2;
+    u8 cursorX : 5;
+    u8 cursorY : 5;
 } NamingScreenTouchHitbox;
+
+typedef struct NamingScreenSpriteAnim {
+    int x;
+    int y;
+    int anim;
+    int priority;
+} NamingScreenSpriteAnim;
+
+typedef struct DpadMovement {
+    int x;
+    int y;
+} DpadMovement;
 
 static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state);
 static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state);
@@ -187,11 +263,11 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *state);
 static void NamingScreen_VBlankCallback(void *unused);
 static void NamingScreen_InitGraphicsBanks(void);
 static void NamingScreen_InitBgs(BgConfig *bgConfig);
-static void sub_0208765C(BgConfig *param0, Window *param1);
+static void NamingScreen_FreeBgs(BgConfig *bgConfig, Window *windows);
 static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *narc);
 static void NamingScreen_AnimateChangeChars(
     BgConfig *bgConfig,
-    Window *window,
+    Window *windows,
     enum ChangeCharsState *statePtr,
     int currentCharsIdx,
     enum BgLayer *bgLayerPtr,
@@ -200,13 +276,13 @@ static void NamingScreen_AnimateChangeChars(
     void *rawCharData);
 static void NamingScreen_InitCursorsAndChars(NamingScreen *param0, ApplicationManager *appMan);
 static void NamingScreen_UpdateCharsPriorities(BgConfig *unused0, enum BgLayer oldBgLayer, VecFx32 unused1[]);
-static void NamingScreen_InitializeCharsPosition(VecFx32 param0[], enum BgLayer freeBgLayer);
-static void sub_020877F4(NamingScreen *param0, NARC *param1);
-static void NamingScreen_InitSprites(NamingScreen *param0);
+static void NamingScreen_InitializeCharsPosition(VecFx32 charsPosition[], enum BgLayer freeBgLayer);
+static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc);
+static void NamingScreen_InitSprites(NamingScreen *namingScreen);
 static void NamingScreen_TransferChars(void);
-static void sub_02087FC0(NamingScreen *param0, ApplicationManager *appMan, NARC *param2);
-static void NamingScreen_ProcessDirectionInputs(NamingScreen *param0);
-static void sub_02088514(u16 *param0);
+static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationManager *appMan, NARC *narc);
+static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen);
+static void NamingScreen_PaletteGlowEffect(u16 *param0);
 static void NamingScreen_PrintChars(
     Window *window,
     const charcode_t *charCodes,
@@ -216,13 +292,29 @@ static void NamingScreen_PrintChars(
     int renderDelay,
     TextColor textColor,
     void *rawCharData);
-static void NamingScreen_PrintCharOnWindowAndOBJ(Window *param0, const charcode_t *param1, u8 *param2, Strbuf *param3);
-static void sub_02088844(u16 param0[][13], const int param1);
-static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
-static int sub_02088898(NamingScreen *param0, u16 param1, int param2);
-static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5);
-static int sub_02088C9C(int param0, int param1, u16 *param2, int param3);
-static void sub_02088E1C(Sprite **param0, int param1, int param2);
+static void NamingScreen_PrintCharOnWindowAndOBJ(
+    Window *window,
+    const charcode_t *tmpBuf,
+    u8 *pixelBuf,
+    Strbuf *string);
+static void NamingScreen_LoadKeyboardLayout(charcode_t out[][13], const int index);
+static void NamingScreen_PrintLastCharOfEntryBuf(
+    Window *windows,
+    charcode_t *srcChars,
+    int srcCharIdx,
+    charcode_t *charCodeBuf,
+    u8 *pixelBuf,
+    Strbuf *string);
+static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charcode_t charCode, BOOL isButtonInput);
+static BOOL NamingScreen_JPFlipDiacritic(
+    int tableStart,
+    int tableEnd,
+    int convColNum,
+    int mode,
+    charcode_t *charBuf,
+    int cursorPos);
+static BOOL NamingScreen_JPFlipAlphaCase(int tableStart, int tableEnd, charcode_t *charBuf, int cursorPos);
+static void NamingScreen_UpdateTextCursors(Sprite **textCursorSprites, int textCursorPos, int maxChars);
 static void NamingScreen_CopyParamsFromArgs(NamingScreen *namingScreen, NamingScreenArgs *namingScreenArgs);
 static void NamingScreen_InitializeCharsGraphics(
     Window *param0,
@@ -230,72 +322,84 @@ static void NamingScreen_InitializeCharsGraphics(
     int param2,
     TextColor param3,
     void *rawCharData);
-static void NamingScreen_MoveCursor(NamingScreen *param0, int param1);
-static void NamingScreen_UpdateSpriteAnimations(int param0[], Sprite **param1, int param2);
-static void sub_020879DC(SysTask *param0, void *param1);
-static void NamingScreen_WiggleOverlayTask(SysTask *param0, void *param1);
-static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3);
+static void NamingScreen_UpdateCursorSpritePosition(
+    NamingScreen *namingScreen,
+    enum NamingScreenDpadMovement dpadMovement);
+static void NamingScreen_UpdateSpriteAnimations(int param0[], Sprite **sprites, int unused);
+static void NamingScreen_SubspritePosControllerTask(SysTask *task, void *paramsPtr);
+static void NamingScreen_WiggleOverlayTask(SysTask *task, void *paramsPtr);
+static void NamingScreen_LoadMonIcon(
+    NNSG2dCharacterData *monIconCharData,
+    NNSG2dPaletteData *plttData,
+    enum Species monSpecies,
+    int monForm);
 static void NamingScreen_ToggleEngineLayers(BOOL enable);
-static void sub_02087544(NamingScreen *param0, ApplicationManager *appMan);
-static void sub_02087BE4(NamingScreen *param0, AffineSpriteListTemplate *param1);
-static void sub_02086E6C(NamingScreen *param0, NamingScreenArgs *param1);
-static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
-static void sub_02088FD0(NamingScreen *param0);
-static enum NamingScreenAppState NamingScreen_ProcessInputs(NamingScreen *param0, enum NamingScreenAppState param1);
-static int sub_02086F14(u16 *param0);
-static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(Window *param0, Strbuf *param1, u8 param2, TextColor param3);
-static BOOL sub_0208903C(NamingScreen *param0);
+static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, ApplicationManager *appMan);
+static void NamingScreen_InitIconSprite(NamingScreen *namingScreen, AffineSpriteListTemplate *template);
+static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreenArgs *args);
+static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, Strbuf *str);
+static void NamingScreen_PlaceCursorSprite(NamingScreen *namingScreen);
+static enum NamingScreenAppState NamingScreen_ProcessInputs(
+    NamingScreen *namingScreen,
+    enum NamingScreenAppState appState);
+static BOOL NamingScreen_IsRawStringAllSpaces(charcode_t *rawChars);
+static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
+    Window *window,
+    Strbuf *string,
+    u8 fontId,
+    TextColor color);
+static BOOL NamingScreen_ProcessTouchInputs(NamingScreen *namingScreen);
 
-static const int sNamingScreenSpriteAnimations[][4] = {
-    { 0x4, 0x44, 0x3, 0x1 },
-    { 0x24, 0x44, 0x8, 0x1 },
-    { 0x44, 0x44, 0xD, 0x1 },
-    { 0x0, 0xC8, 0x12, 0x1 },
-    { 0x65, 0x44, 0x14, 0x1 },
-    { 0x88, 0x44, 0x17, 0x1 },
-    { 0xB0, 0x44, 0x19, 0x1 },
-    { 0x16, 0x38, 0x25, 0x2 },
-    { 0x1A, 0x5B, 0x27, 0x0 }
+static const NamingScreenSpriteAnim sSpriteAnimations[] = {
+    { .x = 0x4, .y = 0x44, .anim = 0x3, .priority = 0x1 },
+    { .x = 0x24, .y = 0x44, .anim = 0x8, .priority = 0x1 },
+    { .x = 0x44, .y = 0x44, .anim = 0xD, .priority = 0x1 },
+    { .x = 0x0, .y = 0xC8, .anim = 0x12, .priority = 0x1 },
+    { .x = 0x65, .y = 0x44, .anim = 0x14, .priority = 0x1 },
+    { .x = 0x88, .y = 0x44, .anim = 0x17, .priority = 0x1 },
+    { .x = 0xB0, .y = 0x44, .anim = 0x19, .priority = 0x1 },
+    { .x = 0x16, .y = 0x38, .anim = 0x25, .priority = 0x2 },
+    { .x = 0x1A, .y = 0x5B, .anim = 0x27, .priority = 0x0 },
 };
 
-static const charcode_t sNamingScreenHomeRowAll[] = {
-    NAMING_SCREEN_BUTTON_PAGE_UPPER,
-    NAMING_SCREEN_BUTTON_PAGE_UPPER,
-    NAMING_SCREEN_BUTTON_PAGE_LOWER,
-    NAMING_SCREEN_BUTTON_PAGE_LOWER,
-    NAMING_SCREEN_BUTTON_PAGE_OTHERS,
-    NAMING_SCREEN_BUTTON_PAGE_OTHERS,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_OK,
-    NAMING_SCREEN_BUTTON_OK,
+static const charcode_t sHomeRowAll[] = {
+    NMS_BUTTON_PAGE_UPPER,
+    NMS_BUTTON_PAGE_UPPER,
+    NMS_BUTTON_PAGE_LOWER,
+    NMS_BUTTON_PAGE_LOWER,
+    NMS_BUTTON_PAGE_OTHERS,
+    NMS_BUTTON_PAGE_OTHERS,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_OK,
+    NMS_BUTTON_OK,
 };
 
-static const charcode_t sNamingScreenHomeRowNumpad[] = {
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_CONTROL_SKIP,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_BACK,
-    NAMING_SCREEN_BUTTON_OK,
-    NAMING_SCREEN_BUTTON_OK,
+static const charcode_t sHomeRowNumpad[] = {
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_CONTROL_SKIP,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_BACK,
+    NMS_BUTTON_OK,
+    NMS_BUTTON_OK,
 };
 
-static const charcode_t *sNamingScreenHomeRowLayouts[] = {
-    sNamingScreenHomeRowAll,
-    sNamingScreenHomeRowAll,
-    sNamingScreenHomeRowAll,
-    sNamingScreenHomeRowAll,
-    sNamingScreenHomeRowNumpad
+static const charcode_t *sHomeRowLayouts[] = {
+    sHomeRowAll,
+    sHomeRowAll,
+    sHomeRowAll,
+    sHomeRowAll,
+    sHomeRowNumpad
 };
 
 static const u16 sHomeRowCursorXCoords[] = {
@@ -319,7 +423,7 @@ static const u8 sHomeRowCursorAnimIDs[] = {
     0x29,
 };
 
-static const charcode_t sNamingScreenCharCodesUpper0[] = {
+static const charcode_t sCharCodesUpper0[] = {
     CHAR_A,
     CHAR_B,
     CHAR_C,
@@ -336,7 +440,7 @@ static const charcode_t sNamingScreenCharCodesUpper0[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesUpper1[] = {
+static const charcode_t sCharCodesUpper1[] = {
     CHAR_K,
     CHAR_L,
     CHAR_M,
@@ -353,7 +457,7 @@ static const charcode_t sNamingScreenCharCodesUpper1[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesUpper2[] = {
+static const charcode_t sCharCodesUpper2[] = {
     CHAR_U,
     CHAR_V,
     CHAR_W,
@@ -370,7 +474,7 @@ static const charcode_t sNamingScreenCharCodesUpper2[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesUpper3[] = {
+static const charcode_t sCharCodesUpper3[] = {
     CHAR_SPACE,
     CHAR_SPACE,
     CHAR_SPACE,
@@ -387,7 +491,7 @@ static const charcode_t sNamingScreenCharCodesUpper3[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesUpper4[] = {
+static const charcode_t sCharCodesUpper4[] = {
     CHAR_0,
     CHAR_1,
     CHAR_2,
@@ -404,7 +508,7 @@ static const charcode_t sNamingScreenCharCodesUpper4[] = {
     CHAR_EOS,
 };
 
-static const u16 sNamingScreenCharCodesLower0[] = {
+static const u16 sCharCodesLower0[] = {
     CHAR_a,
     CHAR_b,
     CHAR_c,
@@ -421,7 +525,7 @@ static const u16 sNamingScreenCharCodesLower0[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesLower1[] = {
+static const charcode_t sCharCodesLower1[] = {
     CHAR_k,
     CHAR_l,
     CHAR_m,
@@ -438,7 +542,7 @@ static const charcode_t sNamingScreenCharCodesLower1[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesLower2[] = {
+static const charcode_t sCharCodesLower2[] = {
     CHAR_u,
     CHAR_v,
     CHAR_w,
@@ -455,7 +559,7 @@ static const charcode_t sNamingScreenCharCodesLower2[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesLower3[] = {
+static const charcode_t sCharCodesLower3[] = {
     CHAR_SPACE,
     CHAR_SPACE,
     CHAR_SPACE,
@@ -472,7 +576,7 @@ static const charcode_t sNamingScreenCharCodesLower3[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesLower4[] = {
+static const charcode_t sCharCodesLower4[] = {
     CHAR_0,
     CHAR_1,
     CHAR_2,
@@ -489,7 +593,7 @@ static const charcode_t sNamingScreenCharCodesLower4[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesOthers0[] = {
+static const charcode_t sCharCodesOthers0[] = {
     CHAR_COMMA,
     CHAR_PERIOD,
     CHAR_COLON,
@@ -506,7 +610,7 @@ static const charcode_t sNamingScreenCharCodesOthers0[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesOthers1[] = {
+static const charcode_t sCharCodesOthers1[] = {
     CHAR_DOUBLE_QUOTE_OPEN,
     CHAR_DOUBLE_QUOTE_CLOSE,
     CHAR_SINGLE_QUOTE_OPEN,
@@ -523,7 +627,7 @@ static const charcode_t sNamingScreenCharCodesOthers1[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesOthers2[] = {
+static const charcode_t sCharCodesOthers2[] = {
     CHAR_ELLIPSIS,
     CHAR_DOT,
     CHAR_TILDE,
@@ -540,7 +644,7 @@ static const charcode_t sNamingScreenCharCodesOthers2[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesOthers3[] = {
+static const charcode_t sCharCodesOthers3[] = {
     CHAR_DOUBLE_CIRCLE,
     CHAR_CIRCLE,
     CHAR_SQUARE,
@@ -557,7 +661,7 @@ static const charcode_t sNamingScreenCharCodesOthers3[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesOthers4[] = {
+static const charcode_t sCharCodesOthers4[] = {
     CHAR_SUN,
     CHAR_CLOUD,
     CHAR_UMBRELLA,
@@ -574,7 +678,7 @@ static const charcode_t sNamingScreenCharCodesOthers4[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesJpMisc0[] = {
+static const charcode_t sCharCodesJpMisc0[] = {
     CHAR_WIDE_0,
     CHAR_WIDE_1,
     CHAR_WIDE_2,
@@ -591,7 +695,7 @@ static const charcode_t sNamingScreenCharCodesJpMisc0[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesJpMisc1[] = {
+static const charcode_t sCharCodesJpMisc1[] = {
     CHAR_JP_COMMA,
     CHAR_JP_PERIOD,
     CHAR_WIDE_COMMA,
@@ -608,7 +712,7 @@ static const charcode_t sNamingScreenCharCodesJpMisc1[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesJpMisc2[] = {
+static const charcode_t sCharCodesJpMisc2[] = {
     CHAR_JP_SINGLE_QUOTE_OPEN,
     CHAR_JP_SINGLE_QUOTE_CLOSE,
     CHAR_JP_DOUBLE_QUOTE_OPEN,
@@ -625,7 +729,7 @@ static const charcode_t sNamingScreenCharCodesJpMisc2[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesJpMisc3[] = {
+static const charcode_t sCharCodesJpMisc3[] = {
     CHAR_WIDE_DOUBLE_CIRCLE,
     CHAR_WIDE_CIRCLE,
     CHAR_WIDE_SQUARE,
@@ -642,7 +746,7 @@ static const charcode_t sNamingScreenCharCodesJpMisc3[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesJpMisc4[] = {
+static const charcode_t sCharCodesJpMisc4[] = {
     CHAR_WIDE_SUN,
     CHAR_WIDE_CLOUD,
     CHAR_WIDE_UMBRELLA,
@@ -659,7 +763,7 @@ static const charcode_t sNamingScreenCharCodesJpMisc4[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesNumpad0[] = {
+static const charcode_t sCharCodesNumpad0[] = {
     CHAR_0,
     CHAR_1,
     CHAR_2,
@@ -680,7 +784,7 @@ static const charcode_t sNamingScreenCharCodesNumpad0[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesNumpad1[] = {
+static const charcode_t sCharCodesNumpad1[] = {
     CHAR_5,
     CHAR_6,
     CHAR_7,
@@ -701,7 +805,7 @@ static const charcode_t sNamingScreenCharCodesNumpad1[] = {
     CHAR_EOS,
 };
 
-static const charcode_t sNamingScreenCharCodesNumpad345[] = {
+static const charcode_t sCharCodesNumpad345[] = {
     CHAR_WIDE_SPACE,
     CHAR_WIDE_SPACE,
     CHAR_WIDE_SPACE,
@@ -722,155 +826,155 @@ static const charcode_t sNamingScreenCharCodesNumpad345[] = {
     CHAR_EOS,
 };
 
-const charcode_t *sNamingScreenCharCodes[][5] = {
+static const charcode_t *sCharCodes[][5] = {
     {
-        sNamingScreenCharCodesUpper0,
-        sNamingScreenCharCodesUpper1,
-        sNamingScreenCharCodesUpper2,
-        sNamingScreenCharCodesUpper3,
-        sNamingScreenCharCodesUpper4,
+        sCharCodesUpper0,
+        sCharCodesUpper1,
+        sCharCodesUpper2,
+        sCharCodesUpper3,
+        sCharCodesUpper4,
     },
     {
-        sNamingScreenCharCodesLower0,
-        sNamingScreenCharCodesLower1,
-        sNamingScreenCharCodesLower2,
-        sNamingScreenCharCodesLower3,
-        sNamingScreenCharCodesLower4,
+        sCharCodesLower0,
+        sCharCodesLower1,
+        sCharCodesLower2,
+        sCharCodesLower3,
+        sCharCodesLower4,
     },
     {
-        sNamingScreenCharCodesOthers0,
-        sNamingScreenCharCodesOthers1,
-        sNamingScreenCharCodesOthers2,
-        sNamingScreenCharCodesOthers3,
-        sNamingScreenCharCodesOthers4,
+        sCharCodesOthers0,
+        sCharCodesOthers1,
+        sCharCodesOthers2,
+        sCharCodesOthers3,
+        sCharCodesOthers4,
     },
     {
-        sNamingScreenCharCodesJpMisc0,
-        sNamingScreenCharCodesJpMisc1,
-        sNamingScreenCharCodesJpMisc2,
-        sNamingScreenCharCodesJpMisc3,
-        sNamingScreenCharCodesJpMisc4,
+        sCharCodesJpMisc0,
+        sCharCodesJpMisc1,
+        sCharCodesJpMisc2,
+        sCharCodesJpMisc3,
+        sCharCodesJpMisc4,
     },
     {
-        sNamingScreenCharCodesNumpad0,
-        sNamingScreenCharCodesNumpad1,
-        sNamingScreenCharCodesNumpad345,
-        sNamingScreenCharCodesNumpad345,
-        sNamingScreenCharCodesNumpad345,
+        sCharCodesNumpad0,
+        sCharCodesNumpad1,
+        sCharCodesNumpad345,
+        sCharCodesNumpad345,
+        sCharCodesNumpad345,
     }
 };
 
-static const u16 sUnkConversionTable[][3] = {
-    { 0x3, 0x1, 0x2 },
-    { 0x5, 0x1, 0x4 },
-    { 0x7, 0x1, 0x6 },
-    { 0x9, 0x1, 0x8 },
-    { 0xB, 0x1, 0xA },
-    { 0x53, 0x1, 0x52 },
-    { 0x55, 0x1, 0x54 },
-    { 0x57, 0x1, 0x56 },
-    { 0x59, 0x1, 0x58 },
-    { 0x5B, 0x1, 0x5A },
-    { 0x45, 0x1, 0x44 },
-    { 0x47, 0x1, 0x46 },
-    { 0x49, 0x1, 0x48 },
-    { 0x95, 0x1, 0x94 },
-    { 0x97, 0x1, 0x96 },
-    { 0x99, 0x1, 0x98 },
-    { 0xAC, 0x1, 0xC6 },
-    { 0xAD, 0x1, 0xC7 },
-    { 0xAE, 0x1, 0xC8 },
-    { 0xaf, 0x1, 0xC9 },
-    { 0xB0, 0x1, 0xCA },
-    { 0xB1, 0x1, 0xCB },
-    { 0xB2, 0x1, 0xCC },
-    { 0xB3, 0x1, 0xCD },
-    { 0xB4, 0x1, 0xCE },
-    { 0xB5, 0x1, 0xcf },
-    { 0xB6, 0x1, 0xD0 },
-    { 0xB7, 0x1, 0xD1 },
-    { 0xB8, 0x1, 0xD2 },
-    { 0xB9, 0x1, 0xD3 },
-    { 0xBA, 0x1, 0xD4 },
-    { 0xBB, 0x1, 0xD5 },
-    { 0xBC, 0x1, 0xD6 },
-    { 0xBD, 0x1, 0xD7 },
-    { 0xBE, 0x1, 0xD8 },
-    { 0xbf, 0x1, 0xD9 },
-    { 0xC0, 0x1, 0xDA },
-    { 0xC1, 0x1, 0xDB },
-    { 0xC2, 0x1, 0xDC },
-    { 0xC3, 0x1, 0xDD },
-    { 0xC4, 0x1, 0xDE },
-    { 0xC5, 0x1, 0xdf },
-    { 0x25, 0x26, 0x24 },
-    { 0x75, 0x76, 0x74 },
-    { 0xC, 0xD, 0x1 },
-    { 0xE, 0x0f, 0x1 },
-    { 0x10, 0x11, 0x1 },
-    { 0x12, 0x13, 0x1 },
-    { 0x14, 0x15, 0x1 },
-    { 0x16, 0x17, 0x1 },
-    { 0x18, 0x19, 0x1 },
-    { 0x1A, 0x1B, 0x1 },
-    { 0x1C, 0x1D, 0x1 },
-    { 0x1E, 0x1f, 0x1 },
-    { 0x20, 0x21, 0x1 },
-    { 0x22, 0x23, 0x1 },
-    { 0x27, 0x28, 0x1 },
-    { 0x29, 0x2A, 0x1 },
-    { 0x5C, 0x5D, 0x1 },
-    { 0x5E, 0x5f, 0x1 },
-    { 0x60, 0x61, 0x1 },
-    { 0x62, 0x63, 0x1 },
-    { 0x64, 0x65, 0x1 },
-    { 0x66, 0x67, 0x1 },
-    { 0x68, 0x69, 0x1 },
-    { 0x6A, 0x6B, 0x1 },
-    { 0x6C, 0x6D, 0x1 },
-    { 0x6E, 0x6f, 0x1 },
-    { 0x70, 0x71, 0x1 },
-    { 0x72, 0x73, 0x1 },
-    { 0x77, 0x78, 0x1 },
-    { 0x79, 0x7A, 0x1 },
-    { 0x30, 0x31, 0x32 },
-    { 0x33, 0x34, 0x35 },
-    { 0x36, 0x37, 0x38 },
-    { 0x39, 0x3A, 0x3B },
-    { 0x3C, 0x3D, 0x3E },
-    { 0x80, 0x81, 0x82 },
-    { 0x83, 0x84, 0x85 },
-    { 0x86, 0x87, 0x88 },
-    { 0x89, 0x8A, 0x8B },
-    { 0x8C, 0x8D, 0x8E }
+static const charcode_t sJPCharConversionTable[][3] = {
+    { CHAR_HIRAGANA_A, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_A },
+    { CHAR_HIRAGANA_I, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_I },
+    { CHAR_HIRAGANA_U, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_U },
+    { CHAR_HIRAGANA_E, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_E },
+    { CHAR_HIRAGANA_O, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_O },
+    { CHAR_KATAKANA_A, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_A },
+    { CHAR_KATAKANA_I, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_I },
+    { CHAR_KATAKANA_U, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_U },
+    { CHAR_KATAKANA_E, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_E },
+    { CHAR_KATAKANA_O, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_O },
+    { CHAR_HIRAGANA_YA, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_YA },
+    { CHAR_HIRAGANA_YU, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_YU },
+    { CHAR_HIRAGANA_YO, CHAR_WIDE_SPACE, CHAR_HIRAGANA_SMALL_YO },
+    { CHAR_KATAKANA_YA, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_YA },
+    { CHAR_KATAKANA_YU, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_YU },
+    { CHAR_KATAKANA_YO, CHAR_WIDE_SPACE, CHAR_KATAKANA_SMALL_YO },
+    { CHAR_WIDE_A, CHAR_WIDE_SPACE, CHAR_WIDE_a },
+    { CHAR_WIDE_B, CHAR_WIDE_SPACE, CHAR_WIDE_b },
+    { CHAR_WIDE_C, CHAR_WIDE_SPACE, CHAR_WIDE_c },
+    { CHAR_WIDE_D, CHAR_WIDE_SPACE, CHAR_WIDE_d },
+    { CHAR_WIDE_E, CHAR_WIDE_SPACE, CHAR_WIDE_e },
+    { CHAR_WIDE_F, CHAR_WIDE_SPACE, CHAR_WIDE_f },
+    { CHAR_WIDE_G, CHAR_WIDE_SPACE, CHAR_WIDE_g },
+    { CHAR_WIDE_H, CHAR_WIDE_SPACE, CHAR_WIDE_h },
+    { CHAR_WIDE_I, CHAR_WIDE_SPACE, CHAR_WIDE_i },
+    { CHAR_WIDE_J, CHAR_WIDE_SPACE, CHAR_WIDE_j },
+    { CHAR_WIDE_K, CHAR_WIDE_SPACE, CHAR_WIDE_k },
+    { CHAR_WIDE_L, CHAR_WIDE_SPACE, CHAR_WIDE_l },
+    { CHAR_WIDE_M, CHAR_WIDE_SPACE, CHAR_WIDE_m },
+    { CHAR_WIDE_N, CHAR_WIDE_SPACE, CHAR_WIDE_n },
+    { CHAR_WIDE_O, CHAR_WIDE_SPACE, CHAR_WIDE_o },
+    { CHAR_WIDE_P, CHAR_WIDE_SPACE, CHAR_WIDE_p },
+    { CHAR_WIDE_Q, CHAR_WIDE_SPACE, CHAR_WIDE_q },
+    { CHAR_WIDE_R, CHAR_WIDE_SPACE, CHAR_WIDE_r },
+    { CHAR_WIDE_S, CHAR_WIDE_SPACE, CHAR_WIDE_s },
+    { CHAR_WIDE_T, CHAR_WIDE_SPACE, CHAR_WIDE_t },
+    { CHAR_WIDE_U, CHAR_WIDE_SPACE, CHAR_WIDE_u },
+    { CHAR_WIDE_V, CHAR_WIDE_SPACE, CHAR_WIDE_v },
+    { CHAR_WIDE_W, CHAR_WIDE_SPACE, CHAR_WIDE_w },
+    { CHAR_WIDE_X, CHAR_WIDE_SPACE, CHAR_WIDE_x },
+    { CHAR_WIDE_Y, CHAR_WIDE_SPACE, CHAR_WIDE_y },
+    { CHAR_WIDE_Z, CHAR_WIDE_SPACE, CHAR_WIDE_z },
+    { CHAR_HIRAGANA_TSU, CHAR_HIRAGANA_DZU, CHAR_HIRAGANA_SOKUON },
+    { CHAR_KATAKANA_TSU, CHAR_KATAKANA_DZU, CHAR_KATAKANA_SOKUON },
+    { CHAR_HIRAGANA_KA, CHAR_HIRAGANA_GA, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_KI, CHAR_HIRAGANA_GI, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_KU, CHAR_HIRAGANA_GU, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_KE, CHAR_HIRAGANA_GE, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_KO, CHAR_HIRAGANA_GO, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_SA, CHAR_HIRAGANA_ZA, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_SHI, CHAR_HIRAGANA_JI, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_SU, CHAR_HIRAGANA_ZU, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_SE, CHAR_HIRAGANA_ZE, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_SO, CHAR_HIRAGANA_ZO, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_TA, CHAR_HIRAGANA_DA, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_CHI, CHAR_HIRAGANA_DJI, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_TE, CHAR_HIRAGANA_DE, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_TO, CHAR_HIRAGANA_DO, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_KA, CHAR_KATAKANA_GA, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_KI, CHAR_KATAKANA_GI, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_KU, CHAR_KATAKANA_GU, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_KE, CHAR_KATAKANA_GE, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_KO, CHAR_KATAKANA_GO, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_SA, CHAR_KATAKANA_ZA, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_SHI, CHAR_KATAKANA_JI, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_SU, CHAR_KATAKANA_ZU, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_SE, CHAR_KATAKANA_ZE, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_SO, CHAR_KATAKANA_ZO, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_TA, CHAR_KATAKANA_DA, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_CHI, CHAR_KATAKANA_DJI, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_TE, CHAR_KATAKANA_DE, CHAR_WIDE_SPACE },
+    { CHAR_KATAKANA_TO, CHAR_KATAKANA_DO, CHAR_WIDE_SPACE },
+    { CHAR_HIRAGANA_HA, CHAR_HIRAGANA_BA, CHAR_HIRAGANA_PA },
+    { CHAR_HIRAGANA_HI, CHAR_HIRAGANA_BI, CHAR_HIRAGANA_PI },
+    { CHAR_HIRAGANA_FU, CHAR_HIRAGANA_BU, CHAR_HIRAGANA_PU },
+    { CHAR_HIRAGANA_HE, CHAR_HIRAGANA_BE, CHAR_HIRAGANA_PE },
+    { CHAR_HIRAGANA_HO, CHAR_HIRAGANA_BO, CHAR_HIRAGANA_PO },
+    { CHAR_KATAKANA_HA, CHAR_KATAKANA_BA, CHAR_KATAKANA_PA },
+    { CHAR_KATAKANA_HI, CHAR_KATAKANA_BI, CHAR_KATAKANA_PI },
+    { CHAR_KATAKANA_FU, CHAR_KATAKANA_BU, CHAR_KATAKANA_PU },
+    { CHAR_KATAKANA_HE, CHAR_KATAKANA_BE, CHAR_KATAKANA_PE },
+    { CHAR_KATAKANA_HO, CHAR_KATAKANA_BO, CHAR_KATAKANA_PO },
 };
 
-static const u16 Unk_020F2954[][2] = {
-    { 0x24, 0x26 },
-    { 0x74, 0x76 },
-    { 0x32, 0x31 },
-    { 0x35, 0x34 },
-    { 0x38, 0x37 },
-    { 0x3B, 0x3A },
-    { 0x3E, 0x3D },
-    { 0x82, 0x81 },
-    { 0x85, 0x84 },
-    { 0x88, 0x87 },
-    { 0x8B, 0x8A },
-    { 0x8E, 0x8D }
+static const charcode_t sDakutenTable[][2] = {
+    { CHAR_HIRAGANA_SOKUON, CHAR_HIRAGANA_DZU },
+    { CHAR_KATAKANA_SOKUON, CHAR_KATAKANA_DZU },
+    { CHAR_HIRAGANA_PA, CHAR_HIRAGANA_BA },
+    { CHAR_HIRAGANA_PI, CHAR_HIRAGANA_BI },
+    { CHAR_HIRAGANA_PU, CHAR_HIRAGANA_BU },
+    { CHAR_HIRAGANA_PE, CHAR_HIRAGANA_BE },
+    { CHAR_HIRAGANA_PO, CHAR_HIRAGANA_BO },
+    { CHAR_KATAKANA_PA, CHAR_KATAKANA_BA },
+    { CHAR_KATAKANA_PI, CHAR_KATAKANA_BI },
+    { CHAR_KATAKANA_PU, CHAR_KATAKANA_BU },
+    { CHAR_KATAKANA_PE, CHAR_KATAKANA_BE },
+    { CHAR_KATAKANA_PO, CHAR_KATAKANA_BO },
 };
 
-static const u16 Unk_020F292C[][2] = {
-    { 0x31, 0x32 },
-    { 0x34, 0x35 },
-    { 0x37, 0x38 },
-    { 0x3A, 0x3B },
-    { 0x3D, 0x3E },
-    { 0x81, 0x82 },
-    { 0x84, 0x85 },
-    { 0x87, 0x88 },
-    { 0x8A, 0x8B },
-    { 0x8D, 0x8E }
+static const charcode_t sHandakutenTable[][2] = {
+    { CHAR_HIRAGANA_BA, CHAR_HIRAGANA_PA },
+    { CHAR_HIRAGANA_BI, CHAR_HIRAGANA_PI },
+    { CHAR_HIRAGANA_BU, CHAR_HIRAGANA_PU },
+    { CHAR_HIRAGANA_BE, CHAR_HIRAGANA_PE },
+    { CHAR_HIRAGANA_BO, CHAR_HIRAGANA_PO },
+    { CHAR_KATAKANA_BA, CHAR_KATAKANA_PA },
+    { CHAR_KATAKANA_BI, CHAR_KATAKANA_PI },
+    { CHAR_KATAKANA_BU, CHAR_KATAKANA_PU },
+    { CHAR_KATAKANA_BE, CHAR_KATAKANA_PE },
+    { CHAR_KATAKANA_BO, CHAR_KATAKANA_PO },
 };
 
 static const int sUnkGXObjOffsets0[] = {
@@ -879,75 +983,76 @@ static const int sUnkGXObjOffsets0[] = {
     0x48
 };
 
-static const u8 sNamingScreenCharsBgColor[4] = {
-    0x4,
-    0x7,
-    0xD,
-    0xA
+static const u8 sCharsBgColor[4] = {
+    4,
+    7,
+    13,
+    10,
 };
 
-const charcode_t sDummy0[] = {
-    0x3,
-    0x2B,
-    0x20,
-    0x2f,
-    0x1,
-    0x2B,
-    0x3f,
-    0x9,
-    0x30,
-    0xE2,
-    0xffff
+// these need to be globals for some reason.
+const charcode_t gNamingScreenDummy0[] = {
+    CHAR_HIRAGANA_A,
+    CHAR_HIRAGANA_NA,
+    CHAR_HIRAGANA_TA,
+    CHAR_HIRAGANA_NO,
+    CHAR_WIDE_SPACE,
+    CHAR_HIRAGANA_NA,
+    CHAR_HIRAGANA_MA,
+    CHAR_HIRAGANA_E,
+    CHAR_HIRAGANA_HA,
+    CHAR_WIDE_QUESTION,
+    CHAR_EOS,
 };
 
-const charcode_t sDummy1[] = {
-    0x8E,
-    0x62,
-    0x93,
-    0xA1,
-    0x2f,
-    0x1,
-    0x7C,
-    0x74,
-    0x60,
-    0x7E,
-    0xf1,
-    0x91,
-    0x30,
-    0xE2,
-    0xffff
+const charcode_t gNamingScreenDummy1[] = {
+    CHAR_KATAKANA_PO,
+    CHAR_KATAKANA_KE,
+    CHAR_KATAKANA_MO,
+    CHAR_KATAKANA_N,
+    CHAR_HIRAGANA_NO,
+    CHAR_WIDE_SPACE,
+    CHAR_KATAKANA_NI,
+    CHAR_KATAKANA_SOKUON,
+    CHAR_KATAKANA_KU,
+    CHAR_KATAKANA_NE,
+    CHAR_WIDE_MINUS,
+    CHAR_KATAKANA_MU,
+    CHAR_HIRAGANA_HA,
+    CHAR_WIDE_QUESTION,
+    CHAR_EOS,
 };
 
-const charcode_t sDummy2[] = {
-    0x8D,
-    0x74,
-    0x60,
-    0x6A,
-    0x2f,
-    0x1,
-    0x2B,
-    0x3f,
-    0x9,
-    0x30,
-    0xE2,
-    0xffff
+const charcode_t gNamingScreenDummy2[] = {
+    CHAR_KATAKANA_BO,
+    CHAR_KATAKANA_SOKUON,
+    CHAR_KATAKANA_KU,
+    CHAR_KATAKANA_SU,
+    CHAR_HIRAGANA_NO,
+    CHAR_WIDE_SPACE,
+    CHAR_HIRAGANA_NA,
+    CHAR_HIRAGANA_MA,
+    CHAR_HIRAGANA_E,
+    CHAR_HIRAGANA_HA,
+    CHAR_WIDE_QUESTION,
+    CHAR_EOS,
 };
 
 static const charcode_t *sDummy3[] = {
-    sDummy0,
-    sDummy1,
-    sDummy2,
+    gNamingScreenDummy0,
+    gNamingScreenDummy1,
+    gNamingScreenDummy2,
 };
 
-static const int Unk_020F2850[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x3
+static const int sPromptTextIndices[] = {
+    NamingScreen_Text_PlayerPrompt,
+    NamingScreen_Text_PokemonPrompt,
+    NamingScreen_Text_BoxPrompt,
+    NamingScreen_Text_FriendNamePrompt,
+    NamingScreen_Text_FriendCodePrompt,
+    NamingScreen_Text_GroupPrompt,
+    NamingScreen_Text_ThanksPrompt,
+    NamingScreen_Text_FriendNamePrompt,
 };
 
 const ApplicationManagerTemplate gNamingScreenAppTemplate = {
@@ -1008,24 +1113,29 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
         NamingScreen_InitCursorsAndChars(namingScreen, appMan);
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_NAMING_SCREEN_APP);
         NamingScreen_TransferChars();
-        sub_020877F4(namingScreen, narc);
+        NamingScreen_LoadObjectGfx(namingScreen, narc);
         NamingScreen_InitSprites(namingScreen);
-        sub_02087FC0(namingScreen, appMan, narc);
-        sub_02088754(
-            &namingScreen->unk_41C[4],
+        NamingScreen_InitWindows(namingScreen, appMan, narc);
+        NamingScreen_PrintLastCharOfEntryBuf(
+            &namingScreen->windows[NMS_WINDOW_UNK_0],
             namingScreen->entryBuf,
             namingScreen->textCursorPos,
             namingScreen->tmpBuf,
             namingScreen->pixelBuf,
-            namingScreen->unk_17C);
+            namingScreen->unkJapaneseString);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_NAMING_SCREEN_APP);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
+            COLOR_BLACK,
+            16,
+            1,
+            HEAP_ID_NAMING_SCREEN_APP);
         NamingScreen_ToggleEngineLayers(TRUE);
 
-        {
-            gSystem.whichScreenIs3D = DS_SCREEN_SUB;
-            GXLayers_SwapDisplay();
-        }
+        gSystem.whichScreenIs3D = DS_SCREEN_SUB;
+        GXLayers_SwapDisplay();
 
         NARC_dtor(narc);
         (*state)++;
@@ -1034,11 +1144,18 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
         namingScreen = ApplicationManager_Data(appMan);
 
         if (namingScreen->type == NAMING_SCREEN_TYPE_POKEMON) {
-            sub_02086B30(namingScreen->unk_51C, namingScreen->unk_524, namingScreen->unk_04, namingScreen->unk_08);
+            NamingScreen_LoadMonIcon(
+                namingScreen->monIconCharData,
+                namingScreen->plttData,
+                namingScreen->playerGenderOrMonSpecies,
+                namingScreen->monForm);
         }
 
         sNamingScreenDummy = namingScreen;
-        namingScreen->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_NAMING_SCREEN_APP);
+        // sub_0201567C creates a systask which changes the palette from the current palette to
+        // a single color (white in this case) and back at a regular interval, effectively
+        // blinking the touchscreen icon.
+        namingScreen->touchscreenIconBlinker = sub_0201567C(NULL, 1, 12, HEAP_ID_NAMING_SCREEN_APP);
 
         (*state) = NMS_APP_STATE_WAIT_FADE_IN;
         return TRUE;
@@ -1048,13 +1165,17 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3)
+static void NamingScreen_LoadMonIcon(
+    NNSG2dCharacterData *monIconCharData,
+    NNSG2dPaletteData *plttData,
+    enum Species monSpecies,
+    int monForm)
 {
-    u8 *v0;
+    u8 *rawData;
 
-    GX_LoadOBJ(param0->pRawData, (21 * 32 + 31) * 0x20, 0x20 * 4 * 4);
-    v0 = (u8 *)param1->pRawData;
-    GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
+    GX_LoadOBJ(monIconCharData->pRawData, (21 * 32 + 31) * 0x20, 0x20 * 4 * 4);
+    rawData = (u8 *)plttData->pRawData;
+    GX_LoadOBJPltt((void *)(rawData + PokeIconPaletteIndex(monSpecies, monForm, FALSE) * 0x20), 6 * 0x20, 0x20);
 }
 
 static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
@@ -1072,8 +1193,11 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
         namingScreen->delayUpdateCounter++;
 
         // these just process the animations.
-        sub_02088FD0(namingScreen);
-        NamingScreen_UpdateSpriteAnimations(namingScreen->spritesToUpdate, namingScreen->miscSprites, namingScreen->currentCharsIdx);
+        NamingScreen_PlaceCursorSprite(namingScreen);
+        NamingScreen_UpdateSpriteAnimations(
+            namingScreen->spritesToUpdate,
+            namingScreen->uiSprites,
+            namingScreen->currentCharsIdx);
 
         if (namingScreen->delayUpdateCounter > 5) {
             *state = NMS_APP_STATE_RUNNING;
@@ -1082,27 +1206,34 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
         break;
     case NMS_APP_STATE_RUNNING:
         switch (namingScreen->state.main) {
-        case NMS_STATE_PLACEHOLDER_4:
+        case NMS_STATE_PROCESS_INPUTS:
             *state = NamingScreen_ProcessInputs(namingScreen, *state);
-            sub_02088FD0(namingScreen);
+            NamingScreen_PlaceCursorSprite(namingScreen);
             break;
-        case NMS_STATE_PLACEHOLDER_5:
-            sub_02087544(namingScreen, appMan);
-            Window_FillTilemap(&namingScreen->unk_41C[9], 0x0f);
-            Window_DrawMessageBoxWithScrollCursor(&namingScreen->unk_41C[9], 0, 32 * 8, 10);
-            namingScreen->unk_4BC = Text_AddPrinterWithParams(&namingScreen->unk_41C[9], FONT_MESSAGE, namingScreen->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
-            Window_CopyToVRAM(&namingScreen->unk_41C[9]);
-            namingScreen->state.main = NMS_STATE_PLACEHOLDER_6;
+        case NMS_STATE_PRINT_BATTLE_MESSAGE:
+            NamingScreen_PrepareBattleMessage(namingScreen, appMan);
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_PROMPT], 0x0f);
+            Window_DrawMessageBoxWithScrollCursor(&namingScreen->windows[NMS_WINDOW_PROMPT], 0, 32 * 8, 10);
+            namingScreen->battleMessagePrinter = Text_AddPrinterWithParams(
+                &namingScreen->windows[NMS_WINDOW_PROMPT],
+                FONT_MESSAGE,
+                namingScreen->battleMessageStrbuf,
+                0,
+                0,
+                TEXT_SPEED_FAST,
+                NULL);
+            Window_CopyToVRAM(&namingScreen->windows[NMS_WINDOW_PROMPT]);
+            namingScreen->state.main = NMS_STATE_WAIT_BATTLE_MESSAGE;
             break;
-        case NMS_STATE_PLACEHOLDER_6:
-            if (Text_IsPrinterActive(namingScreen->unk_4BC) == 0) {
+        case NMS_STATE_WAIT_BATTLE_MESSAGE:
+            if (Text_IsPrinterActive(namingScreen->battleMessagePrinter) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
-                namingScreen->spritesToUpdate[6]++;
+                namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
                 namingScreen->delayUpdateCounter = 0;
-                namingScreen->state.main = NMS_STATE_PLACEHOLDER_7;
+                namingScreen->state.main = NMS_STATE_START_FADE_OUT;
             }
             break;
-        case NMS_STATE_PLACEHOLDER_7:
+        case NMS_STATE_START_FADE_OUT:
             namingScreen->delayUpdateCounter++;
 
             if (namingScreen->delayUpdateCounter > 30) {
@@ -1121,15 +1252,18 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
 
         NamingScreen_AnimateChangeChars(
             namingScreen->bgConfig,
-            &namingScreen->unk_41C[0],
+            &namingScreen->windows[NMS_WINDOW_KEYBOARD_0],
             &namingScreen->state.changeChars,
             namingScreen->currentCharsIdx,
             &namingScreen->freeCharsBgLayer,
             namingScreen->charsPosition,
-            namingScreen->miscSprites,
+            namingScreen->uiSprites,
             namingScreen->charData->pRawData);
-        NamingScreen_UpdateSpriteAnimations(namingScreen->spritesToUpdate, namingScreen->miscSprites, namingScreen->currentCharsIdx);
-        sub_02088514(&namingScreen->unk_38);
+        NamingScreen_UpdateSpriteAnimations(
+            namingScreen->spritesToUpdate,
+            namingScreen->uiSprites,
+            namingScreen->currentCharsIdx);
+        NamingScreen_PaletteGlowEffect(&namingScreen->plttGlowEffectAngle);
         break;
     case NMS_APP_STATE_WAIT_FADE_OUT:
         if (IsScreenFadeDone()) {
@@ -1138,18 +1272,20 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
         break;
     }
 
-    SpriteList_Update(namingScreen->unk_188);
+    SpriteList_Update(namingScreen->spriteList);
 
     return FALSE;
 }
 
-static enum NamingScreenAppState NamingScreen_ProcessInputs(NamingScreen *namingScreen, enum NamingScreenAppState appState)
+static enum NamingScreenAppState NamingScreen_ProcessInputs(
+    NamingScreen *namingScreen,
+    enum NamingScreenAppState appState)
 {
     NamingScreen_ProcessDirectionInputs(namingScreen);
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
-        if (!Sprite_GetDrawFlag(namingScreen->miscSprites[8])) {
-            Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
+        if (!Sprite_GetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR])) {
+            Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
             return appState;
         }
 
@@ -1163,81 +1299,103 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(NamingScreen *naming
 
             namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
-            sub_02088844(namingScreen->unk_3A, namingScreen->currentCharsIdx);
+            NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
             Sound_PlayEffect(SEQ_SE_DP_SYU03);
 
-            namingScreen->unk_1C.hasCharacterBeenEntered = TRUE;
+            namingScreen->keyboardCursor.hasCharacterBeenEntered = TRUE;
         }
 
         namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
-        sub_02088844(namingScreen->unk_3A, namingScreen->currentCharsIdx);
+        NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
         Sound_PlayEffect(SEQ_SE_DP_SYU03);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        appState = sub_02088898(namingScreen, namingScreen->unk_3A[namingScreen->unk_1C.unk_04][namingScreen->unk_1C.unk_00], 1);
-        namingScreen->unk_1C.hasCharacterBeenEntered = TRUE;
-    } else if (namingScreen->unk_62C == 1) {
-        appState = sub_02088898(namingScreen, namingScreen->unk_3A[namingScreen->unk_1C.unk_04][namingScreen->unk_1C.unk_00], 0);
-        namingScreen->unk_1C.hasCharacterBeenEntered = FALSE;
+        appState = NamingScreen_ProcessCharacterInput(
+            namingScreen,
+            namingScreen->keyboardChars[namingScreen->keyboardCursor.y][namingScreen->keyboardCursor.x],
+            TRUE);
+        namingScreen->keyboardCursor.hasCharacterBeenEntered = TRUE;
+    } else if (namingScreen->isTouchInput == TRUE) {
+        appState = NamingScreen_ProcessCharacterInput(
+            namingScreen,
+            namingScreen->keyboardChars[namingScreen->keyboardCursor.y][namingScreen->keyboardCursor.x],
+            FALSE);
+        namingScreen->keyboardCursor.hasCharacterBeenEntered = FALSE;
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        appState = sub_02088898(namingScreen, 0xe001 + 6, 1);
+        appState = NamingScreen_ProcessCharacterInput(
+            namingScreen,
+            NMS_BUTTON_BACK,
+            TRUE);
     } else if (gSystem.pressedKeys & PAD_BUTTON_R) {
-        appState = sub_02088898(namingScreen, 0xe001 + 5, 1);
+        appState = NamingScreen_ProcessCharacterInput(
+            namingScreen,
+            NMS_BUTTON_PAGE_JP_UNUSED_2,
+            TRUE);
     }
 
     return appState;
 }
 
-static void sub_02086E6C(NamingScreen *param0, NamingScreenArgs *param1)
-{
-    if (param0->type == NAMING_SCREEN_TYPE_PLAYER) {
-        Strbuf *v0;
+#define RANDOM_NAME(TYPE) (TYPE##_First + LCRNG_Next() % (TYPE##_Last - TYPE##_First + 1))
 
-        if (param0->unk_04 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 0 + LCRNG_Next() % 18);
-        } else if (param0->unk_04 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 18 + LCRNG_Next() % 18);
+static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreenArgs *args)
+{
+    if (namingScreen->type == NAMING_SCREEN_TYPE_PLAYER) {
+        Strbuf *strbuf;
+
+        if (namingScreen->playerGenderOrMonSpecies == GENDER_MALE) {
+            strbuf = MessageLoader_GetNewStrbuf(
+                namingScreen->genericNamesMsgLoader,
+                RANDOM_NAME(GenericNames_PlayerMale));
+        } else if (namingScreen->playerGenderOrMonSpecies == GENDER_FEMALE) {
+            strbuf = MessageLoader_GetNewStrbuf(
+                namingScreen->genericNamesMsgLoader,
+                RANDOM_NAME(GenericNames_PlayerFemale));
         }
 
-        Strbuf_Copy(param1->textInputStr, v0);
-        Strbuf_Free(v0);
-        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
-    } else if (param0->type == NAMING_SCREEN_TYPE_RIVAL) {
-        Strbuf *v1;
+        Strbuf_Copy(args->textInputStr, strbuf);
+        Strbuf_Free(strbuf);
+        Strbuf_ToChars(args->textInputStr, args->nameInputRaw, 10);
+    } else if (namingScreen->type == NAMING_SCREEN_TYPE_RIVAL) {
+        Strbuf *strbuf;
 
-        v1 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 88 + (LCRNG_Next() % 2));
+        strbuf = MessageLoader_GetNewStrbuf(
+            namingScreen->genericNamesMsgLoader,
+            RANDOM_NAME(GenericNames_Rival));
 
-        Strbuf_Copy(param1->textInputStr, v1);
-        Strbuf_Free(v1);
-        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
+        Strbuf_Copy(args->textInputStr, strbuf);
+        Strbuf_Free(strbuf);
+        Strbuf_ToChars(args->textInputStr, args->nameInputRaw, 10);
     } else {
-        param1->unk_14 = 1;
+        args->returnCode = NAMING_SCREEN_CODE_NO_INPUT;
     }
 }
 
-static int sub_02086F14(u16 *param0)
-{
-    int v0 = 1;
-    int v1;
+#undef RANDOM_NAME
 
-    for (v1 = 0;; v1++) {
-        if (param0[v1] == 0xffff) {
+static BOOL NamingScreen_IsRawStringAllSpaces(charcode_t *rawChars)
+{
+    BOOL isAllSpaces = TRUE;
+    int i;
+
+    for (i = 0;; i++) {
+        if (rawChars[i] == CHAR_EOS) {
             break;
         }
 
-        if (param0[v1] != 0x1de) {
-            v0 = 0;
+        if (rawChars[i] != CHAR_SPACE) {
+            isAllSpaces = FALSE;
         }
     }
 
-    return v0;
+    return isAllSpaces;
 }
 
 static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
 {
     NamingScreen *namingScreen = ApplicationManager_Data(appMan);
     NamingScreenArgs *namingScreenArgs = (NamingScreenArgs *)ApplicationManager_Args(appMan);
-    int v2;
+    int i;
 
     namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
 
@@ -1245,58 +1403,60 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
         Pokemon *mon;
 
         mon = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
-        Pokemon_InitWith(mon, namingScreen->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_InitWith(mon, namingScreen->playerGenderOrMonSpecies, 5, 10, 10, 10, 10, 10);
         Heap_Free(mon);
     }
 
-    if ((namingScreen->textCursorPos == 0) || (CharCode_Compare(namingScreen->entryBuf, namingScreen->entryBufBak) == 0) || sub_02086F14(namingScreen->entryBuf)) {
-        sub_02086E6C(namingScreen, namingScreenArgs);
+    if (namingScreen->textCursorPos == 0
+        || CharCode_Compare(namingScreen->entryBuf, namingScreen->entryBufBak) == 0
+        || NamingScreen_IsRawStringAllSpaces(namingScreen->entryBuf)) {
+        NamingScreen_UseDefaultName(namingScreen, namingScreenArgs);
     } else {
         CharCode_Copy(namingScreen->entryBufBak, namingScreen->entryBuf);
-        CharCode_Copy(namingScreenArgs->unk_1C, namingScreen->entryBuf);
+        CharCode_Copy(namingScreenArgs->nameInputRaw, namingScreen->entryBuf);
         Strbuf_CopyChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
     }
 
-    Strbuf_Free(namingScreen->unk_184);
+    Strbuf_Free(namingScreen->groupTextStrbuf);
 
-    for (v2 = 0; v2 < 7; v2++) {
-        SysTask_FinishAndFreeParam(namingScreen->unk_400[v2]);
+    for (i = 0; i < NMS_SPRITE_OVERLAY; i++) {
+        SysTask_FinishAndFreeParam(namingScreen->spriteFollowTasks[i]);
     }
 
-    SpriteTransfer_ResetCharTransfer(namingScreen->unk_328[0][0]);
-    SpriteTransfer_ResetCharTransfer(namingScreen->unk_328[1][0]);
-    SpriteTransfer_ResetPlttTransfer(namingScreen->unk_328[0][1]);
-    SpriteTransfer_ResetPlttTransfer(namingScreen->unk_328[1][1]);
+    SpriteTransfer_ResetCharTransfer(namingScreen->spriteResources[0][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_ResetCharTransfer(namingScreen->spriteResources[1][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_ResetPlttTransfer(namingScreen->spriteResources[0][SPRITE_RESOURCE_PLTT]);
+    SpriteTransfer_ResetPlttTransfer(namingScreen->spriteResources[1][SPRITE_RESOURCE_PLTT]);
 
-    for (v2 = 0; v2 < 4; v2++) {
-        SpriteResourceCollection_Delete(namingScreen->unk_318[v2]);
+    for (i = 0; i < 4; i++) {
+        SpriteResourceCollection_Delete(namingScreen->spriteResourceCollections[i]);
     }
 
-    SpriteList_Delete(namingScreen->unk_188);
+    SpriteList_Delete(namingScreen->spriteList);
     RenderOam_Free();
     Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->charDataAlloc);
 
     if (namingScreen->type == NAMING_SCREEN_TYPE_POKEMON) {
-        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->unk_518);
-        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->unk_520);
+        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->monIconRawCharData);
+        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->monIconRawPlttData);
     }
 
     Bg_FreeTilemapBuffer(namingScreen->bgConfig, BG_LAYER_SUB_3);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0208765C(namingScreen->bgConfig, namingScreen->unk_41C);
+    NamingScreen_FreeBgs(namingScreen->bgConfig, namingScreen->windows);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     Font_Free(FONT_SUBSCREEN);
 
-    if (namingScreen->unk_180) {
-        Strbuf_Free(namingScreen->unk_180);
+    if (namingScreen->battleMessageStrbuf) {
+        Strbuf_Free(namingScreen->battleMessageStrbuf);
     }
 
-    Strbuf_Free(namingScreen->unk_178);
-    Strbuf_Free(namingScreen->unk_17C);
+    Strbuf_Free(namingScreen->promptString);
+    Strbuf_Free(namingScreen->unkJapaneseString);
     MessageLoader_Free(namingScreen->battleStringsMsgLoader);
     MessageLoader_Free(namingScreen->genericNamesMsgLoader);
     MessageLoader_Free(namingScreen->namingScreenMsgLoader);
@@ -1305,40 +1465,43 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_NAMING_SCREEN_APP);
 
-    {
-        gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
-        GXLayers_SwapDisplay();
-    }
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
+    GXLayers_SwapDisplay();
 
     return TRUE;
 }
 
-NamingScreenArgs *NamingScreenArgs_Init(enum HeapId heapID, enum NamingScreenType type, int param2, int maxChars, Options *options)
+NamingScreenArgs *NamingScreenArgs_Init(
+    enum HeapID heapID,
+    enum NamingScreenType type,
+    int playerGenderOrMonSpecies,
+    int maxChars,
+    Options *options)
 {
-    NamingScreenArgs *v0 = (NamingScreenArgs *)Heap_AllocFromHeap(heapID, sizeof(NamingScreenArgs));
+    NamingScreenArgs *args = (NamingScreenArgs *)Heap_Alloc(heapID, sizeof(NamingScreenArgs));
 
-    v0->type = type;
-    v0->unk_04 = param2;
-    v0->maxChars = maxChars;
-    v0->unk_14 = 0;
-    v0->unk_1C[0] = 0xffff;
-    v0->textInputStr = Strbuf_Init(32, heapID);
-    v0->unk_44 = 0;
-    v0->pcBoxes = NULL;
-    v0->unk_10 = 0;
-    v0->options = options;
-    v0->unk_08 = 0;
+    args->type = type;
+    args->playerGenderOrMonSpecies = playerGenderOrMonSpecies;
+    args->maxChars = maxChars;
+    args->returnCode = NAMING_SCREEN_CODE_OK;
+    args->nameInputRaw[0] = CHAR_EOS;
+    args->textInputStr = Strbuf_Init(32, heapID);
+    args->battleMsgID = 0;
+    args->pcBoxes = NULL;
+    args->monGender = GENDER_MALE;
+    args->options = options;
+    args->monForm = 0;
 
-    return v0;
+    return args;
 }
 
-void NamingScreenArgs_Free(NamingScreenArgs *param0)
+void NamingScreenArgs_Free(NamingScreenArgs *args)
 {
-    GF_ASSERT((param0->textInputStr) != NULL);
-    GF_ASSERT((param0) != NULL);
+    GF_ASSERT(args->textInputStr != NULL);
+    GF_ASSERT(args != NULL);
 
-    Strbuf_Free(param0->textInputStr);
-    Heap_Free(param0);
+    Strbuf_Free(args->textInputStr);
+    Heap_Free(args);
 }
 
 static void NamingScreen_VBlankCallback(void *unused)
@@ -1352,10 +1515,10 @@ static void NamingScreen_VBlankCallback(void *unused)
 static void NamingScreen_CopyParamsFromArgs(NamingScreen *namingScreen, NamingScreenArgs *namingScreenArgs)
 {
     namingScreen->type = namingScreenArgs->type;
-    namingScreen->unk_04 = namingScreenArgs->unk_04;
-    namingScreen->unk_08 = namingScreenArgs->unk_08;
-    namingScreen->unk_0C = namingScreenArgs->maxChars;
-    namingScreen->unk_10 = namingScreenArgs->unk_10;
+    namingScreen->playerGenderOrMonSpecies = namingScreenArgs->playerGenderOrMonSpecies;
+    namingScreen->monForm = namingScreenArgs->monForm;
+    namingScreen->maxChars = namingScreenArgs->maxChars;
+    namingScreen->monGender = namingScreenArgs->monGender;
     namingScreen->options = namingScreenArgs->options;
 }
 
@@ -1379,96 +1542,86 @@ static void NamingScreen_InitGraphicsBanks(void)
 
 static void NamingScreen_InitBgs(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes graphicsModes = {
-            .displayMode = GX_DISPMODE_GRAPHICS,
-            .mainBgMode = GX_BGMODE_0,
-            .subBgMode = GX_BGMODE_0,
-            .bg0As2DOr3D = GX_BG0_AS_2D,
-        };
+    GraphicsModes graphicsModes = {
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_0,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&graphicsModes);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate layerMain0Template = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_512x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate layerMain0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &layerMain0Template, BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &layerMain0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate layerMain1Template = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_512x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate layerMain1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &layerMain1Template, BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &layerMain1Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate layerMain2Template = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xd000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 3,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate layerMain2Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &layerMain2Template, BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &layerMain2Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    {
-        BgTemplate layerSub0Template = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate layerSub0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &layerSub0Template, BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &layerSub0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
     NamingScreen_ToggleEngineLayers(FALSE);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_NAMING_SCREEN_APP);
@@ -1497,7 +1650,7 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
 {
     NamingScreenArgs *namingScreenArgs = (NamingScreenArgs *)ApplicationManager_Args(appMan);
 
-    namingScreen->state.main = NMS_STATE_PLACEHOLDER_4;
+    namingScreen->state.main = NMS_STATE_PROCESS_INPUTS;
 
     NamingScreen_InitializeCharsPosition(namingScreen->charsPosition, BG_LAYER_MAIN_0);
     Bg_SetOffset(
@@ -1533,118 +1686,121 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
         Pokemon *pkm;
 
         pkm = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
-        Pokemon_InitWith(pkm, namingScreen->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_InitWith(pkm, namingScreen->playerGenderOrMonSpecies, 5, 10, 10, 10, 10, 10);
         StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxPokemon(pkm));
         Heap_Free(pkm);
     }
 
-    if (namingScreenArgs->unk_44 != 0) {
-        namingScreen->unk_14 = 1;
+    if (namingScreenArgs->battleMsgID != 0) {
+        namingScreen->printedFromBattleGMM = TRUE;
     }
 
-    namingScreen->unk_178 = MessageUtil_ExpandedStrbuf(
+    namingScreen->promptString = MessageUtil_ExpandedStrbuf(
         namingScreen->strTemplate,
         namingScreen->namingScreenMsgLoader,
-        Unk_020F2850[namingScreen->type],
+        sPromptTextIndices[namingScreen->type],
         HEAP_ID_NAMING_SCREEN_APP);
-    namingScreen->unk_17C = MessageUtil_ExpandedStrbuf(namingScreen->strTemplate, namingScreen->namingScreenMsgLoader, 8, HEAP_ID_NAMING_SCREEN_APP);
-    namingScreen->unk_184 = MessageLoader_GetNewStrbuf(namingScreen->namingScreenMsgLoader, 7);
+    namingScreen->unkJapaneseString = MessageUtil_ExpandedStrbuf(
+        namingScreen->strTemplate,
+        namingScreen->namingScreenMsgLoader,
+        NamingScreen_Text_Xs,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->groupTextStrbuf = MessageLoader_GetNewStrbuf(
+        namingScreen->namingScreenMsgLoader,
+        NamingScreen_Text_Group);
     namingScreen->textCursorPos = CharCode_Length(namingScreen->entryBufBak);
-    namingScreen->unk_1C.unk_00 = 0;
-    namingScreen->unk_1C.unk_04 = 1;
-    namingScreen->unk_1C.unk_08 = -1;
-    namingScreen->unk_1C.unk_0C = -1;
-    namingScreen->unk_1C.hasCharacterBeenEntered = FALSE;
-    namingScreen->unk_1C.unk_18 = 0;
-    namingScreen->unk_4E8 = 0xffffffff;
-    namingScreen->unk_4EC = 0;
-    namingScreen->unk_4F0 = 0;
-    namingScreen->entryBuf[namingScreen->unk_0C] = CHAR_EOS;
+    namingScreen->keyboardCursor.x = 0;
+    namingScreen->keyboardCursor.y = 1;
+    namingScreen->keyboardCursor.prevX = -1;
+    namingScreen->keyboardCursor.prevY = -1;
+    namingScreen->keyboardCursor.hasCharacterBeenEntered = FALSE;
+    namingScreen->keyboardCursor.ignoreInput = FALSE;
+    namingScreen->dummy0 = -1;
+    namingScreen->dummy1 = 0;
+    namingScreen->dummy2 = 0;
+    namingScreen->entryBuf[namingScreen->maxChars] = CHAR_EOS;
 
-    {
-        int v2;
+    int i;
 
-        for (v2 = 0; v2 < 7; v2++) {
-            namingScreen->spritesToUpdate[v2] = 0;
-        }
+    for (i = 0; i < 7; i++) {
+        namingScreen->spritesToUpdate[i] = FALSE;
+    }
 
-        switch (namingScreen->type) {
-        case NAMING_SCREEN_TYPE_UNK4:
-            namingScreen->spritesToUpdate[3] = 1;
-            break;
-        default:
-            namingScreen->spritesToUpdate[0] = 1;
-            break;
-        }
+    if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
+        namingScreen->spritesToUpdate[NMS_SPRITE_JP_UNUSED_BUTTON] = TRUE;
+    } else {
+        namingScreen->spritesToUpdate[NMS_SPRITE_UPPER_BUTTON] = TRUE;
     }
 }
 
-static void sub_02087544(NamingScreen *param0, ApplicationManager *appMan)
+static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, ApplicationManager *appMan)
 {
-    Strbuf *v0 = NULL;
-    NamingScreenArgs *v1 = (NamingScreenArgs *)ApplicationManager_Args(appMan);
+    Strbuf *strbuf = NULL;
+    NamingScreenArgs *args = (NamingScreenArgs *)ApplicationManager_Args(appMan);
 
-    if (v1->unk_44 != 0) {
-        int v2, v3;
+    if (args->battleMsgID != 0) {
+        int boxID, nextBoxID;
 
-        v0 = Strbuf_Init(200, HEAP_ID_NAMING_SCREEN_APP);
-        param0->unk_180 = NULL;
-        v2 = PCBoxes_GetCurrentBoxID(v1->pcBoxes);
-        v3 = PCBoxes_FirstEmptyBox(v1->pcBoxes);
+        strbuf = Strbuf_Init(200, HEAP_ID_NAMING_SCREEN_APP);
+        namingScreen->battleMessageStrbuf = NULL;
+        boxID = PCBoxes_GetCurrentBoxID(args->pcBoxes);
+        nextBoxID = PCBoxes_FirstEmptyBox(args->pcBoxes);
 
-        StringTemplate_SetPCBoxName(param0->strTemplate, 1, v1->pcBoxes, v2);
+        StringTemplate_SetPCBoxName(namingScreen->strTemplate, 1, args->pcBoxes, boxID);
 
-        if (v2 != v3) {
-            StringTemplate_SetPCBoxName(param0->strTemplate, 2, v1->pcBoxes, v3);
-            v1->unk_44 += 2;
+        if (boxID != nextBoxID) {
+            StringTemplate_SetPCBoxName(namingScreen->strTemplate, 2, args->pcBoxes, nextBoxID);
+            args->battleMsgID += 2;
         } else {
-            StringTemplate_SetPCBoxName(param0->strTemplate, 2, v1->pcBoxes, v2);
+            StringTemplate_SetPCBoxName(namingScreen->strTemplate, 2, args->pcBoxes, boxID);
         }
 
-        if ((param0->textCursorPos == 0) || sub_02086F14(param0->entryBuf)) {
-            Pokemon *v4 = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
+        if (namingScreen->textCursorPos == 0 || NamingScreen_IsRawStringAllSpaces(namingScreen->entryBuf)) {
+            Pokemon *mon = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
 
-            Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
-            StringTemplate_SetSpeciesName(param0->strTemplate, 0, Pokemon_GetBoxPokemon(v4));
-            Heap_Free(v4);
+            Pokemon_InitWith(mon, namingScreen->playerGenderOrMonSpecies, 1, 0, FALSE, 0, OTID_NOT_SET, 0);
+            StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxPokemon(mon));
+            Heap_Free(mon);
         } else {
-            param0->entryBuf[param0->textCursorPos] = CHAR_EOS;
-            Strbuf_CopyChars(v0, param0->entryBuf);
-            StringTemplate_SetStrbuf(param0->strTemplate, 0, v0, 0, 0, 0);
+            namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
+            Strbuf_CopyChars(strbuf, namingScreen->entryBuf);
+            StringTemplate_SetStrbuf(namingScreen->strTemplate, 0, strbuf, 0, 0, 0);
         }
 
-        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->strTemplate, param0->battleStringsMsgLoader, v1->unk_44, HEAP_ID_NAMING_SCREEN_APP);
-        param0->unk_14 = 1;
+        namingScreen->battleMessageStrbuf = MessageUtil_ExpandedStrbuf(
+            namingScreen->strTemplate,
+            namingScreen->battleStringsMsgLoader,
+            args->battleMsgID,
+            HEAP_ID_NAMING_SCREEN_APP);
+        namingScreen->printedFromBattleGMM = TRUE;
 
-        Strbuf_Free(v0);
+        Strbuf_Free(strbuf);
     }
 }
 
-static void sub_0208765C(BgConfig *param0, Window *param1)
+static void NamingScreen_FreeBgs(BgConfig *bgConfig, Window *windows)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 10; v0++) {
-        Window_Remove(&param1[v0]);
+    for (int i = 0; i < NMS_WINDOW_COUNT; i++) {
+        Window_Remove(&windows[i]);
     }
 
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, param0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
+    Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, bgConfig);
 }
 
 static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *narc)
 {
     BgConfig *bgConfig = namingScreen->bgConfig;
 
-    Graphics_LoadPaletteFromOpenNARC(narc, 0, PAL_LOAD_MAIN_BG, 0, 16 * 3 * 2, HEAP_ID_NAMING_SCREEN_APP);
+    Graphics_LoadPaletteFromOpenNARC(narc, naming_screen_NCLR, PAL_LOAD_MAIN_BG, 0, 16 * 3 * 2, HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, PAL_LOAD_SUB_BG, 0, 16 * 2, HEAP_ID_NAMING_SCREEN_APP);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        2,
+        naming_screen_main_tiles_NCGR_lz,
         bgConfig,
         BG_LAYER_MAIN_2,
         0,
@@ -1653,7 +1809,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        4,
+        naming_screen_bg_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_2,
         0,
@@ -1662,7 +1818,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        2,
+        naming_screen_main_tiles_NCGR_lz,
         bgConfig,
         BG_LAYER_MAIN_1,
         0,
@@ -1671,7 +1827,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        6,
+        naming_screen_chars_bg_0_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_1,
         0,
@@ -1680,7 +1836,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        7,
+        naming_screen_chars_bg_1_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_0,
         0,
@@ -1699,7 +1855,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
         narc,
-        16,
+        naming_screen_unk_tiles_NCGR_lz,
         TRUE,
         &namingScreen->charData,
         HEAP_ID_NAMING_SCREEN_APP);
@@ -1707,73 +1863,138 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
 
 void NamingScreen_TransferChars(void)
 {
-    {
-        CharTransferTemplate charTransferTemplate = {
-            .maxTasks = 20,
-            .sizeMain = 2048,
-            .sizeSub = 2048,
-            .heapID = HEAP_ID_NAMING_SCREEN_APP,
-        };
+    CharTransferTemplate charTransferTemplate = {
+        .maxTasks = 20,
+        .sizeMain = 2048,
+        .sizeSub = 2048,
+        .heapID = HEAP_ID_NAMING_SCREEN_APP,
+    };
 
-        CharTransfer_Init(&charTransferTemplate);
-    }
+    CharTransfer_Init(&charTransferTemplate);
 
     PlttTransfer_Init(20, HEAP_ID_NAMING_SCREEN_APP);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
 
-static void sub_020877F4(NamingScreen *param0, NARC *param1)
+static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
 {
-    int v0;
+    int i;
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_NAMING_SCREEN_APP);
 
-    param0->unk_188 = SpriteList_InitRendering(40 + 4, &param0->unk_18C, HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteList = SpriteList_InitRendering(40 + 4, &namingScreen->g2dRenderer, HEAP_ID_NAMING_SCREEN_APP);
 
-    SetSubScreenViewRect(&param0->unk_18C, 0, 256 * FX32_ONE);
+    SetSubScreenViewRect(&namingScreen->g2dRenderer, 0, 256 * FX32_ONE);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_NAMING_SCREEN_APP);
+    for (i = 0; i < 4; i++) {
+        namingScreen->spriteResourceCollections[i] = SpriteResourceCollection_New(2, i, HEAP_ID_NAMING_SCREEN_APP);
     }
 
-    param0->unk_328[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[0][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 12, 1, 0, 2, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[0][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
+        narc,
+        naming_screen_sprites_NCGR_lz,
+        TRUE,
+        0,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[0][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
+        narc,
+        naming_screen_sprites_NCLR,
+        FALSE,
+        0,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        9,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[0][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
+        narc,
+        naming_screen_sprites_cell_NCER_lz,
+        TRUE,
+        0,
+        SPRITE_RESOURCE_CELL,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[0][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
+        narc,
+        naming_screen_sprites_anim_NANR_lz,
+        TRUE,
+        0,
+        SPRITE_RESOURCE_ANIM,
+        HEAP_ID_NAMING_SCREEN_APP);
 
-    if (param0->type == NAMING_SCREEN_TYPE_POKEMON) {
-        param0->unk_518 = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, HEAP_ID_NAMING_SCREEN_APP);
-        DC_FlushRange(param0->unk_51C, 0x20 * 4 * 4);
+    if (namingScreen->type == NAMING_SCREEN_TYPE_POKEMON) {
+        namingScreen->monIconRawCharData = Graphics_GetCharData(
+            NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON,
+            PokeIconSpriteIndex(namingScreen->playerGenderOrMonSpecies, 0, namingScreen->monForm),
+            FALSE,
+            &namingScreen->monIconCharData,
+            HEAP_ID_NAMING_SCREEN_APP);
+        DC_FlushRange(namingScreen->monIconCharData, 0x20 * 4 * 4);
 
-        param0->unk_520 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &param0->unk_524, HEAP_ID_NAMING_SCREEN_APP);
-        DC_FlushRange(param0->unk_524, 0x20 * 4);
+        namingScreen->monIconRawPlttData = Graphics_GetPlttData(
+            NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON,
+            PokeIconPalettesFileIndex(),
+            &namingScreen->plttData,
+            HEAP_ID_NAMING_SCREEN_APP);
+        DC_FlushRange(namingScreen->plttData, 0x20 * 4);
     }
 
-    param0->unk_328[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, HEAP_ID_NAMING_SCREEN_APP);
-    param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[1][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
+        narc,
+        naming_screen_unk_sprite_NCGR_lz,
+        TRUE,
+        1,
+        NNS_G2D_VRAM_TYPE_2DSUB,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[1][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
+        narc,
+        naming_screen_sprites_NCLR,
+        FALSE,
+        1,
+        NNS_G2D_VRAM_TYPE_2DSUB,
+        3,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[1][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
+        narc,
+        naming_screen_unk_sprite_cell_NCER_lz,
+        TRUE,
+        1,
+        SPRITE_RESOURCE_CELL,
+        HEAP_ID_NAMING_SCREEN_APP);
+    namingScreen->spriteResources[1][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
+        narc,
+        naming_screen_unk_sprite_anim_NANR_lz,
+        TRUE,
+        1,
+        SPRITE_RESOURCE_ANIM,
+        HEAP_ID_NAMING_SCREEN_APP);
 
-    SpriteTransfer_RequestChar(param0->unk_328[0][0]);
-    SpriteTransfer_RequestChar(param0->unk_328[1][0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[0][1]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[1][1]);
+    SpriteTransfer_RequestChar(namingScreen->spriteResources[0][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_RequestChar(namingScreen->spriteResources[1][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_RequestPlttWholeRange(namingScreen->spriteResources[0][SPRITE_RESOURCE_PLTT]);
+    SpriteTransfer_RequestPlttWholeRange(namingScreen->spriteResources[1][SPRITE_RESOURCE_PLTT]);
 }
 
-static void sub_020879DC(SysTask *param0, void *param1)
+static void NamingScreen_SubspritePosControllerTask(SysTask *task, void *paramsPtr)
 {
-    const VecFx32 *v0;
-    VecFx32 v1;
-    UnkStruct_020879DC *v2 = (UnkStruct_020879DC *)param1;
+    const VecFx32 *parentPos;
+    VecFx32 pos;
+    SubspritePosControllerParameters *params = (SubspritePosControllerParameters *)paramsPtr;
 
-    v0 = Sprite_GetPosition(v2->unk_00);
-    v1.x = v0->x + v2->unk_08;
-    v1.y = FX32_ONE * sNamingScreenSpriteAnimations[v2->unk_0C][1];
-    v1.z = 0;
+    parentPos = Sprite_GetPosition(params->parent);
+    pos.x = parentPos->x + params->dx;
+    pos.y = FX32_ONE * sSpriteAnimations[params->i].y;
+    pos.z = 0;
 
-    Sprite_SetPosition(v2->unk_04, &v1);
+    Sprite_SetPosition(params->child, &pos);
 }
 
 static void NamingScreen_InitSprites(NamingScreen *namingScreen)
@@ -1781,141 +2002,144 @@ static void NamingScreen_InitSprites(NamingScreen *namingScreen)
     int i;
 
     SpriteResourcesHeader_Init(
-        &namingScreen->unk_348,
+        &namingScreen->mainSpriteResourceHeader,
         0,
         0,
         0,
         0,
-        0xffffffff,
-        0xffffffff,
-        0,
+        -1,
+        -1,
+        FALSE,
         1,
-        namingScreen->unk_318[0],
-        namingScreen->unk_318[1],
-        namingScreen->unk_318[2],
-        namingScreen->unk_318[3],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
         NULL,
         NULL);
     SpriteResourcesHeader_Init(
-        &namingScreen->unk_36C,
+        &namingScreen->subResourceSpriteHeader,
         1,
         1,
         1,
         1,
-        0xffffffff,
-        0xffffffff,
+        -1,
+        -1,
+        FALSE,
         0,
-        0,
-        namingScreen->unk_318[0],
-        namingScreen->unk_318[1],
-        namingScreen->unk_318[2],
-        namingScreen->unk_318[3],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
+        namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
         NULL,
         NULL);
 
-    {
-        AffineSpriteListTemplate v1;
+    AffineSpriteListTemplate spriteTemplate;
 
-        v1.list = namingScreen->unk_188;
-        v1.resourceData = &namingScreen->unk_348;
-        v1.position.x = FX32_CONST(32);
-        v1.position.y = FX32_CONST(96);
-        v1.position.z = 0;
-        v1.affineScale.x = FX32_ONE;
-        v1.affineScale.y = FX32_ONE;
-        v1.affineScale.z = FX32_ONE;
-        v1.affineZRotation = 0;
-        v1.priority = 1;
-        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = HEAP_ID_NAMING_SCREEN_APP;
+    spriteTemplate.list = namingScreen->spriteList;
+    spriteTemplate.resourceData = &namingScreen->mainSpriteResourceHeader;
+    spriteTemplate.position.x = FX32_CONST(32);
+    spriteTemplate.position.y = FX32_CONST(96);
+    spriteTemplate.position.z = 0;
+    spriteTemplate.affineScale.x = FX32_ONE;
+    spriteTemplate.affineScale.y = FX32_ONE;
+    spriteTemplate.affineScale.z = FX32_ONE;
+    spriteTemplate.affineZRotation = 0;
+    spriteTemplate.priority = 1;
+    spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    spriteTemplate.heapID = HEAP_ID_NAMING_SCREEN_APP;
 
-        for (i = 0; i < 9; i++) {
-            v1.position.x = FX32_ONE * sNamingScreenSpriteAnimations[i][0];
-            v1.position.y = FX32_ONE * sNamingScreenSpriteAnimations[i][1];
+    for (i = 0; i < NMS_SPRITE_COUNT; i++) {
+        spriteTemplate.position.x = FX32_ONE * sSpriteAnimations[i].x;
+        spriteTemplate.position.y = FX32_ONE * sSpriteAnimations[i].y;
 
-            namingScreen->miscSprites[i] = SpriteList_AddAffine(&v1);
+        namingScreen->uiSprites[i] = SpriteList_AddAffine(&spriteTemplate);
 
-            Sprite_SetAnimateFlag(namingScreen->miscSprites[i], TRUE);
-            Sprite_SetAnim(namingScreen->miscSprites[i], sNamingScreenSpriteAnimations[i][2]);
-            Sprite_SetPriority(namingScreen->miscSprites[i], sNamingScreenSpriteAnimations[i][3]);
-        }
-
-        Sprite_SetDrawFlag(namingScreen->miscSprites[4], FALSE);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], FALSE);
-
-        for (i = 0; i < 7; i++) {
-            UnkStruct_020879DC *v2;
-
-            namingScreen->unk_400[i] = SysTask_StartAndAllocateParam(sub_020879DC, 16, 5, HEAP_ID_NAMING_SCREEN_APP);
-            v2 = SysTask_GetParam(namingScreen->unk_400[i]);
-            v2->unk_00 = namingScreen->miscSprites[7];
-            v2->unk_04 = namingScreen->miscSprites[i];
-            v2->unk_08 = FX32_ONE * sNamingScreenSpriteAnimations[i][0];
-            v2->unk_0C = i;
-        }
-
-        for (i = 0; i < namingScreen->unk_0C; i++) {
-            v1.position.x = FX32_ONE * ((10 * 8) + i * 12);
-            v1.position.y = FX32_ONE * (4 * 8 + 7);
-
-            namingScreen->textCursorSprites[i] = SpriteList_AddAffine(&v1);
-
-            Sprite_SetAnimateFlag(namingScreen->textCursorSprites[i], TRUE);
-            Sprite_SetAnim(namingScreen->textCursorSprites[i], 43);
-        }
-
-        sub_02088E1C(namingScreen->textCursorSprites, namingScreen->textCursorPos, namingScreen->unk_0C);
-        sub_02087BE4(namingScreen, &v1);
+        Sprite_SetAnimateFlag(namingScreen->uiSprites[i], TRUE);
+        Sprite_SetAnim(namingScreen->uiSprites[i], sSpriteAnimations[i].anim);
+        Sprite_SetPriority(namingScreen->uiSprites[i], sSpriteAnimations[i].priority);
     }
+
+    Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_JP_UNUSED_2_BUTTON], FALSE);
+    Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], FALSE);
+
+    for (i = 0; i < NMS_SPRITE_OVERLAY; i++) {
+        namingScreen->spriteFollowTasks[i] = SysTask_StartAndAllocateParam(
+            NamingScreen_SubspritePosControllerTask,
+            sizeof(SubspritePosControllerParameters),
+            5,
+            HEAP_ID_NAMING_SCREEN_APP);
+        SubspritePosControllerParameters *taskData = SysTask_GetParam(namingScreen->spriteFollowTasks[i]);
+        taskData->parent = namingScreen->uiSprites[NMS_SPRITE_OVERLAY];
+        taskData->child = namingScreen->uiSprites[i];
+        taskData->dx = FX32_ONE * sSpriteAnimations[i].x;
+        taskData->i = i;
+    }
+
+    for (i = 0; i < namingScreen->maxChars; i++) {
+        spriteTemplate.position.x = FX32_ONE * ((10 * 8) + i * 12);
+        spriteTemplate.position.y = FX32_ONE * (4 * 8 + 7);
+
+        namingScreen->textCursorSprites[i] = SpriteList_AddAffine(&spriteTemplate);
+
+        Sprite_SetAnimateFlag(namingScreen->textCursorSprites[i], TRUE);
+        Sprite_SetAnim(namingScreen->textCursorSprites[i], 43);
+    }
+
+    NamingScreen_UpdateTextCursors(
+        namingScreen->textCursorSprites,
+        namingScreen->textCursorPos,
+        namingScreen->maxChars);
+    NamingScreen_InitIconSprite(namingScreen, &spriteTemplate);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4(NamingScreen *param0, AffineSpriteListTemplate *param1)
+static void NamingScreen_InitIconSprite(NamingScreen *namingScreen, AffineSpriteListTemplate *template)
 {
-    param1->position.x = FX32_ONE * 24;
-    param1->position.y = FX32_ONE * (16 - 8);
-    param0->entitySprite[0] = SpriteList_AddAffine(param1);
+    template->position.x = FX32_CONST(24);
+    template->position.y = FX32_CONST(8);
+    namingScreen->entitySprite[0] = SpriteList_AddAffine(template);
 
-    Sprite_SetAnimateFlag(param0->entitySprite[0], TRUE);
+    Sprite_SetAnimateFlag(namingScreen->entitySprite[0], TRUE);
 
-    switch (param0->type) {
+    switch (namingScreen->type) {
     case NAMING_SCREEN_TYPE_PLAYER:
-        if (param0->unk_04 == 0) {
-            Sprite_SetAnim(param0->entitySprite[0], 48);
+        if (namingScreen->playerGenderOrMonSpecies == GENDER_MALE) {
+            Sprite_SetAnim(namingScreen->entitySprite[0], 48);
         } else {
-            Sprite_SetAnim(param0->entitySprite[0], 49);
+            Sprite_SetAnim(namingScreen->entitySprite[0], 49);
         }
         break;
     case NAMING_SCREEN_TYPE_RIVAL:
-        Sprite_SetAnim(param0->entitySprite[0], 51);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 51);
         break;
     case NAMING_SCREEN_TYPE_UNK6:
-        Sprite_SetAnim(param0->entitySprite[0], 55);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 55);
         break;
     case NAMING_SCREEN_TYPE_GROUP:
-        Sprite_SetAnim(param0->entitySprite[0], 54);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 54);
         break;
     case NAMING_SCREEN_TYPE_UNK4:
     case NAMING_SCREEN_TYPE_PAL_PAD:
-        Sprite_SetAnim(param0->entitySprite[0], 53);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 53);
         break;
     case NAMING_SCREEN_TYPE_BOX:
-        Sprite_SetAnim(param0->entitySprite[0], 47);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 47);
         break;
     case NAMING_SCREEN_TYPE_POKEMON:
-        Sprite_SetAnim(param0->entitySprite[0], 50);
+        Sprite_SetAnim(namingScreen->entitySprite[0], 50);
 
-        if (param0->unk_10 != 2) {
-            param1->position.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
-            param1->position.y = FX32_ONE * ((4 * 8 + 7) - 12);
-            param0->entitySprite[1] = SpriteList_AddAffine(param1);
+        if (namingScreen->monGender != GENDER_NONE) {
+            template->position.x = FX32_ONE * ((10 * 8) + namingScreen->maxChars * 13);
+            template->position.y = FX32_CONST(27);
+            namingScreen->entitySprite[1] = SpriteList_AddAffine(template);
 
-            if (param0->unk_10 == 0) {
-                Sprite_SetAnim(param0->entitySprite[1], 45);
+            if (namingScreen->monGender == GENDER_MALE) {
+                Sprite_SetAnim(namingScreen->entitySprite[1], 45);
             } else {
-                Sprite_SetAnim(param0->entitySprite[1], 46);
+                Sprite_SetAnim(namingScreen->entitySprite[1], 46);
             }
         }
         break;
@@ -1955,7 +2179,7 @@ static void NamingScreen_WiggleOverlayTask(SysTask *task, void *paramsPtr)
 
 static void NamingScreen_AnimateChangeChars(
     BgConfig *bgConfig,
-    Window *window,
+    Window *windows,
     enum ChangeCharsState *statePtr,
     int currentCharsIdx,
     enum BgLayer *bgLayerPtr,
@@ -1968,11 +2192,11 @@ static void NamingScreen_AnimateChangeChars(
 
     switch (*statePtr) {
     case CC_STATE_LOAD_GRAPHICS: {
-        u16 bgColor = sNamingScreenCharsBgColor[currentCharsIdx] | (sNamingScreenCharsBgColor[currentCharsIdx] << 4);
+        u16 bgColor = sCharsBgColor[currentCharsIdx] | (sCharsBgColor[currentCharsIdx] << 4);
 
         Graphics_LoadTilemapToBgLayer(
             NARC_INDEX_DATA__NAMEIN,
-            6 + currentCharsIdx,
+            naming_screen_chars_bg_0_NSCR_lz + currentCharsIdx,
             bgConfig,
             bgLayer,
             0,
@@ -1981,7 +2205,7 @@ static void NamingScreen_AnimateChangeChars(
             HEAP_ID_NAMING_SCREEN_APP);
         NamingScreen_InitializeCharsPosition(charsPosition, bgLayer);
         NamingScreen_InitializeCharsGraphics(
-            &window[bgLayer],
+            &windows[bgLayer],
             bgColor,
             currentCharsIdx,
             TEXT_COLOR(14, 15, 0),
@@ -2008,8 +2232,8 @@ static void NamingScreen_AnimateChangeChars(
             wiggleParam = SysTask_GetParam(wiggleTask);
             wiggleParam->overlaySprite = sprites[NMS_SPRITE_OVERLAY];
             wiggleParam->state = 0;
-            wiggleParam->overlayXPosition = Sprite_GetPosition(sprites[7])->x;
-            wiggleParam->overlayYPosition = Sprite_GetPosition(sprites[7])->y;
+            wiggleParam->overlayXPosition = Sprite_GetPosition(sprites[NMS_SPRITE_OVERLAY])->x;
+            wiggleParam->overlayYPosition = Sprite_GetPosition(sprites[NMS_SPRITE_OVERLAY])->y;
 
             charsPosition[bgLayer].x = -11;
             (*statePtr)++;
@@ -2046,92 +2270,187 @@ static void NamingScreen_AnimateChangeChars(
     }
 }
 
-static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
+static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, Strbuf *str)
 {
-    Window_DrawMessageBoxWithScrollCursor(param0, 0, 32 * 8, 10);
-    Text_AddPrinterWithParams(param0, FONT_MESSAGE, param2, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Window_CopyToVRAM(param0);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, PLTT_10);
+    Text_AddPrinterWithParams(window, FONT_MESSAGE, str, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    Window_CopyToVRAM(window);
 }
 
-static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
+static void NamingScreen_PrintMessageOnWindow(Window *window, int param1, Strbuf *str)
 {
-    int v0 = 16;
-    int v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0);
+    int xOffset = 16;
+    int v1 = Font_CalcStrbufWidth(FONT_SYSTEM, str, 0);
 
     if (v1 > 130) {
-        v0 = 0;
+        xOffset = 0;
     }
 
-    Window_FillTilemap(param0, 0x101);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, v0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-    Window_CopyToVRAM(param0);
+    Window_FillTilemap(window, 0x01);
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        str,
+        xOffset,
+        0,
+        TEXT_SPEED_INSTANT,
+        TEXT_COLOR(14, 15, 1),
+        NULL);
+    Window_CopyToVRAM(window);
 }
 
-static void sub_02087FC0(NamingScreen *namingScreen, ApplicationManager *appMan, NARC *param2)
+static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationManager *appMan, NARC *narc)
 {
-    Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[0], 0, 2, 1, 26, 12, 1, 32 * 8);
-    Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[1], 1, 2, 1, 26, 12, 1, (32 * 8) + (26 * 12));
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_KEYBOARD_0],
+        BG_LAYER_MAIN_0,
+        2,
+        1,
+        26,
+        12,
+        PLTT_1,
+        32 * 8);
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_KEYBOARD_1],
+        BG_LAYER_MAIN_1,
+        2,
+        1,
+        26,
+        12,
+        PLTT_1,
+        (32 * 8) + (26 * 12));
 
     if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, namingScreen->bgConfig, 1, 0, 32 * 14 * 2, 1, HEAP_ID_NAMING_SCREEN_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(
+            narc,
+            naming_screen_chars_bg_3_NSCR_lz,
+            namingScreen->bgConfig,
+            BG_LAYER_MAIN_1,
+            0,
+            32 * 14 * 2,
+            TRUE,
+            HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->currentCharsIdx = 4;
-        sub_02088844(namingScreen->unk_3A, 4);
-        NamingScreen_InitializeCharsGraphics(&namingScreen->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), namingScreen->charData->pRawData);
+        NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, 4);
+        NamingScreen_InitializeCharsGraphics(
+            &namingScreen->windows[NMS_WINDOW_KEYBOARD_1],
+            0xa0a,
+            4,
+            TEXT_COLOR(14, 15, 0),
+            namingScreen->charData->pRawData);
     } else {
         namingScreen->currentCharsIdx = 0;
-        sub_02088844(namingScreen->unk_3A, 0);
-        NamingScreen_InitializeCharsGraphics(&namingScreen->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), namingScreen->charData->pRawData);
+        NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, 0);
+        NamingScreen_InitializeCharsGraphics(
+            &namingScreen->windows[NMS_WINDOW_KEYBOARD_1],
+            0x404,
+            0,
+            TEXT_COLOR(14, 15, 0),
+            namingScreen->charData->pRawData);
     }
 
-    Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[2], 2, 7, 2, 22, 2, 0, ((32 * 8) + (26 * 12)) + (26 * 12));
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_DUMMY],
+        BG_LAYER_MAIN_2,
+        7,
+        2,
+        22,
+        2,
+        PLTT_0,
+        ((32 * 8) + (26 * 12)) + (26 * 12));
 
-    {
-        int v0 = ((namingScreen->unk_0C * 12) / 8) + 1;
+    int width = ((namingScreen->maxChars * 12) / 8) + 1;
 
-        Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[3], 2, 10, 3, v0, 2, 0, (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
-        Window_FillTilemap(&namingScreen->unk_41C[3], 0x101);
-        Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[8], 2, 10 + v0 - 1, 3, 7, 2, 0, ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
-        Window_FillTilemap(&namingScreen->unk_41C[8], 0x101);
-    }
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+        BG_LAYER_MAIN_2,
+        10,
+        3,
+        width,
+        2,
+        PLTT_0,
+        (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
+    Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 0x01);
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_GROUP_TEXT],
+        BG_LAYER_MAIN_2,
+        10 + width - 1,
+        3,
+        7,
+        2,
+        PLTT_0,
+        ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
+    Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_GROUP_TEXT], 0x01);
 
     if (namingScreen->type == NAMING_SCREEN_TYPE_GROUP) {
-        sub_02087F78(&namingScreen->unk_41C[8], namingScreen->type, namingScreen->unk_184);
-        Window_CopyToVRAM(&namingScreen->unk_41C[8]);
+        NamingScreen_PrintMessageOnWindow(
+            &namingScreen->windows[NMS_WINDOW_GROUP_TEXT],
+            namingScreen->type,
+            namingScreen->groupTextStrbuf);
+        Window_CopyToVRAM(&namingScreen->windows[NMS_WINDOW_GROUP_TEXT]);
     }
 
-    Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[9], 4, 2, 19, 27, 4, 12, 120 + (2 * 2 * 3));
-    Window_FillTilemap(&namingScreen->unk_41C[9], 0x0f);
-    sub_02087F48(&namingScreen->unk_41C[9], namingScreen->type, namingScreen->unk_178);
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_PROMPT],
+        BG_LAYER_SUB_0,
+        2,
+        19,
+        27,
+        4,
+        PLTT_12,
+        120 + (2 * 2 * 3));
+    Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_PROMPT], 15);
+    NamingScreen_PrintMessageOnWindowLeftAlign(
+        &namingScreen->windows[NMS_WINDOW_PROMPT],
+        namingScreen->type,
+        namingScreen->promptString);
 
-    {
-        NamingScreenArgs *v1 = (NamingScreenArgs *)ApplicationManager_Args(appMan);
+    ApplicationManager_Args(appMan);
 
-        if (namingScreen->entryBufBak[0] != CHAR_EOS) {
-            CharCode_Copy(namingScreen->entryBuf, namingScreen->entryBufBak);
-            NamingScreen_PrintChars(&namingScreen->unk_41C[3], namingScreen->entryBuf, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-        }
+    if (namingScreen->entryBufBak[0] != CHAR_EOS) {
+        CharCode_Copy(namingScreen->entryBuf, namingScreen->entryBufBak);
+        NamingScreen_PrintChars(
+            &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+            namingScreen->entryBuf,
+            0,
+            0,
+            12,
+            TEXT_SPEED_INSTANT,
+            TEXT_COLOR(14, 15, 1),
+            NULL);
     }
 
-    {
-        int v2;
-
-        for (v2 = 0; v2 < 3; v2++) {
-            Window_Add(namingScreen->bgConfig, &namingScreen->unk_41C[4 + v2], 2, 0, 0, 2, 2, 0, 120);
-            Window_FillTilemap(&namingScreen->unk_41C[4 + v2], 0);
-        }
-
+    for (int i = 0; i < 3; i++) {
         Window_Add(
             namingScreen->bgConfig,
-            &namingScreen->unk_41C[7],
+            &namingScreen->windows[NMS_WINDOW_UNK_0 + i],
             BG_LAYER_MAIN_2,
             0,
             0,
-            16,
             2,
-            0,
-            120 + (2 * 2 * 3));
-        Window_FillTilemap(&namingScreen->unk_41C[7], 0);
+            2,
+            PLTT_0,
+            120);
+        Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_0 + i], 0);
     }
+
+    Window_Add(
+        namingScreen->bgConfig,
+        &namingScreen->windows[NMS_WINDOW_UNK_3],
+        BG_LAYER_MAIN_2,
+        0,
+        0,
+        16,
+        2,
+        PLTT_0,
+        120 + (2 * 2 * 3));
+    Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_3], 0);
 }
 
 static void NamingScreen_UpdateCharsPriorities(BgConfig *unused0, enum BgLayer oldBgLayer, VecFx32 unused1[])
@@ -2148,173 +2467,179 @@ static void NamingScreen_InitializeCharsPosition(VecFx32 charsPosition[], enum B
     charsPosition[freeBgLayer ^ 1].y = -80;
 }
 
-static const int Unk_020F2904[][2] = {
-    { 0x0, 0x0 },
-    { 0x0, 0xFFFFFFFFFFFFFFFF },
-    { 0x0, 0x1 },
-    { 0xFFFFFFFFFFFFFFFF, 0x0 },
-    { 0x1, 0x0 }
+static const DpadMovement sDpadMovementCoordDeltas[NMS_DPAD_MOVEMENT_COUNT] = {
+    { .x = 0, .y = 0 },
+    { .x = 0, .y = -1 },
+    { .x = 0, .y = 1 },
+    { .x = -1, .y = 0 },
+    { .x = 1, .y = 0 }
 };
 
-static int sub_02088288(int param0, int param1, int param2)
+static int NamingScreen_WrapAroundWithinInterval(int value, int lower, int upper)
 {
-    if (param0 >= param2) {
-        param0 = param1;
+    if (value >= upper) {
+        value = lower;
     }
 
-    if (param0 < param1) {
-        param0 = param2 - 1;
+    if (value < lower) {
+        value = upper - 1;
     }
 
-    return param0;
+    return value;
 }
 
-static void sub_02088298(NamingScreen *param0, int param1)
+static void NamingScreen_MoveCursor(NamingScreen *namingScreen, enum NamingScreenDpadMovement dpadMovement)
 {
-    int v0, v1;
-    u16 v2;
+    int newX, newY;
+    u16 prevKey;
 
-    if (param1 == 0) {
+    if (dpadMovement == NMS_DPAD_MOVEMENT_NONE) {
         return;
     }
 
-    v2 = param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00];
-    v0 = sub_02088288(param0->unk_1C.unk_00 + Unk_020F2904[param1][0], 0, 13);
-    v1 = sub_02088288(param0->unk_1C.unk_04 + Unk_020F2904[param1][1], 0, 6);
+    prevKey = namingScreen->keyboardChars[namingScreen->keyboardCursor.y][namingScreen->keyboardCursor.x];
+    newX = NamingScreen_WrapAroundWithinInterval(
+        namingScreen->keyboardCursor.x + sDpadMovementCoordDeltas[dpadMovement].x,
+        0,
+        NMS_NUM_COLS);
+    newY = NamingScreen_WrapAroundWithinInterval(
+        namingScreen->keyboardCursor.y + sDpadMovementCoordDeltas[dpadMovement].y,
+        0,
+        NMS_NUM_ROWS);
 
-    while (param0->unk_3A[v1][v0] == (0xd001 + 3) || (param0->unk_3A[v1][v0] == v2 && param0->unk_3A[v1][v0] > 0xe001)) {
-        if ((param0->unk_1C.unk_0C == 0) && (param0->unk_3A[v1][v0] == (0xd001 + 3)) && (Unk_020F2904[param1][1] != 0)) {
-            v0 += param0->unk_1C.unk_10;
-            v0 = sub_02088288(v0, 0, 13);
+    while (namingScreen->keyboardChars[newY][newX] == NMS_CONTROL_SKIP
+        || namingScreen->keyboardChars[newY][newX] == prevKey
+            && namingScreen->keyboardChars[newY][newX] > NMS_BUTTON_START) {
+        if (namingScreen->keyboardCursor.prevY == 0
+            && namingScreen->keyboardChars[newY][newX] == NMS_CONTROL_SKIP
+            && sDpadMovementCoordDeltas[dpadMovement].y != 0) {
+            newX += namingScreen->keyboardCursor.deltaX;
+            newX = NamingScreen_WrapAroundWithinInterval(newX, 0, NMS_NUM_COLS);
         } else {
-            v0 += Unk_020F2904[param1][0];
-            v0 = sub_02088288(v0, 0, 13);
-            v1 += Unk_020F2904[param1][1];
-            v1 = sub_02088288(v1, 0, 6);
+            newX += sDpadMovementCoordDeltas[dpadMovement].x;
+            newX = NamingScreen_WrapAroundWithinInterval(newX, 0, NMS_NUM_COLS);
+            newY += sDpadMovementCoordDeltas[dpadMovement].y;
+            newY = NamingScreen_WrapAroundWithinInterval(newY, 0, NMS_NUM_ROWS);
         }
     }
 
-    param0->unk_1C.unk_00 = v0;
-    param0->unk_1C.unk_04 = v1;
+    namingScreen->keyboardCursor.x = newX;
+    namingScreen->keyboardCursor.y = newY;
 }
 
 static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
 {
     BOOL didInput = FALSE;
-    int v1 = 0;
-    BOOL v2 = FALSE;
+    enum NamingScreenDpadMovement dpadMovement = NMS_DPAD_MOVEMENT_NONE;
+    BOOL buttonInputIsTransition = FALSE;
 
-    if (Sprite_GetDrawFlag(namingScreen->miscSprites[8]) == 0) {
-        v2 = TRUE;
+    if (!Sprite_GetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR])) {
+        buttonInputIsTransition = TRUE;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
-        v1 = 1;
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+        dpadMovement = NMS_DPAD_MOVEMENT_UP;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
-        v1 = 2;
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+        dpadMovement = NMS_DPAD_MOVEMENT_DOWN;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
-        v1 = 3;
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+        dpadMovement = NMS_DPAD_MOVEMENT_LEFT;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
-        v1 = 4;
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+        dpadMovement = NMS_DPAD_MOVEMENT_RIGHT;
         didInput++;
     }
 
     // start counts as a direction input, because it moves the cursor.
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(namingScreen->miscSprites[8], TRUE);
-        namingScreen->unk_1C.unk_00 = 12;
-        namingScreen->unk_1C.unk_04 = 0;
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+        namingScreen->keyboardCursor.x = 12;
+        namingScreen->keyboardCursor.y = 0;
         didInput++;
     }
 
-    {
-        if ((namingScreen->unk_62C = sub_0208903C(namingScreen)) == 1) {
-            v1 = 0;
-            didInput++;
-        }
+    if ((namingScreen->isTouchInput = NamingScreen_ProcessTouchInputs(namingScreen)) == TRUE) {
+        dpadMovement = NMS_DPAD_MOVEMENT_NONE;
+        didInput++;
     }
 
-    if (v2 == TRUE) {
+    if (buttonInputIsTransition == TRUE) {
         didInput = 0;
-        NamingScreen_MoveCursor(namingScreen, v1);
+        NamingScreen_UpdateCursorSpritePosition(namingScreen, dpadMovement);
     }
 
     if (didInput) {
-        sub_02088298(namingScreen, v1);
-        NamingScreen_MoveCursor(namingScreen, v1);
+        NamingScreen_MoveCursor(namingScreen, dpadMovement);
+        NamingScreen_UpdateCursorSpritePosition(namingScreen, dpadMovement);
     }
 }
 
-static void NamingScreen_MoveCursor(NamingScreen *param0, int param1)
+static void NamingScreen_UpdateCursorSpritePosition(
+    NamingScreen *namingScreen,
+    enum NamingScreenDpadMovement dpadMovement)
 {
-    if (param0->unk_1C.unk_04 != 0) {
-        VecFx32 v0;
-
-        if ((param0->unk_1C.unk_0C == 0) && (param0->unk_1C.unk_0C != param0->unk_1C.unk_04)) {
-            Sprite_SetAnim(param0->miscSprites[8], 39);
+    if (namingScreen->keyboardCursor.y != 0) {
+        if (namingScreen->keyboardCursor.prevY == 0
+            && namingScreen->keyboardCursor.prevY != namingScreen->keyboardCursor.y) {
+            Sprite_SetAnim(namingScreen->uiSprites[NMS_SPRITE_CURSOR], 39);
         }
 
-        v0.x = FX32_ONE * (26 + param0->unk_1C.unk_00 * 16);
-        v0.y = FX32_ONE * ((111 - 20) + (param0->unk_1C.unk_04 - 1) * 19);
-        Sprite_SetPosition(param0->miscSprites[8], &v0);
+        VecFx32 vec;
+        vec.x = FX32_ONE * (26 + namingScreen->keyboardCursor.x * 16);
+        vec.y = FX32_ONE * ((111 - 20) + (namingScreen->keyboardCursor.y - 1) * 19);
+        Sprite_SetPosition(namingScreen->uiSprites[NMS_SPRITE_CURSOR], &vec);
     } else {
-        VecFx32 v1;
-        int v2 = param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00] - (0xe001 + 1);
+        int buttonID = namingScreen->keyboardChars[namingScreen->keyboardCursor.y][namingScreen->keyboardCursor.x]
+            - NMS_BUTTON_PAGE_UPPER;
+        VecFx32 vec;
 
-        v1.x = FX32_ONE * sHomeRowCursorXCoords[v2];
-        v1.y = FX32_ONE * (88 - 20);
+        vec.x = FX32_ONE * sHomeRowCursorXCoords[buttonID];
+        vec.y = FX32_CONST(68);
 
-        Sprite_SetAnim(param0->miscSprites[8], sHomeRowCursorAnimIDs[v2]);
-        Sprite_SetPosition(param0->miscSprites[8], &v1);
+        Sprite_SetAnim(namingScreen->uiSprites[NMS_SPRITE_CURSOR], sHomeRowCursorAnimIDs[buttonID]);
+        Sprite_SetPosition(namingScreen->uiSprites[NMS_SPRITE_CURSOR], &vec);
     }
 
-    param0->unk_38 = 180;
+    namingScreen->plttGlowEffectAngle = 180;
 
-    Sprite_SetAnimFrame(param0->miscSprites[8], 0);
+    Sprite_SetAnimFrame(namingScreen->uiSprites[NMS_SPRITE_CURSOR], 0);
 
-    param0->unk_1C.unk_08 = param0->unk_1C.unk_00;
-    param0->unk_1C.unk_0C = param0->unk_1C.unk_04;
+    namingScreen->keyboardCursor.prevX = namingScreen->keyboardCursor.x;
+    namingScreen->keyboardCursor.prevY = namingScreen->keyboardCursor.y;
 
-    if (Unk_020F2904[param1][0] != 0) {
-        param0->unk_1C.unk_10 = Unk_020F2904[param1][0];
+    if (sDpadMovementCoordDeltas[dpadMovement].x != NMS_DPAD_MOVEMENT_NONE) {
+        namingScreen->keyboardCursor.deltaX = sDpadMovementCoordDeltas[dpadMovement].x;
     }
 }
 
-static void sub_02088514(u16 *param0)
+static void NamingScreen_PaletteGlowEffect(u16 *pSinArg)
 {
-    fx32 v0;
-    GXRgb v1;
-    int v2, v3, v4;
+    *pSinArg += 20;
 
-    *param0 += 20;
-
-    if (*param0 > 360) {
-        *param0 = 0;
+    if (*pSinArg > 360) {
+        *pSinArg = 0;
     }
 
-    v0 = CalcSineDegrees_Wraparound(*param0);
-    v3 = 15 + (v0 * 10) / FX32_ONE;
-    v1 = GX_RGB(29, v3, 0);
+    int val = ((CalcSineDegrees_Wraparound(*pSinArg) * 10) / FX32_ONE) + 15;
+    GXRgb rgb = GX_RGB(29, val, 0);
 
-    GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
+    GX_LoadOBJPltt(&rgb, (16 + 13) * 2, 2);
 }
 
 static void NamingScreen_PrintChars(
@@ -2332,8 +2657,10 @@ static void NamingScreen_PrintChars(
     Strbuf *strBuf = Strbuf_Init(2, HEAP_ID_NAMING_SCREEN_APP);
 
     while (charCodes[i] != CHAR_EOS) {
-        if ((charCodes[i] == 0xd001) || (charCodes[i] == (0xd001 + 1)) || (charCodes[i] == (0xd001 + 2))) {
-            u16 v5 = charCodes[i] - 0xd001;
+        if (charCodes[i] == NMS_CONTROL_DAKU
+            || charCodes[i] == NMS_CONTROL_HANDAKU
+            || charCodes[i] == NMS_CONTROL_SPACE) {
+            u16 v5 = charCodes[i] - NMS_CONTROL_DAKU;
             Window_BlitBitmapRect(
                 window,
                 (void *)&rawCharData[v5 * 8 * 8 * 4 / 2],
@@ -2346,7 +2673,7 @@ static void NamingScreen_PrintChars(
                 12,
                 12);
         } else {
-            if (charCodes[i] == (0xd001 + 3)) {
+            if (charCodes[i] == NMS_CONTROL_SKIP) {
                 i++;
                 continue;
             }
@@ -2382,26 +2709,33 @@ static const u8 sUnkGXObjOffsets1[] = {
     0x58
 };
 
-static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(Window *window, Strbuf *string, u8 fontId, const TextColor color)
+static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
+    Window *window,
+    Strbuf *string,
+    u8 fontId,
+    const TextColor color)
 {
     Text_AddPrinterWithParamsAndColor(window, fontId, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
     return window->pixels;
 }
 
-static void NamingScreen_PrintCharOnWindowAndOBJ(Window *window, const charcode_t *tmpBuf, u8 *pixelBuf, Strbuf *string)
+static void NamingScreen_PrintCharOnWindowAndOBJ(
+    Window *windows,
+    const charcode_t *tmpBuf,
+    u8 *pixelBuf,
+    Strbuf *string)
 {
     charcode_t curCharBuf[20 + 1];
     u16 i;
     void *ptr;
     Strbuf *string2;
 
-    Window_FillTilemap(&window[3], 0);
-    ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(&window[3], string, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
+    Window_FillTilemap(&windows[3], 0);
+    ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(&windows[3], string, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
     DC_FlushRange(ptr, 0x20 * 4 * 16);
 
     for (i = 0; i < 4; i++) {
-        // copy rect of pixels from window 3
-        sub_02012C60(&window[3], 4, 2, 4 * i, 0, (char *)pixelBuf);
+        sub_02012C60(&windows[3], 4, 2, 4 * i, 0, (char *)pixelBuf);
         DC_FlushRange(pixelBuf, 0x20 * 4 * 2);
         GXS_LoadOBJ(pixelBuf, sUnkGXObjOffsets1[i] * 0x20, 0x20 * 4 * 2);
     }
@@ -2412,10 +2746,14 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(Window *window, const charcode_
         curCharBuf[0] = tmpBuf[i];
         curCharBuf[1] = CHAR_EOS;
 
-        Window_FillTilemap(&window[i], 0);
+        Window_FillTilemap(&windows[i], 0);
         Strbuf_CopyChars(string2, curCharBuf);
 
-        ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(&window[i], string2, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
+        ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
+            &windows[i],
+            string2,
+            FONT_SUBSCREEN,
+            TEXT_COLOR(13, 14, 15));
 
         DC_FlushRange(ptr, 0x20 * 4);
         GXS_LoadOBJ(ptr, sUnkGXObjOffsets0[i] * 0x20, 0x20 * 4);
@@ -2424,36 +2762,36 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(Window *window, const charcode_
     Strbuf_Free(string2);
 }
 
-static void sub_02088754(
+static void NamingScreen_PrintLastCharOfEntryBuf(
     Window *windows,
     charcode_t *srcChars,
     int srcCharIdx,
     charcode_t *charCodeBuf,
     u8 *pixelBuf,
-    Strbuf *param5)
+    Strbuf *string)
 {
     int i, j;
-    const u16 *v2 = NULL;
+    const u16 *dummy = NULL;
     u16 charCode;
 
-    if (srcCharIdx == 0) {
-        charCode = (0xd001 + 2);
+    if (srcCharIdx == CHAR_NONE) {
+        charCode = NMS_CONTROL_SPACE;
     } else {
         charCode = srcChars[srcCharIdx - 1];
     }
 
     switch (charCode) {
-    case 0xd001:
-    case (0xd001 + 1):
-    case (0xd001 + 2):
-    case (0xd001 + 3):
-    case (0xe001 + 1):
-    case (0xe001 + 2):
-    case (0xe001 + 3):
-    case (0xe001 + 4):
-    case (0xe001 + 5):
-    case (0xe001 + 6):
-    case (0xe001 + 7):
+    case NMS_CONTROL_DAKU:
+    case NMS_CONTROL_HANDAKU:
+    case NMS_CONTROL_SPACE:
+    case NMS_CONTROL_SKIP:
+    case NMS_BUTTON_PAGE_UPPER:
+    case NMS_BUTTON_PAGE_LOWER:
+    case NMS_BUTTON_PAGE_OTHERS:
+    case NMS_BUTTON_PAGE_JP_UNUSED:
+    case NMS_BUTTON_PAGE_JP_UNUSED_2:
+    case NMS_BUTTON_BACK:
+    case NMS_BUTTON_OK:
         charCode = CHAR_WIDE_SPACE;
         break;
     }
@@ -2465,271 +2803,351 @@ static void sub_02088754(
     charCodeBuf[0] = charCode;
 
     if (charCode != CHAR_WIDE_SPACE) {
-        for (i = 0; i < NELEMS(sUnkConversionTable); i++) {
-            if (sUnkConversionTable[i][0] == charCode) {
+        for (i = 0; i < NELEMS(sJPCharConversionTable); i++) {
+            if (sJPCharConversionTable[i][0] == charCode) {
                 for (j = 0; j < 3; j++) {
-                    charCodeBuf[j] = sUnkConversionTable[i][j];
+                    charCodeBuf[j] = sJPCharConversionTable[i][j];
                 }
                 break;
             }
 
-            if (sUnkConversionTable[i][2] == charCode) {
+            if (sJPCharConversionTable[i][2] == charCode) {
                 for (j = 0; j < 3; j++) {
-                    charCodeBuf[j] = sUnkConversionTable[i][j];
+                    charCodeBuf[j] = sJPCharConversionTable[i][j];
                 }
                 break;
             }
         }
     }
 
-    NamingScreen_PrintCharOnWindowAndOBJ(windows, charCodeBuf, pixelBuf, param5);
+    NamingScreen_PrintCharOnWindowAndOBJ(windows, charCodeBuf, pixelBuf, string);
 }
 
-static void sub_02088844(u16 param0[][13], const int param1)
+static void NamingScreen_LoadKeyboardLayout(charcode_t out[][13], const int index)
 {
-    int v0, v1;
+    int i, j;
 
-    for (v0 = 0; v0 < 13; v0++) {
-        param0[0][v0] = sNamingScreenHomeRowLayouts[param1][v0];
+    for (i = 0; i < NMS_NUM_COLS; i++) {
+        out[0][i] = sHomeRowLayouts[index][i];
     }
 
-    for (v1 = 0; v1 < 6 - 1; v1++) {
-        for (v0 = 0; v0 < 13; v0++) {
-            param0[1 + v1][v0] = sNamingScreenCharCodes[param1][v1][v0];
+    for (j = 0; j < NMS_NUM_ROWS - 1; j++) {
+        for (i = 0; i < NMS_NUM_COLS; i++) {
+            out[1 + j][i] = sCharCodes[index][j][i];
         }
     }
 }
 
-static int sub_02088898(NamingScreen *param0, u16 param1, int param2)
+static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charcode_t charCode, BOOL isButtonInput)
 {
-    if ((param1 == (0xd001 + 2)) || (param1 == (0xd001 + 3))) {
-        param1 = 0x1;
+    if (charCode == NMS_CONTROL_SPACE || charCode == NMS_CONTROL_SKIP) {
+        charCode = CHAR_WIDE_SPACE;
     }
 
-    if (param0->type == NAMING_SCREEN_TYPE_UNK4) {
-        if ((param1 == (0xe001 + 1)) || (param1 == (0xe001 + 2)) || (param1 == (0xe001 + 3)) || (param1 == (0xe001 + 4))) {
-            param1 = 0x1;
+    if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
+        if (charCode == NMS_BUTTON_PAGE_UPPER
+            || charCode == NMS_BUTTON_PAGE_LOWER
+            || charCode == NMS_BUTTON_PAGE_OTHERS
+            || charCode == NMS_BUTTON_PAGE_JP_UNUSED) {
+            charCode = CHAR_WIDE_SPACE;
         }
     }
 
-    if ((Sprite_GetDrawFlag(param0->miscSprites[8]) == 0) && (gSystem.touchPressed == 0)) {
-        Sprite_SetDrawFlag(param0->miscSprites[8], TRUE);
+    if (!Sprite_GetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR]) && !gSystem.touchPressed) {
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         return NMS_APP_STATE_RUNNING;
     }
 
-    switch (param1) {
-    case 0xd001:
-        if (sub_02088D08(42, 42 + 40, 1, 0xd001, param0->entryBuf, param0->textCursorPos)) {
-            Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            NamingScreen_PrintChars(&param0->unk_41C[3], param0->entryBuf, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
-        }
-        break;
-    case (0xd001 + 1):
-        if (sub_02088D08(72, 72 + 10, 2, 0xd001 + 1, param0->entryBuf, param0->textCursorPos)) {
-            Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            NamingScreen_PrintChars(&param0->unk_41C[3], param0->entryBuf, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
-        }
-        break;
-    case (0xe001 + 5):
-        if (sub_02088C9C(0, 72 + 10, param0->entryBuf, param0->textCursorPos)) {
-            Window_FillTilemap(&param0->unk_41C[3], 0x101);
+    switch (charCode) {
+    case NMS_CONTROL_DAKU:
+        if (NamingScreen_JPFlipDiacritic(
+                42,
+                NELEMS(sJPCharConversionTable),
+                1,
+                NMS_CONTROL_DAKU,
+                namingScreen->entryBuf,
+                namingScreen->textCursorPos)) {
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 1);
             NamingScreen_PrintChars(
-                &param0->unk_41C[3],
-                param0->entryBuf,
+                &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+                namingScreen->entryBuf,
                 0,
                 0,
                 12,
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
                 NULL);
-            param0->spritesToUpdate[4]++;
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
-    case (0xe001 + 1):
-    case (0xe001 + 2):
-    case (0xe001 + 3):
-    case (0xe001 + 4):
-        if (param0->currentCharsIdx != param1 - (0xe001 + 1)) {
-            param0->state.changeChars = CC_STATE_LOAD_GRAPHICS;
-            param0->currentCharsIdx = param1 - (0xe001 + 1);
-            sub_02088844(param0->unk_3A, param0->currentCharsIdx);
-            param0->spritesToUpdate[param1 - (0xe001 + 1)]++;
-            Sound_PlayEffect(SEQ_SE_DP_SYU03);
-            Sprite_SetDrawFlag(param0->miscSprites[8], param2);
+    case NMS_CONTROL_HANDAKU:
+        if (NamingScreen_JPFlipDiacritic(
+                72,
+                NELEMS(sJPCharConversionTable),
+                2,
+                NMS_CONTROL_HANDAKU,
+                namingScreen->entryBuf,
+                namingScreen->textCursorPos)) {
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 1);
+            NamingScreen_PrintChars(
+                &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+                namingScreen->entryBuf,
+                0,
+                0,
+                12,
+                TEXT_SPEED_INSTANT,
+                TEXT_COLOR(14, 15, 1),
+                NULL);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
-    case (0xe001 + 6):
-        if (param0->textCursorPos != 0) {
-            param0->entryBuf[param0->textCursorPos - 1] = 0xffff;
-            param0->textCursorPos--;
+    case NMS_BUTTON_PAGE_JP_UNUSED_2:
+        if (NamingScreen_JPFlipAlphaCase(
+                0,
+                NELEMS(sJPCharConversionTable),
+                namingScreen->entryBuf,
+                namingScreen->textCursorPos)) {
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 1);
+            NamingScreen_PrintChars(
+                &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+                namingScreen->entryBuf,
+                0,
+                0,
+                12,
+                TEXT_SPEED_INSTANT,
+                TEXT_COLOR(14, 15, 1),
+                NULL);
+            namingScreen->spritesToUpdate[NMS_SPRITE_JP_UNUSED_2_BUTTON]++;
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+        }
+        break;
+    case NMS_BUTTON_PAGE_UPPER:
+    case NMS_BUTTON_PAGE_LOWER:
+    case NMS_BUTTON_PAGE_OTHERS:
+    case NMS_BUTTON_PAGE_JP_UNUSED:
+        if (namingScreen->currentCharsIdx != charCode - NMS_BUTTON_PAGE_UPPER) {
+            namingScreen->state.changeChars = CC_STATE_LOAD_GRAPHICS;
+            namingScreen->currentCharsIdx = charCode - NMS_BUTTON_PAGE_UPPER;
+            NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
+            namingScreen->spritesToUpdate[charCode - NMS_BUTTON_PAGE_UPPER]++;
+            Sound_PlayEffect(SEQ_SE_DP_SYU03);
+            Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
+        }
+        break;
+    case NMS_BUTTON_BACK:
+        if (namingScreen->textCursorPos != 0) {
+            namingScreen->entryBuf[namingScreen->textCursorPos - 1] = CHAR_EOS;
+            namingScreen->textCursorPos--;
 
-            Window_FillTilemap(&param0->unk_41C[3], 0x101);
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 1);
 
-            if (param0->textCursorPos == 0) {
-                Window_CopyToVRAM(&param0->unk_41C[3]);
+            if (namingScreen->textCursorPos == 0) {
+                Window_CopyToVRAM(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT]);
             } else {
-                NamingScreen_PrintChars(&param0->unk_41C[3], param0->entryBuf, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+                NamingScreen_PrintChars(
+                    &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+                    namingScreen->entryBuf,
+                    0,
+                    0,
+                    12,
+                    TEXT_SPEED_INSTANT,
+                    TEXT_COLOR(14, 15, 1),
+                    NULL);
             }
 
-            sub_02088754(&param0->unk_41C[4], param0->entryBuf, param0->textCursorPos, param0->tmpBuf, param0->pixelBuf, param0->unk_17C);
-            sub_02088E1C(param0->textCursorSprites, param0->textCursorPos, param0->unk_0C);
+            NamingScreen_PrintLastCharOfEntryBuf(
+                &namingScreen->windows[NMS_WINDOW_UNK_0],
+                namingScreen->entryBuf,
+                namingScreen->textCursorPos,
+                namingScreen->tmpBuf,
+                namingScreen->pixelBuf,
+                namingScreen->unkJapaneseString);
+            NamingScreen_UpdateTextCursors(
+                namingScreen->textCursorSprites,
+                namingScreen->textCursorPos,
+                namingScreen->maxChars);
 
-            param0->spritesToUpdate[5]++;
+            namingScreen->spritesToUpdate[NMS_SPRITE_BACK_BUTTON]++;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            Sprite_SetDrawFlag(param0->miscSprites[8], param2);
+            Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
         }
         break;
-    case (0xe001 + 7):
-        sub_02015760(param0->unk_628);
-        Sprite_SetDrawFlag(param0->miscSprites[8], param2);
+    case NMS_BUTTON_OK:
+        sub_02015760(namingScreen->touchscreenIconBlinker);
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
 
-        if (param0->unk_14 == 0) {
+        if (!namingScreen->printedFromBattleGMM) {
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
-            param0->spritesToUpdate[6]++;
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_NAMING_SCREEN_APP);
+            namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
+            StartScreenFade(
+                FADE_SUB_THEN_MAIN,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                COLOR_BLACK,
+                16,
+                1,
+                HEAP_ID_NAMING_SCREEN_APP);
             return NMS_APP_STATE_WAIT_FADE_OUT;
         } else {
-            param0->state.main = NMS_STATE_PLACEHOLDER_5;
+            namingScreen->state.main = NMS_STATE_PRINT_BATTLE_MESSAGE;
         }
         break;
     default:
-        if ((param0->currentCharsIdx == 4) && (param1 == 0x1)) {
+        if (namingScreen->currentCharsIdx == 4 && charCode == CHAR_WIDE_SPACE) {
             return NMS_APP_STATE_RUNNING;
         }
 
-        if (param0->textCursorPos != param0->unk_0C) {
-            param0->entryBuf[param0->textCursorPos] = param1;
+        if (namingScreen->textCursorPos != namingScreen->maxChars) {
+            namingScreen->entryBuf[namingScreen->textCursorPos] = charCode;
 
-            Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            NamingScreen_PrintChars(&param0->unk_41C[3], param0->entryBuf, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 1);
+            NamingScreen_PrintChars(
+                &namingScreen->windows[NMS_WINDOW_ENTERED_TEXT],
+                namingScreen->entryBuf,
+                0,
+                0,
+                12,
+                TEXT_SPEED_INSTANT,
+                TEXT_COLOR(14, 15, 1),
+                NULL);
 
-            param0->textCursorPos++;
+            namingScreen->textCursorPos++;
 
-            sub_02088E1C(param0->textCursorSprites, param0->textCursorPos, param0->unk_0C);
+            NamingScreen_UpdateTextCursors(
+                namingScreen->textCursorSprites,
+                namingScreen->textCursorPos,
+                namingScreen->maxChars);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
-            Sprite_SetDrawFlag(param0->miscSprites[8], TRUE);
-            Sprite_SetExplicitOAMMode(param0->miscSprites[8], GX_OAM_MODE_XLU);
+            Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
+            Sprite_SetExplicitOAMMode(namingScreen->uiSprites[NMS_SPRITE_CURSOR], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
-            Sprite_SetAnim(param0->miscSprites[8], 60);
+            Sprite_SetAnim(namingScreen->uiSprites[NMS_SPRITE_CURSOR], 60);
 
-            param0->unk_1C.unk_18 = 1;
+            namingScreen->keyboardCursor.ignoreInput = TRUE;
 
-            sub_02088754(&param0->unk_41C[4], param0->entryBuf, param0->textCursorPos, param0->tmpBuf, param0->pixelBuf, param0->unk_17C);
+            NamingScreen_PrintLastCharOfEntryBuf(
+                &namingScreen->windows[NMS_WINDOW_UNK_0],
+                namingScreen->entryBuf,
+                namingScreen->textCursorPos,
+                namingScreen->tmpBuf,
+                namingScreen->pixelBuf,
+                namingScreen->unkJapaneseString);
         }
     }
 
     return NMS_APP_STATE_RUNNING;
 }
 
-static u16 sub_02088C7C(const u16 *param0, int param1)
+static charcode_t NamingScreen_SearchJPConvTableForNonSpace(const charcode_t *table, int pos)
 {
     do {
-        param1 = sub_02088288(++param1, 0, 3);
-    } while (param0[param1] == 0x1);
+        pos = NamingScreen_WrapAroundWithinInterval(++pos, 0, 3);
+    } while (table[pos] == CHAR_WIDE_SPACE);
 
-    return param0[param1];
+    return table[pos];
 }
 
-static int sub_02088C9C(int param0, int param1, u16 *param2, int param3)
+static BOOL NamingScreen_JPFlipAlphaCase(int tableStart, int tableEnd, charcode_t *charBuf, int cursorPos)
 {
-    int v0, v1;
-    u16 v2, v3;
+    int i, j;
+    u16 charCode, v3;
 
-    if (param3 == 0) {
-        return 0;
+    if (cursorPos == 0) {
+        return FALSE;
     }
 
-    v2 = param2[param3 - 1];
+    charCode = charBuf[cursorPos - 1];
 
-    for (v0 = param0; v0 < param1; v0++) {
-        for (v1 = 0; v1 < 3; v1++) {
-            if ((sUnkConversionTable[v0][v1] == v2) && (v2 != 0x1)) {
-                param2[param3 - 1] = sub_02088C7C(sUnkConversionTable[v0], v1);
-                return 1;
+    for (i = tableStart; i < tableEnd; i++) {
+        for (j = 0; j < 3; j++) {
+            if (sJPCharConversionTable[i][j] == charCode && charCode != CHAR_WIDE_SPACE) {
+                charBuf[cursorPos - 1] = NamingScreen_SearchJPConvTableForNonSpace(sJPCharConversionTable[i], j);
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5)
+static BOOL NamingScreen_JPFlipDiacritic(
+    int tableStart,
+    int tableEnd,
+    int convColNum,
+    int mode,
+    charcode_t *charBuf,
+    int cursorPos)
 {
-    int v0;
-    u16 v1;
+    int i;
+    charcode_t charCode;
 
-    if ((param5 == 0) || (param4[param5 - 1] == 0x1)) {
-        return 0;
+    if (cursorPos == 0 || charBuf[cursorPos - 1] == CHAR_WIDE_SPACE) {
+        return FALSE;
     }
 
-    v1 = param4[param5 - 1];
+    charCode = charBuf[cursorPos - 1];
 
-    for (v0 = param0; v0 < param1; v0++) {
-        if (sUnkConversionTable[v0][0] == v1) {
-            param4[param5 - 1] = sUnkConversionTable[v0][param2];
-            return 1;
+    for (i = tableStart; i < tableEnd; i++) {
+        if (sJPCharConversionTable[i][0] == charCode) {
+            charBuf[cursorPos - 1] = sJPCharConversionTable[i][convColNum];
+            return TRUE;
         }
     }
 
-    for (v0 = param0; v0 < param1; v0++) {
-        if (sUnkConversionTable[v0][param2] == v1) {
-            param4[param5 - 1] = sUnkConversionTable[v0][0];
-            return 1;
+    for (i = tableStart; i < tableEnd; i++) {
+        if (sJPCharConversionTable[i][convColNum] == charCode) {
+            charBuf[cursorPos - 1] = sJPCharConversionTable[i][0];
+            return TRUE;
         }
     }
 
-    switch (param3) {
-    case 0xd001:
-        for (v0 = 0; v0 < NELEMS(Unk_020F2954); v0++) {
-            if (Unk_020F2954[v0][0] == v1) {
-                param4[param5 - 1] = Unk_020F2954[v0][1];
-                return 1;
+    switch (mode) {
+    case NMS_CONTROL_DAKU:
+        for (i = 0; i < NELEMS(sDakutenTable); i++) {
+            if (sDakutenTable[i][0] == charCode) {
+                charBuf[cursorPos - 1] = sDakutenTable[i][1];
+                return TRUE;
             }
         }
         break;
-    case (0xd001 + 1):
-        for (v0 = 0; v0 < NELEMS(Unk_020F292C); v0++) {
-            if (Unk_020F292C[v0][0] == v1) {
-                param4[param5 - 1] = Unk_020F292C[v0][1];
-                return 1;
+    case NMS_CONTROL_HANDAKU:
+        for (i = 0; i < NELEMS(sHandakutenTable); i++) {
+            if (sHandakutenTable[i][0] == charCode) {
+                charBuf[cursorPos - 1] = sHandakutenTable[i][1];
+                return TRUE;
             }
         }
         break;
-    case (0xe001 + 5):
-        if (v1 == 0x26) {
-            param4[param5 - 1] = 0x24;
-            return 1;
+    case NMS_BUTTON_PAGE_JP_UNUSED_2:
+        if (charCode == CHAR_HIRAGANA_DZU) {
+            charBuf[cursorPos - 1] = CHAR_HIRAGANA_SOKUON;
+            return TRUE;
         }
 
-        if (v1 == 0x76) {
-            param4[param5 - 1] = 0x74;
-            return 1;
+        if (charCode == CHAR_KATAKANA_DZU) {
+            charBuf[cursorPos - 1] = CHAR_KATAKANA_SOKUON;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_02088E1C(Sprite **param0, int param1, int param2)
+static void NamingScreen_UpdateTextCursors(Sprite **textCursorSprites, int textCursorPos, int maxChars)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param2; v0++) {
-        Sprite_SetAnim(param0[v0], 43);
+    for (int i = 0; i < maxChars; i++) {
+        Sprite_SetAnim(textCursorSprites[i], 43);
     }
 
-    if (param1 != param2) {
-        Sprite_SetAnim(param0[param1], 44);
+    if (textCursorPos != maxChars) {
+        Sprite_SetAnim(textCursorSprites[textCursorPos], 44);
     }
 }
 
-static const u8 sNamingScreenCharsAltBgColor[] = {
+static const u8 sCharsAltBgColor[] = {
     0x3,
     0x6,
     0xC,
@@ -2750,19 +3168,19 @@ static void NamingScreen_InitializeCharsGraphics(
 
     // fill checkerboard
     for (i = 0; i < 6; i++) {
-        Window_FillRectWithColor(window, sNamingScreenCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 0, 16, 19);
-        Window_FillRectWithColor(window, sNamingScreenCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 2, 16, 19);
-        Window_FillRectWithColor(window, sNamingScreenCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 4, 16, 19);
+        Window_FillRectWithColor(window, sCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 0, 16, 19);
+        Window_FillRectWithColor(window, sCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 2, 16, 19);
+        Window_FillRectWithColor(window, sCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 4, 16, 19);
     }
     for (i = 0; i < 7; i++) {
-        Window_FillRectWithColor(window, sNamingScreenCharsAltBgColor[currentCharsIdx], 32 * i, 19, 16, 19);
-        Window_FillRectWithColor(window, sNamingScreenCharsAltBgColor[currentCharsIdx], 32 * i, 19 * 3, 16, 19);
+        Window_FillRectWithColor(window, sCharsAltBgColor[currentCharsIdx], 32 * i, 19, 16, 19);
+        Window_FillRectWithColor(window, sCharsAltBgColor[currentCharsIdx], 32 * i, 19 * 3, 16, 19);
     }
 
     for (i = 0; i < 5; i++) {
         NamingScreen_PrintChars(
             window,
-            sNamingScreenCharCodes[currentCharsIdx][i],
+            sCharCodes[currentCharsIdx][i],
             0,
             i * 19 + 4,
             16,
@@ -2778,164 +3196,165 @@ static void NamingScreen_UpdateSpriteAnimations(BOOL spritesToUpdate[], Sprite *
 {
     int i, j;
 
-    for (i = 0; i < 3; i++) {
+    for (i = NMS_SPRITE_PAGE_BUTTON_START; i < NMS_SPRITE_PAGE_BUTTON_END + 1; i++) {
         if (spritesToUpdate[i]) {
-            for (j = 0; j < 3; j++) {
-                Sprite_SetAnim(sprites[j], sNamingScreenSpriteAnimations[j][2]);
+            for (j = NMS_SPRITE_PAGE_BUTTON_START; j < NMS_SPRITE_PAGE_BUTTON_END + 1; j++) {
+                Sprite_SetAnim(sprites[j], sSpriteAnimations[j].anim);
             }
 
-            Sprite_SetAnim(sprites[i], sNamingScreenSpriteAnimations[i][2] - 3);
+            Sprite_SetAnim(sprites[i], sSpriteAnimations[i].anim - 3);
             break;
         }
     }
 
-    for (i = 5; i < 7; i++) {
+    for (i = NMS_SPRITE_BUTTON_START; i < NMS_SPRITE_BUTTON_END + 1; i++) {
         if (spritesToUpdate[i]) {
-            Sprite_SetAnim(sprites[i], sNamingScreenSpriteAnimations[i][2] + 1);
+            Sprite_SetAnim(sprites[i], sSpriteAnimations[i].anim + 1);
         }
     }
 
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < NMS_SPRITE_OVERLAY; i++) {
         spritesToUpdate[i] = FALSE;
     }
 }
 
-static void sub_02088FD0(NamingScreen *namingScreen)
+static void NamingScreen_PlaceCursorSprite(NamingScreen *namingScreen)
 {
-    if (!Sprite_IsAnimated(namingScreen->miscSprites[8])) {
-        if (namingScreen->textCursorPos == namingScreen->unk_0C) {
-            namingScreen->unk_1C.unk_00 = 12;
-            namingScreen->unk_1C.unk_04 = 0;
-            Sprite_SetAnim(namingScreen->miscSprites[8], 39);
-        } else {
-            Sprite_SetAnim(namingScreen->miscSprites[8], 39);
-        }
-
-        if (!namingScreen->unk_1C.hasCharacterBeenEntered) {
-            Sprite_SetDrawFlag(namingScreen->miscSprites[8], FALSE);
-        } else {
-            NamingScreen_MoveCursor(namingScreen, 0);
-        }
-
-        namingScreen->unk_1C.unk_18 = 0;
-
-        Sprite_SetExplicitOAMMode(namingScreen->miscSprites[8], GX_OAM_MODE_NORMAL);
+    if (Sprite_IsAnimated(namingScreen->uiSprites[NMS_SPRITE_CURSOR])) {
+        return;
     }
+    if (namingScreen->textCursorPos == namingScreen->maxChars) {
+        namingScreen->keyboardCursor.x = 12;
+        namingScreen->keyboardCursor.y = 0;
+        Sprite_SetAnim(namingScreen->uiSprites[NMS_SPRITE_CURSOR], 39);
+    } else {
+        Sprite_SetAnim(namingScreen->uiSprites[NMS_SPRITE_CURSOR], 39);
+    }
+
+    if (!namingScreen->keyboardCursor.hasCharacterBeenEntered) {
+        Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], FALSE);
+    } else {
+        NamingScreen_UpdateCursorSpritePosition(namingScreen, 0);
+    }
+
+    namingScreen->keyboardCursor.ignoreInput = FALSE;
+
+    Sprite_SetExplicitOAMMode(namingScreen->uiSprites[NMS_SPRITE_CURSOR], GX_OAM_MODE_NORMAL);
 }
 
-static const NamingScreenTouchHitbox Unk_020F2A14[] = {
-    { 0x19, 0x3C, 0x0, 0x0, 0x0 },
-    { 0x39, 0x3C, 0x0, 0x2, 0x0 },
-    { 0x59, 0x3C, 0x0, 0x4, 0x0 },
-    { 0x0, 0xC0, 0x0, 0x4, 0x0 },
-    { 0x9D, 0x3C, 0x1, 0x8, 0x0 },
-    { 0xC5, 0x3C, 0x1, 0xB, 0x0 },
-    { 0x1C, 0x58, 0x2, 0x0, 0x1 },
-    { 0x2C, 0x58, 0x2, 0x1, 0x1 },
-    { 0x3C, 0x58, 0x2, 0x2, 0x1 },
-    { 0x4C, 0x58, 0x2, 0x3, 0x1 },
-    { 0x5C, 0x58, 0x2, 0x4, 0x1 },
-    { 0x6C, 0x58, 0x2, 0x5, 0x1 },
-    { 0x7C, 0x58, 0x2, 0x6, 0x1 },
-    { 0x8C, 0x58, 0x2, 0x7, 0x1 },
-    { 0x9C, 0x58, 0x2, 0x8, 0x1 },
-    { 0xAC, 0x58, 0x2, 0x9, 0x1 },
-    { 0xBC, 0x58, 0x2, 0xA, 0x1 },
-    { 0xCC, 0x58, 0x2, 0xB, 0x1 },
-    { 0xDC, 0x58, 0x2, 0xC, 0x1 },
-    { 0x1C, 0x6B, 0x2, 0x0, 0x2 },
-    { 0x2C, 0x6B, 0x2, 0x1, 0x2 },
-    { 0x3C, 0x6B, 0x2, 0x2, 0x2 },
-    { 0x4C, 0x6B, 0x2, 0x3, 0x2 },
-    { 0x5C, 0x6B, 0x2, 0x4, 0x2 },
-    { 0x6C, 0x6B, 0x2, 0x5, 0x2 },
-    { 0x7C, 0x6B, 0x2, 0x6, 0x2 },
-    { 0x8C, 0x6B, 0x2, 0x7, 0x2 },
-    { 0x9C, 0x6B, 0x2, 0x8, 0x2 },
-    { 0xAC, 0x6B, 0x2, 0x9, 0x2 },
-    { 0xBC, 0x6B, 0x2, 0xA, 0x2 },
-    { 0xCC, 0x6B, 0x2, 0xB, 0x2 },
-    { 0xDC, 0x6B, 0x2, 0xC, 0x2 },
-    { 0x1C, 0x7E, 0x2, 0x0, 0x3 },
-    { 0x2C, 0x7E, 0x2, 0x1, 0x3 },
-    { 0x3C, 0x7E, 0x2, 0x2, 0x3 },
-    { 0x4C, 0x7E, 0x2, 0x3, 0x3 },
-    { 0x5C, 0x7E, 0x2, 0x4, 0x3 },
-    { 0x6C, 0x7E, 0x2, 0x5, 0x3 },
-    { 0x7C, 0x7E, 0x2, 0x6, 0x3 },
-    { 0x8C, 0x7E, 0x2, 0x7, 0x3 },
-    { 0x9C, 0x7E, 0x2, 0x8, 0x3 },
-    { 0xAC, 0x7E, 0x2, 0x9, 0x3 },
-    { 0xBC, 0x7E, 0x2, 0xA, 0x3 },
-    { 0xCC, 0x7E, 0x2, 0xB, 0x3 },
-    { 0xDC, 0x7E, 0x2, 0xC, 0x3 },
-    { 0x1C, 0x91, 0x2, 0x0, 0x4 },
-    { 0x2C, 0x91, 0x2, 0x1, 0x4 },
-    { 0x3C, 0x91, 0x2, 0x2, 0x4 },
-    { 0x4C, 0x91, 0x2, 0x3, 0x4 },
-    { 0x5C, 0x91, 0x2, 0x4, 0x4 },
-    { 0x6C, 0x91, 0x2, 0x5, 0x4 },
-    { 0x7C, 0x91, 0x2, 0x6, 0x4 },
-    { 0x8C, 0x91, 0x2, 0x7, 0x4 },
-    { 0x9C, 0x91, 0x2, 0x8, 0x4 },
-    { 0xAC, 0x91, 0x2, 0x9, 0x4 },
-    { 0xBC, 0x91, 0x2, 0xA, 0x4 },
-    { 0xCC, 0x91, 0x2, 0xB, 0x4 },
-    { 0xDC, 0x91, 0x2, 0xC, 0x4 },
-    { 0x1C, 0xA4, 0x2, 0x0, 0x5 },
-    { 0x2C, 0xA4, 0x2, 0x1, 0x5 },
-    { 0x3C, 0xA4, 0x2, 0x2, 0x5 },
-    { 0x4C, 0xA4, 0x2, 0x3, 0x5 },
-    { 0x5C, 0xA4, 0x2, 0x4, 0x5 },
-    { 0x6C, 0xA4, 0x2, 0x5, 0x5 },
-    { 0x7C, 0xA4, 0x2, 0x6, 0x5 },
-    { 0x8C, 0xA4, 0x2, 0x7, 0x5 },
-    { 0x9C, 0xA4, 0x2, 0x8, 0x5 },
-    { 0xAC, 0xA4, 0x2, 0x9, 0x5 },
-    { 0xBC, 0xA4, 0x2, 0xA, 0x5 },
-    { 0xCC, 0xA4, 0x2, 0xB, 0x5 },
-    { 0xDC, 0xA4, 0x2, 0xC, 0x5 }
+static const NamingScreenTouchHitbox sTouchHitboxes[] = {
+    { .x = 0x19, .y = 0x3C, .sizeParam = 0x0, .cursorX = 0x0, .cursorY = 0x0 },
+    { .x = 0x39, .y = 0x3C, .sizeParam = 0x0, .cursorX = 0x2, .cursorY = 0x0 },
+    { .x = 0x59, .y = 0x3C, .sizeParam = 0x0, .cursorX = 0x4, .cursorY = 0x0 },
+    { .x = 0x0, .y = 0xC0, .sizeParam = 0x0, .cursorX = 0x4, .cursorY = 0x0 },
+    { .x = 0x9D, .y = 0x3C, .sizeParam = 0x1, .cursorX = 0x8, .cursorY = 0x0 },
+    { .x = 0xC5, .y = 0x3C, .sizeParam = 0x1, .cursorX = 0xB, .cursorY = 0x0 },
+    { .x = 0x1C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x0, .cursorY = 0x1 },
+    { .x = 0x2C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x1, .cursorY = 0x1 },
+    { .x = 0x3C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x2, .cursorY = 0x1 },
+    { .x = 0x4C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x3, .cursorY = 0x1 },
+    { .x = 0x5C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x4, .cursorY = 0x1 },
+    { .x = 0x6C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x5, .cursorY = 0x1 },
+    { .x = 0x7C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x6, .cursorY = 0x1 },
+    { .x = 0x8C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x7, .cursorY = 0x1 },
+    { .x = 0x9C, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x8, .cursorY = 0x1 },
+    { .x = 0xAC, .y = 0x58, .sizeParam = 0x2, .cursorX = 0x9, .cursorY = 0x1 },
+    { .x = 0xBC, .y = 0x58, .sizeParam = 0x2, .cursorX = 0xA, .cursorY = 0x1 },
+    { .x = 0xCC, .y = 0x58, .sizeParam = 0x2, .cursorX = 0xB, .cursorY = 0x1 },
+    { .x = 0xDC, .y = 0x58, .sizeParam = 0x2, .cursorX = 0xC, .cursorY = 0x1 },
+    { .x = 0x1C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x0, .cursorY = 0x2 },
+    { .x = 0x2C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x1, .cursorY = 0x2 },
+    { .x = 0x3C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x2, .cursorY = 0x2 },
+    { .x = 0x4C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x3, .cursorY = 0x2 },
+    { .x = 0x5C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x4, .cursorY = 0x2 },
+    { .x = 0x6C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x5, .cursorY = 0x2 },
+    { .x = 0x7C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x6, .cursorY = 0x2 },
+    { .x = 0x8C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x7, .cursorY = 0x2 },
+    { .x = 0x9C, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x8, .cursorY = 0x2 },
+    { .x = 0xAC, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0x9, .cursorY = 0x2 },
+    { .x = 0xBC, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0xA, .cursorY = 0x2 },
+    { .x = 0xCC, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0xB, .cursorY = 0x2 },
+    { .x = 0xDC, .y = 0x6B, .sizeParam = 0x2, .cursorX = 0xC, .cursorY = 0x2 },
+    { .x = 0x1C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x0, .cursorY = 0x3 },
+    { .x = 0x2C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x1, .cursorY = 0x3 },
+    { .x = 0x3C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x2, .cursorY = 0x3 },
+    { .x = 0x4C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x3, .cursorY = 0x3 },
+    { .x = 0x5C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x4, .cursorY = 0x3 },
+    { .x = 0x6C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x5, .cursorY = 0x3 },
+    { .x = 0x7C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x6, .cursorY = 0x3 },
+    { .x = 0x8C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x7, .cursorY = 0x3 },
+    { .x = 0x9C, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x8, .cursorY = 0x3 },
+    { .x = 0xAC, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0x9, .cursorY = 0x3 },
+    { .x = 0xBC, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0xA, .cursorY = 0x3 },
+    { .x = 0xCC, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0xB, .cursorY = 0x3 },
+    { .x = 0xDC, .y = 0x7E, .sizeParam = 0x2, .cursorX = 0xC, .cursorY = 0x3 },
+    { .x = 0x1C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x0, .cursorY = 0x4 },
+    { .x = 0x2C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x1, .cursorY = 0x4 },
+    { .x = 0x3C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x2, .cursorY = 0x4 },
+    { .x = 0x4C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x3, .cursorY = 0x4 },
+    { .x = 0x5C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x4, .cursorY = 0x4 },
+    { .x = 0x6C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x5, .cursorY = 0x4 },
+    { .x = 0x7C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x6, .cursorY = 0x4 },
+    { .x = 0x8C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x7, .cursorY = 0x4 },
+    { .x = 0x9C, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x8, .cursorY = 0x4 },
+    { .x = 0xAC, .y = 0x91, .sizeParam = 0x2, .cursorX = 0x9, .cursorY = 0x4 },
+    { .x = 0xBC, .y = 0x91, .sizeParam = 0x2, .cursorX = 0xA, .cursorY = 0x4 },
+    { .x = 0xCC, .y = 0x91, .sizeParam = 0x2, .cursorX = 0xB, .cursorY = 0x4 },
+    { .x = 0xDC, .y = 0x91, .sizeParam = 0x2, .cursorX = 0xC, .cursorY = 0x4 },
+    { .x = 0x1C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x0, .cursorY = 0x5 },
+    { .x = 0x2C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x1, .cursorY = 0x5 },
+    { .x = 0x3C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x2, .cursorY = 0x5 },
+    { .x = 0x4C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x3, .cursorY = 0x5 },
+    { .x = 0x5C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x4, .cursorY = 0x5 },
+    { .x = 0x6C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x5, .cursorY = 0x5 },
+    { .x = 0x7C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x6, .cursorY = 0x5 },
+    { .x = 0x8C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x7, .cursorY = 0x5 },
+    { .x = 0x9C, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x8, .cursorY = 0x5 },
+    { .x = 0xAC, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0x9, .cursorY = 0x5 },
+    { .x = 0xBC, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0xA, .cursorY = 0x5 },
+    { .x = 0xCC, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0xB, .cursorY = 0x5 },
+    { .x = 0xDC, .y = 0xA4, .sizeParam = 0x2, .cursorX = 0xC, .cursorY = 0x5 },
 };
 
-static BOOL sub_0208903C(NamingScreen *param0)
+static BOOL NamingScreen_ProcessTouchInputs(NamingScreen *namingScreen)
 {
-    int v0, v1 = 0;
-    u8 v2, v3, v4, v5, v6, v7;
+    int i, start = 0;
+    u8 x, y, x0, y0, dx, dy;
 
-    if (param0->type == 4) {
-        v1 = 4;
+    if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
+        start = 4;
     }
 
     if (gSystem.touchPressed) {
-        v2 = gSystem.touchX;
-        v3 = gSystem.touchY;
+        x = gSystem.touchX;
+        y = gSystem.touchY;
 
-        for (v0 = v1; v0 < (NELEMS(Unk_020F2A14)); v0++) {
-            v4 = Unk_020F2A14[v0].unk_00;
-            v5 = Unk_020F2A14[v0].unk_01;
+        for (i = start; i < (NELEMS(sTouchHitboxes)); i++) {
+            x0 = sTouchHitboxes[i].x;
+            y0 = sTouchHitboxes[i].y;
 
-            switch (Unk_020F2A14[v0].unk_02_0) {
+            switch (sTouchHitboxes[i].sizeParam) {
             case 0:
-                v6 = 32 - 1;
-                v7 = 22;
+                dx = 32 - 1;
+                dy = 22;
                 break;
             case 1:
-                v6 = 32;
-                v7 = 22;
+                dx = 32;
+                dy = 22;
                 break;
             case 2:
-                v6 = 16;
-                v7 = 19;
+                dx = 16;
+                dy = 19;
                 break;
             }
 
-            if ((v2 >= v4) && (v3 >= v5) && (v2 <= (v4 + v6)) && (v3 <= (v5 + v7))) {
-                param0->unk_1C.unk_00 = Unk_020F2A14[v0].unk_04_0;
-                param0->unk_1C.unk_04 = Unk_020F2A14[v0].unk_05_0;
-                return 1;
+            if (x >= x0 && y >= y0 && x <= x0 + dx && y <= y0 + dy) {
+                namingScreen->keyboardCursor.x = sTouchHitboxes[i].cursorX;
+                namingScreen->keyboardCursor.y = sTouchHitboxes[i].cursorY;
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }

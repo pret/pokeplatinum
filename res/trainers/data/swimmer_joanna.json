@@ -25,5 +25,34 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"People keep coming to us for battles.\n",
+				"I really don’t know why! Teehee!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "OK, we lost.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I wanted to be alone, but swatting\n",
+				"away immature boys on the prowl...\r",
+				"Well, my Pokémon grew tough without\n",
+				"me really even trying.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"People still keep coming to us for\n",
+				"battles! Why?! Leave me alone!\r"
+			]
+		}
     ]
 }

@@ -51,7 +51,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int param6, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
@@ -60,7 +60,7 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
     trainer->direction = direction;
     trainer->scriptID = scriptID;
     trainer->trainerID = trainerID;
-    trainer->trainerType = trainerType;
+    trainer->unk_10 = param6;
     trainer->object = object;
 }
 
@@ -94,9 +94,9 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     case 0:
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
-        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELDMAP);
-        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
-        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD2);
+        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -135,7 +135,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -171,7 +171,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -253,7 +253,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0213, TEXT_BANK_UNK_0221);
         retScriptID -= 9000;
     } else if (retScriptID >= 8970) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, TEXT_BANK_UNK_0007);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, TEXT_BANK_BAG);
         retScriptID -= 8970;
     } else if (retScriptID >= 8950) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0498, TEXT_BANK_UNK_0539);
@@ -300,14 +300,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -377,7 +377,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_0_TYPE:
         trainer = &scriptManager->trainers[0];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT:
         trainer = &scriptManager->trainers[0];
         return &trainer->object;
@@ -398,7 +398,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_1_TYPE:
         trainer = &scriptManager->trainers[1];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT:
         trainer = &scriptManager->trainers[1];
         return &trainer->object;
@@ -677,7 +677,7 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
     itemIndex = 0;
     numBgEvents = MapHeaderData_GetNumBgEvents(fieldSystem);
     numBgEvents++;
-    hiddenItems = Heap_AllocFromHeap(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
+    hiddenItems = Heap_Alloc(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
 
     if (numBgEvents == 1) {
         hiddenItems[0].range = 0xff;

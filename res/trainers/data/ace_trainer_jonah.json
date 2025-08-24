@@ -36,5 +36,34 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"If we were to battle, your Pokémon \n",
+				"would become tougher.\r",
+				"Likewise, my Pokémon would also\n",
+				"become tougher.\r",
+				"It’s all good.\n",
+				"This calls for a battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You know, I would have really enjoyed\n",
+				"a win there. Would’ve been real nice.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"This mine’s been abandoned, but\n",
+				"now it’s home to many Pokémon.\r",
+				"I guess everything finds a place\n",
+				"to call home someday..."
+			]
+		}
     ]
 }

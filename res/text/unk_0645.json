@@ -1,0 +1,216 @@
+{
+  "key": 37835,
+  "messages": [
+    {
+      "id": "pl_msg_00000645_00000",
+      "en_US": [
+        "Teach which move to\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00001",
+      "en_US": [
+        "Teach the move\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00002",
+      "en_US": [
+        "Give up trying to teach a new\n",
+        "move to {STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00003",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00004",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00005",
+      "en_US": [
+        "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!{WAIT 3}{WAIT 5}\r",
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00006",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}.{WAIT 4}{WAIT 2}\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00007",
+      "en_US": [
+        "Stop trying to teach\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00008",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00009",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000645_00010",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} is the move that\n",
+        "you want forgotten?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00011",
+      "en_US": [
+        "Which move should {STRVAR_1 1, 0, 0}\n",
+        "remember?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00012",
+      "en_US": [
+        "Should the move {STRVAR_1 6, 1, 0}\n",
+        "be remembered?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00013",
+      "en_US": [
+        "Give up trying to make\n",
+        "{STRVAR_1 1, 0, 0} remember a move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00014",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} remembered the move\n",
+        "{STRVAR_1 6, 1, 0} it had forgotten!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00015",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} wants to remember\n",
+        "the move {STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an existing move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00016",
+      "en_US": [
+        "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!{WAIT 3}{WAIT 5}\r",
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00017",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} remembered the move\n",
+        "{STRVAR_1 6, 1, 0}.{WAIT 4}{WAIT 2}\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00018",
+      "en_US": [
+        "Give up making the Pokémon\n",
+        "remember {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00019",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not remember the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00020",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} handed over one\n",
+        "Heart Scale in exchange.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00021",
+      "en_US": [
+        "Is it OK to make this Pokémon\n",
+        "forget the move {STRVAR_1 6, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000645_00022",
+      "en_US": "CATEGORY"
+    },
+    {
+      "id": "pl_msg_00000645_00023",
+      "en_US": "POWER"
+    },
+    {
+      "id": "pl_msg_00000645_00024",
+      "en_US": "ACCURACY"
+    },
+    {
+      "id": "pl_msg_00000645_00025",
+      "en_US": "PP"
+    },
+    {
+      "id": "pl_msg_00000645_00026",
+      "en_US": "BATTLE MOVES"
+    },
+    {
+      "id": "pl_msg_00000645_00027",
+      "en_US": "APPEAL PTS"
+    },
+    {
+      "id": "pl_msg_00000645_00028",
+      "en_US": "CONTEST MOVES"
+    },
+    {
+      "id": "pl_msg_00000645_00029",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000645_00030",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000645_00031",
+      "en_US": "{STRVAR_1 51, 0, 0}/{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000645_00032",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000645_00033",
+      "en_US": "---"
+    }
+  ]
+}

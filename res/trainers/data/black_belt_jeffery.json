@@ -21,5 +21,31 @@
             "power": 40,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We’re the Karate Quads!\r",
+				"I will strike a blow for tears with\n",
+				"my fist! Hiyah, teeeeeeaaaaaaaaars!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’m so hungry, kid...\n",
+				"I don’t have any strength left...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I lost because I didn’t eat\n",
+				"enough pizza.\r",
+				"...No. Anything I say will sound\n",
+				"like I’m making excuses."
+			]
+		}
     ]
 }

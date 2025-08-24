@@ -457,7 +457,7 @@ static const struct {
 
 BOOL ov28_0225697C(UnkStruct_ov28_0225697C **param0, const UnkStruct_ov28_0225697C_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov28_0225697C *v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_0225697C));
+    UnkStruct_ov28_0225697C *v0 = (UnkStruct_ov28_0225697C *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_0225697C));
 
     if (v0 != NULL) {
         v0->unk_00 = param1;

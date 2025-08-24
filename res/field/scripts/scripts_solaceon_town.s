@@ -93,7 +93,7 @@ _00CC:
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0118
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
     SetVar VAR_0x8004, 9

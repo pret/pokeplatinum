@@ -26,5 +26,22 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What took you so long?\n",
+				"We’ve waited here a long time for\f",
+				"a rematch with you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"No way! Give us another battle!\n",
+				"...Oh, right. I’m out of Pokémon.\n"
+			]
+		}
     ]
 }

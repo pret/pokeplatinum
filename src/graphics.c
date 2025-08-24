@@ -107,9 +107,9 @@ void *LoadMemberFromNARC(enum NarcID narcID, u32 narcMemberIdx, BOOL compressed,
     void *data;
 
     if (compressed || allocAtEnd == TRUE) {
-        data = Heap_AllocFromHeapAtEnd(heapID, NARC_GetMemberSizeByIndexPair(narcID, narcMemberIdx));
+        data = Heap_AllocAtEnd(heapID, NARC_GetMemberSizeByIndexPair(narcID, narcMemberIdx));
     } else {
-        data = Heap_AllocFromHeap(heapID, NARC_GetMemberSizeByIndexPair(narcID, narcMemberIdx));
+        data = Heap_Alloc(heapID, NARC_GetMemberSizeByIndexPair(narcID, narcMemberIdx));
     }
 
     if (data != NULL) {
@@ -119,9 +119,9 @@ void *LoadMemberFromNARC(enum NarcID narcID, u32 narcMemberIdx, BOOL compressed,
             void *uncompBuf;
 
             if (allocAtEnd == FALSE) {
-                uncompBuf = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(data));
+                uncompBuf = Heap_Alloc(heapID, MI_GetUncompressedSize(data));
             } else {
-                uncompBuf = Heap_AllocFromHeapAtEnd(heapID, MI_GetUncompressedSize(data));
+                uncompBuf = Heap_AllocAtEnd(heapID, MI_GetUncompressedSize(data));
             }
 
             if (uncompBuf) {
@@ -142,9 +142,9 @@ void *LoadMemberFromNARC_OutFileSize(enum NarcID narcID, u32 narcMemberIdx, BOOL
     *fileSize = NARC_GetMemberSizeByIndexPair(narcID, narcMemberIdx);
 
     if (compressed || allocAtEnd == TRUE) {
-        data = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
+        data = Heap_AllocAtEnd(heapID, *fileSize);
     } else {
-        data = Heap_AllocFromHeap(heapID, *fileSize);
+        data = Heap_Alloc(heapID, *fileSize);
     }
 
     if (data != NULL) {
@@ -155,9 +155,9 @@ void *LoadMemberFromNARC_OutFileSize(enum NarcID narcID, u32 narcMemberIdx, BOOL
 
             void *uncompBuf;
             if (allocAtEnd == FALSE) {
-                uncompBuf = Heap_AllocFromHeap(heapID, *fileSize);
+                uncompBuf = Heap_Alloc(heapID, *fileSize);
             } else {
-                uncompBuf = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
+                uncompBuf = Heap_AllocAtEnd(heapID, *fileSize);
             }
 
             if (uncompBuf) {
@@ -249,9 +249,9 @@ void *LoadMemberFromOpenNARC_OutFileSize(NARC *narc, u32 narcMemberIdx, BOOL com
     *fileSize = NARC_GetMemberSize(narc, narcMemberIdx);
 
     if (compressed || allocAtEnd == TRUE) {
-        data = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
+        data = Heap_AllocAtEnd(heapID, *fileSize);
     } else {
-        data = Heap_AllocFromHeap(heapID, *fileSize);
+        data = Heap_Alloc(heapID, *fileSize);
     }
 
     if (data != NULL) {
@@ -262,9 +262,9 @@ void *LoadMemberFromOpenNARC_OutFileSize(NARC *narc, u32 narcMemberIdx, BOOL com
 
             void *uncompBuf;
             if (allocAtEnd == FALSE) {
-                uncompBuf = Heap_AllocFromHeap(heapID, *fileSize);
+                uncompBuf = Heap_Alloc(heapID, *fileSize);
             } else {
-                uncompBuf = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
+                uncompBuf = Heap_AllocAtEnd(heapID, *fileSize);
             }
 
             if (uncompBuf) {

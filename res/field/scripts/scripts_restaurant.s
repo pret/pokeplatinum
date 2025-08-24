@@ -171,10 +171,10 @@ _02DF:
     Message 1
     CloseMessage
     ReleaseAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 0x2C2, 0x317, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

@@ -1,0 +1,27 @@
+{
+  "key": 19377,
+  "messages": [
+    {
+      "id": "pl_msg_00000177_00000",
+      "en_US": [
+        "I’m using Technical Machines to teach\n",
+        "moves to my Pokémon.\r",
+        "I’m trying for different mixes of\n",
+        "moves in different types.\r",
+        "It’s for when I go up against the Elite\n",
+        "Four of the Pokémon League.\r",
+        "They say the Elite Four are tougher\n",
+        "than any Gym Leader by far."
+      ]
+    },
+    {
+      "id": "pl_msg_00000177_00001",
+      "en_US": [
+        "If your Pokémon gets frozen, it will\n",
+        "thaw out after a while.\r",
+        "But if I were you, I’d keep some\n",
+        "Ice Heals around."
+      ]
+    }
+  ]
+}

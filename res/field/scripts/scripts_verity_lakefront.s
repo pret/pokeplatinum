@@ -55,10 +55,10 @@ _00F0:
     SetVar VAR_UNK_0x4082, 1
     ReleaseAll
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 0, 46, 54, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

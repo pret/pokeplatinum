@@ -51,5 +51,36 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Have you any knowledge of levels\n",
+				"or the stats of Pokémon? Well, I do!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Hmm. I like how you attack.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Pokémon and numbers...\n",
+				"Who cares about that stuff?\r",
+				"Winning is what’s important.\n",
+				"Numbers aren’t everything.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Pokémon battles aren’t decided by\n",
+				"numbers.\r",
+				"It’s the bond you share with your\n",
+				"Pokémon that decides outcomes!\r"
+			]
+		}
     ]
 }

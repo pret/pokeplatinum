@@ -16,5 +16,23 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"garbage": 22
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"garbage": 19
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"garbage": 33
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"garbage": 47
+		}
     ]
 }

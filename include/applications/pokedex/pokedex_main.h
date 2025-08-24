@@ -48,9 +48,9 @@ typedef struct {
 int PokedexMain_Init(ApplicationManager *appMan, int *state);
 int PokedexMain_Main(ApplicationManager *appMan, int *state);
 int PokedexMain_Exit(ApplicationManager *appMan, int *state);
-PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayArgs *pokedexOverlayArgs);
+PokedexApp *PokedexMain_NewPokedexApp(enum HeapID heapID, const PokedexOverlayArgs *pokedexOverlayArgs);
 BOOL ov21_021D10B8(PokedexApp *pokedexApp);
-void PokedexMain_InitGX(enum HeapId heapID);
+void PokedexMain_InitGX(enum HeapID heapID);
 void PokedexMain_FreeGraphics(void);
 void ov21_021D12D8(PokedexApp *pokedexApp);
 PokedexUpdater *ov21_021D12EC(PokedexApp *pokedexApp);
@@ -66,14 +66,14 @@ int *ov21_021D13A0(PokedexApp *pokedexApp);
 int *ov21_021D13B4(PokedexApp *pokedexApp);
 int *ov21_021D13C8(PokedexApp *pokedexApp);
 BOOL *ov21_021D13DC(PokedexApp *pokedexApp);
-PokedexSortData *ov21_021D13EC(PokedexApp *pokedexApp);
-PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp);
-UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1);
-UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1);
+PokedexSortData *PokedexMain_GetSortData(PokedexApp *pokedexApp);
+PokedexGraphicData *PokedexMain_GetGraphicData(PokedexApp *pokedexApp);
+PokedexScreenManager *ov21_021D1410(PokedexApp *pokedexApp, int param1);
+PokedexScreenManager *ov21_021D1430(PokedexApp *pokedexApp, int param1);
 void ov21_021D144C(Sprite *param0, int param1);
 void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2);
 void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4);
-void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4);
+void PokedexMain_SetHitTableRect(TouchScreenHitTable *hitTable, int top, int bottom, int left, int right);
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration);
 BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *pokedexLoadingScreen);
 void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID);
@@ -94,6 +94,6 @@ u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, cons
 u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID);
+Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
 
 #endif // POKEPLATINUM_POKEDEX_MAIN_H

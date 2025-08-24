@@ -6,6 +6,8 @@
 #include <string.h>
 #include <vct.h>
 
+#include "constants/net.h"
+
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"
 #include "overlay004/funcptr_ov4_021D113C.h"
@@ -107,7 +109,7 @@ int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
 
     GF_ASSERT(Unk_ov4_0221A400 == NULL);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov4_0221A400) + 32);
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov4_0221A400) + 32);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov4_0221A400) + 32);
 
     Unk_ov4_0221A400 = (UnkStruct_ov4_0221A400 *)(((u32)v0 + 31) / 32 * 32);
@@ -120,7 +122,7 @@ int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
     Unk_ov4_0221A400->unk_1078 = heapID;
     Unk_ov4_0221A400->unk_107C = heapID;
     Unk_ov4_0221A400->unk_1080 = param2;
-    Unk_ov4_0221A400->unk_F84 = Heap_AllocFromHeap(heapID, param2 + ((4 * 1024) * 3) + 32);
+    Unk_ov4_0221A400->unk_F84 = Heap_Alloc(heapID, param2 + ((4 * 1024) * 3) + 32);
     Unk_ov4_0221A400->unk_F8C = NULL;
     Unk_ov4_0221A400->unk_F88 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F84 + 31) / 32 * 32), param2);
     Unk_ov4_0221A400->unk_F90 = NULL;
@@ -196,7 +198,7 @@ int ov4_021D0FEC()
     switch (Unk_ov4_0221A400->unk_1064) {
     case 0: {
         DWC_SetMemFunc(ov4_021D1AA0, ov4_021D1B04);
-        DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, 2, 1, 20);
+        DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
 
@@ -1030,7 +1032,7 @@ void ov4_021D1F18(void)
     }
 }
 
-int ov4_021D1F3C(int param0, int param1)
+int NintendoWFC_GetErrorCode(int param0, int param1)
 {
     int v0 = param0 / 100;
     int v1 = param0 / 1000;
@@ -1535,7 +1537,7 @@ void ov4_021D2618(BOOL param0, int heapID)
         Unk_ov4_0221A400->unk_107C = 11;
 
         if (Unk_ov4_0221A400->unk_F8C == NULL) {
-            Unk_ov4_0221A400->unk_F8C = Heap_AllocFromHeap(heapID, 0xf000 + 32);
+            Unk_ov4_0221A400->unk_F8C = Heap_Alloc(heapID, 0xf000 + 32);
             Unk_ov4_0221A400->unk_F90 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F8C + 31) / 32 * 32), 0xf000);
             NNS_FndSetGroupIDForExpHeap(Unk_ov4_0221A400->unk_F90, 16);
             Unk_ov4_0221A400->unk_F94 = NNS_FndGetTotalFreeSizeForExpHeap(Unk_ov4_0221A400->unk_F90);
@@ -1581,7 +1583,7 @@ void ov4_021D2748(int param0)
 
     if (Unk_ov4_0221A400->unk_F74[param0] == NULL) {
         if (Unk_ov4_0221A400->unk_107C == 11) {
-            Unk_ov4_0221A400->unk_F74[param0] = Heap_AllocFromHeap(Unk_ov4_0221A400->unk_107C, (4 * 1024) + 32);
+            Unk_ov4_0221A400->unk_F74[param0] = Heap_Alloc(Unk_ov4_0221A400->unk_107C, (4 * 1024) + 32);
             Unk_ov4_0221A400->unk_10D5[param0] = 1;
         } else {
             Unk_ov4_0221A400->unk_F74[param0] = ov4_021D1AA0(0, (4 * 1024), 32);

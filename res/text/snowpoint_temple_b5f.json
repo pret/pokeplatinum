@@ -1,0 +1,43 @@
+{
+  "key": 46175,
+  "messages": [
+    {
+      "id": "pl_msg_00000271_00000",
+      "en_US": [
+        "It’s a statue of a Pokémon.\n",
+        "It seems to exude power...\r",
+        "{STRVAR_1 3, 0, 0} read the engraved\n",
+        "writing...\r",
+        "A body of rock.\r",
+        "A body of ice.\r",
+        "A body of steel.\r",
+        "When gathers the three Pokémon,\n",
+        "the king shall appear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000271_00001",
+      "en_US": [
+        "It’s a statue of a Pokémon.\n",
+        "It seems to exude power...\r",
+        "{STRVAR_1 3, 0, 0} read the engraved\n",
+        "writing...\r",
+        "A body of rock.\r",
+        "A body of ice.\r",
+        "A body of steel.\r",
+        "When gathers the three Pokémon,\n",
+        "the king shall appear.\r",
+        "...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000271_00002",
+      "en_US": "...Zut zutt!\r"
+    },
+    {
+      "id": "pl_msg_00000271_00003",
+      "en_US": "REGIGIGAS disappeared from view..."
+    }
+  ]
+}

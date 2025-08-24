@@ -16,5 +16,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let me demonstrate my technique.\n",
+				"It’s how this grown-up battles.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, my gosh!\n",
+				"You attack that savagely?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You’re so much more of a Trainer\n",
+				"than you look!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"OK, this time I’ll really show you how a\n",
+				"grown-up battles!\r"
+			]
+		}
     ]
 }

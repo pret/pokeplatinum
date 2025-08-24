@@ -95,7 +95,7 @@ static void sub_0208BAAC(ApplicationManager *appMan, int param1)
 
     v0->fieldSystem = ApplicationManager_Args(appMan);
     v0->saveData = v0->fieldSystem->saveData;
-    v0->unk_14 = Heap_AllocFromHeap(HEAP_ID_119, sizeof(UnkStruct_0208C06C));
+    v0->unk_14 = Heap_Alloc(HEAP_ID_119, sizeof(UnkStruct_0208C06C));
 
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
 
@@ -248,7 +248,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
     case 0:
         if (param0->unk_14->unk_00 != 0) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay61));
-            sub_020995C4();
+            Overlay_UnloadHttpOverlay();
         }
 
         param0->unk_00++;
@@ -329,7 +329,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         param0->unk_00 = 0;
 
         if (param0->unk_14->unk_00 != 0) {
-            sub_020995B4();
+            Overlay_LoadHttpOverlay();
             Overlay_LoadByID(FS_OVERLAY_ID(overlay61), 2);
         }
 

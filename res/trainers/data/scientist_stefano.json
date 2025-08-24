@@ -24,5 +24,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I find it reassuring to be on this\n",
+				"damp soil...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Ufufufufu...\n",
+				"You had to beat me...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It feels good to mope here after a\n",
+				"loss... Ufufufufu...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Is Damp my favorite Pokémon ability?\n",
+				"Fufufu... Anything will do...\r"
+			]
+		}
     ]
 }

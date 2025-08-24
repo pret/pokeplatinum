@@ -54,5 +54,14 @@
             "power": 200,
             "ball_seal": 14
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your toughness is something else.\n",
+				"We were completely overwhelmed!\n"
+			]
+		}
     ]
 }

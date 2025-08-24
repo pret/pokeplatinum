@@ -281,7 +281,7 @@ BOOL sub_02032574(CommQueueMan *param0, UnkStruct_0203233C *param1, BOOL param2)
 void CommQueueMan_Init(CommQueueMan *param0, int param1, CommRing *param2)
 {
     MI_CpuFill8(param0, 0, sizeof(CommQueueMan));
-    param0->unk_18 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_020322D8) * param1);
+    param0->unk_18 = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_020322D8) * param1);
 
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param1);
     param0->unk_1C = param1;

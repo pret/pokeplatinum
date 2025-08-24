@@ -23,6 +23,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "character_sprite.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -58,7 +59,6 @@
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020131EC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -2482,7 +2482,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         ApplicationManager_Free(param0->appMan);
 
-        if (param0->unk_04->unk_14 == 0) {
+        if (param0->unk_04->returnCode == NAMING_SCREEN_CODE_OK) {
             param0->appMan = ApplicationManager_New(&Unk_020F2DBC, param0->unk_08, heapID);
             param2->unk_04 = 2;
         } else {
@@ -2518,7 +2518,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         ApplicationManager_Free(param0->appMan);
 
-        if (param0->unk_04->unk_14 == 0) {
+        if (param0->unk_04->returnCode == NAMING_SCREEN_CODE_OK) {
             ov64_0222E074(param2, 1, 12);
             ov64_0222E07C(param2, param0->unk_04->textInputStr, NULL);
             param2->unk_04 = 6;
@@ -3150,8 +3150,8 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     u32 v1 = sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 7);
     sub_02076AAC(sub_0205CA14(v0, v1, 1), 2, &v3);
 
-    void *buffer = Heap_AllocFromHeap(heapID, 0xC80);
-    sub_020133D4(v3.narcID, v3.unk_14, heapID, 0, 0, 10, 10, buffer);
+    void *buffer = Heap_Alloc(heapID, 0xC80);
+    CharacterSprite_LoadTiledData(v3.narcID, v3.unk_14, heapID, 0, 0, 10, 10, buffer);
     Window_BlitBitmapRect(&param0->unk_0C[0][4], buffer, 0, 0, 80, 80, 4, 4, 80, 80);
     Heap_Free(buffer);
 

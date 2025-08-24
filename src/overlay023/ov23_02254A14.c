@@ -221,7 +221,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_02255EBC(2, v1);
         break;
     case 2:
@@ -254,7 +254,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         break;
     case 9:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_02255EBC(10, v1);
         break;
     case 10:
@@ -286,7 +286,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
             int v4;
 
             v3 = SaveData_GetUnderground(fieldSystem->saveData);
-            v4 = sub_020289A0(v3);
+            v4 = Underground_GetGoodsCountPC(v3);
 
             if (v4 == 0) {
                 v2->unk_08 = ov23_0224D39C(19);
@@ -334,7 +334,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
 
 void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
 {
-    UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02256098));
+    UnkStruct_ov23_02256098 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_02256098));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02256098));
     ov23_02255EBC(0, v0);
@@ -374,12 +374,12 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 return 1;
             }
 
-            v9 = sub_020289B8(v10, v8);
+            v9 = Underground_GetGoodAtSlotPC(v10, v8);
 
             if (v9 != 0) {
                 BOOL v11;
 
-                v11 = sub_02028AFC(v10, v8);
+                v11 = Underground_IsGoodAtSlotPlacedInBase(v10, v8);
 
                 if (!v11) {
                     ov23_02254A14(fieldSystem, v9, v6);

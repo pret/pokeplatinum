@@ -191,7 +191,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
 
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, HEAP_ID_110, 32);
+    HeapExp_FndInitAllocator(&v0->unk_A8, HEAP_ID_110, 32);
 
     v0->unk_98 = ov117_02260E14(HEAP_ID_110);
     v0->unk_00 = ApplicationManager_Args(appMan);
@@ -480,7 +480,7 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     return 1;
 }
@@ -581,7 +581,7 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     ov117_02264930(v0);
 
     {
-        sub_020241B4();
+        G3_ResetG3X();
         Camera_SetAsActive(v0->camera1);
         Camera_ComputeProjectionMatrix(1, v0->camera1);
         Camera_ComputeViewMatrix();
@@ -610,11 +610,11 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     {
         int v4;
 
-        sub_020241B4();
+        G3_ResetG3X();
         v4 = ParticleSystem_DrawAll();
 
         if (v4 > 0) {
-            sub_020241B4();
+            G3_ResetG3X();
         }
 
         ParticleSystem_UpdateAll();
@@ -903,7 +903,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     ParticleSystem_ZeroAll();
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
+    v0 = Heap_Alloc(HEAP_ID_110, 0x4800);
     param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
     camera = ParticleSystem_GetCamera(param0->unk_A4);
 

@@ -239,10 +239,10 @@ _019C:
     ClearFlag FLAG_UNK_0x022B
     ClearFlag FLAG_UNK_0x022D
     ClearFlag FLAG_UNK_0x022E
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

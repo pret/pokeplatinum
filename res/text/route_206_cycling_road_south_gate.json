@@ -1,0 +1,42 @@
+{
+  "key": 36554,
+  "messages": [
+    {
+      "id": "pl_msg_00000475_00000",
+      "garbage": 46
+    },
+    {
+      "id": "pl_msg_00000475_00001",
+      "en_US": [
+        "Cycling Road is open only to cyclists.\n",
+        "You must be on a Bicycle.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000475_00002",
+      "en_US": [
+        "Learn how to shift gears, and you’ll\n",
+        "be able to ride anywhere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000475_00003",
+      "en_US": [
+        "What’s a Bicycle without this?\r",
+        "You’ve got to have a Flag!\n",
+        "It’s a Pokémon Accessory!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000475_00004",
+      "en_US": [
+        "Go through Mt. Coronet from here,\n",
+        "and you can get to Hearthome City.\r",
+        "Hearthome is where they hold Pokémon\n",
+        "Contests.\r",
+        "You should dress up your Pokémon for\n",
+        "Contests with your Accessories."
+      ]
+    }
+  ]
+}

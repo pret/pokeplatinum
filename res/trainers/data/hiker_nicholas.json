@@ -17,5 +17,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ve lost my way...\n",
+				"Here of all places...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Having lost his way, the Trainer lost\n",
+				"the battle too...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"From being lost in the mountains so\n",
+				"long, I became a Hiker...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve lost my way again...\r",
+				"Yes, it’s me again with no sense of\n",
+				"direction...\r"
+			]
+		}
     ]
 }

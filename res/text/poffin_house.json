@@ -1,0 +1,46 @@
+{
+  "key": 3083,
+  "messages": [
+    {
+      "id": "pl_msg_00000127_00000",
+      "en_US": [
+        "Hi!\n",
+        "Let’s get cooking!\r",
+        "Here’s my advice on cooking tasty\n",
+        "Poffins for your Pokémon crew!\r",
+        "In the beginning, while it’s still\n",
+        "a batter, swirl it gently and avoid\f",
+        "spillage.\r",
+        "When it starts to harden, churn it\n",
+        "fast in big circles!\r",
+        "At the end, make a wish for it to\n",
+        "turn scrumptious and whirl it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000127_00001",
+      "en_US": [
+        "Have you got some Berries?\r",
+        "To make delicious Poffins, the key\n",
+        "ingredient is a rare Berry.\r",
+        "And, the more cooks you have,\n",
+        "the more delicious the Poffin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000127_00002",
+      "en_US": [
+        "Eating good food makes people and\n",
+        "Pokémon more energetic and happy.\r",
+        "In that sense, we’re exactly alike."
+      ]
+    },
+    {
+      "id": "pl_msg_00000127_00003",
+      "en_US": [
+        "At the Wi-Fi Club, I can cook up Poffins\n",
+        "with my friends!"
+      ]
+    }
+  ]
+}

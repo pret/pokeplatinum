@@ -62,8 +62,8 @@ _009B:
 _00A5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq VAR_UNK_0x410C, 3, _00F4
-    GoToIfLt VAR_UNK_0x410C, 15, _0100
+    GoToIfEq VAR_TURNBACK_CAVE_ROOMS_VISITED, 3, _00F4
+    GoToIfLt VAR_TURNBACK_CAVE_ROOMS_VISITED, 15, _0100
     SetVar VAR_0x8004, ITEM_STARDUST
 _00CB:
     SetVar VAR_0x8005, 1
@@ -112,10 +112,10 @@ _0149:
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

@@ -54,5 +54,28 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Oh, what’s this? My last one!\n",
+				"This is where we make our stand!\r"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"We’re not done yet!\n",
+				"There’s no giving up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Hmm!\n",
+				"My sturdy Pokémon, defeated!\n"
+			]
+		}
     ]
 }

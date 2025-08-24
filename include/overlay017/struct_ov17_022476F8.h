@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_02095C48_sub1.h"
 
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 
 #include "bg_window.h"
@@ -27,7 +27,7 @@ typedef struct {
     StringTemplate *unk_3C;
     Strbuf *unk_40;
     PaletteData *unk_44;
-    UnkStruct_ov16_0223E0C8 unk_48[4];
+    PokemonSpriteData pokemonSpriteDataArray[4];
     ManagedSprite *unk_88[8];
     UnkStruct_ov17_0223F6E8 unk_A8;
     u8 unk_C4;

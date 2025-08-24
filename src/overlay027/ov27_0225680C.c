@@ -56,7 +56,7 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 
 BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov27_0225680C *v0 = (UnkStruct_ov27_0225680C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225680C));
+    UnkStruct_ov27_0225680C *v0 = (UnkStruct_ov27_0225680C *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225680C));
 
     if (v0 != NULL) {
         v0->unk_00 = param1;

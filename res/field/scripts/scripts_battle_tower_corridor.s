@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/map_object.h"
 
 
     ScriptEntry _000E
@@ -14,7 +15,7 @@ _0010:
     End
 
 _001F:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _0025:
@@ -28,10 +29,10 @@ _0025:
     GoTo _00D6
 
 _0066:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -42,7 +43,7 @@ _008E:
     ScrCmd_169 77
     ApplyMovement 0, _0140
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
     ScrCmd_16C 77

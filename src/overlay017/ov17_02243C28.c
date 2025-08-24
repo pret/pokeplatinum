@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "battle/struct_ov16_02264408.h"
+#include "battle/battle_anim_battler_context.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "overlay012/battle_anim_system.h"
+#include "battle_anim/battle_anim_system.h"
 #include "overlay017/ov17_0223F7E4.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_0224F18C.h"
@@ -186,7 +186,7 @@ static int ov17_02243CDC(UnkStruct_ov17_0224F30C *param0, void *param1, int para
 static void ov17_02243CF4(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
-    UnkStruct_ov17_02243D34 *v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243D34));
+    UnkStruct_ov17_02243D34 *v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02243D34));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02243D34));
 
     v1->unk_00 = v0;
@@ -236,7 +236,7 @@ static void ov17_02243DCC(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
     UnkStruct_ov17_02246F24_sub1 *v1 = param3;
-    UnkStruct_ov17_02243DCC *v2 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243DCC));
+    UnkStruct_ov17_02243DCC *v2 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02243DCC));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02243DCC));
 
     v2->unk_00 = v0;
@@ -301,7 +301,7 @@ static void ov17_02243F10(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
-    UnkStruct_ov17_02243F10 *v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
+    UnkStruct_ov17_02243F10 *v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02243F10));
 
@@ -392,7 +392,7 @@ static void ov17_022440E0(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     int v3, v4;
 
     v2 = param3;
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02243F10));
 
@@ -458,7 +458,7 @@ static void ov17_02244240(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244240 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244240));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244240));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244240));
 
     v1->unk_00 = v0;
@@ -556,7 +556,7 @@ static void ov17_022443F8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_022443F8 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_022443F8));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_022443F8));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_022443F8));
 
     v1->unk_00 = v0;
@@ -632,7 +632,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v0->unk_0C++;
     case 10: {
         UnkStruct_ov16_02265BBC v3;
-        UnkStruct_ov16_02264408 v4;
+        BattleAnimBattlerContext battlerContext;
         int v5;
         int v6, v7, v8, v9;
         int v10, v11, v12, v13;
@@ -646,7 +646,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         }
 
         MI_CpuClear8(&v3, sizeof(UnkStruct_ov16_02265BBC));
-        MI_CpuClear8(&v4, sizeof(UnkStruct_ov16_02264408));
+        MI_CpuClear8(&battlerContext, sizeof(BattleAnimBattlerContext));
 
         v6 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_SPECIES, NULL);
         v7 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_GENDER, NULL);
@@ -678,46 +678,46 @@ static void ov17_022444BC(SysTask *param0, void *param1)
 
         v3.unk_18[1] = v10;
 
-        v4.unk_04 = v0->unk_00->unk_0C.unk_24;
-        v4.unk_08 = v0->unk_00->unk_0C.unk_50;
-        v4.unk_0C[0] = &v0->unk_00->unk_0C.unk_58[v0->unk_0D];
-        v4.unk_0C[1] = &v0->unk_00->unk_0C.unk_98;
+        battlerContext.bgConfig = v0->unk_00->unk_0C.unk_24;
+        battlerContext.paletteData = v0->unk_00->unk_0C.unk_50;
+        battlerContext.pokemonSpriteData[0] = &v0->unk_00->unk_0C.pokemonSpriteDataArray[v0->unk_0D];
+        battlerContext.pokemonSpriteData[1] = &v0->unk_00->unk_0C.pokemonSpriteData;
 
         for (v5 = 0; v5 < 4; v5++) {
-            v4.unk_1C[v5] = 0xff;
-            v4.unk_34[v5] = v6;
-            v4.unk_3C[v5] = v7;
-            v4.unk_40[v5] = v8;
-            v4.unk_44[v5] = v9;
-            v4.unk_48[v5] = v14;
-            v4.unk_4C[v5] = 0;
+            battlerContext.battlerTypes[v5] = 0xff;
+            battlerContext.battlerSpecies[v5] = v6;
+            battlerContext.battlerGenders[v5] = v7;
+            battlerContext.battlerShinyFlags[v5] = v8;
+            battlerContext.battlerForms[v5] = v9;
+            battlerContext.battlerPersonalities[v5] = v14;
+            battlerContext.battlerMoveEffects[v5] = 0;
         }
 
-        v4.unk_4C[0] = v0->unk_104.unk_00;
-        v4.unk_1C[0] = 0;
-        v4.unk_1C[1] = 1;
-        v4.unk_34[1] = v10;
-        v4.unk_3C[1] = v11;
-        v4.unk_40[1] = v12;
-        v4.unk_44[1] = v13;
-        v4.unk_48[1] = v15;
-        v4.unk_20[0] = v0->unk_00->unk_0C.unk_08[v0->unk_0D];
+        battlerContext.battlerMoveEffects[0] = v0->unk_104.unk_00;
+        battlerContext.battlerTypes[0] = 0;
+        battlerContext.battlerTypes[1] = 1;
+        battlerContext.battlerSpecies[1] = v10;
+        battlerContext.battlerGenders[1] = v11;
+        battlerContext.battlerShinyFlags[1] = v12;
+        battlerContext.battlerForms[1] = v13;
+        battlerContext.battlerPersonalities[1] = v15;
+        battlerContext.pokemonSprites[0] = v0->unk_00->unk_0C.unk_08[v0->unk_0D];
 
         v1 = (v0->unk_0D == 0) ? 1 : 0;
 
-        v4.unk_20[1] = v0->unk_00->unk_0C.unk_08[v1];
-        v4.battleType = 0;
-        v4.unk_50 = 8;
-        v4.unk_54.unk_00 = 45;
-        v4.unk_54.unk_04 = 1;
-        v4.unk_54.unk_08 = 30;
-        v4.unk_54.unk_0C = 2;
-        v4.unk_54.unk_10 = 0;
-        v4.unk_54.unk_14 = 3;
-        v4.unk_00 = v0->unk_00->unk_0C.unk_18;
-        v4.unk_6C = v0->unk_00->unk_00->unk_14C[v0->unk_0D];
+        battlerContext.pokemonSprites[1] = v0->unk_00->unk_0C.unk_08[v1];
+        battlerContext.battleType = 0;
+        battlerContext.moveArcID = 8;
+        battlerContext.battleBgRef.narcID = 45;
+        battlerContext.battleBgRef.tilesNarcMemberIdx = 1;
+        battlerContext.battleBgRef.paletteNarcMemberIdx = 30;
+        battlerContext.battleBgRef.tilemapNarcMemberIdx = 2;
+        battlerContext.battleBgRef.paletteDestStart = 0;
+        battlerContext.battleBgRef.paletteSrcSize = 3;
+        battlerContext.spriteSystem = v0->unk_00->unk_0C.unk_18;
+        battlerContext.chatotCry = v0->unk_00->unk_00->unk_14C[v0->unk_0D];
 
-        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &v4);
+        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &battlerContext);
     }
 
         {
@@ -800,7 +800,7 @@ static void ov17_02244970(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244970 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244970));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244970));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244970));
 
     v1->unk_00 = v0;
@@ -959,7 +959,7 @@ static void ov17_02244C08(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1024,7 +1024,7 @@ static void ov17_02244D38(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1163,7 +1163,7 @@ static void ov17_02244FD4(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1243,7 +1243,7 @@ static void ov17_0224513C(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1446,7 +1446,7 @@ static void ov17_02245528(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1527,7 +1527,7 @@ static void ov17_02245690(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02245690 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02245690));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02245690));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02245690));
 
     v1->unk_00 = v0;
@@ -1691,7 +1691,7 @@ static void ov17_02245974(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1802,7 +1802,7 @@ static void ov17_02245B60(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_02244C08 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
+    v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02244C08));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02244C08));
 
     v1->unk_00 = v0;
@@ -1855,7 +1855,7 @@ static void ov17_02245C60(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
     UnkStruct_ov17_02246F24_sub1 *v1 = param3;
-    UnkStruct_ov17_02245C60 *v2 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02245C60));
+    UnkStruct_ov17_02245C60 *v2 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02245C60));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02245C60));
 
     v2->unk_00 = v0;
@@ -1947,7 +1947,7 @@ static void ov17_02245E14(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
     UnkStruct_ov17_02246F24_sub1 *v1 = param3;
-    UnkStruct_ov17_02245E14 *v2 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02245E14));
+    UnkStruct_ov17_02245E14 *v2 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02245E14));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02245E14));
 
     v2->unk_00 = v0;

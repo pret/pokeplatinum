@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_room.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _0016
@@ -18,12 +19,12 @@ _0035:
     End
 
 _0037:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 
 _004A:
-    ScrCmd_187 2, 5, 0, 6, 3
+    SetPosition 2, 5, 0, 6, 3
     End
 
 _0058:
@@ -49,19 +50,19 @@ _007D:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 4, _00D9
     GoToIfEq VAR_0x8008, 5, _00D9
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
 _00D9:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -112,12 +113,12 @@ _01AC:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 4
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 2, 0, 0

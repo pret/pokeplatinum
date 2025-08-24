@@ -18,5 +18,28 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Humph! You’re lost, aren’t you?\n",
+				"I’ll guide you if you can beat me.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You didn’t really have to win!\n",
+				"I’m not going to guide you now!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m not lost, I tell you!\n",
+				"I’m camping! That’s my story!\n"
+			]
+		}
     ]
 }

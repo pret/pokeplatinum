@@ -79,7 +79,7 @@ static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
 PokemonInfoDisplayStruct *sub_02092494(Pokemon *mon, BOOL isMine, int heapID)
 {
-    PokemonInfoDisplayStruct *ptr = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
+    PokemonInfoDisplayStruct *ptr = Heap_Alloc(heapID, sizeof(PokemonInfoDisplayStruct));
     ptr->heapID = heapID;
     ptr->msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, ptr->heapID);
     ptr->msgFmt = StringTemplate_New(9, 32, ptr->heapID);

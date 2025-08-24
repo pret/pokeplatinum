@@ -16,5 +16,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I am one of the Ninja Trio!\n",
+				"Being discovered means I must battle!\r",
+				"But how did you discover me?\n",
+				"Don’t tell me you’re a ninja, too!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I concede defeat...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"A Pokémon Trainer’s good at finding\n",
+				"stuff, I guess.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You should join us so we can form\n",
+				"the Ninja Quartet!\r",
+				"Anyway, let’s battle!\r"
+			]
+		}
     ]
 }

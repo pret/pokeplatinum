@@ -17,5 +17,33 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I got a nifty-keen Gym Badge from\n",
+				"the Gym Leader in Oreburgh City!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Oh, I lost! Lalala!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m collecting lots of Gym Badges.\n",
+				"They’re so sparkly and pretty!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I got a nifty-keen Gym Badge from\n",
+				"the Gym Leader in Oreburgh City!\r",
+				"...Did I show you already?\r"
+			]
+		}
     ]
 }

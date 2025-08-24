@@ -27,5 +27,34 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Are you getting worn out from all\n",
+				"the running you’ve done?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’re not tired at all?!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The world is full of Pokémon and all\n",
+				"sorts of Trainers.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What do you think of the Battle\n",
+				"Zone?\r",
+				"You’ve met so many Pokémon...\n",
+				"I’ve got to battle you again!\r"
+			]
+		}
     ]
 }

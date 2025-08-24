@@ -185,7 +185,7 @@ _0327:
     End
 
 _032B:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     Call _0341
@@ -194,7 +194,7 @@ _032B:
 _0341:
     ScrCmd_2C8 VAR_0x8001, VAR_0x8000, VAR_0x8003
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 

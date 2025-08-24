@@ -125,11 +125,11 @@ _0134:
     Message 6
     CloseMessage
     PlayFanfare SEQ_SE_DP_W062
-    FadeScreen 6, 1, 0, 0x7FFF
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     RemoveObject 6
     WaitFanfare SEQ_SE_DP_W062
-    FadeScreen 6, 1, 1, 0x7FFF
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     Message 7
     WaitABXPadPress

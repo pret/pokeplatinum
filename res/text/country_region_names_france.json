@@ -1,0 +1,97 @@
+{
+  "key": 437,
+  "messages": [
+    {
+      "id": "pl_msg_00000684_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000684_00001",
+      "en_US": "Aquitaine"
+    },
+    {
+      "id": "pl_msg_00000684_00002",
+      "en_US": "Alsace"
+    },
+    {
+      "id": "pl_msg_00000684_00003",
+      "en_US": "Ile de France"
+    },
+    {
+      "id": "pl_msg_00000684_00004",
+      "en_US": "Auvergne"
+    },
+    {
+      "id": "pl_msg_00000684_00005",
+      "en_US": "Cote d’Azur"
+    },
+    {
+      "id": "pl_msg_00000684_00006",
+      "en_US": "Corse"
+    },
+    {
+      "id": "pl_msg_00000684_00007",
+      "en_US": "Champagne-Ardenne"
+    },
+    {
+      "id": "pl_msg_00000684_00008",
+      "en_US": "Nord-Pas-de-Calais"
+    },
+    {
+      "id": "pl_msg_00000684_00009",
+      "en_US": "Normandie"
+    },
+    {
+      "id": "pl_msg_00000684_00010",
+      "en_US": "Picardie"
+    },
+    {
+      "id": "pl_msg_00000684_00011",
+      "en_US": "Franche-Comte"
+    },
+    {
+      "id": "pl_msg_00000684_00012",
+      "en_US": "Bourgogne"
+    },
+    {
+      "id": "pl_msg_00000684_00013",
+      "en_US": "Bretagne"
+    },
+    {
+      "id": "pl_msg_00000684_00014",
+      "en_US": "Provence"
+    },
+    {
+      "id": "pl_msg_00000684_00015",
+      "en_US": "Pays-de-la-Loire"
+    },
+    {
+      "id": "pl_msg_00000684_00016",
+      "en_US": "Poitou-Charentes"
+    },
+    {
+      "id": "pl_msg_00000684_00017",
+      "en_US": "Midi-Pyrenees"
+    },
+    {
+      "id": "pl_msg_00000684_00018",
+      "en_US": "Languedoc-Roussillon"
+    },
+    {
+      "id": "pl_msg_00000684_00019",
+      "en_US": "Limousin"
+    },
+    {
+      "id": "pl_msg_00000684_00020",
+      "en_US": "Rhone-Alpes"
+    },
+    {
+      "id": "pl_msg_00000684_00021",
+      "en_US": "Lorraine"
+    },
+    {
+      "id": "pl_msg_00000684_00022",
+      "en_US": "Loire"
+    }
+  ]
+}

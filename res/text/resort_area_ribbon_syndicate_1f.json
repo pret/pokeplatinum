@@ -1,0 +1,194 @@
+{
+  "key": 17414,
+  "messages": [
+    {
+      "id": "pl_msg_00000599_00000",
+      "en_US": [
+        "...Sniff...\n",
+        "I do apologize.\r",
+        "This is an exclusive establishment\n",
+        "open only to a select few.\r",
+        "You might consider it a special stage\n",
+        "for the cream of the crop.\r",
+        "If you wish to enter, I suggest you\n",
+        "start by collecting lots of Ribbons.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00001",
+      "en_US": [
+        "...Sniff...\n",
+        "I do apologize.\r",
+        "This is an exclusive establishment\n",
+        "open only to a select few.\r",
+        "You might consider it a special stage\n",
+        "for the cream of the crop.\r",
+        "If you wish to enter, I suggest you\n",
+        "start by collecting lots of Ribbons...\r",
+        "...Wait! Oh, my gosh!\n",
+        "Look at all your Ribbons!\r",
+        "I truly apologize for my rudeness.\n",
+        "It’s so out of character for me!\r",
+        "If you would be so kind, we would\n",
+        "be honored to invite you...\r",
+        "Oh, no, no! You really must join us\n",
+        "as a full-fledged member!\r",
+        "{STRVAR_1 3, 0, 0} was made a member\n",
+        "without any say in the decision!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00002",
+      "en_US": [
+        "Welcome! We’ve looked forward to\n",
+        "seeing you, {STRVAR_1 3, 0, 0}.\r",
+        "I do hope you will enjoy the luxurious\n",
+        "atmosphere and services that only\f",
+        "we can provide."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00003",
+      "en_US": [
+        "Welcome.\r",
+        "May I interest you in top-grade\n",
+        "Ribbons we had specially imported?\r",
+        "These Ribbons are available only\n",
+        "through us.\r",
+        "{STRVAR_1 3, 0, 0}, would you like one\n",
+        "for a Pokémon, perhaps?\r",
+        "Right now, I can offer you\n",
+        "the Gorgeous Ribbon.\r",
+        "For a mere $10,000, you can be the\n",
+        "proud owner of one."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00004",
+      "en_US": [
+        "Welcome.\r",
+        "May I interest you in top-grade\n",
+        "Ribbons we had specially imported?\r",
+        "These Ribbons are available only\n",
+        "through us.\r",
+        "{STRVAR_1 3, 0, 0}, would you like one\n",
+        "for a Pokémon, perhaps?\r",
+        "Right now, I can offer you\n",
+        "the Royal Ribbon.\r",
+        "For a mere $100,000, you can be\n",
+        "the proud owner of one."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00005",
+      "en_US": [
+        "Welcome.\r",
+        "May I interest you in top-grade\n",
+        "Ribbons we had specially imported?\r",
+        "These Ribbons are available only\n",
+        "through us.\r",
+        "{STRVAR_1 3, 0, 0}, would you like one\n",
+        "for a Pokémon, perhaps?\r",
+        "Right now, I can offer you\n",
+        "the Gorgeous Royal Ribbon.\r",
+        "For a mere $999,999, you can be\n",
+        "the proud owner of one."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00006",
+      "en_US": [
+        "Welcome...\n",
+        "Ooh! That’s a Gorgeous Royal Ribbon!\r",
+        "{STRVAR_1 3, 0, 0}, your {STRVAR_1 0, 2, 0}\n",
+        "certainly looks gorgeous and royal!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00007",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} bought\n",
+        "a Gorgeous Ribbon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00008",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the Gorgeous Ribbon\n",
+        "on {STRVAR_1 0, 2, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} bought\n",
+        "a Royal Ribbon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00010",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the Royal Ribbon\n",
+        "on {STRVAR_1 0, 2, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00011",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} bought\n",
+        "a Gorgeous Royal Ribbon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00012",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the Gorgeous Royal\n",
+        "Ribbon on {STRVAR_1 0, 2, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00013",
+      "en_US": [
+        "Oh, please, {STRVAR_1 3, 0, 0}.\r",
+        "You shouldn’t joke about not\n",
+        "having money."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00014",
+      "en_US": [
+        "I see.\n",
+        "Please do visit again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00015",
+      "en_US": [
+        "Just being in here is a sign of\n",
+        "status, just so you know."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00016",
+      "en_US": [
+        "I wish men would pay more attention\n",
+        "to the way they dress themselves..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00017",
+      "en_US": [
+        "A woman worthy of being seen with\n",
+        "Pokémon... That’s what I hope to be."
+      ]
+    },
+    {
+      "id": "pl_msg_00000599_00018",
+      "en_US": "SKITTY: Skiii!"
+    },
+    {
+      "id": "pl_msg_00000599_00019",
+      "en_US": "PSYDUCK: Gyaugyau!"
+    }
+  ]
+}

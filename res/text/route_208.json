@@ -1,0 +1,54 @@
+{
+  "key": 40632,
+  "messages": [
+    {
+      "id": "pl_msg_00000478_00000",
+      "en_US": [
+        "...Don’t say a word.\n",
+        "Just take it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000478_00001",
+      "en_US": [
+        "Go to Route 209!\n",
+        "Go underground!\r",
+        "Listen to the stone pillar!\n",
+        "Talk to people underground!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000478_00002",
+      "en_US": [
+        "Rt. 208\n",
+        "Mt. Coronet"
+      ]
+    },
+    {
+      "id": "pl_msg_00000478_00003",
+      "en_US": [
+        "Rt. 208\n",
+        "Hearthome City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000478_00004",
+      "en_US": [
+        "Berry Master’s House\n",
+        "Free Berries Available"
+      ]
+    },
+    {
+      "id": "pl_msg_00000478_00005",
+      "en_US": [
+        "Trainer Tips\r",
+        "After a Berry is planted, watch the\n",
+        "color of the soil.\r",
+        "If the soil is dark, it means it has\n",
+        "plenty of moisture.\r",
+        "If the soil is lighter in color,\n",
+        "water it with your Sprayduck."
+      ]
+    }
+  ]
+}

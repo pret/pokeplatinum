@@ -35,5 +35,30 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’re a Pokémon Trainer, and so\n",
+				"am I.\r",
+				"When Trainers lock eyes, that means\n",
+				"a battle is on!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Losing makes me mad, but that\n",
+				"was still a bunch of fun!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"With Pokémon that tough, I bet you\n",
+				"could go anywhere in Sinnoh!\n"
+			]
+		}
     ]
 }

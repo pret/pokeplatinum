@@ -11,7 +11,7 @@ typedef struct MemoNotepadString {
 } MemoNotepadString;
 
 typedef struct PokemonInfoDisplayStruct {
-    enum HeapId heapID;
+    enum HeapID heapID;
     MessageLoader *msgData;
     StringTemplate *msgFmt;
     Pokemon *mon;

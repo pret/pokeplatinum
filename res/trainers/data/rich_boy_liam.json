@@ -18,5 +18,11 @@
             "power": 250,
             "ball_seal": 26
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Too much for me!\n"
+		}
     ]
 }

@@ -61,19 +61,19 @@ _0093:
     SetFlag FLAG_UNK_0x013C
     SetFlag FLAG_UNK_0x0241
     SetVar VAR_UNK_0x40F8, 2
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 6, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
     Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
-    FadeScreen 6, 6, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll
     End

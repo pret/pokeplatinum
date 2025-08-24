@@ -85,7 +85,7 @@ static int sub_02055C80(int param0)
 
 UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
+    UnkStruct_02055CBC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
     v0->heapID = heapID;
@@ -124,7 +124,7 @@ static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
     UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
-    param1->unk_60 = Heap_AllocFromHeap(param1->heapID, v1);
+    param1->unk_60 = Heap_Alloc(param1->heapID, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
@@ -178,7 +178,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     BerryPatches_HarvestPatch(v3, v0);
     sub_02067834(param1);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD1);
 }
 
 void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
@@ -378,7 +378,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        PlayerAvatar_SetRequestStateBit(v0->playerAvatar, (1 << 4));
+        PlayerAvatar_SetTransitionState(v0->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
         PlayerAvatar_RequestChangeState(v0->playerAvatar);
         MapObject_SetPauseMovementOff(Player_MapObject(v0->playerAvatar));
         v1->unk_00 = 1;
@@ -453,7 +453,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
 void sub_020562AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
+    UnkStruct_020562AC *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;
@@ -465,8 +465,8 @@ void sub_020562AC(FieldSystem *fieldSystem)
 void sub_020562D8(FieldSystem *fieldSystem)
 {
     int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
-    u32 v1 = sub_0205EED8(v0);
+    u32 v1 = Player_ConvertStateToTransition(v0);
 
-    PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, v1);
+    PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, v1);
     PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 }

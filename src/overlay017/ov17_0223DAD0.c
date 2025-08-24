@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay011/ov11_0221F840.h"
+#include "overlay011/particle_helper.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022492DC.h"
 #include "overlay017/ov17_0224A0FC.h"
@@ -55,7 +55,7 @@
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223E09C(void *param0);
@@ -251,7 +251,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_23);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, HEAP_ID_23);
 
-    v0->unk_1050.unk_00 = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
+    v0->unk_1050.unk_00 = Heap_Alloc(HEAP_ID_23, 0x200);
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(HEAP_ID_23);
 
@@ -445,9 +445,9 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     DisableHBlank();
     Heap_Destroy(HEAP_ID_23);
     sub_02095A24();
-    sub_02039794();
+    NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
 
     return 1;
@@ -552,7 +552,7 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
             }
         }
 
-        ov11_0221F8F0();
+        ParticleHelper_DrawParticleSystems();
         SpriteSystem_DrawSprites(v0->unk_14.unk_5C);
         SpriteSystem_UpdateTransfer();
 
@@ -827,7 +827,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
 
     GF_ASSERT(param0->unk_0C == NULL);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
+    v0 = Heap_Alloc(HEAP_ID_23, 0x4800);
     param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
     camera = ParticleSystem_GetCamera(param0->unk_0C);

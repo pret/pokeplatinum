@@ -51,5 +51,28 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I came here after winning my way\n",
+				"through the Battle Tower!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"But...\n",
+				"I had a win streak going...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Train more at the Battle Tower...\n",
+				"That’s what I’ll do.\n"
+			]
+		}
     ]
 }

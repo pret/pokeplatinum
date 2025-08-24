@@ -1,0 +1,417 @@
+{
+  "key": 11837,
+  "messages": [
+    {
+      "id": "JournalEntries_Text_StartedFromLocation",
+      "en_US": "Started from {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_Date",
+      "en_US": "{STRVAR_1 74, 0, 0} {STRVAR_1 51, 1, 0}"
+    },
+    {
+      "id": "JournalEntries_Text_Sunday",
+      "en_US": "Sunday"
+    },
+    {
+      "id": "JournalEntries_Text_Monday",
+      "en_US": "Monday"
+    },
+    {
+      "id": "JournalEntries_Text_Tuesday",
+      "en_US": "Tuesday"
+    },
+    {
+      "id": "JournalEntries_Text_Wednesday",
+      "en_US": "Wednesday"
+    },
+    {
+      "id": "JournalEntries_Text_Thursday",
+      "en_US": "Thursday"
+    },
+    {
+      "id": "JournalEntries_Text_Friday",
+      "en_US": "Friday"
+    },
+    {
+      "id": "JournalEntries_Text_Saturday",
+      "en_US": "Saturday"
+    },
+    {
+      "id": "JournalEntries_Text_RestedAtHome",
+      "en_US": "Rested comfortably at home."
+    },
+    {
+      "id": "JournalEntries_Text_LeftResearchLab",
+      "en_US": "Left the Research Lab."
+    },
+    {
+      "id": "JournalEntries_Text_UsedPcBox",
+      "en_US": "Used a PC Box."
+    },
+    {
+      "id": "JournalEntries_Text_ShoppedAtPokeMart",
+      "en_US": "Shopped at a Poké Mart."
+    },
+    {
+      "id": "JournalEntries_Text_LotsOfShoppingAtPokeMart",
+      "en_US": "Did lots of shopping at a Poké Mart."
+    },
+    {
+      "id": "JournalEntries_Text_Sold_a_little_at_poke_mart",
+      "en_US": "Sold a little at a Poké Mart."
+    },
+    {
+      "id": "JournalEntries_Text_Sold_a_lot_at_poke_mart",
+      "en_US": "Sold a lot at a Poké Mart."
+    },
+    {
+      "id": "JournalEntries_Text_DidBusinessAtPokeMart",
+      "en_US": "Did some business at a Poké Mart."
+    },
+    {
+      "id": "JournalEntries_Text_GymWasTooTough",
+      "en_US": "{STRVAR_1 32, 0, 0} was too tough..."
+    },
+    {
+      "id": "JournalEntries_Text_BeatLocationsGymLeader",
+      "en_US": "Beat {STRVAR_1 32, 0, 0}’s {STRVAR_1 67, 1, 0}!"
+    },
+    {
+      "id": "JournalEntries_Text_BeatEliteFourMember",
+      "en_US": "Beat Elite 4 {STRVAR_1 67, 0, 0}!"
+    },
+    {
+      "id": "JournalEntries_Text_BeatChampion",
+      "en_US": "Defeated the Champion, {STRVAR_1 67, 0, 0}!"
+    },
+    {
+      "id": "JournalEntries_Text_ArrivedInLocation",
+      "en_US": "Arrived in {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_GotThroughLocation",
+      "en_US": "Got through {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_DepartedFromLocation",
+      "en_US": "Departed from {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_ExitedFromLocation",
+      "en_US": "Exited from {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtBattleTower",
+      "en_US": "Played at the Battle Tower."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtBattleFactory",
+      "en_US": "Played at the Battle Factory."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtBattleCastle",
+      "en_US": "Played at the Battle Castle."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtBattleHall",
+      "en_US": "Played at the Battle Hall."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtBattleArcade",
+      "en_US": "Played at the Battle Arcade."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtGameCorner",
+      "en_US": "Had fun at the Game Corner."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedSafariGame",
+      "en_US": "Went wild on the Safari Game."
+    },
+    {
+      "id": "JournalEntries_Text_DugUnderground",
+      "en_US": "Dug for Treasure underground."
+    },
+    {
+      "id": "JournalEntries_Text_BuiltSecretBase",
+      "en_US": "Built a Secret Base underground."
+    },
+    {
+      "id": "JournalEntries_Text_ItemWasObtained",
+      "en_US": "{STRVAR_1 66, 0, 0} was obtained."
+    },
+    {
+      "id": "JournalEntries_Text_UsedCutAtLocation",
+      "en_US": "Used Cut at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_FlewToLocation",
+      "en_US": "Flew to {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedSurfAtLocation",
+      "en_US": "Used Surf at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedStrengthAtLocation",
+      "en_US": "Used Strength at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedFlashAtLocation",
+      "en_US": "Used Flash at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedRockSmashAtLocation",
+      "en_US": "Used Rock Smash at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedWaterfallAtLocation",
+      "en_US": "Used Waterfall at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedRockClimbAtLocation",
+      "en_US": "Used Rock Climb at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedDefogAtLocation",
+      "en_US": "Used Defog at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedDigAtLocation",
+      "en_US": "Used Dig at {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_LuredPokemon",
+      "en_US": "Lured Pokémon with a sweet aroma."
+    },
+    {
+      "id": "JournalEntries_Text_WarpedToLocation",
+      "en_US": "Warped to {STRVAR_1 4, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_UsedSoftboiled",
+      "en_US": "Shared HP using Softboiled."
+    },
+    {
+      "id": "JournalEntries_Text_UsedMilkDrink",
+      "en_US": "Shared HP using Milk Drink."
+    },
+    {
+      "id": "JournalEntries_Text_CaughtPokemon",
+      "en_US": "Caught {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0})."
+    },
+    {
+      "id": "JournalEntries_Text_PokemonWasCaught",
+      "en_US": "{STRVAR_1 69, 0, 0} was caught ({STRVAR_1 33, 1, 0})."
+    },
+    {
+      "id": "JournalEntries_Text_CaughtMalePokemon",
+      "en_US": "Caught a male {STRVAR_1 69, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_CaughtFemalePokemon",
+      "en_US": "Caught a female {STRVAR_1 69, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_PokemonWasDefeated",
+      "en_US": "{STRVAR_1 69, 0, 0} was defeated ({STRVAR_1 33, 1, 0})."
+    },
+    {
+      "id": "JournalEntries_Text_DefeatedPokemon",
+      "en_US": "Defeated {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0})."
+    },
+    {
+      "id": "JournalEntries_Text_DefeatedMalePokemon",
+      "en_US": "Defeated a male {STRVAR_1 69, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_DefeatedFemalePokemon",
+      "en_US": "Defeated a female {STRVAR_1 69, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_BattledTrainerAtLocation",
+      "en_US": "Battled {STRVAR_1 67, 1, 0} at {STRVAR_1 70, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_BeatTrainerAtLocation",
+      "en_US": "Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 71, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_BeatTrainerAtLocation_2",
+      "en_US": "Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 72, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_MetLocationsTrainer",
+      "en_US": "Met {STRVAR_1 73, 0, 0}’s {STRVAR_1 67, 1, 0}!"
+    },
+    {
+      "id": "JournalEntries_Text_RivalName",
+      "en_US": "{STRVAR_1 67, 1, 0}"
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayerSingle",
+      "en_US": "Beat {STRVAR_1 75, 0, 0} (Single)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayerSingle",
+      "en_US": "Lost to {STRVAR_1 75, 0, 0} (Single)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayerSingle",
+      "en_US": "Tied {STRVAR_1 75, 0, 0} (Single)."
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayerDouble",
+      "en_US": "Beat {STRVAR_1 75, 0, 0} (Double)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayerDouble",
+      "en_US": "Lost to {STRVAR_1 75, 0, 0} (Double)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayerDouble",
+      "en_US": "Tied {STRVAR_1 75, 0, 0} (Double)."
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayersMulti",
+      "en_US": "Beat {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Multi)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayersMulti",
+      "en_US": "Lost to {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Multi)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayersMulti",
+      "en_US": "Tied {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Multi)."
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayerMix",
+      "en_US": "Beat {STRVAR_1 75, 0, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayerMix",
+      "en_US": "Lost to {STRVAR_1 75, 0, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayerMix",
+      "en_US": "Tied {STRVAR_1 75, 0, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayersMix",
+      "en_US": "Beat {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayersMix",
+      "en_US": "Lost to {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayersMix",
+      "en_US": "Tied {STRVAR_1 75, 0, 0} & {STRVAR_1 75, 1, 0} (Mix)."
+    },
+    {
+      "id": "JournalEntries_Text_GreetedPlayerInUnionRoom",
+      "en_US": "Greeted {STRVAR_1 67, 0, 0} in Union Room."
+    },
+    {
+      "id": "JournalEntries_Text_GotPokemonFromPlayer",
+      "en_US": "Got {STRVAR_1 68, 1, 0} from {STRVAR_1 67, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_DrewPicturesWithOthers",
+      "en_US": "Drew pictures with others."
+    },
+    {
+      "id": "JournalEntries_Text_GotPokemonInFriendTrade",
+      "en_US": "Got {STRVAR_1 68, 0, 0} in a friend trade."
+    },
+    {
+      "id": "JournalEntries_Text_ChattedWithOthers",
+      "en_US": "Chatted with others."
+    },
+    {
+      "id": "JournalEntries_Text_BeatPlayerUnion",
+      "en_US": "Beat {STRVAR_1 67, 0, 0} (Union)."
+    },
+    {
+      "id": "JournalEntries_Text_LostToPlayerUnion",
+      "en_US": "Lost to {STRVAR_1 67, 0, 0} (Union)."
+    },
+    {
+      "id": "JournalEntries_Text_TiedPlayerUnion",
+      "en_US": "Tied {STRVAR_1 67, 0, 0} (Union)."
+    },
+    {
+      "id": "JournalEntries_Text_MixedRecords",
+      "en_US": "Mixed records with friends."
+    },
+    {
+      "id": "JournalEntries_Text_DidSpinTrade",
+      "en_US": "Had a friendly Spin Trade session."
+    },
+    {
+      "id": "JournalEntries_Text_PlacedNumberInContest",
+      "en_US": "Placed no. {STRVAR_1 50, 0, 0} in a Contest."
+    },
+    {
+      "id": "JournalEntries_Text_MadePoffinsInGroup",
+      "en_US": "Made Poffins in a group."
+    },
+    {
+      "id": "JournalEntries_Text_GotPlayersPokemonGts",
+      "en_US": "Got {STRVAR_1 67, 0, 0}’s {STRVAR_1 68, 1, 0} (GTS)."
+    },
+    {
+      "id": "JournalEntries_Text_WatchedBattleVideos",
+      "en_US": "Watched everyone’s Battle Videos."
+    },
+    {
+      "id": "JournalEntries_Text_CheckedRankings",
+      "en_US": "Checked everyone’s rankings."
+    },
+    {
+      "id": "JournalEntries_Text_CheckedDressUpData",
+      "en_US": "Checked everyone’s Dress-Up Data."
+    },
+    {
+      "id": "JournalEntries_Text_CheckedBoxData",
+      "en_US": "Checked everyone’s Box Data."
+    },
+    {
+      "id": "JournalEntries_Text_WonInBattleRoom",
+      "en_US": "Won in the Wi-Fi Battle Room!"
+    },
+    {
+      "id": "JournalEntries_Text_ChattedWithPlayerInPlaza",
+      "en_US": "Chatted with {STRVAR_1 3, 0, 0} in the Plaza."
+    },
+    {
+      "id": "JournalEntries_Text_GotTapToyFromPlayer",
+      "en_US": "Got a Tap Toy from {STRVAR_1 3, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedPlazaMiniGame",
+      "en_US": "Played {STRVAR_6 0, 0, 0}."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedWithFootprintStamp",
+      "en_US": "Played with the Footprint Stamp."
+    },
+    {
+      "id": "JournalEntries_Text_ViewedPlazaVisitorProfiles",
+      "en_US": "Viewed the Plaza Visitor Profiles."
+    },
+    {
+      "id": "JournalEntries_Text_ReadPlazaNews",
+      "en_US": "Read the Plaza News."
+    },
+    {
+      "id": "JournalEntries_Text_JoinedParade",
+      "en_US": "Joined a Parade."
+    },
+    {
+      "id": "JournalEntries_Text_PlayedAtWiFiClub",
+      "en_US": "Played at the Wi-Fi Club."
+    }
+  ]
+}

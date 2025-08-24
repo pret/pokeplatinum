@@ -34,5 +34,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I train at a Pokémon Gym, too.\r",
+				"Don’t think you’re going to win\n",
+				"easily!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Master Wake...\n",
+				"I mean, Crasher Wake, sorry!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"What to do... Train at the Gym again,\n",
+				"or train by myself...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I trained at the Gym after you beat\n",
+				"me. Let’s do it, gang!\r"
+			]
+		}
     ]
 }

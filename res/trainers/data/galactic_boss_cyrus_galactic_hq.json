@@ -54,5 +54,25 @@
             "power": 250,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": "My last Pokémon.\n"
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"I see... I may lose if this pace\n",
+				"continues...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Interesting.\n",
+				"And quite curious.\n"
+			]
+		}
     ]
 }
