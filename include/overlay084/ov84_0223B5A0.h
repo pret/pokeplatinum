@@ -17,6 +17,8 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
+#define BAG_UI_NUM_VISIBLE_ITEMS 9
+
 typedef struct BagController BagController;
 
 typedef int (*ItemActionFuncPtr)(BagController *param0);
