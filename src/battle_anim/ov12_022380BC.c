@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "character_sprite.h"
 #include "battle_anim/const_ov12_0223B0A0.h"
 #include "battle_anim/const_ov12_0223B0B8.h"
 #include "battle_anim/const_ov12_0223B0DC.h"
 #include "battle_anim/struct_ov12_022380DC.h"
 
+#include "character_sprite.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
