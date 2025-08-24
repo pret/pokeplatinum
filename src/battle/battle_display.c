@@ -113,6 +113,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "character_sprite.h"
 #include "enums.h"
 #include "flags.h"
 #include "heap.h"
@@ -133,7 +134,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 
@@ -5633,17 +5633,17 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
     PokemonSprite *v0;
     u8 *v1 = ov16_0223F2B8(ov16_0223E0C8(battleSys), param10);
     int v2;
-    int v3;
+    int face;
 
     v2 = BattleSystem_BattlerSlot(battleSys, param10);
 
     if (v2 & 0x1) {
-        v3 = 2;
+        face = FACE_FRONT;
     } else {
-        v3 = 0;
+        face = FACE_BACK;
     }
 
-    sub_02013750(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->spindaSpots);
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param10, param6);

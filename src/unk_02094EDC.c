@@ -11,6 +11,7 @@
 #include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
+#include "character_sprite.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math_util.h"
@@ -20,7 +21,6 @@
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "strbuf.h"
-#include "unk_020131EC.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 
@@ -671,7 +671,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     if (pokemonSpriteData != NULL) {
         GF_ASSERT(pokemonSpriteData->tiles != NULL);
-        sub_02013610(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
+        CharacterSprite_LoadSpriteFrame0(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
         pokemonSpriteData->palette = v0.palette;
         pokemonSpriteData->narcID = v0.narcID;
     }

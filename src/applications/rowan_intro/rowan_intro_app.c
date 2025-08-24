@@ -14,6 +14,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_start.h"
@@ -42,7 +43,6 @@
 #include "text.h"
 #include "text_banks.h"
 #include "trainer_info.h"
-#include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
 
@@ -1577,11 +1577,11 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
         }
     }
 
-    tileSrc = sub_0201363C(
+    tileSrc = CharacterSprite_LoadTiles(
         spriteTemplate.narcID,
         spriteTemplate.character,
         manager->heapID);
-    paletteBuffer = sub_02013660(
+    paletteBuffer = CharacterSprite_LoadPalette(
         spriteTemplate.narcID,
         spriteTemplate.palette,
         manager->heapID);

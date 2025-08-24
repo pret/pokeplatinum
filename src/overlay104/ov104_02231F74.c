@@ -26,6 +26,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -51,7 +52,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
@@ -899,14 +899,14 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     }
 
     {
-        u32 v9, v10;
+        u32 personality, species;
 
         v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
-        v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+        species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
-        sub_020136A4(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        CharacterSprite_LoadPokemonSpriteRect(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, personality, FALSE, 2, species);
     }
 
     {

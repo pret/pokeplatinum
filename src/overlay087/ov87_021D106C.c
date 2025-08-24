@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay087/struct_ov87_021D0D80_decl.h"
@@ -11,6 +10,7 @@
 #include "overlay087/struct_ov87_021D1640.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -29,7 +29,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;
@@ -523,12 +522,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
 
 static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
 {
-    static const UnkStruct_02013610 v0 = {
-        0,
-        0,
-        10,
-        10,
-    };
+    static const TileRegion v0 = FRAME_0_REGION;
     PokemonSpriteTemplate v1;
     const UnkStruct_ov87_021D12C0 *v2;
     int v3;
@@ -539,7 +533,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
         Pokemon_BuildSpriteTemplate(&v1, param0->unk_1FC, 2);
-        sub_02013720(v1.narcID, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
+        CharacterSprite_LoadPokemonSpriteRegion(v1.narcID, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, FALSE, FACE_FRONT, v2->unk_20[v3].unk_10);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);

@@ -12,6 +12,7 @@
 #include "overlay094/screens/wfc_init.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 #include "unk_020393C8.h"
 
 #include "res/text/bank/gts.h"
@@ -579,10 +579,10 @@ void ov94_0223DB2C(Pokemon *param0)
     Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
-        int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+        int personality = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
+        enum Species species = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        CharacterSprite_LoadPokemonSpriteRect(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, personality, FALSE, FACE_FRONT, species);
     }
 
     DC_FlushRange(v1, 0x20 * 10 * 10);

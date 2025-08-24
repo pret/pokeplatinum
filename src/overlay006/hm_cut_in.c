@@ -15,6 +15,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "field_message.h"
 #include "fx_util.h"
 #include "gx_layers.h"
@@ -33,7 +34,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020131EC.h"
 #include "unk_020711EC.h"
 
 typedef struct HMCutIn {
@@ -2095,14 +2095,14 @@ static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplat
     GF_ASSERT(spriteSource != NULL);
 
     int personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
-    sub_02013750(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
 
     return spriteSource;
 }
 
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID)
 {
-    void *paletteSource = sub_02013660(spriteTemplate->narcID, spriteTemplate->palette, heapID);
+    void *paletteSource = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, heapID);
     return paletteSource;
 }
 

@@ -23,6 +23,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "character_sprite.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -58,7 +59,6 @@
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020131EC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -3151,7 +3151,7 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     sub_02076AAC(sub_0205CA14(v0, v1, 1), 2, &v3);
 
     void *buffer = Heap_Alloc(heapID, 0xC80);
-    sub_020133D4(v3.narcID, v3.unk_14, heapID, 0, 0, 10, 10, buffer);
+    CharacterSprite_LoadTiledData(v3.narcID, v3.unk_14, heapID, 0, 0, 10, 10, buffer);
     Window_BlitBitmapRect(&param0->unk_0C[0][4], buffer, 0, 0, 80, 80, 4, 4, 80, 80);
     Heap_Free(buffer);
 
