@@ -146,8 +146,8 @@ void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationMa
 
 static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
 {
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD2, HEAP_SIZE_FIELDMAP);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD3, HEAP_SIZE_FIELD_TASK);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD2, HEAP_SIZE_FIELD2);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD3, HEAP_SIZE_FIELD3);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELD2);

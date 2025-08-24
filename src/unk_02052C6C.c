@@ -98,7 +98,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, 0x20000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, HEAP_SIZE_FIELD1);
             sub_02052F28(fieldSystem, v3);
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD3);
             (*v4)++;
