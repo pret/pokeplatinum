@@ -1,17 +1,24 @@
 #ifndef POKEPLATINUM_BAG_CONTEXT_H
 #define POKEPLATINUM_BAG_CONTEXT_H
 
-#include "overlay084/struct_ov84_0223BE5C.h"
-
 #include "bag.h"
 #include "item_use_functions.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
+typedef struct BagApplicationPocket {
+    BagItem *items;
+    u16 cursorPos;
+    u16 cursorScroll;
+    u8 pocketType;
+    u8 listEntryCount;
+    u8 padding_0A[2];
+} BagApplicationPocket;
+
 typedef struct BagContext {
     SaveData *saveData;
-    BagInterfacePocket accessiblePockets[POCKET_MAX];
+    BagApplicationPocket accessiblePockets[POCKET_MAX];
     u8 currPocketIdx;
     u8 mode;
     u16 selectedItem;
