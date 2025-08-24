@@ -37,10 +37,10 @@ _0062:
     Message 0
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
@@ -60,10 +60,10 @@ _00AF:
     Message 1
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
@@ -76,10 +76,10 @@ _00ED:
     Message 2
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
@@ -92,10 +92,10 @@ _012B:
     ShowYesNoMenu VAR_RESULT
     CloseMessage
     GoToIfNe VAR_RESULT, MENU_YES, _0174
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1

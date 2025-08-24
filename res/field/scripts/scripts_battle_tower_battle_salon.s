@@ -118,10 +118,10 @@ _01D4:
     CloseMessage
     ReleaseAll
     SetVar VAR_UNK_0x40D8, 3
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -132,10 +132,10 @@ _0204:
     CloseMessage
     Call _04E0
     SetVar VAR_UNK_0x40DB, 2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -336,10 +336,10 @@ _0500:
     Call _049B
     ApplyMovement 0, _06F4
     WaitMovement
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

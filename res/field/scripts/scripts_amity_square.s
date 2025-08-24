@@ -178,7 +178,7 @@ _026D:
 
 _0299:
     HealParty
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_A
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_FOLLOWER_MON_SPECIES
@@ -186,7 +186,7 @@ _0299:
     End
 
 _02BB:
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -194,7 +194,7 @@ _02C9:
     AddObject VAR_0x8002
     CallIfEq VAR_0x8001, 1, _032A
     CallIfEq VAR_0x8001, 2, _0338
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_ACTIVE, TRUE
     ClearAmitySquareStepCount
@@ -219,7 +219,7 @@ _0338:
     Return
 
 AmitySquare_Unused:
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 5
     CloseMessage
@@ -230,7 +230,7 @@ AmitySquare_Unused:
 
 AmitySquare_Trigger_ExitAmitySquare:
     LockAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ClearHasPartner
     GoTo AmitySquare_RemoveFollower
@@ -242,7 +242,7 @@ AmitySquare_RemoveFollower:
     End
 
 AmitySquare_Trigger_ExitAmitySquare_End:
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_ACTIVE, FALSE
     Message AmitySquare_Text_AreYouFeelingRefreshedPleaseComeAgainOk
@@ -1168,7 +1168,7 @@ _12F7:
     End
 
 _1305:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     LockAll
     WaitTime 1, VAR_RESULT
@@ -1206,7 +1206,7 @@ _1305:
     CallIfEq VAR_0x8003, 27, _1732
     ApplyMovement LOCALID_PLAYER, _1764
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ApplyMovement 5, _1764
     WaitMovement

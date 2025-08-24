@@ -112,7 +112,7 @@ _0198:
     WaitMovement
     Message 11
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 25
     RemoveObject 24
@@ -121,7 +121,7 @@ _0198:
     RemoveObject 27
     RemoveObject 30
     RemoveObject 31
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ApplyMovement 7, _0378
     ApplyMovement LOCALID_PLAYER, _0400

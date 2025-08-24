@@ -19,12 +19,12 @@ _000E:
 
 _003B:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2A5
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _00AC
     StartNpcTrade NPC_TRADE_KAZZA_ABRA

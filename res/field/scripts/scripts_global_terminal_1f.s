@@ -181,7 +181,7 @@ GlobalTerminal1f_BeginTrade:
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2B2
     ScrCmd_0B3 VAR_RESULT
@@ -189,7 +189,7 @@ GlobalTerminal1f_BeginTrade:
     TryStartGTSApp VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call GlobalTerminal1f_GTS_WalkOut
     ReleaseAll
@@ -197,7 +197,7 @@ GlobalTerminal1f_BeginTrade:
 
 GlobalTerminal1f_GTS_Exit:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call GlobalTerminal1f_GTS_WalkOut
     GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
@@ -503,7 +503,7 @@ _0601:
     Message pl_msg_00000046_00029
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0647
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_30E VAR_0x8004

@@ -21,12 +21,12 @@ _0032:
     Message 1
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _00B3
     SetVar VAR_0x8005, VAR_RESULT
@@ -68,10 +68,10 @@ _00D9:
     WaitABPress
     CloseMessage
     SetVar VAR_RESULT, 0
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB VAR_0x8005, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0129
     ScrCmd_2B8 VAR_0x8005
@@ -104,12 +104,12 @@ _0139:
 
 _0168:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2A5
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _01D9
     StartNpcTrade NPC_TRADE_CHARAP_CHATOT

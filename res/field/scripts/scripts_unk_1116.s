@@ -118,12 +118,12 @@ _0190:
     ScrCmd_237 0, VAR_0x8000, VAR_0x8004, VAR_0x8005
     ScrCmd_1FB VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8000, 10, _01F0
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_243 0, VAR_RESULT, VAR_0x8004
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _02AE
     ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005

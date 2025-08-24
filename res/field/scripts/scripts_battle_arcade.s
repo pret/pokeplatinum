@@ -129,12 +129,12 @@ _01F8:
 _020B:
     Message 7
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2D9 4, VAR_UNK_0x40BE, VAR_RESULT
     ScrCmd_2DB VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_5, VAR_MAP_LOCAL_6
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _0145
     TryRevertPokemonForm VAR_MAP_LOCAL_2, VAR_RESULT
@@ -281,7 +281,7 @@ _04A9:
     End
 
 _04DC:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CallIfEq VAR_UNK_0x40BE, 0, _05A5
     CallIfEq VAR_UNK_0x40BE, 1, _05B9
@@ -292,7 +292,7 @@ _04DC:
     ScrCmd_2C4 15
     CallIfEq VAR_UNK_0x40BE, 2, _0545
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     AssertHeapMemory
     End

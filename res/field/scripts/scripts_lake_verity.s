@@ -201,7 +201,7 @@ _0230:
     Message 11
     Message 12
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 7
     RemoveObject 8
@@ -214,7 +214,7 @@ _0230:
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
     SetPosition 5, 53, 1, 39, 3
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_UNK_0x029A
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY

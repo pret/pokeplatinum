@@ -50,19 +50,19 @@ _007D:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 4, _00D9
     GoToIfEq VAR_0x8008, 5, _00D9
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
 _00D9:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -118,7 +118,7 @@ _01AC:
     HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 2, 0, 0

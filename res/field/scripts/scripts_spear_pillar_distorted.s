@@ -25,7 +25,7 @@ _0022:
     AddFreeCamera 30, 30
     ApplyFreeCameraMovement _016C
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40C3, 2
     ApplyMovement 0, _0144
@@ -63,13 +63,13 @@ _00DA:
 _00FD:
     Message 7
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_320
     ReturnToField
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

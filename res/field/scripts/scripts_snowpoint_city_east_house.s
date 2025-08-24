@@ -60,12 +60,12 @@ _0085:
 _00B0:
     Message 9
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0296
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
@@ -91,13 +91,13 @@ _0161:
     Message 16
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _021B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     OpenSummaryScreenTeachMove VAR_0x8000, VAR_0x8003
     GetSummarySelectedMoveSlot VAR_0x8002
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 4, _021B
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002

@@ -305,10 +305,10 @@ _040F:
     End
 
 _043B:
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     WaitABPress
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     End
 
@@ -318,7 +318,7 @@ _0457:
     WaitABPress
     CloseMessage
     FadeOutBGM 0, 10
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_14B
@@ -1023,7 +1023,7 @@ _0E21:
     MessageInstant 33
     Call _0D2C
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0D73
 
 _0E45:
@@ -1084,7 +1084,7 @@ _0F0A:
     MessageInstant 33
     Call _0E61
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0E83
 
 _0F2C:
@@ -1116,12 +1116,12 @@ _0F70:
 
 _0F80:
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 
 _0F94:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_16A 90
     Return
@@ -1130,10 +1130,10 @@ _0FA5:
     End
 
 _0FA7:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     OpenSealCapsuleEditor
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -1147,17 +1147,17 @@ _0FCA:
     ApplyMovement LOCALID_PLAYER, _1250
     ApplyMovement 0, _1258
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     BufferPlayerName 0
     Message pl_msg_00000213_00040
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     CallIfSet FLAG_UNK_0x0090, _1030
     CallIfUnset FLAG_UNK_0x0090, _1035
@@ -1176,7 +1176,7 @@ _1035:
 
 _103A:
     LockAll
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetPlayerState 0x100
     ChangePlayerState
@@ -1342,11 +1342,11 @@ _1280:
 _1282:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_205
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -1428,11 +1428,11 @@ _1361:
     LockAll
     Message pl_msg_00000213_00076
     WaitABPress
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1AC
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -1552,10 +1552,10 @@ _14AC:
     PlayMusic SEQ_FUE
     WaitTime 0x21C, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    FadeScreen 6, 6, 0, 0x7FFF
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Warp MAP_HEADER_HALL_OF_ORIGIN, 0, VAR_0x8004, VAR_0x8005, 0
-    FadeScreen 6, 6, 1, 0x7FFF
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message pl_msg_00000213_00124
     WaitABXPadPress
@@ -1617,21 +1617,21 @@ _15D7:
     End
 
 _15E7:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F6 VAR_0x8005, VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1624
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReturnCommonScript
     End
 
 _1624:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReturnCommonScript
     End

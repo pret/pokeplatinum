@@ -104,7 +104,7 @@ _0107:
     WaitMovement
     Message 6
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 1
     RemoveObject 7
@@ -115,7 +115,7 @@ _0107:
     ClearFlag FLAG_UNK_0x017F
     SetVar VAR_UNK_0x4089, 2
     SetFlag FLAG_UNK_0x0AA8
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 6, _01B7

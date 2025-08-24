@@ -1194,10 +1194,10 @@ Villa_BuyFurniture:
 _1092:
     ClearFlag FLAG_UNK_0x02C5
     ClearFlag FLAG_UNK_0x02C7
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 0, _1485
     GoToIfNe VAR_0x8002, 0, _1514
@@ -1457,21 +1457,21 @@ _1478:
 _1485:
     Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 15
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ApplyMovement 14, _14FC
     ApplyMovement LOCALID_PLAYER, _14F0
     WaitMovement
     Message 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 14
     Call _156D
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call _15B0
     SetVar VAR_UNK_0x40A1, 2
@@ -1503,11 +1503,11 @@ _1514:
 
 _1532:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 15
     Call _156D
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call _15B0
     Return

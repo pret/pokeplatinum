@@ -96,7 +96,7 @@ _019F:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 1
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AD
     ReturnToField
@@ -121,7 +121,7 @@ _0219:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 3
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AE
     ReturnToField
@@ -151,11 +151,11 @@ _02A4:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 2
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_192
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 202
     ScrCmd_135 102
@@ -187,7 +187,7 @@ _0351:
     WaitABPressTime 30
     ScrCmd_135 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
@@ -208,7 +208,7 @@ _03B1:
     WaitABPressTime 30
     ScrCmd_135 5
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
@@ -233,7 +233,7 @@ _0433:
     WaitABPressTime 30
     ScrCmd_135 6
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
@@ -283,11 +283,11 @@ _04AD:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -314,11 +314,11 @@ _053A:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -340,11 +340,11 @@ _05AF:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -513,7 +513,7 @@ _0853:
     ScrCmd_135 1
     CloseMessage
     ScrCmd_139 5
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AD
     ReturnToField
@@ -542,7 +542,7 @@ _08C7:
     ScrCmd_135 3
     CloseMessage
     ScrCmd_139 7
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AE
     ReturnToField
@@ -578,11 +578,11 @@ _095C:
     ScrCmd_135 2
     CloseMessage
     ScrCmd_139 6
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_192
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 202
     ScrCmd_135 102
@@ -621,7 +621,7 @@ _0A28:
     ScrCmd_135 5
     CloseMessage
     ScrCmd_139 2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
@@ -644,7 +644,7 @@ _0A82:
     ScrCmd_135 6
     CloseMessage
     ScrCmd_139 13
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
@@ -665,7 +665,7 @@ _0AED:
     ScrCmd_135 4
     CloseMessage
     ScrCmd_139 1
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
@@ -718,7 +718,7 @@ UnionRoom_Unused3:
 
 _0BB2:
     ScrCmd_13D
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     Return
 
 _0BC0:

@@ -65,19 +65,19 @@ _00E3:
     Message 2
     CloseMessage
     WaitTime 30, VAR_RESULT
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    FadeScreen 6, 6, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
     Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 0, 8, 6, 1
-    FadeScreen 6, 6, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll
     End

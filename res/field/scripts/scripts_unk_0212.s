@@ -402,7 +402,7 @@ _0562:
     Message 20
     Message 21
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CallIfEq VAR_MAP_LOCAL_3, 0, _0600
     CallIfEq VAR_MAP_LOCAL_3, 1, _0608
@@ -417,7 +417,7 @@ _0596:
 
 _05C1:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _05E4
     GoTo _0610
@@ -605,14 +605,14 @@ _08AE:
     End
 
 _08CD:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_101
     ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     SetVar VAR_UNK_0x40CC, 0
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
     LockAll
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_10C VAR_MAP_LOCAL_3
     ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
@@ -638,13 +638,13 @@ _0947:
     ClearFlag FLAG_UNK_0x0202
     ClearFlag FLAG_UNK_0x0203
     ClearFlag FLAG_UNK_0x0204
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
     ScrCmd_117
     ScrCmd_10C VAR_MAP_LOCAL_3
     ScrCmd_113
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_114
     ScrCmd_0F8 3
@@ -705,7 +705,7 @@ _0947:
     PlayFanfare SEQ_SE_DP_CON_F007
     WaitTime 30, VAR_RESULT
     ScrCmd_113
-    FadeScreen 6, 1, 20, 0
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
     WaitFadeScreen
     ScrCmd_114
     ScrCmd_2B1
@@ -715,7 +715,7 @@ _0947:
     ScrCmd_10C VAR_MAP_LOCAL_3
     Call _0D3A
     ScrCmd_2B0
-    FadeScreen 6, 1, 1, 0x7FFF
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     ScrCmd_108 VAR_RESULT
     ScrCmd_111 VAR_RESULT
@@ -761,7 +761,7 @@ _0B50:
     WaitTime 10, VAR_RESULT
     ScrCmd_2B1
     ScrCmd_113
-    FadeScreen 6, 1, 20, 0
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
     WaitFadeScreen
     ScrCmd_114
     ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
@@ -771,7 +771,7 @@ _0B50:
     SetVar VAR_UNK_0x40CC, 0
     GoToIfEq VAR_MAP_LOCAL_3, 0, _0BF2
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 7
     Call _0052
@@ -781,7 +781,7 @@ _0B50:
 
 _0BF2:
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 19
     Call _0052
@@ -1143,7 +1143,7 @@ _1101:
     Message 175
     Message 176
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetVar VAR_RESULT, 0
 _111B:
@@ -1156,7 +1156,7 @@ _111B:
 
 _1146:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _10F4
     GoTo _070D

@@ -2,6 +2,7 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
+#include "generated/fade_types.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
@@ -25,6 +26,8 @@
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/boat_cutscene.h"
+#include "constants/colors.h"
+#include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
@@ -1135,6 +1138,14 @@
     .short \frames
     .short \type
     .short \color
+    .endm
+
+    .macro FadeScreenOut frames = FADE_SCREEN_SPEED_FAST, color = COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, \frames, FADE_TYPE_BRIGHTNESS_OUT, \color
+    .endm
+
+    .macro FadeScreenIn frames = FADE_SCREEN_SPEED_FAST, color = COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, \frames, FADE_TYPE_BRIGHTNESS_IN, \color
     .endm
 
     .macro WaitFadeScreen

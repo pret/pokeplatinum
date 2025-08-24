@@ -101,12 +101,12 @@ _00EE:
 _010E:
     Message 6
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 0
     RemoveObject 1
     SetVar VAR_UNK_0x40E9, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ClearFlag FLAG_UNK_0x019E
     AddObject 3
