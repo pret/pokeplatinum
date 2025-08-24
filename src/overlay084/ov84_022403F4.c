@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
 #include "generated/pokemon_types.h"
 
 #include "overlay084/ov84_0223B5A0.h"
@@ -10,461 +11,441 @@
 #include "bag_context.h"
 #include "gx_layers.h"
 #include "item.h"
+#include "move_classes.h"
 #include "move_table.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "type_icon.h"
 #include "vram_transfer.h"
 
-static void ov84_02240424(BagController *param0);
-static void ov84_022404C0(BagController *param0);
-static void ov84_02240950(BagController *param0);
-static void ov84_02240C48(BagController *param0);
-static u8 ov84_02240C30(BagController *param0, u8 param1);
-static void ov84_02240B98(BagController *param0);
+static void InitSpriteSystem(BagController *controller);
+static void LoadSpriteResources(BagController *controller);
+static void InitSprites(BagController *controller);
+static void CalcPocketHighlightMovement(BagController *controller);
+static u8 CalcPocketHighlightXForPocket(BagController *controller, u8 pocketIdx);
+static void StepPocketHighlightMovingAnim(BagController *controller);
 
-static const SpriteTemplate Unk_ov84_022411B0[] = {
-    {
-        0x30,
-        0x32,
-        0x0,
-        0x0,
-        0x1,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0F9, 0xC0F9, 0xC0F9, 0xC0F9, 0x0, 0x0 },
-        0x1,
-        0x0,
+static const SpriteTemplate sBagUISpriteTemplates[] = {
+    [BAG_SPRITE_BAG] = {
+        .x = 48,
+        .y = 50,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49401, 49401, 49401, 49401, 0, 0 },
+        .bgPriority = 1,
+        .vramTransfer = FALSE,
     },
-    {
-        0xD,
-        0x61,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FA, 0xC0FA, 0xC0FA, 0xC0FA, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_POCKET_HIGHLIGHT] = {
+        .x = 13,
+        .y = 97,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49402, 49402, 49402, 49402, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0x2,
-        0x60,
-        0x0,
-        0x1,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FD, 0xC0FA, 0xC0FD, 0xC0FD, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_POCKET_SELECTOR_LEFT_ARROW] = {
+        .x = 2,
+        .y = 96,
+        .z = 0,
+        .animIdx = 1,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49405, 49402, 49405, 49405, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0x62,
-        0x60,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FD, 0xC0FA, 0xC0FD, 0xC0FD, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_POCKET_SELECTOR_RIGHT_ARROW] = {
+        .x = 98,
+        .y = 96,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49405, 49402, 49405, 49405, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0xB1,
-        0x18,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FB, 0xC0FA, 0xC0FB, 0xC0FB, 0x0, 0x0 },
-        0x1,
-        0x0,
+    [BAG_SPRITE_ITEM_HIGHLIGHT] = {
+        .x = 177,
+        .y = 24,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49403, 49402, 49403, 49403, 0, 0 },
+        .bgPriority = 1,
+        .vramTransfer = FALSE,
     },
-    {
-        0xB1,
-        0xE,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FC, 0xC0FA, 0xC0FC, 0xC0FC, 0x0, 0x0 },
-        0x1,
-        0x0,
+    [BAG_SPRITE_ITEM_SORTING_POS_BAR] = {
+        .x = 177,
+        .y = 14,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49404, 49402, 49404, 49404, 0, 0 },
+        .bgPriority = 1,
+        .vramTransfer = FALSE,
     },
-    {
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DSUB,
-        { 0xC0FE, 0xC0FB, 0xC0FE, 0xC0FE, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE] = {
+        .x = 0,
+        .y = 0,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+        .resources = { 49406, 49403, 49406, 49406, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0x16,
-        0xAC,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC0FF, 0xC0FC, 0xC0FF, 0xC0FF, 0x0, 0x0 },
-        0x1,
-        0x0,
+    [BAG_SPRITE_ITEM] = {
+        .x = 22,
+        .y = 172,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49407, 49404, 49407, 49407, 0, 0 },
+        .bgPriority = 1,
+        .vramTransfer = FALSE,
     },
-    {
-        0xDC,
-        0x9C,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC100, 0xC0FD, 0xC100, 0xC100, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_ITEM_COUNT_ARROW_UP] = {
+        .x = 220,
+        .y = 156,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49408, 49405, 49408, 49408, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0xDC,
-        0xB4,
-        0x0,
-        0x1,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC100, 0xC0FD, 0xC100, 0xC100, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_ITEM_COUNT_ARROW_DOWN] = {
+        .x = 220,
+        .y = 180,
+        .z = 0,
+        .animIdx = 1,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49408, 49405, 49408, 49408, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0x40,
-        0x98,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC101, 0xC0FE, 0xC101, 0xC101, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_MOVE_TYPE] = {
+        .x = 64,
+        .y = 152,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49409, 49406, 49409, 49409, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
-    {
-        0xA8,
-        0x98,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        NNS_G2D_VRAM_TYPE_2DMAIN,
-        { 0xC102, 0xC0FE, 0xC101, 0xC101, 0x0, 0x0 },
-        0x0,
-        0x0,
+    [BAG_SPRITE_MOVE_CATEGORY] = {
+        .x = 168,
+        .y = 152,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .resources = { 49410, 49406, 49409, 49409, 0, 0 },
+        .bgPriority = 0,
+        .vramTransfer = FALSE,
     },
 };
 
-void ov84_022403F4(BagController *param0)
+void BagUI_InitSprites(BagController *controller)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     VramTransfer_New(32, HEAP_ID_6);
-    ov84_02240424(param0);
-    ov84_022404C0(param0);
-    ov84_02240950(param0);
+    InitSpriteSystem(controller);
+    LoadSpriteResources(controller);
+    InitSprites(controller);
 }
 
-static void ov84_02240424(BagController *param0)
+static void InitSpriteSystem(BagController *controller)
 {
-    SpriteResourceCapacities v0 = { 10, 6, 9, 9, 0, 0 };
+    SpriteResourceCapacities capacities = { 10, 6, 9, 9, 0, 0 };
 
-    param0->spriteSystem = SpriteSystem_Alloc(6);
-    param0->spriteMan = SpriteManager_New(param0->spriteSystem);
-    {
-        RenderOamTemplate v1 = {
-            0,
-            128,
-            0,
-            32,
-            0,
-            128,
-            0,
-            32,
-        };
+    controller->spriteSystem = SpriteSystem_Alloc(HEAP_ID_6);
+    controller->spriteMan = SpriteManager_New(controller->spriteSystem);
 
-        CharTransferTemplateWithModes v2 = {
-            12,
-            1024 * 128,
-            1024 * 16,
-            GX_OBJVRAMMODE_CHAR_1D_32K,
-            GX_OBJVRAMMODE_CHAR_1D_32K
-        };
+    RenderOamTemplate oamTemplate = {
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
+    };
 
-        SpriteSystem_Init(param0->spriteSystem, &v1, &v2, 32);
-    }
+    CharTransferTemplateWithModes transferTemplate = {
+        .maxTasks = 12,
+        .sizeMain = 1024 * 128,
+        .sizeSub = 1024 * 16,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
+    };
 
-    SpriteSystem_InitSprites(param0->spriteSystem, param0->spriteMan, 12);
-    SpriteSystem_InitManagerWithCapacities(param0->spriteSystem, param0->spriteMan, &v0);
+    SpriteSystem_Init(controller->spriteSystem, &oamTemplate, &transferTemplate, 32);
+
+    SpriteSystem_InitSprites(controller->spriteSystem, controller->spriteMan, NUM_BAG_UI_SPRITES);
+    SpriteSystem_InitManagerWithCapacities(controller->spriteSystem, controller->spriteMan, &capacities);
 }
 
-static void ov84_022404C0(BagController *param0)
+static void LoadSpriteResources(BagController *controller)
 {
-    u32 v0, v1;
+    u32 bagSpriteIdx, bagPaletteIdx;
 
-    if (param0->trainerGender == 0) {
-        v0 = 2;
-        v1 = 3;
+    if (controller->trainerGender == 0) {
+        bagSpriteIdx = 2;
+        bagPaletteIdx = 3;
     } else {
-        v0 = 6;
-        v1 = 7;
+        bagSpriteIdx = 6;
+        bagPaletteIdx = 7;
     }
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, v0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 25, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 31, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
-    SpriteSystem_LoadCharResObj(param0->spriteSystem, param0->spriteMan, 62, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
-    SpriteSystem_LoadCharResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(0, 1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
-    TypeIcon_LoadChar(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
-    CategoryIcon_LoadChar(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, v1, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 20, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadPlttResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadPlttResObj(param0->spriteSystem, param0->spriteMan, 62, 10, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    TypeIcon_LoadPlttSrc(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 37, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 1, FALSE, 49401);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 24, FALSE, 49402);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 27, FALSE, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 30, FALSE, 49404);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 9, FALSE, 49405);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 35, FALSE, 49406);
-    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, 16, Item_IconNCERFile(), FALSE, 49407);
-    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, 62, 5, FALSE, 49408);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 0, FALSE, 49401);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 23, FALSE, 49402);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 26, FALSE, 49403);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 29, FALSE, 49404);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 8, FALSE, 49405);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 34, FALSE, 49406);
-    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, 16, Item_IconNANRFile(), FALSE, 49407);
-    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, 62, 6, FALSE, 49408);
-    TypeIcon_LoadAnim(param0->spriteSystem, param0->spriteMan, 49409, 49409);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagSpriteIdx, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 25, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 31, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
+    SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
+    SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
+    TypeIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
+    CategoryIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, CLASS_PHYSICAL, 49410);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagPaletteIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 20, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    TypeIcon_LoadPlttSrc(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 37, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 1, FALSE, 49401);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 24, FALSE, 49402);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 27, FALSE, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 30, FALSE, 49404);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 9, FALSE, 49405);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 35, FALSE, 49406);
+    SpriteSystem_LoadCellResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNCERFile(), FALSE, 49407);
+    SpriteSystem_LoadCellResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 5, FALSE, 49408);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 0, FALSE, 49401);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 23, FALSE, 49402);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 26, FALSE, 49403);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 29, FALSE, 49404);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 8, FALSE, 49405);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 34, FALSE, 49406);
+    SpriteSystem_LoadAnimResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNANRFile(), FALSE, 49407);
+    SpriteSystem_LoadAnimResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 6, FALSE, 49408);
+    TypeIcon_LoadAnim(controller->spriteSystem, controller->spriteMan, 49409, 49409);
 }
 
-static void ov84_02240950(BagController *param0)
+static void InitSprites(BagController *interface)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < 12; v0++) {
-        param0->sprites[v0] = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &Unk_ov84_022411B0[v0]);
+    for (u32 i = 0; i < NUM_BAG_UI_SPRITES; i++) {
+        interface->sprites[i] = SpriteSystem_NewSprite(interface->spriteSystem, interface->spriteMan, &sBagUISpriteTemplates[i]);
     }
 
-    ManagedSprite_SetDrawFlag(param0->sprites[5], 0);
-    ManagedSprite_SetDrawFlag(param0->sprites[6], 0);
-    ManagedSprite_SetDrawFlag(param0->sprites[10], 0);
-    ManagedSprite_SetDrawFlag(param0->sprites[11], 0);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_ITEM_SORTING_POS_BAR], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_TYPE], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_CATEGORY], FALSE);
 
-    if ((param0->bagCtx->mode == 4) || (param0->bagCtx->mode == 5)) {
-        ManagedSprite_SetDrawFlag(param0->sprites[1], 0);
+    if ((interface->bagCtx->mode == 4) || (interface->bagCtx->mode == 5)) {
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], FALSE);
     }
 
-    if (param0->numPockets == 1) {
-        ManagedSprite_SetDrawFlag(param0->sprites[2], 0);
-        ManagedSprite_SetDrawFlag(param0->sprites[3], 0);
+    if (interface->numPockets == 1) {
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_SELECTOR_LEFT_ARROW], FALSE);
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_SELECTOR_RIGHT_ARROW], FALSE);
     }
 
-    ov84_02240D3C(param0, 0);
+    BagUI_ToggleItemCountArrows(interface, FALSE);
 
-    ManagedSprite_SetAnim(param0->sprites[0], param0->bagCtx->accessiblePockets[param0->bagCtx->currPocketIdx].pocketType);
-    ManagedSprite_SetPositionXY(param0->sprites[1], ov84_02240C30(param0, param0->bagCtx->currPocketIdx), 97);
-    ManagedSprite_SetPositionXY(param0->sprites[4], 177, 24 + (param0->bagCtx->accessiblePockets[param0->bagCtx->currPocketIdx].cursorPos - 1) * 16);
+    ManagedSprite_SetAnim(interface->sprites[BAG_SPRITE_BAG], interface->bagCtx->accessiblePockets[interface->bagCtx->currPocketIdx].pocketType);
+    ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], CalcPocketHighlightXForPocket(interface, interface->bagCtx->currPocketIdx), 97);
+    ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 177, 24 + (interface->bagCtx->accessiblePockets[interface->bagCtx->currPocketIdx].cursorPos - 1) * 16);
 
-    {
-        VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        Sprite_SetAffineScaleEx(param0->sprites[0]->sprite, &v1, 2);
-    }
+    VecFx32 spriteScale = { FX32_ONE, FX32_ONE, FX32_ONE };
+    Sprite_SetAffineScaleEx(interface->sprites[BAG_SPRITE_BAG]->sprite, &spriteScale, AFFINE_OVERWRITE_MODE_DOUBLE);
 }
 
-void ov84_02240A88(BagController *param0)
+void BagUI_FreeSprites(BagController *controller)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < 12; v0++) {
-        Sprite_DeleteAndFreeResources(param0->sprites[v0]);
+    for (u32 i = 0; i < NUM_BAG_UI_SPRITES; i++) {
+        Sprite_DeleteAndFreeResources(controller->sprites[i]);
     }
 
-    SpriteSystem_FreeResourcesAndManager(param0->spriteSystem, param0->spriteMan);
-    SpriteSystem_Free(param0->spriteSystem);
+    SpriteSystem_FreeResourcesAndManager(controller->spriteSystem, controller->spriteMan);
+    SpriteSystem_Free(controller->spriteSystem);
 }
 
-void ov84_02240ABC(BagController *param0)
+void BagUI_TickSpriteAnimations(BagController *controller)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < 12; v0++) {
-        ManagedSprite_TickFrame(param0->sprites[v0]);
+    for (u32 i = 0; i < NUM_BAG_UI_SPRITES; i++) {
+        ManagedSprite_TickFrame(controller->sprites[i]);
     }
 }
 
-void ov84_02240AD8(BagController *param0, u16 param1)
+void BagUI_UpdateItemSprite(BagController *controller, u16 item)
 {
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(param1, 1), 0, 49407);
-    SpriteSystem_ReplacePlttResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(param1, 2), 0, 49404);
+    SpriteSystem_ReplaceCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, 49407);
+    SpriteSystem_ReplacePlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), FALSE, 49404);
 }
 
-void ov84_02240B34(BagController *param0, u8 param1)
+void BagUI_SetHighlightSpritesPalette(BagController *controller, u8 palette)
 {
-    ManagedSprite_SetExplicitPalette(param0->sprites[4], param1);
-    ManagedSprite_SetExplicitPalette(param0->sprites[1], param1);
+    ManagedSprite_SetExplicitPalette(controller->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], palette);
+    ManagedSprite_SetExplicitPalette(controller->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], palette);
 }
 
-u8 ov84_02240B50(BagController *param0)
+u8 BagUI_IsPocketHighlightDoneMoving(BagController *controller)
 {
-    if (param0->pocketHighlight.isMoving == 0) {
-        return 1;
-    }
-
-    return 0;
+    return controller->pocketHighlight.isMoving == FALSE;
 }
 
-void ov84_02240B68(BagController *param0)
+void BagUI_StartMovingPocketHighlight(BagController *controller)
 {
-    param0->pocketHighlight.currentStep = 0;
-    param0->pocketHighlight.isMoving = 1;
+    controller->pocketHighlight.currentStep = 0;
+    controller->pocketHighlight.isMoving = TRUE;
 
-    ov84_02240C48(param0);
+    CalcPocketHighlightMovement(controller);
 }
 
-void ov84_02240B80(BagController *param0)
+void BagUI_StepPocketHighlightMovement(BagController *controller)
 {
-    switch (param0->pocketHighlight.isMoving) {
-    case 0:
+    switch (controller->pocketHighlight.isMoving) {
+    case FALSE:
         break;
-    case 1:
-        ov84_02240B98(param0);
+    case TRUE:
+        StepPocketHighlightMovingAnim(controller);
         break;
     }
 }
 
-static void ov84_02240B98(BagController *param0)
+static void StepPocketHighlightMovingAnim(BagController *controller)
 {
-    VecFx32 v0;
+    VecFx32 pocketHighlighPos = *(Sprite_GetPosition(controller->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
 
-    v0 = *(Sprite_GetPosition(param0->sprites[1]->sprite));
-
-    if (param0->pocketHighlight.direction == 0) {
-        v0.x -= param0->pocketHighlight.positions[param0->pocketHighlight.currentStep];
+    if (controller->pocketHighlight.direction == 0) {
+        pocketHighlighPos.x -= controller->pocketHighlight.positions[controller->pocketHighlight.currentStep];
     } else {
-        v0.x += param0->pocketHighlight.positions[param0->pocketHighlight.currentStep];
+        pocketHighlighPos.x += controller->pocketHighlight.positions[controller->pocketHighlight.currentStep];
     }
 
-    Sprite_SetPosition(param0->sprites[1]->sprite, &v0);
-    param0->pocketHighlight.currentStep++;
+    Sprite_SetPosition(controller->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlighPos);
+    controller->pocketHighlight.currentStep++;
 
-    if (param0->pocketHighlight.currentStep == 8) {
-        v0.x = ov84_02240C30(param0, param0->nextPocket) * FX32_ONE;
-        Sprite_SetPosition(param0->sprites[1]->sprite, &v0);
-        param0->pocketHighlight.isMoving = 0;
+    if (controller->pocketHighlight.currentStep == 8) {
+        pocketHighlighPos.x = CalcPocketHighlightXForPocket(controller, controller->nextPocket) * FX32_ONE;
+        Sprite_SetPosition(controller->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlighPos);
+        controller->pocketHighlight.isMoving = 0;
     }
 }
 
-static u8 ov84_02240C30(BagController *param0, u8 param1)
+static u8 CalcPocketHighlightXForPocket(BagController *controller, u8 pocketIdx)
 {
-    return 0 * 8 + param0->pocketSelectorIconsX + param0->pocketSelectorIconsSpacing * param1 + 6;
+    return controller->pocketSelectorIconsX + controller->pocketSelectorIconsSpacing * pocketIdx + 6;
 }
 
-static void ov84_02240C48(BagController *param0)
+static void CalcPocketHighlightMovement(BagController *controller)
 {
-    VecFx32 v0;
-    fx32 v1;
+    VecFx32 pocketHighlighterPos = *(Sprite_GetPosition(controller->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
+    fx32 targetX = CalcPocketHighlightXForPocket(controller, controller->nextPocket) * FX32_ONE;
 
-    v0 = *(Sprite_GetPosition(param0->sprites[1]->sprite));
-    v1 = ov84_02240C30(param0, param0->nextPocket) * FX32_ONE;
-
-    if (v1 < v0.x) {
-        v1 = (v0.x - v1) / 100;
-        param0->pocketHighlight.direction = 0;
+    fx32 displacement;
+    if (targetX < pocketHighlighterPos.x) {
+        displacement = (pocketHighlighterPos.x - targetX) / 100;
+        controller->pocketHighlight.direction = 0;
     } else {
-        v1 = (v1 - v0.x) / 100;
-        param0->pocketHighlight.direction = 1;
+        displacement = (targetX - pocketHighlighterPos.x) / 100;
+        controller->pocketHighlight.direction = 1;
     }
 
-    param0->pocketHighlight.positions[0] = 0;
-    param0->pocketHighlight.positions[1] = v1 * 40;
-    param0->pocketHighlight.positions[2] = v1 * 25;
-    param0->pocketHighlight.positions[3] = v1 * 15;
-    param0->pocketHighlight.positions[4] = v1 * 10;
-    param0->pocketHighlight.positions[5] = v1 * 7;
-    param0->pocketHighlight.positions[6] = v1 * 3;
-    param0->pocketHighlight.positions[7] = 0;
+    controller->pocketHighlight.positions[0] = 0;
+    controller->pocketHighlight.positions[1] = displacement * 40;
+    controller->pocketHighlight.positions[2] = displacement * 25;
+    controller->pocketHighlight.positions[3] = displacement * 15;
+    controller->pocketHighlight.positions[4] = displacement * 10;
+    controller->pocketHighlight.positions[5] = displacement * 7;
+    controller->pocketHighlight.positions[6] = displacement * 3;
+    controller->pocketHighlight.positions[7] = 0;
 }
 
-void ov84_02240CF0(BagController *param0, u8 param1)
+void BagUI_ShowItemCountArrows(BagController *controller, u8 position)
 {
-    if (param1 == 0) {
-        ManagedSprite_SetPositionXY(param0->sprites[8], 220, 156);
-        ManagedSprite_SetPositionXY(param0->sprites[9], 220, 180);
+    if (position == BAG_ITEM_COUNT_ARROWS_POS_TRASH) {
+        ManagedSprite_SetPositionXY(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 220, 156);
+        ManagedSprite_SetPositionXY(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 220, 180);
     } else {
-        ManagedSprite_SetPositionXY(param0->sprites[8], 162, 108);
-        ManagedSprite_SetPositionXY(param0->sprites[9], 162, 132);
+        ManagedSprite_SetPositionXY(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 162, 108);
+        ManagedSprite_SetPositionXY(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 162, 132);
     }
 
-    ov84_02240D3C(param0, 1);
+    BagUI_ToggleItemCountArrows(controller, TRUE);
 }
 
-void ov84_02240D3C(BagController *param0, u8 param1)
+void BagUI_ToggleItemCountArrows(BagController *controller, u8 show)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[8], param1);
-    ManagedSprite_SetDrawFlag(param0->sprites[9], param1);
+    ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], show);
+    ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], show);
 }
 
-void ov84_02240D5C(BagController *param0, u16 param1, u8 param2)
+void BagUI_UpdateTypeAndCategoryIcons(BagController *controller, u16 item, u8 draw)
 {
-    u16 v0;
-    u16 v1;
-    u16 v2;
+    ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_MOVE_TYPE], draw);
+    ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_MOVE_CATEGORY], draw);
 
-    ManagedSprite_SetDrawFlag(param0->sprites[10], param2);
-    ManagedSprite_SetDrawFlag(param0->sprites[11], param2);
-
-    if (param2 == 0) {
+    if (draw == FALSE) {
         return;
     }
 
-    v0 = Item_MoveForTMHM(param1);
-    v1 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_TYPE);
-    v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
+    u16 move = Item_MoveForTMHM(item);
+    u16 moveType = MoveTable_LoadParam(move, MOVEATTRIBUTE_TYPE);
+    u16 moveCategory = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(v1), 1, 49409);
-    ManagedSprite_SetExplicitPalette(param0->sprites[10], TypeIcon_GetPltt(v1) + 6);
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(v2), 1, 49410);
-    ManagedSprite_SetExplicitPalette(param0->sprites[11], CategoryIcon_GetPltt(v2) + 6);
+    SpriteSystem_ReplaceCharResObj(controller->spriteSystem, controller->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), TRUE, 49409);
+    ManagedSprite_SetExplicitPalette(controller->sprites[BAG_SPRITE_MOVE_TYPE], TypeIcon_GetPltt(moveType) + 6);
+    SpriteSystem_ReplaceCharResObj(controller->spriteSystem, controller->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(moveCategory), TRUE, 49410);
+    ManagedSprite_SetExplicitPalette(controller->sprites[BAG_SPRITE_MOVE_CATEGORY], CategoryIcon_GetPltt(moveCategory) + 6);
 }
 
-void ov84_02240E24(BagController *param0, s16 param1, s16 param2)
+void BagUI_DrawBtnShockwave(BagController *controller, s16 x, s16 y)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[6], 1);
-    ManagedSprite_SetPositionXY(param0->sprites[6], param1, param2);
-    ManagedSprite_SetAnimationFrame(param0->sprites[6], 0);
-    ManagedSprite_SetAnim(param0->sprites[6], 0);
+    ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], TRUE);
+    ManagedSprite_SetPositionXY(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], x, y);
+    ManagedSprite_SetAnimationFrame(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
+    ManagedSprite_SetAnim(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
 }
 
-void ov84_02240E5C(BagController *param0)
+void BagUI_TickBtnShockwaveAnim(BagController *controller)
 {
-    if (ManagedSprite_GetDrawFlag(param0->sprites[6]) == 1) {
-        ManagedSprite_TickNFrames(param0->sprites[6], FX32_ONE);
+    if (ManagedSprite_GetDrawFlag(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == TRUE) {
+        ManagedSprite_TickNFrames(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FX32_ONE);
 
-        if (ManagedSprite_GetAnimationFrame(param0->sprites[6]) == 2) {
-            ManagedSprite_SetDrawFlag(param0->sprites[6], 0);
+        if (ManagedSprite_GetAnimationFrame(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == 2) {
+            ManagedSprite_SetDrawFlag(controller->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
         }
     }
 }
