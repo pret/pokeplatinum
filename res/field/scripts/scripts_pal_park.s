@@ -149,10 +149,10 @@ PalPark_RetireFromCatchingShow:
 
 PalPark_ClearFlagAndWarpOut:
     ClearInCatchingShowFlag
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 

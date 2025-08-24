@@ -1,0 +1,94 @@
+{
+  "key": 42051,
+  "messages": [
+    {
+      "id": "pl_msg_00000272_00000",
+      "en_US": [
+        "I’m Mira...\r",
+        "I was catching Pokémon, and then\n",
+        "I got lost...\r",
+        "I’m so scared...\r",
+        "Please!\n",
+        "Please take me to the exit!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} decided to go with\n",
+        "Mira!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00002",
+      "en_US": [
+        "Mira: I’ll keep your Pokémon healthy\n",
+        "all the time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00003",
+      "en_US": [
+        "Trainer, your name is {STRVAR_1 3, 0, 0}?\r",
+        "My name is Mira.\n",
+        "I like your name!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00004",
+      "en_US": [
+        "Mira: Oh! {STRVAR_1 3, 0, 0}...\n",
+        "I waited... A long time...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00005",
+      "en_US": [
+        "Mira: Oh! There’s the exit!\r",
+        "I want to get tougher so I\n",
+        "won’t be such a scaredy-cat.\r",
+        "{STRVAR_1 3, 0, 0}, bye-bye!\n",
+        "Thank you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00006",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000272_00007",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000272_00008",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000272_00009",
+      "en_US": [
+        "Mira: I like helpful Pokémon moves\n",
+        "like Growl and Minimize.\r",
+        "Those kinds of moves are my\n",
+        "favorites."
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00010",
+      "en_US": [
+        "Mira: This cave...\n",
+        "It’s so easy to get confused.\r",
+        "Do you know where we are?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000272_00011",
+      "en_US": [
+        "Mira: {STRVAR_1 3, 0, 0}, did you get to be\n",
+        "so good because you’re always with\f",
+        "your Pokémon?\r",
+        "Yes! That has to be it!\n",
+        "Mira will try like you!"
+      ]
+    }
+  ]
+}

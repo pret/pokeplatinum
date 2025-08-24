@@ -93,5 +93,6 @@
             "power": 200,
             "ball_seal": 10
         }
-    ]
+    ],
+    "messages": []
 }

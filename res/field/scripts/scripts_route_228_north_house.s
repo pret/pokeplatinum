@@ -26,12 +26,12 @@ _003B:
 _0055:
     Message 2
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _028F
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
@@ -71,12 +71,12 @@ _013E:
 
 _015E:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_224 VAR_0x8000, VAR_0x8003
     ScrCmd_225 VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _028F
     ReleaseAll

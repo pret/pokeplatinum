@@ -18,7 +18,7 @@ static inline void Strbuf_Check(const Strbuf *strbuf)
 
 Strbuf *Strbuf_Init(u32 size, u32 heapID)
 {
-    Strbuf *strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(charcode_t)));
+    Strbuf *strbuf = Heap_Alloc(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(charcode_t)));
 
     if (strbuf) {
         strbuf->integrity = STRBUF_MAGIC_NUMBER;

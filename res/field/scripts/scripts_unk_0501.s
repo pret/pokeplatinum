@@ -124,7 +124,7 @@ _017E:
     Message 16
     CloseMessage
     HideMoney
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetVar VAR_RESULT, 0
 _01B9:
@@ -138,7 +138,7 @@ _01B9:
 _01DE:
     ReturnToField
     ShowMoney 20, 2
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0292
     TryRevertPokemonForm VAR_0x8000, VAR_RESULT

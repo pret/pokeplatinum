@@ -48,11 +48,11 @@ _00AC:
     CloseMessage
     GetPartyCount VAR_MAP_LOCAL_0
     SubVar VAR_MAP_LOCAL_0, 1
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, _00E7
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

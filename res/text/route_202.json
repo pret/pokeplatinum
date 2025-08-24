@@ -1,0 +1,226 @@
+{
+  "key": 40592,
+  "messages": [
+    {
+      "id": "pl_msg_00000467_00000",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 1, 0}?!\r",
+        "Did you tell your family that you’re\n",
+        "helping the professor?\r",
+        "...You didn’t, did you?\r",
+        "I know that you’re really eager to\n",
+        "see all kinds of Pokémon.\r",
+        "But you shouldn’t make your mom\n",
+        "worry that you’ve disappeared.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00001",
+      "en_US": [
+        "Dawn: You should go tell your family\n",
+        "that you’re helping the professor.\r",
+        "The faster the better, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00002",
+      "en_US": [
+        "Dawn: Oh, that’s right!\r",
+        "{STRVAR_1 3, 1, 0}, I haven’t shown you\n",
+        "how to catch a Pokémon.\r",
+        "I’ll demonstrate how to catch \n",
+        "one, so just watch me, OK?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00003",
+      "en_US": [
+        "Dawn: Giggle...\n",
+        "See? Isn’t it neat?\r",
+        "Actually, it’s better to lower your\n",
+        "target’s HP more than I did.\r",
+        "It’s important to get the Pokémon’s\n",
+        "HP down as low as possible.\r",
+        "This is because a healthy Pokémon\n",
+        "is very difficult to catch.\r",
+        "Oh, Pokémon also get easier to catch\n",
+        "if you make them sleep or something\f",
+        "by using a Pokémon’s move.\r",
+        "OK, {STRVAR_1 3, 0, 0}, to get you\n",
+        "started, I’ll give you five\f",
+        "Poké Balls!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00004",
+      "en_US": [
+        "If you have lots of Pokémon with you,\n",
+        "it will be safer on long trips.\r",
+        "Plus, it will be a lot more fun\n",
+        "having your Pokémon friends along.\r",
+        "OK, I need to get going.\n",
+        "Bye, now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00005",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 1, 0}?!\r",
+        "Did you tell your family that you’re\n",
+        "helping the professor?\r",
+        "...I bet you didn’t, did you?\r",
+        "I know that you’re eager to\n",
+        "see all kinds of Pokémon.\r",
+        "But you shouldn’t make your mom\n",
+        "worry like that.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00006",
+      "en_US": [
+        "Lucas: Why don’t you go tell your\n",
+        "family that the professor asked for\f",
+        "your help?\r",
+        "You should do it right away.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00007",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 1, 0}, do you know\n",
+        "how to catch a Pokémon?\r",
+        "I’ll demonstrate how to catch\n",
+        "one, so just watch, OK?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00008",
+      "en_US": [
+        "Lucas: And that’s how it’s done.\r",
+        "Actually, I should have lowered the\n",
+        "target’s HP some more.\r",
+        "Yup, the important thing is to lower\n",
+        "the Pokémon’s HP as much as possible.\r",
+        "See, a healthy Pokémon isn’t easy to\n",
+        "catch.\r",
+        "Oh, yeah. They also get easier to\n",
+        "catch if you make one of your\f",
+        "Pokémon put them to sleep or such.\r",
+        "Here, {STRVAR_1 3, 0, 0}, I’ll give you\n",
+        "five Poké Balls to get you started.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00009",
+      "en_US": [
+        "If you have lots of Pokémon with you,\n",
+        "you’ll be able to travel farther.\r",
+        "That way, you’ll have a better shot\n",
+        "at meeting more Pokémon.\r",
+        "See you around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00010",
+      "en_US": [
+        "Some Pokémon only appear in the\n",
+        "morning.\r",
+        "Some only come out at night.\r",
+        "I’ll keep looking till I’ve seen them\n",
+        "all!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00011",
+      "en_US": [
+        "Rt. 202\n",
+        "Sandgem Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00012",
+      "en_US": [
+        "Rt. 202\n",
+        "Jubilife City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00013",
+      "en_US": [
+        "Trainer Tips!\r",
+        "All Pokémon that are involved in\n",
+        "a battle earn Exp. Points!\r",
+        "The more your Pokémon battle,\n",
+        "the stronger they will become."
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00014",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "I was waiting for you.\r",
+        "Let me show you how the Poké Radar\n",
+        "works.\r",
+        "Let’s not waste any time.\n",
+        "So, when you use the Poké Radar...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00015",
+      "en_US": [
+        "Dawn: See?\n",
+        "Did you notice the tall grass rustling?\r",
+        "There’s a Pokémon in that patch of tall\n",
+        "grass.\r",
+        "If you go there, the Pokémon will\n",
+        "come bursting out.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00016",
+      "en_US": [
+        "Now, this is where it gets interesting.\r",
+        "If you see another patch of rustling\n",
+        "grass some distance away, go into it.\r",
+        "You’ll see the same kind of Pokémon\n",
+        "as before.\r",
+        "If you want to keep meeting the same\n",
+        "kind of Pokémon, you should maybe\f",
+        "use some Repels.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00017",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}.\r",
+        "Let me explain how the Poké Radar\n",
+        "works.\r",
+        "Let’s give it a go.\n",
+        "When you use the Poké Radar...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00018",
+      "en_US": [
+        "Lucas: There!\n",
+        "Did you see the tall grass rustling?\r",
+        "There’s a Pokémon in that patch of tall\n",
+        "grass.\r",
+        "Go in there, and the Pokémon will come\n",
+        "leaping out.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000467_00019",
+      "en_US": [
+        "Now, here’s the strange part.\r",
+        "If you see another patch of rustling\n",
+        "grass far away, it means the same kind\f",
+        "of Pokémon is hiding there.\r",
+        "So, if your aim is to keep seeing the\n",
+        "same kind of Pokémon, you should\f",
+        "consider using Repels.\r"
+      ]
+    }
+  ]
+}

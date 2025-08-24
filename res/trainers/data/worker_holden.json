@@ -34,5 +34,30 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Well! It’s not often we get a visitor\n",
+				"like you to the ironworks!\r",
+				"Let’s mark the occasion with\n",
+				"a battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Fire! And once more, only because I\n",
+				"feel like it, fiyaaaah!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The floor panels move automatically.\n",
+				"We’re pretty proud of them here!\n"
+			]
+		}
     ]
 }

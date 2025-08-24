@@ -11,35 +11,40 @@
 # *must* have names which match the values in `generated/text_banks.txt`, minus the `TEXT_BANK_`
 # prefix, and in lower-case.
 species_text_bank_names = [
-    'species_name.gmm',
-    'species_name_with_articles.gmm',
-    'species_pokedex_entry_fr.gmm',
-    'species_pokedex_entry_de.gmm',
-    'species_pokedex_entry_it.gmm',
-    'species_pokedex_entry_es.gmm',
-    'species_pokedex_entry_jp.gmm',
-    'species_pokedex_entry_en.gmm',
-    'species_weight.gmm',
-    'species_weight_gira.gmm',
-    'species_height.gmm',
-    'species_height_gira.gmm',
-    'species_category.gmm',
-    'species_name_with_natdex_number_en.gmm',
-    'species_name_with_natdex_number_fr.gmm',
-    'species_name_with_natdex_number_de.gmm',
-    'species_name_with_natdex_number_it.gmm',
-    'species_name_with_natdex_number_es.gmm',
-    'species_name_with_natdex_number_jp.gmm',
-    'species_category_en.gmm',
-    'species_category_fr.gmm',
-    'species_category_de.gmm',
-    'species_category_it.gmm',
-    'species_category_es.gmm',
-    'species_category_jp.gmm'
+    'species_name.json',
+    'species_name_with_articles.json',
+    'species_pokedex_entry_fr.json',
+    'species_pokedex_entry_de.json',
+    'species_pokedex_entry_it.json',
+    'species_pokedex_entry_es.json',
+    'species_pokedex_entry_jp.json',
+    'species_pokedex_entry_en.json',
+    'species_weight.json',
+    'species_weight_gira.json',
+    'species_height.json',
+    'species_height_gira.json',
+    'species_category.json',
+    'species_name_with_natdex_number_en.json',
+    'species_name_with_natdex_number_fr.json',
+    'species_name_with_natdex_number_de.json',
+    'species_name_with_natdex_number_it.json',
+    'species_name_with_natdex_number_es.json',
+    'species_name_with_natdex_number_jp.json',
+    'species_category_en.json',
+    'species_category_fr.json',
+    'species_category_de.json',
+    'species_category_it.json',
+    'species_category_es.json',
+    'species_category_jp.json'
+]
+
+trainer_text_bank_names = [
+    'npc_trainer_messages.json',
+    'npc_trainer_names.json'
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = species_text_bank_names
+generated_text_banks = species_text_bank_names + trainer_text_bank_names
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
@@ -47,7 +52,7 @@ generated_text_banks = species_text_bank_names
 text_bank_consts = fs.read(text_banks_txt).splitlines()
 text_bank_files = []
 foreach text_bank : text_bank_consts
-    text_bank_name = (text_bank.replace('TEXT_BANK_', '').to_lower() + '.gmm')
+    text_bank_name = (text_bank.replace('TEXT_BANK_', '').to_lower() + '.json')
     if not generated_text_banks.contains(text_bank_name)
         text_bank_files += files(text_bank_name)
     endif
@@ -60,7 +65,7 @@ text_banks_order = custom_target('text_banks.order',
     command: [ ordergen_text_banks_py, '@INPUT@', '@OUTPUT@' ],
 )
 
-# 4. Generate individual text bank binaries from GMM files.
+# 4. Generate individual text bank binaries from JSON files.
 bank_header_target = meson.current_build_dir() / 'bank'
 bank_header_dir = custom_target('bank_header_dir',
     capture: true,
@@ -69,10 +74,10 @@ bank_header_dir = custom_target('bank_header_dir',
         'sh', '-c', 'mkdir -p ' + bank_header_target
     ]
 )
-gmm_to_bin_gen = generator(msgenc_exe,
+json_to_bin_gen = generator(msgenc_exe,
     arguments: [
         '-e',
-        '--gmm',
+        '--json',
         '-c', charmap_txt.full_path(),
         '-H', bank_header_target / '@BASENAME@' + '.h',
         '@INPUT@',
@@ -88,7 +93,8 @@ species_text_banks = custom_target('species_text_banks',
     command: [
         make_species_text_banks_py,
         '--source-dir', pokemon_data_root,
-        '--output-dir', '@OUTDIR@'
+        '--output-dir', '@OUTDIR@',
+        '--format', 'json',
     ],
     env: species_env,
     depend_files: [ species_data_files ],
@@ -96,9 +102,23 @@ species_text_banks = custom_target('species_text_banks',
 
 text_bank_files += species_text_banks
 
+trainer_text_banks = custom_target('trainer_text_banks',
+    output: trainer_text_bank_names,
+    command: [
+        'mv',
+        '@OUTDIR@/../trainers/npc_trainer_messages.json',
+        '@OUTDIR@/../trainers/npc_trainer_names.json',
+        '@OUTDIR@',
+    ],
+    env: trainer_env,
+    depends: [ datagen_trainer_out ],
+)
+
+text_bank_files += trainer_text_banks
+
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',
-    input: gmm_to_bin_gen.process(text_bank_files),
+    input: json_to_bin_gen.process(text_bank_files),
     command: [
         narc_exe, 'create',
         '--order', text_banks_order,

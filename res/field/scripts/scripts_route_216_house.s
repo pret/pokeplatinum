@@ -19,12 +19,12 @@ _000E:
 
 _0039:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 1
     WaitABXPadPress
@@ -62,12 +62,12 @@ _00AD:
     BufferPlayerName 0
     Message 5
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     BufferPlayerName 0
     Message 6

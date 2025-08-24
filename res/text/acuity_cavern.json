@@ -1,0 +1,16 @@
+{
+  "key": 9291,
+  "messages": [
+    {
+      "id": "AcuityCavern_Text_UxieCry",
+      "en_US": "Kyouuuun!\r"
+    },
+    {
+      "id": "AcuityCavern_Text_UxieDisappeared",
+      "en_US": [
+        "UXIE disappeared deep into its\n",
+        "cavern..."
+      ]
+    }
+  ]
+}

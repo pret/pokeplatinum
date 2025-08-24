@@ -52,5 +52,14 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Humph! Quit flaunting your toughness!\n",
+				"It’s not cute in the least!\n"
+			]
+		}
     ]
 }

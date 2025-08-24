@@ -16,5 +16,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...This is why I’m gonna be stuck as\n",
+				"a grunt forever...\n"
+			]
+		}
     ]
 }

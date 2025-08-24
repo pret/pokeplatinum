@@ -84,7 +84,7 @@ static void NitroStaticInit(void)
 
 static BOOL ov28_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    UnkStruct_ov28_02256210 *v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256210));
+    UnkStruct_ov28_02256210 *v0 = (UnkStruct_ov28_02256210 *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256210));
 
     if (v0 != NULL) {
         if (ov28_02256210(v0, param3, param2)) {

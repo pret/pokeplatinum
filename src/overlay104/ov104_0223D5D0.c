@@ -19,7 +19,7 @@ static void ov104_0223D708(ParticleSystem *param0);
 
 UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
 {
-    UnkStruct_ov104_0223D5F0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223D5F0));
+    UnkStruct_ov104_0223D5F0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223D5F0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
 
     v0->heapID = heapID;
@@ -51,11 +51,11 @@ ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int
 
     GF_ASSERT(param0->unk_00[param1] == NULL);
 
-    v1 = Heap_AllocFromHeap(param0->heapID, 0x4800);
+    v1 = Heap_Alloc(param0->heapID, 0x4800);
     v0 = ParticleSystem_New(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
     camera = ParticleSystem_GetCamera(v0);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     ParticleSystem_SetCameraProjection(v0, param3);
 
     v3 = ParticleSystem_LoadResourceFromNARC(157, param2, param0->heapID);
@@ -77,7 +77,7 @@ int ov104_0223D6A8(void)
 {
     int v0;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     if (ParticleSystem_GetActiveAmount() == 0) {
         return 0;
@@ -86,7 +86,7 @@ int ov104_0223D6A8(void)
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
     }
 
     ParticleSystem_UpdateAll();

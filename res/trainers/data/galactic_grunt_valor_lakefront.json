@@ -16,5 +16,14 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Fweh... If I didn’t run...\n",
+				"I could’ve...battled harder...\n"
+			]
+		}
     ]
 }

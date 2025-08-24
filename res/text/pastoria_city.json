@@ -1,0 +1,406 @@
+{
+  "key": 18319,
+  "messages": [
+    {
+      "id": "pl_msg_00000131_00000",
+      "en_US": [
+        "Grr... The package hasn’t arrived\n",
+        "from the Veilstone warehouse yet...\r",
+        "I have to wait here until then?\n",
+        "I’m going batty from this wait...\r",
+        "Oh, man, I wish I could do something\n",
+        "that involved lots of explosives!\r",
+        "Yup, this is going to be a smashing\n",
+        "job for Team Galactic..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00001",
+      "en_US": [
+        "Grr...\n",
+        "This is so annoying...\r",
+        "What is it, you? Oh, some kid with\n",
+        "only three Gym Badges.\r",
+        "Little rascals like you should know\n",
+        "to stay out of Team Galactic’s way!\r",
+        "...Now, this package from Veilstone...\n",
+        "Where should I set it off...?\r",
+        "Yup, this is going to be a smashing\n",
+        "job for Team Galactic..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whoops!\r",
+        "Hehehe! I’m not always going to plow\n",
+        "into you every time we meet!\r",
+        "So how’s it going, {STRVAR_1 3, 1, 0}?\n",
+        "Buffing up your Pokémon, eh?\r",
+        "I’ll test you and your Pokémon out\n",
+        "to see how buff and tough you are!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\n",
+        "did get a bit tougher since last time.\r",
+        "That even shocked me a bit, so yeah,\n",
+        "I got beat ’cause I was careless.\r",
+        "So, hey, what was that Team Galactic\n",
+        "guy all freaking out about?\r",
+        "I don’t know what he’s up to, but\n",
+        "you should chase him down!\r",
+        "If you’re not a Pokémon, and you run\n",
+        "like that... You’re a bad guy.\r",
+        "All right, {STRVAR_1 3, 1, 0}!\n",
+        "Next time, I’m not holding back!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}.\n",
+        "You’re out of luck, though.\r",
+        "The Gym Leader, Crasher Wake, I mean\n",
+        "Mr. Wake’s gone off to Veilstone.\r",
+        "They said he had a practice match with\n",
+        "Veilstone’s Gym Leader Maylene.\r",
+        "Sheesh!\n",
+        "I ended up missing him completely!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whoops!\r",
+        "Hehehe! I’m not always going to plow\n",
+        "into you every time we meet!\r",
+        "So how’s it going, {STRVAR_1 3, 1, 0}?\n",
+        "Buffing up your Pokémon, eh?\r",
+        "I’ll test you and your Pokémon out\n",
+        "to see how buff and tough you are!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\n",
+        "did get a bit tougher since last time.\r",
+        "That even shocked me a bit, so yeah,\n",
+        "I got beat ’cause I was careless.\r",
+        "Oh, yeah, I joined Mr. Wake as an\n",
+        "apprentice!\r",
+        "Like, I want my own theme song!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00007",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, hey!\n",
+        "You got the Gym Badge here, huh?\r",
+        "What’d I tell you? Mr. Wake--I mean,\n",
+        "the master--is pretty awesome, hey?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00008",
+      "en_US": [
+        "Wake: What’s this racket, then?\n",
+        "Oh, it’s you two.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00009",
+      "en_US": "{STRVAR_1 3, 0, 0}: Oh, Master!\r"
+    },
+    {
+      "id": "pl_msg_00000131_00010",
+      "en_US": [
+        "Wake: ...Listen, kid.\n",
+        "I know your father. I won’t deny that.\r",
+        "But I don’t recall ever taking you on\n",
+        "as an apprentice. Not in the least.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00011",
+      "en_US": [
+        "Besides, you two don’t need me.\r",
+        "You can become strong on your own\n",
+        "without being my apprentice.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00012",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: It doesn’t matter.\n",
+        "I made you my master! I decided!\r",
+        "But forget that!\n",
+        "There’s trouble brewing!\r",
+        "There’s a Team Galactic goon in front \n",
+        "of the Observatory Gate.\r",
+        "He said something about using a bomb!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00013",
+      "en_US": [
+        "Wake: WHAAAAT?!\r",
+        "No one messes with Pastoria!\n",
+        "Not on my watch!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00014",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey!\n",
+        "Master! Wait!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00015",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Does my new outfit look\n",
+        "good or what? CROAGUNK’s where it’s at."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00016",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Why are you talking to\n",
+        "me from there?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00017",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey!\r",
+        "What am I, chopped liver?\n",
+        "Don’t forget I’m here, too!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00018",
+      "en_US": "Wake: So, where’s this Galac...\r"
+    },
+    {
+      "id": "pl_msg_00000131_00019",
+      "en_US": "{SIZE 200}DDDOOOMMM!!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000131_00020",
+      "en_US": "Grunt: Fweh! That was rough.\r"
+    },
+    {
+      "id": "pl_msg_00000131_00021",
+      "en_US": [
+        "Wake: YOU!\n",
+        "What’ve you done?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00022",
+      "en_US": [
+        "Grunt: What’ve I done, you’re asking?\n",
+        "Well, technically speaking, it wasn’t me.\r",
+        "The package that arrived, see, that\n",
+        "was a bomb, named the Galactic Bomb.\r",
+        "Me, I was told to push the button.\n",
+        "So I did. Like, “Poink!”\r",
+        "Oh, that’s right! Mustn’t forget!\n",
+        "The test results need reporting!\r",
+        "Cheerio, then!\n",
+        "You daft codger, your mask’s absurd!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00023",
+      "en_US": "Wake: The Great Marsh is invaluable...\r"
+    },
+    {
+      "id": "pl_msg_00000131_00024",
+      "en_US": [
+        "You two! Do NOT follow me!\n",
+        "Don’t let anyone else in, either!\r",
+        "There’d be big trouble if there’s any\n",
+        "of that bomb left!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00025",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\n",
+        "You go after that Galactic goon!\r",
+        "I’m staying here like Master said!\n",
+        "Gotta keep others from going in!\r",
+        "Don’t let that Galactic guy get away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00026",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What’s the matter?!\n",
+        "Why aren’t you gone already?!\r",
+        "Go after that Galactic goon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00027",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What’s the matter?!\n",
+        "Why aren’t you gone already?!\r",
+        "Go after that Galactic goon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00028",
+      "en_US": [
+        "What’s with you?\n",
+        "Stop chasing after me, you.\r",
+        "I’ve half a mind to pulverize you with\n",
+        "my Pokémon!\r",
+        "But I have to be on my way to the\n",
+        "lake ASAP! So, you’re lucky! I’m out!\r",
+        "All right, do I make myself clear?\n",
+        "Don’t you dare follow me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00029",
+      "en_US": [
+        "Here where I am standing, I’m\n",
+        "smack-dab in the middle of town."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00030",
+      "en_US": [
+        "I study rare Pokémon that appear\n",
+        "only in the Great Marsh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00031",
+      "en_US": [
+        "Some Trainers deliberately prevent\n",
+        "their Pokémon from evolving.\r",
+        "They wait until the Pokémon levels up\n",
+        "and learns certain moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00032",
+      "en_US": [
+        "I’m visiting here to see the Great\n",
+        "Marsh.\r",
+        "I’m staying at the lakeside hotel."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00033",
+      "en_US": [
+        "Pastoria’s Gym Leader is awesome with\n",
+        "his water attacks.\r",
+        "You’ll know what I mean when you\n",
+        "challenge him."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00034",
+      "en_US": [
+        "Wasn’t the Pastoria Gym Leader kind of\n",
+        "awesome in all sorts of ways?\r",
+        "But don’t judge him by the way he looks\n",
+        "and acts.\r",
+        "I hear he enters professional\n",
+        "wrestling matches for prize money.\r",
+        "That money goes to help people and\n",
+        "Pokémon in trouble."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00035",
+      "en_US": [
+        "The Great Marsh keeps the weather\n",
+        "cool in the summertime.\r",
+        "This is a good town for Water-type\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00036",
+      "en_US": "CLEFAIRY: Fiiih?!"
+    },
+    {
+      "id": "pl_msg_00000131_00037",
+      "en_US": [
+        "You’re just like a totally impatient\n",
+        "boy I met earlier.\r",
+        "Just like you, he was very close with\n",
+        "his Pokémon.\r",
+        "Hey, thanks for making me smile!\n",
+        "This might put a smile on your face.\r",
+        "Try dressing up a Pokémon with\n",
+        "this {STRVAR_1 31, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00038",
+      "en_US": [
+        "Someone gave me a Berry, so I\n",
+        "planted it and grew some more.\r",
+        "Then, I took the Berries and cooked\n",
+        "them into Poffins.\r",
+        "All the work is worth it when I see\n",
+        "how happy they make my Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00039",
+      "en_US": [
+        "I can’t use the hidden move Surf until\n",
+        "I beat the local Gym Leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00040",
+      "en_US": [
+        "Have you been to the Pokémon Mansion?\n",
+        "It’s on Route 212.\r",
+        "The owner, Mr. Backlot, likes to brag\n",
+        "about his herd of rare Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00041",
+      "en_US": [
+        "Pastoria City\n",
+        "The Marsh City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00042",
+      "en_US": [
+        "Pastoria City Pokémon Gym\n",
+        "Leader: Crasher Wake\f",
+        "The Torrential Masked Master!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00043",
+      "en_US": [
+        "Pastoria Great Marsh\n",
+        "Observatory Gate"
+      ]
+    },
+    {
+      "id": "pl_msg_00000131_00044",
+      "en_US": [
+        "Try the Safari Game in\n",
+        "Pastoria’s Great Marsh!"
+      ]
+    }
+  ]
+}

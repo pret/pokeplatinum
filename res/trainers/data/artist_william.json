@@ -25,5 +25,40 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You and I!\r",
+				"Let us create a scene!\n",
+				"A fantastic tableau of battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Magnificent!\n",
+				"I am aglow with inspiration!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"That battle will surely become a\n",
+				"stupendous masterpiece painting!\r",
+				"I shall title it...\r",
+				"“My Pokémon Is Fight”!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"The key to becoming a good painter\n",
+				"is to be observant.\r",
+				"That is the same for battling.\n",
+				"One must be observant!\r"
+			]
+		}
     ]
 }

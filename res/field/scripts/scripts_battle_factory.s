@@ -230,7 +230,7 @@ _038E:
     End
 
 _03C1:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CallIfEq VAR_UNK_0x40B8, 0, _048A
     CallIfEq VAR_UNK_0x40B8, 1, _049E
@@ -241,7 +241,7 @@ _03C1:
     ScrCmd_2C4 3
     CallIfEq VAR_UNK_0x40B8, 2, _042A
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     AssertHeapMemory
     End

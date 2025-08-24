@@ -1,0 +1,835 @@
+{
+  "key": 10488,
+  "messages": [
+    {
+      "id": "pl_msg_00000020_00000",
+      "en_US": "No. of Hall of Fame entries"
+    },
+    {
+      "id": "pl_msg_00000020_00001",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00002",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00003",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00004",
+      "en_US": [
+        "Battle Tower Single Battle\n",
+        "win streak"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00005",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00006",
+      "en_US": [
+        "Battle Tower Double Battle\n",
+        "win streak"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00007",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00008",
+      "en_US": [
+        "Battle Tower Multi Battle\n",
+        "win streak"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00009",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00010",
+      "en_US": [
+        "Battle Tower partnered\n",
+        "Multi Battle win streak"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00011",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00012",
+      "en_US": "Wi-Fi Battle Tower win streak"
+    },
+    {
+      "id": "pl_msg_00000020_00013",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00014",
+      "en_US": "No. of Contests entered alone"
+    },
+    {
+      "id": "pl_msg_00000020_00015",
+      "en_US": [
+        "No. of Contests entered with\n",
+        "friends"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00016",
+      "en_US": [
+        "No. of Contests entered alone and\n",
+        "won"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00017",
+      "en_US": [
+        "No. of Contests entered with\n",
+        "friends and won"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00018",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00019",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00020",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00021",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00022",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00023",
+      "en_US": "No. of times wild Pokémon fled"
+    },
+    {
+      "id": "pl_msg_00000020_00024",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00025",
+      "en_US": "No. of Berries planted"
+    },
+    {
+      "id": "pl_msg_00000020_00026",
+      "en_US": "No. of steps walked"
+    },
+    {
+      "id": "pl_msg_00000020_00027",
+      "en_US": "No. of times battled wild Pokémon"
+    },
+    {
+      "id": "pl_msg_00000020_00028",
+      "en_US": [
+        "No. of Trainer battles excluding\n",
+        "Union Room and Frontier"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00029",
+      "en_US": "No. of Pokémon caught"
+    },
+    {
+      "id": "pl_msg_00000020_00030",
+      "en_US": "No. of Pokémon caught fishing"
+    },
+    {
+      "id": "pl_msg_00000020_00031",
+      "en_US": "No. of Eggs hatched"
+    },
+    {
+      "id": "pl_msg_00000020_00032",
+      "en_US": "No. of times own Pokémon evolved"
+    },
+    {
+      "id": "pl_msg_00000020_00033",
+      "en_US": "No. of Game Corner slot jackpots"
+    },
+    {
+      "id": "pl_msg_00000020_00034",
+      "en_US": "No. of Battle Tower challenges"
+    },
+    {
+      "id": "pl_msg_00000020_00035",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00036",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00037",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00038",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00039",
+      "en_US": [
+        "No. of completed GTS Pokémon\n",
+        "trades"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00040",
+      "en_US": [
+        "No. of battles won over Nintendo\n",
+        "Wi-Fi Connection"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00041",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00042",
+      "en_US": [
+        "No. of battles tied over Nintendo\n",
+        "Wi-Fi Connection"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00043",
+      "en_US": [
+        "No. of battles won at the Battle\n",
+        "Tower"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00044",
+      "en_US": "The total money spent shopping"
+    },
+    {
+      "id": "pl_msg_00000020_00045",
+      "en_US": [
+        "No. of Pokémon left with the Day\n",
+        "Care"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00046",
+      "en_US": "No. of Pokémon defeated"
+    },
+    {
+      "id": "pl_msg_00000020_00047",
+      "en_US": "No. of Pokémon offered on GTS"
+    },
+    {
+      "id": "pl_msg_00000020_00048",
+      "en_US": [
+        "No. of times Pokémon were traded\n",
+        "with friends at the Wi-Fi Club"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00049",
+      "en_US": [
+        "No. of times you signed your\n",
+        "Trainer Card"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00050",
+      "en_US": [
+        "No. of Pokémon extracted from\n",
+        "Fossils"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00051",
+      "en_US": [
+        "No. of times footprints were\n",
+        "checked by Dr. Footstep"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00052",
+      "en_US": "No. of times Mail was sent"
+    },
+    {
+      "id": "pl_msg_00000020_00053",
+      "en_US": [
+        "No. of wild Pokémon lured using\n",
+        "Honey"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00054",
+      "en_US": [
+        "No. of times you talked to someone\n",
+        "in the Wi-Fi Plaza"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00055",
+      "en_US": [
+        "Number of Spheres buried in the\n",
+        "Underground"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00056",
+      "en_US": "No. of times watched TV"
+    },
+    {
+      "id": "pl_msg_00000020_00057",
+      "en_US": [
+        "No. of times Pokémon were given\n",
+        "nicknames"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00058",
+      "en_US": "No. of Premier Balls received"
+    },
+    {
+      "id": "pl_msg_00000020_00059",
+      "en_US": [
+        "Items found by Pokémon in Amity\n",
+        "Square"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00060",
+      "en_US": "No. of Poffins cooked alone"
+    },
+    {
+      "id": "pl_msg_00000020_00061",
+      "en_US": "No. of Poffins cooked with friends"
+    },
+    {
+      "id": "pl_msg_00000020_00062",
+      "en_US": [
+        "No. of Pokémon Dress-Up Data\n",
+        "photos taken"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00063",
+      "en_US": [
+        "No. of boulders pushed using the\n",
+        "hidden move Strength"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00064",
+      "en_US": "No. of times mired in a swamp"
+    },
+    {
+      "id": "pl_msg_00000020_00065",
+      "en_US": [
+        "No. of matches against your rival &\n",
+        "Gym Leaders at the Battleground"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00066",
+      "en_US": [
+        "No. of facilities challenged at the\n",
+        "Battle Frontier"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00067",
+      "en_US": [
+        "No. of times you met the Frontier\n",
+        "Brains"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00068",
+      "en_US": "No. of wins at the Battle Factory"
+    },
+    {
+      "id": "pl_msg_00000020_00069",
+      "en_US": "No. of wins at the Battle Castle"
+    },
+    {
+      "id": "pl_msg_00000020_00070",
+      "en_US": "No. of wins at the Battle Hall"
+    },
+    {
+      "id": "pl_msg_00000020_00071",
+      "en_US": "No. of wins at the Battle Arcade"
+    },
+    {
+      "id": "pl_msg_00000020_00072",
+      "en_US": [
+        "No. of Pokémon trades at the\n",
+        "Battle Factory"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00073",
+      "en_US": [
+        "Total Castle Points earned at the\n",
+        "Battle Castle"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00074",
+      "en_US": [
+        "No. of wins over Rank 10 Pokémon\n",
+        "at the Battle Hall"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00075",
+      "en_US": [
+        "Battle Points earned from the\n",
+        "Battle Arcade game board"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00076",
+      "en_US": "Total Battle Points won"
+    },
+    {
+      "id": "pl_msg_00000020_00077",
+      "en_US": "Total Battle Points spent"
+    },
+    {
+      "id": "pl_msg_00000020_00078",
+      "en_US": "No. of Wi-Fi Plaza Games played"
+    },
+    {
+      "id": "pl_msg_00000020_00079",
+      "en_US": "No. of Eggs traded using Spin Trade"
+    },
+    {
+      "id": "pl_msg_00000020_00080",
+      "en_US": [
+        "No. of Star Pieces traded at the\n",
+        "Fuego Ironworks"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00081",
+      "en_US": [
+        "Battle Points earned from the\n",
+        "Battle Arcade game board"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00082",
+      "en_US": [
+        "No. of items and Berries earned\n",
+        "from the Battle Arcade game board"
+      ]
+    },
+    {
+      "id": "pl_msg_00000020_00083",
+      "en_US": "Total Battle Points won"
+    },
+    {
+      "id": "pl_msg_00000020_00084",
+      "en_US": "Total Battle Points spent"
+    },
+    {
+      "id": "pl_msg_00000020_00085",
+      "en_US": "No. of wins in Wi-Fi Plaza games"
+    },
+    {
+      "id": "pl_msg_00000020_00086",
+      "en_US": "No. of Eggs traded using Spin Trade"
+    },
+    {
+      "id": "pl_msg_00000020_00087",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000020_00088",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000020_00089",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000020_00090",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000020_00091",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000020_00092",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000020_00093",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000020_00094",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000020_00095",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00096",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00097",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00098",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00099",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00100",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00101",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00102",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00103",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00104",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00105",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00106",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00107",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00108",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00109",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00110",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00111",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00112",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00113",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00114",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00115",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00116",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00117",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00118",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00119",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00120",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00121",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00122",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00123",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00124",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00125",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00126",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00127",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00128",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00129",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00130",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00131",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00132",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00133",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00134",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00135",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00136",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000020_00137",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00138",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00139",
+      "en_US": "${STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00140",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00141",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00142",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00143",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00144",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00145",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00146",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00147",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00148",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00149",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00150",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00151",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00152",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00153",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00154",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00155",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00156",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00157",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00158",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00159",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00160",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00161",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00162",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00163",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00164",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00165",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00166",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00167",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00168",
+      "en_US": "{STRVAR_1 59, 2, 0} CP"
+    },
+    {
+      "id": "pl_msg_00000020_00169",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00170",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00171",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00172",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00173",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00174",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00175",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00176",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00177",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00178",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00179",
+      "en_US": "{STRVAR_1 59, 2, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000020_00180",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000020_00181",
+      "en_US": "{STRVAR_1 59, 2, 0}"
+    }
+  ]
+}

@@ -15,10 +15,10 @@ _0006:
     CallIfEq VAR_0x8005, 12, _01AD
     CallIfEq VAR_0x8005, 13, _01C1
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     ApplyFreeCameraMovement _01F8
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     WaitTime 15, VAR_RESULT
     ClearFlag FLAG_UNK_0x0253
@@ -45,7 +45,7 @@ _0006:
     ApplyMovement 2, _01E8
     WaitMovement
     RemoveObject 2
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     ApplyFreeCameraMovement _0204
     WaitMovement
@@ -87,7 +87,7 @@ _0006:
     ApplyMovement 3, _0248
     ApplyMovement LOCALID_PLAYER, _0224
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     WaitTime 15, VAR_RESULT
     Message 6

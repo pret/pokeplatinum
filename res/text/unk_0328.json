@@ -1,0 +1,397 @@
+{
+  "key": 30478,
+  "messages": [
+    {
+      "id": "pl_msg_00000328_00000",
+      "en_US": "Review"
+    },
+    {
+      "id": "pl_msg_00000328_00001",
+      "en_US": "For Staff use"
+    },
+    {
+      "id": "pl_msg_00000328_00002",
+      "en_US": "Jump"
+    },
+    {
+      "id": "pl_msg_00000328_00003",
+      "en_US": "Out-of-range drawing"
+    },
+    {
+      "id": "pl_msg_00000328_00004",
+      "en_US": "Create data"
+    },
+    {
+      "id": "pl_msg_00000328_00005",
+      "en_US": "System"
+    },
+    {
+      "id": "pl_msg_00000328_00006",
+      "en_US": "Enter value"
+    },
+    {
+      "id": "pl_msg_00000328_00007",
+      "en_US": "Forced-saving process"
+    },
+    {
+      "id": "pl_msg_00000328_00008",
+      "en_US": "Before the Counter stops"
+    },
+    {
+      "id": "pl_msg_00000328_00009",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000328_00010",
+      "en_US": "Naming/GTS/DayCare"
+    },
+    {
+      "id": "pl_msg_00000328_00011",
+      "en_US": "Berys/TMs/Rbns/Journal"
+    },
+    {
+      "id": "pl_msg_00000328_00012",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000328_00013",
+      "en_US": "Camera/Sp.Encounter"
+    },
+    {
+      "id": "pl_msg_00000328_00014",
+      "en_US": "Plaza/Pokedex"
+    },
+    {
+      "id": "pl_msg_00000328_00015",
+      "en_US": "Tower/Mail/Poffin/Blender"
+    },
+    {
+      "id": "pl_msg_00000328_00016",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000328_00017",
+      "en_US": "Mulch/Berys/PokéPark "
+    },
+    {
+      "id": "pl_msg_00000328_00018",
+      "en_US": "FtStamps/Terminal/Contest"
+    },
+    {
+      "id": "pl_msg_00000328_00019",
+      "en_US": "3rdGym/Dist.World/Furniture"
+    },
+    {
+      "id": "pl_msg_00000328_00020",
+      "en_US": "Villa/Frontier/Vs. Seeker"
+    },
+    {
+      "id": "pl_msg_00000328_00021",
+      "en_US": "Box/HallOfFame/Pokétch"
+    },
+    {
+      "id": "pl_msg_00000328_00022",
+      "en_US": "Rankings/Capsules/ProfileCreation"
+    },
+    {
+      "id": "pl_msg_00000328_00023",
+      "en_US": "Underground"
+    },
+    {
+      "id": "pl_msg_00000328_00024",
+      "en_US": "Mitsuhara"
+    },
+    {
+      "id": "pl_msg_00000328_00025",
+      "en_US": "Load check"
+    },
+    {
+      "id": "pl_msg_00000328_00026",
+      "en_US": "View location"
+    },
+    {
+      "id": "pl_msg_00000328_00027",
+      "en_US": "Switch"
+    },
+    {
+      "id": "pl_msg_00000328_00028",
+      "en_US": "Attribute"
+    },
+    {
+      "id": "pl_msg_00000328_00029",
+      "en_US": "Fly"
+    },
+    {
+      "id": "pl_msg_00000328_00030",
+      "en_US": "Gym jump"
+    },
+    {
+      "id": "pl_msg_00000328_00031",
+      "en_US": "Map jump"
+    },
+    {
+      "id": "pl_msg_00000328_00032",
+      "en_US": "Map jump 2"
+    },
+    {
+      "id": "pl_msg_00000328_00033",
+      "en_US": "Map jump 3"
+    },
+    {
+      "id": "pl_msg_00000328_00034",
+      "en_US": "Map jump 4"
+    },
+    {
+      "id": "pl_msg_00000328_00035",
+      "en_US": "Map jump 5"
+    },
+    {
+      "id": "pl_msg_00000328_00036",
+      "en_US": "Map jump 6"
+    },
+    {
+      "id": "pl_msg_00000328_00037",
+      "en_US": "To Unown dungeon"
+    },
+    {
+      "id": "pl_msg_00000328_00038",
+      "en_US": "To anywhere"
+    },
+    {
+      "id": "pl_msg_00000328_00039",
+      "en_US": "Create Pokémon"
+    },
+    {
+      "id": "pl_msg_00000328_00040",
+      "en_US": "Change Lead Pokémon"
+    },
+    {
+      "id": "pl_msg_00000328_00041",
+      "en_US": "Bad Egg"
+    },
+    {
+      "id": "pl_msg_00000328_00042",
+      "en_US": "Create items"
+    },
+    {
+      "id": "pl_msg_00000328_00043",
+      "en_US": "Time"
+    },
+    {
+      "id": "pl_msg_00000328_00044",
+      "en_US": "3D settings"
+    },
+    {
+      "id": "pl_msg_00000328_00045",
+      "en_US": "Switch Gender"
+    },
+    {
+      "id": "pl_msg_00000328_00046",
+      "en_US": "Flag control"
+    },
+    {
+      "id": "pl_msg_00000328_00047",
+      "en_US": "Map and others"
+    },
+    {
+      "id": "pl_msg_00000328_00048",
+      "en_US": "Up & down"
+    },
+    {
+      "id": "pl_msg_00000328_00049",
+      "en_US": "ZX set"
+    },
+    {
+      "id": "pl_msg_00000328_00050",
+      "en_US": "Union"
+    },
+    {
+      "id": "pl_msg_00000328_00051",
+      "en_US": "Jump to Twinleaf Town"
+    },
+    {
+      "id": "pl_msg_00000328_00052",
+      "en_US": "Back to title screen"
+    },
+    {
+      "id": "pl_msg_00000328_00053",
+      "en_US": "Jump to Pastoria Gym"
+    },
+    {
+      "id": "pl_msg_00000328_00054",
+      "en_US": "Time manipulation"
+    },
+    {
+      "id": "pl_msg_00000328_00055",
+      "en_US": "DS time"
+    },
+    {
+      "id": "pl_msg_00000328_00056",
+      "en_US": "8:00"
+    },
+    {
+      "id": "pl_msg_00000328_00057",
+      "en_US": "12:00"
+    },
+    {
+      "id": "pl_msg_00000328_00058",
+      "en_US": "18:00"
+    },
+    {
+      "id": "pl_msg_00000328_00059",
+      "en_US": "22:00"
+    },
+    {
+      "id": "pl_msg_00000328_00060",
+      "en_US": "2:00"
+    },
+    {
+      "id": "pl_msg_00000328_00061",
+      "en_US": "Fast forward (60 times)"
+    },
+    {
+      "id": "pl_msg_00000328_00062",
+      "en_US": "Fast forward (600 times)"
+    },
+    {
+      "id": "pl_msg_00000328_00063",
+      "en_US": "RTC control"
+    },
+    {
+      "id": "pl_msg_00000328_00064",
+      "en_US": "EDGE ON"
+    },
+    {
+      "id": "pl_msg_00000328_00065",
+      "en_US": "EDGE OFF"
+    },
+    {
+      "id": "pl_msg_00000328_00066",
+      "en_US": "ANTIALIAS ON"
+    },
+    {
+      "id": "pl_msg_00000328_00067",
+      "en_US": "ANTIALIAS OFF"
+    },
+    {
+      "id": "pl_msg_00000328_00068",
+      "en_US": "EDGE COLOR1"
+    },
+    {
+      "id": "pl_msg_00000328_00069",
+      "en_US": "EDGE COLOR2"
+    },
+    {
+      "id": "pl_msg_00000328_00070",
+      "en_US": "EDGE COLOR3"
+    },
+    {
+      "id": "pl_msg_00000328_00071",
+      "en_US": "EDGE COLOR4"
+    },
+    {
+      "id": "pl_msg_00000328_00072",
+      "en_US": "#ofPokémonEncounter"
+    },
+    {
+      "id": "pl_msg_00000328_00073",
+      "en_US": "deliveryman"
+    },
+    {
+      "id": "pl_msg_00000328_00074",
+      "en_US": "Change TV channel"
+    },
+    {
+      "id": "pl_msg_00000328_00075",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "pl_msg_00000328_00076",
+      "en_US": "SysFlag"
+    },
+    {
+      "id": "pl_msg_00000328_00077",
+      "en_US": "Records"
+    },
+    {
+      "id": "pl_msg_00000328_00078",
+      "en_US": "Hero/Heroin"
+    },
+    {
+      "id": "pl_msg_00000328_00079",
+      "en_US": "SaveStoryProgress"
+    },
+    {
+      "id": "pl_msg_00000328_00080",
+      "en_US": "SaveBoxCondition"
+    },
+    {
+      "id": "pl_msg_00000328_00081",
+      "en_US": "BGM control"
+    },
+    {
+      "id": "pl_msg_00000328_00082",
+      "en_US": "Script control"
+    },
+    {
+      "id": "pl_msg_00000328_00083",
+      "en_US": "GTS"
+    },
+    {
+      "id": "pl_msg_00000328_00084",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "pl_msg_00000328_00085",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000328_00086",
+      "en_US": "Beacon(Union)"
+    },
+    {
+      "id": "pl_msg_00000328_00087",
+      "en_US": "No. of Hall of Fame"
+    },
+    {
+      "id": "pl_msg_00000328_00088",
+      "en_US": "TV"
+    },
+    {
+      "id": "pl_msg_00000328_00089",
+      "en_US": "Link Contest"
+    },
+    {
+      "id": "pl_msg_00000328_00090",
+      "en_US": "Others"
+    },
+    {
+      "id": "pl_msg_00000328_00091",
+      "en_US": "Battle Factoy"
+    },
+    {
+      "id": "pl_msg_00000328_00092",
+      "en_US": "Battle Hall"
+    },
+    {
+      "id": "pl_msg_00000328_00093",
+      "en_US": "Battle Castle"
+    },
+    {
+      "id": "pl_msg_00000328_00094",
+      "en_US": "PokeCenterB1F"
+    },
+    {
+      "id": "pl_msg_00000328_00095",
+      "en_US": "Battle Arcade"
+    },
+    {
+      "id": "pl_msg_00000328_00096",
+      "en_US": "Battle Frontier"
+    },
+    {
+      "id": "pl_msg_00000328_00097",
+      "en_US": "Distortion World"
+    }
+  ]
+}

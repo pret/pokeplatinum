@@ -25,5 +25,14 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...I want a promotion so I can get some\n",
+				"tougher Pokémon...\n"
+			]
+		}
     ]
 }

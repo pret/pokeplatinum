@@ -52,5 +52,14 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Sheesh... I should have done the\n",
+				"fighting myself.\n"
+			]
+		}
     ]
 }

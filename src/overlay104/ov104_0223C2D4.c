@@ -135,7 +135,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_94, 0x90000);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C4CC));
+    v0 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C4CC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C4CC));
 
     v0->unk_08 = param0;
@@ -245,7 +245,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     MI_CpuFill16((void *)HW_BG_PLTT, 0x7fff, 0x200);
     MI_CpuFill16((void *)HW_OBJ_PLTT, 0x7fff, 0x200);

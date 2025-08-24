@@ -311,7 +311,7 @@ static void ov23_0224A5CC(SysTask *param0, void *param1)
 static void ov23_0224A620(int param0)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
-    UnkStruct_ov23_0224A5CC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224A5CC));
+    UnkStruct_ov23_0224A5CC *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_0224A5CC));
 
     v1->unk_00 = 0;
     v1->unk_04 = param0;
@@ -821,7 +821,7 @@ void ov23_0224AF4C(int param0)
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (v0->unk_28[param0] != NULL) {
-        if (sub_020714F0(v0->unk_28[param0])) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v0->unk_28[param0])) {
             sub_0207136C(v0->unk_28[param0]);
         } else {
             GF_ASSERT(0);

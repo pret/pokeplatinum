@@ -114,12 +114,12 @@ _01AF:
 
 _01CB:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0250
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001

@@ -37,5 +37,26 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let me see how well your Pokémon can\n",
+				"battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Brilliant!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Rather than navigating Victory Road,\n",
+				"I have a much better time putting\f",
+				"young Trainers like you to the test.\n"
+			]
+		}
     ]
 }

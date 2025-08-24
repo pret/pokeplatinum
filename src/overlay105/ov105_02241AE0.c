@@ -2747,7 +2747,7 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_30C = NULL;
     }
 
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     PaletteData_FreeBuffer(param0->unk_120, 2);
     PaletteData_FreeBuffer(param0->unk_120, 0);
@@ -2869,7 +2869,7 @@ static void ov105_022453F8(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
 
 static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
 {
-    param0->unk_140 = Heap_AllocFromHeap(HEAP_ID_93, sizeof(PokemonSummary));
+    param0->unk_140 = Heap_Alloc(HEAP_ID_93, sizeof(PokemonSummary));
     memset(param0->unk_140, 0, sizeof(PokemonSummary));
 
     param0->unk_140->monData = param0->unk_31C;

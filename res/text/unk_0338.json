@@ -1,0 +1,305 @@
+{
+  "key": 50539,
+  "messages": [
+    {
+      "id": "pl_msg_00000338_00000",
+      "en_US": "{STRVAR_1 50, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000338_00001",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "pl_msg_00000338_00002",
+      "en_US": "Count up"
+    },
+    {
+      "id": "pl_msg_00000338_00003",
+      "en_US": "Rec Contest"
+    },
+    {
+      "id": "pl_msg_00000338_00004",
+      "en_US": "Battle"
+    },
+    {
+      "id": "pl_msg_00000338_00005",
+      "en_US": "Others"
+    },
+    {
+      "id": "pl_msg_00000338_00006",
+      "en_US": "Max No. of Single win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00007",
+      "en_US": "Max No. of Double win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00008",
+      "en_US": "Max No. of Multi win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00009",
+      "en_US": "Max-CMulti straight wins"
+    },
+    {
+      "id": "pl_msg_00000338_00010",
+      "en_US": "Max No. of Wi-Fi win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00011",
+      "en_US": "No. of Single win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00012",
+      "en_US": "No. of Double win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00013",
+      "en_US": "No. of Multi win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00014",
+      "en_US": "CMulti straight wins"
+    },
+    {
+      "id": "pl_msg_00000338_00015",
+      "en_US": "No. of Wi-Fi win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00016",
+      "en_US": "No. of Challenge Single"
+    },
+    {
+      "id": "pl_msg_00000338_00017",
+      "en_US": "No. of Challenge Double"
+    },
+    {
+      "id": "pl_msg_00000338_00018",
+      "en_US": "No. of Challenge Multi"
+    },
+    {
+      "id": "pl_msg_00000338_00019",
+      "en_US": "Challenge CMulti"
+    },
+    {
+      "id": "pl_msg_00000338_00020",
+      "en_US": "No. of Challenge Wi-Fi"
+    },
+    {
+      "id": "pl_msg_00000338_00021",
+      "en_US": "No. of Battle Tower challenge"
+    },
+    {
+      "id": "pl_msg_00000338_00022",
+      "en_US": "No. of Battle Tower win streak"
+    },
+    {
+      "id": "pl_msg_00000338_00023",
+      "en_US": "Single-Stage"
+    },
+    {
+      "id": "pl_msg_00000338_00024",
+      "en_US": "Double-Stage"
+    },
+    {
+      "id": "pl_msg_00000338_00025",
+      "en_US": "Multi-Stage"
+    },
+    {
+      "id": "pl_msg_00000338_00026",
+      "en_US": "CMulti-Stage"
+    },
+    {
+      "id": "pl_msg_00000338_00027",
+      "en_US": "Wifi-Stage"
+    },
+    {
+      "id": "pl_msg_00000338_00028",
+      "en_US": "WiFi Ranking"
+    },
+    {
+      "id": "pl_msg_00000338_00029",
+      "en_US": "arrive-cload"
+    },
+    {
+      "id": "pl_msg_00000338_00030",
+      "en_US": "arrive-c10"
+    },
+    {
+      "id": "pl_msg_00000338_00031",
+      "en_US": "Cheryl"
+    },
+    {
+      "id": "pl_msg_00000338_00032",
+      "en_US": "Mira"
+    },
+    {
+      "id": "pl_msg_00000338_00033",
+      "en_US": "Riley"
+    },
+    {
+      "id": "pl_msg_00000338_00034",
+      "en_US": "Marley"
+    },
+    {
+      "id": "pl_msg_00000338_00035",
+      "en_US": "Buck"
+    },
+    {
+      "id": "pl_msg_00000338_00036",
+      "en_US": "Sum of money spent"
+    },
+    {
+      "id": "pl_msg_00000338_00037",
+      "en_US": "Slot jackpot"
+    },
+    {
+      "id": "pl_msg_00000338_00038",
+      "en_US": "Steps"
+    },
+    {
+      "id": "pl_msg_00000338_00039",
+      "en_US": "Entry"
+    },
+    {
+      "id": "pl_msg_00000338_00040",
+      "en_US": "Entry Wireless communication"
+    },
+    {
+      "id": "pl_msg_00000338_00041",
+      "en_US": "Wins"
+    },
+    {
+      "id": "pl_msg_00000338_00042",
+      "en_US": "No. of Wireless contest wins"
+    },
+    {
+      "id": "pl_msg_00000338_00043",
+      "en_US": "Get Ribbon"
+    },
+    {
+      "id": "pl_msg_00000338_00044",
+      "en_US": "No. of Selfdestruct used"
+    },
+    {
+      "id": "pl_msg_00000338_00045",
+      "en_US": "No. of Explosion used"
+    },
+    {
+      "id": "pl_msg_00000338_00046",
+      "en_US": "No. of useless move used"
+    },
+    {
+      "id": "pl_msg_00000338_00047",
+      "en_US": "No. of Friend Pokémon fainted"
+    },
+    {
+      "id": "pl_msg_00000338_00048",
+      "en_US": "No. of Friend Pokémon damaged"
+    },
+    {
+      "id": "pl_msg_00000338_00049",
+      "en_US": "No. of times failed to run"
+    },
+    {
+      "id": "pl_msg_00000338_00050",
+      "en_US": "No. of foe Pokémon ran"
+    },
+    {
+      "id": "pl_msg_00000338_00051",
+      "en_US": "No. of Pokémon captured"
+    },
+    {
+      "id": "pl_msg_00000338_00052",
+      "en_US": "No. of Wireless Trade"
+    },
+    {
+      "id": "pl_msg_00000338_00053",
+      "en_US": "No. of Wireless Wins"
+    },
+    {
+      "id": "pl_msg_00000338_00054",
+      "en_US": "No. of Wireless Losses"
+    },
+    {
+      "id": "pl_msg_00000338_00055",
+      "en_US": "No. of Wireless Draws"
+    },
+    {
+      "id": "pl_msg_00000338_00056",
+      "en_US": "No. of WiFi Trade"
+    },
+    {
+      "id": "pl_msg_00000338_00057",
+      "en_US": "No. of WiFi Wins"
+    },
+    {
+      "id": "pl_msg_00000338_00058",
+      "en_US": "No. of Wi-Fi Losses"
+    },
+    {
+      "id": "pl_msg_00000338_00059",
+      "en_US": "No. of Wi-Fi Draws"
+    },
+    {
+      "id": "pl_msg_00000338_00060",
+      "en_US": "No. of Pokémon fainted"
+    },
+    {
+      "id": "pl_msg_00000338_00061",
+      "en_US": "No. of Hall of Fame"
+    },
+    {
+      "id": "pl_msg_00000338_00062",
+      "en_US": "No. of Fishing screw-up"
+    },
+    {
+      "id": "pl_msg_00000338_00063",
+      "en_US": "No. of successful Fishing"
+    },
+    {
+      "id": "pl_msg_00000338_00064",
+      "en_US": "No. of Berries planted"
+    },
+    {
+      "id": "pl_msg_00000338_00065",
+      "en_US": "No. of Pokémon encounter"
+    },
+    {
+      "id": "pl_msg_00000338_00066",
+      "en_US": "No. of Trainer battles"
+    },
+    {
+      "id": "pl_msg_00000338_00067",
+      "en_US": "No. of Hatched Egg"
+    },
+    {
+      "id": "pl_msg_00000338_00068",
+      "en_US": "No. of Pokémon taken to Day Care"
+    },
+    {
+      "id": "pl_msg_00000338_00069",
+      "en_US": "No. of Pokémon evolution"
+    },
+    {
+      "id": "pl_msg_00000338_00070",
+      "en_US": "No. of Jump used"
+    },
+    {
+      "id": "pl_msg_00000338_00071",
+      "en_US": "No. of battles done at Battleground"
+    },
+    {
+      "id": "pl_msg_00000338_00072",
+      "en_US": "Trainer ID"
+    },
+    {
+      "id": "pl_msg_00000338_00073",
+      "en_US": "Default Name ID"
+    },
+    {
+      "id": "pl_msg_00000338_00074",
+      "en_US": "Language Code"
+    }
+  ]
+}

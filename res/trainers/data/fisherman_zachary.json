@@ -34,5 +34,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I fished up some tough Pokémon!\n",
+				"Let’s have ourselves a battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Losing to a kid has me gasping like\n",
+				"a MAGIKARP...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"My feet are tangled, too!\n",
+				"Ouch! Ouch!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m going to win this time!\n",
+				"I said I’ll win, and I mean it!\r"
+			]
+		}
     ]
 }

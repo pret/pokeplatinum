@@ -27,5 +27,37 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"My dragon Pokémon chose to become\n",
+				"powerful here. They sure like it!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your battle style...\n",
+				"So savage...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It’s been several years since I left\n",
+				"the Dragon’s Den.\r",
+				"I’ve got to say, your Pokémon are\n",
+				"in the top class for toughness."
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"My dragon Pokémon chose to remain\n",
+				"here to become powerful.\r"
+			]
+		}
     ]
 }

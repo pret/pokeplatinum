@@ -48,5 +48,32 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Really? So you think you can beat me?\n",
+				"I’m an Ace Trainer, you do realize?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I admit defeat...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Beaten in battle, but not in spirit.\n",
+				"That’s the mark of a real Ace Trainer.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Ace Trainers always work to improve\n",
+				"their natural-born talents.\r"
+			]
+		}
     ]
 }

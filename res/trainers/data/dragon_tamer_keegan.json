@@ -27,5 +27,40 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Dragon Pokémon are sacred beings...\n",
+				"That’s what my master taught me.\r",
+				"And now I’ll prove it to you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Not good enough!\n",
+				"We’re still not strong enough!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It’s not good enough for a Pokémon\n",
+				"to just be tough.\r",
+				"It’s not good enough for a Trainer\n",
+				"to just work hard.\r",
+				"Both have to grow together!"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"This time we’ll get it right!\r",
+				"Marvel at the exquisite combination of\n",
+				"my Pokémon and myself!\r"
+			]
+		}
     ]
 }

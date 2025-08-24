@@ -1,0 +1,37 @@
+{
+  "key": 2094,
+  "messages": [
+    {
+      "id": "pl_msg_00000378_00000",
+      "en_US": "Oreburgh Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00001",
+      "en_US": "Eterna Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00002",
+      "en_US": "Pastoria Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00003",
+      "en_US": "Veilstone Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00004",
+      "en_US": "Hearthome Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00005",
+      "en_US": "Snowpoint Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00006",
+      "en_US": "Canalave Gym"
+    },
+    {
+      "id": "pl_msg_00000378_00007",
+      "en_US": "Sunyshore Gym"
+    }
+  ]
+}

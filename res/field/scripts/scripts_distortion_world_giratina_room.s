@@ -44,18 +44,18 @@ _0061:
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar VAR_UNK_0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
 _009E:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -70,12 +70,12 @@ _00C4:
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_UNK_0x008E
     CheckWonBattle VAR_RESULT
-    ScrCmd_314 VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0204
-    GoToIfEq VAR_RESULT, 3, _0204
-    GoToIfEq VAR_RESULT, 5, _014E
-    GoToIfEq VAR_RESULT, 6, _014E
-    GoToIfEq VAR_RESULT, 4, _016E
+    GetBattleResult VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, _0204
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_DRAW, _0204
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_PLAYER_FLED, _014E
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_ENEMY_FLED, _014E
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_CAPTURED_MON, _016E
     ScrCmd_311 130
     ScrCmd_311 129
     ApplyMovement 129, _0250

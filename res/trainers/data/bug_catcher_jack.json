@@ -48,5 +48,28 @@
             "power": 20,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What’s cool, you might ask? No?\n",
+				"I’ll tell you anyway: bug Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Don’t ignore bug Pokémon!\n",
+				"That really bugs me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It would seem that coolness alone\n",
+				"doesn’t add up to any wins...\n"
+			]
+		}
     ]
 }

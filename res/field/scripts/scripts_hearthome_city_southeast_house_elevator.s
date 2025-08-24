@@ -17,20 +17,20 @@ _0006:
 _0038:
     SetVar VAR_0x8004, 0
     Call _009C
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F, 0, 18, 3, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
 _006A:
     SetVar VAR_0x8004, 1
     Call _009C
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F, 0, 18, 3, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

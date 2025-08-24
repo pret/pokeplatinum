@@ -36,7 +36,7 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/battle_anim_system.h"
+#include "battle_anim/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -1124,8 +1124,8 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     int v1, v2, v3, v4, v5, v6;
     u8 *v7;
 
-    battleSystem->unk_21C = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x10000);
-    battleSystem->unk_220 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x200);
+    battleSystem->unk_21C = Heap_Alloc(HEAP_ID_BATTLE, 0x10000);
+    battleSystem->unk_220 = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
 
     MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), battleSystem->unk_21C, 0x10000);
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->paletteSys, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);

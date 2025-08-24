@@ -137,7 +137,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     SpeciesPalPark speciesData;
     u16 species;
     MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
 
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         catchingShow->caughtMonsOrder[i] = 0;
@@ -275,9 +275,9 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 
 static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD3);
     MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, FieldSystem_GetParkBallCount(fieldSystem));
+    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELD2, FieldSystem_GetParkBallCount(fieldSystem));
 
     FieldBattleDTO_Init(dto, fieldSystem);
     MigratedPokemon_ToPokemon(transferData, catchingShow->currentEncounterIndex, mon);

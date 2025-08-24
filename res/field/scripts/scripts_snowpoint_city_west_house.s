@@ -36,12 +36,12 @@ _0033:
 
 _0060:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2A5
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _00D1
     StartNpcTrade NPC_TRADE_GASPAR_HAUNTER

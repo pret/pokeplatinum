@@ -16,5 +16,32 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’re too young to understand the\n",
+				"changing times!\r",
+				"Stand aside and let Team Galactic\n",
+				"shape the future!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I failed to read the flow of battle, and\n",
+				"your power was unfathomable...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Come on, I said something cool before\n",
+				"the battle.\r",
+				"You need to read the dramatic situation\n",
+				"better here!\n"
+			]
+		}
     ]
 }

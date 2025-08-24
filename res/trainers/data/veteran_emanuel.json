@@ -35,5 +35,11 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Tough, aren’t you...?\n"
+		}
     ]
 }

@@ -35,5 +35,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Every good Hiker gets a boost of\n",
+				"energy when surrounded by boulders!\r",
+				"Wrooooar! Coming at you!\n",
+				"Let me blow off some steam!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Whew... Crazy, delicious sugar!\n",
+				"I think I’ve calmed down now...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If it’s called a mountain, you can\n",
+				"be sure I’ll be climbing it.\r",
+				"Even if it’s a mountain of food, I’ll\n",
+				"still be stickin’ my flag on top!\n"
+			]
+		}
     ]
 }

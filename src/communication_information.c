@@ -73,7 +73,7 @@ void CommInfo_Init(SaveData *saveData, const BattleRegulation *regulation)
         return;
     }
 
-    sCommInfo = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommunicationInformation));
+    sCommInfo = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationInformation));
     MI_CpuClear8(sCommInfo, sizeof(CommunicationInformation));
 
     for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
@@ -135,7 +135,7 @@ void CommInfo_SendBattleRegulation(void)
     MI_CpuCopy8(v2, sCommInfo->playerInfo[netId].unk_4C, sizeof(sCommInfo->playerInfo[netId].unk_4C));
 
     sCommInfo->playerInfo[netId].country = WiFiHistory_GetCountry(wiFiHistory);
-    sCommInfo->playerInfo[netId].region = sub_0202C8C4(wiFiHistory);
+    sCommInfo->playerInfo[netId].region = WiFiHistory_GetRegion(wiFiHistory);
     sCommInfo->playerInfo[netId].unk_65 = sub_02028810(sCommInfo->saveData);
     sCommInfo->playerInfo[netId].unk_65 = 1 - sCommInfo->playerInfo[netId].unk_65;
 

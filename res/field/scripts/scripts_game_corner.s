@@ -81,12 +81,12 @@ GameCorner_SlotMachine:
     LockAll
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GameCorner_SlotMachine_NoCoinCase
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
     ScrCmd_267 LOCALID_SLOT_MACHINE_ID
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

@@ -4,8 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay094/ov94_0223BCB0.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
+#include "overlay094/application.h"
+#include "overlay094/gts_application_state.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -16,18 +16,18 @@
 #include "unk_0200679C.h"
 #include "unk_0205C980.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    UnkStruct_ov94_0223FD4C *unk_0C;
-} UnkStruct_ov94_02243FF0;
+typedef struct AvatarAnimationData {
+    int state;
+    int y;
+    int gender;
+    GTSApplicationState *unk_0C;
+} AvatarAnimationData;
 
 static void ov94_0224400C(SysTask *param0, void *param1);
 static void ov94_022440FC(SysTask *param0, void *param1);
 static void ov94_022441A0(Sprite *param0, int param1, int param2);
-static void ov94_02243FF0(UnkStruct_ov94_02243FF0 *param0, int param1);
-static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_02243FF0(AvatarAnimationData *param0, int param1);
+static void ov94_0224432C(GTSApplicationState *param0);
 static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3, int param4);
 static int ov94_022442DC(int param0);
 
@@ -41,114 +41,114 @@ static const u16 Unk_ov94_02246322[][2] = {
     { 0xD0, 0x66 }
 };
 
-void ov94_02243EF8(UnkStruct_ov94_0223FD4C *param0, int param1)
+void ov94_02243EF8(GTSApplicationState *param0, int param1)
 {
     AffineSpriteListTemplate v0;
     int v1;
 
     ov94_0224432C(param0);
-    ov94_0223C300(&v0, param0, &param0->unk_DD8, NNS_G2D_VRAM_TYPE_2DSUB);
+    GTSApplication_InitAffineTemplate(&v0, param0, &param0->avatarSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DSUB);
 
     v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v0.position.x = FX32_ONE * 128;
     v0.position.y = FX32_ONE * 130 + (256 * FX32_ONE);
 
-    param0->unk_F34[0] = SpriteList_AddAffine(&v0);
+    param0->avatarSprites[0] = SpriteList_AddAffine(&v0);
 
-    Sprite_SetAnimateFlag(param0->unk_F34[0], 1);
-    Sprite_SetAnim(param0->unk_F34[0], 3 + param1 * 7);
-    Sprite_SetDrawFlag(param0->unk_F34[0], TRUE);
+    Sprite_SetAnimateFlag(param0->avatarSprites[0], 1);
+    Sprite_SetAnim(param0->avatarSprites[0], 3 + param1 * 7);
+    Sprite_SetDrawFlag(param0->avatarSprites[0], TRUE);
 
     for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_F34[v1 + 1] = SpriteList_AddAffine(&v0);
+        param0->avatarSprites[v1 + 1] = SpriteList_AddAffine(&v0);
 
-        Sprite_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
-        Sprite_SetAnim(param0->unk_F34[v1 + 1], 14 + v1 * 4);
-        Sprite_SetDrawFlag(param0->unk_F34[v1 + 1], FALSE);
+        Sprite_SetAnimateFlag(param0->avatarSprites[v1 + 1], 1);
+        Sprite_SetAnim(param0->avatarSprites[v1 + 1], 14 + v1 * 4);
+        Sprite_SetDrawFlag(param0->avatarSprites[v1 + 1], FALSE);
 
-        ov94_022441A0(param0->unk_F34[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
+        ov94_022441A0(param0->avatarSprites[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
     }
 }
 
-void ov94_02243FA8(UnkStruct_ov94_0223FD4C *param0, int param1)
+void ov94_02243FA8(GTSApplicationState *appState, int gender)
 {
-    ov94_02243EF8(param0, param1);
+    ov94_02243EF8(appState, gender);
 
     {
-        UnkStruct_ov94_02243FF0 *v0;
+        AvatarAnimationData *v0;
 
-        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_0224400C, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        appState->playerAvatarAnimationTask = SysTask_StartAndAllocateParam(ov94_0224400C, sizeof(AvatarAnimationData), 5, HEAP_ID_62);
 
-        v0 = SysTask_GetParam(param0->unk_10EC);
-        v0->unk_00 = 0;
-        v0->unk_04 = -40;
-        v0->unk_08 = param1;
-        v0->unk_0C = param0;
+        v0 = SysTask_GetParam(appState->playerAvatarAnimationTask);
+        v0->state = 0;
+        v0->y = -40;
+        v0->gender = gender;
+        v0->unk_0C = appState;
 
         ov94_02243FF0(v0, 0);
         Sound_PlayEffect(SEQ_SE_DP_PYUU);
     }
 }
 
-static void ov94_02243FF0(UnkStruct_ov94_02243FF0 *param0, int param1)
+static void ov94_02243FF0(AvatarAnimationData *param0, int param1)
 {
-    Sprite_SetAnim(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
+    Sprite_SetAnim(param0->unk_0C->avatarSprites[0], param1 + param0->gender * 7);
 }
 
 static void ov94_0224400C(SysTask *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov94_02243FF0 *v1 = (UnkStruct_ov94_02243FF0 *)param1;
-    UnkStruct_ov94_0223FD4C *v2 = v1->unk_0C;
+    AvatarAnimationData *v1 = (AvatarAnimationData *)param1;
+    GTSApplicationState *v2 = v1->unk_0C;
 
-    switch (v1->unk_00) {
+    switch (v1->state) {
     case 0:
-        if (v1->unk_04 > 160) {
-            v1->unk_04 = 160;
-            v1->unk_00 = 1;
+        if (v1->y > 160) {
+            v1->y = 160;
+            v1->state = 1;
 
             ov94_02243FF0(v1, 1);
         }
 
-        v1->unk_04 += 5;
-        ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
+        v1->y += 5;
+        ov94_022441A0(v2->avatarSprites[0], 128, v1->y); // set sprite position
         break;
     case 1:
-        if (!Sprite_IsAnimated(v2->unk_F34[0])) {
+        if (!Sprite_IsAnimated(v2->avatarSprites[0])) {
             ov94_02243FF0(v1, 2);
-            v1->unk_00 = 2;
+            v1->state = 2;
         }
         break;
     case 2:
-        if (v1->unk_04 < 130) {
-            v1->unk_04 = 130;
-            v1->unk_00 = 3;
+        if (v1->y < 130) {
+            v1->y = 130;
+            v1->state = 3;
 
             ov94_02243FF0(v1, 3);
         }
 
-        v1->unk_04 -= 2;
-        ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
+        v1->y -= 2;
+        ov94_022441A0(v2->avatarSprites[0], 128, v1->y);
         break;
     case 3:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        v1->unk_0C->unk_10F0 = 1;
+        v1->unk_0C->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(param0);
         break;
     }
 }
 
-void ov94_022440B8(UnkStruct_ov94_0223FD4C *param0, int param1)
+void ov94_022440B8(GTSApplicationState *param0, int gender)
 {
     {
-        UnkStruct_ov94_02243FF0 *v0;
+        AvatarAnimationData *v0;
 
-        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_022440FC, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        param0->playerAvatarAnimationTask = SysTask_StartAndAllocateParam(ov94_022440FC, sizeof(AvatarAnimationData), 5, 62);
 
-        v0 = SysTask_GetParam(param0->unk_10EC);
-        v0->unk_00 = 0;
-        v0->unk_04 = 130;
-        v0->unk_08 = param1;
+        v0 = SysTask_GetParam(param0->playerAvatarAnimationTask);
+        v0->state = 0;
+        v0->y = 130;
+        v0->gender = gender;
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 5);
@@ -159,40 +159,40 @@ void ov94_022440B8(UnkStruct_ov94_0223FD4C *param0, int param1)
 static void ov94_022440FC(SysTask *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov94_02243FF0 *v1 = (UnkStruct_ov94_02243FF0 *)param1;
-    UnkStruct_ov94_0223FD4C *v2 = v1->unk_0C;
+    AvatarAnimationData *v1 = (AvatarAnimationData *)param1;
+    GTSApplicationState *v2 = v1->unk_0C;
 
-    switch (v1->unk_00) {
+    switch (v1->state) {
     case 0:
-        if (v1->unk_04 > 160) {
-            v1->unk_04 = 160;
-            v1->unk_00 = 1;
+        if (v1->y > 160) {
+            v1->y = 160;
+            v1->state = 1;
 
             ov94_02243FF0(v1, 6);
         }
 
-        v1->unk_04 += 2;
-        ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
+        v1->y += 2;
+        ov94_022441A0(v2->avatarSprites[0], 128, v1->y);
         break;
     case 1:
-        if (!Sprite_IsAnimated(v2->unk_F34[0])) {
+        if (!Sprite_IsAnimated(v2->avatarSprites[0])) {
             ov94_02243FF0(v1, 0);
-            v1->unk_00 = 2;
+            v1->state = 2;
             Sound_PlayEffect(SEQ_SE_DP_PYUU2);
         }
         break;
     case 2:
-        if (v1->unk_04 < -20) {
-            v1->unk_00 = 3;
+        if (v1->y < -20) {
+            v1->state = 3;
 
             ov94_02243FF0(v1, 3);
         }
 
-        v1->unk_04 -= 5;
-        ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
+        v1->y -= 5;
+        ov94_022441A0(v2->avatarSprites[0], 128, v1->y);
         break;
     case 3:
-        v1->unk_0C->unk_10F0 = 1;
+        v1->unk_0C->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(param0);
         break;
     }
@@ -233,7 +233,7 @@ int ov94_02244214(int param0)
     return -1;
 }
 
-void ov94_02244234(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
+void ov94_02244234(GTSApplicationState *param0, int param1, int param2)
 {
     int v0;
 
@@ -243,20 +243,20 @@ void ov94_02244234(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (v0 < param1) {
-            int v1 = param0->unk_250[v0].unk_120;
-            int v2 = param0->unk_250[v0].unk_F6;
+            int v1 = param0->searchResults[v0].unk_120;
+            int v2 = param0->searchResults[v0].unk_F6;
 
             ov94_02244378(param0->unk_10F8, param0->unk_1100, v0, v1, v2);
 
             if (param2) {
-                Sprite_SetAnim(param0->unk_F34[v0 + 1], 14 + v0 * 4);
+                Sprite_SetAnim(param0->avatarSprites[v0 + 1], 14 + v0 * 4);
             } else {
-                Sprite_SetAnim(param0->unk_F34[v0 + 1], 17 + v0 * 4);
+                Sprite_SetAnim(param0->avatarSprites[v0 + 1], 17 + v0 * 4);
             }
 
-            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], TRUE);
+            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], FALSE);
+            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], FALSE);
         }
     }
 }
@@ -266,20 +266,20 @@ static int ov94_022442DC(int param0)
     return 14 + param0 * 4;
 }
 
-void ov94_022442E4(UnkStruct_ov94_0223FD4C *param0)
+void ov94_022442E4(GTSApplicationState *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        if (Sprite_GetDrawFlag(param0->unk_F34[v0 + 1])) {
-            if (Sprite_GetActiveAnim(param0->unk_F34[v0 + 1]) != ov94_022442DC(v0) + 1) {
-                Sprite_SetAnim(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
+        if (Sprite_GetDrawFlag(param0->avatarSprites[v0 + 1])) {
+            if (Sprite_GetActiveAnim(param0->avatarSprites[v0 + 1]) != ov94_022442DC(v0) + 1) {
+                Sprite_SetAnim(param0->avatarSprites[v0 + 1], ov94_022442DC(v0) + 1);
             }
         }
     }
 }
 
-static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0224432C(GTSApplicationState *param0)
 {
     param0->unk_10FC = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__RECORD, 7, &(param0->unk_1100), HEAP_ID_62);
     param0->unk_10F4 = Graphics_GetCharData(NARC_INDEX_GRAPHIC__RECORD, 9, 1, &(param0->unk_10F8), HEAP_ID_62);
@@ -310,9 +310,9 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
     GXS_LoadOBJPltt(&v2[v0 * 32], (param2 + 2) * 32, 32);
 }
 
-void ov94_022443B8(UnkStruct_ov94_0223FD4C *param0)
+void ov94_022443B8(GTSApplicationState *param0)
 {
-    if (param0->unk_10F0) {
+    if (param0->hasAvatarFinishedMoving) {
         Heap_Free(param0->unk_10FC);
         Heap_Free(param0->unk_10F4);
     }

@@ -1,0 +1,30 @@
+{
+  "key": 51728,
+  "messages": [
+    {
+      "id": "pl_msg_00000086_00000",
+      "en_US": [
+        "The more Gym Badges you have, the\n",
+        "better they treat you at Poké Marts.\r",
+        "You get to buy a better selection of\n",
+        "merchandise, you see.\r",
+        "But I don’t have a single Gym Badge.\n",
+        "It’s because Gardenia’s too much!\r",
+        "Argh! I don’t want to see another\n",
+        "grass Pokémon ever again!\r",
+        "If only I had Flying-type Pokémon...\n",
+        "Then my losing streak would end!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000086_00001",
+      "en_US": [
+        "An Escape Rope is indispensable!\r",
+        "I wish I’d had one when I got into a \n",
+        "tough spot in the Eterna Forest.\r",
+        "I would’ve been able to warp to the\n",
+        "entrance instantly!"
+      ]
+    }
+  ]
+}

@@ -36,5 +36,25 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Dragons and a fiery mountain...\n",
+				"It’s a totally classic setup!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Losing isn’t a happy occasion...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"My Pokémon seem to like it here\n",
+				"a lot.\n"
+			]
+		}
     ]
 }

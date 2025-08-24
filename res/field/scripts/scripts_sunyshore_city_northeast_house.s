@@ -114,11 +114,11 @@ _019E:
     Message 20
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -132,11 +132,11 @@ _01F2:
     Message 2
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -150,11 +150,11 @@ _0246:
     Message 10
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -168,11 +168,11 @@ _029A:
     Message 12
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -186,11 +186,11 @@ _02EE:
     Message 14
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -204,11 +204,11 @@ _0342:
     Message 16
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
@@ -222,11 +222,11 @@ _0396:
     Message 18
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000

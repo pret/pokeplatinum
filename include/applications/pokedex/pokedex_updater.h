@@ -18,7 +18,7 @@ typedef struct PokedexUpdater {
     PokedexDataFunction dataFunc[3];
     PokedexGraphicsManager graphicsMan;
     PokedexGraphicsFunction graphicsFunc[3];
-    enum HeapId heapID;
+    enum HeapID heapID;
 } PokedexUpdater;
 
 typedef struct PokedexUpdaterTemplate {
@@ -28,7 +28,7 @@ typedef struct PokedexUpdaterTemplate {
     const PokedexGraphicsFunction *graphicsFunc;
 } PokedexUpdaterTemplate;
 
-PokedexUpdater *PokedexUpdater_New(enum HeapId heapID);
+PokedexUpdater *PokedexUpdater_New(enum HeapID heapID);
 void PokedexUpdater_PopulateUpdater(PokedexUpdater *pokedexUpdater, const PokedexUpdaterTemplate *pokedexUpdaterTemplate);
 BOOL PokedexUpdater_UpdateData(PokedexUpdater *pokedexUpdater);
 BOOL PokedexUpdater_UpdateGraphics(PokedexUpdater *pokedexUpdater);

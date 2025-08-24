@@ -43,7 +43,7 @@ _0078:
     End
 
 _0085:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ReleaseAll
@@ -54,7 +54,7 @@ _0097:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 
@@ -157,7 +157,7 @@ _0259:
     End
 
 _0263:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ReleaseAll
     ScrCmd_1D7 1

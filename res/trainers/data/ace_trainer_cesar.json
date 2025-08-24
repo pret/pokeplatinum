@@ -23,5 +23,32 @@
             "power": 60,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"An ace has the knowledge and\n",
+				"experience of battling at high levels.\r",
+				"I’ll demonstrate what that means to\n",
+				"a noob like you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wow...\n",
+				"I’m in the mood to sing a lullaby...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Your earnest enthusiasm...\n",
+				"I guess that kinda makes you an ace.\r",
+				"Maybe you’re a Trainer who has the\n",
+				"potential to surpass aces!\n"
+			]
+		}
     ]
 }

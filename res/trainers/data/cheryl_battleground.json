@@ -82,5 +82,18 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": "I can’t keep up with healing...\n"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Striking the right balance of offense\n",
+				"and defense... It’s not easy to do.\n"
+			]
+		}
     ]
 }

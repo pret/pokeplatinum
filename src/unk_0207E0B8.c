@@ -309,7 +309,7 @@ static int PokemonParty_Init(ApplicationManager *appMan, int *param1)
     }
 
     SetVBlankCallback(sub_0207E898, v0);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
     NARC_dtor(v1);
 
     return 1;
@@ -432,7 +432,7 @@ static int PokemonParty_Main(ApplicationManager *appMan, int *param1)
         }
         break;
     case 32:
-        sub_0208C120(1, HEAP_ID_12);
+        App_StartScreenFade(TRUE, HEAP_ID_12);
         *param1 = 33;
         break;
     case 33:
@@ -1670,7 +1670,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     u8 v1;
 
     Window_EraseMessageBox(&param0->unk_04[32], 1);
-    v0 = Heap_AllocFromHeap(HEAP_ID_12, 8);
+    v0 = Heap_Alloc(HEAP_ID_12, 8);
 
     switch (param0->partyManagementData->unk_20) {
     case 0:

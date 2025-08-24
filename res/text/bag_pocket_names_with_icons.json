@@ -1,0 +1,37 @@
+{
+  "key": 18866,
+  "messages": [
+    {
+      "id": "pl_msg_00000396_00000",
+      "en_US": "{COLOR 2}♈{COLOR 0}ITEMS"
+    },
+    {
+      "id": "pl_msg_00000396_00001",
+      "en_US": "{COLOR 2}♌{COLOR 0}MEDICINE"
+    },
+    {
+      "id": "pl_msg_00000396_00002",
+      "en_US": "{COLOR 2}♎{COLOR 0}POKé BALLS"
+    },
+    {
+      "id": "pl_msg_00000396_00003",
+      "en_US": "{COLOR 2}♊{COLOR 0}TMs & HMs"
+    },
+    {
+      "id": "pl_msg_00000396_00004",
+      "en_US": "{COLOR 2}♍{COLOR 0}BERRIES"
+    },
+    {
+      "id": "pl_msg_00000396_00005",
+      "en_US": "{COLOR 2}♋{COLOR 0}MAIL"
+    },
+    {
+      "id": "pl_msg_00000396_00006",
+      "en_US": "{COLOR 2}♏{COLOR 0}BATTLE ITEMS"
+    },
+    {
+      "id": "pl_msg_00000396_00007",
+      "en_US": "{COLOR 2}♉{COLOR 0}KEY ITEMS"
+    }
+  ]
+}

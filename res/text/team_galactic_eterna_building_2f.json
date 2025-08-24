@@ -1,0 +1,28 @@
+{
+  "key": 5143,
+  "messages": [
+    {
+      "id": "pl_msg_00000093_00000",
+      "en_US": [
+        "Team Galactic is working hard to find\n",
+        "new energy sources for the future!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000093_00001",
+      "en_US": [
+        "We are conducting research on new\n",
+        "forms of energy!\r",
+        "We want to harness the mysterious\n",
+        "power of Pokémon and use it as energy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000093_00002",
+      "en_US": [
+        "Let us make progress together!\n",
+        "             Team Galactic"
+      ]
+    }
+  ]
+}

@@ -15,6 +15,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -40,7 +41,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 #include "unk_02033200.h"
 #include "versions.h"
 #include "vram_transfer.h"
@@ -74,7 +74,7 @@ static void TransferGraphicsOnVBlank(void *unused);
 
 static MainMenuUtilManager sMainMenuUtilManager;
 
-void MainMenuUtil_Init(enum HeapId heapID)
+void MainMenuUtil_Init(enum HeapID heapID)
 {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
@@ -84,7 +84,7 @@ void MainMenuUtil_Init(enum HeapId heapID)
     utilMan->heapID = heapID;
 }
 
-void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId heapID, int appDataSize, enum HeapSize heapSize)
+void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapID heapID, int appDataSize, enum HeapSize heapSize)
 {
     void *newAppData;
 
@@ -576,7 +576,7 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     BuildPokemonSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
 
     u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-    sub_020136A4(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, 0, 2, species);
+    CharacterSprite_LoadPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);
 
     DC_FlushRange(buffer, MON_SPRITE_FRAME_MAX_SIZE_BYTES);
 
@@ -711,10 +711,10 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     Sprite_SetDrawFlag(utilMan->mysteryGiftSprite, FALSE);
 }
 
-void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
+void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID)
 {
 
-    MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
+    MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
@@ -732,7 +732,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
         magic = key[i];
     }
 
-    CRYPTORC4Context *cryptoCtx = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
+    CRYPTORC4Context *cryptoCtx = Heap_Alloc(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);
@@ -740,9 +740,9 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
     Heap_Free(cryptoCtx);
 }
 
-void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
+void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID)
 {
-    MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
+    MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
@@ -761,7 +761,7 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
         magic = key[i];
     }
 
-    CRYPTORC4Context *cryptoCtx = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
+    CRYPTORC4Context *cryptoCtx = Heap_Alloc(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);

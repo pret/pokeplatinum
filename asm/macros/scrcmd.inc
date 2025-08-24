@@ -2,6 +2,7 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
+#include "generated/fade_types.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
@@ -24,12 +25,16 @@
 #include "generated/signpost_types.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/boat_cutscene.h"
+#include "constants/colors.h"
+#include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/battle.h"
 
 #include "macros/movement.inc"
 
@@ -1075,10 +1080,10 @@
     .short 177
     .endm
 
-    .macro ScrCmd_0B2 arg0, arg1
+    .macro TryStartGTSApp connectToWiFi, destVar
     .short 178
-    .short \arg0
-    .short \arg1
+    .short \connectToWiFi
+    .short \destVar
     .endm
 
     .macro ScrCmd_0B3 arg0
@@ -1094,26 +1099,26 @@
     .short 181
     .endm
 
-    .macro ScrCmd_0B6 arg0
+    .macro ScrCmd_0B6 approachNum
     .short 182
-    .short \arg0
+    .short \approachNum
     .endm
 
-    .macro ScrCmd_0B7 arg0, arg1
+    .macro CheckIsApproachingTrainerTaskDone approachNum, destVar
     .short 183
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 arg0
+    .macro ScrCmd_0B8 destVar
     .short 184
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B9 arg0, arg1
+    .macro GetApproachingTrainerID approachNum, destVar
     .short 185
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_0BA arg0
@@ -1133,6 +1138,14 @@
     .short \frames
     .short \type
     .short \color
+    .endm
+
+    .macro FadeScreenOut frames = FADE_SCREEN_SPEED_FAST, color = COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, \frames, FADE_TYPE_BRIGHTNESS_OUT, \color
+    .endm
+
+    .macro FadeScreenIn frames = FADE_SCREEN_SPEED_FAST, color = COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, \frames, FADE_TYPE_BRIGHTNESS_IN, \color
     .endm
 
     .macro WaitFadeScreen
@@ -1163,11 +1176,11 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_0C2 arg0, arg1, arg2
+    .macro UseFly mapID, x, z
     .short 194
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \mapID
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_0C3
@@ -1414,13 +1427,13 @@
     .short 239
     .endm
 
-    .macro ScrCmd_0F0
+    .macro SetTargetTrainerDefeated
     .short 240
     .endm
 
-    .macro ScrCmd_0F1 arg0
+    .macro GoToIfTargetTrainerDefeated offset
     .short 241
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
     .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
@@ -3143,10 +3156,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_233 arg0, arg1
+    .macro GetPartyMonEVTotal destVar, partySlot
     .short 563
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro GetDayOfWeek destVarID
@@ -3215,13 +3228,29 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_23D arg0, arg1, arg2, arg3, arg4
+    .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
     .short 573
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .byte \travelDir
+    .byte \exitDir
+    .short \mapID
+    .short \x
+    .short \z
+    .endm
+
+    .macro TakeShipFromCanalave exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_NORTH_TO_SOUTH, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipFromSnowpoint exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_WEST_TO_EAST, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipToCanalave
+    PlayBoatCutscene BOAT_TRAVEL_DIR_SOUTH_TO_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 750
+    .endm
+
+    .macro TakeShipToSnowpoint
+    PlayBoatCutscene BOAT_TRAVEL_DIR_EAST_TO_WEST, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 356, 246
     .endm
 
     /* See the convenience macro below for the uses of destVar1 & destVar2 */
@@ -3964,9 +3993,9 @@
     .byte \arg1
     .endm
 
-    .macro ScrCmd_2B7 arg0
+    .macro CheckPartyHasBadEgg destVar
     .short 695
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2B8 arg0
@@ -4012,11 +4041,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2C1
+    .macro OpenSaveInfo
     .short 705
     .endm
 
-    .macro ScrCmd_2C2
+    .macro CloseSaveInfo
     .short 706
     .endm
 
@@ -4124,13 +4153,13 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D6
+    .macro SaveExtraData
     .short 726
     .endm
 
-    .macro ScrCmd_2D7 arg0
+    .macro CheckIsMiscSaveInit destVar
     .short 727
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro PokeMartFrontier martID
@@ -4489,9 +4518,9 @@
     CheckHeapMemory TRUE
     .endm
 
-    .macro ScrCmd_314 arg0
+    .macro GetBattleResult destVar
     .short 788
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_315 arg0

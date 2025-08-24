@@ -40,6 +40,7 @@
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "inlines.h"
+#include "item_use_functions.h"
 #include "location.h"
 #include "map_header.h"
 #include "map_header_data.h"
@@ -68,7 +69,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0205F180.h"
 #include "unk_02067A84.h"
-#include "unk_020683F4.h"
 #include "vars_flags.h"
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input);

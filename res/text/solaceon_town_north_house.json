@@ -1,0 +1,25 @@
+{
+  "key": 29742,
+  "messages": [
+    {
+      "id": "pl_msg_00000581_00000",
+      "en_US": [
+        "Every so often, an Egg will be found\n",
+        "at the Pokémon Day Care.\r",
+        "And they’re found without anyone\n",
+        "knowing how they got there.\r",
+        "It’s an enduring mystery.\n",
+        "Is someone leaving them there?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000581_00001",
+      "en_US": [
+        "They say no one has ever seen\n",
+        "a Pokémon actually lay an Egg.\r",
+        "So, it hasn’t been proven that\n",
+        "Pokémon actually lay Eggs."
+      ]
+    }
+  ]
+}

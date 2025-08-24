@@ -1,0 +1,68 @@
+{
+  "key": 5123,
+  "messages": [
+    {
+      "id": "pl_msg_00000091_00000",
+      "en_US": [
+        "Thanks for rescuing me!\n",
+        "This is something to show my thanks!\r",
+        "It’s the latest model Bicycle!\n",
+        "You must take it. I insist!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000091_00001",
+      "en_US": [
+        "It’s the latest model, so I’ll read\n",
+        "the operating manual to you.\r",
+        "“Press the B Button to shift up\n",
+        "or down.”\r",
+        "In third gear, you can’t go all that\n",
+        "fast, but it’s easier to control.\r",
+        "In fourth gear, it gets harder to\n",
+        "steer and stop, but it’s fast! Really!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000091_00002",
+      "en_US": "CLEFAIRY: Pip piih!"
+    },
+    {
+      "id": "pl_msg_00000091_00003",
+      "en_US": [
+        "The manager’s gone off to the Team\n",
+        "Galactic building and hasn’t returned.\r",
+        "I wonder what’s holding him up?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000091_00004",
+      "en_US": [
+        "What was Team Galactic trying to do\n",
+        "with other people’s Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000091_00005",
+      "en_US": [
+        "There is a manual on the latest\n",
+        "model Bicycle.\r",
+        "Third gear for steering.\n",
+        "Fourth gear for all-out speed!\r",
+        "Change gears with the B Button for\n",
+        "exhilarating cycling!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000091_00006",
+      "en_US": [
+        "There’s a catalog from the Hoenn region\n",
+        "on its popular Bikes...\r",
+        "Mach Bike--a folding Bike built solely\n",
+        "for blazing speed!\r",
+        "Acro Bike--a folding Bike designed for\n",
+        "stunts like jumps and wheelies!"
+      ]
+    }
+  ]
+}

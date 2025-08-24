@@ -1,0 +1,21 @@
+{
+  "key": 5144,
+  "messages": [
+    {
+      "id": "pl_msg_00000403_00000",
+      "en_US": [
+        "Thanks for helping me out.\n",
+        "Here’s something for your trouble!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000403_00001",
+      "en_US": [
+        "Blow the White Flute if you want to\n",
+        "attract more wild Pokémon.\r",
+        "It’s a rare glass flute you can only\n",
+        "get in the Hoenn region."
+      ]
+    }
+  ]
+}

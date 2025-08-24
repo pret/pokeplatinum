@@ -8,6 +8,10 @@
 #define LCRNG_MULTIPLIER 1103515245L
 #define LCRNG_INCREMENT  24691
 
+// Does almost the same as FX_DEG_TO_IDX but takes integers as input instead of fx32
+// Use if FX_DEG_TO_IDX(FX32_CONST(degrees)) doesn't match
+#define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
+
 enum AffineTransformationMatrixMode {
     AFFINE_MODE_NORMAL = 0,
     AFFINE_MODE_MAX_256,
@@ -18,6 +22,11 @@ typedef struct Vec2F32 {
     f32 x;
     f32 y;
 } Vec2F32;
+
+typedef struct Point2D {
+    s16 x;
+    s16 y;
+} Point2D;
 
 fx32 CalcSineDegrees(u16 degrees);
 fx32 CalcCosineDegrees(u16 degrees);
@@ -44,6 +53,6 @@ u32 SumBytes(const void *data, u32 size);
 void EncodeData(void *data, u32 size, u32 seed);
 void DecodeData(void *data, u32 size, u32 seed);
 u16 CalcCRC16Checksum(const void *data, u32 dataLen);
-void InitCRC16Table(enum HeapId heapID);
+void InitCRC16Table(enum HeapID heapID);
 
 #endif // POKEPLATINUM_MATH_UTIL_H

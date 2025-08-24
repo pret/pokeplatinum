@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/net.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202610C.h"
@@ -60,12 +61,12 @@ static void sub_02033AA8(void);
 static BOOL sub_02034014(u8 *param0);
 static u16 sub_02033F0C(u16 param0);
 static void sub_0203330C(WMBssDesc *param0);
-static void sub_0203344C(void *param0, WVRResult param1);
+static void WirelessDriver_InitCallback(void *param0, WVRResult param1);
 static int sub_02033DDC(void);
 
 static CommServerClient *sCommServerClient = NULL;
 static u16 Unk_021C07B8 = 0;
-static volatile int Unk_021C07BC;
+static volatile int sWirelessDriverStatus;
 
 void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
 {
@@ -75,16 +76,16 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
         return;
     }
 
-    sCommServerClient = (CommServerClient *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
+    sCommServerClient = (CommServerClient *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
     MI_CpuClear8(sCommServerClient, sizeof(CommServerClient));
 
-    sCommServerClient->unk_14E8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02031C50());
+    sCommServerClient->unk_14E8 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_02031C50());
     MI_CpuClear8(sCommServerClient->unk_14E8, sub_02031C50());
 
-    sCommServerClient->unk_1500 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_0202602C());
+    sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_0202602C());
     MI_CpuClear8(sCommServerClient->unk_1500, sub_0202602C());
 
-    sCommServerClient->unk_1508 = (u32)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
+    sCommServerClient->unk_1508 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
     sCommServerClient->unk_150C = (u16 *)(32 - (sCommServerClient->unk_1508 % 32) + sCommServerClient->unk_1508);
 
     sCommServerClient->unk_1504 = 0x333;
@@ -186,7 +187,7 @@ static void sub_02033380(void)
     sCommServerClient->unk_14F8 = 1;
 }
 
-static void sub_0203344C(void *param0, WVRResult param1)
+static void WirelessDriver_InitCallback(void *param0, WVRResult param1)
 {
     if (param1 != WVR_RESULT_SUCCESS) {
         OS_Terminate();
@@ -194,41 +195,41 @@ static void sub_0203344C(void *param0, WVRResult param1)
         (void)0;
     }
 
-    Unk_021C07BC = 2;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_CONNECTED;
 }
 
-static void sub_02033464(void *param0, WVRResult param1)
+static void WirelessDriver_ShutdownCallback(void *param0, WVRResult param1)
 {
-    Unk_021C07BC = 0;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_DISCONNECTED;
     SleepUnlock(4);
 }
 
-void sub_02033478(void)
+void WirelessDriver_Init(void)
 {
     SleepLock(4);
 
-    Unk_021C07BC = 1;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_CONNECTING;
 
-    if (WVR_RESULT_OPERATING != WVR_StartUpAsync(GX_VRAM_ARM7_128_D, sub_0203344C, NULL)) {
+    if (WVR_RESULT_OPERATING != WVR_StartUpAsync(GX_VRAM_ARM7_128_D, WirelessDriver_InitCallback, NULL)) {
         OS_Terminate();
     } else {
         (void)0;
     }
 }
 
-BOOL sub_020334A4(void)
+BOOL WirelessDriver_IsReady(void)
 {
-    return Unk_021C07BC == 2;
+    return sWirelessDriverStatus == WIRELESS_DRIVER_STATUS_CONNECTED;
 }
 
-BOOL sub_020334B8(void)
+BOOL WirelessDriver_Initialized(void)
 {
-    return Unk_021C07BC != 0;
+    return sWirelessDriverStatus != WIRELESS_DRIVER_STATUS_DISCONNECTED;
 }
 
-void sub_020334CC(void)
+void WirelessDriver_Shutdown(void)
 {
-    WVR_TerminateAsync(sub_02033464, NULL);
+    WVR_TerminateAsync(WirelessDriver_ShutdownCallback, NULL);
 }
 
 static void sub_020334DC(BOOL param0)

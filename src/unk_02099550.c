@@ -49,12 +49,12 @@ static void sub_02099590(SaveData *saveData, int heapID)
     OS_ResetSystem(0);
 }
 
-void sub_020995B4(void)
+void Overlay_LoadHttpOverlay(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay60), 2);
 }
 
-void sub_020995C4(void)
+void Overlay_UnloadHttpOverlay(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
 }

@@ -1,0 +1,296 @@
+{
+  "key": 18871,
+  "messages": [
+    {
+      "id": "pl_msg_00000552_00000",
+      "en_US": [
+        "Dawn: Hey, {STRVAR_1 3, 0, 0}?\n",
+        "The professor told me something.\r",
+        "It’s possible that either DIALGA or\n",
+        "PALKIA will appear at the Spear Pillar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00001",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\r",
+        "You’re friends with the elder of\n",
+        "Celestic Town, aren’t you?\r",
+        "She told me that she had something\n",
+        "important to tell you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00002",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "May I see your Pokédex?\r",
+        "...\r",
+        "Oh, my gosh! You’ve seen every kind\n",
+        "of Pokémon in Sinnoh!\r",
+        "Hey, let’s go show your Pokédex to\n",
+        "Prof. Rowan!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00003",
+      "en_US": [
+        "Dawn: Hey, {STRVAR_1 3, 0, 0}, have you\n",
+        "ever chatted with my kid sister?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00004",
+      "en_US": [
+        "Dawn: Oh, {STRVAR_1 3, 0, 0}, are you\n",
+        "acquainted with Bebe?\r",
+        "She lives in Hearthome City.\r",
+        "Every Trainer should make it a point\n",
+        "to pay Bebe a visit.\r",
+        "She’s the administrator of the Pokémon\n",
+        "Storage System.\r",
+        "She’s awesome!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00005",
+      "en_US": [
+        "Dawn: Hey! {STRVAR_1 3, 0, 0}, you’ve got\n",
+        "a Poké Radar?\r",
+        "I’ve got one, too!\r",
+        "I’ll show you how to use it.\n",
+        "Come with me to Rt. 202!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00006",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "How’s your Poké Radar?\r",
+        "When you use it, do you sometimes\n",
+        "see more than one patch of tall\f",
+        "grass rustling?\r",
+        "I’ve heard that patches farther away\n",
+        "give you a better chance of seeing\f",
+        "the same kind of Pokémon in a row."
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00007",
+      "en_US": [
+        "Dawn: Sometimes a patch of grass\n",
+        "sparkles when a Poké Radar is used.\r",
+        "People say a different-colored\n",
+        "Pokémon is hiding there!\r",
+        "Could that be true?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00008",
+      "en_US": [
+        "Dawn: So, {STRVAR_1 3, 0, 0}.\r",
+        "I’m also helping the professor put\n",
+        "together the National Pokédex.\r",
+        "Catching Pokémon can be really\n",
+        "challenging, can’t it?\r",
+        "But, it’s also so much fun!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00009",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 0, 0}, {STRVAR_1 3, 0, 0},\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Congratulations for completing\n",
+        "the National Pokédex!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00010",
+      "en_US": [
+        "Dawn: Is today maybe...\n",
+        "Your birthday, {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00011",
+      "en_US": [
+        "Dawn: Giggle...\n",
+        "Congratulations, {STRVAR_1 3, 0, 0}!\f",
+        "And many more happy returns!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00012",
+      "en_US": [
+        "Dawn: Oh, it isn’t?\r",
+        "I wonder what made me think that\n",
+        "today was your birthday?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00013",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}!\n",
+        "I heard from the professor!\r",
+        "Congratulations, Champ!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00014",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "The prof told me something cool.\r",
+        "He thinks that either DIALGA or\n",
+        "PALKIA will appear at the Spear Pillar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00015",
+      "en_US": [
+        "Lucas: Hi, {STRVAR_1 3, 0, 0}!\r",
+        "You know the elder of Celestic Town,\n",
+        "right?\r",
+        "She told me she had something\n",
+        "to tell you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00016",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "Let me take a look at your Pokédex.\r",
+        "...\r",
+        "Awesome! You’ve seen every kind\n",
+        "of Pokémon in Sinnoh!\r",
+        "You have to show this Pokédex to\n",
+        "Prof. Rowan!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00017",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\n",
+        "ever seen my kid sister?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00018",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\n",
+        "met Bebe?\r",
+        "She lives out in Hearthome City.\r",
+        "If you’re a Trainer, you owe it to\n",
+        "yourself to visit her.\r",
+        "After all, she’s the administrator of\n",
+        "the Pokémon Storage System."
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00019",
+      "en_US": [
+        "Lucas: Hey! {STRVAR_1 3, 0, 0}, you’ve got\n",
+        "yourself a Poké Radar, too?\r",
+        "Cool!\n",
+        "I’ll teach you how to use it!\f",
+        "Come out to Rt. 202!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00020",
+      "en_US": [
+        "Lucas: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "How’s your Poké Radar working out?\r",
+        "When you use it, do you sometimes\n",
+        "see more than one patch of tall\f",
+        "grass rustling?\r",
+        "Did you notice that patches farther\n",
+        "away give you a better chance\f",
+        "of seeing the same kind of Pokémon\r",
+        "in a row?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00021",
+      "en_US": [
+        "Lucas: Sometimes a patch of grass\n",
+        "sparkles when a Poké Radar is used.\r",
+        "They say a different-colored\n",
+        "Pokémon is hiding there!\r",
+        "I wonder if that’s true?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00022",
+      "en_US": [
+        "Lucas: So, {STRVAR_1 3, 0, 0}.\r",
+        "I’m also helping the professor out\n",
+        "with the National Pokédex.\r",
+        "Catching Pokémon can be really\n",
+        "challenging, can’t it?\r",
+        "But I also have a ton of fun doing it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00023",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}!\r",
+        "Wow! I don’t know what to say!\n",
+        "I mean, it’s so awesome and all...\r",
+        "Sincerely, congratulations for\n",
+        "completing the National Pokédex!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00024",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}?\n",
+        "Is it maybe your birthday today?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00025",
+      "en_US": [
+        "Lucas: I thought so!\n",
+        "Congratulations, {STRVAR_1 3, 0, 0}!\f",
+        "You know, I’m glad we’re friends!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00026",
+      "en_US": [
+        "Lucas: Huh?\n",
+        "It isn’t?\r",
+        "Now, what made me think it was\n",
+        "your birthday? Freaky weird."
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00027",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}!\n",
+        "The professor told me the news!\r",
+        "Congratulations, Champ!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00028",
+      "en_US": [
+        "Dawn: So, I was thinking...\n",
+        "Those Pokémon you met, {STRVAR_1 3, 0, 0}...\r",
+        "Were they the ones said to be the\n",
+        "creators of the Sinnoh region?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000552_00029",
+      "en_US": [
+        "Lucas: So, I was thinking...\n",
+        "Those Pokémon you met, {STRVAR_1 3, 0, 0}...\r",
+        "Were they the ones said to be the\n",
+        "creators of the Sinnoh region?"
+      ]
+    }
+  ]
+}

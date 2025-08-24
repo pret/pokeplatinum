@@ -82,5 +82,21 @@
             "power": 200,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"No way! Not yet!\n",
+				"Not giving up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"W-what? That can’t be!\n",
+				"My buffed-up Pokémon!\n"
+			]
+		}
     ]
 }

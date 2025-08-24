@@ -212,10 +212,10 @@ _035E:
     ScrCmd_16A 77
     RemoveObject 4
     SetVar VAR_UNK_0x4071, 1
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB, 0, 7, 15, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

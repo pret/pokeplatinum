@@ -18,5 +18,18 @@
             "power": 0,
             "ball_seal": 4
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Ah, it’s you. I’m bored yet again.\n",
+				"Care to break the monotony?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "The monotony was broken, but...\n"
+		}
     ]
 }

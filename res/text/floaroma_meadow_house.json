@@ -1,0 +1,26 @@
+{
+  "key": 33839,
+  "messages": [
+    {
+      "id": "pl_msg_00000256_00000",
+      "en_US": [
+        "The flowers that grow in the fields\n",
+        "here are special.\r",
+        "Do you see how they’re more vivid\n",
+        "than flowers elsewhere in Sinnoh?\r",
+        "You can thank Pokémon for that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000256_00001",
+      "en_US": [
+        "If you put Honey on a tree, check\n",
+        "back later to see if it’s rustling.\r",
+        "If it is, it’s quite often a rare\n",
+        "Pokémon.\r",
+        "It gets my hopes up if I see that\n",
+        "happening."
+      ]
+    }
+  ]
+}

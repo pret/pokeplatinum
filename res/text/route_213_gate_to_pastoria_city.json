@@ -1,0 +1,41 @@
+{
+  "key": 24299,
+  "messages": [
+    {
+      "id": "pl_msg_00000496_00000",
+      "en_US": [
+        "Footprints are left in the sand\n",
+        "when you walk on a beach.\r",
+        "Pokémon seem to enjoy leaving\n",
+        "footprints as much as people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000496_00001",
+      "en_US": [
+        "Listen, do you know about the Battle\n",
+        "Frontier?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000496_00002",
+      "en_US": [
+        "I guess you’re someone who’s in the\n",
+        "know.\r",
+        "I hear it’s a fun place with facilities\n",
+        "for battling through under different\f",
+        "sets of rules."
+      ]
+    },
+    {
+      "id": "pl_msg_00000496_00003",
+      "en_US": [
+        "I guess you’re someone who’s kind of\n",
+        "out of the loop.\r",
+        "I hear it’s a fun place with facilities\n",
+        "for battling consecutively under\f",
+        "different sets of rules."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "key": 54299,
+  "messages": [
+    {
+      "id": "pl_msg_00000168_00000",
+      "en_US": [
+        "Julia: Oh, hello.\n",
+        "You’re quite the nifty Trainer.\r",
+        "My husband is a Sailor, and he’s off\n",
+        "working somewhere far away.\r",
+        "I long for the day he comes back\n",
+        "to me.\r",
+        "All that waiting gets to be very\n",
+        "boring every day, though...\r",
+        "I know! How about you visit me and\n",
+        "tell me stories every so often?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00001",
+      "en_US": [
+        "Starting tomorrow, please visit and\n",
+        "tell me stories about your travels."
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00002",
+      "en_US": [
+        "Julia: Today is Monday!\r",
+        "It’s time to get going on a brand-new\n",
+        "week.\r",
+        "Is there a story that might help\n",
+        "me perk up?\r",
+        "Maybe a story about getting splashed\n",
+        "with water..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00003",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0} splashed with water...\n",
+        "...\r",
+        "That sounds refreshing!\n",
+        "It’s made me feel awake!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00004",
+      "en_US": [
+        "Thank you!\n",
+        "Please give this to your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00005",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} received\n",
+        "the {STRVAR_1 39, 3, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00006",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} put\n",
+        "the {STRVAR_1 39, 3, 0}\f",
+        "on {STRVAR_1 0, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00007",
+      "en_US": [
+        "Julia: Please tell me another story\n",
+        "tomorrow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00008",
+      "en_US": [
+        "Julia: Hello!\r",
+        "Oh, this is the {STRVAR_1 0, 1, 0} I gave\n",
+        "a Ribbon to before.\r",
+        "I’ve got lots of Ribbons--you should\n",
+        "bring other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00009",
+      "en_US": [
+        "Julia: Oh...\n",
+        "You couldn’t think up anything?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00010",
+      "en_US": [
+        "Julia: Today is Tuesday!\r",
+        "The first date I went on with my\n",
+        "husband was on Tuesday, too.\r",
+        "I remember my heart thumping like\n",
+        "I was scared, and I guess I was.\r",
+        "Do you know any story that would\n",
+        "scare me like that?\r",
+        "Like something that jumps out\n",
+        "from hiding?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00011",
+      "en_US": [
+        "One mean {STRVAR_1 28, 0, 0} that bursts\n",
+        "out from a closet?\f",
+        "...\r",
+        "Yikes!\n",
+        "That would be scary!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00012",
+      "en_US": [
+        "Julia: Sigh...\n",
+        "I gained a little weight...\r",
+        "This dress that my husband bought\n",
+        "for me is too tight now...\r",
+        "This makes me feel sad...\r",
+        "Misery does love company.\n",
+        "Something that would make me cry?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00013",
+      "en_US": [
+        "A tearful {STRVAR_1 28, 0, 0}...\n",
+        "...\r",
+        "Sniffle... That is so sad...\n",
+        "I feel desolate, even!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00014",
+      "en_US": [
+        "Julia: It’s Thursday already?\n",
+        "I lost track of time!\r",
+        "My favorite magazine comes out today.\n",
+        "I’d better go buy it quick!\r",
+        "Do you know a story about being\n",
+        "absentminded?\r",
+        "Like getting your shoes backward?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00015",
+      "en_US": [
+        "The {STRVAR_1 28, 0, 0} had shoes\n",
+        "on the wrong feet?\r",
+        "...\n",
+        "Ahahaha! That is so silly!\r",
+        "How is it possible to be that\n",
+        "absentminded?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00016",
+      "en_US": [
+        "Julia: Today is Friday!\r",
+        "My meager cooking repertoire is\n",
+        "about to run out!\r",
+        "Do you know a story that would\n",
+        "help me get my thoughts in order?\r",
+        "Like a story about numbers adding\n",
+        "up perfectly?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00017",
+      "en_US": [
+        "You went {STRVAR_1 28, 0, 0}\n",
+        "shopping and paid $777 including tax?\r",
+        "That is a nice number to ring up.\n",
+        "It just has a good look to it.\r",
+        "It’s sure helped me clear my head!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00018",
+      "en_US": [
+        "Julia: Yawn...\n",
+        "Today’s Saturday...\f",
+        "I’m feeling lazy and sleepy...\r",
+        "I wish I had a pillow...\n",
+        "But what kind of a pillow?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00019",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0} snuggle pillow...\n",
+        "...\r",
+        "It... It surprisingly may give me\n",
+        "a good night’s sleep!\r",
+        "I wonder if I can buy one somewhere.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00020",
+      "en_US": [
+        "Julia: Oh, hello! You’re on your\n",
+        "adventure even though it’s Sunday!\r",
+        "When I was younger, I remember that\n",
+        "every day was like an adventure.\r",
+        "It was always fun. I loved the people\n",
+        "around me... I was happy.\r",
+        "Oh, but I’m happy now, too.\n",
+        "I love my life with my husband.\f",
+        "It’s just a different kind of happy.\r",
+        "So, what makes you happy?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000168_00021",
+      "en_US": [
+        "You love {STRVAR_1 28, 0, 0}?\n",
+        "...\r",
+        "Ufufu... That says something about\n",
+        "you. It puts a smile on my face!\r"
+      ]
+    }
+  ]
+}

@@ -37,5 +37,23 @@
             "power": 50,
             "ball_seal": 19
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We’ve faced many challengers since\n",
+				"we met, but they were all weak...\r",
+				"I relish the tough resistance that\n",
+				"only you can provide!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’ve found a tough adversary in\n",
+				"you...\n"
+			]
+		}
     ]
 }

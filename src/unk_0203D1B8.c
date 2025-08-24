@@ -9,16 +9,15 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
-#include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -27,7 +26,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -36,18 +34,19 @@
 #include "applications/journal_display/journal_controller.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
+#include "applications/pc_boxes/box_app_manager.h"
+#include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
+#include "boat_cutscene/boat_cutscene.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
 #include "library_tv/library_tv.h"
 #include "overlay005/daycare.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay007/accessory_shop.h"
-#include "overlay019/ov19_021D0D80.h"
-#include "overlay019/pokemon_storage_session.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
@@ -67,9 +66,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay091/ov91_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
-#include "overlay093/ov93_021D0D80.h"
-#include "overlay093/ov93_021D111C.h"
-#include "overlay094/ov94_0223BCB0.h"
+#include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
@@ -81,8 +78,10 @@
 #include "trainer_card_screen/trainer_card_screen.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "coins.h"
 #include "dexmode_checker.h"
+#include "evolution.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
@@ -91,7 +90,9 @@
 #include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "global_trade.h"
 #include "heap.h"
+#include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
 #include "overlay_manager.h"
@@ -118,7 +119,6 @@
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020553DC.h"
@@ -126,8 +126,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207AE68.h"
-#include "unk_0207CB08.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -143,7 +141,7 @@
 #include "constdata/const_020F6890.h"
 
 FS_EXTERN_OVERLAY(battle);
-FS_EXTERN_OVERLAY(overlay19);
+FS_EXTERN_OVERLAY(pc_boxes);
 FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(pokedex);
 FS_EXTERN_OVERLAY(overlay22);
@@ -165,7 +163,7 @@ FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(overlay90);
 FS_EXTERN_OVERLAY(overlay91);
 FS_EXTERN_OVERLAY(overlay92);
-FS_EXTERN_OVERLAY(overlay93);
+FS_EXTERN_OVERLAY(boat_cutscene);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(overlay96);
@@ -201,8 +199,8 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
-    UnkStruct_ov6_02246254 unk_48;
-    UnkStruct_0207AE68 *unk_60;
+    TradeAnimationTemplate unk_48;
+    EvolutionData *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
 
@@ -280,16 +278,16 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
+void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
-    void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
+    void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELD2);
 
-    sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
-    sub_0207CB78(v1, fieldSystem->mapLoadType);
+    BagSystem_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    BagSystem_SetMapLoadType(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-        sub_0207CB58(v1);
+        BagSystem_SetIsCycling(v1);
     }
 
     sub_0207CB6C(v1, param1);
@@ -317,9 +315,9 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
         GF_ASSERT(0);
     }
 
-    v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD_TASK);
+    v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD3);
 
-    sub_0207CB2C(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
+    BagSystem_Init(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, v0);
 
     return v0;
@@ -327,9 +325,9 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
 u16 sub_0203D2C4(void *param0)
 {
-    u16 v0 = sub_0207CB94(param0);
+    u16 v0 = BagSystem_GetItem(param0);
 
-    if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
+    if ((v0 != 0) && (BagSystem_GetExitCode(param0) == 5)) {
         GF_ASSERT(0);
     }
 
@@ -371,7 +369,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
 
 static PartyManagementData *PartyManagementData_New(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
 
     MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
@@ -388,7 +386,7 @@ static PartyManagementData *PartyManagementData_New(int heapID, FieldSystem *fie
 
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 0);
 
     partyMan->fieldMoveContext = param1;
     partyMan->selectedMonSlot = param2;
@@ -400,7 +398,7 @@ void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2
 
 void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 3);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 3);
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     return partyMan;
@@ -408,7 +406,7 @@ void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem)
 
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 19);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 19);
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     return partyMan;
@@ -421,7 +419,7 @@ int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
 
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 18);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 18);
 
     partyMan->selectedMonSlot = param2;
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
@@ -494,7 +492,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     PartyManagementData *partyMan;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D444));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
     partyMan = PartyManagementData_New(heapID, fieldSystem, 0, 2);
     partyMan->unk_32_0 = 2;
@@ -510,7 +508,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
 
 void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 13);
 
     partyMan->selectedMonSlot = param5;
     partyMan->unk_29 = 2;
@@ -529,7 +527,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
     v0->monData = SaveData_GetParty(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -552,7 +550,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
 void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 21);
 
     partyMan->selectedMonSlot = param1;
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
@@ -569,7 +567,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
     };
 
     saveData = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
+    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
@@ -596,9 +594,9 @@ static const u8 Unk_020EA160[] = {
     0x8
 };
 
-void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partySlot)
+void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
-    PokemonSummary *summary = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     memset(summary, 0, sizeof(PokemonSummary));
 
@@ -626,16 +624,16 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary)
 
 void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession)
 {
-    FS_EXTERN_OVERLAY(overlay19);
+    FS_EXTERN_OVERLAY(pc_boxes);
 
-    static const ApplicationManagerTemplate template = {
-        ov19_021D0D80,
-        ov19_021D0DEC,
-        ov19_021D0E58,
-        FS_OVERLAY_ID(overlay19)
+    static const ApplicationManagerTemplate boxAppManTemplate = {
+        BoxAppMan_Init,
+        BoxAppMan_Main,
+        BoxAppMan_Exit,
+        FS_OVERLAY_ID(pc_boxes)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, pokemonStorageSession);
+    FieldSystem_StartChildProcess(fieldSystem, &boxAppManTemplate, pokemonStorageSession);
 }
 
 static BOOL sub_0203D764(FieldTask *taskMan)
@@ -685,16 +683,16 @@ void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
     UnkStruct_0203D764 *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203D764));
+    v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203D764));
     v0->unk_00 = param1;
     v0->unk_04 = param2;
     v0->unk_08 = param3;
 
     if (param3 == NULL) {
-        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, HEAP_ID_FIELD_TASK);
+        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
         sub_020974F4(v0->unk_0C, *param2);
     } else {
-        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, HEAP_ID_FIELD_TASK);
+        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
         sub_020974F8(v0->unk_0C, *param2, *param3);
     }
 
@@ -736,7 +734,7 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     int v2 = 0, v3 = 0;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(fieldSystem, v0, 0);
     sub_0203D884(fieldSystem, v0);
@@ -760,7 +758,7 @@ static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
-    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(OptionsMenu));
+    OptionsMenu *optionsMenu = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(OptionsMenu));
     Options *options = SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem));
     OpenOptionsMenu(fieldSystem, options);
 
@@ -776,7 +774,7 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELDMAP);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELD2);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -841,7 +839,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
     UnkStruct_02029C68 *v4;
     UnkStruct_02029D04 *v5;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203DA00));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
     v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), param2);
 
@@ -893,10 +891,10 @@ static BOOL sub_0203DA64(FieldTask *param0)
 
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4)
 {
-    UnkStruct_0203DA64 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DA64));
+    UnkStruct_0203DA64 *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203DA64));
     memset(v0, 0, sizeof(UnkStruct_0203DA64));
 
-    v0->unk_0C = sub_0203DA00(HEAP_ID_FIELD_TASK, saveData, param3, &v0->unk_08, param4);
+    v0->unk_0C = sub_0203DA00(HEAP_ID_FIELD3, saveData, param3, &v0->unk_08, param4);
     v0->unk_04 = param1;
 
     FieldTask_InitCall(param0, sub_0203DA64, v0);
@@ -942,9 +940,9 @@ static ApplicationManagerTemplate Unk_02100AA4 = {
 };
 
 static const ApplicationManagerTemplate Unk_020EA268 = {
-    ov95_02246C20,
-    ov95_02246E7C,
-    ov95_02246E1C,
+    TradeSequence_Init,
+    TradeSequence_Main,
+    TradeSequence_Exit,
     FS_OVERLAY_ID(overlay95)
 };
 
@@ -960,9 +958,9 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->saveData = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, TrainerInfo_Size());
-    param0->unk_3C = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
-    param0->unk_40 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
+    param0->unk_38 = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
+    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }
@@ -993,7 +991,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
     switch (v2->unk_00) {
     case 0:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             FieldTransition_FinishMap(param0);
         }
 
@@ -1016,29 +1014,29 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00++;
         break;
     case 4:
-        v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
+        v2->unk_48.otherTrainer = v2->unk_04.unk_38;
+        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
+        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
-        v2->unk_48.unk_10 = 1;
+        v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
-        case 0:
-        case 1:
+        case TIMEOFDAY_MORNING:
+        case TIMEOFDAY_DAY:
         default:
-            v2->unk_48.unk_0C = 0;
+            v2->unk_48.background = TRADE_BACKGROUND_DAY;
             break;
-        case 2:
-            v2->unk_48.unk_0C = 1;
+        case TIMEOFDAY_TWILIGHT:
+            v2->unk_48.background = TRADE_BACKGROUND_EVENING;
             break;
-        case 3:
-        case 4:
-            v2->unk_48.unk_0C = 2;
+        case TIMEOFDAY_NIGHT:
+        case TIMEOFDAY_LATE_NIGHT:
+            v2->unk_48.background = TRADE_BACKGROUND_NIGHT;
             break;
         }
 
-        if (sub_020389B8()) {
-            v2->unk_48.unk_0C = 3;
+        if (CommMan_IsConnectedToWifi()) {
+            v2->unk_48.background = TRADE_BACKGROUND_WIFI;
         }
 
         FieldTask_RunApplication(param0, &Unk_020EA268, &v2->unk_48);
@@ -1051,14 +1049,14 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
         if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+            v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
         }
     } break;
     case 6:
-        if (sub_0207B0D0(v2->unk_60)) {
+        if (Evolution_IsDone(v2->unk_60)) {
             Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(HEAP_ID_26);
@@ -1073,7 +1071,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
             GameRecords *v6 = SaveData_GetGameRecords(fieldSystem->saveData);
             GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_16);
 
-            if (sub_020389B8()) {
+            if (CommMan_IsConnectedToWifi()) {
                 GameRecords_IncrementRecordValue(v6, RECORD_UNK_113);
             }
         }
@@ -1085,7 +1083,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
 void sub_0203DDDC(FieldTask *param0)
 {
-    UnkStruct_0203DBF0 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DBF0));
+    UnkStruct_0203DBF0 *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203DBF0));
 
     v0->unk_00 = 0;
     FieldTask_InitCall(param0, sub_0203DBF0, v0);
@@ -1107,7 +1105,7 @@ const ApplicationManagerTemplate Unk_020EA248 = {
 
 void sub_0203DDFC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203DDFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DDFC));
+    UnkStruct_0203DDFC *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203DDFC));
 
     v0->unk_00 = fieldSystem->unk_80;
     v0->unk_04 = fieldSystem->journalEntry;
@@ -1118,7 +1116,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
 
 void *sub_0203DE34(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203DE34 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE34));
+    UnkStruct_0203DE34 *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203DE34));
 
     v0->saveData = fieldSystem->saveData;
     v0->unk_04 = fieldSystem->unk_80;
@@ -1170,23 +1168,25 @@ static BOOL sub_0203DE98(FieldTask *param0)
     case 3:
         if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
             if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
-                v2->unk_0C->unk_14 = 1;
+                v2->unk_0C->returnCode = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
-                v2->unk_0C->unk_14 = 2;
+                // this re-uses the returnCode field with values not associated with the naming
+                // screen. these should probably have their own enum.
+                v2->unk_0C->returnCode = 2;
             }
         }
 
-        if (v2->unk_0C->unk_14 == 0) {
+        if (v2->unk_0C->returnCode == 0) {
             sub_0203DF68(param0);
         }
 
         if (v2->unk_08 != NULL) {
-            *v2->unk_08 = v2->unk_0C->unk_14;
+            *v2->unk_08 = v2->unk_0C->returnCode;
         }
 
         NamingScreenArgs_Free(v2->unk_0C);
@@ -1207,14 +1207,14 @@ static void sub_0203DF68(FieldTask *param0)
     switch (v1->unk_0C->type) {
     case NAMING_SCREEN_TYPE_PLAYER: {
         TrainerInfo *v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
+        TrainerInfo_SetName(v2, v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_POKEMON: {
         Pokemon *v3;
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
@@ -1240,13 +1240,13 @@ void sub_0203DFE8(
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DE98 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE98));
+    UnkStruct_0203DE98 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203DE98));
 
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
-    v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
+    v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELD2, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
+    v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELD2);
 
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
@@ -1330,40 +1330,38 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
 }
 
-void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 {
-    UnkStruct_0203E0FC *v0;
-
     FS_EXTERN_OVERLAY(overlay94);
 
-    const ApplicationManagerTemplate v1 = {
-        ov94_0223BCB0,
-        ov94_0223BE2C,
-        ov94_0223BF54,
+    const ApplicationManagerTemplate gtsTemplate = {
+        GTSApplication_Init,
+        GTSApplication_Main,
+        GTSApplication_Exit,
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
+    GTSPlayerData *playerData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(GTSPlayerData));
 
-    v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
-    v0->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
-    v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
-    v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->journalEntry;
-    v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-    v0->saveData = fieldSystem->saveData;
-    v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->unk_38 = WiFiList_GetUserGsProfileId(v0->unk_14);
-    v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_40 = param1;
+    playerData->globalTrade = SaveData_GetGlobalTrade(fieldSystem->saveData);
+    playerData->systemData = SaveData_GetSystemData(fieldSystem->saveData);
+    playerData->party = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
+    playerData->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+    playerData->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    playerData->wiFiList = SaveData_GetWiFiList(fieldSystem->saveData);
+    playerData->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
+    playerData->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    playerData->options = SaveData_GetOptions(fieldSystem->saveData);
+    playerData->records = SaveData_GetGameRecords(fieldSystem->saveData);
+    playerData->journalEntry = fieldSystem->journalEntry;
+    playerData->showContestData = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    playerData->saveData = fieldSystem->saveData;
+    playerData->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    playerData->dwcProfileId = WiFiList_GetUserGsProfileId(playerData->wiFiList);
+    playerData->bag = SaveData_GetBag(fieldSystem->saveData);
+    playerData->connectToWiFi = connectToWiFi;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gtsTemplate, playerData);
 }
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
@@ -1379,7 +1377,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay96)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC70));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
@@ -1473,29 +1471,32 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203E2AC(FieldSystem *fieldSystem, void *param1)
+void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv)
 {
-    FS_EXTERN_OVERLAY(overlay93);
+    FS_EXTERN_OVERLAY(boat_cutscene);
 
-    const ApplicationManagerTemplate v0 = {
-        ov93_021D0D80,
-        ov93_021D0E70,
-        ov93_021D0F58,
-        FS_OVERLAY_ID(overlay93)
+    const ApplicationManagerTemplate appTemplate = {
+        .init = BoatCutscene_CanalaveShip_Init,
+        .main = BoatCutscene_CanalaveShip_Main,
+        .exit = BoatCutscene_CanalaveShip_Exit,
+        .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void sub_0203E2D4(FieldSystem *fieldSystem, void *param1)
+void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv)
 {
-    FS_EXTERN_OVERLAY(overlay93);
+    FS_EXTERN_OVERLAY(boat_cutscene);
 
-    const ApplicationManagerTemplate v0 = {
-        ov93_021D111C, ov93_021D120C, ov93_021D12F0, FS_OVERLAY_ID(overlay93)
+    const ApplicationManagerTemplate appTemplate = {
+        .init = BoatCutscene_SnowpointShip_Init,
+        .main = BoatCutscene_SnowpointShip_Main,
+        .exit = BoatCutscene_SnowpointShip_Exit,
+        .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
 void sub_0203E2FC(FieldSystem *fieldSystem)
@@ -1570,7 +1571,7 @@ void sub_0203E414(FieldTask *task, int slotMachineID)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
-    UnkStruct_0203E35C *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203E35C));
+    UnkStruct_0203E35C *v2 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
@@ -1655,7 +1656,7 @@ static BOOL FieldTask_AccessoryShop(FieldTask *task)
 void AccessoryShop_Init(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    AccessoryShop *shop = AccessoryShop_New(HEAP_ID_FIELD, fieldSystem->saveData, fieldSystem->bgConfig);
+    AccessoryShop *shop = AccessoryShop_New(HEAP_ID_FIELD1, fieldSystem->saveData, fieldSystem->bgConfig);
 
     FieldTask_InitCall(task, FieldTask_AccessoryShop, shop);
 }
@@ -1670,7 +1671,7 @@ void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2)
         ov102_021D0F50,
         FS_OVERLAY_ID(overlay102),
     };
-    UnkStruct_0203E53C *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E53C));
+    UnkStruct_0203E53C *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E53C));
 
     {
         v1->unk_04 = param2;
@@ -1695,7 +1696,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
         FS_OVERLAY_ID(overlay110)
     };
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E564));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E564));
 
     v0->unk_04 = param1;
     v0->unk_05 = param2;
@@ -1709,7 +1710,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
     memset(partyMan, 0, sizeof(PartyManagementData));
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
@@ -1742,7 +1743,7 @@ void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
         FS_OVERLAY_ID(overlay111)
     };
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E608));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E608));
     memset(v0, 0, sizeof(UnkStruct_0203E608));
 
     v0->saveData = fieldSystem->saveData;
@@ -1759,7 +1760,7 @@ static const u8 sTeachMoveSummaryPages[] = {
 
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move)
 {
-    PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
     summary->monData = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     summary->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1793,7 +1794,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay61)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E6C0));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203E6C0));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203E6C0));
 
     v0->fieldSystem = fieldSystem;

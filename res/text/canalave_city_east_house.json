@@ -1,0 +1,70 @@
+{
+  "key": 62482,
+  "messages": [
+    {
+      "id": "pl_msg_00000062_00000",
+      "en_US": [
+        "Um...\n",
+        "Who did you say I was again?\r",
+        "...\n",
+        "...\r",
+        "Oh, yes, I remember now!\n",
+        "I’m the Move Deleter!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00001",
+      "en_US": [
+        "You’ve come to make me force your\n",
+        "Pokémon to forget some moves?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00002",
+      "en_US": "Which Pokémon should forget a move?\r"
+    },
+    {
+      "id": "pl_msg_00000062_00003",
+      "en_US": [
+        "Remember me if there are moves that\n",
+        "need to be forgotten."
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00004",
+      "en_US": [
+        "That Pokémon knows only one move,\n",
+        "so it can’t be forgotten...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00005",
+      "en_US": [
+        "What? That’s an Egg.\n",
+        "No Egg should know any moves.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00006",
+      "en_US": [
+        "OK, then.\n",
+        "Which move should be forgotten?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00007",
+      "en_US": [
+        "Hm! The move {STRVAR_1 6, 0, 0}?\n",
+        "Should that move be forgotten?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000062_00008",
+      "en_US": [
+        "It worked perfectly!\r",
+        "Your Pokémon has forgotten the move\n",
+        "{STRVAR_1 6, 0, 0} completely."
+      ]
+    }
+  ]
+}

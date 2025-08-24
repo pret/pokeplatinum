@@ -16,5 +16,35 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I go everywhere with my NOCTOWL.\n",
+				"We’re gonna show you owl best! Ha!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"We did our best. That’s what\n",
+				"matters. Right?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Even on cold days, just being with\n",
+				"my NOCTOWL keeps me warm!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I curled up inside my NOCTOWL’s wings\n",
+				"and waited for you to return!\r"
+			]
+		}
     ]
 }

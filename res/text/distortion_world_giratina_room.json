@@ -1,0 +1,141 @@
+{
+  "key": 28774,
+  "messages": [
+    {
+      "id": "pl_msg_00000320_00000",
+      "en_US": "Giygogagogwoh!"
+    },
+    {
+      "id": "pl_msg_00000320_00001",
+      "en_US": [
+        "GIRATINA is quietly eyeing\n",
+        "{STRVAR_1 3, 0, 0}..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00002",
+      "en_US": "Giygogagohgwooh!\r"
+    },
+    {
+      "id": "pl_msg_00000320_00003",
+      "en_US": [
+        "Cynthia: GIRATINA seems to have\n",
+        "understood us!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00004",
+      "en_US": [
+        "Cyrus: That Pokémon...\r",
+        "That shadowy Pokémon was defeated?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00005",
+      "en_US": [
+        "Cyrus: That Pokémon...\r",
+        "That shadowy Pokémon was captured?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00006",
+      "en_US": [
+        "Cyrus: That shadowy Pokémon...\r",
+        "You quelled its rage by refusing to\n",
+        "battle it?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00007",
+      "en_US": [
+        "Your doing so means this irrational\n",
+        "world will remain in existence!\r",
+        "Does that make it impossible for me to\n",
+        "create a new world?\r",
+        "Even if I made new Red Chains, the new\n",
+        "world can’t be made!\r",
+        "Why?! What compels you to protect\n",
+        "the two worlds?\r",
+        "Is spirit, a vague and incomplete\n",
+        "thing, so important to you?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00008",
+      "en_US": [
+        "Cynthia: ...The places we are born.\r",
+        "The time we spend living...\r",
+        "The languages we speak...\r",
+        "We are all different.\n",
+        "But the presence of Pokémon unites us.\r",
+        "We share our lives with our Pokémon,\n",
+        "and our happiness grows as we all\f",
+        "become greater than we were alone.\r",
+        "That is why we can battle and trade\n",
+        "with anyone we choose...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00009",
+      "en_US": "{SIZE 200}Silence!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000320_00010",
+      "en_US": [
+        "Cyrus: Enough of your blathering!\r",
+        "That’s how you justify spirit as\n",
+        "something worthwhile?!\r",
+        "That is merely humans hoping,\n",
+        "deluding themselves that they are\f",
+        "happy and safe!\r",
+        "The emotions roiling inside me...\n",
+        "Rage, hatred, frustration...\r",
+        "These ugly emotions arise because of\n",
+        "my own incomplete spirit!\r",
+        "...Enough.\n",
+        "We will never see eye to eye.\r",
+        "This, I promise you.\n",
+        "I will break the secrets of the world.\r",
+        "With that knowledge, I will create my\n",
+        "complete and perfect world.\r",
+        "One day, you will awaken to a world of\n",
+        "my creation.\r",
+        "A world without spirit.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00011",
+      "en_US": [
+        "Cynthia: ...\n",
+        "...\r",
+        "Since there is sadness, we can\n",
+        "feel joy.\r",
+        "When there is anger, compassion\n",
+        "is born...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00012",
+      "en_US": [
+        "Let’s go back home.\r",
+        "The portal where GIRATINA was should\n",
+        "lead back to our world.\r",
+        "GIRATINA was written in legend as\n",
+        "being on the other side of our world.\r",
+        "It stands to reason that it has a link\n",
+        "to the other side."
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00013",
+      "en_US": [
+        "There is a portal where GIRATINA was.\n",
+        "Will you leap into the portal?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000320_00014",
+      "en_US": "{STRVAR_1 3, 0, 0} leapt into the portal.\r"
+    }
+  ]
+}

@@ -26,5 +26,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What kind of person are you, to be\n",
+				"drawn here by the scent of flowers?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"It was a strong Trainer who was drawn\n",
+				"here by the scent of flowers!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"By the way, have you collected new\n",
+				"apps from the Pokétch Company?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You came back to me because you\n",
+				"couldn’t forget the smell of flowers!\r"
+			]
+		}
     ]
 }

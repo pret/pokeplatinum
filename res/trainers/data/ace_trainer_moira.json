@@ -51,5 +51,31 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "Please don’t hold anything back.\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Hmm...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I feel invigorated from that battle,\n",
+				"even though we lost.\r",
+				"After all, we gave it everything we\n",
+				"had."
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hello again! Please don’t hold\n",
+				"anything back--just like before.\r"
+			]
+		}
     ]
 }

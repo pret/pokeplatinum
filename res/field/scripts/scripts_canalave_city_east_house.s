@@ -28,12 +28,12 @@ _0049:
     GoTo _0054
 
 _0054:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8002
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 0xFF, _0130
     GetPartyMonSpecies VAR_0x8002, VAR_0x8001
@@ -42,12 +42,12 @@ _0054:
     GoToIfEq VAR_RESULT, 1, _0125
     Message 6
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectPartyMonMove VAR_0x8002
     GetSelectedPartyMonMove VAR_0x8001
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8001, MOVE_NOT_SELECTED, _0049
     ScrCmd_1CB 0, VAR_0x8002, VAR_0x8001

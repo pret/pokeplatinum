@@ -37,5 +37,30 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"This total stranger’ll be a good way\n",
+				"to see if I have what it takes to own\f",
+				"the Pokémon League’s Elite Four!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That battle just now must make you\n",
+				"tougher than everyone in the world.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It doesn’t appear as if anyone could\n",
+				"even try to stand against your might.\r",
+				"The Elite Four should just surrender."
+			]
+		}
     ]
 }

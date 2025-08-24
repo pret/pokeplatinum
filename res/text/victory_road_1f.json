@@ -1,0 +1,67 @@
+{
+  "key": 41986,
+  "messages": [
+    {
+      "id": "pl_msg_00000250_00000",
+      "en_US": [
+        "Let me size you up...\r",
+        "Aim for the Pokémon League!\n",
+        "That’s all you should be thinking about."
+      ]
+    },
+    {
+      "id": "pl_msg_00000250_00001",
+      "en_US": [
+        "Let me size you up...\r",
+        "You’ll meet many, many Pokémon.\n",
+        "That’s what you should be thinking.\r",
+        "Eventually, the world will appear bigger\n",
+        "to you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000250_00002",
+      "garbage": 72
+    },
+    {
+      "id": "pl_msg_00000250_00003",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000250_00004",
+      "garbage": 37
+    },
+    {
+      "id": "pl_msg_00000250_00005",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000250_00006",
+      "garbage": 67
+    },
+    {
+      "id": "pl_msg_00000250_00007",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000250_00008",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000250_00009",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000250_00010",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000250_00011",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000250_00012",
+      "garbage": 11
+    }
+  ]
+}

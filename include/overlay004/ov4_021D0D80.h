@@ -29,7 +29,7 @@ int ov4_021D1B5C(void);
 int ov4_021D1E30();
 void ov4_021D1E74(int heapID);
 void ov4_021D1F18(void);
-int ov4_021D1F3C(int param0, int param1);
+int NintendoWFC_GetErrorCode(int param0, int param1);
 int ov4_021D20B0(int param0);
 int ov4_021D2134();
 void ov4_021D2170(void (*func)(int));

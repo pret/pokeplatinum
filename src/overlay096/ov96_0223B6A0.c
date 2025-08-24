@@ -98,7 +98,7 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
         ov96_0223BC64(v0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
-        v0->unk_24 = Heap_AllocFromHeap(HEAP_ID_68, 0x20000 + 32);
+        v0->unk_24 = Heap_Alloc(HEAP_ID_68, 0x20000 + 32);
         v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
@@ -107,8 +107,8 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
         break;
     case 1:
         sub_02099550();
-        sub_020995B4();
-        sub_02033478();
+        Overlay_LoadHttpOverlay();
+        WirelessDriver_Init();
         (*param1) = 0;
         return 1;
         break;
@@ -128,7 +128,7 @@ int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             Unk_ov96_0223DEF0 = v0->unk_28;
             DWC_SetMemFunc(ov96_0223BC04, ov96_0223BC2C);
             *param1 = 1;
@@ -168,7 +168,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     int v1;
 
     Heap_Free(v0->unk_24);
-    sub_020995C4();
+    Overlay_UnloadHttpOverlay();
     sub_02099560();
 
     ov96_0223BC8C(v0);
@@ -180,7 +180,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
 
     ov96_0223B99C(v0);
 
-    sub_020334CC();
+    WirelessDriver_Shutdown();
     Heap_Free(v0->unk_04);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
@@ -236,7 +236,7 @@ static void ov96_0223B9A0(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, 68
+            20, 2048, 2048, HEAP_ID_68
         };
 
         CharTransfer_Init(&v0);

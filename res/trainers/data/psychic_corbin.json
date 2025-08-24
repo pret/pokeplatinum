@@ -26,5 +26,35 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’re going to win!\n",
+				"That’s the future I saw!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What I saw in the future turned out\n",
+				"to be true...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I lost, but my vision of the future\n",
+				"came true...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You’re going to win again!\n",
+				"That’s the future I saw!\r"
+			]
+		}
     ]
 }

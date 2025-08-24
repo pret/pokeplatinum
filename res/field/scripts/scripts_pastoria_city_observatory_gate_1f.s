@@ -67,10 +67,10 @@ _0102:
     ScrCmd_202 0
     ScrCmd_11B 125, 2, 5, 2, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -176,10 +176,10 @@ _024E:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0288
     WaitMovement
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

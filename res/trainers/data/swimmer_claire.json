@@ -16,5 +16,32 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I bought a new bikini!\n",
+				"It’s this year’s newest model!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Psssssh!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I bought the wrong size of bikini.\n",
+				"It’s a little too snug...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Did I show you already?\n",
+				"My bikini, new for this year!\r"
+			]
+		}
     ]
 }

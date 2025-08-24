@@ -18,15 +18,20 @@ enum NamingScreenType {
     NAMING_SCREEN_TYPE_PAL_PAD,
 };
 
+enum NamingScreenReturnCode {
+    NAMING_SCREEN_CODE_OK,
+    NAMING_SCREEN_CODE_NO_INPUT,
+};
+
 typedef struct NamingScreenArgs {
     enum NamingScreenType type;
     int playerGenderOrMonSpecies;
     int monForm;
     int maxChars;
     int monGender;
-    int unk_14;
+    enum NamingScreenReturnCode returnCode;
     Strbuf *textInputStr;
-    u16 unk_1C[20];
+    charcode_t nameInputRaw[20];
     int battleMsgID;
     PCBoxes *pcBoxes;
     Options *options;
@@ -35,11 +40,11 @@ typedef struct NamingScreenArgs {
 extern const ApplicationManagerTemplate gNamingScreenAppTemplate;
 
 NamingScreenArgs *NamingScreenArgs_Init(
-    enum HeapId heapID,
+    enum HeapID heapID,
     enum NamingScreenType type,
-    int param2,
-    int param3,
+    int playerGenderOrMonSpecies,
+    int maxChars,
     Options *options);
-void NamingScreenArgs_Free(NamingScreenArgs *param0);
+void NamingScreenArgs_Free(NamingScreenArgs *args);
 
 #endif // POKEPLATINUM_KEYBOARD_H

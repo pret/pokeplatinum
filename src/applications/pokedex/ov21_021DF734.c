@@ -34,7 +34,7 @@
 typedef struct {
     int *unk_00;
     PokedexSortData *unk_04;
-    const UnkStruct_ov21_021E68F4 *unk_08;
+    const PokedexScreenManager *unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -61,8 +61,8 @@ typedef struct {
 } UnkStruct_ov21_021DFFF8;
 
 static inline int inline_ov21_021E00F4(int param0, int param1);
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, PokedexApp *param1);
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapID heapID, PokedexApp *param1);
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021DF844(UnkStruct_ov21_021DF844 *param0);
 static void ov21_021DF858(UnkStruct_ov21_021DF858 *param0);
 static int ov21_021DF86C(void);
@@ -128,15 +128,15 @@ static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0);
 
-void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021DF734(PokedexScreenManager *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021DF844 *v0 = ov21_021DF7CC(heapID, param1);
     UnkStruct_ov21_021DF858 *v1 = ov21_021DF80C(heapID, param1);
 
     param0->pageData = v0;
     param0->pageGraphics = v1;
-    param0->unk_20 = NULL;
-    param0->unk_24 = ov21_021DF86C();
+    param0->screenStates = NULL;
+    param0->numStates = ov21_021DF86C();
 
     param0->dataFunc[0] = ov21_021DF888;
     param0->dataFunc[1] = ov21_021DF8B0;
@@ -146,13 +146,13 @@ void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021DFA18;
 }
 
-void ov21_021DF78C(UnkStruct_ov21_021E68F4 *param0)
+void ov21_021DF78C(PokedexScreenManager *param0)
 {
     ov21_021DF844(param0->pageData);
     ov21_021DF858(param0->pageGraphics);
 }
 
-BOOL ov21_021DF7A0(UnkStruct_ov21_021E68F4 *param0, int param1)
+BOOL ov21_021DF7A0(PokedexScreenManager *param0, int param1)
 {
     UnkStruct_ov21_021DF844 *v0 = param0->pageData;
     UnkStruct_ov21_021DF858 *v1 = param0->pageGraphics;
@@ -172,35 +172,35 @@ BOOL ov21_021DF7A0(UnkStruct_ov21_021E68F4 *param0, int param1)
     return 0;
 }
 
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DF844 *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DF844));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DF844));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DF844));
 
     v0->unk_00 = ov21_021D138C(param1);
-    v0->unk_04 = ov21_021D13EC(param1);
+    v0->unk_04 = PokedexMain_GetSortData(param1);
     v1 = ov21_021D1410(param1, 5);
     v0->unk_08 = v1;
 
     return v0;
 }
 
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DF858 *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DF858));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DF858));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DF858));
 
-    v0->unk_00 = ov21_021D13FC(param1);
+    v0->unk_00 = PokedexMain_GetGraphicData(param1);
 
     return v0;
 }
@@ -293,7 +293,7 @@ static int ov21_021DF8C4(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DFFF8));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DFFF8));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021DFFF8));
         v2 = graphicsMan->pageGraphics;
         v2->unk_C8 = v0->unk_0C;

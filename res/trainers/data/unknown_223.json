@@ -25,5 +25,39 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"garbage": 35
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"garbage": 14
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"garbage": 40
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"garbage": 25
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"garbage": 29
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"garbage": 15
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"garbage": 15
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"garbage": 18
+		}
     ]
 }

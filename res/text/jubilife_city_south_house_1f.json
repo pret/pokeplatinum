@@ -1,0 +1,33 @@
+{
+  "key": 50194,
+  "messages": [
+    {
+      "id": "pl_msg_00000038_00000",
+      "en_US": [
+        "Pokémon are wonderful, deeply\n",
+        "mysterious creatures.\r",
+        "But to Trainers, the key thing is to do\n",
+        "battle with their Pokémon.\r",
+        "That’s what it boils down to."
+      ]
+    },
+    {
+      "id": "pl_msg_00000038_00001",
+      "en_US": [
+        "Hello there, Trainer!\r",
+        "If you get stumped and don’t know\n",
+        "what to do...\r",
+        "Talk to people!\n",
+        "Talk to everyone you see!\r",
+        "Go places!\n",
+        "Go wherever you can!\r",
+        "You’ll find many new places by\n",
+        "doing just that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000038_00002",
+      "en_US": "PACHIRISU: Kukkuuh!"
+    }
+  ]
+}

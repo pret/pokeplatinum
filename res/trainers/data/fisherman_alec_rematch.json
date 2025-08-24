@@ -25,5 +25,19 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, traveler!\r",
+				"I’ve forgotten your name, but we’ve\n",
+				"battled before, haven’t we?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You sure showed me up.\n"
+		}
     ]
 }

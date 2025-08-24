@@ -52,7 +52,7 @@ BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem)
     randTiles[3] = rand & 0xff;
 
     // The first 3 members of this narc are (2, 228, 300) from encounters_mt_coronet_b1f.json. They are u32, hence the cast to int
-    narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 1, HEAP_ID_FIELD);
+    narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 1, HEAP_ID_FIELD1);
     mapCoordsSize = ((int *)narcData)[0];
     numFishingtiles = 0;
 
@@ -105,7 +105,7 @@ void LoadFeebasLevelRange(u8 *maxLevel, u8 *minLevel)
 // I guess they didn't want to hardcode this...for some reason...
 void LoadFeebasFromNARC(int *species)
 {
-    int *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD);
+    int *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD1);
     (*species) = (*narcData);
 
     Heap_Free(narcData);

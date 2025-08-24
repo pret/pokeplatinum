@@ -170,11 +170,11 @@ _022B:
 _0261:
     SetVar VAR_RESULT, 0
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB 0, VAR_RESULT
     SetVar VAR_0x8002, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 5
     ShowYesNoMenu VAR_RESULT

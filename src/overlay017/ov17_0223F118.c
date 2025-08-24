@@ -36,7 +36,7 @@
 #include "unk_02012744.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223F6E8(SysTask *param0, void *param1);
@@ -73,7 +73,7 @@ static const struct {
 static void NitroStaticInit(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
@@ -393,7 +393,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
 
 UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
 {
-    UnkStruct_ov17_0223F744 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov17_0223F744));
+    UnkStruct_ov17_0223F744 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
 
     v0->unk_04 = param1;

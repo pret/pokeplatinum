@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/net.h"
+
 #include "struct_defs/struct_02049A68.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -212,7 +214,7 @@ int ov96_0223BDBC(UnkStruct_ov96_0223BF40 *param0, int param1)
 {
     int v0, v1;
 
-    sub_020397B0(ov96_0223BC50());
+    NetworkIcon_SetStrength(ov96_0223BC50());
 
     v1 = param0->unk_1C;
     v0 = (*Unk_ov96_0223DCE0[param0->unk_1C])(param0);
@@ -470,7 +472,7 @@ static int ov96_0223C4B8(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C510(UnkStruct_ov96_0223BF40 *param0)
 {
-    DWC_InitInetEx(&param0->unk_2C, 2, 1, 20);
+    DWC_InitInetEx(&param0->unk_2C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
     DWC_ConnectInetAsync();
 
@@ -587,7 +589,7 @@ static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
 
@@ -677,14 +679,14 @@ static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0)
         case -5:
         default:
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -693,8 +695,8 @@ static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C7B4(UnkStruct_ov96_0223BF40 *param0)
 {
-    sub_02030E78(param0->unk_00->saveData, &param0->unk_F84);
-    ov96_0223B574(&param0->unk_F84, &param0->unk_FE8);
+    WorldExchange_GetTrainerObject(param0->unk_00->saveData, &param0->unk_F84);
+    WorldExchange_SetProfile(&param0->unk_F84, &param0->unk_FE8);
 
     param0->unk_1C = 10;
     param0->unk_FF4 = 0;
@@ -713,9 +715,9 @@ static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0)
         case 0:
             ov96_0223D99C(param0);
 
-            switch (param0->unk_FE8.unk_00) {
+            switch (param0->unk_FE8.validationError) {
             case 0:
-                switch (param0->unk_FE8.unk_04) {
+                switch (param0->unk_FE8.systemError) {
                 case 0:
                     switch (param0->unk_00->unk_18) {
                     case 0:
@@ -746,7 +748,7 @@ static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0)
                 break;
             default:
                 ov96_0223D99C(param0);
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
             break;
@@ -776,14 +778,14 @@ static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0)
         case -5:
         default:
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -832,7 +834,7 @@ static int ov96_0223C948(UnkStruct_ov96_0223BF40 *param0)
             param0->unk_F7C = v0;
             param0->unk_1C = 53;
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         default:
             if (v0 > 0) {
@@ -846,7 +848,7 @@ static int ov96_0223C948(UnkStruct_ov96_0223BF40 *param0)
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -1000,14 +1002,14 @@ static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0)
             param0->unk_F7C = v0;
             param0->unk_1C = 53;
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -1091,14 +1093,14 @@ static int ov96_0223CE1C(UnkStruct_ov96_0223BF40 *param0)
             param0->unk_F7C = v0;
             param0->unk_1C = 53;
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -1293,14 +1295,14 @@ static int ov96_0223D270(UnkStruct_ov96_0223BF40 *param0)
             param0->unk_F7C = v0;
             param0->unk_1C = 53;
             ov96_0223D99C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_FF4++;
 
         if (param0->unk_FF4 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -1423,7 +1425,7 @@ static int ov96_0223D524(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 {
-    sub_02039794();
+    NetworkIcon_Destroy();
     sub_0203848C();
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_68);
 
@@ -1562,7 +1564,7 @@ static void ov96_0223D750(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1
 
 static int ov96_0223D7B8(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = ov4_021D1F3C(-param0->unk_F74, param0->unk_F78);
+    int v0 = NintendoWFC_GetErrorCode(-param0->unk_F74, param0->unk_F78);
 
     ov96_0223DA34(param0, v0, -param0->unk_F74);
     param0->unk_1C = 56;

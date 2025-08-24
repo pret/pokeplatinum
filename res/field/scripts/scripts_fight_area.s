@@ -112,7 +112,7 @@ _0198:
     WaitMovement
     Message 11
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 25
     RemoveObject 24
@@ -121,7 +121,7 @@ _0198:
     RemoveObject 27
     RemoveObject 30
     RemoveObject 31
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ApplyMovement 7, _0378
     ApplyMovement LOCALID_PLAYER, _0400
@@ -532,7 +532,7 @@ _0606:
     CallIfEq VAR_0x8004, 1, _0660
     CallIfEq VAR_0x8004, 3, _067A
     CallIfEq VAR_0x8004, 2, _0694
-    ScrCmd_23D 1, 0, 165, 0x164, 246
+    TakeShipToSnowpoint
     ReleaseAll
     End
 

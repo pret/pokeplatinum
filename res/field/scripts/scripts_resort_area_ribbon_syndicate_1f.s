@@ -41,10 +41,10 @@ _0078:
     Message 0
     CloseMessage
     WaitTime 20, VAR_RESULT
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_RESORT_AREA, 0, 0x338, 0x1C6, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

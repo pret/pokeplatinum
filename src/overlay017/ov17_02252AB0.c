@@ -63,7 +63,7 @@ UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *para
     v1.priority = param7;
     v1.bgPriority = param8;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov17_02252B48));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov17_02252B48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02252B48));
 
     for (v2 = 0; v2 < 5; v2++) {

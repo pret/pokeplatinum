@@ -66,14 +66,14 @@ static const u8 sSignaturePubKey[] = {
 
 static u32 sHeapID;
 
-void DistributionCartridge_UseHeap(enum HeapId heapID)
+void DistributionCartridge_UseHeap(enum HeapID heapID)
 {
     sHeapID = heapID;
 }
 
 static void *DistributionCartridge_Alloc(u32 size)
 {
-    return Heap_AllocFromHeap(sHeapID, size);
+    return Heap_Alloc(sHeapID, size);
 }
 
 inline u32 FlipEndianness(u32 val)

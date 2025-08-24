@@ -33,5 +33,28 @@
             "power": 30,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"Forget it!\n",
+				"This isn’t over yet!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"My Pokémon’s getting low on HP...\n",
+				"Things could be tight here.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What’s going on here?\n",
+				"What, I lost?!\n"
+			]
+		}
     ]
 }

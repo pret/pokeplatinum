@@ -16,5 +16,33 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"A bike will carry you a long way.\r",
+				"The only thing that limits you is your\n",
+				"own endurance!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Gasp... Gasp... Gasp...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"My Pokémon and I are plumb worn out.\n",
+				"We should be getting home to rest...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We took a recuperative rest.\n",
+				"We’re not losing this time!\r"
+			]
+		}
     ]
 }

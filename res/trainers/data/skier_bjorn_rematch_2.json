@@ -34,5 +34,18 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I knew you were headed back here.\n",
+				"I felt it with the soles of my feet!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I got a good taste of your power!\n"
+		}
     ]
 }

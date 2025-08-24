@@ -11,6 +11,7 @@
 #include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "play_time_manager.h"
 #include "pokemon.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
@@ -19,7 +20,6 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02017428.h"
 #include "unk_0205C980.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
@@ -37,7 +37,7 @@ static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state);
 static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state);
 static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state);
 
-static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID);
+static void InitializeNewSave(enum HeapID heapID, SaveData *saveData, BOOL setTrainerID);
 static void TryLoadingSave(int unused, SaveData *saveData);
 static void StartNewSave(int unused, SaveData *saveData);
 
@@ -141,7 +141,7 @@ static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state)
 
 #include "data/berry_init.h"
 
-static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID)
+static void InitializeNewSave(enum HeapID heapID, SaveData *saveData, BOOL setTrainerID)
 {
     u32 rnd;
     BerryPatch *berryPatches;

@@ -20,7 +20,7 @@ typedef struct HBlankSystem {
     HBlankTask tasks[MAX_HBLANK_TASKS];
 } HBlankSystem;
 
-HBlankSystem *HBlankSystem_New(enum HeapId heapID);
+HBlankSystem *HBlankSystem_New(enum HeapID heapID);
 void HBlankSystem_Delete(HBlankSystem *hBlankSystem);
 void HBlankSystem_Start(HBlankSystem *hBlankSystem);
 void HBlankSystem_Stop(HBlankSystem *hBlankSystem);

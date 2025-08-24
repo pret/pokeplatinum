@@ -25,5 +25,32 @@
             "power": 50,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ll teach you about the charms of\n",
+				"bird Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Well, that was surprising!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The sight of you battling...\n",
+				"It was simply a wonder to watch!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Are you finally noticing the great\n",
+				"qualities of bird Pokémon?\r"
+			]
+		}
     ]
 }

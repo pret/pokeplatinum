@@ -273,14 +273,14 @@ _03DE:
 
 _042E:
     LockAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetFlag FLAG_UNK_0x017D
     RemoveObject 12
     StartChooseStarterScene
     SaveChosenStarter
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GetPlayerStarterSpecies VAR_0x8000
     GivePokemon VAR_0x8000, 5, ITEM_NONE, VAR_RESULT
@@ -388,7 +388,7 @@ _05CF:
 _05F5:
     ReturnToField
     LockObject 2
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     BufferRivalName 0
     BufferPlayerName 1
@@ -401,11 +401,11 @@ _0618:
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
     SetVar VAR_UNK_0x40A4, 3
     WaitTime 30, VAR_RESULT
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     HealParty
     Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     ReleaseAll
     End
@@ -1046,10 +1046,10 @@ _0CF1:
     SetVar VAR_UNK_0x4082, 4
     SetFlag FLAG_UNK_0x0196
     WaitTime 30, VAR_RESULT
-    FadeScreen 6, 3, 0, 0
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
-    FadeScreen 6, 3, 1, 0
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     ReleaseAll
     End

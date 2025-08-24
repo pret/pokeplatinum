@@ -37,7 +37,7 @@ _009E:
     Return
 
 _00A6:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1DD 43, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 4, _01F8
@@ -49,7 +49,7 @@ _00A6:
     End
 
 _00E9:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_2C4 6
@@ -58,10 +58,10 @@ _00E9:
     End
 
 _010A:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 2, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

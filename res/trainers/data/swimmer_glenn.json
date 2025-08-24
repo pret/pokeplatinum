@@ -25,5 +25,36 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"A Trainer riding a Pokémon!\n",
+				"I like that! Let’s battle it out!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Awesome!\n",
+				"You’re a real wild child!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You ride atop the waves while riding on\n",
+				"a Pokémon!\r",
+				"And you rode right over me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Yo, Pokémon-riding Trainer!\n",
+				"How about a rematch?\r"
+			]
+		}
     ]
 }

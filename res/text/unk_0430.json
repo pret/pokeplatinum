@@ -1,0 +1,209 @@
+{
+  "key": 1593,
+  "messages": [
+    {
+      "id": "pl_msg_00000430_00000",
+      "en_US": [
+        "Oh, hello!\n",
+        "Right this way, please!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00001",
+      "en_US": [
+        "Hello.\n",
+        "I’m glad to meet you.\r",
+        "My name is Teala, and I’m your guide\n",
+        "to the Pokémon Wi-Fi Club.\r",
+        "First, I need to give you this.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00002",
+      "en_US": [
+        "That’s your Pal Pad. You may register\n",
+        "your friends in it.\r",
+        "Once registered, you may link with\n",
+        "those friends over Nintendo WFC to\f",
+        "trade Pokémon, battle, and so on.\r",
+        "Would you like to know more?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00003",
+      "en_US": [
+        "You may meet people on the second\n",
+        "floor of a Pokémon Center for trades\f",
+        "or Colosseum battles.\r",
+        "You may register such people as\n",
+        "friends in your Pal Pad.\r",
+        "You may also manually register friends\n",
+        "by entering their Friend Codes into\f",
+        "your Pal Pad.\r",
+        "Would you like me to repeat that?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00004",
+      "en_US": [
+        "I hope you enjoy using Nintendo\n",
+        "WFC!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00005",
+      "en_US": [
+        "Welcome to the Pokémon Center Wi-Fi\n",
+        "Club!\r",
+        "May I help you with anything?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00006",
+      "en_US": [
+        "Let me explain how the Pokémon Wi-Fi\n",
+        "Club is set up.\r",
+        "From the center counter, you may use\n",
+        "Nintendo Wi-Fi Connection.\r",
+        "Over Nintendo WFC, you may conduct\n",
+        "trades and battles with friends that\f",
+        "you have registered in your Pal Pad."
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00007",
+      "en_US": [
+        "Welcome to the Pokémon Wi-Fi Club!\r",
+        "Would you like to use Nintendo Wi-Fi\n",
+        "Connection?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00008",
+      "en_US": "Please come again."
+    },
+    {
+      "id": "pl_msg_00000430_00009",
+      "en_US": [
+        "Would you like to launch\n",
+        "Nintendo WFC?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00010",
+      "en_US": "Right this way, please.\r"
+    },
+    {
+      "id": "pl_msg_00000430_00011",
+      "en_US": [
+        "...Oh?\r",
+        "I’m sorry, but you don’t have any\n",
+        "friends registered in your Pal Pad.\r",
+        "The Wi-Fi Club cannot be used if\n",
+        "no friends are in your Pal Pad.\r",
+        "Would you like to get your own\n",
+        "Friend Code at least?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00012",
+      "en_US": [
+        "...Oh?\r",
+        "I’m sorry, but you don’t have any\n",
+        "friends registered in your Pal Pad.\r",
+        "The Wi-Fi Club cannot be used if\n",
+        "no friends are in your Pal Pad.\r",
+        "Please register friends in your Pal\n",
+        "Pad, and then come back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00013",
+      "en_US": [
+        "At any Wi-Fi Club, you may play using\n",
+        "Nintendo Wi-Fi Connection.\r",
+        "Doing so, you may trade or battle with\n",
+        "friends you have registered in your\f",
+        "Pal Pad.\r",
+        "Two kinds of battles can be conducted:\n",
+        "Single or Double.\r",
+        "For each kind, you may choose one of\n",
+        "three level restrictions: Free,\f",
+        "Level 50, or Level 100.\r",
+        "For Level 50 and Level 100, the levels\n",
+        "of all participating Pokémon will be\f",
+        "temporarily changed to the set level.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00014",
+      "en_US": "GO TO WI-FI CLUB"
+    },
+    {
+      "id": "pl_msg_00000430_00015",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000430_00016",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000430_00017",
+      "en_US": [
+        "Hello, you may enter our Pokémon\n",
+        "Center Wi-Fi Plaza from here.\r",
+        "Would you like to use Nintendo Wi-Fi\n",
+        "Connection?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00018",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000430_00019",
+      "en_US": "Please enter this way.\r"
+    },
+    {
+      "id": "pl_msg_00000430_00020",
+      "en_US": "We look forward to your next visit."
+    },
+    {
+      "id": "pl_msg_00000430_00021",
+      "en_US": [
+        "The Wi-Fi Plaza is a facility where you\n",
+        "may meet Trainers from around the\f",
+        "world.\r",
+        "You can take part in chats and play\n",
+        "Plaza Games.\r",
+        "You may also play with Tap Toys\n",
+        "that are exclusive to the Wi-Fi Plaza.\r",
+        "Please note there is a time limit to the\n",
+        "Wi-Fi Plaza connection.\r",
+        "You will be disconnected after a set\n",
+        "amount of time.\r",
+        "We hope you will get the most out of\n",
+        "each visit to the Wi-Fi Plaza!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000430_00022",
+      "en_US": "GO TO WI-FI PLAZA"
+    },
+    {
+      "id": "pl_msg_00000430_00023",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000430_00024",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000430_00025",
+      "en_US": [
+        "Sorry, we’re getting things ready.\n",
+        "Please come back later."
+      ]
+    }
+  ]
+}

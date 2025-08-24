@@ -1,0 +1,34 @@
+{
+  "key": 19025,
+  "messages": [
+    {
+      "id": "pl_msg_00000132_00000",
+      "en_US": [
+        "The Pokémon CROAGUNK is the city’s\n",
+        "official mascot.\r",
+        "CROAGUNK sure is purdy--we’re hopin’\n",
+        "it’ll get popular ’round the world."
+      ]
+    },
+    {
+      "id": "pl_msg_00000132_00001",
+      "en_US": [
+        "Put Seals on the Capsule, then put\n",
+        "it on a Poké Ball...\r",
+        "And done! Another Poké Ball made by\n",
+        "me! It’s one of a kind!\r",
+        "Giggle...\n",
+        "Are you using Ball Capsules?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000132_00002",
+      "en_US": [
+        "It’s a wood carving of the Pokémon\n",
+        "CROAGUNK.\r",
+        "Even though it’s made of wood, it\n",
+        "looks like it’s seeping poison..."
+      ]
+    }
+  ]
+}

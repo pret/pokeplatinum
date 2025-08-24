@@ -1,15 +1,11 @@
 #ifndef POKEPLATINUM_PALETTE_H
 #define POKEPLATINUM_PALETTE_H
 
+#include "constants/colors.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
-
-#define ColorR(source) ((source) & 0x1F)
-#define ColorG(source) (((source) >> 5) & 0x1F)
-#define ColorB(source) (((source) >> 10) & 0x1F)
-#define RGB(r, g, b)   (((b) << 10) | ((g) << 5) | (r))
 
 enum PaletteBufferID {
     PLTTBUF_MAIN_BG = 0,
@@ -114,7 +110,7 @@ void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target);
 void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target);
 void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB);
 
-PaletteData *PaletteData_New(enum HeapId heapID);
+PaletteData *PaletteData_New(enum HeapID heapID);
 void PaletteData_Free(PaletteData *paletteData);
 void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, void *unfaded, void *faded, u32 size);
 void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, u32 size, u32 heapID);
