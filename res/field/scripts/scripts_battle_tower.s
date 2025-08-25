@@ -631,7 +631,7 @@ _0A5A:
     GoToIfNe VAR_RESULT, 0, _0784
     ScrCmd_1E3 VAR_0x8004, VAR_0x8005
     BufferNumber 0, VAR_0x8004
-    ScrCmd_280 1, VAR_0x8005, 2, 3
+    BufferVarPaddingDigits 1, VAR_0x8005, PADDING_MODE_ZEROES, 3
     Message 52
     WaitABPress
     GoTo _0789
