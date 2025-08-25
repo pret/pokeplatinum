@@ -110,7 +110,7 @@ BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx)
     u16 moveID = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
 
-    sub_02054988(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
+    Party_ResetMonMoveSlot(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
     return FALSE;
 }
 

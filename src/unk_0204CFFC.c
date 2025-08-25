@@ -121,7 +121,7 @@ BOOL ScrCmd_098(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
 
-    sub_02054988(SaveData_GetParty(param0->fieldSystem->saveData), v0, v1, v2);
+    Party_ResetMonMoveSlot(SaveData_GetParty(param0->fieldSystem->saveData), v0, v1, v2);
     return 0;
 }
 
