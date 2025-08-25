@@ -4,6 +4,8 @@
 #include "generated/battle_backgrounds.h"
 #include "generated/evolution_methods.h"
 
+#define ENCOUNTERS_NONE 0xFFFF
+
 typedef struct {
     u8 areaDataArchiveID;
     u8 unk_01;

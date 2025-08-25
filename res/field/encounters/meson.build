@@ -1,7 +1,7 @@
 enc_bin_gen = generator(
     encounter_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@.bin'
+    output: '@BASENAME@'
 )
 
 pl_enc_data_srcs = files(
@@ -193,7 +193,10 @@ pl_enc_data_srcs = files(
 pl_enc_data_order = files('encounters.order')
 
 pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
-    output: 'pl_enc_data.narc',
+    output: [
+        'pl_enc_data.narc',
+        'pl_enc_data.naix.h',
+    ],
     input: [
         enc_bin_gen.process(pl_enc_data_srcs, env: json2bin_env),
         pl_enc_data_order
@@ -201,8 +204,9 @@ pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
     depends: [ py_consts_generators ],
     command: [
         narc_exe, 'create',
+        '--naix',
         '--order', pl_enc_data_order,
-        '--output', '@OUTPUT@',
+        '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
