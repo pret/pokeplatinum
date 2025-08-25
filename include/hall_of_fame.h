@@ -43,7 +43,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 u32 HallOfFame_GetStoredEntriesCount(const HallOfFame *hallOfFame);
 u32 HallOfFame_GetEntryNum(const HallOfFame *hallOfFame, int entryIndex);
 u32 HallOfFame_GetEntryPokemonCount(const HallOfFame *hallOfFame, int entryIndex);
-void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFameManPokemon *param3);
+void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFamePokemon *pcHallOfFameMon);
 void HallOfFame_GetEntryDate(const HallOfFame *hallOfFame, int entryIndex, RTCDate *date);
 
 #endif // POKEPLATINUM_HALL_OF_FAME_H

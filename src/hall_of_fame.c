@@ -132,7 +132,7 @@ u32 HallOfFame_GetEntryPokemonCount(const HallOfFame *hallOfFame, int entryIndex
     return i;
 }
 
-void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFameManPokemon *pcHallOfFameManMon)
+void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFamePokemon *pcHallOfFameMon)
 {
     const HallOfFamePokemon *hallOfFameMon;
     int i;
@@ -144,17 +144,17 @@ void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex
     entryIndex = HallOfFame_GetNthPriorEntry(hallOfFame, entryIndex);
     hallOfFameMon = &(hallOfFame->entries[entryIndex].pokemon[pokemonIndex]);
 
-    pcHallOfFameManMon->species = hallOfFameMon->species;
-    pcHallOfFameManMon->level = hallOfFameMon->level;
-    pcHallOfFameManMon->personality = hallOfFameMon->personality;
-    pcHallOfFameManMon->OTID = hallOfFameMon->OTID;
-    pcHallOfFameManMon->form = hallOfFameMon->form;
+    pcHallOfFameMon->species = hallOfFameMon->species;
+    pcHallOfFameMon->level = hallOfFameMon->level;
+    pcHallOfFameMon->personality = hallOfFameMon->personality;
+    pcHallOfFameMon->OTID = hallOfFameMon->OTID;
+    pcHallOfFameMon->form = hallOfFameMon->form;
 
-    Strbuf_CopyChars(pcHallOfFameManMon->nickname, hallOfFameMon->nickname);
-    Strbuf_CopyChars(pcHallOfFameManMon->OTName, hallOfFameMon->OTName);
+    Strbuf_CopyChars(pcHallOfFameMon->nickname, hallOfFameMon->nickname);
+    Strbuf_CopyChars(pcHallOfFameMon->OTName, hallOfFameMon->OTName);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        pcHallOfFameManMon->moves[i] = hallOfFameMon->moves[i];
+        pcHallOfFameMon->moves[i] = hallOfFameMon->moves[i];
     }
 }
 

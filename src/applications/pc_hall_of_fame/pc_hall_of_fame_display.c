@@ -387,20 +387,20 @@ static void PCHallOfFame_PrintEntryTitleText(PCHallOfFameApp *pcHallOfFameApp)
 static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
 {
     const PCHallOfFameScreen *pcHallOfFameScreen = pcHallOfFameApp->pcHallOfFameScreen;
-    const PCHallOfFameManPokemon *mon = &(pcHallOfFameScreen->pokemon[pcHallOfFameScreen->pokemonIndex]);
+    const PCHallOfFamePokemon *pcHallOfFameMon = &(pcHallOfFameScreen->pokemon[pcHallOfFameScreen->pokemonIndex]);
     Window *window = &(pcHallOfFameApp->windows[1]);
 
     Window_FillTilemap(window, 15);
 
     switch (pcHallOfFameScreen->textState) {
     case PC_HALL_OF_FAME_TEXT_GENERAL:
-        Text_AddPrinterWithParams(window, FONT_SYSTEM, mon->nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameMon->nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_Slash, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 72, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-        MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderSpeciesNames, mon->species, pcHallOfFameApp->unk_1F4);
+        MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderSpeciesNames, pcHallOfFameMon->species, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 94, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-        switch (Pokemon_GetGenderOf(mon->species, mon->personality)) {
+        switch (Pokemon_GetGenderOf(pcHallOfFameMon->species, pcHallOfFameMon->personality)) {
         case GENDER_MALE:
             MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_MaleSign, pcHallOfFameApp->unk_1F4);
             break;
@@ -414,19 +414,19 @@ static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
 
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 174, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_Level, pcHallOfFameApp->unk_1F4);
-        StringTemplate_SetNumber(pcHallOfFameApp->strTemplate, 0, mon->level, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(pcHallOfFameApp->strTemplate, 0, pcHallOfFameMon->level, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         StringTemplate_Format(pcHallOfFameApp->strTemplate, pcHallOfFameApp->unk_1F8, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F8, 194, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_OT, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 0, 16, TEXT_SPEED_NO_TRANSFER, NULL);
-        Text_AddPrinterWithParams(window, FONT_SYSTEM, mon->OTName, Font_CalcStrbufWidth(FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 0), 16, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameMon->OTName, Font_CalcStrbufWidth(FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 0), 16, TEXT_SPEED_NO_TRANSFER, NULL);
         break;
     case PC_HALL_OF_FAME_TEXT_MOVES: {
         int i;
 
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (mon->moves[i]) {
-                MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderMoveNames, mon->moves[i], pcHallOfFameApp->unk_1F4);
+            if (pcHallOfFameMon->moves[i]) {
+                MessageLoader_GetStrbuf(pcHallOfFameApp->msgLoaderMoveNames, pcHallOfFameMon->moves[i], pcHallOfFameApp->unk_1F4);
                 Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, (i & 1) * 96, (i / 2) * 16, TEXT_SPEED_NO_TRANSFER, NULL);
             } else {
                 break;
