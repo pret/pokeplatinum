@@ -143,8 +143,8 @@ _01C7:
     LockAll
     FacePlayer
     SetVar VAR_0x8004, 0x1BE
-    ScrCmd_33C 0, VAR_0x8004
-    ScrCmd_346 0
+    BufferItemNameWithArticle 0, VAR_0x8004
+    CapitalizeFirstLetter 0
     GoToIfSet FLAG_UNK_0x00A2, _020B
     Message 10
     ShowYesNoMenu VAR_RESULT

@@ -44,11 +44,11 @@ _00B3:
     SetVar VAR_MAP_LOCAL_0, VAR_0x8006
     SetFlag FLAG_UNK_0x0001
     GoToIfEq VAR_0x8000, 1, _00DB
-    ScrCmd_345 0, VAR_0x8007
+    BufferBallSealNamePlural 0, VAR_0x8007
     GoTo _00E0
 
 _00DB:
-    ScrCmd_2B3 0, VAR_0x8007
+    BufferBallSealName 0, VAR_0x8007
 _00E0:
     Message 4
     WaitABXPadPress
