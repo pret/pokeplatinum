@@ -9,6 +9,7 @@
 #include "overlay084/ov84_0223B5A0.h"
 
 #include "bag_context.h"
+#include "genders.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_classes.h"
@@ -86,7 +87,7 @@ static const SpriteTemplate sBagUISpriteTemplates[] = {
         .bgPriority = 1,
         .vramTransfer = FALSE,
     },
-    [BAG_SPRITE_ITEM_SORTING_POS_BAR] = {
+    [BAG_SPRITE_MOVING_ITEM_POS_BAR] = {
         .x = 177,
         .y = 14,
         .z = 0,
@@ -218,7 +219,7 @@ static void LoadSpriteResources(BagController *controller)
 {
     u32 bagSpriteIdx, bagPaletteIdx;
 
-    if (controller->trainerGender == 0) {
+    if (controller->trainerGender == GENDER_MALE) {
         bagSpriteIdx = 2;
         bagPaletteIdx = 3;
     } else {
@@ -239,9 +240,9 @@ static void LoadSpriteResources(BagController *controller)
     SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagPaletteIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
     SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 20, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
     SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, PLTT_10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
     TypeIcon_LoadPlttSrc(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 37, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 37, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 1, FALSE, 49401);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 24, FALSE, 49402);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 27, FALSE, 49403);
@@ -267,7 +268,7 @@ static void InitSprites(BagController *interface)
         interface->sprites[i] = SpriteSystem_NewSprite(interface->spriteSystem, interface->spriteMan, &sBagUISpriteTemplates[i]);
     }
 
-    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_ITEM_SORTING_POS_BAR], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVING_ITEM_POS_BAR], FALSE);
     ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
     ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_TYPE], FALSE);
     ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_CATEGORY], FALSE);

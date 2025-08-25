@@ -9,7 +9,7 @@ enum BagUISprite {
     BAG_SPRITE_POCKET_SELECTOR_LEFT_ARROW,
     BAG_SPRITE_POCKET_SELECTOR_RIGHT_ARROW,
     BAG_SPRITE_ITEM_HIGHLIGHT,
-    BAG_SPRITE_ITEM_SORTING_POS_BAR,
+    BAG_SPRITE_MOVING_ITEM_POS_BAR,
     BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE,
     BAG_SPRITE_ITEM,
     BAG_SPRITE_ITEM_COUNT_ARROW_UP,
@@ -29,9 +29,9 @@ void BagUI_FreeSprites(BagController *controller);
 void BagUI_TickSpriteAnimations(BagController *controller);
 void BagUI_UpdateItemSprite(BagController *controller, u16 item);
 void BagUI_SetHighlightSpritesPalette(BagController *controller, u8 palette);
-u8 BagUI_IsPocketHighlightDoneMoving(BagController *controller);
 void BagUI_StartMovingPocketHighlight(BagController *controller);
 void BagUI_StepPocketHighlightMovement(BagController *controller);
+u8 BagUI_IsPocketHighlightDoneMoving(BagController *controller);
 void BagUI_ShowItemCountArrows(BagController *controller, u8 position);
 void BagUI_ToggleItemCountArrows(BagController *controller, u8 show);
 void BagUI_UpdateTypeAndCategoryIcons(BagController *controller, u16 item, u8 draw);

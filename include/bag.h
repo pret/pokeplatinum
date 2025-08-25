@@ -16,14 +16,15 @@
 #define BATTLE_ITEM_POCKET_SIZE 30
 
 // clang-format off
-#define LARGEST_POCKET_SIZE max(ITEM_POCKET_SIZE,     \
-                            max(KEY_ITEM_POCKET_SIZE, \
-                            max(TMHM_POCKET_SIZE,     \
-                            max(MAIL_POCKET_SIZE,     \
-                            max(MEDICINE_POCKET_SIZE, \
-                            max(BERRY_POCKET_SIZE,    \
-                            max(POKEBALL_POCKET_SIZE, \
-                            BATTLE_ITEM_POCKET_SIZE)))))))
+#define LARGEST_POCKET_SIZE   \
+    max(ITEM_POCKET_SIZE,     \
+    max(KEY_ITEM_POCKET_SIZE, \
+    max(TMHM_POCKET_SIZE,     \
+    max(MAIL_POCKET_SIZE,     \
+    max(MEDICINE_POCKET_SIZE, \
+    max(BERRY_POCKET_SIZE,    \
+    max(POKEBALL_POCKET_SIZE, \
+    BATTLE_ITEM_POCKET_SIZE)))))))
 // clang-format on
 
 typedef struct BagItem {

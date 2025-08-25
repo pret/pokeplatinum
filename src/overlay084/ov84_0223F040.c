@@ -145,7 +145,7 @@ void BagUI_PrintPocketNames(BagController *controller)
 
     BagPocketSelector *pocketSelector = &controller->pocketSelector;
     Strbuf *currentPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType];
-    Strbuf *nextPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[pocketSelector->nextPocketIdx].pocketType];
+    Strbuf *nextPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[pocketSelector->nextPocket].pocketType];
 
     u16 curPocketNamePos;
     if (pocketSelector->nextPocketDirection == 0) {
@@ -209,12 +209,12 @@ void BagUI_DrawPocketSelectorIcons(BagController *controller)
 
 static void BufferPocketSlotItemName(BagController *controller, u32 slotIdx, u32 templateParamIdx)
 {
-    StringTemplate_SetItemName(controller->strTemplate, templateParamIdx, ov84_0223BE5C(controller, slotIdx, 0));
+    StringTemplate_SetItemName(controller->strTemplate, templateParamIdx, BagInterface_GetItemSlotParam(controller, slotIdx, BAG_APP_ITEM_SLOT_PARAM_ITEM));
 }
 
 static void BufferPocketSlotItemNamePlural(BagController *controller, u32 slotIdx, u32 templateParamIdx)
 {
-    StringTemplate_SetItemNamePlural(controller->strTemplate, templateParamIdx, ov84_0223BE5C(controller, slotIdx, 0));
+    StringTemplate_SetItemNamePlural(controller->strTemplate, templateParamIdx, BagInterface_GetItemSlotParam(controller, slotIdx, BAG_APP_ITEM_SLOT_PARAM_ITEM));
 }
 
 void BagUI_PrintItemDescription(BagController *controller, u16 item)
@@ -413,7 +413,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
     controller->itemActionChoices = StringList_New(numActions, HEAP_ID_6);
 
     for (u16 i = 0; i < numActions; i++) {
-        StringList_AddFromStrbuf(controller->itemActionChoices, controller->itemActionStrings[actions[i]], ov84_0223D84C(actions[i]));
+        StringList_AddFromStrbuf(controller->itemActionChoices, controller->itemActionStrings[actions[i]], BagApplication_GetItemActionFunc(actions[i]));
     }
 
     MenuTemplate menuTemplate;
