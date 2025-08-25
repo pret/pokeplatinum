@@ -15,7 +15,7 @@ typedef struct PCHallOfFameScreen {
     int pokemonCount;
     int pokemonIndex;
     PCHallOfFameTextState textState;
-    PCHallOfFameManPokemon pokemon[MAX_PARTY_SIZE];
+    PCHallOfFamePokemon pokemon[MAX_PARTY_SIZE];
 } PCHallOfFameScreen;
 
 #endif // POKEPLATINUM_PC_HALL_OF_FAME_SCREEN_H
