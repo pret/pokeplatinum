@@ -7122,7 +7122,7 @@ static BOOL ScrCmd_28F(ScriptContext *ctx)
         Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 1) {
-        *v2 = sub_0202E174(v1, 0);
+        *v2 = HallOfFame_GetEntryNum(v1, 0);
         Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 2) {

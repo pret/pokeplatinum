@@ -4,15 +4,15 @@
 #include <nitro/rtc.h>
 
 #include "constants/moves.h"
+#include "constants/pokemon.h"
 
-#include "overlay087/struct_ov87_021D1640.h"
+#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
 
 #include "party.h"
-#include "pokemon.h"
 
 #define MAX_HALL_OF_FAME_ENTRIES 30
 
-typedef struct {
+typedef struct HallOfFamePokemon {
     u16 species;
     u8 level;
     u8 form;
@@ -24,7 +24,7 @@ typedef struct {
     u8 padding_3A[2];
 } HallOfFamePokemon;
 
-typedef struct {
+typedef struct HallOfFameEntry {
     HallOfFamePokemon pokemon[MAX_PARTY_SIZE];
     u16 year;
     u8 month;
@@ -41,9 +41,9 @@ int HallOfFame_SaveSize(void);
 void HallOfFame_Init(HallOfFame *hallOfFame);
 void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDate *date);
 u32 HallOfFame_GetStoredEntriesCount(const HallOfFame *hallOfFame);
-u32 sub_0202E174(const HallOfFame *hallOfFame, int entryIndex);
-u32 HallOfFame_GetEntryPokemonDataCount(const HallOfFame *hallOfFame, int entryIndex);
-void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, UnkStruct_ov87_021D1640 *param3);
+u32 HallOfFame_GetEntryNum(const HallOfFame *hallOfFame, int entryIndex);
+u32 HallOfFame_GetEntryPokemonCount(const HallOfFame *hallOfFame, int entryIndex);
+void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFameManPokemon *param3);
 void HallOfFame_GetEntryDate(const HallOfFame *hallOfFame, int entryIndex, RTCDate *date);
 
 #endif // POKEPLATINUM_HALL_OF_FAME_H
