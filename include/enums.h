@@ -43,10 +43,10 @@ typedef enum {
     UnkEnum_0202F510_38 = 0xff,
 } UnkEnum_0202F510;
 
-typedef enum {
-    UnkEnum_ov87_021D12C0_0,
-    UnkEnum_ov87_021D12C0_1,
-} UnkEnum_ov87_021D12C0;
+typedef enum PCHallOfFameTextState {
+    PC_HALL_OF_FAME_TEXT_GENERAL,
+    PC_HALL_OF_FAME_TEXT_MOVES,
+} PCHallOfFameTextState;
 
 typedef enum {
     UnkEnum_02098EAC_0,
