@@ -46,7 +46,13 @@ u32 MTRNG_Next(void);
 
 void CreateAffineTransformationMatrix(MtxFx22 *matrix, u16 degrees, fx32 xScale, fx32 yScale, u8 mode);
 
-s32 CalcDotProduct2D(s32 x0, s32 y0, s32 x1, s32 y1, u32 unused);
+/*
+ * Computes an approximation of the (signed) arc length spanned by the (signed)
+ * angle from (x0, y0) to (x1, y1) on a circle of radius length((x0, y0)). The
+ * last argument was most likely intended to be the radius, but went unused in
+ * the final version.
+ */
+s32 ApproximateArcLength(s32 x0, s32 y0, s32 x1, s32 y1, u32 unused_radius);
 s32 CalcRadialAngle(u16 radius, s32 distance);
 
 u32 SumBytes(const void *data, u32 size);

@@ -1059,7 +1059,7 @@ static void UpdateDialPosition(PokedexCrySubPageData *pokedexCrySubPageData)
     int y0 = pokedexCrySubPageData->dialY - DIAL_Y;
     int x1 = gSystem.touchX - DIAL_X;
     int y1 = gSystem.touchY - DIAL_Y;
-    int magnitude = CalcDotProduct2D(x0, y0, x1, y1, 0);
+    int magnitude = ApproximateArcLength(x0, y0, x1, y1, 0);
 
     if (MATH_IAbs(magnitude) < 1) {
         return;
