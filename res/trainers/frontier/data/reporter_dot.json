@@ -1,4 +1,5 @@
 {
+    "name": "Dot",
     "class": "TRAINER_CLASS_REPORTER",
     "availableSets": [
         "bulbasaur_1",

@@ -1,4 +1,5 @@
 {
+    "name": "Buck",
     "class": "TRAINER_CLASS_TRAINER_BUCK",
     "availableSets": [
         "cloyster_2",

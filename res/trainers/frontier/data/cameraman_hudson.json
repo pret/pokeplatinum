@@ -1,4 +1,5 @@
 {
+    "name": "Hudson",
     "class": "TRAINER_CLASS_CAMERAMAN",
     "availableSets": [
         "bulbasaur_1",

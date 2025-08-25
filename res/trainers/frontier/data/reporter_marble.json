@@ -1,4 +1,5 @@
 {
+    "name": "Marble",
     "class": "TRAINER_CLASS_REPORTER",
     "availableSets": [
         "mime_jr_1",

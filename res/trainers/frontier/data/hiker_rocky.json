@@ -1,4 +1,5 @@
 {
+    "name": "Rocky",
     "class": "TRAINER_CLASS_HIKER",
     "availableSets": [
         "blaziken_3",
