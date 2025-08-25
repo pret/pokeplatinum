@@ -8,12 +8,12 @@
 
 #include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
 #include "struct_defs/pc_hall_of_fame_screen_def.h"
-#include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pc_hall_of_fame/pc_hall_of_fame_manager.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -32,7 +32,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 
 #include "res/text/bank/hall_of_fame.h"
 
@@ -88,7 +87,7 @@ static BOOL (*PCHallOfFame_Transitions[])(PCHallOfFameApp *, int *) = {
 
 PCHallOfFameApp *PCHallOfFame_InitApp(PCHallOfFameMan *pcHallOfFameMan, const PCHallOfFameScreen *pcHallOfFameScreen)
 {
-    PCHallOfFameApp *pcHallOfFameApp = Heap_AllocFromHeap(HEAP_ID_61, sizeof(PCHallOfFameApp));
+    PCHallOfFameApp *pcHallOfFameApp = Heap_Alloc(HEAP_ID_61, sizeof(PCHallOfFameApp));
 
     if (pcHallOfFameApp) {
         pcHallOfFameApp->pcHallOfFameMan = pcHallOfFameMan;
@@ -528,12 +527,7 @@ static void ov87_021D18A0(PCHallOfFameApp *pcHallOfFameApp, NNSG2dCellDataBank *
 
 static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
 {
-    static const UnkStruct_02013610 v0 = {
-        0,
-        0,
-        10,
-        10,
-    };
+    static const TileRegion v0 = FRAME_0_REGION;
     PokemonSpriteTemplate spriteTemplate;
     const PCHallOfFameScreen *pcHallOfFameScreen;
     int i;
@@ -544,7 +538,7 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
         Pokemon_InitWith(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
         Pokemon_SetValue(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
         Pokemon_BuildSpriteTemplate(&spriteTemplate, pcHallOfFameApp->mon, FACE_FRONT);
-        sub_02013720(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_61, &v0, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, 0, 2, pcHallOfFameScreen->pokemon[i].species);
+        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_61, &v0, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
 
         DC_FlushRange(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
         GX_LoadOBJ(pcHallOfFameApp->unk_200, 3200 * i, 3200);
