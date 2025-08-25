@@ -1,4 +1,5 @@
 {
+    "name": "Boyce",
     "class": "TRAINER_CLASS_WORKER",
     "availableSets": [
         "blaziken_1",

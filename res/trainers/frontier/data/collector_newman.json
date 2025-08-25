@@ -1,4 +1,5 @@
 {
+    "name": "Newman",
     "class": "TRAINER_CLASS_COLLECTOR",
     "availableSets": [
         "gengar_1",

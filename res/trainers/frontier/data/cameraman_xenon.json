@@ -1,4 +1,5 @@
 {
+    "name": "Xenon",
     "class": "TRAINER_CLASS_CAMERAMAN",
     "availableSets": [
         "mime_jr_1",
