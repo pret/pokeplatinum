@@ -93,7 +93,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
     FS_EXTERN_OVERLAY(overlay84);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        ov84_0223B5A0, ov84_0223B76C, ov84_0223B900, FS_OVERLAY_ID(overlay84)
+        BagApplication_Init, BahApplication_Main, BagApplication_Exit, FS_OVERLAY_ID(overlay84)
     };
     static const u8 v3[] = {
         4, 0xff

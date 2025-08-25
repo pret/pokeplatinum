@@ -269,9 +269,9 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FS_EXTERN_OVERLAY(overlay84);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        ov84_0223B5A0,
-        ov84_0223B76C,
-        ov84_0223B900,
+        BagApplication_Init,
+        BahApplication_Main,
+        BagApplication_Exit,
         FS_OVERLAY_ID(overlay84)
     };
 

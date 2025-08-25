@@ -19,12 +19,52 @@
 
 #define BAG_UI_NUM_VISIBLE_ITEMS 9
 
+enum BagInterfaceMode {
+    BAG_MODE_NORMAL = 0,
+    BAG_MODE_GIVE_TO_MON,
+    BAG_MODE_SELL_ITEMS,
+    BAG_MODE_GARDENING,
+    BAG_MODE_POFFIN_SINGLEPLAYER,
+    BAG_MODE_POFFIN_MULTIPLAYER,
+};
+
+enum BagInterfaceExitCode {
+    BAG_EXIT_CODE_USE_ITEM = 0,
+    BAG_EXIT_CODE_SHOW_BERRY_DATA,
+    BAG_EXIT_CODE_GIVE_ITEM,
+    BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN,
+    BAG_EXIT_CODE_GIVE_FROM_MON_MENU,
+    BAG_EXIT_CODE_DONE,
+};
+
+enum ItemAction {
+    ITEM_ACTION_USE = 0,
+    ITEM_ACTION_WALK,
+    ITEM_ACTION_CHECK,
+    ITEM_ACTION_PLANT,
+    ITEM_ACTION_OPEN,
+    ITEM_ACTION_TRASH,
+    ITEM_ACTION_REGISTER,
+    ITEM_ACTION_DESELECT,
+    ITEM_ACTION_GIVE,
+    ITEM_ACTION_CHECK_TAG,
+    ITEM_ACTION_CONFIRM,
+    ITEM_ACTION_CANCEL,
+    NUM_ITEM_ACTIONS
+};
+
+enum BagApplicationItemSlotParam {
+    BAG_APP_ITEM_SLOT_PARAM_ITEM,
+    BAG_APP_ITEM_SLOT_PARAM_QUANTITY
+};
+
 typedef struct BagController BagController;
 
 typedef int (*ItemActionFuncPtr)(BagController *param0);
+typedef int (*ItemUseCallback)(BagController *);
 
 typedef struct BagPocketSelector {
-    u8 nextPocketIdx;
+    u8 nextPocket;
     u8 nextPocketDirection;
     u8 animStage;
     u8 animFrame;
@@ -61,7 +101,7 @@ struct BagController {
     StringTemplate *strTemplate;
     MessageLoader *itemNamesLoader;
     MessageLoader *moveNamesLoader;
-    Strbuf *itemActionStrings[12];
+    Strbuf *itemActionStrings[NUM_ITEM_ACTIONS];
     StringList *itemActionChoices;
     Menu *menu;
     ListMenu *itemList;
@@ -88,27 +128,27 @@ struct BagController {
     u8 pocketSelectorArrowsAnimTimer;
     u8 cursorSoundIdx;
     u8 itemUseTaskState;
-    u32 itemUseCallback;
+    ItemUseCallback itemUseCallback;
     s16 selectedItemCount;
-    u16 selectedItemOwnedCount;
+    u16 selectedItemCountLimit;
     u32 soldItemPrice;
-    u8 ballButtonAnimStep;
-    u8 ballButtonAnimFrame;
-    u8 isScrollingWithBall;
+    u8 dialButtonAnimStep;
+    u8 dialButtonAnimFrame;
+    u8 isTouchingDial;
     u8 padding_493;
     s32 queuedScrollRemainder;
     s16 queuedScroll;
-    s16 ballRotation;
+    s16 dialRotation;
     u8 padding_49C[2];
     u16 previousTouchX;
     u16 previousTouchY;
     u8 padding_4A2[2];
 };
 
-int ov84_0223B5A0(ApplicationManager *appMan, int *param1);
-int ov84_0223B76C(ApplicationManager *appMan, int *param1);
-int ov84_0223B900(ApplicationManager *appMan, int *param1);
-u16 ov84_0223BE5C(BagController *param0, u16 param1, u16 param2);
-const u32 ov84_0223D84C(u32 param0);
+int BagApplication_Init(ApplicationManager *appMan, int *state);
+int BahApplication_Main(ApplicationManager *appMan, int *state);
+int BagApplication_Exit(ApplicationManager *appMan, int *state);
+u16 BagInterface_GetItemSlotParam(BagController *controller, u16 slotIndex, u16 itemParam);
+const u32 BagApplication_GetItemActionFunc(enum ItemAction action);
 
 #endif // POKEPLATINUM_OV84_0223B5A0_H
