@@ -3,7 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay087/struct_ov87_021D1640.h"
+#include "constants/species.h"
+
+#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
 
 #include "inlines.h"
 #include "party.h"
@@ -102,7 +104,7 @@ u32 HallOfFame_GetStoredEntriesCount(const HallOfFame *hallOfFame)
     return hallOfFame->totalEntriesCount;
 }
 
-u32 sub_0202E174(const HallOfFame *hallOfFame, int entryIndex)
+u32 HallOfFame_GetEntryNum(const HallOfFame *hallOfFame, int entryIndex)
 {
     GF_ASSERT(hallOfFame != NULL);
     GF_ASSERT(hallOfFame->nextEntryIndex < MAX_HALL_OF_FAME_ENTRIES);
@@ -111,7 +113,7 @@ u32 sub_0202E174(const HallOfFame *hallOfFame, int entryIndex)
     return hallOfFame->totalEntriesCount - entryIndex;
 }
 
-u32 HallOfFame_GetEntryPokemonDataCount(const HallOfFame *hallOfFame, int entryIndex)
+u32 HallOfFame_GetEntryPokemonCount(const HallOfFame *hallOfFame, int entryIndex)
 {
     u32 i;
 
@@ -122,7 +124,7 @@ u32 HallOfFame_GetEntryPokemonDataCount(const HallOfFame *hallOfFame, int entryI
     entryIndex = HallOfFame_GetNthPriorEntry(hallOfFame, entryIndex);
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
-        if (hallOfFame->entries[entryIndex].pokemon[i].species == 0) {
+        if (hallOfFame->entries[entryIndex].pokemon[i].species == SPECIES_NONE) {
             break;
         }
     }
@@ -130,7 +132,7 @@ u32 HallOfFame_GetEntryPokemonDataCount(const HallOfFame *hallOfFame, int entryI
     return i;
 }
 
-void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, UnkStruct_ov87_021D1640 *param3)
+void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFameManPokemon *pcHallOfFameManMon)
 {
     const HallOfFamePokemon *hallOfFameMon;
     int i;
@@ -142,17 +144,17 @@ void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex
     entryIndex = HallOfFame_GetNthPriorEntry(hallOfFame, entryIndex);
     hallOfFameMon = &(hallOfFame->entries[entryIndex].pokemon[pokemonIndex]);
 
-    param3->unk_10 = hallOfFameMon->species;
-    param3->unk_12 = hallOfFameMon->level;
-    param3->unk_08 = hallOfFameMon->personality;
-    param3->unk_0C = hallOfFameMon->OTID;
-    param3->unk_13 = hallOfFameMon->form;
+    pcHallOfFameManMon->species = hallOfFameMon->species;
+    pcHallOfFameManMon->level = hallOfFameMon->level;
+    pcHallOfFameManMon->personality = hallOfFameMon->personality;
+    pcHallOfFameManMon->OTID = hallOfFameMon->OTID;
+    pcHallOfFameManMon->form = hallOfFameMon->form;
 
-    Strbuf_CopyChars(param3->unk_00, hallOfFameMon->nickname);
-    Strbuf_CopyChars(param3->unk_04, hallOfFameMon->OTName);
+    Strbuf_CopyChars(pcHallOfFameManMon->nickname, hallOfFameMon->nickname);
+    Strbuf_CopyChars(pcHallOfFameManMon->OTName, hallOfFameMon->OTName);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        param3->unk_14[i] = hallOfFameMon->moves[i];
+        pcHallOfFameManMon->moves[i] = hallOfFameMon->moves[i];
     }
 }
 
