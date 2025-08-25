@@ -34,8 +34,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
-#include "unk_0202DF8C.h"
-#include "unk_0202DA40.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
 #include "unk_0202EEC0.h"

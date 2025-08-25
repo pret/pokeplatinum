@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 
-typedef struct PCHallOfFameManPokemon {
+typedef struct PCHallOfFamePokemon {
     Strbuf *nickname;
     Strbuf *OTName;
     u32 personality;
@@ -14,6 +14,6 @@ typedef struct PCHallOfFameManPokemon {
     u8 level;
     u8 form;
     u16 moves[LEARNED_MOVES_MAX];
-} PCHallOfFameManPokemon;
+} PCHallOfFamePokemon;
 
 #endif // POKEPLATINUM_PC_HALL_OF_FAME_MAN_POKEMON_DEF_H
