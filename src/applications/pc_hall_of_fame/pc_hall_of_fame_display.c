@@ -33,7 +33,7 @@
 #include "system.h"
 #include "text.h"
 
-#include "res/text/bank/hall_of_fame.h"
+#include "res/text/bank/pc_hall_of_fame.h"
 
 typedef struct PCHallOfFameApp {
     PCHallOfFameMan *pcHallOfFameMan;
