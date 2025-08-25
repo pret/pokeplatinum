@@ -2,27 +2,27 @@
   "key": 27514,
   "messages": [
     {
-      "id": "pl_msg_00000352_00000",
+      "id": "PCHallOfFame_Text_Title",
       "en_US": "HALL OF FAME No. {STRVAR_1 53, 0, 0} {STRVAR_1 74, 2, 0} {STRVAR_1 51, 3, 0}, {STRVAR_1 53, 1, 0}"
     },
     {
-      "id": "pl_msg_00000352_00001",
+      "id": "PCHallOfFame_Text_Level",
       "en_US": "Lv.{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000352_00002",
+      "id": "PCHallOfFame_Text_OT",
       "en_US": "OT/"
     },
     {
-      "id": "pl_msg_00000352_00003",
+      "id": "PCHallOfFame_Text_MaleSign",
       "en_US": "{COLOR 2}♂{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000352_00004",
+      "id": "PCHallOfFame_Text_FemaleSign",
       "en_US": "{COLOR 1}♀{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000352_00005",
+      "id": "PCHallOfFame_Text_Slash",
       "en_US": "/"
     }
   ]
