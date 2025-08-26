@@ -27,8 +27,6 @@ static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);
 static void DrawConditionFlash(Sprite *sprite, u32 statValue, u32 highestValue, const s16 *bounds);
 
-// the summary screen refers to the contest stats in the order they appear in the condition
-// screen clock-wise, not the order used elsewhere
 enum SummaryContestType {
     SUMMARY_CONTEST_TYPE_COOL = 0,
     SUMMARY_CONTEST_TYPE_BEAUTY,
