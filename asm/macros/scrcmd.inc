@@ -3687,9 +3687,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_282 arg0
+    .macro CheckIsTodayPlayerBirthday destVar
     .short 642
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro SetInitialVolumeForSequence seqID, volume

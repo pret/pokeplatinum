@@ -664,7 +664,7 @@ static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
 static BOOL ScrCmd_27F(ScriptContext *ctx);
-static BOOL ScrCmd_282(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsTodayPlayerBirthday(ScriptContext *ctx);
 static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
@@ -1412,7 +1412,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_27F,
     ScrCmd_280,
     ScrCmd_281,
-    ScrCmd_282,
+    ScrCmd_CheckIsTodayPlayerBirthday,
     ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_InitTurnbackCave,
@@ -6913,16 +6913,16 @@ static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_282(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsTodayPlayerBirthday(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
+    SystemData *systemData = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDayOfMonth(fieldSystem))) {
-        *v0 = 1;
+    if (SystemData_GetOwnerBirthMonth(systemData) == FieldSystem_GetMonth(fieldSystem) && SystemData_GetOwnerBirthDayOfMonth(systemData) == FieldSystem_GetDayOfMonth(fieldSystem)) {
+        *destVar = TRUE;
     } else {
-        *v0 = 0;
+        *destVar = FALSE;
     }
 
     return FALSE;
