@@ -6,9 +6,9 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40A4, 0, 2
-    InitScriptGoToIfEqual 0x410F, 1, 11
-    InitScriptGoToIfEqual 0x40A4, 3, 3
+    InitScriptGoToIfEqual VAR_UNK_0x40A4, 0, 2
+    InitScriptGoToIfEqual VAR_UNK_0x410F, 1, 11
+    InitScriptGoToIfEqual VAR_UNK_0x40A4, 3, 3
     InitScriptChecksEnd
 
     InitScriptEnd

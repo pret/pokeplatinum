@@ -6,9 +6,9 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40C6, 0, 10
-    InitScriptGoToIfEqual 0x40F3, 1, 3
-    InitScriptGoToIfEqual 0x40F3, 2, 12
+    InitScriptGoToIfEqual VAR_UNK_0x40C6, 0, 10
+    InitScriptGoToIfEqual VAR_PAL_PARK_STATE, 1, 3
+    InitScriptGoToIfEqual VAR_PAL_PARK_STATE, 2, 12
     InitScriptChecksEnd
 
     InitScriptEnd

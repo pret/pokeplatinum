@@ -7,8 +7,8 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40D9, 1, 2
-    InitScriptGoToIfEqual 0x40D9, 2, 3
+    InitScriptGoToIfEqual VAR_UNK_0x40D9, 1, 2
+    InitScriptGoToIfEqual VAR_UNK_0x40D9, 2, 3
     InitScriptChecksEnd
 
     InitScriptEnd

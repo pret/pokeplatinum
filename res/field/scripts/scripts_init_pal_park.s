@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40F3, 0, 2
+    InitScriptGoToIfEqual VAR_PAL_PARK_STATE, 0, 2
     InitScriptChecksEnd
 
     InitScriptEnd

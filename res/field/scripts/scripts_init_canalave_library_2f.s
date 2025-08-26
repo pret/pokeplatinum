@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x4056, 2, 6
+    InitScriptGoToIfEqual VAR_ARCEUS_EVENT_STATE, 2, 6
     InitScriptChecksEnd
 
     InitScriptEnd

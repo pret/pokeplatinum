@@ -7,9 +7,9 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x4078, 2, 4
-    InitScriptGoToIfEqual 0x4078, 4, 5
-    InitScriptGoToIfEqual 0x40F8, 3, 23
+    InitScriptGoToIfEqual VAR_UNK_0x4078, 2, 4
+    InitScriptGoToIfEqual VAR_UNK_0x4078, 4, 5
+    InitScriptGoToIfEqual VAR_UNK_0x40F8, 3, 23
     InitScriptChecksEnd
 
     InitScriptEnd

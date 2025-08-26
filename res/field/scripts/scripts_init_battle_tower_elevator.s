@@ -6,9 +6,9 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40DB, 1, 2
-    InitScriptGoToIfEqual 0x40DB, 2, 3
-    InitScriptGoToIfEqual 0x40DB, 3, 4
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 1, 2
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 2, 3
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 3, 4
     InitScriptChecksEnd
 
     InitScriptEnd

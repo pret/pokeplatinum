@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x40A1, 0, 41
+    InitScriptGoToIfEqual VAR_UNK_0x40A1, 0, 41
     InitScriptChecksEnd
 
     InitScriptEnd
