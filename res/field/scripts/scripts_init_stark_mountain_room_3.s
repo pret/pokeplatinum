@@ -1,16 +1,13 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 1, 0
-    .byte 4
-    .short 2, 0
-    .byte 1
-    ScriptEntry _0010
-    .byte 0
+    InitScriptEntry_FixedUnk2 1
+    InitScriptEntry_FixedUnk4 2
+    InitScriptEntry_FirstMatch InitScriptChecks
+    InitScriptEntryEnd
 
-_0010:
-    .short 0x409E, 0, 5
-    .short 0
+InitScriptChecks:
+    InitScriptGoToIfEqual 0x409E, 0, 5
+    InitScriptChecksEnd
 
-    .balign 4, 0
+    InitScriptEnd

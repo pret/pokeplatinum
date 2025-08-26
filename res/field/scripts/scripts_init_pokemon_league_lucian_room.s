@@ -1,12 +1,11 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 1
-    ScriptEntry _0006
-    .byte 0
+    InitScriptEntry_FirstMatch InitScriptChecks
+    InitScriptEntryEnd
 
-_0006:
-    .short VAR_MAP_LOCAL_1, 0, 2
-    .short 0
+InitScriptChecks:
+    InitScriptGoToIfEqual VAR_MAP_LOCAL_1, 0, 2
+    InitScriptChecksEnd
 
-    .balign 4, 0
+    InitScriptEnd
