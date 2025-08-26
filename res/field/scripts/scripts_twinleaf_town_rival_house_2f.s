@@ -14,7 +14,7 @@ _000E:
     CloseMessage
     ApplyMovement 0, _0060
     WaitMovement
-    CallCommonScript SetRivalBGM
+    CallCommonScript 0x7FA
     BufferPlayerName 0
     Message 1
     CloseMessage
@@ -23,7 +23,7 @@ _000E:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
-    CallCommonScript FadeToDefaultMusic_duplicate1
+    CallCommonScript 0x7FB
     SetFlag FLAG_UNK_0x00EA
     SetVar VAR_UNK_0x40A3, 1
     SetVar VAR_UNK_0x4070, 2

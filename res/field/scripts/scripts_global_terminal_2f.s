@@ -156,11 +156,11 @@ _0161:
     End
 
 _0167:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0161
     CloseMessage
-    CallCommonScript UNK_15E7
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -196,11 +196,11 @@ _01EB:
     End
 
 _01F1:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _01EB
     CloseMessage
-    CallCommonScript UNK_15E7
+    CallCommonScript 0x802
     ReleaseAll
     End
 

@@ -191,7 +191,7 @@ _0286:
     Message 7
     SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     Message 8
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -805,7 +805,7 @@ _09EB:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     CloseMessage
-    CallCommonScript SetRivalBGM
+    CallCommonScript 0x7FA
     BufferRivalName 0
     BufferPlayerName 1
     Message 1
@@ -850,7 +850,7 @@ _0AB6:
     BufferRivalName 0
     Message 2
     CloseMessage
-    CallCommonScript FadeToDefaultMusic_duplicate1
+    CallCommonScript 0x7FB
     ScrCmd_32E
     ScrCmd_332
     AddFreeCamera 0x143, 0x20C

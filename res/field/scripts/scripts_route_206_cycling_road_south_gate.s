@@ -78,7 +78,7 @@ _00B0:
     BufferAccessoryName 0, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
-    CallCommonScript ObtainAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
     SetFlag FLAG_UNK_0x012B
     CloseMessage
     ReleaseAll

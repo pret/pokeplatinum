@@ -165,7 +165,7 @@ _025F:
 _0272:
     Message 88
     SetVar VAR_0x8005, 1
-    CallCommonScript SendToUndergroundPCWithLinefeed
+    CallCommonScript 0x7FE
     Message 15
     GoTo _020B
     End
@@ -273,7 +273,7 @@ _045C:
     End
 
 _049C:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 
@@ -1023,7 +1023,7 @@ _114C:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
-    CallCommonScript CheckAllFrontierGoldPrintsObtained
+    CallCommonScript 0x806
     Return
 
 _1167:
@@ -1254,7 +1254,7 @@ _13AF:
 _13CE:
     Call _07B5
     Call _07B9
-    CallCommonScript UNK_170A
+    CallCommonScript 0x809
     End
 
 _13E0:

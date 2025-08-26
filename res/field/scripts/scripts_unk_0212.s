@@ -229,7 +229,7 @@ _02A8:
 _02BD:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _02E2
     GoTo _0291
@@ -791,7 +791,7 @@ _0BF2:
     BufferAccessoryName 1, VAR_0x8004
     Message 80
     SetVar VAR_0x8005, 1
-    CallCommonScript ObtainAccessory
+    CallCommonScript 0x7FF
 _0C3E:
     Message 82
     WaitABXPadPress

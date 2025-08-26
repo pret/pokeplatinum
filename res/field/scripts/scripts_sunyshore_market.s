@@ -70,7 +70,7 @@ SunyshoreMarket_SealShop:
     CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SunyshoreMarket_NoSealCase
     Message SunyshoreMarket_Text_ALittleTimeIfYouWill
-    CallCommonScript VendorGreetingGeneric
+    CallCommonScript 0x7E3
     CloseMessageWithoutErasing
     Call SunyshoreMarket_OpenSealShopMenu
     ReleaseAll

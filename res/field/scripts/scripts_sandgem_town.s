@@ -175,7 +175,7 @@ _02B5:
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
-    CallCommonScript SetRivalBGM
+    CallCommonScript 0x7FA
     BufferRivalName 0
     BufferPlayerName 1
     Message 5
@@ -185,7 +185,7 @@ _02B5:
     ApplyMovement 3, _056C
     WaitMovement
     RemoveObject 3
-    CallCommonScript FadeToDefaultMusic_duplicate1
+    CallCommonScript 0x7FB
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _0344
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0352
@@ -450,7 +450,7 @@ _057C:
     Message 9
     SetVar VAR_0x8004, ITEM_TM27
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     Message 10
     CloseMessage
     ApplyMovement 14, _07A0
@@ -500,7 +500,7 @@ _066B:
 
 _067A:
     CloseMessage
-    CallCommonScript UNK_15BF
+    CallCommonScript 0x800
     ApplyMovement 4, _0808
     ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement
@@ -568,7 +568,7 @@ _0772:
     ApplyMovement 4, _0830
     ApplyMovement LOCALID_PLAYER, _07E4
     WaitMovement
-    CallCommonScript FadeToDefaultMusic_duplicate2
+    CallCommonScript 0x801
     RemoveObject 4
     SetVar VAR_UNK_0x4071, 2
     ReleaseAll

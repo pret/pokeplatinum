@@ -356,7 +356,7 @@ Unk501_Unused:
 
 _04EF:
     HideMoney
-    CallCommonScript UNK_170A
+    CallCommonScript 0x809
     End
 
     .balign 4, 0
