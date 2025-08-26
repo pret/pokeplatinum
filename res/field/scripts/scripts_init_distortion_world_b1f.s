@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x4055, 2, 2
+    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, 2, 2
     InitScriptChecksEnd
 
     InitScriptEnd

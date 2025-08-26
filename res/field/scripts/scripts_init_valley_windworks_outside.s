@@ -8,7 +8,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x411E, 1, 8
+    InitScriptGoToIfEqual VAR_UNK_0x411E, 1, 8
     InitScriptChecksEnd
 
     InitScriptEnd

@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptChecks:
-    InitScriptGoToIfEqual 0x4097, 0, 5
+    InitScriptGoToIfEqual VAR_UNK_0x4097, 0, 5
     InitScriptChecksEnd
 
     InitScriptEnd
