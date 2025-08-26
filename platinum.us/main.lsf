@@ -977,11 +977,11 @@ Overlay overlay39
 	Object main.nef.p/src_overlay039_ov39_022563DC.c.o
 }
 
-Overlay overlay40
+Overlay poketch_daycare_checker
 {
 	After overlay25
-	Object main.nef.p/src_overlay040_ov40_022561C0.c.o
-	Object main.nef.p/src_overlay040_ov40_0225645C.c.o
+	Object main.nef.p/src_applications_poketch_daycare_checker_main.c.o
+	Object main.nef.p/src_applications_poketch_daycare_checker_graphics.c.o
 }
 
 Overlay overlay41
