@@ -7,7 +7,7 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx);
 BOOL ScrCmd_199(ScriptContext *param0);
 BOOL ScrCmd_GiveEgg(ScriptContext *ctx);
-BOOL ScrCmd_098(ScriptContext *param0);
+BOOL ScrCmd_ResetPartyMonMoveSlot(ScriptContext *ctx);
 BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx);
 BOOL ScrCmd_FindPartySlotWithMove(ScriptContext *ctx);
 BOOL ScrCmd_SurvivePoison(ScriptContext *ctx);

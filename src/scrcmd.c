@@ -922,7 +922,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonForm,
     ScrCmd_GivePokemon,
     ScrCmd_GiveEgg,
-    ScrCmd_098,
+    ScrCmd_ResetPartyMonMoveSlot,
     ScrCmd_CheckPartyMonHasMove,
     ScrCmd_FindPartySlotWithMove,
     ScrCmd_09B,
