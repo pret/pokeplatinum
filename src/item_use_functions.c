@@ -352,7 +352,7 @@ static void UseExplorerKitFromMenu(ItemMenuUseContext *usageContext, const ItemU
     menu->taskData = sub_02053FAC(fieldSystem);
     menu->state = START_MENU_STATE_10;
 
-    fieldSystem->unk_90 = 0;
+    fieldSystem->menuCursorPos = 0;
 }
 
 static BOOL UseExplorerKitInField(ItemFieldUseContext *usageContext)
@@ -362,7 +362,7 @@ static BOOL UseExplorerKitInField(ItemFieldUseContext *usageContext)
     MapObjectMan_PauseAllMovement(usageContext->fieldSystem->mapObjMan);
     FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_MapChangeToUnderground, v0);
 
-    usageContext->fieldSystem->unk_90 = 0;
+    usageContext->fieldSystem->menuCursorPos = 0;
     return FALSE;
 }
 

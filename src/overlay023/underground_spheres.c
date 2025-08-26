@@ -11,9 +11,9 @@
 #include "overlay005/ov5_021F575C.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
@@ -256,7 +256,7 @@ void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src,
         if (sphere) {
             CommPlayerMan_PauseFieldSystem();
 
-            if (Underground_TryAddSphere2(sphere->type, sphere->initialSize + sphere->growth)) {
+            if (UndergroundInventory_TryAddSphere(sphere->type, sphere->initialSize + sphere->growth)) {
                 buriedSpheresEnv->retrievedSpheres[netID] = sphere->type;
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 numberToPrint = MAX_SPHERE_SIZE;
@@ -383,7 +383,7 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
         UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 0, sphereType);
         UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, sphereSize);
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SphereWasBuried, FALSE, NULL);
-        Underground_RemoveSelectedSphere(sphereType);
+        UndergroundMenu_RemoveSelectedSphere(sphereType);
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(buriedSpheresEnv->fieldSystem->saveData));

@@ -18,9 +18,9 @@
 #include "overlay023/ov23_02249918.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224DC40.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/struct_ov23_0224A5CC.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
@@ -191,12 +191,12 @@ void ov23_0224A3A8(int param0, int param1, void *param2, void *param3)
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
 
-            ov23_0224F758(ov23_0224A334, commPlayerMan->fieldSystem);
+            UndergroundMenu_Start(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     } else if ((v1->unk_00 == 3) && (v1->unk_01 == CommSys_CurNetId())) {
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
-            ov23_02250A50(ov23_0224A334, commPlayerMan->fieldSystem);
+            UndergroundMenu_StartHoldingFlag(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     }
 }

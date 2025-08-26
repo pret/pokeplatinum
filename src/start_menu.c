@@ -567,12 +567,12 @@ static void sub_0203ADFC(FieldTask *taskMan)
                 menu->unk_24, v2, sStartMenuActions[menu->options[i]].text, menu->options[i]);
         }
 
-        if (fieldSystem->unk_90 == menu->options[i]) {
+        if (fieldSystem->menuCursorPos == menu->options[i]) {
             menu->unk_28 = i;
         }
     }
 
-    fieldSystem->unk_90 = menu->options[menu->unk_28];
+    fieldSystem->menuCursorPos = menu->options[menu->unk_28];
     MessageLoader_Free(v2);
 
     v3.choices = menu->unk_24;
@@ -747,7 +747,7 @@ static BOOL StartMenu_Select(FieldTask *taskMan)
     if (v2 != menu->unk_28) {
         sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
         sub_0203B5B4(menu, v2, menu->unk_28);
-        fieldSystem->unk_90 = menu->options[menu->unk_28];
+        fieldSystem->menuCursorPos = menu->options[menu->unk_28];
     }
 
     sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->sprite);

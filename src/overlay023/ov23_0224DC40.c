@@ -8,9 +8,8 @@
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253598.h"
-#include "overlay023/struct_ov23_02250CD4.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -55,7 +54,7 @@ typedef struct {
 
 typedef struct {
     SysTask *unk_00;
-    UnkStruct_ov23_02250CD4 *unk_04;
+    UndergroundMenu *unk_04;
     FieldSystem *fieldSystem;
     Window unk_0C;
     StringList *unk_1C;
@@ -460,7 +459,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 14, FALSE, NULL);
 
     UndergroundRecord_IncrementGiftsGiven(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
-    Underground_RemoveSelectedGoodBag(param0->unk_28.unk_02);
+    UndergroundMenu_RemoveSelectedGoodBag(param0->unk_28.unk_02);
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
@@ -893,7 +892,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     }
 
     if (v0 == 0) {
-        if (Underground_TryAddGoodBag2(param1->unk_24.unk_02)) {
+        if (UndergroundInventory_TryAddGoodBag(param1->unk_24.unk_02)) {
             sub_0202977C(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             ov23_0224DC40(param1, 22);

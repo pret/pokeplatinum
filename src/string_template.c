@@ -346,7 +346,7 @@ void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trai
 
 void StringTemplate_SetUndergroundItemName(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, TEXT_BANK_UNDERGROUND_ITEM_NAMES);
+    SetArgFromArchive(template, idx, item, TEXT_BANK_UNDERGROUND_ITEMS);
 }
 
 void StringTemplate_SetUndergroundItemNameWithArticle(StringTemplate *template, u32 idx, u32 item)
@@ -356,7 +356,7 @@ void StringTemplate_SetUndergroundItemNameWithArticle(StringTemplate *template, 
 
 void StringTemplate_SetUndergroundTrapName(StringTemplate *template, u32 idx, u32 trap)
 {
-    SetArgFromArchive(template, idx, trap, TEXT_BANK_UNDERGROUND_TRAP_NAMES);
+    SetArgFromArchive(template, idx, trap, TEXT_BANK_UNDERGROUND_TRAPS);
 }
 
 void StringTemplate_SetUndergroundTrapNameWithArticle(StringTemplate *template, u32 idx, u32 trap)

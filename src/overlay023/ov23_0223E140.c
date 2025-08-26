@@ -17,7 +17,7 @@
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0224F294.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -2472,9 +2472,9 @@ static void Mining_AddItem(int itemID, int sphereSize)
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (UndergroundSpheres_IsMiningItemSphere(id)) {
-        Underground_TryAddSphere2(id, sphereSize);
+        UndergroundInventory_TryAddSphere(id, sphereSize);
     } else {
-        Underground_TryAddTreasure2(id);
+        UndergroundInventory_TryAddTreasure(id);
         Underground_SetPlateMined(underground, id);
     }
 }

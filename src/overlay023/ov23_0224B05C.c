@@ -21,8 +21,8 @@
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224DC40.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -1819,7 +1819,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
         break;
     case 9:
-        Underground_RemoveSelectedTrap(33);
+        UndergroundMenu_RemoveSelectedTrap(33);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         ov23_02249A74();
         v0->unk_0C = 10;

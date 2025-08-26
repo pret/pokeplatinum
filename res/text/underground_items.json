@@ -2,668 +2,668 @@
   "key": 64717,
   "messages": [
     {
-      "id": "pl_msg_00000628_00000",
+      "id": "UndergroundItems_Text_ItemZero_Unused",
       "en_US": "Prism Sphere"
     },
     {
-      "id": "pl_msg_00000628_00001",
+      "id": "UndergroundItems_Text_PrismSphere",
       "en_US": "Prism Sphere"
     },
     {
-      "id": "pl_msg_00000628_00002",
+      "id": "UndergroundItems_Text_PaleSphere",
       "en_US": "{COLOR 4}Pale Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00003",
+      "id": "UndergroundItems_Text_RedSphere",
       "en_US": "{COLOR 1}Red Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00004",
+      "id": "UndergroundItems_Text_BlueSphere",
       "en_US": "{COLOR 2}Blue Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00005",
+      "id": "UndergroundItems_Text_GreenSphere",
       "en_US": "{COLOR 3}Green Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00006",
+      "id": "UndergroundItems_Text_LargePrismSphere_Unused",
       "en_US": "Prism Sphere"
     },
     {
-      "id": "pl_msg_00000628_00007",
+      "id": "UndergroundItems_Text_LargePaleSphere_Unused",
       "en_US": "{COLOR 4}Pale Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00008",
+      "id": "UndergroundItems_Text_LargeRedSphere_Unused",
       "en_US": "{COLOR 1}Red Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00009",
+      "id": "UndergroundItems_Text_LargeBlueSphere_Unused",
       "en_US": "{COLOR 2}Blue Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00010",
+      "id": "UndergroundItems_Text_LargeGreenSphere_Unused",
       "en_US": "{COLOR 3}Green Sphere{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000628_00011",
+      "id": "UndergroundItems_Text_OvalStone_Unused",
       "en_US": "Oval Stone"
     },
     {
-      "id": "pl_msg_00000628_00012",
+      "id": "UndergroundItems_Text_OddKeystone",
       "en_US": "Odd Keystone"
     },
     {
-      "id": "pl_msg_00000628_00013",
+      "id": "UndergroundItems_Text_SunStone",
       "en_US": "Sun Stone"
     },
     {
-      "id": "pl_msg_00000628_00014",
+      "id": "UndergroundItems_Text_StarPiece",
       "en_US": "Star Piece"
     },
     {
-      "id": "pl_msg_00000628_00015",
+      "id": "UndergroundItems_Text_MoonStone",
       "en_US": "Moon Stone"
     },
     {
-      "id": "pl_msg_00000628_00016",
+      "id": "UndergroundItems_Text_HardStone",
       "en_US": "Hard Stone"
     },
     {
-      "id": "pl_msg_00000628_00017",
+      "id": "UndergroundItems_Text_Thunderstone",
       "en_US": "Thunderstone"
     },
     {
-      "id": "pl_msg_00000628_00018",
+      "id": "UndergroundItems_Text_Everstone",
       "en_US": "Everstone"
     },
     {
-      "id": "pl_msg_00000628_00019",
+      "id": "UndergroundItems_Text_FireStone",
       "en_US": "Fire Stone"
     },
     {
-      "id": "pl_msg_00000628_00020",
+      "id": "UndergroundItems_Text_WaterStone",
       "en_US": "Water Stone"
     },
     {
-      "id": "pl_msg_00000628_00021",
+      "id": "UndergroundItems_Text_LeafStone",
       "en_US": "Leaf Stone"
     },
     {
-      "id": "pl_msg_00000628_00022",
+      "id": "UndergroundItems_Text_Nugget",
       "en_US": "Nugget"
     },
     {
-      "id": "pl_msg_00000628_00023",
+      "id": "UndergroundItems_Text_HelixFossil",
       "en_US": "Helix Fossil"
     },
     {
-      "id": "pl_msg_00000628_00024",
+      "id": "UndergroundItems_Text_DomeFossil",
       "en_US": "Dome Fossil"
     },
     {
-      "id": "pl_msg_00000628_00025",
+      "id": "UndergroundItems_Text_ClawFossil",
       "en_US": "Claw Fossil"
     },
     {
-      "id": "pl_msg_00000628_00026",
+      "id": "UndergroundItems_Text_RootFossil",
       "en_US": "Root Fossil"
     },
     {
-      "id": "pl_msg_00000628_00027",
+      "id": "UndergroundItems_Text_OldAmber",
       "en_US": "Old Amber"
     },
     {
-      "id": "pl_msg_00000628_00028",
+      "id": "UndergroundItems_Text_RareBone",
       "en_US": "Rare Bone"
     },
     {
-      "id": "pl_msg_00000628_00029",
+      "id": "UndergroundItems_Text_Revive",
       "en_US": "Revive"
     },
     {
-      "id": "pl_msg_00000628_00030",
+      "id": "UndergroundItems_Text_MaxRevive",
       "en_US": "Max Revive"
     },
     {
-      "id": "pl_msg_00000628_00031",
+      "id": "UndergroundItems_Text_RedShard",
       "en_US": "Red Shard"
     },
     {
-      "id": "pl_msg_00000628_00032",
+      "id": "UndergroundItems_Text_BlueShard",
       "en_US": "Blue Shard"
     },
     {
-      "id": "pl_msg_00000628_00033",
+      "id": "UndergroundItems_Text_YellowShard",
       "en_US": "Yellow Shard"
     },
     {
-      "id": "pl_msg_00000628_00034",
+      "id": "UndergroundItems_Text_GreenShard",
       "en_US": "Green Shard"
     },
     {
-      "id": "pl_msg_00000628_00035",
+      "id": "UndergroundItems_Text_HeartScale",
       "en_US": "Heart Scale"
     },
     {
-      "id": "pl_msg_00000628_00036",
+      "id": "UndergroundItems_Text_ArmorFossil",
       "en_US": "Armor Fossil"
     },
     {
-      "id": "pl_msg_00000628_00037",
+      "id": "UndergroundItems_Text_SkullFossil",
       "en_US": "Skull Fossil"
     },
     {
-      "id": "pl_msg_00000628_00038",
+      "id": "UndergroundItems_Text_LightClay",
       "en_US": "Light Clay"
     },
     {
-      "id": "pl_msg_00000628_00039",
+      "id": "UndergroundItems_Text_IronBall",
       "en_US": "Iron Ball"
     },
     {
-      "id": "pl_msg_00000628_00040",
+      "id": "UndergroundItems_Text_IcyRock",
       "en_US": "Icy Rock"
     },
     {
-      "id": "pl_msg_00000628_00041",
+      "id": "UndergroundItems_Text_SmoothRock",
       "en_US": "Smooth Rock"
     },
     {
-      "id": "pl_msg_00000628_00042",
+      "id": "UndergroundItems_Text_HeatRock",
       "en_US": "Heat Rock"
     },
     {
-      "id": "pl_msg_00000628_00043",
+      "id": "UndergroundItems_Text_DampRock",
       "en_US": "Damp Rock"
     },
     {
-      "id": "pl_msg_00000628_00044",
+      "id": "UndergroundItems_Text_FlamePlate",
       "en_US": "Flame Plate"
     },
     {
-      "id": "pl_msg_00000628_00045",
+      "id": "UndergroundItems_Text_SplashPlate",
       "en_US": "Splash Plate"
     },
     {
-      "id": "pl_msg_00000628_00046",
+      "id": "UndergroundItems_Text_ZapPlate",
       "en_US": "Zap Plate"
     },
     {
-      "id": "pl_msg_00000628_00047",
+      "id": "UndergroundItems_Text_MeadowPlate",
       "en_US": "Meadow Plate"
     },
     {
-      "id": "pl_msg_00000628_00048",
+      "id": "UndergroundItems_Text_IciclePlate",
       "en_US": "Icicle Plate"
     },
     {
-      "id": "pl_msg_00000628_00049",
+      "id": "UndergroundItems_Text_FistPlate",
       "en_US": "Fist Plate"
     },
     {
-      "id": "pl_msg_00000628_00050",
+      "id": "UndergroundItems_Text_ToxicPlate",
       "en_US": "Toxic Plate"
     },
     {
-      "id": "pl_msg_00000628_00051",
+      "id": "UndergroundItems_Text_EarthPlate",
       "en_US": "Earth Plate"
     },
     {
-      "id": "pl_msg_00000628_00052",
+      "id": "UndergroundItems_Text_SkyPlate",
       "en_US": "Sky Plate"
     },
     {
-      "id": "pl_msg_00000628_00053",
+      "id": "UndergroundItems_Text_MindPlate",
       "en_US": "Mind Plate"
     },
     {
-      "id": "pl_msg_00000628_00054",
+      "id": "UndergroundItems_Text_InsectPlate",
       "en_US": "Insect Plate"
     },
     {
-      "id": "pl_msg_00000628_00055",
+      "id": "UndergroundItems_Text_StonePlate",
       "en_US": "Stone Plate"
     },
     {
-      "id": "pl_msg_00000628_00056",
+      "id": "UndergroundItems_Text_SpookyPlate",
       "en_US": "Spooky Plate"
     },
     {
-      "id": "pl_msg_00000628_00057",
+      "id": "UndergroundItems_Text_DracoPlate",
       "en_US": "Draco Plate"
     },
     {
-      "id": "pl_msg_00000628_00058",
+      "id": "UndergroundItems_Text_DreadPlate",
       "en_US": "Dread Plate"
     },
     {
-      "id": "pl_msg_00000628_00059",
+      "id": "UndergroundItems_Text_IronPlate",
       "en_US": "Iron Plate"
     },
     {
-      "id": "pl_msg_00000628_00060",
+      "id": "UndergroundItems_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000628_00061",
+      "id": "UndergroundItems_Text_CloseDescription",
       "en_US": "Close the Bag."
     },
     {
-      "id": "pl_msg_00000628_00062",
+      "id": "UndergroundItems_Text_ItemZeroDescription_Unused",
       "en_US": [
         "A crystal clear, hard sphere.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00063",
+      "id": "UndergroundItems_Text_PrismSphereDescription",
       "en_US": [
         "A crystal clear, hard sphere.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00064",
+      "id": "UndergroundItems_Text_PaleSphereDescription",
       "en_US": [
         "A white sphere that glows in seven\n",
         "colors. It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00065",
+      "id": "UndergroundItems_Text_RedSphereDescription",
       "en_US": [
         "A red sphere that glows like fire.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00066",
+      "id": "UndergroundItems_Text_BlueSphereDescription",
       "en_US": [
         "A blue sphere that glistens like ice.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00067",
+      "id": "UndergroundItems_Text_GreenSphereDescription",
       "en_US": [
         "A green sphere glowing like sunlight in\n",
         "leaves. It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00068",
+      "id": "UndergroundItems_Text_LargePrismSphereDescription_Unused",
       "en_US": [
         "A crystal clear, hard sphere.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00069",
+      "id": "UndergroundItems_Text_LargePaleSphereDescription_Unused",
       "en_US": [
         "A white sphere that glows in seven\n",
         "colors. It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00070",
+      "id": "UndergroundItems_Text_LargeRedSphereDescription_Unused",
       "en_US": [
         "A red sphere that glows like fire.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00071",
+      "id": "UndergroundItems_Text_LargeBlueSphereDescription_Unused",
       "en_US": [
         "A blue sphere that glistens like ice.\n",
         "It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00072",
+      "id": "UndergroundItems_Text_LargeGreenSphereDescription_Unused",
       "en_US": [
         "A green sphere glowing like sunlight in\n",
         "leaves. It slowly grows when buried."
       ]
     },
     {
-      "id": "pl_msg_00000628_00073",
+      "id": "UndergroundItems_Text_OvalStoneDescription_Unused",
       "en_US": [
         "A pretty white stone that is shaped\n",
         "like an egg."
       ]
     },
     {
-      "id": "pl_msg_00000628_00074",
+      "id": "UndergroundItems_Text_OddKeystoneDescription",
       "en_US": [
         "A vital item that is needed to keep a\n",
         "stone tower from collapsing."
       ]
     },
     {
-      "id": "pl_msg_00000628_00075",
+      "id": "UndergroundItems_Text_SunStoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It is as red as the sun."
       ]
     },
     {
-      "id": "pl_msg_00000628_00076",
+      "id": "UndergroundItems_Text_StarPieceDescription",
       "en_US": [
         "A shard of a pretty, glowing gem.\n",
         "It can be sold at a high price."
       ]
     },
     {
-      "id": "pl_msg_00000628_00077",
+      "id": "UndergroundItems_Text_MoonStoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It is as black as the night sky."
       ]
     },
     {
-      "id": "pl_msg_00000628_00078",
+      "id": "UndergroundItems_Text_HardStoneDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Rock-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00079",
+      "id": "UndergroundItems_Text_ThunderstoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It has a thunderbolt pattern."
       ]
     },
     {
-      "id": "pl_msg_00000628_00080",
+      "id": "UndergroundItems_Text_EverstoneDescription",
       "en_US": [
         "A hold item that prevents the\n",
         "holding Pokémon from evolving."
       ]
     },
     {
-      "id": "pl_msg_00000628_00081",
+      "id": "UndergroundItems_Text_FireStoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It is colored orange."
       ]
     },
     {
-      "id": "pl_msg_00000628_00082",
+      "id": "UndergroundItems_Text_WaterStoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It is a clear light blue."
       ]
     },
     {
-      "id": "pl_msg_00000628_00083",
+      "id": "UndergroundItems_Text_LeafStoneDescription",
       "en_US": [
         "An odd stone needed for evolution.\n",
         "It has a leaf pattern."
       ]
     },
     {
-      "id": "pl_msg_00000628_00084",
+      "id": "UndergroundItems_Text_NuggetDescription",
       "en_US": [
         "A nugget of pure, gleaming gold.\n",
         "It can be sold for a high price."
       ]
     },
     {
-      "id": "pl_msg_00000628_00085",
+      "id": "UndergroundItems_Text_HelixFossilDescription",
       "en_US": [
         "A fossil of an ancient, seafloor-\n",
         "dwelling Pokémon’s seashell."
       ]
     },
     {
-      "id": "pl_msg_00000628_00086",
+      "id": "UndergroundItems_Text_DomeFossilDescription",
       "en_US": [
         "A fossil of an ancient, seafloor-\n",
         "dwelling Pokémon’s shell."
       ]
     },
     {
-      "id": "pl_msg_00000628_00087",
+      "id": "UndergroundItems_Text_ClawFossilDescription",
       "en_US": [
         "A fossil of an ancient, seafloor-\n",
         "dwelling Pokémon’s claw."
       ]
     },
     {
-      "id": "pl_msg_00000628_00088",
+      "id": "UndergroundItems_Text_RootFossilDescription",
       "en_US": [
         "A fossil of an ancient, seafloor-\n",
         "dwelling Pokémon’s root."
       ]
     },
     {
-      "id": "pl_msg_00000628_00089",
+      "id": "UndergroundItems_Text_OldAmberDescription",
       "en_US": [
         "A piece of amber that contains\n",
         "the genes of an ancient Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000628_00090",
+      "id": "UndergroundItems_Text_RareBoneDescription",
       "en_US": [
         "An archaeologically important bone.\n",
         "It can be sold for a high price."
       ]
     },
     {
-      "id": "pl_msg_00000628_00091",
+      "id": "UndergroundItems_Text_ReviveDescription",
       "en_US": [
         "A medicine that revives a fainted\n",
         "Pokémon, restoring half its max HP."
       ]
     },
     {
-      "id": "pl_msg_00000628_00092",
+      "id": "UndergroundItems_Text_MaxReviveDescription",
       "en_US": [
         "A medicine that revives a fainted\n",
         "Pokémon, restoring HP fully."
       ]
     },
     {
-      "id": "pl_msg_00000628_00093",
+      "id": "UndergroundItems_Text_RedShardDescription",
       "en_US": [
         "It appears to be from some sort of\n",
         "a tool made long ago."
       ]
     },
     {
-      "id": "pl_msg_00000628_00094",
+      "id": "UndergroundItems_Text_BlueShardDescription",
       "en_US": [
         "It appears to be from some sort of\n",
         "a tool made long ago."
       ]
     },
     {
-      "id": "pl_msg_00000628_00095",
+      "id": "UndergroundItems_Text_YellowShardDescription",
       "en_US": [
         "It appears to be from some sort of\n",
         "a tool made long ago."
       ]
     },
     {
-      "id": "pl_msg_00000628_00096",
+      "id": "UndergroundItems_Text_GreenShardDescription",
       "en_US": [
         "It appears to be from some sort of\n",
         "a tool made long ago."
       ]
     },
     {
-      "id": "pl_msg_00000628_00097",
+      "id": "UndergroundItems_Text_HeartScaleDescription",
       "en_US": [
         "A pretty, heart-shaped scale that\n",
         "is extremely rare. "
       ]
     },
     {
-      "id": "pl_msg_00000628_00098",
+      "id": "UndergroundItems_Text_ArmorFossilDescription",
       "en_US": [
         "A fossil from a prehistoric Pokémon.\n",
         "It appears to be part of a collar."
       ]
     },
     {
-      "id": "pl_msg_00000628_00099",
+      "id": "UndergroundItems_Text_SkullFossilDescription",
       "en_US": [
         "A fossil from a prehistoric Pokémon.\n",
         "It appears to be part of a skull."
       ]
     },
     {
-      "id": "pl_msg_00000628_00100",
+      "id": "UndergroundItems_Text_LightClayDescription",
       "en_US": [
         "A hold item that extends the duration\n",
         "of Light Screen and Reflect."
       ]
     },
     {
-      "id": "pl_msg_00000628_00101",
+      "id": "UndergroundItems_Text_IronBallDescription",
       "en_US": [
         "A heavy hold item that cuts Speed.\n",
         "It prevents flying and levitation."
       ]
     },
     {
-      "id": "pl_msg_00000628_00102",
+      "id": "UndergroundItems_Text_IcyRockDescription",
       "en_US": [
         "A hold item that extends the duration\n",
         "of the holder’s Hail move."
       ]
     },
     {
-      "id": "pl_msg_00000628_00103",
+      "id": "UndergroundItems_Text_SmoothRockDescription",
       "en_US": [
         "A hold item that extends the duration\n",
         "of the holder’s Sandstorm move."
       ]
     },
     {
-      "id": "pl_msg_00000628_00104",
+      "id": "UndergroundItems_Text_HeatRockDescription",
       "en_US": [
         "A hold item that extends the duration\n",
         "of the holder’s Sunny Day move."
       ]
     },
     {
-      "id": "pl_msg_00000628_00105",
+      "id": "UndergroundItems_Text_DampRockDescription",
       "en_US": [
         "A hold item that extends the duration\n",
         "of the holder’s Rain Dance move."
       ]
     },
     {
-      "id": "pl_msg_00000628_00106",
+      "id": "UndergroundItems_Text_FlamePlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Fire-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00107",
+      "id": "UndergroundItems_Text_SplashPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Water-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00108",
+      "id": "UndergroundItems_Text_ZapPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Electric-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00109",
+      "id": "UndergroundItems_Text_MeadowPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Grass-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00110",
+      "id": "UndergroundItems_Text_IciclePlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Ice-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00111",
+      "id": "UndergroundItems_Text_FistPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Fighting-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00112",
+      "id": "UndergroundItems_Text_ToxicPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Poison-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00113",
+      "id": "UndergroundItems_Text_EarthPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Ground-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00114",
+      "id": "UndergroundItems_Text_SkyPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Flying-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00115",
+      "id": "UndergroundItems_Text_MindPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Psychic-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00116",
+      "id": "UndergroundItems_Text_InsectPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Bug-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00117",
+      "id": "UndergroundItems_Text_StonePlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Rock-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00118",
+      "id": "UndergroundItems_Text_SpookyPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Ghost-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00119",
+      "id": "UndergroundItems_Text_DracoPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Dragon-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00120",
+      "id": "UndergroundItems_Text_DreadPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Dark-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000628_00121",
+      "id": "UndergroundItems_Text_IronPlateDescription",
       "en_US": [
         "A hold item that raises the power of\n",
         "Steel-type moves."

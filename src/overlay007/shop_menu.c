@@ -66,6 +66,8 @@
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
 
+#define UNDERGROUND_GOOD_DESCRIPTIONS_START UndergroundGoods_Text_CloseDescription
+
 static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem);
 static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_ShowContextMenu(ShopMenu *shopMenu);
@@ -715,7 +717,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
             MessageLoader *loader;
 
             loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
-            strbuf = MessageLoader_GetNewStrbuf(loader, pl_msg_00000626_00139 + index - 1);
+            strbuf = MessageLoader_GetNewStrbuf(loader, UNDERGROUND_GOOD_DESCRIPTIONS_START + index - 1);
             MessageLoader_Free(loader);
         } else {
             MessageLoader *loader;

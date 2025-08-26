@@ -8,11 +8,10 @@
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02248C08.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_0225426C.h"
 #include "overlay023/ov23_0225429C.h"
-#include "overlay023/struct_ov23_02250CD4.h"
+#include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -46,8 +45,8 @@ typedef struct {
     u16 unk_04;
 } UnkStruct_ov23_02257674;
 
-static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0);
-static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0);
+static void ov23_02252D1C(UndergroundMenu *param0);
+static void ov23_02252C78(UndergroundMenu *param0);
 
 UnkStruct_ov23_02257674 Unk_ov23_02257674[] = {
     { 0x0, 0x48, 0x68 },
@@ -82,7 +81,7 @@ static const WindowTemplate Unk_ov23_022569D8 = {
     0x21F
 };
 
-static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
+static void ov23_022521F0(UndergroundMenu *param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
@@ -127,7 +126,7 @@ static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     }
 }
 
-static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
+static void ov23_022522F0(UndergroundMenu *param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
@@ -173,16 +172,16 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     }
 }
 
-static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
+static int ov23_02252404(UndergroundMenu *param0, int param1, int param2)
 {
     BOOL v0 = 0;
     Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (param0->unk_279[param1] != Underground_GetSphereTypeAtSlot2(param2, param0)) {
+    if (param0->unk_279[param1] != UndergroundMenu_GetSphereTypeAtSlot(param2, param0)) {
         return 0xfffd;
     }
 
-    if (param0->unk_27E[param1] > Underground_GetSphereSizeAtSlot2(param2, param0)) {
+    if (param0->unk_27E[param1] > UndergroundMenu_GetSphereSizeAtSlot(param2, param0)) {
         return 0xfffb;
     }
 
@@ -203,7 +202,7 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     return param0->unk_274[param1];
 }
 
-static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
+static void *ov23_022524B8(UndergroundMenu *param0)
 {
     ListMenuTemplate v0;
     int v1 = 3;
@@ -212,12 +211,12 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
         v1 = 2;
     }
 
-    ov23_0224FB7C(param0);
+    UndergroundMenu_EraseCurrentMenu(param0);
 
-    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
+    param0->menuOptions = StringList_New(v1, HEAP_ID_FIELD1);
 
-    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
-    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->primaryWindow, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
+    Window_DrawStandardFrame(&param0->primaryWindow, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         int v2, v3;
@@ -225,89 +224,89 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
         if (param0->unk_2AC == 1) {
             v3 = 13;
             ov23_022521F0(param0, param0->unk_288);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
         } else if (param0->unk_2AC == 0) {
             v3 = 16;
             ov23_022522F0(param0, param0->unk_288);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
         } else {
             v3 = 28;
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 28, 0);
-            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 22, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 28, 0);
+            StringList_AddFromMessageBank(param0->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 22, 0xfffffffe);
         }
     }
 
     MI_CpuCopy8(UndergroundTextPrinter_GetListMenuTemplate(), &v0, sizeof(ListMenuTemplate));
 
-    v0.choices = param0->unk_40;
-    v0.window = &param0->unk_10;
+    v0.choices = param0->menuOptions;
+    v0.window = &param0->primaryWindow;
     v0.count = v1;
     v0.maxDisplay = v1;
 
-    param0->unk_294 = ov23_02243154(19);
-    param0->unk_290 = ov23_0224318C(19);
+    param0->listMenuListPos = CommManUnderground_GetStoredListPos(19);
+    param0->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(19);
 
-    ov23_02251238(param0, v0.maxDisplay, v0.count);
+    UndergroundMenu_MoveListCursorPosInBounds(param0, v0.maxDisplay, v0.count);
 
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
-    param0->unk_2AE = param0->unk_290;
+    param0->unk_48 = ListMenu_New(&v0, param0->listMenuListPos, param0->listMenuCursorPos, HEAP_ID_FIELD1);
+    param0->unk_2AE = param0->listMenuCursorPos;
 
-    Window_CopyToVRAM(&param0->unk_10);
+    Window_CopyToVRAM(&param0->primaryWindow);
 
     return param0;
 }
 
 static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
+    UndergroundMenu *v0 = (UndergroundMenu *)ListMenu_GetAttribute(param0, 19);
     u32 v1 = param1;
 
-    Window_FillTilemap(&v0->unk_20, 15);
+    Window_FillTilemap(&v0->secondaryWindow, 15);
     MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->strbuf);
-    Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&v0->secondaryWindow, FONT_SYSTEM, v0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param1 != 0xfffffffe) {
         StringTemplate_SetUndergroundItemName(v0->template, 2, v0->unk_279[v1]);
         StringTemplate_SetNumber(v0->template, 6, v0->unk_27E[v1], 2, 1, 1);
         MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->strbuf);
         StringTemplate_Format(v0->template, v0->fmtString, v0->strbuf);
-        Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&v0->secondaryWindow, FONT_SYSTEM, v0->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         (void)0;
     }
 
-    Window_ScheduleCopyToVRAM(&v0->unk_20);
+    Window_ScheduleCopyToVRAM(&v0->secondaryWindow);
 
     if (v1 == 0xfffffffe) {
         v1 = 0xfffffffe;
     }
 
     if (v0->unk_2AC == 1) {
-        ov23_0224FD84(param0, v1, param2);
+        UndergroundMenu_PrintTrapDescription(param0, v1, param2);
     } else if (v0->unk_2AC == 0) {
-        ov23_02250C3C(param0, v1, param2);
+        UndergroundMenu_PrintGoodDescription(param0, v1, param2);
     } else {
-        ov23_02250540(param0, v1, param2);
+        UndergroundMenu_PrintTreasureDescription(param0, v1, param2);
     }
 }
 
 static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
 {
     MATHRandContext16 v0;
-    UnkStruct_ov23_02250CD4 *v1 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
+    UndergroundMenu *v1 = (UndergroundMenu *)ListMenu_GetAttribute(param0, 19);
     Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v1->fieldSystem));
     int v3 = index, v4, v5;
     int v6, v7 = 0, v8;
 
-    Window_FillTilemap(&v1->unk_20, 15);
+    Window_FillTilemap(&v1->secondaryWindow, 15);
 
     if (index != 0xfffffffe) {
         if (v1->unk_2AC == 1) {
-            v6 = Underground_GetTrapAtSlot2(v3, v1);
+            v6 = UndergroundMenu_GetTrapAtSlot(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225429C(v6);
 
@@ -320,7 +319,7 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else if (v1->unk_2AC == 0) {
-            v6 = Underground_GetGoodAtSlotBag2(v3, v1);
+            v6 = UndergroundMenu_GetGoodAtSlotBag(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = sub_0205742C(v6);
 
@@ -333,7 +332,7 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else {
-            v6 = Underground_GetTreasureAtSlot2(v3, v1);
+            v6 = UndergroundMenu_GetTreasureAtSlot(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225426C(v6);
 
@@ -348,7 +347,7 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
     }
 
     MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->strbuf);
-    Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (index == 0xfffffffe) {
         (void)0;
@@ -357,7 +356,7 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
         StringTemplate_SetNumber(v1->template, 6, v8, 2, 1, 1);
         MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->strbuf);
         StringTemplate_Format(v1->template, v1->fmtString, v1->strbuf);
-        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
 
         v1->unk_279[0] = v7;
         v1->unk_27E[0] = v8;
@@ -365,23 +364,23 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
         v1->unk_279[0] = v7;
 
         MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->strbuf);
-        Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->strbuf, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->strbuf, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
-    Window_ScheduleCopyToVRAM(&v1->unk_20);
+    Window_ScheduleCopyToVRAM(&v1->secondaryWindow);
 
     if (v1->unk_2AC == 1) {
-        ov23_0224FD84(param0, index, onInit);
+        UndergroundMenu_PrintTrapDescription(param0, index, onInit);
     } else if (v1->unk_2AC == 0) {
-        ov23_02250C3C(param0, index, onInit);
+        UndergroundMenu_PrintGoodDescription(param0, index, onInit);
     } else {
-        ov23_02250540(param0, index, onInit);
+        UndergroundMenu_PrintTreasureDescription(param0, index, onInit);
     }
 }
 
 static int ov23_02252A04(int param0, void *param1)
 {
-    UnkStruct_ov23_02250CD4 *v0 = param1;
+    UndergroundMenu *v0 = param1;
 
     if (param0 >= 5) {
         return 0;
@@ -390,81 +389,81 @@ static int ov23_02252A04(int param0, void *param1)
     return v0->unk_274[param0];
 }
 
-static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
+static void ov23_02252A18(UndergroundMenu *param0)
 {
     ListMenuTemplate v0;
     const int v1 = 5 + 1;
 
-    ov23_0224FB7C(param0);
-    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
+    UndergroundMenu_EraseCurrentMenu(param0);
+    param0->menuOptions = StringList_New(v1, HEAP_ID_FIELD1);
 
-    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
-    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->primaryWindow, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
+    Window_DrawStandardFrame(&param0->primaryWindow, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v2;
         int v3;
 
         if (param0->unk_2AC == 1) {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_FIELD1);
-            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAP_NAMES, MESSAGE_LOADER_BANK_HANDLE);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_FIELD1);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MESSAGE_LOADER_BANK_HANDLE);
         } else if (param0->unk_2AC == 0) {
             v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
             UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
         } else {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEM_NAMES, HEAP_ID_FIELD1);
-            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEM_NAMES, MESSAGE_LOADER_BANK_HANDLE);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEMS, HEAP_ID_FIELD1);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MESSAGE_LOADER_BANK_HANDLE);
         }
 
         for (v3 = 0; v3 < v1 - 1; v3++) {
-            StringList_AddFromMessageBank(param0->unk_40, v2, param0->unk_274[v3], v3);
+            StringList_AddFromMessageBank(param0->menuOptions, v2, param0->unk_274[v3], v3);
         }
 
-        StringList_AddFromMessageBank(param0->unk_40, v2, 0, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->menuOptions, v2, 0, 0xfffffffe);
         MessageLoader_Free(v2);
     }
 
     MI_CpuCopy8(UndergroundTextPrinter_GetListMenuTemplate(), &v0, sizeof(ListMenuTemplate));
 
-    v0.choices = param0->unk_40;
-    v0.window = &param0->unk_10;
+    v0.choices = param0->menuOptions;
+    v0.window = &param0->primaryWindow;
     v0.count = v1;
     v0.maxDisplay = v1;
     v0.cursorCallback = ov23_0225265C;
     v0.parent = param0;
 
     param0->itemGetter = ov23_02252A04;
-    param0->unk_294 = ov23_02243154(13 + param0->unk_2AC);
-    param0->unk_290 = ov23_0224318C(13 + param0->unk_2AC);
-    param0->unk_2AE = param0->unk_290;
+    param0->listMenuListPos = CommManUnderground_GetStoredListPos(13 + param0->unk_2AC);
+    param0->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(13 + param0->unk_2AC);
+    param0->unk_2AE = param0->listMenuCursorPos;
 
-    ov23_02251238(param0, v0.maxDisplay, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
-    Window_CopyToVRAM(&param0->unk_10);
+    UndergroundMenu_MoveListCursorPosInBounds(param0, v0.maxDisplay, v0.count);
+    param0->unk_48 = ListMenu_New(&v0, param0->listMenuListPos, param0->listMenuCursorPos, HEAP_ID_FIELD1);
+    Window_CopyToVRAM(&param0->primaryWindow);
 }
 
-static void ov23_02252B90(UnkStruct_ov23_02250CD4 *param0, BOOL param1)
+static void ov23_02252B90(UndergroundMenu *param0, BOOL param1)
 {
-    if (Window_IsInUse(&param0->unk_20)) {
-        Window_EraseStandardFrame(&param0->unk_20, 1);
-        Window_Remove(&param0->unk_20);
+    if (Window_IsInUse(&param0->secondaryWindow)) {
+        Window_EraseStandardFrame(&param0->secondaryWindow, 1);
+        Window_Remove(&param0->secondaryWindow);
     }
 
-    ov23_0224FB7C(param0);
+    UndergroundMenu_EraseCurrentMenu(param0);
 }
 
-static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
+static void ov23_02252BB8(int param0, UndergroundMenu *param1)
 {
     int v0;
 
     if (param1->unk_2AC == 1) {
-        v0 = Underground_GetTrapAtSlot2(param0, param1);
+        v0 = UndergroundMenu_GetTrapAtSlot(param0, param1);
         ov23_02252CF4(2, v0);
     } else if (param1->unk_2AC == 0) {
-        v0 = Underground_GetGoodAtSlotBag2(param0, param1);
+        v0 = UndergroundMenu_GetGoodAtSlotBag(param0, param1);
         ov23_02252D08(2, v0);
     } else {
-        v0 = Underground_GetTreasureAtSlot2(param0, param1);
+        v0 = UndergroundMenu_GetTreasureAtSlot(param0, param1);
         ov23_02252CE0(2, v0);
     }
 
@@ -472,11 +471,11 @@ static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
     ov23_02252C9C(10);
 }
 
-static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
+static u32 ov23_02252C08(UndergroundMenu *param0)
 {
     Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (Underground_TryAddSphere2(param0->unk_279[0], param0->unk_27E[0])) {
+    if (UndergroundInventory_TryAddSphere(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
             Underground_RemoveTrapAtSlot(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 0) {
@@ -493,7 +492,7 @@ static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 
 int ov23_02252C70(void *param0)
 {
-    UnkStruct_ov23_02250CD4 *v0 = param0;
+    UndergroundMenu *v0 = param0;
     u32 v1 = 0xfffe;
     u32 v2 = 0xfffe;
     u16 v3, v4;
@@ -501,7 +500,7 @@ int ov23_02252C70(void *param0)
     return v2;
 }
 
-static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0)
+static void ov23_02252C78(UndergroundMenu *param0)
 {
     Strbuf_Free(param0->strbuf);
     Strbuf_Free(param0->fmtString);
@@ -511,7 +510,7 @@ static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0)
 
 void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = NULL;
+    UndergroundMenu *v0 = NULL;
     return v0;
 }
 
@@ -543,18 +542,18 @@ void ov23_02252D08(int param0, int param1)
     UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(CommManUnderground_GetMiscTextPrinter(), param0, param1);
 }
 
-static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
+static void ov23_02252D1C(UndergroundMenu *param0)
 {
-    if (!Window_IsInUse(&param0->unk_20)) {
-        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
-        Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    if (!Window_IsInUse(&param0->secondaryWindow)) {
+        Window_Add(param0->fieldSystem->bgConfig, &param0->secondaryWindow, 3, 1, 12, 12, 4, 13, 1);
+        Window_DrawStandardFrame(&param0->secondaryWindow, 1, 1024 - (18 + 12) - 9, 11);
     }
 
-    Window_FillTilemap(&param0->unk_20, 15);
-    Window_CopyToVRAM(&param0->unk_20);
+    Window_FillTilemap(&param0->secondaryWindow, 15);
+    Window_CopyToVRAM(&param0->secondaryWindow);
 }
 
-void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
+void ov23_02252D74(UndergroundMenu *param0, int param1)
 {
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
     Window_DrawStandardFrame(&param0->unk_30, 1, 1024 - (18 + 12) - 9, 11);
@@ -567,7 +566,7 @@ void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
     Window_ScheduleCopyToVRAM(&param0->unk_30);
 }
 
-void ov23_02252DF4(UnkStruct_ov23_02250CD4 *param0)
+void ov23_02252DF4(UndergroundMenu *param0)
 {
     if (Window_IsInUse(&param0->unk_30)) {
         Window_EraseStandardFrame(&param0->unk_30, 1);
@@ -575,7 +574,7 @@ void ov23_02252DF4(UnkStruct_ov23_02250CD4 *param0)
     }
 }
 
-void ov23_02252E18(UnkStruct_ov23_02250CD4 *param0)
+void ov23_02252E18(UndergroundMenu *param0)
 {
     if (Window_IsInUse(&param0->unk_30)) {
         Window_EraseStandardFrame(&param0->unk_30, 0);
@@ -600,12 +599,12 @@ static int ov23_02252E3C(int param0, int param1, int *param2)
 
 static void ov23_02252E70(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_02250CD4 *v0 = param1;
+    UndergroundMenu *v0 = param1;
     u32 v1 = 0xfffe;
     u32 v2 = 0xfffe;
     u16 v3, v4, v5;
 
-    switch (v0->unk_2AA) {
+    switch (v0->state) {
     case 0:
         if (v0->unk_2AC == 2) {
             ov23_02252C9C(27);
@@ -613,21 +612,21 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             ov23_02252C9C(0);
         }
 
-        v0->unk_2AA = 1;
+        v0->state = 1;
         break;
     case 1:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
-            v0->unk_2AA = 2;
+            v0->state = 2;
         }
         break;
     case 2:
         ov23_022524B8(v0);
-        v0->unk_2AA = 3;
+        v0->state = 3;
         break;
     case 3:
         v1 = ListMenu_ProcessInput(v0->unk_48);
         ListMenu_GetListAndCursorPos(v0->unk_48, &v3, &v4);
-        ov23_022430E0(19, v4, v3);
+        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_19, v4, v3);
 
         v5 = v0->unk_2AE;
         ListMenu_CalcTrueCursorPos(v0->unk_48, &v0->unk_2AE);
@@ -640,23 +639,23 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         case 0xfffffffe:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02252B90(v0, 0);
-            v0->unk_2AA = 17;
+            v0->state = 17;
             break;
         case 0xffffffff:
             break;
         default:
             if (v0->unk_2AC == 2) {
                 v0->unk_2AB = 1;
-                v0->unk_2AA = 12;
+                v0->state = 12;
             } else {
                 v0->unk_2AB = v1;
 
                 if (v1 == 0) {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
-                    v0->unk_2AA = 4;
+                    v0->state = 4;
                 } else {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
-                    v0->unk_2AA = 12;
+                    v0->state = 12;
                 }
             }
             break;
@@ -665,12 +664,12 @@ static void ov23_02252E70(SysTask *param0, void *param1)
     case 4:
         ov23_02252D1C(v0);
         ov23_02252A18(v0);
-        v0->unk_2AA = 5;
+        v0->state = 5;
         break;
     case 5:
         v1 = ListMenu_ProcessInput(v0->unk_48);
         ListMenu_GetListAndCursorPos(v0->unk_48, &v3, &v4);
-        ov23_022430E0(13 + v0->unk_2AC, v4, v3);
+        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_13 + v0->unk_2AC, v4, v3);
 
         v5 = v0->unk_2AE;
         ListMenu_CalcTrueCursorPos(v0->unk_48, &v0->unk_2AE);
@@ -691,7 +690,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         case 0xfffffffe:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02252B90(v0, 1);
-            v0->unk_2AA = 2;
+            v0->state = 2;
             break;
         case 0xffffffff:
             break;
@@ -706,22 +705,22 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             }
 
             ov23_02252C9C(1);
-            v0->unk_2AA = 6;
+            v0->state = 6;
             break;
         }
         break;
     case 6:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                v0->unk_2AA = 7;
+                v0->state = 7;
             }
         }
         break;
     case 7:
-        ov23_0224FB7C(v0);
+        UndergroundMenu_EraseCurrentMenu(v0);
 
-        v0->unk_290 = ov23_0224318C(12);
-        v0->unk_294 = ov23_02243154(12);
+        v0->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(12);
+        v0->listMenuListPos = CommManUnderground_GetStoredListPos(12);
 
         ov23_02250184(v0);
         ov23_02252D74(v0, 19);
@@ -732,13 +731,13 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             ov23_02252D08(2, v0->unk_274[v0->unk_2A8]);
         }
 
-        v0->unk_2AA = 8;
+        v0->state = 8;
         break;
     case 8:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
-            v1 = ov23_02248D20(v0->unk_4C);
-            ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
-            ov23_022430E0(12, v4, v3);
+            v1 = UndergroundItemListMenu_ProcessInput(v0->itemListMenu);
+            ListMenu_GetListAndCursorPos(v0->itemListMenu->listMenu, &v3, &v4);
+            CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_12, v4, v3);
 
             if (v1 != 0xffffffff) {
                 UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
@@ -749,7 +748,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 break;
             case 0xfffffffe:
                 ov23_02252DF4(v0);
-                v0->unk_2AA = 4;
+                v0->state = 4;
                 break;
             default:
                 v1 = ov23_02252404(v0, v0->unk_2A8, v1);
@@ -758,17 +757,17 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
                 if (v1 == 0xfffc) {
                     ov23_02252C9C(3);
-                    v0->unk_2AA = 10;
+                    v0->state = 10;
                 } else if (v1 == 0xfffd) {
                     ov23_02252C9C(4);
-                    v0->unk_2AA = 10;
+                    v0->state = 10;
                 } else if (v1 == 0xfffb) {
                     ov23_02252C9C(5);
-                    v0->unk_2AA = 10;
+                    v0->state = 10;
                 } else {
                     v0->unk_2A8 = v1;
                     ov23_02252C9C(2);
-                    v0->unk_2AA = 9;
+                    v0->state = 9;
                 }
                 break;
             }
@@ -776,7 +775,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 11:
         ov23_02252C9C(3);
-        v0->unk_2AA = 10;
+        v0->state = 10;
         break;
     case 9:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
@@ -790,7 +789,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 ov23_02252C9C(6);
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
-                v0->unk_2AA = 10;
+                v0->state = 10;
             }
         }
         break;
@@ -798,15 +797,15 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 ov23_02252C9C(8);
-                v0->unk_2AA = 2;
+                v0->state = 2;
             }
         }
         break;
     case 12:
         ov23_02252D1C(v0);
 
-        v0->unk_290 = ov23_0224318C(16 + v0->unk_2AC);
-        v0->unk_294 = ov23_02243154(16 + v0->unk_2AC);
+        v0->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(16 + v0->unk_2AC);
+        v0->listMenuListPos = CommManUnderground_GetStoredListPos(16 + v0->unk_2AC);
         v0->cursorCallback = ov23_02252754;
 
         if (v0->unk_2AC == 1) {
@@ -820,19 +819,19 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             ov23_02252D74(v0, 29);
         }
 
-        v0->unk_2AA = 13;
+        v0->state = 13;
         break;
     case 13:
-        v1 = ov23_02248D20(v0->unk_4C);
-        ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
-        ov23_022430E0(16 + v0->unk_2AC, v4, v3);
+        v1 = UndergroundItemListMenu_ProcessInput(v0->itemListMenu);
+        ListMenu_GetListAndCursorPos(v0->itemListMenu->listMenu, &v3, &v4);
+        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_16 + v0->unk_2AC, v4, v3);
 
         switch (v1) {
         case 0xfffffffe:
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             ov23_02252B90(v0, 1);
             ov23_02252DF4(v0);
-            v0->unk_2AA = 2;
+            v0->state = 2;
             break;
         case 0xffffffff:
             break;
@@ -843,19 +842,19 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 ov23_02252B90(v0, 1);
                 ov23_02252DF4(v0);
                 ov23_02252BB8(v1, v0);
-                v0->unk_2AA = 14;
+                v0->state = 14;
             }
             break;
         }
         break;
     case 14:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
-            v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
-            v0->unk_2AA = 15;
+            v0->yesNoMenu = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->state = 15;
         }
         break;
     case 15:
-        v1 = Menu_ProcessInputAndHandleExit(v0->unk_5C, 4);
+        v1 = Menu_ProcessInputAndHandleExit(v0->yesNoMenu, 4);
 
         if (v1 == 0xffffffff) {
             return;
@@ -864,16 +863,16 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
             if (v1 == 0xfffc) {
                 ov23_02252C9C(3);
-                v0->unk_2AA = 10;
+                v0->state = 10;
             } else {
                 ov23_02252C9C(11);
-                v0->unk_2AA = 16;
+                v0->state = 16;
             }
         } else {
-            v0->unk_2AA = 17;
+            v0->state = 17;
         }
 
-        v0->unk_5C = NULL;
+        v0->yesNoMenu = NULL;
         break;
     case 16:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
@@ -884,13 +883,13 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
-                v0->unk_2AA = 10;
+                v0->state = 10;
             }
         }
         break;
     case 17:
         ov23_02252C9C(9);
-        v0->unk_2AA = 18;
+        v0->state = 18;
         break;
     case 18:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
@@ -914,15 +913,15 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     int v1 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
     int v2 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
     int v3 = CommPlayer_GetOppositeDir(CommPlayer_Dir(CommSys_CurNetId()));
-    UnkStruct_ov23_02250CD4 *v4;
+    UndergroundMenu *v4;
     const int v5 = 6;
     int v6;
     int v7 = ov23_02252E3C(v1, v2, &v6);
 
-    ov23_022430D0(3 + v7);
+    CommManUnderground_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_3 + v7);
 
-    v4 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
-    MI_CpuClear8(v4, sizeof(UnkStruct_ov23_02250CD4));
+    v4 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
+    MI_CpuClear8(v4, sizeof(UndergroundMenu));
 
     v4->fieldSystem = fieldSystem;
     v4->unk_2AC = v7;
@@ -930,11 +929,11 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
     v4->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
     v4->template = StringTemplate_Default(HEAP_ID_FIELD1);
-    v4->unk_2AA = 0;
+    v4->state = 0;
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
-    v4->unk_04 = SysTask_Start(ov23_02252E70, v4, 10000);
-    ov23_022431EC(v4, v4->unk_04, ov23_02251270);
+    v4->sysTask = SysTask_Start(ov23_02252E70, v4, 10000);
+    ov23_022431EC(v4, v4->sysTask, ov23_02251270);
 
     {
         int objEventCount, i;
