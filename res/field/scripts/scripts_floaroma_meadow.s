@@ -117,13 +117,13 @@ _010E:
     Message 7
     SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009F
     Message 8
     SetVar VAR_0x8004, ITEM_HONEY
     SetVar VAR_0x8005, 10
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01AD
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     Message 9
     GoTo _01B0
 
@@ -197,7 +197,7 @@ _0293:
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     HideMoney
     CloseMessage
     ReleaseAll
@@ -237,7 +237,7 @@ _0306:
     FacePlayer
     SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     CloseMessage
     SetFlag FLAG_UNK_0x009F
     RemoveObject 3

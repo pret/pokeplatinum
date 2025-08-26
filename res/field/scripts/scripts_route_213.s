@@ -117,7 +117,7 @@ _019A:
     SetFlag FLAG_UNK_0x0104
     ClearFlag FLAG_UNK_0x01E8
     AddObject 33
-    CallCommonScript SetLookerBGM
+    CallCommonScript 0x807
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     CallIfEq VAR_0x8004, 2, _0267
@@ -135,7 +135,7 @@ _019A:
     CallIfEq VAR_0x8004, 0, _02DF
     CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
-    CallCommonScript FadeToDefaultMusic_duplicate3
+    CallCommonScript 0x808
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     ClearFlag FLAG_UNK_0x0211

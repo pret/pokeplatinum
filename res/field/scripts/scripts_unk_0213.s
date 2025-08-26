@@ -209,7 +209,7 @@ Unk213_Unused6:
 
 _02E4:
     HealParty
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _0305
     GoTo _01D3
@@ -410,7 +410,7 @@ _05CF:
     GoToIfEq VAR_RESULT, 0xFF, _068E
     SetVar VAR_UNK_0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _062D
     SetVar VAR_UNK_0x40D5, 0
@@ -439,7 +439,7 @@ _062D:
     End
 
 _068E:
-    CallCommonScript UNK_170A
+    CallCommonScript 0x809
     End
 
 _0694:

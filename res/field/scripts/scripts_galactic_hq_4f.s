@@ -56,7 +56,7 @@ _0074:
     End
 
 _00DB:
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     Return
 
 _00E1:

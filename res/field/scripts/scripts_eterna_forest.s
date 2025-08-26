@@ -147,7 +147,7 @@ _0198:
 
 _01DB:
     Message 6
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     GoTo _01EA
     End
 

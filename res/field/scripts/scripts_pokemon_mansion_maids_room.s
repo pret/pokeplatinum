@@ -17,13 +17,13 @@ _000E:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0053
     SetFlag FLAG_UNK_0x0139
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
 _0053:
-    CallCommonScript BagIsFull
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

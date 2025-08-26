@@ -398,7 +398,7 @@ _04D0:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     WaitTime 30, VAR_RESULT
-    CallCommonScript SetRivalBGM
+    CallCommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
     BufferRivalName 0
@@ -418,7 +418,7 @@ _04D0:
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 2
-    CallCommonScript FadeToDefaultMusic_duplicate1
+    CallCommonScript 0x7FB
     SetVar VAR_UNK_0x4070, 1
     SetVar VAR_UNK_0x40E6, 1
     ReleaseAll

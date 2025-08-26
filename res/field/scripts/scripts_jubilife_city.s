@@ -91,7 +91,7 @@ _0149:
     WaitMovement
     ApplyMovement 7, _044C
     WaitMovement
-    CallCommonScript SetCounterpartBGM
+    CallCommonScript 0x7F8
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _018D
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0224
@@ -228,7 +228,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    CallCommonScript SetLookerBGM
+    CallCommonScript 0x807
     Message 12
     Message 13
     CloseMessage
@@ -256,7 +256,7 @@ _03C0:
     Message 20
     SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     Message 21
     CloseMessage
     ApplyMovement 31, _055C
@@ -269,7 +269,7 @@ _03C0:
     WaitMovement
     SetPosition 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
-    CallCommonScript FadeToDefaultMusic_duplicate3
+    CallCommonScript 0x808
     Return
 
 _041B:
@@ -986,7 +986,7 @@ _0C7C:
 _0CF0:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00F2
     Call _0D58
     Call _0D58
@@ -1541,7 +1541,7 @@ _1356:
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_1
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1580,7 +1580,7 @@ _13CD:
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_2
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1621,7 +1621,7 @@ _1451:
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_3
-    CallCommonScript AddItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1678,7 +1678,7 @@ _14CF:
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
-    CallCommonScript SetLookerBGM
+    CallCommonScript 0x807
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
@@ -1687,7 +1687,7 @@ _14CF:
     ApplyMovement 31, _154C
     WaitMovement
     RemoveObject 31
-    CallCommonScript FadeToDefaultMusic_duplicate3
+    CallCommonScript 0x808
     SetVar VAR_UNK_0x4076, 2
     ReleaseAll
     End

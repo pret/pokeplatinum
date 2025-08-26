@@ -39,7 +39,7 @@ _0040:
     SetVar VAR_0x8004, ITEM_STICKY_BARB
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0092
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0105
     GoTo _0087
     End
@@ -52,7 +52,7 @@ _0087:
     End
 
 _0092:
-    CallCommonScript BagIsFull
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -152,7 +152,7 @@ _0191:
     Message 7
     SetVar VAR_0x8004, VAR_0x8001
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     GetRandom VAR_RESULT, 64
     GoToIfNe VAR_RESULT, 0, _026E
     GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
@@ -161,7 +161,7 @@ _0191:
     Message 8
     SetVar VAR_0x8004, VAR_0x8001
     SetVar VAR_0x8005, 1
-    CallCommonScript AddItemQuantity
+    CallCommonScript 0x7FC
     GoTo _026E
 
 _026E:
@@ -173,7 +173,7 @@ _0277:
     GoTo _028C
 
 _0280:
-    CallCommonScript BagIsFull
+    CallCommonScript 0x7E1
     CloseMessage
     HideMoney
     ReleaseAll

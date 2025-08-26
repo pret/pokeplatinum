@@ -159,7 +159,7 @@ GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
     End
 
 GlobalTerminal1f_BeginTrade:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Clerk_EndTalk
     HealParty
@@ -370,11 +370,11 @@ _0464:
     End
 
 _046A:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0464
     CloseMessage
-    CallCommonScript UNK_15E7
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -410,11 +410,11 @@ _04EE:
     End
 
 _04F4:
-    CallCommonScript SaveGame
+    CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _04EE
     CloseMessage
-    CallCommonScript UNK_15E7
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -550,7 +550,7 @@ _06A1:
 
 _06D3:
     SetVar VAR_0x8005, 1
-    CallCommonScript ObtainContestBackdrop
+    CallCommonScript 0x7FD
     Message pl_msg_00000046_00028
     Call _0710
     SetFlag FLAG_UNK_0x0AC3
