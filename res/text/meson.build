@@ -48,7 +48,11 @@ frontier_text_bank_names = [
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = species_text_bank_names + trainer_text_bank_names + frontier_text_bank_names
+generated_text_banks = [
+    species_text_bank_names,
+    trainer_text_bank_names,
+    frontier_text_bank_names,
+]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
