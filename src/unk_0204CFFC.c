@@ -350,17 +350,16 @@ BOOL ScrCmd_1BB(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_281(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonContestStat(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 contestType = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    *v3 = Pokemon_GetValue(v0, MON_DATA_COOL + v2, NULL);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_COOL + contestType, NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetFirstNonEggInParty(ScriptContext *ctx)

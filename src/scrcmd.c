@@ -1412,7 +1412,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckIsDepartmentStoreRegular,
     ScrCmd_27F,
     ScrCmd_280,
-    ScrCmd_281,
+    ScrCmd_GetPartyMonContestStat,
     ScrCmd_CheckIsTodayPlayerBirthday,
     ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,

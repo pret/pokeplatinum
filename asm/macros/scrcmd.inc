@@ -3680,11 +3680,11 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_281 arg0, arg1, arg2
+    .macro GetPartyMonContestStat slot, contestType, destVar
     .short 641
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \slot
+    .short \contestType
+    .short \destVar
     .endm
 
     .macro CheckIsTodayPlayerBirthday destVar

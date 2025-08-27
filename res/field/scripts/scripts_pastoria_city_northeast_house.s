@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_northeast_house.h"
+#include "generated/pokemon_contest_types.h"
 
 
     ScriptEntry _000E
@@ -126,7 +127,7 @@ _01DB:
 
 _021C:
     GoToIfSet FLAG_UNK_0x0140, _0244
-    ScrCmd_281 VAR_0x8000, 0, VAR_RESULT
+    GetPartyMonContestStat VAR_0x8000, CONTEST_TYPE_COOL, VAR_RESULT
     GoToIfLt VAR_RESULT, 200, _0244
     SetVar VAR_RESULT, 1
     Return
@@ -137,7 +138,7 @@ _0244:
 
 _024C:
     GoToIfSet FLAG_UNK_0x0141, _0274
-    ScrCmd_281 VAR_0x8000, 1, VAR_RESULT
+    GetPartyMonContestStat VAR_0x8000, CONTEST_TYPE_BEAUTY, VAR_RESULT
     GoToIfLt VAR_RESULT, 200, _0274
     SetVar VAR_RESULT, 1
     Return
@@ -148,7 +149,7 @@ _0274:
 
 _027C:
     GoToIfSet FLAG_UNK_0x0142, _02A4
-    ScrCmd_281 VAR_0x8000, 2, VAR_RESULT
+    GetPartyMonContestStat VAR_0x8000, CONTEST_TYPE_CUTE, VAR_RESULT
     GoToIfLt VAR_RESULT, 200, _02A4
     SetVar VAR_RESULT, 1
     Return
@@ -159,7 +160,7 @@ _02A4:
 
 _02AC:
     GoToIfSet FLAG_UNK_0x0143, _02D4
-    ScrCmd_281 VAR_0x8000, 3, VAR_RESULT
+    GetPartyMonContestStat VAR_0x8000, CONTEST_TYPE_SMART, VAR_RESULT
     GoToIfLt VAR_RESULT, 200, _02D4
     SetVar VAR_RESULT, 1
     Return
@@ -170,7 +171,7 @@ _02D4:
 
 _02DC:
     GoToIfSet FLAG_UNK_0x0144, _0304
-    ScrCmd_281 VAR_0x8000, 4, VAR_RESULT
+    GetPartyMonContestStat VAR_0x8000, CONTEST_TYPE_TOUGH, VAR_RESULT
     GoToIfLt VAR_RESULT, 200, _0304
     SetVar VAR_RESULT, 1
     Return
