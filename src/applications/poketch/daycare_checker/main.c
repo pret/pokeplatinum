@@ -16,7 +16,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
-typedef struct {
+typedef struct PoketchDaycare {
     u8 activeTask;
     u8 taskFuncState;
     u8 shouldExit;
@@ -73,7 +73,7 @@ static BOOL Init(PoketchDaycare *appData, PoketchSystem *poketchSys, BgConfig *b
 
     LoadDaycareSummary(&appData->daycareStatus, appData->daycareSaveData);
 
-    if (DaycareCheckerGraphics_New(&(appData->graphics), &(appData->daycareStatus), bgConfig)) {
+    if (DaycareCheckerGraphics_New(&appData->graphics, &appData->daycareStatus, bgConfig)) {
         appData->activeTask = TASK_LOAD_APP;
         appData->taskFuncState = 0;
         appData->shouldExit = FALSE;
