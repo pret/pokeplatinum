@@ -18,6 +18,7 @@
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
@@ -356,7 +357,7 @@ static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_06B(ScriptContext *ctx);
 static BOOL ScrCmd_06C(ScriptContext *ctx);
 static BOOL ScrCmd_06D(ScriptContext *ctx);
-static BOOL ScrCmd_2AD(ScriptContext *ctx);
+static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
@@ -1455,7 +1456,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2AA,
     ScrCmd_2AB,
     ScrCmd_UnlockMysteryGift,
-    ScrCmd_2AD,
+    ScrCmd_GetMovementType,
     ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
@@ -3364,15 +3365,15 @@ static BOOL ScrCmd_06D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AD(ScriptContext *ctx)
+static BOOL ScrCmd_GetMovementType(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = MOVEMENT_TYPE_NONE;
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
 
     if (mapObj != NULL) {
-        *v1 = MapObject_GetMovementType(mapObj);
+        *destVar = MapObject_GetMovementType(mapObj);
     }
 
     return FALSE;
