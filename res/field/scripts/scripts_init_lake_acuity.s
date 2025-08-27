@@ -1,11 +1,11 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_FirstMatch InitScriptChecks
+    InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 
-InitScriptChecks:
+InitScriptConditions:
     InitScriptGoToIfEqual VAR_UNK_0x40D3, 1, 1
-    InitScriptChecksEnd
+    InitScriptConditionsEnd
 
     InitScriptEnd

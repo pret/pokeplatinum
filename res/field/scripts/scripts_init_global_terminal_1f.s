@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_FixedUnk3 13
-    InitScriptEntry_FirstMatch InitScriptChecks
+    InitScriptEntry_MapReady 13
+    InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 
-InitScriptChecks:
+InitScriptConditions:
     InitScriptGoToIfEqual VAR_UNK_0x40D5, 6, 12
-    InitScriptChecksEnd
+    InitScriptConditionsEnd
 
     InitScriptEnd

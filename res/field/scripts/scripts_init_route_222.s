@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_FixedUnk2 8
+    InitScriptEntry_EnterLocation 8
     InitScriptEntryEnd
 
     InitScriptEnd

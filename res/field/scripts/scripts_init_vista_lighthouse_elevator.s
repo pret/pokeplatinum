@@ -1,11 +1,11 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_FirstMatch InitScriptChecks
+    InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 
-InitScriptChecks:
+InitScriptConditions:
     InitScriptGoToIfEqual VAR_MAP_LOCAL_1, 0, 1
-    InitScriptChecksEnd
+    InitScriptConditionsEnd
 
     InitScriptEnd

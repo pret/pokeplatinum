@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_FixedUnk4 1
+    InitScriptEntry_MapLoad 1
     InitScriptEntryEnd
 
     InitScriptEnd
