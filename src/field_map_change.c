@@ -285,7 +285,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
         }
     }
 
-    FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_2);
+    FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_ENTER_LOCATION);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
     fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
@@ -1362,7 +1362,7 @@ static BOOL sub_02054494(FieldTask *task)
         break;
     case 1:
         FieldMapChange_SetNewLocation(fieldSystem, &mapChangeSub->nextLocation);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_2);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_ENTER_LOCATION);
         mapChangeSub->state++;
         break;
     case 2:
