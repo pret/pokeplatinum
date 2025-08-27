@@ -43,8 +43,16 @@ trainer_text_bank_names = [
     'npc_trainer_names.json'
 ]
 
+frontier_text_bank_names = [
+    'frontier_trainer_names.json'
+]
+
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = species_text_bank_names + trainer_text_bank_names
+generated_text_banks = [
+    species_text_bank_names,
+    trainer_text_bank_names,
+    frontier_text_bank_names,
+]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
@@ -115,6 +123,19 @@ trainer_text_banks = custom_target('trainer_text_banks',
 )
 
 text_bank_files += trainer_text_banks
+
+frontier_text_banks = custom_target('frontier_text_banks',
+    output: frontier_text_bank_names,
+    command: [
+        'mv',
+        '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
+        '@OUTDIR@',
+    ],
+    env: trainer_env,
+    depends: [ datagen_frontier_out ],
+)
+
+text_bank_files += frontier_text_banks
 
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

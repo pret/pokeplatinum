@@ -1,4 +1,5 @@
 {
+    "name": "Orin",
     "class": "TRAINER_CLASS_WAITER",
     "availableSets": [
         "luvdisc_1",
