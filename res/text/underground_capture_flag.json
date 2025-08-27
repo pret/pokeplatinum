@@ -2,7 +2,7 @@
   "key": 47325,
   "messages": [
     {
-      "id": "UndergroundCaptureFlag_Text_YoureHoldingAFlagCantDealWithThis",
+      "id": "UndergroundCaptureFlag_Text_PromptThrowAwayFlag",
       "en_US": [
         "You’re holding a Flag!\n",
         "You can’t deal with this now!\r",

@@ -491,31 +491,22 @@ void UndergroundMenu_Start(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSy
     ov23_022431EC(menu, menu->sysTask, ov23_02251270);
 }
 
+#define ADD_OPTION(__menuOption)          \
+    do {                                  \
+        list[optionCount] = __menuOption; \
+        optionCount++;                    \
+    } while (0)
+
 static u32 UndergroundMenu_MakeList(u8 *list)
 {
     u32 optionCount = 0;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_TRAPS;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_SPHERES;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_GOODS;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_TREASURES;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_TRAINER;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_GO_UP;
-    optionCount++;
-
-    list[optionCount] = UNDERGROUND_START_MENU_OPTION_CLOSE;
-    optionCount++;
-
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_TRAPS);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_SPHERES);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_GOODS);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_TREASURES);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_TRAINER);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_GO_UP);
+    ADD_OPTION(UNDERGROUND_START_MENU_OPTION_CLOSE);
     return optionCount;
 }
 
@@ -724,20 +715,20 @@ void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu)
 }
 
 static ItemSelectedOption sSphereTrapOptions[] = {
-    { .bankEntry = UndergroundCommon_Text_Bury, .index = (u32)UNDERGROUND_MENU_OPTION_BURY },
-    { .bankEntry = UndergroundCommon_Text_Trash, .index = (u32)UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = (u32)LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_Bury, .index = UNDERGROUND_MENU_OPTION_BURY },
+    { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
 };
 
 static ItemSelectedOption sGoodOptions[] = {
-    { .bankEntry = UndergroundCommon_Text_Trash, .index = (u32)UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = (u32)LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
 };
 
 static ItemSelectedOption sTreasureOptions[] = {
-    { .bankEntry = UndergroundCommon_Text_PutInBag, .index = (u32)UNDERGROUND_MENU_OPTION_PUT_IN_BAG },
-    { .bankEntry = UndergroundCommon_Text_Trash, .index = (u32)UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = (u32)LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_PutInBag, .index = UNDERGROUND_MENU_OPTION_PUT_IN_BAG },
+    { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
 };
 
 static void UndergroundMenu_InitItemSelectedMenu(UndergroundMenu *menu, int menuType)
@@ -1430,7 +1421,7 @@ void UndergroundMenu_StartHoldingFlag(UnkFuncPtr_ov23_0224F758 param0, FieldSyst
 
     CommPlayerMan_PauseFieldSystem();
 
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YoureHoldingAFlagCantDealWithThis, FALSE, NULL);
+    UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PromptThrowAwayFlag, FALSE, NULL);
     menu->sysTask = SysTask_Start(ov23_02250B9C, menu, 10000);
     ov23_022431EC(menu, menu->sysTask, ov23_02251270);
 }
