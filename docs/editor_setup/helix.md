@@ -82,5 +82,6 @@ You may follow the instructions to install  the Meson Language Server where  it 
 
 In the same `language.toml` file you may add the following: 
 ```toml
+[language-server]
 mesonlsp = { command = "mesonlsp", args = ["--lsp"] }
 ```
