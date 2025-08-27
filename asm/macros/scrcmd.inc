@@ -977,10 +977,10 @@
     .short \move
     .endm
 
-    .macro ScrCmd_09B arg0, arg1
+    .macro GetRematchTrainerID trainerID, destVar
     .short 155
-    .short \arg0
-    .short \arg1
+    .short \trainerID
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_09C

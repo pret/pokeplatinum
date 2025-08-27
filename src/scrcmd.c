@@ -362,7 +362,7 @@ static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
-static BOOL ScrCmd_09B(ScriptContext *ctx);
+static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09C(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
@@ -926,7 +926,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_098,
     ScrCmd_CheckPartyMonHasMove,
     ScrCmd_FindPartySlotWithMove,
-    ScrCmd_09B,
+    ScrCmd_GetRematchTrainerID,
     ScrCmd_Unused_09C,
     ScrCmd_Unused_09D,
     ScrCmd_Unused_09E,
@@ -3668,13 +3668,13 @@ static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_09B(ScriptContext *ctx)
+static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx)
 {
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    MapObject **trainerObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v4 = VsSeeker_GetRematchTrainerID(ctx->fieldSystem, *v2, v3);
+    *destVar = VsSeeker_GetRematchTrainerID(ctx->fieldSystem, *trainerObj, trainerID);
     return FALSE;
 }
 

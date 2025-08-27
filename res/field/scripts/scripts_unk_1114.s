@@ -971,8 +971,8 @@ _0F1D:
     End
 
 _0F40:
-    ScrCmd_09B VAR_0x8004, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _0F73
+    GetRematchTrainerID VAR_0x8004, VAR_RESULT
+    GoToIfNe VAR_RESULT, TRAINER_NONE, _0F73
     GoTo _0F5B
     End
 
