@@ -977,10 +977,10 @@
     .short \move
     .endm
 
-    .macro ScrCmd_09B arg0, arg1
+    .macro GetRematchTrainerID trainerID, destVar
     .short 155
-    .short \arg0
-    .short \arg1
+    .short \trainerID
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_09C
@@ -3680,16 +3680,16 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_281 arg0, arg1, arg2
+    .macro GetPartyMonContestStat slot, contestType, destVar
     .short 641
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \slot
+    .short \contestType
+    .short \destVar
     .endm
 
-    .macro ScrCmd_282 arg0
+    .macro CheckIsTodayPlayerBirthday destVar
     .short 642
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro SetInitialVolumeForSequence seqID, volume
@@ -3940,10 +3940,10 @@
     .short 684
     .endm
 
-    .macro ScrCmd_2AD arg0, arg1
+    .macro GetMovementType destVar, localID
     .short 685
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \localID
     .endm
 
     .macro IsSequencePlaying seqID, destVar

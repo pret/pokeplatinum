@@ -18,7 +18,7 @@ BOOL ScrCmd_213(ScriptContext *param0);
 BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx);
 BOOL ScrCmd_1BA(ScriptContext *param0);
 BOOL ScrCmd_1BB(ScriptContext *param0);
-BOOL ScrCmd_281(ScriptContext *param0);
+BOOL ScrCmd_GetPartyMonContestStat(ScriptContext *param0);
 BOOL ScrCmd_GetFirstNonEggInParty(ScriptContext *ctx);
 BOOL ScrCmd_248(ScriptContext *param0);
 BOOL ScrCmd_GetPartyCount(ScriptContext *ctx);

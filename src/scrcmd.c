@@ -18,6 +18,7 @@
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
@@ -356,12 +357,12 @@ static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_06B(ScriptContext *ctx);
 static BOOL ScrCmd_06C(ScriptContext *ctx);
 static BOOL ScrCmd_06D(ScriptContext *ctx);
-static BOOL ScrCmd_2AD(ScriptContext *ctx);
+static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
-static BOOL ScrCmd_09B(ScriptContext *ctx);
+static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09C(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
@@ -664,7 +665,7 @@ static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
 static BOOL ScrCmd_27F(ScriptContext *ctx);
-static BOOL ScrCmd_282(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsTodayPlayerBirthday(ScriptContext *ctx);
 static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
@@ -925,7 +926,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ResetPartyMonMoveSlot,
     ScrCmd_CheckPartyMonHasMove,
     ScrCmd_FindPartySlotWithMove,
-    ScrCmd_09B,
+    ScrCmd_GetRematchTrainerID,
     ScrCmd_Unused_09C,
     ScrCmd_Unused_09D,
     ScrCmd_Unused_09E,
@@ -1411,8 +1412,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckIsDepartmentStoreRegular,
     ScrCmd_27F,
     ScrCmd_280,
-    ScrCmd_281,
-    ScrCmd_282,
+    ScrCmd_GetPartyMonContestStat,
+    ScrCmd_CheckIsTodayPlayerBirthday,
     ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_InitTurnbackCave,
@@ -1455,7 +1456,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2AA,
     ScrCmd_2AB,
     ScrCmd_UnlockMysteryGift,
-    ScrCmd_2AD,
+    ScrCmd_GetMovementType,
     ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
@@ -3364,15 +3365,15 @@ static BOOL ScrCmd_06D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AD(ScriptContext *ctx)
+static BOOL ScrCmd_GetMovementType(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = MOVEMENT_TYPE_NONE;
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
 
     if (mapObj != NULL) {
-        *v1 = MapObject_GetMovementType(mapObj);
+        *destVar = MapObject_GetMovementType(mapObj);
     }
 
     return FALSE;
@@ -3667,13 +3668,13 @@ static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_09B(ScriptContext *ctx)
+static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx)
 {
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    MapObject **trainerObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v4 = VsSeeker_GetRematchTrainerID(ctx->fieldSystem, *v2, v3);
+    *destVar = VsSeeker_GetRematchTrainerID(ctx->fieldSystem, *trainerObj, trainerID);
     return FALSE;
 }
 
@@ -6913,16 +6914,16 @@ static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_282(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsTodayPlayerBirthday(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
+    SystemData *systemData = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDayOfMonth(fieldSystem))) {
-        *v0 = 1;
+    if (SystemData_GetOwnerBirthMonth(systemData) == FieldSystem_GetMonth(fieldSystem) && SystemData_GetOwnerBirthDayOfMonth(systemData) == FieldSystem_GetDayOfMonth(fieldSystem)) {
+        *destVar = TRUE;
     } else {
-        *v0 = 0;
+        *destVar = FALSE;
     }
 
     return FALSE;

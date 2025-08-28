@@ -38,8 +38,8 @@ _0064:
     Return
 
 _006C:
-    ScrCmd_282 VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0133
+    CheckIsTodayPlayerBirthday VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0133
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00B2
     GoToIfUnset FLAG_UNK_0x0145, _0332
