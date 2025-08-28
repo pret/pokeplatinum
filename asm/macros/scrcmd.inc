@@ -957,11 +957,11 @@
     .short \eggGiverTextId
     .endm
 
-    .macro ScrCmd_098 arg0, arg1, arg2
+    .macro ResetPartyMonMoveSlot partySlot, moveSlot, moveID 
     .short 152
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \moveSlot
+    .short \moveID
     .endm
 
     .macro CheckPartyMonHasMove destVar, move, partySlot

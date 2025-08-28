@@ -115,14 +115,14 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_098(ScriptContext *param0)
+BOOL ScrCmd_ResetPartyMonMoveSlot(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 moveSlot = ScriptContext_GetVar(ctx);
+    u16 moveID = ScriptContext_GetVar(ctx);
 
-    sub_02054988(SaveData_GetParty(param0->fieldSystem->saveData), v0, v1, v2);
-    return 0;
+    Party_ResetMonMoveSlot(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveSlot, moveID);
+    return FALSE;
 }
 
 BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)
