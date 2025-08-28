@@ -1,13 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_RTC_H
 #define POKEPLATINUM_CONSTANTS_RTC_H
 
-enum TimeOfDay {
-    TIMEOFDAY_MORNING = 0,
-    TIMEOFDAY_DAY = 1,
-    TIMEOFDAY_TWILIGHT = 2,
-    TIMEOFDAY_NIGHT = 3,
-    TIMEOFDAY_LATE_NIGHT = 4,
-};
+#include "generated/time_of_day.h"
 
 enum MonthOfYear {
     MONTH_JAN = 1,

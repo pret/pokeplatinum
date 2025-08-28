@@ -198,7 +198,7 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     return;
 }
 
-BOOL sub_02052B2C(FieldTask *task)
+BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     int *state = FieldTask_GetState(task);
@@ -208,20 +208,18 @@ BOOL sub_02052B2C(FieldTask *task)
         if ((fieldSystem != NULL) && (fieldSystem->saveData != NULL)) {
             Party_SetGiratinaForm(SaveData_GetParty(fieldSystem->saveData), GIRATINA_FORM_ALTERED);
         }
-    }
 
-        {
-            Location location;
-            FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-            u16 warpId = FieldOverworldState_GetWarpId(fieldState);
+        Location location;
+        FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+        u16 warpId = FieldOverworldState_GetWarpId(fieldState);
 
-            Location_InitWhiteOut(warpId, &location);
-            Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
-            FieldTask_ChangeMapByLocation(task, &location);
-            FieldSystem_ClearPartnerTrainer(fieldSystem);
-        }
+        Location_InitWhiteOut(warpId, &location);
+        Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
+        FieldTask_ChangeMapByLocation(task, &location);
+        FieldSystem_ClearPartnerTrainer(fieldSystem);
         (*state)++;
         break;
+    }
     case 1:
         Sound_FadeOutBGM(0, 20);
         (*state)++;
@@ -245,11 +243,10 @@ BOOL sub_02052B2C(FieldTask *task)
     case 5:
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
 
-        if (sub_0203A7EC()
-            == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
-            ScriptManager_Start(task, 2020, NULL, NULL);
+        if (FieldOverworldState_GetDefaultWarpID() == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
+            ScriptManager_Start(task, 0x7E4, NULL, NULL);
         } else {
-            ScriptManager_Start(task, 2021, NULL, NULL);
+            ScriptManager_Start(task, 0x7E5, NULL, NULL);
         }
 
         (*state)++;
@@ -261,7 +258,7 @@ BOOL sub_02052B2C(FieldTask *task)
     return 0;
 }
 
-void sub_02052C5C(FieldTask *task)
+void FieldTask_StartBlackOutFromBattle(FieldTask *task)
 {
-    FieldTask_InitCall(task, sub_02052B2C, NULL);
+    FieldTask_InitCall(task, FieldTask_BlackOutFromBattle, NULL);
 }
