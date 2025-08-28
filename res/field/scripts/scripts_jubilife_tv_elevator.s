@@ -42,10 +42,10 @@ JubilifeTVElevator_SelectFloor:
     ShowCurrentFloor 20, 1, VAR_ELEVATOR_FLOORS_ABOVE
     Message JubilifeTVElevator_Text_Hello
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_Floor4, 0
-    AddMenuEntryImm MenuEntries_Text_Floor3, 1
-    AddMenuEntryImm MenuEntries_Text_Floor2, 2
-    AddMenuEntryImm MenuEntries_Text_Floor1, 3
+    AddMenuEntryImm MenuEntries_Text_4F, 0
+    AddMenuEntryImm MenuEntries_Text_3F, 1
+    AddMenuEntryImm MenuEntries_Text_2F, 2
+    AddMenuEntryImm MenuEntries_Text_1F, 3
     AddMenuEntryImm MenuEntries_Text_ElevatorExit, 4
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
@@ -59,7 +59,7 @@ JubilifeTVElevator_SelectFloor:
 JubilifeTVElevator_SelectFloor1:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_JUBILIFE_TV_1F, 2, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_1F, 2, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_SameFloorMessage
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_GoingDownMessage
@@ -71,7 +71,7 @@ JubilifeTVElevator_SelectFloor1:
 JubilifeTVElevator_SelectFloor2:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_JUBILIFE_TV_2F, 3, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_2F, 3, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_SameFloorMessage
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_GoingDownMessage
@@ -83,7 +83,7 @@ JubilifeTVElevator_SelectFloor2:
 JubilifeTVElevator_SelectFloor3:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_JUBILIFE_TV_3F, 4, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_3F, 4, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_SameFloorMessage
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_GoingDownMessage
@@ -95,7 +95,7 @@ JubilifeTVElevator_SelectFloor3:
 JubilifeTVElevator_SelectFloor4:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_JUBILIFE_TV_4F, 1, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_4F, 1, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_SameFloorMessage
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_GoingDownMessage

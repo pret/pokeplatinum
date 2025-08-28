@@ -49,12 +49,12 @@ VeilstoneStoreElevator_SelectFloor:
     ShowCurrentFloor 20, 1, VAR_ELEVATOR_FLOORS_ABOVE
     Message VeilstoneStoreElevator_Text_Hello
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_Floor5, 0
-    AddMenuEntryImm MenuEntries_Text_Floor4, 1
-    AddMenuEntryImm MenuEntries_Text_Floor3, 2
-    AddMenuEntryImm MenuEntries_Text_Floor2, 3
-    AddMenuEntryImm MenuEntries_Text_Floor1, 4
-    AddMenuEntryImm MenuEntries_Text_FloorB1, 5
+    AddMenuEntryImm MenuEntries_Text_5F, 0
+    AddMenuEntryImm MenuEntries_Text_4F, 1
+    AddMenuEntryImm MenuEntries_Text_3F, 2
+    AddMenuEntryImm MenuEntries_Text_2F, 3
+    AddMenuEntryImm MenuEntries_Text_1F, 4
+    AddMenuEntryImm MenuEntries_Text_B1F, 5
     AddMenuEntryImm MenuEntries_Text_ElevatorExit, 6
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
@@ -69,7 +69,7 @@ VeilstoneStoreElevator_SelectFloor:
 VeilstoneStoreElevator_SelectFloorB1:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_B1F, 1, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_B1F, 1, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_GoingDownMessage
@@ -80,7 +80,7 @@ VeilstoneStoreElevator_SelectFloorB1:
 VeilstoneStoreElevator_SelectFloor1:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_1F, 2, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_1F, 2, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_GoingDownMessage
@@ -91,7 +91,7 @@ VeilstoneStoreElevator_SelectFloor1:
 VeilstoneStoreElevator_SelectFloor2:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_2F, 2, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_2F, 2, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_GoingDownMessage
@@ -102,7 +102,7 @@ VeilstoneStoreElevator_SelectFloor2:
 VeilstoneStoreElevator_SelectFloor3:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_3F, 2, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_3F, 2, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_GoingDownMessage
@@ -113,7 +113,7 @@ VeilstoneStoreElevator_SelectFloor3:
 VeilstoneStoreElevator_SelectFloor4:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_4F, 2, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_4F, 2, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_GoingDownMessage
@@ -124,7 +124,7 @@ VeilstoneStoreElevator_SelectFloor4:
 VeilstoneStoreElevator_SelectFloor5:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_VEILSTONE_STORE_5F, 1, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_5F, 1, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_SelectCurrentFloor
     CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_GoingUpMessage
     CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_GoingDownMessage

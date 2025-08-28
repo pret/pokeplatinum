@@ -490,31 +490,31 @@
       "en_US": "EXIT"
     },
     {
-      "id": "MenuEntries_Text_Floor1",
+      "id": "MenuEntries_Text_1F",
       "en_US": "1F"
     },
     {
-      "id": "MenuEntries_Text_Floor2",
+      "id": "MenuEntries_Text_2F",
       "en_US": "2F"
     },
     {
-      "id": "MenuEntries_Text_Floor3",
+      "id": "MenuEntries_Text_3F",
       "en_US": "3F"
     },
     {
-      "id": "MenuEntries_Text_Floor4",
+      "id": "MenuEntries_Text_4F",
       "en_US": "4F"
     },
     {
-      "id": "MenuEntries_Text_Floor5",
+      "id": "MenuEntries_Text_5F",
       "en_US": "5F"
     },
     {
-      "id": "MenuEntries_Text_FloorB1",
+      "id": "MenuEntries_Text_B1F",
       "en_US": "B1F"
     },
     {
-      "id": "MenuEntries_Text_FloorB2",
+      "id": "MenuEntries_Text_B2F",
       "en_US": "B2F"
     },
     {

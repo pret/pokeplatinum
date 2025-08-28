@@ -28,8 +28,8 @@ ResortAreaRibbonSyndicateElevator_SelectFloor:
     ShowCurrentFloor 20, 1, VAR_ELEVATOR_FLOORS_ABOVE
     Message ResortAreaRibbonSyndicateElevator_Text_Hello
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_Floor2, 0
-    AddMenuEntryImm MenuEntries_Text_Floor1, 1
+    AddMenuEntryImm MenuEntries_Text_2F, 0
+    AddMenuEntryImm MenuEntries_Text_1F, 1
     AddMenuEntryImm MenuEntries_Text_ElevatorExit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
@@ -40,7 +40,7 @@ ResortAreaRibbonSyndicateElevator_SelectFloor:
 ResortAreaRibbonSyndicateElevator_SelectFloor2:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F, 0, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F, 0, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 0, ResortAreaRibbonSyndicateElevator_SelectCurrentFloor
     SetVar VAR_0x8004, ELEVATOR_DIR_UP
     Call ResortAreaRibbonSyndicateElevator_ElevatorAnimation
@@ -50,7 +50,7 @@ ResortAreaRibbonSyndicateElevator_SelectFloor2:
 ResortAreaRibbonSyndicateElevator_SelectFloor1:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
-    SetExitLocation MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F, 1, 18, 2, 1
+    SetSpecialLocation MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F, 1, 18, 2, DIR_SOUTH
     GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 1, ResortAreaRibbonSyndicateElevator_SelectCurrentFloor
     SetVar VAR_0x8004, ELEVATOR_DIR_DOWN
     Call ResortAreaRibbonSyndicateElevator_ElevatorAnimation

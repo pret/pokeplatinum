@@ -1651,7 +1651,7 @@
     .short \arg1
     .endm
 
-    .macro SetExitLocation mapId, warpId, x, z, dir
+    .macro SetSpecialLocation mapId, warpId, x, z, dir
     .short 283
     .short \mapId
     .short \warpId
