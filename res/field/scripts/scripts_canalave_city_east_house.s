@@ -50,7 +50,7 @@ _0054:
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8001, MOVE_NOT_SELECTED, _0049
-    ScrCmd_1CB 0, VAR_0x8002, VAR_0x8001
+    BufferPartyMoveName 0, VAR_0x8002, VAR_0x8001
     Message 7
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0105

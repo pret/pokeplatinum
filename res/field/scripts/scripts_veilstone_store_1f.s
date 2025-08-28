@@ -90,7 +90,7 @@ _00A9:
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0121
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, _0129
     SetVar VAR_UNK_0x4107, VAR_0x8004
-    ScrCmd_343 0, VAR_0x8004
+    BufferAccessoryNameWithArticle 0, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF

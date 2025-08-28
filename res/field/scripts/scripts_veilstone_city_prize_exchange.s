@@ -81,7 +81,7 @@ _0119:
 _0135:
     GetGameCornerPrizeData VAR_0x8008, VAR_0x8000, VAR_0x8001
     BufferItemName 0, VAR_0x8000
-    ScrCmd_280 1, VAR_0x8001, 1, 5
+    BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 5
     AddListMenuEntry 168, VAR_0x8008
     AddVar VAR_0x8008, 1
     GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, _0135
@@ -128,7 +128,7 @@ _01CB:
     GoToIfEq VAR_0x8004, -1, _0245
     CheckPartyMonHasMove VAR_RESULT, MOVE_HIDDEN_POWER, VAR_0x8000
     GoToIfEq VAR_RESULT, 0, _0266
-    ScrCmd_2FD 0, VAR_0x8004
+    BufferTypeName 0, VAR_0x8004
     Message 11
     GoTo _0276
     End
@@ -149,7 +149,7 @@ _025B:
     End
 
 _0266:
-    ScrCmd_2FD 0, VAR_0x8004
+    BufferTypeName 0, VAR_0x8004
     Message 10
     GoTo _0276
     End

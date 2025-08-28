@@ -23,6 +23,7 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
+#include "generated/string_padding_mode.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/boat_cutscene.h"
@@ -1301,9 +1302,9 @@
     .short \trainerClass
     .endm
 
-    .macro ScrCmd_0D9 arg0
+    .macro BufferTrainerClassFromAppearance templateArg
     .short 217
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro BufferSpeciesNameFromVar templateArg, var, unused1, unused2
@@ -1352,10 +1353,10 @@
     .short \item
     .endm
 
-    .macro ScrCmd_0E2 arg0, arg1
+    .macro BufferMapName templateArg, mapID
     .short 226
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \mapID
     .endm
 
     .macro GetSwarmMapAndSpecies arg0, arg1
@@ -2123,17 +2124,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_17B arg0, arg1, arg2
+    .macro BufferBerryName templateArg, item, unused=VAR_0x8001
     .short 379
-    .byte \arg0
-    .short \arg1
-    .short \arg2
+    .byte \templateArg
+    .short \item
+    .short \unused
     .endm
 
-    .macro ScrCmd_17C arg0, arg1
+    .macro BufferNatureName templateArg, nature
     .short 380
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \nature
     .endm
 
     .macro ScrCmd_17D arg0
@@ -2570,11 +2571,11 @@
     .short \moveSlot
     .endm
 
-    .macro ScrCmd_1CB arg0, arg1, arg2
+    .macro BufferPartyMoveName templateArg, partySlot, moveSlot
     .short 459
-    .byte \arg0
-    .short \arg1
-    .short \arg2
+    .byte \templateArg
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro GiveJournal
@@ -3151,10 +3152,10 @@
     .short \ribbonID
     .endm
 
-    .macro ScrCmd_232 arg0, arg1
+    .macro BufferRibbonName templateArg, ribbonID
     .short 562
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ribbonID
     .endm
 
     .macro GetPartyMonEVTotal destVar, partySlot
@@ -3598,9 +3599,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_272 arg0
+    .macro BufferTabletName templateArg
     .short 626
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro ScrCmd_273 arg0, arg1
@@ -3673,12 +3674,12 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_280 arg0, arg1, arg2, arg3
+    .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits
     .short 640
-    .byte \arg0
-    .short \arg1
-    .byte \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \varID
+    .byte \paddingMode
+    .byte \maxDigits
     .endm
 
     .macro GetPartyMonContestStat slot, contestType, destVar
@@ -3970,10 +3971,10 @@
     .short 690
     .endm
 
-    .macro ScrCmd_2B3 arg0, arg1
+    .macro BufferBallSealName templateArg, ballSeal
     .short 691
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ballSeal
     .endm
 
     /* this is unused, but the underlying function is called from LockAll */
@@ -4307,10 +4308,10 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_2EF arg0, arg1
+    .macro BufferStatName templateArg, stat
     .short 751
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \stat
     .endm
 
     .macro InitPersistedMapFeaturesForVilla
@@ -4327,10 +4328,10 @@
     .short 754
     .endm
 
-    .macro ScrCmd_2F3 arg0, arg1
+    .macro BufferTrainerName templateArg, trainerID
     .short 755
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerID
     .endm
 
     .macro ScrCmd_2F4 arg0, arg1, arg2, arg3
@@ -4341,7 +4342,7 @@
     .short \arg3
     .endm
 
-    .macro BufferNumberPaddingDigits templateArg, value, paddingMode, maxDigits
+    .macro BufferValuePaddingDigits templateArg, value, paddingMode, maxDigits
     .short 757
     .byte \templateArg
     .long \value
@@ -4384,10 +4385,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2FD arg0, arg1
+    .macro BufferTypeName templateArg, type
     .short 765
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \type
     .endm
 
     .macro GetItemQuantity item, destVar
@@ -4746,10 +4747,10 @@
     SetMenuYOriginSide TRUE
     .endm
 
-    .macro ScrCmd_33C arg0, arg1
+    .macro BufferItemNameWithArticle templateArg, item
     .short 828
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro BufferItemNamePlural templateArg, item
@@ -4758,30 +4759,30 @@
     .short \item
     .endm
 
-    .macro ScrCmd_33E arg0, arg1
+    .macro BufferUndergroundGoodsNameWithArticle templateArg, goods
     .short 830
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \goods
     .endm
 
-    .macro ScrCmd_33F arg0, arg1
+    .macro BufferUndergroundTrapNameWithArticle templateArg, trap
     .short 831
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trap
     .endm
 
-    .macro ScrCmd_340 arg0, arg1
+    .macro BufferUndergroundItemNameWithArticle templateArg, item
     .short 832
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro ScrCmd_341 arg0, arg1, arg2, arg3
+    .macro BufferSpeciesNameWithArticle templateArg, species
     .short 833
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \species
+    .short 0
+    .byte 0
     .endm
 
     .macro BufferPlayerCounterpartStarterSpeciesNameWithArticle templateArg
@@ -4789,27 +4790,27 @@
     .byte \templateArg
     .endm
 
-    .macro ScrCmd_343 arg0, arg1
+    .macro BufferAccessoryNameWithArticle templateArg, accessory
     .short 835
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \accessory
     .endm
 
-    .macro ScrCmd_344 arg0, arg1
+    .macro BufferTrainerClassNameWithArticle templateArg, trainerClass
     .short 836
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerClass
     .endm
 
-    .macro ScrCmd_345 arg0, arg1
+    .macro BufferBallSealNamePlural templateArg, ballSeal
     .short 837
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ballSeal
     .endm
 
-    .macro ScrCmd_346 arg0
+    .macro CapitalizeFirstLetter templateArg
     .short 838
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro BufferFloorNumber templateArg, floor
