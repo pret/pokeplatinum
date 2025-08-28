@@ -1,22 +1,22 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry VistaLighthouseElevator_Init
     ScriptEntryEnd
 
-_0006:
+VistaLighthouseElevator_Init:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _00B8
+    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_WalkIn
     WaitMovement
-    GetFloorsAbove VAR_UNK_0x40CE
-    SetVar VAR_0x8008, VAR_UNK_0x40CE
-    GoToIfEq VAR_0x8008, 1, _0038
-    GoToIfEq VAR_0x8008, 0, _006A
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
+    GoToIfEq VAR_0x8008, 1, VistaLighthouseElevator_ElevatorUp
+    GoToIfEq VAR_0x8008, 0, VistaLighthouseElevator_ElevatorDown
     End
 
-_0038:
-    SetVar VAR_0x8004, 0
-    Call _009C
+VistaLighthouseElevator_ElevatorUp:
+    SetVar VAR_0x8004, ELEVATOR_DIR_UP
+    Call VistaLighthouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VISTA_LIGHTHOUSE, 0, 6, 10, 1
@@ -24,9 +24,9 @@ _0038:
     WaitFadeScreen
     End
 
-_006A:
-    SetVar VAR_0x8004, 1
-    Call _009C
+VistaLighthouseElevator_ElevatorDown:
+    SetVar VAR_0x8004, ELEVATOR_DIR_DOWN
+    Call VistaLighthouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SUNYSHORE_CITY, 0, 0x376, 0x317, 1
@@ -34,22 +34,22 @@ _006A:
     WaitFadeScreen
     End
 
-_009C:
+VistaLighthouseElevator_ElevatorAnimation:
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
-    ApplyMovement LOCALID_PLAYER, _00C4
+    PlayElevatorAnimation VAR_0x8004, 4
+    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_WalkOut
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0
-_00B8:
+VistaLighthouseElevator_WalkIn:
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_00C4:
+VistaLighthouseElevator_WalkOut:
     WalkNormalSouth 2
     WalkOnSpotNormalSouth
     EndMovement

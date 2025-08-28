@@ -592,13 +592,13 @@ BOOL ScrCmd_346(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_347(ScriptContext *param0)
+BOOL ScrCmd_BufferFloorNumber(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u8 v3 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u8 floor = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetDepartmentStoreFloor(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetDepartmentStoreFloor(*stringTemplate, templateArg, floor);
+    return FALSE;
 }

@@ -490,31 +490,31 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00116",
+      "id": "MenuEntries_Text_1F",
       "en_US": "1F"
     },
     {
-      "id": "pl_msg_00000361_00117",
+      "id": "MenuEntries_Text_2F",
       "en_US": "2F"
     },
     {
-      "id": "pl_msg_00000361_00118",
+      "id": "MenuEntries_Text_3F",
       "en_US": "3F"
     },
     {
-      "id": "pl_msg_00000361_00119",
+      "id": "MenuEntries_Text_4F",
       "en_US": "4F"
     },
     {
-      "id": "pl_msg_00000361_00120",
+      "id": "MenuEntries_Text_5F",
       "en_US": "5F"
     },
     {
-      "id": "pl_msg_00000361_00121",
+      "id": "MenuEntries_Text_B1F",
       "en_US": "B1F"
     },
     {
-      "id": "pl_msg_00000361_00122",
+      "id": "MenuEntries_Text_B2F",
       "en_US": "B2F"
     },
     {
@@ -522,7 +522,7 @@
       "en_US": "LOOKOUT"
     },
     {
-      "id": "pl_msg_00000361_00124",
+      "id": "MenuEntries_Text_ElevatorExit",
       "en_US": "EXIT"
     },
     {

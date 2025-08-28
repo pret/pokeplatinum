@@ -48,6 +48,6 @@ BOOL ScrCmd_343(ScriptContext *param0);
 BOOL ScrCmd_344(ScriptContext *param0);
 BOOL ScrCmd_345(ScriptContext *param0);
 BOOL ScrCmd_346(ScriptContext *param0);
-BOOL ScrCmd_347(ScriptContext *param0);
+BOOL ScrCmd_BufferFloorNumber(ScriptContext *param0);
 
 #endif // POKEPLATINUM_UNK_020474B8_H

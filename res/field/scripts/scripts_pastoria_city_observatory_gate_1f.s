@@ -65,7 +65,7 @@ _00F2:
 _0102:
     SetVar VAR_UNK_0x40DA, 1
     ScrCmd_202 0
-    ScrCmd_11B 125, 2, 5, 2, 1
+    SetSpecialLocation MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 2, 5, 2, DIR_SOUTH
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen

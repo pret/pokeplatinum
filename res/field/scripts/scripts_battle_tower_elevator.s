@@ -1,13 +1,13 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0146
-    ScriptEntry _015C
-    ScriptEntry _0172
+    ScriptEntry BattleTowerElevator_Init
+    ScriptEntry BattleTowerElevator_EnterBattleRoom
+    ScriptEntry BattleTowerElevator_EnterMultiBattleRoom
+    ScriptEntry BattleTowerElevator_EnterBattleSalon
     ScriptEntryEnd
 
-_0012:
+BattleTowerElevator_Init:
     CallIfNe VAR_UNK_0x40DB, 0, _008A
     ScrCmd_1DD 43, 0, VAR_MAP_LOCAL_A
     Call _008E
@@ -36,19 +36,19 @@ _009E:
     SetVar VAR_OBJ_GFX_ID_A, 232
     Return
 
-_00A6:
+BattleTowerElevator_BattleRoomCheckWiFi:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_1DD 43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 4, _01F8
-    GoToIfEq VAR_RESULT, 5, _01F8
+    GoToIfEq VAR_RESULT, 4, BattleTowerElevator_WiFiBattleRoom
+    GoToIfEq VAR_RESULT, 5, BattleTowerElevator_WiFiBattleRoom
     ScrCmd_1F8
     ScrCmd_2C4 5
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
     End
 
-_00E9:
+BattleTowerElevator_MultiBattleRoom:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
@@ -57,7 +57,7 @@ _00E9:
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
     End
 
-_010A:
+BattleTowerElevator_BattleSalon:
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 2, 1
@@ -66,41 +66,41 @@ _010A:
     ReleaseAll
     End
 
-_0132:
-    Call _0188
-    ScrCmd_23C VAR_MAP_LOCAL_0, 3
-    Call _0194
+BattleTowerElevator_ElevatorAnimation:
+    Call BattleTowerElevator_PlayerEnter
+    PlayElevatorAnimation VAR_MAP_LOCAL_0, 3
+    Call BattleTowerElevator_Exit
     Return
 
-_0146:
+BattleTowerElevator_EnterBattleRoom:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, 0
-    Call _0132
-    GoTo _00A6
+    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_BattleRoomCheckWiFi
     End
 
-_015C:
+BattleTowerElevator_EnterMultiBattleRoom:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, 0
-    Call _0132
-    GoTo _00E9
+    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_MultiBattleRoom
     End
 
-_0172:
+BattleTowerElevator_EnterBattleSalon:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, 1
-    Call _0132
-    GoTo _010A
+    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_DOWN
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_BattleSalon
     End
 
-_0188:
-    ApplyMovement LOCALID_PLAYER, _01BC
+BattleTowerElevator_PlayerEnter:
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_PlayerEnterMovement
     WaitMovement
     Return
 
-_0194:
-    ApplyMovement 0, _01C8
-    ApplyMovement LOCALID_PLAYER, _01E4
+BattleTowerElevator_Exit:
+    ApplyMovement 0, BattleTowerElevator_GuideExitMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_PlayerExitMovement
     WaitMovement
     Return
 
@@ -112,13 +112,13 @@ BattleTowerElevator_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_01BC:
+BattleTowerElevator_PlayerEnterMovement:
     WalkNormalNorth 2
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_01C8:
+BattleTowerElevator_GuideExitMovement:
     WalkNormalSouth
     FaceWest
     WalkNormalWest
@@ -128,14 +128,14 @@ _01C8:
     EndMovement
 
     .balign 4, 0
-_01E4:
+BattleTowerElevator_PlayerExitMovement:
     Delay8 2
     Delay2
     WalkNormalSouth 2
     SetInvisible
     EndMovement
 
-_01F8:
+BattleTowerElevator_WiFiBattleRoom:
     ScrCmd_1F8
     ScrCmd_2C4 5
     ReturnToField

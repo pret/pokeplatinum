@@ -616,10 +616,10 @@ void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u
     GF_ASSERT(floor <= 5);
 
     if (loader) {
-        if (floor == pl_msg_00000361_00000) {
-            floor = pl_msg_00000361_00121;
+        if (floor == 0) {
+            floor = MenuEntries_Text_B1F;
         } else {
-            floor += pl_msg_00000361_00115;
+            floor += MenuEntries_Text_1F - 1;
         }
 
         MessageLoader_GetStrbuf(loader, floor, template->templateBuf);

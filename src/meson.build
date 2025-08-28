@@ -469,7 +469,7 @@ pokeplatinum_c = files(
     'overlay006/special_dates.c',
     'overlay006/repel_step_update.c',
     'overlay006/ov6_02246C24.c',
-    'overlay006/ov6_02246F00.c',
+    'overlay006/elevator_animation.c',
     'overlay006/ov6_02247078.c',
     'overlay006/ov6_02247100.c',
     'overlay006/trophy_garden_daily_encounters.c',

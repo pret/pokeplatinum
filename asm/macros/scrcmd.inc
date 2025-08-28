@@ -27,6 +27,7 @@
 #include "generated/trainers.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
+#include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
@@ -1650,13 +1651,13 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_11B arg0, arg1, arg2, arg3, arg4
+    .macro SetSpecialLocation mapId, warpId, x, z, dir
     .short 283
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \mapId
+    .short \warpId
+    .short \x
+    .short \z
+    .short \dir
     .endm
 
     /*
@@ -3222,10 +3223,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_23C arg0, arg1
+    .macro PlayElevatorAnimation elevatorDir, loopCount
     .short 572
-    .short \arg0
-    .short \arg1
+    .short \elevatorDir
+    .short \loopCount
     .endm
 
     .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
@@ -4811,10 +4812,10 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_347 arg0, arg1
+    .macro BufferFloorNumber templateArg, floor
     .short 839
-    .byte \arg0
-    .byte \arg1
+    .byte \templateArg
+    .byte \floor
     .endm
 
 
