@@ -72,13 +72,13 @@
 #include "overlay005/signpost.h"
 #include "overlay005/size_contest.h"
 #include "overlay005/vs_seeker.h"
+#include "overlay006/elevator_animation.h"
 #include "overlay006/hm_cut_in.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02246C24.h"
-#include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
 #include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02247D30.h"
@@ -6396,10 +6396,10 @@ static BOOL ScrCmd_23B(ScriptContext *ctx)
 
 static BOOL ScrCmd_PlayElevatorAnimation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 elevatorDir = ScriptContext_GetVar(ctx);
+    u16 animationLoopCount = ScriptContext_GetVar(ctx);
 
-    ov6_02246F00(ctx->fieldSystem, (u8)v0, (u8)v1);
+    FieldSystem_PlayElevatorAnimation(ctx->fieldSystem, (u8)elevatorDir, (u8)animationLoopCount);
     return TRUE;
 }
 
@@ -7430,7 +7430,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
 
     *v0 = v2;
 
-    if ((v1 == ((((((0 + 1) + 1) + 1) + 1) + 1) + 0)) || (v1 == ((((((0 + 1) + 1) + 1) + 1) + 1) + 1))) {
+    if (v1 == 5 || v1 == 6) {
         v2->unk_00 = ctx->fieldSystem->unk_AC;
     } else {
         v2->unk_00 = NULL;

@@ -581,7 +581,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_special_dates.c.o
 	Object main.nef.p/src_overlay006_repel_step_update.c.o
 	Object main.nef.p/src_overlay006_ov6_02246C24.c.o
-	Object main.nef.p/src_overlay006_ov6_02246F00.c.o
+	Object main.nef.p/src_overlay006_elevator_animation.c.o
 	Object main.nef.p/src_overlay006_ov6_02247078.c.o
 	Object main.nef.p/src_overlay006_ov6_02247100.c.o
 	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o

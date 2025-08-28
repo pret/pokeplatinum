@@ -35,6 +35,8 @@
 #include "res/text/bank/mystery_gift_event_names.h"
 #include "res/text/bank/special_met_location_names.h"
 
+#define MENU_ENTRIES_DEPARTMENT_STORE_FLOOR_OFFSET MenuEntries_Text_Floor1 - 1
+
 static void InitStringTemplateArgHeader(StringTemplateArgHeader *header);
 static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf *argVal, const StringTemplateArgHeader *newHeader);
 
@@ -616,10 +618,10 @@ void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u
     GF_ASSERT(floor <= 5);
 
     if (loader) {
-        if (floor == pl_msg_00000361_00000) {
-            floor = pl_msg_00000361_00121;
+        if (floor == 0) {
+            floor = MenuEntries_Text_FloorB1;
         } else {
-            floor += pl_msg_00000361_00115;
+            floor += MENU_ENTRIES_DEPARTMENT_STORE_FLOOR_OFFSET;
         }
 
         MessageLoader_GetStrbuf(loader, floor, template->templateBuf);

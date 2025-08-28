@@ -2,7 +2,7 @@
   "key": 9223,
   "messages": [
     {
-      "id": "pl_msg_00000153_00000",
+      "id": "VeilstoneStoreElevator_Text_Hello",
       "en_US": [
         "Hello, thank you for shopping\n",
         "with us today.\r",
@@ -10,64 +10,64 @@
       ]
     },
     {
-      "id": "pl_msg_00000153_00001",
+      "id": "VeilstoneStoreElevator_Text_LookForward",
       "en_US": "I look forward to serving you again."
     },
     {
-      "id": "pl_msg_00000153_00002",
+      "id": "VeilstoneStoreElevator_Text_GoingUp",
       "en_US": [
         "Certainly.\n",
         "Elevator going up.\r"
       ]
     },
     {
-      "id": "pl_msg_00000153_00003",
+      "id": "VeilstoneStoreElevator_Text_GoingDown",
       "en_US": [
         "Certainly.\n",
         "Elevator going down.\r"
       ]
     },
     {
-      "id": "pl_msg_00000153_00004",
+      "id": "VeilstoneStoreElevator_Text_SameFloor",
       "en_US": "We are already on that floor?!"
     },
     {
-      "id": "pl_msg_00000153_00005",
+      "id": "VeilstoneStoreElevator_Text_Floor1",
       "en_US": [
         "Ground floor: Medicine and items for\n",
         "all your adventure needs."
       ]
     },
     {
-      "id": "pl_msg_00000153_00006",
+      "id": "VeilstoneStoreElevator_Text_Floor2",
       "en_US": [
         "Second floor: Useful items for all\n",
         "Pokémon battles."
       ]
     },
     {
-      "id": "pl_msg_00000153_00007",
+      "id": "VeilstoneStoreElevator_Text_Floor3",
       "en_US": [
         "Third floor: Technical Machines for\n",
         "powering up Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000153_00008",
+      "id": "VeilstoneStoreElevator_Text_Floor4",
       "en_US": [
         "Fourth floor: Desirable decoration\n",
         "goods and Pokémon Dolls."
       ]
     },
     {
-      "id": "pl_msg_00000153_00009",
+      "id": "VeilstoneStoreElevator_Text_Floor5",
       "en_US": [
         "Fifth floor: The Rooftop Square for\n",
         "a refreshing break from shopping."
       ]
     },
     {
-      "id": "pl_msg_00000153_00010",
+      "id": "VeilstoneStoreElevator_Text_FloorB1",
       "en_US": [
         "Basement floor: Food and produce, with\n",
         "many exclusives for you to enjoy.\n"

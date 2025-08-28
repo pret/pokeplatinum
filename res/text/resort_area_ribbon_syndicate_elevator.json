@@ -2,7 +2,7 @@
   "key": 17422,
   "messages": [
     {
-      "id": "pl_msg_00000601_00000",
+      "id": "ResortAreaRibbonSyndicateElevator_Text_Hello",
       "en_US": [
         "Hello, thank you for visiting us\n",
         "today.\r",
@@ -10,25 +10,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000601_00001",
+      "id": "ResortAreaRibbonSyndicateElevator_Text_GoingUp",
       "en_US": [
         "Certainly.\n",
         "Elevator going up.\r"
       ]
     },
     {
-      "id": "pl_msg_00000601_00002",
+      "id": "ResortAreaRibbonSyndicateElevator_Text_GoingDown",
       "en_US": [
         "Certainly.\n",
         "Elevator going down.\r"
       ]
     },
     {
-      "id": "pl_msg_00000601_00003",
+      "id": "ResortAreaRibbonSyndicateElevator_Text_SameFloor",
       "en_US": "Uh... We are already on that floor?"
     },
     {
-      "id": "pl_msg_00000601_00004",
+      "id": "ResortAreaRibbonSyndicateElevator_Text_HereWeAre",
       "en_US": "Here we are!"
     }
   ]
