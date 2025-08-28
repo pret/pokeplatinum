@@ -57,7 +57,7 @@ _00C5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 4
-    SetVar VAR_0x8004, 16
+    SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -68,7 +68,7 @@ _00E5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 5
-    SetVar VAR_0x8004, 17
+    SetVar VAR_0x8004, POKETCH_APPID_DOTART
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -79,7 +79,7 @@ _0105:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    SetVar VAR_0x8004, 18
+    SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

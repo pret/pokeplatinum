@@ -448,7 +448,7 @@ _057C:
     ApplyMovement 4, _07F8
     WaitMovement
     Message 9
-    SetVar VAR_0x8004, 0x162
+    SetVar VAR_0x8004, ITEM_TM27
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 10

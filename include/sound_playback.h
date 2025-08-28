@@ -13,7 +13,7 @@ enum BGMFadeInType {
 
 BOOL Sound_PlayBasicBGM(u16 bgmID);
 BOOL Sound_PlayBGM(u16 bgmID);
-BOOL sub_02005588(u8 scene, u16 seqID);
+BOOL Sound_SetBGM(u8 scene, u16 seqID);
 void Sound_StopBGM(u16 bgmID, int fadeOutFrames);
 void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType);
 void Sound_FadeOutBGM(int targetVolume, int frames);

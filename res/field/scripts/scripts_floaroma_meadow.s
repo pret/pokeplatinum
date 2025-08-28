@@ -115,7 +115,7 @@ _010E:
     CallIfEq VAR_0x8004, 13, _01C6
     RemoveObject 3
     Message 7
-    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009F
@@ -235,7 +235,7 @@ _0306:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     CloseMessage

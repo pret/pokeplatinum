@@ -50,7 +50,7 @@ _009F:
     GetRandom VAR_RESULT, 2
     GoToIfEq VAR_RESULT, 0, _00E4
     Message 4
-    SetVar VAR_0x8004, 0x1BC
+    SetVar VAR_0x8004, ITEM_COIN_CASE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00BC
     CallCommonScript 0x7E0

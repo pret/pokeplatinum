@@ -39,7 +39,7 @@ BOOL ScrCmd_2B3(ScriptContext *param0);
 BOOL ScrCmd_2F3(ScriptContext *param0);
 BOOL ScrCmd_33C(ScriptContext *param0);
 BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx);
-BOOL ScrCmd_33E(ScriptContext *param0);
+BOOL ScrCmd_BufferUndergroundGoodName(ScriptContext *ctx);
 BOOL ScrCmd_33F(ScriptContext *param0);
 BOOL ScrCmd_340(ScriptContext *param0);
 BOOL ScrCmd_341(ScriptContext *param0);

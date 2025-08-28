@@ -61,7 +61,7 @@ _010A:
 
 _0121:
     Message 2
-    SetVar VAR_0x8004, 2
+    SetVar VAR_0x8004, POKETCH_APPID_MEMOPAD
     CallCommonScript 0x7D9
     Message 3
     WaitABXPadPress
@@ -71,7 +71,7 @@ _0121:
 
 _0139:
     Message 5
-    SetVar VAR_0x8004, 12
+    SetVar VAR_0x8004, POKETCH_APPID_MARKINGMAP
     CallCommonScript 0x7D9
     Message 6
     WaitABXPadPress
@@ -81,7 +81,7 @@ _0139:
 
 _0151:
     Message 8
-    SetVar VAR_0x8004, 13
+    SetVar VAR_0x8004, POKETCH_APPID_LINKSEARCHER
     CallCommonScript 0x7D9
     Message 9
     WaitABXPadPress
@@ -91,7 +91,7 @@ _0151:
 
 _0169:
     Message 11
-    SetVar VAR_0x8004, 15
+    SetVar VAR_0x8004, POKETCH_APPID_MOVETESTER
     CallCommonScript 0x7D9
     Message 12
     WaitABXPadPress

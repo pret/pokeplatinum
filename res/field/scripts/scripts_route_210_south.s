@@ -113,7 +113,7 @@ _01C6:
     End
 
 _01E9:
-    SetVar VAR_0x8004, 0x1B7
+    SetVar VAR_0x8004, ITEM_OLD_CHARM
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 4

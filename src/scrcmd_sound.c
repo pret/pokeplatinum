@@ -86,9 +86,9 @@ BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_057(ScriptContext *ctx)
+BOOL ScrCmd_SetBGM(ScriptContext *ctx)
 {
-    sub_02005588(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(ctx));
+    Sound_SetBGM(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(ctx));
     return FALSE;
 }
 
