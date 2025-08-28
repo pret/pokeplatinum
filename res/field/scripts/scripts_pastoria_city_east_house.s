@@ -10,7 +10,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_33C 4, 93
+    BufferItemNameWithArticle 4, ITEM_HEART_SCALE
     GoToIfUnset FLAG_UNK_0x00E9, _003D
     CheckItem ITEM_HEART_SCALE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _005F

@@ -28,14 +28,14 @@ _0012:
 _0082:
     Call _0158
     GoToIfEq VAR_RESULT, 0, _00A6
-    ScrCmd_33C 0, VAR_0x8000
-    ScrCmd_346 0
+    BufferItemNameWithArticle 0, VAR_0x8000
+    CapitalizeFirstLetter 0
     Message 13
     GoTo _01F2
 
 _00A6:
-    ScrCmd_33C 0, VAR_0x8000
-    ScrCmd_346 0
+    BufferItemNameWithArticle 0, VAR_0x8000
+    CapitalizeFirstLetter 0
     Message 31
     WaitABXPadPress
     GoTo _053A
@@ -43,12 +43,12 @@ _00A6:
 _00B9:
     Call _0158
     GoToIfEq VAR_RESULT, 0, _00DC
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 14
     GoTo _01F2
 
 _00DC:
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 32
     WaitABXPadPress
     GoTo _053A
@@ -56,12 +56,12 @@ _00DC:
 _00EE:
     Call _0158
     GoToIfEq VAR_RESULT, 0, _0111
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 15
     GoTo _01F2
 
 _0111:
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 33
     WaitABXPadPress
     GoTo _053A
@@ -69,12 +69,12 @@ _0111:
 _0123:
     Call _0158
     GoToIfEq VAR_RESULT, 0, _0146
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 16
     GoTo _01F2
 
 _0146:
-    ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
+    BufferBerryName 0, VAR_0x8000
     Message 34
     WaitABXPadPress
     GoTo _053A
@@ -121,7 +121,7 @@ _01F2:
 _021B:
     BufferNumber 1, VAR_0x8001
     GoToIfGt VAR_0x8001, 1, _023B
-    ScrCmd_33C 0, VAR_0x8000
+    BufferItemNameWithArticle 0, VAR_0x8000
     Message 35
     GoTo _0243
 

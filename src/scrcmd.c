@@ -156,6 +156,7 @@
 #include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_sound.h"
+#include "scrcmd_strings.h"
 #include "scrcmd_system_flags.h"
 #include "scrcmd_underground_inventory.h"
 #include "screen_fade.h"
@@ -187,7 +188,6 @@
 #include "unk_020393C8.h"
 #include "unk_0203D1B8.h"
 #include "unk_02046C7C.h"
-#include "unk_020474B8.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_02048DD8.h"
@@ -988,7 +988,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPartyMonNickname,
     ScrCmd_BufferPoketchAppName,
     ScrCmd_BufferTrainerClassName,
-    ScrCmd_0D9,
+    ScrCmd_BufferTrainerClassFromAppearance,
     ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_BufferPlayerStarterSpeciesName,
     ScrCmd_BufferRivalStarterSpeciesName,
@@ -997,7 +997,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferUndergroundGoodsName,
     ScrCmd_BufferUndergroundTrapName,
     ScrCmd_BufferUndergroundItemName,
-    ScrCmd_0E2,
+    ScrCmd_BufferMapName,
     ScrCmd_GetSwarmMapAndSpecies,
     ScrCmd_GetTrainerID,
     ScrCmd_StartTrainerBattle,
@@ -1150,8 +1150,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_178,
     ScrCmd_179,
     ScrCmd_17A,
-    ScrCmd_17B,
-    ScrCmd_17C,
+    ScrCmd_BufferBerryName,
+    ScrCmd_BufferNatureName,
     ScrCmd_17D,
     ScrCmd_17E,
     ScrCmd_17F,
@@ -1230,7 +1230,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonMoveCount,
     ScrCmd_1C9,
     ScrCmd_1CA,
-    ScrCmd_1CB,
+    ScrCmd_BufferPartyMoveName,
     ScrCmd_GiveJournal,
     ScrCmd_CreateJournalEvent,
     ScrCmd_Unused_1CE,
@@ -1333,7 +1333,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_22F,
     ScrCmd_GetPartyMonRibbon,
     ScrCmd_SetPartyMonRibbon,
-    ScrCmd_232,
+    ScrCmd_BufferRibbonName,
     ScrCmd_GetPartyMonEVTotal,
     ScrCmd_GetDayOfWeek,
     ScrCmd_235,
@@ -1397,7 +1397,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ClearSpiritombCounter,
     ScrCmd_SetHiddenLocation,
     ScrCmd_271,
-    ScrCmd_272,
+    ScrCmd_BufferTabletName,
     ScrCmd_273,
     ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
@@ -1411,7 +1411,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_27D,
     ScrCmd_CheckIsDepartmentStoreRegular,
     ScrCmd_27F,
-    ScrCmd_280,
+    ScrCmd_BufferVarPaddingDigits,
     ScrCmd_GetPartyMonContestStat,
     ScrCmd_CheckIsTodayPlayerBirthday,
     ScrCmd_SetInitialVolumeForSequence,
@@ -1462,7 +1462,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2B0,
     ScrCmd_2B1,
     ScrCmd_2B2,
-    ScrCmd_2B3,
+    ScrCmd_BufferBallSealName,
     ScrCmd_LockLastTalked,
     ScrCmd_2B5,
     ScrCmd_2B6,
@@ -1522,13 +1522,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowShardsCost,
     ScrCmd_CloseShardCostWindow,
     ScrCmd_JudgeStats,
-    ScrCmd_2EF,
+    ScrCmd_BufferStatName,
     ScrCmd_InitPersistedMapFeaturesForVilla,
     ScrCmd_2F1,
     ScrCmd_InitPersistedMapFeaturesForDistortionWorld,
-    ScrCmd_2F3,
+    ScrCmd_BufferTrainerName,
     ScrCmd_2F4,
-    ScrCmd_BufferNumberPaddingDigits,
+    ScrCmd_BufferValuePaddingDigits,
     ScrCmd_2F6,
     ScrCmd_2F7,
     ScrCmd_SetScene22,
@@ -1536,7 +1536,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetCurrentBGM,
     ScrCmd_2FB,
     ScrCmd_2FC,
-    ScrCmd_2FD,
+    ScrCmd_BufferTypeName,
     ScrCmd_GetItemQuantity,
     ScrCmd_2FF,
     ScrCmd_300,
@@ -1599,17 +1599,17 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_339,
     ScrCmd_SetMenuXOriginSide,
     ScrCmd_SetMenuYOriginSide,
-    ScrCmd_33C,
+    ScrCmd_BufferItemNameWithArticle,
     ScrCmd_BufferItemNamePlural,
-    ScrCmd_33E,
-    ScrCmd_33F,
-    ScrCmd_340,
-    ScrCmd_341,
+    ScrCmd_BufferUndergroundGoodsNameWithArticle,
+    ScrCmd_BufferUndergroundTrapNameWithArticle,
+    ScrCmd_BufferUndergroundItemNameWithArticle,
+    ScrCmd_BufferSpeciesNameWithArticle,
     ScrCmd_BufferPlayerCounterpartStarterSpeciesNameWithArticle,
-    ScrCmd_343,
-    ScrCmd_344,
-    ScrCmd_345,
-    ScrCmd_346,
+    ScrCmd_BufferAccessoryNameWithArticle,
+    ScrCmd_BufferTrainerClassNameWithArticle,
+    ScrCmd_BufferBallSealNamePlural,
+    ScrCmd_CapitalizeFirstLetter,
     ScrCmd_BufferFloorNumber,
 };
 

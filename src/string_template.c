@@ -609,7 +609,7 @@ void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx)
     Strbuf_UpperChar(template->args[idx].strbuf, 0);
 }
 
-void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u32 floor)
+void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor)
 {
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_MENU_ENTRIES, template->heapID);
 
