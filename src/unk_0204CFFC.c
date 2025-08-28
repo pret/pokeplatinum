@@ -122,7 +122,7 @@ BOOL ScrCmd_ResetPartyMonMoveSlot(ScriptContext *ctx)
     u16 moveID = ScriptContext_GetVar(ctx);
 
     Party_ResetMonMoveSlot(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveSlot, moveID);
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)

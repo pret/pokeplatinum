@@ -957,7 +957,7 @@
     .short \eggGiverTextId
     .endm
 
-    .macro ScrCmd_ResetPartyMonMoveSlot partySlot, moveSlot, moveID 
+    .macro ResetPartyMonMoveSlot partySlot, moveSlot, moveID 
     .short 152
     .short \partySlot
     .short \moveSlot
