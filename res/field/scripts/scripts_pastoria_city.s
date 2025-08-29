@@ -520,9 +520,9 @@ _05E0:
     BufferPlayerName 1
     Message 7
     CloseMessage
-    ScrCmd_168 18, 25, 13, 27, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 18, 25, 13, 27, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement LOCALID_PLAYER, _07D8
     WaitMovement
     ClearFlag FLAG_UNK_0x01FB
@@ -533,9 +533,9 @@ _05E0:
     LockObject 27
     ApplyMovement 27, _0764
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     SetFlag FLAG_UNK_0x020F
     ApplyMovement 27, _076C
     WaitMovement
