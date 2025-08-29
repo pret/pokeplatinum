@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Raise them with love, and Pokémon will\n",
+                "answer in kind. Probably."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "They responded to my love.\n",
+                "Probably.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re raising your Pokémon with a lot\n",
+                "of love. I think.\r"
+            ]
+        }
     ]
 }

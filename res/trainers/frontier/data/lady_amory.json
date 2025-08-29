@@ -52,5 +52,28 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You there. Yes, you.\n",
+                "I’m feeling rather bored."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I suppose that was enjoyable for what\n",
+                "it was. I’ll thank you for it.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You are rather good.\n",
+                "Quite remarkable, even.\r"
+            ]
+        }
     ]
 }

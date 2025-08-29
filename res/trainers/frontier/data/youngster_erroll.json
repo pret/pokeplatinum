@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon are a cut apart from the\n",
+                "usual. Maybe even two cuts!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Their cutting intensity and solid\n",
+                "attack... Top class, yeah?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Grr...\n",
+                "Rendered harmless...\r"
+            ]
+        }
     ]
 }

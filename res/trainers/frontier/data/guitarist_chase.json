@@ -50,5 +50,28 @@
         "tyranitar_3",
         "metagross_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let my exquisite melody ring out!\n",
+                "Hear my Pokémon shout out!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "The melody from my Pokémon and me...\n",
+                "Did it reach out and touch your heart?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’ve been known to throw matches, but\n",
+                "I’ll never throw a guitar on stage!\r"
+            ]
+        }
     ]
 }

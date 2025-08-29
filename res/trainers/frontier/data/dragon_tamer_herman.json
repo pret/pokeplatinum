@@ -28,5 +28,28 @@
         "tyranitar_1",
         "salamence_1",
         "garchomp_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Do you know what real terror is?\n",
+                "I am familiar with it. Intimately so..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You learned something today, yes?\n",
+                "The true meaning of terror.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aiyeeh! What’s with you?\n",
+                "I’m pleading for mercy here!\r"
+            ]
+        }
     ]
 }

@@ -22,5 +22,28 @@
         "togetic_1",
         "murkrow_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Every day, I’m like a migratory bird,\n",
+                "but I go in all cardinal directions."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I gained experience while traveling to\n",
+                "all sorts of places.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’d love to live somewhere where I can\n",
+                "find other Trainers like you.\r"
+            ]
+        }
     ]
 }

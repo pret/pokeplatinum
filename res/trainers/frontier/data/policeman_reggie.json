@@ -40,5 +40,28 @@
         "togekiss_3",
         "metagross_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not really with the police.\n",
+                "I’m a collector of uniforms."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Battling as a Policeman made for a very\n",
+                "fun battle, it did.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s it for me.\n",
+                "I bid you a fond farewell.\r"
+            ]
+        }
     ]
 }

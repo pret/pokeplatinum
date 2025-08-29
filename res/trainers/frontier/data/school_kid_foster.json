@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m thinking hard about why everyone\n",
+                "likes battling so much."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Why does winning a battle make people\n",
+                "happy?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Why is losing a battle so downright\n",
+                "infuriating?\r"
+            ]
+        }
     ]
 }

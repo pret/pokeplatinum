@@ -78,5 +78,28 @@
         "ponyta_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Your team looks impressive.\n",
+                "Will I be OK...?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, what?\n",
+                "Are those Pokémon only for Contests?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ouch! I said ouch!\n",
+                "It was too much! Way, way too much!\r"
+            ]
+        }
     ]
 }

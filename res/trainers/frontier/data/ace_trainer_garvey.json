@@ -48,5 +48,28 @@
         "togekiss_1",
         "slaking_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I c-c-can’t stop shivering.\n",
+                "B-but this is a b-battle. I have to."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Urrff... Ch-chatter...\n",
+                "I won, I won...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sh-shiver... Urf...\n",
+                "My eyelids are getting droopy...\r"
+            ]
+        }
     ]
 }

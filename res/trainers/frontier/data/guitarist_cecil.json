@@ -50,5 +50,28 @@
         "tyranitar_4",
         "metagross_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Number one worldwide, that’s my dream.\n",
+                "Well, to start, anyway."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "“Number one worldwide,” now doesn’t\n",
+                "that have a good ring to it?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can’t quite decide what I should be\n",
+                "number one worldwide at.\r"
+            ]
+        }
     ]
 }

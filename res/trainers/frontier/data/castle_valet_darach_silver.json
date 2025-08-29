@@ -8,5 +8,30 @@
         "empoleon_2",
         "staraptor_2",
         "houndoom_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Very well...\n",
+                "Shall we begin?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ah, a most valiant effort.\r",
+                "Though I was lucky enough to win this\n",
+                "time, the next time...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My Pokémon could not be faulted in any\n",
+                "way or form.\r",
+                "My hat’s off to you.\r"
+            ]
+        }
     ]
 }

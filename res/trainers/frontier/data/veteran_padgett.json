@@ -52,5 +52,28 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I can tell by the way you look, you’re\n",
+                "quite taken with my dandy style!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You shouldn’t be so mesmerized by me.\n",
+                "Like a MOTHIM drawn to a flame!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, you’re not interested in me?\n",
+                "You’re just SHELLOS, if I say so myself.\r"
+            ]
+        }
     ]
 }

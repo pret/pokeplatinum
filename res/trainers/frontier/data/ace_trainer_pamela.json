@@ -48,5 +48,28 @@
         "togekiss_1",
         "slaking_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "How amusing! You came here knowing of\n",
+                "your certain defeat?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ahahahah! Very entertaining!\n",
+                "I shall be happy to see you again!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wh-what is happening...?\n",
+                "M-my vision is turning milky white...\r"
+            ]
+        }
     ]
 }

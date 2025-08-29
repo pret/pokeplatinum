@@ -90,5 +90,22 @@
         "aggron_4",
         "magnezone_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hands up! Put ’em where I can see ’em!\n",
+                "You’re all under arrest!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Case closed!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "This is a gross miscarriage of justice!\r"
+        }
     ]
 }

@@ -70,5 +70,25 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "From sundown, I live by candlelight\n",
+                "until I go to sleep."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That’s not to say I don’t have electric\n",
+                "power on the homestead.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Candlelight can be very romantic.\r"
+        }
     ]
 }

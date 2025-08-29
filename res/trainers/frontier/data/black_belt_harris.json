@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When I close my eyes, I can picture you\n",
+                "being defeated. Come on."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Why be sad?\n",
+                "You knew this was coming.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I berate myself for my own lack of\n",
+                "care...\r"
+            ]
+        }
     ]
 }

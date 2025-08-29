@@ -52,5 +52,28 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You and your Pokémon could use an\n",
+                "obedience lesson from me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "This isn’t over until I say.\n",
+                "Once more.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You defy me?\n",
+                "How very amusing.\r"
+            ]
+        }
     ]
 }

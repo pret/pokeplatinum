@@ -52,5 +52,25 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I love raising Pokémon.\n",
+                "It’s what I live for!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Seeing them try so hard to please...\n",
+                "It’s so unbearably adorable.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Don’t you dare do that again!\r"
+        }
     ]
 }

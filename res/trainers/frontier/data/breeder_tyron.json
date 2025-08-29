@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m no green thumb at growing Berries.\n",
+                "Raising Pokémon is where I shine."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I can give you tips on raising Pokémon\n",
+                "so they’ll grow tough.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Raising a living thing is never an easy\n",
+                "job...\r"
+            ]
+        }
     ]
 }

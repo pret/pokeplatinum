@@ -70,5 +70,25 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Look at me.\n",
+                "I’m what you should be aspiring to be."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "You expected anything else?\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’ve already surpassed me.\n",
+                "But you can aim so much higher.\r"
+            ]
+        }
     ]
 }

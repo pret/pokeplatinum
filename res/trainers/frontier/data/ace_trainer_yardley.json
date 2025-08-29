@@ -70,5 +70,28 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oi, you! Yeah, you! Snap to it!\n",
+                "I’ll be training you!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "What?! You’re down and out already?!\n",
+                "This is no bed! Get up!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Good! Enough!\n",
+                "That will do for today!\r"
+            ]
+        }
     ]
 }

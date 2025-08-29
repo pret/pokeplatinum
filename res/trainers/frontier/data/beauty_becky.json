@@ -70,5 +70,28 @@
         "poliwrath_3",
         "rapidash_3",
         "muk_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My ladylike charms don’t mean a thing\n",
+                "to a little kid..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That was too close for comfort!\n",
+                "It doesn’t pay to underestimate foes.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Battling fair and square doesn’t appeal\n",
+                "to me. I’d rather win.\r"
+            ]
+        }
     ]
 }

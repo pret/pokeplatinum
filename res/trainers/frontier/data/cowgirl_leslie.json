@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’d like to take a break.\n",
+                "...No? We have to begin right away?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Aww, see? You should have taken a\n",
+                "break with me before.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ooh, aren’t you a tough one?\n",
+                "You should take breaks, though.\r"
+            ]
+        }
     ]
 }

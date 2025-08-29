@@ -70,5 +70,28 @@
         "metagross_3",
         "garchomp_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You need to be taught what wisdom of\n",
+                "age means in battle!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’ll have you know that no child can\n",
+                "hope to defeat me!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That did not happen! Unfair!\n",
+                "I demand a rematch right now!\r"
+            ]
+        }
     ]
 }

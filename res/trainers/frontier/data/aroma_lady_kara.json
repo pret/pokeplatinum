@@ -44,5 +44,22 @@
         "parasect_1",
         "togetic_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Kyahaha! I smell a powerful battle\n",
+                "in the making!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "The sweet smell of success!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Defeat smells like a SKUNTANK!\r"
+        }
     ]
 }

@@ -38,5 +38,28 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m a self-made celebrity.\n",
+                "Do you have a problem with that?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A celebrity is a celebrity, even if it’s\n",
+                "in my own mind.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I want to be the center of attention,\n",
+                "just me and only me.\r"
+            ]
+        }
     ]
 }

@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I heard that! I may be old enough to be\n",
+                "your mom, but I’m still young!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Look at my skin tone and Pokémon!\n",
+                "Both firm, but supple!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Please don’t make that mistake again!\n",
+                "I’m young, I tell you!\r"
+            ]
+        }
     ]
 }

@@ -20,5 +20,28 @@
         "togekiss_3",
         "dragonite_3",
         "salamence_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m free like a bird!\n",
+                "I feel like I could fly!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That’s how I ended up becoming a Bird\n",
+                "Keeper.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Like most birds, I can’t see very well\n",
+                "at night.\r"
+            ]
+        }
     ]
 }

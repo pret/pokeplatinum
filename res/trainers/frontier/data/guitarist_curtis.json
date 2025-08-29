@@ -38,5 +38,25 @@
         "plusle_1",
         "minun_1",
         "pachirisu_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "To show you how much this means to me,\n",
+                "I’ll use sound effects from now on."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Raaaah! Dun dun! Dun dun!\n",
+                "Oompa-oompa-oompapa!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Blip-bip, blip-bip... Blip... Bweeee...\r"
+        }
     ]
 }

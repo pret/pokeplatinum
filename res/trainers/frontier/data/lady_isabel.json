@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Uphold the rules of etiquette and\n",
+                "courtesy... That’s what a lady does."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "If I couldn’t unwind this way, I would\n",
+                "lose my ladylike composure.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I wish I could be free like the bird\n",
+                "Pokémon in the skies...\r"
+            ]
+        }
     ]
 }

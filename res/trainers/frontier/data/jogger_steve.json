@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I think training Pokémon shares a lot of\n",
+                "similarities with a marathon. You?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There’s meaning in sticking with your\n",
+                "training regimen every day.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If you don’t pace yourself, you can’t\n",
+                "win.\r"
+            ]
+        }
     ]
 }

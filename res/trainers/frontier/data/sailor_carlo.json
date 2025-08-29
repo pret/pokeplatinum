@@ -70,5 +70,28 @@
         "gyarados_4",
         "kingdra_4",
         "milotic_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’re a Trainer.\n",
+                "Let your Pokémon do the talking."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Where’s your spirit?\n",
+                "That didn’t speak to me at all.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Great! Great!\n",
+                "Your feelings came across!\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I like my mommy, PIKACHU, and my daddy,\n",
+                "too."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A weak Trainer isn’t cool.\n",
+                "I don’t like you.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "A not-wimpy Trainer is cool.\n",
+                "I like you.\r"
+            ]
+        }
     ]
 }

@@ -62,5 +62,19 @@
         "latias_4",
         "latios_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "garbage": 3
+        },
+        {
+            "type": "TRMSG_WIN",
+            "garbage": 4
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "garbage": 4
+        }
     ]
 }

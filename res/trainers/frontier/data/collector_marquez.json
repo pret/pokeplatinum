@@ -70,5 +70,28 @@
         "metagross_3",
         "garchomp_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I collect and battle Pokémon so I can\n",
+                "brag to my peers."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m not all that interested in winning\n",
+                "or losing to begin with.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’ve won the battle. But, in terms of\n",
+                "the Pokémon involved, I clearly win."
+            ]
+        }
     ]
 }

@@ -44,5 +44,28 @@
         "murkrow_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I was born unto rolling waves that\n",
+                "washed me, with the beach, my cradle."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I was born and grew up on the seas.\n",
+                "That’s what made me the big man I am.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I lost, did I? Time to go to the sea\n",
+                "and stare inscrutably at it."
+            ]
+        }
     ]
 }

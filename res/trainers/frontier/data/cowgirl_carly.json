@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m going to become famous here so I\n",
+                "can rebuild the ranch."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I can’t lose.\n",
+                "It’s for my pa and ma.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If I can get famous, folks’ll pay to\n",
+                "visit my ranch...\r"
+            ]
+        }
     ]
 }

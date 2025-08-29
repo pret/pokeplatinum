@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I can use psychic power, but I prefer\n",
+                "ordinary sleight-of-hand magic tricks."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It’s my opinion that psychic power\n",
+                "should be left to the Pokémon.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m a Psychic, but I’m also a student\n",
+                "of a magician’s school.\r"
+            ]
+        }
     ]
 }

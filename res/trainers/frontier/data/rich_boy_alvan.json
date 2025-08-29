@@ -52,5 +52,25 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My father’s wealthy.\n",
+                "There’s nothing he can’t afford."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "My father’s money bought my Pokémon.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "There are things that money can’t buy.\n",
+                "I know that...\r"
+            ]
+        }
     ]
 }

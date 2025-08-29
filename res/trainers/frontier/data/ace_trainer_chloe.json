@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I was looking forward to a battle with\n",
+                "you!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I was right! You are pretty decent.\n",
+                "Why not become an Ace Trainer?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re as good as the rumors say...\n",
+                "May I have a rematch one day?\r"
+            ]
+        }
     ]
 }

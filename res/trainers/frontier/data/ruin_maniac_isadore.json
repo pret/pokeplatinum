@@ -88,5 +88,28 @@
         "rhyperior_4",
         "tyranitar_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We’re going to hammer you, kid.\n",
+                "Don’t freeze up and close your eyes."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I like how you stay defiant even after\n",
+                "losing. Good attitude, kid.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Honest, I didn’t let up one bit or let\n",
+                "down my guard because you’re a kid.\r"
+            ]
+        }
     ]
 }

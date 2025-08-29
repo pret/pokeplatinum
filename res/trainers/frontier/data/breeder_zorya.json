@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Pokémon are Pokémon, no matter how\n",
+                "tough, weak, cute, or scary."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Raise Pokémon with love, and they’ll\n",
+                "return it.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I think it’s the Trainer who needs to\n",
+                "pick up the pace here.\r"
+            ]
+        }
     ]
 }

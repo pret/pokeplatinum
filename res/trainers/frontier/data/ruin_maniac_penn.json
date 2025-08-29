@@ -40,5 +40,28 @@
         "metagross_3",
         "garchomp_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll launch an avalanche of moves!\n",
+                "I’ll test your limits of endurance!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Well, Trainer?\n",
+                "Should I try out some more moves?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s it! I’m all out of stock!\n",
+                "I’d like you to leave so I can close up!\r"
+            ]
+        }
     ]
 }

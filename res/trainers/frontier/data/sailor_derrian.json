@@ -54,5 +54,28 @@
         "togekiss_3",
         "slaking_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve got a showdown coming up with a\n",
+                "Hiker. Let me see if I’m ready!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yep, I’d say my team’s about ready.\n",
+                "That Hiker won’t know what hit him!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aww, blast it, no!\n",
+                "I can’t beat that Hiker like this!\r"
+            ]
+        }
     ]
 }

@@ -6,5 +6,30 @@
         "ludicolo_1",
         "dusknoir_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Always be smiling!\n",
+                "Luck comes to those who are happy!\r",
+                "That’s why I always keep a big smile and\n",
+                "believe in my Pokémon when I battle."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You’re very good!\n",
+                "I had a lot of fun!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re so very, very good!\n",
+                "My Pokémon had a good time, too!\r"
+            ]
+        }
     ]
 }

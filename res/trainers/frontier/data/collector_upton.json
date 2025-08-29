@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I put this team together with my\n",
+                "Internet buddies. It took us all day!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "We won! I need to thank my Internet\n",
+                "buddies for their advice!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aww, darn it! We lost?!\n",
+                "I’ll report it to my Internet buddies!\r"
+            ]
+        }
     ]
 }

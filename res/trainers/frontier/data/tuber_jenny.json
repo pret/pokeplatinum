@@ -48,5 +48,25 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m the captain of a heroic vessel\n",
+                "among the crashing waves of a storm!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Made it to shore with the ease of a\n",
+                "real swashbuckler!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "That was a bigger crash than I wanted!\r"
+        }
     ]
 }

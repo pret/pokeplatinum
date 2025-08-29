@@ -94,5 +94,28 @@
         "aggron_4",
         "rhyperior_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "As a Worker, it’s my job to both build\n",
+                "and demolish."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Why don’t you become a Worker, too?\n",
+                "I find it fun and rewarding.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Making things is harder than\n",
+                "demolishing, but it’s more satisfying.\r"
+            ]
+        }
     ]
 }

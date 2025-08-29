@@ -28,5 +28,28 @@
         "kingdra_3",
         "milotic_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Listen, I’m feeling bushed today.\n",
+                "Can we do this tomorrow first thing?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, all right. You’re impatient.\n",
+                "Couldn’t wait till tomorrow, oh no.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s why I said tomorrow.\n",
+                "I can barely stay awake now.\r"
+            ]
+        }
     ]
 }

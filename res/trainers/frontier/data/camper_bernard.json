@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m glad to make your acquaintance!\n",
+                "May this friendship be fruitful!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Thank you very much!\n",
+                "Thank you so very much!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Thank you very much...\n",
+                "...Pah.\r"
+            ]
+        }
     ]
 }

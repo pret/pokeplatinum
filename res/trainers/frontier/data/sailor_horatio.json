@@ -70,5 +70,28 @@
         "gyarados_4",
         "kingdra_4",
         "milotic_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Here comes your prey!\n",
+                "Get ’em! Chaaaarge!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Gaahahaha!\n",
+                "That’s it! Good job!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "We’re outmatched!\n",
+                "Pull back, guys! Run away!\r"
+            ]
+        }
     ]
 }

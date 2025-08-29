@@ -70,5 +70,25 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Fwah? You mean to challenge me?"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Fwahaha! I win!\n",
+                "Better luck next time, punk!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fwaah?! You defeated me?\n",
+                "Who are you to do that?!\r"
+            ]
+        }
     ]
 }

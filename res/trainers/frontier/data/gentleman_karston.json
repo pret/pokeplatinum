@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You see an old man, yes?\n",
+                "Don’t be fooled by the way I look."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I find it abhorrent to lose to any young\n",
+                "Trainer.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I was fooled by your youth.\n",
+                "Foolish, foolish me...\r"
+            ]
+        }
     ]
 }

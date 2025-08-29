@@ -80,5 +80,28 @@
         "kingdra_4",
         "milotic_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You there! Take a look at the Pokémon\n",
+                "I fished up the other day."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I can tell you’re impressed. This guy,\n",
+                "I don’t know how long it took to land.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "A word of advice: when an older person\n",
+                "is bragging, pretend to be interested.\r"
+            ]
+        }
     ]
 }

@@ -50,5 +50,28 @@
         "regice_3",
         "articuno_4",
         "regice_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m running a fever here.\n",
+                "Just so’s you know."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oogh, my head’s burning up.\n",
+                "It makes me feel more inspired.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Like I said, I have a cold.\n",
+                "I’m not on top of my game.\r"
+            ]
+        }
     ]
 }

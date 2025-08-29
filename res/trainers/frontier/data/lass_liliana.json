@@ -52,5 +52,28 @@
         "weezing_2",
         "kangaskhan_2",
         "tauros_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oh, this place is so passé now.\n",
+                "I’m missing out on shopping."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You’re kind of stylish, actually.\n",
+                "Oh, I wish I had new clothes.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Maybe I’ll collect accessories for some\n",
+                "Contests...\r"
+            ]
+        }
     ]
 }

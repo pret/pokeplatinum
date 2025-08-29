@@ -70,5 +70,25 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Never fear, this Pokémon Ranger is\n",
+                "here to protect my own personal peace!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "My personal peace has been protected!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You vile Trainer, you!\n",
+                "You’ve shattered my peace!\r"
+            ]
+        }
     ]
 }

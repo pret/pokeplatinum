@@ -52,5 +52,25 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I was out all night at a party again.\n",
+                "I’m feeling dizzy from playing games!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m so bored of fancy parties and silly\n",
+                "games, too.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Urp...!\r"
+        }
     ]
 }

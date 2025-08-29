@@ -22,5 +22,28 @@
         "togetic_1",
         "murkrow_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I can’t fly...\n",
+                "But these babies can soar..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My spirit has been uplifted to the\n",
+                "skies... Thank you, everyone...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You broke my wings...\n",
+                "I won’t ever forget you...\r"
+            ]
+        }
     ]
 }

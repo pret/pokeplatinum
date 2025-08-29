@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Why do I raise Pokémon?\n",
+                "Because they are there!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I think I said something deep and cool!\n",
+                "Didn’t I?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s no reason at all?\n",
+                "That’s the reason in itself!\r"
+            ]
+        }
     ]
 }

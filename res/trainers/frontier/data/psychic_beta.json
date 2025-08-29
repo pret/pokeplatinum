@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Fwazzam!\n",
+                "So! You are my next victim!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Fwazzam!\n",
+                "Have you no spine?!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fwizzle...\n",
+                "Don’t think there will be a next time!"
+            ]
+        }
     ]
 }

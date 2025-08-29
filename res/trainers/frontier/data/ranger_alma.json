@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I will battle. It’s not likely I will lose.\n",
+                "I’m tough."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I win.\n",
+                "I could do a dance right now.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What is the matter?\n",
+                "Why couldn’t I win?\r"
+            ]
+        }
     ]
 }

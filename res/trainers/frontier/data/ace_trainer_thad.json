@@ -50,5 +50,28 @@
         "regice_3",
         "articuno_4",
         "regice_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My whole life hinges on this one battle!\n",
+                "...Lose for me, pretty please?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yeah! I won!\n",
+                "It’s all smooth sailing for me now!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I wasn’t supposed to lose...\n",
+                "That’s my life derailed...\r"
+            ]
+        }
     ]
 }

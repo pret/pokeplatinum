@@ -76,5 +76,22 @@
         "entei_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Wanna?"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Heh...\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You beat me?\n",
+                "Where’s your dojo?\r"
+            ]
+        }
     ]
 }

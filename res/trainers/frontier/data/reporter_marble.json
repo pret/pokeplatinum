@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I hate admitting it, but I wanted to be\n",
+                "an Idol, too."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I didn’t want to lose to any Idol.\n",
+                "That motivated me to train.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This is crushing... I work so much\n",
+                "harder than any silly Idol...\r"
+            ]
+        }
     ]
 }

@@ -50,5 +50,25 @@
         "torterra_4",
         "infernape_4",
         "empoleon_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Today, I have a special treat for all\n",
+                "my fans!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Thank you!\n",
+                "I love your support!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Are you really one of my fans?\r"
+        }
     ]
 }

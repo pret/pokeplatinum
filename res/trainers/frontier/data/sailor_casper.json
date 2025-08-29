@@ -54,5 +54,28 @@
         "togekiss_3",
         "slaking_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Bear witness to my display of machismo\n",
+                "and masculinity!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There!\n",
+                "That’s how a real man lives and battles!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Waaaah! Waaaah!\n",
+                "Mommy!\r"
+            ]
+        }
     ]
 }

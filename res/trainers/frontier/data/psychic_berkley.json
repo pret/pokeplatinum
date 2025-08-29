@@ -76,5 +76,25 @@
         "latios_4",
         "cresselia_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My big brother told me to go for the\n",
+                "eyes! Aim for the eyes!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "I did it, big brother!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My big brother told me to wreck the\n",
+                "other Trainer’s accuracy!\r"
+            ]
+        }
     ]
 }

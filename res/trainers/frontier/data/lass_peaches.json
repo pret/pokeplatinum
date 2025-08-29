@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not very good at this, but please\n",
+                "don’t hold back."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, didn’t I say?\n",
+                "You shouldn’t have held back.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fweh! I wish you would have held back a\n",
+                "little bit!\r"
+            ]
+        }
     ]
 }

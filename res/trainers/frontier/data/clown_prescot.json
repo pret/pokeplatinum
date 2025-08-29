@@ -48,5 +48,28 @@
         "clefable_2",
         "electabuzz_2",
         "magmar_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Myself, I have been born, raised, and\n",
+                "spent my life under a circus tent."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My Pokémon, too. They were born and\n",
+                "raised under a circus tent.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The outside world is so very cruel...\n",
+                "We shall return to our circus tent."
+            ]
+        }
     ]
 }

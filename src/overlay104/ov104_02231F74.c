@@ -1060,18 +1060,18 @@ void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
 
 void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1)
 {
-    ov104_0223310C(param0, param1, 614);
+    ov104_0223310C(param0, param1, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
     return;
 }
 
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
+void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 bankID)
 {
     u8 v0;
     MessageLoader *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD3);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

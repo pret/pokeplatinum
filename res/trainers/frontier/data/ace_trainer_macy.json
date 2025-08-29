@@ -70,5 +70,28 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Um... I’m honestly quite tough.\n",
+                "Please keep up."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m sorry.\n",
+                "I don’t think you measure up after all.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m amazed.\n",
+                "I didn’t think you’d win...\r"
+            ]
+        }
     ]
 }

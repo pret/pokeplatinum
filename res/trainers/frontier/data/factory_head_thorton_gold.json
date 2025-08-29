@@ -1,5 +1,30 @@
 {
     "name": "Thorton",
     "class": "TRAINER_CLASS_FACTORY_HEAD",
-    "availableSets": []
+    "availableSets": [],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "It doesn’t matter what you throw at\n",
+                "me. I’ll always win.\r",
+                "I’ll stake my investigative and\n",
+                "analytical system on it!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "See?\n",
+                "Just as analyzed.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whoa!\n",
+                "You sure showed me!\r"
+            ]
+        }
+    ]
 }

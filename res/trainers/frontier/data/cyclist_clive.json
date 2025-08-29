@@ -102,5 +102,25 @@
         "articuno_4",
         "zapdos_4",
         "moltres_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let me make it clear right now, I’m\n",
+                "tougher than you can stand!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "See?\n",
+                "I wasn’t exaggerating!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Who are you exactly?!\r"
+        }
     ]
 }

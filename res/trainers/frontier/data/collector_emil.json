@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m the main character of this story.\n",
+                "It’s impossible for me to lose."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You’re good! Though, as a supporting\n",
+                "character, you’re a bit too strong.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...The hero has to suffer a bit so the\n",
+                "audience feels more empathy.\r"
+            ]
+        }
     ]
 }

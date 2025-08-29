@@ -78,5 +78,28 @@
         "aron_1",
         "spoink_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Krink... Krak... Heheheh.\n",
+                "Let me limber up for this."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Hah!\n",
+                "Weak, even for a joke!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gnnrrr...\n",
+                "I have only myself to blame...\r"
+            ]
+        }
     ]
 }

@@ -20,5 +20,28 @@
         "togekiss_3",
         "dragonite_3",
         "salamence_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "As a Trainer, I’m as fragile as an egg.\n",
+                "Please be gentle on me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Do you think I’m getting ready to take\n",
+                "flight?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "One of these days, I’ll break out of my\n",
+                "shell and defeat you.\r"
+            ]
+        }
     ]
 }

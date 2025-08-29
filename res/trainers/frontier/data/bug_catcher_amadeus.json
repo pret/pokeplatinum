@@ -38,5 +38,28 @@
         "roselia_1",
         "parasect_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m breaking out of my shell!\n",
+                "I’m taking it to the next level!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It’s like I’ve sprouted wings!\n",
+                "Viva to the new me!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Is it not my time yet?\n",
+                "Do I need to stay in my shell longer?\r"
+            ]
+        }
     ]
 }

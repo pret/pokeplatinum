@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I am a Psychic, though I may not look\n",
+                "like one. I’ll do something psychic."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I didn’t use any psychic power to win.\n",
+                "No, really.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Did you notice? I was levitating while I\n",
+                "was in battle with you.\r"
+            ]
+        }
     ]
 }

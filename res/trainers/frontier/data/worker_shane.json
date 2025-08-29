@@ -28,5 +28,28 @@
         "corsola_1",
         "onix_1",
         "graveler_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "It’s the Workers of the world like us\n",
+                "who keep the world going."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There are times we would like to lay\n",
+                "down our tools and rest.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Don’t forget how Workers like us work\n",
+                "for you.\r"
+            ]
+        }
     ]
 }

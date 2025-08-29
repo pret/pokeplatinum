@@ -28,5 +28,28 @@
         "togekiss_4",
         "slaking_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not some cheap Idol!\n",
+                "I’m an actress! Please remember that!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My career isn’t anything like your\n",
+                "typical Idol’s career!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m an actress...\n",
+                "It sounds so deliciously right...\r"
+            ]
+        }
     ]
 }

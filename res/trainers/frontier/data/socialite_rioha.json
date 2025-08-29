@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m feeling cranky today!\n",
+                "Help me get my mind off it!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Whew... A battle is the perfect\n",
+                "stress reliever!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Eeeeeeeeh!\n",
+                "You’ve pushed me over to furious!\r"
+            ]
+        }
     ]
 }

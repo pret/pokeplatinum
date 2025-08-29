@@ -48,5 +48,25 @@
         "leafeon_4",
         "tangrowth_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Like everything else, people have likes\n",
+                "and dislikes when it comes to scents."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "I love how Pokémon smell after a battle.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I feel a little thrill if I catch a whiff\n",
+                "of intense effort postbattle.\r"
+            ]
+        }
     ]
 }

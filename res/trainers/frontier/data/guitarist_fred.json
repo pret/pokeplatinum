@@ -50,5 +50,28 @@
         "tyranitar_3",
         "metagross_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Rock? Samba? Traditional folk?\n",
+                "I can play in any style. It’s all good!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Music and Pokémon uplift me!\n",
+                "I’m carried up among the stars!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sigh... I’m seeing stars...\n",
+                "You’ve got me singing the blues...\r"
+            ]
+        }
     ]
 }

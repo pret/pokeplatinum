@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In romance, fashion, and Pokémon!\n",
+                "Today’s girls want it all!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "The greed of today’s girls knows no\n",
+                "bounds!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Did being greedy end up costing me\n",
+                "everything?\r"
+            ]
+        }
     ]
 }

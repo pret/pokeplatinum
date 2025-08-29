@@ -38,5 +38,28 @@
         "roselia_1",
         "parasect_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I love bug Pokémon!\n",
+                "I love my bug net even more!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I caught my Pokémon using my trusty\n",
+                "bug net.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’d be cool if there was a bug net\n",
+                "Pokémon.\r"
+            ]
+        }
     ]
 }

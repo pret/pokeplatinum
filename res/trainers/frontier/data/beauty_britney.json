@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Ooh, aren’t you the most darling thing!\n",
+                "Can you win a smile from me?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ooh, sweetie, I win, so no smile!\n",
+                "Be sure to win next time!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I don’t feel like smiling now...but\n",
+                "I’ll be happy to wave good-bye!\r"
+            ]
+        }
     ]
 }

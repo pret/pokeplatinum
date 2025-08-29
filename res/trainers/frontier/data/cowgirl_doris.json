@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Go, my Pokémon.\n",
+                "But don’t strain yourselves."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, wow, I like how tough everyone was.\n",
+                "Our Pokémon and you, yup.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "OK, nice try, gang.\n",
+                "Thanks much for trying.\r"
+            ]
+        }
     ]
 }

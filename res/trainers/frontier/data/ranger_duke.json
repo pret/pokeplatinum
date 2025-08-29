@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "To serve and protect Pokémon and\n",
+                "nature. That’s my mission!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My skills I developed in the embrace of\n",
+                "Mother Nature!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My mission needs me!\n",
+                "This is where we bid good-bye!\r"
+            ]
+        }
     ]
 }

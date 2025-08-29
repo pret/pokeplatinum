@@ -240,4 +240,26 @@ static inline void ReportJsonError(rapidjson::ParseResult ok, std::string &json,
     }
 }
 
+static inline void CopyMessage(const rapidjson::Value &member, rapidjson::Value &outMessage, rapidjson::MemoryPoolAllocator<> &allocator) {
+    if (member.HasMember("en_US")) {
+        if (member["en_US"].IsArray()) {
+            rapidjson::Value strings(rapidjson::kArrayType);
+            for (const auto &line : member["en_US"].GetArray()) {
+                std::string str = line.GetString();
+                rapidjson::Value string(rapidjson::kStringType);
+                string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), allocator);
+                strings.PushBack(string, allocator);
+            }
+            outMessage.AddMember("en_US", strings, allocator);
+        } else {
+            std::string str = member["en_US"].GetString();
+            rapidjson::Value string(rapidjson::kStringType);
+            string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), allocator);
+            outMessage.AddMember("en_US", string, allocator);
+        }
+    } else if (member.HasMember("garbage")) {
+        outMessage.AddMember("garbage", member["garbage"].GetInt(), allocator);
+    }
+}
+
 #endif // POKEPLATINUM_DATAGEN_H

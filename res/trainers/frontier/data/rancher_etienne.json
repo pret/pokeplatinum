@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I was too lenient with my Pokémon.\n",
+                "They grew up all selfish on me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Hey, now, enough. Stop attacking!\n",
+                "The battle’s long over already.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hey, now, the battle’s over and done.\n",
+                "No attacking the Trainer.\r"
+            ]
+        }
     ]
 }

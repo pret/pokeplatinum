@@ -70,5 +70,28 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been ensconced in the lab.\n",
+                "My shoulders are all knotted up."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "What a refreshing break!\n",
+                "I’m feeling loose and relaxed now.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My Pokémon and I, we all need to get\n",
+                "outside and exercise more.\r"
+            ]
+        }
     ]
 }

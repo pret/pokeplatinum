@@ -6,5 +6,30 @@
         "togekiss_4",
         "zapdos_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Whenever I battle someone tough,\n",
+                "I smile. I cannot help it!\r",
+                "How about you? What do you do?\n",
+                "Do you laugh? Cry? Get angry?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Win or lose, whenever I battle someone\n",
+                "wonderful, I am happy!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Battling a wonderful Trainer is always\n",
+                "a happy occasion!\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hey, hey, what’s that over there?\n",
+                "It’s... It’s a legendary Pokémon!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Kekeke... Ninjutsu misdirection!\n",
+                "It worked to perfection!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ninjutsu misdirection was a failure!\n",
+                "I’ll disappear in a puff of smoke!\r"
+            ]
+        }
     ]
 }

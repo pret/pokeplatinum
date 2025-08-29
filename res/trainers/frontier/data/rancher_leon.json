@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You, there. Don’t look around now.\n",
+                "Pay attention to me. Focus."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Kid, you’re grossly underpowered.\n",
+                "You ought to train with me.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, yeah. You’re better than you look.\n",
+                "I was wrong about you, kid.\r"
+            ]
+        }
     ]
 }

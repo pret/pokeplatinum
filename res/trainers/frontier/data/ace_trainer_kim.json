@@ -70,5 +70,25 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "OK! I’m going to do it!\n",
+                "I’m going to show you my best!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Gasp, gasp...\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Never again!\n",
+                "You can forget about a next time!\r"
+            ]
+        }
     ]
 }

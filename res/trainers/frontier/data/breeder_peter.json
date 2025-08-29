@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’d like to introduce you to my\n",
+                "cherished partners."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Good, good. Good going, gang.\n",
+                "You guys all did great.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wheeze... Wheeze...\n",
+                "I’m feeling faint...\r"
+            ]
+        }
     ]
 }

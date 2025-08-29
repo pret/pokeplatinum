@@ -52,5 +52,28 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oh, hello, aren’t you a sweetie!\n",
+                "Are you sure you’re up to this?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, now, please don’t cry.\n",
+                "You should be proud of yourself, dear.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, my... You’re quite the capable\n",
+                "practitioner of the art.\r"
+            ]
+        }
     ]
 }

@@ -70,5 +70,28 @@
         "poliwrath_3",
         "rapidash_3",
         "muk_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Cue battle music, please!\n",
+                "I want to trumpet my victory!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I love the battle music.\n",
+                "It sets my heart racing.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fine, that will do.\n",
+                "Back to the regular theme music.\r"
+            ]
+        }
     ]
 }

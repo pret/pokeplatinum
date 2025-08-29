@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "...Oh, wait one second.\n",
+                "I have to take this call."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Hi, yup... Yah, battling... Uh-huh...\n",
+                "Yup, I won... Well, duh... LOL...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hi, yup... Yes, just battled... Nope...\n",
+                "Kid beat me... Uh-huh...\r"
+            ]
+        }
     ]
 }

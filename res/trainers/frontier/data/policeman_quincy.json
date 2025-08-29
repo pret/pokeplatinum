@@ -40,5 +40,28 @@
         "togekiss_3",
         "metagross_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m a Policeman. But on holidays, I’m\n",
+                "an entirely different kind of guy."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Usually, I chase after bad guys as a\n",
+                "Policeman.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "On my days off, I chase after the waves\n",
+                "and the ladies as a Swimmer.\r"
+            ]
+        }
     ]
 }

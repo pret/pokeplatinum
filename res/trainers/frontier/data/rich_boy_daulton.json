@@ -52,5 +52,28 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The age of money has come to Pokémon\n",
+                "battling. I’ll teach you who is right."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You understand, don’t you?\n",
+                "What is right, and who is stronger?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "M-my Pokémon! What have you done?\n",
+                "What am I to do?!\r"
+            ]
+        }
     ]
 }

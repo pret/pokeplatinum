@@ -28,5 +28,28 @@
         "mawile_1",
         "onix_1",
         "graveler_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m afraid I got cursed on our last\n",
+                "exploration of ancient ruins. Ehehe."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Even just now, I have no idea how I won.\n",
+                "Heeheehee.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I may be cursed, but this is fun.\n",
+                "It is all so very good. Heeheehee.\r"
+            ]
+        }
     ]
 }

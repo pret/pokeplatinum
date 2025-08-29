@@ -44,5 +44,25 @@
         "regirock_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not looking for any excitement.\n",
+                "I don’t need any drama."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "A battle is all the excitement I need.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I recently realized that I’m not cut\n",
+                "out for this scary job.\r"
+            ]
+        }
     ]
 }

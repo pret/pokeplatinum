@@ -52,5 +52,28 @@
         "lunatone_1",
         "solrock_1",
         "kecleon_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hey, ’sup. I should warn you, I’m right\n",
+                "fast, Trainer. Hold on to your hat."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Trainer, from now on, you can start\n",
+                "adding Mister to my name.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Trainer, that was a real learning\n",
+                "experience. Thank you, seriously.\r"
+            ]
+        }
     ]
 }

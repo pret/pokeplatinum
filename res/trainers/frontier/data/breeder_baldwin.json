@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Everyone, it’s showtime!\n",
+                "Get out and do some clobbering!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, bravo!\n",
+                "Nicely won!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Arrgh! How humiliating!\n",
+                "Quick! Out of the spotlight!\r"
+            ]
+        }
     ]
 }

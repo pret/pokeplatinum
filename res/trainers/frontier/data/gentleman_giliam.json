@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "If you prevail, I’ll recount to you a\n",
+                "tale from my youth."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Seeing you brings back a flood of\n",
+                "memories. Ah, yes, indeed...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...Hm?\n",
+                "I seem to have forgotten...\r"
+            ]
+        }
     ]
 }

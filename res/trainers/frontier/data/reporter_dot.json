@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll be bringing you live coverage from\n",
+                "my imminent battle!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Our intrepid and beautiful Reporter has\n",
+                "carried the day! Go, me!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Our intrepid and beautiful Reporter has\n",
+                "gone down in defeat. Take pity on me!\r"
+            ]
+        }
     ]
 }

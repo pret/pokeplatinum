@@ -50,5 +50,28 @@
         "regice_3",
         "articuno_4",
         "regice_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When we battle, I want you to be very\n",
+                "careful. My coat’s very expensive."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yikes! Eek! Watch out! You almost got\n",
+                "Pokémon sweat on my coat!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I was worried about getting my coat\n",
+                "dirty. Who cares about your battle?\r"
+            ]
+        }
     ]
 }

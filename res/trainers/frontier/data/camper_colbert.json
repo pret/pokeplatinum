@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Yes! Not a grown-up!\n",
+                "Lucky me! I stand a chance!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yup, battling another kid is a lot less\n",
+                "scary.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I get really nervous in front of\n",
+                "grown-ups.\r"
+            ]
+        }
     ]
 }

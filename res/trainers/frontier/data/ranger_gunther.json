@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Now don’t you worry about a thing.\n",
+                "You leave everything to me, OK?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "What do you say? Fun, hey?\n",
+                "It’d be nice if we could meet again.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Well, I’ll be!\n",
+                "You sure got the best of me!\r"
+            ]
+        }
     ]
 }

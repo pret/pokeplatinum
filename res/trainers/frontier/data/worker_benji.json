@@ -28,5 +28,28 @@
         "corsola_1",
         "onix_1",
         "graveler_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My wife and boy are waiting on me back\n",
+                "home. I can’t afford to lose!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m sorry, but I had to do this. You’ll\n",
+                "get tougher with a family behind you.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, no! How am I supposed to show my\n",
+                "face around my dear wife and boy now?\r"
+            ]
+        }
     ]
 }

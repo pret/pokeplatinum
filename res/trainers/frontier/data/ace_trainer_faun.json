@@ -70,5 +70,28 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let’s go, me! Go, me, go!\n",
+                "Don’t lose, don’t lose, rah, rah, rah!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Way to go, me! I’m so wonderful!\n",
+                "Rah, rah, rah! Gooooooo, me!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s OK, me! Don’t cry! Don’t cry!\n",
+                "Go home, go home, goooooo!\r"
+            ]
+        }
     ]
 }

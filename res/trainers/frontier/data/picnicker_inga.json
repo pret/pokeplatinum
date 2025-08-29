@@ -70,5 +70,25 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Trainer spotted!\n",
+                "It’s time to get cooking!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A battle should be enjoyed like a tasty\n",
+                "meal!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I ended up getting cooked!\r"
+        }
     ]
 }

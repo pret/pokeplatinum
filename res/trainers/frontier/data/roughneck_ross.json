@@ -90,5 +90,28 @@
         "dusknoir_4",
         "crobat_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "There’s no meaning to this battle!\n",
+                "Pokémon should be about love!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Battling leaves me empty.\n",
+                "Hug your Pokémon and show your love!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Battling creates nothing.\n",
+                "Hug your Pokémon and show your love!\r"
+            ]
+        }
     ]
 }

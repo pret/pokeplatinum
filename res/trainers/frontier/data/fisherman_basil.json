@@ -30,5 +30,28 @@
         "poliwhirl_1",
         "wailmer_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In battle and in love, one needs to\n",
+                "know when it is best to back off."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "After all, both battle and romance can\n",
+                "become quagmires of despair.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I may have lost, but I said something\n",
+                "deep, in an endless bog kind of way.\r"
+            ]
+        }
     ]
 }

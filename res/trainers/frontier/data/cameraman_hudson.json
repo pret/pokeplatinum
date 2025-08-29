@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Yes, yes, looking good!\n",
+                "I need a smile now. Can you do that?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "No, no, no. I need a smile from you.\n",
+                "Let’s see those teeth sparkle!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Yes, that’s a good smile!\n",
+                "Now tilt your head toward me.\r"
+            ]
+        }
     ]
 }

@@ -98,5 +98,28 @@
         "latios_3",
         "latias_4",
         "latios_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Come hither, my Pokémon!\n",
+                "Please get rid of this mean Trainer!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ooh, yes, I love you, my sweeties!\r",
+                "Come here and give me a kiss!"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How could you?!\n",
+                "You hurt my sweet little ones!\r"
+            ]
+        }
     ]
 }

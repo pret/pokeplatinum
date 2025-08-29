@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Fweeoo-fwee-fwee-fyoo...\n",
+                "I saunter into battle, whistling..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Too easy! I was whistling all the way\n",
+                "through that.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fwee-ooo fwee-ooo fwee-ooo...\n",
+                "I switched to an ambulance siren...\r"
+            ]
+        }
     ]
 }

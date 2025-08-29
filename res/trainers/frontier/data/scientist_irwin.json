@@ -70,5 +70,25 @@
         "poliwrath_2",
         "rapidash_2",
         "muk_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "How will you counter my implacable logic?"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Everything according to calculation...\n",
+                "This victory is a complete one.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You outcalculated me.\n",
+                "I’m incredulous.\r"
+            ]
+        }
     ]
 }

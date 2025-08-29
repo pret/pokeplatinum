@@ -52,5 +52,25 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I have a ton more experience than you.\n",
+                "What will you do about it?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Not bad, but you need more maturing.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Experience alone doesn’t ensure any\n",
+                "wins, I’m learning.\r"
+            ]
+        }
     ]
 }

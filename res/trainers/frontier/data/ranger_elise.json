@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Mother Nature, I beseech you!\n",
+                "Please, lend me strength!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, Mother Nature, I thank you!\n",
+                "To you, I dedicate this victory!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m sorry, Mother Nature!\n",
+                "I’m sorry to disappoint you!\r"
+            ]
+        }
     ]
 }

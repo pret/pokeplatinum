@@ -52,5 +52,28 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hiya, you Trainer there! Slip on some\n",
+                "glasses. They’ll make you look better."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Nothing’s the matter with my eyes.\n",
+                "I wear glasses for the looks I get.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whoops!\n",
+                "My glasses, my glasses.\r"
+            ]
+        }
     ]
 }

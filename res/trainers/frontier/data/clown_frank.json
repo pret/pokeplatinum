@@ -82,5 +82,28 @@
         "espeon_4",
         "dusknoir_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Outstanding athleticism and a great\n",
+                "sense of humor; that’s a clown!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A clown is a job of greatness.\n",
+                "Only the chosen can become one!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The ability to laugh off disappointment\n",
+                "is another requirement for a clown!\r"
+            ]
+        }
     ]
 }

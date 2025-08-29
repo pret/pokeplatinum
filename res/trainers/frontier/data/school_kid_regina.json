@@ -52,5 +52,22 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "It’s been so long since I had my last\n",
+                "battle."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "You know, battling is fun after all.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Battling is so much fun, but...\r"
+        }
     ]
 }

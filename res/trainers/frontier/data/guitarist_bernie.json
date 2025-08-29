@@ -38,5 +38,28 @@
         "plusle_1",
         "minun_1",
         "pachirisu_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I like hard, fast beats in my battling\n",
+                "and my rock ’n’ roll! Let’s wail!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "And, bam! That rhythm pattern ruled,\n",
+                "if I may say so myself!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ouch! That’s an insult to the ears!\n",
+                "Those beats were offensive, man!\r"
+            ]
+        }
     ]
 }

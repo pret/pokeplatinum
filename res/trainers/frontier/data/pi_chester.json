@@ -44,5 +44,28 @@
         "regirock_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll have you know that I’m an Internet\n",
+                "detective."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My powers of observation and logic\n",
+                "prevailed!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Think you’ve outsmarted me?\n",
+                "Maybe this was just a sting operation!\r"
+            ]
+        }
     ]
 }

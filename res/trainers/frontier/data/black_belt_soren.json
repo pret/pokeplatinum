@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I don’t like to move much.\n",
+                "I trained using the Net and TV."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Uhihi! I’m a naturally talented pro at\n",
+                "both karate and Pokémon, I am.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, man, this is rotten! I’m tired and\n",
+                "hungry and want to go home!\r"
+            ]
+        }
     ]
 }

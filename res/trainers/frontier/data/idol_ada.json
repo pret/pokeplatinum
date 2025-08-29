@@ -38,5 +38,28 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not supposed to be here.\n",
+                "Can we do this on the sly?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Even battling can draw attention.\n",
+                "It’s not easy being a pop star.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Pop stars are ordinary girls at heart.\n",
+                "We want to enjoy our Pokémon, too!\r"
+            ]
+        }
     ]
 }

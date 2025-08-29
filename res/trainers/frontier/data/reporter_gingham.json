@@ -52,5 +52,25 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This microphone is what made me a star.\n",
+                "It’s my all and everything."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Even for a battle, I don’t let this\n",
+                "microphone leave my hand.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "...Thud. Bzzzzt...\r"
+        }
     ]
 }

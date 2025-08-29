@@ -52,5 +52,25 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "It’s hard to keep the streak alive,\n",
+                "but the battles are fun."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "It’s more fun to win, of course!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Even losing is fun.\n",
+                "It’s the wonder of Pokémon!\r"
+            ]
+        }
     ]
 }

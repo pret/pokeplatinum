@@ -82,5 +82,22 @@
         "espeon_4",
         "dusknoir_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Laugh with the face and cry with the\n",
+                "heart; that’s how a clown lives."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Ahahahahaha!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Gah! ...Ahahahaha!\r"
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Exam season’s coming up, but I’m\n",
+                "neck-deep in battling..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Mom’s going to cut me off.\n",
+                "I just know it...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I have to keep up on both my studying\n",
+                "and Pokémon...\r"
+            ]
+        }
     ]
 }

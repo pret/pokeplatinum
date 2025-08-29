@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A professional martial artist is in\n",
+                "perpetual control of his body."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A martial artist must be more than\n",
+                "strong. He must also be wise.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gah! I overdid my training and ran out\n",
+                "of stamina early...\r"
+            ]
+        }
     ]
 }

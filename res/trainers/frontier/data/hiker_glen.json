@@ -98,5 +98,28 @@
         "mamoswine_4",
         "rhyperior_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I am captivated by the mountains.\n",
+                "They’re the main thing in my life!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "The mountains mean more to me\n",
+                "than any battle, no matter how fun!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your battle skills are impressive, but I\n",
+                "can’t wait to return to the mountains.\r"
+            ]
+        }
     ]
 }

@@ -34,5 +34,28 @@
         "togekiss_2",
         "slaking_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Are you another of my fans? I can give\n",
+                "you an autograph if you’d lose?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Here’s your autograph! Cherish it!\n",
+                "Oh, sorry! I don’t do handshakes.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m sorry, I was acting GASTLY!\n",
+                "It was very DELCATTY of me!\r"
+            ]
+        }
     ]
 }

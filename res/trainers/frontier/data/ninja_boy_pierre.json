@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’ll be befuddled by my dazzling\n",
+                "speed!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Your movements...\n",
+                "It’s as if you’re moving in molasses.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I didn’t need to do all that dashing\n",
+                "around, did I?\r"
+            ]
+        }
     ]
 }

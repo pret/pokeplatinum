@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "They say I have fists of steel and the\n",
+                "heart of a child."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, yay! Yippee!\n",
+                "I won, I won!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, boo! Boo! This stinks!\n",
+                "I’m not talking to you!\r"
+            ]
+        }
     ]
 }

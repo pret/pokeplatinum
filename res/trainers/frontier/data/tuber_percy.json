@@ -48,5 +48,28 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I went and caught my Pokémon with my\n",
+                "daddy."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I won, Daddy!\n",
+                "Daddy, thank you!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I wonder if Daddy will show me how to\n",
+                "train my Pokémon next?\r"
+            ]
+        }
     ]
 }

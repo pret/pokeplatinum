@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My daddy is a real mountain man. Does\n",
+                "that make my mom a mountain woman?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Mountain woman sounds icky.\n",
+                "Not for me, thank you!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m their daughter. Is a mountain\n",
+                "woman my destiny?\r"
+            ]
+        }
     ]
 }

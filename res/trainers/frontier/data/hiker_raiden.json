@@ -32,5 +32,28 @@
         "onix_1",
         "graveler_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Sorry for looking so scruffy and dirty.\n",
+                "I’ve been holed up in the mountains."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I wasn’t really holed up, at least not\n",
+                "on purpose. I was lost out there.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s better to be holed up in the\n",
+                "mountains than in your room, I say.\r"
+            ]
+        }
     ]
 }

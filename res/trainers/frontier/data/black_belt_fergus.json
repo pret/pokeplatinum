@@ -76,5 +76,28 @@
         "entei_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m fine with practice and training, but\n",
+                "I wilt when the chips are down."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I feel sick from tension!\n",
+                "I’d rather be at home practicing!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If it’s about practice, I’d be the\n",
+                "champ without a doubt.\r"
+            ]
+        }
     ]
 }
