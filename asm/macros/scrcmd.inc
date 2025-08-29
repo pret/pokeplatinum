@@ -3383,19 +3383,19 @@
     .short \destFlagCount
     .endm
 
-    .macro LoadPCAnimation arg0
+    .macro LoadPCAnimation tag
     .short 587
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro PlayPCBootUpAnimation arg0
+    .macro PlayPCBootUpAnimation tag
     .short 588
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro PlayPCShutDownAnimation arg0
+    .macro PlayPCShutDownAnimation tag
     .short 589
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro GetJubilifeLotteryTrainerID destVarID

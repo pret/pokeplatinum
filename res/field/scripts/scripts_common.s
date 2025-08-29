@@ -890,15 +890,15 @@ _0BEE:
     GoTo _0C1C
 
 _0C06:
-    LoadPCAnimation 90
-    PlayPCBootUpAnimation 90
-    WaitForAnimation 90
+    LoadPCAnimation ANIMATION_TAG_PC
+    PlayPCBootUpAnimation ANIMATION_TAG_PC
+    WaitForAnimation ANIMATION_TAG_PC
     Return
 
 _0C11:
-    PlayPCShutDownAnimation 90
-    WaitForAnimation 90
-    UnloadAnimation 90
+    PlayPCShutDownAnimation ANIMATION_TAG_PC
+    WaitForAnimation ANIMATION_TAG_PC
+    UnloadAnimation ANIMATION_TAG_PC
     Return
 
 _0C1C:
@@ -1123,7 +1123,7 @@ _0F80:
 _0F94:
     FadeScreenOut
     WaitFadeScreen
-    UnloadAnimation 90
+    UnloadAnimation ANIMATION_TAG_PC
     Return
 
 _0FA5:

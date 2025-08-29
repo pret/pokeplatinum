@@ -80,11 +80,11 @@
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02246C24.h"
-#include "overlay006/ov6_02247078.h"
 #include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
+#include "overlay006/pc_animation.h"
 #include "overlay006/swarm.h"
 #include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
@@ -6467,9 +6467,9 @@ static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx)
 static BOOL ScrCmd_LoadPCAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
 
-    ov6_02247078(fieldSystem, v1);
+    FieldSystem_LoadPCAnimation(fieldSystem, tag);
 
     return FALSE;
 }
@@ -6477,18 +6477,18 @@ static BOOL ScrCmd_LoadPCAnimation(ScriptContext *ctx)
 static BOOL ScrCmd_PlayPCBootUpAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
 
-    ov6_022470E8(fieldSystem, v1);
+    FieldSystem_PlayPCBootUpAnimation(fieldSystem, tag);
     return FALSE;
 }
 
 static BOOL ScrCmd_PlayPCShutDownAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
 
-    ov6_022470F4(fieldSystem, v1);
+    FieldSystem_PlayPCShutDownAnimation(fieldSystem, tag);
     return FALSE;
 }
 
