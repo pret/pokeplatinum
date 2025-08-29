@@ -38,5 +38,28 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We teen Idols have a secret code\n",
+                "of conduct that’s strictly enforced."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "For example, if an Idol wins, she has\n",
+                "to squeal and jump around.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If an Idol loses, she must never act\n",
+                "angry. That’s a big no-no.\r"
+            ]
+        }
     ]
 }

@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Any bad kids littering the fields?\n",
+                "Any bad kids fouling the sea?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Be sure to sort your recyclables from\n",
+                "the trash when you’re throwing it out!"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Trash is like a battle.\n",
+                "Don’t be too quick to throw it!"
+            ]
+        }
     ]
 }

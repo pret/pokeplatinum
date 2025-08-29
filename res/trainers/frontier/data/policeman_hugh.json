@@ -90,5 +90,28 @@
         "aggron_4",
         "magnezone_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oi, listen! I’m a Policeman, sure, but a\n",
+                "Trainer before that!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "What?\n",
+                "A Policeman can’t lose his temper?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Yes, I’m a Policeman, but I have dreams\n",
+                "and aspirations, and, and... Snivel...\r"
+            ]
+        }
     ]
 }

@@ -28,5 +28,28 @@
         "tyranitar_1",
         "salamence_1",
         "garchomp_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Unluckily for you, your winning streak\n",
+                "ends with me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You lost to me, but you’re still on\n",
+                "your feet. Kudos to you!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This can’t be. I won’t accept it.\n",
+                "There has to be a mistake somewhere.\r"
+            ]
+        }
     ]
 }

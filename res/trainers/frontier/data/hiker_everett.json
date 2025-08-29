@@ -32,5 +32,28 @@
         "onix_1",
         "graveler_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "What’s that? I smell dusty?\n",
+                "Don’t you know the aroma of soil?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "See, that’s what you get!\n",
+                "Your team had to eat dirt, get it?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Dropped in the dirt by some kid who\n",
+                "doesn’t know the smell of soil!\r"
+            ]
+        }
     ]
 }

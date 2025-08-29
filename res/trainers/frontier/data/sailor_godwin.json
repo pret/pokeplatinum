@@ -44,5 +44,28 @@
         "murkrow_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Youths of today aim for the world!\n",
+                "How’s that for deep!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There’d be some mighty cool Trainers\n",
+                "around the world. I’m sure of that.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Go on, kid! Take on the world!\n",
+                "I’ll look forward to your return!\r"
+            ]
+        }
     ]
 }

@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let the curtains rise on the festivities\n",
+                "of muscles and Pokémon!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Did you enjoy our demonstration of\n",
+                "muscle and Pokémon?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Though I’ve lost, my muscles and\n",
+                "Pokémon are seared into your mind.\r"
+            ]
+        }
     ]
 }

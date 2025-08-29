@@ -44,5 +44,28 @@
         "parasect_1",
         "togetic_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Snivel! Hnurrff! Snort!\n",
+                "This hay fever is a wicked misery..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Hnurrff! Snivel! Snivel! Snivel!\n",
+                "I won, but the misery continues!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sniffle. Snivel. Snort.\n",
+                "I’m not crying. My nose is running.\r"
+            ]
+        }
     ]
 }

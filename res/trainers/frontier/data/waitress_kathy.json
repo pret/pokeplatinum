@@ -70,5 +70,28 @@
         "poliwrath_2",
         "rapidash_2",
         "muk_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Aren’t you the cutest guest! You can\n",
+                "expect the best service from me!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Well, were you impressed by the level\n",
+                "of service I provided?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, wait, please!\n",
+                "I’m not done serving you!\r"
+            ]
+        }
     ]
 }

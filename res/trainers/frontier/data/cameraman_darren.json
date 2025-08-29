@@ -98,5 +98,28 @@
         "magnezone_4",
         "electivire_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I keep a journal about the lives of the\n",
+                "Trainers who arrive here."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "In our vast world, I wonder how many\n",
+                "Trainers will cross my path?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Every encounter ends in parting.\n",
+                "That’s why I keep a journal.\r"
+            ]
+        }
     ]
 }

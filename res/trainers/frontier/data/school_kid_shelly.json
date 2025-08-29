@@ -52,5 +52,25 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I won’t lose ever!\n",
+                "Please abide by my rule!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Thank you so much!\n",
+                "I owe this win to you!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I so did not want to lose...\r"
+        }
     ]
 }

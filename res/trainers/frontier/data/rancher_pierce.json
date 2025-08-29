@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Pokémon are like family to me.\n",
+                "...Nah, they are family."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yes! My family, you did it!\n",
+                "We knocked off that mean Trainer!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fwaaaah! That’s cruel!\n",
+                "My family’s hurting!\r"
+            ]
+        }
     ]
 }

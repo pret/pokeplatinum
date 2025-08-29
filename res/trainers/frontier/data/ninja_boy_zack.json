@@ -38,5 +38,22 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I have made my choice.\n",
+                "When I fall, it shall be forward!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "You lack conviction.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "...Thud.\r"
+        }
     ]
 }

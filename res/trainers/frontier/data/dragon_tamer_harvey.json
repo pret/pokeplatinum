@@ -98,5 +98,28 @@
         "latios_3",
         "latias_4",
         "latios_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A good Trainer takes on all challenges\n",
+                "regardless of the foe or the rules."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "No Trainer can be considered bad if\n",
+                "they battle the best they can.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "A good Trainer doesn’t gloat over a win.\n",
+                "They just prepare for the next battle.\r"
+            ]
+        }
     ]
 }

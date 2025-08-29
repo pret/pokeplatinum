@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The great unseeable power...\n",
+                "I beseech you for help..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, great unseeable power...\n",
+                "I thank you for coming to my aid...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh... Great unseeable power...\n",
+                "Why have you forsaken me...\r"
+            ]
+        }
     ]
 }

@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m bored of collecting and hoarding.\n",
+                "I’m getting rid of everything now."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There’s nothing that I really want now.\n",
+                "Maybe I’ll become a clown..."
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I threw the match for a start.\n",
+                "It’s nice to be unburdened of things."
+            ]
+        }
     ]
 }

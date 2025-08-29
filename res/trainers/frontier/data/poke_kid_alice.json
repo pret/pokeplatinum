@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been wearing these clothes for a\n",
+                "long time. Bathing is for the birds!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Changing clothes takes too much effort.\n",
+                "Taking a bath is even worse!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "No, no, no!\n",
+                "I won’t take a bath!\r"
+            ]
+        }
     ]
 }

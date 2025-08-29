@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "That’s right, I’m tough. I won’t lose.\n",
+                "I don’t think losing’s possible."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yup, I’m so tough...\n",
+                "Ehehe... Heeheehee...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I lost? But, how...?\n",
+                "What now? What do I do?\r"
+            ]
+        }
     ]
 }

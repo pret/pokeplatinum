@@ -52,5 +52,25 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "My precious Pokémon will set you right!"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My Pokémon have no flaws that you can\n",
+                "exploit!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I apologize, my dear Pokémon...\n",
+                "I was caught unprepared...\r"
+            ]
+        }
     ]
 }

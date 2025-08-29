@@ -52,5 +52,25 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I believe I will approach this battle\n",
+                "from the perspective of a newborn."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Abuboo dah.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ababaa.\n",
+                "Manmaa.\r"
+            ]
+        }
     ]
 }

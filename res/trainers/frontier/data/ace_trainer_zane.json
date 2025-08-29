@@ -70,5 +70,28 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Ooh, it gives me shivers...\n",
+                "I live for this moment."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, yeah... That’s it...\n",
+                "Perfection doesn’t come better...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s gotten so I can’t live without\n",
+                "battling anymore.\r"
+            ]
+        }
     ]
 }

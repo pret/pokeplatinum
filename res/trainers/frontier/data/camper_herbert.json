@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The most natural Trainer is...\n",
+                "Oh, why hide it? None other than me!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "This is the natural outcome.\n",
+                "It was inevitable!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I was battling naturally, and ended up\n",
+                "with the loss.\r"
+            ]
+        }
     ]
 }

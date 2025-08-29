@@ -28,5 +28,28 @@
         "kingdra_3",
         "milotic_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Feed the Pokémon you catch, or they\n",
+                "will flee. Do you see?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Once a Pokémon has fled, it will never\n",
+                "return. Do you see?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What I said about Pokémon, it is a\n",
+                "parable. Do you see?\r"
+            ]
+        }
     ]
 }

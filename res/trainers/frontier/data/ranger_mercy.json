@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Watch me, darling!\n",
+                "I’m putting my best into this!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "See, darling? Did you see?\n",
+                "I put in my best effort for you.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can’t have my darling see me like this.\n",
+                "How pathetic I must look...\r"
+            ]
+        }
     ]
 }

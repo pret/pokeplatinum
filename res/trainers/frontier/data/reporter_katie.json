@@ -98,5 +98,25 @@
         "magnezone_4",
         "electivire_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Will you give me an interview if you win?"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You made my job too easy.\n",
+                "You need to buckle down.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your feelings now, in a word!\n",
+                "Shout it into the mike, please!\r"
+            ]
+        }
     ]
 }

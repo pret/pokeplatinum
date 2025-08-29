@@ -76,5 +76,28 @@
         "latios_4",
         "cresselia_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I hear my Pokémon calling out...\n",
+                "They clamor to battle..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I hear my Pokémon calling out...\n",
+                "They call for your return...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I hear my Pokémon calling out...\n",
+                "They tell me of the fun they had...\r"
+            ]
+        }
     ]
 }

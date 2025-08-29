@@ -1010,7 +1010,7 @@ int ov104_0223A790(u8 param0)
         return TEXT_BANK_UNK_0613;
     }
 
-    return TEXT_BANK_UNK_0614;
+    return TEXT_BANK_FRONTIER_TRAINER_MESSAGES;
 }
 
 static int ov104_0223A7AC(u8 param0)

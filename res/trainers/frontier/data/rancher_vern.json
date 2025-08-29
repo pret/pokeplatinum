@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Whether it be work or play, I’m with my\n",
+                "Pokémon all day."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Life without Pokémon?\n",
+                "I can’t picture that.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s like I’m married to my Pokémon.\n",
+                "I’m not married, though.\r"
+            ]
+        }
     ]
 }

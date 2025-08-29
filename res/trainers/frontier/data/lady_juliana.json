@@ -52,5 +52,22 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "I can sink your sort with minimal effort."
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It took the barest of effort to win this\n",
+                "match.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You swamped us with no effort at all...\r"
+        }
     ]
 }

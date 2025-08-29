@@ -46,5 +46,28 @@
         "metagross_3",
         "garchomp_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My showdown against a man of the sea\n",
+                "draws near! Let me test my team!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Everything went as calculated...\n",
+                "Be ready for me, man of the sea!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Beating the man of the sea is impossible\n",
+                "with an outcome this lame...\r"
+            ]
+        }
     ]
 }

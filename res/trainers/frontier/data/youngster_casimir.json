@@ -52,5 +52,28 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The prince among shorts-wearing\n",
+                "Youngsters, that is me!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I hope I lived up to my title of the\n",
+                "prince among the shorts wearers.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can’t lose here! Not as the prince\n",
+                "among the wearers of shorts!\r"
+            ]
+        }
     ]
 }

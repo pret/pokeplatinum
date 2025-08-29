@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Whoa-whoa-whoa... Careful now!\n",
+                "Maintaining balance is the key!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Whoops...! Almost went over!\n",
+                "Have to be careful here...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...Waaaaaah...\n",
+                "Thud!\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Fwo-fwo-fwo. Youngster, what’s most\n",
+                "important is to never give up."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "If you give up, that’s it.\n",
+                "The game’s over.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fwo-fwo-fwo.\n",
+                "You’re an admirable Trainer already.\r"
+            ]
+        }
     ]
 }

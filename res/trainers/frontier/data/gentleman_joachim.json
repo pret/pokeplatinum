@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hmmm... So young...\n",
+                "I may have to go easy..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You’re so depressingly young...\n",
+                "It’s fine. You may go.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Consider the loser’s feelings.\n",
+                "That’s where you young people fail...\r"
+            ]
+        }
     ]
 }

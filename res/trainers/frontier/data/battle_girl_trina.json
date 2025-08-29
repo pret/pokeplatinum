@@ -50,5 +50,25 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "...To get this far, I had to make\n",
+                "sacrifices. Many, many sacrifices."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "It’s for this one moment that I live.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What else do I have to give up so I can\n",
+                "beat you?\r"
+            ]
+        }
     ]
 }

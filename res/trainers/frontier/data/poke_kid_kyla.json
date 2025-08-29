@@ -38,5 +38,28 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I once saw a lady wearing the same\n",
+                "outfit as me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "She said, “You’re showing serious\n",
+                "fashion chops.”\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "She said, “You’re kidding me, am I\n",
+                "right?”\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My team has been raised with care.\n",
+                "I have absolute confidence in them."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You should pay closer attention to the\n",
+                "unique aspects of your Pokémon.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How did you find my Pokémon?\n",
+                "Did you notice their significance?\r"
+            ]
+        }
     ]
 }

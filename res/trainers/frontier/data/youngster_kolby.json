@@ -52,5 +52,25 @@
         "weezing_2",
         "kangaskhan_2",
         "tauros_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "That’s right, I’m the legendary kid in\n",
+                "shorts who’s the talk of the town."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Even a Youngster in shorts like me can\n",
+                "be the stuff of legend or two.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My legend is over...\r"
+        }
     ]
 }

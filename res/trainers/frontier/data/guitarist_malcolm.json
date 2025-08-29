@@ -38,5 +38,22 @@
         "plusle_1",
         "minun_1",
         "pachirisu_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hunh? A battle, is that it?\n",
+                "Sure thing, sure thing."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Hey, you’re something special, huh?\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Yeah, thanks for your time.\r"
+        }
     ]
 }

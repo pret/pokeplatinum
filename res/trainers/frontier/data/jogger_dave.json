@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Howdy! Let’s keep it clean, fair,\n",
+                "refreshing, and pleasant!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Whew, I feel invigorated!\n",
+                "Pokémon are the greatest!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Uh, haha...ha... It actually feels kinda\n",
+                "cleansing to be thrashed this badly.\r"
+            ]
+        }
     ]
 }

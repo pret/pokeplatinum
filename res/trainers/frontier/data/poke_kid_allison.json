@@ -52,5 +52,25 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Pikapika pikaah!\n",
+                "Pikka! Pikachuuuh!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Piika pikapikka!\n",
+                "Pikka pikkachuuh!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Pikka ppi pi piii...\r"
+        }
     ]
 }

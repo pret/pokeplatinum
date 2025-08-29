@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Partying, shopping, dining...\n",
+                "Darling, I’ve grown bored of it all."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Excitement is so lacking in my life.\n",
+                "What will send my heart racing?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Only battling lifts me from this idle\n",
+                "existence of boredom and apathy...\r"
+            ]
+        }
     ]
 }

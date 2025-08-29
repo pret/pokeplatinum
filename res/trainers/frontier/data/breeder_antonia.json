@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Raising a Pokémon right takes money and\n",
+                "time."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "But it’s all worthwhile when the\n",
+                "Pokémon grows up.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "To raise the ideal Pokémon,\n",
+                "I’m willing to work hard.\r"
+            ]
+        }
     ]
 }

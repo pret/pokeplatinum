@@ -70,5 +70,28 @@
         "metagross_3",
         "garchomp_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My, you’re very eager to go. I’d better\n",
+                "take the tension up a notch, too!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I had a lot of fun with that match!\n",
+                "Wouldn’t it be nice to see you again!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re so full of energy!\n",
+                "Why, I feel energized, too!\r"
+            ]
+        }
     ]
 }

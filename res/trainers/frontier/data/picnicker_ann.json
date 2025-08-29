@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I have a pack lunch all ready, and of\n",
+                "course I have some snacks."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My favorite Pokémon make winning so\n",
+                "easy!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, no, no! I forgot to bring my\n",
+                "favorite Pokémon!\r"
+            ]
+        }
     ]
 }

@@ -48,5 +48,28 @@
         "clefable_2",
         "electabuzz_2",
         "magmar_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "An analogy for battling is...\n",
+                "I’d say a bachelor guy."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Heheh, do you get it?\n",
+                "I doubt you’d get it. No one does.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Do you get what I’m saying?\n",
+                "I doubt you’d get it. No one ever does.\r"
+            ]
+        }
     ]
 }

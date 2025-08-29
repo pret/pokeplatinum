@@ -98,5 +98,28 @@
         "magnezone_4",
         "electivire_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m on a diet...\n",
+                "I’m so famished..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m happy, but if I get excited, I’ll get\n",
+                "hungry. No thanks...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh...\n",
+                "Your Pokémon look delicious...\r"
+            ]
+        }
     ]
 }

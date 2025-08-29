@@ -214,26 +214,7 @@ static std::string ParseMessages(const rapidjson::Document &doc, int trainerID, 
         idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), messagesTextBank->GetAllocator());
         message.AddMember("id", idValue, messagesTextBank->GetAllocator());
 
-        if (member.HasMember("en_US")) {
-            if (member["en_US"].IsArray()) {
-                rapidjson::Value strings(rapidjson::kArrayType);
-                int i = 0;
-                for (const auto &member2 : member["en_US"].GetArray()) {
-                    std::string str = member2.GetString();
-                    rapidjson::Value string(rapidjson::kStringType);
-                    string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), messagesTextBank->GetAllocator());
-                    strings.PushBack(string, messagesTextBank->GetAllocator());
-                }
-                message.AddMember("en_US", strings, messagesTextBank->GetAllocator());
-            } else {
-                std::string str = member["en_US"].GetString();
-                rapidjson::Value string(rapidjson::kStringType);
-                string.SetString(str.c_str(), static_cast<rapidjson::SizeType>(str.length()), messagesTextBank->GetAllocator());
-                message.AddMember("en_US", string, messagesTextBank->GetAllocator());
-            }
-        } else if (member.HasMember("garbage")) {
-            message.AddMember("garbage", member["garbage"].GetInt(), messagesTextBank->GetAllocator());
-        }
+        CopyMessage(member, message, messagesTextBank->GetAllocator());
 
         trainerMessages.PushBack(message, messagesTextBank->GetAllocator());
     }

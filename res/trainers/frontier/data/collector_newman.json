@@ -70,5 +70,28 @@
         "metagross_1",
         "garchomp_1",
         "slaking_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oh! Hold on a second!\n",
+                "Incoming text message!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ticka-ticka-ticka... Ticka-tick...\n",
+                "Huh? Is it over already?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hey, stop that!\n",
+                "No peeking at my text messages!\r"
+            ]
+        }
     ]
 }

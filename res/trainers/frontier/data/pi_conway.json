@@ -44,5 +44,28 @@
         "regirock_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll battle my way.\n",
+                "You battle yours."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "People are people.\n",
+                "I’ll go my own way.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "People are people.\n",
+                "You go your own way.\r"
+            ]
+        }
     ]
 }

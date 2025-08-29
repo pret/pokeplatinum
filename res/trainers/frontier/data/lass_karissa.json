@@ -52,5 +52,28 @@
         "weezing_2",
         "kangaskhan_2",
         "tauros_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Uh... Um... H-hello.\n",
+                "P-pleased to meet you."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "S-s-sorry.\n",
+                "I’m r-really n-nervous.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Uh... Th-thank you.\n",
+                "That was f-fun.\r"
+            ]
+        }
     ]
 }

@@ -28,5 +28,28 @@
         "togekiss_4",
         "slaking_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We’re not here for a long time, so let’s\n",
+                "make it a good time!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Thank you! That was soooo fun!\n",
+                "I really hope we can battle again!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It makes me sad having to say\n",
+                "good-bye... Please come see me again!\r"
+            ]
+        }
     ]
 }

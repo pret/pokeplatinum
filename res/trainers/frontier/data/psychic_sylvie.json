@@ -76,5 +76,28 @@
         "latios_4",
         "cresselia_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Behind you, I see light.\n",
+                "What is its significance?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I thought I saw an aura of invincibility.\n",
+                "I must have been mistaken.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Now I see...\n",
+                "You glow with the light of victory...\r"
+            ]
+        }
     ]
 }

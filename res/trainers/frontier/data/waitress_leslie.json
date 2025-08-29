@@ -70,5 +70,28 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Everyone has too much to say about\n",
+                "Pokémon! If it’s fun, that’s enough!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Excuse me, but are you all right?\n",
+                "Maybe you’re a little too tired?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If you get too caught up in winning and\n",
+                "losing, you’ll burn yourself out.\r"
+            ]
+        }
     ]
 }

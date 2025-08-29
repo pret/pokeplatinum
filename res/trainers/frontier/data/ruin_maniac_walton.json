@@ -88,5 +88,28 @@
         "rhyperior_4",
         "tyranitar_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I battle around the globe.\n",
+                "I’m a worldwide bad boy!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I don’t lose at battling.\n",
+                "I can’t get over how cool I am!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m hitting the road over that loss.\n",
+                "It’s good-bye to the old me!\r"
+            ]
+        }
     ]
 }

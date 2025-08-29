@@ -1,5 +1,29 @@
 {
     "name": "Argenta",
     "class": "TRAINER_CLASS_HALL_MATRON",
-    "availableSets": []
+    "availableSets": [],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "What Pokémon do you want to show off\n",
+                "this time?\f",
+                "I can’t wait!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "How wonderful that was!\n",
+                "Thank you! Come again, please.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s so sad how the truly fun times\n",
+                "seem to last only a moment.\r"
+            ]
+        }
+    ]
 }

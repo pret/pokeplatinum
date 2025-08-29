@@ -38,5 +38,25 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Do the monster Meteor Mash!\n",
+                "It’s my catchphrase!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "My Meteor Mash goes to your heart!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "All Idols need a catchphrase,\n",
+                "especially right after their debut.\r"
+            ]
+        }
     ]
 }

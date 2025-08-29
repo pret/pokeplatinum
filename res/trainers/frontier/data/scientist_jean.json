@@ -52,5 +52,28 @@
         "lunatone_2",
         "solrock_2",
         "kecleon_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Finally... The time has come to put the\n",
+                "fruits of my research to the test..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Success...\n",
+                "Sacrificing my youth was worthwhile.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "No! Nooooooo!\n",
+                "Give me back my youth!\r"
+            ]
+        }
     ]
 }

@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In the next few minutes, you will learn\n",
+                "true terror at my hands!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Hah! Too weak! Too weak!\n",
+                "What pitiful resistance!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Noooo!\n",
+                "I cannot lose!"
+            ]
+        }
     ]
 }

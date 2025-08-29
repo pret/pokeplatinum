@@ -22,5 +22,28 @@
         "togetic_1",
         "murkrow_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Wait, please wait...\n",
+                "The winds... I hear them..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I can hear them...\n",
+                "The winds are laughing...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can hear them...\n",
+                "The winds... They are in tears...\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I crammed hard for this.\n",
+                "I can’t possibly fail!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yes! I get the win!\n",
+                "I’m glad I kept with this!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It means I need to study at home some\n",
+                "more.\r"
+            ]
+        }
     ]
 }

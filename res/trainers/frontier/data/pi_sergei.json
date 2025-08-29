@@ -20,5 +20,25 @@
         "mamoswine_3",
         "rhyperior_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My present case can go either way.\n",
+                "It’s a coin toss."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "So, I won this time...\n",
+                "All decided by a fickle coin...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Best two out of three?\r"
+        }
     ]
 }

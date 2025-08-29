@@ -52,5 +52,28 @@
         "lunatone_1",
         "solrock_1",
         "kecleon_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This bike has become an extension of\n",
+                "my very being."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Any damage to my bike, I feel the pain\n",
+                "as if it were mine to bear.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Please! I’ll ask you to keep your filthy\n",
+                "hands off my bike.\r"
+            ]
+        }
     ]
 }

@@ -90,5 +90,28 @@
         "dusknoir_4",
         "crobat_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Are you challenging me? ...You are.\n",
+                "Kids these days..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Now run along home, and go help your\n",
+                "mommy with her chores!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hey, you... If you think playtime will\n",
+                "last forever, you’ll end up like me.\r"
+            ]
+        }
     ]
 }

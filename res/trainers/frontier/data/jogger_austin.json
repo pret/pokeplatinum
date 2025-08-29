@@ -70,5 +70,28 @@
         "poliwrath_3",
         "rapidash_3",
         "muk_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m one of a kind.\n",
+                "That’s what I’m saying."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I keep it real.\n",
+                "That’s what makes me tough.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I kept it real, but you won anyway.\n",
+                "Your reality was more real.\r"
+            ]
+        }
     ]
 }

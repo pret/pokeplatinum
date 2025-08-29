@@ -28,5 +28,28 @@
         "tyranitar_1",
         "salamence_1",
         "garchomp_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "See it! Hear it! Smell it!\n",
+                "Marvel at my power!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That’s right! Use all your senses and\n",
+                "realize what you were up against!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I didn’t see anything! I’m not\n",
+                "listening! And I don’t smell a thing!\r"
+            ]
+        }
     ]
 }

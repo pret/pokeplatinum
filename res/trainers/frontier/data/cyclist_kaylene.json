@@ -52,5 +52,28 @@
         "lunatone_1",
         "solrock_1",
         "kecleon_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When I was little, I hated cycling.\n",
+                "I couldn’t get the hang of it."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I love cycling now.\n",
+                "I’ve made many friends riding.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Can you ride a bike?\n",
+                "It’s healthy and a lot of fun.\r"
+            ]
+        }
     ]
 }

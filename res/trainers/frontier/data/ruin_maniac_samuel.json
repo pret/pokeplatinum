@@ -40,5 +40,28 @@
         "metagross_3",
         "garchomp_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When I was younger, I went out on digs\n",
+                "chasing rumors of hidden treasures."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Of course, there are no such things.\n",
+                "But it’s about chasing a dream.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Well, it sure left huge holes...\n",
+                "In the ground and in my bank account.\r"
+            ]
+        }
     ]
 }

@@ -30,5 +30,28 @@
         "poliwhirl_1",
         "wailmer_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When I enter battle, I picture the vast\n",
+                "sea in my mind."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "When I can envision the sea, I feel as if\n",
+                "I could never lose.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "When I envision the sea, I don’t feel\n",
+                "the sting of defeat.\r"
+            ]
+        }
     ]
 }

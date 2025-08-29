@@ -58,5 +58,28 @@
         "dusknoir_4",
         "magnezone_4",
         "electivire_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I wrote a song using the cries of\n",
+                "Pokémon. I’d like you to hear it."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Graaah wagyaaah! Wagyaaaah!\n",
+                "Chu! Chu! Gyaroooh-gah!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Giiyaaaah! Drundundun!\n",
+                "Garoo-gah! Wawawaaah!\r"
+            ]
+        }
     ]
 }

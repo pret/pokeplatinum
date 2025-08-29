@@ -28,5 +28,28 @@
         "mawile_1",
         "onix_1",
         "graveler_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Seeing buildings and towns from the old\n",
+                "ages sends my pulse racing."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "People interested in old architecture\n",
+                "are potential Ruin Maniacs."
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Open your eyes in towns. There will be\n",
+                "exciting new discoveries. I mean it."
+            ]
+        }
     ]
 }

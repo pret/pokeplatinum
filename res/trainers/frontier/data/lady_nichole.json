@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "If I were Honey, then you would be\n",
+                "Gooey Mulch, I would think."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Do you see now?\n",
+                "How different we are in level and class?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How dare you!\n",
+                "I won’t forget this humiliation ever!\r"
+            ]
+        }
     ]
 }

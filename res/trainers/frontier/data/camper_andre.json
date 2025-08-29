@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "No, no, I can’t do this!\n",
+                "I’m not cut out for battling!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, wow! I won! What’ll I do?\n",
+                "You’re not mad at me, are you?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "See! I told you before we started!\n",
+                "Battling just isn’t for me.\r"
+            ]
+        }
     ]
 }

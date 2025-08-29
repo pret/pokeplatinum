@@ -48,5 +48,28 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I frolic with my water Pokémon in a pool\n",
+                "all the time."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It sure makes me happy winning with my\n",
+                "Pokémon favorites.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’d love to swim in a pool full of water\n",
+                "Pokémon.\r"
+            ]
+        }
     ]
 }

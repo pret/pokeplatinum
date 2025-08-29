@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "While battling, I’ll keep looking for the\n",
+                "best shot of you."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "There! And there again!\n",
+                "Decisive moments in time!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Shots of me losing?\n",
+                "Those get deleted immediately.\r"
+            ]
+        }
     ]
 }

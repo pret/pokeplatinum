@@ -52,5 +52,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been devising ways of raising tough\n",
+                "Pokémon from the genetic level."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You can’t overlook the role of\n",
+                "knowledge in raising tough Pokémon.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I need to study and understand what\n",
+                "genetics is about first.\r"
+            ]
+        }
     ]
 }

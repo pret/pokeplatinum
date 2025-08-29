@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m very fickle. I can’t stick with any\n",
+                "one thing for very long."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I won, and it’s enough for me.\n",
+                "I’m going to check out the Wi-Fi Plaza.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I lost, so that’s enough. I’ll go dig\n",
+                "Spheres in the Underground.\r"
+            ]
+        }
     ]
 }

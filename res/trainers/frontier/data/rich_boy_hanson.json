@@ -52,5 +52,28 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’re my opponent? Oh, all right...\n",
+                "Try not to disappoint me too badly."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My Pokémon are all tops in luxury.\n",
+                "Do you see? This is what power is about.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Nyah! I don’t care! I’ve got enough \n",
+                "money to fill a swimming pool!\r"
+            ]
+        }
     ]
 }

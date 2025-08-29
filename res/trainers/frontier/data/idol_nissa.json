@@ -30,5 +30,28 @@
         "umbreon_4",
         "leafeon_4",
         "glaceon_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m always ready for the public eye.\n",
+                "You can come at me at your own pace."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That’s why people consider me the\n",
+                "perfect Idol.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I didn’t know how bad it feels to lose.\n",
+                "This is a first for me.\r"
+            ]
+        }
     ]
 }

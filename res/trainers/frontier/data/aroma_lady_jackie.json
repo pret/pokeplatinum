@@ -44,5 +44,28 @@
         "parasect_1",
         "togetic_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My acute sense of smell tells me how\n",
+                "tough a Trainer is."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Keep trying. My nose tells me\n",
+                "you have great potential.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sniff, sniff... Snort! My nose tells me\n",
+                "you’ve been working hard!\r"
+            ]
+        }
     ]
 }

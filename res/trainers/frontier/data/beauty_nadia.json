@@ -102,5 +102,28 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "How much longer do I have to wait for a\n",
+                "Trainer that’s any good?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m so bored by the weak competition.\n",
+                "Maybe I’ll just retire.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, hello, there.\n",
+                "Now, you’re a little special.\r"
+            ]
+        }
     ]
 }

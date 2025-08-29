@@ -52,5 +52,28 @@
         "kabutops_1",
         "scyther_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Over the years, I’ve crossed paths\n",
+                "with many a Trainer."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "They were all wonderful Trainers in\n",
+                "their own ways. All fond memories now...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re one among those many Trainers.\n",
+                "I’m sorry I wasn’t younger.\r"
+            ]
+        }
     ]
 }

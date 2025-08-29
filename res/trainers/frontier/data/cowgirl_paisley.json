@@ -52,5 +52,28 @@
         "pachirisu_1",
         "ponyta_1",
         "azumarill_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My papa’s dream...\n",
+                "I’m going to make it real."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Papa, did you see?\n",
+                "We did it all for you...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "We lost...\n",
+                "Papa, I am so sorry...\r"
+            ]
+        }
     ]
 }

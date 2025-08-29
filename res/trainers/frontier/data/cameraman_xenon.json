@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You probably can’t tell, but I can see\n",
+                "right down to your pores."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yes, I see it, indeed.\n",
+                "I can see you clearly.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I zoomed in on you too much.\n",
+                "I couldn’t see your Pokémon.\r"
+            ]
+        }
     ]
 }

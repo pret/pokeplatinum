@@ -76,5 +76,28 @@
         "zapdos_4",
         "moltres_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A good breeze has sprung up...\n",
+                "This is good! I can win this!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "The tailwind put us over the top!\n",
+                "...As they say!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The headwind worked against us!\n",
+                "...As they say!\r"
+            ]
+        }
     ]
 }
