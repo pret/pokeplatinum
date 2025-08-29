@@ -387,9 +387,9 @@ _04C4:
 
 _04D0:
     LockAll
-    ScrCmd_168 3, 27, 9, 11, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 3, 27, 9, 11, 77
+    PlayDoorOpenAnimation 77
+    WaitForAnimation 77
     ClearFlag FLAG_UNK_0x0174
     AddObject 2
     ApplyMovement 2, _05A4
@@ -414,9 +414,9 @@ _04D0:
     CloseMessage
     ApplyMovement 2, _05C8
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation 77
+    WaitForAnimation 77
+    UnloadAnimation 77
     RemoveObject 2
     CallCommonScript 0x7FB
     SetVar VAR_UNK_0x4070, 1

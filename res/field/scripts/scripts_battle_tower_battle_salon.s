@@ -292,15 +292,15 @@ _0467:
     End
 
 _0488:
-    ScrCmd_168 0, 0, 8, 2, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 0, 0, 8, 2, 77
+    PlayDoorOpenAnimation 77
+    WaitForAnimation 77
     Return
 
 _049B:
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation 77
+    WaitForAnimation 77
+    UnloadAnimation 77
     Return
 
 _04A6:

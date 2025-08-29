@@ -92,14 +92,14 @@ _00D5:
     CloseMessage
     ApplyMovement 8, _011C
     WaitMovement
-    ScrCmd_168 20, 10, 12, 18, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 20, 10, 12, 18, 77
+    PlayDoorOpenAnimation 77
+    WaitForAnimation 77
     ApplyMovement 8, _0124
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation 77
+    WaitForAnimation 77
+    UnloadAnimation 77
     RemoveObject 8
     ReleaseAll
     End

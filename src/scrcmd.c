@@ -508,11 +508,11 @@ static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
 static BOOL ScrCmd_18F(ScriptContext *ctx);
-static BOOL ScrCmd_168(ScriptContext *ctx);
-static BOOL ScrCmd_169(ScriptContext *ctx);
-static BOOL ScrCmd_16A(ScriptContext *ctx);
-static BOOL ScrCmd_16B(ScriptContext *ctx);
-static BOOL ScrCmd_16C(ScriptContext *ctx);
+static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_WaitForAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_PlayDoorOpenAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_PlayDoorCloseAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
 static BOOL ScrCmd_170(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
@@ -630,9 +630,9 @@ static BOOL ScrCmd_245(ScriptContext *ctx);
 static BOOL ScrCmd_GetGameVersion(ScriptContext *ctx);
 static BOOL ScrCmd_249(ScriptContext *ctx);
 static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx);
-static BOOL ScrCmd_24B(ScriptContext *ctx);
-static BOOL ScrCmd_24C(ScriptContext *ctx);
-static BOOL ScrCmd_24D(ScriptContext *ctx);
+static BOOL ScrCmd_LoadPCAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_PlayPCBootUpAnimation(ScriptContext *ctx);
+static BOOL ScrCmd_PlayPCShutDownAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
@@ -1131,11 +1131,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ClearStepFlag,
     ScrCmd_CheckGameCompleted,
     ScrCmd_SetGameCompleted,
-    ScrCmd_168,
-    ScrCmd_169,
-    ScrCmd_16A,
-    ScrCmd_16B,
-    ScrCmd_16C,
+    ScrCmd_LoadDoorAnimation,
+    ScrCmd_WaitForAnimation,
+    ScrCmd_UnloadAnimation,
+    ScrCmd_PlayDoorOpenAnimation,
+    ScrCmd_PlayDoorCloseAnimation,
     ScrCmd_BufferDaycareMonNicknames,
     ScrCmd_GetDaycareState,
     ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
@@ -1358,9 +1358,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_248,
     ScrCmd_249,
     ScrCmd_GetCapturedFlagCount,
-    ScrCmd_24B,
-    ScrCmd_24C,
-    ScrCmd_24D,
+    ScrCmd_LoadPCAnimation,
+    ScrCmd_PlayPCBootUpAnimation,
+    ScrCmd_PlayPCShutDownAnimation,
     ScrCmd_GetJubilifeLotteryTrainerID,
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
@@ -5506,7 +5506,7 @@ static BOOL ScrCmd_18F(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_168(ScriptContext *ctx)
+static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
@@ -5523,7 +5523,7 @@ static BOOL ScrCmd_168(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_169(ScriptContext *ctx)
+static BOOL ScrCmd_WaitForAnimation(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -5532,7 +5532,7 @@ static BOOL ScrCmd_169(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_16A(ScriptContext *ctx)
+static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -5541,7 +5541,7 @@ static BOOL ScrCmd_16A(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_16B(ScriptContext *ctx)
+static BOOL ScrCmd_PlayDoorOpenAnimation(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -5550,7 +5550,7 @@ static BOOL ScrCmd_16B(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_16C(ScriptContext *ctx)
+static BOOL ScrCmd_PlayDoorCloseAnimation(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -6464,7 +6464,7 @@ static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_24B(ScriptContext *ctx)
+static BOOL ScrCmd_LoadPCAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -6474,7 +6474,7 @@ static BOOL ScrCmd_24B(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_24C(ScriptContext *ctx)
+static BOOL ScrCmd_PlayPCBootUpAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -6483,7 +6483,7 @@ static BOOL ScrCmd_24C(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_24D(ScriptContext *ctx)
+static BOOL ScrCmd_PlayPCShutDownAnimation(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);

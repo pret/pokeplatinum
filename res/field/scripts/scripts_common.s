@@ -890,15 +890,15 @@ _0BEE:
     GoTo _0C1C
 
 _0C06:
-    ScrCmd_24B 90
-    ScrCmd_24C 90
-    ScrCmd_169 90
+    LoadPCAnimation 90
+    PlayPCBootUpAnimation 90
+    WaitForAnimation 90
     Return
 
 _0C11:
-    ScrCmd_24D 90
-    ScrCmd_169 90
-    ScrCmd_16A 90
+    PlayPCShutDownAnimation 90
+    WaitForAnimation 90
+    UnloadAnimation 90
     Return
 
 _0C1C:
@@ -1123,7 +1123,7 @@ _0F80:
 _0F94:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_16A 90
+    UnloadAnimation 90
     Return
 
 _0FA5:

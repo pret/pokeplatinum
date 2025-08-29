@@ -2030,7 +2030,7 @@
     .short 359
     .endm
 
-    .macro ScrCmd_168 arg0, arg1, arg2, arg3, arg4
+    .macro LoadDoorAnimation arg0, arg1, arg2, arg3, arg4
     .short 360
     .short \arg0
     .short \arg1
@@ -2039,22 +2039,22 @@
     .byte \arg4
     .endm
 
-    .macro ScrCmd_169 arg0
+    .macro WaitForAnimation arg0
     .short 361
     .byte \arg0
     .endm
 
-    .macro ScrCmd_16A arg0
+    .macro UnloadAnimation arg0
     .short 362
     .byte \arg0
     .endm
 
-    .macro ScrCmd_16B arg0
+    .macro PlayDoorOpenAnimation arg0
     .short 363
     .byte \arg0
     .endm
 
-    .macro ScrCmd_16C arg0
+    .macro PlayDoorCloseAnimation arg0
     .short 364
     .byte \arg0
     .endm
@@ -3382,17 +3382,17 @@
     .short \destFlagCount
     .endm
 
-    .macro ScrCmd_24B arg0
+    .macro LoadPCAnimation arg0
     .short 587
     .byte \arg0
     .endm
 
-    .macro ScrCmd_24C arg0
+    .macro PlayPCBootUpAnimation arg0
     .short 588
     .byte \arg0
     .endm
 
-    .macro ScrCmd_24D arg0
+    .macro PlayPCShutDownAnimation arg0
     .short 589
     .byte \arg0
     .endm

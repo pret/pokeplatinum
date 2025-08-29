@@ -400,15 +400,15 @@ _06AE:
     ApplyMovement VAR_MAP_LOCAL_2, _1248
     ApplyMovement LOCALID_PLAYER, _1260
     WaitMovement
-    ScrCmd_168 0, 0, VAR_MAP_LOCAL_3, 2, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_3, 2, 77
+    PlayDoorOpenAnimation 77
+    WaitForAnimation 77
     ApplyMovement VAR_MAP_LOCAL_2, _1254
     ApplyMovement LOCALID_PLAYER, _126C
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation 77
+    WaitForAnimation 77
+    UnloadAnimation 77
     Return
 
 _06EE:
