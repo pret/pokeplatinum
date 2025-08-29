@@ -7,9 +7,9 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0202440C.h"
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202F264.h"
 
+#include "hall_of_fame.h"
 #include "mystery_gift.h"
 #include "savedata.h"
 
