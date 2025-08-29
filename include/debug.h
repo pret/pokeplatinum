@@ -15,8 +15,8 @@ __attribute__((format(printf, 1, 2))) void EmulatorLog(const char *text, ...);
 
 #else
 
-#define EmulatorPrintf(text, ...)
-#define EmulatorLog(text, ...)
+#define EmulatorPrintf(...)
+#define EmulatorLog(...)
 
 #endif
 
