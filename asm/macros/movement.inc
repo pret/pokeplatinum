@@ -515,8 +515,8 @@
     .short \length
     .endm
 
-    .macro EmoteQuestionMark length=1
-    .short MOVEMENT_ACTION_EMOTE_QUESTION_MARK
+    .macro EmoteDoubleExclamationMark length=1
+    .short MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK
     .short \length
     .endm
 

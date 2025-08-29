@@ -1225,7 +1225,7 @@ static BOOL MovementAction_EmoteExclamationMark_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_EmoteQuestionMark_Step0(MapObject *mapObj)
+static BOOL MovementAction_EmoteDoubleExclamationMark_Step0(MapObject *mapObj)
 {
     sub_020664A0(mapObj, 1, 0);
     return FALSE;
@@ -2501,8 +2501,8 @@ BOOL (*const gMovementActionFuncs_EmoteExclamationMark[])(MapObject *) = {
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])(MapObject *) = {
-    MovementAction_EmoteQuestionMark_Step0,
+BOOL (*const gMovementActionFuncs_EmoteDoubleExclamationMark[])(MapObject *) = {
+    MovementAction_EmoteDoubleExclamationMark_Step0,
     MovementAction_Emote_Step1,
     MovementAction_End,
 };
