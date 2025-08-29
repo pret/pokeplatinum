@@ -5508,54 +5508,54 @@ static BOOL ScrCmd_18F(ScriptContext *ctx)
 
 static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v6 = ScriptContext_ReadByte(ctx);
+    u16 mapX = ScriptContext_ReadHalfWord(ctx);
+    u16 mapZ = ScriptContext_ReadHalfWord(ctx);
+    u16 tileX = ScriptContext_GetVar(ctx);
+    u16 tileZ = ScriptContext_GetVar(ctx);
+    u16 tag = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    int v4, v5;
-    v4 = v0 * 32 + v2;
-    v5 = v1 * 32 + v3;
+    int x, z;
+    x = mapX * MAP_TILES_COUNT_X + tileX;
+    z = mapZ * MAP_TILES_COUNT_Z + tileZ;
 
-    ov5_021D4BF4(fieldSystem, v4, v5, v6);
+    DoorAnimation_FindDoorAndLoad(fieldSystem, x, z, tag);
 
     return FALSE;
 }
 
 static BOOL ScrCmd_WaitForAnimation(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021D4D48(fieldSystem, v0);
+    FieldSystem_WaitForAnimation(fieldSystem, tag);
     return TRUE;
 }
 
 static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021D4D68(fieldSystem, v0);
+    FieldSystem_UnloadAnimation(fieldSystem, tag);
     return FALSE;
 }
 
 static BOOL ScrCmd_PlayDoorOpenAnimation(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021D4C88(fieldSystem, v0);
+    DoorAnimation_PlayOpenAnimation(fieldSystem, tag);
     return FALSE;
 }
 
 static BOOL ScrCmd_PlayDoorCloseAnimation(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 tag = ScriptContext_ReadByte(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021D4CEC(fieldSystem, v0);
+    DoorAnimation_PlayCloseAnimation(fieldSystem, tag);
     return FALSE;
 }
 

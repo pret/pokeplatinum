@@ -744,15 +744,15 @@ _08FC:
     CloseMessage
     ApplyMovement 31, _0944
     WaitMovement
-    LoadDoorAnimation 9, 17, 24, 18, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 9, 17, 24, 18, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 31, _094C
     WaitMovement
     RemoveObject 31
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ReleaseAll
     End
 

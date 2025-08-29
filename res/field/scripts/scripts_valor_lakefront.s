@@ -492,15 +492,15 @@ _065A:
     RemoveItem ITEM_SUITE_KEY, 1, VAR_RESULT
     ApplyMovement 8, _06A8
     WaitMovement
-    LoadDoorAnimation 22, 24, 11, 13, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 22, 24, 11, 13, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 8, _06B0
     WaitMovement
     RemoveObject 8
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x025E
     SetFlag FLAG_UNK_0x025D
     ReleaseAll

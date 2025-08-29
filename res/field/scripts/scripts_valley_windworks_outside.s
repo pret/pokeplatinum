@@ -70,14 +70,14 @@ _00CF:
     CloseMessage
     ApplyMovement 0, _013C
     WaitMovement
-    LoadDoorAnimation 7, 20, 19, 14, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 0, _0144
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Message 4
     RemoveObject 0
     CloseMessage
@@ -165,23 +165,23 @@ _0201:
     ApplyMovement LOCALID_PLAYER, _02BC
     ApplyMovement 6, _02EC
     WaitMovement
-    LoadDoorAnimation 7, 20, 19, 14, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _0300
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     WaitTime 120, VAR_RESULT
-    LoadDoorAnimation 7, 20, 19, 14, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _0310
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _031C
     WaitMovement
     Message 3

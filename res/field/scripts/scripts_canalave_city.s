@@ -715,14 +715,14 @@ _09FA:
     CloseMessage
     ApplyMovement 18, _0A38
     WaitMovement
-    LoadDoorAnimation 1, 22, 5, 14, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 1, 22, 5, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 18, _0A40
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 18
     ReleaseAll
     End

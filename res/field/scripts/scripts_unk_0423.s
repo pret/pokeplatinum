@@ -195,14 +195,14 @@ _02AF:
     End
 
 _02CC:
-    LoadDoorAnimation 0, 0, 9, 5, 77
+    LoadDoorAnimation 0, 0, 9, 5, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     Call _0328
     ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
-    LoadDoorAnimation 0, 0, 9, 2, 77
+    LoadDoorAnimation 0, 0, 9, 2, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03D4
     WaitMovement
@@ -211,14 +211,14 @@ _02CC:
     End
 
 _0320:
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _0328:
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _0333:
@@ -236,14 +236,14 @@ _035C:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    LoadDoorAnimation 0, 0, 8, 2, 77
+    LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     Call _0328
     ApplyMovement LOCALID_PLAYER, _03FC
     WaitMovement
-    LoadDoorAnimation 0, 0, 8, 5, 77
+    LoadDoorAnimation 0, 0, 8, 5, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement
@@ -392,7 +392,7 @@ _0526:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
-    LoadDoorAnimation 0, 0, 5, 5, 77
+    LoadDoorAnimation 0, 0, 5, 5, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement VAR_LAST_TALKED, _040C
     ApplyMovement LOCALID_PLAYER, _03C4
@@ -400,7 +400,7 @@ _0526:
     Call _0328
     ApplyMovement VAR_LAST_TALKED, _0414
     WaitMovement
-    LoadDoorAnimation 0, 0, 5, 2, 77
+    LoadDoorAnimation 0, 0, 5, 2, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03E0
     ApplyMovement VAR_LAST_TALKED, _0424
@@ -424,14 +424,14 @@ Unk423_Unused:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    LoadDoorAnimation 0, 0, 5, 2, 77
+    LoadDoorAnimation 0, 0, 5, 2, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     Call _0328
     ApplyMovement LOCALID_PLAYER, _03FC
     WaitMovement
-    LoadDoorAnimation 0, 0, 5, 5, 77
+    LoadDoorAnimation 0, 0, 5, 5, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement
@@ -441,14 +441,14 @@ Unk423_Unused:
 
 _0650:
     LockAll
-    LoadDoorAnimation 0, 0, 5, 2, 77
+    LoadDoorAnimation 0, 0, 5, 2, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     Call _0328
     ApplyMovement LOCALID_PLAYER, _03FC
     WaitMovement
-    LoadDoorAnimation 0, 0, 5, 5, 77
+    LoadDoorAnimation 0, 0, 5, 5, ANIMATION_TAG_DOOR_1
     Call _0320
     ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement

@@ -25,6 +25,7 @@
 #include "generated/signpost_types.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/animation_tags.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
 #include "constants/elevator_dirs.h"
@@ -2030,33 +2031,33 @@
     .short 359
     .endm
 
-    .macro LoadDoorAnimation arg0, arg1, arg2, arg3, arg4
+    .macro LoadDoorAnimation mapX, mapZ, tileX, tileZ, tag
     .short 360
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .byte \arg4
+    .short \mapX
+    .short \mapZ
+    .short \tileX
+    .short \tileZ
+    .byte \tag
     .endm
 
-    .macro WaitForAnimation arg0
+    .macro WaitForAnimation tag
     .short 361
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro UnloadAnimation arg0
+    .macro UnloadAnimation tag
     .short 362
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro PlayDoorOpenAnimation arg0
+    .macro PlayDoorOpenAnimation tag
     .short 363
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro PlayDoorCloseAnimation arg0
+    .macro PlayDoorCloseAnimation tag
     .short 364
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro BufferDaycareMonNicknames

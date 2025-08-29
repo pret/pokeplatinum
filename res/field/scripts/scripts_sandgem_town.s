@@ -162,9 +162,9 @@ _02AC:
     GoTo _02B5
 
 _02B5:
-    LoadDoorAnimation 5, 26, 8, 10, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 5, 26, 8, 10, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x0197
     AddObject 3
     ApplyMovement 3, _0554
@@ -207,9 +207,9 @@ _035E:
     ApplyMovement 4, _045C
     ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 4
     SetVar VAR_UNK_0x4071, 1
     FadeScreenOut
@@ -434,9 +434,9 @@ _056C:
 
 _057C:
     LockAll
-    LoadDoorAnimation 5, 26, 8, 10, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 5, 26, 8, 10, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x02C4
     AddObject 14
     ApplyMovement 14, _0798
@@ -455,9 +455,9 @@ _057C:
     CloseMessage
     ApplyMovement 14, _07A0
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 14
     WaitTime 30, VAR_RESULT
     GetPlayerGender VAR_RESULT

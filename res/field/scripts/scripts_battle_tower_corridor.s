@@ -38,17 +38,17 @@ _0066:
     End
 
 _008E:
-    LoadDoorAnimation 0, 0, 2, 2, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 0, 0, 2, 2, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 0, _0140
     WaitMovement
     ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
 BattleTowerCorridor_Unused:

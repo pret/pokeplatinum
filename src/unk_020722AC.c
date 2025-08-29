@@ -1179,7 +1179,7 @@ static int sub_02073480(UnkStruct_02072334 *param0)
 
 static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 {
-    ov5_021D4D68(param0->fieldSystem, 90);
+    FieldSystem_UnloadAnimation(param0->fieldSystem, 90);
 
     if (param1 == 0) {
         sub_02072DB8(param0);

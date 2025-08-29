@@ -30,7 +30,7 @@ _0036:
 _0052:
     ApplyMovement LOCALID_PLAYER, _0120
     WaitMovement
-    LoadDoorAnimation 0, 0, VAR_RESULT, 5, 77
+    LoadDoorAnimation 0, 0, VAR_RESULT, 5, ANIMATION_TAG_DOOR_1
     Call _010D
     ApplyMovement LOCALID_PLAYER, _0128
     WaitMovement
@@ -80,14 +80,14 @@ _0108:
     Return
 
 _010D:
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _0115:
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
     .balign 4, 0
@@ -535,7 +535,7 @@ _07B5:
     Return
 
 _07BC:
-    LoadDoorAnimation 0, 0, 19, 5, 77
+    LoadDoorAnimation 0, 0, 19, 5, ANIMATION_TAG_DOOR_1
     Call _010D
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0DA0
@@ -549,7 +549,7 @@ _07BC:
 _07F1:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar VAR_UNK_0x40D5, 5
-    LoadDoorAnimation 0, 0, 7, 5, 77
+    LoadDoorAnimation 0, 0, 7, 5, ANIMATION_TAG_DOOR_1
     Call _010D
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0DB0
@@ -561,7 +561,7 @@ _07F1:
     End
 
 _0830:
-    LoadDoorAnimation 0, 0, 28, 5, 77
+    LoadDoorAnimation 0, 0, 28, 5, ANIMATION_TAG_DOOR_1
     Call _010D
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0DC0

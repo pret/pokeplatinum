@@ -144,15 +144,15 @@ _0184:
     CloseMessage
     ApplyMovement 13, _0388
     WaitMovement
-    LoadDoorAnimation 25, 14, 22, 21, 77
-    PlayDoorOpenAnimation 77
-    WaitForAnimation 77
+    LoadDoorAnimation 25, 14, 22, 21, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 13, _0390
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
-    PlayDoorCloseAnimation 77
-    WaitForAnimation 77
-    UnloadAnimation 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 13
     SetVar VAR_UNK_0x40C8, 1
     SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
