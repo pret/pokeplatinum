@@ -7,10 +7,9 @@
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02248C08.h"
-#include "overlay023/struct_ov23_02248D20.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
+#include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -46,7 +45,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     Window unk_08;
     Window unk_18;
     StringList *unk_28;
-    UnkStruct_ov23_02248D20 *unk_2C;
+    UndergroundItemListMenu *unk_2C;
     ListMenu *unk_30;
     Strbuf *unk_34;
     u16 *unk_38;
@@ -321,7 +320,7 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     u32 v1;
     u16 v2, v3;
 
-    v0 = ov23_02248D20(param0->unk_2C);
+    v0 = UndergroundItemListMenu_ProcessInput(param0->unk_2C);
     v1 = (v0 >> 1);
 
     if (param0->unk_48 == v1) {
@@ -329,8 +328,8 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     }
 
     {
-        ListMenu_GetListAndCursorPos(param0->unk_2C->unk_0C, &v2, &v3);
-        ov23_022549A8(param0->unk_04, v2, ListMenu_GetAttribute(param0->unk_2C->unk_0C, 2), ListMenu_GetAttribute(param0->unk_2C->unk_0C, 3));
+        ListMenu_GetListAndCursorPos(param0->unk_2C->listMenu, &v2, &v3);
+        ov23_022549A8(param0->unk_04, v2, ListMenu_GetAttribute(param0->unk_2C->listMenu, 2), ListMenu_GetAttribute(param0->unk_2C->listMenu, 3));
     }
 
     switch (v0) {
@@ -471,7 +470,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     v1.cursorCallback = ov23_022546A0;
     v1.parent = v0;
 
-    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD1, Underground_MoveGoodPC, v0, 1);
+    param0->unk_2C = UndergroundItemListMenu_New(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD1, Underground_MoveGoodPC, v0, 1);
 
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
@@ -489,7 +488,7 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
 {
     UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
     Window_EraseStandardFrame(&param0->unk_18, 1);
-    ov23_02248EF8(param0->unk_2C, param0->unk_38, param0->unk_3C);
+    UndergroundItemListMenu_Free(param0->unk_2C, param0->unk_38, param0->unk_3C);
 
     Window_EraseStandardFrame(&param0->unk_08, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_08.bgConfig, param0->unk_08.bgLayer);

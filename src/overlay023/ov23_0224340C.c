@@ -16,7 +16,7 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0224F294.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -974,9 +974,9 @@ static UnkStruct_ov23_02243DA8 *ov23_02243A80(int param0, int param1, UnkStruct_
     return v1;
 }
 
-void ov23_02243AD4(u8 param0)
+void Underground_SendPlacedTrap(u8 trapID)
 {
-    CommSys_SendDataFixedSize(32, &param0);
+    CommSys_SendDataFixedSize(32, &trapID);
 }
 
 void ov23_02243AE8(void)
@@ -1219,7 +1219,7 @@ void ov23_02243ED4(int param0, int param1, void *param2, void *param3)
 
         if (v0->unk_07 == 1) {
             ov23_02243DA8(&v0->unk_00);
-            Underground_RemoveSelectedTrap(v0->unk_00.unk_04);
+            UndergroundMenu_RemoveSelectedTrap(v0->unk_00.unk_04);
             UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), v0->unk_00.unk_04);
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 131, TRUE, ov23_02243850);
             Sound_PlayEffect(SEQ_SE_DP_UG_008);
@@ -1385,7 +1385,7 @@ void ov23_02244140(int param0, int param1, void *param2, void *param3)
     }
 
     if (CommSys_CurNetId() == v0->unk_07_0) {
-        if (Underground_TryAddTrap2(v0->unk_00.unk_04)) {
+        if (UndergroundInventory_TryAddTrap(v0->unk_00.unk_04)) {
             if (CommSys_CurNetId() != v0->unk_06) {
                 if (Unk_ov23_02257764->unk_B98 == 0) {
                     Unk_ov23_02257764->unk_B9A = v0->unk_00.unk_04;

@@ -17,7 +17,7 @@ void ov23_02243670(FieldSystem *fieldSystem);
 void ov23_022436F0(int param0);
 int ov23_02243858(void);
 int ov23_02243860(void);
-void ov23_02243AD4(u8 param0);
+void Underground_SendPlacedTrap(u8 trapID);
 void ov23_02243AE8(void);
 void ov23_02243AF0(void);
 void ov23_02243B0C(int param0, int param1, void *param2, void *param3);

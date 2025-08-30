@@ -103,7 +103,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov56_02256468 *unk_84;
     UnkStruct_02095E80 *unk_88;
     UnkStruct_ov5_021EB0E0 *unk_8C;
-    int unk_90;
+    int menuCursorPos;
     RadarChain *chain;
     BagCursor *bagCursor;
     JournalEntry *journalEntry;
