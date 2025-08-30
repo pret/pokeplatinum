@@ -1,6 +1,5 @@
 prebuilt_files = [
-    'item_data.narc',
-    'item_icon.narc'
+    'item_data.narc'
 ]
 
 foreach f : prebuilt_files
