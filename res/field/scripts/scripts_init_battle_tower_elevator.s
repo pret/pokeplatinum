@@ -1,16 +1,14 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 1, 0
-    .byte 1
-    ScriptEntry _000B
-    .byte 0
+    InitScriptEntry_EnterLocation 1
+    InitScriptEntry_ConditionMet InitScriptConditions
+    InitScriptEntryEnd
 
-_000B:
-    .short 0x40DB, 1, 2
-    .short 0x40DB, 2, 3
-    .short 0x40DB, 3, 4
-    .short 0
+InitScriptConditions:
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 1, 2
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 2, 3
+    InitScriptGoToIfEqual VAR_UNK_0x40DB, 3, 4
+    InitScriptConditionsEnd
 
-    .balign 4, 0
+    InitScriptEnd
