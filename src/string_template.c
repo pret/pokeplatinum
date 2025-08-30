@@ -194,13 +194,13 @@ void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 
 
 void StringTemplate_SetNickname(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, template->templateBuf);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
 void StringTemplate_SetOTName(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    BoxPokemon_GetValue(boxMon, MON_DATA_OTNAME_STRBUF, template->templateBuf);
+    BoxPokemon_GetValue(boxMon, MON_DATA_OT_NAME_STRING, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

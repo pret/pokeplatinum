@@ -702,23 +702,23 @@ static void sub_0207C028(EvolutionData *param0)
 
                 value = 0;
                 Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_MARKS, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_MARKINGS, &value);
 
-                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_UNUSED_RIBBON_53 + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (i = MON_DATA_HOENN_COOL_RIBBON; i < MON_DATA_HOENN_WORLD_RIBBON + 1; i++) {
+                for (i = MON_DATA_COOL_RIBBON; i < MON_DATA_WORLD_RIBBON + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_SUPER_COOL_RIBBON; i < MON_DATA_UNUSED_RIBBON_143 + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
                 Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
                 Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_STATUS_CONDITION, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_STATUS, &value);
 
                 mail = Mail_New(param0->heapID);
                 Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
