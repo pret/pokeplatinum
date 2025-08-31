@@ -54,7 +54,7 @@ BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx)
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), *partySlot);
 
-    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+    if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
         *destVar = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     } else {
         *destVar = SPECIES_NONE;
@@ -189,7 +189,7 @@ BOOL ScrCmd_CountPartyMonsBelowLevelThreshold(ScriptContext *ctx)
     for (slot = 0, count = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) <= threshold) {
                 count++;
             }
@@ -210,7 +210,7 @@ BOOL ScrCmd_GetPartyMonLevel(ScriptContext *ctx)
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
     *destVar = 0;
 
-    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+    if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
         *destVar = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     }
 
@@ -253,7 +253,7 @@ BOOL ScrCmd_FindPartySlotWithNature(ScriptContext *ctx)
     for (u8 slot = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             if (Pokemon_GetNature(mon) == nature) {
                 *destVar = slot;
                 break;
@@ -382,7 +382,7 @@ BOOL ScrCmd_CountPartyNonEggs(ScriptContext *ctx)
     for (i = 0, count = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             count++;
         }
     }
@@ -406,7 +406,7 @@ BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
             && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
             aliveCount++;
         }
@@ -428,7 +428,7 @@ BOOL ScrCmd_CountAliveMonsAndBoxMons(ScriptContext *ctx)
     for (slot = 0, count = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
                 count++;
             }
@@ -591,7 +591,7 @@ BOOL ScrCmd_CheckPartyHasSpecies(ScriptContext *ctx)
     for (u8 slot = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             u16 partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
             if (species == partySpecies) {
@@ -625,7 +625,7 @@ BOOL ScrCmd_CountRepeatedSpeciesInParty(ScriptContext *ctx)
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             u16 partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
             if (species == SPECIES_NONE) {
@@ -661,7 +661,7 @@ BOOL ScrCmd_FindPartySlotWithSpecies(ScriptContext *ctx)
     for (u8 slot = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             u16 partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
             if (species == partySpecies) {
@@ -705,7 +705,7 @@ BOOL ScrCmd_CountPartyRibbons(ScriptContext *ctx)
         for (u16 slot = 0; slot < partyCount; slot++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
-            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL) != FALSE) {
+            if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) && Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL) != FALSE) {
                 count++;
                 break;
             }
@@ -789,7 +789,7 @@ BOOL ScrCmd_FindPartySlotWithFatefulEncounterSpecies(ScriptContext *ctx)
     for (u8 slot = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             u16 partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
             if (species == partySpecies) {
