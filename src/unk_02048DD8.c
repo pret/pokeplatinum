@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/tv_broadcast.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
@@ -54,50 +55,50 @@ static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1);
 BOOL ScrCmd_31B(ScriptContext *param0);
 BOOL ScrCmd_329(ScriptContext *param0);
 
-BOOL ScrCmd_235(ScriptContext *param0)
+BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
-    case 0: {
-        u16 *v0 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_CHECK_STATUS: {
+        u16 *statusDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v0 = ov6_0224660C(param0->fieldSystem);
+        *statusDestVar = TVBroadcast_GetPendingBroadcastType(param0->fieldSystem);
     } break;
-    case 1: {
-        u16 v1 = ScriptContext_ReadHalfWord(param0);
-        u16 *v2 = ScriptContext_GetVarPointer(param0);
-        u16 *v3 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_FRAMING_MESSAGE: {
+        u16 framingMessageType = ScriptContext_ReadHalfWord(param0);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v2 = 622;
-        *v3 = ov6_02246978(param0->fieldSystem, v1);
+        *bankDestVar = TEXT_BANK_TV_PROGRAMS;
+        *messageDestVar = TVBroadcast_GetProgramFramingMessage(param0->fieldSystem, framingMessageType);
     } break;
-    case 3: {
-        StringTemplate **v4 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-        u16 v5 = ScriptContext_GetVar(param0);
-        u16 *v6 = ScriptContext_GetVarPointer(param0);
-        u16 *v7 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_LOAD_SEGMENT: {
+        StringTemplate **template = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+        u16 segmentID = ScriptContext_GetVar(param0);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        ov6_022469E0(param0->fieldSystem, *v4, v5, v6, v7);
+        TVBroadcast_LoadSegmentMessage(param0->fieldSystem, *template, segmentID, bankDestVar, messageDestVar);
     } break;
-    case 2:
-        ov6_022465FC(param0->fieldSystem);
+    case TV_BROADCAST_CALL_FINISH_PROGRAM:
+        FieldSystem_SetTVProgramFinished(param0->fieldSystem);
         break;
-    case 4: {
-        u16 *v8 = ScriptContext_GetVarPointer(param0);
-        u16 *v9 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_LOAD_COMMERCIAL: {
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v8 = 623;
-        *v9 = ov6_02246B40(param0->fieldSystem);
+        *bankDestVar = TEXT_BANK_TV_COMMERCIALS;
+        *messageDestVar = ov6_02246B40(param0->fieldSystem);
     } break;
-    case 5: {
+    case TV_BROADCAST_CALL_UNUSED: {
         u16 v10 = ScriptContext_GetVar(param0);
         u16 v11 = ScriptContext_GetVar(param0);
         u16 *v12 = ScriptContext_GetVarPointer(param0);
 
         *v12 = ov6_022468B0(param0->fieldSystem, v10, v11);
     } break;
-    case 6: {
-        u16 *v13 = ScriptContext_GetVarPointer(param0);
-        *v13 = ov6_02246920(param0->fieldSystem);
+    case TV_BROADCAST_CALL_NEXT_SEGMENT: {
+        u16 *segmentDestVar = ScriptContext_GetVarPointer(param0);
+        *segmentDestVar = ov6_02246920(param0->fieldSystem);
     } break;
     }
 

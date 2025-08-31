@@ -6,6 +6,7 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
+#include "constants/tv_broadcast.h"
 #include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -345,30 +346,43 @@ typedef union {
 typedef int (*UnkFuncPtr_0206CD00)(FieldSystem *, StringTemplate *, UnkStruct_ov6_022465F4 *);
 typedef BOOL (*UnkFuncPtr_0206CD2C)(FieldSystem *, UnkStruct_ov6_022465F4 *);
 
-typedef struct {
+typedef struct TVBroadcastSegment {
     UnkFuncPtr_0206CD00 unk_00;
     UnkFuncPtr_0206CD2C unk_04;
-} UnkStruct_020EFFA4;
+} TVBroadcastSegment;
 
 typedef struct {
     int unk_00;
     u16 unk_04;
-    u16 unk_06;
-    const UnkStruct_020EFFA4 *unk_08;
+    u16 numSegments;
+    const TVBroadcastSegment *segments;
 } UnkStruct_020EFD60;
 
-static const UnkStruct_020EFFA4 Unk_020EFFA4[26];
-static const UnkStruct_020EFFA4 Unk_020EFE2C[11];
-static const UnkStruct_020EFFA4 Unk_020EFF0C[19];
-static const UnkStruct_020EFFA4 Unk_020EFE84[17];
-static const UnkStruct_020EFFA4 Unk_020EFD9C[8];
+#define TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS        19
+#define TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS 26
+#define TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS           11
+#define TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS        17
+#define TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS      8
+
+static const TVBroadcastSegment Unk_020EFFA4[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS];
+static const TVBroadcastSegment Unk_020EFE2C[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS];
+static const TVBroadcastSegment Unk_020EFF0C[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
+static const TVBroadcastSegment Unk_020EFE84[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS];
+static const TVBroadcastSegment Unk_020EFD9C[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS];
+
+#define TV_PROGRAM_TYPE_HANDLER(type, segments) { \
+    TV_PROGRAM_TYPE_##type,                       \
+    TEXT_BANK_TV_PROGRAMS_##type,                 \
+    TV_PROGRAM_TYPE_##type##_NUM_SEGMENTS + 1,    \
+    segments,                                     \
+}
 
 static const UnkStruct_020EFD60 Unk_020EFD60[] = {
-    { 0x1, 0x19F, 0x14, Unk_020EFF0C },
-    { 0x2, 0x1A0, 0x1B, Unk_020EFFA4 },
-    { 0x3, 0x1A1, 0xC, Unk_020EFE2C },
-    { 0x4, 0x1A2, 0x12, Unk_020EFE84 },
-    { 0x5, 0x1A3, 0x9, Unk_020EFD9C }
+    TV_PROGRAM_TYPE_HANDLER(INTERVIEWS, Unk_020EFF0C),
+    TV_PROGRAM_TYPE_HANDLER(TRAINER_SIGHTINGS, Unk_020EFFA4),
+    TV_PROGRAM_TYPE_HANDLER(RECORDS, Unk_020EFE2C),
+    TV_PROGRAM_TYPE_HANDLER(SINNOH_NOW, Unk_020EFE84),
+    TV_PROGRAM_TYPE_HANDLER(VARIETY_HOUR, Unk_020EFD9C),
 };
 
 static const UnkStruct_020EFD60 *sub_0206CCB0(int param0)
@@ -382,19 +396,19 @@ static const UnkStruct_020EFD60 *sub_0206CCB0(int param0)
     return v0;
 }
 
-static const UnkStruct_020EFFA4 *sub_0206CCDC(const UnkStruct_020EFD60 *param0, const UnkStruct_ov6_022465F4 *param1)
+static const TVBroadcastSegment *sub_0206CCDC(const UnkStruct_020EFD60 *param0, const UnkStruct_ov6_022465F4 *param1)
 {
     int v0 = ov6_022464A4(param1);
-    GF_ASSERT(0 < v0 && v0 < param0->unk_06);
+    GF_ASSERT(0 < v0 && v0 < param0->numSegments);
 
-    return &(param0->unk_08[v0 - 1]);
+    return &(param0->segments[v0 - 1]);
 }
 
 int sub_0206CD00(int param0, FieldSystem *fieldSystem, StringTemplate *param2, UnkStruct_ov6_022465F4 *param3, u16 *param4)
 {
     UnkFuncPtr_0206CD00 v0;
     const UnkStruct_020EFD60 *v1;
-    const UnkStruct_020EFFA4 *v2;
+    const TVBroadcastSegment *v2;
 
     v1 = sub_0206CCB0(param0);
     *param4 = v1->unk_04;
@@ -409,7 +423,7 @@ BOOL sub_0206CD2C(int param0, FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *
 {
     UnkFuncPtr_0206CD2C v0;
     const UnkStruct_020EFD60 *v1;
-    const UnkStruct_020EFFA4 *v2;
+    const TVBroadcastSegment *v2;
 
     v1 = sub_0206CCB0(param0);
     v2 = sub_0206CCDC(v1, param2);
@@ -2829,7 +2843,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
-    StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
+    StringTemplate_SetContestAccessoryName(param1, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
@@ -2908,7 +2922,7 @@ static int sub_0206F29C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static const UnkStruct_020EFFA4 Unk_020EFFA4[] = {
+static const TVBroadcastSegment Unk_020EFFA4[] = {
     { sub_0206D230, sub_0206D320 },
     { sub_0206D2E0, NULL },
     { sub_0206D374, sub_0206D3C0 },
@@ -2937,7 +2951,7 @@ static const UnkStruct_020EFFA4 Unk_020EFFA4[] = {
     { sub_0206DB74, sub_0206DB9C }
 };
 
-static const UnkStruct_020EFFA4 Unk_020EFE2C[11] = {
+static const TVBroadcastSegment Unk_020EFE2C[11] = {
     { sub_0206DBE8, sub_0206DC3C },
     { NULL, NULL },
     { sub_0206DC9C, sub_0206DD1C },
@@ -2951,7 +2965,7 @@ static const UnkStruct_020EFFA4 Unk_020EFE2C[11] = {
     { sub_0206E098, sub_0206E0CC }
 };
 
-static const UnkStruct_020EFFA4 Unk_020EFF0C[19] = {
+static const TVBroadcastSegment Unk_020EFF0C[19] = {
     { NULL, NULL },
     { sub_0206E118, sub_0206E160 },
     { NULL, NULL },
@@ -2973,7 +2987,7 @@ static const UnkStruct_020EFFA4 Unk_020EFF0C[19] = {
     { sub_0206E7AC, sub_0206E834 }
 };
 
-static const UnkStruct_020EFFA4 Unk_020EFE84[17] = {
+static const TVBroadcastSegment Unk_020EFE84[17] = {
     { sub_0206E870, sub_0206E928 },
     { sub_0206E940, sub_0206EA0C },
     { sub_0206EA10, NULL },
@@ -2993,7 +3007,7 @@ static const UnkStruct_020EFFA4 Unk_020EFE84[17] = {
     { sub_0206EEBC, sub_0206EF64 }
 };
 
-static const UnkStruct_020EFFA4 Unk_020EFD9C[8] = {
+static const TVBroadcastSegment Unk_020EFD9C[8] = {
     { sub_0206EF7C, NULL },
     { sub_0206F01C, sub_0206F100 },
     { sub_0206F118, NULL },

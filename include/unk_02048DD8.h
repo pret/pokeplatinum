@@ -3,7 +3,7 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_235(ScriptContext *param0);
+BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0);
 BOOL ScrCmd_236(ScriptContext *param0);
 BOOL ScrCmd_2B8(ScriptContext *param0);
 BOOL ScrCmd_30B(ScriptContext *param0);

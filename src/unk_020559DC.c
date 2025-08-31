@@ -134,7 +134,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    sub_0202E324(broadcast, param1, rtcTime->minute);
+    TVBroadcast_UpdateProgramTimeSlot(broadcast, param1, rtcTime->minute);
 
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Party_SetShayminForm(party, param1, rtcTime);

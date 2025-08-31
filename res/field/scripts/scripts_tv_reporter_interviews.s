@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0621.h"
+#include "res/text/bank/tv_reporter_interviews.h"
 
 
     ScriptEntry _004E
@@ -116,7 +116,7 @@ _0159:
 
 _0190:
     ScrCmd_237 0, VAR_0x8000, VAR_0x8004, VAR_0x8005
-    ScrCmd_1FB VAR_0x8004, VAR_0x8005
+    ExternalMessage VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8000, 10, _01F0
     FadeScreenOut
     WaitFadeScreen
