@@ -51,12 +51,12 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020573FC.h"
-#include "unk_0206CCB0.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "vars_flags.h"
@@ -382,21 +382,21 @@ static void Shop_InitContextMenu(ShopMenu *shopMenu)
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00015, SHOP_STATE_INIT_CAMERA);
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00016, 14);
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, LIST_CANCEL);
-        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 6, FIELD_MESSAGE_PALETTE_INDEX, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 6, FIELD_MESSAGE_PALETTE_INDEX, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         maxOptions = 2;
         shopMenu->optionsList = StringList_New(maxOptions, HEAP_ID_FIELD2);
 
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00029, SHOP_STATE_INIT_CAMERA);
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00030, LIST_CANCEL);
-        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 23, 13, 7, 4, FIELD_MESSAGE_PALETTE_INDEX, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 23, 13, 7, 4, FIELD_MESSAGE_PALETTE_INDEX, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     } else {
         maxOptions = 2;
         shopMenu->optionsList = StringList_New(maxOptions, HEAP_ID_FIELD2);
 
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00015, SHOP_STATE_INIT_CAMERA);
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, LIST_CANCEL);
-        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     }
 
     menuTemplate.choices = shopMenu->optionsList;
@@ -542,7 +542,7 @@ static void Shop_LoadGraphics(ShopMenu *shopMenu)
         Graphics_LoadPaletteFromOpenNARC(narc, default_NCLR, 0, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_FIELD2);
     }
 
-    LoadStandardWindowGraphics(shopMenu->bgConfig, BG_LAYER_MAIN_3, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX, 0, HEAP_ID_FIELD2);
+    LoadStandardWindowGraphics(shopMenu->bgConfig, BG_LAYER_MAIN_3, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX, 0, HEAP_ID_FIELD2);
     LoadMessageBoxGraphics(shopMenu->bgConfig, BG_LAYER_MAIN_3, 1, 10, Options_Frame(shopMenu->options), HEAP_ID_FIELD2);
     NARC_dtor(narc);
 }
@@ -810,9 +810,9 @@ static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
         if (clearCurrMoney == FALSE) {
             Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15);
             Window_DrawStandardFrame(
-                &shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
+                &shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
         } else {
-            Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 0, (9 * 8), 16);
+            Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 0, 9 * 8, 16);
         }
 
         strbuf = Strbuf_Init(16, HEAP_ID_FIELD2);
@@ -828,14 +828,14 @@ static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
     } else {
         if (clearCurrMoney == FALSE) {
             Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15);
-            Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
+            Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
 
             fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, 18);
 
             Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, fmtString, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             Strbuf_Free(fmtString);
         } else {
-            Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 16, (9 * 8), 16);
+            Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 16, 9 * 8, 16);
         }
 
         strbuf = Strbuf_Init(16, HEAP_ID_FIELD2);
@@ -865,7 +865,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
     ListMenu_GetListAndCursorPos(shopMenu->listMenu, NULL, &currPos);
 
     if (prevPos != currPos) {
-        Sprite_SetPositionXY(shopMenu->sprites[SHOP_SPRITE_CURSOR], (176 - 4), 24 + currPos * 16);
+        Sprite_SetPositionXY(shopMenu->sprites[SHOP_SPRITE_CURSOR], 176 - 4, 24 + currPos * 16);
     }
 
     switch (input) {
@@ -980,7 +980,7 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
     }
 
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], 15);
-    Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], TRUE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
+    Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
 
     strbuf = Strbuf_Init(24, HEAP_ID_FIELD2);
     fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00020);
@@ -1110,7 +1110,7 @@ static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame)
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], 15);
 
     if (dontDrawFrame == FALSE) {
-        Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], TRUE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
+        Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
     }
 
     strbuf = Strbuf_Init(24, HEAP_ID_FIELD2);
@@ -1144,7 +1144,7 @@ static u8 Shop_ShowConfirmPurchase(ShopMenu *shopMenu)
         return SHOP_STATE_SHOW_CONFIRM_PURCHASE;
     }
 
-    shopMenu->choiceMenu = Menu_MakeYesNoChoice(shopMenu->bgConfig, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX, HEAP_ID_FIELD2);
+    shopMenu->choiceMenu = Menu_MakeYesNoChoice(shopMenu->bgConfig, &sShop_YesNoChoiceWindowTemplate, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX, HEAP_ID_FIELD2);
     return SHOP_STATE_SELECT_CONFIRM_PURCHASE;
 }
 

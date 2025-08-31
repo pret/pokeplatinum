@@ -43,11 +43,11 @@
 #include "system.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_0206CCB0.h"
 
 static int sub_020581CC(int param0, int param1);
 static BOOL CommPlayer_MoveBlow(int netId, int param1);
@@ -107,7 +107,7 @@ BOOL CommPlayerMan_Init(void *dest, FieldSystem *fieldSystem, BOOL isUnderground
 
     sCommPlayerManager->unk_2BC = 0;
     sCommPlayerManager->unk_2BF = 0;
-    sCommPlayerManager->task = SysTask_Start(Task_CommPlayerManagerRun, NULL, (100 + 100));
+    sCommPlayerManager->task = SysTask_Start(Task_CommPlayerManagerRun, NULL, 100 + 100);
 
     CommSys_EnableSendMovementData();
     CommPlayer_InitPersonal();
@@ -223,7 +223,7 @@ void CommPlayerMan_Reinit(void)
     CommPlayer_InitPersonal();
 
     if (sCommPlayerManager->task == NULL) {
-        sCommPlayerManager->task = SysTask_Start(Task_CommPlayerManagerRun, NULL, (100 + 100));
+        sCommPlayerManager->task = SysTask_Start(Task_CommPlayerManagerRun, NULL, 100 + 100);
     }
 }
 

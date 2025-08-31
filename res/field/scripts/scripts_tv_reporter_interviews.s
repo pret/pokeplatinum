@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0621.h"
+#include "res/text/bank/tv_reporter_interviews.h"
 
 
     ScriptEntry _004E
@@ -106,7 +106,7 @@ _0159:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_238 VAR_0x8000, VAR_RESULT
+    CheckTVInterviewEligible VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _02A1
     Message 0
     ShowYesNoMenu VAR_RESULT
@@ -115,8 +115,8 @@ _0159:
     End
 
 _0190:
-    ScrCmd_237 0, VAR_0x8000, VAR_0x8004, VAR_0x8005
-    ScrCmd_1FB VAR_0x8004, VAR_0x8005
+    LoadTVInterviewMessage VAR_0x8000, VAR_0x8004, VAR_0x8005
+    ExternalMessage VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8000, 10, _01F0
     FadeScreenOut
     WaitFadeScreen
@@ -126,7 +126,7 @@ _0190:
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _02AE
-    ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005
+    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
     GoTo _02A1
     End
 
@@ -151,7 +151,7 @@ _01F0:
     AddListMenuEntry 38, 17
     ShowListMenu
     GoToIfEq VAR_0x8004, -2, _02AE
-    ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005
+    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
     GoTo _02A1
     End
 

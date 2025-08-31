@@ -210,12 +210,12 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 10200) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN);
         retScriptID -= 10200;
-    } else if (retScriptID >= 10150) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1116, TEXT_BANK_UNK_0621);
-        retScriptID -= 10150;
-    } else if (retScriptID >= 10100) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1115, TEXT_BANK_UNK_0622);
-        retScriptID -= 10100;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_TV_REPORTER_INTERVIEWS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_tv_reporter_interviews, TEXT_BANK_TV_REPORTER_INTERVIEWS);
+        retScriptID -= SCRIPT_ID_OFFSET_TV_REPORTER_INTERVIEWS;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_TV_BROADCAST) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_tv_broadcast, TEXT_BANK_TV_PROGRAMS);
+        retScriptID -= SCRIPT_ID_OFFSET_TV_BROADCAST;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_FIELD_MOVES) {
         ScriptContext_Load(fieldSystem, ctx, scripts_field_moves, TEXT_BANK_FIELD_MOVES);
         retScriptID -= SCRIPT_ID_OFFSET_FIELD_MOVES;
@@ -496,7 +496,7 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
     GF_ASSERT(graphicsVarID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, ((0 + VARS_START) + 32) + graphicsVarID);
+    return FieldSystem_TryGetVar(fieldSystem, VARS_START + 32 + graphicsVarID);
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
@@ -519,7 +519,7 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
-    memset(VarsFlags_GetVarAddress(varsFlags, 0 + VARS_START), 0, 2 * 32);
+    memset(VarsFlags_GetVarAddress(varsFlags, VARS_START), 0, 2 * 32);
 }
 
 void sub_0203F1FC(FieldSystem *fieldSystem)

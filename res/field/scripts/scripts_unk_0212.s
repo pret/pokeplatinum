@@ -136,7 +136,7 @@ _0184:
     ShowPoketch
     Call _01B1
     Call _0168
-    ScrCmd_238 7, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_CONTEST_HALL, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _01AB
     ClearFlag FLAG_UNK_0x0213
     End

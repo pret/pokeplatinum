@@ -3,6 +3,8 @@
 
 #include "generated/time_of_day.h"
 
+#define HOURS_PER_DAY 24
+
 enum MonthOfYear {
     MONTH_JAN = 1,
     MONTH_FEB,

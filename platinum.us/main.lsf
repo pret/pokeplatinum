@@ -191,7 +191,7 @@ Static main
 	Object main.nef.p/src_scrcmd_sound.c.o
 	Object main.nef.p/src_scrcmd_trainer.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
-	Object main.nef.p/src_unk_02048DD8.c.o
+	Object main.nef.p/src_scrcmd_tv_broadcast.c.o
 	Object main.nef.p/src_unk_020494DC.c.o
 	Object main.nef.p/src_unk_02049D08.c.o
 	Object main.nef.p/src_unk_0204AEE8.c.o
@@ -273,7 +273,7 @@ Static main
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
-	Object main.nef.p/src_unk_0206CCB0.c.o
+	Object main.nef.p/src_tv_episode_segment.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_unk_0207064C.c.o

@@ -160,7 +160,7 @@ static void ov50_022562AC(UnkStruct_ov50_02256510_1 *param0, UnkStruct_ov50_0225
         }
     }
 
-    v2 = param2->week + (7 - ((param2->day - 1) % 7));
+    v2 = param2->week + (RTC_WEEK_MAX - ((param2->day - 1) % RTC_WEEK_MAX));
 
     if (v2 >= RTC_WEEK_MAX) {
         v2 %= RTC_WEEK_MAX;

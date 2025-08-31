@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    ScrCmd_238 6, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _003C
     GoToIfLt VAR_UNK_0x4077, 2, _003C
     ClearFlag FLAG_UNK_0x0212

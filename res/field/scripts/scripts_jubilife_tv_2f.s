@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_238 9, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _002B
     ClearFlag FLAG_UNK_0x0215
     End

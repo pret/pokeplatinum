@@ -39,9 +39,9 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
+#include "tv_episode_segment.h"
 #include "unk_02015F84.h"
 #include "unk_0202C9F4.h"
-#include "unk_0206CCB0.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F64C0.h"

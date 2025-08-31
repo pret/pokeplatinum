@@ -29,8 +29,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
+#include "tv_episode_segment.h"
 #include "unk_020655F4.h"
-#include "unk_0206CCB0.h"
 
 struct BerryPatchManager {
     int heapID;
@@ -168,7 +168,7 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
     berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
     yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    TVBroadcast_RecordBerryHarvest(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
     BerryPatchGraphics_MarkForUpdate(mapObject);
 
