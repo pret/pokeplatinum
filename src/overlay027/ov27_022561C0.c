@@ -13,8 +13,8 @@
 #include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "timer.h"
 #include "touch_screen.h"
-#include "unk_02022844.h"
 
 typedef struct {
     BOOL unk_00;
@@ -412,9 +412,9 @@ static void ov27_02256664(UnkStruct_ov27_0225621C *param0)
 static void ov27_02256680(UnkStruct_ov27_0225621C *param0)
 {
     if (param0->unk_0C) {
-        param0->unk_0C += (sub_0202293C() - param0->unk_14);
+        param0->unk_0C += (Timer_GetCurrentTimestamp() - param0->unk_14);
     } else {
-        param0->unk_0C = sub_0202293C();
+        param0->unk_0C = Timer_GetCurrentTimestamp();
     }
 
     param0->unk_1C.unk_00 = 1;
@@ -423,7 +423,7 @@ static void ov27_02256680(UnkStruct_ov27_0225621C *param0)
 
 static void ov27_022566C4(UnkStruct_ov27_0225621C *param0)
 {
-    param0->unk_14 = sub_0202293C();
+    param0->unk_14 = Timer_GetCurrentTimestamp();
     param0->unk_1C.unk_00 = 0;
 }
 
@@ -432,9 +432,9 @@ static void ov27_022566D8(UnkStruct_ov27_0225621C *param0, UnkStruct_ov27_022568
     if (param1->unk_00) {
         u64 v0, v1, v2;
 
-        v2 = sub_0202293C() - param0->unk_0C;
+        v2 = Timer_GetCurrentTimestamp() - param0->unk_0C;
 
-        CP_SetDiv64_32(sub_02022944(v2), 1000);
+        CP_SetDiv64_32(Timer_TicksToMilliSeconds(v2), 1000);
 
         v0 = CP_GetDivResult64();
         v1 = CP_GetDivRemainder64();

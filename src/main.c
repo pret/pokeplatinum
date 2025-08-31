@@ -27,8 +27,8 @@
 #include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "timer.h"
 #include "touch_pad.h"
-#include "unk_02022844.h"
 #include "unk_0202419C.h"
 #include "unk_0202CC64.h"
 #include "unk_020366A0.h"
@@ -86,7 +86,7 @@ void NitroMain(void)
     sApplication.args.saveData = SaveData_Init();
 
     SoundSystem_Init(SaveData_GetChatotCry(sApplication.args.saveData), SaveData_GetOptions(sApplication.args.saveData));
-    sub_02022844();
+    Timer_Start();
 
     if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
         sub_02039A64(HEAP_ID_APPLICATION, 0);

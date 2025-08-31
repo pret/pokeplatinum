@@ -14,8 +14,8 @@
 #include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "timer.h"
 #include "touch_screen.h"
-#include "unk_02022844.h"
 
 typedef struct {
     UnkStruct_ov46_02256BCC_1 unk_00;
@@ -607,7 +607,7 @@ static u64 ov46_022569CC(UnkStruct_ov46_0225621C *param0)
 {
     UnkStruct_ov46_02256BCC_1 *v0 = &(param0->unk_48.unk_00);
 
-    param0->unk_48.unk_20 = sub_0202293C();
+    param0->unk_48.unk_20 = Timer_GetCurrentTimestamp();
     param0->unk_48.unk_28 = 0;
     param0->unk_48.unk_40 = 1;
     param0->unk_48.unk_30 = 0;
@@ -621,12 +621,12 @@ static u64 ov46_022569CC(UnkStruct_ov46_0225621C *param0)
 static void ov46_02256A3C(UnkStruct_ov46_0225621C *param0)
 {
     param0->unk_48.unk_40 = 0;
-    param0->unk_48.unk_28 = sub_0202293C();
+    param0->unk_48.unk_28 = Timer_GetCurrentTimestamp();
 }
 
 static void ov46_02256A50(UnkStruct_ov46_0225621C *param0)
 {
-    param0->unk_48.unk_20 += (sub_0202293C() - param0->unk_48.unk_28);
+    param0->unk_48.unk_20 += (Timer_GetCurrentTimestamp() - param0->unk_48.unk_28);
     param0->unk_48.unk_40 = 1;
 }
 
@@ -638,13 +638,13 @@ static BOOL ov46_02256A78(UnkStruct_ov46_0225621C *param0)
 static BOOL ov46_02256A88(UnkStruct_ov46_0225621C *param0)
 {
     if (param0->unk_48.unk_40) {
-        u64 v0 = sub_0202295C(sub_0202293C() - param0->unk_48.unk_20);
+        u64 v0 = Timer_TicksToSeconds(Timer_GetCurrentTimestamp() - param0->unk_48.unk_20);
 
         if (v0 >= param0->unk_48.unk_38) {
             ov46_02256AF0(param0);
             return 1;
         } else if (v0 != param0->unk_48.unk_30) {
-            ov46_02256B10(param0, (param0->unk_48.unk_38 - v0));
+            ov46_02256B10(param0, param0->unk_48.unk_38 - v0);
             param0->unk_48.unk_30 = v0;
             return 1;
         }
