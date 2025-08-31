@@ -703,6 +703,7 @@ item_icon_unused_ncgrs = files(
     'unused_461.NCGR',
     'unused_464.NCGR',
     'unused_468.NCGR',
+    'unused_709.NCGR',
 )
 
 item_icon_unused_nclrs = files(
@@ -735,6 +736,7 @@ item_icon_unused_nclrs = files(
     'unused_462.NCLR',
     'unused_463.NCLR',
     'unused_465.NCLR',
+    'unused_710.NCLR',
 )
 
 item_icon_order = files('item_icon.order')
@@ -757,7 +759,7 @@ item_icon_narc = custom_target('item_icon.narc',
         narc_exe, 'create',
         '--naix',
         '--order', item_icon_order,
-        '--output', '@OUTPUT0',
+        '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
