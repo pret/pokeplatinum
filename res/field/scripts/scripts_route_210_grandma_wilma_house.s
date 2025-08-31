@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_grandma_wilma_house.h"
+#include "generated/pokemon_types.h"
 
 
     ScriptEntry _000A
@@ -76,9 +77,9 @@ _00A6:
     SubVar VAR_MAP_LOCAL_0, 1
     GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00FC
-    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_0x8004, 16, _00E7
-    GoToIfEq VAR_0x8005, 16, _00E7
+    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_0x8004, TYPE_DRAGON, _00E7
+    GoToIfEq VAR_0x8005, TYPE_DRAGON, _00E7
     GoTo _00FC
 
 _00E7:
@@ -126,9 +127,9 @@ _019B:
     End
 
 _01D7:
-    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x8000
-    GoToIfEq VAR_0x8004, 16, _0201
-    GoToIfEq VAR_0x8005, 16, _0201
+    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_0x8000
+    GoToIfEq VAR_0x8004, TYPE_DRAGON, _0201
+    GoToIfEq VAR_0x8005, TYPE_DRAGON, _0201
     SetVar VAR_RESULT, 0
     Return
 

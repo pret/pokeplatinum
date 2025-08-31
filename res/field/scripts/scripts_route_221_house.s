@@ -17,7 +17,7 @@ _000A:
     GetPartyCount VAR_0x8002
     SetVar VAR_0x8003, 0
 _003B:
-    ScrCmd_278 VAR_0x8001, VAR_0x8003
+    GetPartyMonLevel VAR_0x8001, VAR_0x8003
     GoToIfEq VAR_0x8000, VAR_0x8001, _006D
     AddVar VAR_0x8003, 1
     SubVar VAR_0x8002, 1

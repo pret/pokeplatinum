@@ -960,7 +960,7 @@
     .short \eggGiverTextId
     .endm
 
-    .macro ResetPartyMonMoveSlot partySlot, moveSlot, moveID 
+    .macro ResetPartyMonMoveSlot_Unused partySlot, moveSlot, moveID 
     .short 152
     .short \partySlot
     .short \moveSlot
@@ -1002,7 +1002,7 @@
     .short 159
     .endm
 
-    .macro ScrCmd_0A0
+    .macro Dummy0A0
     .short 160
     .endm
 
@@ -1647,10 +1647,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_11A arg0, arg1
+    .macro GetPartyMonGender_Unused slot, destVar
     .short 282
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro SetSpecialLocation mapId, warpId, x, z, dir
@@ -2291,13 +2291,13 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_199 arg0, arg1
+    .macro CheckIsPartyMonOutsider slot, destVar
     .short 409
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
-    .macro GetPartyCountHatched destVarID
+    .macro CountPartyNonEggs destVarID
     .short 410
     .short \destVarID
     .endm
@@ -2310,14 +2310,14 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_19C arg0
+    .macro CountAliveMonsAndBoxMons destVar
     .short 412
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_19D arg0
+    .macro CountPartyEggs destVar
     .short 413
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_19E arg0, arg1
@@ -2471,16 +2471,16 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1BA arg0, arg1
+    .macro IncreasePartyMonFriendship value, slot
     .short 442
-    .short \arg0
-    .short \arg1
+    .short \value
+    .short \slot
     .endm
 
-    .macro ScrCmd_1BB arg0, arg1
+    .macro DecreasePartyMonFriendship_Unused value, slot
     .short 443
-    .short \arg0
-    .short \arg1
+    .short \value
+    .short \slot
     .endm
 
     .macro BufferDaycareNicknameLevelGender templateArgNickname, templateArgLevel, templateArgGender, daycareSlot
@@ -2559,10 +2559,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1C9 arg0, arg1
+    .macro ClearPartyMonMoveSlot partySlot, moveSlot
     .short 457
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro GetPartyMonMove destVar, partySlot, moveSlot
@@ -2779,7 +2779,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1EE arg0, arg1
+    .macro GetPartyMonHeldItem_Unused destVar, slot
     .short 494
     .short \arg0
     .short \arg1
@@ -2790,9 +2790,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1F0 arg0
+    .macro DeletePartyMonHeldItem_Unused slot
     .short 496
-    .short \arg0
+    .short \slot
     .endm
 
     .macro ScrCmd_1F1 arg0
@@ -2821,10 +2821,10 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1F6 arg0, arg1
+    .macro CountPartyMonsBelowLevelThreshold destVar, threshold
     .short 502
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \threshold
     .endm
 
     .macro SurvivePoison destVarID, partySlot
@@ -2975,16 +2975,16 @@
     .byte \heightCalculationEnabled
     .endm
 
-    .macro ScrCmd_212 arg0, arg1
+    .macro GetPartyMonNature destVar, slot
     .short 530
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
-    .macro ScrCmd_213 arg0, arg1
+    .macro FindPartySlotWithNature destVar, nature
     .short 531
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \nature
     .endm
 
     .macro GetSpiritombCounter destVarID
@@ -3129,15 +3129,15 @@
     GetSetNationalDexEnabled 2, \destVar
     .endm
 
-    .macro ScrCmd_22E arg0, arg1
+    .macro CountPartyMonRibbons_Unused destVar, slot
     .short 558
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
-    .macro ScrCmd_22F arg0
+    .macro CountPartyRibbons destVar
     .short 559
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro GetPartyMonRibbon destVar, partySlot, ribbonID
@@ -3363,11 +3363,11 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_248 arg0, arg1, arg2
+    .macro GetPartyMonType type1DestVar, type2DestVar, slot
     .short 584
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \type1DestVar
+    .short \type2DestVar
+    .short \slot
     .endm
 
     .macro ScrCmd_249 arg0, arg1, arg2, arg3, arg4
@@ -3632,10 +3632,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_278 arg0, arg1
+    .macro GetPartyMonLevel destVar, slot
     .short 632
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
     .macro ScrCmd_Unused_279 arg0, arg1
@@ -4564,7 +4564,7 @@
     .short \arg0
     .endm
 
-    .macro CheckPartyHasFatefulEncounter destVar, species
+    .macro FindPartySlotWithFatefulEncounterSpecies destVar, species
     .short 796
     .short \destVar
     .short \species

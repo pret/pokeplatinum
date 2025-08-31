@@ -122,7 +122,7 @@ _01BC:
 _01C1:
     ApplyMovement VAR_0x8007, _1260
     WaitMovement
-    GetPartyCountHatched VAR_0x8006
+    CountPartyNonEggs VAR_0x8006
     ScrCmd_23B VAR_0x8006
     ApplyMovement VAR_0x8007, _1278
     WaitMovement
