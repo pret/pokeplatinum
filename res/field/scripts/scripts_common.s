@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
-#include "generated/player_request_states.h"
+#include "generated/player_transitions.h"
 #include "generated/time_of_day.h"
 #include "constants/trainer_card_levels.h"
 #include "generated/tutor_locations.h"
@@ -103,7 +103,7 @@ CommonScript_PokecenterPromptDecline:
     End
 
 CommonScript_PokecenterPromptAccept:
-    SetPlayerState PLAYER_REQUEST_STATE_HEALING
+    SetPlayerState PLAYER_TRANSITION_HEALING
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerGiveMovement
     WaitMovement
@@ -137,7 +137,7 @@ CommonScript_PokecenterThankYouForWaiting:
     Message CommonStrings_Text_PokecenterRestoredYourPokemon
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState PLAYER_REQUEST_STATE_WALKING
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
@@ -152,7 +152,7 @@ CommonScript_PokecenterThankYouForWaitingDay:
     Message CommonStrings_Text_PokecenterThankYouForWaiting
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState PLAYER_REQUEST_STATE_WALKING
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
@@ -172,7 +172,7 @@ CommonScript_PokecenterFoundPokerus:
     SetFlag FLAG_POKECENTER_FOUND_POKERUS
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState PLAYER_REQUEST_STATE_WALKING
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
     WaitABXPadPress
@@ -1181,7 +1181,7 @@ CommonScript_PokecenterBlackOutRecover:
     LockAll
     FadeScreenIn
     WaitFadeScreen
-    SetPlayerState PLAYER_REQUEST_STATE_HEALING
+    SetPlayerState PLAYER_TRANSITION_HEALING
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerGiveMovement
     WaitMovement
@@ -1193,7 +1193,7 @@ CommonScript_PokecenterBlackOutRecover:
     Message CommonStrings_Text_PokecenterHealedToPerfectHealth
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState PLAYER_REQUEST_STATE_WALKING
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
@@ -1206,7 +1206,7 @@ CommonScript_PokecenterBlackOutRecover:
 CommonScript_PokecenterBlackOutRecover_HasCoalBadge:
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState PLAYER_REQUEST_STATE_WALKING
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement

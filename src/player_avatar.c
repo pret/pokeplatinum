@@ -128,9 +128,9 @@ void Player_DeleteAll(PlayerAvatar *playerAvatar)
 
 static PlayerAvatar *PlayerAvatar_Alloc(void)
 {
-    PlayerAvatar *playerAvatar = Heap_Alloc(HEAP_ID_FIELD2, (sizeof(PlayerAvatar)));
+    PlayerAvatar *playerAvatar = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PlayerAvatar));
     GF_ASSERT(playerAvatar != NULL);
-    memset(playerAvatar, 0, (sizeof(PlayerAvatar)));
+    memset(playerAvatar, 0, sizeof(PlayerAvatar));
 
     return playerAvatar;
 }
@@ -179,7 +179,7 @@ MapObject *sub_0205EA24(const MapObjectManager *mapObjMan)
     int v0 = 0;
     MapObject *mapObj = NULL;
 
-    while (sub_020625B0(mapObjMan, &mapObj, &v0, (1 << 0))) {
+    while (sub_020625B0(mapObjMan, &mapObj, &v0, 1 << 0)) {
         if (MapObject_GetMovementType(mapObj) == 0x1) {
             break;
         }
@@ -685,7 +685,7 @@ u32 Player_ConvertStateToTransition(int param0)
     case 0x15:
         return PLAYER_TRANSITION_SAVE;
     case 0x16:
-        return PLAYER_TRANSITION_HEAL;
+        return PLAYER_TRANSITION_HEALING;
     }
 
     GF_ASSERT(0);
@@ -700,15 +700,15 @@ PlayerAvatar *sub_0205EF3C(FieldSystem *fieldSystem)
 void sub_0205EF40(PlayerAvatar *playerAvatar, int param1)
 {
     if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, (1 << 0));
+        sub_0205EB9C(playerAvatar, 1 << 0);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 0));
+        sub_0205EBA4(playerAvatar, 1 << 0);
     }
 }
 
 int sub_0205EF58(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 0))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 0)) {
         return 1;
     }
 
@@ -718,15 +718,15 @@ int sub_0205EF58(PlayerAvatar *playerAvatar)
 void sub_0205EF6C(PlayerAvatar *playerAvatar, int param1)
 {
     if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, (1 << 1));
+        sub_0205EB9C(playerAvatar, 1 << 1);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 1));
+        sub_0205EBA4(playerAvatar, 1 << 1);
     }
 }
 
 int sub_0205EF84(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 1))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 1)) {
         return 1;
     }
 
@@ -736,15 +736,15 @@ int sub_0205EF84(PlayerAvatar *playerAvatar)
 void sub_0205EF98(PlayerAvatar *playerAvatar, int param1)
 {
     if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, (1 << 2));
+        sub_0205EB9C(playerAvatar, 1 << 2);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 2));
+        sub_0205EBA4(playerAvatar, 1 << 2);
     }
 }
 
 BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 2))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 2)) {
         return TRUE;
     }
 
@@ -754,15 +754,15 @@ BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
 void sub_0205EFC4(PlayerAvatar *playerAvatar, int flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, (1 << 3));
+        sub_0205EB9C(playerAvatar, 1 << 3);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 3));
+        sub_0205EBA4(playerAvatar, 1 << 3);
     }
 }
 
 BOOL sub_0205EFDC(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 3))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 3)) {
         return TRUE;
     }
 
@@ -772,15 +772,15 @@ BOOL sub_0205EFDC(PlayerAvatar *playerAvatar)
 void PlayerAvatar_SetInDeepSwamp(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, (1 << 4));
+        sub_0205EB9C(playerAvatar, 1 << 4);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 4));
+        sub_0205EBA4(playerAvatar, 1 << 4);
     }
 }
 
 BOOL PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 4))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 4)) {
         return TRUE;
     }
 
@@ -790,15 +790,15 @@ BOOL PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar *playerAvatar)
 void sub_0205F01C(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, (1 << 5));
+        sub_0205EB9C(playerAvatar, 1 << 5);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 5));
+        sub_0205EBA4(playerAvatar, 1 << 5);
     }
 }
 
 BOOL sub_0205F034(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 5))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 5)) {
         return TRUE;
     }
 
@@ -807,17 +807,17 @@ BOOL sub_0205F034(PlayerAvatar *playerAvatar)
 
 void sub_0205F048(PlayerAvatar *playerAvatar)
 {
-    sub_0205EB9C(playerAvatar, (1 << 6));
+    sub_0205EB9C(playerAvatar, 1 << 6);
 }
 
 void sub_0205F054(PlayerAvatar *playerAvatar)
 {
-    sub_0205EBA4(playerAvatar, (1 << 6));
+    sub_0205EBA4(playerAvatar, 1 << 6);
 }
 
 BOOL sub_0205F060(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, (1 << 6))) {
+    if (sub_0205EBB0(playerAvatar, 1 << 6)) {
         return TRUE;
     }
 
@@ -827,38 +827,38 @@ BOOL sub_0205F060(PlayerAvatar *playerAvatar)
 void sub_0205F074(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, (1 << 7));
+        sub_0205EB9C(playerAvatar, 1 << 7);
     } else {
-        sub_0205EBA4(playerAvatar, (1 << 7));
+        sub_0205EBA4(playerAvatar, 1 << 7);
     }
 }
 
 int sub_0205F08C(PlayerAvatar *playerAvatar)
 {
-    return sub_0205EBB0(playerAvatar, (1 << 7));
+    return sub_0205EBB0(playerAvatar, 1 << 7);
 }
 
 void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDistortionState state)
 {
-    sub_0205EBA4(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
+    sub_0205EBA4(playerAvatar, (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12));
 
     switch (state) {
     case AVATAR_DISTORTION_STATE_NONE:
         return;
     case AVATAR_DISTORTION_STATE_ACTIVE:
-        sub_0205EB9C(playerAvatar, (1 << 8));
+        sub_0205EB9C(playerAvatar, 1 << 8);
         return;
     case AVATAR_DISTORTION_STATE_FLOOR:
-        sub_0205EB9C(playerAvatar, (1 << 9));
+        sub_0205EB9C(playerAvatar, 1 << 9);
         return;
     case AVATAR_DISTORTION_STATE_WEST_WALL:
-        sub_0205EB9C(playerAvatar, (1 << 10));
+        sub_0205EB9C(playerAvatar, 1 << 10);
         return;
     case AVATAR_DISTORTION_STATE_EAST_WALL:
-        sub_0205EB9C(playerAvatar, (1 << 11));
+        sub_0205EB9C(playerAvatar, 1 << 11);
         return;
     case AVATAR_DISTORTION_STATE_CEILING:
-        sub_0205EB9C(playerAvatar, (1 << 12));
+        sub_0205EB9C(playerAvatar, 1 << 12);
         return;
     }
 
@@ -868,7 +868,7 @@ void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDist
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar)
 {
     enum AvatarDistortionState state = AVATAR_DISTORTION_STATE_NONE;
-    u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
+    u32 v1 = sub_0205EBB0(playerAvatar, (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12));
 
     switch (v1) {
     case (1 << 8):
