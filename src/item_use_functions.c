@@ -300,24 +300,24 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyMenu));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 5;
-    partyMan->fieldSystem = fieldSystem;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 5;
+    partyMenu->fieldSystem = fieldSystem;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
@@ -534,24 +534,24 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyMenu));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 6;
-    partyMan->fieldSystem = fieldSystem;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
-    partyMan->learnedMove = Item_MoveForTMHM(usageContext->item);
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 6;
+    partyMenu->fieldSystem = fieldSystem;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->learnedMove = Item_MoveForTMHM(usageContext->item);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
@@ -911,23 +911,23 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyMenu));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 16;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 16;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 

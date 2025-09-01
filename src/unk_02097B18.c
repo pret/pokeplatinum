@@ -352,17 +352,17 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyMenu *partyMan = v0->unk_0C;
+        PartyMenu *partyMenu = v0->unk_0C;
 
-        partyMan->party = v1->unk_1C;
-        partyMan->bag = SaveData_GetBag(v0->saveData);
-        partyMan->mailbox = SaveData_GetMailbox(v0->saveData);
-        partyMan->selectedMonSlot = 0;
-        partyMan->unk_21 = 0;
-        partyMan->unk_20 = 15;
-        partyMan->options = v1->options;
+        partyMenu->party = v1->unk_1C;
+        partyMenu->bag = SaveData_GetBag(v0->saveData);
+        partyMenu->mailbox = SaveData_GetMailbox(v0->saveData);
+        partyMenu->selectedMonSlot = 0;
+        partyMenu->unk_21 = 0;
+        partyMenu->mode = 15;
+        partyMenu->options = v1->options;
 
-        FieldTask_RunApplication(param0, &gPokemonPartyAppTemplate, partyMan);
+        FieldTask_RunApplication(param0, &gPokemonPartyAppTemplate, partyMenu);
         v0->unk_14 = 4;
     } break;
     case 4: {

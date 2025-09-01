@@ -148,34 +148,34 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyMenu *partyMan = Heap_Alloc(heapID, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
-    MI_CpuClear8(partyMan, sizeof(PartyMenu));
+    MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-    partyMan->options = SaveData_GetOptions(param0->fieldSystem->saveData);
-    partyMan->battleRegulation = (void *)param0->fieldSystem->unk_B0;
-    partyMan->party = SaveData_GetParty(param0->fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(param0->fieldSystem->saveData);
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 2;
+    partyMenu->options = SaveData_GetOptions(param0->fieldSystem->saveData);
+    partyMenu->battleRegulation = (void *)param0->fieldSystem->unk_B0;
+    partyMenu->party = SaveData_GetParty(param0->fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(param0->fieldSystem->saveData);
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 2;
 
     if (param0->fieldSystem->unk_B0) {
-        partyMan->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
-        partyMan->unk_32_4 = partyMan->unk_32_0;
+        partyMenu->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        partyMenu->unk_32_4 = partyMenu->unk_32_0;
     } else {
-        partyMan->unk_32_0 = 3;
-        partyMan->unk_32_4 = 3;
+        partyMenu->unk_32_0 = 3;
+        partyMenu->unk_32_4 = 3;
     }
 
-    partyMan->unk_33 = 100;
-    partyMan->selectedMonSlot = param0->unk_3C;
+    partyMenu->unk_33 = 100;
+    partyMenu->selectedMonSlot = param0->unk_3C;
 
     for (v0 = 0; v0 < 6; v0++) {
-        partyMan->unk_2C[v0] = param0->unk_3D[v0];
+        partyMenu->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    param0->unk_04 = partyMan;
+    FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    param0->unk_04 = partyMenu;
 }
 
 static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)

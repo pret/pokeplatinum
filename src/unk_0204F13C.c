@@ -329,38 +329,34 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
 
-    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
-    MI_CpuClearFast(partyMan, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-
-    partyMan->unk_21 = 0;
-
-    partyMan->unk_20 = 22;
-    partyMan->fieldSystem = fieldSystem;
-
-    partyMan->selectedMonSlot = param0->unk_05;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 22;
+    partyMenu->fieldSystem = fieldSystem;
+    partyMenu->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 2; v0++) {
-        partyMan->unk_2C[v0] = param0->unk_06[v0];
+        partyMenu->unk_2C[v0] = param0->unk_06[v0];
     }
 
-    partyMan->unk_33 = 30;
-
-    partyMan->unk_32_0 = 1;
-    partyMan->unk_32_4 = 1;
+    partyMenu->unk_33 = 30;
+    partyMenu->unk_32_0 = 1;
+    partyMenu->unk_32_4 = 1;
 
     if (param0->unk_04 == 1) {
-        partyMan->unk_32_0 = 2;
-        partyMan->unk_32_4 = 2;
+        partyMenu->unk_32_0 = 2;
+        partyMenu->unk_32_4 = 2;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    *(param0->unk_08) = partyMan;
+    *(param0->unk_08) = partyMenu;
 
     return UnkEnum_0204F13C_2;
 }

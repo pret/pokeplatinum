@@ -118,13 +118,13 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_A8->unk_21 = 0;
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->unk_20 = 17;
+        param1->unk_A8->mode = 17;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->unk_20 = 22;
+        param1->unk_A8->mode = 22;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->unk_20 = 23;
+        param1->unk_A8->mode = 23;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->unk_20 = 23;
+        param1->unk_A8->mode = 23;
     } else {
         GF_ASSERT(0);
     }

@@ -1192,27 +1192,27 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 
 static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 {
-    PartyMenu *partyMan;
+    PartyMenu *partyMenu;
 
     switch (param0->unk_12) {
     case 0:
-        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
-        MI_CpuClear8(partyMan, sizeof(PartyMenu));
+        partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+        MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
-        partyMan->unk_21 = 0;
-        partyMan->unk_20 = param1;
-        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
+        partyMenu->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
+        partyMenu->unk_21 = 0;
+        partyMenu->mode = param1;
+        partyMenu->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
-            partyMan->selectedMonSlot = param0->unk_17;
+            partyMenu->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-        param0->unk_1B4 = partyMan;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+        param0->unk_1B4 = partyMenu;
         param0->unk_12++;
         break;
     case 1:

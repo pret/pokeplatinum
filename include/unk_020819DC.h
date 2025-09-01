@@ -5,9 +5,9 @@
 
 #include "pokemon.h"
 
-void sub_02081A24(PartyMenuApplication *param0);
+void PartyMenu_AddWindows(PartyMenuApplication *application);
 void sub_02081B90(PartyMenuApplication *param0);
-void sub_02081BC0(PartyMenuApplication *param0);
+void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *param0);
 void sub_02081CAC(PartyMenuApplication *param0, u16 param1, u8 param2);
 void sub_02081CF4(PartyMenuApplication *param0, const u8 *param1, u8 param2);
 void sub_02081E08(PartyMenuApplication *param0);
@@ -25,8 +25,8 @@ void sub_020823C4(PartyMenuApplication *param0, u8 param1);
 void sub_0208245C(PartyMenuApplication *param0, u8 param1);
 void sub_020824C0(PartyMenuApplication *param0, u8 param1);
 void sub_02082508(PartyMenuApplication *param0, u8 param1);
-void sub_020825B4(PartyMenuApplication *param0, u8 param1);
-void sub_020826E0(PartyMenuApplication *param0, u32 param1, u8 param2);
+void PartyMenu_PrintButtonText(PartyMenuApplication *application, u8 flags);
+void PartyMenu_PrintShortMessage(PartyMenuApplication *param0, u32 param1, u8 param2);
 void sub_020826F4(PartyMenuApplication *param0, u32 param1, u8 param2);
 void sub_02082708(PartyMenuApplication *param0, u32 param1, u8 param2);
 void sub_0208274C(PartyMenuApplication *param0);

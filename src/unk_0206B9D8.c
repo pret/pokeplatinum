@@ -70,28 +70,28 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
     SaveData *saveData;
-    PartyMenu *partyMan = Heap_AllocAtEnd(heapID, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_AllocAtEnd(heapID, sizeof(PartyMenu));
 
     saveData = fieldSystem->saveData;
-    MI_CpuClear8(partyMan, sizeof(PartyMenu));
+    MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-    partyMan->options = SaveData_GetOptions(saveData);
-    partyMan->party = SaveData_GetParty(saveData);
-    partyMan->bag = SaveData_GetBag(saveData);
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = param0->unk_08;
-    partyMan->unk_32_0 = param0->unk_0A;
-    partyMan->unk_32_4 = param0->unk_0B;
-    partyMan->unk_33 = param0->unk_0C;
-    partyMan->selectedMonSlot = param0->unk_0D;
+    partyMenu->options = SaveData_GetOptions(saveData);
+    partyMenu->party = SaveData_GetParty(saveData);
+    partyMenu->bag = SaveData_GetBag(saveData);
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = param0->unk_08;
+    partyMenu->unk_32_0 = param0->unk_0A;
+    partyMenu->unk_32_4 = param0->unk_0B;
+    partyMenu->unk_33 = param0->unk_0C;
+    partyMenu->selectedMonSlot = param0->unk_0D;
 
     for (v0 = 0; v0 < 6; v0++) {
-        partyMan->unk_2C[v0] = param0->unk_0E[v0];
+        partyMenu->unk_2C[v0] = param0->unk_0E[v0];
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    *(param0->unk_14) = partyMan;
+    *(param0->unk_14) = partyMenu;
     return 1;
 }
 

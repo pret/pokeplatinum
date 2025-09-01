@@ -288,7 +288,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
     partyMan->party = param0->unk_0C->unk_10;
     partyMan->bag = param0->unk_0C->unk_14;
     partyMan->unk_21 = 0;
-    partyMan->unk_20 = 20;
+    partyMan->mode = 20;
     partyMan->options = param0->unk_0C->options;
 
     param0->appMan = ApplicationManager_New(&gPokemonPartyAppTemplate, partyMan, param0->heapID);

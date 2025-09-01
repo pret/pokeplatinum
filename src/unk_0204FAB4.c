@@ -260,7 +260,7 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
     partyMan->unk_21 = 0;
-    partyMan->unk_20 = 23;
+    partyMan->mode = 23;
     partyMan->fieldSystem = fieldSystem;
     partyMan->selectedMonSlot = param0->unk_05;
 

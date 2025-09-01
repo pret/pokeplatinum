@@ -25,13 +25,14 @@
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
 
+static void AddPartyMemberWindows(BgConfig *bgConfig, Window *target, const WindowTemplate *source);
 static void sub_02082810(PartyMenuApplication *param0, u8 param1, u8 param2);
 static void sub_02082880(PartyMenuApplication *param0, u8 param1, u8 param2);
 static void sub_02082900(PartyMenuApplication *param0, u8 param1, u8 param2);
 static void sub_02082964(PartyMenuApplication *param0, u8 param1, u8 param2);
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1);
 
-static const WindowTemplate Unk_020F1F08[] = {
+static const WindowTemplate sWindowTemplates[] = {
     { 0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28 },
     { 0x1, 0x0, 0x4, 0x6, 0x2, 0x0, 0x3A },
     { 0x1, 0x7, 0x4, 0x8, 0x2, 0x0, 0x46 },
@@ -99,50 +100,50 @@ static const WindowTemplate Unk_020F1E98 = {
     0x240
 };
 
-static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate *param2)
+static void AddPartyMemberWindows(BgConfig *bgConfig, Window *target, const WindowTemplate *source)
 {
-    Window_AddFromTemplate(param0, &param1[0], &param2[0]);
-    Window_AddFromTemplate(param0, &param1[1], &param2[1]);
-    Window_AddFromTemplate(param0, &param1[2], &param2[2]);
-    Window_AddFromTemplate(param0, &param1[3], &param2[3]);
-    Window_AddFromTemplate(param0, &param1[4], &param2[4]);
+    Window_AddFromTemplate(bgConfig, &target[0], &source[0]);
+    Window_AddFromTemplate(bgConfig, &target[1], &source[1]);
+    Window_AddFromTemplate(bgConfig, &target[2], &source[2]);
+    Window_AddFromTemplate(bgConfig, &target[3], &source[3]);
+    Window_AddFromTemplate(bgConfig, &target[4], &source[4]);
 }
 
-void sub_02081A24(PartyMenuApplication *param0)
+void PartyMenu_AddWindows(PartyMenuApplication *application)
 {
-    const WindowTemplate *v0 = Unk_020F1F08;
-    u16 v1;
+    const WindowTemplate *templates = sWindowTemplates;
 
-    sub_020819DC(param0->unk_00, &param0->unk_04[0], &v0[0]);
-    sub_020819DC(param0->unk_00, &param0->unk_04[10], &v0[10]);
-    sub_020819DC(param0->unk_00, &param0->unk_04[20], &v0[20]);
+    AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB0], &templates[0]);
+    AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB2], &templates[10]);
+    AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB4], &templates[20]);
 
-    if (param0->partyMenu->unk_21 == 2) {
-        sub_020819DC(param0->unk_00, &param0->unk_04[5], &v0[30]);
-        sub_020819DC(param0->unk_00, &param0->unk_04[15], &v0[35]);
-        sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[40]);
+    if (application->partyMenu->unk_21 == 2) {
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB1], &templates[30]);
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB3], &templates[35]);
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB5], &templates[40]);
     } else {
-        sub_020819DC(param0->unk_00, &param0->unk_04[5], &v0[5]);
-        sub_020819DC(param0->unk_00, &param0->unk_04[15], &v0[15]);
-        sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[25]);
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB1], &templates[5]);
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB3], &templates[15]);
+        AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB5], &templates[25]);
     }
 
-    if ((param0->partyMenu->unk_20 == 2) || (param0->partyMenu->unk_20 == 17) || (param0->partyMenu->unk_20 == 23) || (param0->partyMenu->unk_20 == 22)) {
-        WindowTemplate v2;
-
-        v2 = Unk_020F1ED0[0];
-        v2.tilemapTop = 22;
-        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[31], &v2);
+    if (application->partyMenu->mode == 2
+        || application->partyMenu->mode == 17
+        || application->partyMenu->mode == 23
+        || application->partyMenu->mode == 22) {
+        WindowTemplate template = Unk_020F1ED0[0];
+        template.tilemapTop = 22;
+        Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_31], &template);
     } else {
-        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[31], &Unk_020F1ED0[0]);
+        Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_31], &Unk_020F1ED0[0]);
     }
 
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[30], &Unk_020F1ED0[1]);
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[32], &Unk_020F1ED0[2]);
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[33], &Unk_020F1ED0[3]);
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[34], &Unk_020F1ED0[4]);
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[35], &Unk_020F1ED0[5]);
-    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[36], &Unk_020F1ED0[6]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_30], &Unk_020F1ED0[1]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_32], &Unk_020F1ED0[2]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_33], &Unk_020F1ED0[3]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_34], &Unk_020F1ED0[4]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_35], &Unk_020F1ED0[5]);
+    Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_36], &Unk_020F1ED0[6]);
 }
 
 void sub_02081B90(PartyMenuApplication *param0)
@@ -150,7 +151,7 @@ void sub_02081B90(PartyMenuApplication *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 37; v0++) {
-        Window_Remove(&param0->unk_04[v0]);
+        Window_Remove(&param0->windows[v0]);
     }
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -160,24 +161,24 @@ void sub_02081B90(PartyMenuApplication *param0)
     }
 }
 
-void sub_02081BC0(PartyMenuApplication *param0)
+void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *application)
 {
-    MessageLoader_GetStrbuf(param0->messageLoader, 145, param0->unk_6AC[0]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 146, param0->unk_6AC[1]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 147, param0->unk_6AC[2]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 160, param0->unk_6AC[3]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 161, param0->unk_6AC[4]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 148, param0->unk_6AC[5]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 149, param0->unk_6AC[6]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 150, param0->unk_6AC[7]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 151, param0->unk_6AC[8]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 152, param0->unk_6AC[9]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 153, param0->unk_6AC[10]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 154, param0->unk_6AC[11]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 155, param0->unk_6AC[12]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 154, param0->unk_6AC[13]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 166, param0->unk_6AC[14]);
-    MessageLoader_GetStrbuf(param0->messageLoader, 200, param0->unk_6AC[15]);
+    MessageLoader_GetStrbuf(application->messageLoader, 145, application->menuStrings[0]);
+    MessageLoader_GetStrbuf(application->messageLoader, 146, application->menuStrings[1]);
+    MessageLoader_GetStrbuf(application->messageLoader, 147, application->menuStrings[2]);
+    MessageLoader_GetStrbuf(application->messageLoader, 160, application->menuStrings[3]);
+    MessageLoader_GetStrbuf(application->messageLoader, 161, application->menuStrings[4]);
+    MessageLoader_GetStrbuf(application->messageLoader, 148, application->menuStrings[5]);
+    MessageLoader_GetStrbuf(application->messageLoader, 149, application->menuStrings[6]);
+    MessageLoader_GetStrbuf(application->messageLoader, 150, application->menuStrings[7]);
+    MessageLoader_GetStrbuf(application->messageLoader, 151, application->menuStrings[8]);
+    MessageLoader_GetStrbuf(application->messageLoader, 152, application->menuStrings[9]);
+    MessageLoader_GetStrbuf(application->messageLoader, 153, application->menuStrings[10]);
+    MessageLoader_GetStrbuf(application->messageLoader, 154, application->menuStrings[11]);
+    MessageLoader_GetStrbuf(application->messageLoader, 155, application->menuStrings[12]);
+    MessageLoader_GetStrbuf(application->messageLoader, 154, application->menuStrings[13]);
+    MessageLoader_GetStrbuf(application->messageLoader, 166, application->menuStrings[14]);
+    MessageLoader_GetStrbuf(application->messageLoader, 200, application->menuStrings[15]);
 }
 
 void sub_02081CAC(PartyMenuApplication *param0, u16 param1, u8 param2)
@@ -185,7 +186,7 @@ void sub_02081CAC(PartyMenuApplication *param0, u16 param1, u8 param2)
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, 156 + param2);
 
     StringTemplate_SetMoveName(param0->template, 0, param1);
-    StringTemplate_Format(param0->template, param0->unk_6AC[16 + param2], v0);
+    StringTemplate_Format(param0->template, param0->menuStrings[16 + param2], v0);
 
     Strbuf_Free(v0);
 }
@@ -195,17 +196,17 @@ void sub_02081CF4(PartyMenuApplication *param0, const u8 *param1, u8 param2)
     MenuTemplate v0;
     u16 v1, v2;
 
-    Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
+    Window_Add(param0->bgConfig, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
-    param0->unk_6FC = StringList_New(param2, HEAP_ID_12);
+    param0->unk_6FC = StringList_New(param2, HEAP_ID_PARTY_MENU);
     v2 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {
         if (param1[v1] >= 16) {
-            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[16 + v2], sub_02083370((u8)param1[v1]));
             v2++;
         } else {
-            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[param1[v1]], sub_02083370((u8)param1[v1]));
         }
     }
 
@@ -232,16 +233,16 @@ void sub_02081E08(PartyMenuApplication *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    if (param0->partyMenu->unk_20 == 15) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->unk_6A4);
-    } else if ((param0->partyMenu->unk_20 == 21) && (param0->unk_704[param0->partySlot].unk_10 == 1)) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->unk_6A4);
+    if (param0->partyMenu->mode == 15) {
+        MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->tmpString);
+    } else if ((param0->partyMenu->mode == 21) && (param0->partyMembers[param0->currPartySlot].unk_10 == 1)) {
+        MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->tmpString);
     } else {
-        v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 37);
 
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
-        StringTemplate_Format(param0->template, param0->unk_6A4, v1);
+        StringTemplate_Format(param0->template, param0->tmpString, v1);
         Strbuf_Free(v1);
     }
 }
@@ -257,7 +258,7 @@ static const u16 Unk_020F1EA0[6][4] = {
 
 static void sub_02081EAC(PartyMenuApplication *param0, u8 param1)
 {
-    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->specialChars, 0, &param0->windows[2 + param1 * 5], 28, 2);
 }
 
 void sub_02081ED8(PartyMenuApplication *param0, Pokemon *param1, u32 param2)
@@ -265,7 +266,7 @@ void sub_02081ED8(PartyMenuApplication *param0, Pokemon *param1, u32 param2)
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_020F1EA0[param2][0]);
 
     StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(param1));
-    StringTemplate_Format(param0->template, param0->unk_704[param2].unk_00, v0);
+    StringTemplate_Format(param0->template, param0->partyMembers[param2].name, v0);
     Strbuf_Free(v0);
 }
 
@@ -274,24 +275,24 @@ void sub_02081F2C(PartyMenuApplication *param0, u8 param1)
     Window *v0;
     Pokemon *v1;
 
-    v0 = &param0->unk_04[0 + param1 * 5];
+    v0 = &param0->windows[0 + param1 * 5];
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_704[param1].unk_00, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->partyMembers[param1].name, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
-    if (param0->unk_704[param1].unk_10 == 1) {
+    if (param0->partyMembers[param1].unk_10 == 1) {
         Window_ScheduleCopyToVRAM(v0);
         return;
     }
 
-    if (param0->unk_704[param1].unk_0E_12 == 0) {
-        if (param0->unk_704[param1].unk_0E_13 == 0) {
-            MessageLoader_GetStrbuf(param0->messageLoader, 27, param0->unk_6A8);
+    if (param0->partyMembers[param1].unk_0E_12 == 0) {
+        if (param0->partyMembers[param1].unk_0E_13 == 0) {
+            MessageLoader_GetStrbuf(param0->messageLoader, 27, param0->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
-                v0, FONT_SYSTEM, param0->unk_6A8, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
-        } else if (param0->unk_704[param1].unk_0E_13 == 1) {
-            MessageLoader_GetStrbuf(param0->messageLoader, 28, param0->unk_6A8);
+                v0, FONT_SYSTEM, param0->tmpFormat, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+        } else if (param0->partyMembers[param1].unk_0E_13 == 1) {
+            MessageLoader_GetStrbuf(param0->messageLoader, 28, param0->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
-                v0, FONT_SYSTEM, param0->unk_6A8, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+                v0, FONT_SYSTEM, param0->tmpFormat, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
         }
     }
 
@@ -303,14 +304,14 @@ void sub_02081FFC(PartyMenuApplication *param0, u8 param1)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[1 + param1 * 5];
+    v0 = &param0->windows[1 + param1 * 5];
 
-    if (param0->unk_704[param1].unk_0E_0 != 7) {
+    if (param0->partyMembers[param1].unk_0E_0 != 7) {
         Window_ScheduleCopyToVRAM(v0);
         return;
     }
 
-    FontSpecialChars_DrawPartyScreenText(param0->unk_698, 1, param0->unk_704[param1].level, 3, 0, v0, 5, 2);
+    FontSpecialChars_DrawPartyScreenText(param0->specialChars, 1, param0->partyMembers[param1].level, 3, 0, v0, 5, 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -320,9 +321,9 @@ void sub_02082058(PartyMenuApplication *param0, u8 param1)
     Strbuf *v1;
     u32 v2;
 
-    v0 = &param0->unk_04[2 + param1 * 5];
+    v0 = &param0->windows[2 + param1 * 5];
 
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].curHP, 3, 1, v0, (28 - 24), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param0->partyMembers[param1].curHP, 3, 1, v0, (28 - 24), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -332,7 +333,7 @@ void sub_02082098(PartyMenuApplication *param0, u8 param1)
     Strbuf *v1;
     u32 v2;
 
-    v0 = &param0->unk_04[2 + param1 * 5];
+    v0 = &param0->windows[2 + param1 * 5];
 
     Window_FillRectWithColor(v0, 0, (28 - 24), 0, 24, 2 * 8);
     Window_ScheduleCopyToVRAM(v0);
@@ -343,9 +344,9 @@ static void sub_020820C4(PartyMenuApplication *param0, u8 param1)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[2 + param1 * 5];
+    v0 = &param0->windows[2 + param1 * 5];
 
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].maxHP, 3, 0, v0, (28 + 8), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param0->partyMembers[param1].maxHP, 3, 0, v0, (28 + 8), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -354,25 +355,25 @@ void sub_02082104(PartyMenuApplication *param0, u8 param1)
     Window *v0;
     u8 v1;
 
-    v0 = &param0->unk_04[3 + param1 * 5];
+    v0 = &param0->windows[3 + param1 * 5];
 
-    switch (HealthBar_Color(param0->unk_704[param1].curHP, param0->unk_704[param1].maxHP, 48)) {
+    switch (HealthBar_Color(param0->partyMembers[param1].curHP, param0->partyMembers[param1].maxHP, 48)) {
     case 0:
         Window_ScheduleCopyToVRAM(v0);
         return;
     case 4:
     case 3:
-        Bg_LoadPalette(1, &param0->unk_4A4[9], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->colors[9], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 2:
-        Bg_LoadPalette(1, &param0->unk_4A4[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->colors[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 1:
-        Bg_LoadPalette(1, &param0->unk_4A4[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->colors[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     }
 
-    v1 = App_PixelCount(param0->unk_704[param1].curHP, param0->unk_704[param1].maxHP, 48);
+    v1 = App_PixelCount(param0->partyMembers[param1].curHP, param0->partyMembers[param1].maxHP, 48);
 
     Window_FillRectWithColor(v0, 10, 0, 2, v1, 1);
     Window_FillRectWithColor(v0, 9, 0, 3, v1, 2);
@@ -382,17 +383,17 @@ void sub_02082104(PartyMenuApplication *param0, u8 param1)
 
 void sub_020821F8(PartyMenuApplication *param0, u8 param1)
 {
-    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[2 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[3 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[2 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[3 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
-    if (param0->unk_704[param1].unk_10 == 1) {
-        Window_ScheduleCopyToVRAM(&param0->unk_04[0 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->unk_04[1 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->unk_04[2 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->unk_04[3 + param1 * 5]);
+    if (param0->partyMembers[param1].unk_10 == 1) {
+        Window_ScheduleCopyToVRAM(&param0->windows[0 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->windows[2 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->windows[3 + param1 * 5]);
         return;
     }
 
@@ -405,29 +406,29 @@ void sub_020821F8(PartyMenuApplication *param0, u8 param1)
 
 void sub_020822BC(PartyMenuApplication *param0, u8 param1)
 {
-    Window_LoadTiles(&param0->unk_04[0 + param1 * 5]);
-    Window_LoadTiles(&param0->unk_04[1 + param1 * 5]);
-    Window_LoadTiles(&param0->unk_04[2 + param1 * 5]);
-    Window_LoadTiles(&param0->unk_04[3 + param1 * 5]);
+    Window_LoadTiles(&param0->windows[0 + param1 * 5]);
+    Window_LoadTiles(&param0->windows[1 + param1 * 5]);
+    Window_LoadTiles(&param0->windows[2 + param1 * 5]);
+    Window_LoadTiles(&param0->windows[3 + param1 * 5]);
 }
 
 void sub_020822F4(PartyMenuApplication *param0, u8 param1)
 {
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[0 + param1 * 5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[1 + param1 * 5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[2 + param1 * 5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[3 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[0 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[1 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[2 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[3 + param1 * 5]);
 }
 
 void sub_0208232C(PartyMenuApplication *param0, u8 param1)
 {
     Pokemon *v0;
 
-    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
-    if (param0->unk_704[param1].unk_10 == 1) {
+    if (param0->partyMembers[param1].unk_10 == 1) {
         sub_02082810(param0, param1, 1);
         return;
     }
@@ -448,11 +449,11 @@ void sub_020823C4(PartyMenuApplication *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
-    if (param0->unk_704[param1].unk_10 == 1) {
+    if (param0->partyMembers[param1].unk_10 == 1) {
         sub_02082880(param0, param1, 1);
         return;
     }
@@ -476,15 +477,15 @@ void sub_0208245C(PartyMenuApplication *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
-    if (param0->unk_704[param1].unk_10 != 1) {
+    if (param0->partyMembers[param1].unk_10 != 1) {
         sub_02081FFC(param0, param1);
     }
 
-    sub_02082900(param0, param1, (u8)param0->unk_704[param1].unk_0E_15);
+    sub_02082900(param0, param1, (u8)param0->partyMembers[param1].unk_0E_15);
 }
 
 void sub_020824C0(PartyMenuApplication *param0, u8 param1)
@@ -492,11 +493,11 @@ void sub_020824C0(PartyMenuApplication *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
-    if (param0->unk_704[param1].unk_10 != 1) {
+    if (param0->partyMembers[param1].unk_10 != 1) {
         sub_02081FFC(param0, param1);
     }
 }
@@ -512,12 +513,12 @@ void sub_02082508(PartyMenuApplication *param0, u8 param1)
         }
     }
 
-    if (param0->partyMenu->unk_20 == 22) {
+    if (param0->partyMenu->mode == 22) {
         if (sub_02080404(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
         }
-    } else if (param0->partyMenu->unk_20 == 23) {
+    } else if (param0->partyMenu->mode == 23) {
         if (sub_02080488(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
@@ -532,64 +533,63 @@ void sub_02082508(PartyMenuApplication *param0, u8 param1)
     sub_02082964(param0, param1, 7);
 }
 
-static u32 sub_020825A4(int param0, const Strbuf *param1, u32 param2)
+static u32 CalcCenterXPos(enum Font font, const Strbuf *string, u32 winWidth)
 {
-    u32 v0 = Font_CalcStrbufWidth(param0, param1, 0);
-
-    return (param2 - v0) >> 1;
+    u32 width = Font_CalcStrbufWidth(font, string, 0);
+    return (winWidth - width) >> 1;
 }
 
-void sub_020825B4(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintButtonText(PartyMenuApplication *application, u8 flags)
 {
-    u32 v0;
+    u32 x;
 
-    Window_FillTilemap(&param0->unk_04[30], 0);
-    Window_FillTilemap(&param0->unk_04[31], 0);
+    Window_FillTilemap(&application->windows[30], 0);
+    Window_FillTilemap(&application->windows[31], 0);
 
-    if (param1 & 1) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 0, param0->unk_6A8);
-        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].width * 8);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[30], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        Window_ScheduleCopyToVRAM(&param0->unk_04[30]);
+    if (flags & PARTY_MENU_SHOW_CONFIRM) {
+        MessageLoader_GetStrbuf(application->messageLoader, 0, application->tmpFormat);
+        x = CalcCenterXPos(FONT_SYSTEM, application->tmpFormat, application->windows[30].width * 8);
+        Text_AddPrinterWithParamsAndColor(&application->windows[30], FONT_SYSTEM, application->tmpFormat, x, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Window_ScheduleCopyToVRAM(&application->windows[30]);
     }
 
-    if (param1 & 2) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 1, param0->unk_6A8);
-        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].width * 8);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[31], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        Window_ScheduleCopyToVRAM(&param0->unk_04[31]);
+    if (flags & PARTY_MENU_SHOW_CANCEL) {
+        MessageLoader_GetStrbuf(application->messageLoader, 1, application->tmpFormat);
+        x = CalcCenterXPos(FONT_SYSTEM, application->tmpFormat, application->windows[31].width * 8);
+        Text_AddPrinterWithParamsAndColor(&application->windows[31], FONT_SYSTEM, application->tmpFormat, x, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Window_ScheduleCopyToVRAM(&application->windows[31]);
     }
 }
 
-static void sub_02082680(PartyMenuApplication *param0, Window *param1, u32 param2, u8 param3)
+static void PrintPartyMenuMessage(PartyMenuApplication *application, Window *window, u32 bankEntry, u8 draw)
 {
-    if (param3 == 1) {
-        Window_DrawMessageBoxWithScrollCursor(param1, 1, (1 + 9), 15);
+    if (draw == TRUE) {
+        Window_DrawMessageBoxWithScrollCursor(window, 1, (1 + 9), 15);
     }
 
-    Window_FillTilemap(param1, 15);
+    Window_FillTilemap(window, 15);
 
-    if (param2 != 0xffffffff) {
-        MessageLoader_GetStrbuf(param0->messageLoader, param2, param0->unk_6A4);
+    if (bankEntry != -1) {
+        MessageLoader_GetStrbuf(application->messageLoader, bankEntry, application->tmpString);
     }
 
-    Text_AddPrinterWithParams(param1, FONT_MESSAGE, param0->unk_6A4, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    Window_ScheduleCopyToVRAM(param1);
+    Text_AddPrinterWithParams(window, FONT_MESSAGE, application->tmpString, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_020826E0(PartyMenuApplication *param0, u32 param1, u8 param2)
+void PartyMenu_PrintShortMessage(PartyMenuApplication *application, u32 bankEntry, u8 draw)
 {
-    sub_02082680(param0, &param0->unk_04[32], param1, param2);
+    PrintPartyMenuMessage(application, &application->windows[32], bankEntry, draw);
 }
 
-void sub_020826F4(PartyMenuApplication *param0, u32 param1, u8 param2)
+void sub_020826F4(PartyMenuApplication *application, u32 bankEntry, u8 draw)
 {
-    sub_02082680(param0, &param0->unk_04[33], param1, param2);
+    PrintPartyMenuMessage(application, &application->windows[33], bankEntry, draw);
 }
 
 void sub_02082708(PartyMenuApplication *param0, u32 param1, u8 param2)
 {
-    Window *v0 = &param0->unk_04[34];
+    Window *v0 = &param0->windows[34];
 
     if (param2 == 1) {
         Window_DrawMessageBoxWithScrollCursor(v0, 1, (1 + 9), 15);
@@ -598,7 +598,7 @@ void sub_02082708(PartyMenuApplication *param0, u32 param1, u8 param2)
     Window_FillTilemap(v0, 15);
 
     if (param1 != 0xffffffff) {
-        MessageLoader_GetStrbuf(param0->messageLoader, param1, param0->unk_6A4);
+        MessageLoader_GetStrbuf(param0->messageLoader, param1, param0->tmpString);
     }
 
     sub_0208274C(param0);
@@ -609,7 +609,7 @@ void sub_0208274C(PartyMenuApplication *param0)
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
     param0->textPrinterID = Text_AddPrinterWithParams(
-        &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->partyMenu->options), sub_0208279C);
+        &param0->windows[34], FONT_MESSAGE, param0->tmpString, 0, 0, Options_TextFrameDelay(param0->partyMenu->options), sub_0208279C);
 }
 
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
@@ -635,7 +635,7 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 void sub_020827EC(PartyMenuApplication *param0)
 {
     param0->unk_700 = Menu_MakeYesNoChoice(
-        param0->unk_00, &Unk_020F1E98, 1, 14, 12);
+        param0->bgConfig, &Unk_020F1E98, 1, 14, 12);
 }
 
 static void sub_02082810(PartyMenuApplication *param0, u8 param1, u8 param2)
@@ -643,7 +643,7 @@ static void sub_02082810(PartyMenuApplication *param0, u8 param1, u8 param2)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[4 + param1 * 5];
+    v0 = &param0->windows[4 + param1 * 5];
 
     Window_FillTilemap(v0, 0);
 
@@ -666,7 +666,7 @@ static void sub_02082880(PartyMenuApplication *param0, u8 param1, u8 param2)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[4 + param1 * 5];
+    v0 = &param0->windows[4 + param1 * 5];
 
     Window_FillTilemap(v0, 0);
 
@@ -692,7 +692,7 @@ static void sub_02082900(PartyMenuApplication *param0, u8 param1, u8 param2)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[4 + param1 * 5];
+    v0 = &param0->windows[4 + param1 * 5];
 
     Window_FillTilemap(v0, 0);
 
@@ -712,7 +712,7 @@ static void sub_02082964(PartyMenuApplication *param0, u8 param1, u8 param2)
     Window *v0;
     Strbuf *v1;
 
-    v0 = &param0->unk_04[4 + param1 * 5];
+    v0 = &param0->windows[4 + param1 * 5];
 
     Window_FillTilemap(v0, 0);
 
@@ -736,7 +736,7 @@ void sub_020829DC(PartyMenuApplication *param0)
     u32 v2;
     u16 v3[6];
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     v3[0] = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
     v3[1] = (u16)Pokemon_GetValue(v0, MON_DATA_ATK, NULL);
@@ -745,7 +745,7 @@ void sub_020829DC(PartyMenuApplication *param0)
     v3[4] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_DEF, NULL);
     v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
 
-    Window_Add(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
+    Window_Add(param0->bgConfig, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);
     Window_FillTilemap(&param0->unk_254[0], 15);
 
@@ -757,12 +757,12 @@ void sub_020829DC(PartyMenuApplication *param0)
         v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 191);
 
         StringTemplate_SetNumber(param0->template, 0, v3[v2] - param0->monStats[v2], 2, 0, 1);
-        StringTemplate_Format(param0->template, param0->unk_6A4, v1);
+        StringTemplate_Format(param0->template, param0->tmpString, v1);
         Strbuf_Free(v1);
 
         {
-            u32 v4 = 14 * 8 - 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
-            Text_AddPrinterWithParams(&param0->unk_254[0], FONT_SYSTEM, param0->unk_6A4, v4, 16 * v2, TEXT_SPEED_NO_TRANSFER, NULL);
+            u32 v4 = 14 * 8 - 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->tmpString, 0);
+            Text_AddPrinterWithParams(&param0->unk_254[0], FONT_SYSTEM, param0->tmpString, v4, 16 * v2, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         param0->monStats[v2] = v3[v2];
@@ -782,11 +782,11 @@ void sub_02082B58(PartyMenuApplication *param0)
 
     for (v2 = 0; v2 < 6; v2++) {
         StringTemplate_SetNumber(param0->template, 0, param0->monStats[v2], 3, 0, 1);
-        StringTemplate_Format(param0->template, param0->unk_6A4, v0);
+        StringTemplate_Format(param0->template, param0->tmpString, v0);
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->tmpString, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_254[0], 0, param0->tmpString, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
     }
 
     Strbuf_Free(v0);

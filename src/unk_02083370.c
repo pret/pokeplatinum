@@ -5,7 +5,6 @@
 
 #include "generated/items.h"
 
-#include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 
 #include "applications/party_menu/defs.h"
@@ -130,14 +129,14 @@ static void sub_020833BC(PartyMenuApplication *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 38, 0);
 
-    param0->unk_6FC = StringList_New(3, HEAP_ID_12);
+    param0->unk_6FC = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[3], sub_02083370(3));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[4], sub_02083370(4));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[9], sub_02083370(9));
 
     v0.choices = param0->unk_6FC;
-    v0.window = &param0->unk_04[35];
+    v0.window = &param0->windows[35];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 3;
@@ -145,7 +144,7 @@ static void sub_020833BC(PartyMenuApplication *param0, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_DrawStandardFrame(&param0->unk_04[35], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->windows[35], 1, 1, 14);
 
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -167,21 +166,21 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
     int v2 = 17;
     FieldSystem *fieldSystem;
 
-    Window_EraseStandardFrame(&param0->unk_04[35], 1);
+    Window_EraseStandardFrame(&param0->windows[35], 1);
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
     fieldSystem = param0->partyMenu->fieldSystem;
 
-    if (param0->unk_704[param0->partySlot].unk_0C == 0) {
-        mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
-        MessageLoader_GetStrbuf(param0->messageLoader, 81, param0->unk_6A8);
+    if (param0->partyMembers[param0->currPartySlot].unk_0C == 0) {
+        mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
+        MessageLoader_GetStrbuf(param0->messageLoader, 81, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
-        StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
-    } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->unk_704[param0->partySlot].unk_0C, 1, HEAP_ID_12) == TRUE) {
+        StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
+    } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].unk_0C, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         u32 v4;
 
-        mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
+        mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         v4 = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
@@ -190,25 +189,25 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
             v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
 
-            if ((param0->unk_704[param0->partySlot].unk_0C == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
+            if ((param0->partyMembers[param0->currPartySlot].unk_0C == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
                 v2 = 18;
             }
         }
 
-        MessageLoader_GetStrbuf(param0->messageLoader, 82, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->messageLoader, 82, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
-        StringTemplate_SetItemName(param0->template, 1, param0->unk_704[param0->partySlot].unk_0C);
-        StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
+        StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].unk_0C);
+        StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
 
-        param0->unk_704[param0->partySlot].unk_0C = 0;
+        param0->partyMembers[param0->currPartySlot].unk_0C = 0;
 
-        sub_02083040(param0, param0->partySlot, param0->unk_704[param0->partySlot].unk_0C);
+        sub_02083040(param0, param0->currPartySlot, param0->partyMembers[param0->currPartySlot].unk_0C);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, 83, param0->unk_6A4);
+        MessageLoader_GetStrbuf(param0->messageLoader, 83, param0->tmpString);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[34], 1, (1 + 9), 15);
-    Window_FillTilemap(&param0->unk_04[34], 15);
+    Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, (1 + 9), 15);
+    Window_FillTilemap(&param0->windows[34], 15);
     sub_0208274C(param0);
 
     *param1 = v2;
@@ -218,9 +217,9 @@ int sub_02083658(PartyMenuApplication *param0)
 {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Window_EraseMessageBox(&param0->unk_04[34], 1);
-            sub_020826E0(param0, 29, 1);
-            Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+            Window_EraseMessageBox(&param0->windows[34], 1);
+            PartyMenu_PrintShortMessage(param0, 29, 1);
+            Sprite_SetExplicitPalette2(param0->sprites[6], 0);
             return 1;
         }
     }
@@ -232,7 +231,7 @@ int sub_020836A8(PartyMenuApplication *param0)
 {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Window_EraseMessageBox(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->windows[34], 1);
             LoadOverlay118(param0);
             return 19;
         }
@@ -258,14 +257,14 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 39, 0);
 
-    param0->unk_6FC = StringList_New(3, HEAP_ID_12);
+    param0->unk_6FC = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[6], sub_02083370(6));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[7], sub_02083370(7));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[9], sub_02083370(9));
 
     v0.choices = param0->unk_6FC;
-    v0.window = &param0->unk_04[35];
+    v0.window = &param0->windows[35];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 3;
@@ -273,7 +272,7 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_DrawStandardFrame(&param0->unk_04[35], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->windows[35], 1, 1, 14);
 
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -290,7 +289,7 @@ static void sub_020837C0(PartyMenuApplication *param0, int *param1)
 
 static void sub_020837F4(PartyMenuApplication *param0, int *param1)
 {
-    Window_EraseStandardFrame(&param0->unk_04[35], 1);
+    Window_EraseStandardFrame(&param0->windows[35], 1);
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
     sub_02082708(param0, 43, 1);
@@ -307,11 +306,11 @@ static int sub_0208384C(void *param0)
     Pokemon *v1;
 
     v0 = param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->partySlot);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
 
-    if (sub_02097788(v0->partyMenu->mailbox, v1, HEAP_ID_12) != 0xFFFFFFFF) {
-        v0->unk_704[v0->partySlot].unk_0C = 0;
-        sub_02083040(v0, v0->partySlot, v0->unk_704[v0->partySlot].unk_0C);
+    if (sub_02097788(v0->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
+        v0->partyMembers[v0->currPartySlot].unk_0C = 0;
+        sub_02083040(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].unk_0C);
         sub_02082708(v0, 46, 0);
     } else {
         sub_02082708(v0, 50, 0);
@@ -339,20 +338,20 @@ static int sub_020838F4(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
-    if (Bag_TryAddItem(v0->partyMenu->bag, v0->unk_704[v0->partySlot].unk_0C, 1, HEAP_ID_12) == TRUE) {
+    if (Bag_TryAddItem(v0->partyMenu->bag, v0->partyMembers[v0->currPartySlot].unk_0C, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         Pokemon *mon;
         u32 item;
 
-        mon = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->partySlot);
+        mon = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
         item = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
         Pokemon_SetArceusForm(mon);
         Pokemon_SetGiratinaFormByHeldItem(mon);
 
-        v0->unk_704[v0->partySlot].unk_0C = 0;
+        v0->partyMembers[v0->currPartySlot].unk_0C = 0;
 
-        sub_02083040(v0, v0->partySlot, v0->unk_704[v0->partySlot].unk_0C);
+        sub_02083040(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].unk_0C);
         sub_02082708(v0, 51, 0);
     } else {
         sub_02082708(v0, 83, 0);
@@ -367,9 +366,9 @@ static int sub_02083990(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
-    Window_EraseMessageBox(&v0->unk_04[34], 1);
-    sub_020826E0(v0, 29, 1);
-    Sprite_SetExplicitPalette2(v0->unk_5B0[6], 0);
+    Window_EraseMessageBox(&v0->windows[34], 1);
+    PartyMenu_PrintShortMessage(v0, 29, 1);
+    Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
 }
@@ -377,9 +376,9 @@ static int sub_02083990(void *param0)
 int sub_020839BC(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&param0->unk_04[34], 1);
-        sub_020826E0(param0, 29, 1);
-        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+        Window_EraseMessageBox(&param0->windows[34], 1);
+        PartyMenu_PrintShortMessage(param0, 29, 1);
+        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
 
@@ -388,7 +387,7 @@ int sub_020839BC(PartyMenuApplication *param0)
 
 static void sub_020839FC(PartyMenuApplication *param0, int *param1)
 {
-    if (param0->unk_704[param0->partySlot].unk_12 == 0) {
+    if (param0->partyMembers[param0->currPartySlot].unk_12 == 0) {
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         param0->partyMenu->menuSelectionResult = 0;
@@ -408,7 +407,7 @@ static void sub_020839FC(PartyMenuApplication *param0, int *param1)
 int sub_02083A78(void *param0)
 {
     PartyMenuApplication *v0 = param0;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->partySlot);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
 
     Pokemon_ClearBallCapsuleData(v1);
 
@@ -420,9 +419,9 @@ int sub_02083AA4(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
-    Window_EraseMessageBox(&v0->unk_04[34], 1);
-    sub_020826E0(v0, 29, 1);
-    Sprite_SetExplicitPalette2(v0->unk_5B0[6], 0);
+    Window_EraseMessageBox(&v0->windows[34], 1);
+    PartyMenu_PrintShortMessage(v0, 29, 1);
+    Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
 }
@@ -431,33 +430,33 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
 {
     s16 v0, v1;
 
-    param0->unk_B0F_6 = 1;
-    param0->unk_B0F_0 = param0->partySlot;
+    param0->inSwitchMode = 1;
+    param0->switchTargetSlot = param0->currPartySlot;
 
-    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
-    Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
-    Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
-    Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->partyMenu->unk_21, param0->unk_B0F_0) + 2);
-    Sprite_SetDrawFlag(param0->unk_5B0[7], TRUE);
-    sub_0207F8F8(param0, param0->unk_B0F_0);
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
+    Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+    Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
+    Sprite_SetPositionXY(param0->sprites[7], v0, v1);
+    Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->unk_21, param0->switchTargetSlot) + 2);
+    Sprite_SetDrawFlag(param0->sprites[7], TRUE);
+    PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
+    Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    sub_020826E0(param0, 30, 1);
+    PartyMenu_PrintShortMessage(param0, 30, 1);
 
     *param1 = 28;
 }
 
 void sub_02083B88(PartyMenuApplication *param0)
 {
-    param0->unk_B0F_6 = 0;
-    Sprite_SetDrawFlag(param0->unk_5B0[7], FALSE);
+    param0->inSwitchMode = 0;
+    Sprite_SetDrawFlag(param0->sprites[7], FALSE);
 
-    if (param0->partySlot < 6) {
-        sub_0207F8F8(param0, param0->partySlot);
+    if (param0->currPartySlot < 6) {
+        PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
     }
 
-    sub_0207F8F8(param0, param0->unk_B0F_0);
-    sub_020826E0(param0, 29, 1);
+    PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
+    PartyMenu_PrintShortMessage(param0, 29, 1);
 }
 
 void sub_02083BD4(PartyMenuApplication *param0)
@@ -467,8 +466,8 @@ void sub_02083BD4(PartyMenuApplication *param0)
     s8 v2, v3, v4, v5;
     u16 v6;
 
-    param0->unk_7F8.unk_300[0] = param0->partySlot;
-    param0->unk_7F8.unk_300[1] = param0->unk_B0F_0;
+    param0->unk_7F8.unk_300[0] = param0->currPartySlot;
+    param0->unk_7F8.unk_300[1] = param0->switchTargetSlot;
     param0->unk_7F8.unk_304 = 1;
     param0->unk_7F8.unk_306 = 0;
     param0->unk_7F8.unk_305 = 0;
@@ -485,13 +484,13 @@ void sub_02083BD4(PartyMenuApplication *param0)
         param0->unk_7F8.unk_302[1] = 0;
     }
 
-    v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 2);
-    v1 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 1);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 2);
+    v1 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 1);
 
-    v2 = param0->unk_704[param0->unk_7F8.unk_300[0]].unk_14;
-    v3 = param0->unk_704[param0->unk_7F8.unk_300[0]].unk_15;
-    v4 = param0->unk_704[param0->unk_7F8.unk_300[1]].unk_14;
-    v5 = param0->unk_704[param0->unk_7F8.unk_300[1]].unk_15;
+    v2 = param0->partyMembers[param0->unk_7F8.unk_300[0]].unk_14;
+    v3 = param0->partyMembers[param0->unk_7F8.unk_300[0]].unk_15;
+    v4 = param0->partyMembers[param0->unk_7F8.unk_300[1]].unk_14;
+    v5 = param0->partyMembers[param0->unk_7F8.unk_300[1]].unk_15;
 
     for (v6 = 0; v6 < 6; v6++) {
         memcpy(&param0->unk_7F8.unk_00[0][v6 * 16], &v0[v2 + (v3 + v6) * 32], 16 * 2);
@@ -500,8 +499,8 @@ void sub_02083BD4(PartyMenuApplication *param0)
         memcpy(&param0->unk_7F8.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
     }
 
-    Sprite_SetDrawFlag(param0->unk_5B0[6], FALSE);
-    Sprite_SetDrawFlag(param0->unk_5B0[7], FALSE);
+    Sprite_SetDrawFlag(param0->sprites[6], FALSE);
+    Sprite_SetDrawFlag(param0->sprites[7], FALSE);
 }
 
 BOOL sub_02083D1C(PartyMenuApplication *param0)
@@ -520,8 +519,8 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
         sub_02083E8C(param0, 1);
         sub_02083FDC(param0, 0, v0->unk_302[0]);
         sub_02083FDC(param0, 1, v0->unk_302[1]);
-        Bg_ScheduleTilemapTransfer(param0->unk_00, 2);
-        Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
+        Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
+        Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
 
         if (v0->unk_306 == 16) {
             v0->unk_305 = 2;
@@ -539,8 +538,8 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
         sub_02083E8C(param0, 1);
         sub_02083FDC(param0, 0, v0->unk_302[0] ^ 1);
         sub_02083FDC(param0, 1, v0->unk_302[1] ^ 1);
-        Bg_ScheduleTilemapTransfer(param0->unk_00, 2);
-        Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
+        Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
+        Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
 
         if (v0->unk_306 == 0) {
             v0->unk_305 = 4;
@@ -550,14 +549,14 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
 
     case 4:
         Party_SwapSlots(param0->partyMenu->party, v0->unk_300[0], v0->unk_300[1]);
-        Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
+        Sprite_SetDrawFlag(param0->sprites[6], TRUE);
 
         v0->unk_304 = 0;
-        param0->unk_B0F_6 = 0;
+        param0->inSwitchMode = 0;
 
-        sub_0207F8F8(param0, param0->partySlot);
-        sub_0207F8F8(param0, param0->unk_B0F_0);
-        sub_020826E0(param0, 29, 0);
+        PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
+        PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
+        PartyMenu_PrintShortMessage(param0, 29, 0);
 
         return 1;
     }
@@ -572,18 +571,18 @@ static void sub_02083E8C(PartyMenuApplication *param0, u8 param1)
     u8 v3;
 
     v0 = &param0->unk_7F8;
-    v1 = param0->unk_704[v0->unk_300[param1]].unk_14;
-    v2 = param0->unk_704[v0->unk_300[param1]].unk_15;
+    v1 = param0->partyMembers[v0->unk_300[param1]].unk_14;
+    v2 = param0->partyMembers[v0->unk_300[param1]].unk_15;
 
-    Bg_FillTilemapRect(param0->unk_00, 2, 0, v1, v2, 16, 6, 16);
-    Bg_FillTilemapRect(param0->unk_00, 1, 0, v1, v2, 16, 6, 16);
+    Bg_FillTilemapRect(param0->bgConfig, 2, 0, v1, v2, 16, 6, 16);
+    Bg_FillTilemapRect(param0->bgConfig, 1, 0, v1, v2, 16, 6, 16);
 
     if (v0->unk_302[param1] == 0) {
-        Bg_CopyToTilemapRect(param0->unk_00, 2, v1, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], v0->unk_306, 0, 16, 6);
-        Bg_CopyToTilemapRect(param0->unk_00, 1, v1, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], v0->unk_306, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->bgConfig, 2, v1, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], v0->unk_306, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->bgConfig, 1, v1, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], v0->unk_306, 0, 16, 6);
     } else {
-        Bg_CopyToTilemapRect(param0->unk_00, 2, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], 0, 0, 16, 6);
-        Bg_CopyToTilemapRect(param0->unk_00, 1, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], 0, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->bgConfig, 2, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], 0, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->bgConfig, 1, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], 0, 0, 16, 6);
     }
 }
 
@@ -594,75 +593,75 @@ static void sub_02083FDC(PartyMenuApplication *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_7F8;
 
-    Sprite_GetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], &v1, &v2);
+    Sprite_GetPositionXY(param0->sprites[0 + v0->unk_300[param1]], &v1, &v2);
 
     if (param2 == 0) {
-        param0->unk_704[v0->unk_300[param1]].unk_16 -= 8;
-        param0->unk_704[v0->unk_300[param1]].unk_1A -= 8;
-        param0->unk_704[v0->unk_300[param1]].unk_1E -= 8;
+        param0->partyMembers[v0->unk_300[param1]].spriteXDelta -= 8;
+        param0->partyMembers[v0->unk_300[param1]].spriteXPos -= 8;
+        param0->partyMembers[v0->unk_300[param1]].unk_1E -= 8;
         v1 -= 8;
     } else {
-        param0->unk_704[v0->unk_300[param1]].unk_16 += 8;
-        param0->unk_704[v0->unk_300[param1]].unk_1A += 8;
-        param0->unk_704[v0->unk_300[param1]].unk_1E += 8;
+        param0->partyMembers[v0->unk_300[param1]].spriteXDelta += 8;
+        param0->partyMembers[v0->unk_300[param1]].spriteXPos += 8;
+        param0->partyMembers[v0->unk_300[param1]].unk_1E += 8;
         v1 += 8;
     }
 
-    Sprite_SetPositionXY(param0->unk_704[v0->unk_300[param1]].unk_24, param0->unk_704[v0->unk_300[param1]].unk_16, param0->unk_704[v0->unk_300[param1]].unk_18);
-    Sprite_SetPositionXY(param0->unk_5B0[10 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1A, param0->unk_704[v0->unk_300[param1]].unk_1C);
-    Sprite_SetPositionXY(param0->unk_5B0[16 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E, param0->unk_704[v0->unk_300[param1]].unk_20);
-    Sprite_SetPositionXY(param0->unk_5B0[22 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E + 8, param0->unk_704[v0->unk_300[param1]].unk_20);
-    Sprite_SetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], v1, v2);
+    Sprite_SetPositionXY(param0->partyMembers[v0->unk_300[param1]].unk_24, param0->partyMembers[v0->unk_300[param1]].spriteXDelta, param0->partyMembers[v0->unk_300[param1]].spriteYDelta);
+    Sprite_SetPositionXY(param0->sprites[10 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].spriteXPos, param0->partyMembers[v0->unk_300[param1]].spriteYPos);
+    Sprite_SetPositionXY(param0->sprites[16 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].unk_1E, param0->partyMembers[v0->unk_300[param1]].unk_20);
+    Sprite_SetPositionXY(param0->sprites[22 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].unk_1E + 8, param0->partyMembers[v0->unk_300[param1]].unk_20);
+    Sprite_SetPositionXY(param0->sprites[0 + v0->unk_300[param1]], v1, v2);
 }
 
 static void sub_02084134(PartyMenuApplication *param0)
 {
-    StrBufWrapper *v0;
+    PartyMenuMember *v0;
     DualArrayShortData *v1;
     ManagedSprite *v2;
     s16 v3;
 
     v1 = &param0->unk_7F8;
 
-    v0 = Heap_Alloc(HEAP_ID_12, sizeof(StrBufWrapper));
-    *v0 = param0->unk_704[v1->unk_300[0]];
+    v0 = Heap_Alloc(HEAP_ID_PARTY_MENU, sizeof(PartyMenuMember));
+    *v0 = param0->partyMembers[v1->unk_300[0]];
 
-    param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];
-    param0->unk_704[v1->unk_300[1]] = *v0;
+    param0->partyMembers[v1->unk_300[0]] = param0->partyMembers[v1->unk_300[1]];
+    param0->partyMembers[v1->unk_300[1]] = *v0;
 
-    Heap_FreeExplicit(HEAP_ID_12, v0);
+    Heap_FreeExplicit(HEAP_ID_PARTY_MENU, v0);
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_16;
-    param0->unk_704[v1->unk_300[0]].unk_16 = param0->unk_704[v1->unk_300[1]].unk_16;
-    param0->unk_704[v1->unk_300[1]].unk_16 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].spriteXDelta;
+    param0->partyMembers[v1->unk_300[0]].spriteXDelta = param0->partyMembers[v1->unk_300[1]].spriteXDelta;
+    param0->partyMembers[v1->unk_300[1]].spriteXDelta = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_18;
-    param0->unk_704[v1->unk_300[0]].unk_18 = param0->unk_704[v1->unk_300[1]].unk_18;
-    param0->unk_704[v1->unk_300[1]].unk_18 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].spriteYDelta;
+    param0->partyMembers[v1->unk_300[0]].spriteYDelta = param0->partyMembers[v1->unk_300[1]].spriteYDelta;
+    param0->partyMembers[v1->unk_300[1]].spriteYDelta = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_1A;
-    param0->unk_704[v1->unk_300[0]].unk_1A = param0->unk_704[v1->unk_300[1]].unk_1A;
-    param0->unk_704[v1->unk_300[1]].unk_1A = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].spriteXPos;
+    param0->partyMembers[v1->unk_300[0]].spriteXPos = param0->partyMembers[v1->unk_300[1]].spriteXPos;
+    param0->partyMembers[v1->unk_300[1]].spriteXPos = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_1C;
-    param0->unk_704[v1->unk_300[0]].unk_1C = param0->unk_704[v1->unk_300[1]].unk_1C;
-    param0->unk_704[v1->unk_300[1]].unk_1C = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].spriteYPos;
+    param0->partyMembers[v1->unk_300[0]].spriteYPos = param0->partyMembers[v1->unk_300[1]].spriteYPos;
+    param0->partyMembers[v1->unk_300[1]].spriteYPos = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_1E;
-    param0->unk_704[v1->unk_300[0]].unk_1E = param0->unk_704[v1->unk_300[1]].unk_1E;
-    param0->unk_704[v1->unk_300[1]].unk_1E = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].unk_1E;
+    param0->partyMembers[v1->unk_300[0]].unk_1E = param0->partyMembers[v1->unk_300[1]].unk_1E;
+    param0->partyMembers[v1->unk_300[1]].unk_1E = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_20;
-    param0->unk_704[v1->unk_300[0]].unk_20 = param0->unk_704[v1->unk_300[1]].unk_20;
-    param0->unk_704[v1->unk_300[1]].unk_20 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].unk_20;
+    param0->partyMembers[v1->unk_300[0]].unk_20 = param0->partyMembers[v1->unk_300[1]].unk_20;
+    param0->partyMembers[v1->unk_300[1]].unk_20 = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_14;
-    param0->unk_704[v1->unk_300[0]].unk_14 = param0->unk_704[v1->unk_300[1]].unk_14;
-    param0->unk_704[v1->unk_300[1]].unk_14 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].unk_14;
+    param0->partyMembers[v1->unk_300[0]].unk_14 = param0->partyMembers[v1->unk_300[1]].unk_14;
+    param0->partyMembers[v1->unk_300[1]].unk_14 = v3;
 
-    v3 = param0->unk_704[v1->unk_300[0]].unk_15;
-    param0->unk_704[v1->unk_300[0]].unk_15 = param0->unk_704[v1->unk_300[1]].unk_15;
-    param0->unk_704[v1->unk_300[1]].unk_15 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].unk_15;
+    param0->partyMembers[v1->unk_300[0]].unk_15 = param0->partyMembers[v1->unk_300[1]].unk_15;
+    param0->partyMembers[v1->unk_300[1]].unk_15 = v3;
 
     sub_020821F8(param0, v1->unk_300[0]);
     sub_020821F8(param0, v1->unk_300[1]);
@@ -672,11 +671,11 @@ static void sub_02084134(PartyMenuApplication *param0)
     sub_02084420(param0, 0);
     sub_02084420(param0, 1);
 
-    sub_02083014(param0, v1->unk_300[0], param0->unk_704[v1->unk_300[0]].unk_0E_0);
-    sub_02083014(param0, v1->unk_300[1], param0->unk_704[v1->unk_300[1]].unk_0E_0);
+    sub_02083014(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].unk_0E_0);
+    sub_02083014(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].unk_0E_0);
 
-    sub_02083040(param0, v1->unk_300[0], param0->unk_704[v1->unk_300[0]].unk_0C);
-    sub_02083040(param0, v1->unk_300[1], param0->unk_704[v1->unk_300[1]].unk_0C);
+    sub_02083040(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].unk_0C);
+    sub_02083040(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].unk_0C);
 
     sub_02083104(param0, v1->unk_300[0]);
     sub_02083104(param0, v1->unk_300[1]);
@@ -694,7 +693,7 @@ static void sub_02084420(PartyMenuApplication *param0, u8 param1)
     v2 = v0->unk_00[param1];
     v1 = sub_0207F248(param0);
 
-    if (param0->unk_704[v0->unk_300[param1]].unk_10 == 1) {
+    if (param0->partyMembers[v0->unk_300[param1]].unk_10 == 1) {
         for (v4 = 0; v4 < 9; v4++) {
             v3 = v2[3 * 16 + 6 + v4] & 0xf000;
             v2[3 * 16 + 6 + v4] = v3 | 0x17;
@@ -711,7 +710,7 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
 {
     u8 v0;
 
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
 
     for (v0 = 0; v0 < param0->partyMenu->unk_32_4; v0++) {
@@ -719,11 +718,11 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
             continue;
         }
 
-        param0->partyMenu->unk_2C[v0] = param0->partySlot + 1;
+        param0->partyMenu->unk_2C[v0] = param0->currPartySlot + 1;
 
-        sub_02082508(param0, param0->partySlot);
-        sub_020826E0(param0, 34, 1);
-        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+        sub_02082508(param0, param0->currPartySlot);
+        PartyMenu_PrintShortMessage(param0, 34, 1);
+        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
         if (v0 == param0->partyMenu->unk_32_4 - 1) {
             sub_0207FD68(param0, 6);
@@ -758,9 +757,9 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
 int sub_020845A8(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&param0->unk_04[34], 1);
-        sub_020826E0(param0, 34, 1);
-        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+        Window_EraseMessageBox(&param0->windows[34], 1);
+        PartyMenu_PrintShortMessage(param0, 34, 1);
+        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
 
@@ -772,7 +771,7 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
     u8 v0;
 
     for (v0 = 0; v0 < param0->partyMenu->unk_32_4; v0++) {
-        if (param0->partyMenu->unk_2C[v0] == param0->partySlot + 1) {
+        if (param0->partyMenu->unk_2C[v0] == param0->currPartySlot + 1) {
             param0->partyMenu->unk_2C[v0] = 0;
 
             for (v0 = v0; v0 < param0->partyMenu->unk_32_4 - 1; v0++) {
@@ -784,17 +783,17 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (param0->unk_704[v0].unk_29 == 0) {
+        if (param0->partyMembers[v0].unk_29 == 0) {
             continue;
         }
 
         sub_02082508(param0, v0);
     }
 
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    sub_020826E0(param0, 29, 1);
-    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+    PartyMenu_PrintShortMessage(param0, 29, 1);
+    Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
     *param1 = 1;
 }
@@ -832,21 +831,21 @@ static void sub_0208472C(PartyMenuApplication *param0, int *param1)
 static void sub_02084760(PartyMenuApplication *param0, int *param1)
 {
     sub_0208337C(param0);
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->windows[33], 1);
 
     *param1 = sub_02084780(param0);
 }
 
 int sub_02084780(PartyMenuApplication *param0)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 129, param0->unk_6A4);
-        Sprite_SetDrawFlag(param0->unk_5B0[22 + param0->partySlot], TRUE);
+        MessageLoader_GetStrbuf(param0->messageLoader, 129, param0->tmpString);
+        Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, 130, param0->unk_6A4);
-        param0->partySlot = 7;
+        MessageLoader_GetStrbuf(param0->messageLoader, 130, param0->tmpString);
+        param0->currPartySlot = 7;
     }
 
     sub_02082708(param0, 0xffffffff, 1);
@@ -891,7 +890,7 @@ static void sub_02084808(PartyMenuApplication *windowLayout, int *param1)
         break;
     }
 
-    Window_EraseMessageBox(&windowLayout->unk_04[33], 1);
+    Window_EraseMessageBox(&windowLayout->windows[33], 1);
     sub_0208337C(windowLayout);
     sub_02082708(windowLayout, v2, 1);
 
@@ -997,28 +996,28 @@ static void sub_020849FC(PartyMenuApplication *param0, int *param1)
 
 static int sub_02084A18(PartyMenuApplication *param0)
 {
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
 
-    param0->monStats[0] = param0->unk_704[param0->partySlot].maxHP / 5;
+    param0->monStats[0] = param0->partyMembers[param0->currPartySlot].maxHP / 5;
 
-    if (param0->unk_704[param0->partySlot].curHP <= param0->monStats[0]) {
+    if (param0->partyMembers[param0->currPartySlot].curHP <= param0->monStats[0]) {
         sub_02082708(param0, 138, 1);
         param0->unk_B0E = 3;
         return 24;
     } else {
         s16 v0, v1;
 
-        param0->unk_B0F_6 = 1;
-        param0->unk_B0F_0 = param0->partySlot;
+        param0->inSwitchMode = 1;
+        param0->switchTargetSlot = param0->currPartySlot;
 
-        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
-        Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
-        Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
-        Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->partyMenu->unk_21, param0->unk_B0F_0) + 2);
-        Sprite_SetDrawFlag(param0->unk_5B0[7], TRUE);
-        sub_0207F8F8(param0, param0->unk_B0F_0);
-        sub_020826E0(param0, 36, 1);
+        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+        Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
+        Sprite_SetPositionXY(param0->sprites[7], v0, v1);
+        Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->unk_21, param0->switchTargetSlot) + 2);
+        Sprite_SetDrawFlag(param0->sprites[7], TRUE);
+        PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
+        PartyMenu_PrintShortMessage(param0, 36, 1);
 
         param0->monStats[1] = 0;
         return 30;
@@ -1028,9 +1027,9 @@ static int sub_02084A18(PartyMenuApplication *param0)
 int sub_02084B34(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&param0->unk_04[34], 1);
-        sub_020826E0(param0, 29, 1);
-        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+        Window_EraseMessageBox(&param0->windows[34], 1);
+        PartyMenu_PrintShortMessage(param0, 29, 1);
+        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
 

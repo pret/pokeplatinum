@@ -5,10 +5,10 @@
 
 #include "narc.h"
 
-void sub_02082C2C(PartyMenuApplication *param0);
+void PartyMenu_InitSpriteResources(PartyMenuApplication *param0);
 void sub_02082CEC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3, NARC *param4);
 void sub_02082DA8(PartyMenuApplication *param0, u8 param1);
-void sub_02082E58(PartyMenuApplication *param0);
+void PartyMenu_InitSprites(PartyMenuApplication *param0);
 void sub_02082FAC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3);
 void sub_02082FF4(PartyMenuApplication *param0);
 void sub_02083014(PartyMenuApplication *param0, u8 param1, u8 param2);

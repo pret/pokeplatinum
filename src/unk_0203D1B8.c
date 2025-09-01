@@ -369,68 +369,68 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
 
 static PartyMenu *PartyMenu_New(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    PartyMenu *partyMan = Heap_Alloc(heapID, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
-    MI_CpuClearFast(partyMan, sizeof(PartyMenu));
+    MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->unk_21 = param2;
-    partyMan->unk_20 = param3;
-    partyMan->fieldSystem = fieldSystem;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->unk_21 = param2;
+    partyMenu->mode = param3;
+    partyMenu->fieldSystem = fieldSystem;
 
-    return partyMan;
+    return partyMenu;
 }
 
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
-    PartyMenu *partyMan = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 0);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 0);
 
-    partyMan->fieldMoveContext = param1;
-    partyMan->selectedMonSlot = param2;
+    partyMenu->fieldMoveContext = param1;
+    partyMenu->selectedMonSlot = param2;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    return partyMan;
+    return partyMenu;
 }
 
 void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem)
 {
-    PartyMenu *partyMan = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 3);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 3);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
-    PartyMenu *partyMan = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 19);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 19);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
-int PartyMenu_GetSelectedSlot(PartyMenu *partyMan)
+int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu)
 {
-    return partyMan->selectedMonSlot;
+    return partyMenu->selectedMonSlot;
 }
 
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PartyMenu *partyMan = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 18);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, 18);
 
-    partyMan->selectedMonSlot = param2;
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    partyMenu->selectedMonSlot = param2;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    return partyMan;
+    return partyMenu;
 }
 
 int sub_0203D438(void *param0)
 {
-    PartyMenu *partyMan = param0;
-    return partyMan->menuSelectionResult;
+    PartyMenu *partyMenu = param0;
+    return partyMenu->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -1710,24 +1710,24 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyMenu *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyMenu *partyMan = Heap_Alloc(heapID, sizeof(PartyMenu));
-    memset(partyMan, 0, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = NULL;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 5;
-    partyMan->usedItemID = param2;
-    partyMan->selectedMonSlot = 0;
-    partyMan->fieldSystem = fieldSystem;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = NULL;
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = 5;
+    partyMenu->usedItemID = param2;
+    partyMenu->selectedMonSlot = 0;
+    partyMenu->fieldSystem = fieldSystem;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    return partyMan;
+    return partyMenu;
 }
 
 void *sub_0203E608(FieldSystem *fieldSystem, int heapID)

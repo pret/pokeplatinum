@@ -61,15 +61,15 @@ void ov118_021D0D80(PartyMenuApplication *param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
-    param0->unk_B24 = Heap_Alloc(HEAP_ID_12, sizeof(OverlayMetadata));
+    param0->unk_B24 = Heap_Alloc(HEAP_ID_PARTY_MENU, sizeof(OverlayMetadata));
     MI_CpuClear8(param0->unk_B24, sizeof(OverlayMetadata));
-    param0->unk_B24->unk_14 = param0->partySlot;
+    param0->unk_B24->unk_14 = param0->currPartySlot;
 }
 
 int ov118_021D0DBC(PartyMenuApplication *param0)
 {
     OverlayMetadata *v0 = param0->unk_B24;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     switch (v0->unk_00) {
     case 0: {
@@ -113,7 +113,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == v0->unk_08) {
-            sub_02082DA8(param0, param0->partySlot);
+            sub_02082DA8(param0, param0->currPartySlot);
         }
 
         ov118_021D10E8();
@@ -141,7 +141,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
         v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 202);
 
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v1));
-        StringTemplate_Format(param0->template, param0->unk_6A4, v2);
+        StringTemplate_Format(param0->template, param0->tmpString, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);
     }
@@ -189,8 +189,8 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
 
     ParticleSystem_ZeroAll();
 
-    v0 = Heap_Alloc(HEAP_ID_12, 0x4800);
-    param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);
+    v0 = Heap_Alloc(HEAP_ID_PARTY_MENU, 0x4800);
+    param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_PARTY_MENU);
     camera = ParticleSystem_GetCamera(param0->unk_18);
 
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);

@@ -738,13 +738,13 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
             case 6:
             case 12:
             case 7:
-                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
                 break;
             default:
                 break;
             }
         } else {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
         }
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
@@ -909,7 +909,7 @@ int ov65_0222E548(ApplicationManager *appMan, int *param1)
     case 6:
     case 12:
     case 7:
-        Heap_Destroy(HEAP_ID_121);
+        Heap_Destroy(HEAP_ID_PARTY_MENU1);
         break;
     default:
         break;
@@ -6121,9 +6121,9 @@ static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
-        ov4_021D2618(1, HEAP_ID_121);
+        ov4_021D2618(1, HEAP_ID_PARTY_MENU1);
     } else {
-        ov4_021D2618(0, HEAP_ID_121);
+        ov4_021D2618(0, HEAP_ID_PARTY_MENU1);
     }
 
     sub_0209C3AC();
