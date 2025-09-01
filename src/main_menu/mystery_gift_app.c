@@ -496,7 +496,7 @@ static BOOL ShouldPlayAnimation(WonderCard *wonderCard)
     case MYST_GIFT_POKEMON:
     case MYST_GIFT_EGG: {
         Pokemon *pokemon = &wonderCard->pgt.data.pokemonGiftData.pokemon;
-        int metLocation = Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL);
+        int metLocation = Pokemon_GetValue(pokemon, MON_DATA_EGG_LOCATION, NULL);
 
         if ((metLocation >= EVENT_LOCATION_MOVIES_START && metLocation <= EVENT_LOCATION_MOVIES_END)
             || (metLocation >= EVENT_LOCATION_POKEMON_EVENT_09 && metLocation <= EVENT_LOCATION_POKEMON_EVENT_16)) {

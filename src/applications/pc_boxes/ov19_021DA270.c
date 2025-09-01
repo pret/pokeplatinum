@@ -132,7 +132,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     param7->unk_28 = BoxPokemon_IconSpriteIndex((BoxPokemon *)boxMon);
     param7->unk_2C = PokeIconPaletteIndex(species, form, isEgg);
     param7->unk_30 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    param7->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
+    param7->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
     NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
@@ -167,7 +167,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     param10->unk_28 = param3;
     param10->unk_2C = PokeIconPaletteIndex(param2, form, isEgg);
     param10->unk_30 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    param10->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
+    param10->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
 
     NNS_G2dInitImageProxy(&(param10->unk_04));
     NNS_G2dGetUnpackedCharacterData(param4, &v0);
