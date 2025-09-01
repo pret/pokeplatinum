@@ -225,7 +225,7 @@ void BagUI_PrintItemDescription(BagController *controller, u16 item)
         strBuf = Strbuf_Init(130, HEAP_ID_6);
         Item_LoadDescription(strBuf, item, HEAP_ID_6);
     } else {
-        strBuf = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 94);
+        strBuf = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
     }
 
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, strBuf, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
@@ -237,28 +237,28 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     Window *window = &controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION];
     u16 move = Item_MoveForTMHM(item);
 
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 98);
+    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Type);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 86);
+    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PP);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 89);
+    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Category);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 87);
+    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Power);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 88);
+    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Accuracy);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(string);
 
     u16 moveStat = MoveTable_CalcMaxPP(move, 0);
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 90);
+    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MaxPPNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
     Strbuf_Free(string);
@@ -267,9 +267,9 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
     if (moveStat <= 1) {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 24);
+        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Not_Applicable);
     } else {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 91);
+        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -279,9 +279,9 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
     if (moveStat == 0) {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 24);
+        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Not_Applicable);
     } else {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 91);
+        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -292,8 +292,8 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
 
 void BagUI_LoadItemCountStrings(BagController *controller)
 {
-    controller->itemCountX = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 38);
-    controller->itemCountNumberFmt = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 37);
+    controller->itemCountX = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemCountX);
+    controller->itemCountNumberFmt = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemCountNum);
 }
 
 void BagUI_FreeItemCountStrings(BagController *controller)
@@ -360,7 +360,7 @@ static void DrawHMIcon(BagController *controller, u32 yOffset)
 
 void BagUI_PrintCloseBagEntry(BagController *controller, u32 yOffset)
 {
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 41);
+    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CloseBag);
 
     Window_FillRectWithColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, 0, yOffset, ITEM_LIST_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -378,18 +378,18 @@ void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset)
 
 void BagUI_LoadItemActionStrings(BagController *controller)
 {
-    controller->itemActionStrings[0] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 0);
-    controller->itemActionStrings[1] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 6);
-    controller->itemActionStrings[2] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 16);
-    controller->itemActionStrings[3] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 95);
-    controller->itemActionStrings[4] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 96);
-    controller->itemActionStrings[5] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 1);
-    controller->itemActionStrings[6] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 2);
-    controller->itemActionStrings[7] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 18);
-    controller->itemActionStrings[8] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 3);
-    controller->itemActionStrings[9] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 4);
-    controller->itemActionStrings[10] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 5);
-    controller->itemActionStrings[11] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 8);
+    controller->itemActionStrings[0] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Use);
+    controller->itemActionStrings[1] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Walk);
+    controller->itemActionStrings[2] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Check);
+    controller->itemActionStrings[3] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Plant);
+    controller->itemActionStrings[4] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Open);
+    controller->itemActionStrings[5] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Trash);
+    controller->itemActionStrings[6] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Register);
+    controller->itemActionStrings[7] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Deselect);
+    controller->itemActionStrings[8] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Give);
+    controller->itemActionStrings[9] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CheckTag);
+    controller->itemActionStrings[10] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Confirm);
+    controller->itemActionStrings[11] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Cancel);
 }
 
 void BagUI_FreeItemActionStrings(BagController *param0)
@@ -442,7 +442,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_DrawMessageBoxWithScrollCursor(&controller->windows[msgBoxWindowIdx], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
         Window_FillTilemap(&controller->windows[msgBoxWindowIdx], 15);
 
-        Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 42);
+        Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
         Strbuf *formatted = Strbuf_Init(28 * 2, HEAP_ID_6);
         BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
@@ -487,7 +487,7 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
 {
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
 
-    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 45);
+    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoveItemWhere);
     Strbuf *formatted = Strbuf_Init(130, HEAP_ID_6);
 
     BufferPocketSlotItemName(controller, controller->movedItemPos - 1, 0);
@@ -506,7 +506,7 @@ void BagUI_ShowItemTrashWindows(BagController *controller)
     Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
 
-    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 52);
+    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
     Strbuf *formatted = Strbuf_Init(14 * 2 * 2, HEAP_ID_6);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
@@ -523,7 +523,7 @@ void BagUI_PrintItemTrashCount(BagController *controller)
 {
     Window *window = &controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT];
     Window_FillTilemap(window, 15);
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 84);
+    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayCount);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 3, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
@@ -547,7 +547,7 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
     Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
 
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 54);
+    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayOK);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
     if (controller->selectedItemCount == 1) {
@@ -604,14 +604,14 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
 
     Window_FillTilemap(window, 15);
 
-    Strbuf *sellCount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 80);
+    Strbuf *sellCount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_SellNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, sellCount);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(sellCount);
 
-    Strbuf *sellValue = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 81);
+    Strbuf *sellValue = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_SellValue);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->soldItemPrice * controller->selectedItemCount, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, sellValue);
@@ -631,7 +631,7 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
         Window_FillTilemap(window, 15);
         Window_DrawStandardFrame(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
 
-        Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 78);
+        Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoneyLabel);
 
         Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(label);
@@ -639,7 +639,7 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
         Window_FillRectWithColor(window, 15, 0, 16, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
     }
 
-    Strbuf *amount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 79);
+    Strbuf *amount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoneyNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, TrainerInfo_Money(controller->trainerInfo), 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, amount);
@@ -657,11 +657,11 @@ void BagUI_DrawPoffinCountMsgBox(BagController *controller)
     Window_FillTilemap(window, 15);
     Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
 
-    Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 108);
+    Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(label);
 
-    Strbuf *count = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, 109);
+    Strbuf *count = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PoffinCountNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(controller->bagCtx->saveData)), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->strBuffer, count);
     Strbuf_Free(count);
