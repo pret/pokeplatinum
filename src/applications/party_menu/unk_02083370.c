@@ -1,4 +1,4 @@
-#include "unk_02083370.h"
+#include "applications/party_menu/unk_02083370.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -9,6 +9,8 @@
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/party_menu/sprites.h"
+#include "applications/party_menu/windows.h"
 #include "field/field_system.h"
 #include "overlay118/ov118_021D0D80.h"
 
@@ -29,8 +31,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020819DC.h"
-#include "unk_02082C2C.h"
 #include "unk_02097624.h"
 
 static void sub_02083AD0(PartyMenuApplication *param0, int *param1);

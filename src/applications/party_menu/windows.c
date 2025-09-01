@@ -1,10 +1,12 @@
-#include "unk_020819DC.h"
+#include "applications/party_menu/windows.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/party_menu/unk_02083370.h"
+#include "applications/party_menu/unk_02084B70.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -21,8 +23,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02083370.h"
-#include "unk_02084B70.h"
 #include "unk_0208C098.h"
 
 static void AddPartyMemberWindows(BgConfig *bgConfig, Window *target, const WindowTemplate *source);

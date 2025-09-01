@@ -1,4 +1,4 @@
-#include "unk_02082C2C.h"
+#include "applications/party_menu/sprites.h"
 
 #include <nitro.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-#include "unk_02084B70.h"
+#include "applications/party_menu/unk_02084B70.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,6 +8,8 @@
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/party_menu/sprites.h"
+#include "applications/party_menu/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
@@ -30,8 +32,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020819DC.h"
-#include "unk_02082C2C.h"
 
 static int sub_02085384(void *applicationPtr);
 static int sub_02085424(void *applicationPtr);

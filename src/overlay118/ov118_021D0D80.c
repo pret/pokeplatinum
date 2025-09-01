@@ -7,6 +7,8 @@
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/party_menu/sprites.h"
+#include "applications/party_menu/windows.h"
 
 #include "camera.h"
 #include "enums.h"
@@ -24,8 +26,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_020819DC.h"
-#include "unk_02082C2C.h"
 
 typedef struct OverlayMetadata_t {
     int unk_00;

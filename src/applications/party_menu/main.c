@@ -13,6 +13,10 @@
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/party_menu/sprites.h"
+#include "applications/party_menu/unk_02083370.h"
+#include "applications/party_menu/unk_02084B70.h"
+#include "applications/party_menu/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0207E634.h"
@@ -56,10 +60,6 @@
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207A2A8.h"
-#include "unk_020819DC.h"
-#include "unk_02082C2C.h"
-#include "unk_02083370.h"
-#include "unk_02084B70.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
