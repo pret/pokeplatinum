@@ -3220,7 +3220,7 @@
     .short \partySlot
     .endm
 
-    .macro PlayPokecenterAnimation pokeballCount
+    .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
     .short \pokeballCount
     .endm

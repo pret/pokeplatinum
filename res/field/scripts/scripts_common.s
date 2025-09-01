@@ -126,7 +126,7 @@ CommonScript_PokecenterHealPokemon:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterTurnToMachineMovement
     WaitMovement
     CountPartyNonEggs VAR_0x8006
-    PlayPokecenterAnimation VAR_0x8006
+    PlayPokecenterHealingAnimation VAR_0x8006
     ApplyMovement VAR_0x8007, CommonScript_PokecenterTurnToPlayerMovement
     WaitMovement
     HealParty
