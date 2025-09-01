@@ -1598,7 +1598,7 @@ static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected)
 
 static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
     shopMenu->state = SHOP_STATE_WAIT_SCREEN_TRANSITION;
 }
 

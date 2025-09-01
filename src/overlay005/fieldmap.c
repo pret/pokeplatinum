@@ -759,11 +759,11 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
     fieldSystem->unk_C0 = (8 | 1 | 2 | 4);
 }
 
-void ov5_021D1744(const u8 param0)
+void FieldMap_FadeScreen(const u8 fadeInOrOut)
 {
-    if (param0 == 1) {
+    if (fadeInOrOut == FADE_TYPE_BRIGHTNESS_IN) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
-    } else if (param0 == 0) {
+    } else if (fadeInOrOut == FADE_TYPE_BRIGHTNESS_OUT) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
     } else {
         GF_ASSERT(FALSE);

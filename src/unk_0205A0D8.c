@@ -226,7 +226,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 {
     if (FieldSystem_IsRunningFieldMap(param0->fieldSystem)) {
-        ov5_021D1744(1);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         CommPlayerMan_Restart();
         return 1;
     }
@@ -342,7 +342,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 13:
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         v0->unk_34 = 14;
         break;
     case 14:
@@ -540,7 +540,7 @@ static BOOL sub_0205A324(FieldTask *param0)
                 CommTiming_StartSync(2);
                 v0->unk_34 = 39;
             } else {
-                ov5_021D1744(0);
+                FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
                 v0->unk_34 = 33;
             }
             break;
@@ -1030,7 +1030,7 @@ static BOOL sub_0205B140(FieldTask *param0)
                 Strbuf_Free(v1->unk_04);
                 Window_EraseMessageBox(&v1->unk_08, 0);
                 Window_Remove(&v1->unk_08);
-                ov5_021D1744(0);
+                FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
                 v1->unk_28++;
             }
         }
@@ -1055,7 +1055,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         break;
     case 6:
         if (!FieldSystem_IsRunningFieldMap(fieldSystem)) {
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             CommPlayerMan_Restart();
             v1->unk_28++;
         }

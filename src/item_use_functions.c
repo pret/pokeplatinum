@@ -1124,7 +1124,7 @@ static BOOL RegisteredItem_GoToApp(FieldTask *task)
     switch (v1->unk_2A) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         v1->unk_2A = 1;
         break;
     case 1:
@@ -1152,7 +1152,7 @@ static BOOL RegisteredItem_GoToApp(FieldTask *task)
     case 3:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             v1->unk_2A = 4;
         }
         break;

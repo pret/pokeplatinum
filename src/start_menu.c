@@ -464,13 +464,13 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             sub_0203ADFC(taskMan);
             sub_0203B094(taskMan);
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             menu->state = START_MENU_STATE_14;
         }
         break;
     case START_MENU_STATE_8:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             menu->state = START_MENU_STATE_9;
         }
         break;
@@ -485,7 +485,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
     case START_MENU_STATE_10:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             menu->state = START_MENU_STATE_11;
         }
         break;
@@ -932,7 +932,7 @@ static BOOL StartMenu_SelectPokedex(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = StartMenu_OpenPokedex;
     menu->state = START_MENU_STATE_APP_START;
@@ -986,7 +986,7 @@ static BOOL StartMenu_SelectPokemon(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = sub_0203B78C;
     menu->state = START_MENU_STATE_APP_START;
@@ -1212,7 +1212,7 @@ static BOOL StartMenu_SelectBag(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = StartMenu_Bag;
     menu->state = START_MENU_STATE_APP_START;
@@ -1337,7 +1337,7 @@ static BOOL StartMenu_SelectTrainerCard(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = StartMenu_TrainerCard;
     menu->state = START_MENU_STATE_APP_START;
@@ -1430,7 +1430,7 @@ static BOOL StartMenu_SelectOptions(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = StartMenu_Options;
     menu->state = START_MENU_STATE_APP_START;
@@ -1466,7 +1466,7 @@ static BOOL StartMenu_SelectChat(FieldTask *taskMan)
 {
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    ov5_021D1744(0);
+    FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
     menu->callback = sub_0203C0A0;
     menu->state = START_MENU_STATE_APP_START;

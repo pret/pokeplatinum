@@ -1,7 +1,6 @@
 #include "shop_misc.h"
 
-#include <nitro.h>
-#include <string.h>
+#include "generated/fade_types.h"
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
@@ -51,7 +50,7 @@ static void ShopMisc_ReinitShop(FieldTask *task)
     ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-        ov5_021D1744(1);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         FieldTask_InitJump(task, FieldTask_InitShop, shopMenu);
         shopMenu->state = SHOP_STATE_REINIT_MERCHANT_MESSAGE;
     }
