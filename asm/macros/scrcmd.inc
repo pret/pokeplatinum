@@ -4035,7 +4035,7 @@
     .short \level
     .endm
 
-    .macro TrainerCardLevel destVar
+    .macro GetTrainerCardLevel destVar
     .short 702
     .short \destVar
     .endm

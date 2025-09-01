@@ -26,7 +26,7 @@ typedef struct TrainerCard {
     u8 gameVersion;
     u8 regionCode;
     u8 gymLeadersToHide_Unused;
-    u8 stars;
+    u8 level;
     u8 badgesInteractable : 1;
     u8 liveTimeDisplay : 1;
     u8 gender : 1;
@@ -62,7 +62,7 @@ typedef struct TrainerCard {
 void TrainerCard_Init(u8 param0, u8 param1, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCard *trainerCard);
 TrainerCard *TrainerCard_New(u16 heapID);
 void TrainerCard_Free(TrainerCard *trainerCard);
-u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem);
+u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem);
 void TrainerCard_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCard *trainerCard);
 void sub_02072204(FieldSystem *fieldSystem);
 

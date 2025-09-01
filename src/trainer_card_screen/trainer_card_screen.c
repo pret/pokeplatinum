@@ -108,7 +108,7 @@ static BOOL TrainerCard_FlipTrainerCard(TrainerCardScreen *trainerCardScreen);
 static BOOL TrainerCard_OpenCloseBadgeCase(TrainerCardScreen *trainerCardScreen);
 static int TrainerCard_GetPlayerInput(TrainerCardScreen *trainerCardScreen);
 static void TrainerCard_HandleBadgePolishing(TrainerCardScreen *trainerCardScreen);
-static void TrainerCard_LoadCardPalette(u8 stars, u8 pokedexObtained, NARC *narc);
+static void TrainerCard_LoadCardPalette(u8 level, u8 pokedexObtained, NARC *narc);
 static void TrainerCard_LoadCasePalette(u8 gameVersion, NARC *narc);
 static void TrainerCard_LoadTrainerAppearancePalette(u8 trainerAppearance, NARC *narc);
 static void TrainerCard_RedrawBadgeCaseButton(TrainerCardScreen *trainerCardScreen, u8 buttonSpriteIndex);
@@ -477,13 +477,13 @@ static void TrainerCard_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void TrainerCard_LoadCardPalette(u8 stars, u8 pokedexObtained, NARC *narc)
+static void TrainerCard_LoadCardPalette(u8 level, u8 pokedexObtained, NARC *narc)
 {
     void *nclrBuffer;
     NNSG2dPaletteData *paletteData;
 
     if (pokedexObtained) {
-        switch (stars) {
+        switch (level) {
         case TRAINER_CARD_LEVEL_NORMAL:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 0, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
@@ -678,7 +678,7 @@ static void TrainerCard_DrawTrainerCard(TrainerCardScreen *trainerCardScreen, NA
     GXS_LoadBGPltt(paletteData->pRawData, 0, PALETTE_SIZE_EXT_BYTES);
     Heap_Free(nclrBuffer);
 
-    TrainerCard_LoadCardPalette(trainerCardScreen->trainerCard->stars, trainerCardScreen->trainerCard->pokedexObtained, narc);
+    TrainerCard_LoadCardPalette(trainerCardScreen->trainerCard->level, trainerCardScreen->trainerCard->pokedexObtained, narc);
 
     NNSG2dPaletteData *paletteData2;
 

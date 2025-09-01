@@ -77,7 +77,7 @@ CommonScript_PokecenterVisit:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    TrainerCardLevel VAR_RESULT
+    GetTrainerCardLevel VAR_RESULT
     GoToIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterVisitGoldCard
     SetVar VAR_0x8004, CommonStrings_Text_PokecenterHelloAndWelcome1
     GetTimeOfDay VAR_RESULT
@@ -107,7 +107,7 @@ CommonScript_PokecenterPromptAccept:
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerGiveMovement
     WaitMovement
-    TrainerCardLevel VAR_RESULT
+    GetTrainerCardLevel VAR_RESULT
     CallIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterTakeYourPokemonGoldCard
     CallIfLt VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterTakeYourPokemon
     Call CommonScript_PokecenterHealPokemon

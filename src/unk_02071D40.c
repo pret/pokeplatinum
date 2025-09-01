@@ -120,7 +120,7 @@ void sub_02071F20(TrainerCard *param0)
 
 u8 sub_02071F28(FieldSystem *fieldSystem)
 {
-    u8 trainerCardStars;
+    u8 trainerCardLevel;
     SaveData *saveData;
     GameRecords *gameRecords;
     VarsFlags *varsFlags;
@@ -132,29 +132,29 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     varsFlags = SaveData_GetVarsFlags(saveData);
     undergroundRecord = SaveData_UndergroundRecord(saveData);
     frontier = SaveData_GetBattleFrontier(saveData);
-    trainerCardStars = 0;
+    trainerCardLevel = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (Pokedex_NationalDexCompleted(SaveData_GetPokedex(saveData))) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (SystemFlag_CheckContestMaster(varsFlags, 0) || SystemFlag_CheckContestMaster(varsFlags, 1) || SystemFlag_CheckContestMaster(varsFlags, 3) || SystemFlag_CheckContestMaster(varsFlags, 4) || SystemFlag_CheckContestMaster(varsFlags, 2)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (UndergroundRecord_HasPlatBaseFlag(undergroundRecord) == TRUE) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
-    return trainerCardStars;
+    return trainerCardLevel;
 }
 
 static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard *param5)
