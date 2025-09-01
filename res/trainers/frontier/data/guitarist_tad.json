@@ -38,5 +38,28 @@
         "plusle_1",
         "minun_1",
         "pachirisu_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This is going out to all the ladies.\n",
+                "Babes, I sing and battle for you!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My ladies, my babes, I won for you.\n",
+                "Your love is my power, right?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I lost, but my love for the babes can’t\n",
+                "be beat, maybe.\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Don’t be shy.\n",
+                "You can bring it any which way."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yeah, I figured you’d be like this.\n",
+                "Heh.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "W-well, sometimes I have to lose, just\n",
+                "so I don’t crush everyone. Ahaha...\r"
+            ]
+        }
     ]
 }

@@ -38,5 +38,25 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "So, what exactly is a ninja,\n",
+                "you may ask."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "A ninja is powerful.\n",
+                "That will do as a start.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Maybe some ninjas are weak?\r"
+        }
     ]
 }

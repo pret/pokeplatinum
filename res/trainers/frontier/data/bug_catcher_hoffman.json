@@ -38,5 +38,28 @@
         "roselia_1",
         "parasect_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The bugs are my minions, and I’m the\n",
+                "boss. Are you prepared to lose?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Wahaha!\n",
+                "Well done, my minions!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "We were mowed down...\n",
+                "My minions have learned the hard way!\r"
+            ]
+        }
     ]
 }

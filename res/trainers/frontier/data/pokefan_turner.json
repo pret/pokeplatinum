@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I welcome you, young Trainer.\n",
+                "Allow me to demonstrate my power."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Young Trainer, do you have any idea\n",
+                "what my power signifies?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’ve surpassed me in your love of\n",
+                "Pokémon. You’re the truest of fans.\r"
+            ]
+        }
     ]
 }

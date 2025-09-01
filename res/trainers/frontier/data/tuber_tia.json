@@ -48,5 +48,19 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "I just now got back from my vacation."
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "The beach is a good place to show off.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Ooh, my sunburn is itching.\r"
+        }
     ]
 }

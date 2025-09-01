@@ -70,5 +70,25 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I am the Fan Club Division Manager...\n",
+                "Bring your best to bear..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Kneel before the might of the Fan Club!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gweh! But I did my best!\n",
+                "Regrets, I have none!\r"
+            ]
+        }
     ]
 }

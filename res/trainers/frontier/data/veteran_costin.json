@@ -58,5 +58,28 @@
         "heatran_4",
         "cresselia_4",
         "regigigas_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Your eyes are unclouded by doubt.\n",
+                "This match will be entertaining..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "From my heart, I look forward to your\n",
+                "return.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whew... A most entertaining match.\n",
+                "I hope you’ll grant me a rematch.\r"
+            ]
+        }
     ]
 }

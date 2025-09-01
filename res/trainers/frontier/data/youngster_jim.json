@@ -52,5 +52,19 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "And we’re off!"
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "We did it, yeah!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Uncle!\r"
+        }
     ]
 }

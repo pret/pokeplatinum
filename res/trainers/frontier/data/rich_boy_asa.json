@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Well, shall we?\n",
+                "Time is money, and the meter is running."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Well, I’ll take my leave. Yet another\n",
+                "fancy dinner date, you know. Adieu!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s my loss, is it? So be it.\n",
+                "I had to leave for a date anyway.\r"
+            ]
+        }
     ]
 }

@@ -50,5 +50,28 @@
         "tyranitar_4",
         "metagross_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I can hear it... The screaming adulation\n",
+                "of 100,000 fans rising in unison..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Right on, everyone! You saw that!\n",
+                "I dedicate my win to you!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re scorching...\n",
+                "You’ve made a fan out of me.\r"
+            ]
+        }
     ]
 }

@@ -30,5 +30,28 @@
         "relicanth_2",
         "omastar_2",
         "kabutops_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Daddy... Mommy... Can you hear me?\n",
+                "Please watch over me..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Daddy... Mommy... Did you see?\n",
+                "I won, and it’s all for you...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh... Daddy... Mommy...\n",
+                "I couldn’t win...\r"
+            ]
+        }
     ]
 }

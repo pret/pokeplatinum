@@ -34,5 +34,28 @@
         "togekiss_2",
         "slaking_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My profile’s riding high now, so my\n",
+                "schedule’s filled solid!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh, no! It’s this late already?\n",
+                "I’d better check my timetable!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Talent manager!\n",
+                "Do I have time for a rematch?\r"
+            ]
+        }
     ]
 }

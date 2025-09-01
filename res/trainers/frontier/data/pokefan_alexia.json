@@ -78,5 +78,28 @@
         "aron_1",
         "spoink_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Fan Club Department Manager...\n",
+                "I hereby accept your challenge."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Heheh... Honestly, you thought you\n",
+                "stood a chance against the Fan Club?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gwah! I will be avenged...\n",
+                "B-by the Division Manager...\r"
+            ]
+        }
     ]
 }

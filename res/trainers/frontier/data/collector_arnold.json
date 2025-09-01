@@ -70,5 +70,28 @@
         "metagross_3",
         "garchomp_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Did you want to see my Pokémon?\n",
+                "OK, sure. Just a peek, though."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "How’s that for classy? My Pokémon are\n",
+                "tops in both moves and character.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hold it right there!\n",
+                "You can look, but don’t touch!\r"
+            ]
+        }
     ]
 }

@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m trying to keep up with my Pokémon\n",
+                "training and my own schooling."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’d like to think I’ve struck the right\n",
+                "balance of fun and education.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This isn’t going to work?\n",
+                "My grades are the best in class, but...\r"
+            ]
+        }
     ]
 }

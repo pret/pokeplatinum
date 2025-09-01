@@ -38,5 +38,28 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m facing retirement soon...\n",
+                "I was never admired as an Idol."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I’m going to shine as a star battler of\n",
+                "Pokémon!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I would have liked to end my career\n",
+                "with a win in this match..."
+            ]
+        }
     ]
 }

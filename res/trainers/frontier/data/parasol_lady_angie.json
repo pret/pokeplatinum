@@ -102,5 +102,25 @@
         "kabutops_2",
         "scyther_2",
         "cloyster_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Even though I always have my parasol\n",
+                "up, I actually like sunny days."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "I hope it will be sunny tomorrow...\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The heavy downpour in my heart...\n",
+                "When will it ever stop...?\r"
+            ]
+        }
     ]
 }

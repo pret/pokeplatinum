@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon are my treasures.\n",
+                "I’ll let you see them. Just you."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "See? Cute and strong!\n",
+                "Eheheheh.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "See? They’re cute even when losing.\n",
+                "Eheheheh.\r"
+            ]
+        }
     ]
 }

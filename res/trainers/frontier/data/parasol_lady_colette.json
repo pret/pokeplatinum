@@ -52,5 +52,28 @@
         "shieldon_1",
         "buneary_1",
         "farfetchd_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Don’t you think Pokémon battles are a\n",
+                "lot like the weather?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Winning makes me feel warm and cheerful\n",
+                "like a sunny day.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Losing makes me sad like a dreary,\n",
+                "cloudy day.\r"
+            ]
+        }
     ]
 }

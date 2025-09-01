@@ -98,5 +98,22 @@
         "mamoswine_4",
         "rhyperior_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Bring it on!\n",
+                "Ooooh! Haaah!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Thank you kindly!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Thanks for having me!\r"
+        }
     ]
 }

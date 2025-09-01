@@ -52,5 +52,28 @@
         "lunatone_1",
         "solrock_1",
         "kecleon_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll ride toward the breaking dawn with\n",
+                "you on my mind."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I will shift my gears higher and higher\n",
+                "until I catch up to you...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My tires have deflated, and\n",
+                "so has my heart...\r"
+            ]
+        }
     ]
 }

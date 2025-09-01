@@ -44,5 +44,28 @@
         "regirock_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Wherever, whenever, and with whomever.\n",
+                "That’s my motto!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "When, where, or whom...\n",
+                "It doesn’t matter at all to me.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hahaha! This is great!\n",
+                "I want to keep this going!\r"
+            ]
+        }
     ]
 }

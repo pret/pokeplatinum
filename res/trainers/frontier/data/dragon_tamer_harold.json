@@ -28,5 +28,28 @@
         "tyranitar_1",
         "salamence_1",
         "garchomp_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "How do you like my cape?\n",
+                "I had it specially made!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "What is my cape made of?\n",
+                "I’m afraid I can’t tell you.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Rip... Riiiiiiiiiiiipppppp!\n",
+                "...What?! My cape! Waaaaah!\r"
+            ]
+        }
     ]
 }

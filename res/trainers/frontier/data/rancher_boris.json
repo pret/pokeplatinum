@@ -70,5 +70,25 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You get to be the best by working\n",
+                "harder than everyone else."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "I reckon I’ve been a hard worker.\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Work at battling over and over.\n",
+                "Your star will shine one day.\r"
+            ]
+        }
     ]
 }

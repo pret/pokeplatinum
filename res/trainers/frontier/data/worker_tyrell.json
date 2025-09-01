@@ -94,5 +94,28 @@
         "aggron_4",
         "rhyperior_4",
         "tyranitar_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You and your Pokémon, I’ll clean up on\n",
+                "you easily."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Well, well, how pathetic was that.\n",
+                "Take your passengers and go home.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gwaah... So heavy...\n",
+                "My guys buckled under the load.\r"
+            ]
+        }
     ]
 }

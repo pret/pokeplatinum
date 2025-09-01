@@ -78,5 +78,28 @@
         "aron_1",
         "spoink_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "On behalf of my village, I take on this\n",
+                "challenge!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Thank you, everyone!\n",
+                "Thank you for your vocal support!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fellow villagers, I’m sorry!\n",
+                "My best wasn’t enough!\r"
+            ]
+        }
     ]
 }

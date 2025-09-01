@@ -70,5 +70,28 @@
         "poliwrath_2",
         "rapidash_2",
         "muk_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Great, another tough-looking Trainer.\n",
+                "The fun never ends for me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Bleah, that was too close for comfort.\n",
+                "Nothing ever comes easy for me.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Yeah, see? I knew I’d lose.\n",
+                "If only that move landed...\r"
+            ]
+        }
     ]
 }

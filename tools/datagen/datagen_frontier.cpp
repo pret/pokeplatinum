@@ -133,9 +133,12 @@ int main(int argc, char **argv)
     vfs_pack_ctx *pl_btdpmVFS = narc_pack_start();
     rapidjson::Document namesTextBank(rapidjson::kObjectType);
     namesTextBank.AddMember("key", 26501, namesTextBank.GetAllocator());
+    rapidjson::Document messagesTextBank(rapidjson::kObjectType);
+    messagesTextBank.AddMember("key", 35392, messagesTextBank.GetAllocator());
 
     rapidjson::Document doc;
     rapidjson::Value nameMessages(rapidjson::kArrayType);
+    rapidjson::Value trainerMessages(rapidjson::kArrayType);
     for (auto &trainerStem : trainerRegistry) {
         fs::path trainerDataPath = trainerDataRoot / (trainerStem + ".json");
         LoadJson(doc, trainerDataPath);
@@ -156,12 +159,27 @@ int main(int argc, char **argv)
             nameMessage.AddMember("en_US", string, namesTextBank.GetAllocator());
 
             nameMessages.PushBack(nameMessage, namesTextBank.GetAllocator());
+
+            for (const auto &member : doc["messages"].GetArray()) {
+                rapidjson::Value trainerMessage(rapidjson::kObjectType);
+
+                std::string type = member["type"].GetString();
+                std::string id = "FrontierTrainerMessages_Text_" + trainerStem + "_" + type;
+                rapidjson::Value idValue(rapidjson::kStringType);
+                idValue.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), messagesTextBank.GetAllocator());
+                trainerMessage.AddMember("id", idValue, messagesTextBank.GetAllocator());
+
+                CopyMessage(member, trainerMessage, messagesTextBank.GetAllocator());
+
+                trainerMessages.PushBack(trainerMessage, messagesTextBank.GetAllocator());
+            }
         } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
     }
     namesTextBank.AddMember("messages", nameMessages, namesTextBank.GetAllocator());
+    messagesTextBank.AddMember("messages", trainerMessages, messagesTextBank.GetAllocator());
 
     for (auto &pokemonStem : pokemonRegistry) {
         fs::path pokemonDataPath = pokemonDataRoot / (pokemonStem + ".json");
@@ -181,10 +199,17 @@ int main(int argc, char **argv)
     PackNarc(pl_btdpmVFS, outputRoot / "pl_btdpm.narc");
 
     char writeBuffer[65536];
+
     FILE *fp = fopen((outputRoot / "frontier_trainer_names.json").string().c_str(), "w");
     rapidjson::FileWriteStream namesStream(fp, writeBuffer, sizeof(writeBuffer));
     rapidjson::Writer<rapidjson::FileWriteStream> namesWriter(namesStream);
     namesTextBank.Accept(namesWriter);
+    fclose(fp);
+
+    fp = fopen((outputRoot / "frontier_trainer_messages.json").string().c_str(), "w");
+    rapidjson::FileWriteStream messagesStream(fp, writeBuffer, sizeof(writeBuffer));
+    rapidjson::Writer<rapidjson::FileWriteStream> messagesWriter(messagesStream);
+    messagesTextBank.Accept(messagesWriter);
     fclose(fp);
     return EXIT_SUCCESS;
 }

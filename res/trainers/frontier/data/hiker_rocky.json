@@ -46,5 +46,28 @@
         "metagross_3",
         "garchomp_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Uhho uho-uho uhho hohoi!\n",
+                "This dance I use to psych myself up."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Uhho uho-uho uhho hohoi!\n",
+                "So much fun, I cannot stop.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Uhho uho-uho uhho hohoi!\n",
+                "I dance to stem my tears from losing...\r"
+            ]
+        }
     ]
 }

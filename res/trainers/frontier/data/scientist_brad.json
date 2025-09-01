@@ -52,5 +52,28 @@
         "lunatone_2",
         "solrock_2",
         "kecleon_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I developed a special Pokémon drink.\n",
+                "Have some! Bottoms up!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Glug, glug... Belch!\n",
+                "It’ll make you strong! Don’t waste it!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My Pokémon drink contains no actual\n",
+                "Pokémon or their byproducts.\r"
+            ]
+        }
     ]
 }

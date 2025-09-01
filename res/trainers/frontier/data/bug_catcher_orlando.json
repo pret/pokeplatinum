@@ -26,5 +26,28 @@
         "leafeon_2",
         "tangrowth_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "People claim I’m like an adult. Whatever\n",
+                "could they mean, do you suppose?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Ah, yes, quite enjoyable!\n",
+                "We must do this again, surely.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, yes! Smashing!\n",
+                "That chilled me to my toes, it did!\r"
+            ]
+        }
     ]
 }

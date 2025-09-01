@@ -52,5 +52,25 @@
         "weezing_2",
         "kangaskhan_2",
         "tauros_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been pondering lately...how much\n",
+                "longer will I be wearing shorts?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Will I still be in shorts as a grown-up?\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "If I grow old like this, will they call me\n",
+                "something silly like “Shorts Man”?\r"
+            ]
+        }
     ]
 }

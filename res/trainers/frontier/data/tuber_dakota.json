@@ -48,5 +48,28 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m on the way home from the pool, but\n",
+                "OK, I can battle."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I hope I can go home soon.\n",
+                "I need some dry clothes!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ah-ah-atchoo! Aww...\n",
+                "Atchoo! We lost...\r"
+            ]
+        }
     ]
 }

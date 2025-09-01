@@ -38,5 +38,28 @@
         "electabuzz_2",
         "magmar_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I see what I have no right seeing...\n",
+                "Like there. Behind you."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Oh? You can’t see it?\n",
+                "Then, you’re fortunate. Giggle...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I wouldn’t ask about what I see.\n",
+                "It’s better not to know. Really.\r"
+            ]
+        }
     ]
 }

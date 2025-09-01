@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "So, I lead with this... Then, counter...\n",
+                "Ugh, I can’t get our strategy right!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "To overanalyze can be a bad thing,\n",
+                "I guess.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Waaah! Couldn’t you have waited?\n",
+                "Until I’m ready at least?\r"
+            ]
+        }
     ]
 }

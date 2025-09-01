@@ -102,5 +102,28 @@
         "articuno_4",
         "zapdos_4",
         "moltres_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I only have this bike to look good for\n",
+                "the ladies. I can’t actually ride."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It was a pain getting this bike here.\n",
+                "I had to push it all the way!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m only concerned about looking good.\n",
+                "I don’t practice enough.\r"
+            ]
+        }
     ]
 }

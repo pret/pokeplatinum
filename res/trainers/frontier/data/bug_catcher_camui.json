@@ -26,5 +26,28 @@
         "leafeon_2",
         "tangrowth_2",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My room is always full of bugs.\n",
+                "That drives my mom just wild."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I want to collect more bug Pokémon for\n",
+                "my bug appreciation station.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Bugs are loose under my shirt.\n",
+                "I’m starting to itch...\r"
+            ]
+        }
     ]
 }

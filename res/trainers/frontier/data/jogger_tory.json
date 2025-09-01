@@ -70,5 +70,25 @@
         "poliwrath_3",
         "rapidash_3",
         "muk_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I look to bug Pokémon for hints on\n",
+                "running all the time."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I admire the light and agile footwork of\n",
+                "bug Pokémon.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Skitter...\r"
+        }
     ]
 }

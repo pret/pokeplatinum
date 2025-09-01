@@ -70,5 +70,28 @@
         "poliwrath_3",
         "rapidash_3",
         "muk_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I need to diet.\n",
+                "I have to get out jogging."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Well, I guess I’ll go for a quick trot\n",
+                "around here...\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon know how to punch hard.\n",
+                "You see, I’m really a boxer.\r"
+            ]
+        }
     ]
 }

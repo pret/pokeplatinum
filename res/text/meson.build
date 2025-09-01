@@ -44,6 +44,7 @@ trainer_text_bank_names = [
 ]
 
 frontier_text_bank_names = [
+    'frontier_trainer_messages.json',
     'frontier_trainer_names.json'
 ]
 
@@ -128,6 +129,7 @@ frontier_text_banks = custom_target('frontier_text_banks',
     output: frontier_text_bank_names,
     command: [
         'mv',
+        '@OUTDIR@/../trainers/frontier/frontier_trainer_messages.json',
         '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
         '@OUTDIR@',
     ],

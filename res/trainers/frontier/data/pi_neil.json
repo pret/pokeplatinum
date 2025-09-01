@@ -20,5 +20,28 @@
         "mamoswine_3",
         "rhyperior_3",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Perseverance pays off.\n",
+                "A case can turn on that."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It makes for more excitement when you\n",
+                "come from behind to take the win.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That was more thrilling than any\n",
+                "stakeout! Thanks for that!\r"
+            ]
+        }
     ]
 }

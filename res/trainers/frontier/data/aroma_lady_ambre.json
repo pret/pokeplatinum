@@ -48,5 +48,25 @@
         "leafeon_4",
         "tangrowth_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Sniff, sniff... Yes! Here it comes!\n",
+                "Aroma power!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "With aroma power, I’m invincible!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fizzle...\n",
+                "I’m out of aroma power...\r"
+            ]
+        }
     ]
 }

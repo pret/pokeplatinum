@@ -1742,16 +1742,15 @@ u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum Traine
             }
         } else {
             {
-                MessageLoader *v3;
                 Strbuf *v4;
-                int v5;
-                u32 v6;
+                int entryID;
+                u32 bankID;
                 int v7;
 
                 if (msgType == TRMSG_WIN) {
-                    v5 = trainerID * 3 + 1;
+                    entryID = trainerID * 3 + 1;
                 } else {
-                    v5 = trainerID * 3 + 2;
+                    entryID = trainerID * 3 + 2;
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
@@ -1761,19 +1760,19 @@ u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum Traine
                 }
 
                 if (v7 == 4) {
-                    v6 = 614;
+                    bankID = TEXT_BANK_FRONTIER_TRAINER_MESSAGES;
                 } else {
-                    v6 = 613;
+                    bankID = TEXT_BANK_UNK_0613;
                 }
 
-                v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v6, HEAP_ID_BATTLE);
-                v4 = MessageLoader_GetNewStrbuf(v3, v5);
+                MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_BATTLE);
+                v4 = MessageLoader_GetNewStrbuf(loader, entryID);
 
                 Window_FillTilemap(v0, 0xff);
 
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
-                MessageLoader_Free(v3);
+                MessageLoader_Free(loader);
             }
         }
     } else {

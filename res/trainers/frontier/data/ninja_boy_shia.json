@@ -52,5 +52,25 @@
         "doduo_1",
         "swablu_1",
         "glameow_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You transgressor!\n",
+                "Hold still, I say!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "I willed myself to victory!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "C-curses...\n",
+                "I’ve brought dishonor on us...\r"
+            ]
+        }
     ]
 }

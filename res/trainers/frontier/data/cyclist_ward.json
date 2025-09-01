@@ -102,5 +102,28 @@
         "articuno_4",
         "zapdos_4",
         "moltres_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Clear the way! Out of the way!\n",
+                "Wait! Don’t go! We have to battle!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Come on, take it up a gear!\n",
+                "Keep up with me!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "OK, out of the way! Clear the way!\n",
+                "Let this loser run away!\r"
+            ]
+        }
     ]
 }

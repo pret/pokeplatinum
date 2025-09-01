@@ -70,5 +70,28 @@
         "metagross_4",
         "garchomp_4",
         "slaking_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m an Ace Trainer, so this is for\n",
+                "bragging rights."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yup, you did good.\n",
+                "No, seriously.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Heh...\n",
+                "I’ve got a long ways to go...\r"
+            ]
+        }
     ]
 }

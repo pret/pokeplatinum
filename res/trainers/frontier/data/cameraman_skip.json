@@ -98,5 +98,28 @@
         "magnezone_4",
         "electivire_4",
         "metagross_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve waited all my life for someone like\n",
+                "you. I’m never letting you go."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It was a ploy to confuse you with\n",
+                "words out of some romance movie.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Now, go on, don’t let me hold you back.\n",
+                "Seize your chance at happiness!\r"
+            ]
+        }
     ]
 }

@@ -48,5 +48,28 @@
         "togekiss_1",
         "slaking_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll say good-bye to you now.\n",
+                "Battles always end in tears."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Fweeeeh!\n",
+                "My tears of joy flow freely!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fweeeeh!\n",
+                "My tears of anguish flow freely!\r"
+            ]
+        }
     ]
 }

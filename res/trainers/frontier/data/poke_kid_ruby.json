@@ -38,5 +38,28 @@
         "metagross_2",
         "garchomp_2",
         "slaking_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Will you believe that inside this\n",
+                "costume is a grown-up Beauty?"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "My dream is to live as a Pokémon\n",
+                "one day. To become a Pokémon!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m an adult, but I want to be a\n",
+                "Pokémon. Does that make me weird?\r"
+            ]
+        }
     ]
 }

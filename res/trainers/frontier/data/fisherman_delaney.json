@@ -80,5 +80,28 @@
         "kingdra_4",
         "milotic_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My needs are simple.\n",
+                "Fishing and Moomoo Milk are all I need."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Winning or losing isn’t something I pay\n",
+                "heed to.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I could use some Moomoo Milk right\n",
+                "about now.\r"
+            ]
+        }
     ]
 }

@@ -58,5 +58,28 @@
         "dusknoir_4",
         "magnezone_4",
         "electivire_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Battles, I’m good at.\n",
+                "But musical aptitude? Forget it."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "This whole battling thing is good, but\n",
+                "I wish I could play music as well.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Music or Pokémon...\n",
+                "It’s a tough choice.\r"
+            ]
+        }
     ]
 }

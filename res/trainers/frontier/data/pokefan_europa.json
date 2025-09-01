@@ -70,5 +70,28 @@
         "poliwrath_4",
         "rapidash_4",
         "muk_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I think I’ll try out the TM the woman\n",
+                "next door gave me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I am impressed. That woman actually\n",
+                "gave me something useful.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, that nasty woman!\n",
+                "This TM is worthless!\r"
+            ]
+        }
     ]
 }

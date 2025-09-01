@@ -48,5 +48,28 @@
         "wailmer_1",
         "azumarill_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I promised Mommy I’ll practice swimming\n",
+                "if I lose."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yay! I won’t have to go to the pool\n",
+                "with Mommy today!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aww, I lost. Now I’ll have to go to\n",
+                "swimming practice today.\r"
+            ]
+        }
     ]
 }

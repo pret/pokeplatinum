@@ -70,5 +70,28 @@
         "metagross_3",
         "garchomp_3",
         "slaking_3"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hi! Are you my next opponent?\n",
+                "Let’s keep it clean and fair!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It feels great going all out with no\n",
+                "dirty tricks.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That was an awesome workout!\n",
+                "We have to do this again sometime!\r"
+            ]
+        }
     ]
 }

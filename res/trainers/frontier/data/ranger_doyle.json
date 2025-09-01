@@ -70,5 +70,28 @@
         "poliwrath_1",
         "rapidash_1",
         "muk_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Woohoo! Here comes a cool Trainer!\n",
+                "Let’s see what you can bring!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Yes! Bravo!\n",
+                "You have some good attacks, Trainer!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whaaaaat?! Nooooo!\n",
+                "I can’t get over how tough you are!\r"
+            ]
+        }
     ]
 }

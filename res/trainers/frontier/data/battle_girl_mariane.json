@@ -76,5 +76,22 @@
         "entei_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Come oooon! C’mon, c’mon!\n",
+                "Hey! Hey! C’mon, hey!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Oh, yesssss!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Oh, noooooo!\r"
+        }
     ]
 }

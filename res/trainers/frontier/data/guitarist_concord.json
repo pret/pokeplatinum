@@ -38,5 +38,25 @@
         "plusle_1",
         "minun_1",
         "pachirisu_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This is no guitar I have here.\n",
+                "It’s traditional and Japanese."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "It has only three strings.\n",
+                "Can you tell what this is?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My instrument, it’s called a shamisen.\r"
+        }
     ]
 }

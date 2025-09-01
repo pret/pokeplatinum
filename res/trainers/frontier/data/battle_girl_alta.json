@@ -50,5 +50,28 @@
         "omastar_1",
         "kabutops_1",
         "cloyster_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "First, let’s battle.\n",
+                "Talking can wait."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "That wasn’t bad at all, yup.\n",
+                "That goes for you and your Pokémon.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re a tough one, yup.\n",
+                "Where do you do your training?\r"
+            ]
+        }
     ]
 }

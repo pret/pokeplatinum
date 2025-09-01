@@ -76,5 +76,28 @@
         "latios_4",
         "cresselia_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When you’ve been a Trainer as long as\n",
+                "I have, let’s just say you’ll see a lot."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Things like this happen.\n",
+                "Don’t let it get you down.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "People and Pokémon are all different.\n",
+                "Isn’t that what makes it beautiful?"
+            ]
+        }
     ]
 }

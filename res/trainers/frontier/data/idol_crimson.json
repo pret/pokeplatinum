@@ -38,5 +38,28 @@
         "minun_1",
         "pachirisu_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’re ever so lucky to get the chance\n",
+                "to battle with me."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "You’re super lucky to even battle\n",
+                "an Idol like me. Don’t you get it?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Huh? Huh? Now, why did you win?\n",
+                "You know I’m supposed to win?\r"
+            ]
+        }
     ]
 }

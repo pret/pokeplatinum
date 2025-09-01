@@ -48,5 +48,28 @@
         "togekiss_1",
         "slaking_1",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A Trainer am I, a new ray of hope from\n",
+                "the land of the midnight sun."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "In the frigid falls of the north, I honed\n",
+                "my skills. With them, I made you fall.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your foul trickery deserves contempt.\n",
+                "But effective it was, too.\r"
+            ]
+        }
     ]
 }
