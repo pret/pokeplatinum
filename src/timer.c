@@ -50,7 +50,7 @@ static u64 CalculateCurrentTimestamp(void)
         timerHigh++;
     }
 
-    (void)OS_RestoreInterrupts(irqState);
+    OS_RestoreInterrupts(irqState);
 
     return (timerHigh << 16) | timerLow;
 }
