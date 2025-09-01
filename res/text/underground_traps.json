@@ -2,378 +2,378 @@
   "key": 1161,
   "messages": [
     {
-      "id": "pl_msg_00000630_00000",
+      "id": "UndergroundTraps_Text_Close2",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000630_00001",
+      "id": "UndergroundTraps_Text_MoveTrapUp",
       "en_US": "Move Trap ↑"
     },
     {
-      "id": "pl_msg_00000630_00002",
+      "id": "UndergroundTraps_Text_MoveTrapRight",
       "en_US": "Move Trap →"
     },
     {
-      "id": "pl_msg_00000630_00003",
+      "id": "UndergroundTraps_Text_MoveTrapDown",
       "en_US": "Move Trap ↓"
     },
     {
-      "id": "pl_msg_00000630_00004",
+      "id": "UndergroundTraps_Text_MoveTrapLeft",
       "en_US": "Move Trap ←"
     },
     {
-      "id": "pl_msg_00000630_00005",
+      "id": "UndergroundTraps_Text_HurlTrapUp",
       "en_US": "Hurl Trap ↑"
     },
     {
-      "id": "pl_msg_00000630_00006",
+      "id": "UndergroundTraps_Text_HurlTrapRight",
       "en_US": "Hurl Trap →"
     },
     {
-      "id": "pl_msg_00000630_00007",
+      "id": "UndergroundTraps_Text_HurlTrapDown",
       "en_US": "Hurl Trap ↓"
     },
     {
-      "id": "pl_msg_00000630_00008",
+      "id": "UndergroundTraps_Text_HurlTrapLeft",
       "en_US": "Hurl Trap ←"
     },
     {
-      "id": "pl_msg_00000630_00009",
+      "id": "UndergroundTraps_Text_WarpTrap",
       "en_US": "Warp Trap"
     },
     {
-      "id": "pl_msg_00000630_00010",
+      "id": "UndergroundTraps_Text_HiWarpTrap",
       "en_US": "Hi-Warp Trap"
     },
     {
-      "id": "pl_msg_00000630_00011",
+      "id": "UndergroundTraps_Text_HoleTrap",
       "en_US": "Hole Trap"
     },
     {
-      "id": "pl_msg_00000630_00012",
+      "id": "UndergroundTraps_Text_PitTrap",
       "en_US": "Pit Trap"
     },
     {
-      "id": "pl_msg_00000630_00013",
+      "id": "UndergroundTraps_Text_ReverseTrap",
       "en_US": "Reverse Trap"
     },
     {
-      "id": "pl_msg_00000630_00014",
+      "id": "UndergroundTraps_Text_ConfuseTrap",
       "en_US": "Confuse Trap"
     },
     {
-      "id": "pl_msg_00000630_00015",
+      "id": "UndergroundTraps_Text_RunTrap",
       "en_US": "Run Trap"
     },
     {
-      "id": "pl_msg_00000630_00016",
+      "id": "UndergroundTraps_Text_FadeTrap",
       "en_US": "Fade Trap"
     },
     {
-      "id": "pl_msg_00000630_00017",
+      "id": "UndergroundTraps_Text_SlowTrap",
       "en_US": "Slow Trap"
     },
     {
-      "id": "pl_msg_00000630_00018",
+      "id": "UndergroundTraps_Text_SmokeTrap",
       "en_US": "Smoke Trap"
     },
     {
-      "id": "pl_msg_00000630_00019",
+      "id": "UndergroundTraps_Text_BigSmokeTrap",
       "en_US": "Big Smoke Trap"
     },
     {
-      "id": "pl_msg_00000630_00020",
+      "id": "UndergroundTraps_Text_RockTrap",
       "en_US": "Rock Trap"
     },
     {
-      "id": "pl_msg_00000630_00021",
+      "id": "UndergroundTraps_Text_RockfallTrap",
       "en_US": "Rockfall Trap"
     },
     {
-      "id": "pl_msg_00000630_00022",
+      "id": "UndergroundTraps_Text_FoamTrap",
       "en_US": "Foam Trap"
     },
     {
-      "id": "pl_msg_00000630_00023",
+      "id": "UndergroundTraps_Text_BubbleTrap",
       "en_US": "Bubble Trap"
     },
     {
-      "id": "pl_msg_00000630_00024",
+      "id": "UndergroundTraps_Text_AlertTrap1",
       "en_US": "Alert Trap 1"
     },
     {
-      "id": "pl_msg_00000630_00025",
+      "id": "UndergroundTraps_Text_AlertTrap2",
       "en_US": "Alert Trap 2"
     },
     {
-      "id": "pl_msg_00000630_00026",
+      "id": "UndergroundTraps_Text_AlertTrap3",
       "en_US": "Alert Trap 3"
     },
     {
-      "id": "pl_msg_00000630_00027",
+      "id": "UndergroundTraps_Text_AlertTrap4",
       "en_US": "Alert Trap 4"
     },
     {
-      "id": "pl_msg_00000630_00028",
+      "id": "UndergroundTraps_Text_LeafTrap",
       "en_US": "Leaf Trap"
     },
     {
-      "id": "pl_msg_00000630_00029",
+      "id": "UndergroundTraps_Text_FlowerTrap",
       "en_US": "Flower Trap"
     },
     {
-      "id": "pl_msg_00000630_00030",
+      "id": "UndergroundTraps_Text_EmberTrap",
       "en_US": "Ember Trap"
     },
     {
-      "id": "pl_msg_00000630_00031",
+      "id": "UndergroundTraps_Text_FireTrap",
       "en_US": "Fire Trap"
     },
     {
-      "id": "pl_msg_00000630_00032",
+      "id": "UndergroundTraps_Text_RadarTrap",
       "en_US": "Radar Trap"
     },
     {
-      "id": "pl_msg_00000630_00033",
+      "id": "UndergroundTraps_Text_DiggerDrill",
       "en_US": "Digger Drill"
     },
     {
-      "id": "pl_msg_00000630_00034",
+      "id": "UndergroundTraps_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000630_00035",
+      "id": "UndergroundTraps_Text_MoveTrapUpDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying upward."
       ]
     },
     {
-      "id": "pl_msg_00000630_00036",
+      "id": "UndergroundTraps_Text_MoveTrapRightDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying to the right."
       ]
     },
     {
-      "id": "pl_msg_00000630_00037",
+      "id": "UndergroundTraps_Text_MoveTrapDownDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying downward."
       ]
     },
     {
-      "id": "pl_msg_00000630_00038",
+      "id": "UndergroundTraps_Text_MoveTrapLeftDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying to the left."
       ]
     },
     {
-      "id": "pl_msg_00000630_00039",
+      "id": "UndergroundTraps_Text_HurlTrapUpDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying far upward."
       ]
     },
     {
-      "id": "pl_msg_00000630_00040",
+      "id": "UndergroundTraps_Text_HurlTrapRightDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying far to the right."
       ]
     },
     {
-      "id": "pl_msg_00000630_00041",
+      "id": "UndergroundTraps_Text_HurlTrapDownDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying far downward."
       ]
     },
     {
-      "id": "pl_msg_00000630_00042",
+      "id": "UndergroundTraps_Text_HurlTrapLeftDescription",
       "en_US": [
         "Stepping on this Trap sends the\n",
         "victim flying far to the left."
       ]
     },
     {
-      "id": "pl_msg_00000630_00043",
+      "id": "UndergroundTraps_Text_WarpTrapDescription",
       "en_US": [
         "Stepping on this Trap warps the\n",
         "victim far away."
       ]
     },
     {
-      "id": "pl_msg_00000630_00044",
+      "id": "UndergroundTraps_Text_HiWarpTrapDescription",
       "en_US": [
         "Stepping on this Trap warps the\n",
         "victim far, far away."
       ]
     },
     {
-      "id": "pl_msg_00000630_00045",
+      "id": "UndergroundTraps_Text_HoleTrapDescription",
       "en_US": [
         "A pit opens up underneath the Trap\n",
         "to immobilize the victim."
       ]
     },
     {
-      "id": "pl_msg_00000630_00046",
+      "id": "UndergroundTraps_Text_PitTrapDescription",
       "en_US": [
         "A huge pit opens up underneath the\n",
         "Trap to immobilize the victim."
       ]
     },
     {
-      "id": "pl_msg_00000630_00047",
+      "id": "UndergroundTraps_Text_ReverseTrapDescription",
       "en_US": [
         "Stepping on this Trap reverses the\n",
         "victim’s movements."
       ]
     },
     {
-      "id": "pl_msg_00000630_00048",
+      "id": "UndergroundTraps_Text_ConfuseTrapDescription",
       "en_US": [
         "Stepping on this Trap scrambles the\n",
         "victim’s movements."
       ]
     },
     {
-      "id": "pl_msg_00000630_00049",
+      "id": "UndergroundTraps_Text_RunTrapDescription",
       "en_US": [
         "Stepping on this Trap makes the\n",
         "victim run."
       ]
     },
     {
-      "id": "pl_msg_00000630_00050",
+      "id": "UndergroundTraps_Text_FadeTrapDescription",
       "en_US": [
         "Stepping on this Trap makes the\n",
         "victim invisible."
       ]
     },
     {
-      "id": "pl_msg_00000630_00051",
+      "id": "UndergroundTraps_Text_SlowTrapDescription",
       "en_US": [
         "Stepping on this Trap slows the\n",
         "victim’s foot speed."
       ]
     },
     {
-      "id": "pl_msg_00000630_00052",
+      "id": "UndergroundTraps_Text_SmokeTrapDescription",
       "en_US": [
         "A Trap that releases obscuring smoke.\n",
         "The smoke can be rubbed away."
       ]
     },
     {
-      "id": "pl_msg_00000630_00053",
+      "id": "UndergroundTraps_Text_BigSmokeTrapDescription",
       "en_US": [
         "A Trap that releases billowing smoke.\n",
         "The smoke can be rubbed away."
       ]
     },
     {
-      "id": "pl_msg_00000630_00054",
+      "id": "UndergroundTraps_Text_RockTrapDescription",
       "en_US": [
         "A Trap that makes blocking boulders.\n",
         "Break the boulders to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00055",
+      "id": "UndergroundTraps_Text_RockfallTrapDescription",
       "en_US": [
         "A Trap that makes Big Boulders.\n",
         "Break the boulders to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00056",
+      "id": "UndergroundTraps_Text_FoamTrapDescription",
       "en_US": [
         "A Trap that releases bubbles.\n",
         "Pop the bubbles to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00057",
+      "id": "UndergroundTraps_Text_BubbleTrapDescription",
       "en_US": [
         "A Trap that releases a mass of\n",
         "bubbles. Pop them to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00058",
+      "id": "UndergroundTraps_Text_AlertTrap1Description",
       "en_US": [
         "Stepping on this Trap sends \n",
         "greetings to everyone near you."
       ]
     },
     {
-      "id": "pl_msg_00000630_00059",
+      "id": "UndergroundTraps_Text_AlertTrap2Description",
       "en_US": [
         "Stepping on this Trap sends\n",
         "farewells to everyone near you."
       ]
     },
     {
-      "id": "pl_msg_00000630_00060",
+      "id": "UndergroundTraps_Text_AlertTrap3Description",
       "en_US": [
         "Stepping on this Trap tells all nearby\n",
         "that you are going to the Union Room."
       ]
     },
     {
-      "id": "pl_msg_00000630_00061",
+      "id": "UndergroundTraps_Text_AlertTrap4Description",
       "en_US": [
         "Stepping on this Trap alerts everyone\n",
         "to gather around you."
       ]
     },
     {
-      "id": "pl_msg_00000630_00062",
+      "id": "UndergroundTraps_Text_LeafTrapDescription",
       "en_US": [
         "This Trap releases immobilizing leaves.\n",
         "Blow the leaves away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00063",
+      "id": "UndergroundTraps_Text_FlowerTrapDescription",
       "en_US": [
         "This Trap releases many flowers.\n",
         "Blow the flowers away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00064",
+      "id": "UndergroundTraps_Text_EmberTrapDescription",
       "en_US": [
         "This Trap releases immobilizing embers.\n",
         "Blow the embers away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00065",
+      "id": "UndergroundTraps_Text_FireTrapDescription",
       "en_US": [
         "This Trap releases billowing flames.\n",
         "Blow the flames away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000630_00066",
+      "id": "UndergroundTraps_Text_RadarTrapDescription",
       "en_US": [
         "Stepping on this renders the Radar\n",
         "useless for a while."
       ]
     },
     {
-      "id": "pl_msg_00000630_00067",
+      "id": "UndergroundTraps_Text_DiggerDrillDescription",
       "en_US": [
         "A single-use drill to drill a hole in\n",
         "the wall for your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000630_00068",
+      "id": "UndergroundTraps_Text_CloseDescription",
       "en_US": "Close the Bag."
     }
   ]

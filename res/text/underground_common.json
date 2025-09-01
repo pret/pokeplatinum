@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00052",
+      "id": "UndergroundCommon_Text_WouldYouLikeToReturnToSurface",
       "en_US": [
         "Would you like to return to the\n",
         "surface from where you entered?"
@@ -384,7 +384,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00066",
+      "id": "UndergroundCommon_Text_CantReturnFromSecretBase",
       "en_US": [
         "You can’t return to the surface\n",
         "from a Secret Base."
@@ -466,21 +466,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00079",
+      "id": "UndergroundCommon_Text_PlacedInItemsPocket",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was placed in\n",
         "the Bag’s {COLOR 2}♈{COLOR 0}ITEMS Pocket."
       ]
     },
     {
-      "id": "pl_msg_00000634_00080",
+      "id": "UndergroundCommon_Text_BagIsFullCouldntPutAway",
       "en_US": [
         "Your Bag is full. The {STRVAR_1 25, 0, 0}\n",
         "couldn’t be put away."
       ]
     },
     {
-      "id": "pl_msg_00000634_00081",
+      "id": "UndergroundCommon_Text_PlacedInMedicinePocket",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was placed in the\n",
         "Bag’s {COLOR 2}♌{COLOR 0}MEDICINE Pocket."
@@ -708,46 +708,46 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00121",
+      "id": "UndergroundCommon_Text_Traps",
       "en_US": "TRAPS"
     },
     {
-      "id": "pl_msg_00000634_00122",
+      "id": "UndergroundCommon_Text_Spheres",
       "en_US": "SPHERES"
     },
     {
-      "id": "pl_msg_00000634_00123",
+      "id": "UndergroundCommon_Text_Goods",
       "en_US": "GOODS"
     },
     {
-      "id": "pl_msg_00000634_00124",
+      "id": "UndergroundCommon_Text_Treasures",
       "en_US": "TREASURES"
     },
     {
-      "id": "pl_msg_00000634_00125",
+      "id": "UndergroundCommon_Text_TrainerNameTemplate",
       "en_US": "{STRVAR_1 1, 1, 0}"
     },
     {
-      "id": "pl_msg_00000634_00126",
+      "id": "UndergroundCommon_Text_GoUp",
       "en_US": "GO UP"
     },
     {
-      "id": "pl_msg_00000634_00127",
+      "id": "UndergroundCommon_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000634_00128",
+      "id": "UndergroundCommon_Text_SphereTemplate",
       "en_US": "{STRVAR_1 8, 2, 0} {STRVAR_1 51, 6, 0}"
     },
     {
-      "id": "pl_msg_00000634_00129",
+      "id": "UndergroundCommon_Text_WhatWouldYouLikeToDo",
       "en_US": [
         "What would you like to do with\n",
         "this {STRVAR_1 25, 2, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00130",
+      "id": "UndergroundCommon_Text_ThrewAwayTheItem",
       "en_US": "Threw away the {STRVAR_1 25, 2, 0}."
     },
     {
@@ -758,19 +758,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00132",
+      "id": "UndergroundCommon_Text_Trash",
       "en_US": "TRASH"
     },
     {
-      "id": "pl_msg_00000634_00133",
+      "id": "UndergroundCommon_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000634_00134",
+      "id": "UndergroundCommon_Text_Bury",
       "en_US": "BURY"
     },
     {
-      "id": "pl_msg_00000634_00135",
+      "id": "UndergroundCommon_Text_PutInBag",
       "en_US": "PUT IN BAG"
     },
     {

@@ -2,1380 +2,1380 @@
   "key": 12355,
   "messages": [
     {
-      "id": "pl_msg_00000626_00000",
+      "id": "UndergroundGoods_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000626_00001",
+      "id": "UndergroundGoods_Text_PCNormalFlag_Unused",
       "en_US": "PC"
     },
     {
-      "id": "pl_msg_00000626_00002",
+      "id": "UndergroundGoods_Text_PCBronzeFlag_Unused",
       "en_US": "PC"
     },
     {
-      "id": "pl_msg_00000626_00003",
+      "id": "UndergroundGoods_Text_PCSilverFlag_Unused",
       "en_US": "PC"
     },
     {
-      "id": "pl_msg_00000626_00004",
+      "id": "UndergroundGoods_Text_PCGoldFlag_Unused",
       "en_US": "PC"
     },
     {
-      "id": "pl_msg_00000626_00005",
+      "id": "UndergroundGoods_Text_PCPlatinumFlag_Unused",
       "en_US": "PC"
     },
     {
-      "id": "pl_msg_00000626_00006",
+      "id": "UndergroundGoods_Text_BigBoulder_Unused",
       "en_US": "Big Boulder"
     },
     {
-      "id": "pl_msg_00000626_00007",
+      "id": "UndergroundGoods_Text_YellowCushion",
       "en_US": "Yellow Cushion"
     },
     {
-      "id": "pl_msg_00000626_00008",
+      "id": "UndergroundGoods_Text_BlueCushion",
       "en_US": "Blue Cushion"
     },
     {
-      "id": "pl_msg_00000626_00009",
+      "id": "UndergroundGoods_Text_WoodenChair",
       "en_US": "Wooden Chair"
     },
     {
-      "id": "pl_msg_00000626_00010",
+      "id": "UndergroundGoods_Text_BigTable",
       "en_US": "Big Table"
     },
     {
-      "id": "pl_msg_00000626_00011",
+      "id": "UndergroundGoods_Text_PlainTable",
       "en_US": "Plain Table"
     },
     {
-      "id": "pl_msg_00000626_00012",
+      "id": "UndergroundGoods_Text_SmallTable",
       "en_US": "Small Table"
     },
     {
-      "id": "pl_msg_00000626_00013",
+      "id": "UndergroundGoods_Text_LongTable",
       "en_US": "Long Table"
     },
     {
-      "id": "pl_msg_00000626_00014",
+      "id": "UndergroundGoods_Text_WideTable",
       "en_US": "Wide Table"
     },
     {
-      "id": "pl_msg_00000626_00015",
+      "id": "UndergroundGoods_Text_PokeTable",
       "en_US": "Poké Table"
     },
     {
-      "id": "pl_msg_00000626_00016",
+      "id": "UndergroundGoods_Text_BigBookshelf",
       "en_US": "Big Bookshelf"
     },
     {
-      "id": "pl_msg_00000626_00017",
+      "id": "UndergroundGoods_Text_SmallBookshelf",
       "en_US": "Small Bookshelf"
     },
     {
-      "id": "pl_msg_00000626_00018",
+      "id": "UndergroundGoods_Text_ResearchShelf",
       "en_US": "Research Shelf"
     },
     {
-      "id": "pl_msg_00000626_00019",
+      "id": "UndergroundGoods_Text_BikeRack",
       "en_US": "Bike Rack"
     },
     {
-      "id": "pl_msg_00000626_00020",
+      "id": "UndergroundGoods_Text_ShopShelf",
       "en_US": "Shop Shelf"
     },
     {
-      "id": "pl_msg_00000626_00021",
+      "id": "UndergroundGoods_Text_DisplayShelf",
       "en_US": "Display Shelf"
     },
     {
-      "id": "pl_msg_00000626_00022",
+      "id": "UndergroundGoods_Text_Cupboard",
       "en_US": "Cupboard"
     },
     {
-      "id": "pl_msg_00000626_00023",
+      "id": "UndergroundGoods_Text_WoodDresser",
       "en_US": "Wood Dresser"
     },
     {
-      "id": "pl_msg_00000626_00024",
+      "id": "UndergroundGoods_Text_PinkDresser",
       "en_US": "Pink Dresser"
     },
     {
-      "id": "pl_msg_00000626_00025",
+      "id": "UndergroundGoods_Text_TV",
       "en_US": "TV"
     },
     {
-      "id": "pl_msg_00000626_00026",
+      "id": "UndergroundGoods_Text_Refrigerator",
       "en_US": "Refrigerator"
     },
     {
-      "id": "pl_msg_00000626_00027",
+      "id": "UndergroundGoods_Text_PrettySink",
       "en_US": "Pretty Sink"
     },
     {
-      "id": "pl_msg_00000626_00028",
+      "id": "UndergroundGoods_Text_FeatheryBed",
       "en_US": "Feathery Bed"
     },
     {
-      "id": "pl_msg_00000626_00029",
+      "id": "UndergroundGoods_Text_TrashCan",
       "en_US": "Trash Can"
     },
     {
-      "id": "pl_msg_00000626_00030",
+      "id": "UndergroundGoods_Text_CardboardBox",
       "en_US": "Cardboard Box"
     },
     {
-      "id": "pl_msg_00000626_00031",
+      "id": "UndergroundGoods_Text_Crate",
       "en_US": "Crate"
     },
     {
-      "id": "pl_msg_00000626_00032",
+      "id": "UndergroundGoods_Text_Container",
       "en_US": "Container"
     },
     {
-      "id": "pl_msg_00000626_00033",
+      "id": "UndergroundGoods_Text_OilDrum",
       "en_US": "Oil Drum"
     },
     {
-      "id": "pl_msg_00000626_00034",
+      "id": "UndergroundGoods_Text_BigOilDrum",
       "en_US": "Big Oil Drum"
     },
     {
-      "id": "pl_msg_00000626_00035",
+      "id": "UndergroundGoods_Text_IronBeam",
       "en_US": "Iron Beam"
     },
     {
-      "id": "pl_msg_00000626_00036",
+      "id": "UndergroundGoods_Text_PottedPlant",
       "en_US": "Potted Plant"
     },
     {
-      "id": "pl_msg_00000626_00037",
+      "id": "UndergroundGoods_Text_PokePlant",
       "en_US": "Poké Flower"
     },
     {
-      "id": "pl_msg_00000626_00038",
+      "id": "UndergroundGoods_Text_HealingMachine",
       "en_US": "Healing Machine"
     },
     {
-      "id": "pl_msg_00000626_00039",
+      "id": "UndergroundGoods_Text_LabMachine",
       "en_US": "Lab Machine"
     },
     {
-      "id": "pl_msg_00000626_00040",
+      "id": "UndergroundGoods_Text_TestMachine",
       "en_US": "Test Machine"
     },
     {
-      "id": "pl_msg_00000626_00041",
+      "id": "UndergroundGoods_Text_GameSystem",
       "en_US": "Game System"
     },
     {
-      "id": "pl_msg_00000626_00042",
+      "id": "UndergroundGoods_Text_VendingMachine",
       "en_US": "Vending Machine"
     },
     {
-      "id": "pl_msg_00000626_00043",
+      "id": "UndergroundGoods_Text_RedBike",
       "en_US": "Red Bike"
     },
     {
-      "id": "pl_msg_00000626_00044",
+      "id": "UndergroundGoods_Text_GreenBike",
       "en_US": "Green Bike"
     },
     {
-      "id": "pl_msg_00000626_00045",
+      "id": "UndergroundGoods_Text_Binoculars",
       "en_US": "Binoculars"
     },
     {
-      "id": "pl_msg_00000626_00046",
+      "id": "UndergroundGoods_Text_Globe",
       "en_US": "Globe"
     },
     {
-      "id": "pl_msg_00000626_00047",
+      "id": "UndergroundGoods_Text_GymStatue",
       "en_US": "Gym Statue"
     },
     {
-      "id": "pl_msg_00000626_00048",
+      "id": "UndergroundGoods_Text_RedTent",
       "en_US": "Red Tent"
     },
     {
-      "id": "pl_msg_00000626_00049",
+      "id": "UndergroundGoods_Text_BlueTent",
       "en_US": "Blue Tent"
     },
     {
-      "id": "pl_msg_00000626_00050",
+      "id": "UndergroundGoods_Text_ClearTent",
       "en_US": "Clear Tent"
     },
     {
-      "id": "pl_msg_00000626_00051",
+      "id": "UndergroundGoods_Text_MazeBlock1",
       "en_US": "Maze Block 1"
     },
     {
-      "id": "pl_msg_00000626_00052",
+      "id": "UndergroundGoods_Text_MazeBlock2",
       "en_US": "Maze Block 2"
     },
     {
-      "id": "pl_msg_00000626_00053",
+      "id": "UndergroundGoods_Text_MazeBlock3",
       "en_US": "Maze Block 3"
     },
     {
-      "id": "pl_msg_00000626_00054",
+      "id": "UndergroundGoods_Text_MazeBlock4",
       "en_US": "Maze Block 4"
     },
     {
-      "id": "pl_msg_00000626_00055",
+      "id": "UndergroundGoods_Text_MazeBlock5",
       "en_US": "Maze Block 5"
     },
     {
-      "id": "pl_msg_00000626_00056",
+      "id": "UndergroundGoods_Text_HoleTool",
       "en_US": "Hole Tool"
     },
     {
-      "id": "pl_msg_00000626_00057",
+      "id": "UndergroundGoods_Text_PitTool",
       "en_US": "Pit Tool"
     },
     {
-      "id": "pl_msg_00000626_00058",
+      "id": "UndergroundGoods_Text_SmokeTool",
       "en_US": "Smoke Tool"
     },
     {
-      "id": "pl_msg_00000626_00059",
+      "id": "UndergroundGoods_Text_BigSmokeTool",
       "en_US": "Big Smoke Tool"
     },
     {
-      "id": "pl_msg_00000626_00060",
+      "id": "UndergroundGoods_Text_RockTool",
       "en_US": "Rock Tool"
     },
     {
-      "id": "pl_msg_00000626_00061",
+      "id": "UndergroundGoods_Text_RockfallTool",
       "en_US": "Rockfall Tool"
     },
     {
-      "id": "pl_msg_00000626_00062",
+      "id": "UndergroundGoods_Text_FoamTool",
       "en_US": "Foam Tool"
     },
     {
-      "id": "pl_msg_00000626_00063",
+      "id": "UndergroundGoods_Text_BubbleTool",
       "en_US": "Bubble Tool"
     },
     {
-      "id": "pl_msg_00000626_00064",
+      "id": "UndergroundGoods_Text_AlertTool1",
       "en_US": "Alert Tool 1"
     },
     {
-      "id": "pl_msg_00000626_00065",
+      "id": "UndergroundGoods_Text_AlertTool2",
       "en_US": "Alert Tool 2"
     },
     {
-      "id": "pl_msg_00000626_00066",
+      "id": "UndergroundGoods_Text_AlertTool3",
       "en_US": "Alert Tool 3"
     },
     {
-      "id": "pl_msg_00000626_00067",
+      "id": "UndergroundGoods_Text_AlertTool4",
       "en_US": "Alert Tool 4"
     },
     {
-      "id": "pl_msg_00000626_00068",
+      "id": "UndergroundGoods_Text_LeafTool",
       "en_US": "Leaf Tool"
     },
     {
-      "id": "pl_msg_00000626_00069",
+      "id": "UndergroundGoods_Text_FlowerTool",
       "en_US": "Flower Tool"
     },
     {
-      "id": "pl_msg_00000626_00070",
+      "id": "UndergroundGoods_Text_EmberTool",
       "en_US": "Ember Tool"
     },
     {
-      "id": "pl_msg_00000626_00071",
+      "id": "UndergroundGoods_Text_FireTool",
       "en_US": "Fire Tool"
     },
     {
-      "id": "pl_msg_00000626_00072",
+      "id": "UndergroundGoods_Text_CuteCup",
       "en_US": "Cute Cup"
     },
     {
-      "id": "pl_msg_00000626_00073",
+      "id": "UndergroundGoods_Text_CoolCup",
       "en_US": "Cool Cup"
     },
     {
-      "id": "pl_msg_00000626_00074",
+      "id": "UndergroundGoods_Text_BeautyCup",
       "en_US": "Beauty Cup"
     },
     {
-      "id": "pl_msg_00000626_00075",
+      "id": "UndergroundGoods_Text_ToughCup",
       "en_US": "Tough Cup"
     },
     {
-      "id": "pl_msg_00000626_00076",
+      "id": "UndergroundGoods_Text_CleverCup",
       "en_US": "Clever Cup"
     },
     {
-      "id": "pl_msg_00000626_00077",
+      "id": "UndergroundGoods_Text_BlueCrystal",
       "en_US": "Blue Crystal"
     },
     {
-      "id": "pl_msg_00000626_00078",
+      "id": "UndergroundGoods_Text_PinkCrystal",
       "en_US": "Pink Crystal"
     },
     {
-      "id": "pl_msg_00000626_00079",
+      "id": "UndergroundGoods_Text_RedCrystal",
       "en_US": "Red Crystal"
     },
     {
-      "id": "pl_msg_00000626_00080",
+      "id": "UndergroundGoods_Text_YellowCrystal",
       "en_US": "Yellow Crystal"
     },
     {
-      "id": "pl_msg_00000626_00081",
+      "id": "UndergroundGoods_Text_PrettyGem",
       "en_US": "Pretty Gem"
     },
     {
-      "id": "pl_msg_00000626_00082",
+      "id": "UndergroundGoods_Text_ShinyGem",
       "en_US": "Shiny Gem"
     },
     {
-      "id": "pl_msg_00000626_00083",
+      "id": "UndergroundGoods_Text_MysticGem",
       "en_US": "Mystic Gem"
     },
     {
-      "id": "pl_msg_00000626_00084",
+      "id": "UndergroundGoods_Text_GlitterGem",
       "en_US": "Glitter Gem"
     },
     {
-      "id": "pl_msg_00000626_00085",
+      "id": "UndergroundGoods_Text_BronzeTrophy",
       "en_US": "Bronze Trophy"
     },
     {
-      "id": "pl_msg_00000626_00086",
+      "id": "UndergroundGoods_Text_SilverTrophy",
       "en_US": "Silver Trophy"
     },
     {
-      "id": "pl_msg_00000626_00087",
+      "id": "UndergroundGoods_Text_GoldTrophy",
       "en_US": "Gold Trophy"
     },
     {
-      "id": "pl_msg_00000626_00088",
+      "id": "UndergroundGoods_Text_GreatTrophy_Unused",
       "en_US": "Great Trophy"
     },
     {
-      "id": "pl_msg_00000626_00089",
+      "id": "UndergroundGoods_Text_BallOrnament_Unused",
       "en_US": "Ball Ornament"
     },
     {
-      "id": "pl_msg_00000626_00090",
+      "id": "UndergroundGoods_Text_RoundOrnament_Unused",
       "en_US": "Round Ornament"
     },
     {
-      "id": "pl_msg_00000626_00091",
+      "id": "UndergroundGoods_Text_ClearOrnament_Unused",
       "en_US": "Clear Ornament"
     },
     {
-      "id": "pl_msg_00000626_00092",
+      "id": "UndergroundGoods_Text_CharmanderDoll",
       "en_US": "CHARMANDER Doll"
     },
     {
-      "id": "pl_msg_00000626_00093",
+      "id": "UndergroundGoods_Text_BulbasaurDoll",
       "en_US": "BULBASAUR Doll"
     },
     {
-      "id": "pl_msg_00000626_00094",
+      "id": "UndergroundGoods_Text_SquirtleDoll",
       "en_US": "SQUIRTLE Doll"
     },
     {
-      "id": "pl_msg_00000626_00095",
+      "id": "UndergroundGoods_Text_CyndaquilDoll",
       "en_US": "CYNDAQUIL Doll"
     },
     {
-      "id": "pl_msg_00000626_00096",
+      "id": "UndergroundGoods_Text_ChikoritaDoll",
       "en_US": "CHIKORITA Doll"
     },
     {
-      "id": "pl_msg_00000626_00097",
+      "id": "UndergroundGoods_Text_TotodileDoll",
       "en_US": "TOTODILE Doll"
     },
     {
-      "id": "pl_msg_00000626_00098",
+      "id": "UndergroundGoods_Text_TorchicDoll",
       "en_US": "TORCHIC Doll"
     },
     {
-      "id": "pl_msg_00000626_00099",
+      "id": "UndergroundGoods_Text_TreeckoDoll",
       "en_US": "TREECKO Doll"
     },
     {
-      "id": "pl_msg_00000626_00100",
+      "id": "UndergroundGoods_Text_MudkipDoll",
       "en_US": "MUDKIP Doll"
     },
     {
-      "id": "pl_msg_00000626_00101",
+      "id": "UndergroundGoods_Text_ChimcharDoll",
       "en_US": "CHIMCHAR Doll"
     },
     {
-      "id": "pl_msg_00000626_00102",
+      "id": "UndergroundGoods_Text_TurtwigDoll",
       "en_US": "TURTWIG Doll"
     },
     {
-      "id": "pl_msg_00000626_00103",
+      "id": "UndergroundGoods_Text_PiplupDoll",
       "en_US": "PIPLUP Doll"
     },
     {
-      "id": "pl_msg_00000626_00104",
+      "id": "UndergroundGoods_Text_PikachuDoll",
       "en_US": "PIKACHU Doll"
     },
     {
-      "id": "pl_msg_00000626_00105",
+      "id": "UndergroundGoods_Text_PlusleDoll",
       "en_US": "PLUSLE Doll"
     },
     {
-      "id": "pl_msg_00000626_00106",
+      "id": "UndergroundGoods_Text_MinunDoll",
       "en_US": "MINUN Doll"
     },
     {
-      "id": "pl_msg_00000626_00107",
+      "id": "UndergroundGoods_Text_ClefairyDoll",
       "en_US": "CLEFAIRY Doll"
     },
     {
-      "id": "pl_msg_00000626_00108",
+      "id": "UndergroundGoods_Text_JigglypuffDoll",
       "en_US": "JIGGLYPUFF Doll"
     },
     {
-      "id": "pl_msg_00000626_00109",
+      "id": "UndergroundGoods_Text_WobbuffetDoll",
       "en_US": "WOBBUFFET Doll"
     },
     {
-      "id": "pl_msg_00000626_00110",
+      "id": "UndergroundGoods_Text_MeowthDoll",
       "en_US": "MEOWTH Doll"
     },
     {
-      "id": "pl_msg_00000626_00111",
+      "id": "UndergroundGoods_Text_SkittyDoll",
       "en_US": "SKITTY Doll"
     },
     {
-      "id": "pl_msg_00000626_00112",
+      "id": "UndergroundGoods_Text_GlameowDoll",
       "en_US": "GLAMEOW Doll"
     },
     {
-      "id": "pl_msg_00000626_00113",
+      "id": "UndergroundGoods_Text_BunearyDoll",
       "en_US": "BUNEARY Doll"
     },
     {
-      "id": "pl_msg_00000626_00114",
+      "id": "UndergroundGoods_Text_WeavileDoll",
       "en_US": "WEAVILE Doll"
     },
     {
-      "id": "pl_msg_00000626_00115",
+      "id": "UndergroundGoods_Text_MunchlaxDoll",
       "en_US": "MUNCHLAX Doll"
     },
     {
-      "id": "pl_msg_00000626_00116",
+      "id": "UndergroundGoods_Text_BonslyDoll",
       "en_US": "BONSLY Doll"
     },
     {
-      "id": "pl_msg_00000626_00117",
+      "id": "UndergroundGoods_Text_MimeJrDoll",
       "en_US": "MIME JR. Doll"
     },
     {
-      "id": "pl_msg_00000626_00118",
+      "id": "UndergroundGoods_Text_LucarioDoll",
       "en_US": "LUCARIO Doll"
     },
     {
-      "id": "pl_msg_00000626_00119",
+      "id": "UndergroundGoods_Text_MantykeDoll",
       "en_US": "MANTYKE Doll"
     },
     {
-      "id": "pl_msg_00000626_00120",
+      "id": "UndergroundGoods_Text_BuizelDoll",
       "en_US": "BUIZEL Doll"
     },
     {
-      "id": "pl_msg_00000626_00121",
+      "id": "UndergroundGoods_Text_ChatotDoll",
       "en_US": "CHATOT Doll"
     },
     {
-      "id": "pl_msg_00000626_00122",
+      "id": "UndergroundGoods_Text_ManaphyDoll_Unused",
       "en_US": "MANAPHY Doll"
     },
     {
-      "id": "pl_msg_00000626_00123",
+      "id": "UndergroundGoods_Text_SnorlaxDoll",
       "en_US": "SNORLAX Doll"
     },
     {
-      "id": "pl_msg_00000626_00124",
+      "id": "UndergroundGoods_Text_WailordDoll",
       "en_US": "WAILORD Doll"
     },
     {
-      "id": "pl_msg_00000626_00125",
+      "id": "UndergroundGoods_Text_MagnezoneDoll_Unused",
       "en_US": "MAGNEZONE Doll"
     },
     {
-      "id": "pl_msg_00000626_00126",
+      "id": "UndergroundGoods_Text_DrifloonDoll",
       "en_US": "DRIFLOON Doll"
     },
     {
-      "id": "pl_msg_00000626_00127",
+      "id": "UndergroundGoods_Text_HappinyDoll",
       "en_US": "HAPPINY Doll"
     },
     {
-      "id": "pl_msg_00000626_00128",
+      "id": "UndergroundGoods_Text_PachirisuDoll",
       "en_US": "PACHIRISU Doll"
     },
     {
-      "id": "pl_msg_00000626_00129",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceSouth_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00130",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceNorth_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00131",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceEast_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00132",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceWest_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00133",
+      "id": "UndergroundGoods_Text_WideSofa",
       "en_US": "Wide Sofa"
     },
     {
-      "id": "pl_msg_00000626_00134",
+      "id": "UndergroundGoods_Text_Bonsai",
       "en_US": "Bonsai"
     },
     {
-      "id": "pl_msg_00000626_00135",
+      "id": "UndergroundGoods_Text_DaintyFlowers",
       "en_US": "Dainty Flowers"
     },
     {
-      "id": "pl_msg_00000626_00136",
+      "id": "UndergroundGoods_Text_LovelyFlowers",
       "en_US": "Lovely Flowers"
     },
     {
-      "id": "pl_msg_00000626_00137",
+      "id": "UndergroundGoods_Text_PrettyFlowers",
       "en_US": "Pretty Flowers"
     },
     {
-      "id": "pl_msg_00000626_00138",
+      "id": "UndergroundGoods_Text_LavishFlowers",
       "en_US": "Lavish Flowers"
     },
     {
-      "id": "pl_msg_00000626_00139",
+      "id": "UndergroundGoods_Text_CloseDescription",
       "en_US": "Close the Bag."
     },
     {
-      "id": "pl_msg_00000626_00140",
+      "id": "UndergroundGoods_Text_PCBronzeFlagDescription_Unused",
       "en_US": "dummy"
     },
     {
-      "id": "pl_msg_00000626_00141",
+      "id": "UndergroundGoods_Text_PCSilverFlagDescription_Unused",
       "en_US": "dummy"
     },
     {
-      "id": "pl_msg_00000626_00142",
+      "id": "UndergroundGoods_Text_PCGoldFlagDescription_Unused",
       "en_US": "dummy"
     },
     {
-      "id": "pl_msg_00000626_00143",
+      "id": "UndergroundGoods_Text_PCPlatinumFlagDescription_Unused",
       "en_US": "dummy"
     },
     {
-      "id": "pl_msg_00000626_00144",
+      "id": "UndergroundGoods_Text_BigBoulderDescription_Unused",
       "en_US": "dummy"
     },
     {
-      "id": "pl_msg_00000626_00145",
+      "id": "UndergroundGoods_Text_YellowCushionDescription",
       "en_US": [
         "A yellow cushion that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00146",
+      "id": "UndergroundGoods_Text_BlueCushionDescription",
       "en_US": [
         "A blue cushion that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00147",
+      "id": "UndergroundGoods_Text_WoodenChairDescription",
       "en_US": [
         "A small wooden chair that can be\n",
         "placed inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00148",
+      "id": "UndergroundGoods_Text_BigTableDescription",
       "en_US": [
         "A very big table that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00149",
+      "id": "UndergroundGoods_Text_PlainTableDescription",
       "en_US": [
         "An ordinary table that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00150",
+      "id": "UndergroundGoods_Text_SmallTableDescription",
       "en_US": [
         "A very small table that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00151",
+      "id": "UndergroundGoods_Text_LongTableDescription",
       "en_US": [
         "A vertically long table that can be\n",
         "placed inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00152",
+      "id": "UndergroundGoods_Text_WideTableDescription",
       "en_US": [
         "A horizontally wide table that can be\n",
         "placed inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00153",
+      "id": "UndergroundGoods_Text_PokeTableDescription",
       "en_US": [
         "A glass-topped table that can be\n",
         "seen in Pokémon Centers."
       ]
     },
     {
-      "id": "pl_msg_00000626_00154",
+      "id": "UndergroundGoods_Text_BigBookshelfDescription",
       "en_US": [
         "A big bookshelf that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00155",
+      "id": "UndergroundGoods_Text_SmallBookshelfDescription",
       "en_US": [
         "A small bookshelf that can be placed\n",
         "inside your Secret Base."
       ]
     },
     {
-      "id": "pl_msg_00000626_00156",
+      "id": "UndergroundGoods_Text_ResearchShelfDescription",
       "en_US": [
         "A rack that is perfect for storing\n",
         "all kinds of research documents."
       ]
     },
     {
-      "id": "pl_msg_00000626_00157",
+      "id": "UndergroundGoods_Text_BikeRackDescription",
       "en_US": [
         "A rack of tools like those seen\n",
         "in the Cycle Shop."
       ]
     },
     {
-      "id": "pl_msg_00000626_00158",
+      "id": "UndergroundGoods_Text_ShopShelfDescription",
       "en_US": [
         "A shelf stocked full of merchandise\n",
         "like at any Poké Mart."
       ]
     },
     {
-      "id": "pl_msg_00000626_00159",
+      "id": "UndergroundGoods_Text_DisplayShelfDescription",
       "en_US": [
         "A shelf stocked with a variety of\n",
         "merchandise like at any Poké Mart."
       ]
     },
     {
-      "id": "pl_msg_00000626_00160",
+      "id": "UndergroundGoods_Text_CupboardDescription",
       "en_US": [
         "A fancy cupboard for storing all\n",
         "sorts of kitchenware."
       ]
     },
     {
-      "id": "pl_msg_00000626_00161",
+      "id": "UndergroundGoods_Text_WoodDresserDescription",
       "en_US": [
         "A wooden dresser with a\n",
         "distinguished air."
       ]
     },
     {
-      "id": "pl_msg_00000626_00162",
+      "id": "UndergroundGoods_Text_PinkDresserDescription",
       "en_US": [
         "A fashionable dresser in a pretty\n",
         "pink color."
       ]
     },
     {
-      "id": "pl_msg_00000626_00163",
+      "id": "UndergroundGoods_Text_TVDescription",
       "en_US": [
         "A big toy TV.\n",
         "It is very well made."
       ]
     },
     {
-      "id": "pl_msg_00000626_00164",
+      "id": "UndergroundGoods_Text_RefrigeratorDescription",
       "en_US": [
         "A big, white toy refrigerator.\n",
         "It is very well made."
       ]
     },
     {
-      "id": "pl_msg_00000626_00165",
+      "id": "UndergroundGoods_Text_PrettySinkDescription",
       "en_US": [
         "A toy sink.\n",
         "It is very well made."
       ]
     },
     {
-      "id": "pl_msg_00000626_00166",
+      "id": "UndergroundGoods_Text_FeatheryBedDescription",
       "en_US": [
         "A very fluffy bed where one can\n",
         "enjoy pleasant dreams."
       ]
     },
     {
-      "id": "pl_msg_00000626_00167",
+      "id": "UndergroundGoods_Text_TrashCanDescription",
       "en_US": "A round, green-colored trash can."
     },
     {
-      "id": "pl_msg_00000626_00168",
+      "id": "UndergroundGoods_Text_CardboardBoxDescription",
       "en_US": [
         "A small cardboard box. It is\n",
         "convenient for storing things."
       ]
     },
     {
-      "id": "pl_msg_00000626_00169",
+      "id": "UndergroundGoods_Text_CrateDescription",
       "en_US": [
         "A large wooden crate that is filled\n",
         "with all sorts of things."
       ]
     },
     {
-      "id": "pl_msg_00000626_00170",
+      "id": "UndergroundGoods_Text_ContainerDescription",
       "en_US": [
         "A large container that is filled with\n",
         "a variety of things."
       ]
     },
     {
-      "id": "pl_msg_00000626_00171",
+      "id": "UndergroundGoods_Text_OilDrumDescription",
       "en_US": [
         "A red oil drum like those seen in\n",
         "factories."
       ]
     },
     {
-      "id": "pl_msg_00000626_00172",
+      "id": "UndergroundGoods_Text_BigOilDrumDescription",
       "en_US": [
         "A cluster of oil drums like those\n",
         "seen in factories."
       ]
     },
     {
-      "id": "pl_msg_00000626_00173",
+      "id": "UndergroundGoods_Text_IronBeamDescription",
       "en_US": [
         "A red iron beam like those seen at\n",
         "building construction sites."
       ]
     },
     {
-      "id": "pl_msg_00000626_00174",
+      "id": "UndergroundGoods_Text_PottedPlantDescription",
       "en_US": [
         "A potted plant that adds a touch\n",
         "of wild nature."
       ]
     },
     {
-      "id": "pl_msg_00000626_00175",
+      "id": "UndergroundGoods_Text_PokePlantDescription",
       "en_US": [
         "A small flower like those seen at\n",
         "any Pokémon Center."
       ]
     },
     {
-      "id": "pl_msg_00000626_00176",
+      "id": "UndergroundGoods_Text_HealingMachineDescription",
       "en_US": [
         "A machine used to heal Pokémon like\n",
         "those at any Pokémon Center."
       ]
     },
     {
-      "id": "pl_msg_00000626_00177",
+      "id": "UndergroundGoods_Text_LabMachineDescription",
       "en_US": [
         "A brightly illuminated machine used\n",
         "for Pokémon research."
       ]
     },
     {
-      "id": "pl_msg_00000626_00178",
+      "id": "UndergroundGoods_Text_TestMachineDescription",
       "en_US": [
         "A flickering, illuminated machine\n",
         "used for conducting experiments."
       ]
     },
     {
-      "id": "pl_msg_00000626_00179",
+      "id": "UndergroundGoods_Text_GameSystemDescription",
       "en_US": [
         "A brand-new game system like the\n",
         "one at home."
       ]
     },
     {
-      "id": "pl_msg_00000626_00180",
+      "id": "UndergroundGoods_Text_VendingMachineDescription",
       "en_US": [
         "A toy replica of a vending machine.\n",
         "It doesn’t actually work."
       ]
     },
     {
-      "id": "pl_msg_00000626_00181",
+      "id": "UndergroundGoods_Text_RedBikeDescription",
       "en_US": [
         "A red Bicycle replica. It is like\n",
         "those displayed at the Cycle Shop."
       ]
     },
     {
-      "id": "pl_msg_00000626_00182",
+      "id": "UndergroundGoods_Text_GreenBikeDescription",
       "en_US": [
         "A green Bicycle replica. It is like\n",
         "those displayed at the Cycle Shop."
       ]
     },
     {
-      "id": "pl_msg_00000626_00183",
+      "id": "UndergroundGoods_Text_BinocularsDescription",
       "en_US": [
         "A pair of high-powered\n",
         "replica binoculars."
       ]
     },
     {
-      "id": "pl_msg_00000626_00184",
+      "id": "UndergroundGoods_Text_GlobeDescription",
       "en_US": [
         "It attests to the fact that you have\n",
         "friends from all over."
       ]
     },
     {
-      "id": "pl_msg_00000626_00185",
+      "id": "UndergroundGoods_Text_GymStatueDescription",
       "en_US": [
         "A stone statue of a Pokémon like\n",
         "those at Pokémon Gyms."
       ]
     },
     {
-      "id": "pl_msg_00000626_00186",
+      "id": "UndergroundGoods_Text_RedTentDescription",
       "en_US": [
         "A large red tent.\n",
         "You can hide inside it."
       ]
     },
     {
-      "id": "pl_msg_00000626_00187",
+      "id": "UndergroundGoods_Text_BlueTentDescription",
       "en_US": [
         "A large blue tent.\n",
         "You can hide inside it."
       ]
     },
     {
-      "id": "pl_msg_00000626_00188",
+      "id": "UndergroundGoods_Text_ClearTentDescription",
       "en_US": [
         "A large transparent tent.\n",
         "You can go inside it."
       ]
     },
     {
-      "id": "pl_msg_00000626_00189",
+      "id": "UndergroundGoods_Text_MazeBlock1Description",
       "en_US": [
         "A block for constructing a maze.\n",
         "It is blocked at the top."
       ]
     },
     {
-      "id": "pl_msg_00000626_00190",
+      "id": "UndergroundGoods_Text_MazeBlock2Description",
       "en_US": [
         "A block for constructing a maze.\n",
         "It is blocked at the right."
       ]
     },
     {
-      "id": "pl_msg_00000626_00191",
+      "id": "UndergroundGoods_Text_MazeBlock3Description",
       "en_US": [
         "A block for constructing a maze.\n",
         "It is blocked at the bottom."
       ]
     },
     {
-      "id": "pl_msg_00000626_00192",
+      "id": "UndergroundGoods_Text_MazeBlock4Description",
       "en_US": [
         "A block for constructing a maze.\n",
         "It is blocked at the left."
       ]
     },
     {
-      "id": "pl_msg_00000626_00193",
+      "id": "UndergroundGoods_Text_MazeBlock5Description",
       "en_US": [
         "A block for constructing a maze.\n",
         "It is not blocked anywhere."
       ]
     },
     {
-      "id": "pl_msg_00000626_00194",
+      "id": "UndergroundGoods_Text_HoleToolDescription",
       "en_US": [
         "A Tool that makes a big pitfall\n",
         "to immobilize the victim."
       ]
     },
     {
-      "id": "pl_msg_00000626_00195",
+      "id": "UndergroundGoods_Text_PitToolDescription",
       "en_US": [
         "A Tool that makes a huge pitfall\n",
         "to immobilize the victim."
       ]
     },
     {
-      "id": "pl_msg_00000626_00196",
+      "id": "UndergroundGoods_Text_SmokeToolDescription",
       "en_US": [
         "A Tool that releases obscuring smoke.\n",
         "The smoke can be rubbed away."
       ]
     },
     {
-      "id": "pl_msg_00000626_00197",
+      "id": "UndergroundGoods_Text_BigSmokeToolDescription",
       "en_US": [
         "A Tool that releases billowing smoke.\n",
         "The smoke can be rubbed away."
       ]
     },
     {
-      "id": "pl_msg_00000626_00198",
+      "id": "UndergroundGoods_Text_RockToolDescription",
       "en_US": [
         "A Tool that makes blocking boulders.\n",
         "Break the boulders to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00199",
+      "id": "UndergroundGoods_Text_RockfallToolDescription",
       "en_US": [
         "A Tool that makes Big Boulders.\n",
         "Break the boulders to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00200",
+      "id": "UndergroundGoods_Text_FoamToolDescription",
       "en_US": [
         "A Tool that releases bubbles.\n",
         "Pop the bubbles to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00201",
+      "id": "UndergroundGoods_Text_BubbleToolDescription",
       "en_US": [
         "A Tool that releases a mass of\n",
         "bubbles. Pop them to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00202",
+      "id": "UndergroundGoods_Text_AlertTool1Description",
       "en_US": [
         "Stepping on this Tool sends \n",
         "greetings to everyone near you."
       ]
     },
     {
-      "id": "pl_msg_00000626_00203",
+      "id": "UndergroundGoods_Text_AlertTool2Description",
       "en_US": [
         "Stepping on this Tool sends\n",
         "farewells to everyone near you."
       ]
     },
     {
-      "id": "pl_msg_00000626_00204",
+      "id": "UndergroundGoods_Text_AlertTool3Description",
       "en_US": [
         "Stepping on this Tool tells all nearby\n",
         "that you are going to the Union Room."
       ]
     },
     {
-      "id": "pl_msg_00000626_00205",
+      "id": "UndergroundGoods_Text_AlertTool4Description",
       "en_US": [
         "Stepping on this Tool alerts everyone\n",
         "to gather around you."
       ]
     },
     {
-      "id": "pl_msg_00000626_00206",
+      "id": "UndergroundGoods_Text_LeafToolDescription",
       "en_US": [
         "This Tool releases immobilizing leaves.\n",
         "Blow the leaves away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00207",
+      "id": "UndergroundGoods_Text_FlowerToolDescription",
       "en_US": [
         "This Tool releases many flowers.\n",
         "Blow the flowers away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00208",
+      "id": "UndergroundGoods_Text_EmberToolDescription",
       "en_US": [
         "This Tool releases immobilizing embers.\n",
         "Blow the embers away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00209",
+      "id": "UndergroundGoods_Text_FireToolDescription",
       "en_US": [
         "This Tool releases billowing flames.\n",
         "Blow the flames away to get free."
       ]
     },
     {
-      "id": "pl_msg_00000626_00210",
+      "id": "UndergroundGoods_Text_CuteCupDescription",
       "en_US": [
         "A winner’s cup that is awarded only\n",
         "to a truly cute Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00211",
+      "id": "UndergroundGoods_Text_CoolCupDescription",
       "en_US": [
         "A winner’s cup that is awarded only\n",
         "to a truly cool Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00212",
+      "id": "UndergroundGoods_Text_BeautyCupDescription",
       "en_US": [
         "A winner’s cup that is awarded only\n",
         "to a truly beautiful Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00213",
+      "id": "UndergroundGoods_Text_ToughCupDescription",
       "en_US": [
         "A winner’s cup that is awarded only\n",
         "to a truly tough Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00214",
+      "id": "UndergroundGoods_Text_CleverCupDescription",
       "en_US": [
         "A winner’s cup that is awarded only\n",
         "to a truly smart Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00215",
+      "id": "UndergroundGoods_Text_BlueCrystalDescription",
       "en_US": [
         "A rare blue crystal awarded to\n",
         "helpful people."
       ]
     },
     {
-      "id": "pl_msg_00000626_00216",
+      "id": "UndergroundGoods_Text_PinkCrystalDescription",
       "en_US": [
         "A rare pink crystal awarded to\n",
         "kindhearted people."
       ]
     },
     {
-      "id": "pl_msg_00000626_00217",
+      "id": "UndergroundGoods_Text_RedCrystalDescription",
       "en_US": [
         "A rare red crystal that is awarded\n",
         "to hardworking people."
       ]
     },
     {
-      "id": "pl_msg_00000626_00218",
+      "id": "UndergroundGoods_Text_YellowCrystalDescription",
       "en_US": [
         "A rare yellow crystal awarded to\n",
         "steady, determined people."
       ]
     },
     {
-      "id": "pl_msg_00000626_00219",
+      "id": "UndergroundGoods_Text_PrettyGemDescription",
       "en_US": [
         "A pretty gem that has been cut\n",
         "beautifully."
       ]
     },
     {
-      "id": "pl_msg_00000626_00220",
+      "id": "UndergroundGoods_Text_ShinyGemDescription",
       "en_US": [
         "A gleaming gem that has been polished\n",
         "like a mirror."
       ]
     },
     {
-      "id": "pl_msg_00000626_00221",
+      "id": "UndergroundGoods_Text_MysticGemDescription",
       "en_US": [
         "A gem that casts a mystic light.\n",
         "It is difficult to obtain."
       ]
     },
     {
-      "id": "pl_msg_00000626_00222",
+      "id": "UndergroundGoods_Text_GlitterGemDescription",
       "en_US": [
         "An extremely valuable gem that\n",
         "glitters dazzlingly."
       ]
     },
     {
-      "id": "pl_msg_00000626_00223",
+      "id": "UndergroundGoods_Text_BronzeTrophyDescription",
       "en_US": [
         "A trophy made of bronze that is\n",
         "awarded only to tough Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00224",
+      "id": "UndergroundGoods_Text_SilverTrophyDescription",
       "en_US": [
         "A silver-colored trophy that is\n",
         "awarded only to very tough Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00225",
+      "id": "UndergroundGoods_Text_GoldTrophyDescription",
       "en_US": [
         "A gold-colored trophy that is awarded\n",
         "only to fantastically tough Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00226",
+      "id": "UndergroundGoods_Text_GreatTrophyDescription_Unused",
       "en_US": [
         "An impressive trophy awarded only to\n",
         "seemingly indefatigable Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000626_00227",
+      "id": "UndergroundGoods_Text_BallOrnamentDescription_Unused",
       "en_US": [
         "A commemorative object modeled\n",
         "after a Poké Ball."
       ]
     },
     {
-      "id": "pl_msg_00000626_00228",
+      "id": "UndergroundGoods_Text_RoundOrnamentDescription_Unused",
       "en_US": [
         "A very valuable round object that\n",
         "glows in seven colors."
       ]
     },
     {
-      "id": "pl_msg_00000626_00229",
+      "id": "UndergroundGoods_Text_ClearOrnamentDescription_Unused",
       "en_US": [
         "A very valuable object that is\n",
         "crystal clear."
       ]
     },
     {
-      "id": "pl_msg_00000626_00230",
+      "id": "UndergroundGoods_Text_CharmanderDollDescription",
       "en_US": "A cute CHARMANDER Doll."
     },
     {
-      "id": "pl_msg_00000626_00231",
+      "id": "UndergroundGoods_Text_BulbasaurDollDescription",
       "en_US": "A cute BULBASAUR Doll."
     },
     {
-      "id": "pl_msg_00000626_00232",
+      "id": "UndergroundGoods_Text_SquirtleDollDescription",
       "en_US": "A cute SQUIRTLE Doll."
     },
     {
-      "id": "pl_msg_00000626_00233",
+      "id": "UndergroundGoods_Text_CyndaquilDollDescription",
       "en_US": "A cute CYNDAQUIL Doll."
     },
     {
-      "id": "pl_msg_00000626_00234",
+      "id": "UndergroundGoods_Text_ChikoritaDollDescription",
       "en_US": "A cute CHIKORITA Doll."
     },
     {
-      "id": "pl_msg_00000626_00235",
+      "id": "UndergroundGoods_Text_TotodileDollDescription",
       "en_US": "A cute TOTODILE Doll."
     },
     {
-      "id": "pl_msg_00000626_00236",
+      "id": "UndergroundGoods_Text_TorchicDollDescription",
       "en_US": "A cute TORCHIC Doll."
     },
     {
-      "id": "pl_msg_00000626_00237",
+      "id": "UndergroundGoods_Text_TreeckoDollDescription",
       "en_US": "A cute TREECKO Doll."
     },
     {
-      "id": "pl_msg_00000626_00238",
+      "id": "UndergroundGoods_Text_MudkipDollDescription",
       "en_US": "A cute MUDKIP Doll."
     },
     {
-      "id": "pl_msg_00000626_00239",
+      "id": "UndergroundGoods_Text_ChimcharDollDescription",
       "en_US": "A cute CHIMCHAR Doll."
     },
     {
-      "id": "pl_msg_00000626_00240",
+      "id": "UndergroundGoods_Text_TurtwigDollDescription",
       "en_US": "A cute TURTWIG Doll."
     },
     {
-      "id": "pl_msg_00000626_00241",
+      "id": "UndergroundGoods_Text_PiplupDollDescription",
       "en_US": "A cute PIPLUP Doll."
     },
     {
-      "id": "pl_msg_00000626_00242",
+      "id": "UndergroundGoods_Text_PikachuDollDescription",
       "en_US": "A cute PIKACHU Doll."
     },
     {
-      "id": "pl_msg_00000626_00243",
+      "id": "UndergroundGoods_Text_PlusleDollDescription",
       "en_US": "A cute PLUSLE Doll."
     },
     {
-      "id": "pl_msg_00000626_00244",
+      "id": "UndergroundGoods_Text_MinunDollDescription",
       "en_US": "A cute MINUN Doll."
     },
     {
-      "id": "pl_msg_00000626_00245",
+      "id": "UndergroundGoods_Text_ClefairyDollDescription",
       "en_US": "A cute CLEFAIRY Doll."
     },
     {
-      "id": "pl_msg_00000626_00246",
+      "id": "UndergroundGoods_Text_JigglypuffDollDescription",
       "en_US": "A cute JIGGLYPUFF Doll."
     },
     {
-      "id": "pl_msg_00000626_00247",
+      "id": "UndergroundGoods_Text_WobbuffetDollDescription",
       "en_US": "A cute WOBBUFFET Doll."
     },
     {
-      "id": "pl_msg_00000626_00248",
+      "id": "UndergroundGoods_Text_MeowthDollDescription",
       "en_US": "A cute MEOWTH Doll."
     },
     {
-      "id": "pl_msg_00000626_00249",
+      "id": "UndergroundGoods_Text_SkittyDollDescription",
       "en_US": "A cute SKITTY Doll."
     },
     {
-      "id": "pl_msg_00000626_00250",
+      "id": "UndergroundGoods_Text_GlameowDollDescription",
       "en_US": "A cute GLAMEOW Doll."
     },
     {
-      "id": "pl_msg_00000626_00251",
+      "id": "UndergroundGoods_Text_BunearyDollDescription",
       "en_US": "A cute BUNEARY Doll."
     },
     {
-      "id": "pl_msg_00000626_00252",
+      "id": "UndergroundGoods_Text_WeavileDollDescription",
       "en_US": "A cute WEAVILE Doll."
     },
     {
-      "id": "pl_msg_00000626_00253",
+      "id": "UndergroundGoods_Text_MunchlaxDollDescription",
       "en_US": "A cute MUNCHLAX Doll."
     },
     {
-      "id": "pl_msg_00000626_00254",
+      "id": "UndergroundGoods_Text_BonslyDollDescription",
       "en_US": "A cute BONSLY Doll."
     },
     {
-      "id": "pl_msg_00000626_00255",
+      "id": "UndergroundGoods_Text_MimeJrDollDescription",
       "en_US": "A cute MIME JR. Doll."
     },
     {
-      "id": "pl_msg_00000626_00256",
+      "id": "UndergroundGoods_Text_LucarioDollDescription",
       "en_US": "A rare LUCARIO Doll."
     },
     {
-      "id": "pl_msg_00000626_00257",
+      "id": "UndergroundGoods_Text_MantykeDollDescription",
       "en_US": "A cute MANTYKE Doll."
     },
     {
-      "id": "pl_msg_00000626_00258",
+      "id": "UndergroundGoods_Text_BuizelDollDescription",
       "en_US": "A cute BUIZEL Doll."
     },
     {
-      "id": "pl_msg_00000626_00259",
+      "id": "UndergroundGoods_Text_ChatotDollDescription",
       "en_US": "A cute CHATOT Doll."
     },
     {
-      "id": "pl_msg_00000626_00260",
+      "id": "UndergroundGoods_Text_ManaphyDollDescription_Unused",
       "en_US": "A rare MANAPHY Doll."
     },
     {
-      "id": "pl_msg_00000626_00261",
+      "id": "UndergroundGoods_Text_SnorlaxDollDescription",
       "en_US": "A big SNORLAX Doll."
     },
     {
-      "id": "pl_msg_00000626_00262",
+      "id": "UndergroundGoods_Text_WailordDollDescription",
       "en_US": "A big WAILORD Doll."
     },
     {
-      "id": "pl_msg_00000626_00263",
+      "id": "UndergroundGoods_Text_MagnezoneDollDescription_Unused",
       "en_US": "A big MAGNEZONE Doll."
     },
     {
-      "id": "pl_msg_00000626_00264",
+      "id": "UndergroundGoods_Text_DrifloonDollDescription",
       "en_US": "A cute DRIFLOON Doll."
     },
     {
-      "id": "pl_msg_00000626_00265",
+      "id": "UndergroundGoods_Text_HappinyDollDescription",
       "en_US": "A cute HAPPINY Doll."
     },
     {
-      "id": "pl_msg_00000626_00266",
+      "id": "UndergroundGoods_Text_PachirisuDollDescription",
       "en_US": "A cute PACHIRISU Doll."
     },
     {
-      "id": "pl_msg_00000626_00267",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceSouthDescription_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00268",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceNorthDescription_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00269",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceEastDescription_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00270",
+      "id": "UndergroundGoods_Text_SecretBaseEntranceWestDescription_Dummy",
       "en_US": " -"
     },
     {
-      "id": "pl_msg_00000626_00271",
+      "id": "UndergroundGoods_Text_WideSofaDescription",
       "en_US": [
         "A wide, blue sofa.\n",
         "It has room for two."
       ]
     },
     {
-      "id": "pl_msg_00000626_00272",
+      "id": "UndergroundGoods_Text_BonsaiDescription",
       "en_US": [
         "A restrained and evocative miniature\n",
         "tree shaped by a master."
       ]
     },
     {
-      "id": "pl_msg_00000626_00273",
+      "id": "UndergroundGoods_Text_DaintyFlowersDescription",
       "en_US": "A pot of very pretty flowers."
     },
     {
-      "id": "pl_msg_00000626_00274",
+      "id": "UndergroundGoods_Text_LovelyFlowersDescription",
       "en_US": "A pot of very beautiful flowers."
     },
     {
-      "id": "pl_msg_00000626_00275",
+      "id": "UndergroundGoods_Text_PrettyFlowersDescription",
       "en_US": "A pot of very cute flowers."
     },
     {
-      "id": "pl_msg_00000626_00276",
+      "id": "UndergroundGoods_Text_LavishFlowersDescription",
       "en_US": [
         "A planter that is bursting with a\n",
         "gorgeous selection of flowers."
       ]
     },
     {
-      "id": "pl_msg_00000626_00277",
+      "id": "UndergroundGoods_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000626_00278",
+      "id": "UndergroundGoods_Text_ExitDescription",
       "en_US": "Exit from decorating."
     }
   ]

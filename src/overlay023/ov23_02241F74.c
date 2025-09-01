@@ -15,13 +15,13 @@
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -51,12 +51,12 @@
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-} CommManUnderground_sub1;
+typedef struct StoredListMenuPos {
+    u16 key;
+    u16 menuKey;
+    u16 cursorPos;
+    u16 listPos;
+} StoredListMenuPos;
 
 typedef struct {
     void *unk_00;
@@ -67,8 +67,8 @@ typedef struct {
     SysTask *unk_14;
     Coordinates unk_18;
     Coordinates unk_1C;
-    CommManUnderground_sub1 unk_20[20];
-    u16 unk_C0;
+    StoredListMenuPos storedPositions[20];
+    u16 storedPositionKey;
     u8 unk_C2[8];
     u8 unk_CA[8];
     u8 unk_D2[8];
@@ -138,7 +138,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
     sCommManUnderground->decorateBaseTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
-    sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
@@ -174,7 +174,7 @@ static void ov23_02242108(void)
     UndergroundTextPrinter_Free(sCommManUnderground->decorateBaseTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->itemNameTextPrinter);
 
-    sCommManUnderground->fieldSystem->unk_90 = 0;
+    sCommManUnderground->fieldSystem->menuCursorPos = 0;
     Heap_Free(sCommManUnderground);
     sCommManUnderground = NULL;
 }
@@ -781,7 +781,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02253608());
         ov23_02253598(v0, SaveData_UndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
-        ov23_0224F588(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
+        UndergroundMenuContext_Init(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 
@@ -823,7 +823,7 @@ void ov23_02242D08(void)
         CommPlayerMan_Delete(1);
         BuriedSpheresEnv_Free();
         ov23_0223E2F8();
-        ov23_0224F5B8();
+        UndergroundMenuContext_Free();
         ov23_022535CC();
         ov23_02242108();
     }
@@ -1062,50 +1062,48 @@ void ov23_022430B8(int param0)
     sCommManUnderground->unk_13D[param0] = 1;
 }
 
-void ov23_022430D0(u16 param0)
+void CommManUnderground_SetStoredPosKey(u16 key)
 {
-    sCommManUnderground->unk_C0 = param0;
+    sCommManUnderground->storedPositionKey = key;
 }
 
-void ov23_022430E0(u16 param0, u16 param1, u16 param2)
+void CommManUnderground_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPos)
 {
     int i;
 
-    if (sCommManUnderground->unk_C0 == 0) {
+    if (sCommManUnderground->storedPositionKey == UNDERGROUND_STORED_POS_NONE) {
         return;
     }
 
     for (i = 0; i < 20; i++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
-            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
-                sCommManUnderground->unk_20[i].unk_04 = param1;
-                sCommManUnderground->unk_20[i].unk_06 = param2;
+        if (sCommManUnderground->storedPositionKey == sCommManUnderground->storedPositions[i].key) {
+            if (sCommManUnderground->storedPositions[i].menuKey == menuKey) {
+                sCommManUnderground->storedPositions[i].cursorPos = cursorPos;
+                sCommManUnderground->storedPositions[i].listPos = listPos;
                 return;
             }
         }
     }
 
     for (i = 0; i < 20; i++) {
-        if (0 == sCommManUnderground->unk_20[i].unk_00) {
-            sCommManUnderground->unk_20[i].unk_00 = sCommManUnderground->unk_C0;
-            sCommManUnderground->unk_20[i].unk_02 = param0;
-            sCommManUnderground->unk_20[i].unk_04 = param1;
-            sCommManUnderground->unk_20[i].unk_06 = param2;
+        if (sCommManUnderground->storedPositions[i].key == UNDERGROUND_STORED_POS_NONE) {
+            sCommManUnderground->storedPositions[i].key = sCommManUnderground->storedPositionKey;
+            sCommManUnderground->storedPositions[i].menuKey = menuKey;
+            sCommManUnderground->storedPositions[i].cursorPos = cursorPos;
+            sCommManUnderground->storedPositions[i].listPos = listPos;
             return;
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
-u16 ov23_02243154(u16 param0)
+u16 CommManUnderground_GetStoredListPos(u16 menuKey)
 {
-    int i;
-
-    for (i = 0; i < 20; i++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
-            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
-                return sCommManUnderground->unk_20[i].unk_06;
+    for (int i = 0; i < 20; i++) {
+        if (sCommManUnderground->storedPositionKey == sCommManUnderground->storedPositions[i].key) {
+            if (sCommManUnderground->storedPositions[i].menuKey == menuKey) {
+                return sCommManUnderground->storedPositions[i].listPos;
             }
         }
     }
@@ -1113,14 +1111,12 @@ u16 ov23_02243154(u16 param0)
     return 0;
 }
 
-u16 ov23_0224318C(u16 param0)
+u16 CommManUnderground_GetStoredCursorPos(u16 menuKey)
 {
-    int i;
-
-    for (i = 0; i < 20; i++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
-            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
-                return sCommManUnderground->unk_20[i].unk_04;
+    for (int i = 0; i < 20; i++) {
+        if (sCommManUnderground->storedPositionKey == sCommManUnderground->storedPositions[i].key) {
+            if (sCommManUnderground->storedPositions[i].menuKey == menuKey) {
+                return sCommManUnderground->storedPositions[i].cursorPos;
             }
         }
     }
