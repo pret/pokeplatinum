@@ -3,6 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
+#include "generated/movement_types.h"
+#include "generated/trainer_types.h"
+#include "generated/trainers.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -34,9 +39,9 @@
 #define VS_SEEKER_MAX_BATTERY    100
 #define VS_SEEKER_REMATCH_CHANCE 50
 
-#define VS_SEEKER_MAX_REMATCHES      6
-#define VS_SEEKER_REMATCH_DATA_DUMMY 0xFFFF
-#define VS_SEEKER_REMATCH_DATA_END   0x0
+#define VS_SEEKER_MAX_REMATCHES     6
+#define VS_SEEKER_REMATCH_DATA_NONE 0xFFFF
+#define VS_SEEKER_REMATCH_DATA_END  0
 
 // Number of steps for which the rematches are available
 // until the Vs. Seeker has to be used again
@@ -48,6 +53,8 @@
 #define VS_SEEKER_USE_RESULT_NO_TRAINERS_PICKED 3 // No trainers were picked for a rematch (e.g. all the random chances failed)
 
 #define VS_SEEKER_REMATCH_DATA_INDEX_NONE 0xFF
+
+#define NoUniqueRematches(trainerID) { trainerID, trainerID, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END }
 
 enum VsSeekerUsability {
     VS_SEEKER_USABILITY_NO_BATTERY = 0,
@@ -118,258 +125,260 @@ static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode);
 static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem);
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode);
 
+#define _ VS_SEEKER_REMATCH_DATA_NONE
 const VsSeekerRematchData gVsSeekerRematchData[] = {
-    { 0xE, 0xE, 0x0, 0x0, 0x0, 0x0 },
-    { 0x15, 0x273, 0x274, 0xffff, 0x275, 0x0 },
-    { 0x2C, 0x2C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2D, 0xffff, 0x276, 0x277, 0xffff, 0x278 },
-    { 0x14, 0x14, 0x0, 0x0, 0x0, 0x0 },
-    { 0x26, 0xffff, 0x279, 0x27A, 0xffff, 0x27B },
-    { 0x4A, 0xffff, 0xffff, 0x27C, 0xffff, 0x27D },
-    { 0x4C, 0x4C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x51, 0x51, 0x0, 0x0, 0x0, 0x0 },
-    { 0x22A, 0xffff, 0xffff, 0xffff, 0xffff, 0x27E },
-    { 0x22B, 0x22B, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2E, 0xffff, 0x27F, 0x280, 0x281, 0x0 },
-    { 0x38, 0x38, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2F, 0xffff, 0x282, 0x283, 0x284, 0x0 },
-    { 0x39, 0x39, 0x0, 0x0, 0x0, 0x0 },
-    { 0x10, 0x10, 0x0, 0x0, 0x0, 0x0 },
-    { 0x22, 0x22, 0x0, 0x0, 0x0, 0x0 },
-    { 0x179, 0x285, 0x286, 0xffff, 0x287, 0x0 },
-    { 0x84, 0x84, 0x0, 0x0, 0x0, 0x0 },
-    { 0x85, 0x85, 0x0, 0x0, 0x0, 0x0 },
-    { 0x8C, 0xffff, 0xffff, 0xffff, 0x288, 0x0 },
-    { 0x86, 0x86, 0x0, 0x0, 0x0, 0x0 },
-    { 0x87, 0x87, 0x0, 0x0, 0x0, 0x0 },
-    { 0x8D, 0xffff, 0xffff, 0xffff, 0x289, 0x0 },
-    { 0x57, 0x57, 0x0, 0x0, 0x0, 0x0 },
-    { 0x110, 0x110, 0x0, 0x0, 0x0, 0x0 },
-    { 0x111, 0x111, 0x0, 0x0, 0x0, 0x0 },
-    { 0x112, 0xffff, 0xffff, 0xffff, 0x28A, 0x0 },
-    { 0x17D, 0x17D, 0x0, 0x0, 0x0, 0x0 },
-    { 0x17E, 0x17E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x30, 0x30, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3A, 0xffff, 0xffff, 0x28B, 0xffff, 0x28C },
-    { 0x19, 0x19, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1A, 0x1A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1B, 0xffff, 0x28D, 0x28E, 0xffff, 0x28F },
-    { 0x1C, 0x1C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1D, 0x1D, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1E, 0x1E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1F, 0xffff, 0x290, 0x291, 0xffff, 0x292 },
-    { 0x20, 0x20, 0x0, 0x0, 0x0, 0x0 },
-    { 0x4B, 0x4B, 0x0, 0x0, 0x0, 0x0 },
-    { 0x49, 0xffff, 0xffff, 0x293, 0xffff, 0x294 },
-    { 0x115, 0xffff, 0xffff, 0xffff, 0xffff, 0x295 },
-    { 0x22D, 0xffff, 0xffff, 0xffff, 0xffff, 0x296 },
-    { 0x22E, 0x22E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x22F, 0x22F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x230, 0x230, 0x0, 0x0, 0x0, 0x0 },
-    { 0x42, 0x42, 0x0, 0x0, 0x0, 0x0 },
-    { 0xAA, 0xffff, 0xffff, 0xffff, 0x297, 0x0 },
-    { 0x116, 0xffff, 0xffff, 0x298, 0xffff, 0x299 },
-    { 0x11A, 0x11A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x233, 0xffff, 0xffff, 0xffff, 0xffff, 0x29A },
-    { 0x234, 0xffff, 0xffff, 0xffff, 0xffff, 0x29B },
-    { 0x235, 0x235, 0x0, 0x0, 0x0, 0x0 },
-    { 0x236, 0x236, 0x0, 0x0, 0x0, 0x0 },
-    { 0x237, 0x237, 0x0, 0x0, 0x0, 0x0 },
-    { 0x238, 0x238, 0x0, 0x0, 0x0, 0x0 },
-    { 0x43, 0x43, 0x0, 0x0, 0x0, 0x0 },
-    { 0xAB, 0xffff, 0xffff, 0xffff, 0x29C, 0x0 },
-    { 0x11E, 0x11E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x11F, 0xffff, 0xffff, 0x29D, 0xffff, 0x29E },
-    { 0x23D, 0xffff, 0xffff, 0xffff, 0xffff, 0x29F },
-    { 0x23E, 0xffff, 0xffff, 0xffff, 0xffff, 0x2A0 },
-    { 0x23F, 0x23F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x240, 0x240, 0x0, 0x0, 0x0, 0x0 },
-    { 0x241, 0x241, 0x0, 0x0, 0x0, 0x0 },
-    { 0x242, 0x242, 0x0, 0x0, 0x0, 0x0 },
-    { 0x77, 0xffff, 0xffff, 0x2A1, 0xffff, 0x2A2 },
-    { 0x120, 0xffff, 0xffff, 0xffff, 0xffff, 0x2A3 },
-    { 0x247, 0xffff, 0xffff, 0xffff, 0xffff, 0x2A4 },
-    { 0x78, 0xffff, 0xffff, 0x2A5, 0xffff, 0x2A6 },
-    { 0x121, 0xffff, 0xffff, 0xffff, 0xffff, 0x2A7 },
-    { 0x249, 0xffff, 0xffff, 0xffff, 0xffff, 0x2A8 },
-    { 0x122, 0x122, 0x0, 0x0, 0x0, 0x0 },
-    { 0x123, 0x123, 0x0, 0x0, 0x0, 0x0 },
-    { 0x124, 0xffff, 0xffff, 0x2A9, 0xffff, 0x2AA },
-    { 0x16, 0x16, 0x0, 0x0, 0x0, 0x0 },
-    { 0x17, 0xffff, 0x2AB, 0xffff, 0x2AC, 0x0 },
-    { 0x18, 0x18, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2B, 0x2B, 0x0, 0x0, 0x0, 0x0 },
-    { 0x5B, 0x5B, 0x0, 0x0, 0x0, 0x0 },
-    { 0x5C, 0x5C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x5D, 0x5D, 0x0, 0x0, 0x0, 0x0 },
-    { 0x6F, 0x6F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x99, 0xffff, 0xffff, 0xffff, 0x2AD, 0x0 },
-    { 0x9A, 0x9A, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA8, 0xA8, 0x0, 0x0, 0x0, 0x0 },
-    { 0xAC, 0xAC, 0x0, 0x0, 0x0, 0x0 },
-    { 0xAD, 0xffff, 0xffff, 0xffff, 0x2AE, 0x0 },
-    { 0xAE, 0xAE, 0x0, 0x0, 0x0, 0x0 },
-    { 0xAF, 0xAF, 0x0, 0x0, 0x0, 0x0 },
-    { 0xF, 0xF, 0x0, 0x0, 0x0, 0x0 },
-    { 0x41, 0xffff, 0xffff, 0x2AF, 0xffff, 0x2B0 },
-    { 0x126, 0x126, 0x0, 0x0, 0x0, 0x0 },
-    { 0x79, 0xffff, 0xffff, 0x2B1, 0xffff, 0x2B2 },
-    { 0x54, 0xffff, 0x2B3, 0x2B4, 0xffff, 0x2B5 },
-    { 0x12C, 0xffff, 0xffff, 0xffff, 0x2B6, 0x0 },
-    { 0x71, 0x71, 0x0, 0x0, 0x0, 0x0 },
-    { 0x72, 0x72, 0x0, 0x0, 0x0, 0x0 },
-    { 0x130, 0x130, 0x0, 0x0, 0x0, 0x0 },
-    { 0x131, 0x131, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1B9, 0x1B9, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1BA, 0xffff, 0xffff, 0x2B7, 0x2B8, 0x0 },
-    { 0x31, 0x31, 0x0, 0x0, 0x0, 0x0 },
-    { 0x82, 0x82, 0x0, 0x0, 0x0, 0x0 },
-    { 0x132, 0x132, 0x0, 0x0, 0x0, 0x0 },
-    { 0x133, 0xffff, 0xffff, 0x2B9, 0xffff, 0x2BA },
-    { 0x134, 0x134, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2A, 0x2A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x45, 0x45, 0x0, 0x0, 0x0, 0x0 },
-    { 0x4F, 0x4F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x7E, 0x7E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x7F, 0x7F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x80, 0x80, 0x0, 0x0, 0x0, 0x0 },
-    { 0x81, 0x81, 0x0, 0x0, 0x0, 0x0 },
-    { 0x94, 0x94, 0x0, 0x0, 0x0, 0x0 },
-    { 0x102, 0xffff, 0xffff, 0xffff, 0x2BB, 0x0 },
-    { 0x139, 0x139, 0x0, 0x0, 0x0, 0x0 },
-    { 0x24B, 0xffff, 0xffff, 0xffff, 0xffff, 0x2BC },
-    { 0x24C, 0x24C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x37, 0x37, 0x0, 0x0, 0x0, 0x0 },
-    { 0x55, 0xffff, 0xffff, 0x2BD, 0xffff, 0x2BE },
-    { 0x3, 0x3, 0x0, 0x0, 0x0, 0x0 },
-    { 0xB, 0x2BF, 0x2C0, 0xffff, 0x2C1, 0x0 },
-    { 0xC, 0xC, 0x0, 0x0, 0x0, 0x0 },
-    { 0x142, 0x2C2, 0x2C3, 0x2C4, 0x0, 0x0 },
-    { 0x143, 0x143, 0x0, 0x0, 0x0, 0x0 },
-    { 0x12, 0x12, 0x0, 0x0, 0x0, 0x0 },
-    { 0x13, 0x13, 0x0, 0x0, 0x0, 0x0 },
-    { 0x24, 0x24, 0x0, 0x0, 0x0, 0x0 },
-    { 0x25, 0x25, 0x0, 0x0, 0x0, 0x0 },
-    { 0x27, 0x27, 0x0, 0x0, 0x0, 0x0 },
-    { 0x28, 0x28, 0x0, 0x0, 0x0, 0x0 },
-    { 0x29, 0x29, 0x0, 0x0, 0x0, 0x0 },
-    { 0x146, 0x146, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1C3, 0xffff, 0x2C5, 0x2C6, 0xffff, 0x2C7 },
-    { 0xD, 0x2C8, 0x2C9, 0xffff, 0x2CA, 0x0 },
-    { 0x147, 0xffff, 0x2CB, 0x2CC, 0x2CD, 0x0 },
-    { 0x148, 0x148, 0x0, 0x0, 0x0, 0x0 },
-    { 0x11, 0x11, 0x0, 0x0, 0x0, 0x0 },
-    { 0x23, 0x23, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1C8, 0x2CE, 0x2CF, 0xffff, 0x2D0, 0x0 },
-    { 0x35, 0xffff, 0x2D1, 0x2D2, 0x2D3, 0x0 },
-    { 0x58, 0x58, 0x0, 0x0, 0x0, 0x0 },
-    { 0x59, 0x59, 0x0, 0x0, 0x0, 0x0 },
-    { 0x5A, 0x5A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x66, 0x66, 0x0, 0x0, 0x0, 0x0 },
-    { 0x14C, 0xffff, 0x2D4, 0x2D5, 0x2D6, 0x0 },
-    { 0x14D, 0x14D, 0x0, 0x0, 0x0, 0x0 },
-    { 0x52, 0x52, 0x0, 0x0, 0x0, 0x0 },
-    { 0x14F, 0xffff, 0xffff, 0xffff, 0x2D7, 0x2D8 },
-    { 0x53, 0xffff, 0x2D9, 0x2DA, 0xffff, 0x2DB },
-    { 0x5E, 0xffff, 0x2DC, 0x2DD, 0xffff, 0x2DE },
-    { 0x5F, 0x5F, 0x0, 0x0, 0x0, 0x0 },
-    { 0x24F, 0xffff, 0xffff, 0xffff, 0xffff, 0x2DF },
-    { 0x250, 0x250, 0x0, 0x0, 0x0, 0x0 },
-    { 0x251, 0x251, 0x0, 0x0, 0x0, 0x0 },
-    { 0x60, 0xffff, 0x2E0, 0x2E1, 0xffff, 0x2E2 },
-    { 0x61, 0x61, 0x0, 0x0, 0x0, 0x0 },
-    { 0x252, 0xffff, 0xffff, 0xffff, 0xffff, 0x2E3 },
-    { 0x253, 0x253, 0x0, 0x0, 0x0, 0x0 },
-    { 0x254, 0x254, 0x0, 0x0, 0x0, 0x0 },
-    { 0x6E, 0x6E, 0x0, 0x0, 0x0, 0x0 },
-    { 0xB4, 0xB4, 0x0, 0x0, 0x0, 0x0 },
-    { 0x151, 0xffff, 0xffff, 0xffff, 0x2E4, 0x2E5 },
-    { 0x152, 0x152, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1E2, 0xffff, 0xffff, 0xffff, 0xffff, 0x2E6 },
-    { 0x62, 0x62, 0x0, 0x0, 0x0, 0x0 },
-    { 0x63, 0x63, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1E6, 0xffff, 0x2E7, 0x2E8, 0x2E9, 0x0 },
-    { 0x46, 0x46, 0x0, 0x0, 0x0, 0x0 },
-    { 0x47, 0x47, 0x0, 0x0, 0x0, 0x0 },
-    { 0x48, 0x48, 0x0, 0x0, 0x0, 0x0 },
-    { 0x4E, 0xffff, 0x2EA, 0x2EB, 0x2EC, 0x0 },
-    { 0x50, 0x50, 0x0, 0x0, 0x0, 0x0 },
-    { 0x92, 0x92, 0x0, 0x0, 0x0, 0x0 },
-    { 0x93, 0x93, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1E8, 0x1E8, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1E9, 0x1E9, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1EA, 0x1EA, 0x0, 0x0, 0x0, 0x0 },
-    { 0x15A, 0xffff, 0xffff, 0x2ED, 0xffff, 0x2EE },
-    { 0x1EB, 0x1EB, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1EC, 0x1EC, 0x0, 0x0, 0x0, 0x0 },
-    { 0x88, 0x88, 0x0, 0x0, 0x0, 0x0 },
-    { 0x89, 0xffff, 0xffff, 0x2EF, 0x2F0, 0x0 },
-    { 0x8E, 0x8E, 0x0, 0x0, 0x0, 0x0 },
-    { 0x8F, 0xffff, 0xffff, 0x2F1, 0xffff, 0x2F2 },
-    { 0x8A, 0x8A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x8B, 0xffff, 0xffff, 0x2F3, 0x2F4, 0x0 },
-    { 0x90, 0x90, 0x0, 0x0, 0x0, 0x0 },
-    { 0x91, 0xffff, 0xffff, 0x2F5, 0x2F6, 0x0 },
-    { 0x67, 0x67, 0x0, 0x0, 0x0, 0x0 },
-    { 0x68, 0x68, 0x0, 0x0, 0x0, 0x0 },
-    { 0x9F, 0x9F, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA0, 0xA0, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA1, 0xA1, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA6, 0xA6, 0x0, 0x0, 0x0, 0x0 },
-    { 0xB7, 0xffff, 0xffff, 0xffff, 0xffff, 0x2F7 },
-    { 0xB8, 0xB8, 0x0, 0x0, 0x0, 0x0 },
-    { 0xB9, 0xffff, 0xffff, 0xffff, 0xffff, 0x2F8 },
-    { 0xBA, 0xBA, 0x0, 0x0, 0x0, 0x0 },
-    { 0xBB, 0xBB, 0x0, 0x0, 0x0, 0x0 },
-    { 0xBC, 0xBC, 0x0, 0x0, 0x0, 0x0 },
-    { 0x255, 0xffff, 0xffff, 0xffff, 0xffff, 0x2F9 },
-    { 0x256, 0x256, 0x0, 0x0, 0x0, 0x0 },
-    { 0x257, 0x257, 0x0, 0x0, 0x0, 0x0 },
-    { 0x258, 0x258, 0x0, 0x0, 0x0, 0x0 },
-    { 0x69, 0x69, 0x0, 0x0, 0x0, 0x0 },
-    { 0x6A, 0x6A, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA2, 0xA2, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA3, 0xA3, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA4, 0xA4, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA7, 0xA7, 0x0, 0x0, 0x0, 0x0 },
-    { 0xBD, 0xffff, 0xffff, 0xffff, 0xffff, 0x2FA },
-    { 0xBE, 0xBE, 0x0, 0x0, 0x0, 0x0 },
-    { 0xBF, 0xBF, 0x0, 0x0, 0x0, 0x0 },
-    { 0xC0, 0xffff, 0xffff, 0xffff, 0xffff, 0x2FB },
-    { 0xC1, 0xC1, 0x0, 0x0, 0x0, 0x0 },
-    { 0xC2, 0xC2, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1EE, 0x1EE, 0x0, 0x0, 0x0, 0x0 },
-    { 0x259, 0xffff, 0xffff, 0xffff, 0xffff, 0x2FC },
-    { 0x25A, 0x25A, 0x0, 0x0, 0x0, 0x0 },
-    { 0x25B, 0x25B, 0x0, 0x0, 0x0, 0x0 },
-    { 0x25C, 0x25C, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1, 0x2FD, 0x2FE, 0x2FF, 0x0, 0x0 },
-    { 0x2, 0x2, 0x0, 0x0, 0x0, 0x0 },
-    { 0x4, 0x4, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA, 0x0, 0x0, 0x0, 0x0 },
-    { 0x21, 0x21, 0x0, 0x0, 0x0, 0x0 },
-    { 0x163, 0x300, 0x301, 0xffff, 0x302, 0x0 },
-    { 0x164, 0x164, 0x0, 0x0, 0x0, 0x0 },
-    { 0x6B, 0xffff, 0x303, 0xffff, 0x304, 0x0 },
-    { 0x166, 0x166, 0x0, 0x0, 0x0, 0x0 },
-    { 0x167, 0x167, 0x0, 0x0, 0x0, 0x0 },
-    { 0x6C, 0xffff, 0xffff, 0x305, 0x307, 0x0 },
-    { 0x168, 0x168, 0x0, 0x0, 0x0, 0x0 },
-    { 0x169, 0x169, 0x0, 0x0, 0x0, 0x0 },
-    { 0x44, 0xffff, 0xffff, 0x306, 0xffff, 0x308 },
-    { 0x16A, 0xffff, 0xffff, 0xffff, 0xffff, 0x309 },
-    { 0x25D, 0xffff, 0xffff, 0xffff, 0xffff, 0x30A }
+    NoUniqueRematches(TRAINER_AROMA_LADY_TAYLOR),
+    { TRAINER_AROMA_LADY_ELIZABETH, TRAINER_AROMA_LADY_ELIZABETH_REMATCH_1, TRAINER_AROMA_LADY_ELIZABETH_REMATCH_2, _, TRAINER_AROMA_LADY_ELIZABETH_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_AROMA_LADY_HANNAH),
+    { TRAINER_ARTIST_WILLIAM, _, TRAINER_ARTIST_WILLIAM_REMATCH_1, TRAINER_ARTIST_WILLIAM_REMATCH_2, _, TRAINER_ARTIST_WILLIAM_REMATCH_3 },
+    NoUniqueRematches(TRAINER_BATTLE_GIRL_KELSEY),
+    { TRAINER_BATTLE_GIRL_HELEN, _, TRAINER_BATTLE_GIRL_HELEN_REMATCH_1, TRAINER_BATTLE_GIRL_HELEN_REMATCH_2, _, TRAINER_BATTLE_GIRL_HELEN_REMATCH_3 },
+    { TRAINER_BIRD_KEEPER_BRIANNA, _, _, TRAINER_BIRD_KEEPER_BRIANNA_REMATCH_1, _, TRAINER_BIRD_KEEPER_BRIANNA_REMATCH_2 },
+    NoUniqueRematches(TRAINER_BIRD_KEEPER_ALEXANDRA),
+    NoUniqueRematches(TRAINER_BIRD_KEEPER_KATHERINE),
+    { TRAINER_BIRD_KEEPER_AUDREY, _, _, _, _, TRAINER_BIRD_KEEPER_AUDREY_REMATCH },
+    NoUniqueRematches(TRAINER_BIRD_KEEPER_GENEVA),
+    { TRAINER_BREEDER_ALBERT, _, TRAINER_BREEDER_ALBERT_REMATCH_1, TRAINER_BREEDER_ALBERT_REMATCH_2, TRAINER_BREEDER_ALBERT_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_BREEDER_KAHLIL),
+    { TRAINER_BREEDER_JENNIFER, _, TRAINER_BREEDER_JENNIFER_REMATCH_1, TRAINER_BREEDER_JENNIFER_REMATCH_2, TRAINER_BREEDER_JENNIFER_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_BREEDER_AMBER),
+    NoUniqueRematches(TRAINER_CAMPER_JACOB),
+    NoUniqueRematches(TRAINER_CAMPER_ANTHONY),
+    { TRAINER_CAMPER_ZACKARY, TRAINER_CAMPER_ZACKARY_REMATCH_1, TRAINER_CAMPER_ZACKARY_REMATCH_2, _, TRAINER_CAMPER_ZACKARY_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_BLAKE),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_GARRETT),
+    { TRAINER_ACE_TRAINER_DALTON, _, _, _, TRAINER_ACE_TRAINER_DALTON_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_LAURA),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_MARIA),
+    { TRAINER_ACE_TRAINER_OLIVIA, _, _, _, TRAINER_ACE_TRAINER_OLIVIA_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_UNKNOWN_087),
+    NoUniqueRematches(TRAINER_COLLECTOR_DOUGLAS),
+    NoUniqueRematches(TRAINER_COLLECTOR_BRADY),
+    { TRAINER_COLLECTOR_IVAN, _, _, _, TRAINER_COLLECTOR_IVAN_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_COLLECTOR_DEAN),
+    NoUniqueRematches(TRAINER_COLLECTOR_JAMAL),
+    NoUniqueRematches(TRAINER_COWGIRL_SHELLEY),
+    { TRAINER_UNKNOWN_058, _, _, TRAINER_UNKNOWN_651, _, TRAINER_UNKNOWN_652 },
+    NoUniqueRematches(TRAINER_CYCLIST_AXEL),
+    NoUniqueRematches(TRAINER_CYCLIST_JAMES),
+    { TRAINER_CYCLIST_JOHN, _, TRAINER_CYCLIST_JOHN_REMATCH_1, TRAINER_CYCLIST_JOHN_REMATCH_2, _, TRAINER_CYCLIST_JOHN_REMATCH_3 },
+    NoUniqueRematches(TRAINER_CYCLIST_RYAN),
+    NoUniqueRematches(TRAINER_CYCLIST_MEGAN),
+    NoUniqueRematches(TRAINER_CYCLIST_NICOLE),
+    { TRAINER_CYCLIST_KAYLA, _, TRAINER_CYCLIST_KAYLA_REMATCH_1, TRAINER_CYCLIST_KAYLA_REMATCH_2, _, TRAINER_CYCLIST_KAYLA_REMATCH_3 },
+    NoUniqueRematches(TRAINER_CYCLIST_RACHEL),
+    NoUniqueRematches(TRAINER_DOUBLE_TEAM_ZAC_AND_JEN),
+    { TRAINER_DRAGON_TAMER_PATRICK, _, _, TRAINER_DRAGON_TAMER_PATRICK_REMATCH_1, _, TRAINER_DRAGON_TAMER_PATRICK_REMATCH_2 },
+    { TRAINER_DRAGON_TAMER_HAYDEN, _, _, _, _, TRAINER_DRAGON_TAMER_HAYDEN_REMATCH },
+    { TRAINER_DRAGON_TAMER_GEOFFREY, _, _, _, _, TRAINER_DRAGON_TAMER_GEOFFREY_REMATCH },
+    NoUniqueRematches(TRAINER_DRAGON_TAMER_DARIEN),
+    NoUniqueRematches(TRAINER_DRAGON_TAMER_KEEGAN),
+    NoUniqueRematches(TRAINER_DRAGON_TAMER_STANLEY),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_ERNEST),
+    { TRAINER_ACE_TRAINER_JAKE, _, _, _, TRAINER_ACE_TRAINER_JAKE_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    { TRAINER_ACE_TRAINER_DENNIS, _, _, TRAINER_ACE_TRAINER_DENNIS_REMATCH_1, _, TRAINER_ACE_TRAINER_DENNIS_REMATCH_2 },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_RUBEN),
+    { TRAINER_ACE_TRAINER_RODOLFO, _, _, _, _, TRAINER_ACE_TRAINER_RODOLFO_REMATCH },
+    { TRAINER_ACE_TRAINER_SAUL, _, _, _, _, TRAINER_ACE_TRAINER_SAUL_REMATCH },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_JOSE),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_FELIX),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_QUINN),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_GRAHAM),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_ALYSSA),
+    { TRAINER_ACE_TRAINER_SHANNON, _, _, _, TRAINER_ACE_TRAINER_SHANNON_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_JAMIE),
+    { TRAINER_ACE_TRAINER_MAYA, _, _, TRAINER_ACE_TRAINER_MAYA_REMATCH_1, _, TRAINER_ACE_TRAINER_MAYA_REMATCH_2 },
+    { TRAINER_ACE_TRAINER_DEANNA, _, _, _, _, TRAINER_ACE_TRAINER_DEANNA_REMATCH },
+    { TRAINER_ACE_TRAINER_MOIRA, _, _, _, _, TRAINER_ACE_TRAINER_MOIRA_REMATCH },
+    NoUniqueRematches(TRAINER_ACE_TRAINER_DANA),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_MIKAYLA),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_MEAGAN),
+    NoUniqueRematches(TRAINER_ACE_TRAINER_SANDRA),
+    { TRAINER_PSYCHIC_MITCHELL, _, _, TRAINER_PSYCHIC_MITCHELL_REMATCH_1, _, TRAINER_PSYCHIC_MITCHELL_REMATCH_2 },
+    { TRAINER_PSYCHIC_MAXWELL, _, _, _, _, TRAINER_PSYCHIC_MAXWELL_REMATCH },
+    { TRAINER_PSYCHIC_CORBIN, _, _, _, _, TRAINER_PSYCHIC_CORBIN_REMATCH },
+    { TRAINER_PSYCHIC_ABIGAIL, _, _, TRAINER_PSYCHIC_ABIGAIL_REMATCH_1, _, TRAINER_PSYCHIC_ABIGAIL_REMATCH_2 },
+    { TRAINER_PSYCHIC_BRITTNEY, _, _, _, _, TRAINER_PSYCHIC_BRITTNEY_REMATCH },
+    { TRAINER_PSYCHIC_DAISY, _, _, _, _, TRAINER_PSYCHIC_DAISY_REMATCH },
+    NoUniqueRematches(TRAINER_BELLE_AND_PA_AVA_AND_MATT),
+    NoUniqueRematches(TRAINER_UNKNOWN_291),
+    { TRAINER_RANCHER_MARCO, _, _, TRAINER_RANCHER_MARCO_REMATCH_1, _, TRAINER_RANCHER_MARCO_REMATCH_2 },
+    NoUniqueRematches(TRAINER_FISHERMAN_ANDREW),
+    { TRAINER_FISHERMAN_JOSEPH, _, TRAINER_FISHERMAN_JOSEPH_REMATCH_1, _, TRAINER_FISHERMAN_JOSEPH_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_FISHERMAN_ZACHARY),
+    NoUniqueRematches(TRAINER_FISHERMAN_CODY),
+    NoUniqueRematches(TRAINER_FISHERMAN_JUAN),
+    NoUniqueRematches(TRAINER_FISHERMAN_JOSH),
+    NoUniqueRematches(TRAINER_FISHERMAN_TRAVIS),
+    NoUniqueRematches(TRAINER_FISHERMAN_KENNETH),
+    { TRAINER_FISHERMAN_MIGUEL, _, _, _, TRAINER_FISHERMAN_MIGUEL_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_FISHERMAN_LUC),
+    NoUniqueRematches(TRAINER_FISHERMAN_CORY),
+    NoUniqueRematches(TRAINER_FISHERMAN_BRETT),
+    { TRAINER_FISHERMAN_ALEC, _, _, _, TRAINER_FISHERMAN_ALEC_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_FISHERMAN_GEORGE),
+    NoUniqueRematches(TRAINER_FISHERMAN_COLE),
+    NoUniqueRematches(TRAINER_TWINS_LIV_AND_LIZ),
+    { TRAINER_TWINS_TERI_AND_TIA, _, _, TRAINER_TWINS_TERI_AND_TIA_REMATCH_1, _, TRAINER_TWINS_TERI_AND_TIA_REMATCH_2 },
+    NoUniqueRematches(TRAINER_TWINS_EMMA_AND_LIL),
+    { TRAINER_PI_CARLOS, _, _, TRAINER_PI_CARLOS_REMATCH_1, _, TRAINER_PI_CARLOS_REMATCH_2 },
+    { TRAINER_GENTLEMAN_JEREMY, _, TRAINER_GENTLEMAN_JEREMY_REMATCH_1, TRAINER_GENTLEMAN_JEREMY_REMATCH_2, _, TRAINER_GENTLEMAN_JEREMY_REMATCH_3 },
+    { TRAINER_GUITARIST_TONY, _, _, _, TRAINER_GUITARIST_TONY_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_RUIN_MANIAC_BRYAN),
+    NoUniqueRematches(TRAINER_RUIN_MANIAC_RONALD),
+    NoUniqueRematches(TRAINER_RUIN_MANIAC_CALVIN),
+    NoUniqueRematches(TRAINER_RUIN_MANIAC_LARRY),
+    NoUniqueRematches(TRAINER_UNKNOWN_441),
+    { TRAINER_RUIN_MANIAC_HARRY, _, _, TRAINER_RUIN_MANIAC_HARRY_REMATCH_1, TRAINER_RUIN_MANIAC_HARRY_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_JOGGER_RICHARD),
+    NoUniqueRematches(TRAINER_JOGGER_SCOTT),
+    NoUniqueRematches(TRAINER_JOGGER_WYATT),
+    { TRAINER_JOGGER_CRAIG, _, _, TRAINER_JOGGER_CRAIG_REMATCH_1, _, TRAINER_JOGGER_CRAIG_REMATCH_2 },
+    NoUniqueRematches(TRAINER_JOGGER_RAUL),
+    NoUniqueRematches(TRAINER_BLACK_BELT_KYLE),
+    NoUniqueRematches(TRAINER_BLACK_BELT_ADAM),
+    NoUniqueRematches(TRAINER_BLACK_BELT_SEAN),
+    NoUniqueRematches(TRAINER_UNKNOWN_126),
+    NoUniqueRematches(TRAINER_BLACK_BELT_GREGORY),
+    NoUniqueRematches(TRAINER_BLACK_BELT_DEREK),
+    NoUniqueRematches(TRAINER_BLACK_BELT_NATHANIEL),
+    NoUniqueRematches(TRAINER_BLACK_BELT_LUKE),
+    { TRAINER_BLACK_BELT_PHILIP, _, _, _, TRAINER_BLACK_BELT_PHILIP_REMATCH, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_BLACK_BELT_CARL),
+    { TRAINER_BLACK_BELT_DAVON, _, _, _, _, TRAINER_BLACK_BELT_DAVON_REMATCH },
+    NoUniqueRematches(TRAINER_BLACK_BELT_GRIFFIN),
+    NoUniqueRematches(TRAINER_YOUNG_COUPLE_TY_AND_SUE),
+    { TRAINER_SOCIALITE_REINA, _, _, TRAINER_SOCIALITE_REINA_REMATCH_1, _, TRAINER_SOCIALITE_REINA_REMATCH_2 },
+    NoUniqueRematches(TRAINER_LASS_NATALIE),
+    { TRAINER_LASS_SAMANTHA, TRAINER_LASS_SAMANTHA_REMATCH_1, TRAINER_LASS_SAMANTHA_REMATCH_2, _, TRAINER_LASS_SAMANTHA_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_LASS_SARAH),
+    { TRAINER_LASS_MADELINE, TRAINER_LASS_MADELINE_REMATCH_1, TRAINER_LASS_MADELINE_REMATCH_2, TRAINER_LASS_MADELINE_REMATCH_3, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_LASS_KAITLIN),
+    NoUniqueRematches(TRAINER_HIKER_DANIEL),
+    NoUniqueRematches(TRAINER_HIKER_NICHOLAS),
+    NoUniqueRematches(TRAINER_HIKER_KEVIN),
+    NoUniqueRematches(TRAINER_HIKER_JUSTIN),
+    NoUniqueRematches(TRAINER_HIKER_ROBERT),
+    NoUniqueRematches(TRAINER_HIKER_ALEXANDER),
+    NoUniqueRematches(TRAINER_HIKER_JONATHAN),
+    NoUniqueRematches(TRAINER_HIKER_LOUIS),
+    { TRAINER_HIKER_THEODORE, _, TRAINER_HIKER_THEODORE_REMATCH_1, TRAINER_HIKER_THEODORE_REMATCH_2, _, TRAINER_HIKER_THEODORE_REMATCH_3 },
+    { TRAINER_BUG_CATCHER_BRANDON, TRAINER_BUG_CATCHER_BRANDON_REMATCH_1, TRAINER_BUG_CATCHER_BRANDON_REMATCH_2, _, TRAINER_BUG_CATCHER_BRANDON_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    { TRAINER_PARASOL_LADY_ALEXA, _, TRAINER_PARASOL_LADY_ALEXA_REMATCH_1, TRAINER_PARASOL_LADY_ALEXA_REMATCH_2, TRAINER_PARASOL_LADY_ALEXA_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_PARASOL_LADY_SABRINA),
+    NoUniqueRematches(TRAINER_PICNICKER_SIENA),
+    NoUniqueRematches(TRAINER_PICNICKER_LAUREN),
+    { TRAINER_PICNICKER_KARINA, TRAINER_PICNICKER_KARINA_REMATCH_1, TRAINER_PICNICKER_KARINA_REMATCH_2, _, TRAINER_PICNICKER_KARINA_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    { TRAINER_POKE_KID_DANIELLE, _, TRAINER_POKE_KID_DANIELLE_REMATCH_1, TRAINER_POKE_KID_DANIELLE_REMATCH_2, TRAINER_POKE_KID_DANIELLE_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_POLICEMAN_BOBBY),
+    NoUniqueRematches(TRAINER_POLICEMAN_ALEX),
+    NoUniqueRematches(TRAINER_POLICEMAN_DYLAN),
+    NoUniqueRematches(TRAINER_POLICEMAN_CALEB),
+    { TRAINER_POLICEMAN_DANNY, _, TRAINER_POLICEMAN_DANNY_REMATCH_1, TRAINER_POLICEMAN_DANNY_REMATCH_2, TRAINER_POLICEMAN_DANNY_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_POLICEMAN_THOMAS),
+    NoUniqueRematches(TRAINER_RICH_BOY_JASON),
+    { TRAINER_RICH_BOY_TREY, _, _, _, TRAINER_RICH_BOY_TREY_REMATCH_1, TRAINER_RICH_BOY_TREY_REMATCH_2 },
+    { TRAINER_LADY_MELISSA, _, TRAINER_LADY_MELISSA_REMATCH_1, TRAINER_LADY_MELISSA_REMATCH_2, _, TRAINER_LADY_MELISSA_REMATCH_3 },
+    { TRAINER_RANGER_TAYLOR, _, TRAINER_RANGER_TAYLOR_REMATCH_1, TRAINER_RANGER_TAYLOR_REMATCH_2, _, TRAINER_RANGER_TAYLOR_REMATCH_3 },
+    NoUniqueRematches(TRAINER_RANGER_JEFFREY),
+    { TRAINER_RANGER_KYLER, _, _, _, _, TRAINER_RANGER_KYLER_REMATCH },
+    NoUniqueRematches(TRAINER_RANGER_DESHAWN),
+    NoUniqueRematches(TRAINER_RANGER_DWAYNE),
+    { TRAINER_RANGER_ALLISON, _, TRAINER_RANGER_ALLISON_REMATCH_1, TRAINER_RANGER_ALLISON_REMATCH_2, _, TRAINER_RANGER_ALLISON_REMATCH_3 },
+    NoUniqueRematches(TRAINER_UNKNOWN_097),
+    { TRAINER_RANGER_ASHLEE, _, _, _, _, TRAINER_RANGER_ASHLEE_REMATCH },
+    NoUniqueRematches(TRAINER_RANGER_FELICIA),
+    NoUniqueRematches(TRAINER_RANGER_KRISTA),
+    NoUniqueRematches(TRAINER_SAILOR_PAUL),
+    NoUniqueRematches(TRAINER_SAILOR_LUTHER),
+    { TRAINER_SAILOR_MARC, _, _, _, TRAINER_SAILOR_MARC_REMATCH_1, TRAINER_SAILOR_MARC_REMATCH_2 },
+    NoUniqueRematches(TRAINER_SAILOR_SKYLER),
+    { TRAINER_SAILOR_ZACHARIAH, _, _, _, _, TRAINER_SAILOR_ZACHARIAH_REMATCH },
+    NoUniqueRematches(TRAINER_UNKNOWN_098),
+    NoUniqueRematches(TRAINER_SCIENTIST_STEFANO),
+    { TRAINER_SCIENTIST_SHAUN, _, TRAINER_SCIENTIST_SHAUN_REMATCH_1, TRAINER_SCIENTIST_SHAUN_REMATCH_2, TRAINER_SCIENTIST_SHAUN_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_NINJA_BOY_JOEL),
+    NoUniqueRematches(TRAINER_NINJA_BOY_NATHAN),
+    NoUniqueRematches(TRAINER_NINJA_BOY_DAVIDO),
+    { TRAINER_NINJA_BOY_ZACH, _, TRAINER_NINJA_BOY_ZACH_REMATCH_1, TRAINER_NINJA_BOY_ZACH_REMATCH_2, TRAINER_NINJA_BOY_ZACH_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_NINJA_BOY_NICK),
+    NoUniqueRematches(TRAINER_NINJA_BOY_MATTHEW),
+    NoUniqueRematches(TRAINER_NINJA_BOY_ETHAN),
+    NoUniqueRematches(TRAINER_NINJA_BOY_FABIAN),
+    NoUniqueRematches(TRAINER_NINJA_BOY_BRENNAN),
+    NoUniqueRematches(TRAINER_NINJA_BOY_BRUCE),
+    { TRAINER_BEAUTY_CYNDY, _, _, TRAINER_BEAUTY_CYNDY_REMATCH_1, _, TRAINER_BEAUTY_CYNDY_REMATCH_2 },
+    NoUniqueRematches(TRAINER_BEAUTY_DEVON),
+    NoUniqueRematches(TRAINER_BEAUTY_NICOLA),
+    NoUniqueRematches(TRAINER_SKIER_BRADLEY),
+    { TRAINER_SKIER_EDWARD, _, _, TRAINER_SKIER_EDWARD_REMATCH_1, TRAINER_SKIER_EDWARD_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_SKIER_SHAWN),
+    { TRAINER_SKIER_BJORN, _, _, TRAINER_SKIER_BJORN_REMATCH_1, _, TRAINER_SKIER_BJORN_REMATCH_2 },
+    NoUniqueRematches(TRAINER_SKIER_KAITLYN),
+    { TRAINER_SKIER_ANDREA, _, _, TRAINER_SKIER_ANDREA_REMATCH_1, TRAINER_SKIER_ANDREA_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_SKIER_LEXIE),
+    { TRAINER_SKIER_MADISON, _, _, TRAINER_SKIER_MADISON_REMATCH_1, TRAINER_SKIER_MADISON_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_SWIMMER_SHELTIN),
+    NoUniqueRematches(TRAINER_SWIMMER_EVAN),
+    NoUniqueRematches(TRAINER_SWIMMER_ADRIAN),
+    NoUniqueRematches(TRAINER_SWIMMER_ERIK),
+    NoUniqueRematches(TRAINER_SWIMMER_VINCENT),
+    NoUniqueRematches(TRAINER_SWIMMER_DILLON),
+    { TRAINER_SWIMMER_WESLEY, _, _, _, _, TRAINER_SWIMMER_WESLEY_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_RICARDO),
+    { TRAINER_SWIMMER_FRANCISCO, _, _, _, _, TRAINER_SWIMMER_FRANCISCO_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_COLTON),
+    NoUniqueRematches(TRAINER_SWIMMER_TROY),
+    NoUniqueRematches(TRAINER_SWIMMER_OSCAR),
+    { TRAINER_SWIMMER_GLENN, _, _, _, _, TRAINER_SWIMMER_GLENN_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_KURT),
+    NoUniqueRematches(TRAINER_SWIMMER_SAM),
+    NoUniqueRematches(TRAINER_SWIMMER_WADE),
+    NoUniqueRematches(TRAINER_SWIMMER_HALEY),
+    NoUniqueRematches(TRAINER_SWIMMER_MARY),
+    NoUniqueRematches(TRAINER_SWIMMER_JESSICA),
+    NoUniqueRematches(TRAINER_SWIMMER_ERICA),
+    NoUniqueRematches(TRAINER_SWIMMER_KATELYN),
+    NoUniqueRematches(TRAINER_SWIMMER_VANESSA),
+    { TRAINER_SWIMMER_MIRANDA, _, _, _, _, TRAINER_SWIMMER_MIRANDA_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_AUBREE),
+    NoUniqueRematches(TRAINER_SWIMMER_PAIGE),
+    { TRAINER_SWIMMER_CRYSTAL, _, _, _, _, TRAINER_SWIMMER_CRYSTAL_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_CASSANDRA),
+    NoUniqueRematches(TRAINER_SWIMMER_GABRIELLE),
+    NoUniqueRematches(TRAINER_SWIMMER_CLAIRE),
+    { TRAINER_SWIMMER_JOANNA, _, _, _, _, TRAINER_SWIMMER_JOANNA_REMATCH },
+    NoUniqueRematches(TRAINER_SWIMMER_SOPHIA),
+    NoUniqueRematches(TRAINER_SWIMMER_MALLORY),
+    NoUniqueRematches(TRAINER_SWIMMER_LYDIA),
+    { TRAINER_YOUNGSTER_TRISTAN, TRAINER_YOUNGSTER_TRISTAN_REMATCH_1, TRAINER_YOUNGSTER_TRISTAN_REMATCH_2, TRAINER_YOUNGSTER_TRISTAN_REMATCH_3, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_YOUNGSTER_LOGAN),
+    NoUniqueRematches(TRAINER_YOUNGSTER_MICHAEL),
+    NoUniqueRematches(TRAINER_YOUNGSTER_TYLER),
+    NoUniqueRematches(TRAINER_YOUNGSTER_AUSTIN),
+    { TRAINER_YOUNGSTER_DALLAS, TRAINER_YOUNGSTER_DALLAS_REMATCH_1, TRAINER_YOUNGSTER_DALLAS_REMATCH_2, _, TRAINER_YOUNGSTER_DALLAS_REMATCH_3, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_YOUNGSTER_SEBASTIAN),
+    { TRAINER_TUBER_JARED, _, TRAINER_TUBER_JARED_REMATCH_1, _, TRAINER_TUBER_JARED_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_TUBER_TRENTON),
+    NoUniqueRematches(TRAINER_TUBER_CONNER),
+    { TRAINER_TUBER_CHELSEA, _, _, TRAINER_TUBER_CHELSEA_REMATCH_1, TRAINER_TUBER_CHELSEA_REMATCH_2, VS_SEEKER_REMATCH_DATA_END },
+    NoUniqueRematches(TRAINER_TUBER_MARIEL),
+    NoUniqueRematches(TRAINER_TUBER_HOLLY),
+    { TRAINER_VETERAN_BRIAN, _, _, TRAINER_VETERAN_BRIAN_REMATCH_1, _, TRAINER_VETERAN_BRIAN_REMATCH_2 },
+    { TRAINER_VETERAN_ARMANDO, _, _, _, _, TRAINER_VETERAN_ARMANDO_REMATCH },
+    { TRAINER_UNKNOWN_605, _, _, _, _, TRAINER_UNKNOWN_778 }
 };
+#undef _
 
 static const MapObjectAnimCmd sVsSeekerAnimDoubleExclamationMark[] = {
-    { 0x1, 0x1 },
-    { 0x67, 0x1 },
-    { 0xfe, 0x0 }
+    { .movementAction = MOVEMENT_ACTION_FACE_SOUTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
 static const MapObjectAnimCmd sVsSeekerAnimSingleExclamationMark[] = {
-    { 0x4B, 0x1 },
-    { 0xfe, 0x0 }
+    { .movementAction = MOVEMENT_ACTION_EMOTE_EXCLAMATION_MARK, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
 void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult)
@@ -446,7 +455,7 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
     case VS_SEEKER_STATE_WAIT_FOR_VS_SEEKER_SFX:
         if (Sound_IsEffectPlaying(SEQ_SE_DP_VS_SEEKER_BEEP) == FALSE) {
             FieldSystem_EndVsSeekerTask(vsSeeker->playerStateTask);
-            VsSeekerSystem_SetState(vsSeeker, 9);
+            VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_DONE);
         }
         break;
     case VS_SEEKER_STATE_NO_BATTERY:
@@ -460,11 +469,11 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
             numDigits = 3;
         }
 
-        StringTemplate_SetNumber(vsSeeker->template, 0, missingBattery, numDigits, 1, 1);
-        VsSeekerSystem_SetState(vsSeeker, 9);
+        StringTemplate_SetNumber(vsSeeker->template, 0, missingBattery, numDigits, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_DONE);
         break;
     case VS_SEEKER_STATE_NO_TRAINERS:
-        VsSeekerSystem_SetState(vsSeeker, 9);
+        VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_DONE);
         break;
     case VS_SEEKER_STATE_DONE:
         Heap_Free(vsSeeker);
@@ -495,7 +504,6 @@ static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSe
 static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
 {
     // Can't get this to match with C99 style declarations
-    int trainerX, trainerZ;
     int numVisibleTrainers;
     int xMin, xMax, zMin, zMax;
     u32 objEventCount = MapHeaderData_GetNumObjectEvents(vsSeeker->fieldSystem);
@@ -529,15 +537,15 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
         }
 
         switch (MapObject_GetTrainerType(mapObj)) {
-        case 0x1:
-        case 0x2:
-        case 0x4:
-        case 0x5:
-        case 0x6:
-        case 0x7:
-        case 0x8:
-            trainerX = MapObject_GetX(mapObj);
-            trainerZ = MapObject_GetZ(mapObj);
+        case TRAINER_TYPE_NORMAL:
+        case TRAINER_TYPE_VIEW_ALL_DIRECTIONS:
+        case TRAINER_TYPE_FACE_SIDES:
+        case TRAINER_TYPE_FACE_COUNTERCLOCKWISE:
+        case TRAINER_TYPE_FACE_CLOCKWISE:
+        case TRAINER_TYPE_SPIN_COUNTERCLOCKWISE:
+        case TRAINER_TYPE_SPIN_CLOCKWISE:
+            int trainerX = MapObject_GetX(mapObj);
+            int trainerZ = MapObject_GetZ(mapObj);
 
             if (trainerX >= xMin && trainerX <= xMax
                 && trainerZ >= zMin && trainerZ <= zMax
@@ -555,10 +563,10 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
 static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode)
 {
     switch (moveCode) {
-    case 0x33:
-    case 0x34:
-    case 0x35:
-    case 0x36:
+    case MOVEMENT_TYPE_DISGUISE_SNOW:
+    case MOVEMENT_TYPE_DISGUISE_SAND:
+    case MOVEMENT_TYPE_DISGUISE_ROCK:
+    case MOVEMENT_TYPE_DISGUISE_GRASS:
         return TRUE;
     }
 
@@ -603,8 +611,8 @@ static void VsSeeker_ClearRematchMoveCode(FieldSystem *fieldSystem)
             continue;
         }
 
-        if (MapObject_GetMovementType(mapObj) == 0x31) {
-            VsSeeker_SetTrainerMoveCode(mapObj, 0x2);
+        if (MapObject_GetMovementType(mapObj) == MOVEMENT_TYPE_VS_SEEKER_SPIN) {
+            VsSeeker_SetTrainerMoveCode(mapObj, MOVEMENT_TYPE_LOOK_AROUND);
         }
     }
 }
@@ -666,13 +674,13 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
         } else {
             if (LCRNG_Next() % 100 < VS_SEEKER_REMATCH_CHANCE
                 && VsSeeker_IsTrainerDoingRematchAnimation(vsSeeker->trainers[i]) == FALSE) {
-                VsSeeker_SetTrainerMoveCode(vsSeeker->trainers[i], 0x31);
+                VsSeeker_SetTrainerMoveCode(vsSeeker->trainers[i], MOVEMENT_TYPE_VS_SEEKER_SPIN);
                 VsSeekerSystem_StartAnimation(vsSeeker, vsSeeker->trainers[i], sVsSeekerAnimDoubleExclamationMark);
 
                 MapObject *secondTrainer = VsSeeker_GetSecondDoubleBattleTrainer(vsSeeker->fieldSystem, vsSeeker->trainers[i], VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_CHECK);
 
                 if (secondTrainer != NULL) {
-                    VsSeeker_SetTrainerMoveCode(secondTrainer, 0x31);
+                    VsSeeker_SetTrainerMoveCode(secondTrainer, MOVEMENT_TYPE_VS_SEEKER_SPIN);
                     VsSeekerSystem_StartAnimation(vsSeeker, secondTrainer, sVsSeekerAnimDoubleExclamationMark);
                 }
 
@@ -693,12 +701,12 @@ static u16 VsSeeker_GetTrainerIDFromMapObject(MapObject *trainerObj)
 u16 VsSeeker_GetRematchTrainerID(FieldSystem *fieldSystem, MapObject *trainerObj, u16 trainerID)
 {
     if (VsSeeker_IsTrainerDoingRematchAnimation(trainerObj) == FALSE) {
-        return 0;
+        return TRAINER_NONE;
     }
 
     u16 index = VsSeeker_GetRematchDataIndexForTrainer(fieldSystem, trainerID);
     if (index == VS_SEEKER_REMATCH_DATA_INDEX_NONE) {
-        return 0;
+        return TRAINER_NONE;
     }
 
     u16 level = VsSeeker_GetCurrentLevelForRematchData(fieldSystem, index);
@@ -729,7 +737,7 @@ static u16 VsSeeker_GetCurrentLevelForRematchData(FieldSystem *fieldSystem, u16 
         }
 
         u16 trainerID = gVsSeekerRematchData[rematchDataIndex].trainerIDs[level];
-        if (trainerID != VS_SEEKER_REMATCH_DATA_DUMMY
+        if (trainerID != VS_SEEKER_REMATCH_DATA_NONE
             && Script_IsTrainerDefeated(fieldSystem, trainerID) == FALSE) {
             return level;
         }
@@ -755,7 +763,7 @@ static u16 VsSeeker_GetNextLowerRematchLevel(u16 rematchDataIndex, u16 level)
     const VsSeekerRematchData *rematchData = gVsSeekerRematchData;
 
     for (u16 i = level - 1; i > 0; i--) {
-        if (rematchData[rematchDataIndex].trainerIDs[i] != VS_SEEKER_REMATCH_DATA_DUMMY) {
+        if (rematchData[rematchDataIndex].trainerIDs[i] != VS_SEEKER_REMATCH_DATA_NONE) {
             return i;
         }
     }
@@ -770,7 +778,7 @@ static u16 VsSeeker_GetTrainerIDForRematchLevel(u16 rematchDataIndex, u16 level)
 
 static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj)
 {
-    return MapObject_GetMovementType(trainerObj) == 0x31;
+    return MapObject_GetMovementType(trainerObj) == MOVEMENT_TYPE_VS_SEEKER_SPIN;
 }
 
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode)
@@ -787,17 +795,17 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
     int dir = MapObject_GetFacingDir(trainerObj);
 
     u32 moveCode;
-    if (dir == 0) {
-        moveCode = 0xe;
-    } else if (dir == 1) {
-        moveCode = 0xf;
-    } else if (dir == 2) {
-        moveCode = 0x10;
+    if (dir == DIR_NORTH) {
+        moveCode = MOVEMENT_TYPE_LOOK_NORTH;
+    } else if (dir == DIR_SOUTH) {
+        moveCode = MOVEMENT_TYPE_LOOK_SOUTH;
+    } else if (dir == DIR_WEST) {
+        moveCode = MOVEMENT_TYPE_LOOK_LEFT;
     } else {
-        moveCode = 0x11;
+        moveCode = MOVEMENT_TYPE_LOOK_RIGHT;
     }
 
-    MapObject *secondTrainer = VsSeeker_GetSecondDoubleBattleTrainer(fieldSystem, trainerObj, 1);
+    MapObject *secondTrainer = VsSeeker_GetSecondDoubleBattleTrainer(fieldSystem, trainerObj, VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_SET);
     if (secondTrainer != NULL) {
         VsSeeker_SetTrainerMoveCode(secondTrainer, moveCode);
     }
@@ -847,18 +855,18 @@ static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem
         }
 
         if (mode == VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_CHECK
-            && MapObject_GetMovementType(mapObj) == 0x31) {
+            && MapObject_GetMovementType(mapObj) == MOVEMENT_TYPE_VS_SEEKER_SPIN) {
             continue;
         }
 
         switch (MapObject_GetTrainerType(mapObj)) {
-        case 0x1:
-        case 0x2:
-        case 0x4:
-        case 0x5:
-        case 0x6:
-        case 0x7:
-        case 0x8:
+        case TRAINER_TYPE_NORMAL:
+        case TRAINER_TYPE_VIEW_ALL_DIRECTIONS:
+        case TRAINER_TYPE_FACE_SIDES:
+        case TRAINER_TYPE_FACE_COUNTERCLOCKWISE:
+        case TRAINER_TYPE_FACE_CLOCKWISE:
+        case TRAINER_TYPE_SPIN_COUNTERCLOCKWISE:
+        case TRAINER_TYPE_SPIN_CLOCKWISE:
             secondScriptID = MapObject_GetScript(mapObj);
             secondTrainerID = Script_GetTrainerID(secondScriptID);
 
