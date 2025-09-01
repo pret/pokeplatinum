@@ -288,7 +288,7 @@ pokeplatinum_c = files(
     'unk_0207DA28.c',
     'unk_0207DFAC.c',
     'unk_0207E060.c',
-    'unk_0207E0B8.c',
+    'applications/party_menu/main.c',
     'unk_020819DC.c',
     'unk_02082C2C.c',
     'unk_02083370.c',

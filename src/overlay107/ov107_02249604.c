@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/party_menu/main.h"
 #include "overlay107/struct_ov107_02249954.h"
 
 #include "char_transfer.h"
@@ -18,7 +19,6 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0207E0B8.h"
 #include "vram_transfer.h"
 
 void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2);

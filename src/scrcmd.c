@@ -45,11 +45,11 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "applications/naming_screen.h"
+#include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "boat_cutscene/boat_cutscene.h"

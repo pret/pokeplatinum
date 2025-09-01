@@ -5,10 +5,11 @@
 
 #include "generated/items.h"
 
-#include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay118/ov118_021D0D80.h"
 
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
 #include "unk_02097624.h"

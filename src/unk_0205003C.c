@@ -8,8 +8,9 @@
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02050224.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
@@ -33,7 +34,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
 typedef struct {

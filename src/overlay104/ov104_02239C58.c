@@ -4,9 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
@@ -21,7 +22,6 @@
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
 void ov104_02239C7C(UnkStruct_0209BBA4 *param0);

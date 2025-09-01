@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02082C2C_H
 #define POKEPLATINUM_UNK_02082C2C_H
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
 
 #include "narc.h"
 

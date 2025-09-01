@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02083370_H
 #define POKEPLATINUM_UNK_02083370_H
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
 
 u32 sub_02083370(u8 param0);
 void sub_0208337C(GameWindowLayout *param0);

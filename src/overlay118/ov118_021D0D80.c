@@ -5,7 +5,8 @@
 
 #include "generated/species.h"
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 
 #include "camera.h"
 #include "enums.h"
@@ -23,7 +24,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
 

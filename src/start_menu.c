@@ -17,8 +17,9 @@
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -90,7 +91,6 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020EA02C.h"
-#include "constdata/const_020F1E88.h"
 #include "res/text/bank/start_menu.h"
 
 typedef enum StartMenuPos {

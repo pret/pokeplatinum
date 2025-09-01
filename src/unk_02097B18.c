@@ -6,8 +6,9 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay076/ov76_0223B140.h"
 #include "overlay076/ov76_0223B870.h"
@@ -43,7 +44,6 @@
 #include "unk_0206CCB0.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F64C0.h"
 
 FS_EXTERN_OVERLAY(overlay11);

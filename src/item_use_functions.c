@@ -10,8 +10,9 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/fishing.h"
@@ -62,7 +63,6 @@
 #include "unk_020989DC.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020F1E88.h"
 #include "res/text/bank/location_names.h"
 
 typedef struct ItemUseFuncDat {

@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
+
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 
 #include "graphics.h"
 #include "grid_menu_cursor_position.h"
@@ -18,7 +20,6 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

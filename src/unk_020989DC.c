@@ -5,9 +5,10 @@
 
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098DE8.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay079/ov79_021D0D80.h"
 #include "overlay079/ov79_021D2268.h"
@@ -24,7 +25,6 @@
 #include "savedata.h"
 #include "string_template.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
 

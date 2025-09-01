@@ -8,6 +8,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay010/struct_ov10_0221F800.h"
 
@@ -54,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

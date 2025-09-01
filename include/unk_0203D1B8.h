@@ -9,10 +9,10 @@
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
+#include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"

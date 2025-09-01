@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -20,7 +21,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"

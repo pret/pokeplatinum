@@ -11,9 +11,9 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
 
+#include "applications/party_menu/defs.h"
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 

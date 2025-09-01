@@ -1,7 +1,11 @@
-#ifndef POKEPLATINUM_UNK_0207E0B8_H
-#define POKEPLATINUM_UNK_0207E0B8_H
+#ifndef POKEPLATINUM_PARTY_MENU_MAIN_H
+#define POKEPLATINUM_PARTY_MENU_MAIN_H
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
+
+#include "overlay_manager.h"
+
+extern const ApplicationManagerTemplate gPokemonPartyAppTemplate;
 
 void sub_0207EA74(GameWindowLayout *windowLayout, int param1);
 u8 sub_0207EF04(GameWindowLayout *windowLayout, u8 param1);
@@ -22,4 +26,4 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3);
 void LoadOverlay118(GameWindowLayout *windowLayout);
 void UnloadOverlay118(GameWindowLayout *windowLayout);
 
-#endif // POKEPLATINUM_UNK_0207E0B8_H
+#endif // POKEPLATINUM_PARTY_MENU_MAIN_H

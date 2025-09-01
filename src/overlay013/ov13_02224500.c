@@ -6,6 +6,7 @@
 #include "generated/move_classes.h"
 #include "generated/pokemon_types.h"
 
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
@@ -22,7 +23,6 @@
 #include "pokemon_icon.h"
 #include "sprite_system.h"
 #include "type_icon.h"
-#include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 
 static void ov13_0222453C(BattleParty *param0);

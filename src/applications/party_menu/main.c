@@ -1,13 +1,14 @@
-#include "unk_0207E0B8.h"
+#include "applications/party_menu/main.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0207E634.h"
@@ -57,8 +58,6 @@
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
-
-#include "constdata/const_020F1E88.h"
 
 FS_EXTERN_OVERLAY(overlay118);
 

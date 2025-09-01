@@ -3,8 +3,9 @@
 
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D431C.h"
@@ -40,8 +41,6 @@
 #include "text.h"
 #include "unk_0203D1B8.h"
 #include "unk_02097624.h"
-
-#include "constdata/const_020F1E88.h"
 
 typedef struct {
     u8 unk_00;
