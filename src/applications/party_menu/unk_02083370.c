@@ -172,12 +172,12 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
     fieldSystem = param0->partyMenu->fieldSystem;
 
-    if (param0->partyMembers[param0->currPartySlot].unk_0C == 0) {
+    if (param0->partyMembers[param0->currPartySlot].heldItem == ITEM_NONE) {
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         MessageLoader_GetStrbuf(param0->messageLoader, 81, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
-    } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].unk_0C, 1, HEAP_ID_PARTY_MENU) == TRUE) {
+    } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         u32 v4;
 
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
@@ -189,19 +189,19 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
             v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
 
-            if ((param0->partyMembers[param0->currPartySlot].unk_0C == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
+            if ((param0->partyMembers[param0->currPartySlot].heldItem == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
                 v2 = 18;
             }
         }
 
         MessageLoader_GetStrbuf(param0->messageLoader, 82, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
-        StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].unk_0C);
+        StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].heldItem);
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
 
-        param0->partyMembers[param0->currPartySlot].unk_0C = 0;
+        param0->partyMembers[param0->currPartySlot].heldItem = ITEM_NONE;
 
-        sub_02083040(param0, param0->currPartySlot, param0->partyMembers[param0->currPartySlot].unk_0C);
+        PartyMenu_DrawMemberHeldItem(param0, param0->currPartySlot, param0->partyMembers[param0->currPartySlot].heldItem);
     } else {
         MessageLoader_GetStrbuf(param0->messageLoader, 83, param0->tmpString);
     }
@@ -309,8 +309,8 @@ static int sub_0208384C(void *param0)
     v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
 
     if (sub_02097788(v0->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
-        v0->partyMembers[v0->currPartySlot].unk_0C = 0;
-        sub_02083040(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].unk_0C);
+        v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
+        PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
         sub_02082708(v0, 46, 0);
     } else {
         sub_02082708(v0, 50, 0);
@@ -338,7 +338,7 @@ static int sub_020838F4(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
-    if (Bag_TryAddItem(v0->partyMenu->bag, v0->partyMembers[v0->currPartySlot].unk_0C, 1, HEAP_ID_PARTY_MENU) == TRUE) {
+    if (Bag_TryAddItem(v0->partyMenu->bag, v0->partyMembers[v0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         Pokemon *mon;
         u32 item;
 
@@ -349,9 +349,9 @@ static int sub_020838F4(void *param0)
         Pokemon_SetArceusForm(mon);
         Pokemon_SetGiratinaFormByHeldItem(mon);
 
-        v0->partyMembers[v0->currPartySlot].unk_0C = 0;
+        v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
 
-        sub_02083040(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].unk_0C);
+        PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
         sub_02082708(v0, 51, 0);
     } else {
         sub_02082708(v0, 83, 0);
@@ -387,7 +387,7 @@ int sub_020839BC(PartyMenuApplication *param0)
 
 static void sub_020839FC(PartyMenuApplication *param0, int *param1)
 {
-    if (param0->partyMembers[param0->currPartySlot].unk_12 == 0) {
+    if (param0->partyMembers[param0->currPartySlot].ballSeal == 0) {
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         param0->partyMenu->menuSelectionResult = 0;
@@ -487,10 +487,10 @@ void sub_02083BD4(PartyMenuApplication *param0)
     v0 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 2);
     v1 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 1);
 
-    v2 = param0->partyMembers[param0->unk_7F8.unk_300[0]].unk_14;
-    v3 = param0->partyMembers[param0->unk_7F8.unk_300[0]].unk_15;
-    v4 = param0->partyMembers[param0->unk_7F8.unk_300[1]].unk_14;
-    v5 = param0->partyMembers[param0->unk_7F8.unk_300[1]].unk_15;
+    v2 = param0->partyMembers[param0->unk_7F8.unk_300[0]].panelXPos;
+    v3 = param0->partyMembers[param0->unk_7F8.unk_300[0]].panelYPos;
+    v4 = param0->partyMembers[param0->unk_7F8.unk_300[1]].panelXPos;
+    v5 = param0->partyMembers[param0->unk_7F8.unk_300[1]].panelYPos;
 
     for (v6 = 0; v6 < 6; v6++) {
         memcpy(&param0->unk_7F8.unk_00[0][v6 * 16], &v0[v2 + (v3 + v6) * 32], 16 * 2);
@@ -571,8 +571,8 @@ static void sub_02083E8C(PartyMenuApplication *param0, u8 param1)
     u8 v3;
 
     v0 = &param0->unk_7F8;
-    v1 = param0->partyMembers[v0->unk_300[param1]].unk_14;
-    v2 = param0->partyMembers[v0->unk_300[param1]].unk_15;
+    v1 = param0->partyMembers[v0->unk_300[param1]].panelXPos;
+    v2 = param0->partyMembers[v0->unk_300[param1]].panelYPos;
 
     Bg_FillTilemapRect(param0->bgConfig, 2, 0, v1, v2, 16, 6, 16);
     Bg_FillTilemapRect(param0->bgConfig, 1, 0, v1, v2, 16, 6, 16);
@@ -598,19 +598,19 @@ static void sub_02083FDC(PartyMenuApplication *param0, u8 param1, u8 param2)
     if (param2 == 0) {
         param0->partyMembers[v0->unk_300[param1]].spriteXDelta -= 8;
         param0->partyMembers[v0->unk_300[param1]].spriteXPos -= 8;
-        param0->partyMembers[v0->unk_300[param1]].unk_1E -= 8;
+        param0->partyMembers[v0->unk_300[param1]].itemXPos -= 8;
         v1 -= 8;
     } else {
         param0->partyMembers[v0->unk_300[param1]].spriteXDelta += 8;
         param0->partyMembers[v0->unk_300[param1]].spriteXPos += 8;
-        param0->partyMembers[v0->unk_300[param1]].unk_1E += 8;
+        param0->partyMembers[v0->unk_300[param1]].itemXPos += 8;
         v1 += 8;
     }
 
-    Sprite_SetPositionXY(param0->partyMembers[v0->unk_300[param1]].unk_24, param0->partyMembers[v0->unk_300[param1]].spriteXDelta, param0->partyMembers[v0->unk_300[param1]].spriteYDelta);
+    Sprite_SetPositionXY(param0->partyMembers[v0->unk_300[param1]].sprite, param0->partyMembers[v0->unk_300[param1]].spriteXDelta, param0->partyMembers[v0->unk_300[param1]].spriteYDelta);
     Sprite_SetPositionXY(param0->sprites[10 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].spriteXPos, param0->partyMembers[v0->unk_300[param1]].spriteYPos);
-    Sprite_SetPositionXY(param0->sprites[16 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].unk_1E, param0->partyMembers[v0->unk_300[param1]].unk_20);
-    Sprite_SetPositionXY(param0->sprites[22 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].unk_1E + 8, param0->partyMembers[v0->unk_300[param1]].unk_20);
+    Sprite_SetPositionXY(param0->sprites[16 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].itemXPos, param0->partyMembers[v0->unk_300[param1]].itemYPos);
+    Sprite_SetPositionXY(param0->sprites[22 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].itemXPos + 8, param0->partyMembers[v0->unk_300[param1]].itemYPos);
     Sprite_SetPositionXY(param0->sprites[0 + v0->unk_300[param1]], v1, v2);
 }
 
@@ -647,38 +647,38 @@ static void sub_02084134(PartyMenuApplication *param0)
     param0->partyMembers[v1->unk_300[0]].spriteYPos = param0->partyMembers[v1->unk_300[1]].spriteYPos;
     param0->partyMembers[v1->unk_300[1]].spriteYPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].unk_1E;
-    param0->partyMembers[v1->unk_300[0]].unk_1E = param0->partyMembers[v1->unk_300[1]].unk_1E;
-    param0->partyMembers[v1->unk_300[1]].unk_1E = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].itemXPos;
+    param0->partyMembers[v1->unk_300[0]].itemXPos = param0->partyMembers[v1->unk_300[1]].itemXPos;
+    param0->partyMembers[v1->unk_300[1]].itemXPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].unk_20;
-    param0->partyMembers[v1->unk_300[0]].unk_20 = param0->partyMembers[v1->unk_300[1]].unk_20;
-    param0->partyMembers[v1->unk_300[1]].unk_20 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].itemYPos;
+    param0->partyMembers[v1->unk_300[0]].itemYPos = param0->partyMembers[v1->unk_300[1]].itemYPos;
+    param0->partyMembers[v1->unk_300[1]].itemYPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].unk_14;
-    param0->partyMembers[v1->unk_300[0]].unk_14 = param0->partyMembers[v1->unk_300[1]].unk_14;
-    param0->partyMembers[v1->unk_300[1]].unk_14 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].panelXPos;
+    param0->partyMembers[v1->unk_300[0]].panelXPos = param0->partyMembers[v1->unk_300[1]].panelXPos;
+    param0->partyMembers[v1->unk_300[1]].panelXPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].unk_15;
-    param0->partyMembers[v1->unk_300[0]].unk_15 = param0->partyMembers[v1->unk_300[1]].unk_15;
-    param0->partyMembers[v1->unk_300[1]].unk_15 = v3;
+    v3 = param0->partyMembers[v1->unk_300[0]].panelYPos;
+    param0->partyMembers[v1->unk_300[0]].panelYPos = param0->partyMembers[v1->unk_300[1]].panelYPos;
+    param0->partyMembers[v1->unk_300[1]].panelYPos = v3;
 
-    sub_020821F8(param0, v1->unk_300[0]);
-    sub_020821F8(param0, v1->unk_300[1]);
+    PartyMenu_DrawMemberPanelData(param0, v1->unk_300[0]);
+    PartyMenu_DrawMemberPanelData(param0, v1->unk_300[1]);
     sub_020822F4(param0, v1->unk_300[0]);
     sub_020822F4(param0, v1->unk_300[1]);
 
     sub_02084420(param0, 0);
     sub_02084420(param0, 1);
 
-    sub_02083014(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].unk_0E_0);
-    sub_02083014(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].unk_0E_0);
+    PartyMenu_DrawMemberStatusCondition(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].statusIcon);
+    PartyMenu_DrawMemberStatusCondition(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].statusIcon);
 
-    sub_02083040(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].unk_0C);
-    sub_02083040(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].unk_0C);
+    PartyMenu_DrawMemberHeldItem(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].heldItem);
+    PartyMenu_DrawMemberHeldItem(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].heldItem);
 
-    sub_02083104(param0, v1->unk_300[0]);
-    sub_02083104(param0, v1->unk_300[1]);
+    PartyMenu_DrawMemberBallSeal(param0, v1->unk_300[0]);
+    PartyMenu_DrawMemberBallSeal(param0, v1->unk_300[1]);
 }
 
 static void sub_02084420(PartyMenuApplication *param0, u8 param1)
@@ -693,7 +693,7 @@ static void sub_02084420(PartyMenuApplication *param0, u8 param1)
     v2 = v0->unk_00[param1];
     v1 = sub_0207F248(param0);
 
-    if (param0->partyMembers[v0->unk_300[param1]].unk_10 == 1) {
+    if (param0->partyMembers[v0->unk_300[param1]].isEgg == TRUE) {
         for (v4 = 0; v4 < 9; v4++) {
             v3 = v2[3 * 16 + 6 + v4] & 0xf000;
             v2[3 * 16 + 6 + v4] = v3 | 0x17;
@@ -713,18 +713,18 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
 
-    for (v0 = 0; v0 < param0->partyMenu->unk_32_4; v0++) {
-        if (param0->partyMenu->unk_2C[v0] != 0) {
+    for (v0 = 0; v0 < param0->partyMenu->maxSelectionSlots; v0++) {
+        if (param0->partyMenu->selectionOrder[v0] != 0) {
             continue;
         }
 
-        param0->partyMenu->unk_2C[v0] = param0->currPartySlot + 1;
+        param0->partyMenu->selectionOrder[v0] = param0->currPartySlot + 1;
 
-        sub_02082508(param0, param0->currPartySlot);
+        PartyMenu_PrintSelectionEligibility(param0, param0->currPartySlot);
         PartyMenu_PrintShortMessage(param0, 34, 1);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
-        if (v0 == param0->partyMenu->unk_32_4 - 1) {
+        if (v0 == param0->partyMenu->maxSelectionSlots - 1) {
             sub_0207FD68(param0, 6);
         }
 
@@ -732,7 +732,7 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
         return;
     }
 
-    switch (param0->partyMenu->unk_32_4) {
+    switch (param0->partyMenu->maxSelectionSlots) {
     case 1:
         sub_02082708(param0, 123, 1);
         break;
@@ -770,24 +770,24 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < param0->partyMenu->unk_32_4; v0++) {
-        if (param0->partyMenu->unk_2C[v0] == param0->currPartySlot + 1) {
-            param0->partyMenu->unk_2C[v0] = 0;
+    for (v0 = 0; v0 < param0->partyMenu->maxSelectionSlots; v0++) {
+        if (param0->partyMenu->selectionOrder[v0] == param0->currPartySlot + 1) {
+            param0->partyMenu->selectionOrder[v0] = 0;
 
-            for (v0 = v0; v0 < param0->partyMenu->unk_32_4 - 1; v0++) {
-                param0->partyMenu->unk_2C[v0] = param0->partyMenu->unk_2C[v0 + 1];
-                param0->partyMenu->unk_2C[v0 + 1] = 0;
+            for (v0 = v0; v0 < param0->partyMenu->maxSelectionSlots - 1; v0++) {
+                param0->partyMenu->selectionOrder[v0] = param0->partyMenu->selectionOrder[v0 + 1];
+                param0->partyMenu->selectionOrder[v0 + 1] = 0;
             }
             break;
         }
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (param0->partyMembers[v0].unk_29 == 0) {
+        if (param0->partyMembers[v0].isPresent == FALSE) {
             continue;
         }
 
-        sub_02082508(param0, v0);
+        PartyMenu_PrintSelectionEligibility(param0, v0);
     }
 
     Window_EraseMessageBox(&param0->windows[33], 1);

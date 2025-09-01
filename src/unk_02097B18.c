@@ -366,7 +366,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyMenu *partyMan = v0->unk_0C;
+        PartyMenu *partyMenu = v0->unk_0C;
         Pokemon *v8;
         BallCapsule *v9;
         BallSeal *v10;
@@ -376,8 +376,8 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (partyMan->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
+        if (partyMenu->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, partyMenu->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));

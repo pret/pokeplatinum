@@ -4,9 +4,11 @@
 #include <string.h>
 
 #include "constants/pokemon.h"
+#include "generated/items.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "graphics.h"
 #include "grid_menu_cursor_position.h"
@@ -64,35 +66,37 @@ void PartyMenu_InitSpriteResources(PartyMenuApplication *application)
     SpriteSystem_LoadResourceDataFromFilepaths(application->spriteSystem, application->spriteMan, &resdat);
 }
 
-void sub_02082CEC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3, NARC *param4)
+void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot, u16 x, u16 y, NARC *narc)
 {
-    Pokemon *v0;
-    SpriteTemplateFromResourceHeader v1;
-    u32 v2;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    application->partyMembers[slot].spriteXDelta = x;
+    application->partyMembers[slot].spriteYDelta = y;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
+    SpriteSystem_ReplaceCharResObjFromOpenNarc(
+        application->spriteSystem,
+        application->spriteMan,
+        narc,
+        Pokemon_IconSpriteIndex(mon),
+        0,
+        4 + slot);
 
-    param0->partyMembers[param1].spriteXDelta = param2;
-    param0->partyMembers[param1].spriteYDelta = param3;
+    u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-    SpriteSystem_ReplaceCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
+    SpriteTemplateFromResourceHeader template;
+    template.resourceHeaderID = 4 + slot;
+    template.x = x;
+    template.y = y;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 0;
+    template.plttIdx = PokeIconPaletteIndex(application->partyMembers[slot].species, application->partyMembers[slot].form, isEgg) + 3;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    template.dummy18 = 0;
+    template.dummy1C = 0;
+    template.dummy20 = 0;
+    template.dummy24 = 0;
 
-    v2 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
-
-    v1.resourceHeaderID = 4 + param1;
-    v1.x = param2;
-    v1.y = param3;
-    v1.z = 0;
-    v1.animIdx = 0;
-    v1.priority = 0;
-    v1.plttIdx = PokeIconPaletteIndex(param0->partyMembers[param1].unk_04, param0->partyMembers[param1].unk_11, v2) + 3;
-    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.dummy18 = 0;
-    v1.dummy1C = 0;
-    v1.dummy20 = 0;
-    v1.dummy24 = 0;
-
-    param0->partyMembers[param1].unk_24 = SpriteSystem_NewSpriteFromResourceHeader(param0->spriteSystem, param0->spriteMan, &v1);
+    application->partyMembers[slot].sprite = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &template);
 }
 
 void sub_02082DA8(PartyMenuApplication *param0, u8 param1)
@@ -109,7 +113,7 @@ void sub_02082DA8(PartyMenuApplication *param0, u8 param1)
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
-    v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->partyMembers[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
+    v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->partyMembers[param1].sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, HEAP_ID_PARTY_MENU, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
 
@@ -119,7 +123,7 @@ void sub_02082DA8(PartyMenuApplication *param0, u8 param1)
     }
 
     Heap_Free(v5);
-    Sprite_SetExplicitPalette2(param0->partyMembers[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
+    Sprite_SetExplicitPalette2(param0->partyMembers[param1].sprite, PokeIconPaletteIndex(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }
 
@@ -170,24 +174,23 @@ void PartyMenu_InitSprites(PartyMenuApplication *application)
     Sprite_SetDrawFlag(application->sprites[28], FALSE);
 }
 
-void sub_02082FAC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3)
+void PartyMenu_DrawMemberPokeBall(PartyMenuApplication *application, u8 slot, u16 x, u16 y)
 {
-    SpriteTemplateFromResourceHeader v0;
+    SpriteTemplateFromResourceHeader template;
+    template.resourceHeaderID = 0;
+    template.x = x;
+    template.y = y;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 1;
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    template.dummy18 = 0;
+    template.dummy1C = 0;
+    template.dummy20 = 0;
+    template.dummy24 = 0;
 
-    v0.resourceHeaderID = 0;
-    v0.x = param2;
-    v0.y = param3;
-    v0.z = 0;
-    v0.animIdx = 0;
-    v0.priority = 1;
-    v0.plttIdx = 0;
-    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.dummy18 = 0;
-    v0.dummy1C = 0;
-    v0.dummy20 = 0;
-    v0.dummy24 = 0;
-
-    param0->sprites[0 + param1] = SpriteSystem_NewSpriteFromResourceHeader(param0->spriteSystem, param0->spriteMan, &v0);
+    application->sprites[slot] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &template);
 }
 
 void sub_02082FF4(PartyMenuApplication *param0)
@@ -196,35 +199,33 @@ void sub_02082FF4(PartyMenuApplication *param0)
     SpriteSystem_Free(param0->spriteSystem);
 }
 
-void sub_02083014(PartyMenuApplication *param0, u8 param1, u8 param2)
+void PartyMenu_DrawMemberStatusCondition(PartyMenuApplication *application, u8 slot, u8 icon)
 {
-    Sprite **v0 = &param0->sprites[10 + param1];
-
-    if (param2 == 7) {
-        Sprite_SetDrawFlag(*v0, FALSE);
+    Sprite **pSprite = &application->sprites[10 + slot];
+    if (icon == SUMMARY_CONDITION_NONE) {
+        Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
     }
 
-    Sprite_SetAnim(*v0, param2);
-    Sprite_SetDrawFlag(*v0, TRUE);
+    Sprite_SetAnim(*pSprite, icon);
+    Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
-void sub_02083040(PartyMenuApplication *param0, u8 param1, u16 param2)
+void PartyMenu_DrawMemberHeldItem(PartyMenuApplication *application, u8 slot, u16 item)
 {
-    Sprite **v0 = &param0->sprites[16 + param1];
-
-    if (param2 == 0) {
-        Sprite_SetDrawFlag(*v0, FALSE);
+    Sprite **pSprite = &application->sprites[16 + slot];
+    if (item == ITEM_NONE) {
+        Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
     }
 
-    if (Item_IsMail(param2) == 1) {
-        Sprite_SetAnim(*v0, 1);
+    if (Item_IsMail(item) == TRUE) {
+        Sprite_SetAnim(*pSprite, 1);
     } else {
-        Sprite_SetAnim(*v0, 0);
+        Sprite_SetAnim(*pSprite, 0);
     }
 
-    Sprite_SetDrawFlag(*v0, TRUE);
+    Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
 void sub_02083080(PartyMenuApplication *param0, u8 param1)
@@ -235,31 +236,29 @@ void sub_02083080(PartyMenuApplication *param0, u8 param1)
     Sprite_SetDrawFlag(*v0, TRUE);
 }
 
-void sub_020830A0(PartyMenuApplication *param0, u8 param1, s16 param2, s16 param3)
+void PartyMenu_AlignMemberHeldItem(PartyMenuApplication *application, u8 slot, s16 x, s16 y)
 {
-    Sprite **v0 = &param0->sprites[16 + param1];
+    Sprite **pSprite = &application->sprites[16 + slot];
+    application->partyMembers[slot].itemXPos = x + 8;
+    application->partyMembers[slot].itemYPos = y + 8;
 
-    param0->partyMembers[param1].unk_1E = param2 + 8;
-    param0->partyMembers[param1].unk_20 = param3 + 8;
-
-    Sprite_SetPositionXY(*v0, param0->partyMembers[param1].unk_1E, param0->partyMembers[param1].unk_20);
+    Sprite_SetPositionXY(*pSprite, application->partyMembers[slot].itemXPos, application->partyMembers[slot].itemYPos);
 }
 
-void sub_020830D4(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_AlignMemberBallSeal(PartyMenuApplication *application, u8 slot)
 {
-    Sprite_SetPositionXY(param0->sprites[22 + param1], param0->partyMembers[param1].unk_1E + 8, param0->partyMembers[param1].unk_20);
+    Sprite_SetPositionXY(application->sprites[22 + slot], application->partyMembers[slot].itemXPos + 8, application->partyMembers[slot].itemYPos);
 }
 
-void sub_02083104(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_DrawMemberBallSeal(PartyMenuApplication *application, u8 slot)
 {
-    Sprite **v0 = &param0->sprites[22 + param1];
-
-    if (param0->partyMembers[param1].unk_12 == 0) {
-        Sprite_SetDrawFlag(*v0, FALSE);
+    Sprite **pSprite = &application->sprites[22 + slot];
+    if (application->partyMembers[slot].ballSeal == 0) {
+        Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
     }
 
-    Sprite_SetDrawFlag(*v0, TRUE);
+    Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
 static void sub_02083138(Sprite *param0, u8 param1)
@@ -278,7 +277,7 @@ static u8 sub_02083158(PartyMenuMember *param0)
         return 0;
     }
 
-    if ((param0->unk_0E_0 != 7) && (param0->unk_0E_0 != 0) && (param0->unk_0E_0 != 6)) {
+    if ((param0->statusIcon != SUMMARY_CONDITION_NONE) && (param0->statusIcon != SUMMARY_CONDITION_POKERUS) && (param0->statusIcon != SUMMARY_CONDITION_FAINTED)) {
         return 5;
     }
 
@@ -305,7 +304,7 @@ void sub_020831B4(PartyMenuApplication *param0)
     for (v1 = 0; v1 < 6; v1++) {
         v0 = &param0->partyMembers[v1];
 
-        if (v0->unk_29 == 0) {
+        if (v0->isPresent == FALSE) {
             continue;
         }
 
@@ -315,20 +314,20 @@ void sub_020831B4(PartyMenuApplication *param0)
             v2 = sub_02083158(v0);
         }
 
-        sub_02083138(v0->unk_24, v2);
-        Sprite_UpdateAnim(v0->unk_24, FX32_ONE);
+        sub_02083138(v0->sprite, v2);
+        Sprite_UpdateAnim(v0->sprite, FX32_ONE);
 
         if ((param0->currPartySlot == v1) && (v2 != 0) && (v2 != 5)) {
-            if (Sprite_GetAnimFrame(v0->unk_24) == 0) {
-                Sprite_SetPositionXY(v0->unk_24, v0->spriteXDelta, v0->spriteYDelta - 3);
+            if (Sprite_GetAnimFrame(v0->sprite) == 0) {
+                Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta - 3);
             } else {
-                Sprite_SetPositionXY(v0->unk_24, v0->spriteXDelta, v0->spriteYDelta + 1);
+                Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta + 1);
             }
 
             continue;
         }
 
-        Sprite_SetPositionXY(v0->unk_24, v0->spriteXDelta, v0->spriteYDelta);
+        Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta);
     }
 }
 

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/game_records.h"
+#include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02029C68_decl.h"
@@ -496,8 +497,8 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     v0->heapID = heapID;
     partyMenu = PartyMenu_New(heapID, fieldSystem, 0, PARTY_MENU_MODE_SELECT_CONFIRM);
     partyMenu->unk_32_0 = 2;
-    partyMenu->unk_32_4 = 2;
-    partyMenu->unk_33 = 30;
+    partyMenu->maxSelectionSlots = 2;
+    partyMenu->reqLevel = 30;
     partyMenu->battleRegulation = NULL;
     v0->unk_04 = partyMenu;
 
@@ -506,18 +507,18 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     return partyMenu;
 }
 
-void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
+void *sub_0203D578(int param0, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int param4, int param5)
 {
     PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, 0, PARTY_MENU_MODE_CONTEST);
 
     partyMenu->selectedMonSlot = param5;
     partyMenu->unk_29 = 2;
-    partyMenu->unk_2A = param2;
+    partyMenu->contestType = contestType;
 
     if (param4 == 0) {
-        partyMenu->unk_2B = param3;
+        partyMenu->contestRank = contestRank;
     } else {
-        partyMenu->unk_2B = 0;
+        partyMenu->contestRank = 0;
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);

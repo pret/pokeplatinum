@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0203D1B8_H
 #define POKEPLATINUM_UNK_0203D1B8_H
 
+#include "generated/pokemon_contest_types.h"
+
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -42,7 +44,7 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2);
 int sub_0203D438(void *param0);
 int sub_0203D440(void *param0);
 void *sub_0203D50C(FieldTask *taskMan, int heapID);
-void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5);
+void *sub_0203D578(int param0, FieldSystem *fieldSystem, enum PokemonContestType contestType, int param3, int param4, int param5);
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
 void *sub_0203D644(FieldSystem *fieldSystem, int param1);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);

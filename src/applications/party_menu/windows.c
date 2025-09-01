@@ -3,10 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
+#include "constants/pokemon.h"
+#include "generated/genders.h"
+#include "generated/species.h"
+#include "generated/string_padding_mode.h"
+
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/unk_02083370.h"
 #include "applications/party_menu/unk_02084B70.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -25,11 +32,21 @@
 #include "text.h"
 #include "unk_0208C098.h"
 
+#define EVO_COMMENT_ABLE   0
+#define EVO_COMMENT_UNABLE 1
+
+#define MOVE_COMMENT_ABLE    0
+#define MOVE_COMMENT_UNABLE  1
+#define MOVE_COMMENT_LEARNED 2
+
+#define SELECTION_COMMENT_NOT_ENTERED 7
+#define SELECTION_COMMENT_BANNED      8
+
 static void AddPartyMemberWindows(BgConfig *bgConfig, Window *target, const WindowTemplate *source);
-static void sub_02082810(PartyMenuApplication *param0, u8 param1, u8 param2);
-static void sub_02082880(PartyMenuApplication *param0, u8 param1, u8 param2);
-static void sub_02082900(PartyMenuApplication *param0, u8 param1, u8 param2);
-static void sub_02082964(PartyMenuApplication *param0, u8 param1, u8 param2);
+static void PrintMemberEvoComment(PartyMenuApplication *application, u8 slot, u8 which);
+static void PrintMemberMoveComment(PartyMenuApplication *application, u8 slot, u8 which);
+static void PrintMemberContestComment(PartyMenuApplication *application, u8 slot, u8 isEligible);
+static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 slot, u8 comment);
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1);
 
 static const WindowTemplate sWindowTemplates[] = {
@@ -235,7 +252,7 @@ void sub_02081E08(PartyMenuApplication *param0)
 
     if (param0->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
         MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->tmpString);
-    } else if ((param0->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) && (param0->partyMembers[param0->currPartySlot].unk_10 == 1)) {
+    } else if ((param0->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) && (param0->partyMembers[param0->currPartySlot].isEgg == TRUE)) {
         MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->tmpString);
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
@@ -247,84 +264,117 @@ void sub_02081E08(PartyMenuApplication *param0)
     }
 }
 
-static const u16 Unk_020F1EA0[6][4] = {
-    { 0x8, 0x2, 0x14, 0xE },
-    { 0x9, 0x3, 0x15, 0xF },
-    { 0xA, 0x4, 0x16, 0x10 },
-    { 0xB, 0x5, 0x17, 0x11 },
-    { 0xC, 0x6, 0x18, 0x12 },
-    { 0xD, 0x7, 0x19, 0x13 }
+static const struct {
+    u16 bankEntry;
+    u16 unused1;
+    u16 unused2;
+    u16 unused3;
+} sPartySlotNicknameTemplates[MAX_PARTY_SIZE] = {
+    { 8, 2, 20, 14 },
+    { 9, 3, 21, 15 },
+    { 10, 4, 22, 16 },
+    { 11, 5, 23, 17 },
+    { 12, 6, 24, 18 },
+    { 13, 7, 25, 19 }
 };
 
-static void sub_02081EAC(PartyMenuApplication *param0, u8 param1)
+static void PartyMenu_PrintMemberHPSlash(PartyMenuApplication *application, u8 slot)
 {
-    FontSpecialChars_DrawPartyScreenLevelText(param0->specialChars, 0, &param0->windows[2 + param1 * 5], 28, 2);
+    FontSpecialChars_DrawPartyScreenLevelText(
+        application->specialChars,
+        SPECIAL_CHAR_SLASH,
+        &application->windows[PARTY_MENU_WIN_HP_MEMB0 + slot * 5],
+        28,
+        2);
 }
 
-void sub_02081ED8(PartyMenuApplication *param0, Pokemon *param1, u32 param2)
+void PartyMenu_SetMemberName(PartyMenuApplication *application, Pokemon *mon, u32 partySlot)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_020F1EA0[param2][0]);
-
-    StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(param1));
-    StringTemplate_Format(param0->template, param0->partyMembers[param2].name, v0);
-    Strbuf_Free(v0);
+    Strbuf *fmt = MessageLoader_GetNewStrbuf(application->messageLoader, sPartySlotNicknameTemplates[partySlot].bankEntry);
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_Format(application->template, application->partyMembers[partySlot].name, fmt);
+    Strbuf_Free(fmt);
 }
 
-void sub_02081F2C(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
 {
-    Window *v0;
-    Pokemon *v1;
+    Window *window = &application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5];
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        application->partyMembers[slot].name,
+        0,
+        0,
+        TEXT_SPEED_NO_TRANSFER,
+        TEXT_COLOR(15, 14, 0),
+        NULL);
 
-    v0 = &param0->windows[0 + param1 * 5];
-
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->partyMembers[param1].name, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-
-    if (param0->partyMembers[param1].unk_10 == 1) {
-        Window_ScheduleCopyToVRAM(v0);
+    if (application->partyMembers[slot].isEgg == TRUE) {
+        Window_ScheduleCopyToVRAM(window);
         return;
     }
 
-    if (param0->partyMembers[param1].unk_0E_12 == 0) {
-        if (param0->partyMembers[param1].unk_0E_13 == 0) {
-            MessageLoader_GetStrbuf(param0->messageLoader, 27, param0->tmpFormat);
+    if (application->partyMembers[slot].hideGenderMarker == FALSE) {
+        if (application->partyMembers[slot].gender == GENDER_MALE) {
+            MessageLoader_GetStrbuf(application->messageLoader, 27, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
-                v0, FONT_SYSTEM, param0->tmpFormat, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
-        } else if (param0->partyMembers[param1].unk_0E_13 == 1) {
-            MessageLoader_GetStrbuf(param0->messageLoader, 28, param0->tmpFormat);
+                window,
+                FONT_SYSTEM,
+                application->tmpFormat,
+                (9 * 8 - 8),
+                0,
+                TEXT_SPEED_NO_TRANSFER,
+                TEXT_COLOR(3, 4, 0),
+                NULL);
+        } else if (application->partyMembers[slot].gender == GENDER_FEMALE) {
+            MessageLoader_GetStrbuf(application->messageLoader, 28, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
-                v0, FONT_SYSTEM, param0->tmpFormat, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+                window,
+                FONT_SYSTEM,
+                application->tmpFormat,
+                (9 * 8 - 8),
+                0,
+                TEXT_SPEED_NO_TRANSFER,
+                TEXT_COLOR(5, 6, 0),
+                NULL);
         }
     }
 
-    Window_ScheduleCopyToVRAM(v0);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_02081FFC(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberLevel(PartyMenuApplication *application, u8 slot)
 {
-    Window *v0;
-    Strbuf *v1;
-
-    v0 = &param0->windows[1 + param1 * 5];
-
-    if (param0->partyMembers[param1].unk_0E_0 != 7) {
-        Window_ScheduleCopyToVRAM(v0);
+    Window *window = &application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5];
+    if (application->partyMembers[slot].statusIcon != SUMMARY_CONDITION_NONE) {
+        Window_ScheduleCopyToVRAM(window);
         return;
     }
 
-    FontSpecialChars_DrawPartyScreenText(param0->specialChars, 1, param0->partyMembers[param1].level, 3, 0, v0, 5, 2);
-    Window_ScheduleCopyToVRAM(v0);
+    FontSpecialChars_DrawPartyScreenText(
+        application->specialChars,
+        SPECIAL_CHAR_LEVEL,
+        application->partyMembers[slot].level,
+        3,
+        PADDING_MODE_NONE,
+        window,
+        5,
+        2);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_02082058(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberCurrentHP(PartyMenuApplication *application, u8 slot)
 {
-    Window *v0;
-    Strbuf *v1;
-    u32 v2;
-
-    v0 = &param0->windows[2 + param1 * 5];
-
-    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param0->partyMembers[param1].curHP, 3, 1, v0, (28 - 24), 2);
-    Window_ScheduleCopyToVRAM(v0);
+    Window *window = &application->windows[PARTY_MENU_WIN_HP_MEMB0 + slot * 5];
+    FontSpecialChars_DrawPartyScreenHPText(
+        application->specialChars,
+        application->partyMembers[slot].curHP,
+        3,
+        PADDING_MODE_SPACES,
+        window,
+        (28 - 24),
+        2);
+    Window_ScheduleCopyToVRAM(window);
 }
 
 void sub_02082098(PartyMenuApplication *param0, u8 param1)
@@ -339,69 +389,70 @@ void sub_02082098(PartyMenuApplication *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void sub_020820C4(PartyMenuApplication *param0, u8 param1)
+static void PartyMenu_PrintMemberMaxHP(PartyMenuApplication *application, u8 slot)
 {
-    Window *v0;
-    Strbuf *v1;
-
-    v0 = &param0->windows[2 + param1 * 5];
-
-    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param0->partyMembers[param1].maxHP, 3, 0, v0, (28 + 8), 2);
-    Window_ScheduleCopyToVRAM(v0);
+    Window *window = &application->windows[PARTY_MENU_WIN_HP_MEMB0 + slot * 5];
+    FontSpecialChars_DrawPartyScreenHPText(
+        application->specialChars,
+        application->partyMembers[slot].maxHP,
+        3,
+        PADDING_MODE_NONE,
+        window,
+        (28 + 8),
+        2);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_02082104(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_DrawMemberHealthbar(PartyMenuApplication *application, u8 slot)
 {
-    Window *v0;
-    u8 v1;
-
-    v0 = &param0->windows[3 + param1 * 5];
-
-    switch (HealthBar_Color(param0->partyMembers[param1].curHP, param0->partyMembers[param1].maxHP, 48)) {
-    case 0:
-        Window_ScheduleCopyToVRAM(v0);
+    Window *window = &application->windows[PARTY_MENU_WIN_HEALTHBAR_MEMB0 + slot * 5];
+    switch (HealthBar_Color(application->partyMembers[slot].curHP, application->partyMembers[slot].maxHP, 48)) {
+    case BARCOLOR_EMPTY:
+        Window_ScheduleCopyToVRAM(window);
         return;
-    case 4:
-    case 3:
-        Bg_LoadPalette(1, &param0->colors[9], 2 * 2, (v0->palette * 16 + 9) * 2);
+
+    case BARCOLOR_MAX:
+    case BARCOLOR_GREEN:
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(0) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
-    case 2:
-        Bg_LoadPalette(1, &param0->colors[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+
+    case BARCOLOR_YELLOW:
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(1) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
-    case 1:
-        Bg_LoadPalette(1, &param0->colors[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+
+    case BARCOLOR_RED:
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(2) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
     }
 
-    v1 = App_PixelCount(param0->partyMembers[param1].curHP, param0->partyMembers[param1].maxHP, 48);
-
-    Window_FillRectWithColor(v0, 10, 0, 2, v1, 1);
-    Window_FillRectWithColor(v0, 9, 0, 3, v1, 2);
-    Window_FillRectWithColor(v0, 10, 0, 5, v1, 1);
-    Window_ScheduleCopyToVRAM(v0);
+    u8 fillCount = App_PixelCount(application->partyMembers[slot].curHP, application->partyMembers[slot].maxHP, 48);
+    Window_FillRectWithColor(window, 10, 0, 2, fillCount, 1);
+    Window_FillRectWithColor(window, 9, 0, 3, fillCount, 2);
+    Window_FillRectWithColor(window, 10, 0, 5, fillCount, 1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_020821F8(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_DrawMemberPanelData(PartyMenuApplication *application, u8 slot)
 {
-    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[2 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[3 + param1 * 5], 0);
-    sub_02081F2C(param0, param1);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_HP_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_HEALTHBAR_MEMB0 + slot * 5], 0);
+    PartyMenu_PrintMemberName(application, slot);
 
-    if (param0->partyMembers[param1].unk_10 == 1) {
-        Window_ScheduleCopyToVRAM(&param0->windows[0 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->windows[1 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->windows[2 + param1 * 5]);
-        Window_ScheduleCopyToVRAM(&param0->windows[3 + param1 * 5]);
+    if (application->partyMembers[slot].isEgg == TRUE) {
+        Window_ScheduleCopyToVRAM(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5]);
+        Window_ScheduleCopyToVRAM(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5]);
+        Window_ScheduleCopyToVRAM(&application->windows[PARTY_MENU_WIN_HP_MEMB0 + slot * 5]);
+        Window_ScheduleCopyToVRAM(&application->windows[PARTY_MENU_WIN_HEALTHBAR_MEMB0 + slot * 5]);
         return;
     }
 
-    sub_02081EAC(param0, param1);
-    sub_02081FFC(param0, param1);
-    sub_02082058(param0, param1);
-    sub_020820C4(param0, param1);
-    sub_02082104(param0, param1);
+    PartyMenu_PrintMemberHPSlash(application, slot);
+    PartyMenu_PrintMemberLevel(application, slot);
+    PartyMenu_PrintMemberCurrentHP(application, slot);
+    PartyMenu_PrintMemberMaxHP(application, slot);
+    PartyMenu_DrawMemberHealthbar(application, slot);
 }
 
 void sub_020822BC(PartyMenuApplication *param0, u8 param1)
@@ -420,117 +471,102 @@ void sub_020822F4(PartyMenuApplication *param0, u8 param1)
     Window_ClearAndScheduleCopyToVRAM(&param0->windows[3 + param1 * 5]);
 }
 
-void sub_0208232C(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberComment_CanUseEvoItem(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *v0;
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5], 0);
+    PartyMenu_PrintMemberName(application, slot);
 
-    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
-    sub_02081F2C(param0, param1);
-
-    if (param0->partyMembers[param1].unk_10 == 1) {
-        sub_02082810(param0, param1, 1);
+    if (application->partyMembers[slot].isEgg == TRUE) {
+        PrintMemberEvoComment(application, slot, EVO_COMMENT_UNABLE);
         return;
     }
 
-    sub_02081FFC(param0, param1);
+    PartyMenu_PrintMemberLevel(application, slot);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
-
-    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->partyMenu->usedItemID, NULL) == 0) {
-        sub_02082810(param0, param1, 1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
+        PrintMemberEvoComment(application, slot, EVO_COMMENT_UNABLE);
     } else {
-        sub_02082810(param0, param1, 0);
+        PrintMemberEvoComment(application, slot, EVO_COMMENT_ABLE);
     }
 }
 
-void sub_020823C4(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberComment_CanLearnMove(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *v0;
-    u8 v1;
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5], 0);
+    PartyMenu_PrintMemberName(application, slot);
 
-    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
-    sub_02081F2C(param0, param1);
-
-    if (param0->partyMembers[param1].unk_10 == 1) {
-        sub_02082880(param0, param1, 1);
+    if (application->partyMembers[slot].isEgg == TRUE) {
+        PrintMemberMoveComment(application, slot, MOVE_COMMENT_UNABLE);
         return;
     }
 
-    sub_02081FFC(param0, param1);
+    PartyMenu_PrintMemberLevel(application, slot);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
-    v1 = sub_02086104(param0, v0);
-
-    if (v1 == 0xff) {
-        sub_02082880(param0, param1, 1);
-    } else if (v1 == 0xfd) {
-        sub_02082880(param0, param1, 2);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    u8 result = PartyMenu_CanMonLearnMove(application, v0);
+    if (result == MON_MOVE_RESULT_CANNOT_LEARN) {
+        PrintMemberMoveComment(application, slot, MOVE_COMMENT_UNABLE);
+    } else if (result == MON_MOVE_RESULT_ALREADY_LEARNED) {
+        PrintMemberMoveComment(application, slot, MOVE_COMMENT_LEARNED);
     } else {
-        sub_02082880(param0, param1, 0);
+        PrintMemberMoveComment(application, slot, MOVE_COMMENT_ABLE);
     }
 }
 
-void sub_0208245C(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberComment_IsContestEligible(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *v0;
-    u8 v1;
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5], 0);
+    PartyMenu_PrintMemberName(application, slot);
 
-    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
-    sub_02081F2C(param0, param1);
-
-    if (param0->partyMembers[param1].unk_10 != 1) {
-        sub_02081FFC(param0, param1);
+    if (application->partyMembers[slot].isEgg != TRUE) {
+        PartyMenu_PrintMemberLevel(application, slot);
     }
 
-    sub_02082900(param0, param1, (u8)param0->partyMembers[param1].unk_0E_15);
+    PrintMemberContestComment(application, slot, application->partyMembers[slot].isContestEligible);
 }
 
-void sub_020824C0(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintMemberNameAndLevel(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *v0;
-    u8 v1;
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_NAME_MEMB0 + slot * 5], 0);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LEVEL_MEMB0 + slot * 5], 0);
+    PartyMenu_PrintMemberName(application, slot);
 
-    Window_FillTilemap(&param0->windows[0 + param1 * 5], 0);
-    Window_FillTilemap(&param0->windows[1 + param1 * 5], 0);
-    sub_02081F2C(param0, param1);
-
-    if (param0->partyMembers[param1].unk_10 != 1) {
-        sub_02081FFC(param0, param1);
+    if (application->partyMembers[slot].isEgg != TRUE) {
+        PartyMenu_PrintMemberLevel(application, slot);
     }
 }
 
-void sub_02082508(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_PrintSelectionEligibility(PartyMenuApplication *application, u8 slot)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < param0->partyMenu->unk_32_4; v0++) {
-        if (param0->partyMenu->unk_2C[v0] == param1 + 1) {
-            sub_02082964(param0, param1, v0);
+    for (u8 selectionSlot = 0; selectionSlot < application->partyMenu->maxSelectionSlots; selectionSlot++) {
+        if (application->partyMenu->selectionOrder[selectionSlot] == slot + 1) {
+            PrintMemberSelectionComment(application, slot, selectionSlot);
             return;
         }
     }
 
-    if (param0->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
-        if (sub_02080404(param0, param1) == 0) {
-            sub_02082964(param0, param1, 8);
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
+        if (PartyMenu_CheckBattleHallEligibility(application, slot) == PARTY_MENU_SELECTION_INELIGIBLE) {
+            PrintMemberSelectionComment(application, slot, SELECTION_COMMENT_BANNED);
             return;
         }
-    } else if (param0->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
-        if (sub_02080488(param0, param1) == 0) {
-            sub_02082964(param0, param1, 8);
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
+        if (PartyMenu_CheckBattleCastleEligibility(application, slot) == PARTY_MENU_SELECTION_INELIGIBLE) {
+            PrintMemberSelectionComment(application, slot, SELECTION_COMMENT_BANNED);
             return;
         }
     } else {
-        if (sub_02080354(param0, param1) == 0) {
-            sub_02082964(param0, param1, 8);
+        if (PartyMenu_CheckEligibility(application, slot) == PARTY_MENU_SELECTION_INELIGIBLE) {
+            PrintMemberSelectionComment(application, slot, SELECTION_COMMENT_BANNED);
             return;
         }
     }
 
-    sub_02082964(param0, param1, 7);
+    PrintMemberSelectionComment(application, slot, SELECTION_COMMENT_NOT_ENTERED);
 }
 
 static u32 CalcCenterXPos(enum Font font, const Strbuf *string, u32 winWidth)
@@ -638,95 +674,116 @@ void sub_020827EC(PartyMenuApplication *param0)
         param0->bgConfig, &Unk_020F1E98, 1, 14, 12);
 }
 
-static void sub_02082810(PartyMenuApplication *param0, u8 param1, u8 param2)
+static void PrintMemberEvoComment(PartyMenuApplication *application, u8 slot, u8 which)
 {
-    Window *v0;
-    Strbuf *v1;
 
-    v0 = &param0->windows[4 + param1 * 5];
+    Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * 5];
+    Window_FillTilemap(window, 0);
 
-    Window_FillTilemap(v0, 0);
-
-    switch (param2) {
-    case 0:
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 178);
+    Strbuf *string;
+    switch (which) {
+    case EVO_COMMENT_ABLE:
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 178);
         break;
-    case 1:
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 179);
+    case EVO_COMMENT_UNABLE:
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 179);
         break;
     }
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        string,
+        0,
+        0,
+        TEXT_SPEED_NO_TRANSFER,
+        TEXT_COLOR(15, 14, 0),
+        NULL);
+    Strbuf_Free(string);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void sub_02082880(PartyMenuApplication *param0, u8 param1, u8 param2)
+static void PrintMemberMoveComment(PartyMenuApplication *application, u8 slot, u8 which)
 {
-    Window *v0;
-    Strbuf *v1;
+    Window *window = &application->windows[4 + slot * 5];
+    Window_FillTilemap(window, 0);
 
-    v0 = &param0->windows[4 + param1 * 5];
-
-    Window_FillTilemap(v0, 0);
-
-    switch (param2) {
-    case 0:
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 175);
+    Strbuf *string;
+    switch (which) {
+    case MOVE_COMMENT_ABLE:
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 175);
         break;
-    case 1:
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 176);
+    case MOVE_COMMENT_UNABLE:
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 176);
         break;
-    case 2:
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 177);
+    case MOVE_COMMENT_LEARNED:
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 177);
         break;
     }
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        string,
+        0,
+        0,
+        TEXT_SPEED_NO_TRANSFER,
+        TEXT_COLOR(15, 14, 0),
+        NULL);
+    Strbuf_Free(string);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void sub_02082900(PartyMenuApplication *param0, u8 param1, u8 param2)
+static void PrintMemberContestComment(PartyMenuApplication *application, u8 slot, u8 isEligible)
 {
-    Window *v0;
-    Strbuf *v1;
+    Window *window = &application->windows[4 + slot * 5];
+    Window_FillTilemap(window, 0);
 
-    v0 = &param0->windows[4 + param1 * 5];
-
-    Window_FillTilemap(v0, 0);
-
-    if (param2 == 0) {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 181);
+    Strbuf *string;
+    if (isEligible == FALSE) {
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 181);
     } else {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 180);
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 180);
     }
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        string,
+        0,
+        0,
+        TEXT_SPEED_NO_TRANSFER,
+        TEXT_COLOR(15, 14, 0),
+        NULL);
+    Strbuf_Free(string);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void sub_02082964(PartyMenuApplication *param0, u8 param1, u8 param2)
+static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 slot, u8 comment)
 {
-    Window *v0;
-    Strbuf *v1;
+    Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * 5];
+    Window_FillTilemap(window, 0);
 
-    v0 = &param0->windows[4 + param1 * 5];
-
-    Window_FillTilemap(v0, 0);
-
-    if (param2 < 6) {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 169 + param2);
-    } else if (param2 == 7) {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 167);
+    Strbuf *string;
+    if (comment < MAX_PARTY_SIZE) {
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 169 + comment);
+    } else if (comment == SELECTION_COMMENT_NOT_ENTERED) {
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 167);
     } else {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 168);
+        string = MessageLoader_GetNewStrbuf(application->messageLoader, 168);
     }
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    Text_AddPrinterWithParamsAndColor(
+        window,
+        FONT_SYSTEM,
+        string,
+        0,
+        0,
+        TEXT_SPEED_NO_TRANSFER,
+        TEXT_COLOR(15, 14, 0),
+        NULL);
+    Strbuf_Free(string);
+    Window_ScheduleCopyToVRAM(window);
 }
 
 void sub_020829DC(PartyMenuApplication *param0)

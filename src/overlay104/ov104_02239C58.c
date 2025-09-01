@@ -133,25 +133,25 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_A8->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param1->unk_A8->unk_2C[v0] = param1->unk_A1[v0];
+        param1->unk_A8->selectionOrder[v0] = param1->unk_A1[v0];
     }
 
     if (param1->unk_A0 == 1) {
         param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 5) {
         param1->unk_A8->unk_32_0 = 1;
-        param1->unk_A8->unk_32_4 = 1;
-        param1->unk_A8->unk_33 = 30;
+        param1->unk_A8->maxSelectionSlots = 1;
+        param1->unk_A8->reqLevel = 30;
     } else if (param1->unk_A0 == 4) {
         param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 6) {
         param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else {
         GF_ASSERT(0);
     }
@@ -177,7 +177,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         break;
     }
 
-    MI_CpuCopy8(param1->unk_A8->unk_2C, param1->unk_A1, 2);
+    MI_CpuCopy8(param1->unk_A8->selectionOrder, param1->unk_A1, 2);
     param1->unk_9F = param1->unk_A8->selectedMonSlot;
     Heap_Free(param1->unk_A8);
 

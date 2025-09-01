@@ -300,7 +300,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 static int sub_02098CB0(UnkStruct_02098BE4 *param0)
 {
     u8 v0;
-    PartyMenu *partyMan;
+    PartyMenu *partyMenu;
     PokemonSummary *v2;
     static const u8 v3[] = {
         4, 7, 8
@@ -310,8 +310,8 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
         return 2;
     }
 
-    partyMan = (PartyMenu *)param0->unk_10;
-    v0 = partyMan->selectedMonSlot;
+    partyMenu = (PartyMenu *)param0->unk_10;
+    v0 = partyMenu->selectedMonSlot;
     param0->unk_08 = v0;
     Heap_Free(param0->unk_10);
 
@@ -334,7 +334,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v2, v3);
     PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, partyMan, param0->heapID);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, partyMenu, param0->heapID);
     param0->unk_10 = (void *)v2;
 
     return 3;

@@ -1029,7 +1029,7 @@ static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
-    PartyMenu *partyMan; // unused
+    PartyMenu *partyMenu; // unused
 
     fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     menu = FieldTask_GetEnv(usageContext->fieldTask);

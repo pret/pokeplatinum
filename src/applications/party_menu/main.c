@@ -5,9 +5,12 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/items.h"
+#include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
+#include "generated/items.h"
+#include "generated/moves.h"
+#include "generated/pokemon_contest_types.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -65,13 +68,13 @@
 
 FS_EXTERN_OVERLAY(overlay118);
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
+typedef struct UnkStruct_020F1DF8 {
+    u16 panelX;
+    u16 panelY;
+    u16 speciesIconX;
+    u16 speciesIconY;
+    u16 ballSpriteX;
+    u16 ballSpriteY;
 } UnkStruct_020F1DF8;
 
 static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state);
@@ -104,7 +107,7 @@ static void CheckCancellableMode(PartyMenuApplication *application);
 static int HandleGameWindowEvent(PartyMenuApplication *application);
 static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1);
 static u8 sub_020805E4(PartyMenuApplication *application);
-static void UpdateWindowLayout(PartyMenuApplication *application, u8 param1, u8 param2);
+static void DrawMemberTouchScreenButton(PartyMenuApplication *application, u8 slot, u8 anim);
 static int GetValidWindowLayout(PartyMenuApplication *application);
 static u8 HandleSpecialInput(PartyMenuApplication *application);
 static int ApplyItemEffectOnPokemon(PartyMenuApplication *application);
@@ -117,8 +120,8 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application);
 static int sub_0207E634(PartyMenuApplication *application);
 static int ResetWindowOnInput(PartyMenuApplication *application);
 static int UpdatePokemonFormWithItem(PartyMenuApplication *application);
-static void sub_0207F094(PartyMenuApplication *application, Pokemon *param1, u8 param2);
-static u32 sub_0207F134(Pokemon *param0, u8 param1);
+static void CheckContestEligibility(PartyMenuApplication *application, Pokemon *mon, u8 slot);
+static u32 CountEarnedRibbonsForContestType(Pokemon *mon, u8 contestType);
 static void sub_0207FE1C(PartyMenuApplication *application);
 static void CalculateWindowPosition(u8 param0, s16 *param1, s16 *param2);
 static int CheckForItemApplication(PartyMenuApplication *application);
@@ -131,12 +134,12 @@ static void sub_0207EAF4(void);
 static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(PartyMenuApplication *application);
 static int HandleOverlayCompletion(PartyMenuApplication *application);
-static void sub_0207F388(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1);
-static void sub_0207F4AC(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1);
-static void sub_0207F5A0(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1);
-static void sub_0207F694(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1);
-static void sub_0207F788(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1);
-static void sub_0207F884(PartyMenuApplication *application, u8 param1, s16 param2, s16 param3);
+static void DrawMemberPanels_Standard(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawEmptyMemberPanel(PartyMenuApplication *application, u8 slot, s16 x, s16 y);
 static u8 sub_0207FA24(PartyMenuApplication *application);
 static u8 sub_0207FBE0(PartyMenuApplication *application, u8 *param1, u8 *param2, u8 param3);
 static u8 sub_0207FC30(PartyMenuApplication *application, u8 *param1, u8 *param2, const u8 *param3);
@@ -150,8 +153,8 @@ static u8 sub_020802CC(PartyMenuApplication *application, u8 *param1);
 static u8 sub_0208031C(PartyMenuApplication *application, u8 *param1);
 static u8 sub_020801AC(PartyMenuApplication *application, u8 *param1);
 static u8 sub_020801B8(PartyMenuApplication *application, u8 *param1);
-u8 sub_02080404(PartyMenuApplication *application, u8 param1);
-u8 sub_02080488(PartyMenuApplication *application, u8 param1);
+u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 param1);
+u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 param1);
 static u8 CheckPokemonCondition(PartyMenuApplication *application);
 static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 param1, s8 param2);
 
@@ -628,7 +631,7 @@ static int sub_0207E750(PartyMenuApplication *application)
     if ((v0 == 0) || (v0 == 2)) {
         Sprite_SetExplicitPalette2(application->sprites[6], 1);
 
-        if (application->partyMembers[application->currPartySlot].unk_10 != 1) {
+        if (application->partyMembers[application->currPartySlot].isEgg != TRUE) {
             return sub_0208615C(application);
         } else {
             sub_02082708(application, 0xffffffff, 1);
@@ -946,7 +949,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 14, application->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_PARTY_MENU);
     Graphics_LoadPaletteFromOpenNARC(narc, 13, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_PARTY_MENU);
 
-    PartyMenu_LoadMemberPanelTilemaps(HEAP_ID_PARTY_MENU, application->unk_264, application->unk_324, application->unk_3E4);
+    PartyMenu_LoadMemberPanelTilemaps(HEAP_ID_PARTY_MENU, application->leadMemberPanel, application->backMemberPanel, application->noneMemberPanel);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
@@ -1041,149 +1044,154 @@ static void SetupRequestedMode(PartyMenuApplication *application)
 
 u8 sub_0207EF04(PartyMenuApplication *application, u8 param1)
 {
-    return application->partyMembers[param1].unk_29;
+    return application->partyMembers[param1].isPresent;
 }
 
-u8 sub_0207EF14(PartyMenuApplication *application, u8 partySlot)
+u8 PartyMenu_LoadMember(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *mon;
-    u32 v1;
-    u16 species;
-
-    application->partyMembers[partySlot].unk_29 = 0;
-
-    if (Party_GetCurrentCount(application->partyMenu->party) <= partySlot) {
-        return 0;
+    application->partyMembers[slot].isPresent = FALSE;
+    if (Party_GetCurrentCount(application->partyMenu->party) <= slot) {
+        return FALSE;
     }
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
-    species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-
-    if (species == 0) {
-        return 0;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    if (species == SPECIES_NONE) {
+        return FALSE;
     }
 
-    sub_02081ED8(application, mon, partySlot);
+    PartyMenu_SetMemberName(application, mon, slot);
 
-    application->partyMembers[partySlot].unk_04 = species;
-    application->partyMembers[partySlot].curHP = (u16)Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
-    application->partyMembers[partySlot].maxHP = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    application->partyMembers[partySlot].level = (u16)Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    application->partyMembers[partySlot].unk_0C = (u16)Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-    application->partyMembers[partySlot].unk_12 = (u16)Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
-    application->partyMembers[partySlot].unk_10 = (u8)Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-    application->partyMembers[partySlot].unk_11 = (u8)Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    application->partyMembers[slot].species = species;
+    application->partyMembers[slot].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    application->partyMembers[slot].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    application->partyMembers[slot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    application->partyMembers[slot].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    application->partyMembers[slot].ballSeal = Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
+    application->partyMembers[slot].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    application->partyMembers[slot].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
-        application->partyMembers[partySlot].unk_0E_12 = 0;
+    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE) {
+        application->partyMembers[slot].hideGenderMarker = FALSE;
     } else {
-        application->partyMembers[partySlot].unk_0E_12 = 1;
+        application->partyMembers[slot].hideGenderMarker = TRUE;
     }
 
-    application->partyMembers[partySlot].unk_0E_13 = Pokemon_GetGender(mon);
-    application->partyMembers[partySlot].unk_29 = 1;
-    application->partyMembers[partySlot].unk_0E_0 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(mon);
+    application->partyMembers[slot].gender = Pokemon_GetGender(mon);
+    application->partyMembers[slot].isPresent = TRUE;
+    application->partyMembers[slot].statusIcon = (u8)PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
-    sub_0207F094(application, mon, partySlot);
-
-    return 1;
+    CheckContestEligibility(application, mon, slot);
+    return TRUE;
 }
 
-static void sub_0207F094(PartyMenuApplication *application, Pokemon *param1, u8 param2)
+static void CheckContestEligibility(PartyMenuApplication *application, Pokemon *mon, u8 slot)
 {
-    u32 v0;
-    u32 v1;
+    u32 countRibbons;
+    u32 countMoves;
 
-    if (application->partyMenu->mode != 13) {
+    if (application->partyMenu->mode != PARTY_MENU_MODE_CONTEST) {
         return;
     }
 
-    if ((application->partyMembers[param2].unk_10 == 1) || (application->partyMembers[param2].curHP == 0)) {
-        application->partyMembers[param2].unk_0E_15 = 0;
+    if (application->partyMembers[slot].isEgg == TRUE || application->partyMembers[slot].curHP == 0) {
+        application->partyMembers[slot].isContestEligible = FALSE;
         return;
     }
 
-    v0 = sub_0207F134(param1, application->partyMenu->unk_2A);
-
-    for (v1 = 0; v1 < 4; v1++) {
-        if (Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL) == 0) {
+    countRibbons = CountEarnedRibbonsForContestType(mon, application->partyMenu->contestType);
+    for (countMoves = 0; countMoves < LEARNED_MOVES_MAX; countMoves++) {
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + countMoves, NULL) == MOVE_NONE) {
             break;
         }
     }
 
-    if ((application->partyMenu->unk_2B <= v0) && (v1 >= 2)) {
-        application->partyMembers[param2].unk_0E_15 = 1;
+    if (application->partyMenu->contestRank <= countRibbons && countMoves >= 2) {
+        application->partyMembers[slot].isContestEligible = TRUE;
     } else {
-        application->partyMembers[param2].unk_0E_15 = 0;
+        application->partyMembers[slot].isContestEligible = FALSE;
     }
 }
 
-static u32 sub_0207F134(Pokemon *param0, u8 param1)
+static u32 CountEarnedRibbonsForContestType(Pokemon *mon, u8 contestType)
 {
-    u32 v0;
+    u32 count;
 
-    switch (param1) {
-    case 0:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER, NULL);
+    switch (contestType) {
+    case CONTEST_TYPE_COOL:
+        count = Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_COOL_RIBBON, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER, NULL);
         break;
-    case 1:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER, NULL);
+    case CONTEST_TYPE_BEAUTY:
+        count = Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER, NULL);
         break;
-    case 2:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER, NULL);
+    case CONTEST_TYPE_CUTE:
+        count = Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_CUTE_RIBBON, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER, NULL);
         break;
-    case 3:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER, NULL);
+    case CONTEST_TYPE_SMART:
+        count = Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_SMART_RIBBON, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER, NULL);
         break;
-    case 4:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER, NULL);
+    case CONTEST_TYPE_TOUGH:
+        count = Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetValue(mon, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER, NULL);
+        break;
     }
 
-    return v0;
+    return count;
 }
 
 const u16 *sub_0207F248(PartyMenuApplication *application)
 {
-    return &application->unk_324[3 * 16 + 6];
+    return &application->backMemberPanel[3 * 16 + 6];
 }
 
-static void sub_0207F250(PartyMenuApplication *application, u8 param1, u8 param2, u8 param3, u8 param4)
+#define MEMBER_PANEL_WIDTH  16
+#define MEMBER_PANEL_HEIGHT 6
+
+static void DrawMemberPanel(PartyMenuApplication *application, u8 slot, u8 panelXPos, u8 panelYPos, u8 showHPBar)
 {
-    const u16 *v0;
-
-    if ((param1 == 0) || ((application->partyMenu->unk_21 != 0) && (param1 == 1))) {
-        v0 = application->unk_264;
+    const u16 *panel;
+    if (slot == 0 || (application->partyMenu->unk_21 != 0 && slot == 1)) {
+        panel = application->leadMemberPanel;
     } else {
-        v0 = application->unk_324;
+        panel = application->backMemberPanel;
     }
 
-    application->partyMembers[param1].unk_14 = (s8)param2;
-    application->partyMembers[param1].unk_15 = (s8)param3;
+    application->partyMembers[slot].panelXPos = panelXPos;
+    application->partyMembers[slot].panelYPos = panelYPos;
 
-    Bg_CopyToTilemapRect(application->bgConfig, 2, param2, param3, 16, 6, (const void *)v0, 0, 0, 16, 6);
+    Bg_CopyToTilemapRect(
+        application->bgConfig,
+        BG_LAYER_MAIN_2,
+        panelXPos,
+        panelYPos,
+        MEMBER_PANEL_WIDTH,
+        MEMBER_PANEL_HEIGHT,
+        panel,
+        0,
+        0,
+        MEMBER_PANEL_WIDTH,
+        MEMBER_PANEL_HEIGHT);
 
-    if (param4 == 0) {
-        Bg_FillTilemapRect(
-            application->bgConfig, 2, 0x17, param2 + 6, param3 + 3, 9, 1, 16);
+    if (showHPBar == FALSE) {
+        Bg_FillTilemapRect(application->bgConfig, BG_LAYER_MAIN_2, 0x17, panelXPos + 6, panelYPos + 3, 9, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
     }
 
-    Bg_ChangeTilemapRectPalette(application->bgConfig, 2, param2, param3, 16, 6, 3 + param1);
-    PartyMenu_UpdateSlotPalette(application, param1);
+    Bg_ChangeTilemapRectPalette(application->bgConfig, 2, panelXPos, panelYPos, MEMBER_PANEL_WIDTH, MEMBER_PANEL_HEIGHT, 3 + slot);
+    PartyMenu_UpdateSlotPalette(application, slot);
 }
 
 static void SetupRequestedModePanels(PartyMenuApplication *application)
@@ -1197,162 +1205,169 @@ static void SetupRequestedModePanels(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) {
-        sub_0207F4AC(application, template);
+        DrawMemberPanels_UsingEvoItem(application, template);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) {
-        sub_0207F5A0(application, template);
+        DrawMemberPanels_TeachingMove(application, template);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_CONTEST) {
-        sub_0207F694(application, template);
+        DrawMemberPanels_EnteringContest(application, template);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
-        sub_0207F788(application, template);
+        DrawMemberPanels_SelectingOrder(application, template);
     } else {
-        sub_0207F388(application, template);
+        DrawMemberPanels_Standard(application, template);
     }
 
     Bg_ScheduleTilemapTransfer(application->bgConfig, BG_LAYER_MAIN_2);
     Bg_ScheduleTilemapTransfer(application->bgConfig, BG_LAYER_SUB_0);
 }
 
-static void sub_0207F388(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1)
+static void DrawMemberPanels_Standard(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
 {
-    u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0207EF14(application, v0) == 1) {
-            if (application->partyMembers[v0].unk_10 == 1) {
-                sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 0);
+    for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (PartyMenu_LoadMember(application, slot) == TRUE) {
+            if (application->partyMembers[slot].isEgg == TRUE) {
+                DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
             } else {
-                sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 1);
+                DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, TRUE);
             }
 
-            sub_020821F8(application, v0);
-            sub_02082CEC(application, v0, param1[v0].unk_04, param1[v0].unk_06, v1);
-            sub_02082FAC(application, v0, param1[v0].unk_08, param1[v0].unk_0A);
-            sub_02083040(application, v0, application->partyMembers[v0].unk_0C);
-            sub_020830A0(application, v0, param1[v0].unk_04, param1[v0].unk_06);
-            sub_02083104(application, v0);
-            sub_020830D4(application, v0);
-            sub_02083014(application, v0, application->partyMembers[v0].unk_0E_0);
-            UpdateWindowLayout(application, v0, 0);
+            PartyMenu_DrawMemberPanelData(application, slot);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
+            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_DrawMemberBallSeal(application, slot);
+            PartyMenu_AlignMemberBallSeal(application, slot);
+            PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
+            DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            sub_0207F884(application, v0, param1[v0].unk_00, param1[v0].unk_02);
+            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
         }
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(iconNarc);
 }
 
-static void sub_0207F4AC(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1)
+static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
 {
-    u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0207EF14(application, v0) == 1) {
-            sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 0);
-            sub_0208232C(application, v0);
-            sub_02082CEC(application, v0, param1[v0].unk_04, param1[v0].unk_06, v1);
-            sub_02082FAC(application, v0, param1[v0].unk_08, param1[v0].unk_0A);
-            sub_02083040(application, v0, application->partyMembers[v0].unk_0C);
-            sub_020830A0(application, v0, param1[v0].unk_04, param1[v0].unk_06);
-            sub_02083104(application, v0);
-            sub_020830D4(application, v0);
-            sub_02083014(application, v0, application->partyMembers[v0].unk_0E_0);
-            UpdateWindowLayout(application, v0, 0);
+    for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (PartyMenu_LoadMember(application, slot) == TRUE) {
+            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            PartyMenu_PrintMemberComment_CanUseEvoItem(application, slot);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
+            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_DrawMemberBallSeal(application, slot);
+            PartyMenu_AlignMemberBallSeal(application, slot);
+            PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
+            DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            sub_0207F884(application, v0, param1[v0].unk_00, param1[v0].unk_02);
+            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
         }
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(iconNarc);
 }
 
-static void sub_0207F5A0(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1)
+static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
 {
-    u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0207EF14(application, v0) == 1) {
-            sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 0);
-            sub_020823C4(application, v0);
-            sub_02082CEC(application, v0, param1[v0].unk_04, param1[v0].unk_06, v1);
-            sub_02082FAC(application, v0, param1[v0].unk_08, param1[v0].unk_0A);
-            sub_02083040(application, v0, application->partyMembers[v0].unk_0C);
-            sub_020830A0(application, v0, param1[v0].unk_04, param1[v0].unk_06);
-            sub_02083104(application, v0);
-            sub_020830D4(application, v0);
-            sub_02083014(application, v0, application->partyMembers[v0].unk_0E_0);
-            UpdateWindowLayout(application, v0, 0);
+    for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (PartyMenu_LoadMember(application, slot) == TRUE) {
+            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            PartyMenu_PrintMemberComment_CanLearnMove(application, slot);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
+            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_DrawMemberBallSeal(application, slot);
+            PartyMenu_AlignMemberBallSeal(application, slot);
+            PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
+            DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            sub_0207F884(application, v0, param1[v0].unk_00, param1[v0].unk_02);
+            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
         }
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(iconNarc);
 }
 
-static void sub_0207F694(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1)
+static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
 {
-    u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0207EF14(application, v0) == 1) {
-            sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 0);
-            sub_0208245C(application, v0);
-            sub_02082CEC(application, v0, param1[v0].unk_04, param1[v0].unk_06, v1);
-            sub_02082FAC(application, v0, param1[v0].unk_08, param1[v0].unk_0A);
-            sub_02083040(application, v0, application->partyMembers[v0].unk_0C);
-            sub_020830A0(application, v0, param1[v0].unk_04, param1[v0].unk_06);
-            sub_02083104(application, v0);
-            sub_020830D4(application, v0);
-            sub_02083014(application, v0, application->partyMembers[v0].unk_0E_0);
-            UpdateWindowLayout(application, v0, 0);
+    for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (PartyMenu_LoadMember(application, slot) == TRUE) {
+            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            PartyMenu_PrintMemberComment_IsContestEligible(application, slot);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
+            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_DrawMemberBallSeal(application, slot);
+            PartyMenu_AlignMemberBallSeal(application, slot);
+            PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
+            DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            sub_0207F884(application, v0, param1[v0].unk_00, param1[v0].unk_02);
+            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
         }
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(iconNarc);
 }
 
-static void sub_0207F788(PartyMenuApplication *application, const UnkStruct_020F1DF8 *param1)
+static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
 {
-    u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0207EF14(application, v0) == 1) {
-            sub_0207F250(application, v0, param1[v0].unk_00, param1[v0].unk_02, 0);
-            sub_020824C0(application, v0);
-            sub_02082508(application, v0);
-            sub_02082CEC(application, v0, param1[v0].unk_04, param1[v0].unk_06, v1);
-            sub_02082FAC(application, v0, param1[v0].unk_08, param1[v0].unk_0A);
-            sub_02083040(application, v0, application->partyMembers[v0].unk_0C);
-            sub_020830A0(application, v0, param1[v0].unk_04, param1[v0].unk_06);
-            sub_02083104(application, v0);
-            sub_020830D4(application, v0);
-            sub_02083014(application, v0, application->partyMembers[v0].unk_0E_0);
-            UpdateWindowLayout(application, v0, 0);
+    for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (PartyMenu_LoadMember(application, slot) == TRUE) {
+            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            PartyMenu_PrintMemberNameAndLevel(application, slot);
+            PartyMenu_PrintSelectionEligibility(application, slot);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
+            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_DrawMemberBallSeal(application, slot);
+            PartyMenu_AlignMemberBallSeal(application, slot);
+            PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
+            DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            sub_0207F884(application, v0, param1[v0].unk_00, param1[v0].unk_02);
+            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
         }
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(iconNarc);
 }
 
-static void sub_0207F884(PartyMenuApplication *application, u8 param1, s16 param2, s16 param3)
+static void DrawEmptyMemberPanel(PartyMenuApplication *application, u8 slot, s16 x, s16 y)
 {
-    Bg_CopyToTilemapRect(application->bgConfig, 2, param2, param3, 16, 6, (const void *)application->unk_3E4, 0, 0, 16, 6);
-    Bg_ChangeTilemapRectPalette(application->bgConfig, 2, param2, param3, 16, 6, 1);
-    sub_02083014(application, param1, 7);
-    sub_02083040(application, param1, 0);
-    sub_02083104(application, param1);
+    Bg_CopyToTilemapRect(
+        application->bgConfig,
+        BG_LAYER_MAIN_2,
+        x,
+        y,
+        MEMBER_PANEL_WIDTH,
+        MEMBER_PANEL_HEIGHT,
+        application->noneMemberPanel,
+        0,
+        0,
+        MEMBER_PANEL_WIDTH,
+        MEMBER_PANEL_HEIGHT);
+
+    Bg_ChangeTilemapRectPalette(application->bgConfig, BG_LAYER_MAIN_2, x, y, MEMBER_PANEL_WIDTH, MEMBER_PANEL_HEIGHT, 1);
+    PartyMenu_DrawMemberStatusCondition(application, slot, SUMMARY_CONDITION_NONE);
+    PartyMenu_DrawMemberHeldItem(application, slot, ITEM_NONE);
+    PartyMenu_DrawMemberBallSeal(application, slot);
 }
 
 void PartyMenu_UpdateSlotPalette(PartyMenuApplication *application, u8 slot)
@@ -1480,7 +1495,7 @@ static u8 sub_0207FA24(PartyMenuApplication *application)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v4 < 6) {
-                UpdateWindowLayout(application, v4, 0);
+                DrawMemberTouchScreenButton(application, v4, 0);
                 Bg_ScheduleTilemapTransfer(application->bgConfig, 4);
             }
 
@@ -1550,7 +1565,7 @@ static u8 sub_0207FC94(PartyMenuApplication *application)
         InitSelectedSlot(application, application->currPartySlot, 1);
 
         if (v3 < 6) {
-            UpdateWindowLayout(application, v3, 0);
+            DrawMemberTouchScreenButton(application, v3, 0);
         }
 
         GridMenuCursor_CheckNavigation(application->cursorPosTable, &v1, &v2, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
@@ -1594,7 +1609,7 @@ void sub_0207FD68(PartyMenuApplication *application, u8 partySlot)
         InitSelectedSlot(application, application->currPartySlot, 1);
 
         if (v2 < 6) {
-            UpdateWindowLayout(application, v2, 0);
+            DrawMemberTouchScreenButton(application, v2, 0);
             Bg_ScheduleTilemapTransfer(application->bgConfig, 4);
         }
     }
@@ -1613,12 +1628,12 @@ static void sub_0207FE1C(PartyMenuApplication *application)
         CalculateWindowPosition(application->unk_B0D, &v0, &v1);
         sub_020832E4(application, v0, v1);
     }
-        UpdateWindowLayout(application, application->unk_B0D, 2);
+        DrawMemberTouchScreenButton(application, application->unk_B0D, 2);
         Bg_ScheduleTilemapTransfer(application->bgConfig, 4);
         application->unk_B0C++;
         break;
     case 2:
-        UpdateWindowLayout(application, application->unk_B0D, 1);
+        DrawMemberTouchScreenButton(application, application->unk_B0D, 1);
         Bg_ScheduleTilemapTransfer(application->bgConfig, 4);
         application->unk_B0C = 0;
         break;
@@ -1642,7 +1657,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             return 0;
         } else if ((application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN) || (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX)) {
-            if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
+            if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
@@ -1650,7 +1665,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
                 return 5;
             }
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
-            if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
+            if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_0207FFC8(application);
                 return 0;
@@ -1681,7 +1696,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
 
     if (v0 == 2) {
         if ((application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN) || (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) || (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL)) {
-            if (application->partyMembers[application->currPartySlot].unk_10 != 0) {
+            if (application->partyMembers[application->currPartySlot].isEgg != FALSE) {
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
@@ -1744,7 +1759,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
     count++;
 
     if (FieldSystem_IsInBattleTowerSalon(application->partyMenu->fieldSystem) == FALSE) {
-        if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
+        if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
             for (i = 0; i < 4; i++) {
                 move = (u16)Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + i, NULL);
 
@@ -1765,7 +1780,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
             menuEntriesBuffer[count] = 0;
             count++;
 
-            if (Item_IsMail(application->partyMembers[application->currPartySlot].unk_0C) == TRUE) {
+            if (Item_IsMail(application->partyMembers[application->currPartySlot].heldItem) == TRUE) {
                 menuEntriesBuffer[count] = 5;
             } else {
                 menuEntriesBuffer[count] = 2;
@@ -1794,7 +1809,7 @@ static u8 sub_020801AC(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_020801B8(PartyMenuApplication *application, u8 *param1)
 {
-    if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
+    if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
         param1[0] = 8;
         param1[1] = 1;
         param1[2] = 9;
@@ -1810,7 +1825,7 @@ static u8 sub_020801B8(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_020801F0(PartyMenuApplication *application, u8 *param1)
 {
-    if (application->partyMembers[application->currPartySlot].unk_0E_15 == 1) {
+    if (application->partyMembers[application->currPartySlot].isContestEligible == TRUE) {
         param1[0] = 13;
         param1[1] = 1;
         param1[2] = 9;
@@ -1826,7 +1841,7 @@ static u8 sub_020801F0(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_0208022C(PartyMenuApplication *application, u8 *param1)
 {
-    switch (sub_02080354(application, application->currPartySlot)) {
+    switch (PartyMenu_CheckEligibility(application, application->currPartySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1848,7 +1863,7 @@ static u8 sub_0208022C(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_0208027C(PartyMenuApplication *application, u8 *param1)
 {
-    switch (sub_02080404(application, application->currPartySlot)) {
+    switch (PartyMenu_CheckBattleHallEligibility(application, application->currPartySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1870,7 +1885,7 @@ static u8 sub_0208027C(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_020802CC(PartyMenuApplication *application, u8 *param1)
 {
-    switch (sub_02080488(application, application->currPartySlot)) {
+    switch (PartyMenu_CheckBattleCastleEligibility(application, application->currPartySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1892,7 +1907,7 @@ static u8 sub_020802CC(PartyMenuApplication *application, u8 *param1)
 
 static u8 sub_0208031C(PartyMenuApplication *application, u8 *param1)
 {
-    if (application->partyMembers[application->currPartySlot].unk_10 == 1) {
+    if (application->partyMembers[application->currPartySlot].isEgg == TRUE) {
         param1[0] = 1;
         param1[1] = 15;
         param1[2] = 9;
@@ -1905,81 +1920,71 @@ static u8 sub_0208031C(PartyMenuApplication *application, u8 *param1)
     return 2;
 }
 
-u8 sub_02080354(PartyMenuApplication *application, u8 partySlot)
+u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 {
-    u8 v0;
-
     if (application->partyMenu->battleRegulation != NULL) {
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
-
-        if (sub_0207A2D0(application->partyMenu->battleRegulation, v1, application->heightWeight) == 0) {
-            return 0;
+        Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
+        if (sub_0207A2D0(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
+            return PARTY_MENU_SELECTION_INELIGIBLE;
         }
     }
 
-    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) {
-        if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
-            return 0;
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
+        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[partySlot].species) == TRUE) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
+    }
+
+    for (u8 selectionSlot = 0; selectionSlot < application->partyMenu->maxSelectionSlots; selectionSlot++) {
+        if (application->partyMenu->selectionOrder[selectionSlot] == partySlot + 1) {
+            return PARTY_MENU_SELECTION_ENTERED;
         }
     }
 
-    for (v0 = 0; v0 < application->partyMenu->unk_32_4; v0++) {
-        if (application->partyMenu->unk_2C[v0] == partySlot + 1) {
-            return 2;
-        }
+    if (application->partyMembers[partySlot].isEgg == TRUE || application->partyMembers[partySlot].level > application->partyMenu->reqLevel) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
-    if ((application->partyMembers[partySlot].unk_10 == 1) || (application->partyMembers[partySlot].level > application->partyMenu->unk_33)) {
-        return 0;
-    }
-
-    return 1;
+    return PARTY_MENU_SELECTION_ELIGIBLE;
 }
 
-u8 sub_02080404(PartyMenuApplication *application, u8 partySlot)
+u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 slot)
 {
-    u8 v0;
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL
+        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[slot].species) == TRUE) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
+    }
 
-    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
-        if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
-            return 0;
+    for (u8 selectionSlot = 0; selectionSlot < application->partyMenu->maxSelectionSlots; selectionSlot++) {
+        if (application->partyMenu->selectionOrder[selectionSlot] == slot + 1) {
+            return PARTY_MENU_SELECTION_ENTERED;
         }
     }
 
-    for (v0 = 0; v0 < application->partyMenu->unk_32_4; v0++) {
-        if (application->partyMenu->unk_2C[v0] == partySlot + 1) {
-            return 2;
-        }
+    if (application->partyMembers[slot].isEgg == TRUE || application->partyMembers[slot].level < application->partyMenu->reqLevel) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
-    if ((application->partyMembers[partySlot].unk_10 == 1) || (application->partyMembers[partySlot].level < application->partyMenu->unk_33)) {
-        return 0;
-    }
-
-    return 1;
+    return PARTY_MENU_SELECTION_ELIGIBLE;
 }
 
-u8 sub_02080488(PartyMenuApplication *application, u8 partySlot)
+u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 partySlot)
 {
-    u8 v0;
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
+        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[partySlot].species) == TRUE) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
+    }
 
-    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
-        if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
-            return 0;
+    for (u8 selectionSlot = 0; selectionSlot < application->partyMenu->maxSelectionSlots; selectionSlot++) {
+        if (application->partyMenu->selectionOrder[selectionSlot] == partySlot + 1) {
+            return PARTY_MENU_SELECTION_ENTERED;
         }
     }
 
-    for (v0 = 0; v0 < application->partyMenu->unk_32_4; v0++) {
-        if (application->partyMenu->unk_2C[v0] == partySlot + 1) {
-            return 2;
-        }
+    if (application->partyMembers[partySlot].isEgg == TRUE) {
+        return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
-    if (application->partyMembers[partySlot].unk_10 == 1) {
-        return 0;
-    }
-
-    return 1;
+    return PARTY_MENU_SELECTION_ELIGIBLE;
 }
 
 static void InitSelectedSlot(PartyMenuApplication *application, u8 slot, u8 selected)
@@ -2074,8 +2079,8 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     u8 v0;
 
     for (v0 = 0; v0 < application->partyMenu->unk_32_0; v0++) {
-        if (application->partyMenu->unk_2C[v0] == 0) {
-            switch (application->partyMenu->unk_32_4) {
+        if (application->partyMenu->selectionOrder[v0] == 0) {
+            switch (application->partyMenu->maxSelectionSlots) {
             case 2:
                 sub_02082708(application, 107, 1);
                 break;
@@ -2103,7 +2108,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->battleRegulation != NULL) {
-        switch (sub_0207A3AC(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->unk_2C)) {
+        switch (sub_0207A3AC(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
         case 0:
             break;
 
@@ -2186,20 +2191,20 @@ static u8 CheckDuplicateValues(PartyMenuApplication *application)
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
-        if (application->partyMenu->unk_2C[v0] == 0) {
+        if (application->partyMenu->selectionOrder[v0] == 0) {
             break;
         }
 
         for (v1 = v0 + 1; v1 < 6; v1++) {
-            if (application->partyMenu->unk_2C[v1] == 0) {
+            if (application->partyMenu->selectionOrder[v1] == 0) {
                 break;
             }
 
-            if (application->partyMembers[application->partyMenu->unk_2C[v0] - 1].unk_04 == application->partyMembers[application->partyMenu->unk_2C[v1] - 1].unk_04) {
+            if (application->partyMembers[application->partyMenu->selectionOrder[v0] - 1].species == application->partyMembers[application->partyMenu->selectionOrder[v1] - 1].species) {
                 return 1;
             }
 
-            if ((application->partyMembers[application->partyMenu->unk_2C[v0] - 1].unk_0C != 0) && (application->partyMembers[application->partyMenu->unk_2C[v0] - 1].unk_0C == application->partyMembers[application->partyMenu->unk_2C[v1] - 1].unk_0C)) {
+            if ((application->partyMembers[application->partyMenu->selectionOrder[v0] - 1].heldItem != ITEM_NONE) && (application->partyMembers[application->partyMenu->selectionOrder[v0] - 1].heldItem == application->partyMembers[application->partyMenu->selectionOrder[v1] - 1].heldItem)) {
                 return 2;
             }
         }
@@ -2213,16 +2218,16 @@ static u8 CheckUniqueValues(PartyMenuApplication *application)
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
-        if (application->partyMenu->unk_2C[v0] == 0) {
+        if (application->partyMenu->selectionOrder[v0] == 0) {
             break;
         }
 
         for (v1 = v0 + 1; v1 < 6; v1++) {
-            if (application->partyMenu->unk_2C[v1] == 0) {
+            if (application->partyMenu->selectionOrder[v1] == 0) {
                 break;
             }
 
-            if (application->partyMembers[application->partyMenu->unk_2C[v0] - 1].unk_04 != application->partyMembers[application->partyMenu->unk_2C[v1] - 1].unk_04) {
+            if (application->partyMembers[application->partyMenu->selectionOrder[v0] - 1].species != application->partyMembers[application->partyMenu->selectionOrder[v1] - 1].species) {
                 return 1;
             }
         }
@@ -2236,16 +2241,16 @@ static u8 CheckEqualityInArray(PartyMenuApplication *application)
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
-        if (application->partyMenu->unk_2C[v0] == 0) {
+        if (application->partyMenu->selectionOrder[v0] == 0) {
             break;
         }
 
         for (v1 = v0 + 1; v1 < 6; v1++) {
-            if (application->partyMenu->unk_2C[v1] == 0) {
+            if (application->partyMenu->selectionOrder[v1] == 0) {
                 break;
             }
 
-            if (application->partyMembers[application->partyMenu->unk_2C[v0] - 1].unk_04 == application->partyMembers[application->partyMenu->unk_2C[v1] - 1].unk_04) {
+            if (application->partyMembers[application->partyMenu->selectionOrder[v0] - 1].species == application->partyMembers[application->partyMenu->selectionOrder[v1] - 1].species) {
                 return 1;
             }
         }
@@ -2254,13 +2259,14 @@ static u8 CheckEqualityInArray(PartyMenuApplication *application)
     return 0;
 }
 
-static const u8 Unk_020F1BB8[6][2] = {
-    { 0x1, 0x3 },
-    { 0x1A, 0x3 },
-    { 0x1, 0xA },
-    { 0x1A, 0xA },
-    { 0x1, 0x11 },
-    { 0x1A, 0x11 }
+// clang-format off
+static const u8 sTouchScreenButtonCoords[6][2] = {
+    {  1,  3 },
+    { 26,  3 },
+    {  1, 10 },
+    { 26, 10 },
+    {  1, 17 },
+    { 26, 17 },
 };
 
 static const TouchScreenRect Unk_020F1C94[] = {
@@ -2270,32 +2276,41 @@ static const TouchScreenRect Unk_020F1C94[] = {
     { 0x50, 0x77, 0xD0, 0xF7 },
     { 0x88, 0xAF, 0x8, 0x2F },
     { 0x88, 0xAF, 0xD0, 0xF7 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
+// clang-format on
 
-static void UpdateWindowLayout(PartyMenuApplication *application, u8 param1, u8 param2)
+#define TOUCH_BUTTON_TILE_PALETTE (1 << 12)
+#define TOUCH_BUTTON_TILE_WIDTH   5
+#define TOUCH_BUTTON_TILE_HEIGHT  5
+
+static void DrawMemberTouchScreenButton(PartyMenuApplication *application, u8 slot, u8 anim)
 {
-    u16 *v0;
-    u16 v1;
-    u8 v2, v3;
-    u8 v4, v5;
+    u16 *tilemap;
+    u16 baseTile;
+    u8 x, y;
+    u8 dy, dx;
 
-    v0 = (u16 *)Bg_GetTilemapBuffer(application->bgConfig, 4);
-    v1 = 5 + (1 << 12) + 5 * 5 * param2;
-    v2 = Unk_020F1BB8[param1][0];
-    v3 = Unk_020F1BB8[param1][1];
+    tilemap = Bg_GetTilemapBuffer(application->bgConfig, BG_LAYER_SUB_0);
+    baseTile = 5 + TOUCH_BUTTON_TILE_PALETTE + TOUCH_BUTTON_TILE_WIDTH * TOUCH_BUTTON_TILE_HEIGHT * anim;
+    x = sTouchScreenButtonCoords[slot][0];
+    y = sTouchScreenButtonCoords[slot][1];
 
-    for (v4 = 0; v4 < 5; v4++) {
-        for (v5 = 0; v5 < 5; v5++) {
-            v0[(v3 + v4) * 32 + v2 + v5] = v4 * 5 + v5 + v1;
+    for (dy = 0; dy < TOUCH_BUTTON_TILE_HEIGHT; dy++) {
+        for (dx = 0; dx < TOUCH_BUTTON_TILE_WIDTH; dx++) {
+            tilemap[(y + dy) * TILE_SIZE_4BPP + x + dx] = dy * TOUCH_BUTTON_TILE_WIDTH + dx + baseTile;
         }
     }
 }
 
+#undef TOUCH_BUTTON_TILE_HEIGHT
+#undef TOUCH_BUTTON_TILE_WIDTH
+#undef TOUCH_BUTTON_TILE_PALETTE
+
 static void CalculateWindowPosition(u8 application, s16 *param1, s16 *param2)
 {
-    *param1 = Unk_020F1BB8[application][0] * 8 + ((5 * 8) >> 1);
-    *param2 = Unk_020F1BB8[application][1] * 8 + ((5 * 8) >> 1);
+    *param1 = sTouchScreenButtonCoords[application][0] * 8 + ((5 * 8) >> 1);
+    *param2 = sTouchScreenButtonCoords[application][1] * 8 + ((5 * 8) >> 1);
 }
 
 static int GetValidWindowLayout(PartyMenuApplication *application)
@@ -2484,7 +2499,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
 
 static u8 CheckPokemonCondition(PartyMenuApplication *application)
 {
-    if (application->partyMembers[application->currPartySlot].unk_10 != 0) {
+    if (application->partyMembers[application->currPartySlot].isEgg != FALSE) {
         return 2;
     }
 
@@ -2508,8 +2523,8 @@ static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 slot, s8 p
 
     sub_02082098(application, slot);
     Window_FillTilemap(&application->windows[3 + slot * 5], 0);
-    sub_02082058(application, slot);
-    sub_02082104(application, slot);
+    PartyMenu_PrintMemberCurrentHP(application, slot);
+    PartyMenu_DrawMemberHealthbar(application, slot);
 
     if ((application->monStats[0] == application->monStats[2]) || (application->partyMembers[slot].curHP == application->partyMembers[slot].maxHP)) {
         Pokemon *mon;
@@ -2535,7 +2550,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
                 return 3;
             }
         } else {
-            if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
+            if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
@@ -2559,7 +2574,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     v0 = sub_0207FA00(application);
 
     if (v0 == 2) {
-        if (application->partyMembers[application->currPartySlot].unk_10 != 0) {
+        if (application->partyMembers[application->currPartySlot].isEgg != FALSE) {
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 5;
         }
@@ -2621,9 +2636,9 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *application)
 
 static u8 CheckItemUsageValidity(PartyMenuApplication *application)
 {
-    if (application->partyMembers[application->currPartySlot].unk_0C == 0) {
+    if (application->partyMembers[application->currPartySlot].heldItem == 0) {
         return 0;
-    } else if (Item_IsMail(application->partyMembers[application->currPartySlot].unk_0C) == 1) {
+    } else if (Item_IsMail(application->partyMembers[application->currPartySlot].heldItem) == 1) {
         return 2;
     }
 
@@ -2676,7 +2691,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
         case 1:
             MessageLoader_GetStrbuf(application->messageLoader, 78, application->tmpFormat);
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
-            StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMembers[application->currPartySlot].unk_0C);
+            StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMembers[application->currPartySlot].heldItem);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 9;
             break;
@@ -2709,8 +2724,8 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
         *param2 = -1;
     }
 
-    application->partyMembers[application->currPartySlot].unk_0C = application->partyMenu->usedItemID;
-    sub_02083040(application, application->currPartySlot, application->partyMembers[application->currPartySlot].unk_0C);
+    application->partyMembers[application->currPartySlot].heldItem = application->partyMenu->usedItemID;
+    PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);
 
     if (item == ITEM_GRISEOUS_ORB && ((*param2) != -1)) {
         return 12;
@@ -2725,8 +2740,8 @@ static void SwapPokemonItem(PartyMenuApplication *application, Pokemon *mon, u32
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
-    application->partyMembers[application->currPartySlot].unk_0C = (u16)param3;
-    sub_02083040(application, application->currPartySlot, application->partyMembers[application->currPartySlot].unk_0C);
+    application->partyMembers[application->currPartySlot].heldItem = (u16)param3;
+    PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);
 }
 
 static int HandleMessageCompletion(PartyMenuApplication *application)
@@ -2788,7 +2803,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
         v2 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
         v3 = &application->windows[34];
         v4 = application->partyMenu->usedItemID;
-        v5 = application->partyMembers[application->currPartySlot].unk_0C;
+        v5 = application->partyMembers[application->currPartySlot].heldItem;
         v0 = UpdatePokemonWithItem(application, v2, &v1);
 
         if (Bag_TryAddItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU) == FALSE) {
@@ -2851,7 +2866,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
     v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     v1 = &application->windows[34];
     v2 = application->partyMenu->usedItemID;
-    item = application->partyMembers[application->currPartySlot].unk_0C;
+    item = application->partyMembers[application->currPartySlot].heldItem;
     v4 = UpdatePokemonWithItem(application, v0, &v5);
 
     if ((item == ITEM_GRISEOUS_ORB) && (v4 == 11) && (v5 == 0)) {
@@ -2884,7 +2899,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
 
 static int CheckForItemApplication(PartyMenuApplication *application)
 {
-    if (application->partyMembers[application->currPartySlot].unk_12 == 0) {
+    if (application->partyMembers[application->currPartySlot].ballSeal == 0) {
         application->partyMenu->menuSelectionResult = 0;
         return 32;
     }

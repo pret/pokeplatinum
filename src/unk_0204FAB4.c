@@ -265,16 +265,16 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
     partyMenu->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 3; v0++) {
-        partyMenu->unk_2C[v0] = param0->unk_06[v0];
+        partyMenu->selectionOrder[v0] = param0->unk_06[v0];
     }
 
-    partyMenu->unk_33 = 100;
+    partyMenu->reqLevel = 100;
     partyMenu->unk_32_0 = 3;
-    partyMenu->unk_32_4 = 3;
+    partyMenu->maxSelectionSlots = 3;
 
     if (param0->unk_04 == 2) {
         partyMenu->unk_32_0 = 2;
-        partyMenu->unk_32_4 = 2;
+        partyMenu->maxSelectionSlots = 2;
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -304,7 +304,7 @@ static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    MI_CpuCopy8(partyMenu->unk_2C, param0->unk_06, 3);
+    MI_CpuCopy8(partyMenu->selectionOrder, param0->unk_06, 3);
     param0->unk_05 = partyMenu->selectedMonSlot;
     Heap_Free(partyMenu);
 

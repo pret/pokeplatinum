@@ -180,7 +180,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *saveData)
             continue;
         }
 
-        if (sub_02078804(v4) == 1) {
+        if (Pokemon_IsOnBattleFrontierBanlist(v4) == 1) {
             continue;
         }
 
@@ -342,16 +342,16 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     partyMenu->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 2; v0++) {
-        partyMenu->unk_2C[v0] = param0->unk_06[v0];
+        partyMenu->selectionOrder[v0] = param0->unk_06[v0];
     }
 
-    partyMenu->unk_33 = 30;
+    partyMenu->reqLevel = 30;
     partyMenu->unk_32_0 = 1;
-    partyMenu->unk_32_4 = 1;
+    partyMenu->maxSelectionSlots = 1;
 
     if (param0->unk_04 == 1) {
         partyMenu->unk_32_0 = 2;
-        partyMenu->unk_32_4 = 2;
+        partyMenu->maxSelectionSlots = 2;
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -364,15 +364,15 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyMenu *partyMan;
+    PartyMenu *partyMenu;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return UnkEnum_0204F13C_2;
     }
 
-    partyMan = *(param0->unk_08);
+    partyMenu = *(param0->unk_08);
 
-    switch (partyMan->selectedMonSlot) {
+    switch (partyMenu->selectedMonSlot) {
     case 7:
         return UnkEnum_0204F13C_5;
 
@@ -383,11 +383,11 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    MI_CpuCopy8(partyMan->unk_2C, param0->unk_06, 2);
+    MI_CpuCopy8(partyMenu->selectionOrder, param0->unk_06, 2);
 
-    param0->unk_05 = partyMan->selectedMonSlot;
+    param0->unk_05 = partyMenu->selectedMonSlot;
 
-    Heap_Free(partyMan);
+    Heap_Free(partyMenu);
     *(param0->unk_08) = NULL;
     return UnkEnum_0204F13C_3;
 }

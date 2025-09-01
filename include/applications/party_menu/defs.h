@@ -73,32 +73,32 @@ enum PartyMenuWindow {
     PARTY_MENU_WIN_NAME_MEMB0 = 0,
     PARTY_MENU_WIN_LEVEL_MEMB0,
     PARTY_MENU_WIN_HP_MEMB0,
-    PARTY_MENU_WIN_HP_BAR_MEMB0,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB0,
     PARTY_MENU_WIN_COMMENT_MEMB0,
     PARTY_MENU_WIN_NAME_MEMB1,
     PARTY_MENU_WIN_LEVEL_MEMB1,
     PARTY_MENU_WIN_HP_MEMB1,
-    PARTY_MENU_WIN_HP_BAR_MEMB1,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB1,
     PARTY_MENU_WIN_COMMENT_MEMB1,
     PARTY_MENU_WIN_NAME_MEMB2,
     PARTY_MENU_WIN_LEVEL_MEMB2,
     PARTY_MENU_WIN_HP_MEMB2,
-    PARTY_MENU_WIN_HP_BAR_MEMB2,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB2,
     PARTY_MENU_WIN_COMMENT_MEMB2,
     PARTY_MENU_WIN_NAME_MEMB3,
     PARTY_MENU_WIN_LEVEL_MEMB3,
     PARTY_MENU_WIN_HP_MEMB3,
-    PARTY_MENU_WIN_HP_BAR_MEMB3,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB3,
     PARTY_MENU_WIN_COMMENT_MEMB3,
     PARTY_MENU_WIN_NAME_MEMB4,
     PARTY_MENU_WIN_LEVEL_MEMB4,
     PARTY_MENU_WIN_HP_MEMB4,
-    PARTY_MENU_WIN_HP_BAR_MEMB4,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB4,
     PARTY_MENU_WIN_COMMENT_MEMB4,
     PARTY_MENU_WIN_NAME_MEMB5,
     PARTY_MENU_WIN_LEVEL_MEMB5,
     PARTY_MENU_WIN_HP_MEMB5,
-    PARTY_MENU_WIN_HP_BAR_MEMB5,
+    PARTY_MENU_WIN_HEALTHBAR_MEMB5,
     PARTY_MENU_WIN_COMMENT_MEMB5,
     PARTY_MENU_WIN_UNK_30,
     PARTY_MENU_WIN_UNK_31,
@@ -110,6 +110,8 @@ enum PartyMenuWindow {
 
     NUM_PARTY_MENU_WINS,
 };
+
+#define PARTY_MENU_WIN_NUM_PER_MEMBER PARTY_MENU_WIN_COMMENT_MEMB0
 
 typedef struct PartyMenu {
     Party *party;
@@ -128,12 +130,12 @@ typedef struct PartyMenu {
     u16 learnedMove;
     u8 selectedMoveSlot;
     u8 unk_29; // These three fields (unk_29, unk_2A, unk_2B) are used exactly once in the code (sub_0203D578) which is itself only used once.
-    u8 unk_2A; // sub_0203D578 is used by ScrCmd_194 which is contest related so these fields are likely contest related too.
-    u8 unk_2B;
-    u8 unk_2C[6];
+    u8 contestType; // sub_0203D578 is used by ScrCmd_194 which is contest related so these fields are likely contest related too.
+    u8 contestRank;
+    u8 selectionOrder[MAX_PARTY_SIZE]; // 0 is unselected, 1-6 are 1 + the selection order for the party slot
     u8 unk_32_0 : 4;
-    u8 unk_32_4 : 4;
-    u8 unk_33;
+    u8 maxSelectionSlots : 4;
+    u8 reqLevel;
     int unk_34;
     u16 evoTargetSpecies;
     u8 padding_3A[2];
@@ -142,38 +144,38 @@ typedef struct PartyMenu {
 
 typedef struct PartyMenuMember {
     Strbuf *name;
-    u16 unk_04;
+    u16 species;
     u16 curHP;
     u16 maxHP;
     u16 level;
-    u16 unk_0C;
-    u16 unk_0E_0 : 12;
-    u16 unk_0E_12 : 1;
-    u16 unk_0E_13 : 2;
-    u16 unk_0E_15 : 1;
-    u8 unk_10;
-    u8 unk_11;
-    u16 unk_12;
-    s8 unk_14;
-    s8 unk_15;
+    u16 heldItem;
+    u16 statusIcon : 12;
+    u16 hideGenderMarker : 1;
+    u16 gender : 2;
+    u16 isContestEligible : 1;
+    u8 isEgg;
+    u8 form;
+    u16 ballSeal;
+    s8 panelXPos;
+    s8 panelYPos;
     s16 spriteXDelta;
     s16 spriteYDelta;
     s16 spriteXPos;
     s16 spriteYPos;
-    s16 unk_1E;
-    s16 unk_20;
-    Sprite *unk_24;
+    s16 itemXPos;
+    s16 itemYPos;
+    Sprite *sprite;
     u8 unk_28;
-    u8 unk_29;
+    u8 isPresent;
 } PartyMenuMember;
 
 typedef struct PartyMenuApplication {
     BgConfig *bgConfig;
     Window windows[NUM_PARTY_MENU_WINS];
     Window unk_254[1];
-    u16 unk_264[96];
-    u16 unk_324[96];
-    u16 unk_3E4[96];
+    u16 leadMemberPanel[96];
+    u16 backMemberPanel[96];
+    u16 noneMemberPanel[96];
     u16 colors[NUM_MENU_COLORS];
     PartyMenu *partyMenu;
     SpriteSystem *spriteSystem;
