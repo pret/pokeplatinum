@@ -45,7 +45,7 @@ _0050:
     GoTo _0078
 
 _006C:
-    ScrCmd_0D9 0
+    BufferTrainerClassFromAppearance 0
     Message 7
     GoTo _0078
 
@@ -64,8 +64,8 @@ _0078:
     GoToIfEq VAR_0x8008, 4, _00E9
     GoToIfEq VAR_0x8008, -2, _00E9
     ScrCmd_155 VAR_0x8004, VAR_0x8005
-    ScrCmd_344 0, VAR_0x8005
-    ScrCmd_346 0
+    BufferTrainerClassNameWithArticle 0, VAR_0x8005
+    CapitalizeFirstLetter 0
     Message 4
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _00F4
@@ -79,7 +79,7 @@ _00E9:
     End
 
 _00F4:
-    ScrCmd_344 0, VAR_0x8005
+    BufferTrainerClassNameWithArticle 0, VAR_0x8005
     Message 5
     SetFlag FLAG_UNK_0x0070
     ScrCmd_29C VAR_0x8004, VAR_0x8005

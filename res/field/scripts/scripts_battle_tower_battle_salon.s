@@ -156,10 +156,10 @@ _0275:
     GoToIfEq VAR_UNK_0x40DF, 2, _02D2
     SetVar VAR_MAP_LOCAL_9, 0
     ScrCmd_1DE VAR_MAP_LOCAL_9, 0, VAR_0x8004, VAR_0x8005
-    ScrCmd_341 0, VAR_0x8004, 0, 0
+    BufferSpeciesNameWithArticle 0, VAR_0x8004
     BufferMoveName 1, VAR_0x8005
     ScrCmd_1DE VAR_MAP_LOCAL_9, 1, VAR_0x8004, VAR_0x8005
-    ScrCmd_341 2, VAR_0x8004, 0, 0
+    BufferSpeciesNameWithArticle 2, VAR_0x8004
     BufferMoveName 3, VAR_0x8005
     Message 6
     ShowYesNoMenu VAR_RESULT

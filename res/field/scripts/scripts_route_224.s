@@ -58,7 +58,7 @@ _00B8:
     End
 
 _00D6:
-    ScrCmd_272 1
+    BufferTabletName 1
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -89,7 +89,7 @@ _0124:
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0222
     BufferPlayerName 0
-    ScrCmd_272 1
+    BufferTabletName 1
     Message 3
     ShowYesNoMenu VAR_RESULT
     CloseMessage
