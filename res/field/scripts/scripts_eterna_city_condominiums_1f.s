@@ -32,8 +32,8 @@ _0032:
     SetVar VAR_0x8005, VAR_RESULT
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00BE
-    ScrCmd_199 VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00C9
+    CheckIsPartyMonOutsider VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C9
     BufferPartyMonNickname 0, VAR_0x8005
     Message 2
     ShowYesNoMenu VAR_RESULT

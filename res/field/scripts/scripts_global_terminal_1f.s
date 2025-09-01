@@ -146,7 +146,7 @@ _01DE:
     End
 
 GlobalTerminal1f_CheckPartyCount:
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, GlobalTerminal1f_GTS_Exit_NotEnoughPokemon
     GoTo GlobalTerminal1f_CheckFreePartySlot
     End

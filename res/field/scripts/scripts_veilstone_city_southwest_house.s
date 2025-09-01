@@ -38,7 +38,7 @@ _000E:
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0
     Message 4
     SetFlag FLAG_UNK_0x0AAC
-    ScrCmd_1BA 3, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0
     TryGetRandomMassageGirlAccessory VAR_0x8004
     GoToIfEq VAR_0x8004, -1, _00F6
     Message 7

@@ -25,7 +25,7 @@ _002F:
 _003F:
     LockAll
     WaitTime 20, VAR_RESULT
-    ScrCmd_22F VAR_0x8004
+    CountPartyRibbons VAR_0x8004
     GoToIfLt VAR_0x8004, 10, _0078
     SetVar VAR_UNK_0x40A7, 1
     SetFlag FLAG_UNK_0x00FA

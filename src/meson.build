@@ -190,7 +190,7 @@ pokeplatinum_c = files(
     'scrcmd_money.c',
     'scrcmd_daycare.c',
     'scrcmd_amity_square.c',
-    'unk_0204CFFC.c',
+    'scrcmd_party.c',
     'unk_0204E240.c',
     'scrcmd_game_corner_prize.c',
     'scrcmd_system_flags.c',

@@ -106,7 +106,7 @@ _019F:
     End
 
 _01EB:
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _0262
     ScrCmd_143 0, 3
     ScrCmd_13F 9, VAR_RESULT
@@ -136,7 +136,7 @@ _0262:
     End
 
 _0274:
-    ScrCmd_1F6 VAR_RESULT, 30
+    CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
     GoToIfLt VAR_RESULT, 2, _0322
     ScrCmd_143 0, 2
     ScrCmd_13F 9, VAR_RESULT
@@ -217,7 +217,7 @@ _03B1:
     End
 
 _03F4:
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0741
     ScrCmd_2C7 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0753
@@ -328,7 +328,7 @@ _05AF:
     MessageVar VAR_RESULT
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _065E
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _068A
     CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0674
@@ -531,7 +531,7 @@ _08C7:
     Message 26
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _093A
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _094B
     ScrCmd_143 1, 0
     CloseMessage
@@ -567,7 +567,7 @@ _095C:
     Message 21
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0A06
-    ScrCmd_1F6 VAR_RESULT, 30
+    CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
     GoToIfLt VAR_RESULT, 2, _0A17
     ScrCmd_143 1, 0
     CloseMessage
@@ -635,7 +635,7 @@ _0A82:
     GoToIfEq VAR_RESULT, MENU_NO, _0A06
     ScrCmd_143 1, 0
     CloseMessage
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0730
     ScrCmd_144 VAR_RESULT
     GoToIfEq VAR_RESULT, 7, _0B78

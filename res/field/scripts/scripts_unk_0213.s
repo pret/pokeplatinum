@@ -133,7 +133,7 @@ Unk213_Unused:
 
 _01F2:
     SetVar VAR_0x8004, 2
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _020F
     GoTo _026A
 
@@ -146,7 +146,7 @@ _020F:
 
 _021A:
     SetVar VAR_0x8004, 3
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _0237
     GoTo _0290
 
@@ -159,7 +159,7 @@ _0237:
 
 _0242:
     SetVar VAR_0x8004, 4
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _025F
     GoTo _0290
 

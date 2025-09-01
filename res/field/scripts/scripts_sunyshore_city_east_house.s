@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_east_house.h"
+#include "generated/natures.h"
 
 
     ScriptEntry _0006
@@ -27,7 +28,7 @@ _002C:
     GoTo _006B
 
 _006B:
-    ScrCmd_213 VAR_0x8000, 12
+    FindPartySlotWithNature VAR_0x8000, NATURE_SERIOUS
     GoToIfNe VAR_0x8000, 0xFF, _00C5
     Message 1
     WaitABXPadPress
@@ -36,7 +37,7 @@ _006B:
     End
 
 _0089:
-    ScrCmd_213 VAR_0x8000, 14
+    FindPartySlotWithNature VAR_0x8000, NATURE_NAIVE
     GoToIfNe VAR_0x8000, 0xFF, _00E5
     Message 2
     WaitABXPadPress
@@ -45,7 +46,7 @@ _0089:
     End
 
 _00A7:
-    ScrCmd_213 VAR_0x8000, 24
+    FindPartySlotWithNature VAR_0x8000, NATURE_QUIRKY
     GoToIfNe VAR_0x8000, 0xFF, _0105
     Message 3
     WaitABXPadPress
