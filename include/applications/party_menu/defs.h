@@ -67,6 +67,12 @@ enum PartyMenuMode {
     PARTY_MENU_MODE_BATTLE_CASTLE,
 };
 
+enum PartyMenuType {
+    PARTY_MENU_TYPE_BASIC = 0,
+    PARTY_MENU_TYPE_DOUBLE_BATTLE,
+    PARTY_MENU_TYPE_MULTI_BATTLE,
+};
+
 #define PARTY_MENU_MODE_HIDE_CANCEL_FLAG (1 << 7)
 
 enum PartyMenuWindow {
@@ -123,7 +129,7 @@ typedef struct PartyMenu {
     FieldMoveContext *fieldMoveContext;
     FieldSystem *fieldSystem;
     u8 mode;
-    u8 unk_21;
+    u8 type;
     u8 selectedMonSlot;
     u8 menuSelectionResult;
     u16 usedItemID;

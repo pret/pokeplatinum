@@ -68,14 +68,25 @@
 
 FS_EXTERN_OVERLAY(overlay118);
 
-typedef struct UnkStruct_020F1DF8 {
+typedef struct MemberPanelTemplate {
     u16 panelX;
     u16 panelY;
     u16 speciesIconX;
     u16 speciesIconY;
     u16 ballSpriteX;
     u16 ballSpriteY;
-} UnkStruct_020F1DF8;
+} MemberPanelTemplate;
+
+enum PartyMenuCursorPosition {
+    POS_MEMBER_0 = 0,
+    POS_MEMBER_1,
+    POS_MEMBER_2,
+    POS_MEMBER_3,
+    POS_MEMBER_4,
+    POS_MEMBER_5,
+    POS_CONFIRM,
+    POS_CANCEL,
+};
 
 static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state);
 static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state);
@@ -134,11 +145,11 @@ static void sub_0207EAF4(void);
 static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(PartyMenuApplication *application);
 static int HandleOverlayCompletion(PartyMenuApplication *application);
-static void DrawMemberPanels_Standard(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
-static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
-static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
-static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
-static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template);
+static void DrawMemberPanels_Standard(PartyMenuApplication *application, const MemberPanelTemplate *templates);
+static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const MemberPanelTemplate *templates);
+static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const MemberPanelTemplate *templates);
+static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const MemberPanelTemplate *templates);
+static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const MemberPanelTemplate *templates);
 static void DrawEmptyMemberPanel(PartyMenuApplication *application, u8 slot, s16 x, s16 y);
 static u8 sub_0207FA24(PartyMenuApplication *application);
 static u8 sub_0207FBE0(PartyMenuApplication *application, u8 *param1, u8 *param2, u8 param3);
@@ -165,68 +176,71 @@ const ApplicationManagerTemplate gPokemonPartyAppTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE
 };
 
-static const UnkStruct_020F1DF8 Unk_020F1DF8[2][6] = {
+// clang-format off
+static const MemberPanelTemplate sMemberPanelTemplates[2][MAX_PARTY_SIZE] = {
     {
-        { 0x0, 0x0, 0x1E, 0x10, 0x10, 0xE },
-        { 0x10, 0x1, 0x9E, 0x18, 0x90, 0x16 },
-        { 0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E },
-        { 0x10, 0x7, 0x9E, 0x48, 0x90, 0x46 },
-        { 0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E },
-        { 0x10, 0xD, 0x9E, 0x78, 0x90, 0x76 },
+        { .panelX = 0,  .panelY = 0,  .speciesIconX = 30,  .speciesIconY = 16,  .ballSpriteX = 16,  .ballSpriteY = 14  },
+        { .panelX = 16, .panelY = 1,  .speciesIconX = 158, .speciesIconY = 24,  .ballSpriteX = 144, .ballSpriteY = 22  },
+        { .panelX = 0,  .panelY = 6,  .speciesIconX = 30,  .speciesIconY = 64,  .ballSpriteX = 16,  .ballSpriteY = 62  },
+        { .panelX = 16, .panelY = 7,  .speciesIconX = 158, .speciesIconY = 72,  .ballSpriteX = 144, .ballSpriteY = 70  },
+        { .panelX = 0,  .panelY = 12, .speciesIconX = 30,  .speciesIconY = 112, .ballSpriteX = 16,  .ballSpriteY = 110 },
+        { .panelX = 16, .panelY = 13, .speciesIconX = 158, .speciesIconY = 120, .ballSpriteX = 144, .ballSpriteY = 118 },
     },
     {
-        { 0x0, 0x0, 0x1E, 0x10, 0x10, 0xE },
-        { 0x10, 0x0, 0x9E, 0x10, 0x90, 0xE },
-        { 0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E },
-        { 0x10, 0x6, 0x9E, 0x40, 0x90, 0x3E },
-        { 0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E },
-        { 0x10, 0xC, 0x9E, 0x70, 0x90, 0x6E },
+        { .panelX = 0,  .panelY = 0,  .speciesIconX = 30,  .speciesIconY = 16,  .ballSpriteX = 16,  .ballSpriteY = 14  },
+        { .panelX = 16, .panelY = 0,  .speciesIconX = 158, .speciesIconY = 16,  .ballSpriteX = 144, .ballSpriteY = 14  },
+        { .panelX = 0,  .panelY = 6,  .speciesIconX = 30,  .speciesIconY = 64,  .ballSpriteX = 16,  .ballSpriteY = 62  },
+        { .panelX = 16, .panelY = 6,  .speciesIconX = 158, .speciesIconY = 64,  .ballSpriteX = 144, .ballSpriteY = 62  },
+        { .panelX = 0,  .panelY = 12, .speciesIconX = 30,  .speciesIconY = 112, .ballSpriteX = 16,  .ballSpriteY = 110 },
+        { .panelX = 16, .panelY = 12, .speciesIconX = 158, .speciesIconY = 112, .ballSpriteX = 144, .ballSpriteY = 110 },
     },
 };
 
-static const GridMenuCursorPosition Unk_020F1DB8[] = {
-    { 0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1 },
-    { 0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2 },
-    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
-    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
-    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x7, 0x3, 0x5 },
-    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x7, 0x4, 0x7 },
-    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
-    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0x5, 0x0 },
+// NOTE: The second pair of coordinates in these structure-tables are implicitly all 0s.
+static const GridMenuCursorPosition sCursorPosTable_Basic[] = {
+    [POS_MEMBER_0] = { .xCoord1 = 64,  .yCoord1 = 25,  .upIndex = 7, .downIndex = 2, .leftIndex = 7, .rightIndex = 1 },
+    [POS_MEMBER_1] = { .xCoord1 = 192, .yCoord1 = 33,  .upIndex = 7, .downIndex = 3, .leftIndex = 0, .rightIndex = 2 },
+    [POS_MEMBER_2] = { .xCoord1 = 64,  .yCoord1 = 73,  .upIndex = 0, .downIndex = 4, .leftIndex = 1, .rightIndex = 3 },
+    [POS_MEMBER_3] = { .xCoord1 = 192, .yCoord1 = 81,  .upIndex = 1, .downIndex = 5, .leftIndex = 2, .rightIndex = 4 },
+    [POS_MEMBER_4] = { .xCoord1 = 64,  .yCoord1 = 121, .upIndex = 2, .downIndex = 7, .leftIndex = 3, .rightIndex = 5 },
+    [POS_MEMBER_5] = { .xCoord1 = 192, .yCoord1 = 129, .upIndex = 3, .downIndex = 7, .leftIndex = 4, .rightIndex = 7 },
+    [POS_CONFIRM]  = { .xCoord1 = 0,   .yCoord1 = 0,   .upIndex = 0, .downIndex = 0, .leftIndex = 0, .rightIndex = 0 },
+    [POS_CANCEL]   = { .xCoord1 = 224, .yCoord1 = 168, .upIndex = 5, .downIndex = 1, .leftIndex = 5, .rightIndex = 0 },
 };
 
-static const GridMenuCursorPosition Unk_020F1CF8[] = {
-    { 0x40, 0x19, 0x0, 0x0, 0x4, 0x2, 0x1, 0x1 },
-    { 0xC0, 0x19, 0x0, 0x0, 0x7, 0x3, 0x0, 0x0 },
-    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x3, 0x3 },
-    { 0xC0, 0x49, 0x0, 0x0, 0x1, 0x5, 0x2, 0x2 },
-    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x5, 0x5 },
-    { 0xC0, 0x79, 0x0, 0x0, 0x3, 0x7, 0x4, 0x4 },
-    { 0xE0, 0xA8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
-    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0xFF, 0xFF },
+static const GridMenuCursorPosition sCursorPosTable_MultiBattle[] = {
+    [POS_MEMBER_0] = { .xCoord1 = 64,  .yCoord1 = 25,  .upIndex = 4, .downIndex = 2, .leftIndex = 1,  .rightIndex = 1  },
+    [POS_MEMBER_1] = { .xCoord1 = 192, .yCoord1 = 25,  .upIndex = 7, .downIndex = 3, .leftIndex = 0,  .rightIndex = 0  },
+    [POS_MEMBER_2] = { .xCoord1 = 64,  .yCoord1 = 73,  .upIndex = 0, .downIndex = 4, .leftIndex = 3,  .rightIndex = 3  },
+    [POS_MEMBER_3] = { .xCoord1 = 192, .yCoord1 = 73,  .upIndex = 1, .downIndex = 5, .leftIndex = 2,  .rightIndex = 2  },
+    [POS_MEMBER_4] = { .xCoord1 = 64,  .yCoord1 = 121, .upIndex = 2, .downIndex = 0, .leftIndex = 5,  .rightIndex = 5  },
+    [POS_MEMBER_5] = { .xCoord1 = 192, .yCoord1 = 121, .upIndex = 3, .downIndex = 7, .leftIndex = 4,  .rightIndex = 4  },
+    [POS_CONFIRM]  = { .xCoord1 = 224, .yCoord1 = 168, .upIndex = 0, .downIndex = 0, .leftIndex = 0,  .rightIndex = 0  },
+    [POS_CANCEL]   = { .xCoord1 = 224, .yCoord1 = 168, .upIndex = 5, .downIndex = 1, .leftIndex = -1, .rightIndex = -1 },
 };
 
-static const GridMenuCursorPosition Unk_020F1D38[] = {
-    { 0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1 },
-    { 0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2 },
-    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
-    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
-    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x6, 0x3, 0x5 },
-    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x6, 0x4, 0x6 },
-    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x7, 0x5, 0x7 },
-    { 0xE0, 0xB8, 0x0, 0x0, 0x6, 0x1, 0x6, 0x0 },
+static const GridMenuCursorPosition sCursorPosTable_SelectOrder[] = {
+    [POS_MEMBER_0] = { .xCoord1 = 64,  .yCoord1 = 25,  .upIndex = 7, .downIndex = 2, .leftIndex = 7, .rightIndex = 1 },
+    [POS_MEMBER_1] = { .xCoord1 = 192, .yCoord1 = 33,  .upIndex = 7, .downIndex = 3, .leftIndex = 0, .rightIndex = 2 },
+    [POS_MEMBER_2] = { .xCoord1 = 64,  .yCoord1 = 73,  .upIndex = 0, .downIndex = 4, .leftIndex = 1, .rightIndex = 3 },
+    [POS_MEMBER_3] = { .xCoord1 = 192, .yCoord1 = 81,  .upIndex = 1, .downIndex = 5, .leftIndex = 2, .rightIndex = 4 },
+    [POS_MEMBER_4] = { .xCoord1 = 64,  .yCoord1 = 121, .upIndex = 2, .downIndex = 6, .leftIndex = 3, .rightIndex = 5 },
+    [POS_MEMBER_5] = { .xCoord1 = 192, .yCoord1 = 129, .upIndex = 3, .downIndex = 6, .leftIndex = 4, .rightIndex = 6 },
+    [POS_CONFIRM]  = { .xCoord1 = 224, .yCoord1 = 168, .upIndex = 5, .downIndex = 7, .leftIndex = 5, .rightIndex = 7 },
+    [POS_CANCEL]   = { .xCoord1 = 224, .yCoord1 = 184, .upIndex = 6, .downIndex = 1, .leftIndex = 6, .rightIndex = 0 },
 };
 
-static const GridMenuCursorPosition Unk_020F1D78[] = {
-    { 0x40, 0x19, 0x0, 0x0, 0x5, 0x2, 0x5, 0x1 },
-    { 0xC0, 0x21, 0x0, 0x0, 0x5, 0x3, 0x0, 0x2 },
-    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
-    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
-    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x3, 0x5 },
-    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x0, 0x4, 0x0 },
-    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
+static const GridMenuCursorPosition sCursorPosTable_SelectEgg[] = {
+    [POS_MEMBER_0] = { .xCoord1 = 64,  .yCoord1 = 25,  .upIndex = 5, .downIndex = 2, .leftIndex = 5, .rightIndex = 1 },
+    [POS_MEMBER_1] = { .xCoord1 = 192, .yCoord1 = 33,  .upIndex = 5, .downIndex = 3, .leftIndex = 0, .rightIndex = 2 },
+    [POS_MEMBER_2] = { .xCoord1 = 64,  .yCoord1 = 73,  .upIndex = 0, .downIndex = 4, .leftIndex = 1, .rightIndex = 3 },
+    [POS_MEMBER_3] = { .xCoord1 = 192, .yCoord1 = 81,  .upIndex = 1, .downIndex = 5, .leftIndex = 2, .rightIndex = 4 },
+    [POS_MEMBER_4] = { .xCoord1 = 64,  .yCoord1 = 121, .upIndex = 2, .downIndex = 0, .leftIndex = 3, .rightIndex = 5 },
+    [POS_MEMBER_5] = { .xCoord1 = 192, .yCoord1 = 129, .upIndex = 3, .downIndex = 0, .leftIndex = 4, .rightIndex = 0 },
+    [POS_CONFIRM]  = { .xCoord1 = 0,   .yCoord1 = 0,   .upIndex = 0, .downIndex = 0, .leftIndex = 0, .rightIndex = 0 },
+    [POS_CANCEL]   = { .xCoord1 = 0,   .yCoord1 = 0,   .upIndex = 0, .downIndex = 0, .leftIndex = 0, .rightIndex = 0 },
 };
+// clang-format on
 
 static const u16 Unk_020F1CB0[] = {
     0xF,
@@ -1008,23 +1022,23 @@ static void SetupRequestedMode(PartyMenuApplication *application)
 {
     u8 flags = PARTY_MENU_SHOW_ALL;
 
-    if (application->partyMenu->unk_21 == 2) {
-        application->cursorPosTable = Unk_020F1CF8;
+    if (application->partyMenu->type == PARTY_MENU_TYPE_MULTI_BATTLE) {
+        application->cursorPosTable = sCursorPosTable_MultiBattle;
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
-        application->cursorPosTable = Unk_020F1D38;
+        application->cursorPosTable = sCursorPosTable_SelectOrder;
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
-        application->cursorPosTable = Unk_020F1D78;
+        application->cursorPosTable = sCursorPosTable_SelectEgg;
     } else {
-        application->cursorPosTable = Unk_020F1DB8;
+        application->cursorPosTable = sCursorPosTable_Basic;
     }
 
-    if (application->partyMenu->mode != 2
-        && application->partyMenu->mode != 17
-        && application->partyMenu->mode != 23
-        && application->partyMenu->mode != 22) {
+    if (application->partyMenu->mode != PARTY_MENU_MODE_SELECT_CONFIRM
+        && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_TOWER
+        && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_CASTLE
+        && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_HALL) {
         Sprite_SetDrawFlag(application->sprites[8], FALSE);
         Sprite_SetAnim(application->sprites[9], 0);
 
@@ -1164,7 +1178,7 @@ const u16 *sub_0207F248(PartyMenuApplication *application)
 static void DrawMemberPanel(PartyMenuApplication *application, u8 slot, u8 panelXPos, u8 panelYPos, u8 showHPBar)
 {
     const u16 *panel;
-    if (slot == 0 || (application->partyMenu->unk_21 != 0 && slot == 1)) {
+    if (slot == 0 || (application->partyMenu->type != 0 && slot == 1)) {
         panel = application->leadMemberPanel;
     } else {
         panel = application->backMemberPanel;
@@ -1196,153 +1210,153 @@ static void DrawMemberPanel(PartyMenuApplication *application, u8 slot, u8 panel
 
 static void SetupRequestedModePanels(PartyMenuApplication *application)
 {
-    const UnkStruct_020F1DF8 *template;
+    const MemberPanelTemplate *templates;
 
-    if (application->partyMenu->unk_21 == 2) {
-        template = Unk_020F1DF8[1];
+    if (application->partyMenu->type == PARTY_MENU_TYPE_MULTI_BATTLE) {
+        templates = sMemberPanelTemplates[1];
     } else {
-        template = Unk_020F1DF8[0];
+        templates = sMemberPanelTemplates[0];
     }
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) {
-        DrawMemberPanels_UsingEvoItem(application, template);
+        DrawMemberPanels_UsingEvoItem(application, templates);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) {
-        DrawMemberPanels_TeachingMove(application, template);
+        DrawMemberPanels_TeachingMove(application, templates);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_CONTEST) {
-        DrawMemberPanels_EnteringContest(application, template);
+        DrawMemberPanels_EnteringContest(application, templates);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
         || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
-        DrawMemberPanels_SelectingOrder(application, template);
+        DrawMemberPanels_SelectingOrder(application, templates);
     } else {
-        DrawMemberPanels_Standard(application, template);
+        DrawMemberPanels_Standard(application, templates);
     }
 
     Bg_ScheduleTilemapTransfer(application->bgConfig, BG_LAYER_MAIN_2);
     Bg_ScheduleTilemapTransfer(application->bgConfig, BG_LAYER_SUB_0);
 }
 
-static void DrawMemberPanels_Standard(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
+static void DrawMemberPanels_Standard(PartyMenuApplication *application, const MemberPanelTemplate *templates)
 {
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
     for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
         if (PartyMenu_LoadMember(application, slot) == TRUE) {
             if (application->partyMembers[slot].isEgg == TRUE) {
-                DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+                DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, FALSE);
             } else {
-                DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, TRUE);
+                DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, TRUE);
             }
 
             PartyMenu_DrawMemberPanelData(application, slot);
-            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
-            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, templates[slot].ballSpriteX, templates[slot].ballSpriteY);
             PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
-            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_AlignMemberHeldItem(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY);
             PartyMenu_DrawMemberBallSeal(application, slot);
             PartyMenu_AlignMemberBallSeal(application, slot);
             PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
             DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
+            DrawEmptyMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY);
         }
     }
 
     NARC_dtor(iconNarc);
 }
 
-static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
+static void DrawMemberPanels_UsingEvoItem(PartyMenuApplication *application, const MemberPanelTemplate *templates)
 {
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
     for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
         if (PartyMenu_LoadMember(application, slot) == TRUE) {
-            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, FALSE);
             PartyMenu_PrintMemberComment_CanUseEvoItem(application, slot);
-            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
-            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, templates[slot].ballSpriteX, templates[slot].ballSpriteY);
             PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
-            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_AlignMemberHeldItem(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY);
             PartyMenu_DrawMemberBallSeal(application, slot);
             PartyMenu_AlignMemberBallSeal(application, slot);
             PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
             DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
+            DrawEmptyMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY);
         }
     }
 
     NARC_dtor(iconNarc);
 }
 
-static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
+static void DrawMemberPanels_TeachingMove(PartyMenuApplication *application, const MemberPanelTemplate *templates)
 {
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
     for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
         if (PartyMenu_LoadMember(application, slot) == TRUE) {
-            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, FALSE);
             PartyMenu_PrintMemberComment_CanLearnMove(application, slot);
-            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
-            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, templates[slot].ballSpriteX, templates[slot].ballSpriteY);
             PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
-            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_AlignMemberHeldItem(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY);
             PartyMenu_DrawMemberBallSeal(application, slot);
             PartyMenu_AlignMemberBallSeal(application, slot);
             PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
             DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
+            DrawEmptyMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY);
         }
     }
 
     NARC_dtor(iconNarc);
 }
 
-static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
+static void DrawMemberPanels_EnteringContest(PartyMenuApplication *application, const MemberPanelTemplate *templates)
 {
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
     for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
         if (PartyMenu_LoadMember(application, slot) == TRUE) {
-            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, FALSE);
             PartyMenu_PrintMemberComment_IsContestEligible(application, slot);
-            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
-            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, templates[slot].ballSpriteX, templates[slot].ballSpriteY);
             PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
-            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_AlignMemberHeldItem(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY);
             PartyMenu_DrawMemberBallSeal(application, slot);
             PartyMenu_AlignMemberBallSeal(application, slot);
             PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
             DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
+            DrawEmptyMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY);
         }
     }
 
     NARC_dtor(iconNarc);
 }
 
-static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const UnkStruct_020F1DF8 *template)
+static void DrawMemberPanels_SelectingOrder(PartyMenuApplication *application, const MemberPanelTemplate *templates)
 {
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
 
     for (u8 slot = 0; slot < MAX_PARTY_SIZE; slot++) {
         if (PartyMenu_LoadMember(application, slot) == TRUE) {
-            DrawMemberPanel(application, slot, template[slot].panelX, template[slot].panelY, FALSE);
+            DrawMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY, FALSE);
             PartyMenu_PrintMemberNameAndLevel(application, slot);
             PartyMenu_PrintSelectionEligibility(application, slot);
-            PartyMenu_DrawMemberSpeciesIcon(application, slot, template[slot].speciesIconX, template[slot].speciesIconY, iconNarc);
-            PartyMenu_DrawMemberPokeBall(application, slot, template[slot].ballSpriteX, template[slot].ballSpriteY);
+            PartyMenu_DrawMemberSpeciesIcon(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY, iconNarc);
+            PartyMenu_DrawMemberPokeBall(application, slot, templates[slot].ballSpriteX, templates[slot].ballSpriteY);
             PartyMenu_DrawMemberHeldItem(application, slot, application->partyMembers[slot].heldItem);
-            PartyMenu_AlignMemberHeldItem(application, slot, template[slot].speciesIconX, template[slot].speciesIconY);
+            PartyMenu_AlignMemberHeldItem(application, slot, templates[slot].speciesIconX, templates[slot].speciesIconY);
             PartyMenu_DrawMemberBallSeal(application, slot);
             PartyMenu_AlignMemberBallSeal(application, slot);
             PartyMenu_DrawMemberStatusCondition(application, slot, application->partyMembers[slot].statusIcon);
             DrawMemberTouchScreenButton(application, slot, 0);
         } else {
-            DrawEmptyMemberPanel(application, slot, template[slot].panelX, template[slot].panelY);
+            DrawEmptyMemberPanel(application, slot, templates[slot].panelX, templates[slot].panelY);
         }
     }
 
@@ -1400,7 +1414,7 @@ void PartyMenu_UpdateSlotPalette(PartyMenuApplication *application, u8 slot)
 
 static u8 sub_0207F984(PartyMenuApplication *application, u8 param1)
 {
-    if ((application->partyMenu->unk_21 == 2) && ((param1 & 1) != 0)) {
+    if ((application->partyMenu->type == PARTY_MENU_TYPE_MULTI_BATTLE) && ((param1 & 1) != 0)) {
         return 1;
     }
 
@@ -1411,7 +1425,7 @@ static void SetupMenuCursor(PartyMenuApplication *application)
 {
     u8 x, y;
     GridMenuCursor_CheckNavigation(application->cursorPosTable, &x, &y, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-    Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->unk_21, application->currPartySlot));
+    Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, application->currPartySlot));
     Sprite_SetPositionXY(application->sprites[6], x, y);
 }
 
@@ -1481,7 +1495,7 @@ static u8 sub_0207FA24(PartyMenuApplication *application)
         if ((v0 == 6) || (v0 == 7)) {
             Sprite_SetDrawFlag(application->sprites[6], FALSE);
         } else {
-            Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->unk_21, v0));
+            Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, v0));
             Sprite_SetDrawFlag(application->sprites[6], TRUE);
             Sprite_SetPositionXY(application->sprites[6], v2, v3);
         }
@@ -1569,7 +1583,7 @@ static u8 sub_0207FC94(PartyMenuApplication *application)
         }
 
         GridMenuCursor_CheckNavigation(application->cursorPosTable, &v1, &v2, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->unk_21, application->currPartySlot));
+        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, application->currPartySlot));
         Sprite_SetDrawFlag(application->sprites[6], TRUE);
         Sprite_SetPositionXY(application->sprites[6], v1, v2);
 
@@ -1596,7 +1610,7 @@ void sub_0207FD68(PartyMenuApplication *application, u8 partySlot)
         u8 v0, v1;
 
         GridMenuCursor_CheckNavigation(application->cursorPosTable, &v0, &v1, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->unk_21, partySlot));
+        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, partySlot));
         Sprite_SetDrawFlag(application->sprites[6], TRUE);
         Sprite_SetPositionXY(application->sprites[6], v0, v1);
     }

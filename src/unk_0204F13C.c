@@ -336,7 +336,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMenu->unk_21 = 0;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = PARTY_MENU_MODE_BATTLE_HALL;
     partyMenu->fieldSystem = fieldSystem;
     partyMenu->selectedMonSlot = param0->unk_05;

@@ -1270,7 +1270,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMenu->fieldMoveContext = &menu->fieldMoveContext;
-        partyMenu->unk_21 = 0;
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
         partyMenu->mode = PARTY_MENU_MODE_GIVE_ITEM;
         partyMenu->usedItemID = BagSystem_GetItem(v2);
         partyMenu->fieldSystem = fieldSystem;
@@ -1306,7 +1306,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
             partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
             partyMenu->fieldMoveContext = &menu->fieldMoveContext;
-            partyMenu->unk_21 = 0;
+            partyMenu->type = PARTY_MENU_TYPE_BASIC;
             partyMenu->usedItemID = BagSystem_GetItem(v2);
             partyMenu->selectedMonSlot = (u8)v9;
             partyMenu->fieldSystem = fieldSystem;
@@ -1565,7 +1565,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMenu->fieldMoveContext = &menu->fieldMoveContext;
-        partyMenu->unk_21 = 0;
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
         partyMenu->fieldSystem = fieldSystem;
 
         if (v4->unk_00 != 0) {
@@ -1772,7 +1772,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // 
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMenu->fieldMoveContext = &menu->fieldMoveContext;
-    partyMenu->unk_21 = 0;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->usedItemID = v0->unk_00;
     partyMenu->selectedMonSlot = v0->unk_02;
     partyMenu->mode = mode;

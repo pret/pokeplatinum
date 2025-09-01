@@ -1203,7 +1203,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int mode)
         partyMenu->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
-        partyMenu->unk_21 = 0;
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
         partyMenu->mode = mode;
         partyMenu->usedItemID = param0->unk_1C[param0->unk_18].item;
 

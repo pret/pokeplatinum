@@ -358,7 +358,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         partyMenu->bag = SaveData_GetBag(v0->saveData);
         partyMenu->mailbox = SaveData_GetMailbox(v0->saveData);
         partyMenu->selectedMonSlot = 0;
-        partyMenu->unk_21 = 0;
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
         partyMenu->mode = PARTY_MENU_MODE_BALL_SEAL;
         partyMenu->options = v1->options;
 

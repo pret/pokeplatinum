@@ -436,7 +436,7 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
     Sprite_SetExplicitPalette2(param0->sprites[6], 0);
     Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
     Sprite_SetPositionXY(param0->sprites[7], v0, v1);
-    Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->unk_21, param0->switchTargetSlot) + 2);
+    Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
     Sprite_SetDrawFlag(param0->sprites[7], TRUE);
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
     Window_EraseMessageBox(&param0->windows[33], 1);
@@ -1014,7 +1014,7 @@ static int sub_02084A18(PartyMenuApplication *param0)
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
         Sprite_SetPositionXY(param0->sprites[7], v0, v1);
-        Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->unk_21, param0->switchTargetSlot) + 2);
+        Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
         Sprite_SetDrawFlag(param0->sprites[7], TRUE);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
         PartyMenu_PrintShortMessage(param0, 36, 1);

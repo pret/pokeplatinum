@@ -134,7 +134,7 @@ void PartyMenu_AddWindows(PartyMenuApplication *application)
     AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB2], &templates[10]);
     AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB4], &templates[20]);
 
-    if (application->partyMenu->unk_21 == 2) {
+    if (application->partyMenu->type == PARTY_MENU_TYPE_MULTI_BATTLE) {
         AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB1], &templates[30]);
         AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB3], &templates[35]);
         AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB5], &templates[40]);

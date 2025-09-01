@@ -336,7 +336,7 @@ void sub_0208327C(PartyMenuApplication *param0, u8 param1, u8 param2)
     u8 v0, v1;
 
     GridMenuCursor_GetFirstCoords(&param0->cursorPosTable[param1], &v0, &v1);
-    Sprite_SetAnim(param0->sprites[6], sub_020805D0(param0->partyMenu->unk_21, param1));
+    Sprite_SetAnim(param0->sprites[6], sub_020805D0(param0->partyMenu->type, param1));
     Sprite_SetDrawFlag(param0->sprites[6], TRUE);
     Sprite_SetPositionXY(param0->sprites[6], v0, v1);
     Sprite_SetExplicitPalette2(param0->sprites[6], param2);

@@ -287,7 +287,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
     partyMenu->party = param0->unk_0C->unk_10;
     partyMenu->bag = param0->unk_0C->unk_14;
-    partyMenu->unk_21 = 0;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = PARTY_MENU_MODE_FEED_POFFIN;
     partyMenu->options = param0->unk_0C->options;
 

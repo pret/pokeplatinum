@@ -156,7 +156,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
     partyMenu->battleRegulation = (void *)param0->fieldSystem->unk_B0;
     partyMenu->party = SaveData_GetParty(param0->fieldSystem->saveData);
     partyMenu->bag = SaveData_GetBag(param0->fieldSystem->saveData);
-    partyMenu->unk_21 = 0;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = PARTY_MENU_MODE_SELECT_CONFIRM;
 
     if (param0->fieldSystem->unk_B0) {
