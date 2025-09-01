@@ -424,7 +424,7 @@ void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
 {
     u16 v0 = 0;
-    PartyManagementData *partyMan = *param1;
+    PartyMenu *partyMan = *param1;
     Party *v2;
     Pokemon *v3;
 

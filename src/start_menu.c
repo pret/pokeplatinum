@@ -1009,9 +1009,9 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
-    PartyManagementData *partyMan = (PartyManagementData *)Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMan = (PartyMenu *)Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memcpy(partyMan, menu->taskData, sizeof(PartyManagementData));
+    memcpy(partyMan, menu->taskData, sizeof(PartyMenu));
     Heap_Free(menu->taskData);
 
     switch (partyMan->menuSelectionResult) {
@@ -1260,10 +1260,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         sub_0203C2D8(taskMan, BagSystem_GetItem(v2));
         break;
     case 2: {
-        PartyManagementData *partyMan;
+        PartyMenu *partyMan;
 
-        partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
-        memset(partyMan, 0, sizeof(PartyManagementData));
+        partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+        memset(partyMan, 0, sizeof(PartyMenu));
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
@@ -1296,10 +1296,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             menu->unk_260 = sub_0203C540(item, 0, (u8)v9);
             sub_0203B674(menu, sub_0203C558);
         } else {
-            PartyManagementData *partyMan;
+            PartyMenu *partyMan;
 
-            partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
-            memset(partyMan, 0, sizeof(PartyManagementData));
+            partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+            memset(partyMan, 0, sizeof(PartyMenu));
 
             partyMan->party = party;
             partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
@@ -1552,13 +1552,13 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
     switch (v2->mode) {
     case SUMMARY_MODE_SELECT_MOVE: {
-        PartyManagementData *partyMan;
+        PartyMenu *partyMan;
         UnkStruct_0203C1C8 *v4;
 
-        partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+        partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
         v4 = (UnkStruct_0203C1C8 *)menu->unk_260;
 
-        memset(partyMan, 0, sizeof(PartyManagementData));
+        memset(partyMan, 0, sizeof(PartyMenu));
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
@@ -1764,9 +1764,9 @@ BOOL sub_0203C558(FieldTask *taskMan)
 static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
 {
     UnkStruct_0203C540 *v0 = menu->unk_260;
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyManagementData));
+    memset(partyMan, 0, sizeof(PartyMenu));
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);

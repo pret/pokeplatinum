@@ -104,7 +104,7 @@ typedef struct {
     UnkStruct_02097728 *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
-    PartyManagementData *unk_1B4;
+    PartyMenu *unk_1B4;
 } UnkStruct_02072334;
 
 typedef struct {
@@ -498,7 +498,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -578,7 +578,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -1192,12 +1192,12 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 
 static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 {
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
 
     switch (param0->unk_12) {
     case 0:
-        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+        MI_CpuClear8(partyMan, sizeof(PartyMenu));
 
         partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));

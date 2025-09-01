@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 *unk_28;
     FieldSystem *fieldSystem;
-    PartyManagementData *unk_30;
+    PartyMenu *unk_30;
     PokemonSummary *unk_34;
 } UnkStruct_0209C1EC;
 

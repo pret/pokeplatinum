@@ -250,9 +250,9 @@ static BOOL sub_0204FDE8(FieldTask *param0)
 static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2)
 {
     u8 v0;
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMan, sizeof(PartyMenu));
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
@@ -287,7 +287,7 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;

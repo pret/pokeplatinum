@@ -49,7 +49,7 @@
 
 typedef struct {
     PokemonSummary *unk_00;
-    PartyManagementData *unk_04;
+    PartyMenu *unk_04;
     UnkFuncPtr_0205AB10 *unk_08;
     Strbuf *unk_0C;
     Strbuf *unk_10;
@@ -148,9 +148,9 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
+    PartyMenu *partyMan = Heap_Alloc(heapID, sizeof(PartyMenu));
 
-    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+    MI_CpuClear8(partyMan, sizeof(PartyMenu));
 
     partyMan->options = SaveData_GetOptions(param0->fieldSystem->saveData);
     partyMan->battleRegulation = (void *)param0->fieldSystem->unk_B0;

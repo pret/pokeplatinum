@@ -70,10 +70,10 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
     SaveData *saveData;
-    PartyManagementData *partyMan = Heap_AllocAtEnd(heapID, sizeof(PartyManagementData));
+    PartyMenu *partyMan = Heap_AllocAtEnd(heapID, sizeof(PartyMenu));
 
     saveData = fieldSystem->saveData;
-    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+    MI_CpuClear8(partyMan, sizeof(PartyMenu));
 
     partyMan->options = SaveData_GetOptions(saveData);
     partyMan->party = SaveData_GetParty(saveData);
@@ -98,7 +98,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;

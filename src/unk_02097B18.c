@@ -58,7 +58,7 @@ typedef struct {
     UnkStruct_ov76_0223DE00 *unk_00;
     UnkStruct_02097F38_sub1 *unk_04;
     UnkStruct_02097F18 *unk_08;
-    PartyManagementData *unk_0C;
+    PartyMenu *unk_0C;
     SaveData *saveData;
     int unk_14;
 } UnkStruct_02097F38;
@@ -352,7 +352,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyManagementData *partyMan = v0->unk_0C;
+        PartyMenu *partyMan = v0->unk_0C;
 
         partyMan->party = v1->unk_1C;
         partyMan->bag = SaveData_GetBag(v0->saveData);
@@ -366,7 +366,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyManagementData *partyMan = v0->unk_0C;
+        PartyMenu *partyMan = v0->unk_0C;
         Pokemon *v8;
         BallCapsule *v9;
         BallSeal *v10;
@@ -417,8 +417,8 @@ void sub_020980DC(FieldTask *param0, SaveData *saveData)
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
     v0->unk_08->options = SaveData_GetOptions(saveData);
     v0->unk_08->saveData = saveData;
-    v0->unk_0C = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
-    memset(v0->unk_0C, 0, sizeof(PartyManagementData));
+    v0->unk_0C = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    memset(v0->unk_0C, 0, sizeof(PartyMenu));
 
     FieldTask_InitCall(param0, sub_02097F38, v0);
 }

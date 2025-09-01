@@ -37,9 +37,9 @@ typedef struct OverlayMetadata_t {
     ParticleSystem *unk_18;
 } OverlayMetadata;
 
-static void ov118_021D0F70(GameWindowLayout *param0);
-static void ov118_021D0F88(GameWindowLayout *param0);
-static void ov118_021D0FB8(GameWindowLayout *param0);
+static void ov118_021D0F70(PartyMenuApplication *param0);
+static void ov118_021D0F88(PartyMenuApplication *param0);
+static void ov118_021D0FB8(PartyMenuApplication *param0);
 static void ov118_021D0FDC(OverlayMetadata *param0);
 static void ov118_021D1028(OverlayMetadata *param0);
 static int ov118_021D10E8(void);
@@ -57,7 +57,7 @@ static const fx32 Unk_ov118_021D1170[][2] = {
     { 0x1388, 0xFFFFFFFFFFFFEE6C }
 };
 
-void ov118_021D0D80(GameWindowLayout *param0)
+void ov118_021D0D80(PartyMenuApplication *param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
@@ -66,10 +66,10 @@ void ov118_021D0D80(GameWindowLayout *param0)
     param0->unk_B24->unk_14 = param0->partySlot;
 }
 
-int ov118_021D0DBC(GameWindowLayout *param0)
+int ov118_021D0DBC(PartyMenuApplication *param0)
 {
     OverlayMetadata *v0 = param0->unk_B24;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->partySlot);
 
     switch (v0->unk_00) {
     case 0: {
@@ -92,7 +92,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->partyManagementData->fieldSystem)), v1);
+        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->partyMenu->fieldSystem)), v1);
     }
         v0->unk_00++;
         break;
@@ -150,7 +150,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     case 10:
         if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
             ov118_021D0F70(param0);
-            param0->partyManagementData->menuSelectionResult = 0;
+            param0->partyMenu->menuSelectionResult = 0;
             return 1;
         }
 
@@ -160,13 +160,13 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     return 0;
 }
 
-static void ov118_021D0F70(GameWindowLayout *param0)
+static void ov118_021D0F70(PartyMenuApplication *param0)
 {
     Heap_Free(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
-static void ov118_021D0F88(GameWindowLayout *param0)
+static void ov118_021D0F88(PartyMenuApplication *param0)
 {
     sub_0207EA74(param0, 0);
     ov118_021D0FDC(param0->unk_B24);
@@ -174,7 +174,7 @@ static void ov118_021D0F88(GameWindowLayout *param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 31, 0);
 }
 
-static void ov118_021D0FB8(GameWindowLayout *param0)
+static void ov118_021D0FB8(PartyMenuApplication *param0)
 {
     ov118_021D110C(param0->unk_B24);
     sub_0207EA74(param0, 1);

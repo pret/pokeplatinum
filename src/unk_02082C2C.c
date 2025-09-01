@@ -23,7 +23,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
-void sub_02082C2C(GameWindowLayout *param0)
+void sub_02082C2C(PartyMenuApplication *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -71,13 +71,13 @@ void sub_02082C2C(GameWindowLayout *param0)
     }
 }
 
-void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, NARC *param4)
+void sub_02082CEC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3, NARC *param4)
 {
     Pokemon *v0;
     SpriteTemplateFromResourceHeader v1;
     u32 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
 
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
@@ -102,7 +102,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     param0->unk_704[param1].unk_24 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &v1);
 }
 
-void sub_02082DA8(GameWindowLayout *param0, u8 param1)
+void sub_02082DA8(PartyMenuApplication *param0, u8 param1)
 {
     Pokemon *v0;
     NARC *v1;
@@ -112,7 +112,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     NNSG2dCharacterData *v6;
     BOOL v7;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
@@ -156,7 +156,7 @@ static const SpriteTemplateFromResourceHeader Unk_020F20C0[] = {
     { 0xB, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DSUB, 0x0, 0x0, 0x0, 0x0 }
 };
 
-void sub_02082E58(GameWindowLayout *param0)
+void sub_02082E58(PartyMenuApplication *param0)
 {
     u32 v0;
 
@@ -179,7 +179,7 @@ void sub_02082E58(GameWindowLayout *param0)
     Sprite_SetDrawFlag(param0->unk_5B0[28], FALSE);
 }
 
-void sub_02082FAC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3)
+void sub_02082FAC(PartyMenuApplication *param0, u8 param1, u16 param2, u16 param3)
 {
     SpriteTemplateFromResourceHeader v0;
 
@@ -199,13 +199,13 @@ void sub_02082FAC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3)
     param0->unk_5B0[0 + param1] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &v0);
 }
 
-void sub_02082FF4(GameWindowLayout *param0)
+void sub_02082FF4(PartyMenuApplication *param0)
 {
     SpriteSystem_DestroySpriteManager(param0->unk_5A8, param0->unk_5AC);
     SpriteSystem_Free(param0->unk_5A8);
 }
 
-void sub_02083014(GameWindowLayout *param0, u8 param1, u8 param2)
+void sub_02083014(PartyMenuApplication *param0, u8 param1, u8 param2)
 {
     Sprite **v0 = &param0->unk_5B0[10 + param1];
 
@@ -218,7 +218,7 @@ void sub_02083014(GameWindowLayout *param0, u8 param1, u8 param2)
     Sprite_SetDrawFlag(*v0, TRUE);
 }
 
-void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
+void sub_02083040(PartyMenuApplication *param0, u8 param1, u16 param2)
 {
     Sprite **v0 = &param0->unk_5B0[16 + param1];
 
@@ -236,7 +236,7 @@ void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
     Sprite_SetDrawFlag(*v0, TRUE);
 }
 
-void sub_02083080(GameWindowLayout *param0, u8 param1)
+void sub_02083080(PartyMenuApplication *param0, u8 param1)
 {
     Sprite **v0 = &param0->unk_5B0[16 + param1];
 
@@ -244,7 +244,7 @@ void sub_02083080(GameWindowLayout *param0, u8 param1)
     Sprite_SetDrawFlag(*v0, TRUE);
 }
 
-void sub_020830A0(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
+void sub_020830A0(PartyMenuApplication *param0, u8 param1, s16 param2, s16 param3)
 {
     Sprite **v0 = &param0->unk_5B0[16 + param1];
 
@@ -254,12 +254,12 @@ void sub_020830A0(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
     Sprite_SetPositionXY(*v0, param0->unk_704[param1].unk_1E, param0->unk_704[param1].unk_20);
 }
 
-void sub_020830D4(GameWindowLayout *param0, u8 param1)
+void sub_020830D4(PartyMenuApplication *param0, u8 param1)
 {
     Sprite_SetPositionXY(param0->unk_5B0[22 + param1], param0->unk_704[param1].unk_1E + 8, param0->unk_704[param1].unk_20);
 }
 
-void sub_02083104(GameWindowLayout *param0, u8 param1)
+void sub_02083104(PartyMenuApplication *param0, u8 param1)
 {
     Sprite **v0 = &param0->unk_5B0[22 + param1];
 
@@ -305,7 +305,7 @@ static u8 sub_02083158(StrBufWrapper *param0)
     return 0;
 }
 
-void sub_020831B4(GameWindowLayout *param0)
+void sub_020831B4(PartyMenuApplication *param0)
 {
     StrBufWrapper *v0;
     u16 v1;
@@ -341,18 +341,18 @@ void sub_020831B4(GameWindowLayout *param0)
     }
 }
 
-void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
+void sub_0208327C(PartyMenuApplication *param0, u8 param1, u8 param2)
 {
     u8 v0, v1;
 
     GridMenuCursor_GetFirstCoords(&param0->unk_7F4[param1], &v0, &v1);
-    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param1));
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyMenu->unk_21, param1));
     Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], param2);
 }
 
-void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)
+void sub_020832E4(PartyMenuApplication *param0, s16 param1, s16 param2)
 {
     VecFx32 v0;
 
@@ -367,7 +367,7 @@ void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)
     Sprite_SetAnim(param0->unk_5B0[28], 0);
 }
 
-void sub_02083334(GameWindowLayout *param0)
+void sub_02083334(PartyMenuApplication *param0)
 {
     if (Sprite_GetDrawFlag(param0->unk_5B0[28]) == 1) {
         Sprite_UpdateAnim(param0->unk_5B0[28], FX32_ONE);

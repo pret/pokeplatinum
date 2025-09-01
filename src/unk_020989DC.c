@@ -271,7 +271,7 @@ static int sub_02098C2C(UnkStruct_02098BE4 *param0)
 
 static int sub_02098C44(UnkStruct_02098BE4 *param0)
 {
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
 
     if (!sub_02098AF8(&param0->appMan)) {
         return 1;
@@ -283,8 +283,8 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
-    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+    partyMan = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+    MI_CpuClear8(partyMan, sizeof(PartyMenu));
     partyMan->party = param0->unk_0C->unk_10;
     partyMan->bag = param0->unk_0C->unk_14;
     partyMan->unk_21 = 0;
@@ -300,7 +300,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 static int sub_02098CB0(UnkStruct_02098BE4 *param0)
 {
     u8 v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMan;
     PokemonSummary *v2;
     static const u8 v3[] = {
         4, 7, 8
@@ -310,7 +310,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
         return 2;
     }
 
-    partyMan = (PartyManagementData *)param0->unk_10;
+    partyMan = (PartyMenu *)param0->unk_10;
     v0 = partyMan->selectedMonSlot;
     param0->unk_08 = v0;
     Heap_Free(param0->unk_10);

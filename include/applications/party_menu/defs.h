@@ -29,7 +29,7 @@
 #include "string_list.h"
 #include "string_template.h"
 
-typedef struct PartyManagementData {
+typedef struct PartyMenu {
     Party *party;
     Bag *bag;
     Mailbox *mailbox;
@@ -56,9 +56,9 @@ typedef struct PartyManagementData {
     u16 evoTargetSpecies;
     u8 padding_3A[2];
     int evoType;
-} PartyManagementData;
+} PartyMenu;
 
-typedef struct GameWindowLayout {
+typedef struct PartyMenuApplication {
     BgConfig *unk_00;
     Window unk_04[37];
     Window unk_254[1];
@@ -66,7 +66,7 @@ typedef struct GameWindowLayout {
     u16 unk_324[96];
     u16 unk_3E4[96];
     u16 unk_4A4[128];
-    PartyManagementData *partyManagementData;
+    PartyMenu *partyMenu;
     SpriteSystem *unk_5A8;
     SpriteManager *unk_5AC;
     Sprite *unk_5B0[29];
@@ -98,6 +98,6 @@ typedef struct GameWindowLayout {
     HeightWeightData *unk_B20;
     OverlayMetadata *unk_B24;
     G3DPipelineBuffers *unk_B28;
-} GameWindowLayout;
+} PartyMenuApplication;
 
 #endif // POKEPLATINUM_PARTY_MENU_DEFS_H

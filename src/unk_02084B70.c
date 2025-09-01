@@ -36,15 +36,15 @@
 static int sub_02085384(void *windowLayoutPtr);
 static int sub_02085424(void *windowLayoutPtr);
 static int sub_020855C4(void *windowLayoutPtr);
-static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *windowLayoutPtr);
+static int PokemonSummaryScreen_UpdateHPBar(PartyMenuApplication *windowLayoutPtr);
 static int sub_02085A70(void *windowLayoutPtr);
 static int sub_02085C50(void *windowLayoutPtr);
-static void TeachMove(GameWindowLayout *windowLayout, Pokemon *mon, u32 moveSlot);
+static void TeachMove(PartyMenuApplication *windowLayout, Pokemon *mon, u32 moveSlot);
 static int sub_02086438(void *windowLayoutPtr);
 static int sub_0208648C(void *windowLayoutPtr);
 static int sub_020864E4(void *windowLayoutPtr);
 static int sub_02086538(void *windowLayoutPtr);
-static u16 GetCurrentMapLabel(GameWindowLayout *windowLayout);
+static u16 GetCurrentMapLabel(PartyMenuApplication *windowLayout);
 static int sub_02085FB4(void *windowLayoutPtr);
 static int sub_02086008(void *windowLayoutPtr);
 static int sub_02086060(void *windowLayoutPtr);
@@ -219,12 +219,12 @@ static u8 sub_02084B70(u16 itemID)
     return 28;
 }
 
-static void BufferUsedItemMessage(GameWindowLayout *windowLayout, u16 param1, u32 param2)
+static void BufferUsedItemMessage(PartyMenuApplication *windowLayout, u16 param1, u32 param2)
 {
     Pokemon *mon;
     Strbuf *strBuf;
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
 
     switch (sub_02084B70(param1)) {
@@ -355,9 +355,9 @@ static void BufferUsedItemMessage(GameWindowLayout *windowLayout, u16 param1, u3
     }
 }
 
-void sub_020852B8(GameWindowLayout *windowLayout)
+void sub_020852B8(PartyMenuApplication *windowLayout)
 {
-    switch (sub_02084B70(windowLayout->partyManagementData->usedItemID)) {
+    switch (sub_02084B70(windowLayout->partyMenu->usedItemID)) {
     case 0:
     case 28:
         break;
@@ -401,14 +401,14 @@ void sub_020852B8(GameWindowLayout *windowLayout)
 
 int sub_02085348(void *param0)
 {
-    GameWindowLayout *windowLayout = (GameWindowLayout *)param0;
+    PartyMenuApplication *windowLayout = (PartyMenuApplication *)param0;
 
     if (Text_IsPrinterActive(windowLayout->textPrinterID) != 0) {
         return 5;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         return 32;
     }
 
@@ -417,14 +417,14 @@ int sub_02085348(void *param0)
 
 static int sub_02085384(void *param0)
 {
-    GameWindowLayout *windowLayout = (GameWindowLayout *)param0;
+    PartyMenuApplication *windowLayout = (PartyMenuApplication *)param0;
 
-    Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
+    Party_ApplyItemEffectsToMember(windowLayout->partyMenu->party, windowLayout->partyMenu->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
     sub_0207EF14(windowLayout, windowLayout->partySlot);
     sub_020821F8(windowLayout, windowLayout->partySlot);
     sub_020822BC(windowLayout, windowLayout->partySlot);
     sub_02083014(windowLayout, windowLayout->partySlot, windowLayout->unk_704[windowLayout->partySlot].unk_0E_0);
-    BufferUsedItemMessage(windowLayout, windowLayout->partyManagementData->usedItemID, 0);
+    BufferUsedItemMessage(windowLayout, windowLayout->partyMenu->usedItemID, 0);
     sub_02082708(windowLayout, 0xffffffff, 1);
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
@@ -435,12 +435,12 @@ static int sub_02085384(void *param0)
 
 static int sub_02085424(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
+    PartyMenuApplication *windowLayout;
     Pokemon *mon;
     u8 EVs[7];
 
-    windowLayout = (GameWindowLayout *)windowLayoutPtr;
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    windowLayout = (PartyMenuApplication *)windowLayoutPtr;
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
 
     EVs[0] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
     EVs[1] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
@@ -450,7 +450,7 @@ static int sub_02085424(void *windowLayoutPtr)
     EVs[5] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
     EVs[6] = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), 12);
+    Party_ApplyItemEffectsToMember(windowLayout->partyMenu->party, windowLayout->partyMenu->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), 12);
     sub_0207EF14(windowLayout, windowLayout->partySlot);
     sub_020821F8(windowLayout, windowLayout->partySlot);
     sub_020822BC(windowLayout, windowLayout->partySlot);
@@ -458,12 +458,12 @@ static int sub_02085424(void *windowLayoutPtr)
 
     if ((EVs[0] != Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL)) || (EVs[1] != Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL)) || (EVs[2] != Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL)) || (EVs[3] != Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL)) || (EVs[4] != Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL)) || (EVs[5] != Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL))) {
         if (EVs[6] != Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL)) {
-            BufferUsedItemMessage(windowLayout, windowLayout->partyManagementData->usedItemID, 0);
+            BufferUsedItemMessage(windowLayout, windowLayout->partyMenu->usedItemID, 0);
         } else {
-            BufferUsedItemMessage(windowLayout, windowLayout->partyManagementData->usedItemID, 1);
+            BufferUsedItemMessage(windowLayout, windowLayout->partyMenu->usedItemID, 1);
         }
     } else {
-        BufferUsedItemMessage(windowLayout, windowLayout->partyManagementData->usedItemID, 2);
+        BufferUsedItemMessage(windowLayout, windowLayout->partyMenu->usedItemID, 2);
     }
 
     sub_02082708(windowLayout, 0xffffffff, 1);
@@ -474,17 +474,17 @@ static int sub_02085424(void *windowLayoutPtr)
 
 static int sub_020855C4(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
+    PartyMenuApplication *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
     u32 curHP;
     u32 summaryCondition;
 
-    windowLayout = (GameWindowLayout *)windowLayoutPtr;
+    windowLayout = (PartyMenuApplication *)windowLayoutPtr;
 
-    Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
+    Party_ApplyItemEffectsToMember(windowLayout->partyMenu->party, windowLayout->partyMenu->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
     if (windowLayout->unk_704[windowLayout->partySlot].curHP == 0) {
@@ -515,13 +515,13 @@ static int sub_020855C4(void *windowLayoutPtr)
     return 5;
 }
 
-static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0)
+static int PokemonSummaryScreen_UpdateHPBar(PartyMenuApplication *param0)
 {
-    GameWindowLayout *gameWindowLayout = (GameWindowLayout *)param0;
+    PartyMenuApplication *gameWindowLayout = (PartyMenuApplication *)param0;
     Pokemon *mon;
     u32 curHP;
 
-    mon = Party_GetPokemonBySlotIndex(gameWindowLayout->partyManagementData->party, gameWindowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(gameWindowLayout->partyMenu->party, gameWindowLayout->partySlot);
     curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
     if (gameWindowLayout->unk_704[gameWindowLayout->partySlot].curHP != curHP) {
@@ -550,7 +550,7 @@ BOOL CheckItemSacredAsh(u16 itemID)
     return FALSE;
 }
 
-static u8 GetFirstFaintedMon(GameWindowLayout *windowLayout, u8 startIndex)
+static u8 GetFirstFaintedMon(PartyMenuApplication *windowLayout, u8 startIndex)
 {
     u8 partySlot;
 
@@ -567,7 +567,7 @@ static u8 GetFirstFaintedMon(GameWindowLayout *windowLayout, u8 startIndex)
     return 0xff;
 }
 
-int sub_02085804(GameWindowLayout *windowLayout)
+int sub_02085804(PartyMenuApplication *windowLayout)
 {
     Pokemon *mon;
     Strbuf *strBuf;
@@ -593,8 +593,8 @@ int sub_02085804(GameWindowLayout *windowLayout)
         }
     case 1:
 
-        mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-        Pokemon_ApplyItemEffects(mon, windowLayout->partyManagementData->usedItemID, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
+        mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
+        Pokemon_ApplyItemEffects(mon, windowLayout->partyMenu->usedItemID, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
         curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
         strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 70);
@@ -614,7 +614,7 @@ int sub_02085804(GameWindowLayout *windowLayout)
         windowLayout->unk_B0E++;
         break;
     case 2:
-        mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+        mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
         curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
         windowLayout->unk_704[windowLayout->partySlot].curHP++;
@@ -644,8 +644,8 @@ int sub_02085804(GameWindowLayout *windowLayout)
                 sub_0207F8F8(windowLayout, v3);
                 windowLayout->unk_B0E = 1;
             } else {
-                Bag_TryRemoveItem(windowLayout->partyManagementData->bag, windowLayout->partyManagementData->usedItemID, 1, HEAP_ID_12);
-                windowLayout->partyManagementData->menuSelectionResult = 0;
+                Bag_TryRemoveItem(windowLayout->partyMenu->bag, windowLayout->partyMenu->usedItemID, 1, HEAP_ID_12);
+                windowLayout->partyMenu->menuSelectionResult = 0;
                 windowLayout->partySlot = 7;
                 return 32;
             }
@@ -658,14 +658,14 @@ int sub_02085804(GameWindowLayout *windowLayout)
 
 static int sub_02085A70(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
+    PartyMenuApplication *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
     u32 unused;
     u32 summaryCondition;
 
-    windowLayout = (GameWindowLayout *)windowLayoutPtr;
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    windowLayout = (PartyMenuApplication *)windowLayoutPtr;
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
 
     windowLayout->monStats[0] = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     windowLayout->monStats[1] = (u16)Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -674,7 +674,7 @@ static int sub_02085A70(void *windowLayoutPtr)
     windowLayout->monStats[4] = (u16)Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
     windowLayout->monStats[5] = (u16)Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
 
-    Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
+    Party_ApplyItemEffectsToMember(windowLayout->partyMenu->party, windowLayout->partyMenu->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
     windowLayout->unk_704[windowLayout->partySlot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     windowLayout->unk_704[windowLayout->partySlot].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
@@ -711,7 +711,7 @@ static int sub_02085A70(void *windowLayoutPtr)
 
 static int sub_02085C50(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
+    PartyMenuApplication *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
 
@@ -739,19 +739,19 @@ static int sub_02085C50(void *windowLayoutPtr)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02082C10(windowLayout);
             windowLayout->unk_B13 = 3;
-            windowLayout->partyManagementData->unk_34 = 0;
+            windowLayout->partyMenu->unk_34 = 0;
         }
         break;
     case 3:
-        mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+        mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
 
-        switch (Pokemon_LevelUpMove(mon, &windowLayout->partyManagementData->unk_34, &windowLayout->partyManagementData->learnedMove)) {
+        switch (Pokemon_LevelUpMove(mon, &windowLayout->partyMenu->unk_34, &windowLayout->partyMenu->learnedMove)) {
         case 0x0:
             windowLayout->unk_B13 = 6;
             break;
         case 0xffff:
             StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
-            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
 
             strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
@@ -768,7 +768,7 @@ static int sub_02085C50(void *windowLayoutPtr)
             break;
         default:
             StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
-            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
 
             strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 194);
 
@@ -789,11 +789,11 @@ static int sub_02085C50(void *windowLayoutPtr)
         break;
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-            TeachMove(windowLayout, mon, windowLayout->partyManagementData->selectedMoveSlot);
+            mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
+            TeachMove(windowLayout, mon, windowLayout->partyMenu->selectedMoveSlot);
             strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 61);
 
-            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+            StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
             StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
             Strbuf_Free(strBuf);
             sub_02082708(windowLayout, 0xffffffff, 0);
@@ -806,15 +806,15 @@ static int sub_02085C50(void *windowLayoutPtr)
         FieldSystem *fieldSystem;
         int v5;
 
-        mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-        fieldSystem = windowLayout->partyManagementData->fieldSystem;
+        mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
+        fieldSystem = windowLayout->partyMenu->fieldSystem;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        windowLayout->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(windowLayout->partyManagementData->party, mon, EVO_CLASS_BY_LEVEL, v5, &windowLayout->partyManagementData->evoType);
+        windowLayout->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(windowLayout->partyMenu->party, mon, EVO_CLASS_BY_LEVEL, v5, &windowLayout->partyMenu->evoType);
 
-        if (windowLayout->partyManagementData->evoTargetSpecies != 0) {
-            windowLayout->partyManagementData->menuSelectionResult = 9;
+        if (windowLayout->partyMenu->evoTargetSpecies != 0) {
+            windowLayout->partyMenu->menuSelectionResult = 9;
         } else {
-            windowLayout->partyManagementData->menuSelectionResult = 0;
+            windowLayout->partyMenu->menuSelectionResult = 0;
         }
     }
         return 32;
@@ -823,7 +823,7 @@ static int sub_02085C50(void *windowLayoutPtr)
     return 5;
 }
 
-int sub_02085EF4(GameWindowLayout *windowLayout)
+int sub_02085EF4(PartyMenuApplication *windowLayout)
 {
     Pokemon *mon;
     Strbuf *strBuf;
@@ -831,15 +831,15 @@ int sub_02085EF4(GameWindowLayout *windowLayout)
     windowLayout->unk_B00 = sub_02085C50;
     windowLayout->unk_B13 = 3;
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
 
-    if (windowLayout->partyManagementData->selectedMoveSlot == 4) {
-        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+    if (windowLayout->partyMenu->selectedMoveSlot == 4) {
+        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
         return sub_02086008(windowLayout);
     }
 
-    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->selectedMoveSlot, NULL));
+    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyMenu->selectedMoveSlot, NULL));
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 60);
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -853,14 +853,14 @@ int sub_02085EF4(GameWindowLayout *windowLayout)
 
 static int sub_02085FB4(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->menuSelectionResult = 5;
+    windowLayout->partyMenu->menuSelectionResult = 5;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -868,7 +868,7 @@ static int sub_02085FB4(void *windowLayoutPtr)
 
 static int sub_02086008(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
@@ -884,7 +884,7 @@ static int sub_02086008(void *windowLayoutPtr)
 
 static int sub_02086060(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
@@ -899,7 +899,7 @@ static int sub_02086060(void *windowLayoutPtr)
 
 static int sub_020860AC(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
@@ -913,7 +913,7 @@ static int sub_020860AC(void *windowLayoutPtr)
     return 24;
 }
 
-u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
+u8 sub_02086104(PartyMenuApplication *windowLayout, Pokemon *mon)
 {
     u16 moveID;
     u8 moveSlot;
@@ -921,7 +921,7 @@ u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
     for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
         moveID = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
-        if (moveID == windowLayout->partyManagementData->learnedMove) {
+        if (moveID == windowLayout->partyMenu->learnedMove) {
             return 0xfd;
         }
 
@@ -930,7 +930,7 @@ u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
         }
     }
 
-    if (Pokemon_CanLearnTM(mon, Item_TMHMNumber(windowLayout->partyManagementData->usedItemID)) == 0) {
+    if (Pokemon_CanLearnTM(mon, Item_TMHMNumber(windowLayout->partyMenu->usedItemID)) == 0) {
         return 0xff;
     }
 
@@ -941,17 +941,17 @@ u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
     return moveSlot;
 }
 
-int sub_0208615C(GameWindowLayout *windowLayout)
+int sub_0208615C(PartyMenuApplication *windowLayout)
 {
     Pokemon *mon;
     Strbuf *strBuf;
     u32 v2;
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     v2 = sub_02086104(windowLayout, mon);
 
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
-    StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+    StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
 
     switch (v2) {
     case 0:
@@ -963,7 +963,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     case 0xfd:
@@ -971,7 +971,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     case 0xfe:
@@ -990,7 +990,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
 
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     }
@@ -998,20 +998,20 @@ int sub_0208615C(GameWindowLayout *windowLayout)
     return 24;
 }
 
-int sub_020862F8(GameWindowLayout *windowLayout)
+int sub_020862F8(PartyMenuApplication *windowLayout)
 {
     Pokemon *mon;
     Strbuf *strBuf;
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
 
-    if (windowLayout->partyManagementData->selectedMoveSlot == 4) {
-        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+    if (windowLayout->partyMenu->selectedMoveSlot == 4) {
+        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
         return sub_0208648C(windowLayout);
     }
 
-    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->selectedMoveSlot, NULL));
+    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyMenu->selectedMoveSlot, NULL));
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 60);
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1021,22 +1021,22 @@ int sub_020862F8(GameWindowLayout *windowLayout)
     return 24;
 }
 
-int sub_020863A0(GameWindowLayout *windowLayout)
+int sub_020863A0(PartyMenuApplication *windowLayout)
 {
     Pokemon *mon;
     Strbuf *strBuf;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+        mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
 
-        TeachMove(windowLayout, mon, windowLayout->partyManagementData->selectedMoveSlot);
+        TeachMove(windowLayout, mon, windowLayout->partyMenu->selectedMoveSlot);
         strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 61);
-        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
+        StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyMenu->learnedMove);
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 0);
 
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
 
         return 24;
@@ -1047,14 +1047,14 @@ int sub_020863A0(GameWindowLayout *windowLayout)
 
 static int sub_02086438(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->menuSelectionResult = 4;
+    windowLayout->partyMenu->menuSelectionResult = 4;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -1062,7 +1062,7 @@ static int sub_02086438(void *windowLayoutPtr)
 
 static int sub_0208648C(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
@@ -1078,14 +1078,14 @@ static int sub_0208648C(void *windowLayoutPtr)
 
 static int sub_020864E4(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->menuSelectionResult = 0;
+    windowLayout->partyMenu->menuSelectionResult = 0;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -1093,7 +1093,7 @@ static int sub_020864E4(void *windowLayoutPtr)
 
 static int sub_02086538(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout = windowLayoutPtr;
+    PartyMenuApplication *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
@@ -1107,33 +1107,33 @@ static int sub_02086538(void *windowLayoutPtr)
     return 24;
 }
 
-static void TeachMove(GameWindowLayout *windowLayout, Pokemon *mon, u32 moveSlot)
+static void TeachMove(PartyMenuApplication *windowLayout, Pokemon *mon, u32 moveSlot)
 {
-    u32 tempVar = windowLayout->partyManagementData->learnedMove;
+    u32 tempVar = windowLayout->partyMenu->learnedMove;
     Pokemon_SetValue(mon, MON_DATA_MOVE1 + moveSlot, &tempVar);
 
     tempVar = 0;
     Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &tempVar);
 
-    tempVar = MoveTable_CalcMaxPP(windowLayout->partyManagementData->learnedMove, 0);
+    tempVar = MoveTable_CalcMaxPP(windowLayout->partyMenu->learnedMove, 0);
     Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &tempVar);
 
-    if (windowLayout->partyManagementData->usedItemID != 0) {
-        if (Item_IsHMMove(windowLayout->partyManagementData->learnedMove) == FALSE) {
-            Bag_TryRemoveItem(windowLayout->partyManagementData->bag, windowLayout->partyManagementData->usedItemID, 1, HEAP_ID_12);
+    if (windowLayout->partyMenu->usedItemID != 0) {
+        if (Item_IsHMMove(windowLayout->partyMenu->learnedMove) == FALSE) {
+            Bag_TryRemoveItem(windowLayout->partyMenu->bag, windowLayout->partyMenu->usedItemID, 1, HEAP_ID_12);
         }
 
         Pokemon_UpdateFriendship(mon, 4, (u16)GetCurrentMapLabel(windowLayout));
     }
 }
 
-static u8 BufferLearnedMoveInSlot(GameWindowLayout *windowLayout, u8 moveSlot)
+static u8 BufferLearnedMoveInSlot(PartyMenuApplication *windowLayout, u8 moveSlot)
 {
     Pokemon *mon;
     Strbuf *strBuf;
     u16 moveID;
 
-    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
     moveID = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 162 + moveSlot);
 
@@ -1150,7 +1150,7 @@ static u8 BufferLearnedMoveInSlot(GameWindowLayout *windowLayout, u8 moveSlot)
     return 1;
 }
 
-void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
+void sub_020866A0(PartyMenuApplication *windowLayout, u8 param1)
 {
     MenuTemplate menuTemplate;
     u8 moveCount;
@@ -1186,7 +1186,7 @@ void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
     windowLayout->unk_700 = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
-int sub_02086774(GameWindowLayout *windowLayout)
+int sub_02086774(PartyMenuApplication *windowLayout)
 {
     u32 menuAction = Menu_ProcessInput(windowLayout->unk_700);
 
@@ -1206,10 +1206,10 @@ int sub_02086774(GameWindowLayout *windowLayout)
         Menu_Free(windowLayout->unk_700, NULL);
         StringList_Free(windowLayout->unk_6FC);
 
-        if (Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, (u8)menuAction, GetCurrentMapLabel(windowLayout), 12) == 1) {
-            Pokemon *v1 = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-            BufferUsedItemMessage(windowLayout, windowLayout->partyManagementData->usedItemID, Pokemon_GetValue(v1, MON_DATA_MOVE1 + menuAction, NULL));
-            Bag_TryRemoveItem(windowLayout->partyManagementData->bag, windowLayout->partyManagementData->usedItemID, 1, HEAP_ID_12);
+        if (Party_ApplyItemEffectsToMember(windowLayout->partyMenu->party, windowLayout->partyMenu->usedItemID, windowLayout->partySlot, (u8)menuAction, GetCurrentMapLabel(windowLayout), 12) == 1) {
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(windowLayout->partyMenu->party, windowLayout->partySlot);
+            BufferUsedItemMessage(windowLayout, windowLayout->partyMenu->usedItemID, Pokemon_GetValue(v1, MON_DATA_MOVE1 + menuAction, NULL));
+            Bag_TryRemoveItem(windowLayout->partyMenu->bag, windowLayout->partyMenu->usedItemID, 1, HEAP_ID_12);
             Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         } else {
             MessageLoader_GetStrbuf(windowLayout->messageLoader, 105, windowLayout->unk_6A4);
@@ -1217,7 +1217,7 @@ int sub_02086774(GameWindowLayout *windowLayout)
 
         sub_02082708(windowLayout, 0xffffffff, 1);
 
-        windowLayout->partyManagementData->menuSelectionResult = 0;
+        windowLayout->partyMenu->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
 
         return 24;
@@ -1226,7 +1226,7 @@ int sub_02086774(GameWindowLayout *windowLayout)
     return 6;
 }
 
-void sub_020868B0(GameWindowLayout *windowLayout)
+void sub_020868B0(PartyMenuApplication *windowLayout)
 {
     Window_EraseMessageBox(&windowLayout->unk_04[32], 1);
 
@@ -1240,12 +1240,12 @@ void sub_020868B0(GameWindowLayout *windowLayout)
 
     sub_02082708(windowLayout, 0xffffffff, 1);
 
-    windowLayout->partyManagementData->menuSelectionResult = 0;
+    windowLayout->partyMenu->menuSelectionResult = 0;
     windowLayout->unk_B0E = 25;
 }
 
-static u16 GetCurrentMapLabel(GameWindowLayout *windowLayout)
+static u16 GetCurrentMapLabel(PartyMenuApplication *windowLayout)
 {
-    FieldSystem *fieldSystem = windowLayout->partyManagementData->fieldSystem;
+    FieldSystem *fieldSystem = windowLayout->partyMenu->fieldSystem;
     return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 }

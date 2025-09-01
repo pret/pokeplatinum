@@ -3461,7 +3461,7 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
 
     GF_ASSERT(*partySelect != 0);
 
-    *destVar = PartyManagementData_GetSelectedSlot(*partySelect);
+    *destVar = PartyMenu_GetSelectedSlot(*partySelect);
 
     if (*destVar == MAX_PARTY_SIZE + 1) {
         *destVar = 0xff;
@@ -3478,11 +3478,11 @@ static BOOL ScrCmd_2D0(ScriptContext *ctx)
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMan = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
@@ -3510,11 +3510,11 @@ static BOOL ScrCmd_2D4(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 *v5 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMan = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
@@ -3544,11 +3544,11 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 *v5 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMan = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
@@ -3594,7 +3594,7 @@ static BOOL ScrCmd_195(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = PartyManagementData_GetSelectedSlot(*v0);
+    *v1 = PartyMenu_GetSelectedSlot(*v0);
 
     if (*v1 == MAX_PARTY_SIZE + 1) {
         *v1 = 0xff;
@@ -4732,7 +4732,7 @@ static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx)
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx)
 {
     void **partyManagementDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyManagementData = *partyManagementDataPtr;
+    PartyMenu *partyManagementData = *partyManagementDataPtr;
 
     Encounter_NewVsLink(ctx->fieldSystem->task, partyManagementData->unk_2C, BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER);
     Heap_Free(partyManagementData);
@@ -5146,7 +5146,7 @@ static BOOL ScrCmd_2BA(ScriptContext *ctx)
 
     if (*v2 != 0) {
         void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-        PartyManagementData *partyMan = *v1;
+        PartyMenu *partyMan = *v1;
         Heap_Free(partyMan);
     }
 
@@ -7156,7 +7156,7 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = PartyManagementData_GetSelectedSlot(*v0);
+    *v1 = PartyMenu_GetSelectedSlot(*v0);
 
     if (*v1 == MAX_PARTY_SIZE + 1) {
         *v1 = 0xff;
