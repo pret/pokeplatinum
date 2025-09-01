@@ -33,6 +33,8 @@
 #include "text.h"
 #include "unk_02097624.h"
 
+#include "res/text/bank/party_menu.h"
+
 static void sub_02083AD0(PartyMenuApplication *param0, int *param1);
 static void sub_0208472C(PartyMenuApplication *param0, int *param1);
 static void sub_02084808(PartyMenuApplication *param0, int *param1);
@@ -174,7 +176,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
     if (param0->partyMembers[param0->currPartySlot].heldItem == ITEM_NONE) {
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
-        MessageLoader_GetStrbuf(param0->messageLoader, 81, param0->tmpFormat);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00081, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
     } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
@@ -194,7 +196,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
             }
         }
 
-        MessageLoader_GetStrbuf(param0->messageLoader, 82, param0->tmpFormat);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00082, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].heldItem);
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
@@ -203,7 +205,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
         PartyMenu_DrawMemberHeldItem(param0, param0->currPartySlot, param0->partyMembers[param0->currPartySlot].heldItem);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, 83, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00083, param0->tmpString);
     }
 
     Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, (1 + 9), 15);
@@ -218,7 +220,7 @@ int sub_02083658(PartyMenuApplication *param0)
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->windows[34], 1);
-            PartyMenu_PrintShortMessage(param0, 29, 1);
+            PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
             Sprite_SetExplicitPalette2(param0->sprites[6], 0);
             return 1;
         }
@@ -367,7 +369,7 @@ static int sub_02083990(void *param0)
     PartyMenuApplication *v0 = param0;
 
     Window_EraseMessageBox(&v0->windows[34], 1);
-    PartyMenu_PrintShortMessage(v0, 29, 1);
+    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, 1);
     Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
@@ -377,7 +379,7 @@ int sub_020839BC(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, 29, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
@@ -420,7 +422,7 @@ int sub_02083AA4(void *param0)
     PartyMenuApplication *v0 = param0;
 
     Window_EraseMessageBox(&v0->windows[34], 1);
-    PartyMenu_PrintShortMessage(v0, 29, 1);
+    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, 1);
     Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
@@ -441,7 +443,7 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    PartyMenu_PrintShortMessage(param0, 30, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00030, 1);
 
     *param1 = 28;
 }
@@ -456,7 +458,7 @@ void sub_02083B88(PartyMenuApplication *param0)
     }
 
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-    PartyMenu_PrintShortMessage(param0, 29, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
 }
 
 void sub_02083BD4(PartyMenuApplication *param0)
@@ -556,7 +558,7 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
 
         PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-        PartyMenu_PrintShortMessage(param0, 29, 0);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 0);
 
         return 1;
     }
@@ -721,7 +723,7 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
         param0->partyMenu->selectionOrder[v0] = param0->currPartySlot + 1;
 
         PartyMenu_PrintSelectionEligibility(param0, param0->currPartySlot);
-        PartyMenu_PrintShortMessage(param0, 34, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, 1);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
         if (v0 == param0->partyMenu->maxSelectionSlots - 1) {
@@ -758,7 +760,7 @@ int sub_020845A8(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, 34, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, 1);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
@@ -792,7 +794,7 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
 
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    PartyMenu_PrintShortMessage(param0, 29, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
     Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
     *param1 = 1;
@@ -841,10 +843,10 @@ int sub_02084780(PartyMenuApplication *param0)
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 129, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
         Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, 130, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00130, param0->tmpString);
         param0->currPartySlot = 7;
     }
 
@@ -1017,7 +1019,7 @@ static int sub_02084A18(PartyMenuApplication *param0)
         Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
         Sprite_SetDrawFlag(param0->sprites[7], TRUE);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-        PartyMenu_PrintShortMessage(param0, 36, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00036, 1);
 
         param0->monStats[1] = 0;
         return 30;
@@ -1028,7 +1030,7 @@ int sub_02084B34(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, 29, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }

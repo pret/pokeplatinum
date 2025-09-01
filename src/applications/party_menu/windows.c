@@ -32,6 +32,8 @@
 #include "text.h"
 #include "unk_0208C098.h"
 
+#include "res/text/bank/party_menu.h"
+
 #define EVO_COMMENT_ABLE   0
 #define EVO_COMMENT_UNABLE 1
 
@@ -180,22 +182,22 @@ void sub_02081B90(PartyMenuApplication *param0)
 
 void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *application)
 {
-    MessageLoader_GetStrbuf(application->messageLoader, 145, application->menuStrings[0]);
-    MessageLoader_GetStrbuf(application->messageLoader, 146, application->menuStrings[1]);
-    MessageLoader_GetStrbuf(application->messageLoader, 147, application->menuStrings[2]);
-    MessageLoader_GetStrbuf(application->messageLoader, 160, application->menuStrings[3]);
-    MessageLoader_GetStrbuf(application->messageLoader, 161, application->menuStrings[4]);
-    MessageLoader_GetStrbuf(application->messageLoader, 148, application->menuStrings[5]);
-    MessageLoader_GetStrbuf(application->messageLoader, 149, application->menuStrings[6]);
-    MessageLoader_GetStrbuf(application->messageLoader, 150, application->menuStrings[7]);
-    MessageLoader_GetStrbuf(application->messageLoader, 151, application->menuStrings[8]);
-    MessageLoader_GetStrbuf(application->messageLoader, 152, application->menuStrings[9]);
-    MessageLoader_GetStrbuf(application->messageLoader, 153, application->menuStrings[10]);
-    MessageLoader_GetStrbuf(application->messageLoader, 154, application->menuStrings[11]);
-    MessageLoader_GetStrbuf(application->messageLoader, 155, application->menuStrings[12]);
-    MessageLoader_GetStrbuf(application->messageLoader, 154, application->menuStrings[13]);
-    MessageLoader_GetStrbuf(application->messageLoader, 166, application->menuStrings[14]);
-    MessageLoader_GetStrbuf(application->messageLoader, 200, application->menuStrings[15]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00145, application->menuStrings[0]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00146, application->menuStrings[1]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00147, application->menuStrings[2]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00160, application->menuStrings[3]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00161, application->menuStrings[4]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00148, application->menuStrings[5]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00149, application->menuStrings[6]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00150, application->menuStrings[7]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00151, application->menuStrings[8]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00152, application->menuStrings[9]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00153, application->menuStrings[10]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00154, application->menuStrings[11]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00155, application->menuStrings[12]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00154, application->menuStrings[13]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00166, application->menuStrings[14]);
+    MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00200, application->menuStrings[15]);
 }
 
 void sub_02081CAC(PartyMenuApplication *param0, u16 param1, u8 param2)
@@ -251,9 +253,9 @@ void sub_02081E08(PartyMenuApplication *param0)
     Strbuf *v1;
 
     if (param0->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00042, param0->tmpString);
     } else if ((param0->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) && (param0->partyMembers[param0->currPartySlot].isEgg == TRUE)) {
-        MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00198, param0->tmpString);
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 37);
@@ -316,7 +318,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
 
     if (application->partyMembers[slot].hideGenderMarker == FALSE) {
         if (application->partyMembers[slot].gender == GENDER_MALE) {
-            MessageLoader_GetStrbuf(application->messageLoader, 27, application->tmpFormat);
+            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00027, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,
@@ -327,7 +329,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
                 TEXT_COLOR(3, 4, 0),
                 NULL);
         } else if (application->partyMembers[slot].gender == GENDER_FEMALE) {
-            MessageLoader_GetStrbuf(application->messageLoader, 28, application->tmpFormat);
+            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00028, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,

@@ -35,6 +35,8 @@
 #include "system.h"
 #include "text.h"
 
+#include "res/text/bank/party_menu.h"
+
 static int sub_02085384(void *applicationPtr);
 static int sub_02085424(void *applicationPtr);
 static int sub_020855C4(void *applicationPtr);
@@ -350,10 +352,10 @@ static void BufferUsedItemMessage(PartyMenuApplication *application, u16 param1,
         Strbuf_Free(strBuf);
         break;
     case 27:
-        MessageLoader_GetStrbuf(application->messageLoader, 69, application->tmpString);
+        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00069, application->tmpString);
         break;
     default:
-        MessageLoader_GetStrbuf(application->messageLoader, 105, application->tmpString);
+        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
     }
 }
 
@@ -581,7 +583,7 @@ int sub_02085804(PartyMenuApplication *application)
         application->currPartySlot = GetFirstFaintedMon(application, 0);
 
         if (application->currPartySlot == 0xff) {
-            MessageLoader_GetStrbuf(application->messageLoader, 105, application->tmpString);
+            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
             sub_02082708(application, 0xffffffff, 1);
             application->unk_B00 = sub_02085348;
             sub_0208327C(application, 0, 1);
@@ -1199,7 +1201,7 @@ int sub_02086774(PartyMenuApplication *application)
         Window_EraseStandardFrame(&application->windows[36], 1);
         Menu_Free(application->unk_700, NULL);
         StringList_Free(application->unk_6FC);
-        PartyMenu_PrintShortMessage(application, 32, 1);
+        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00032, 1);
         return 4;
     default:
         Window_EraseMessageBox(&application->windows[33], 1);
@@ -1213,7 +1215,7 @@ int sub_02086774(PartyMenuApplication *application)
             Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
             Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         } else {
-            MessageLoader_GetStrbuf(application->messageLoader, 105, application->tmpString);
+            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
         }
 
         sub_02082708(application, 0xffffffff, 1);
@@ -1232,10 +1234,10 @@ void sub_020868B0(PartyMenuApplication *application)
     Window_EraseMessageBox(&application->windows[32], 1);
 
     if (application->partyMembers[application->currPartySlot].heldItem == ITEM_NONE) {
-        MessageLoader_GetStrbuf(application->messageLoader, 127, application->tmpString);
+        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00127, application->tmpString);
         sub_02083080(application, application->currPartySlot);
     } else {
-        MessageLoader_GetStrbuf(application->messageLoader, 128, application->tmpString);
+        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00128, application->tmpString);
         application->currPartySlot = 7;
     }
 
