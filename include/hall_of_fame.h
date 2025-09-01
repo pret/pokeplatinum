@@ -6,9 +6,8 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 
-#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
-
 #include "party.h"
+#include "strbuf.h"
 
 #define MAX_HALL_OF_FAME_ENTRIES 30
 
@@ -36,6 +35,17 @@ typedef struct HallOfFame {
     u32 nextEntryIndex;
     u32 totalEntriesCount;
 } HallOfFame;
+
+typedef struct PCHallOfFamePokemon {
+    Strbuf *nickname;
+    Strbuf *OTName;
+    u32 personality;
+    u32 OTID;
+    u16 species;
+    u8 level;
+    u8 form;
+    u16 moves[LEARNED_MOVES_MAX];
+} PCHallOfFamePokemon;
 
 int HallOfFame_SaveSize(void);
 void HallOfFame_Init(HallOfFame *hallOfFame);

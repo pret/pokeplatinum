@@ -63,7 +63,7 @@ enum HeapID {
     HEAP_ID_58,
     HEAP_ID_59,
     HEAP_ID_60,
-    HEAP_ID_61,
+    HEAP_ID_PC_HALL_OF_FAME,
     HEAP_ID_62,
     HEAP_ID_63,
     HEAP_ID_64,

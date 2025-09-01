@@ -1,4 +1,4 @@
-#include "applications/pc_hall_of_fame/pc_hall_of_fame_manager.h"
+#include "applications/pc_hall_of_fame/manager.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -20,7 +20,7 @@ BOOL PCHallOfFameManager_Init(ApplicationManager *appMan, int *state)
     PCHallOfFameMan *pcHallOfFameMan;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_60, 16384);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_61, 114688);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PC_HALL_OF_FAME, 114688);
 
     pcHallOfFameMan = ApplicationManager_NewData(appMan, sizeof(PCHallOfFameMan), HEAP_ID_60);
 
@@ -45,7 +45,7 @@ BOOL PCHallOfFameManager_Exit(ApplicationManager *appMan, int *state)
     PCHallOfFame_FreeApp(pcHallOfFameMan->pcHallOfFameApp);
     PCHallOfFame_FreeNames(&(pcHallOfFameMan->pcHallOfFameScreen));
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_61);
+    Heap_Destroy(HEAP_ID_PC_HALL_OF_FAME);
     Heap_Destroy(HEAP_ID_60);
 
     return TRUE;

@@ -1,4 +1,4 @@
-#include "applications/pc_hall_of_fame/pc_hall_of_fame_display.h"
+#include "applications/pc_hall_of_fame/display.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,11 +6,10 @@
 #include "generated/genders.h"
 #include "generated/string_padding_mode.h"
 
-#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
 #include "struct_defs/pc_hall_of_fame_screen_def.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/pc_hall_of_fame/pc_hall_of_fame_manager.h"
+#include "applications/pc_hall_of_fame/manager.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -18,6 +17,7 @@
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
@@ -87,24 +87,24 @@ static BOOL (*PCHallOfFame_Transitions[])(PCHallOfFameApp *, int *) = {
 
 PCHallOfFameApp *PCHallOfFame_InitApp(PCHallOfFameMan *pcHallOfFameMan, const PCHallOfFameScreen *pcHallOfFameScreen)
 {
-    PCHallOfFameApp *pcHallOfFameApp = Heap_Alloc(HEAP_ID_61, sizeof(PCHallOfFameApp));
+    PCHallOfFameApp *pcHallOfFameApp = Heap_Alloc(HEAP_ID_PC_HALL_OF_FAME, sizeof(PCHallOfFameApp));
 
     if (pcHallOfFameApp) {
         pcHallOfFameApp->pcHallOfFameMan = pcHallOfFameMan;
         pcHallOfFameApp->pcHallOfFameScreen = pcHallOfFameScreen;
-        pcHallOfFameApp->bgConfig = BgConfig_New(HEAP_ID_61);
+        pcHallOfFameApp->bgConfig = BgConfig_New(HEAP_ID_PC_HALL_OF_FAME);
 
         NNS_G2dInitOamManagerModule();
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
-        pcHallOfFameApp->spriteList = SpriteList_InitRendering(64, &pcHallOfFameApp->g2dRenderer, HEAP_ID_61);
-        pcHallOfFameApp->msgLoaderHallOfFame = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PC_HALL_OF_FAME, HEAP_ID_61);
-        pcHallOfFameApp->msgLoaderSpeciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_61);
-        pcHallOfFameApp->msgLoaderMoveNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_61);
-        pcHallOfFameApp->strTemplate = StringTemplate_Default(HEAP_ID_61);
-        pcHallOfFameApp->unk_1F4 = Strbuf_Init(256, HEAP_ID_61);
-        pcHallOfFameApp->unk_1F8 = Strbuf_Init(256, HEAP_ID_61);
-        pcHallOfFameApp->mon = Pokemon_New(HEAP_ID_61);
+        pcHallOfFameApp->spriteList = SpriteList_InitRendering(64, &pcHallOfFameApp->g2dRenderer, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderHallOfFame = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PC_HALL_OF_FAME, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderSpeciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderMoveNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->strTemplate = StringTemplate_Default(HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->unk_1F4 = Strbuf_Init(256, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->unk_1F8 = Strbuf_Init(256, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->mon = Pokemon_New(HEAP_ID_PC_HALL_OF_FAME);
 
         SetVBlankCallback(ov87_021D11AC, pcHallOfFameApp);
     }
@@ -158,7 +158,7 @@ static BOOL PCHallOfFame_Open(PCHallOfFameApp *pcHallOfFameApp, int *state)
     case 0:
         ov87_021D139C(pcHallOfFameApp);
         ov87_021D1818(pcHallOfFameApp);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_PC_HALL_OF_FAME);
         (*state)++;
         break;
     case 1:
@@ -177,7 +177,7 @@ static BOOL PCHallOfFame_Close(PCHallOfFameApp *pcHallOfFameApp, int *state)
     switch (*state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_PC_HALL_OF_FAME);
         (*state)++;
         break;
     case 1:
@@ -303,16 +303,16 @@ static void ov87_021D139C(PCHallOfFameApp *pcHallOfFameApp)
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_1, &v2, 0);
     Bg_InitFromTemplate(pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_2, &v3, 0);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 1, pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_61);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 0, pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_61);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DENDOU_PC, 2, 0, 0, 0x40, HEAP_ID_61);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 1, pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_PC_HALL_OF_FAME);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 0, pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_PC_HALL_OF_FAME);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DENDOU_PC, 2, 0, 0, 0x40, HEAP_ID_PC_HALL_OF_FAME);
     Bg_FillTilesRange(pcHallOfFameApp->bgConfig, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(pcHallOfFameApp->bgConfig, 1, 0x0, 0, 0, 32, 32, 0);
 
     v4 = ov87_021D14D4(pcHallOfFameApp, 1);
 
     PCHallOfFame_PrintAllText(pcHallOfFameApp);
-    LoadStandardWindowGraphics(pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_1, v4, 2, 0, HEAP_ID_61);
+    LoadStandardWindowGraphics(pcHallOfFameApp->bgConfig, BG_LAYER_MAIN_1, v4, 2, 0, HEAP_ID_PC_HALL_OF_FAME);
     Window_DrawStandardFrame(&(pcHallOfFameApp->windows[0]), 0, v4, 2);
     Window_DrawStandardFrame(&(pcHallOfFameApp->windows[1]), 0, v4, 2);
     Bg_CopyTilemapBufferToVRAM(pcHallOfFameApp->bgConfig, 1);
@@ -443,8 +443,8 @@ static void ov87_021D1818(PCHallOfFameApp *pcHallOfFameApp)
     NNSG2dAnimBankData *animBank;
     int unused;
 
-    pcHallOfFameApp->cellBank = Graphics_GetCellBank(27, 77, 0, &cellBank, HEAP_ID_61);
-    pcHallOfFameApp->animBank = Graphics_GetAnimBank(27, 78, 0, &animBank, HEAP_ID_61);
+    pcHallOfFameApp->cellBank = Graphics_GetCellBank(27, 77, 0, &cellBank, HEAP_ID_PC_HALL_OF_FAME);
+    pcHallOfFameApp->animBank = Graphics_GetAnimBank(27, 78, 0, &animBank, HEAP_ID_PC_HALL_OF_FAME);
 
     MI_CpuClearFast(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
 
@@ -502,10 +502,10 @@ static void ov87_021D18A0(PCHallOfFameApp *pcHallOfFameApp, NNSG2dCellDataBank *
     v2.resourceData = &v1;
     v2.position.z = 0;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = HEAP_ID_61;
+    v2.heapID = HEAP_ID_PC_HALL_OF_FAME;
 
-    v7 = Graphics_GetCharData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 76, 0, &v5, HEAP_ID_61);
-    v8 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 75, &v6, HEAP_ID_61);
+    v7 = Graphics_GetCharData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 76, 0, &v5, HEAP_ID_PC_HALL_OF_FAME);
+    v8 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 75, &v6, HEAP_ID_PC_HALL_OF_FAME);
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
         NNS_G2dInitImageProxy(&v3);
@@ -538,12 +538,12 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
         Pokemon_InitWith(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
         Pokemon_SetValue(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
         Pokemon_BuildSpriteTemplate(&spriteTemplate, pcHallOfFameApp->mon, FACE_FRONT);
-        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_61, &v0, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
+        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_PC_HALL_OF_FAME, &v0, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
 
         DC_FlushRange(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
         GX_LoadOBJ(pcHallOfFameApp->unk_200, 3200 * i, 3200);
 
-        Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, PAL_LOAD_MAIN_OBJ, i * 0x20, 0x20, HEAP_ID_61);
+        Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, PAL_LOAD_MAIN_OBJ, i * 0x20, 0x20, HEAP_ID_PC_HALL_OF_FAME);
 
         if (i == pcHallOfFameScreen->pokemonIndex) {
             Sound_SetUsingDefaultChatotCry(TRUE);

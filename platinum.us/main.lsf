@@ -1370,8 +1370,8 @@ Overlay overlay86
 Overlay overlay87
 {
 	After main
-	Object main.nef.p/src_applications_pc_hall_of_fame_pc_hall_of_fame_manager.c.o
-	Object main.nef.p/src_applications_pc_hall_of_fame_pc_hall_of_fame_display.c.o
+	Object main.nef.p/src_applications_pc_hall_of_fame_manager.c.o
+	Object main.nef.p/src_applications_pc_hall_of_fame_display.c.o
 }
 
 Overlay overlay88

@@ -35,7 +35,7 @@
 #include "applications/options_menu.h"
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
-#include "applications/pc_hall_of_fame/pc_hall_of_fame_manager.h"
+#include "applications/pc_hall_of_fame/manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"

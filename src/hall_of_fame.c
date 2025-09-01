@@ -5,8 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
-
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"

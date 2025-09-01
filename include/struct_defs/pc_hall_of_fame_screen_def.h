@@ -5,9 +5,12 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_defs/pc_hall_of_fame_man_pokemon_def.h"
+#include "hall_of_fame.h"
 
-#include "enums.h"
+typedef enum PCHallOfFameTextState {
+    PC_HALL_OF_FAME_TEXT_GENERAL,
+    PC_HALL_OF_FAME_TEXT_MOVES,
+} PCHallOfFameTextState;
 
 typedef struct PCHallOfFameScreen {
     int entryNum;
