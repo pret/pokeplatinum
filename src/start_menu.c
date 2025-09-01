@@ -1097,7 +1097,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v8 = sub_0203D920(fieldSystem, 2, partyMenu->selectedMonSlot, Item_MailNumber(partyMenu->usedItemID), HEAP_ID_FIELD2);
         menu->taskData = v8;
 
-        if (partyMenu->mode == 10) {
+        if (partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
             menu->unk_260 = sub_0203C540(
                 partyMenu->usedItemID, 0, partyMenu->selectedMonSlot);
         } else {
@@ -1184,7 +1184,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203BC5C);
         break;
     default:
-        if ((partyMenu->mode == 5) || (partyMenu->mode == 6) || (partyMenu->mode == 7) || (partyMenu->mode == 16) || (partyMenu->mode == 8)) {
+        if ((partyMenu->mode == PARTY_MENU_MODE_USE_ITEM) || (partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) || (partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE) || (partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) || (partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE)) {
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 
             if (partyMenu->selectedMonSlot >= 6) {
@@ -1194,7 +1194,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
             }
 
             sub_0203B674(menu, sub_0203BC5C);
-        } else if (partyMenu->mode == 9) {
+        } else if (partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM) {
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
             sub_0203B674(menu, sub_0203BC5C);
         } else {
@@ -1271,7 +1271,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMenu->fieldMoveContext = &menu->fieldMoveContext;
         partyMenu->unk_21 = 0;
-        partyMenu->mode = 9;
+        partyMenu->mode = PARTY_MENU_MODE_GIVE_ITEM;
         partyMenu->usedItemID = BagSystem_GetItem(v2);
         partyMenu->fieldSystem = fieldSystem;
 
@@ -1311,10 +1311,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMenu->selectedMonSlot = (u8)v9;
             partyMenu->fieldSystem = fieldSystem;
 
-            if (partyMenu->usedItemID == 0) {
-                partyMenu->mode = 0;
+            if (partyMenu->usedItemID == ITEM_NONE) {
+                partyMenu->mode = PARTY_MENU_MODE_FIELD;
             } else {
-                partyMenu->mode = 10;
+                partyMenu->mode = PARTY_MENU_MODE_GIVE_ITEM_DONE;
             }
 
             FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -1569,10 +1569,10 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         partyMenu->fieldSystem = fieldSystem;
 
         if (v4->unk_00 != 0) {
-            partyMenu->mode = 7;
+            partyMenu->mode = PARTY_MENU_MODE_TEACH_MOVE_DONE;
             partyMenu->unk_34 = 0;
         } else {
-            partyMenu->mode = 8;
+            partyMenu->mode = PARTY_MENU_MODE_LEVEL_MOVE_DONE;
             partyMenu->unk_34 = v4->unk_02;
         }
 
@@ -1761,7 +1761,7 @@ BOOL sub_0203C558(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
+static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // TODO:
 {
     UnkStruct_0203C540 *v0 = menu->unk_260;
     PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
@@ -1775,7 +1775,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     partyMenu->unk_21 = 0;
     partyMenu->usedItemID = v0->unk_00;
     partyMenu->selectedMonSlot = v0->unk_02;
-    partyMenu->mode = param2;
+    partyMenu->mode = mode;
     partyMenu->fieldSystem = fieldSystem;
 
     sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMenu->party, v0->unk_02));

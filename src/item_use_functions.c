@@ -311,7 +311,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
     partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMenu->fieldMoveContext = &menu->fieldMoveContext;
     partyMenu->unk_21 = 0;
-    partyMenu->mode = 5;
+    partyMenu->mode = PARTY_MENU_MODE_USE_ITEM;
     partyMenu->fieldSystem = fieldSystem;
     partyMenu->usedItemID = usageContext->item;
     partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
@@ -544,7 +544,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMenu->fieldMoveContext = &menu->fieldMoveContext;
     partyMenu->unk_21 = 0;
-    partyMenu->mode = 6;
+    partyMenu->mode = PARTY_MENU_MODE_TEACH_MOVE;
     partyMenu->fieldSystem = fieldSystem;
     partyMenu->usedItemID = usageContext->item;
     partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
@@ -922,7 +922,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMenu->fieldMoveContext = &menu->fieldMoveContext;
     partyMenu->unk_21 = 0;
-    partyMenu->mode = 16;
+    partyMenu->mode = PARTY_MENU_MODE_USE_EVO_ITEM;
     partyMenu->usedItemID = usageContext->item;
     partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
 

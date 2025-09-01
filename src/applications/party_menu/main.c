@@ -125,7 +125,7 @@ static int CheckForItemApplication(PartyMenuApplication *application);
 static u8 CheckDuplicateValues(PartyMenuApplication *application);
 static u8 CheckUniqueValues(PartyMenuApplication *application);
 static u8 CheckEqualityInArray(PartyMenuApplication *application);
-static BOOL ValidateGameWindowState(PartyMenuApplication *application);
+static BOOL ShouldShowSubscreen(PartyMenuApplication *application);
 static G3DPipelineBuffers *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
 static void sub_0207EB64(G3DPipelineBuffers *param0);
@@ -281,37 +281,40 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
     SetupRequestedModePanels(application);
     InitSelectedSlot(application, application->currPartySlot, 1);
 
-    if (application->partyMenu->mode == 5 || application->partyMenu->mode == 16) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_USE_ITEM || application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) {
         if (CheckItemSacredAsh(application->partyMenu->usedItemID) == FALSE) {
             PartyMenu_PrintShortMessage(application, 32, TRUE);
         }
-    } else if (application->partyMenu->mode == 6) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) {
         PartyMenu_PrintShortMessage(application, 33, TRUE);
-    } else if ((application->partyMenu->mode == 9) || (application->partyMenu->mode == 14)) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
         PartyMenu_PrintShortMessage(application, 31, TRUE);
-    } else if ((application->partyMenu->mode == 7) || (application->partyMenu->mode == 8) || (application->partyMenu->mode == 11) || (application->partyMenu->mode == 12)) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE
+        || application->partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE
+        || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL
+        || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL_DONE) {
         Sprite_SetExplicitPalette2(application->sprites[6], TRUE);
-    } else if ((application->partyMenu->mode == 2) || (application->partyMenu->mode == 17)) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) {
         PartyMenu_PrintShortMessage(application, 34, TRUE);
-    } else if (application->partyMenu->mode == 15) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
         PartyMenu_PrintShortMessage(application, 34, TRUE);
-    } else if (application->partyMenu->mode == 22) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         PartyMenu_PrintShortMessage(application, 34, TRUE);
-    } else if (application->partyMenu->mode == 23) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
         PartyMenu_PrintShortMessage(application, 34, TRUE);
-    } else if (application->partyMenu->mode == 21) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         PartyMenu_PrintShortMessage(application, 197, TRUE);
-    } else if (application->partyMenu->mode != 10) {
+    } else if (application->partyMenu->mode != PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         PartyMenu_PrintShortMessage(application, 29, TRUE);
     } else {
-        Sprite_SetExplicitPalette2(application->sprites[6], 1);
+        Sprite_SetExplicitPalette2(application->sprites[6], TRUE);
     }
 
     PartyMenu_LoadContextMenuStrings(application);
     SetupMenuCursor(application);
 
-    if (ValidateGameWindowState(application) == 0) {
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    if (ShouldShowSubscreen(application) == FALSE) {
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
     }
 
     SetVBlankCallback(sub_0207E898, application);
@@ -460,24 +463,24 @@ static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state)
 static int sub_0207E490(PartyMenuApplication *application)
 {
     if (IsScreenFadeDone() == TRUE) {
-        if ((application->partyMenu->mode == 5) || (application->partyMenu->mode == 16)) {
+        if ((application->partyMenu->mode == PARTY_MENU_MODE_USE_ITEM) || (application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM)) {
             if (CheckItemSacredAsh(application->partyMenu->usedItemID) == 1) {
                 application->unk_B0E = 0;
                 return 7;
             }
 
             return 4;
-        } else if (application->partyMenu->mode == 6) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) {
             return 21;
-        } else if (application->partyMenu->mode == 7) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE) {
             return sub_020862F8(application);
-        } else if (application->partyMenu->mode == 8) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE) {
             return sub_02085EF4(application);
-        } else if ((application->partyMenu->mode == 11) || (application->partyMenu->mode == 12)) {
+        } else if ((application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL) || (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL_DONE)) {
             return 14;
-        } else if (application->partyMenu->mode == 9) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM) {
             return 8;
-        } else if (application->partyMenu->mode == 10) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
             return 16;
         } else {
             return 1;
@@ -492,13 +495,13 @@ static int sub_0207E518(PartyMenuApplication *application)
     u8 v0 = sub_0207FE98(application);
 
     if (v0 == 0) {
-        if ((application->partyMenu->mode == 3) || (application->partyMenu->mode == 20)) {
+        if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT) || (application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN)) {
             application->partyMenu->menuSelectionResult = 0;
             return 32;
-        } else if (application->partyMenu->mode == 14) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
             sub_020868B0(application);
             return 24;
-        } else if (application->partyMenu->mode == 19) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_NPC_TRADE) {
             return CheckForItemApplication(application);
         } else {
             return 2;
@@ -959,7 +962,7 @@ static PartyMenuApplication *NewPartyMenuApplication(ApplicationManager *appMan)
     application->partyMenu = ApplicationManager_Args(appMan);
     application->bgConfig = BgConfig_New(HEAP_ID_PARTY_MENU);
 
-    if (application->partyMenu->mode == 2 && application->partyMenu->battleRegulation != NULL) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM && application->partyMenu->battleRegulation != NULL) {
         application->heightWeight = HeightWeightData_Load(HEAP_ID_PARTY_MENU);
     } else {
         application->heightWeight = NULL;
@@ -991,7 +994,7 @@ static void CheckCancellableMode(PartyMenuApplication *application)
     if ((application->partyMenu->mode & PARTY_MENU_MODE_HIDE_CANCEL_FLAG) != 0) {
         application->hideCancel = TRUE;
         application->partyMenu->mode ^= PARTY_MENU_MODE_HIDE_CANCEL_FLAG;
-    } else if (application->partyMenu->mode == 21) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         application->hideCancel = TRUE;
     } else {
         application->hideCancel = FALSE;
@@ -1004,12 +1007,12 @@ static void SetupRequestedMode(PartyMenuApplication *application)
 
     if (application->partyMenu->unk_21 == 2) {
         application->cursorPosTable = Unk_020F1CF8;
-    } else if (application->partyMenu->mode == 2
-        || application->partyMenu->mode == 17
-        || application->partyMenu->mode == 23
-        || application->partyMenu->mode == 22) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         application->cursorPosTable = Unk_020F1D38;
-    } else if (application->partyMenu->mode == 21) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         application->cursorPosTable = Unk_020F1D78;
     } else {
         application->cursorPosTable = Unk_020F1DB8;
@@ -1028,7 +1031,7 @@ static void SetupRequestedMode(PartyMenuApplication *application)
         flags ^= PARTY_MENU_SHOW_CONFIRM;
     }
 
-    if (application->partyMenu->mode == 4 || application->partyMenu->mode == 21) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_UNK_04 || application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         Sprite_SetDrawFlag(application->sprites[9], FALSE);
         flags ^= PARTY_MENU_SHOW_CANCEL;
     }
@@ -1193,16 +1196,16 @@ static void SetupRequestedModePanels(PartyMenuApplication *application)
         template = Unk_020F1DF8[0];
     }
 
-    if (application->partyMenu->mode == 16) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) {
         sub_0207F4AC(application, template);
-    } else if (application->partyMenu->mode == 6) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) {
         sub_0207F5A0(application, template);
-    } else if (application->partyMenu->mode == 13) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_CONTEST) {
         sub_0207F694(application, template);
-    } else if (application->partyMenu->mode == 2
-        || application->partyMenu->mode == 17
-        || application->partyMenu->mode == 23
-        || application->partyMenu->mode == 22) {
+    } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         sub_0207F788(application, template);
     } else {
         sub_0207F388(application, template);
@@ -1635,10 +1638,10 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
             if (application->hideCancel == 0) {
                 return 3;
             }
-        } else if ((application->partyMenu->mode == 3) || (application->partyMenu->mode == 19)) {
+        } else if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT) || (application->partyMenu->mode == PARTY_MENU_MODE_NPC_TRADE)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             return 0;
-        } else if ((application->partyMenu->mode == 20) || (application->partyMenu->mode == 14)) {
+        } else if ((application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN) || (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX)) {
             if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
@@ -1646,7 +1649,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
-        } else if (application->partyMenu->mode == 15) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
             if (application->partyMembers[application->currPartySlot].unk_10 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_0207FFC8(application);
@@ -1655,7 +1658,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
-        } else if (application->partyMenu->mode == 21) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_0207FFC8(application);
             return 0;
@@ -1677,7 +1680,7 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
     v0 = sub_0207FA00(application);
 
     if (v0 == 2) {
-        if ((application->partyMenu->mode == 20) || (application->partyMenu->mode == 14) || (application->partyMenu->mode == 15)) {
+        if ((application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN) || (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) || (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL)) {
             if (application->partyMembers[application->currPartySlot].unk_10 != 0) {
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
@@ -1914,7 +1917,7 @@ u8 sub_02080354(PartyMenuApplication *application, u8 partySlot)
         }
     }
 
-    if (application->partyMenu->mode == 17) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) {
         if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
             return 0;
         }
@@ -1937,7 +1940,7 @@ u8 sub_02080404(PartyMenuApplication *application, u8 partySlot)
 {
     u8 v0;
 
-    if (application->partyMenu->mode == 22) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
             return 0;
         }
@@ -1960,7 +1963,7 @@ u8 sub_02080488(PartyMenuApplication *application, u8 partySlot)
 {
     u8 v0;
 
-    if (application->partyMenu->mode == 23) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
         if (sub_02078804(application->partyMembers[partySlot].unk_04) == 1) {
             return 0;
         }
@@ -2132,7 +2135,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         }
     }
 
-    if (application->partyMenu->mode == 17) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) {
         switch (CheckDuplicateValues(application)) {
         case 0:
             break;
@@ -2149,7 +2152,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         }
     }
 
-    if (application->partyMenu->mode == 22) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         switch (CheckUniqueValues(application)) {
         case 0:
             break;
@@ -2161,7 +2164,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         }
     }
 
-    if (application->partyMenu->mode == 23) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
         switch (CheckEqualityInArray(application)) {
         case 0:
             break;
@@ -2299,7 +2302,7 @@ static int GetValidWindowLayout(PartyMenuApplication *application)
 {
     int v0;
 
-    if (ValidateGameWindowState(application) == 0) {
+    if (ShouldShowSubscreen(application) == 0) {
         return 0xffffffff;
     }
 
@@ -2327,9 +2330,9 @@ static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
         Window_EraseMessageBox(&application->windows[33], 1);
         sub_0208337C(application);
 
-        if ((application->partyMenu->mode == 2) || (application->partyMenu->mode == 17) || (application->partyMenu->mode == 23) || (application->partyMenu->mode == 22)) {
+        if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL)) {
             PartyMenu_PrintShortMessage(application, 34, 1);
-        } else if (application->partyMenu->mode == 21) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
             PartyMenu_PrintShortMessage(application, 197, 1);
         } else {
             PartyMenu_PrintShortMessage(application, 29, 1);
@@ -2825,11 +2828,11 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
 
 static int ResetWindowOnInput(PartyMenuApplication *application)
 {
-    if (application->partyMenu->mode == 10) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         Window_EraseMessageBox(&application->windows[34], 1);
         PartyMenu_PrintShortMessage(application, 29, 1);
         Sprite_SetExplicitPalette2(application->sprites[6], 0);
-        application->partyMenu->mode = 0;
+        application->partyMenu->mode = PARTY_MENU_MODE_FIELD;
         return 1;
     }
 
@@ -2872,8 +2875,8 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
     Window_FillTilemap(v1, 15);
     sub_0208274C(application);
 
-    if (application->partyMenu->mode == 12) {
-        application->partyMenu->mode = 10;
+    if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL_DONE) {
+        application->partyMenu->mode = PARTY_MENU_MODE_GIVE_ITEM_DONE;
     }
 
     return v4;
@@ -2894,17 +2897,17 @@ static int CheckForItemApplication(PartyMenuApplication *application)
     return 24;
 }
 
-static BOOL ValidateGameWindowState(PartyMenuApplication *application)
+static BOOL ShouldShowSubscreen(PartyMenuApplication *application)
 {
-    if (application->partyMenu->mode == 5
-        || application->partyMenu->mode == 6
-        || application->partyMenu->mode == 7
-        || application->partyMenu->mode == 8
-        || application->partyMenu->mode == 9
-        || application->partyMenu->mode == 11
-        || application->partyMenu->mode == 14
-        || application->partyMenu->mode == 16
-        || application->partyMenu->mode == 20) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_USE_ITEM
+        || application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE
+        || application->partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE
+        || application->partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE
+        || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM
+        || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL
+        || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX
+        || application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM
+        || application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN) {
         return FALSE;
     }
 

@@ -127,10 +127,10 @@ void PartyMenu_AddWindows(PartyMenuApplication *application)
         AddPartyMemberWindows(application->bgConfig, &application->windows[PARTY_MENU_WIN_NAME_MEMB5], &templates[25]);
     }
 
-    if (application->partyMenu->mode == 2
-        || application->partyMenu->mode == 17
-        || application->partyMenu->mode == 23
-        || application->partyMenu->mode == 22) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
+        || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         WindowTemplate template = Unk_020F1ED0[0];
         template.tilemapTop = 22;
         Window_AddFromTemplate(application->bgConfig, &application->windows[PARTY_MENU_WIN_UNK_31], &template);
@@ -233,9 +233,9 @@ void sub_02081E08(PartyMenuApplication *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    if (param0->partyMenu->mode == 15) {
+    if (param0->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
         MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->tmpString);
-    } else if ((param0->partyMenu->mode == 21) && (param0->partyMembers[param0->currPartySlot].unk_10 == 1)) {
+    } else if ((param0->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) && (param0->partyMembers[param0->currPartySlot].unk_10 == 1)) {
         MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->tmpString);
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
@@ -513,12 +513,12 @@ void sub_02082508(PartyMenuApplication *param0, u8 param1)
         }
     }
 
-    if (param0->partyMenu->mode == 22) {
+    if (param0->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL) {
         if (sub_02080404(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
         }
-    } else if (param0->partyMenu->mode == 23) {
+    } else if (param0->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) {
         if (sub_02080488(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;

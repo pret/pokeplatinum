@@ -1190,7 +1190,7 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
     return 1;
 }
 
-static int sub_02073524(UnkStruct_02072334 *param0, int param1)
+static int sub_02073524(UnkStruct_02072334 *param0, int mode)
 {
     PartyMenu *partyMenu;
 
@@ -1204,10 +1204,10 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
         partyMenu->unk_21 = 0;
-        partyMenu->mode = param1;
+        partyMenu->mode = mode;
         partyMenu->usedItemID = param0->unk_1C[param0->unk_18].item;
 
-        if (param1 == 11) {
+        if (mode == PARTY_MENU_MODE_GIVE_MAIL) {
             partyMenu->selectedMonSlot = param0->unk_17;
         }
 

@@ -271,7 +271,7 @@ static int sub_02098C2C(UnkStruct_02098BE4 *param0)
 
 static int sub_02098C44(UnkStruct_02098BE4 *param0)
 {
-    PartyMenu *partyMan;
+    PartyMenu *partyMenu;
 
     if (!sub_02098AF8(&param0->appMan)) {
         return 1;
@@ -283,16 +283,16 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    partyMan = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
-    MI_CpuClear8(partyMan, sizeof(PartyMenu));
-    partyMan->party = param0->unk_0C->unk_10;
-    partyMan->bag = param0->unk_0C->unk_14;
-    partyMan->unk_21 = 0;
-    partyMan->mode = 20;
-    partyMan->options = param0->unk_0C->options;
+    partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+    MI_CpuClear8(partyMenu, sizeof(PartyMenu));
+    partyMenu->party = param0->unk_0C->unk_10;
+    partyMenu->bag = param0->unk_0C->unk_14;
+    partyMenu->unk_21 = 0;
+    partyMenu->mode = PARTY_MENU_MODE_FEED_POFFIN;
+    partyMenu->options = param0->unk_0C->options;
 
-    param0->appMan = ApplicationManager_New(&gPokemonPartyAppTemplate, partyMan, param0->heapID);
-    param0->unk_10 = (void *)partyMan;
+    param0->appMan = ApplicationManager_New(&gPokemonPartyAppTemplate, partyMenu, param0->heapID);
+    param0->unk_10 = (void *)partyMenu;
 
     return 2;
 }

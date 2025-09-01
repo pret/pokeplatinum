@@ -249,7 +249,7 @@ static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMenu->unk_21 = 0;
-    partyMenu->mode = 23;
+    partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     partyMenu->fieldSystem = fieldSystem;
     partyMenu->selectedMonSlot = param0->unk_05;
 
