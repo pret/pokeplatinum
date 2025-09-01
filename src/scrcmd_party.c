@@ -157,7 +157,10 @@ BOOL ScrCmd_FindPartySlotWithMove(ScriptContext *ctx)
             continue;
         }
 
-        if ((Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL) == move)) {
+        if ((Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL) == move)
+            || (Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL) == move)
+            || (Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL) == move)
+            || (Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL) == move)) {
             *destVar = slot;
             break;
         }
@@ -428,10 +431,9 @@ BOOL ScrCmd_CountAliveMonsAndBoxMons(ScriptContext *ctx)
     for (slot = 0, count = 0; slot < partyCount; slot++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
-            if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
-                count++;
-            }
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
+            count++;
         }
     }
 
@@ -705,7 +707,8 @@ BOOL ScrCmd_CountPartyRibbons(ScriptContext *ctx)
         for (u16 slot = 0; slot < partyCount; slot++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
-            if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) && Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL) != FALSE) {
+            if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
+                && Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL) != FALSE) {
                 count++;
                 break;
             }
