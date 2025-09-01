@@ -26,6 +26,7 @@
 #include "generated/string_padding_mode.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/animation_tags.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
 #include "constants/elevator_dirs.h"
@@ -2031,33 +2032,33 @@
     .short 359
     .endm
 
-    .macro ScrCmd_168 arg0, arg1, arg2, arg3, arg4
+    .macro LoadDoorAnimation mapX, mapZ, tileX, tileZ, tag
     .short 360
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .byte \arg4
+    .short \mapX
+    .short \mapZ
+    .short \tileX
+    .short \tileZ
+    .byte \tag
     .endm
 
-    .macro ScrCmd_169 arg0
+    .macro WaitForAnimation tag
     .short 361
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16A arg0
+    .macro UnloadAnimation tag
     .short 362
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16B arg0
+    .macro PlayDoorOpenAnimation tag
     .short 363
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16C arg0
+    .macro PlayDoorCloseAnimation tag
     .short 364
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro BufferDaycareMonNicknames
@@ -3383,19 +3384,19 @@
     .short \destFlagCount
     .endm
 
-    .macro ScrCmd_24B arg0
+    .macro LoadPCAnimation tag
     .short 587
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_24C arg0
+    .macro PlayPCBootUpAnimation tag
     .short 588
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_24D arg0
+    .macro PlayPCShutDownAnimation tag
     .short 589
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro GetJubilifeLotteryTrainerID destVarID

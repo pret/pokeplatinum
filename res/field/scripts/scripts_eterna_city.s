@@ -744,15 +744,15 @@ _08FC:
     CloseMessage
     ApplyMovement 31, _0944
     WaitMovement
-    ScrCmd_168 9, 17, 24, 18, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 9, 17, 24, 18, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 31, _094C
     WaitMovement
     RemoveObject 31
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ReleaseAll
     End
 

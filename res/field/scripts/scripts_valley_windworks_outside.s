@@ -70,14 +70,14 @@ _00CF:
     CloseMessage
     ApplyMovement 0, _013C
     WaitMovement
-    ScrCmd_168 7, 20, 19, 14, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 0, _0144
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Message 4
     RemoveObject 0
     CloseMessage
@@ -165,23 +165,23 @@ _0201:
     ApplyMovement LOCALID_PLAYER, _02BC
     ApplyMovement 6, _02EC
     WaitMovement
-    ScrCmd_168 7, 20, 19, 14, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _0300
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     WaitTime 120, VAR_RESULT
-    ScrCmd_168 7, 20, 19, 14, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _0310
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _031C
     WaitMovement
     Message 3

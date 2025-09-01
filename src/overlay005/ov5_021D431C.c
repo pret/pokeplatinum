@@ -46,7 +46,7 @@ typedef struct UnkStruct_ov5_021D4E00_t {
 
 static void ov5_021D4798(Camera *camera, u8 *param1);
 static void ov5_021D47DC(Camera *camera, u8 *param1);
-static u8 ov5_021D481C(const int param0);
+static u8 DoorAnimation_GetSoundEffectType(const int doorModelID);
 
 UnkStruct_ov5_021D432C *ov5_021D431C(void)
 {
@@ -137,12 +137,12 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             param1->unk_20 = 1;
         }
 
-        if (ov5_021D481C(v9) == 1) {
-            v10 = 1544;
-        } else if (ov5_021D481C(v9) == 2) {
-            v10 = 1492;
+        if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
+            v10 = SEQ_SE_DP_DOOR10;
+        } else if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
+            v10 = SEQ_SE_PL_DOOR_OPEN5;
         } else {
-            v10 = 1541;
+            v10 = SEQ_SE_DP_DOOR_OPEN;
         }
 
         if (param1->unk_1E == 2) {
@@ -185,12 +185,12 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
                 v13 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
-                if (ov5_021D481C(v13) == 1) {
+                if (DoorAnimation_GetSoundEffectType(v13) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
                     v14 = 0;
-                } else if (ov5_021D481C(v13) == 2) {
+                } else if (DoorAnimation_GetSoundEffectType(v13) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
                     v14 = 0;
                 } else {
-                    v14 = 1543;
+                    v14 = SEQ_SE_DP_DOOR_CLOSE2;
                 }
 
                 if (param1->unk_1E == 2) {
@@ -305,12 +305,12 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 param1->unk_20 = 1;
             }
 
-            if (ov5_021D481C(v9) == 1) {
-                v10 = 1544;
-            } else if (ov5_021D481C(v9) == 2) {
-                v10 = 1492;
+            if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
+                v10 = SEQ_SE_DP_DOOR10;
+            } else if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
+                v10 = SEQ_SE_PL_DOOR_OPEN5;
             } else {
-                v10 = 1541;
+                v10 = SEQ_SE_DP_DOOR_OPEN;
             }
 
             if (param1->unk_1E == 2) {
@@ -356,9 +356,9 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
                 v13 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
-                if (ov5_021D481C(v13) == 1) {
+                if (DoorAnimation_GetSoundEffectType(v13) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
                     v14 = 0;
-                } else if (ov5_021D481C(v13) == 2) {
+                } else if (DoorAnimation_GetSoundEffectType(v13) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
                     v14 = 0;
                 } else {
                     v14 = 1543;
@@ -462,17 +462,17 @@ static void ov5_021D47DC(Camera *camera, u8 *param1)
     }
 }
 
-static u8 ov5_021D481C(const int param0)
+static u8 DoorAnimation_GetSoundEffectType(const int doorModelID)
 {
-    if (param0 == 442) {
-        return 2;
+    if (doorModelID == MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR) {
+        return DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME;
     }
 
-    if ((param0 == 70) || (param0 == 298) || (param0 == 456) || (param0 == 427) || (param0 == 484) || (param0 == 75)) {
-        return 1;
+    if ((doorModelID == MAP_PROP_MODEL_POKECENTER_DOOR) || (doorModelID == MAP_PROP_MODEL_GYM_DOOR) || (doorModelID == MAP_PROP_MODEL_GTS_INSIDE_DOOR) || (doorModelID == MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR) || (doorModelID == MAP_PROP_MODEL_CARD_DOOR) || (doorModelID == MAP_PROP_MODEL_ELEVATOR_DOOR)) {
+        return DOOR_SOUND_EFFECT_TYPE_SLIDING;
     }
 
-    return 0;
+    return DOOR_SOUND_EFFECT_TYPE_HINGED;
 }
 
 BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, const u8 param2)
@@ -694,29 +694,29 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     return 0;
 }
 
-static BOOL ov5_021D4BC8(FieldTask *param0)
+static BOOL FieldTask_WaitForAnimation(FieldTask *task)
 {
-    BOOL v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    u8 *v2 = FieldTask_GetEnv(param0);
+    BOOL finished;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    u8 *taskEnv = FieldTask_GetEnv(task);
 
-    v0 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, *v2);
+    finished = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, *taskEnv);
 
-    if (v0) {
-        Heap_Free(v2);
-        return 1;
+    if (finished) {
+        Heap_Free(taskEnv);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, const u8 param3)
+void DoorAnimation_FindDoorAndLoad(FieldSystem *fieldSystem, const int x, const int z, const u8 tag)
 {
-    BOOL v0;
-    MapProp *v1;
-    TerrainCollisionHitbox v2;
-    int v3;
-    int v4[] = {
+    BOOL doorFound;
+    MapProp *door;
+    TerrainCollisionHitbox hitbox;
+    int doorModelID;
+    int doorModelIDs[] = {
         MAP_PROP_MODEL_DOOR01,
         MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
         MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
@@ -739,94 +739,94 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
         MAP_PROP_MODEL_ELEVATOR_DOOR
     };
 
-    TerrainCollisionHitbox_Init(param1, param2, -1, 0, 3, 1, &v2);
-    v0 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v4, NELEMS(v4), &v2, &v1, &v3);
+    TerrainCollisionHitbox_Init(x, z, -1, 0, 3, 1, &hitbox);
+    doorFound = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, doorModelIDs, NELEMS(doorModelIDs), &hitbox, &door, &doorModelID);
 
-    if (v0) {
-        u8 v5;
-        u8 v6;
-        NNSG3dResTex *v7;
+    if (doorFound) {
+        u8 unused;
+        u8 animationCount;
+        NNSG3dResTex *texture;
 
-        v6 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v3);
-        v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
+        animationCount = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, doorModelID);
+        texture = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, param3, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v7, v6, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, tag, doorModelID, MapProp_GetRenderObj(door), MapProp_GetModel(door), texture, animationCount, 1, FALSE);
     } else {
         GF_ASSERT(FALSE);
     }
 }
 
-void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1)
+void DoorAnimation_PlayOpenAnimation(FieldSystem *fieldSystem, const u8 tag)
 {
-    int v0;
-    int v1;
-    int v2;
-    u8 v3;
+    int doorModelID;
+    int soundEffectID;
+    int animationIndex;
+    u8 animationCount;
 
-    v0 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, param1);
-    v3 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v0);
+    doorModelID = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, tag);
+    animationCount = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, doorModelID);
 
-    if (ov5_021D481C(v0) == 1) {
-        v1 = 1544;
-    } else if (ov5_021D481C(v0) == 2) {
-        v1 = 1492;
+    if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
+        soundEffectID = SEQ_SE_DP_DOOR10;
+    } else if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
+        soundEffectID = SEQ_SE_PL_DOOR_OPEN5;
     } else {
-        v1 = 1541;
+        soundEffectID = SEQ_SE_DP_DOOR_OPEN;
     }
 
-    if (v3 == 2) {
-        v2 = 0;
-    } else if (v3 == 4) {
-        v2 = 0;
+    if (animationCount == 2) {
+        animationIndex = 0;
+    } else if (animationCount == 4) {
+        animationIndex = 0;
     } else {
-        GF_ASSERT(0);
-        v2 = 0;
+        GF_ASSERT(FALSE);
+        animationIndex = 0;
     }
 
-    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
+    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, tag, animationIndex, soundEffectID);
 }
 
-void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
+void DoorAnimation_PlayCloseAnimation(FieldSystem *fieldSystem, const u8 tag)
 {
-    int v0;
-    int v1;
-    int v2;
-    u8 v3;
+    int doorModelID;
+    int soundEffectID;
+    int animationIndex;
+    u8 animationCount;
 
-    v0 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, param1);
-    v3 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v0);
+    doorModelID = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, tag);
+    animationCount = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, doorModelID);
 
-    if (ov5_021D481C(v0) == 1) {
-        v1 = 0;
-    } else if (ov5_021D481C(v0) == 2) {
-        v1 = 0;
+    if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
+        soundEffectID = 0;
+    } else if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
+        soundEffectID = 0;
     } else {
-        v1 = 1543;
+        soundEffectID = SEQ_SE_DP_DOOR_CLOSE2;
     }
 
-    if (v3 == 2) {
-        v2 = 1;
-    } else if (v3 == 4) {
-        v2 = 1;
+    if (animationCount == 2) {
+        animationIndex = 1;
+    } else if (animationCount == 4) {
+        animationIndex = 1;
     } else {
-        GF_ASSERT(0);
-        v2 = 1;
+        GF_ASSERT(FALSE);
+        animationIndex = 1;
     }
 
-    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
+    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, tag, animationIndex, soundEffectID);
 }
 
-void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
+void FieldSystem_WaitForAnimation(FieldSystem *fieldSystem, const u8 tag)
 {
-    u8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(u8));
+    u8 *taskEnv = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(u8));
 
-    *v0 = param1;
-    FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
+    *taskEnv = tag;
+    FieldTask_InitCall(fieldSystem->task, FieldTask_WaitForAnimation, taskEnv);
 }
 
-void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
+void FieldSystem_UnloadAnimation(FieldSystem *fieldSystem, const u8 tag)
 {
-    MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, param1);
+    MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, tag);
 }
 
 void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *fieldSystem)
