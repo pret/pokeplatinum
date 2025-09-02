@@ -164,7 +164,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
         *targetID = MapObject_GetLocalID(object);
     }
 
-    if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_ZONE - 1) {
+    if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_GAME - 1) {
         ScriptManager_SetHiddenItem(scriptManager, scriptID);
     }
 }
@@ -261,9 +261,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 8900) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0424, TEXT_BANK_UNK_0431);
         retScriptID -= 8900;
-    } else if (retScriptID >= SCRIPT_ID_OFFSET_SAFARI_ZONE) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0497, TEXT_BANK_UNK_0538);
-        retScriptID -= SCRIPT_ID_OFFSET_SAFARI_ZONE;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_SAFARI_GAME) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_safari_game, TEXT_BANK_SAFARI_GAME);
+        retScriptID -= SCRIPT_ID_OFFSET_SAFARI_GAME;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0408, TEXT_BANK_UNK_0380);
         retScriptID -= SCRIPT_ID_OFFSET_HIDDEN_ITEMS;

@@ -20,7 +20,7 @@ _023:
     WaitCatchMonTask 
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_RESULT_MASK, BATTLE_RESULT_CAPTURED_MON, _051
     CompareVarToValue OPCODE_NEQ, BTLVAR_NUM_SAFARI_BALLS, 0, _051
-    PlaySound BTLSCR_ATTACKER, 1521
+    PlaySound BTLSCR_ATTACKER, SEQ_SE_DP_PINPON
     // Announcer: You’re out of Safari Balls! Game over!
     PrintMessage pl_msg_00000368_00850, TAG_NONE
     Wait 

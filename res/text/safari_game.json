@@ -2,21 +2,21 @@
   "key": 5612,
   "messages": [
     {
-      "id": "pl_msg_00000538_00000",
+      "id": "SafariGame_Text_TimesUp",
       "en_US": [
         "Ding-dong! Time’s up!\n",
         "Your Safari Game is over."
       ]
     },
     {
-      "id": "pl_msg_00000538_00001",
+      "id": "SafariGame_Text_OutOfSafariBalls",
       "en_US": [
         "Ding-dong! You’ve run out of Safari\n",
         "Balls. Your Safari Game is over."
       ]
     },
     {
-      "id": "pl_msg_00000538_00002",
+      "id": "SafariGame_Text_OutOfRoomForPokemon",
       "en_US": [
         "Ding-dong!\n",
         "You’re out of room for more Pokémon.\r",
@@ -24,18 +24,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000538_00003",
+      "id": "SafariGame_Text_QuickTramPrompt",
       "en_US": "Where would you like to go?"
     },
     {
-      "id": "pl_msg_00000538_00004",
+      "id": "SafariGame_Text_PlayerDidntBoard",
       "en_US": [
         "{STRVAR_1 3, 0, 0} didn’t board\n",
         "the Quick Tram."
       ]
     },
     {
-      "id": "pl_msg_00000538_00005",
+      "id": "SafariGame_Text_WouldYouLikeToExit",
       "en_US": [
         "Would you like to exit the Great Marsh\n",
         "right now?"

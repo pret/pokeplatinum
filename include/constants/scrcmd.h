@@ -4,8 +4,9 @@
 #include "generated/accessories.h"
 #include "generated/backdrops.h"
 
-#define MENU_YES 0
-#define MENU_NO  1
+#define MENU_YES    0
+#define MENU_NO     1
+#define MENU_CANCEL -2
 
 #define LOCALID_PLAYER 0xFF
 

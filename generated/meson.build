@@ -53,6 +53,7 @@ metang_generators = {
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
+    'great_marsh_tram_constants': {'type': 'enum', 'tag': 'GreatMarshTramConstant'},
     'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
     'item_battle_categories': { 'type': 'enum', 'tag': 'ItemBattleCategory' },

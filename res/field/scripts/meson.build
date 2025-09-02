@@ -502,7 +502,7 @@ scr_seq_files = files(
     'scripts_route_228_south_house.s',
     'scripts_route_229.s',
     'scripts_unk_0496.s',
-    'scripts_unk_0497.s',
+    'scripts_safari_game.s',
     'scripts_unk_0498.s',
     'scripts_unk_0499.s',
     'scripts_unk_0500.s',
