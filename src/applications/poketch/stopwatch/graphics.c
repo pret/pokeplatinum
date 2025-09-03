@@ -223,7 +223,6 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 
 static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics)
 {
-    // TODO Constant for 0x20, pretty sure it is tile size
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, 80 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
@@ -308,7 +307,7 @@ static void SetupSprites(PoketchStopwatchGraphics *graphics, const TimerState *t
     };
     u32 i;
 
-    for (i = 0; i <= 7; i++) {
+    for (i = 0; i <= BUTTON_SPRITES - 1; i++) {
         graphics->animSpriteData[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData[i], &graphics->digitSprites);
     }
 
