@@ -205,7 +205,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS);
         retScriptID -= SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS;
     } else if (retScriptID >= 10300) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_COUNTERPART_TALK);
         retScriptID -= 10300;
     } else if (retScriptID >= 10200) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN);
@@ -226,7 +226,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= 9900;
     } else if (retScriptID >= 9800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_UNK_0217);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_CONTEST_REGISTRATION);
         retScriptID -= 9800;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS) {
         ScriptContext_Load(fieldSystem, ctx, scripts_follower_partners, TEXT_BANK_FOLLOWER_PARTNERS);
@@ -289,7 +289,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_LoadFromCurrentMap(fieldSystem, ctx);
         retScriptID -= 1;
     } else {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, TEXT_BANK_UNK_0355);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, TEXT_BANK_DUMMY_0355);
         retScriptID = 0;
     }
 

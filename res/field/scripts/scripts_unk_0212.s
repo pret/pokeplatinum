@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0217.h"
+#include "res/text/bank/contest_registration.h"
 #include "constants/map_object.h"
 
 
