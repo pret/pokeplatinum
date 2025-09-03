@@ -233,11 +233,6 @@
 #include "constdata/const_020EAC58.h"
 #include "constdata/const_020F8BE0.h"
 
-enum SafariGameActiveState {
-    SAFARI_GAME_ACTIVE = 0,
-    SAFARI_GAME_INACTIVE,
-};
-
 typedef struct {
     SysTask *unk_00;
     SysTask *unk_04;

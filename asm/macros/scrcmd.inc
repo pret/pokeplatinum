@@ -2900,11 +2900,11 @@
     .endm
 
     .macro StartSafariGame
-    StartEndSafariGame 0
+    StartEndSafariGame SAFARI_GAME_ACTIVE
     .endm
 
     .macro EndSafariGame
-    StartEndSafariGame 1
+    StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
     .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
