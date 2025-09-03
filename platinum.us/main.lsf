@@ -91,7 +91,7 @@ Static main
 	Object main.nef.p/src_unk_02020AEC.c.o
 	Object main.nef.p/src_sprite.c.o
 	Object main.nef.p/src_touch_screen.c.o
-	Object main.nef.p/src_unk_02022844.c.o
+	Object main.nef.p/src_timer.c.o
 	Object main.nef.p/src_error_handling.c.o
 	Object main.nef.p/src_resource_collection.c.o
 	Object main.nef.p/src_render_view.c.o

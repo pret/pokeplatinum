@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "play_time.h"
-#include "unk_02022844.h"
+#include "timer.h"
 
 static BOOL sStarted = FALSE;
 static u64 sDummy = 0;
@@ -23,13 +23,13 @@ void PlayTime_Start(PlayTime *playTime)
     sDummy = 0;
     sLastTimestamp = 0;
     sPlayTime = playTime;
-    sCurrentTimestamp = sub_0202293C();
+    sCurrentTimestamp = Timer_GetCurrentTimestamp();
 }
 
 void PlayTime_IncrementTimer(void)
 {
     if (sStarted) {
-        u64 currentTimestamp = sub_0202295C(sub_0202293C() - sCurrentTimestamp);
+        u64 currentTimestamp = Timer_TicksToSeconds(Timer_GetCurrentTimestamp() - sCurrentTimestamp);
 
         if (currentTimestamp > sLastTimestamp) {
             PlayTime_Increment(sPlayTime, currentTimestamp - sLastTimestamp);
