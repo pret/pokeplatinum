@@ -1347,17 +1347,17 @@ Overlay overlay83
 	Object main.nef.p/src_overlay083_ov83_0223F7F4.c.o
 }
 
-Overlay overlay84
+Overlay bag
 {
 	After overlay82
-	Object main.nef.p/src_overlay084_ov84_0223B5A0.c.o
-	Object main.nef.p/src_overlay084_ov84_0223F040.c.o
-	Object main.nef.p/src_overlay084_ov84_022403F4.c.o
+	Object main.nef.p/src_applications_bag_main.c.o
+	Object main.nef.p/src_applications_bag_windows.c.o
+	Object main.nef.p/src_applications_bag_sprites.c.o
 }
 
 Overlay overlay85
 {
-	After overlay84
+	After bag
 	Object main.nef.p/src_overlay085_ov85_02241440.c.o
 }
 

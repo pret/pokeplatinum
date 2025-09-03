@@ -1,4 +1,4 @@
-#include "overlay084/ov84_022403F4.h"
+#include "applications/bag/sprites.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,7 +6,7 @@
 #include "constants/narc.h"
 #include "generated/pokemon_types.h"
 
-#include "overlay084/ov84_0223B5A0.h"
+#include "applications/bag/main.h"
 
 #include "bag_context.h"
 #include "genders.h"
@@ -177,7 +177,7 @@ void BagUI_InitSprites(BagController *controller)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    VramTransfer_New(32, HEAP_ID_6);
+    VramTransfer_New(32, HEAP_ID_BAG);
     InitSpriteSystem(controller);
     LoadSpriteResources(controller);
     InitSprites(controller);
@@ -187,7 +187,7 @@ static void InitSpriteSystem(BagController *controller)
 {
     SpriteResourceCapacities capacities = { 10, 6, 9, 9, 0, 0 };
 
-    controller->spriteSystem = SpriteSystem_Alloc(HEAP_ID_6);
+    controller->spriteSystem = SpriteSystem_Alloc(HEAP_ID_BAG);
     controller->spriteMan = SpriteManager_New(controller->spriteSystem);
 
     RenderOamTemplate oamTemplate = {

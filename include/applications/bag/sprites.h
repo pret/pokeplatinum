@@ -1,28 +1,7 @@
-#ifndef POKEPLATINUM_OV84_022403F4_H
-#define POKEPLATINUM_OV84_022403F4_H
+#ifndef POKEPLATINUM_APPLICATIONS_BAG_SPRITES_H
+#define POKEPLATINUM_APPLICATIONS_BAG_SPRITES_H
 
-#include "overlay084/ov84_0223B5A0.h"
-
-enum BagUISprite {
-    BAG_SPRITE_BAG = 0,
-    BAG_SPRITE_POCKET_HIGHLIGHT,
-    BAG_SPRITE_POCKET_SELECTOR_LEFT_ARROW,
-    BAG_SPRITE_POCKET_SELECTOR_RIGHT_ARROW,
-    BAG_SPRITE_ITEM_HIGHLIGHT,
-    BAG_SPRITE_MOVING_ITEM_POS_BAR,
-    BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE,
-    BAG_SPRITE_ITEM,
-    BAG_SPRITE_ITEM_COUNT_ARROW_UP,
-    BAG_SPRITE_ITEM_COUNT_ARROW_DOWN,
-    BAG_SPRITE_MOVE_TYPE,
-    BAG_SPRITE_MOVE_CATEGORY,
-    NUM_BAG_UI_SPRITES,
-};
-
-enum BagUIItemCountArrowsPosition {
-    BAG_ITEM_COUNT_ARROWS_POS_TRASH = 0,
-    BAG_ITEM_COUNT_ARROWS_POS_SELL,
-};
+#include "applications/bag/defs.h"
 
 void BagUI_InitSprites(BagController *controller);
 void BagUI_FreeSprites(BagController *controller);
@@ -38,4 +17,4 @@ void BagUI_UpdateTypeAndCategoryIcons(BagController *controller, u16 item, u8 dr
 void BagUI_DrawBtnShockwave(BagController *controller, s16 x, s16 y);
 void BagUI_TickBtnShockwaveAnim(BagController *controller);
 
-#endif // POKEPLATINUM_OV84_022403F4_H
+#endif // POKEPLATINUM_APPLICATIONS_BAG_SPRITES_H

@@ -10,6 +10,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/chatot_cry.h"
 
+#include "applications/bag/application.h"
 #include "applications/naming_screen.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/box_cursor.h"
@@ -27,7 +28,6 @@
 #include "applications/pc_boxes/touch_dial.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "global/utility.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -60,7 +60,7 @@
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
 
-FS_EXTERN_OVERLAY(overlay84);
+FS_EXTERN_OVERLAY(bag);
 
 enum BoxSelectorState {
     BOX_SELECTOR_START,
@@ -2561,7 +2561,7 @@ enum GiveItemFromBag {
 
 static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u32 *state)
 {
-    FS_EXTERN_OVERLAY(overlay84);
+    FS_EXTERN_OVERLAY(bag);
 
     static const u8 bagPockets[] = {
         POCKET_ITEMS,
@@ -2588,7 +2588,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
             Bag *bag = SaveData_GetBag(boxAppMan->saveData);
             boxAppMan->bagAppArgs = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
             BagContext_Init(boxAppMan->bagAppArgs, boxAppMan->saveData, 1, NULL);
-            Overlay_LoadByID(FS_OVERLAY_ID(overlay84), OVERLAY_LOAD_ASYNC);
+            Overlay_LoadByID(FS_OVERLAY_ID(bag), OVERLAY_LOAD_ASYNC);
             boxAppMan->ApplicationManager = ApplicationManager_New(&gBagApplicationTemplate, boxAppMan->bagAppArgs, HEAP_ID_BOX_DATA);
             (*state)++;
         }
@@ -2599,7 +2599,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
 
             ApplicationManager_Free(boxAppMan->ApplicationManager);
             Heap_Free(boxAppMan->bagAppArgs);
-            Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
+            Overlay_UnloadByID(FS_OVERLAY_ID(bag));
 
             if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 (void)0;
