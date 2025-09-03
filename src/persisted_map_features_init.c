@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
-#include "generated/great_marsh_tram_constants.h"
+#include "constants/great_marsh_tram.h"
 
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"

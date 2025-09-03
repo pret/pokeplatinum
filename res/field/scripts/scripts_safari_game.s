@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/great_marsh_tram_constants.h"
+#include "constants/great_marsh_tram.h"
 #include "res/text/bank/safari_game.h"
 #include "res/text/bank/menu_entries.h"
 
