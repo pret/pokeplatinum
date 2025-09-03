@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/bag/application.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
-#include "overlay084/const_ov84_02241130.h"
-#include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 
 #include "bag.h"
@@ -17,7 +16,7 @@
 #include "unk_020972FC.h"
 
 FS_EXTERN_OVERLAY(overlay83);
-FS_EXTERN_OVERLAY(overlay84);
+FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(overlay85);
 
 static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0);
@@ -90,10 +89,10 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
     void *v0;
     u32 v1;
 
-    FS_EXTERN_OVERLAY(overlay84);
+    FS_EXTERN_OVERLAY(bag);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        BagApplication_Init, BahApplication_Main, BagApplication_Exit, FS_OVERLAY_ID(overlay84)
+        BagApplication_Init, BagApplication_Main, BagApplication_Exit, FS_OVERLAY_ID(bag)
     };
     static const u8 v3[] = {
         4, 0xff

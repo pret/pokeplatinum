@@ -1,10 +1,10 @@
-#include "overlay084/ov84_0223F040.h"
+#include "applications/bag/windows.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay084/ov84_0223B5A0.h"
-#include "overlay084/ov84_022403F4.h"
+#include "applications/bag/main.h"
+#include "applications/bag/sprites.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -109,7 +109,7 @@ void BagUI_DeleteWindows(Window windows[NUM_BAG_UI_WINDOWS])
 
 void BagUI_LoadPocketNames(BagController *controller)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_6);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_BAG);
 
     for (u16 i = 0; i < POCKET_MAX; i++) {
         controller->pocketNames[i] = MessageLoader_GetNewStrbuf(msgLoader, i);
@@ -162,7 +162,7 @@ void BagUI_PrintPocketNames(BagController *controller)
 
 static void *LoadPocketSelectorIcons(BagController *interface, NNSG2dCharacterData **charData)
 {
-    void *file = NARC_AllocAndReadWholeMember(interface->bagGraphicsNARC, 21, HEAP_ID_6);
+    void *file = NARC_AllocAndReadWholeMember(interface->bagGraphicsNARC, 21, HEAP_ID_BAG);
     NNS_G2dGetUnpackedBGCharacterData(file, charData);
     return file;
 }
@@ -181,7 +181,7 @@ void BagUI_DrawPocketSelectorIcon(BagController *controller, u8 pocketIndex, u8 
 
     Window_BlitBitmapRect(&controller->windows[BAG_UI_WINDOW_POCKET_INDICATOR], icons->pRawData, iconX, 0, 32 * POCKET_MAX, 16, controller->pocketSelectorIconsX + controller->pocketSelectorIconsSpacing * pocketIndex, 3, 10, 10);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_POCKET_INDICATOR]);
-    Heap_FreeExplicit(HEAP_ID_6, iconsFile);
+    Heap_FreeExplicit(HEAP_ID_BAG, iconsFile);
 }
 
 void BagUI_DrawPocketSelectorIcons(BagController *controller)
@@ -204,7 +204,7 @@ void BagUI_DrawPocketSelectorIcons(BagController *controller)
     }
 
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_POCKET_INDICATOR]);
-    Heap_FreeExplicit(HEAP_ID_6, iconsFile);
+    Heap_FreeExplicit(HEAP_ID_BAG, iconsFile);
 }
 
 static void BufferPocketSlotItemName(BagController *controller, u32 slotIdx, u32 templateParamIdx)
@@ -222,8 +222,8 @@ void BagUI_PrintItemDescription(BagController *controller, u16 item)
     Strbuf *strBuf;
 
     if (item != 0xffff) {
-        strBuf = Strbuf_Init(130, HEAP_ID_6);
-        Item_LoadDescription(strBuf, item, HEAP_ID_6);
+        strBuf = Strbuf_Init(130, HEAP_ID_BAG);
+        Item_LoadDescription(strBuf, item, HEAP_ID_BAG);
     } else {
         strBuf = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
     }
@@ -310,7 +310,7 @@ void BagUI_PrintItemCount(BagController *controller, u16 count, u16 yOffset, u32
         Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, controller->itemCountX, ITEM_COUNT_START_POS, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
-    Strbuf *string = Strbuf_Init(10, HEAP_ID_6);
+    Strbuf *string = Strbuf_Init(10, HEAP_ID_BAG);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, count, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, string, controller->itemCountNumberFmt);
@@ -344,7 +344,7 @@ void BagUI_PrintBerryNumber(BagController *controller, BagItem *itemSlot, u32 yO
 
 static void *LoadBagUIItemEntrySprites(BagController *controller, NNSG2dCharacterData **charData)
 {
-    void *file = NARC_AllocAndReadWholeMember(controller->bagGraphicsNARC, 38, HEAP_ID_6);
+    void *file = NARC_AllocAndReadWholeMember(controller->bagGraphicsNARC, 38, HEAP_ID_BAG);
     NNS_G2dGetUnpackedBGCharacterData(file, charData);
     return file;
 }
@@ -355,7 +355,7 @@ static void DrawHMIcon(BagController *controller, u32 yOffset)
 
     void *file = LoadBagUIItemEntrySprites(controller, &imageData);
     Window_BlitBitmapRect(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], imageData->pRawData, 40, 0, 64, 16, 0, yOffset, 24, 16);
-    Heap_FreeExplicit(HEAP_ID_6, file);
+    Heap_FreeExplicit(HEAP_ID_BAG, file);
 }
 
 void BagUI_PrintCloseBagEntry(BagController *controller, u32 yOffset)
@@ -373,7 +373,7 @@ void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset)
 
     void *file = LoadBagUIItemEntrySprites(controller, &imageData);
     Window_BlitBitmapRect(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], imageData->pRawData, 0, 0, 64, 16, 96, yOffset, 40, 16);
-    Heap_FreeExplicit(HEAP_ID_6, file);
+    Heap_FreeExplicit(HEAP_ID_BAG, file);
 }
 
 void BagUI_LoadItemActionStrings(BagController *controller)
@@ -410,7 +410,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         msgBoxWindowIdx = BAG_UI_WINDOW_MSG_BOX;
     }
 
-    controller->itemActionChoices = StringList_New(numActions, HEAP_ID_6);
+    controller->itemActionChoices = StringList_New(numActions, HEAP_ID_BAG);
 
     for (u16 i = 0; i < numActions; i++) {
         StringList_AddFromStrbuf(controller->itemActionChoices, controller->itemActionStrings[actions[i]], BagApplication_GetItemActionFunc(actions[i]));
@@ -431,7 +431,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         menuTemplate.loopAround = FALSE;
     }
 
-    controller->menu = Menu_New(&menuTemplate, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
+    controller->menu = Menu_New(&menuTemplate, 8, 0, 0, HEAP_ID_BAG, PAD_BUTTON_B);
 
     if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_TMHMS) {
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
@@ -443,7 +443,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_FillTilemap(&controller->windows[msgBoxWindowIdx], 15);
 
         Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
-        Strbuf *formatted = Strbuf_Init(28 * 2, HEAP_ID_6);
+        Strbuf *formatted = Strbuf_Init(28 * 2, HEAP_ID_BAG);
         BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
         BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);
@@ -488,7 +488,7 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
 
     Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoveItemWhere);
-    Strbuf *formatted = Strbuf_Init(130, HEAP_ID_6);
+    Strbuf *formatted = Strbuf_Init(130, HEAP_ID_BAG);
 
     BufferPocketSlotItemName(controller, controller->movedItemPos - 1, 0);
 
@@ -507,7 +507,7 @@ void BagUI_ShowItemTrashWindows(BagController *controller)
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
 
     Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
-    Strbuf *formatted = Strbuf_Init(14 * 2 * 2, HEAP_ID_6);
+    Strbuf *formatted = Strbuf_Init(14 * 2 * 2, HEAP_ID_BAG);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
     BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);
@@ -591,7 +591,7 @@ static BOOL BagUITextPrinterCallback(TextPrinterTemplate *template, u16 param1)
 
 void BagUI_ShowYesNoMenu(BagController *controller)
 {
-    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, HEAP_ID_6);
+    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, HEAP_ID_BAG);
 }
 
 void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)

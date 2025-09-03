@@ -1,25 +1,10 @@
-#ifndef POKEPLATINUM_OV84_0223F040_H
-#define POKEPLATINUM_OV84_0223F040_H
+#ifndef POKEPLATINUM_APPLICATIONS_BAG_WINDOWS_H
+#define POKEPLATINUM_APPLICATIONS_BAG_WINDOWS_H
 
-#include "overlay084/ov84_0223B5A0.h"
+#include "applications/bag/defs.h"
 
 #include "bag.h"
 #include "bg_window.h"
-
-enum BagUIWindow {
-    BAG_UI_WINDOW_ITEM_LIST = 0,
-    BAG_UI_WINDOW_ITEM_DESCRIPTION,
-    BAG_UI_WINDOW_POCKET_NAMES,
-    BAG_UI_WINDOW_MSG_BOX,
-    BAG_UI_WINDOW_MSG_BOX_NARROW,
-    BAG_UI_WINDOW_POCKET_INDICATOR,
-    BAG_UI_WINDOW_MSG_BOX_WIDE,
-    BAG_UI_WINDOW_SELL_COUNT_VALUE,
-    BAG_UI_WINDOW_MONEY,
-    BAG_UI_WINDOW_THROW_AWAY_COUNT,
-    BAG_UI_WINDOW_POFFIN_COUNT,
-    NUM_BAG_UI_WINDOWS,
-};
 
 void BagUI_CreateWindows(BagController *controller);
 void BagUI_DeleteWindows(Window windows[NUM_BAG_UI_WINDOWS]);
@@ -53,4 +38,4 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame);
 void BagUI_PrintMoney(BagController *controller, u8 skipLabel);
 void BagUI_DrawPoffinCountMsgBox(BagController *controller);
 
-#endif // POKEPLATINUM_OV84_0223F040_H
+#endif // POKEPLATINUM_APPLICATIONS_BAG_WINDOWS_H

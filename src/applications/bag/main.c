@@ -1,4 +1,4 @@
-#include "overlay084/ov84_0223B5A0.h"
+#include "applications/bag/main.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -10,10 +10,9 @@
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/const_ov84_02241130.h"
-#include "overlay084/ov84_0223B5A0.h"
-#include "overlay084/ov84_0223F040.h"
-#include "overlay084/ov84_022403F4.h"
+#include "applications/bag/application.h"
+#include "applications/bag/sprites.h"
+#include "applications/bag/windows.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -195,7 +194,7 @@ static BOOL DoMenuInput(BagController *controller, u8 input);
 
 const ApplicationManagerTemplate gBagApplicationTemplate = {
     BagApplication_Init,
-    BahApplication_Main,
+    BagApplication_Main,
     BagApplication_Exit,
     FS_OVERLAY_ID_NONE
 };
@@ -423,18 +422,18 @@ int BagApplication_Init(ApplicationManager *appMan, int *state)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_6, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BAG, HEAP_SIZE_BAG);
 
-    controller = ApplicationManager_NewData(appMan, sizeof(BagController), HEAP_ID_6);
+    controller = ApplicationManager_NewData(appMan, sizeof(BagController), HEAP_ID_BAG);
     memset(controller, 0, sizeof(BagController));
     controller->bagCtx = ApplicationManager_Args(appMan);
 
     RetrieveSaveData(controller);
 
-    controller->bgConfig = BgConfig_New(HEAP_ID_6);
+    controller->bgConfig = BgConfig_New(HEAP_ID_BAG);
     controller->trainerGender = TrainerInfo_Gender(controller->trainerInfo);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_DOWNWARD_IN, FADE_TYPE_DOWNWARD_IN, COLOR_BLACK, 6, 1, HEAP_ID_6);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_DOWNWARD_IN, FADE_TYPE_DOWNWARD_IN, COLOR_BLACK, 6, 1, HEAP_ID_BAG);
     SetAutorepeat(3, 8);
 
     RestoreCursorPosition(controller);
@@ -479,7 +478,7 @@ int BagApplication_Init(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-int BahApplication_Main(ApplicationManager *appMan, int *state)
+int BagApplication_Main(ApplicationManager *appMan, int *state)
 {
     BagController *controller = ApplicationManager_Data(appMan);
 
@@ -619,7 +618,7 @@ int BagApplication_Exit(ApplicationManager *appMan, int *state)
     NARC_dtor(controller->bagGraphicsNARC);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(HEAP_ID_6);
+    Heap_Destroy(HEAP_ID_BAG);
     SetAutorepeat(4, 8);
 
     return TRUE;
@@ -804,8 +803,8 @@ static void SetupBGLayers(BgConfig *bgConfig)
     Bg_ScheduleAffineRotationCenter(bgConfig, BG_LAYER_SUB_3, BG_AFFINE_UPDATE_SET_X_CENTER, DIAL_CENTER_X);
     Bg_ScheduleAffineRotationCenter(bgConfig, BG_LAYER_SUB_3, BG_AFFINE_UPDATE_SET_Y_CENTER, DIAL_CENTER_Y);
 
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_6);
-    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_6);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_BAG);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_BAG);
 }
 
 static void FreeBGLayers(BgConfig *bgConfig)
@@ -819,38 +818,38 @@ static void FreeBGLayers(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
-    Heap_FreeExplicit(HEAP_ID_6, bgConfig);
+    Heap_FreeExplicit(HEAP_ID_BAG, bgConfig);
 }
 
 static void LoadGraphics(BagController *controller)
 {
-    controller->bagGraphicsNARC = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_6);
+    controller->bagGraphicsNARC = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_BAG);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 11, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 14, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 13, controller->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 12, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_6);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 22, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_6);
-    Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(11), HEAP_ID_6);
-    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_6);
-    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, PLTT_12, Options_Frame(controller->options), HEAP_ID_6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 15, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 16, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 17, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 32, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 33, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 19, controller->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_6);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 18, PAL_LOAD_SUB_BG, PLTT_OFFSET(2), PALETTE_SIZE_BYTES * 2, HEAP_ID_6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 11, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 14, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 13, controller->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 12, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 22, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_BAG);
+    Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(11), HEAP_ID_BAG);
+    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
+    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, PLTT_12, Options_Frame(controller->options), HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 15, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 16, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 17, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 32, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 33, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 19, controller->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 18, PAL_LOAD_SUB_BG, PLTT_OFFSET(2), PALETTE_SIZE_BYTES * 2, HEAP_ID_BAG);
 }
 
 static void SetupTextLoaders(BagController *controller)
 {
-    controller->bagStringsLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, HEAP_ID_6);
-    controller->specialChars = FontSpecialChars_Init(1, 2, 0, HEAP_ID_6);
-    controller->strTemplate = StringTemplate_Default(HEAP_ID_6);
-    controller->itemNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_6);
-    controller->moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_6);
-    controller->strBuffer = Strbuf_Init(256, HEAP_ID_6);
+    controller->bagStringsLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, HEAP_ID_BAG);
+    controller->specialChars = FontSpecialChars_Init(1, 2, 0, HEAP_ID_BAG);
+    controller->strTemplate = StringTemplate_Default(HEAP_ID_BAG);
+    controller->itemNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BAG);
+    controller->moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BAG);
+    controller->strBuffer = Strbuf_Init(256, HEAP_ID_BAG);
 }
 
 static void CountAccessiblePockets(BagController *controller)
@@ -956,7 +955,7 @@ static void SaveCursorPosition(BagController *controller)
 static void LoadCurrentPocketItemNames(BagController *controller)
 {
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
-    controller->itemListEntries = StringList_New(sPocketSizes[pocket->pocketType] + 3, HEAP_ID_6); // + 3 to account for some non-item entries
+    controller->itemListEntries = StringList_New(sPocketSizes[pocket->pocketType] + 3, HEAP_ID_BAG); // + 3 to account for some non-item entries
 
     // The first line of the items list is partially hidden behind the UI, so we begin with an empty entry.
     // Similarly, the last line is partially hidden so a second empty entry gets added to the end later on.
@@ -969,7 +968,7 @@ static void LoadCurrentPocketItemNames(BagController *controller)
                 break;
             }
 
-            LoadTMHMMoveName(controller->moveNamesLoader, controller->itemNames[i], pocket->items[i].item, HEAP_ID_6);
+            LoadTMHMMoveName(controller->moveNamesLoader, controller->itemNames[i], pocket->items[i].item, HEAP_ID_BAG);
             StringList_AddFromStrbuf(controller->itemListEntries, controller->itemNames[i], i);
         }
 
@@ -984,7 +983,7 @@ static void LoadCurrentPocketItemNames(BagController *controller)
                 break;
             }
 
-            LoadItemName(controller->itemNamesLoader, controller->itemNames[i], pocket->items[i].item, HEAP_ID_6);
+            LoadItemName(controller->itemNamesLoader, controller->itemNames[i], pocket->items[i].item, HEAP_ID_BAG);
             StringList_AddFromStrbuf(controller->itemListEntries, controller->itemNames[i], i);
         }
 
@@ -1007,7 +1006,7 @@ static void LoadCurrentPocketItemNames(BagController *controller)
 static void InitItemNameBuffers(BagController *controller)
 {
     for (u32 i = 0; i < LARGEST_POCKET_SIZE; i++) {
-        controller->itemNames[i] = Strbuf_Init(18, HEAP_ID_6);
+        controller->itemNames[i] = Strbuf_Init(18, HEAP_ID_BAG);
     }
 }
 
@@ -1079,7 +1078,7 @@ static void CreateItemListMenu(BagController *controller, u16 initialScroll, u16
         template.textXOffset = 0;
     }
 
-    controller->itemList = ListMenu_New(&template, initialScroll, initialPos, HEAP_ID_6);
+    controller->itemList = ListMenu_New(&template, initialScroll, initialPos, HEAP_ID_BAG);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_LIST]);
 }
 
@@ -1266,7 +1265,7 @@ static u8 ProcessItemListMenuInput(BagController *interface)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         interface->bagCtx->selectedItem = ITEM_NONE;
         interface->bagCtx->exitCode = BAG_EXIT_CODE_DONE;
-        App_StartScreenFade(TRUE, HEAP_ID_6);
+        App_StartScreenFade(TRUE, HEAP_ID_BAG);
         return ITEM_LIST_INPUT_EXIT_BAG;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1942,7 +1941,7 @@ static void MakeItemActionsMenu(BagController *controller)
     u8 currentPocketType;
     u8 itemActions[NUM_ITEM_ACTIONS];
 
-    itemData = Item_Load(controller->bagCtx->selectedItem, ITEM_FILE_TYPE_DATA, HEAP_ID_6);
+    itemData = Item_Load(controller->bagCtx->selectedItem, ITEM_FILE_TYPE_DATA, HEAP_ID_BAG);
     itemActionsIdx = 0;
     currentPocketType = controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType;
 
@@ -2072,14 +2071,14 @@ static int ItemActionFunc_Use(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
 
-    s32 itemUseFuncIdx = Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
+    s32 itemUseFuncIdx = Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG);
     ItemCheckUseFunc checkFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
 
     if (checkFunc != NULL) {
         u32 checkResult = checkFunc(controller->bagCtx->itemUseCtx);
 
         if (checkResult != 0) {
-            BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, checkResult, HEAP_ID_6);
+            BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, checkResult, HEAP_ID_BAG);
             Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
             Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
             controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
@@ -2121,7 +2120,7 @@ static int HandleItemUsed(BagController *interface)
         return BAG_APP_STATE_RUN_ITEM_USE_TASK;
     }
 
-    if (BagContext_FormatUsageMessage(interface->bagCtx->saveData, interface->strBuffer, interface->bagCtx->selectedItem, HEAP_ID_6) == TRUE) {
+    if (BagContext_FormatUsageMessage(interface->bagCtx->saveData, interface->strBuffer, interface->bagCtx->selectedItem, HEAP_ID_BAG) == TRUE) {
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
         Window_DrawMessageBoxWithScrollCursor(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
         interface->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(interface);
@@ -2133,7 +2132,7 @@ static int HandleItemUsed(BagController *interface)
         return BAG_APP_STATE_RUN_ITEM_USE_TASK;
     }
 
-    App_StartScreenFade(1, HEAP_ID_6);
+    App_StartScreenFade(1, HEAP_ID_BAG);
     interface->bagCtx->exitCode = BAG_EXIT_CODE_USE_ITEM;
 
     return BAG_APP_STATE_EXIT;
@@ -2196,15 +2195,15 @@ static int TMHMUseTask(BagController *controller)
         }
 
         if (CheckDialButtonPressed(controller) == TRUE) {
-            selected = Menu_ProcessExternalInputAndHandleExit(controller->menu, MENU_INPUT_CONFIRM, HEAP_ID_6);
+            selected = Menu_ProcessExternalInputAndHandleExit(controller->menu, MENU_INPUT_CONFIRM, HEAP_ID_BAG);
             controller->dialButtonAnimStep = 1;
         } else {
-            selected = Menu_ProcessInputAndHandleExit(controller->menu, HEAP_ID_6);
+            selected = Menu_ProcessInputAndHandleExit(controller->menu, HEAP_ID_BAG);
         }
 
         switch (selected) {
         case 0:
-            App_StartScreenFade(TRUE, HEAP_ID_6);
+            App_StartScreenFade(TRUE, HEAP_ID_BAG);
             ToggleHideItemSprite(controller, FALSE);
             controller->bagCtx->exitCode = BAG_EXIT_CODE_USE_ITEM;
             return BAG_APP_STATE_EXIT;
@@ -2262,7 +2261,7 @@ static Strbuf *TryUseRepel(BagController *controller, u16 item)
         return MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_RepelEffectsLinger);
     }
 
-    u32 stepCount = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_6);
+    u32 stepCount = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_BAG);
     SetRepelSteps(controller, stepCount);
     controller->selectedItemCount = 1;
     Sound_PlayEffect(SEQ_SE_DP_CARD2);
@@ -2272,7 +2271,7 @@ static Strbuf *TryUseRepel(BagController *controller, u16 item)
 
 static void TrashSelectedItem(BagController *controller)
 {
-    Pocket_TryRemoveItem(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, controller->selectedItemCount, HEAP_ID_6);
+    Pocket_TryRemoveItem(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, controller->selectedItemCount, HEAP_ID_BAG);
     ListMenu_Free(controller->itemList, &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].cursorScroll, &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].cursorPos);
     StringList_Free(controller->itemListEntries);
 
@@ -2319,7 +2318,7 @@ static int MessageItemUseTask(BagController *controller)
 static int ItemActionFunc_CheckTag(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
-    App_StartScreenFade(TRUE, HEAP_ID_6);
+    App_StartScreenFade(TRUE, HEAP_ID_BAG);
     controller->bagCtx->exitCode = BAG_EXIT_CODE_SHOW_BERRY_DATA;
 
     return BAG_APP_STATE_EXIT;
@@ -2328,7 +2327,7 @@ static int ItemActionFunc_CheckTag(BagController *controller)
 static int ItemActionFunc_Confirm(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
-    App_StartScreenFade(TRUE, HEAP_ID_6);
+    App_StartScreenFade(TRUE, HEAP_ID_BAG);
     controller->bagCtx->exitCode = BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN;
 
     return BAG_APP_STATE_EXIT;
@@ -2338,7 +2337,7 @@ static int ItemActionFunc_Trash(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
     controller->selectedItemCount = 1;
-    if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_6) == 1) {
+    if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_BAG) == 1) {
         BagUI_PrintConfirmItemTrashMsg(controller);
         return BAG_APP_STATE_SHOW_CONFIRM_TRASH_MSG;
     }
@@ -2413,10 +2412,10 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
 
     u32 selectedOption;
     if (CheckDialButtonPressed(controller) == TRUE) {
-        selectedOption = Menu_ProcessExternalInputAndHandleExit(controller->menu, MENU_INPUT_CONFIRM, HEAP_ID_6);
+        selectedOption = Menu_ProcessExternalInputAndHandleExit(controller->menu, MENU_INPUT_CONFIRM, HEAP_ID_BAG);
         controller->dialButtonAnimStep = 1;
     } else {
-        selectedOption = Menu_ProcessInputAndHandleExit(controller->menu, HEAP_ID_6);
+        selectedOption = Menu_ProcessInputAndHandleExit(controller->menu, HEAP_ID_BAG);
     }
 
     switch (selectedOption) {
@@ -2510,7 +2509,7 @@ static int ItemActionFunc_Deselect(BagController *controller)
 static int ItemActionFunc_Give(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
-    App_StartScreenFade(TRUE, HEAP_ID_6);
+    App_StartScreenFade(TRUE, HEAP_ID_BAG);
     ToggleHideItemSprite(controller, FALSE);
     controller->bagCtx->exitCode = BAG_EXIT_CODE_GIVE_ITEM;
 
@@ -2536,7 +2535,7 @@ static int ProcessItemListInput_GiveToMon(BagController *controller)
         u8 input = ProcessItemListMenuInput(controller);
 
         if (input == ITEM_LIST_INPUT_SELECT_ITEM) {
-            if (Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6)) {
+            if (Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_BAG)) {
                 Strbuf *string;
 
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
@@ -2555,7 +2554,7 @@ static int ProcessItemListInput_GiveToMon(BagController *controller)
             }
 
             controller->bagCtx->exitCode = BAG_EXIT_CODE_GIVE_FROM_MON_MENU;
-            App_StartScreenFade(TRUE, HEAP_ID_6);
+            App_StartScreenFade(TRUE, HEAP_ID_BAG);
 
             return BAG_APP_STATE_EXIT;
         } else if (input == ITEM_LIST_INPUT_EXIT_BAG) {
@@ -2608,9 +2607,9 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             StringTemplate_SetItemName(controller->strTemplate, 0, controller->bagCtx->selectedItem);
             BagUI_SetHighlightSpritesPalette(controller, 2);
 
-            controller->soldItemPrice = Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PRICE, HEAP_ID_6);
+            controller->soldItemPrice = Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PRICE, HEAP_ID_BAG);
 
-            if (Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0
+            if (Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_BAG) != 0
                 || controller->soldItemPrice == 0) {
                 string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CantSellItem);
                 StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
@@ -2623,7 +2622,7 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             controller->selectedItemCount = 1;
             controller->soldItemPrice >>= 1;
 
-            if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_6) == 1) {
+            if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_BAG) == 1) {
                 string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ConfirmSellPrice);
                 StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount * controller->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
                 StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
@@ -2751,10 +2750,10 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
 
     u32 selected;
     if (CheckDialButtonPressed(interface) == TRUE) {
-        selected = Menu_ProcessExternalInputAndHandleExit(interface->menu, MENU_INPUT_CONFIRM, HEAP_ID_6);
+        selected = Menu_ProcessExternalInputAndHandleExit(interface->menu, MENU_INPUT_CONFIRM, HEAP_ID_BAG);
         interface->dialButtonAnimStep = 1;
     } else {
-        selected = Menu_ProcessInputAndHandleExit(interface->menu, HEAP_ID_6);
+        selected = Menu_ProcessInputAndHandleExit(interface->menu, HEAP_ID_BAG);
     }
 
     switch (selected) {
@@ -2861,9 +2860,9 @@ static int ProcessItemListInput_Gardening(BagController *controller)
 
         if (input == ITEM_LIST_INPUT_SELECT_ITEM) {
             if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_ITEMS
-                && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != ITEM_USE_FUNC_MULCH) {
+                && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG) != ITEM_USE_FUNC_MULCH) {
 
-                BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, -1, HEAP_ID_6);
+                BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, -1, HEAP_ID_BAG);
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
                 Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
 
@@ -2872,7 +2871,7 @@ static int ProcessItemListInput_Gardening(BagController *controller)
             }
 
             controller->bagCtx->exitCode = BAG_EXIT_CODE_USE_ITEM;
-            App_StartScreenFade(TRUE, HEAP_ID_6);
+            App_StartScreenFade(TRUE, HEAP_ID_BAG);
             return BAG_APP_STATE_EXIT;
         } else if (input == ITEM_LIST_INPUT_EXIT_BAG) {
             controller->bagCtx->exitCode = BAG_EXIT_CODE_DONE;

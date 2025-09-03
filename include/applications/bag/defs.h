@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV84_0223B5A0_H
-#define POKEPLATINUM_OV84_0223B5A0_H
+#ifndef POKEPLATINUM_APPLICATIONS_BAG_DEFS_H
+#define POKEPLATINUM_APPLICATIONS_BAG_DEFS_H
 
 #include "bag.h"
 #include "bag_context.h"
@@ -10,7 +10,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "overlay_manager.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -19,22 +18,40 @@
 
 #define BAG_UI_NUM_VISIBLE_ITEMS 9
 
-enum BagInterfaceMode {
-    BAG_MODE_NORMAL = 0,
-    BAG_MODE_GIVE_TO_MON,
-    BAG_MODE_SELL_ITEMS,
-    BAG_MODE_GARDENING,
-    BAG_MODE_POFFIN_SINGLEPLAYER,
-    BAG_MODE_POFFIN_MULTIPLAYER,
+enum BagUISprite {
+    BAG_SPRITE_BAG = 0,
+    BAG_SPRITE_POCKET_HIGHLIGHT,
+    BAG_SPRITE_POCKET_SELECTOR_LEFT_ARROW,
+    BAG_SPRITE_POCKET_SELECTOR_RIGHT_ARROW,
+    BAG_SPRITE_ITEM_HIGHLIGHT,
+    BAG_SPRITE_MOVING_ITEM_POS_BAR,
+    BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE,
+    BAG_SPRITE_ITEM,
+    BAG_SPRITE_ITEM_COUNT_ARROW_UP,
+    BAG_SPRITE_ITEM_COUNT_ARROW_DOWN,
+    BAG_SPRITE_MOVE_TYPE,
+    BAG_SPRITE_MOVE_CATEGORY,
+    NUM_BAG_UI_SPRITES,
 };
 
-enum BagInterfaceExitCode {
-    BAG_EXIT_CODE_USE_ITEM = 0,
-    BAG_EXIT_CODE_SHOW_BERRY_DATA,
-    BAG_EXIT_CODE_GIVE_ITEM,
-    BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN,
-    BAG_EXIT_CODE_GIVE_FROM_MON_MENU,
-    BAG_EXIT_CODE_DONE,
+enum BagUIItemCountArrowsPosition {
+    BAG_ITEM_COUNT_ARROWS_POS_TRASH = 0,
+    BAG_ITEM_COUNT_ARROWS_POS_SELL,
+};
+
+enum BagUIWindow {
+    BAG_UI_WINDOW_ITEM_LIST = 0,
+    BAG_UI_WINDOW_ITEM_DESCRIPTION,
+    BAG_UI_WINDOW_POCKET_NAMES,
+    BAG_UI_WINDOW_MSG_BOX,
+    BAG_UI_WINDOW_MSG_BOX_NARROW,
+    BAG_UI_WINDOW_POCKET_INDICATOR,
+    BAG_UI_WINDOW_MSG_BOX_WIDE,
+    BAG_UI_WINDOW_SELL_COUNT_VALUE,
+    BAG_UI_WINDOW_MONEY,
+    BAG_UI_WINDOW_THROW_AWAY_COUNT,
+    BAG_UI_WINDOW_POFFIN_COUNT,
+    NUM_BAG_UI_WINDOWS,
 };
 
 enum ItemAction {
@@ -86,7 +103,7 @@ typedef struct BagPocketHighlight {
 
 struct BagController {
     BgConfig *bgConfig;
-    Window windows[11];
+    Window windows[NUM_BAG_UI_WINDOWS];
     Window itemActionsWindow;
     BagContext *bagCtx;
     Bag *bag;
@@ -95,7 +112,7 @@ struct BagController {
     NARC *bagGraphicsNARC;
     SpriteSystem *spriteSystem;
     SpriteManager *spriteMan;
-    ManagedSprite *sprites[12];
+    ManagedSprite *sprites[NUM_BAG_UI_SPRITES];
     FontSpecialCharsContext *specialChars;
     MessageLoader *bagStringsLoader;
     StringTemplate *strTemplate;
@@ -145,10 +162,4 @@ struct BagController {
     u8 padding_4A2[2];
 };
 
-int BagApplication_Init(ApplicationManager *appMan, int *state);
-int BahApplication_Main(ApplicationManager *appMan, int *state);
-int BagApplication_Exit(ApplicationManager *appMan, int *state);
-u16 BagInterface_GetItemSlotParam(BagController *controller, u16 slotIndex, u16 itemParam);
-const u32 BagApplication_GetItemActionFunc(enum ItemAction action);
-
-#endif // POKEPLATINUM_OV84_0223B5A0_H
+#endif

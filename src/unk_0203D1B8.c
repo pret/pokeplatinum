@@ -30,6 +30,7 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/bag/application.h"
 #include "applications/diploma.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/naming_screen.h"
@@ -58,8 +59,6 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay084/const_ov84_02241130.h"
-#include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay086/ov86_0223B140.h"
 #include "overlay088/ov88_0223B140.h"
@@ -156,7 +155,7 @@ FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(overlay80);
 FS_EXTERN_OVERLAY(journal_display);
-FS_EXTERN_OVERLAY(overlay84);
+FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(overlay85);
 FS_EXTERN_OVERLAY(overlay86);
 FS_EXTERN_OVERLAY(overlay87);
@@ -266,13 +265,13 @@ static const u8 Unk_020EA164[] = {
 
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
 {
-    FS_EXTERN_OVERLAY(overlay84);
+    FS_EXTERN_OVERLAY(bag);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
         BagApplication_Init,
-        BahApplication_Main,
+        BagApplication_Main,
         BagApplication_Exit,
-        FS_OVERLAY_ID(overlay84)
+        FS_OVERLAY_ID(bag)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
