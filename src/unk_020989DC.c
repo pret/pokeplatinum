@@ -271,8 +271,6 @@ static int sub_02098C2C(UnkStruct_02098BE4 *param0)
 
 static int sub_02098C44(UnkStruct_02098BE4 *param0)
 {
-    PartyMenu *partyMenu;
-
     if (!sub_02098AF8(&param0->appMan)) {
         return 1;
     }
@@ -283,7 +281,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+    PartyMenu *partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
     partyMenu->party = param0->unk_0C->unk_10;
     partyMenu->bag = param0->unk_0C->unk_14;

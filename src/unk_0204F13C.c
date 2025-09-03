@@ -346,11 +346,11 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     }
 
     partyMenu->reqLevel = 30;
-    partyMenu->unk_32_0 = 1;
+    partyMenu->minSelectionSlots = 1;
     partyMenu->maxSelectionSlots = 1;
 
     if (param0->unk_04 == 1) {
-        partyMenu->unk_32_0 = 2;
+        partyMenu->minSelectionSlots = 2;
         partyMenu->maxSelectionSlots = 2;
     }
 

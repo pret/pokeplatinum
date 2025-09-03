@@ -106,7 +106,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
         } else {
             CommMan_SetErrorHandling(1, 1);
 
-            param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
+            param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;
             param0->unk_00 = 2;
         }
@@ -143,7 +143,7 @@ static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         Heap_Free(param0->unk_34);
-        param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
+        param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }
 

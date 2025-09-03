@@ -137,19 +137,19 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     }
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->unk_32_0 = 2;
+        param1->unk_A8->minSelectionSlots = 2;
         param1->unk_A8->maxSelectionSlots = 2;
         param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->unk_32_0 = 1;
+        param1->unk_A8->minSelectionSlots = 1;
         param1->unk_A8->maxSelectionSlots = 1;
         param1->unk_A8->reqLevel = 30;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->unk_32_0 = 2;
+        param1->unk_A8->minSelectionSlots = 2;
         param1->unk_A8->maxSelectionSlots = 2;
         param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->unk_32_0 = 2;
+        param1->unk_A8->minSelectionSlots = 2;
         param1->unk_A8->maxSelectionSlots = 2;
         param1->unk_A8->reqLevel = 100;
     } else {

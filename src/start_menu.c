@@ -922,9 +922,9 @@ static void StartMenu_ApplicationRun(FieldTask *taskMan)
     menu->callback(taskMan);
 }
 
-void sub_0203B674(StartMenu *menu, void *param1)
+void sub_0203B674(StartMenu *menu, void *callback)
 {
-    menu->callback = param1;
+    menu->callback = callback;
     menu->state = START_MENU_STATE_APP_RUN;
 }
 
@@ -999,7 +999,7 @@ static BOOL sub_0203B78C(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, 0);
+    menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, 0);
     menu->callback = sub_0203B7C0;
 
     return 0;
@@ -1260,9 +1260,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         sub_0203C2D8(taskMan, BagSystem_GetItem(v2));
         break;
     case 2: {
-        PartyMenu *partyMenu;
-
-        partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+        PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
         memset(partyMenu, 0, sizeof(PartyMenu));
 
         partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
@@ -1296,9 +1294,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             menu->unk_260 = sub_0203C540(item, 0, (u8)v9);
             sub_0203B674(menu, sub_0203C558);
         } else {
-            PartyMenu *partyMenu;
-
-            partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+            PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
             memset(partyMenu, 0, sizeof(PartyMenu));
 
             partyMenu->party = party;
@@ -1308,7 +1304,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMenu->fieldMoveContext = &menu->fieldMoveContext;
             partyMenu->type = PARTY_MENU_TYPE_BASIC;
             partyMenu->usedItemID = BagSystem_GetItem(v2);
-            partyMenu->selectedMonSlot = (u8)v9;
+            partyMenu->selectedMonSlot = v9; // Maybe selected slot?
             partyMenu->fieldSystem = fieldSystem;
 
             if (partyMenu->usedItemID == ITEM_NONE) {
@@ -1552,11 +1548,8 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
     switch (v2->mode) {
     case SUMMARY_MODE_SELECT_MOVE: {
-        PartyMenu *partyMenu;
-        UnkStruct_0203C1C8 *v4;
-
-        partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
-        v4 = (UnkStruct_0203C1C8 *)menu->unk_260;
+        PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+        UnkStruct_0203C1C8 *v4 = menu->unk_260;
 
         memset(partyMenu, 0, sizeof(PartyMenu));
 
@@ -1587,7 +1580,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     default:
-        menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, v2->monIndex);
+        menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->monIndex);
         sub_0203B674(menu, sub_0203B7C0);
     }
 
@@ -1673,7 +1666,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
 
     if (!(v2->unk_10)) {
         Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);
-        menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, v3);
+        menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v3);
         sub_0203B674(menu, sub_0203B7C0);
     } else {
         Pokemon *mon;
@@ -1734,7 +1727,7 @@ BOOL sub_0203C558(FieldTask *taskMan)
         break;
     case 2:
         sub_02097770(menu->taskData);
-        menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, v2->unk_02);
+        menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->unk_02);
         sub_0203B674(menu, sub_0203B7C0);
         break;
     case 0:
@@ -1742,7 +1735,7 @@ BOOL sub_0203C558(FieldTask *taskMan)
             sub_0203C668(fieldSystem, menu, 12);
         } else {
             sub_02097770(menu->taskData);
-            menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, v2->unk_02);
+            menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->unk_02);
             sub_0203B674(menu, sub_0203B7C0);
         }
         break;

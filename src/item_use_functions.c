@@ -34,6 +34,7 @@
 #include "heap.h"
 #include "item.h"
 #include "item_use_functions.h"
+#include "items.h"
 #include "mail.h"
 #include "map_header.h"
 #include "map_header_data.h"
@@ -117,7 +118,7 @@ static void *sub_02068B9C(void *some_param);
 static void *sub_02068708(void *some_param);
 static void *sub_02068A28(void *some_param);
 static void *sub_020691CC(void *some_param);
-static void *sub_02069228(void *some_param);
+static void *OpenPartyMenuForGracidea(void *fieldSystem);
 static u32 CanUseBicycle(const ItemUseContext *usageContext);
 static u32 CanUseExplorerKit(const ItemUseContext *usageContext);
 static u32 CanUseBerry(const ItemUseContext *usageContext);
@@ -1027,27 +1028,22 @@ static void *sub_020691CC(void *some_param)
 
 static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    PartyMenu *partyMenu; // unused
-
-    fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
-    menu = FieldTask_GetEnv(usageContext->fieldTask);
-
-    menu->taskData = sub_0203E598(fieldSystem, HEAP_ID_FIELD2, 466);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
+    menu->taskData = FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 
     sub_0203B674(menu, sub_0203B7C0);
 }
 
 static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)
 {
-    RegisteredItem_CreateGoToAppTask(usageContext, sub_02069228);
+    RegisteredItem_CreateGoToAppTask(usageContext, OpenPartyMenuForGracidea);
     return TRUE;
 }
 
-static void *sub_02069228(void *some_param)
+static void *OpenPartyMenuForGracidea(void *fieldSystem)
 {
-    return sub_0203E598(some_param, HEAP_ID_FIELD2, 466);
+    return FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 }
 
 BOOL sub_02069238(FieldSystem *fieldSystem)

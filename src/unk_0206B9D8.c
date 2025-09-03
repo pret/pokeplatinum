@@ -80,7 +80,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     partyMenu->bag = SaveData_GetBag(saveData);
     partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = param0->unk_08;
-    partyMenu->unk_32_0 = param0->unk_0A;
+    partyMenu->minSelectionSlots = param0->unk_0A;
     partyMenu->maxSelectionSlots = param0->unk_0B;
     partyMenu->reqLevel = param0->unk_0C;
     partyMenu->selectedMonSlot = param0->unk_0D;

@@ -160,10 +160,10 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
     partyMenu->mode = PARTY_MENU_MODE_SELECT_CONFIRM;
 
     if (param0->fieldSystem->unk_B0) {
-        partyMenu->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
-        partyMenu->maxSelectionSlots = partyMenu->unk_32_0;
+        partyMenu->minSelectionSlots = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        partyMenu->maxSelectionSlots = partyMenu->minSelectionSlots;
     } else {
-        partyMenu->unk_32_0 = 3;
+        partyMenu->minSelectionSlots = 3;
         partyMenu->maxSelectionSlots = 3;
     }
 

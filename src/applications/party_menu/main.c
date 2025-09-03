@@ -2094,7 +2094,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < application->partyMenu->unk_32_0; v0++) {
+    for (v0 = 0; v0 < application->partyMenu->minSelectionSlots; v0++) {
         if (application->partyMenu->selectionOrder[v0] == 0) {
             switch (application->partyMenu->maxSelectionSlots) {
             case 2:

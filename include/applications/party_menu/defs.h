@@ -135,11 +135,11 @@ typedef struct PartyMenu {
     u16 usedItemID;
     u16 learnedMove;
     u8 selectedMoveSlot;
-    u8 unk_29; // These three fields (unk_29, unk_2A, unk_2B) are used exactly once in the code (sub_0203D578) which is itself only used once.
-    u8 contestType; // sub_0203D578 is used by ScrCmd_194 which is contest related so these fields are likely contest related too.
+    u8 unk_29;
+    u8 contestType;
     u8 contestRank;
     u8 selectionOrder[MAX_PARTY_SIZE]; // 0 is unselected, 1-6 are 1 + the selection order for the party slot
-    u8 unk_32_0 : 4;
+    u8 minSelectionSlots : 4;
     u8 maxSelectionSlots : 4;
     u8 reqLevel;
     int unk_34;
