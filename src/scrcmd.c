@@ -40,7 +40,6 @@
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
@@ -115,6 +114,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "great_marsh_lookout.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "inlines.h"
 #include "item_use_pokemon.h"
@@ -181,7 +181,6 @@
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202DF8C.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -7124,7 +7123,7 @@ static BOOL ScrCmd_28F(ScriptContext *ctx)
         Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 1) {
-        *v2 = sub_0202E174(v1, 0);
+        *v2 = HallOfFame_GetEntryNum(v1, 0);
         Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 2) {

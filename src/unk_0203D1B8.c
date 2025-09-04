@@ -14,7 +14,6 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
@@ -39,6 +38,7 @@
 #include "applications/party_menu/main.h"
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/pc_hall_of_fame/manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
@@ -62,7 +62,6 @@
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay086/ov86_0223B140.h"
-#include "overlay087/ov87_021D0D80.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
@@ -94,6 +93,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "global_trade.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "item_use_functions.h"
 #include "mail.h"
@@ -1420,22 +1420,22 @@ void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
 void *sub_0203E244(FieldSystem *fieldSystem)
 {
     static const ApplicationManagerTemplate v0 = {
-        ov87_021D0D80,
-        ov87_021D0E2C,
-        ov87_021D0DFC,
+        PCHallOfFameManager_Init,
+        PCHallOfFameManager_Main,
+        PCHallOfFameManager_Exit,
         FS_OVERLAY_ID(overlay87),
     };
-    HallOfFame *v1;
-    int v2;
+    HallOfFame *hallOfFame;
+    int resultCode;
 
-    v1 = SaveData_HallOfFame(fieldSystem->saveData, 11, &v2);
+    hallOfFame = SaveData_HallOfFame(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
-    if (v2 == 2) {
-        Heap_Free(v1);
+    if (resultCode == LOAD_RESULT_CORRUPT) {
+        Heap_Free(hallOfFame);
         return NULL;
     } else {
-        FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
-        return v1;
+        FieldSystem_StartChildProcess(fieldSystem, &v0, hallOfFame);
+        return hallOfFame;
     }
 }
 

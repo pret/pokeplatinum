@@ -136,7 +136,7 @@ Static main
 	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_global_trade.c.o
 	Object main.nef.p/src_mystery_gift.c.o
-	Object main.nef.p/src_unk_0202DF8C.c.o
+	Object main.nef.p/src_hall_of_fame.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
 	Object main.nef.p/src_unk_0202E840.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
@@ -1370,8 +1370,8 @@ Overlay overlay86
 Overlay overlay87
 {
 	After main
-	Object main.nef.p/src_overlay087_ov87_021D0D80.c.o
-	Object main.nef.p/src_overlay087_ov87_021D106C.c.o
+	Object main.nef.p/src_applications_pc_hall_of_fame_manager.c.o
+	Object main.nef.p/src_applications_pc_hall_of_fame_display.c.o
 }
 
 Overlay overlay88
