@@ -117,11 +117,11 @@ u32 sub_02083370(u8 param0)
 
 void sub_0208337C(PartyMenuApplication *param0)
 {
-    Window_EraseStandardFrame(&param0->unk_254[0], 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_254[0]);
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
-    Window_Remove(&param0->unk_254[0]);
+    Window_EraseStandardFrame(&param0->menuWindows[0], 1);
+    Window_ClearAndScheduleCopyToVRAM(&param0->menuWindows[0]);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
+    Window_Remove(&param0->menuWindows[0]);
 }
 
 static void sub_020833BC(PartyMenuApplication *param0, int *param1)
@@ -129,15 +129,15 @@ static void sub_020833BC(PartyMenuApplication *param0, int *param1)
     MenuTemplate v0;
 
     sub_0208337C(param0);
-    sub_020826F4(param0, 38, 0);
+    PartyMenu_PrintMediumMessage(param0, pl_msg_00000453_00038, FALSE);
 
-    param0->unk_6FC = StringList_New(3, HEAP_ID_PARTY_MENU);
+    param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[3], sub_02083370(3));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[4], sub_02083370(4));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[3], sub_02083370(3));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[4], sub_02083370(4));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
 
-    v0.choices = param0->unk_6FC;
+    v0.choices = param0->contextMenuChoices;
     v0.window = &param0->windows[35];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
@@ -148,14 +148,14 @@ static void sub_020833BC(PartyMenuApplication *param0, int *param1)
 
     Window_DrawStandardFrame(&param0->windows[35], 1, 1, 14);
 
-    param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    param0->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
 }
 
 static void sub_0208347C(PartyMenuApplication *param0, int *param1)
 {
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     param0->partyMenu->menuSelectionResult = 3;
     *param1 = 32;
@@ -169,8 +169,8 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
     FieldSystem *fieldSystem;
 
     Window_EraseStandardFrame(&param0->windows[35], 1);
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     fieldSystem = param0->partyMenu->fieldSystem;
 
@@ -210,7 +210,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
     Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, (1 + 9), 15);
     Window_FillTilemap(&param0->windows[34], 15);
-    sub_0208274C(param0);
+    PartyMenu_AddLongMessagePrinter(param0);
 
     *param1 = v2;
 }
@@ -220,7 +220,7 @@ int sub_02083658(PartyMenuApplication *param0)
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->windows[34], 1);
-            PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
+            PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
             Sprite_SetExplicitPalette2(param0->sprites[6], 0);
             return 1;
         }
@@ -257,15 +257,15 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
     MenuTemplate v0;
 
     sub_0208337C(param0);
-    sub_020826F4(param0, 39, 0);
+    PartyMenu_PrintMediumMessage(param0, pl_msg_00000453_00039, FALSE);
 
-    param0->unk_6FC = StringList_New(3, HEAP_ID_PARTY_MENU);
+    param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[6], sub_02083370(6));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[7], sub_02083370(7));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[6], sub_02083370(6));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[7], sub_02083370(7));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
 
-    v0.choices = param0->unk_6FC;
+    v0.choices = param0->contextMenuChoices;
     v0.window = &param0->windows[35];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
@@ -276,14 +276,14 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
 
     Window_DrawStandardFrame(&param0->windows[35], 1, 1, 14);
 
-    param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    param0->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
 }
 
 static void sub_020837C0(PartyMenuApplication *param0, int *param1)
 {
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     param0->partyMenu->menuSelectionResult = 7;
     *param1 = 32;
@@ -292,9 +292,9 @@ static void sub_020837C0(PartyMenuApplication *param0, int *param1)
 static void sub_020837F4(PartyMenuApplication *param0, int *param1)
 {
     Window_EraseStandardFrame(&param0->windows[35], 1);
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
-    sub_02082708(param0, 43, 1);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
+    PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00043, TRUE);
 
     param0->unk_B04.unk_00 = sub_0208384C;
     param0->unk_B04.unk_04 = sub_020838C4;
@@ -313,9 +313,9 @@ static int sub_0208384C(void *param0)
     if (sub_02097788(v0->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
         v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
         PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
-        sub_02082708(v0, 46, 0);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00046, FALSE);
     } else {
-        sub_02082708(v0, 50, 0);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00050, FALSE);
     }
 
     v0->unk_B0E = 20;
@@ -327,7 +327,7 @@ static int sub_020838C4(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
-    sub_02082708(v0, 47, 0);
+    PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00047, FALSE);
 
     v0->unk_B04.unk_00 = sub_020838F4;
     v0->unk_B04.unk_04 = sub_02083990;
@@ -354,9 +354,9 @@ static int sub_020838F4(void *param0)
         v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
 
         PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
-        sub_02082708(v0, 51, 0);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00051, FALSE);
     } else {
-        sub_02082708(v0, 83, 0);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00083, FALSE);
     }
 
     v0->unk_B0E = 20;
@@ -369,7 +369,7 @@ static int sub_02083990(void *param0)
     PartyMenuApplication *v0 = param0;
 
     Window_EraseMessageBox(&v0->windows[34], 1);
-    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, 1);
+    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE);
     Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
@@ -379,7 +379,7 @@ int sub_020839BC(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
@@ -390,15 +390,15 @@ int sub_020839BC(PartyMenuApplication *param0)
 static void sub_020839FC(PartyMenuApplication *param0, int *param1)
 {
     if (param0->partyMembers[param0->currPartySlot].ballSeal == 0) {
-        Menu_Free(param0->unk_700, NULL);
-        StringList_Free(param0->unk_6FC);
+        Menu_Free(param0->contextMenu, NULL);
+        StringList_Free(param0->contextMenuChoices);
         param0->partyMenu->menuSelectionResult = 0;
         *param1 = 32;
         return;
     }
 
     sub_0208337C(param0);
-    sub_02082708(param0, 195, 1);
+    PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00195, TRUE);
 
     param0->unk_B04.unk_00 = sub_02083A78;
     param0->unk_B04.unk_04 = sub_02083AA4;
@@ -422,7 +422,7 @@ int sub_02083AA4(void *param0)
     PartyMenuApplication *v0 = param0;
 
     Window_EraseMessageBox(&v0->windows[34], 1);
-    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, 1);
+    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE);
     Sprite_SetExplicitPalette2(v0->sprites[6], 0);
 
     return 1;
@@ -443,7 +443,7 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00030, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00030, TRUE);
 
     *param1 = 28;
 }
@@ -458,7 +458,7 @@ void sub_02083B88(PartyMenuApplication *param0)
     }
 
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
 }
 
 void sub_02083BD4(PartyMenuApplication *param0)
@@ -558,7 +558,7 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
 
         PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 0);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, FALSE);
 
         return 1;
     }
@@ -667,8 +667,8 @@ static void sub_02084134(PartyMenuApplication *param0)
 
     PartyMenu_DrawMemberPanelData(param0, v1->unk_300[0]);
     PartyMenu_DrawMemberPanelData(param0, v1->unk_300[1]);
-    sub_020822F4(param0, v1->unk_300[0]);
-    sub_020822F4(param0, v1->unk_300[1]);
+    PartyMenu_CopyMemberWindowToVRAM(param0, v1->unk_300[0]);
+    PartyMenu_CopyMemberWindowToVRAM(param0, v1->unk_300[1]);
 
     sub_02084420(param0, 0);
     sub_02084420(param0, 1);
@@ -723,7 +723,7 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
         param0->partyMenu->selectionOrder[v0] = param0->currPartySlot + 1;
 
         PartyMenu_PrintSelectionEligibility(param0, param0->currPartySlot);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, TRUE);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
         if (v0 == param0->partyMenu->maxSelectionSlots - 1) {
@@ -736,19 +736,19 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
 
     switch (param0->partyMenu->maxSelectionSlots) {
     case 1:
-        sub_02082708(param0, 123, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00123, TRUE);
         break;
     case 2:
-        sub_02082708(param0, 100, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00100, TRUE);
         break;
     case 3:
-        sub_02082708(param0, 124, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00124, TRUE);
         break;
     case 4:
-        sub_02082708(param0, 125, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00125, TRUE);
         break;
     case 5:
-        sub_02082708(param0, 126, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00126, TRUE);
         break;
     }
 
@@ -760,7 +760,7 @@ int sub_020845A8(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, TRUE);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }
@@ -794,7 +794,7 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
 
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
-    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
+    PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
     Sprite_SetExplicitPalette2(param0->sprites[6], 0);
 
     *param1 = 1;
@@ -804,8 +804,8 @@ static void sub_020846CC(PartyMenuApplication *param0, int *param1)
 {
     param0->partyMenu->menuSelectionResult = 0;
 
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     *param1 = 32;
 }
@@ -814,8 +814,8 @@ static void sub_020846FC(PartyMenuApplication *param0, int *param1)
 {
     param0->partyMenu->menuSelectionResult = 0;
 
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     *param1 = 32;
 }
@@ -824,8 +824,8 @@ static void sub_0208472C(PartyMenuApplication *param0, int *param1)
 {
     param0->partyMenu->menuSelectionResult = 1;
 
-    Menu_Free(param0->unk_700, NULL);
-    StringList_Free(param0->unk_6FC);
+    Menu_Free(param0->contextMenu, NULL);
+    StringList_Free(param0->contextMenuChoices);
 
     *param1 = 32;
 }
@@ -850,7 +850,7 @@ int sub_02084780(PartyMenuApplication *param0)
         param0->currPartySlot = 7;
     }
 
-    sub_02082708(param0, 0xffffffff, 1);
+    PartyMenu_PrintLongMessage(param0, PRINT_MESSAGE_PRELOADED, TRUE);
 
     param0->partyMenu->menuSelectionResult = 0;
     param0->unk_B0E = 25;
@@ -874,8 +874,8 @@ static void sub_02084808(PartyMenuApplication *windowLayout, int *param1)
 
     switch (v1) {
     case 0:
-        Menu_Free(windowLayout->unk_700, NULL);
-        StringList_Free(windowLayout->unk_6FC);
+        Menu_Free(windowLayout->contextMenu, NULL);
+        StringList_Free(windowLayout->contextMenuChoices);
         *param1 = 32;
         return;
     case 1:
@@ -894,7 +894,7 @@ static void sub_02084808(PartyMenuApplication *windowLayout, int *param1)
 
     Window_EraseMessageBox(&windowLayout->windows[33], 1);
     sub_0208337C(windowLayout);
-    sub_02082708(windowLayout, v2, 1);
+    PartyMenu_PrintLongMessage(windowLayout, v2, TRUE);
 
     windowLayout->unk_B0E = 3;
     *param1 = 24;
@@ -1004,7 +1004,7 @@ static int sub_02084A18(PartyMenuApplication *param0)
     param0->monStats[0] = param0->partyMembers[param0->currPartySlot].maxHP / 5;
 
     if (param0->partyMembers[param0->currPartySlot].curHP <= param0->monStats[0]) {
-        sub_02082708(param0, 138, 1);
+        PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00138, TRUE);
         param0->unk_B0E = 3;
         return 24;
     } else {
@@ -1019,7 +1019,7 @@ static int sub_02084A18(PartyMenuApplication *param0)
         Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
         Sprite_SetDrawFlag(param0->sprites[7], TRUE);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00036, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00036, TRUE);
 
         param0->monStats[1] = 0;
         return 30;
@@ -1030,7 +1030,7 @@ int sub_02084B34(PartyMenuApplication *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
-        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, 1);
+        PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
         Sprite_SetExplicitPalette2(param0->sprites[6], 0);
         return 1;
     }

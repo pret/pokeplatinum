@@ -2,11 +2,11 @@
   "key": 57678,
   "messages": [
     {
-      "id": "pl_msg_00000453_00000",
+      "id": "PartyMenu_Text_ConfirmButton",
       "en_US": "CONFIRM"
     },
     {
-      "id": "pl_msg_00000453_00001",
+      "id": "PartyMenu_Text_CancelButton",
       "en_US": "CANCEL"
     },
     {
@@ -34,27 +34,27 @@
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00008",
+      "id": "PartyMenu_Text_MemberNickname0",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00009",
+      "id": "PartyMenu_Text_MemberNickname1",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00010",
+      "id": "PartyMenu_Text_MemberNickname2",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00011",
+      "id": "PartyMenu_Text_MemberNickname3",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00012",
+      "id": "PartyMenu_Text_MemberNickname4",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00013",
+      "id": "PartyMenu_Text_MemberNickname5",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
@@ -110,11 +110,11 @@
       "en_US": "/"
     },
     {
-      "id": "pl_msg_00000453_00027",
+      "id": "PartyMenu_Text_MaleSymbol",
       "en_US": "♂"
     },
     {
-      "id": "pl_msg_00000453_00028",
+      "id": "PartyMenu_Text_FemaleSymbol",
       "en_US": "♀"
     },
     {
@@ -150,7 +150,7 @@
       "en_US": "Use on which Pokémon?"
     },
     {
-      "id": "pl_msg_00000453_00037",
+      "id": "PartyMenu_Text_PromptPokemon",
       "en_US": [
         "Do what with\n",
         "{STRVAR_1 1, 0, 0}?"
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000453_00042",
+      "id": "PartyMenu_Text_PromptCustomBall",
       "en_US": [
         "Set this\n",
         "customized Ball?"
@@ -738,71 +738,71 @@
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000453_00145",
+      "id": "PartyMenu_Text_Switch",
       "en_US": "SWITCH"
     },
     {
-      "id": "pl_msg_00000453_00146",
+      "id": "PartyMenu_Text_Summary",
       "en_US": "SUMMARY"
     },
     {
-      "id": "pl_msg_00000453_00147",
+      "id": "PartyMenu_Text_Item",
       "en_US": "ITEM"
     },
     {
-      "id": "pl_msg_00000453_00148",
+      "id": "PartyMenu_Text_Mail",
       "en_US": "MAIL"
     },
     {
-      "id": "pl_msg_00000453_00149",
+      "id": "PartyMenu_Text_MailRead",
       "en_US": "READ"
     },
     {
-      "id": "pl_msg_00000453_00150",
+      "id": "PartyMenu_Text_MailTake",
       "en_US": "TAKE"
     },
     {
-      "id": "pl_msg_00000453_00151",
+      "id": "PartyMenu_Text_MailStore",
       "en_US": "STORE"
     },
     {
-      "id": "pl_msg_00000453_00152",
+      "id": "PartyMenu_Text_ContextCancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000453_00153",
+      "id": "PartyMenu_Text_Separator",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000453_00154",
+      "id": "PartyMenu_Text_Enter",
       "en_US": "ENTER"
     },
     {
-      "id": "pl_msg_00000453_00155",
+      "id": "PartyMenu_Text_NoEntry",
       "en_US": "NO ENTRY"
     },
     {
-      "id": "pl_msg_00000453_00156",
+      "id": "PartyMenu_Text_FieldMove0",
       "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000453_00157",
+      "id": "PartyMenu_Text_FieldMove1",
       "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000453_00158",
+      "id": "PartyMenu_Text_FieldMove2",
       "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000453_00159",
+      "id": "PartyMenu_Text_FieldMove3",
       "en_US": "{COLOR 1}{STRVAR_1 6, 0, 0}{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000453_00160",
+      "id": "PartyMenu_Text_ItemGive",
       "en_US": "GIVE"
     },
     {
-      "id": "pl_msg_00000453_00161",
+      "id": "PartyMenu_Text_ItemTake",
       "en_US": "TAKE"
     },
     {
@@ -822,67 +822,67 @@
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00166",
+      "id": "PartyMenu_Text_Set",
       "en_US": "SET"
     },
     {
-      "id": "pl_msg_00000453_00167",
+      "id": "PartyMenu_Text_NotEntered",
       "en_US": "NOT ENTERED"
     },
     {
-      "id": "pl_msg_00000453_00168",
+      "id": "PartyMenu_Text_Banned",
       "en_US": "BANNED"
     },
     {
-      "id": "pl_msg_00000453_00169",
+      "id": "PartyMenu_Text_EnteredFirst",
       "en_US": "FIRST"
     },
     {
-      "id": "pl_msg_00000453_00170",
+      "id": "PartyMenu_Text_EnteredSecond",
       "en_US": "SECOND"
     },
     {
-      "id": "pl_msg_00000453_00171",
+      "id": "PartyMenu_Text_EnteredThird",
       "en_US": "THIRD"
     },
     {
-      "id": "pl_msg_00000453_00172",
+      "id": "PartyMenu_Text_EnteredFourth",
       "en_US": "FOURTH"
     },
     {
-      "id": "pl_msg_00000453_00173",
+      "id": "PartyMenu_Text_EnteredFifth",
       "en_US": "FIFTH"
     },
     {
-      "id": "pl_msg_00000453_00174",
+      "id": "PartyMenu_Text_EnteredSixth",
       "en_US": "SIXTH"
     },
     {
-      "id": "pl_msg_00000453_00175",
+      "id": "PartyMenu_Text_AbleToLearn",
       "en_US": "ABLE!"
     },
     {
-      "id": "pl_msg_00000453_00176",
+      "id": "PartyMenu_Text_UnableToLearn",
       "en_US": "UNABLE!"
     },
     {
-      "id": "pl_msg_00000453_00177",
+      "id": "PartyMenu_Text_AlreadyLearned",
       "en_US": "LEARNED"
     },
     {
-      "id": "pl_msg_00000453_00178",
+      "id": "PartyMenu_Text_AbleToEvolve",
       "en_US": "ABLE!"
     },
     {
-      "id": "pl_msg_00000453_00179",
+      "id": "PartyMenu_Text_UnableToEvolve",
       "en_US": "UNABLE!"
     },
     {
-      "id": "pl_msg_00000453_00180",
+      "id": "PartyMenu_Text_EligibleForContest",
       "en_US": "ABLE!"
     },
     {
-      "id": "pl_msg_00000453_00181",
+      "id": "PartyMenu_Text_IneligibleForContest",
       "en_US": "UNABLE!"
     },
     {
@@ -904,35 +904,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000453_00185",
+      "id": "PartyMenu_Text_LevelUpMaxHP",
       "en_US": "MAX HP"
     },
     {
-      "id": "pl_msg_00000453_00186",
+      "id": "PartyMenu_Text_LevelUpAttack",
       "en_US": "ATTACK"
     },
     {
-      "id": "pl_msg_00000453_00187",
+      "id": "PartyMenu_Text_LevelUpDefense",
       "en_US": "DEFENSE"
     },
     {
-      "id": "pl_msg_00000453_00188",
+      "id": "PartyMenu_Text_LevelUpSpAttack",
       "en_US": "SP. ATK"
     },
     {
-      "id": "pl_msg_00000453_00189",
+      "id": "PartyMenu_Text_LevelUpSpDefense",
       "en_US": "SP. DEF"
     },
     {
-      "id": "pl_msg_00000453_00190",
+      "id": "PartyMenu_Text_LevelUpSpeed",
       "en_US": "SPEED"
     },
     {
-      "id": "pl_msg_00000453_00191",
+      "id": "PartyMenu_Text_LevelUpStatIncrease",
       "en_US": "+ {STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00192",
+      "id": "PartyMenu_Text_LevelUpNewStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
@@ -968,7 +968,7 @@
       "en_US": "Please select an Egg."
     },
     {
-      "id": "pl_msg_00000453_00198",
+      "id": "PartyMenu_Text_PromptEgg",
       "en_US": [
         "What will you do\n",
         "with the Egg?"
@@ -979,7 +979,7 @@
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000453_00200",
+      "id": "PartyMenu_Text_ContextConfirm",
       "en_US": "CONFIRM"
     },
     {

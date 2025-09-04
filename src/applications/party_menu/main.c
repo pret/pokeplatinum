@@ -575,7 +575,7 @@ static int sub_0207E5F4(PartyMenuApplication *application)
 
 static int sub_0207E634(PartyMenuApplication *application)
 {
-    u32 v0 = Menu_ProcessInput(application->unk_700);
+    u32 v0 = Menu_ProcessInput(application->contextMenu);
 
     switch (v0) {
     case 0xffffffff:
@@ -584,9 +584,9 @@ static int sub_0207E634(PartyMenuApplication *application)
         Window_EraseMessageBox(&application->windows[33], 1);
         Window_EraseStandardFrame(&application->windows[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&application->windows[35]);
-        Menu_Free(application->unk_700, NULL);
-        StringList_Free(application->unk_6FC);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, 1);
+        Menu_Free(application->contextMenu, NULL);
+        StringList_Free(application->contextMenuChoices);
+        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[6], 0);
         return 1;
     default: {
@@ -624,13 +624,13 @@ static int sub_0207E6E4(PartyMenuApplication *application)
 
 static int sub_0207E708(PartyMenuApplication *application)
 {
-    sub_020827EC(application);
+    PartyMenu_DrawYesNoChoice(application);
     return 27;
 }
 
 static int sub_0207E714(PartyMenuApplication *application)
 {
-    switch (Menu_ProcessInputAndHandleExit(application->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
     case 0:
         return application->unk_B04.unk_00(application);
     case 0xfffffffe:
@@ -650,7 +650,7 @@ static int sub_0207E750(PartyMenuApplication *application)
         if (application->partyMembers[application->currPartySlot].isEgg != TRUE) {
             return sub_0208615C(application);
         } else {
-            sub_02082708(application, 0xffffffff, 1);
+            PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->partyMenu->menuSelectionResult = 0;
             application->unk_B0E = 25;
             MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
@@ -671,7 +671,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
 
     SetVBlankCallback(NULL, NULL);
     sub_02082FF4(v0);
-    sub_02081B90(v0);
+    PartyMenu_RemoveWindows(v0);
     sub_0207EA24(v0->bgConfig);
     DisableTouchPad();
     VramTransfer_Free();
@@ -998,7 +998,7 @@ static PartyMenuApplication *NewPartyMenuApplication(ApplicationManager *appMan)
     application->tmpString = Strbuf_Init(256, HEAP_ID_PARTY_MENU);
     application->tmpFormat = Strbuf_Init(256, HEAP_ID_PARTY_MENU);
 
-    for (i = 0; i < NUM_MENU_STRINGS; i++) {
+    for (i = 0; i < NUM_PARTY_MENU_STRS; i++) {
         application->menuStrings[i] = Strbuf_Init(32, HEAP_ID_PARTY_MENU);
     }
 
@@ -1758,10 +1758,10 @@ static void sub_0207FFC8(PartyMenuApplication *application)
         v1 = sub_020801F0(application, v0);
     }
 
-    sub_02081CF4(application, v0, v1);
+    PartyMenu_DrawContextMenu(application, v0, v1);
     Heap_FreeExplicit(HEAP_ID_PARTY_MENU, v0);
-    sub_02081E08(application);
-    sub_020826F4(application, 0xffffffff, 1);
+    PartyMenu_LoadContextMenuPrompt(application);
+    PartyMenu_PrintMediumMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[6], 1);
 }
 
@@ -1788,7 +1788,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
                 if (fieldEffect != 0xff) {
                     menuEntriesBuffer[count] = fieldEffect;
                     count++;
-                    sub_02081CAC(application, move, fieldMoveIndex);
+                    PartyMenu_SetKnownFieldMove(application, move, fieldMoveIndex);
                     fieldMoveIndex++;
                 }
             }
@@ -2098,22 +2098,22 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         if (application->partyMenu->selectionOrder[v0] == 0) {
             switch (application->partyMenu->maxSelectionSlots) {
             case 2:
-                sub_02082708(application, 107, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00107, TRUE);
                 break;
             case 3:
-                sub_02082708(application, 119, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00119, TRUE);
                 break;
             case 4:
-                sub_02082708(application, 120, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00120, TRUE);
                 break;
             case 5:
-                sub_02082708(application, 121, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00121, TRUE);
                 break;
             case 6:
-                sub_02082708(application, 122, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00122, TRUE);
                 break;
             default:
-                sub_02082708(application, 29, 1);
+                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00029, TRUE);
                 break;
             }
 
@@ -2139,17 +2139,17 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             StringTemplate_Format(application->template, application->tmpString, v1);
             Strbuf_Free(v1);
         }
-            sub_02082708(application, 0xffffffff, 1);
+            PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 2:
-            sub_02082708(application, 182, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 3:
-            sub_02082708(application, 183, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00183, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
@@ -2161,12 +2161,12 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 0:
             break;
         case 1:
-            sub_02082708(application, 182, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 2:
-            sub_02082708(application, 183, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00183, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
@@ -2178,7 +2178,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 0:
             break;
         case 1:
-            sub_02082708(application, 201, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00201, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
@@ -2190,7 +2190,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 0:
             break;
         case 1:
-            sub_02082708(application, 182, 1);
+            PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
@@ -2352,7 +2352,7 @@ static int GetValidWindowLayout(PartyMenuApplication *application)
 
 static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
 {
-    u32 v0 = Menu_ProcessInput(application->unk_700);
+    u32 v0 = Menu_ProcessInput(application->contextMenu);
 
     switch (v0) {
     case 0xffffffff:
@@ -2362,11 +2362,11 @@ static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
         sub_0208337C(application);
 
         if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL)) {
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00034, 1);
+            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00034, TRUE);
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00197, 1);
+            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00197, TRUE);
         } else {
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, 1);
+            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
         }
 
         Sprite_SetExplicitPalette2(application->sprites[6], 0);
@@ -2464,7 +2464,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseMessageBox(&application->windows[34], 1);
             Sprite_SetExplicitPalette2(application->sprites[6], 0);
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00036, 1);
+            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00036, TRUE);
             application->monStats[1] = 0;
         }
         break;
@@ -2489,7 +2489,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
             StringTemplate_SetNumber(application->template, 1, application->monStats[2], 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
             Strbuf_Free(v1);
-            sub_02082708(application, 0xffffffff, 1);
+            PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
             journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((u8)application->monStats[3], 0, 12);
             fieldSystem = application->partyMenu->fieldSystem;
@@ -2521,7 +2521,7 @@ static u8 CheckPokemonCondition(PartyMenuApplication *application)
 
     if ((application->currPartySlot == application->switchTargetSlot) || (application->partyMembers[application->currPartySlot].curHP == 0) || (application->partyMembers[application->currPartySlot].curHP == application->partyMembers[application->currPartySlot].maxHP)) {
         Sprite_SetExplicitPalette2(application->sprites[6], 1);
-        sub_02082708(application, 131, 1);
+        PartyMenu_PrintLongMessage(application, pl_msg_00000453_00131, TRUE);
 
         application->monStats[1] = 1;
         application->unk_B0E = 30;
@@ -2537,7 +2537,7 @@ static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 slot, s8 p
     application->partyMembers[slot].curHP += param2;
     application->monStats[2]++;
 
-    sub_02082098(application, slot);
+    PartyMenu_ClearMemberHP(application, slot);
     Window_FillTilemap(&application->windows[3 + slot * 5], 0);
     PartyMenu_PrintMemberCurrentHP(application, slot);
     PartyMenu_DrawMemberHealthbar(application, slot);
@@ -2641,7 +2641,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *application)
 
         sub_020852B8(application);
     } else {
-        sub_02082708(application, 105, 1);
+        PartyMenu_PrintLongMessage(application, pl_msg_00000453_00105, TRUE);
         application->currPartySlot = 7;
         application->unk_B00 = sub_02085348;
     }
@@ -2720,7 +2720,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
 
     Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
-    sub_0208274C(application);
+    PartyMenu_AddLongMessagePrinter(application);
 
     return v2;
 }
@@ -2798,7 +2798,7 @@ static int HandleOverlayCompletion(PartyMenuApplication *application)
 static int FinalizeMessageProcessing(PartyMenuApplication *application)
 {
     if (Text_IsPrinterActive(application->textPrinterID) == 0) {
-        sub_020827EC(application);
+        PartyMenu_DrawYesNoChoice(application);
         return 10;
     }
 
@@ -2809,7 +2809,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
 {
     int v0, v1;
 
-    switch (Menu_ProcessInputAndHandleExit(application->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
     case 0: {
         Pokemon *v2;
         Window *v3;
@@ -2847,7 +2847,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
         }
 
         Window_FillTilemap(v3, 15);
-        sub_0208274C(application);
+        PartyMenu_AddLongMessagePrinter(application);
     }
         return v0;
     case 0xfffffffe:
@@ -2861,7 +2861,7 @@ static int ResetWindowOnInput(PartyMenuApplication *application)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         Window_EraseMessageBox(&application->windows[34], 1);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, 1);
+        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[6], 0);
         application->partyMenu->mode = PARTY_MENU_MODE_FIELD;
         return 1;
@@ -2904,7 +2904,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
 
     Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
-    sub_0208274C(application);
+    PartyMenu_AddLongMessagePrinter(application);
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL_DONE) {
         application->partyMenu->mode = PARTY_MENU_MODE_GIVE_ITEM_DONE;
@@ -2921,7 +2921,7 @@ static int CheckForItemApplication(PartyMenuApplication *application)
     }
 
     Sprite_SetExplicitPalette2(application->sprites[6], 1);
-    sub_02082708(application, 195, 1);
+    PartyMenu_PrintLongMessage(application, pl_msg_00000453_00195, TRUE);
     application->unk_B04.unk_00 = sub_02083A78;
     application->unk_B04.unk_04 = sub_02083AA4;
     application->unk_B0E = 26;
