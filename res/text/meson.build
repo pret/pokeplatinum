@@ -114,7 +114,7 @@ text_bank_files += species_text_banks
 trainer_text_banks = custom_target('trainer_text_banks',
     output: trainer_text_bank_names,
     command: [
-        'mv',
+        'cp',
         '@OUTDIR@/../trainers/npc_trainer_messages.json',
         '@OUTDIR@/../trainers/npc_trainer_names.json',
         '@OUTDIR@',
@@ -128,7 +128,7 @@ text_bank_files += trainer_text_banks
 frontier_text_banks = custom_target('frontier_text_banks',
     output: frontier_text_bank_names,
     command: [
-        'mv',
+        'cp',
         '@OUTDIR@/../trainers/frontier/frontier_trainer_messages.json',
         '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
         '@OUTDIR@',
