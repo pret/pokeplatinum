@@ -590,7 +590,7 @@ static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
-static BOOL ScrCmd_202(ScriptContext *ctx);
+static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx);
 static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
@@ -598,9 +598,9 @@ static BOOL ScrCmd_310(ScriptContext *ctx);
 static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
-static BOOL ScrCmd_InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
-static BOOL ScrCmd_20F(ScriptContext *ctx);
-static BOOL ScrCmd_210(ScriptContext *ctx);
+static BOOL ScrCmd_InitGreatMarshTram(ScriptContext *ctx);
+static BOOL ScrCmd_MoveGreatMarshTram(ScriptContext *ctx);
+static BOOL ScrCmd_CheckGreatMarshTramLocation(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_ClearSpiritombCounter(ScriptContext *ctx);
@@ -1285,7 +1285,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1FF,
     ScrCmd_GetPreviousMapID,
     ScrCmd_GetCurrentMapID,
-    ScrCmd_202,
+    ScrCmd_StartEndSafariGame,
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
@@ -1297,9 +1297,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_20B,
     ScrCmd_20C,
     ScrCmd_20D,
-    ScrCmd_InitPersistedMapFeaturesForGreatMarsh,
-    ScrCmd_20F,
-    ScrCmd_210,
+    ScrCmd_InitGreatMarshTram,
+    ScrCmd_MoveGreatMarshTram,
+    ScrCmd_CheckGreatMarshTramLocation,
     ScrCmd_SetPlayerHeightCalculationEnabled,
     ScrCmd_GetPartyMonNature,
     ScrCmd_FindPartySlotWithNature,
@@ -6126,31 +6126,31 @@ static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_202(ScriptContext *ctx)
+static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
-    VarsFlags *v3 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
-    int v5 = ScriptContext_ReadByte(ctx);
+    int activeState = ScriptContext_ReadByte(ctx);
 
-    u16 *v0 = FieldOverworldState_GetSafariBallCount(fieldState);
-    u16 *v1 = FieldOverworldState_GetSafariStepCount(fieldState);
+    u16 *safariBallCount = FieldOverworldState_GetSafariBallCount(fieldState);
+    u16 *stepCount = FieldOverworldState_GetSafariStepCount(fieldState);
 
-    switch (v5) {
-    case 0:
-        SystemFlag_SetSafariGameActive(v3);
+    switch (activeState) {
+    case SAFARI_GAME_ACTIVE:
+        SystemFlag_SetSafariGameActive(varsFlags);
         sub_0206D000(broadcast);
-        *v0 = 30;
-        *v1 = 0;
+        *safariBallCount = 30;
+        *stepCount = 0;
         break;
-    case 1:
-        SystemFlag_ClearSafariGameActive(v3);
+    case SAFARI_GAME_INACTIVE:
+        SystemFlag_ClearSafariGameActive(varsFlags);
         sub_0206D720(ctx->fieldSystem);
         void *journalEntryLocationEvent = JournalEntry_CreateEventSafariGame(HEAP_ID_FIELD1);
 
         JournalEntry_SaveData(ctx->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-        *v0 = 0;
-        *v1 = 0;
+        *safariBallCount = 0;
+        *stepCount = 0;
         break;
     }
 
@@ -6172,29 +6172,29 @@ static BOOL ScrCmd_20D(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx)
+static BOOL ScrCmd_InitGreatMarshTram(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForGreatMarsh(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL ScrCmd_20F(ScriptContext *ctx)
+static BOOL ScrCmd_MoveGreatMarshTram(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
+    u16 *location = ScriptContext_GetVarPointer(ctx);
+    u16 movementType = ScriptContext_ReadHalfWord(ctx);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_65, SEQ_NONE, 0);
-    ov6_02242B58(ctx->fieldSystem, *v0, v1);
+    GreatMarshTram_MoveToLocation(ctx->fieldSystem, *location, movementType);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_210(ScriptContext *ctx)
+static BOOL ScrCmd_CheckGreatMarshTramLocation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 location = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = ov6_02242C3C(ctx->fieldSystem, v0);
+    *destVar = GreatMarshTram_CheckLocation(ctx->fieldSystem, location);
     return FALSE;
 }
 

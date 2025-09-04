@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_prop.h"
+#include "constants/great_marsh_tram.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -12,7 +13,6 @@
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay006/struct_ov6_02242AF0.h"
 
 #include "field_system.h"
 #include "field_task.h"
@@ -82,91 +82,88 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2,
 };
 
-void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
+void GreatMarshTram_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_ov6_02242AF0 *v1;
-    VecFx32 v2;
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    GreatMarshTramState *tramState = (GreatMarshTramState *)PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+    VecFx32 position;
+    position.x = (FX32_ONE * 16) * (32 * 2 + 2);
+    position.y = FX32_ONE * 16;
 
-    v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
-    v2.y = (FX32_ONE * 16);
-
-    switch (v1->unk_00) {
-    case 0:
-        v2.z = ((FX32_ONE * 16) * (32 * 1 + 8));
+    switch (tramState->location) {
+    case GREAT_MARSH_TRAM_LOCATION_AREA_1_2:
+        position.z = (FX32_ONE * 16) * (32 * 1 + 8);
         break;
-    case 1:
-        v2.z = ((FX32_ONE * 16) * (32 * 2 + 18));
+    case GREAT_MARSH_TRAM_LOCATION_AREA_3_4:
+        position.z = (FX32_ONE * 16) * (32 * 2 + 18);
         break;
-    case 2:
-        v2.z = ((FX32_ONE * 16) * (32 * 3 + 12));
+    case GREAT_MARSH_TRAM_LOCATION_AREA_5_6:
+        position.z = (FX32_ONE * 16) * (32 * 3 + 12);
         break;
     }
 
-    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &v2, NULL, fieldSystem->mapPropAnimMan);
+    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &position, NULL, fieldSystem->mapPropAnimMan);
 }
 
-void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
+void GreatMarshTram_MoveToLocation(FieldSystem *fieldSystem, u16 destination, u16 movementType)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    GreatMarshTramState *tramState = (GreatMarshTramState *)PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
     UnkStruct_ov6_02242B58 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_02242B58));
 
     memset(v2, 0, sizeof(UnkStruct_ov6_02242B58));
 
     v2->unk_05 = 0;
 
-    switch (v1->unk_00) {
-    case 0:
+    switch (tramState->location) {
+    case GREAT_MARSH_TRAM_LOCATION_AREA_1_2:
         v2->unk_04 = 1;
 
-        if (param1 == 1) {
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 2 + 18));
-            v1->unk_00 = 1;
-            v2->unk_10 = (32 * 2 + 10);
+        if (destination == GREAT_MARSH_TRAM_LOCATION_AREA_3_4) {
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 2 + 18);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_3_4;
+            v2->unk_10 = 32 * 2 + 10;
         } else {
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 3 + 12));
-            v1->unk_00 = 2;
-            v2->unk_10 = (32 * 3 + 4);
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 3 + 12);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_5_6;
+            v2->unk_10 = 32 * 3 + 4;
         }
         break;
-    case 1:
-        if (param1 == 0) {
+    case GREAT_MARSH_TRAM_LOCATION_AREA_3_4:
+        if (destination == GREAT_MARSH_TRAM_LOCATION_AREA_1_2) {
             v2->unk_04 = 0;
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 1 + 8));
-            v1->unk_00 = 0;
-            v2->unk_10 = (32 * 1 + 14);
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 1 + 8);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_1_2;
+            v2->unk_10 = 32 * 1 + 14;
         } else {
             v2->unk_04 = 1;
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 3 + 12));
-            v1->unk_00 = 2;
-            v2->unk_10 = (32 * 3 + 4);
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 3 + 12);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_5_6;
+            v2->unk_10 = 32 * 3 + 4;
         }
         break;
-    case 2:
+    case GREAT_MARSH_TRAM_LOCATION_AREA_5_6:
         v2->unk_04 = 0;
 
-        if (param1 == 0) {
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 1 + 8));
-            v1->unk_00 = 0;
-            v2->unk_10 = (32 * 1 + 14);
+        if (destination == GREAT_MARSH_TRAM_LOCATION_AREA_1_2) {
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 1 + 8);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_1_2;
+            v2->unk_10 = 32 * 1 + 14;
         } else {
-            v2->unk_0C = ((FX32_ONE * 16) * (32 * 2 + 18));
-            v1->unk_00 = 1;
-            v2->unk_10 = (32 * 2 + 24);
+            v2->unk_0C = (FX32_ONE * 16) * (32 * 2 + 18);
+            tramState->location = GREAT_MARSH_TRAM_LOCATION_AREA_3_4;
+            v2->unk_10 = 32 * 2 + 24;
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    v2->unk_08 = param2;
+    v2->unk_08 = movementType;
 
-    if (param2 == 3) {
+    if (movementType == GREAT_MARSH_TRAM_MOVEMENT_CALL) {
         v2->unk_00 = ov6_02242D94;
     } else {
         v2->unk_00 = ov6_02242E60;
@@ -175,15 +172,15 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
     FieldTask_InitCall(fieldSystem->task, ov6_02242C5C, v2);
 }
 
-u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
+u32 GreatMarshTram_CheckLocation(FieldSystem *fieldSystem, u16 location)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    GreatMarshTramState *tramState = (GreatMarshTramState *)PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
-    if (v1->unk_00 == param1) {
-        return 5;
+    if (tramState->location == location) {
+        return GREAT_MARSH_TRAM_AT_LOCATION;
     } else {
-        return 6;
+        return GREAT_MARSH_TRAM_NOT_AT_LOCATION;
     }
 }
 

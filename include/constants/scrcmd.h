@@ -4,8 +4,9 @@
 #include "generated/accessories.h"
 #include "generated/backdrops.h"
 
-#define MENU_YES 0
-#define MENU_NO  1
+#define MENU_YES    0
+#define MENU_NO     1
+#define MENU_CANCEL -2
 
 #define LOCALID_PLAYER 0xFF
 
@@ -16,5 +17,8 @@
 #define NO_EXIT_ON_B FALSE
 
 #define NUM_MASSAGE_GIRL_ACCESSORIES (ACCESSORY_GLITTER_POWDER - ACCESSORY_PRETTY_DEWDROP + 1)
+
+#define SAFARI_GAME_ACTIVE   0
+#define SAFARI_GAME_INACTIVE 1
 
 #endif // POKEPLATINUM_CONSTANTS_SCRCMD_H

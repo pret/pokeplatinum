@@ -2894,9 +2894,17 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_202 arg0
+    .macro StartEndSafariGame activeState
     .short 514
-    .byte \arg0
+    .byte \activeState
+    .endm
+
+    .macro StartSafariGame
+    StartEndSafariGame SAFARI_GAME_ACTIVE
+    .endm
+
+    .macro EndSafariGame
+    StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
     .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
@@ -2954,20 +2962,20 @@
     .short \arg1
     .endm
 
-    .macro InitPersistedMapFeaturesForGreatMarsh
+    .macro InitGreatMarshTram
     .short 526
     .endm
 
-    .macro ScrCmd_20F arg0, arg1
+    .macro MoveGreatMarshTram location, movementType
     .short 527
-    .short \arg0
-    .short \arg1
+    .short \location
+    .short \movementType
     .endm
 
-    .macro ScrCmd_210 arg0, arg1
+    .macro CheckGreatMarshTramLocation location, destVar
     .short 528
-    .short \arg0
-    .short \arg1
+    .short \location
+    .short \destVar
     .endm
 
     .macro SetPlayerHeightCalculationEnabled heightCalculationEnabled

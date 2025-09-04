@@ -24,7 +24,7 @@ const static DynamicMapFeaturesInitFunc sInitFuncs[DYNAMIC_MAP_FEATURES_COUNT] =
     CanalaveGym_DynamicMapFeaturesInit,
     VeilstoneGym_DynamicMapFeaturesInit,
     SunyshoreGym_DynamicMapFeaturesInit,
-    GreatMarsh_DynamicMapFeaturesInit,
+    GreatMarshTram_DynamicMapFeaturesInit,
     PlatformLift_DynamicMapFeaturesInit,
     EternaGym_DynamicMapFeaturesInit,
     DistWorld_DynamicMapFeaturesInit,

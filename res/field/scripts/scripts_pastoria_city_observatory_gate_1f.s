@@ -64,7 +64,7 @@ _00F2:
 
 _0102:
     SetVar VAR_UNK_0x40DA, 1
-    ScrCmd_202 0
+    StartSafariGame
     SetSpecialLocation MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 2, 5, 2, DIR_SOUTH
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreenOut
@@ -150,7 +150,7 @@ _01F1:
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
-    ScrCmd_202 1
+    EndSafariGame
     ScrCmd_31B VAR_MAP_LOCAL_2
     GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
