@@ -27,8 +27,8 @@
 
 void PartyMenu_InitSpriteResources(PartyMenuApplication *application)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     VramTransfer_New(32, HEAP_ID_PARTY_MENU);
 
     application->spriteSystem = SpriteSystem_Alloc(12);

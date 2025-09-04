@@ -114,7 +114,7 @@ static void SetupRequestedMode(PartyMenuApplication *application);
 static void SetupRequestedModePanels(PartyMenuApplication *application);
 static u8 sub_0207F984(PartyMenuApplication *application, u8 param1);
 static u8 sub_0207FE98(PartyMenuApplication *application);
-static void InitSelectedSlot(PartyMenuApplication *application, u8 param1, u8 param2);
+static void InitAnimAndPaletteForSlot(PartyMenuApplication *application, u8 slot, u8 isSelected);
 static void SetupMenuCursor(PartyMenuApplication *application);
 static void CheckCancellableMode(PartyMenuApplication *application);
 static int HandleGameWindowEvent(PartyMenuApplication *application);
@@ -264,7 +264,7 @@ static const u16 Unk_020F1CB0[] = {
 
 static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
 {
-    PartyMenuApplication *application;
+    PartyMenuApplication *application; // must forward-declare to match
     NARC *narc;
 
     SetVBlankCallback(NULL, NULL);
@@ -298,7 +298,7 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
 
     SetupRequestedMode(application);
     SetupRequestedModePanels(application);
-    InitSelectedSlot(application, application->currPartySlot, 1);
+    InitAnimAndPaletteForSlot(application, application->currPartySlot, TRUE);
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_USE_ITEM || application->partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) {
         if (CheckItemSacredAsh(application->partyMenu->usedItemID) == FALSE) {
@@ -1506,8 +1506,8 @@ static u8 sub_0207FA24(PartyMenuApplication *application)
             u8 v4 = application->currPartySlot;
             application->currPartySlot = v0;
 
-            InitSelectedSlot(application, v4, 0);
-            InitSelectedSlot(application, application->currPartySlot, 1);
+            InitAnimAndPaletteForSlot(application, v4, FALSE);
+            InitAnimAndPaletteForSlot(application, application->currPartySlot, TRUE);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v4 < 6) {
@@ -1577,8 +1577,8 @@ static u8 sub_0207FC94(PartyMenuApplication *application)
         v3 = application->currPartySlot;
         application->currPartySlot = (u8)v0;
 
-        InitSelectedSlot(application, v3, 0);
-        InitSelectedSlot(application, application->currPartySlot, 1);
+        InitAnimAndPaletteForSlot(application, v3, FALSE);
+        InitAnimAndPaletteForSlot(application, application->currPartySlot, TRUE);
 
         if (v3 < 6) {
             DrawMemberTouchScreenButton(application, v3, 0);
@@ -1621,8 +1621,8 @@ void sub_0207FD68(PartyMenuApplication *application, u8 partySlot)
         u8 v2 = application->currPartySlot;
         application->currPartySlot = partySlot;
 
-        InitSelectedSlot(application, v2, 0);
-        InitSelectedSlot(application, application->currPartySlot, 1);
+        InitAnimAndPaletteForSlot(application, v2, FALSE);
+        InitAnimAndPaletteForSlot(application, application->currPartySlot, TRUE);
 
         if (v2 < 6) {
             DrawMemberTouchScreenButton(application, v2, 0);
@@ -2003,11 +2003,11 @@ u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 
     return PARTY_MENU_SELECTION_ELIGIBLE;
 }
 
-static void InitSelectedSlot(PartyMenuApplication *application, u8 slot, u8 selected)
+static void InitAnimAndPaletteForSlot(PartyMenuApplication *application, u8 slot, u8 isSelected)
 {
     if (slot == 6) {
         u8 anim = Sprite_GetActiveAnim(application->sprites[8]);
-        if (selected == FALSE) {
+        if (isSelected == FALSE) {
             anim = (anim & 2);
         } else {
             anim = (anim & 2) + 1;
@@ -2019,7 +2019,7 @@ static void InitSelectedSlot(PartyMenuApplication *application, u8 slot, u8 sele
 
     if (slot == 7) {
         u8 anim = Sprite_GetActiveAnim(application->sprites[9]);
-        if (selected == FALSE) {
+        if (isSelected == FALSE) {
             anim = (anim & 2);
         } else {
             anim = (anim & 2) + 1;
@@ -2029,7 +2029,7 @@ static void InitSelectedSlot(PartyMenuApplication *application, u8 slot, u8 sele
         return;
     }
 
-    if (selected == FALSE) {
+    if (isSelected == FALSE) {
         application->partyMembers[slot].spriteXDelta -= 2;
         application->partyMembers[slot].spriteYDelta -= 2;
 
