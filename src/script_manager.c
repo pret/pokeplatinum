@@ -496,7 +496,7 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
     GF_ASSERT(graphicsVarID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, ((0 + VARS_START) + 32) + graphicsVarID);
+    return FieldSystem_TryGetVar(fieldSystem, VARS_START + 32 + graphicsVarID);
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
@@ -519,7 +519,7 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
-    memset(VarsFlags_GetVarAddress(varsFlags, 0 + VARS_START), 0, 2 * 32);
+    memset(VarsFlags_GetVarAddress(varsFlags, VARS_START), 0, 2 * 32);
 }
 
 void sub_0203F1FC(FieldSystem *fieldSystem)

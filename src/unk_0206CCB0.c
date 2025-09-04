@@ -364,11 +364,11 @@ typedef struct {
 #define TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS        17
 #define TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS      8
 
-static const TVBroadcastSegment Unk_020EFFA4[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS];
-static const TVBroadcastSegment Unk_020EFE2C[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS];
-static const TVBroadcastSegment Unk_020EFF0C[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
-static const TVBroadcastSegment Unk_020EFE84[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS];
-static const TVBroadcastSegment Unk_020EFD9C[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS];
+static const TVBroadcastSegment sTrainerSightingsSegments[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS];
+static const TVBroadcastSegment sRecordsSegments[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS];
+static const TVBroadcastSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
+static const TVBroadcastSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS];
+static const TVBroadcastSegment sVarietyHourSegments[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS];
 
 #define TV_PROGRAM_TYPE_HANDLER(type, segments) { \
     TV_PROGRAM_TYPE_##type,                       \
@@ -378,11 +378,11 @@ static const TVBroadcastSegment Unk_020EFD9C[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SE
 }
 
 static const UnkStruct_020EFD60 Unk_020EFD60[] = {
-    TV_PROGRAM_TYPE_HANDLER(INTERVIEWS, Unk_020EFF0C),
-    TV_PROGRAM_TYPE_HANDLER(TRAINER_SIGHTINGS, Unk_020EFFA4),
-    TV_PROGRAM_TYPE_HANDLER(RECORDS, Unk_020EFE2C),
-    TV_PROGRAM_TYPE_HANDLER(SINNOH_NOW, Unk_020EFE84),
-    TV_PROGRAM_TYPE_HANDLER(VARIETY_HOUR, Unk_020EFD9C),
+    TV_PROGRAM_TYPE_HANDLER(INTERVIEWS, sInterviewsSegments),
+    TV_PROGRAM_TYPE_HANDLER(TRAINER_SIGHTINGS, sTrainerSightingsSegments),
+    TV_PROGRAM_TYPE_HANDLER(RECORDS, sRecordsSegments),
+    TV_PROGRAM_TYPE_HANDLER(SINNOH_NOW, sSinnohNowSegments),
+    TV_PROGRAM_TYPE_HANDLER(VARIETY_HOUR, sVarietyHourSegments),
 };
 
 static const UnkStruct_020EFD60 *sub_0206CCB0(int param0)
@@ -2922,7 +2922,7 @@ static int sub_0206F29C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static const TVBroadcastSegment Unk_020EFFA4[] = {
+static const TVBroadcastSegment sTrainerSightingsSegments[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS] = {
     { sub_0206D230, sub_0206D320 },
     { sub_0206D2E0, NULL },
     { sub_0206D374, sub_0206D3C0 },
@@ -2951,7 +2951,7 @@ static const TVBroadcastSegment Unk_020EFFA4[] = {
     { sub_0206DB74, sub_0206DB9C }
 };
 
-static const TVBroadcastSegment Unk_020EFE2C[11] = {
+static const TVBroadcastSegment sRecordsSegments[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS] = {
     { sub_0206DBE8, sub_0206DC3C },
     { NULL, NULL },
     { sub_0206DC9C, sub_0206DD1C },
@@ -2965,7 +2965,7 @@ static const TVBroadcastSegment Unk_020EFE2C[11] = {
     { sub_0206E098, sub_0206E0CC }
 };
 
-static const TVBroadcastSegment Unk_020EFF0C[19] = {
+static const TVBroadcastSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
     { NULL, NULL },
     { sub_0206E118, sub_0206E160 },
     { NULL, NULL },
@@ -2987,7 +2987,7 @@ static const TVBroadcastSegment Unk_020EFF0C[19] = {
     { sub_0206E7AC, sub_0206E834 }
 };
 
-static const TVBroadcastSegment Unk_020EFE84[17] = {
+static const TVBroadcastSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS] = {
     { sub_0206E870, sub_0206E928 },
     { sub_0206E940, sub_0206EA0C },
     { sub_0206EA10, NULL },
@@ -3007,7 +3007,7 @@ static const TVBroadcastSegment Unk_020EFE84[17] = {
     { sub_0206EEBC, sub_0206EF64 }
 };
 
-static const TVBroadcastSegment Unk_020EFD9C[8] = {
+static const TVBroadcastSegment sVarietyHourSegments[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS] = {
     { sub_0206EF7C, NULL },
     { sub_0206F01C, sub_0206F100 },
     { sub_0206F118, NULL },
