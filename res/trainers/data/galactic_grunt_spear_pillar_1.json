@@ -28,11 +28,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"The toughest of all the grunts!\n",
-				"That was me...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The toughest of all the grunts!\n",
+                "That was me...\n"
+            ]
+        }
     ]
 }

@@ -28,11 +28,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"...I want a promotion so I can get some\n",
-				"tougher Pokémon...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...I want a promotion so I can get some\n",
+                "tougher Pokémon...\n"
+            ]
+        }
     ]
 }

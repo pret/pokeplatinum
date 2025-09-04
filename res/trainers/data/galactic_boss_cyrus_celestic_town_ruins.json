@@ -56,15 +56,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": "You’ve forced my hand this time!\n"
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": "You’ve forced my hand this time!\n"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Impressive.\n",
-				"Your prowess is notable.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Impressive.\n",
+                "Your prowess is notable.\n"
+            ]
+        }
     ]
 }

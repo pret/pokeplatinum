@@ -28,77 +28,77 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
-			"en_US": [
-				"Zac: Jen, watch this! I’m going to\n",
-				"use everything you’ve taught me!\r"
-			]
-		},
+            "type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+            "en_US": [
+                "Zac: Jen, watch this! I’m going to\n",
+                "use everything you’ve taught me!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-			"en_US": [
-				"Zac: Wow. Someone that’s even\n",
-				"better than Jen...\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+            "en_US": [
+                "Zac: Wow. Someone that’s even\n",
+                "better than Jen...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
-			"en_US": [
-				"Zac: I don’t care if I get to meet\n",
-				"the greatest Trainer in the region...\f",
-				"I’d still rather learn from Jen.\n"
-			]
-		},
+            "type": "TRMSG_POST_DOUBLE_BATTLE_1",
+            "en_US": [
+                "Zac: I don’t care if I get to meet\n",
+                "the greatest Trainer in the region...\f",
+                "I’d still rather learn from Jen.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-			"en_US": [
-				"Zac: Would you be interested in battling\n",
-				"the two of us at the same time?\r",
-				"What I mean is, do you have two or more\n",
-				"Pokémon with you?\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+            "en_US": [
+                "Zac: Would you be interested in battling\n",
+                "the two of us at the same time?\r",
+                "What I mean is, do you have two or more\n",
+                "Pokémon with you?\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-			"en_US": [
-				"Zac: This time, I’m not gonna let you\n",
-				"down, Jen! I promise!\r"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+            "en_US": [
+                "Zac: This time, I’m not gonna let you\n",
+                "down, Jen! I promise!\r"
+            ]
+        },
         {
-			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
-			"en_US": [
-				"Jen: Here comes a Trainer.\n",
-				"Zac, you ready? Let’s do this!\r"
-			]
-		},
+            "type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+            "en_US": [
+                "Jen: Here comes a Trainer.\n",
+                "Zac, you ready? Let’s do this!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-			"en_US": [
-				"Jen: I just got embarrassed in front\n",
-				"of my little buddy here...\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+            "en_US": [
+                "Jen: I just got embarrassed in front\n",
+                "of my little buddy here...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
-			"en_US": [
-				"Jen: Zac, I’m so sorry.\n",
-				"I’m a failure as your instructor.\n"
-			]
-		},
+            "type": "TRMSG_POST_DOUBLE_BATTLE_2",
+            "en_US": [
+                "Jen: Zac, I’m so sorry.\n",
+                "I’m a failure as your instructor.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-			"en_US": [
-				"Jen: Would you like to have a\n",
-				"two-on-two Pokémon battle with us?\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+            "en_US": [
+                "Jen: Would you like to have a\n",
+                "two-on-two Pokémon battle with us?\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
-			"en_US": [
-				"Jen: Here comes our Trainer!\n",
-				"Are you ready this time?\r"
-			]
-		}
+            "type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+            "en_US": [
+                "Jen: Here comes our Trainer!\n",
+                "Are you ready this time?\r"
+            ]
+        }
     ]
 }

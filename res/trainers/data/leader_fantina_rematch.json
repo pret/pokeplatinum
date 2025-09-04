@@ -85,18 +85,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"It is too difficult, but...\n",
-				"Never give up, never surrender!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "It is too difficult, but...\n",
+                "Never give up, never surrender!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You are so fantastically strong.\n",
-				"I know why I have lost.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You are so fantastically strong.\n",
+                "I know why I have lost.\n"
+            ]
+        }
     ]
 }

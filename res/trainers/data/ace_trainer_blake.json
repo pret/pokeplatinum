@@ -40,33 +40,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m an elite battler, but cold is\n",
-				"my nemesis!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m an elite battler, but cold is\n",
+                "my nemesis!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"But, how...?\n",
-				"Am I weak at battling, too?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "But, how...?\n",
+                "Am I weak at battling, too?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’d rather be asleep in the lodge’s\n",
-				"bed...\r",
-				"I can’t take this cold...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’d rather be asleep in the lodge’s\n",
+                "bed...\r",
+                "I can’t take this cold...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m an elite at battling, but cold is\n",
-				"my nemesis!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m an elite at battling, but cold is\n",
+                "my nemesis!\r"
+            ]
+        }
     ]
 }

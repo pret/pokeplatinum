@@ -46,11 +46,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My camera’s too heavy.\n",
-				"I couldn’t battle effectively...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My camera’s too heavy.\n",
+                "I couldn’t battle effectively...\n"
+            ]
+        }
     ]
 }

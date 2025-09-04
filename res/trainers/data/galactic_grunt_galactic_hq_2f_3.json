@@ -28,25 +28,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"You should be tired out by now.\n",
-				"It’s Team Galactic’s turn to shine!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You should be tired out by now.\n",
+                "It’s Team Galactic’s turn to shine!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What? I don’t get it.\n",
-				"What’s your rush?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What? I don’t get it.\n",
+                "What’s your rush?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Pokémon are that important to you?\n",
-				"Is that what this is all about?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Pokémon are that important to you?\n",
+                "Is that what this is all about?\n"
+            ]
+        }
     ]
 }

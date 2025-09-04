@@ -86,19 +86,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": [
-				"Hmm...\n",
-				"Now what should I do...\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "Hmm...\n",
+                "Now what should I do...\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I see...\r",
-				"Your getting past the three before\n",
-				"me was no fluke. Your power is real.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I see...\r",
+                "Your getting past the three before\n",
+                "me was no fluke. Your power is real.\n"
+            ]
+        }
     ]
 }

@@ -19,31 +19,31 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"How do you expect to battle in this\n",
-				"heavy snow?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "How do you expect to battle in this\n",
+                "heavy snow?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "The winds of victory shifted...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "The winds of victory shifted...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"It’s so cold here, but here you are,\n",
-				"so full of energy.\r",
-				"I guess you kids are made tougher\n",
-				"than people my age.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "It’s so cold here, but here you are,\n",
+                "so full of energy.\r",
+                "I guess you kids are made tougher\n",
+                "than people my age.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Why would you wander around here?\n",
-				"You must really like this area.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Why would you wander around here?\n",
+                "You must really like this area.\r"
+            ]
+        }
     ]
 }

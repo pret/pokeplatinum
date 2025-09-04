@@ -22,11 +22,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hmm... I failed to foresee this\n",
-				"outcome...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hmm... I failed to foresee this\n",
+                "outcome...\n"
+            ]
+        }
     ]
 }

@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I wear shorts the whole year!\n",
-				"I’ve got energy to burn!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I wear shorts the whole year!\n",
+                "I’ve got energy to burn!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I couldn’t win with just energy...\n",
-				"Nothing’s really that easy!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I couldn’t win with just energy...\n",
+                "Nothing’s really that easy!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Pokémon don’t wear clothes.\n",
-				"I worry about them getting cold.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Pokémon don’t wear clothes.\n",
+                "I worry about them getting cold.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I wear shorts! I have lots of\n",
-				"energy! I’m not losing to you!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I wear shorts! I have lots of\n",
+                "energy! I’m not losing to you!\r"
+            ]
+        }
     ]
 }

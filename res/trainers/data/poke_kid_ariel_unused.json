@@ -37,22 +37,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Po-Po-Pokémon!\n",
-				"Do you think I’m a real Pokémon?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Po-Po-Pokémon!\n",
+                "Do you think I’m a real Pokémon?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Pi-Pikachu!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Pi-Pikachu!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I need to find a way to get more into\n",
-				"the character of a Pokémon...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I need to find a way to get more into\n",
+                "the character of a Pokémon...\n"
+            ]
+        }
     ]
 }

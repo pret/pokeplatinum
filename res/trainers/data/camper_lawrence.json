@@ -30,25 +30,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Yeah, I like to camp! So what?\n",
-				"Let’s battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Yeah, I like to camp! So what?\n",
+                "Let’s battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I should’ve just stuck to\n",
-				"camping out here...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I should’ve just stuck to\n",
+                "camping out here...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"When I’m with my Pokémon, I can camp\n",
-				"just about anywhere I want!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "When I’m with my Pokémon, I can camp\n",
+                "just about anywhere I want!\n"
+            ]
+        }
     ]
 }

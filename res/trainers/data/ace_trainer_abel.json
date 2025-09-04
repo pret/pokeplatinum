@@ -40,26 +40,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"The Trainers and Pokémon that gather\n",
-				"here aren’t pushovers.\f",
-				"They all have tricks up their sleeves!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The Trainers and Pokémon that gather\n",
+                "here aren’t pushovers.\f",
+                "They all have tricks up their sleeves!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You’re not a Trainer that can be\n",
-				"taken lightly!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re not a Trainer that can be\n",
+                "taken lightly!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The Pokémon you’ll meet here won’t\n",
-				"make it easy for you to move onward.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The Pokémon you’ll meet here won’t\n",
+                "make it easy for you to move onward.\n"
+            ]
+        }
     ]
 }

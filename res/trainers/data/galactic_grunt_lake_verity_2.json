@@ -51,24 +51,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"In order for us to bring peace to\n",
-				"the world, we must control it!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In order for us to bring peace to\n",
+                "the world, we must control it!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re too young to understand.\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re too young to understand.\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Our boss always had plans for\n",
-				"the three lakes...\r",
-				"While you were blissfully ignorant,\n",
-				"our work went ahead...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Our boss always had plans for\n",
+                "the three lakes...\r",
+                "While you were blissfully ignorant,\n",
+                "our work went ahead...\n"
+            ]
+        }
     ]
 }

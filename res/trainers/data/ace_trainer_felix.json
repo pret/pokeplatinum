@@ -40,26 +40,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "Welcome to my Pokémon show!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Welcome to my Pokémon show!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Did you enjoy the show?\n",
-				"Super fabulous, wasn’t it?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Did you enjoy the show?\n",
+                "Super fabulous, wasn’t it?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ll be happy to battle you again!\n",
-				"Let’s battle again sometime, yeah?"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ll be happy to battle you again!\n",
+                "Let’s battle again sometime, yeah?"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": "Welcome to my new Pokémon show!\r"
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": "Welcome to my new Pokémon show!\r"
+        }
     ]
 }

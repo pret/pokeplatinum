@@ -55,11 +55,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What’s with you?!\n",
-				"Do you have a vendetta against me?!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What’s with you?!\n",
+                "Do you have a vendetta against me?!\n"
+            ]
+        }
     ]
 }

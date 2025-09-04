@@ -28,15 +28,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Whoa! Hold it right there!\n",
-				"I’ve spotted a sneaky Trainer!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Whoa! Hold it right there!\n",
+                "I’ve spotted a sneaky Trainer!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Beaten by sneakiness again...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Beaten by sneakiness again...\n"
+        }
     ]
 }

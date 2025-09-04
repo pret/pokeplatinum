@@ -53,35 +53,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"As an Ace Trainer, I have to take\n",
-				"battles in stride.\r",
-				"I need to stay cool and calm whether\n",
-				"I win or lose.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "As an Ace Trainer, I have to take\n",
+                "battles in stride.\r",
+                "I need to stay cool and calm whether\n",
+                "I win or lose.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Aiyeeeeh!\n",
-				"We lost!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aiyeeeeh!\n",
+                "We lost!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"How dare you beat us!\n",
-				"Go away! Go!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "How dare you beat us!\n",
+                "Go away! Go!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Last time, I got a little emotional\n",
-				"over losing...\r",
-				"I’ll stay cool and calm today!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Last time, I got a little emotional\n",
+                "over losing...\r",
+                "I’ll stay cool and calm today!\r"
+            ]
+        }
     ]
 }

@@ -19,8 +19,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re a lucky one...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re a lucky one...\n"
+        }
     ]
 }

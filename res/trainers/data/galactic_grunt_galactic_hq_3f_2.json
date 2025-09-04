@@ -28,22 +28,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Intruder alert!\n",
-				"There’s something smelly about you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Intruder alert!\n",
+                "There’s something smelly about you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Oh, it was my own Pokémon’s smell...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Oh, it was my own Pokémon’s smell...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"How could we arouse suspicion?\n",
-				"We’re Team Galactic, and this is our HQ!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "How could we arouse suspicion?\n",
+                "We’re Team Galactic, and this is our HQ!\n"
+            ]
+        }
     ]
 }

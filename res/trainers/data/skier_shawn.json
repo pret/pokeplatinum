@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ll show you the techniques I had\n",
-				"drummed into me at ski school!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll show you the techniques I had\n",
+                "drummed into me at ski school!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I don’t believe it...\n",
-				"My techniques were rebuffed...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I don’t believe it...\n",
+                "My techniques were rebuffed...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Maybe I should’ve studied at the\n",
-				"Trainers’ school instead...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Maybe I should’ve studied at the\n",
+                "Trainers’ school instead...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Since I lost to you last time,\n",
-				"I redid my training at ski school!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Since I lost to you last time,\n",
+                "I redid my training at ski school!\r"
+            ]
+        }
     ]
 }

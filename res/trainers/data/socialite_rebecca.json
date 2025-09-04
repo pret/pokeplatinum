@@ -21,11 +21,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"So young, and yet so strong!\n",
-				"How very remarkable!"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "So young, and yet so strong!\n",
+                "How very remarkable!"
+            ]
+        }
     ]
 }

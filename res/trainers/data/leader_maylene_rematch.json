@@ -82,18 +82,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"This is like back at the Gym, isn’t it?\n",
-				"I’m in a bit of a bind, aren’t I?\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "This is like back at the Gym, isn’t it?\n",
+                "I’m in a bit of a bind, aren’t I?\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m forced to admit defeat again...\n",
-				"You are much too strong.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m forced to admit defeat again...\n",
+                "You are much too strong.\n"
+            ]
+        }
     ]
 }

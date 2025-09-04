@@ -19,26 +19,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve spotted a charismatic Trainer!\n",
-				"We just might have a scoop here!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve spotted a charismatic Trainer!\n",
+                "We just might have a scoop here!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My camera’s too heavy.\n",
-				"I couldn’t battle effectively...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My camera’s too heavy.\n",
+                "I couldn’t battle effectively...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The lively expressions on you and\n",
-				"your Pokémon’s faces...\r",
-				"It sure makes for some great TV!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The lively expressions on you and\n",
+                "your Pokémon’s faces...\r",
+                "It sure makes for some great TV!\n"
+            ]
+        }
     ]
 }

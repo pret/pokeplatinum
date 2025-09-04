@@ -30,15 +30,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"What do you think? The environment\n",
-				"is unharmed in this area.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "What do you think? The environment\n",
+                "is unharmed in this area.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "We have to get tougher than this..."
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We have to get tougher than this..."
+        }
     ]
 }

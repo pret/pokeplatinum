@@ -39,30 +39,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Tough Pokémon...\n",
-				"Tough Trainers...\r",
-				"You tell me, where else can I find\n",
-				"a place as good as this to train?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Tough Pokémon...\n",
+                "Tough Trainers...\r",
+                "You tell me, where else can I find\n",
+                "a place as good as this to train?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That was good.\n",
-				"You’ve bonded well with your Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That was good.\n",
+                "You’ve bonded well with your Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Tough Pokémon...\n",
-				"Tough Trainers...\r",
-				"Their strength comes from their bond.\n",
-				"And that’s something that can be\f",
-				"made stronger anywhere.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Tough Pokémon...\n",
+                "Tough Trainers...\r",
+                "Their strength comes from their bond.\n",
+                "And that’s something that can be\f",
+                "made stronger anywhere.\n"
+            ]
+        }
     ]
 }

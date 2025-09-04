@@ -26,18 +26,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"The urge to battle you again has\n",
-				"struck me. Humor me!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "The urge to battle you again has\n",
+                "struck me. Humor me!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I shouldn’t have paid attention\n",
-				"to my urge...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I shouldn’t have paid attention\n",
+                "to my urge...\n"
+            ]
+        }
     ]
 }

@@ -19,29 +19,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"How about that!\n",
-				"I’ve netted me a feisty Trainer!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "How about that!\n",
+                "I’ve netted me a feisty Trainer!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I let a big win slip away...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I let a big win slip away...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Do you have a fishing rod?\n",
-				"Catch some big ones!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Do you have a fishing rod?\n",
+                "Catch some big ones!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hey, you feisty tyke! I caught a big\n",
-				"one! Let’s battle again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hey, you feisty tyke! I caught a big\n",
+                "one! Let’s battle again!\r"
+            ]
+        }
     ]
 }

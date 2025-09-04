@@ -55,11 +55,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Humph! Quit flaunting your toughness!\n",
-				"It’s not cute in the least!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Humph! Quit flaunting your toughness!\n",
+                "It’s not cute in the least!\n"
+            ]
+        }
     ]
 }

@@ -54,18 +54,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This isn’t like last time. See how\n",
-				"much I’ve trained since then!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This isn’t like last time. See how\n",
+                "much I’ve trained since then!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Whew...\n",
-				"You’re overtrained for me.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whew...\n",
+                "You’re overtrained for me.\n"
+            ]
+        }
     ]
 }

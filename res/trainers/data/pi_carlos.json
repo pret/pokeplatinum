@@ -23,35 +23,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"When I toss this coin, you call it.\n",
-				"Heads, we battle.\r",
-				"Tails, we battle!\r",
-				"Now, how will this play out, my friend?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "When I toss this coin, you call it.\n",
+                "Heads, we battle.\r",
+                "Tails, we battle!\r",
+                "Now, how will this play out, my friend?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"The coin came up tails, and like it, my\n",
-				"Pokémon is facedown...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The coin came up tails, and like it, my\n",
+                "Pokémon is facedown...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I flipped a coin when I was ten.\n",
-				"I decided to live in Sinnoh then.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I flipped a coin when I was ten.\n",
+                "I decided to live in Sinnoh then.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Luck wasn’t with me last time, but I’m\n",
-				"feeling good about this.\f",
-				"My lucky coin tells me so!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Luck wasn’t with me last time, but I’m\n",
+                "feeling good about this.\f",
+                "My lucky coin tells me so!\r"
+            ]
+        }
     ]
 }

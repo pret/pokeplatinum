@@ -38,33 +38,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"There!\n",
-				"Behind you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "There!\n",
+                "Behind you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My plan to spook you didn’t go over\n",
-				"well at all.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My plan to spook you didn’t go over\n",
+                "well at all.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You might be tough, but let down\n",
-				"your guard at your own risk!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You might be tough, but let down\n",
+                "your guard at your own risk!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Wah!\n",
-				"That thing curled around your neck!\r",
-				"...Nice scarf, kid!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Wah!\n",
+                "That thing curled around your neck!\r",
+                "...Nice scarf, kid!\r"
+            ]
+        }
     ]
 }

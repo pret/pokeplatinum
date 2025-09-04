@@ -85,18 +85,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"We’re not done yet!\n",
-				"There’s no giving up!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "We’re not done yet!\n",
+                "There’s no giving up!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hmm!\n",
-				"My sturdy Pokémon--defeated!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hmm!\n",
+                "My sturdy Pokémon--defeated!\n"
+            ]
+        }
     ]
 }

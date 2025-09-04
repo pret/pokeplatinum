@@ -20,22 +20,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Pokémon knows karate!\n",
-				"I’m warning you, it’s a tough one!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon knows karate!\n",
+                "I’m warning you, it’s a tough one!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I’ve met my match in strength!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I’ve met my match in strength!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ve made it this far in life using the\n",
-				"karate I learned on the Internet!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ve made it this far in life using the\n",
+                "karate I learned on the Internet!\n"
+            ]
+        }
     ]
 }

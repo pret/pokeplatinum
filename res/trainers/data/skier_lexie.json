@@ -28,32 +28,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve been skiing with Pokémon since\n",
-				"I was just five years old.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been skiing with Pokémon since\n",
+                "I was just five years old.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hunh, what...?\n",
-				"I repeat, hunh, what...?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hunh, what...?\n",
+                "I repeat, hunh, what...?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The scenery doesn’t change very much\n",
-				"around here. Don’t go getting lost!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The scenery doesn’t change very much\n",
+                "around here. Don’t go getting lost!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh... Did you maybe get lost again?\n",
-				"You should pay more attention!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh... Did you maybe get lost again?\n",
+                "You should pay more attention!\r"
+            ]
+        }
     ]
 }

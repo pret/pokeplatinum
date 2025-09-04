@@ -39,15 +39,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"By battling tough opponents, both\n",
-				"people and Pokémon grow tough!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "By battling tough opponents, both\n",
+                "people and Pokémon grow tough!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My, you are tough.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My, you are tough.\n"
+        }
     ]
 }

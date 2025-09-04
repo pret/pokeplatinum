@@ -54,34 +54,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I always play for keeps!\n",
-				"This isn’t practice!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I always play for keeps!\n",
+                "This isn’t practice!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Good job!\n",
-				"That was an excellent battle.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Good job!\n",
+                "That was an excellent battle.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If you don’t play for keeps, you’ll\n",
-				"lose battles you should be dominating.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If you don’t play for keeps, you’ll\n",
+                "lose battles you should be dominating.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"When I lost to you last time, I was\n",
-				"battling for keeps.\r",
-				"But this time, I really mean it.\n",
-				"This is seriously for keeps!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "When I lost to you last time, I was\n",
+                "battling for keeps.\r",
+                "But this time, I really mean it.\n",
+                "This is seriously for keeps!\r"
+            ]
+        }
     ]
 }

@@ -28,8 +28,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I was with my daddy, too...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I was with my daddy, too...\n"
+        }
     ]
 }

@@ -40,28 +40,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m not just looking for tough\n",
-				"Trainers to battle.\r",
-				"I’ve been battling here because\n",
-				"I want to feel the rush!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not just looking for tough\n",
+                "Trainers to battle.\r",
+                "I’ve been battling here because\n",
+                "I want to feel the rush!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your power is thrilling...\n",
-				"I’m thrilled down to my toes!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your power is thrilling...\n",
+                "I’m thrilled down to my toes!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m so glad that there are Pokémon!\r",
-				"There isn’t much else that gives me\n",
-				"the thrill that Pokémon do!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m so glad that there are Pokémon!\r",
+                "There isn’t much else that gives me\n",
+                "the thrill that Pokémon do!\n"
+            ]
+        }
     ]
 }

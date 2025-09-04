@@ -53,25 +53,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I see it!\n",
-				"I see a victory for me!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I see it!\n",
+                "I see a victory for me!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"The future...is different!\n",
-				"Why?!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The future...is different!\n",
+                "Why?!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Your efforts have altered the very\n",
-				"path of the future!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Your efforts have altered the very\n",
+                "path of the future!\n"
+            ]
+        }
     ]
 }

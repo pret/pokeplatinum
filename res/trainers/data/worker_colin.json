@@ -28,26 +28,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Fine, all righty then.\n",
-				"Just a quick battle on my break!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Fine, all righty then.\n",
+                "Just a quick battle on my break!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Wahaha!\n",
-				"Mercy, I cry mercy!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wahaha!\n",
+                "Mercy, I cry mercy!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’d better get on back to work...\r",
-				"You know, I’d rather be traveling\n",
-				"around with Pokémon the way you do.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’d better get on back to work...\r",
+                "You know, I’d rather be traveling\n",
+                "around with Pokémon the way you do.\n"
+            ]
+        }
     ]
 }

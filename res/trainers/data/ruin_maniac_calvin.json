@@ -30,34 +30,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m a treasure hunter.\r",
-				"Today, the loot is a victory from\n",
-				"you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m a treasure hunter.\r",
+                "Today, the loot is a victory from\n",
+                "you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I can’t win.\n",
-				"You’re too strong for me to win.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can’t win.\n",
+                "You’re too strong for me to win.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If one’s after treasures, maybe the\n",
-				"Underground is the better choice.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If one’s after treasures, maybe the\n",
+                "Underground is the better choice.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m a treasure hunter.\r",
-				"This time for sure, the loot is\n",
-				"victory over you!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m a treasure hunter.\r",
+                "This time for sure, the loot is\n",
+                "victory over you!\r"
+            ]
+        }
     ]
 }

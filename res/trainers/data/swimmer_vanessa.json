@@ -19,34 +19,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"One thing about Water-type Pokémon:\n",
-				"There’s a huge variety!\r",
-				"I’ll show you the Water-type Pokémon I\n",
-				"chose and why I’m so proud of them!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "One thing about Water-type Pokémon:\n",
+                "There’s a huge variety!\r",
+                "I’ll show you the Water-type Pokémon I\n",
+                "chose and why I’m so proud of them!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I can’t boast when I lose...\n",
-				"I’m so disappointed...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I can’t boast when I lose...\n",
+                "I’m so disappointed...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Sure I lost, but watch me! I’ll get\n",
-				"tougher with water Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Sure I lost, but watch me! I’ll get\n",
+                "tougher with water Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This time, my water Pokémon will show\n",
-				"you why I’m so proud of them!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This time, my water Pokémon will show\n",
+                "you why I’m so proud of them!\r"
+            ]
+        }
     ]
 }

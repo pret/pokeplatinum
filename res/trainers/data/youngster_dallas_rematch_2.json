@@ -37,16 +37,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m always with my Pokémon.\r",
-				"Actually, you’re always with your\n",
-				"Pokémon too, aren’t you?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m always with my Pokémon.\r",
+                "Actually, you’re always with your\n",
+                "Pokémon too, aren’t you?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I’m super bummed out now...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I’m super bummed out now...\n"
+        }
     ]
 }

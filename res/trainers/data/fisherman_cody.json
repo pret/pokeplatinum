@@ -28,32 +28,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Muhihi...\n",
-				"I’ll haul you up and out!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Muhihi...\n",
+                "I’ll haul you up and out!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Restraint is my favorite word.\n",
-				"Like...from crushing my opponents.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Restraint is my favorite word.\n",
+                "Like...from crushing my opponents.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You need a Good Rod if you want to\n",
-				"catch good Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You need a Good Rod if you want to\n",
+                "catch good Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Muhihi... There won’t be any\n",
-				"restraint this time, OK?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Muhihi... There won’t be any\n",
+                "restraint this time, OK?\r"
+            ]
+        }
     ]
 }

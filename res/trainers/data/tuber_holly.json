@@ -19,29 +19,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Listen, listen! Can you tell me what\n",
-				"kind of Pokémon you have?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Listen, listen! Can you tell me what\n",
+                "kind of Pokémon you have?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re so tough. I’m stunned...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re so tough. I’m stunned...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I want to hang on to a BUIZEL and\n",
-				"just bob around.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I want to hang on to a BUIZEL and\n",
+                "just bob around.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Listen, listen! Did you find any new\n",
-				"kinds of Pokémon?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Listen, listen! Did you find any new\n",
+                "kinds of Pokémon?\r"
+            ]
+        }
     ]
 }

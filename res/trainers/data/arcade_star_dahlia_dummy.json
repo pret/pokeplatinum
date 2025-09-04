@@ -1,0 +1,29 @@
+{
+    "name": "Dahlia",
+    "class": "TRAINER_CLASS_ARCADE_STAR",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_RATTATA",
+            "form": 0,
+            "level": 5,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You are good, you!\n",
+                "My Pokémon, they have enjoyed it, too!\n"
+            ]
+        }
+    ]
+}

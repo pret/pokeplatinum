@@ -101,28 +101,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": [
-				"I can’t remember the last time I\n",
-				"was put in a corner like this!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "I can’t remember the last time I\n",
+                "was put in a corner like this!\n"
+            ]
+        },
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"I won’t let this end yet! This match\n",
-				"is too fun to let it end this easily!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "I won’t let this end yet! This match\n",
+                "is too fun to let it end this easily!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"...Just a few minutes ago, you were\n",
-				"the most powerful challenger.\r",
-				"And just now, you became the most\n",
-				"powerful of all the Trainers.\r",
-				"You are now our newest Champion!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...Just a few minutes ago, you were\n",
+                "the most powerful challenger.\r",
+                "And just now, you became the most\n",
+                "powerful of all the Trainers.\r",
+                "You are now our newest Champion!\n"
+            ]
+        }
     ]
 }

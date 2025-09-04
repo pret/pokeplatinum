@@ -37,11 +37,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, no, no, no!\n",
-				"Mwahahah?\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, no, no, no!\n",
+                "Mwahahah?\n"
+            ]
+        }
     ]
 }

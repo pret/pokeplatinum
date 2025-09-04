@@ -28,15 +28,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"It doesn’t matter how long it takes,\n",
-				"I’m going to the Pokémon League!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "It doesn’t matter how long it takes,\n",
+                "I’m going to the Pokémon League!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Th-this is so hard...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Th-this is so hard...\n"
+        }
     ]
 }
