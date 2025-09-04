@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_MANAGER_H
-#define POKEPLATINUM_MANAGER_H
+#ifndef POKEPLATINUM_PC_HALL_OF_FAME_MANAGER_H
+#define POKEPLATINUM_PC_HALL_OF_FAME_MANAGER_H
 
 #include "struct_decls/pc_hall_of_fame_app_decl.h"
 #include "struct_defs/pc_hall_of_fame_screen_def.h"
@@ -22,4 +22,4 @@ BOOL PCHallOfFameManager_Init(ApplicationManager *appMan, int *state);
 BOOL PCHallOfFameManager_Exit(ApplicationManager *appMan, int *state);
 BOOL PCHallOfFameManager_Main(ApplicationManager *appMan, int *state);
 
-#endif // POKEPLATINUM_MANAGER_H
+#endif // POKEPLATINUM_PC_HALL_OF_FAME_MANAGER_H
