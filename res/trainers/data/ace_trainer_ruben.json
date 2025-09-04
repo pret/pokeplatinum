@@ -40,34 +40,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"There’s something about you...\n",
-				"You’re not just anybody.\r",
-				"I challenge you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "There’s something about you...\n",
+                "You’re not just anybody.\r",
+                "I challenge you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You’re at a different level of\n",
-				"expertise for sure!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re at a different level of\n",
+                "expertise for sure!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You’ve won countless times...\n",
-				"That has made you very powerful.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You’ve won countless times...\n",
+                "That has made you very powerful.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"There’s something about you...\n",
-				"You still remain extraordinary.\r",
-				"I challenge you again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "There’s something about you...\n",
+                "You still remain extraordinary.\r",
+                "I challenge you again!\r"
+            ]
+        }
     ]
 }

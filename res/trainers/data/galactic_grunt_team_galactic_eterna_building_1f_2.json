@@ -28,22 +28,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"So sorry, sweetie.\n",
-				"Team Galactic has no room for kiddies!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "So sorry, sweetie.\n",
+                "Team Galactic has no room for kiddies!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "B-but, deary, you’re just a kid!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "B-but, deary, you’re just a kid!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You wanted to go up?\n",
-				"Well, why didn’t you?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You wanted to go up?\n",
+                "Well, why didn’t you?\n"
+            ]
+        }
     ]
 }

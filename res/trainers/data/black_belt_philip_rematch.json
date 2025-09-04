@@ -20,15 +20,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh? I’ve seen your face before.\n",
-				"What say we battle?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh? I’ve seen your face before.\n",
+                "What say we battle?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Huh? It’s over, you say?\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Huh? It’s over, you say?\n"
+        }
     ]
 }

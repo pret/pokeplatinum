@@ -21,18 +21,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"If it pleases, would you care for a\n",
-				"rematch with me?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "If it pleases, would you care for a\n",
+                "rematch with me?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your handling of Pokémon is\n",
-				"impeccable.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your handling of Pokémon is\n",
+                "impeccable.\n"
+            ]
+        }
     ]
 }

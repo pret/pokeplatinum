@@ -20,34 +20,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Gahahaha! You’re just a little kid!\r",
-				"How’re you supposed to beat a big\n",
-				"man like me?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Gahahaha! You’re just a little kid!\r",
+                "How’re you supposed to beat a big\n",
+                "man like me?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh my, a big man like me got schooled\n",
-				"by a little kid like you!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh my, a big man like me got schooled\n",
+                "by a little kid like you!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Wow, you’re sure impressive!\r",
-				"I guess it makes no difference if\n",
-				"you’re young or old in battles.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Wow, you’re sure impressive!\r",
+                "I guess it makes no difference if\n",
+                "you’re young or old in battles.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hey, you, tough little kid!\n",
-				"Throw us a rematch, will you?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hey, you, tough little kid!\n",
+                "Throw us a rematch, will you?\r"
+            ]
+        }
     ]
 }

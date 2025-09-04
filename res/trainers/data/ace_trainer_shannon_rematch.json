@@ -54,18 +54,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Ace Trainers always work to improve\n",
-				"their natural-born talents.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Ace Trainers always work to improve\n",
+                "their natural-born talents.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I see...\n",
-				"I have to concede defeat.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I see...\n",
+                "I have to concede defeat.\n"
+            ]
+        }
     ]
 }

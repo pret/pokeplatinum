@@ -35,25 +35,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Only those who want to win can\n",
-				"challenge a Pokémon Gym!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Only those who want to win can\n",
+                "challenge a Pokémon Gym!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Gggh...\n",
-				"This is humiliating!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gggh...\n",
+                "This is humiliating!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"One day, I’m going to become a tough\n",
-				"Trainer like you.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "One day, I’m going to become a tough\n",
+                "Trainer like you.\n"
+            ]
+        }
     ]
 }

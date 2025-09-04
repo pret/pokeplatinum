@@ -20,25 +20,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Beating you would be my 100th\n",
-				"straight win! Here’s to a fun battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Beating you would be my 100th\n",
+                "straight win! Here’s to a fun battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"How could I lose now?!\n",
-				"This is beyond aggravating!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How could I lose now?!\n",
+                "This is beyond aggravating!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I wish I could beat Maylene in\n",
-				"Veilstone City one day...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I wish I could beat Maylene in\n",
+                "Veilstone City one day...\n"
+            ]
+        }
     ]
 }

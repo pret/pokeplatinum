@@ -19,34 +19,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Ding-ding! Watch out, you!\n",
-				"Or, did you want to battle?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Ding-ding! Watch out, you!\n",
+                "Or, did you want to battle?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Despite all the effort, I’m just spinning\n",
-				"my wheels...\r",
-				"It’s always that way with me!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Despite all the effort, I’m just spinning\n",
+                "my wheels...\r",
+                "It’s always that way with me!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I might try racing through Cycling\n",
-				"Road in one long shot.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I might try racing through Cycling\n",
+                "Road in one long shot.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"There you are!\r",
-				"I’ve been riding in this spot so I’d\n",
-				"get a rematch with you!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "There you are!\r",
+                "I’ve been riding in this spot so I’d\n",
+                "get a rematch with you!\r"
+            ]
+        }
     ]
 }

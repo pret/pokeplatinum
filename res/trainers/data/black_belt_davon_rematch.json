@@ -38,15 +38,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This time! This time I will win!\n",
-				"My spirit is renewed and strong!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This time! This time I will win!\n",
+                "My spirit is renewed and strong!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My spirit is broken...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My spirit is broken...\n"
+        }
     ]
 }

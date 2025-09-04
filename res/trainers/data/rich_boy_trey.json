@@ -21,33 +21,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I need to escape these doldrums...\n",
-				"You can keep me company.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I need to escape these doldrums...\n",
+                "You can keep me company.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That did liberate me from the doldrums,\n",
-				"but at what price...\n",
-				"\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That did liberate me from the doldrums,\n",
+                "but at what price...\n",
+                "\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m going back to the hotel to rest!\n",
-				"I find you exceedingly tiresome!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m going back to the hotel to rest!\n",
+                "I find you exceedingly tiresome!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m afraid I’m in the doldrums again.\n",
-				"You shall keep me company again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m afraid I’m in the doldrums again.\n",
+                "You shall keep me company again!\r"
+            ]
+        }
     ]
 }

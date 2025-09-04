@@ -19,23 +19,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Let’s see how good this Pokémon is!\n",
-				"I stole it from some weak Trainer.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let’s see how good this Pokémon is!\n",
+                "I stole it from some weak Trainer.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "What is this?!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "What is this?!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Wimpy little Pokémon...\r",
-				"When I get promoted, I’ll demand\n",
-				"better stolen Pokémon.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Wimpy little Pokémon...\r",
+                "When I get promoted, I’ll demand\n",
+                "better stolen Pokémon.\n"
+            ]
+        }
     ]
 }

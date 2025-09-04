@@ -64,30 +64,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Nothing’s biting...\n",
-				"I could use a break, I suppose.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Nothing’s biting...\n",
+                "I could use a break, I suppose.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Well, that didn’t do anything for me...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Well, that didn’t do anything for me...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"!\r",
-				"Yank your fishing rod when that\n",
-				"appears. That’s how you fish.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "!\r",
+                "Yank your fishing rod when that\n",
+                "appears. That’s how you fish.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"All right! I caught some tough\n",
-				"Pokémon. I’m ready for battle!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "All right! I caught some tough\n",
+                "Pokémon. I’m ready for battle!\r"
+            ]
+        }
     ]
 }

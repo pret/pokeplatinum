@@ -28,40 +28,40 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Hold it right there, citizen!\n",
-				"Walking around at night is unsafe!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hold it right there, citizen!\n",
+                "Walking around at night is unsafe!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You’ve got tough partners with you.\n",
-				"Carry on, citizen. Carry on.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’ve got tough partners with you.\n",
+                "Carry on, citizen. Carry on.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Out so late? Does your mother\n",
-				"know you’re out so late?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Out so late? Does your mother\n",
+                "know you’re out so late?\n"
+            ]
+        },
         {
-			"type": "TRMSG_NOT_NIGHT_UNUSED",
-			"en_US": [
-				"Well, hello there!\r",
-				"That’s very civil minded of you to\n",
-				"say hello to your local Policeman!\n"
-			]
-		},
+            "type": "TRMSG_NOT_NIGHT_UNUSED",
+            "en_US": [
+                "Well, hello there!\r",
+                "That’s very civil minded of you to\n",
+                "say hello to your local Policeman!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Didn’t I already give you a warning?\n",
-				"It’s unsafe to walk around at night!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Didn’t I already give you a warning?\n",
+                "It’s unsafe to walk around at night!\r"
+            ]
+        }
     ]
 }

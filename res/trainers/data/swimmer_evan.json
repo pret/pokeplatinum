@@ -28,33 +28,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Brr... I’m starting to get chilly.\n",
-				"I could use a win to get warmed up.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Brr... I’m starting to get chilly.\n",
+                "I could use a win to get warmed up.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"The chill of the sea, and the\n",
-				"coldness of defeat...\r",
-				"It’s a double whammy.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The chill of the sea, and the\n",
+                "coldness of defeat...\r",
+                "It’s a double whammy.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Look at my lips...\n",
-				"They’re the color of prunes!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Look at my lips...\n",
+                "They’re the color of prunes!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Brr... I’m starting to feel chilly.\n",
-				"How about a hot Pokémon battle?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Brr... I’m starting to feel chilly.\n",
+                "How about a hot Pokémon battle?\r"
+            ]
+        }
     ]
 }

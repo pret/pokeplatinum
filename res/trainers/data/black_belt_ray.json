@@ -39,23 +39,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Pokémon can destroy anything.\n",
-				"And you think you can win?!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon can destroy anything.\n",
+                "And you think you can win?!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "We weren’t up to the task!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We weren’t up to the task!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Even though my team could break\n",
-				"bricks and shatter boulders, they\f",
-				"failed to dent your spirits!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Even though my team could break\n",
+                "bricks and shatter boulders, they\f",
+                "failed to dent your spirits!\n"
+            ]
+        }
     ]
 }

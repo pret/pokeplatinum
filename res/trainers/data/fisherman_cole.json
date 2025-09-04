@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"If I stare at the water’s surface\n",
-				"for too long, I begin to forget what\f",
-				"I was doing in the first place.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "If I stare at the water’s surface\n",
+                "for too long, I begin to forget what\f",
+                "I was doing in the first place.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I don’t know how, but I lost!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I don’t know how, but I lost!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Oh, right...\n",
-				"I was fishing, wasn’t I?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Oh, right...\n",
+                "I was fishing, wasn’t I?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"When I looked up from staring at the\n",
-				"water’s surface, I saw your face.\r",
-				"I’m not sure about what I was just\n",
-				"doing, but do you want to battle?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "When I looked up from staring at the\n",
+                "water’s surface, I saw your face.\r",
+                "I’m not sure about what I was just\n",
+                "doing, but do you want to battle?\r"
+            ]
+        }
     ]
 }

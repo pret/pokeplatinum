@@ -54,15 +54,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hello again! Please don’t hold\n",
-				"anything back, just like before.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hello again! Please don’t hold\n",
+                "anything back, just like before.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Hmm...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Hmm...\n"
+        }
     ]
 }

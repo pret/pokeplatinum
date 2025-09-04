@@ -37,11 +37,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Ouch! Are you one of those loyal\n",
-				"fans? You sure are rowdy!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ouch! Are you one of those loyal\n",
+                "fans? You sure are rowdy!\n"
+            ]
+        }
     ]
 }

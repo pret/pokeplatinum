@@ -19,22 +19,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m gonna let you in on a secret...\n",
-				"I snuck my Pokémon to work!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m gonna let you in on a secret...\n",
+                "I snuck my Pokémon to work!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Well, now aren’t you something!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Well, now aren’t you something!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"OK, OK, time for work! I’ll work up\n",
-				"a thirst with my Pokémon!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "OK, OK, time for work! I’ll work up\n",
+                "a thirst with my Pokémon!\n"
+            ]
+        }
     ]
 }

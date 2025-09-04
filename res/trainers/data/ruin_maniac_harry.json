@@ -39,32 +39,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Whilst exploring the ruins, I spotted\n",
-				"a Trainer! I must investigate!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Whilst exploring the ruins, I spotted\n",
+                "a Trainer! I must investigate!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My investigation has revealed the\n",
-				"Trainer to be tough! Ouch...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My investigation has revealed the\n",
+                "Trainer to be tough! Ouch...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Celestic Town is an old town.\n",
-				"I’m sure to find something cool.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Celestic Town is an old town.\n",
+                "I’m sure to find something cool.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Whilst exploring the ruins, I spotted\n",
-				"you again! I will now investigate!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Whilst exploring the ruins, I spotted\n",
+                "you again! I will now investigate!\r"
+            ]
+        }
     ]
 }

@@ -28,11 +28,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Arrgh!\n",
-				"I let some little kid beat me!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Arrgh!\n",
+                "I let some little kid beat me!\n"
+            ]
+        }
     ]
 }

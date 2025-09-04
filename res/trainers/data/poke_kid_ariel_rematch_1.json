@@ -37,8 +37,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Pi-Pikachu!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Pi-Pikachu!\n"
+        }
     ]
 }

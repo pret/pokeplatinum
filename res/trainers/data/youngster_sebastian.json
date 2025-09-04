@@ -22,34 +22,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Before I challenge the Pokémon Gym\n",
-				"Leader, I’ll test my strength on you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Before I challenge the Pokémon Gym\n",
+                "Leader, I’ll test my strength on you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I guess it means I’m not ready for\n",
-				"the Gym challenge yet...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I guess it means I’m not ready for\n",
+                "the Gym challenge yet...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I guess if you don’t have a single\n",
-				"Gym Badge, you’re a total nobody...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I guess if you don’t have a single\n",
+                "Gym Badge, you’re a total nobody...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m about ready to challenge the\n",
-				"Pokémon Gym Leader.\r",
-				"But before I do, let me test my\n",
-				"strength on you again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m about ready to challenge the\n",
+                "Pokémon Gym Leader.\r",
+                "But before I do, let me test my\n",
+                "strength on you again!\r"
+            ]
+        }
     ]
 }

@@ -57,24 +57,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": [
-				"Hey! That there!\n",
-				"That was a good move!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "Hey! That there!\n",
+                "That was a good move!\n"
+            ]
+        },
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": "This is where it gets exciting!\n"
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": "This is where it gets exciting!\n"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hunwah!\n",
-				"It’s gone and ended!\r",
-				"How will I say this... I want more!\n",
-				"I wanted to battle a lot more!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hunwah!\n",
+                "It’s gone and ended!\r",
+                "How will I say this... I want more!\n",
+                "I wanted to battle a lot more!\n"
+            ]
+        }
     ]
 }

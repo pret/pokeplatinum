@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I let my bird Pokémon carry me to\n",
-				"wherever. And so, here I am!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I let my bird Pokémon carry me to\n",
+                "wherever. And so, here I am!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Sheesh... I arrive in a new place, and\n",
-				"it turns out to be the Battle Zone...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sheesh... I arrive in a new place, and\n",
+                "it turns out to be the Battle Zone...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I was born in the Hoenn region.\n",
-				"I’ve only just recently flown here.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I was born in the Hoenn region.\n",
+                "I’ve only just recently flown here.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I let my bird Pokémon do as they\n",
-				"wish. And so, we train here daily!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I let my bird Pokémon do as they\n",
+                "wish. And so, we train here daily!\r"
+            ]
+        }
     ]
 }

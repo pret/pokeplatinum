@@ -19,27 +19,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"You look like you might just have\n",
-				"the Pokémon I’ve been looking for!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You look like you might just have\n",
+                "the Pokémon I’ve been looking for!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You didn’t have a single Pokémon\n",
-				"I wanted... You’re no Collector!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You didn’t have a single Pokémon\n",
+                "I wanted... You’re no Collector!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m very picky, so I want to collect\n",
-				"every Pokémon without anyone’s help.\r",
-				"...I do have friends, though.\n",
-				"No, seriously! I do!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m very picky, so I want to collect\n",
+                "every Pokémon without anyone’s help.\r",
+                "...I do have friends, though.\n",
+                "No, seriously! I do!\n"
+            ]
+        }
     ]
 }

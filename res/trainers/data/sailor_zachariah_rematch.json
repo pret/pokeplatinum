@@ -37,18 +37,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’ve been training here in hopes of\n",
-				"going to the Pokémon League.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’ve been training here in hopes of\n",
+                "going to the Pokémon League.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m shocked...\n",
-				"No, really.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m shocked...\n",
+                "No, really.\n"
+            ]
+        }
     ]
 }

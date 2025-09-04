@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Isn’t this nice?\n",
-				"I love my inflatable tube!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Isn’t this nice?\n",
+                "I love my inflatable tube!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"It’s not easy trying to move holding\n",
-				"on to this inflatable tube.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s not easy trying to move holding\n",
+                "on to this inflatable tube.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Mom blew up my inflatable tube for me.\n",
-				"I ran out of breath just opening it!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Mom blew up my inflatable tube for me.\n",
+                "I ran out of breath just opening it!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You can come back all you like, but\n",
-				"you can’t have my inflatable tube!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You can come back all you like, but\n",
+                "you can’t have my inflatable tube!\r"
+            ]
+        }
     ]
 }

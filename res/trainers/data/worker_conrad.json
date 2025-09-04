@@ -19,24 +19,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Are you maybe getting annoyed by\n",
-				"where the floor panels take you?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Are you maybe getting annoyed by\n",
+                "where the floor panels take you?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I’m going down in flames!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I’m going down in flames!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The sweat of a working man is\n",
-				"beautiful to behold...\r",
-				"There is also beauty in the tears\n",
-				"wept from defeat...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The sweat of a working man is\n",
+                "beautiful to behold...\r",
+                "There is also beauty in the tears\n",
+                "wept from defeat...\n"
+            ]
+        }
     ]
 }

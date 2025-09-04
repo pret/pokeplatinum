@@ -37,18 +37,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You can come back all you like, but\n",
-				"you can’t have my inflatable tube!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You can come back all you like, but\n",
+                "you can’t have my inflatable tube!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I couldn’t move very well because\n",
-				"my inflatable tube got in the way!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I couldn’t move very well because\n",
+                "my inflatable tube got in the way!\n"
+            ]
+        }
     ]
 }

@@ -39,30 +39,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"People! Nature! Pokémon!\n",
-				"Harmony is essential!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "People! Nature! Pokémon!\n",
+                "Harmony is essential!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re A-OK!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re A-OK!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Protecting Pokémon and nature.\n",
-				"Think of what that means.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Protecting Pokémon and nature.\n",
+                "Think of what that means.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Do you remember my slogan?\n",
-				"People! Nature! Pokémon!\r",
-				"That’s right, harmony is essential!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Do you remember my slogan?\n",
+                "People! Nature! Pokémon!\r",
+                "That’s right, harmony is essential!\r"
+            ]
+        }
     ]
 }

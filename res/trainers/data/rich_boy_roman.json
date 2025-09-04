@@ -21,11 +21,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I never thought I’d lose at\n",
-				"Papa’s restaurant...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I never thought I’d lose at\n",
+                "Papa’s restaurant...\n"
+            ]
+        }
     ]
 }

@@ -38,25 +38,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I am a Psychic!\n",
-				"I can see your past!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I am a Psychic!\n",
+                "I can see your past!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your past...\n",
-				"You’ve been through a lot...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your past...\n",
+                "You’ve been through a lot...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Let me guess.\n",
-				"Have you met any legendary Pokémon?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Let me guess.\n",
+                "Have you met any legendary Pokémon?\n"
+            ]
+        }
     ]
 }

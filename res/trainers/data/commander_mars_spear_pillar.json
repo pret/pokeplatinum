@@ -55,11 +55,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Sheesh... I should have done the\n",
-				"fighting myself.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sheesh... I should have done the\n",
+                "fighting myself.\n"
+            ]
+        }
     ]
 }

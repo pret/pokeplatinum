@@ -38,8 +38,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Tough, aren’t you...?\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Tough, aren’t you...?\n"
+        }
     ]
 }

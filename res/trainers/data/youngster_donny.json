@@ -37,27 +37,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Hey, now!\n",
-				"You’re not even close to the door yet.\r",
-				"You have to beat me before you can\n",
-				"go, you know?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hey, now!\n",
+                "You’re not even close to the door yet.\r",
+                "You have to beat me before you can\n",
+                "go, you know?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Argh! I should’ve dazzled you by\n",
-				"shining my light in your eyes!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Argh! I should’ve dazzled you by\n",
+                "shining my light in your eyes!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Just walk around and look for the blue\n",
-				"marks on the tiles.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Just walk around and look for the blue\n",
+                "marks on the tiles.\n"
+            ]
+        }
     ]
 }

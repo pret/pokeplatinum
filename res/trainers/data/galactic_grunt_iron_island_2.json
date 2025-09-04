@@ -37,11 +37,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"They’re too tough to handle!\n",
-				"What a combination!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "They’re too tough to handle!\n",
+                "What a combination!\n"
+            ]
+        }
     ]
 }

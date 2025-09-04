@@ -37,16 +37,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I had to get my revenge on you.\r",
-				"I trained my Pokémon while lost and\f",
-				"wandering in the Wayward Cave!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I had to get my revenge on you.\r",
+                "I trained my Pokémon while lost and\f",
+                "wandering in the Wayward Cave!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Kerrrash!"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Kerrrash!"
+        }
     ]
 }

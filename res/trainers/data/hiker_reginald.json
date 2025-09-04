@@ -29,19 +29,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "Look! A Trainer lost in Wayward Cave!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Look! A Trainer lost in Wayward Cave!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I strayed from the battle plan!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I strayed from the battle plan!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Me? No, I’m not lost.\n",
-				"I live here!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Me? No, I’m not lost.\n",
+                "I live here!\n"
+            ]
+        }
     ]
 }

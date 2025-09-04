@@ -37,25 +37,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"The Canalave Gym folks use this place\n",
-				"as their training grounds.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The Canalave Gym folks use this place\n",
+                "as their training grounds.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Maybe I should head to the Gym and\n",
-				"work out there...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Maybe I should head to the Gym and\n",
+                "work out there...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Roark spent his childhood playing\n",
-				"here, I think...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Roark spent his childhood playing\n",
+                "here, I think...\n"
+            ]
+        }
     ]
 }

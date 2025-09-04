@@ -39,27 +39,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Ancient ruins rife with the UNOWN...\n",
-				"There has to be a meaning!\r",
-				"But its significance eludes me, and\n",
-				"that’s gotten me cranky!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Ancient ruins rife with the UNOWN...\n",
+                "There has to be a meaning!\r",
+                "But its significance eludes me, and\n",
+                "that’s gotten me cranky!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "The search must continue!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "The search must continue!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The significance of the ancient ruins...\r",
-				"Only Pokémon that look like the letters\n",
-				"of some strange language...\r",
-				"Can they be trying to convey a message\n",
-				"to us?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The significance of the ancient ruins...\r",
+                "Only Pokémon that look like the letters\n",
+                "of some strange language...\r",
+                "Can they be trying to convey a message\n",
+                "to us?\n"
+            ]
+        }
     ]
 }

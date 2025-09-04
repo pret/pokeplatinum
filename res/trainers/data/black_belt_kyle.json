@@ -20,33 +20,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"This karate man’s going to pulverize\n",
-				"you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This karate man’s going to pulverize\n",
+                "you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "We got pulverized...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We got pulverized...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"It’s obvious I need to train myself\n",
-				"and my Pokémon harder.\r",
-				"Hey, if you’ve got a Vs. Seeker, you’d\n",
-				"better put it to good use.\r",
-				"Nothing beats some repeated battling\n",
-				"for toughening up your Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "It’s obvious I need to train myself\n",
+                "and my Pokémon harder.\r",
+                "Hey, if you’ve got a Vs. Seeker, you’d\n",
+                "better put it to good use.\r",
+                "Nothing beats some repeated battling\n",
+                "for toughening up your Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This karate man hasn’t forgotten\n",
-				"being pulverized by you!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This karate man hasn’t forgotten\n",
+                "being pulverized by you!\r"
+            ]
+        }
     ]
 }

@@ -19,26 +19,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Your spirit’s vibes, man... I can feel\n",
-				"that you’ve got rock in your soul!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Your spirit’s vibes, man... I can feel\n",
+                "that you’ve got rock in your soul!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You beat me, man, but...\n",
-				"I feel totally amped to jam harder!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You beat me, man, but...\n",
+                "I feel totally amped to jam harder!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Rock is about your spirit!\n",
-				"Battling is about spirit, too!\f",
-				"That’s why battles rock! Rawk!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Rock is about your spirit!\n",
+                "Battling is about spirit, too!\f",
+                "That’s why battles rock! Rawk!\n"
+            ]
+        }
     ]
 }

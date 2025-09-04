@@ -21,33 +21,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Try not to be shocked when you lay your\n",
-				"eyes on my Pokémon!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Try not to be shocked when you lay your\n",
+                "eyes on my Pokémon!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, my...\n",
-				"Good golly ’n’ gosh...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, my...\n",
+                "Good golly ’n’ gosh...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"A dragon Pokémon’s real power is\n",
-				"nothing like mine!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "A dragon Pokémon’s real power is\n",
+                "nothing like mine!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You again?\r",
-				"You must really like that dragon\n",
-				"Pokémon I use.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You again?\r",
+                "You must really like that dragon\n",
+                "Pokémon I use.\r"
+            ]
+        }
     ]
 }

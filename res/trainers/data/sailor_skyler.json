@@ -28,31 +28,31 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"A man of the sea is also a man of\n",
-				"Pokémon!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A man of the sea is also a man of\n",
+                "Pokémon!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Anchors away!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Anchors away!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You’ve got what it takes to be\n",
-				"a Trainer among Trainers!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You’ve got what it takes to be\n",
+                "a Trainer among Trainers!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hard to starboard!\n",
-				"That’s a sharp turn to the right!\r",
-				"Hard to port!\n",
-				"And that’s a sharp turn to the left!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hard to starboard!\n",
+                "That’s a sharp turn to the right!\r",
+                "Hard to port!\n",
+                "And that’s a sharp turn to the left!\r"
+            ]
+        }
     ]
 }

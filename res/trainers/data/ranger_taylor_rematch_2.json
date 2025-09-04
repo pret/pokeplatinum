@@ -30,15 +30,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hey! You’re that high-energy Trainer!\n",
-				"I bet you can’t keep up with us now!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hey! You’re that high-energy Trainer!\n",
+                "I bet you can’t keep up with us now!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’ve got energy to burn!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’ve got energy to burn!\n"
+        }
     ]
 }

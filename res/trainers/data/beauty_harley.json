@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I think I have what it takes to\n",
-				"become a successful model!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I think I have what it takes to\n",
+                "become a successful model!\n"
+            ]
+        }
     ]
 }

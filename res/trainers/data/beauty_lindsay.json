@@ -23,25 +23,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Giggle! You found me!\n",
-				"Of course, let’s battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Giggle! You found me!\n",
+                "Of course, let’s battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Aww, boo!\n",
-				"Look, you’ve beaten me!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Aww, boo!\n",
+                "Look, you’ve beaten me!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Giggle! There’s only our Gym Leader\n",
-				"left. Go on, don’t be afraid!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Giggle! There’s only our Gym Leader\n",
+                "left. Go on, don’t be afraid!\n"
+            ]
+        }
     ]
 }

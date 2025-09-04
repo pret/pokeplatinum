@@ -54,23 +54,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"You... One look at you tells me\n",
-				"you’re a real contender!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You... One look at you tells me\n",
+                "you’re a real contender!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re as tough as you look."
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re as tough as you look."
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"One day, people will run to the other\n",
-				"side of the road when I walk by ’em.\r",
-				"It’s a goal of mine I’m working on."
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "One day, people will run to the other\n",
+                "side of the road when I walk by ’em.\r",
+                "It’s a goal of mine I’m working on."
+            ]
+        }
     ]
 }

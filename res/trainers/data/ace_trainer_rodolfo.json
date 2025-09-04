@@ -40,34 +40,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"There is something missing in the\n",
-				"way I battle...\r",
-				"I’ve come here to find it.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "There is something missing in the\n",
+                "way I battle...\r",
+                "I’ve come here to find it.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I see it now...\n",
-				"I know what I lack.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I see it now...\n",
+                "I know what I lack.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Battling you was an eye-opener.\r",
-				"I learned something very important\n",
-				"in that short time.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Battling you was an eye-opener.\r",
+                "I learned something very important\n",
+                "in that short time.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Have you discovered what’s missing in\n",
-				"your battles? I have.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Have you discovered what’s missing in\n",
+                "your battles? I have.\r"
+            ]
+        }
     ]
 }

@@ -19,33 +19,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Say, honey, where’d you come from?\n",
-				"What kinds of Pokémon are you with?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Say, honey, where’d you come from?\n",
+                "What kinds of Pokémon are you with?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Fancy folks like you have fancy\n",
-				"Pokémon too, it looks like.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Fancy folks like you have fancy\n",
+                "Pokémon too, it looks like.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"While working the ranch, I get to raise\n",
-				"my Pokémon, too.\r",
-				"I’d say it’s the best of both worlds!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "While working the ranch, I get to raise\n",
+                "my Pokémon, too.\r",
+                "I’d say it’s the best of both worlds!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, howdy! Come visiting again?\n",
-				"What kinds of Pokémon’d you bring?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, howdy! Come visiting again?\n",
+                "What kinds of Pokémon’d you bring?\r"
+            ]
+        }
     ]
 }

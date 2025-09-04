@@ -47,33 +47,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Wahaha!\n",
-				"Laughter brings good fortune!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Wahaha!\n",
+                "Laughter brings good fortune!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Wahahaha! There’s nothing that\n",
-				"I can do but laugh!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wahahaha! There’s nothing that\n",
+                "I can do but laugh!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Wahahahaha!\n",
-				"...Go ahead, laugh at me--the loser!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Wahahahaha!\n",
+                "...Go ahead, laugh at me--the loser!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Wahaha!\r",
-				"Laughter brings good fortune!\n",
-				"Forgetting your gloves brings a cold!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Wahaha!\r",
+                "Laughter brings good fortune!\n",
+                "Forgetting your gloves brings a cold!\r"
+            ]
+        }
     ]
 }

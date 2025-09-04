@@ -50,28 +50,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Grass-type Pokémon can dole out\n",
-				"special attacks...\r",
-				"I won’t let you win easily!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Grass-type Pokémon can dole out\n",
+                "special attacks...\r",
+                "I won’t let you win easily!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"The more beautiful a flower,\n",
-				"the faster it withers...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "The more beautiful a flower,\n",
+                "the faster it withers...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Oh, that’s right...\n",
-				"A hint about the next Trainer...\r",
-				"In the middle of three trees.\n",
-				"That’s my hint. Good luck.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Oh, that’s right...\n",
+                "A hint about the next Trainer...\r",
+                "In the middle of three trees.\n",
+                "That’s my hint. Good luck.\n"
+            ]
+        }
     ]
 }

@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"...This is why I’m gonna be stuck as\n",
-				"a grunt forever...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...This is why I’m gonna be stuck as\n",
+                "a grunt forever...\n"
+            ]
+        }
     ]
 }

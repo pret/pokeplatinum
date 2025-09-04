@@ -30,34 +30,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"What kinds of Pokémon live around\n",
-				"here, I wonder?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "What kinds of Pokémon live around\n",
+                "here, I wonder?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m shocked!\n",
-				"How did I lose?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m shocked!\n",
+                "How did I lose?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I know all sorts of things about\n",
-				"Pokémon!\r",
-				"Let’s see... There are males and\n",
-				"females, and some aren’t either!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I know all sorts of things about\n",
+                "Pokémon!\r",
+                "Let’s see... There are males and\n",
+                "females, and some aren’t either!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, hi! We meet again!\n",
-				"Have you seen any rare Pokémon?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, hi! We meet again!\n",
+                "Have you seen any rare Pokémon?\r"
+            ]
+        }
     ]
 }

@@ -55,11 +55,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Humph! You’ve toughened up.\n",
-				"But you’re no match for our boss.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Humph! You’ve toughened up.\n",
+                "But you’re no match for our boss.\n"
+            ]
+        }
     ]
 }

@@ -28,33 +28,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m a mermaid drifting among the\n",
-				"waves...\r",
-				"And a high-spirited gal who battles with\n",
-				"Pokémon!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m a mermaid drifting among the\n",
+                "waves...\r",
+                "And a high-spirited gal who battles with\n",
+                "Pokémon!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Losing...\n",
-				"Makes my tears well up.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Losing...\n",
+                "Makes my tears well up.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": "A mermaid’s tears are so salty...\n"
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": "A mermaid’s tears are so salty...\n"
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m still a mermaid drifting among the\n",
-				"waves...\r",
-				"And a high-spirited gal who battles with\n",
-				"Pokémon!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m still a mermaid drifting among the\n",
+                "waves...\r",
+                "And a high-spirited gal who battles with\n",
+                "Pokémon!\r"
+            ]
+        }
     ]
 }

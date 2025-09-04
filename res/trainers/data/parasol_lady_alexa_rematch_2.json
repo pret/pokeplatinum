@@ -37,15 +37,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": "On rainy days, I get more energetic!\r"
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": "On rainy days, I get more energetic!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Like rain, my tears fall from losing...\n",
-				"They call me Rain Woman...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Like rain, my tears fall from losing...\n",
+                "They call me Rain Woman...\n"
+            ]
+        }
     ]
 }

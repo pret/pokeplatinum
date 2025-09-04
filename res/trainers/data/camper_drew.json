@@ -51,25 +51,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve been to all sorts of places.\n",
-				"That means I know tons of things!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been to all sorts of places.\n",
+                "That means I know tons of things!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Yeah, whatever.\n",
-				"You can battle, too...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Yeah, whatever.\n",
+                "You can battle, too...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m gonna visit new places and find\n",
-				"new Pokémon so I’ll be a know-it-all!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m gonna visit new places and find\n",
+                "new Pokémon so I’ll be a know-it-all!\n"
+            ]
+        }
     ]
 }

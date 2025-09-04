@@ -28,34 +28,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Pokémon grew up in the arms of\n",
-				"Mother Nature. They’re tough!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon grew up in the arms of\n",
+                "Mother Nature. They’re tough!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"How could you be tougher than\n",
-				"Mother Nature?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How could you be tougher than\n",
+                "Mother Nature?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Most of the time, my Pokémon return\n",
-				"to their Poké Balls right away.\r",
-				"But sometimes, they just fall asleep\n",
-				"on top of my head. That gets messy."
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Most of the time, my Pokémon return\n",
+                "to their Poké Balls right away.\r",
+                "But sometimes, they just fall asleep\n",
+                "on top of my head. That gets messy."
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"The desire to win... That should be\n",
-				"evident in every Trainer!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "The desire to win... That should be\n",
+                "evident in every Trainer!\r"
+            ]
+        }
     ]
 }

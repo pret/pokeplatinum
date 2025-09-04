@@ -37,18 +37,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Super outdoor fishing!\n",
-				"Shouting still doesn’t help!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Super outdoor fishing!\n",
+                "Shouting still doesn’t help!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Gwaaah!\n",
-				"This is hurting!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gwaaah!\n",
+                "This is hurting!\n"
+            ]
+        }
     ]
 }

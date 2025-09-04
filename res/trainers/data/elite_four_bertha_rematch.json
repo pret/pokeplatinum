@@ -85,22 +85,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"Dear child, don’t assume for an\n",
-				"instant that you’ve won.\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "Dear child, don’t assume for an\n",
+                "instant that you’ve won.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Well! Dear child, I must say, that\n",
-				"was most impressive.\r",
-				"Your Pokémon believed in you and did\n",
-				"their best to earn you the win.\r",
-				"Even though I’ve lost, I find myself\n",
-				"with this silly grin!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Well! Dear child, I must say, that\n",
+                "was most impressive.\r",
+                "Your Pokémon believed in you and did\n",
+                "their best to earn you the win.\r",
+                "Even though I’ve lost, I find myself\n",
+                "with this silly grin!\n"
+            ]
+        }
     ]
 }

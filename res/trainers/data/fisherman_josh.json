@@ -28,32 +28,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I wish some fishing-loving lady’d come\n",
-				"along. But no, it’s all just Trainers.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I wish some fishing-loving lady’d come\n",
+                "along. But no, it’s all just Trainers.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Sure, so I lost.\n",
-				"But I’ll keep on fishing.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Sure, so I lost.\n",
+                "But I’ll keep on fishing.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If you know of any ladies that like\n",
-				"fishing, help me reel ’em in!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If you know of any ladies that like\n",
+                "fishing, help me reel ’em in!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Umm... Yeah. Weren’t you that person\n",
-				"who preferred Pokémon over fishing?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Umm... Yeah. Weren’t you that person\n",
+                "who preferred Pokémon over fishing?\r"
+            ]
+        }
     ]
 }

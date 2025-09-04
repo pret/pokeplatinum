@@ -40,32 +40,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve pumped up my gang till they can’t\n",
-				"get pumped no more.\r",
-				"They’re going to school your Pokémon!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve pumped up my gang till they can’t\n",
+                "get pumped no more.\r",
+                "They’re going to school your Pokémon!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My bunch got schooled, and how!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My bunch got schooled, and how!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I fed my gang Protein, Carbos...\n",
-				"You name it, I pumped ’em full of it.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I fed my gang Protein, Carbos...\n",
+                "You name it, I pumped ’em full of it.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hey! You’re that Trainer who schooled\n",
-				"me and my Pokémon!\r",
-				"OK, this time we’ll return the favor!\n",
-				"We’ll be doing the schooling!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hey! You’re that Trainer who schooled\n",
+                "me and my Pokémon!\r",
+                "OK, this time we’ll return the favor!\n",
+                "We’ll be doing the schooling!\r"
+            ]
+        }
     ]
 }

@@ -30,28 +30,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"In deep tunnels and caves, there’re\n",
-				"a couple things you’re sure to see.\r",
-				"ZUBAT and Ruin Maniacs!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In deep tunnels and caves, there’re\n",
+                "a couple things you’re sure to see.\r",
+                "ZUBAT and Ruin Maniacs!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your awesome power...\n",
-				"It’s mystifying.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your awesome power...\n",
+                "It’s mystifying.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ve scoured every inch of this\n",
-				"place... Most of it while I was lost.\r",
-				"Anyway, if there’s one thing I can\n",
-				"say, this place can’t be called ruins!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ve scoured every inch of this\n",
+                "place... Most of it while I was lost.\r",
+                "Anyway, if there’s one thing I can\n",
+                "say, this place can’t be called ruins!\n"
+            ]
+        }
     ]
 }

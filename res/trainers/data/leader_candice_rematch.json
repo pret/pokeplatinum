@@ -85,18 +85,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"Not yet!\n",
-				"You can’t break our will!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "Not yet!\n",
+                "You can’t break our will!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You’re mighty!\n",
-				"You’re worthy of lots of respect.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’re mighty!\n",
+                "You’re worthy of lots of respect.\n"
+            ]
+        }
     ]
 }

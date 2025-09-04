@@ -24,8 +24,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re so strong!!!!!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re so strong!!!!!\n"
+        }
     ]
 }

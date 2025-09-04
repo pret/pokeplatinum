@@ -28,11 +28,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I just got worked over!\n",
-				"And by a kid no less...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I just got worked over!\n",
+                "And by a kid no less...\n"
+            ]
+        }
     ]
 }

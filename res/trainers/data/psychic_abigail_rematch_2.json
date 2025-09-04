@@ -38,19 +38,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Wah! That thing curled around your\n",
-				"neck!\r",
-				"...Nice scarf, kid!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Wah! That thing curled around your\n",
+                "neck!\r",
+                "...Nice scarf, kid!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My plan to spook you didn’t go over\n",
-				"at all.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My plan to spook you didn’t go over\n",
+                "at all.\n"
+            ]
+        }
     ]
 }

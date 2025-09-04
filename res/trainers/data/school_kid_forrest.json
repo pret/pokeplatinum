@@ -26,24 +26,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"This is the toughest Gym in Sinnoh.\r",
-				"That’s why I’m here--to learn the\n",
-				"best battle techniques around!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This is the toughest Gym in Sinnoh.\r",
+                "That’s why I’m here--to learn the\n",
+                "best battle techniques around!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "...You’re tough.\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "...You’re tough.\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You just showed me that there’s\n",
-				"still lots I need to learn.\r",
-				"The world of Pokémon is deep!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You just showed me that there’s\n",
+                "still lots I need to learn.\r",
+                "The world of Pokémon is deep!\n"
+            ]
+        }
     ]
 }

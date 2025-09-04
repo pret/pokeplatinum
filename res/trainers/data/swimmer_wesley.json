@@ -28,29 +28,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve decided!\n",
-				"I’m off to the Pokémon League if I win!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve decided!\n",
+                "I’m off to the Pokémon League if I win!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Blblblblugh...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Blblblblugh...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"It’s OK. Just let me float away\n",
-				"like driftwood...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "It’s OK. Just let me float away\n",
+                "like driftwood...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This is it! I’m going to beat you, then\n",
-				"I’m off to the Pokémon League!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This is it! I’m going to beat you, then\n",
+                "I’m off to the Pokémon League!\r"
+            ]
+        }
     ]
 }

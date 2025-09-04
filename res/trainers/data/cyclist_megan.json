@@ -19,34 +19,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Cycling feels great!\r",
-				"It will feel even better when I beat\n",
-				"you in a battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Cycling feels great!\r",
+                "It will feel even better when I beat\n",
+                "you in a battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Whew!\n",
-				"You worked us over.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whew!\n",
+                "You worked us over.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I like spinning the pedals backward\n",
-				"while sailing downhill.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I like spinning the pedals backward\n",
+                "while sailing downhill.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"It feels great on my Bike!\r",
-				"I’m already sweaty, so let’s have a\n",
-				"rematch!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "It feels great on my Bike!\r",
+                "I’m already sweaty, so let’s have a\n",
+                "rematch!\r"
+            ]
+        }
     ]
 }

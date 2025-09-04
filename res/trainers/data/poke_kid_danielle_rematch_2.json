@@ -19,16 +19,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hi, hi!\n",
-				"I’m a Pokémon!\r",
-				"...You knew that, didn’t you?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hi, hi!\n",
+                "I’m a Pokémon!\r",
+                "...You knew that, didn’t you?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I’m so angry...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I’m so angry...\n"
+        }
     ]
 }

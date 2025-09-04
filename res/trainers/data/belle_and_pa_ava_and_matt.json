@@ -28,76 +28,76 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
-			"en_US": [
-				"Matt: Uhohoho! I’ll show y’all how\n",
-				"tightly I’ve bonded with my daughter!\r"
-			]
-		},
+            "type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+            "en_US": [
+                "Matt: Uhohoho! I’ll show y’all how\n",
+                "tightly I’ve bonded with my daughter!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-			"en_US": [
-				"Matt: Parent-and-child power couldn’t\n",
-				"get the job done.\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+            "en_US": [
+                "Matt: Parent-and-child power couldn’t\n",
+                "get the job done.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
-			"en_US": [
-				"Matt: I reckon the bonds between you\n",
-				"and your Pokémon are like the bonds\f",
-				"parents share with their kids.\n"
-			]
-		},
+            "type": "TRMSG_POST_DOUBLE_BATTLE_1",
+            "en_US": [
+                "Matt: I reckon the bonds between you\n",
+                "and your Pokémon are like the bonds\f",
+                "parents share with their kids.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-			"en_US": [
-				"Matt: Oh, there’s no way you could\n",
-				"beat us both with one Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+            "en_US": [
+                "Matt: Oh, there’s no way you could\n",
+                "beat us both with one Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-			"en_US": [
-				"Matt: Ayuh? You’re here to check the\n",
-				"bond I have with my daughter again?\r"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+            "en_US": [
+                "Matt: Ayuh? You’re here to check the\n",
+                "bond I have with my daughter again?\r"
+            ]
+        },
         {
-			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
-			"en_US": [
-				"Ava: I can get away with slacking\n",
-				"off if I have my Pokémon out!\r"
-			]
-		},
+            "type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+            "en_US": [
+                "Ava: I can get away with slacking\n",
+                "off if I have my Pokémon out!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-			"en_US": "Ava: Oh, sheesh!\n"
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+            "en_US": "Ava: Oh, sheesh!\n"
+        },
         {
-			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
-			"en_US": [
-				"Ava: Papa, I’m so sorry!\n",
-				"I’ll work harder from tomorrow on!\r",
-				"...Yup, tomorrow’s when I’m going to\n",
-				"start working.\n"
-			]
-		},
+            "type": "TRMSG_POST_DOUBLE_BATTLE_2",
+            "en_US": [
+                "Ava: Papa, I’m so sorry!\n",
+                "I’ll work harder from tomorrow on!\r",
+                "...Yup, tomorrow’s when I’m going to\n",
+                "start working.\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-			"en_US": [
-				"Ava: You’re battling me and my pa.\n",
-				"One Pokémon won’t cut it, dear!\n"
-			]
-		},
+            "type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+            "en_US": [
+                "Ava: You’re battling me and my pa.\n",
+                "One Pokémon won’t cut it, dear!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
-			"en_US": [
-				"Ava: Oh, hi! It’s good y’all came\n",
-				"calling on us again!\r",
-				"I can take a break from work if I’m\n",
-				"battling Pokémon. Lucky for me!\r"
-			]
-		}
+            "type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+            "en_US": [
+                "Ava: Oh, hi! It’s good y’all came\n",
+                "calling on us again!\r",
+                "I can take a break from work if I’m\n",
+                "battling Pokémon. Lucky for me!\r"
+            ]
+        }
     ]
 }

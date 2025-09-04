@@ -49,22 +49,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Up and down you go on the lifts.\n",
-				"Me? I like to battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Up and down you go on the lifts.\n",
+                "Me? I like to battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’ve got me feeling down!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’ve got me feeling down!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I can’t keep this up!\n",
-				"I’ll go back to working on the lifts.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I can’t keep this up!\n",
+                "I’ll go back to working on the lifts.\n"
+            ]
+        }
     ]
 }
