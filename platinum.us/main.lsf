@@ -299,7 +299,7 @@ Static main
 	Object main.nef.p/src_evolution.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
-	Object main.nef.p/src_bag_system.c.o
+	Object main.nef.p/src_bag_context.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
 	Object main.nef.p/src_unk_0207DA28.c.o
@@ -1347,17 +1347,17 @@ Overlay overlay83
 	Object main.nef.p/src_overlay083_ov83_0223F7F4.c.o
 }
 
-Overlay overlay84
+Overlay bag
 {
 	After overlay82
-	Object main.nef.p/src_overlay084_ov84_0223B5A0.c.o
-	Object main.nef.p/src_overlay084_ov84_0223F040.c.o
-	Object main.nef.p/src_overlay084_ov84_022403F4.c.o
+	Object main.nef.p/src_applications_bag_main.c.o
+	Object main.nef.p/src_applications_bag_windows.c.o
+	Object main.nef.p/src_applications_bag_sprites.c.o
 }
 
 Overlay overlay85
 {
-	After overlay84
+	After bag
 	Object main.nef.p/src_overlay085_ov85_02241440.c.o
 }
 

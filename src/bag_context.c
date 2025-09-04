@@ -1,4 +1,4 @@
-#include "bag_system.h"
+#include "bag_context.h"
 
 #include <string.h>
 
@@ -31,75 +31,75 @@ static u32 GetNumAccessories(SaveData *saveData);
 static u32 GetNumBackdrops(SaveData *saveData);
 static u32 GetNumBattlePoints(SaveData *saveData);
 
-BagSystem *BagSystem_New(u8 heapID)
+BagContext *BagContext_New(u8 heapID)
 {
-    BagSystem *bagSystem = Heap_Alloc(heapID, sizeof(BagSystem));
-    memset(bagSystem, 0, sizeof(BagSystem));
-    return bagSystem;
+    BagContext *bagContext = Heap_Alloc(heapID, sizeof(BagContext));
+    memset(bagContext, 0, sizeof(BagContext));
+    return bagContext;
 }
 
-u32 BagSystem_GetSize(void)
+u32 BagContext_GetSize(void)
 {
-    return sizeof(BagSystem);
+    return sizeof(BagContext);
 }
 
-void BagSystem_SetMode(BagSystem *bagSystem, u8 mode)
+void BagContext_SetMode(BagContext *bagContext, u8 mode)
 {
-    bagSystem->mode = mode;
+    bagContext->mode = mode;
 }
 
-void BagSystem_Init(BagSystem *bagSystem, SaveData *saveData, u8 mode, BagCursor *bagCursor)
+void BagContext_Init(BagContext *bagContext, SaveData *saveData, u8 mode, BagCursor *bagCursor)
 {
-    BagSystem_SetMode(bagSystem, mode);
-    bagSystem->saveData = saveData;
-    bagSystem->bagCursor = bagCursor;
-    bagSystem->selectedItem = ITEM_NONE;
+    BagContext_SetMode(bagContext, mode);
+    bagContext->saveData = saveData;
+    bagContext->bagCursor = bagCursor;
+    bagContext->selectedItem = ITEM_NONE;
 }
 
-void BagSystem_InitPocket(BagSystem *bagSystem, BagItem *items, u8 pocketType, u8 pocketIdx)
+void BagContext_InitPocket(BagContext *bagContext, BagItem *items, u8 pocketType, u8 pocketIdx)
 {
-    bagSystem->accessiblePockets[pocketIdx].items = items;
-    bagSystem->accessiblePockets[pocketIdx].pocketType = pocketType;
+    bagContext->accessiblePockets[pocketIdx].items = items;
+    bagContext->accessiblePockets[pocketIdx].pocketType = pocketType;
 }
 
-void BagSystem_SetIsCycling(BagSystem *bagSystem)
+void BagContext_SetIsCycling(BagContext *bagContext)
 {
-    bagSystem->isCycling = TRUE;
+    bagContext->isCycling = TRUE;
 }
 
-void sub_0207CB6C(BagSystem *bagSystem, void *param1)
+void BagContext_SetItemUseContext(BagContext *bagContext, ItemUseContext *itemUseCtx)
 {
-    bagSystem->unk_70 = param1;
+    bagContext->itemUseCtx = itemUseCtx;
 }
 
-void BagSystem_SetSelectedMonSlot(BagSystem *bagSystem, u8 slot)
+void BagContext_SetSelectedMonSlot(BagContext *bagContext, u8 slot)
 {
-    bagSystem->selectedMonSlot = slot;
+    bagContext->selectedMonSlot = slot;
 }
 
-void BagSystem_SetMapLoadType(BagSystem *bagSystem, u16 mapLoadType)
+void BagContext_SetMapLoadType(BagContext *bagContext, u16 mapLoadType)
 {
-    bagSystem->mapLoadType = mapLoadType;
+    bagContext->mapLoadType = mapLoadType;
 }
 
-u16 BagSystem_GetItem(BagSystem *bagSystem)
+u16 BagContext_GetItem(BagContext *bagContext)
 {
-    return bagSystem->selectedItem;
+    return bagContext->selectedItem;
 }
 
-u16 BagSystem_GetExitCode(BagSystem *bagSystem)
+u16 BagContext_GetExitCode(BagContext *bagContext)
 {
-    return bagSystem->exitCode;
+    return bagContext->exitCode;
 }
 
-u8 BagSystem_GetSelectedMonSlot(BagSystem *bagSystem)
+u8 BagContext_GetSelectedMonSlot(BagContext *bagContext)
 {
-    return bagSystem->selectedMonSlot;
+    return bagContext->selectedMonSlot;
 }
 
-u8 sub_0207CBAC(BagSystem *bagSystem)
+u8 BagContext_GetSoldAmount(BagContext *bagContext)
 {
-    return bagSystem->unk_75;
+    return bagContext->soldAmount;
 }
 
 static u32 GetNumCoins(SaveData *saveData)
@@ -137,7 +137,7 @@ static u32 GetNumBattlePoints(SaveData *saveData)
     return sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL BagSystem_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 item, u32 heapID)
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 item, u32 heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
@@ -174,7 +174,7 @@ BOOL BagSystem_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 ite
     return TRUE;
 }
 
-void BagSystem_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, u32 error, u32 heapID)
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, u32 error, u32 heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;

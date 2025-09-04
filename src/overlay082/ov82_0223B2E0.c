@@ -3,21 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/bag/application.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
-#include "overlay084/const_ov84_02241130.h"
-#include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "heap.h"
 #include "item.h"
 #include "overlay_manager.h"
 #include "unk_020972FC.h"
 
 FS_EXTERN_OVERLAY(overlay83);
-FS_EXTERN_OVERLAY(overlay84);
+FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(overlay85);
 
 static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0);
@@ -90,10 +89,10 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
     void *v0;
     u32 v1;
 
-    FS_EXTERN_OVERLAY(overlay84);
+    FS_EXTERN_OVERLAY(bag);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        ov84_0223B5A0, ov84_0223B76C, ov84_0223B900, FS_OVERLAY_ID(overlay84)
+        BagApplication_Init, BagApplication_Main, BagApplication_Exit, FS_OVERLAY_ID(bag)
     };
     static const u8 v3[] = {
         4, 0xff
@@ -107,7 +106,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
         v1 = 4;
     }
 
-    BagSystem_Init(v0, param0->unk_10->saveData, v1, param0->unk_0C);
+    BagContext_Init(v0, param0->unk_10->saveData, v1, param0->unk_0C);
 
     param0->appMan = ApplicationManager_New(&Unk_ov84_02241130, v0, param0->heapID);
     param0->unk_18 = v0;
@@ -117,23 +116,23 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
 
 static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
 {
-    BagSystem *v0 = NULL;
+    BagContext *v0 = NULL;
     BOOL v1;
 
     if (!ov82_0223B140(&param0->appMan)) {
         return 1;
     }
 
-    v0 = BagSystem_New(param0->heapID);
-    memcpy(v0, param0->unk_18, BagSystem_GetSize());
+    v0 = BagContext_New(param0->heapID);
+    memcpy(v0, param0->unk_18, BagContext_GetSize());
     Heap_Free(param0->unk_18);
 
     param0->unk_18 = NULL;
-    param0->unk_08 = BagSystem_GetItem(v0); //
+    param0->unk_08 = BagContext_GetItem(v0); //
 
     Heap_Free(v0);
 
-    switch (BagSystem_GetExitCode(v0)) {
+    switch (BagContext_GetExitCode(v0)) {
     case 1:
         return 2;
     case 0:
