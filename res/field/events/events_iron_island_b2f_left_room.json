@@ -303,7 +303,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16530,
+            "var": "VAR_UNK_0x4092",
             "value": 0
         },
         {
@@ -313,7 +313,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16530,
+            "var": "VAR_UNK_0x4092",
             "value": 1
         },
         {
@@ -323,7 +323,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16384,
+            "var": "VAR_MAP_LOCAL_0",
             "value": 0
         },
         {
@@ -333,7 +333,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16530,
+            "var": "VAR_UNK_0x4092",
             "value": 1
         }
     ]

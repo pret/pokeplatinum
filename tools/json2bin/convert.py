@@ -63,10 +63,8 @@ def from_movement_type(s: str) -> int:
 def from_trainer_type(s: str) -> int:
     return trainer_types.TrainerType[s].value
 
-def from_var_flag(s: str) -> int:
-    if s.isnumeric():
-        return int(s)
-    return vars_flags.VarFlag[s].value
+def from_var_flag(v: str) -> int:
+    return 0 if v == "0" else vars_flags.VarFlag[v].value
 
 def from_map_header(s: str) -> int:
     return map_headers.MapHeader[s].value

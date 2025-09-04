@@ -25,7 +25,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16399,
+            "var": "VAR_MAP_LOCAL_F",
             "value": 0
         }
     ]
