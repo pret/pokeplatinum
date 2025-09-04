@@ -10,8 +10,9 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/fishing.h"
@@ -33,6 +34,7 @@
 #include "heap.h"
 #include "item.h"
 #include "item_use_functions.h"
+#include "items.h"
 #include "mail.h"
 #include "map_header.h"
 #include "map_header_data.h"
@@ -62,7 +64,6 @@
 #include "unk_020989DC.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020F1E88.h"
 #include "res/text/bank/location_names.h"
 
 typedef struct ItemUseFuncDat {
@@ -117,7 +118,7 @@ static void *sub_02068B9C(void *some_param);
 static void *sub_02068708(void *some_param);
 static void *sub_02068A28(void *some_param);
 static void *sub_020691CC(void *some_param);
-static void *sub_02069228(void *some_param);
+static void *OpenPartyMenuForGracidea(void *fieldSystem);
 static u32 CanUseBicycle(const ItemUseContext *usageContext);
 static u32 CanUseExplorerKit(const ItemUseContext *usageContext);
 static u32 CanUseBerry(const ItemUseContext *usageContext);
@@ -300,24 +301,24 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyManagementData));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 5;
-    partyMan->fieldSystem = fieldSystem;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
+    partyMenu->mode = PARTY_MENU_MODE_USE_ITEM;
+    partyMenu->fieldSystem = fieldSystem;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
@@ -534,24 +535,24 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyManagementData));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 6;
-    partyMan->fieldSystem = fieldSystem;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
-    partyMan->learnedMove = Item_MoveForTMHM(usageContext->item);
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
+    partyMenu->mode = PARTY_MENU_MODE_TEACH_MOVE;
+    partyMenu->fieldSystem = fieldSystem;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->learnedMove = Item_MoveForTMHM(usageContext->item);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
@@ -911,23 +912,23 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
-    memset(partyMan, 0, sizeof(PartyManagementData));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = &menu->fieldMoveContext;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 16;
-    partyMan->usedItemID = usageContext->item;
-    partyMan->selectedMonSlot = usageContext->selectedMonSlot;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = &menu->fieldMoveContext;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
+    partyMenu->mode = PARTY_MENU_MODE_USE_EVO_ITEM;
+    partyMenu->usedItemID = usageContext->item;
+    partyMenu->selectedMonSlot = usageContext->selectedMonSlot;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    menu->taskData = partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    menu->taskData = partyMenu;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
@@ -1027,27 +1028,22 @@ static void *sub_020691CC(void *some_param)
 
 static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    PartyManagementData *partyMan; // unused
-
-    fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
-    menu = FieldTask_GetEnv(usageContext->fieldTask);
-
-    menu->taskData = sub_0203E598(fieldSystem, HEAP_ID_FIELD2, 466);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
+    menu->taskData = FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 
     sub_0203B674(menu, sub_0203B7C0);
 }
 
 static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)
 {
-    RegisteredItem_CreateGoToAppTask(usageContext, sub_02069228);
+    RegisteredItem_CreateGoToAppTask(usageContext, OpenPartyMenuForGracidea);
     return TRUE;
 }
 
-static void *sub_02069228(void *some_param)
+static void *OpenPartyMenuForGracidea(void *fieldSystem)
 {
-    return sub_0203E598(some_param, HEAP_ID_FIELD2, 466);
+    return FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 }
 
 BOOL sub_02069238(FieldSystem *fieldSystem)
@@ -1124,7 +1120,7 @@ static BOOL RegisteredItem_GoToApp(FieldTask *task)
     switch (v1->unk_2A) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         v1->unk_2A = 1;
         break;
     case 1:
@@ -1152,7 +1148,7 @@ static BOOL RegisteredItem_GoToApp(FieldTask *task)
     case 3:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             v1->unk_2A = 4;
         }
         break;

@@ -5001,7 +5001,7 @@ int LowestBit(u32 flag)
     return i;
 }
 
-static const u16 Unk_020F05BE[18] = {
+static const u16 sBattleFrontierBanlist[] = {
     SPECIES_MEWTWO,
     SPECIES_MEW,
     SPECIES_LUGIA,
@@ -5022,30 +5022,30 @@ static const u16 Unk_020F05BE[18] = {
     SPECIES_ARCEUS
 };
 
-BOOL sub_02078804(u16 param0)
+BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)
 {
-    for (u32 i = 0; i < NELEMS(Unk_020F05BE); i++) {
-        if (param0 == Unk_020F05BE[i]) {
-            return 1;
+    for (u32 i = 0; i < NELEMS(sBattleFrontierBanlist); i++) {
+        if (species == sBattleFrontierBanlist[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-u16 sub_02078824(u8 index)
+u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
 {
-    if (index >= NELEMS(Unk_020F05BE)) {
+    if (index >= NELEMS(sBattleFrontierBanlist)) {
         index = 0;
     }
 
-    return Unk_020F05BE[index];
+    return sBattleFrontierBanlist[index];
 }
 
 BOOL sub_02078838(Pokemon *mon)
 {
     u16 monSpecies = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    return sub_02078804(monSpecies);
+    return Pokemon_IsOnBattleFrontierBanlist(monSpecies);
 }
 
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)

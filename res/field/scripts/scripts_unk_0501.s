@@ -128,7 +128,7 @@ _017E:
     WaitFadeScreen
     SetVar VAR_RESULT, 0
 _01B9:
-    ScrCmd_290 VAR_RESULT
+    OpenPartyMenuForDaycare VAR_RESULT
     ScrCmd_291 VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _01DE
     ScrCmd_196 VAR_0x8000

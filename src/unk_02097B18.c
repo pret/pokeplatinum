@@ -6,8 +6,9 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay076/ov76_0223B140.h"
 #include "overlay076/ov76_0223B870.h"
@@ -43,7 +44,6 @@
 #include "unk_0206CCB0.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F64C0.h"
 
 FS_EXTERN_OVERLAY(overlay11);
@@ -58,7 +58,7 @@ typedef struct {
     UnkStruct_ov76_0223DE00 *unk_00;
     UnkStruct_02097F38_sub1 *unk_04;
     UnkStruct_02097F18 *unk_08;
-    PartyManagementData *unk_0C;
+    PartyMenu *unk_0C;
     SaveData *saveData;
     int unk_14;
 } UnkStruct_02097F38;
@@ -352,21 +352,21 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyManagementData *partyMan = v0->unk_0C;
+        PartyMenu *partyMenu = v0->unk_0C;
 
-        partyMan->party = v1->unk_1C;
-        partyMan->bag = SaveData_GetBag(v0->saveData);
-        partyMan->mailbox = SaveData_GetMailbox(v0->saveData);
-        partyMan->selectedMonSlot = 0;
-        partyMan->unk_21 = 0;
-        partyMan->unk_20 = 15;
-        partyMan->options = v1->options;
+        partyMenu->party = v1->unk_1C;
+        partyMenu->bag = SaveData_GetBag(v0->saveData);
+        partyMenu->mailbox = SaveData_GetMailbox(v0->saveData);
+        partyMenu->selectedMonSlot = 0;
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
+        partyMenu->mode = PARTY_MENU_MODE_BALL_SEAL;
+        partyMenu->options = v1->options;
 
-        FieldTask_RunApplication(param0, &gPokemonPartyAppTemplate, partyMan);
+        FieldTask_RunApplication(param0, &gPokemonPartyAppTemplate, partyMenu);
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyManagementData *partyMan = v0->unk_0C;
+        PartyMenu *partyMenu = v0->unk_0C;
         Pokemon *v8;
         BallCapsule *v9;
         BallSeal *v10;
@@ -376,8 +376,8 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (partyMan->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
+        if (partyMenu->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, partyMenu->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
@@ -417,8 +417,8 @@ void sub_020980DC(FieldTask *param0, SaveData *saveData)
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
     v0->unk_08->options = SaveData_GetOptions(saveData);
     v0->unk_08->saveData = saveData;
-    v0->unk_0C = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
-    memset(v0->unk_0C, 0, sizeof(PartyManagementData));
+    v0->unk_0C = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    memset(v0->unk_0C, 0, sizeof(PartyMenu));
 
     FieldTask_InitCall(param0, sub_02097F38, v0);
 }

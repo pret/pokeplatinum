@@ -279,7 +279,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         } else {
             GF_ASSERT(FALSE);
 
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             (param1->unk_00) = 6;
             return 0;
         }
@@ -523,7 +523,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         (param1->unk_00)++;
     } break;
     case 1:
-        ov5_021D1744(1);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 2, 0, 1557);
 
         v0 = Player_MapObject(fieldSystem->playerAvatar);
@@ -665,7 +665,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
 
-            ov5_021D1744(0);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
             (param1->unk_00)++;
         }
         break;

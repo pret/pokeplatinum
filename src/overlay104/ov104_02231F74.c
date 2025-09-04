@@ -7,6 +7,7 @@
 
 #include "struct_defs/sentence.h"
 
+#include "applications/party_menu/main.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/ov63_0222D77C.h"
@@ -53,7 +54,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02014A84.h"
-#include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
 
 typedef struct UnkStruct_ov104_02232B5C_t {

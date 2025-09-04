@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
@@ -11,12 +13,11 @@
 #include "pokemon.h"
 #include "unk_0202602C.h"
 
-HeightWeightData *sub_0207A2A8(int heapID)
+HeightWeightData *HeightWeightData_Load(enum HeapID heapID)
 {
-    HeightWeightData *v0 = Pokedex_HeightWeightData(heapID);
-
-    Pokedex_HeightWeightData_Load(v0, 0, heapID);
-    return v0;
+    HeightWeightData *data = Pokedex_HeightWeightData(heapID);
+    Pokedex_HeightWeightData_Load(data, FALSE, heapID);
+    return data;
 }
 
 void sub_0207A2C0(HeightWeightData *param0)

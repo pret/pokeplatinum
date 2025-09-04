@@ -151,10 +151,10 @@ BOOL ov104_0223971C(UnkStruct_ov104_0222E930 *param0)
             v1->unk_A1[v0] = 0;
         }
     } else if (v1->unk_A8->selectedMonSlot == 6) {
-        *v3 = v1->unk_A8->unk_2C[0];
+        *v3 = v1->unk_A8->selectionOrder[0];
         *v3 -= 1;
 
-        *v4 = v1->unk_A8->unk_2C[1];
+        *v4 = v1->unk_A8->selectionOrder[1];
 
         if (*v4 > 0) {
             *v4 -= 1;

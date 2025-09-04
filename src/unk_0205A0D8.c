@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02098C44.h"
-
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0205AB10.h"
@@ -45,12 +45,11 @@
 #include "unk_0203D1B8.h"
 #include "unk_020655F4.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
 typedef struct {
     PokemonSummary *unk_00;
-    PartyManagementData *unk_04;
+    PartyMenu *unk_04;
     UnkFuncPtr_0205AB10 *unk_08;
     Strbuf *unk_0C;
     Strbuf *unk_10;
@@ -149,34 +148,34 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
-    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+    MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-    partyMan->options = SaveData_GetOptions(param0->fieldSystem->saveData);
-    partyMan->battleRegulation = (void *)param0->fieldSystem->unk_B0;
-    partyMan->party = SaveData_GetParty(param0->fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(param0->fieldSystem->saveData);
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 2;
+    partyMenu->options = SaveData_GetOptions(param0->fieldSystem->saveData);
+    partyMenu->battleRegulation = (void *)param0->fieldSystem->unk_B0;
+    partyMenu->party = SaveData_GetParty(param0->fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(param0->fieldSystem->saveData);
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
+    partyMenu->mode = PARTY_MENU_MODE_SELECT_CONFIRM;
 
     if (param0->fieldSystem->unk_B0) {
-        partyMan->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
-        partyMan->unk_32_4 = partyMan->unk_32_0;
+        partyMenu->minSelectionSlots = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        partyMenu->maxSelectionSlots = partyMenu->minSelectionSlots;
     } else {
-        partyMan->unk_32_0 = 3;
-        partyMan->unk_32_4 = 3;
+        partyMenu->minSelectionSlots = 3;
+        partyMenu->maxSelectionSlots = 3;
     }
 
-    partyMan->unk_33 = 100;
-    partyMan->selectedMonSlot = param0->unk_3C;
+    partyMenu->reqLevel = 100;
+    partyMenu->selectedMonSlot = param0->unk_3C;
 
     for (v0 = 0; v0 < 6; v0++) {
-        partyMan->unk_2C[v0] = param0->unk_3D[v0];
+        partyMenu->selectionOrder[v0] = param0->unk_3D[v0];
     }
 
-    FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    param0->unk_04 = partyMan;
+    FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    param0->unk_04 = partyMenu;
 }
 
 static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
@@ -187,7 +186,7 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
         return 0;
     }
 
-    MI_CpuCopy8(param0->unk_04->unk_2C, param0->unk_3D, 6);
+    MI_CpuCopy8(param0->unk_04->selectionOrder, param0->unk_3D, 6);
 
     switch (param0->unk_04->selectedMonSlot) {
     case 7:
@@ -226,7 +225,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 {
     if (FieldSystem_IsRunningFieldMap(param0->fieldSystem)) {
-        ov5_021D1744(1);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         CommPlayerMan_Restart();
         return 1;
     }
@@ -342,7 +341,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 13:
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         v0->unk_34 = 14;
         break;
     case 14:
@@ -540,7 +539,7 @@ static BOOL sub_0205A324(FieldTask *param0)
                 CommTiming_StartSync(2);
                 v0->unk_34 = 39;
             } else {
-                ov5_021D1744(0);
+                FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
                 v0->unk_34 = 33;
             }
             break;
@@ -1030,7 +1029,7 @@ static BOOL sub_0205B140(FieldTask *param0)
                 Strbuf_Free(v1->unk_04);
                 Window_EraseMessageBox(&v1->unk_08, 0);
                 Window_Remove(&v1->unk_08);
-                ov5_021D1744(0);
+                FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
                 v1->unk_28++;
             }
         }
@@ -1055,7 +1054,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         break;
     case 6:
         if (!FieldSystem_IsRunningFieldMap(fieldSystem)) {
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             CommPlayerMan_Restart();
             v1->unk_28++;
         }

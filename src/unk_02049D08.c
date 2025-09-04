@@ -11,9 +11,9 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
 
+#include "applications/party_menu/defs.h"
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
@@ -184,7 +184,7 @@ BOOL sub_02049EC4(u16 param0, SaveData *saveData, u8 param2)
             continue;
         }
 
-        if (sub_02078804(v4) == 1) {
+        if (Pokemon_IsOnBattleFrontierBanlist(v4) == 1) {
             continue;
         }
 
@@ -424,11 +424,11 @@ void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
 {
     u16 v0 = 0;
-    PartyManagementData *partyMan = *param1;
+    PartyMenu *partyMenu = *param1;
     Party *v2;
     Pokemon *v3;
 
-    if ((partyMan->menuSelectionResult != 0) || (partyMan->selectedMonSlot == 7)) {
+    if ((partyMenu->menuSelectionResult != 0) || (partyMenu->selectedMonSlot == 7)) {
         Heap_Free(*param1);
         *param1 = NULL;
         return 0;
@@ -437,7 +437,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
     v2 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        param0->unk_2A[v0] = partyMan->unk_2C[v0] - 1;
+        param0->unk_2A[v0] = partyMenu->selectionOrder[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
         param0->unk_2E[v0] = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
         param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);

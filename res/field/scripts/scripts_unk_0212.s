@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/contest_registration.h"
 #include "constants/map_object.h"
+#include "generated/pokemon_contest_types.h"
 
 
     ScriptEntry _0036
@@ -374,27 +375,27 @@ _04A8:
     End
 
 _051C:
-    SetVar VAR_0x8005, 0
+    SetVar VAR_0x8005, CONTEST_TYPE_COOL
     GoTo _0562
     End
 
 _052A:
-    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8005, CONTEST_TYPE_BEAUTY
     GoTo _0562
     End
 
 _0538:
-    SetVar VAR_0x8005, 2
+    SetVar VAR_0x8005, CONTEST_TYPE_CUTE
     GoTo _0562
     End
 
 _0546:
-    SetVar VAR_0x8005, 3
+    SetVar VAR_0x8005, CONTEST_TYPE_SMART
     GoTo _0562
     End
 
 _0554:
-    SetVar VAR_0x8005, 4
+    SetVar VAR_0x8005, CONTEST_TYPE_TOUGH
     GoTo _0562
     End
 
@@ -408,7 +409,7 @@ _0562:
     CallIfEq VAR_MAP_LOCAL_3, 1, _0608
     SetVar VAR_RESULT, 0
 _0596:
-    ScrCmd_194 VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_4
+    OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_4
     ScrCmd_195 VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _05C1
     ScrCmd_196 VAR_MAP_LOCAL_2
@@ -1109,27 +1110,27 @@ _103A:
     End
 
 _10AE:
-    SetVar VAR_0x8005, 0
+    SetVar VAR_0x8005, CONTEST_TYPE_COOL
     GoTo _1101
     End
 
 _10BC:
-    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8005, CONTEST_TYPE_BEAUTY
     GoTo _1101
     End
 
 _10CA:
-    SetVar VAR_0x8005, 2
+    SetVar VAR_0x8005, CONTEST_TYPE_CUTE
     GoTo _1101
     End
 
 _10D8:
-    SetVar VAR_0x8005, 3
+    SetVar VAR_0x8005, CONTEST_TYPE_SMART
     GoTo _1101
     End
 
 _10E6:
-    SetVar VAR_0x8005, 4
+    SetVar VAR_0x8005, CONTEST_TYPE_TOUGH
     GoTo _1101
     End
 
@@ -1147,7 +1148,7 @@ _1101:
     WaitFadeScreen
     SetVar VAR_RESULT, 0
 _111B:
-    ScrCmd_194 VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
+    OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
     ScrCmd_195 VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1146
     ScrCmd_196 VAR_MAP_LOCAL_2

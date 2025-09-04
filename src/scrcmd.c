@@ -45,11 +45,11 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "applications/naming_screen.h"
+#include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "boat_cutscene/boat_cutscene.h"
@@ -537,7 +537,7 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_2D0(ScriptContext *ctx);
 static BOOL ScrCmd_2D4(ScriptContext *ctx);
 static BOOL ScrCmd_2DB(ScriptContext *ctx);
-static BOOL ScrCmd_2A5(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPartyMenuForTrade(ScriptContext *ctx);
 static BOOL ScrCmd_196(ScriptContext *ctx);
 static BOOL ScrCmd_197(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
@@ -572,8 +572,8 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
-static BOOL ScrCmd_192(ScriptContext *ctx);
-static BOOL ScrCmd_194(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
 static BOOL ScrCmd_195(ScriptContext *ctx);
 static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx);
@@ -681,7 +681,7 @@ static BOOL ScrCmd_28E(ScriptContext *ctx);
 static BOOL sub_02041FF8(ScriptContext *ctx);
 static BOOL ScrCmd_28F(ScriptContext *ctx);
 static BOOL ScrCmd_292(ScriptContext *ctx);
-static BOOL ScrCmd_290(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
 static BOOL ScrCmd_291(ScriptContext *ctx);
 static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
@@ -1173,9 +1173,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_18F,
     ScrCmd_WaitABPressTime,
     ScrCmd_SelectMoveTutorPokemon,
-    ScrCmd_192,
+    ScrCmd_OpenPartyMenuForUnionRoomBattle,
     ScrCmd_GetSelectedPartySlot,
-    ScrCmd_194,
+    ScrCmd_OpenPartyMenuForContest,
     ScrCmd_195,
     ScrCmd_196,
     ScrCmd_197,
@@ -1427,7 +1427,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_28D,
     ScrCmd_28E,
     ScrCmd_28F,
-    ScrCmd_290,
+    ScrCmd_OpenPartyMenuForDaycare,
     ScrCmd_291,
     ScrCmd_292,
     ScrCmd_GetUndergroundTalkCounter,
@@ -1448,7 +1448,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TrySetUnusedUndergroundField,
     ScrCmd_2A3,
     ScrCmd_2A4,
-    ScrCmd_2A5,
+    ScrCmd_OpenPartyMenuForTrade,
     ScrCmd_GetGameCornerPrizeData,
     ScrCmd_2A7,
     ScrCmd_SubstractCoinsFromVar,
@@ -3431,25 +3431,25 @@ static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx)
 static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx)
 {
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *partyData = FieldSystem_SelectMoveTutorPokemon(32, ctx->fieldSystem);
+    *partyData = FieldSystem_OpenPartyMenu_SelectPokemon(32, ctx->fieldSystem);
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
 }
 
-static BOOL ScrCmd_2A5(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPartyMenuForTrade(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *v0 = sub_0203D3E4(32, ctx->fieldSystem);
+    void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForTrade(32, ctx->fieldSystem);
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
 }
 
-static BOOL ScrCmd_192(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *v0 = sub_0203D50C(ctx->fieldSystem->task, HEAP_ID_FIELD3);
+    void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForUnionRoomBattle(ctx->fieldSystem->task, HEAP_ID_FIELD3);
 
     return TRUE;
 }
@@ -3461,7 +3461,7 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
 
     GF_ASSERT(*partySelect != 0);
 
-    *destVar = PartyManagementData_GetSelectedSlot(*partySelect);
+    *destVar = PartyMenu_GetSelectedSlot(*partySelect);
 
     if (*destVar == MAX_PARTY_SIZE + 1) {
         *destVar = 0xff;
@@ -3478,19 +3478,19 @@ static BOOL ScrCmd_2D0(ScriptContext *ctx)
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMenu = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
     } else if (v1 == MAX_PARTY_SIZE) {
-        u16 v0 = partyMan->unk_2C[0];
+        u16 v0 = partyMenu->selectionOrder[0];
         *v3 = v0;
         *v3 -= 1;
-        v0 = partyMan->unk_2C[1];
+        v0 = partyMenu->selectionOrder[1];
         *v4 = v0;
 
         if (*v4 > 0) {
@@ -3510,22 +3510,22 @@ static BOOL ScrCmd_2D4(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 *v5 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMenu = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
     } else if (v1 == MAX_PARTY_SIZE) {
-        *v3 = partyMan->unk_2C[0];
+        *v3 = partyMenu->selectionOrder[0];
         *v3 -= 1;
 
-        *v4 = partyMan->unk_2C[1];
+        *v4 = partyMenu->selectionOrder[1];
         *v4 -= 1;
 
-        *v5 = partyMan->unk_2C[2];
+        *v5 = partyMenu->selectionOrder[2];
 
         if (*v5 > 0) {
             *v5 -= 1;
@@ -3544,22 +3544,22 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 *v5 = ScriptContext_GetVarPointer(ctx);
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyMan = *v2;
+    PartyMenu *partyMenu = *v2;
 
     GF_ASSERT(*v2 != 0);
 
-    int v1 = PartyManagementData_GetSelectedSlot(*v2);
+    int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
         *v3 = 0xff;
     } else if (v1 == MAX_PARTY_SIZE) {
-        *v3 = partyMan->unk_2C[0];
+        *v3 = partyMenu->selectionOrder[0];
         *v3 -= 1;
 
-        *v4 = partyMan->unk_2C[1];
+        *v4 = partyMenu->selectionOrder[1];
         *v4 -= 1;
 
-        *v5 = partyMan->unk_2C[2];
+        *v5 = partyMenu->selectionOrder[2];
 
         if (*v5 > 0) {
             *v5 -= 1;
@@ -3572,15 +3572,15 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_194(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 selectedPartySlot = ScriptContext_GetVar(ctx);
+    u16 contestRank = ScriptContext_GetVar(ctx);
+    u16 contestType = ScriptContext_GetVar(ctx);
     u16 v4 = ScriptContext_GetVar(ctx);
 
-    *v0 = sub_0203D578(32, ctx->fieldSystem, v3, v2, v4, v1);
+    *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForContest(32, ctx->fieldSystem, contestType, contestRank, v4, selectedPartySlot);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
@@ -3594,7 +3594,7 @@ static BOOL ScrCmd_195(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = PartyManagementData_GetSelectedSlot(*v0);
+    *v1 = PartyMenu_GetSelectedSlot(*v0);
 
     if (*v1 == MAX_PARTY_SIZE + 1) {
         *v1 = 0xff;
@@ -4732,10 +4732,10 @@ static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx)
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx)
 {
     void **partyManagementDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyManagementData *partyManagementData = *partyManagementDataPtr;
+    PartyMenu *partyMenu = *partyManagementDataPtr;
 
-    Encounter_NewVsLink(ctx->fieldSystem->task, partyManagementData->unk_2C, BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER);
-    Heap_Free(partyManagementData);
+    Encounter_NewVsLink(ctx->fieldSystem->task, partyMenu->selectionOrder, BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER);
+    Heap_Free(partyMenu);
 
     *partyManagementDataPtr = NULL;
 
@@ -5146,8 +5146,8 @@ static BOOL ScrCmd_2BA(ScriptContext *ctx)
 
     if (*v2 != 0) {
         void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-        PartyManagementData *partyMan = *v1;
-        Heap_Free(partyMan);
+        PartyMenu *partyMenu = *v1;
+        Heap_Free(partyMenu);
     }
 
     return FALSE;
@@ -7137,12 +7137,11 @@ static BOOL ScrCmd_28F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_290(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *v0 = sub_0203D410(32, ctx->fieldSystem, v1);
+    u16 selectedPartySlot = ScriptContext_GetVar(ctx);
+    void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForDaycare(32, ctx->fieldSystem, selectedPartySlot);
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
@@ -7156,7 +7155,7 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = PartyManagementData_GetSelectedSlot(*v0);
+    *v1 = PartyMenu_GetSelectedSlot(*v0);
 
     if (*v1 == MAX_PARTY_SIZE + 1) {
         *v1 = 0xff;

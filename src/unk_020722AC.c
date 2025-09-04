@@ -3,8 +3,9 @@
 
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D431C.h"
@@ -40,8 +41,6 @@
 #include "text.h"
 #include "unk_0203D1B8.h"
 #include "unk_02097624.h"
-
-#include "constdata/const_020F1E88.h"
 
 typedef struct {
     u8 unk_00;
@@ -105,7 +104,7 @@ typedef struct {
     UnkStruct_02097728 *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
-    PartyManagementData *unk_1B4;
+    PartyMenu *unk_1B4;
 } UnkStruct_02072334;
 
 typedef struct {
@@ -499,7 +498,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -579,7 +578,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -1191,29 +1190,29 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
     return 1;
 }
 
-static int sub_02073524(UnkStruct_02072334 *param0, int param1)
+static int sub_02073524(UnkStruct_02072334 *param0, int mode)
 {
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
 
     switch (param0->unk_12) {
     case 0:
-        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+        partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+        MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
-        partyMan->unk_21 = 0;
-        partyMan->unk_20 = param1;
-        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
+        partyMenu->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
+        partyMenu->mode = mode;
+        partyMenu->usedItemID = param0->unk_1C[param0->unk_18].item;
 
-        if (param1 == 11) {
-            partyMan->selectedMonSlot = param0->unk_17;
+        if (mode == PARTY_MENU_MODE_GIVE_MAIL) {
+            partyMenu->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-        param0->unk_1B4 = partyMan;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+        param0->unk_1B4 = partyMenu;
         param0->unk_12++;
         break;
     case 1:

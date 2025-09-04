@@ -2252,8 +2252,13 @@
     .short 401
     .endm
 
-    .macro ScrCmd_192
+    .macro OpenPartyMenuForUnionRoomBattle
     .short 402
+    .endm
+
+    .macro SelectPokemonForUnionRoomBattle
+    OpenPartyMenuForUnionRoomBattle
+    ReturnToField
     .endm
 
     .macro GetSelectedPartySlot destVar
@@ -2261,11 +2266,11 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_194 arg0, arg1, arg2, arg3
+    .macro OpenPartyMenuForContest partySlot, contestRank, contestType, arg3
     .short 404
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \contestRank
+    .short \contestType
     .short \arg3
     .endm
 
@@ -3777,9 +3782,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_290 arg0
+    .macro OpenPartyMenuForDaycare partySlot
     .short 656
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_291 arg0, arg1
@@ -3894,8 +3899,14 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2A5
+    .macro OpenPartyMenuForTrade
     .short 677
+    .endm
+
+    .macro SelectPokemonToTrade
+    OpenPartyMenuForTrade
+    GetSelectedPartySlot VAR_RESULT
+    ReturnToField
     .endm
 
     .macro GetGameCornerPrizeData index, item, price

@@ -8,6 +8,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay010/struct_ov10_0221F800.h"
 
@@ -54,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -1908,7 +1908,7 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
         Heap_Free(v2);
     }
 
-    LoadScreenDataFromNARC(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
+    PartyMenu_LoadMemberPanelTilemaps(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 
@@ -2329,7 +2329,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     Strbuf *v3;
     u32 v4;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, param0->unk_00->heapID);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->unk_00->heapID);
     v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
     v2 = StringTemplate_Default(param0->unk_00->heapID);
     v3 = Strbuf_Init(32, param0->unk_00->heapID);

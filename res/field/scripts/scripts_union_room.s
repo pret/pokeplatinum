@@ -153,8 +153,7 @@ _02A4:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_192
-    ReturnToField
+    SelectPokemonForUnionRoomBattle
     FadeScreenIn
     WaitFadeScreen
     Message 202
@@ -580,8 +579,7 @@ _095C:
     ScrCmd_139 6
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_192
-    ReturnToField
+    SelectPokemonForUnionRoomBattle
     FadeScreenIn
     WaitFadeScreen
     Message 202

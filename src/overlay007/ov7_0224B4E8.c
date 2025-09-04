@@ -564,7 +564,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
     v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
     v0->unk_20 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_6C = sub_0207A2A8(HEAP_ID_FIELD2);
+    v0->unk_6C = HeightWeightData_Load(HEAP_ID_FIELD2);
 
     return v0;
 }

@@ -79,7 +79,7 @@ static BOOL sub_0209B3C4(FieldTask *param0)
         break;
     case 2:
         if (FieldSystem_IsRunningFieldMap(v0->fieldSystem)) {
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             v0->unk_18 = 3;
         }
         break;

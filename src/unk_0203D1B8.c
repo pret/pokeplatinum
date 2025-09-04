@@ -3,7 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/game_records.h"
+#include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02029C68_decl.h"
@@ -28,12 +30,13 @@
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/journal_display/journal_controller.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -135,7 +138,6 @@
 #include "constdata/const_020EA02C.h"
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F2FCC.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
@@ -178,7 +180,7 @@ FS_EXTERN_OVERLAY(dw_warp);
 
 typedef struct {
     int heapID;
-    PartyManagementData *unk_04;
+    PartyMenu *unk_04;
     PokemonSummary *unk_08;
 } UnkStruct_0203D444;
 
@@ -367,70 +369,67 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
-static PartyManagementData *PartyManagementData_New(int heapID, FieldSystem *fieldSystem, int param2, int param3)
+static PartyMenu *PartyMenu_New(int heapID, FieldSystem *fieldSystem, int type, int mode)
 {
-    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
-    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->unk_21 = param2;
-    partyMan->unk_20 = param3;
-    partyMan->fieldSystem = fieldSystem;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->type = type;
+    partyMenu->mode = mode;
+    partyMenu->fieldSystem = fieldSystem;
 
-    return partyMan;
+    return partyMenu;
 }
 
-void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
+PartyMenu *FieldSystem_OpenPartyMenu(FieldSystem *fieldSystem, FieldMoveContext *fieldMoveCtx, u8 selectedMonSlot)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 0);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_FIELD);
+    partyMenu->fieldMoveContext = fieldMoveCtx;
+    partyMenu->selectedMonSlot = selectedMonSlot;
 
-    partyMan->fieldMoveContext = param1;
-    partyMan->selectedMonSlot = param2;
-
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
-void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectPokemon(int unused, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 3);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_SELECT_NO_PROMPT);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
-void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForTrade(int unused, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 19);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_NPC_TRADE);
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
-int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
+int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu)
 {
-    return partyMan->selectedMonSlot;
+    return partyMenu->selectedMonSlot;
 }
 
-void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int param0, FieldSystem *fieldSystem, int selectedMonSlot)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 18);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_DAYCARE);
+    partyMenu->selectedMonSlot = selectedMonSlot;
 
-    partyMan->selectedMonSlot = param2;
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
 int sub_0203D438(void *param0)
 {
-    PartyManagementData *partyMan = param0;
-    return partyMan->menuSelectionResult;
+    PartyMenu *partyMenu = param0;
+    return partyMenu->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -486,43 +485,41 @@ static BOOL sub_0203D444(FieldTask *param0)
     return 0;
 }
 
-void *sub_0203D50C(FieldTask *taskMan, int heapID)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForUnionRoomBattle(FieldTask *taskMan, enum HeapID heapID)
 {
-    UnkStruct_0203D444 *v0;
-    PartyManagementData *partyMan;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D444));
+    UnkStruct_0203D444 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
-    partyMan = PartyManagementData_New(heapID, fieldSystem, 0, 2);
-    partyMan->unk_32_0 = 2;
-    partyMan->unk_32_4 = 2;
-    partyMan->unk_33 = 30;
-    partyMan->battleRegulation = NULL;
-    v0->unk_04 = partyMan;
+
+    PartyMenu *partyMenu = PartyMenu_New(heapID, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_SELECT_CONFIRM);
+    partyMenu->minSelectionSlots = 2;
+    partyMenu->maxSelectionSlots = 2;
+    partyMenu->reqLevel = 30;
+    partyMenu->battleRegulation = NULL;
+    v0->unk_04 = partyMenu;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
 
-    return partyMan;
+    return partyMenu;
 }
 
-void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int param4, int selectedMonSlot)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 13);
-
-    partyMan->selectedMonSlot = param5;
-    partyMan->unk_29 = 2;
-    partyMan->unk_2A = param2;
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_CONTEST);
+    partyMenu->selectedMonSlot = selectedMonSlot;
+    partyMenu->unk_29 = 2;
+    partyMenu->contestType = contestType;
 
     if (param4 == 0) {
-        partyMan->unk_2B = param3;
+        partyMenu->contestRank = contestRank;
     } else {
-        partyMan->unk_2B = 0;
+        partyMenu->contestRank = 0;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
-    return partyMan;
+    return partyMenu;
 }
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
@@ -548,14 +545,13 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     return v0;
 }
 
-void *sub_0203D644(FieldSystem *fieldSystem, int param1)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem, int selectedMonSlot)
 {
-    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 21);
+    PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_SELECT_EGG);
+    partyMenu->selectedMonSlot = selectedMonSlot;
 
-    partyMan->selectedMonSlot = param1;
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
@@ -1708,26 +1704,25 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
     return v0;
 }
 
-PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem, enum HeapID heapID, enum Item item)
 {
-    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
-    memset(partyMan, 0, sizeof(PartyManagementData));
+    PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
+    memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
-    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    partyMan->fieldMoveContext = NULL;
-    partyMan->unk_21 = 0;
-    partyMan->unk_20 = 5;
-    partyMan->usedItemID = param2;
-    partyMan->selectedMonSlot = 0;
-    partyMan->fieldSystem = fieldSystem;
+    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMenu->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMenu->fieldMoveContext = NULL;
+    partyMenu->type = PARTY_MENU_TYPE_BASIC;
+    partyMenu->mode = PARTY_MENU_MODE_USE_ITEM;
+    partyMenu->usedItemID = item;
+    partyMenu->selectedMonSlot = 0;
+    partyMenu->fieldSystem = fieldSystem;
 
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-
-    return partyMan;
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+    return partyMenu;
 }
 
 void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
