@@ -73,7 +73,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16549,
+            "var": "VAR_UNK_0x40A5",
             "value": 0
         },
         {
@@ -83,7 +83,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16549,
+            "var": "VAR_UNK_0x40A5",
             "value": 0
         },
         {
@@ -93,7 +93,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16549,
+            "var": "VAR_UNK_0x40A5",
             "value": 0
         },
         {
@@ -103,7 +103,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16549,
+            "var": "VAR_UNK_0x40A5",
             "value": 0
         }
     ]

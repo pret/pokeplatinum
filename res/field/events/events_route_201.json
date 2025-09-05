@@ -199,7 +199,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 0
         },
         {
@@ -209,7 +209,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 1
         },
         {
@@ -219,7 +219,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 3
         },
         {
@@ -229,7 +229,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 1
         },
         {
@@ -239,7 +239,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 3
         },
         {
@@ -249,7 +249,7 @@
             "y": 0,
             "width": 5,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 2
         }
     ]

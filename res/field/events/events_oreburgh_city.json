@@ -537,7 +537,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16505,
+            "var": "VAR_UNK_0x4079",
             "value": 0
         },
         {
@@ -547,7 +547,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16505,
+            "var": "VAR_UNK_0x4079",
             "value": 2
         }
     ]

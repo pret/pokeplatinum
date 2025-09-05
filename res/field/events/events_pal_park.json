@@ -38,7 +38,7 @@
             "y": 0,
             "width": 6,
             "length": 1,
-            "var": 16627,
+            "var": "VAR_PAL_PARK_STATE",
             "value": 1
         }
     ]

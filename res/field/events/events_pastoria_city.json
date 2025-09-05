@@ -513,7 +513,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16508,
+            "var": "VAR_UNK_0x407C",
             "value": 5
         },
         {
@@ -523,7 +523,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16508,
+            "var": "VAR_UNK_0x407C",
             "value": 1
         },
         {
@@ -533,7 +533,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16508,
+            "var": "VAR_UNK_0x407C",
             "value": 4
         },
         {
@@ -543,7 +543,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16583,
+            "var": "VAR_UNK_0x40C7",
             "value": 0
         }
     ]

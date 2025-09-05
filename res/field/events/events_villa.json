@@ -281,7 +281,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16399,
+            "var": "VAR_MAP_LOCAL_F",
             "value": 6
         },
         {
@@ -291,7 +291,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16399,
+            "var": "VAR_MAP_LOCAL_F",
             "value": 8
         },
         {
@@ -301,7 +301,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16399,
+            "var": "VAR_MAP_LOCAL_F",
             "value": 10
         },
         {
@@ -311,7 +311,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16399,
+            "var": "VAR_MAP_LOCAL_F",
             "value": 12
         },
         {
@@ -321,7 +321,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16545,
+            "var": "VAR_UNK_0x40A1",
             "value": 1
         }
     ]
