@@ -10,8 +10,6 @@
 #include "json.h"
 #include "util.h"
 
-static int SnapToTile(int val);
-
 static unsigned int FindNitroDataBlock(const unsigned char *data, const char *ident, unsigned int fileSize, unsigned int *blockSize_out)
 {
     unsigned int offset = 0x10;
