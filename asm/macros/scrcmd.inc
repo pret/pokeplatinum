@@ -2767,11 +2767,11 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1EA
+    .macro ShowDiplomaSinnoh
     .short 490
     .endm
 
-    .macro ScrCmd_1EB
+    .macro ShowDiplomaNationalDex
     .short 491
     .endm
 

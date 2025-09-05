@@ -1525,10 +1525,10 @@ Overlay overlay101
 	Object main.nef.p/src_overlay101_ov101_021D94D8.c.o
 }
 
-Overlay overlay102
+Overlay diploma
 {
 	After main
-	Object main.nef.p/src_overlay102_ov102_021D0D80.c.o
+	Object main.nef.p/src_applications_diploma.c.o
 }
 
 Overlay overlay103
