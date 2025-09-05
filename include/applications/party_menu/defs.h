@@ -31,7 +31,6 @@
 #include "string_list.h"
 #include "string_template.h"
 
-#define NUM_MENU_STRINGS  20
 #define NUM_MENU_PALETTES 8
 #define NUM_MENU_COLORS   (PALETTE_SIZE * NUM_MENU_PALETTES)
 #define NUM_MENU_SPRITES  29
@@ -106,18 +105,43 @@ enum PartyMenuWindow {
     PARTY_MENU_WIN_HP_MEMB5,
     PARTY_MENU_WIN_HEALTHBAR_MEMB5,
     PARTY_MENU_WIN_COMMENT_MEMB5,
-    PARTY_MENU_WIN_UNK_30,
-    PARTY_MENU_WIN_UNK_31,
-    PARTY_MENU_WIN_UNK_32,
-    PARTY_MENU_WIN_UNK_33,
-    PARTY_MENU_WIN_UNK_34,
-    PARTY_MENU_WIN_UNK_35,
-    PARTY_MENU_WIN_UNK_36,
+    PARTY_MENU_WIN_CONFIRM_BUTTON,
+    PARTY_MENU_WIN_CANCEL_BUTTON,
+    PARTY_MENU_WIN_SHORT_MESSAGE,
+    PARTY_MENU_WIN_MEDIUM_MESSAGE,
+    PARTY_MENU_WIN_LONG_MESSAGE,
+    PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL,
+    PARTY_MENU_WIN_TEACH_MOVE,
 
     NUM_PARTY_MENU_WINS,
 };
 
-#define PARTY_MENU_WIN_NUM_PER_MEMBER PARTY_MENU_WIN_COMMENT_MEMB0
+#define PARTY_MENU_WIN_NUM_PER_MEMBER (PARTY_MENU_WIN_COMMENT_MEMB0 + 1)
+
+enum PartyMenuString {
+    PARTY_MENU_STR_SWITCH = 0,
+    PARTY_MENU_STR_SUMMARY,
+    PARTY_MENU_STR_ITEM,
+    PARTY_MENU_STR_ITEM_GIVE,
+    PARTY_MENU_STR_ITEM_TAKE,
+    PARTY_MENU_STR_MAIL,
+    PARTY_MENU_STR_MAIL_READ,
+    PARTY_MENU_STR_MAIL_TAKE,
+    PARTY_MENU_STR_MAIL_STORE,
+    PARTY_MENU_STR_CANCEL,
+    PARTY_MENU_STR_SEPARATOR,
+    PARTY_MENU_STR_ENTER,
+    PARTY_MENU_STR_NO_ENTRY,
+    PARTY_MENU_STR_ENTER_2,
+    PARTY_MENU_STR_SET,
+    PARTY_MENU_STR_CONFIRM,
+    PARTY_MENU_STR_MOVE0,
+    PARTY_MENU_STR_MOVE1,
+    PARTY_MENU_STR_MOVE2,
+    PARTY_MENU_STR_MOVE3,
+
+    NUM_PARTY_MENU_STRS,
+};
 
 typedef struct PartyMenu {
     Party *party;
@@ -178,7 +202,7 @@ typedef struct PartyMenuMember {
 typedef struct PartyMenuApplication {
     BgConfig *bgConfig;
     Window windows[NUM_PARTY_MENU_WINS];
-    Window unk_254[1];
+    Window menuWindows[1]; // There is only ever 1 here, but it is never unrolled by the compiler
     u16 leadMemberPanel[96];
     u16 backMemberPanel[96];
     u16 noneMemberPanel[96];
@@ -193,9 +217,9 @@ typedef struct PartyMenuApplication {
     StringTemplate *template;
     Strbuf *tmpString;
     Strbuf *tmpFormat;
-    Strbuf *menuStrings[NUM_MENU_STRINGS];
-    StringList *unk_6FC;
-    Menu *unk_700;
+    Strbuf *menuStrings[NUM_PARTY_MENU_STRS];
+    StringList *contextMenuChoices;
+    Menu *contextMenu;
     PartyMenuMember partyMembers[MAX_PARTY_SIZE];
     const GridMenuCursorPosition *cursorPosTable;
     DualArrayShortData unk_7F8;
