@@ -31,37 +31,50 @@
 #define DIFFERENT_TYPE_BONUS   200
 #define MAX_TIME_SECONDS       1000
 
+typedef struct CatchingShowPokemon {
+    u16 species;
+    u8 area;
+    u8 rarity;
+    u16 catchingPoints;
+    u8 type1;
+    u8 type2;
+} CatchingShowPokemon;
+
+typedef struct CatchingShow {
+    CatchingShowPokemon pokemon[CATCHING_SHOW_MONS];
+    u8 caughtMonsOrder[CATCHING_SHOW_MONS];
+    int steps;
+    int currentEncounterIndex;
+    s64 startTime;
+    int timePoints;
+} CatchingShow;
+
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
-static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
-static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY);
-static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow);
-static int NumMonsCaptured(CatchingShow *catchingShow);
-static void ResetStepCount(CatchingShow *catchingShow);
+static int CatchingShow_NumMonsCaptured(CatchingShow *catchingShow);
+static void CatchingShow_ResetStepCount(CatchingShow *catchingShow);
 static BOOL IsStepCountZero(CatchingShow *catchingShow);
-static u32 CalculateTypePoints(CatchingShow *catchingShow);
+static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY);
+static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow);
+static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
 static u32 CalcCatchingPoints(CatchingShow *catchingShow);
+static u32 CalculateTypePoints(CatchingShow *catchingShow);
 static u32 GetTimePoints(CatchingShow *catchingShow);
 
 static CatchingShow sCatchingShow;
 
 void CatchingShow_Start(FieldSystem *fieldSystem)
 {
-    CatchingShow *catchingShow = &sCatchingShow;
-
-    MI_CpuClearFast(catchingShow, sizeof(CatchingShow));
-
-    InitSpeciesData(fieldSystem, catchingShow);
-    ResetStepCount(catchingShow);
-
-    catchingShow->startTime = GetTimestamp();
+    MI_CpuClearFast(&sCatchingShow, sizeof sCatchingShow);
+    InitSpeciesData(fieldSystem, &sCatchingShow);
+    CatchingShow_ResetStepCount(&sCatchingShow);
+    sCatchingShow.startTime = GetTimestamp();
 }
 
 void CatchingShow_End(FieldSystem *fieldSystem)
 {
     CatchingShow *catchingShow = &sCatchingShow;
     GameRecords *records = SaveData_GetGameRecords(fieldSystem->saveData);
-    s64 endTime = GetTimestamp();
-    s64 elapsedTime = TimeElapsed(catchingShow->startTime, endTime);
+    s64 elapsedTime = TimeElapsed(catchingShow->startTime, GetTimestamp());
 
     if (elapsedTime < MAX_TIME_SECONDS) {
         catchingShow->timePoints = ((MAX_TIME_SECONDS - elapsedTime) * POINTS_LOST_PER_SECOND);
@@ -76,24 +89,23 @@ BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int 
 {
     if (IsStepCountZero(&sCatchingShow) == TRUE) {
         return TryStartEncounter(fieldSystem, &sCatchingShow, playerX, playerY);
-    } else {
-        return FALSE;
     }
+    return FALSE;
 }
 
-FieldBattleDTO *CatchingShow_GetBattleDTO(FieldSystem *fieldSystem)
+FieldBattleDTO *CatchingShow_GetBattleDataTransfer(FieldSystem *fieldSystem)
 {
-    return SetupBattleDTO(fieldSystem, &sCatchingShow);
+    return FieldSystem_SetupCatchingShowEncounter(fieldSystem, &sCatchingShow);
 }
 
-void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto)
+void FieldSystem_UpdateCatchingShowResult(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
     UpdateBattleResultInternal(fieldSystem, dto, &sCatchingShow);
 }
 
-int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem)
+int FieldSystem_GetParkBallCount(FieldSystem *fieldSystem)
 {
-    return CATCHING_SHOW_MONS - NumMonsCaptured(&sCatchingShow);
+    return CATCHING_SHOW_MONS - CatchingShow_NumMonsCaptured(&sCatchingShow);
 }
 
 int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem)
@@ -113,7 +125,7 @@ int CatchingShow_GetTypePoints(FieldSystem *fieldSystem)
 
 static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData)
 {
-    GF_ASSERT(0 < species && species <= NATIONAL_DEX_COUNT);
+    GF_ASSERT(species != SPECIES_NONE && species <= NATIONAL_DEX_COUNT);
 
     int speciesOffset = (species - 1) * sizeof(SpeciesPalPark);
 
@@ -122,20 +134,19 @@ static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData)
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
-    int i;
     SpeciesPalPark speciesData;
-    u16 monSpecies;
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
+    u16 species;
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
 
-    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+    for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         catchingShow->caughtMonsOrder[i] = 0;
-        TransferDataToMon(transferData, i, mon);
+        MigratedPokemon_ConvertToPokemon(transferData, i, mon);
 
-        monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-        catchingShow->pokemon[i].species = monSpecies;
-        BufferSpeciesData(monSpecies, &speciesData);
+        catchingShow->pokemon[i].species = species;
+        BufferSpeciesData(species, &speciesData);
 
         if (speciesData.landArea != 0) {
             catchingShow->pokemon[i].area = speciesData.landArea;
@@ -152,7 +163,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     Heap_Free(mon);
 }
 
-static int NumMonsCaptured(CatchingShow *catchingShow)
+static int CatchingShow_NumMonsCaptured(CatchingShow *catchingShow)
 {
     int i;
     int numMonsCaptured = 0;
@@ -166,17 +177,15 @@ static int NumMonsCaptured(CatchingShow *catchingShow)
     return numMonsCaptured;
 }
 
-static void ResetStepCount(CatchingShow *catchingShow)
+static void CatchingShow_ResetStepCount(CatchingShow *catchingShow)
 {
     catchingShow->steps = LCRNG_RandMod(10) + 5;
 }
 
 static BOOL IsStepCountZero(CatchingShow *catchingShow)
 {
-    catchingShow->steps--;
-
-    if (catchingShow->steps == 0) {
-        ResetStepCount(catchingShow);
+    if (--catchingShow->steps == 0) {
+        CatchingShow_ResetStepCount(catchingShow);
         return TRUE;
     }
 
@@ -186,13 +195,13 @@ static BOOL IsStepCountZero(CatchingShow *catchingShow)
 static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
 {
     u16 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
-    int area = (playerX < 32) ? 0 : 1;
-    area += (playerY < 32) ? 0 : 2;
+    int quadrant = (playerX < 32) ? 0 : 1;
+    quadrant += (playerY < 32) ? 0 : 2;
 
     if (TileBehavior_IsTallGrass(tileBehavior)) {
-        return PAL_PARK_AREA_LAND_NORTH_WEST + area;
+        return PAL_PARK_AREA_LAND_NORTH_WEST + quadrant;
     } else if (TileBehavior_IsSurfable(tileBehavior)) {
-        return PAL_PARK_AREA_LAND_END + area;
+        return PAL_PARK_AREA_LAND_END + quadrant;
     }
 
     return PAL_PARK_AREA_NONE;
@@ -208,6 +217,10 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         return FALSE;
     }
 
+    // Each uncaught Pokemon has an encounter
+    // chance weight based on its species.
+    // Compute the total weight for the current
+    // area. If it's zero, bail.
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].area == area) {
             totalRarity += catchingShow->pokemon[i].rarity;
@@ -218,6 +231,8 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         return FALSE;
     }
 
+    // Prepend an extra bucket of weight 20
+    // for a no-encounter roll.
     encounterChance = LCRNG_RandMod(totalRarity + WEIGHT_NO_ENCOUNTER);
 
     if (encounterChance < WEIGHT_NO_ENCOUNTER) {
@@ -226,6 +241,9 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
 
     encounterChance -= WEIGHT_NO_ENCOUNTER;
 
+    // Using the random number generated,
+    // select the bucket to serve as the
+    // encounter.
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].area == area) {
             if (encounterChance < catchingShow->pokemon[i].rarity) {
@@ -237,6 +255,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         }
     }
 
+    // In theory, this is unreachable.
     GF_ASSERT(FALSE);
     return FALSE;
 }
@@ -245,7 +264,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 {
     switch (dto->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
-        catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = NumMonsCaptured(catchingShow) + 1;
+        catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = CatchingShow_NumMonsCaptured(catchingShow) + 1;
         break;
     case BATTLE_RESULT_PLAYER_FLED:
         break;
@@ -254,15 +273,14 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
     }
 }
 
-static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow)
+static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD3);
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
-    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELD2, parkBallCount);
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
+    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELD2, FieldSystem_GetParkBallCount(fieldSystem));
 
     FieldBattleDTO_Init(dto, fieldSystem);
-    TransferDataToMon(transferData, catchingShow->currentEncounterIndex, mon);
+    MigratedPokemon_ConvertToPokemon(transferData, catchingShow->currentEncounterIndex, mon);
     FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_ENEMY_1);
     Heap_Free(mon);
 
@@ -271,8 +289,7 @@ static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *ca
 
 static u32 CalcCatchingPoints(CatchingShow *catchingShow)
 {
-    int i;
-    u32 totalCatchingPoints = 0;
+    int i, totalCatchingPoints = 0;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         totalCatchingPoints += catchingShow->pokemon[i].catchingPoints;
@@ -285,9 +302,12 @@ static u32 CalculateTypePoints(CatchingShow *catchingShow)
 {
     int i, j;
     int prevMonType1, prevMonType2, currMonType1, currMonType2;
-    u32 distinctTypeTracker = 0;
-    u32 totalTypePoints = 0;
+    u32 distinctTypeTracker = 0, totalTypePoints = 0;
 
+    // This score is calculated in two phases
+    // Phase 1: +200 points each time you don't
+    // catch two Pokemon sharing a type in a row.
+    // Maximum 1000 points.
     for (i = 1; i < CATCHING_SHOW_MONS + 1; i++) {
         for (j = 0; j < CATCHING_SHOW_MONS; j++) {
             if (catchingShow->caughtMonsOrder[j] == i) {
@@ -312,10 +332,13 @@ static u32 CalculateTypePoints(CatchingShow *catchingShow)
         }
     }
 
-    for (; distinctTypeTracker != 0; distinctTypeTracker >>= 1) {
+    // Phase 2: +50 points for each unique
+    // type caught. Maximum 600 points.
+    while (distinctTypeTracker != 0) {
         if (distinctTypeTracker & 1) {
             totalTypePoints += DISTINCT_TYPE_BONUS;
         }
+        distinctTypeTracker >>= 1;
     }
 
     return totalTypePoints;
