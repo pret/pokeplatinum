@@ -271,7 +271,7 @@ _0323:
     End
 
 _0336:
-    VisitPokecenter 3
+    CallPokecenterNurse 3
     End
 
     .balign 4, 0

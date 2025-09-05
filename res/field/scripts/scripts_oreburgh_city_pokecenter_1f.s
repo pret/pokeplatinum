@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001E:
-    VisitPokecenter 3
+    CallPokecenterNurse 3
     End
 
 _002A:

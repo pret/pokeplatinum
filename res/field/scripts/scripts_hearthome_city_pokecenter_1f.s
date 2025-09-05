@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    VisitPokecenter 0
+    CallPokecenterNurse 0
     End
 
 _001E:

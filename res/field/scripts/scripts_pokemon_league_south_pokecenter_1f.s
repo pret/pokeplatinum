@@ -15,7 +15,7 @@ _001A:
     End
 
 _0020:
-    VisitPokecenter 0
+    CallPokecenterNurse 0
     End
 
 _002C:

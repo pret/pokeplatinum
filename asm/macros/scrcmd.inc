@@ -3225,7 +3225,7 @@
     .short \pokeballCount
     .endm
 
-    .macro VisitPokecenter nurseLocalID
+    .macro CallPokecenterNurse nurseLocalID
     SetVar VAR_0x8007, \nurseLocalID
     CallCommonScript 0x7D2
     .endm

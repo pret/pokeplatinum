@@ -2,7 +2,7 @@
   "key": 55507,
   "messages": [
     {
-      "id": "CommonStrings_Text_PokecenterHelloAndWelcome1",
+      "id": "CommonStrings_Text_PokecenterGreeting_Day",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",
@@ -31,7 +31,7 @@
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "CommonStrings_Text_PokecenterWelcomeInterrupted",
+      "id": "CommonStrings_Text_PokecenterGreeting_Interrupted",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PokecenterPleaseToTakeYourPokemon",
+      "id": "CommonStrings_Text_PokecenterTakeYourPokemon_GoldCard",
       "en_US": [
         "I will be pleased to take your\n",
         "Pokémon for a few seconds."
@@ -786,7 +786,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PokecenterGoodMorning",
+      "id": "CommonStrings_Text_PokecenterGreeting_Morning",
       "en_US": [
         "Good morning!\n",
         "Welcome to the Pokémon Center.\r",
@@ -796,7 +796,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PokecenterHelloAndWelcome2",
+      "id": "CommonStrings_Text_PokecenterGreeting_Night",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",

@@ -92,9 +92,9 @@ typedef struct UnkStruct_02066F88 {
     u16 unk_0E;
 } UnkStruct_02066F88;
 
-typedef struct NurseJoyBowMovementData {
+typedef struct PokecenterNurseBowMovementData {
     int timer;
-} NurseJoyBowMovementData;
+} PokecenterNurseBowMovementData;
 
 typedef struct RevealTrainerMovementData {
     u32 jumpHeightIndex;
@@ -1359,9 +1359,9 @@ static BOOL MovementAction_WalkEverSoSlightlyFast_Step1(MapObject *mapObj)
     return MovementAction_WalkUneven(mapObj, sStepSizes_WalkEverSoSlightlyFast) == TRUE;
 }
 
-static BOOL MovementAction_NurseJoyBow_Step0(MapObject *mapObj)
+static BOOL MovementAction_PokecenterNurseBow_Step0(MapObject *mapObj)
 {
-    NurseJoyBowMovementData *data = MapObject_InitMovementData(mapObj, sizeof(NurseJoyBowMovementData));
+    PokecenterNurseBowMovementData *data = MapObject_InitMovementData(mapObj, sizeof(PokecenterNurseBowMovementData));
 
     sub_02062A0C(mapObj, MAP_OBJ_UNK_A0_09);
     MapObject_AdvanceMovementStep(mapObj);
@@ -1369,9 +1369,9 @@ static BOOL MovementAction_NurseJoyBow_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_NurseJoyBow_Step1(MapObject *mapObj)
+static BOOL MovementAction_PokecenterNurseBow_Step1(MapObject *mapObj)
 {
-    NurseJoyBowMovementData *data = MapObject_GetMovementData(mapObj);
+    PokecenterNurseBowMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (++(data->timer) >= 8) {
         MapObject_TryFace(mapObj, DIR_SOUTH);
@@ -2603,9 +2603,9 @@ BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastEast[])(MapObject *) = {
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_NurseJoyBow[])(MapObject *) = {
-    MovementAction_NurseJoyBow_Step0,
-    MovementAction_NurseJoyBow_Step1,
+BOOL (*const gMovementActionFuncs_PokecenterNurseBow[])(MapObject *) = {
+    MovementAction_PokecenterNurseBow_Step0,
+    MovementAction_PokecenterNurseBow_Step1,
     MovementAction_End,
 };
 
