@@ -576,8 +576,8 @@ static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
 static BOOL ScrCmd_195(ScriptContext *ctx);
 static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx);
-static BOOL ScrCmd_1EA(ScriptContext *ctx);
-static BOOL ScrCmd_1EB(ScriptContext *ctx);
+static BOOL ScrCmd_ShowDiplomaSinnoh(ScriptContext *ctx);
+static BOOL ScrCmd_ShowDiplomaNationalDex(ScriptContext *ctx);
 static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx);
 static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1EF(ScriptContext *ctx);
@@ -1260,8 +1260,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_1E7,
     ScrCmd_CheckLocalDexCompleted,
     ScrCmd_CheckNationalDexCompleted,
-    ScrCmd_1EA,
-    ScrCmd_1EB,
+    ScrCmd_ShowDiplomaSinnoh,
+    ScrCmd_ShowDiplomaNationalDex,
     ScrCmd_AddTrophyGardenMon,
     ScrCmd_GetTrophyGardenSlot1Species,
     ScrCmd_GetPartyMonHeldItem_Unused,
@@ -6019,21 +6019,21 @@ static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1EA(ScriptContext *ctx)
+static BOOL ScrCmd_ShowDiplomaSinnoh(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E53C(ctx->fieldSystem, HEAP_ID_FIELD3, 0);
+    *data = FieldSystem_ShowDiploma(ctx->fieldSystem, HEAP_ID_FIELD3, FALSE);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_1EB(ScriptContext *ctx)
+static BOOL ScrCmd_ShowDiplomaNationalDex(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E53C(ctx->fieldSystem, HEAP_ID_FIELD3, 1);
+    *data = FieldSystem_ShowDiploma(ctx->fieldSystem, HEAP_ID_FIELD3, TRUE);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

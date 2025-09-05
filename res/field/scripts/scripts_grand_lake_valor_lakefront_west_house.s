@@ -34,7 +34,7 @@ _0057:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1EA
+    ShowDiplomaSinnoh
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -51,7 +51,7 @@ _0095:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1EB
+    ShowDiplomaNationalDex
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

@@ -23,7 +23,6 @@
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_0203E53C.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
@@ -31,6 +30,7 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/diploma.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
@@ -73,7 +73,6 @@
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
-#include "overlay102/ov102_021D0D80.h"
 #include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
@@ -171,7 +170,6 @@ FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(overlay96);
 FS_EXTERN_OVERLAY(overlay99);
 FS_EXTERN_OVERLAY(overlay101);
-FS_EXTERN_OVERLAY(overlay102);
 FS_EXTERN_OVERLAY(overlay110);
 FS_EXTERN_OVERLAY(overlay111);
 FS_EXTERN_OVERLAY(dw_warp);
@@ -1657,26 +1655,24 @@ void AccessoryShop_Init(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_AccessoryShop, shop);
 }
 
-void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2)
+void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDex)
 {
-    FS_EXTERN_OVERLAY(overlay102);
+    FS_EXTERN_OVERLAY(diploma);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov102_021D0D80,
-        ov102_021D0E2C,
-        ov102_021D0F50,
-        FS_OVERLAY_ID(overlay102),
+    static const ApplicationManagerTemplate template = {
+        Diploma_Init,
+        Diploma_Main,
+        Diploma_Exit,
+        FS_OVERLAY_ID(diploma),
     };
-    UnkStruct_0203E53C *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E53C));
+    DiplomaData *diplomaData = Heap_Alloc(heapID, sizeof(DiplomaData));
 
-    {
-        v1->unk_04 = param2;
-        v1->saveData = fieldSystem->saveData;
-    }
+    diplomaData->isNatDex = isNatDex;
+    diplomaData->saveData = fieldSystem->saveData;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, diplomaData);
 
-    return v1;
+    return diplomaData;
 }
 
 void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID)
