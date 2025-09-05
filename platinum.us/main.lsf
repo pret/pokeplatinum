@@ -914,11 +914,11 @@ Overlay overlay30
 	Object main.nef.p/src_overlay030_ov30_022563EC.c.o
 }
 
-Overlay overlay31
+Overlay poketch_dot_artist
 {
 	After overlay25
-	Object main.nef.p/src_overlay031_ov31_022561C0.c.o
-	Object main.nef.p/src_overlay031_ov31_02256554.c.o
+	Object main.nef.p/src_applications_poketch_dot_artist_main.c.o
+	Object main.nef.p/src_applications_poketch_dot_artist_graphics.c.o
 }
 
 Overlay overlay32
