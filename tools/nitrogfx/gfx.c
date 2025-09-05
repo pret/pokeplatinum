@@ -601,7 +601,7 @@ static int SnapToTile(int val)
     return val;
 }
 
-void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap)
+void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip)
 {
     char *cellFileExtension = GetFileExtension(cellFilePath);
     if (cellFileExtension == NULL)
@@ -780,7 +780,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             {
                 pixelOffset += options->transferData[i]->sourceDataOffset;
             }
-            if (tileMask[pixelOffset])
+            if (tileMask[pixelOffset] && !noSkip)
             {
                 uniqueOAMs--;
                 continue;
