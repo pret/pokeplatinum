@@ -6,6 +6,7 @@
 #include "bg_window.h"
 
 #define NUM_TASK_SLOTS 16
+#define NUM_SPRITES    2
 
 #define MEMO_PAD_WIDTH  78
 #define MEMO_PAD_HEIGHT 75
@@ -25,7 +26,7 @@ typedef struct MemoPadGraphics {
     u32 activeTasks[NUM_TASK_SLOTS + 2];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_SpriteData animData;
-    PoketchAnimation_AnimatedSpriteData *sprites[2];
+    PoketchAnimation_AnimatedSpriteData *sprites[NUM_SPRITES];
     Window *window;
 } MemoPadGraphics;
 

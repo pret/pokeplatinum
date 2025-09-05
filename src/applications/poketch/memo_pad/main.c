@@ -2,8 +2,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "constants/graphics.h"
-
 #include "applications/poketch/memo_pad/graphics.h"
 #include "applications/poketch/poketch_button.h"
 #include "applications/poketch/poketch_system.h"
@@ -82,7 +80,7 @@ static BOOL Init(PoketchMemoPad *appData, PoketchSystem *poketchSys, BgConfig *b
     appData->padState.pencilActive = TRUE;
 
     if (MemoPadGraphics_New(&appData->graphics, &appData->padState, bgConfig)) {
-        appData->activeTask = 0;
+        appData->activeTask = TASK_LOAD_APP;
         appData->taskFuncState = 0;
         appData->shouldExit = FALSE;
         appData->currentlyDrawing = FALSE;
@@ -209,9 +207,9 @@ static BOOL GetTouchStartLocation(PoketchMemoPad *appData)
     u32 x, y;
 
     if (PoketchSystem_GetDisplayHeldCoords(&x, &y)) {
-        if (((x - (2 * TILE_WIDTH_PIXELS)) < (2 * MEMO_PAD_WIDTH)) & ((y - (2 * TILE_HEIGHT_PIXELS)) < (2 * MEMO_PAD_HEIGHT))) {
-            x = (x - (2 * TILE_WIDTH_PIXELS)) / 2;
-            y = (y - (2 * TILE_WIDTH_PIXELS)) / 2;
+        if (((x - POKETCH_SCREEN_MIN_X) < (2 * MEMO_PAD_WIDTH)) & ((y - POKETCH_SCREEN_MIN_Y) < (2 * MEMO_PAD_HEIGHT))) {
+            x = (x - POKETCH_SCREEN_MIN_X) / 2;
+            y = (y - POKETCH_SCREEN_MIN_Y) / 2;
 
             appData->padState.pixels[x][y] = appData->padState.pencilActive;
             appData->padState.x = x;
@@ -229,9 +227,9 @@ static BOOL GetTouchContinueLocation(PoketchMemoPad *appData)
     u32 x, y;
 
     if (PoketchSystem_GetDisplayHeldCoords(&x, &y)) {
-        if (((x - (2 * TILE_WIDTH_PIXELS)) < (2 * MEMO_PAD_WIDTH)) & ((y - (2 * TILE_HEIGHT_PIXELS)) < (2 * MEMO_PAD_HEIGHT))) {
-            x = (x - (2 * TILE_WIDTH_PIXELS)) / 2;
-            y = (y - (2 * TILE_HEIGHT_PIXELS)) / 2;
+        if (((x - POKETCH_SCREEN_MIN_X) < (2 * MEMO_PAD_WIDTH)) & ((y - POKETCH_SCREEN_MIN_Y) < (2 * MEMO_PAD_HEIGHT))) {
+            x = (x - POKETCH_SCREEN_MIN_X) / 2;
+            y = (y - POKETCH_SCREEN_MIN_Y) / 2;
 
             appData->padState.x = x;
             appData->padState.y = y;

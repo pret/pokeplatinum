@@ -297,7 +297,7 @@ static void SetupSprites(MemoPadGraphics *graphics)
     static const PoketchAnimation_AnimationData animationData[] = {
         {
             .translation = { FX32_CONST(192), FX32_CONST(56) },
-            .animIdx = 0,
+            .animIdx = ERASER_UNPRESSED,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -305,7 +305,7 @@ static void SetupSprites(MemoPadGraphics *graphics)
         },
         {
             .translation = { FX32_CONST(192), FX32_CONST(136) },
-            .animIdx = 3,
+            .animIdx = PENCIL_PRESSED,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -317,7 +317,7 @@ static void SetupSprites(MemoPadGraphics *graphics)
 
     if (PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 33, 34, HEAP_ID_POKETCH_APP)) {
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < NUM_SPRITES; i++) {
             graphics->sprites[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData[i], &graphics->animData);
         }
     }
@@ -325,7 +325,7 @@ static void SetupSprites(MemoPadGraphics *graphics)
 
 static void UnloadSprites(MemoPadGraphics *graphics)
 {
-    for (u32 i = 0; i < 2; i++) {
+    for (u32 i = 0; i < NUM_SPRITES; i++) {
         PoketchAnimation_RemoveAnimatedSprite(graphics->animMan, graphics->sprites[i]);
     }
 
