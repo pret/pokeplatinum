@@ -29,7 +29,7 @@
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(poketch_stopwatch);
 FS_EXTERN_OVERLAY(overlay28);
-FS_EXTERN_OVERLAY(overlay29);
+FS_EXTERN_OVERLAY(poketch_memo_pad);
 FS_EXTERN_OVERLAY(overlay30);
 FS_EXTERN_OVERLAY(overlay31);
 FS_EXTERN_OVERLAY(overlay32);
@@ -87,7 +87,7 @@ static const struct {
     { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
     { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
-    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },
+    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
     { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
     { POKETCH_APPID_DOTART, FS_OVERLAY_ID(overlay31) },
     { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(overlay32) },
