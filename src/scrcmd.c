@@ -704,7 +704,7 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx);
 static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx);
 static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
-static BOOL ScrCmd_GetTrainerCardStars(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrainerCardLevel(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
@@ -1473,7 +1473,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2BB,
     ScrCmd_CheckDidNotCapture,
     ScrCmd_StartLegendaryBattle,
-    ScrCmd_GetTrainerCardStars,
+    ScrCmd_GetTrainerCardLevel,
     ScrCmd_2BF,
     ScrCmd_2C0,
     ScrCmd_OpenSaveInfo,
@@ -7380,7 +7380,7 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_GetTrainerCardStars(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrainerCardLevel(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destTrainerCardStars = ScriptContext_GetVarPointer(ctx);

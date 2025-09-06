@@ -4030,7 +4030,7 @@
     .short \level
     .endm
 
-    .macro GetTrainerCardStars destVar
+    .macro GetTrainerCardLevel destVar
     .short 702
     .short \destVar
     .endm
