@@ -27,7 +27,6 @@ prebuilt_files = [
     'oekaki.narc',
     'opening.narc',
     'pl_bag_gra.narc',
-    'pl_plist_gra.narc',
     'pl_wifinote.narc',
     'plist_gra.narc',
     'pmsi.narc',
