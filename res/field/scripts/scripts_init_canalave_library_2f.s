@@ -1,14 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 5, 0
-    .byte 1
-    ScriptEntry _000B
-    .byte 0
+    InitScriptEntry_EnterLocation 5
+    InitScriptEntry_ConditionMet InitScriptConditions
+    InitScriptEntryEnd
 
-_000B:
-    .short 0x4056, 2, 6
-    .short 0
+InitScriptConditions:
+    InitScriptGoToIfEqual VAR_ARCEUS_EVENT_STATE, 2, 6
+    InitScriptConditionsEnd
 
-    .balign 4, 0
+    InitScriptEnd
