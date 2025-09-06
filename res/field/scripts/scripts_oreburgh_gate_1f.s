@@ -26,7 +26,7 @@ _0014:
 _003A:
     GoToIfSet FLAG_UNK_0x0093, _0064
     Message 0
-    SetVar VAR_0x8004, 0x1A9
+    SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Call _006F
@@ -50,7 +50,7 @@ _007B:
     ApplyMovement LOCALID_PLAYER, _00B4
     WaitMovement
     Message 0
-    SetVar VAR_0x8004, 0x1A9
+    SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Call _006F

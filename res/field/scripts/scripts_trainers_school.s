@@ -31,7 +31,7 @@ _0032:
     BufferPlayerName 0
     BufferRivalName 1
     Message 2
-    SetVar VAR_0x8004, 0x1BA
+    SetVar VAR_0x8004, ITEM_TOWN_MAP
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     BufferRivalName 1

@@ -254,7 +254,7 @@ _03BB:
 
 _03C0:
     Message 20
-    SetVar VAR_0x8004, 0x1D1
+    SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 21
@@ -984,7 +984,7 @@ _0C7C:
     End
 
 _0CF0:
-    SetVar VAR_0x8004, 0x1B3
+    SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00F2
@@ -998,7 +998,7 @@ _0CF0:
     Call _0D72
     Call _0D72
     Call _0D72
-    ScrCmd_1D5 0
+    AddContestBackdrop 0
     SetVar VAR_MAP_LOCAL_1, 0x270F
     Call _0D8C
     Call _0D8C
@@ -1008,14 +1008,14 @@ _0D58:
     GetRandom VAR_RESULT, 6
     SetVar VAR_0x8004, 0
     AddVar VAR_0x8004, VAR_RESULT
-    ScrCmd_1D2 VAR_0x8004, 1
+    AddAccessory VAR_0x8004, 1
     Return
 
 _0D72:
     GetRandom VAR_RESULT, 6
     SetVar VAR_0x8004, 18
     AddVar VAR_0x8004, VAR_RESULT
-    ScrCmd_1D2 VAR_0x8004, 1
+    AddAccessory VAR_0x8004, 1
     Return
 
 _0D8C:
@@ -1024,7 +1024,7 @@ _0D8C:
     SetVar VAR_MAP_LOCAL_1, VAR_RESULT
     SetVar VAR_0x8004, 1
     AddVar VAR_0x8004, VAR_RESULT
-    ScrCmd_1D5 VAR_0x8004
+    AddContestBackdrop VAR_0x8004
     Return
 
 _0DB7:
@@ -1442,9 +1442,9 @@ _11CC:
     End
 
 _11F8:
-    CallIfSet FLAG_UNK_0x00ED, _121B
-    CallIfSet FLAG_UNK_0x00EE, _121B
-    CallIfSet FLAG_UNK_0x00EF, _121B
+    CallIfSet FLAG_OBTAINED_COUPON_1, _121B
+    CallIfSet FLAG_OBTAINED_COUPON_2, _121B
+    CallIfSet FLAG_OBTAINED_COUPON_3, _121B
     Return
 
 _121B:
@@ -1526,7 +1526,7 @@ _1320:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00ED, _138C
+    GoToIfSet FLAG_OBTAINED_COUPON_1, _138C
     Message 45
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _1356
@@ -1538,9 +1538,9 @@ _1356:
     Message 46
     Message 48
     Message 49
-    SetVar VAR_0x8004, 0x1CC
+    SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_UNK_0x00ED
+    SetFlag FLAG_OBTAINED_COUPON_1
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1565,7 +1565,7 @@ _1397:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00EE, _1403
+    GoToIfSet FLAG_OBTAINED_COUPON_2, _1403
     Message 51
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _13CD
@@ -1577,9 +1577,9 @@ _13CD:
     Message 52
     Message 54
     Message 55
-    SetVar VAR_0x8004, 0x1CD
+    SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_UNK_0x00EE
+    SetFlag FLAG_OBTAINED_COUPON_2
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1605,7 +1605,7 @@ _140E:
     LockAll
     FacePlayer
     GoToIfLt VAR_UNK_0x40E7, 2, _149E
-    GoToIfSet FLAG_UNK_0x00EF, _1493
+    GoToIfSet FLAG_OBTAINED_COUPON_3, _1493
     Message 57
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _1451
@@ -1618,9 +1618,9 @@ _1451:
     Message 60
     Message 61
     SetPosition 23, 174, 1, 0x303, 1
-    SetVar VAR_0x8004, 0x1CE
+    SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_UNK_0x00EF
+    SetFlag FLAG_OBTAINED_COUPON_3
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

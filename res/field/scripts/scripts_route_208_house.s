@@ -58,7 +58,7 @@ _007C:
 _00C7:
     Message 3
     SetVar VAR_MAP_LOCAL_0, 1
-    SetVar VAR_0x8004, 7
+    SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

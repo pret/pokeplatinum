@@ -20,13 +20,13 @@ _001D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x8004, 0x1BD
+    SetVar VAR_0x8004, ITEM_OLD_ROD
     BufferItemName 0, VAR_0x8004
-    GoToIfSet FLAG_UNK_0x0084, _005E
+    GoToIfSet FLAG_OLD_ROD_OBTAINED, _005E
     Message 1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00A7
-    GoToIfEq VAR_RESULT, MENU_NO, _009C
+    GoToIfEq VAR_RESULT, MENU_YES, AcceptOldRod
+    GoToIfEq VAR_RESULT, MENU_NO, RefuseOldRod
     End
 
 _005E:
@@ -51,19 +51,19 @@ _0091:
     ReleaseAll
     End
 
-_009C:
+RefuseOldRod:
     Message 4
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A7:
+AcceptOldRod:
     BufferItemName 0, VAR_0x8004
     Message 2
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0084
+    SetFlag FLAG_OLD_ROD_OBTAINED
     GoTo _005E
 
     .balign 4, 0
