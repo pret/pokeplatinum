@@ -39,6 +39,7 @@ struct PngToNtrOptions {
     bool handleEmpty;
     bool vramTransfer;
     int mappingType;
+    bool convertTo4Bpp;
 };
 
 struct NtrToPngOptions {
@@ -54,6 +55,7 @@ struct NtrToPngOptions {
     int palIndex;
     bool scanFrontToBack;
     bool handleEmpty;
+    bool convertTo8Bpp;
 };
 
 struct CellVramTransferData {
