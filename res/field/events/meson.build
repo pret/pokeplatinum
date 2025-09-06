@@ -1,7 +1,8 @@
 event_bin_gen = generator(
     event_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@'
+    output: '@BASENAME@',
+    depends: [ py_consts_generators ],
 )
 
 events_files = files(

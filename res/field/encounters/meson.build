@@ -1,7 +1,8 @@
 enc_bin_gen = generator(
     encounter_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@'
+    output: '@BASENAME@',
+    depends: [ py_consts_generators ],
 )
 
 pl_enc_data_srcs = files(
@@ -217,7 +218,8 @@ enc_ex_er_bin_gen = generator(
     output: [
         '@BASENAME@_species.bin',
         '@BASENAME@_tiles.bin',
-    ]
+    ],
+    depends: [ py_consts_generators ],
 )
 enc_ex_ht_bin_gen = generator(
     encdata_ex_honey_trees_py,
@@ -226,12 +228,15 @@ enc_ex_ht_bin_gen = generator(
         '@BASENAME@_common.bin',
         '@BASENAME@_uncommon.bin',
         '@BASENAME@_rare.bin',
-    ]
+    ],
+    depends: [ py_consts_generators ],
 )
 enc_ex_tg_bin_gen = generator(
     encdata_ex_trophy_garden_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@_dailies.bin'
+    output: '@BASENAME@_dailies.bin',
+    depends: [ py_consts_generators ],
+
 )
 enc_ex_gm_bin_gen = generator(
     encdata_ex_great_marsh_py,
@@ -240,7 +245,9 @@ enc_ex_gm_bin_gen = generator(
         '@BASENAME@_natdex.bin',
         '@BASENAME@_local.bin',
         '@BASENAME@_coords.bin',
-    ]
+    ],
+    depends: [ py_consts_generators ],
+
 )
 
 encdata_ex_elusive_rod_src = files('encounters_mt_coronet_b1f.json')
