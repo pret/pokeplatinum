@@ -178,7 +178,7 @@ _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
     CallCommonScript 0x7FB
-    SetVar VAR_UNK_0x4079, 3
+    SetVar VAR_OREBURGH_STATE, 3
     ReleaseAll
     End
 
@@ -410,7 +410,7 @@ _0544:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x801
-    SetVar VAR_UNK_0x4079, 1
+    SetVar VAR_OREBURGH_STATE, 1
     ReleaseAll
     End
 
