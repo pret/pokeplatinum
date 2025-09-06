@@ -220,7 +220,10 @@ h_headers += datagen_species_out[12]
 
 # OLD NARCs
 pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
-    output: 'pl_poke_icon.narc',
+    output: [
+        'pl_poke_icon.narc',
+        'pl_poke_icon.naix.h',
+    ],
     input: [
         icons_shared,
         poke_icon_files
@@ -230,12 +233,14 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
         make_pl_poke_icon_py,
         '--nitrogfx', nitrogfx_exe,
         '--narc', narc_exe,
+        '--order-file', files('species_icons.order'),
         '--shared-dir', '@CURRENT_SOURCE_DIR@/.shared',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         poke_icon_files,
     ],
 )
+naix_headers += pl_poke_icon_narc[1]
 
 pl_pokegra_narc = custom_target('pl_pokegra.narc',
     output: 'pl_pokegra.narc',
