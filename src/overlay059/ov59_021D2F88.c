@@ -242,5 +242,5 @@ void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
     sub_0202E2EC(broadcast);
-    sub_0202E35C(broadcast);
+    TVBroadcast_ClearWatchProgress(broadcast);
 }

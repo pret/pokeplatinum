@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_0202440C_H
 #define POKEPLATINUM_STRUCT_0202440C_H
 
+#include "constants/tv_broadcast.h"
+
 #include "struct_defs/struct_0202E768.h"
 #include "struct_defs/struct_0202E794.h"
 #include "struct_defs/struct_0202E7D8.h"
@@ -13,10 +15,12 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
+#define TV_BROADCAST_MAX_PLAYED_SEGMENTS 4
+
 typedef struct TVBroadcast {
-    u8 unk_00[4];
-    int unk_04;
-    u8 unk_08;
+    u8 playedSegments[TV_BROADCAST_MAX_PLAYED_SEGMENTS];
+    int timeSlotMinutesRemaining;
+    u8 programFinished;
     UnkStruct_0202E768 unk_0C[4];
     UnkStruct_0202E768 unk_C4[4];
     UnkStruct_0202E768 unk_17C[4];

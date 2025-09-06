@@ -288,7 +288,7 @@ static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_02A(ScriptContext *ctx);
 static BOOL ScrCmd_MessageInstant(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx);
-static BOOL ScrCmd_1FB(ScriptContext *ctx);
+static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx);
 static BOOL ScrCmd_1FE(ScriptContext *ctx);
@@ -1277,7 +1277,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1F8,
     ScrCmd_Dummy1F9,
     ScrCmd_Unused_1FA,
-    ScrCmd_1FB,
+    ScrCmd_ExternalMessage,
     ScrCmd_Unused_1FC,
     ScrCmd_Unused_1FD,
     ScrCmd_1FE,
@@ -1335,10 +1335,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferRibbonName,
     ScrCmd_GetPartyMonEVTotal,
     ScrCmd_GetDayOfWeek,
-    ScrCmd_235,
+    ScrCmd_TVBroadcastCall,
     ScrCmd_236,
-    ScrCmd_237,
-    ScrCmd_238,
+    ScrCmd_TVInterviewCall,
+    ScrCmd_CheckTVInterview,
     ScrCmd_239,
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
@@ -2053,13 +2053,13 @@ static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1FB(ScriptContext *ctx)
+static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 bankID = ScriptContext_GetVar(ctx);
+    u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD3);
-    ScriptMessage_Show(ctx, msgLoader, v2, TRUE, NULL);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    ScriptMessage_Show(ctx, msgLoader, messageID, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);

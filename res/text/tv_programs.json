@@ -2,7 +2,7 @@
   "key": 50512,
   "messages": [
     {
-      "id": "pl_msg_00000622_00000",
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodMorning",
       "en_US": [
         "MC: Good morning!\n",
         "Is everyone raising Pokémon?\r",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00001",
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodDay",
       "en_US": [
         "MC: Good day!\n",
         "Is everyone raising Pokémon?\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00002",
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodEvening",
       "en_US": [
         "MC: Good evening!\n",
         "Is everyone raising Pokémon?\r",
@@ -26,21 +26,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00003",
+      "id": "TVBroadcast_Text_BattlingTrainers_LeadSegment",
       "en_US": [
         "OK, let’s get with it and check in\n",
         "on our Trainers!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00004",
+      "id": "TVBroadcast_Text_BattlingTrainers_NextSegment",
       "en_US": [
         "MC: All righty!\n",
         "What’s next on Battling Trainers?\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00005",
+      "id": "TVBroadcast_Text_BattlingTrainers_Farewell",
       "en_US": [
         "MC: I hope you enjoyed this\n",
         "showing of Battling Trainers.\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00006",
+      "id": "TVBroadcast_Text_BattlingTrainers_FarewellExtended",
       "en_US": [
         "MC: On Battling Trainers, we’re\n",
         "always on the hunt for news.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00007",
+      "id": "TVBroadcast_Text_TrainerResearch_GoodMorning",
       "en_US": [
         "MC: Good morning.\n",
         "It’s time for Trainer Research.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00008",
+      "id": "TVBroadcast_Text_TrainerResearch_GoodDay",
       "en_US": [
         "MC: Good day.\n",
         "It’s time for Trainer Research.\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00009",
+      "id": "TVBroadcast_Text_TrainerResearch_GoodEvening",
       "en_US": [
         "MC: Good evening.\n",
         "It’s time for Trainer Research.\r",
@@ -89,21 +89,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00010",
+      "id": "TVBroadcast_Text_TrainerResearch_LeadSegment",
       "en_US": [
         "OK, let’s take a look at the first\n",
         "piece of research we conducted.\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00011",
+      "id": "TVBroadcast_Text_TrainerResearch_NextSegment",
       "en_US": [
         "MC: Next up is this piece of\n",
         "research.\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00012",
+      "id": "TVBroadcast_Text_TrainerResearch_Farewell",
       "en_US": [
         "MC: We hope you enjoyed this edition\n",
         "of Trainer Research.\r",
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00013",
+      "id": "TVBroadcast_Text_TrainerResearch_FarewellExtended",
       "en_US": [
         "MC: On Trainer Research, we always\n",
         "seek Trainers willing to be interviewed\f",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00014",
+      "id": "TVBroadcast_Text_BattleWatch_GoodMorning",
       "en_US": [
         "MC: Pokémon! Battle! Watch!\r",
         "Good morning!\n",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00015",
+      "id": "TVBroadcast_Text_BattleWatch_GoodDay",
       "en_US": [
         "MC: Pokémon! Battle! Watch!\r",
         "Good day!\n",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00016",
+      "id": "TVBroadcast_Text_BattleWatch_GoodEvening",
       "en_US": [
         "MC: Pokémon! Battle! Watch!\r",
         "Good evening!\n",
@@ -159,21 +159,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00017",
+      "id": "TVBroadcast_Text_BattleWatch_LeadSegment",
       "en_US": [
         "Let’s get on with the show!\n",
         "Battle! Watch!\r"
-      ]
+       ]
     },
     {
-      "id": "pl_msg_00000622_00018",
+      "id": "TVBroadcast_Text_BattleWatch_NextSegment",
       "en_US": [
         "MC: Let’s move to the next segment!\n",
         "Battle! Watch!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00019",
+      "id": "TVBroadcast_Text_BattleWatch_Farewell",
       "en_US": [
         "MC: Oops, looks like we’re all out\n",
         "of time!\r",
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00020",
+      "id": "TVBroadcast_Text_BattleWatch_FarewellExtended",
       "en_US": [
         "MC: Pokémon Battle Watch needs\n",
         "your help!\r",
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00021",
+      "id": "TVBroadcast_Text_TrainersDay_GoodMorning",
       "en_US": [
         "MC: A Trainer’s Day!\r",
         "This program offers unique looks into\n",
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00022",
+      "id": "TVBroadcast_Text_TrainersDay_GoodDay",
       "en_US": [
         "MC: A Trainer’s Day!\r",
         "This program offers unique looks into\n",
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00023",
+      "id": "TVBroadcast_Text_TrainersDay_GoodEvening",
       "en_US": [
         "MC: A Trainer’s Day!\r",
         "This program offers unique looks into\n",
@@ -227,21 +227,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00024",
+      "id": "TVBroadcast_Text_TrainersDay_LeadSegment",
       "en_US": [
         "Let’s examine one aspect of\n",
         "a Trainer’s day.\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00025",
+      "id": "TVBroadcast_Text_TrainersDay_NextSegment",
       "en_US": [
         "MC: Let’s take a look at a Trainer’s\n",
         "day from another perspective.\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00026",
+      "id": "TVBroadcast_Text_TrainersDay_Farewell",
       "en_US": [
         "MC: This brings us to the conclusion\n",
         "of today’s A Trainer’s Day.\r",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00027",
+      "id": "TVBroadcast_Text_TrainersDay_FarewellExtended",
       "en_US": [
         "MC: We seek tips on Trainer-related\n",
         "news for coverage on the show.\r",
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00028",
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodMorning",
       "en_US": [
         "MC: Sinnoh News Net.\r",
         "Good morning.\n",
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00029",
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodDay",
       "en_US": [
         "MC: Sinnoh News Net.\r",
         "Hello.\n",
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00030",
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodEvening",
       "en_US": [
         "MC: Sinnoh News Net.\r",
         "Good evening.\n",
@@ -292,22 +292,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00031",
+      "id": "TVBroadcast_Text_SinnohNewsNet_LeadSegment",
       "en_US": "This is today’s lead story.\r"
     },
     {
-      "id": "pl_msg_00000622_00032",
+      "id": "TVBroadcast_Text_SinnohNewsNet_NextSegment",
       "en_US": "We now bring you this news story.\r"
     },
     {
-      "id": "pl_msg_00000622_00033",
+      "id": "TVBroadcast_Text_SinnohNewsNet_Farewell",
       "en_US": [
         "MC: That’s all the news today.\n",
         "Thank you for watching."
       ]
     },
     {
-      "id": "pl_msg_00000622_00034",
+      "id": "TVBroadcast_Text_SinnohNewsNet_FarewellExtended",
       "en_US": [
         "MC: Sinnoh News Net has crews\n",
         "gathering news all over Sinnoh.\r",
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00035",
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodMorning",
       "en_US": [
         "MC: Good morning!\r",
         "It’s now time for Rack ’Em Up\n",
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00036",
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodDay",
       "en_US": [
         "MC: Hello!\r",
         "It’s now time for Rack ’Em Up\n",
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00037",
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodEvening",
       "en_US": [
         "MC: Good evening!\r",
         "It’s now time for Rack ’Em Up\n",
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00038",
+      "id": "TVBroadcast_Text_RackEmUpRecords_LeadSegment",
       "en_US": [
         "All right, let’s have our experts\n",
         "Serge and Tanya take over.\r",
@@ -360,14 +360,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00039",
+      "id": "TVBroadcast_Text_RackEmUpRecords_NextSegment",
       "en_US": [
         "MC: Let’s have our experts examine\n",
         "another eyebrow-raising record!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00040",
+      "id": "TVBroadcast_Text_RackEmUpRecords_Farewell",
       "en_US": [
         "MC: We hope you enjoyed today’s\n",
         "Rack ’Em Up Records as we did.\r",
@@ -376,7 +376,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00041",
+      "id": "TVBroadcast_Text_RackEmUpRecords_FarewellExtended",
       "en_US": [
         "MC: Rack ’Em Up Records wants to\n",
         "hear from you!\r",
@@ -393,7 +393,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00042",
+      "id": "TVBroadcast_Text_SinnohNow_GoodMorning",
       "en_US": [
         "MC: Sinnoh! Now!\r",
         "This is it!\n",
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00043",
+      "id": "TVBroadcast_Text_SinnohNow_GoodDay",
       "en_US": [
         "MC: Sinnoh! Now!\r",
         "This is it!\n",
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00044",
+      "id": "TVBroadcast_Text_SinnohNow_GoodEvening",
       "en_US": [
         "MC: Sinnoh! Now!\r",
         "This is it!\n",
@@ -423,21 +423,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00045",
+      "id": "TVBroadcast_Text_SinnohNow_LeadSegment",
       "en_US": [
         "Here’s the first story on the cutting\n",
         "edge of Sinnoh trends!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00046",
+      "id": "TVBroadcast_Text_SinnohNow_NextSegment",
       "en_US": [
         "MC: Here’s another story on the\n",
         "cutting edge!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00047",
+      "id": "TVBroadcast_Text_SinnohNow_Farewell",
       "en_US": [
         "MC: Did you enjoy this edition of\n",
         "Sinnoh Now?\r",
@@ -447,7 +447,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00048",
+      "id": "TVBroadcast_Text_SinnohNow_FarewellExtended",
       "en_US": [
         "MC: Sinnoh Now goes the extra\n",
         "distance to bring you news.\r",
@@ -457,7 +457,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00049",
+      "id": "TVBroadcast_Text_TrendTracker_GoodMorning",
       "en_US": [
         "MC: Good morning!\r",
         "Tune in to this show and you’ll always\n",
@@ -467,7 +467,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00050",
+      "id": "TVBroadcast_Text_TrendTracker_GoodDay",
       "en_US": [
         "MC: Hello!\r",
         "Tune in to this show and you’ll always\n",
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00051",
+      "id": "TVBroadcast_Text_TrendTracker_GoodEvening",
       "en_US": [
         "MC: Good evening!\r",
         "Tune in to this show and you’ll always\n",
@@ -487,21 +487,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00052",
+      "id": "TVBroadcast_Text_TrendTracker_LeadSegment",
       "en_US": [
         "Let’s go to our latest trendy news\n",
         "story. Take it away!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00053",
+      "id": "TVBroadcast_Text_TrendTracker_NextSegment",
       "en_US": [
         "Don’t go away, we have another\n",
         "trendy news story next!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00054",
+      "id": "TVBroadcast_Text_TrendTracker_Farewell",
       "en_US": [
         "MC: We do hope you found the Trend\n",
         "Tracker Show informative.\r",
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00055",
+      "id": "TVBroadcast_Text_TrendTracker_FarewellExtended",
       "en_US": [
         "MC: We do hope you found the Trend\n",
         "Tracker Show informative.\r",
@@ -523,7 +523,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00056",
+      "id": "TVBroadcast_Text_VarietyHour_GoodMorning",
       "en_US": [
         "MC: Good morning, everyone!\n",
         "Feeling groovy like GROVYLE?\f",
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00057",
+      "id": "TVBroadcast_Text_VarietyHour_GoodDay",
       "en_US": [
         "MC: Hey there, everyone!\n",
         "Everyone feel happy like HAPPINY?\f",
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00058",
+      "id": "TVBroadcast_Text_VarietyHour_GoodEvening",
       "en_US": [
         "MC: Good evening, everyone!\n",
         "Ready to buzz through like ELECTABUZZ?\f",
@@ -553,7 +553,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00059",
+      "id": "TVBroadcast_Text_VarietyHour_LeadSegment",
       "en_US": [
         "So, what do our hosts have in store\n",
         "for you today?\r",
@@ -561,14 +561,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00060",
+      "id": "TVBroadcast_Text_VarietyHour_NextSegment",
       "en_US": [
         "MC: No time to waste!\n",
         "Here’s the next show!\r"
       ]
     },
     {
-      "id": "pl_msg_00000622_00061",
+      "id": "TVBroadcast_Text_VarietyHour_Farewell",
       "en_US": [
         "MC: OK, everyone! Hope you enjoyed\n",
         "the Pokémon Variety Hour!\r",
@@ -577,7 +577,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000622_00062",
+      "id": "TVBroadcast_Text_VarietyHour_FarewellExtended",
       "en_US": [
         "MC: The Pokémon Variety Hour will bring\n",
         "you all sorts of hot programs!\r",
