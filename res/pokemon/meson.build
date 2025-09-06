@@ -225,6 +225,7 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
         icons_shared,
         poke_icon_files
     ],
+    depends: [ py_consts_generators ],
     command: [
         make_pl_poke_icon_py,
         '--nitrogfx', nitrogfx_exe,
@@ -232,8 +233,8 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
         '--shared-dir', '@CURRENT_SOURCE_DIR@/.shared',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        poke_icon_files
-    ]
+        poke_icon_files,
+    ],
 )
 
 pl_pokegra_narc = custom_target('pl_pokegra.narc',
@@ -248,7 +249,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-    ]
+    ],
 )
 
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
@@ -260,6 +261,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         otherpoke_files,
         form_sprites_shared,
     ],
+    depends: [ py_consts_generators ],
     command: [
         make_pl_otherpoke_py,
         '--nitrogfx', nitrogfx_exe,
@@ -270,7 +272,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         '--palette-entries', '94',
         otherpoke_files,
         form_sprites_shared,
-    ]
+    ],
 )
 naix_headers += pl_otherpoke_narc[1]
 
@@ -285,7 +287,7 @@ pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         sinnoh_pokedex
-    ]
+    ],
 )
 
 shinzukan_narc = custom_target('shinzukan.narc',
@@ -302,7 +304,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         sinnoh_pokedex
-    ]
+    ],
 )
 h_headers += shinzukan_narc[1]
 
@@ -316,7 +318,8 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         pl_growtbl_files
-    ]
+    ],
+    depends: [ py_consts_generators ],
 )
 
 pokedex_data_narc = custom_target('zukan_data.narc',

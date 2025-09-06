@@ -1,7 +1,9 @@
 matrix_bin_gen = generator(
     map_matrix_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@.bin'
+    output: '@BASENAME@.bin',
+    depends: [ py_consts_generators ],
+
 )
 
 matrix_data_srcs = files(
