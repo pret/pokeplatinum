@@ -218,7 +218,7 @@ res/prebuilt/graphic/oekaki.narc,/graphic/oekaki.narc
 res/prebuilt/graphic/opening.narc,/graphic/opening.narc
 res/graphics/bag/bag_graphics.narc,/graphic/pl_bag_gra.narc
 res/fonts/pl_font.narc,/graphic/pl_font.narc
-res/prebuilt/graphic/pl_plist_gra.narc,/graphic/pl_plist_gra.narc
+res/graphics/party_menu/party_menu_graphics.narc,/graphic/pl_plist_gra.narc
 res/graphics/pokemon_summary_screen/pl_pst_gra.narc,/graphic/pl_pst_gra.narc
 res/prebuilt/graphic/pl_wifinote.narc,/graphic/pl_wifinote.narc
 res/graphics/windows/pl_winframe.narc,/graphic/pl_winframe.narc

@@ -66,6 +66,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/party_menu/party_menu_graphics.naix.h"
 #include "res/text/bank/party_menu.h"
 
 FS_EXTERN_OVERLAY(overlay118);
@@ -913,7 +914,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        15,
+        menu_tiles_NCGR,
         application->bgConfig,
         BG_LAYER_MAIN_3,
         0,
@@ -922,7 +923,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
         HEAP_ID_PARTY_MENU);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        17,
+        menu_NSCR,
         application->bgConfig,
         BG_LAYER_MAIN_3,
         0,
@@ -931,7 +932,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
         HEAP_ID_PARTY_MENU);
 
     NNSG2dPaletteData *plttData;
-    void *nclr = NARC_AllocAndReadWholeMember(narc, 16, HEAP_ID_PARTY_MENU);
+    void *nclr = NARC_AllocAndReadWholeMember(narc, menu_NCLR, HEAP_ID_PARTY_MENU);
     NNS_G2dGetUnpackedPaletteData(nclr, &plttData);
     Bg_LoadPalette(BG_LAYER_MAIN_3, plttData->pRawData, plttData->szByte, 0);
 
@@ -941,29 +942,54 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
 
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_PARTY_MENU);
     LoadStandardWindowGraphics(application->bgConfig, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_PARTY_MENU);
-    LoadMessageBoxGraphics(application->bgConfig, BG_LAYER_MAIN_0, 1 + 9, 15, Options_Frame(application->partyMenu->options), HEAP_ID_PARTY_MENU);
+    LoadMessageBoxGraphics(
+        application->bgConfig,
+        BG_LAYER_MAIN_0,
+        1 + STANDARD_WINDOW_TILE_SIZE,
+        15,
+        Options_Frame(application->partyMenu->options),
+        HEAP_ID_PARTY_MENU);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        3,
+        touch_button_NCGR,
         application->bgConfig,
         BG_LAYER_SUB_0,
         0,
         0,
         FALSE,
         HEAP_ID_PARTY_MENU);
-    Graphics_LoadPaletteFromOpenNARC(narc, 4, PAL_LOAD_SUB_BG, PLTT_OFFSET(1), PALETTE_SIZE_BYTES, HEAP_ID_PARTY_MENU);
+    Graphics_LoadPaletteFromOpenNARC(
+        narc,
+        touch_button_NCLR,
+        PAL_LOAD_SUB_BG,
+        PLTT_OFFSET(1),
+        PALETTE_SIZE_BYTES,
+        HEAP_ID_PARTY_MENU);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        12,
+        subscreen_tiles_NCGR,
         application->bgConfig,
         BG_LAYER_SUB_1,
         0,
         0,
         FALSE,
         HEAP_ID_PARTY_MENU);
-
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 14, application->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_PARTY_MENU);
-    Graphics_LoadPaletteFromOpenNARC(narc, 13, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_PARTY_MENU);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        narc,
+        subscreen_NSCR,
+        application->bgConfig,
+        BG_LAYER_SUB_1,
+        0,
+        0,
+        FALSE,
+        HEAP_ID_PARTY_MENU);
+    Graphics_LoadPaletteFromOpenNARC(
+        narc,
+        subscreen_NCLR,
+        PAL_LOAD_SUB_BG,
+        PLTT_OFFSET(0),
+        PALETTE_SIZE_BYTES,
+        HEAP_ID_PARTY_MENU);
 
     PartyMenu_LoadMemberPanelTilemaps(HEAP_ID_PARTY_MENU, application->leadMemberPanel, application->backMemberPanel, application->noneMemberPanel);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
