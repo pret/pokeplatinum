@@ -3243,18 +3243,26 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_237 arg0, arg1, arg2, arg3
+    .macro TVInterviewCall callID, segmentID, arg2, arg3
     .short 567
-    .short \arg0
-    .short \arg1
+    .short \callID
+    .short \segmentID
     .short \arg2
     .short \arg3
     .endm
 
-    .macro ScrCmd_238 arg0, arg1
+    .macro ShowTVInterviewMessage segmentID, bankDestVar, messageDestVar
+    TVInterviewCall TV_INTERVIEW_CALL_SHOW_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro SaveTVInterviewResponse segmentID, customWordMessage, unused
+    TVInterviewCall TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
+    .endm
+
+    .macro CheckTVInterview segmentID, destVar
     .short 568
-    .short \arg0
-    .short \arg1
+    .short \segmentID
+    .short \destVar
     .endm
 
     .macro ScrCmd_239 arg0

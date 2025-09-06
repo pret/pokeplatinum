@@ -227,7 +227,7 @@ static void ov6_02246844(FieldSystem *fieldSystem, int programType, u8 *pendingS
     for (segmentIndex = 0; *pendingSegments != NULL && segmentIndex < TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS; pendingSegments++, segmentIndex++) {
         v1 = ov6_022465A0(fieldSystem, programType, *pendingSegments);
 
-        if (!sub_0206CD2C(programType, fieldSystem, v1)) {
+        if (!TVBroadcastSegment_IsEligible(programType, fieldSystem, v1)) {
             *pendingSegments = NULL;
         }
 
@@ -352,7 +352,7 @@ BOOL TVBroadcast_LoadSegmentMessage(FieldSystem *fieldSystem, StringTemplate *te
     segment = ov6_022465A0(fieldSystem, programType, segmentID);
 
     ov6_0224647C(segment);
-    *messageDestVar = sub_0206CD00(programType, fieldSystem, template, segment, bankDestVar);
+    *messageDestVar = TVBroadcastSegment_LoadMessage(programType, fieldSystem, template, segment, bankDestVar);
     ov6_022465F4(segment);
 
     return TRUE;

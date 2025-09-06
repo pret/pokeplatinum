@@ -156,7 +156,7 @@ static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-BOOL sub_0202E43C(TVBroadcast *broadcast, int param1, int param2, const u8 *param3)
+BOOL TVBroadcast_SaveSegmentData(TVBroadcast *broadcast, int param1, int param2, const u8 *param3)
 {
     int i;
     UnkStruct_0202E768 *v1 = sub_0202E4DC(broadcast, param1);

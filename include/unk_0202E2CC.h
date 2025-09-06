@@ -25,7 +25,7 @@ BOOL TVBroadcast_IsProgramFinished(const TVBroadcast *broadcast);
 void TVBroadcast_SetPlayedSegment(TVBroadcast *broadcast, int segmentID);
 BOOL TVBroadcast_IsPlayedSegment(const TVBroadcast *broadcast, int segmentID);
 int TVBroadcast_CountPlayedSegments(const TVBroadcast *broadcast);
-BOOL sub_0202E43C(TVBroadcast *broadcast, int param1, int param2, const u8 *param3);
+BOOL TVBroadcast_SaveSegmentData(TVBroadcast *broadcast, int param1, int param2, const u8 *param3);
 const u16 *sub_0202E4C8(const UnkStruct_0202E794 *param0);
 int sub_0202E4CC(const UnkStruct_0202E794 *param0);
 int sub_0202E4D0(const UnkStruct_0202E794 *param0);
