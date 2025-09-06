@@ -3,6 +3,15 @@
 
 #include "pokemon.h"
 
+enum PokemonIconAnim {
+    POKEICON_ANIM_FAINTED = 0,
+    POKEICON_ANIM_HP_MAX,
+    POKEICON_ANIM_HP_GREEN,
+    POKEICON_ANIM_HP_YELLOW,
+    POKEICON_ANIM_HP_RED,
+    POKEICON_ANIM_STATUSED,
+};
+
 /**
  * @brief Get the index of the sprite-tiles file used for a given BoxPokemon.
  *

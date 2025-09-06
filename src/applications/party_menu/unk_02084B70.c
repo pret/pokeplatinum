@@ -586,7 +586,7 @@ int sub_02085804(PartyMenuApplication *application)
             MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->unk_B00 = sub_02085348;
-            sub_0208327C(application, 0, 1);
+            PartyMenu_UpdateCursor(application, 0, 1);
             application->currPartySlot = 7;
 
             return 5;
@@ -612,7 +612,7 @@ int sub_02085804(PartyMenuApplication *application)
         PartyMenu_DrawMemberStatusCondition(application, application->currPartySlot, application->partyMembers[application->currPartySlot].statusIcon);
         PartyMenu_PrintMemberLevel(application, application->currPartySlot);
         PartyMenu_UpdateSlotPalette(application, application->currPartySlot);
-        sub_0208327C(application, application->currPartySlot, 1);
+        PartyMenu_UpdateCursor(application, application->currPartySlot, 1);
         Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
         application->unk_B0E++;
@@ -1235,7 +1235,7 @@ void sub_020868B0(PartyMenuApplication *application)
 
     if (application->partyMembers[application->currPartySlot].heldItem == ITEM_NONE) {
         MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00127, application->tmpString);
-        sub_02083080(application, application->currPartySlot);
+        PartyMenu_DrawMemberMail(application, application->currPartySlot);
     } else {
         MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00128, application->tmpString);
         application->currPartySlot = 7;

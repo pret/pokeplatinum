@@ -113,7 +113,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == v0->unk_08) {
-            sub_02082DA8(param0, param0->currPartySlot);
+            PartyMenu_LoadMemberSpeciesIcon(param0, param0->currPartySlot);
         }
 
         ov118_021D10E8();
