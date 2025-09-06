@@ -3,7 +3,7 @@
 
 #include "field_task.h"
 
-BOOL sub_02052B2C(FieldTask *task);
-void sub_02052C5C(FieldTask *task);
+BOOL FieldTask_BlackOutFromBattle(FieldTask *task);
+void FieldTask_StartBlackOutFromBattle(FieldTask *task);
 
 #endif // POKEPLATINUM_UNK_020528D0_H

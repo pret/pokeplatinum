@@ -39,7 +39,7 @@ typedef struct {
     TrainerCard *unk_04;
 } UnkStruct_02072204;
 
-static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 stars, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard);
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard);
 static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard);
 static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, u8 param5, TrainerCard *trainerCard);
 static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard);
@@ -54,7 +54,7 @@ void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersTo
 
     trainerCard->trainerAppearance = trainerAppearance;
 
-    TrainerCard_SetFields(badgesInteractable, GAME_VERSION, TrainerCard_CalculateStars(fieldSystem), gymLeadersToHide, TrainerInfo_RegionCode(trainerInfo), trainerCard);
+    TrainerCard_SetFields(badgesInteractable, GAME_VERSION, TrainerCard_CalculateLevel(fieldSystem), gymLeadersToHide, TrainerInfo_RegionCode(trainerInfo), trainerCard);
 
     TrainerCard_SetTrainerInfo(TrainerInfo_ID_LowHalf(trainerInfo), TrainerInfo_Gender(trainerInfo), TrainerInfo_Name(trainerInfo), TrainerInfo_Money(trainerInfo), Pokedex_CountSeen(SaveData_GetPokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(gameRecords), trainerCard);
 
@@ -102,45 +102,45 @@ void TrainerCard_Free(TrainerCard *trainerCard)
     Heap_Free(trainerCard);
 }
 
-u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
+u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem)
 {
-    u8 trainerCardStars;
+    u8 trainerCardLevel;
 
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
     UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(saveData);
     BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
-    trainerCardStars = 0;
+    trainerCardLevel = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (Pokedex_NationalDexCompleted(SaveData_GetPokedex(saveData))) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (SystemFlag_CheckContestMaster(varsFlags, CONTEST_TYPE_COOL) || SystemFlag_CheckContestMaster(varsFlags, CONTEST_TYPE_BEAUTY) || SystemFlag_CheckContestMaster(varsFlags, CONTEST_TYPE_SMART) || SystemFlag_CheckContestMaster(varsFlags, CONTEST_TYPE_TOUGH) || SystemFlag_CheckContestMaster(varsFlags, CONTEST_TYPE_CUTE)) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
     if (UndergroundRecord_HasPlatBaseFlag(undergroundRecord) == TRUE) {
-        trainerCardStars++;
+        trainerCardLevel++;
     }
 
-    return trainerCardStars;
+    return trainerCardLevel;
 }
 
-static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 stars, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard)
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard)
 {
     trainerCard->badgesInteractable = badgesInteractable;
     trainerCard->gameVersion = gameVersion;
-    trainerCard->stars = stars;
+    trainerCard->level = level;
     trainerCard->regionCode = regionCode;
     trainerCard->gymLeadersToHide_Unused = gymLeadersToHide;
 }

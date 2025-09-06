@@ -10,8 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallPokecenterNurse 3
     End
 
 _0022:
