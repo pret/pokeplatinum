@@ -2,6 +2,7 @@
 
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include "global.h"
@@ -121,7 +122,7 @@ void ConvertPngToGba(char *inputPath, char *outputPath, struct PngToGbaOptions *
 
     ReadPng(inputPath, &image);
 
-    WriteImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk, &image, !image.hasPalette);
+    WriteImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk, options->embedName, &image, !image.hasPalette);
 
     FreeImage(&image);
 }
@@ -422,6 +423,7 @@ void HandlePngToGbaCommand(char *inputPath, char *outputPath, int argc, char **a
     options.bitDepth = bitDepth;
     options.colsPerChunk = 1;
     options.rowsPerChunk = 1;
+    options.embedName = NULL;
 
     for (int i = 3; i < argc; i++)
     {
@@ -465,6 +467,17 @@ void HandlePngToGbaCommand(char *inputPath, char *outputPath, int argc, char **a
 
             if (options.rowsPerChunk < 1)
                 FATAL_ERROR("rows per chunk must be positive.\n");
+        }
+        else if (strcmp(option, "-embed") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No symbol name after following \"%s\".\n", option);
+
+            i++;
+
+            options.embedName = argv[i];
+
+            i++;
         }
         else
         {
