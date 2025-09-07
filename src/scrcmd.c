@@ -712,7 +712,7 @@ static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_2C4(ScriptContext *ctx);
 static BOOL ScrCmd_2C6(ScriptContext *ctx);
 static BOOL ScrCmd_2C7(ScriptContext *ctx);
-static BOOL ScrCmd_2CA(ScriptContext *ctx);
+static BOOL ScrCmd_EternaGymAdvanceClockState(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
@@ -1483,7 +1483,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C7,
     ScrCmd_2C8,
     ScrCmd_InitPersistedMapFeaturesForEternaGym,
-    ScrCmd_2CA,
+    ScrCmd_EternaGymAdvanceClockState,
     ScrCmd_CountRepeatedSpeciesInParty,
     ScrCmd_2CC,
     ScrCmd_2CD,
@@ -7448,13 +7448,13 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2CA(ScriptContext *ctx)
+static BOOL ScrCmd_EternaGymAdvanceClockState(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    Window *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
 
-    ov8_0224B67C(fieldSystem, v2, ctx->loader, *v1);
+    ov8_0224B67C(fieldSystem, window, ctx->loader, *msgBuf);
     return TRUE;
 }
 

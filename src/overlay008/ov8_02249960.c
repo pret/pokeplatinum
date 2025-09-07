@@ -67,6 +67,8 @@
 #include "unk_020711EC.h"
 #include "vars_flags.h"
 
+#include "res/text/bank/eterna_city_gym.h"
+
 typedef struct {
     int unk_00;
 } UnkStruct_ov8_0224997C;
@@ -2801,7 +2803,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             v2->unk_00++;
 
             Sound_StopEffect(1593, 0);
-            MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
+            MessageLoader_GetStrbuf(v2->unk_48, EternaGym_Text_FountainWaterLevelDropped, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
