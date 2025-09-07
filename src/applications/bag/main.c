@@ -51,6 +51,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/bag/bag_graphics.naix.h"
 #include "res/text/bank/bag.h"
 
 #define DIAL_CENTER_X      (HW_LCD_WIDTH / 2)
@@ -825,21 +826,21 @@ static void LoadGraphics(BagController *controller)
 {
     controller->bagGraphicsNARC = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_BAG);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 11, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 14, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 13, controller->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 12, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 22, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, bag_ui_main_tileset_NCGR, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, bag_ui_main_NSCR, controller->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, item_list_border_NSCR, controller->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, bag_ui_main_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pocket_selector_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_BAG);
     Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(11), HEAP_ID_BAG);
     LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
     LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, PLTT_12, Options_Frame(controller->options), HEAP_ID_BAG);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 15, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 16, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 17, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 32, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 33, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, 19, controller->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_BAG);
-    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, 18, PAL_LOAD_SUB_BG, PLTT_OFFSET(2), PALETTE_SIZE_BYTES * 2, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_tileset_NCGR, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_NSCR, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_inside_NCGR, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_inside_NSCR, controller->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, buttons_NCGR, controller->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_BAG);
+    Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, buttons_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(2), PALETTE_SIZE_BYTES * 2, HEAP_ID_BAG);
 }
 
 static void SetupTextLoaders(BagController *controller)

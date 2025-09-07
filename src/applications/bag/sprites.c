@@ -19,6 +19,9 @@
 #include "type_icon.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/bag/bag_graphics.naix.h"
+#include "res/graphics/shop_menu/shop_gra.naix.h"
+
 static void InitSpriteSystem(BagController *controller);
 static void LoadSpriteResources(BagController *controller);
 static void InitSprites(BagController *controller);
@@ -220,45 +223,45 @@ static void LoadSpriteResources(BagController *controller)
     u32 bagSpriteIdx, bagPaletteIdx;
 
     if (controller->trainerGender == GENDER_MALE) {
-        bagSpriteIdx = 2;
-        bagPaletteIdx = 3;
+        bagSpriteIdx = bag_sprite_male_NCGR;
+        bagPaletteIdx = bag_sprite_male_NCLR;
     } else {
-        bagSpriteIdx = 6;
-        bagPaletteIdx = 7;
+        bagSpriteIdx = bag_sprite_female_NCGR;
+        bagPaletteIdx = bag_sprite_female_NCLR;
     }
 
     SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagSpriteIdx, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 25, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
-    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 31, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
-    SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_highlight_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, item_highlight_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, moving_item_pos_bar_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_selector_arrows_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadCharResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
+    SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, scroll_arrow_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
     SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
     TypeIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
     CategoryIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, CLASS_PHYSICAL, 49410);
     SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagPaletteIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 20, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, ui_elements_NCLR, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
     SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, PLTT_10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, sprites_NCLR, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
     TypeIcon_LoadPlttSrc(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 37, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 1, FALSE, 49401);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 24, FALSE, 49402);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 27, FALSE, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 30, FALSE, 49404);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 9, FALSE, 49405);
-    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 35, FALSE, 49406);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_NCLR, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bag_sprite_cell_NCER, FALSE, 49401);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_highlight_cell_NCER, FALSE, 49402);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, item_highlight_cell_NCER, FALSE, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, moving_item_pos_bar_cell_NCER, FALSE, 49404);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_selector_arrows_cell_NCER, FALSE, 49405);
+    SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_cell_NCER, FALSE, 49406);
     SpriteSystem_LoadCellResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNCERFile(), FALSE, 49407);
-    SpriteSystem_LoadCellResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 5, FALSE, 49408);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 0, FALSE, 49401);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 23, FALSE, 49402);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 26, FALSE, 49403);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 29, FALSE, 49404);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 8, FALSE, 49405);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, 34, FALSE, 49406);
+    SpriteSystem_LoadCellResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, scroll_arrow_cell_NCER, FALSE, 49408);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bag_sprite_anim_NANR, FALSE, 49401);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_highlight_anim_NANR, FALSE, 49402);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, item_highlight_anim_NANR, FALSE, 49403);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, moving_item_pos_bar_anim_NANR, FALSE, 49404);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_selector_arrows_anim_NANR, FALSE, 49405);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_anim_NANR, FALSE, 49406);
     SpriteSystem_LoadAnimResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNANRFile(), FALSE, 49407);
-    SpriteSystem_LoadAnimResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 6, FALSE, 49408);
+    SpriteSystem_LoadAnimResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, scroll_arrow_anim_NANR, FALSE, 49408);
     TypeIcon_LoadAnim(controller->spriteSystem, controller->spriteMan, 49409, 49409);
 }
 

@@ -28,6 +28,7 @@
 #include "text.h"
 #include "trainer_info.h"
 
+#include "res/graphics/bag/bag_graphics.naix.h"
 #include "res/text/bank/bag.h"
 
 #define ITEM_LIST_WINDOW_WIDTH         17
@@ -162,7 +163,7 @@ void BagUI_PrintPocketNames(BagController *controller)
 
 static void *LoadPocketSelectorIcons(BagController *interface, NNSG2dCharacterData **charData)
 {
-    void *file = NARC_AllocAndReadWholeMember(interface->bagGraphicsNARC, 21, HEAP_ID_BAG);
+    void *file = NARC_AllocAndReadWholeMember(interface->bagGraphicsNARC, pocket_selector_icons_NCGR, HEAP_ID_BAG);
     NNS_G2dGetUnpackedBGCharacterData(file, charData);
     return file;
 }
@@ -344,7 +345,7 @@ void BagUI_PrintBerryNumber(BagController *controller, BagItem *itemSlot, u32 yO
 
 static void *LoadBagUIItemEntrySprites(BagController *controller, NNSG2dCharacterData **charData)
 {
-    void *file = NARC_AllocAndReadWholeMember(controller->bagGraphicsNARC, 38, HEAP_ID_BAG);
+    void *file = NARC_AllocAndReadWholeMember(controller->bagGraphicsNARC, item_entry_icons_NCGR, HEAP_ID_BAG);
     NNS_G2dGetUnpackedBGCharacterData(file, charData);
     return file;
 }
