@@ -150,7 +150,7 @@ static void UpdateTilemap(BgConfig *bgConfig, const DotArt *dotArt)
 
     for (y = 0; y < CANVAS_HEIGHT; y++) {
         for (x = 0; x < CANVAS_WIDTH; x++) {
-            tilemapBuffer[x] = tileAssignments[(dotArt->dots[y][x] - 1)];
+            tilemapBuffer[x] = tileAssignments[dotArt->dots[y][x] - 1];
         }
 
         tilemapBuffer += POKETCH_WIDTH_TILES;
