@@ -1,5 +1,6 @@
 // Copyright (c) 2015 YamaArashi, 2021-2024 red031000
 
+#include <stddef.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -844,7 +845,36 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
     FreeNCERCell(options);
 }
 
-void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors)
+void WriteEmbeddableHeader(char *path, void *buffer, int bufferSize, const char *embedName)
+{
+    unsigned char *buf = buffer;
+
+    char *headerPath;
+    asprintf(&headerPath, "%s.h", path);
+    if (headerPath == NULL)
+        FATAL_ERROR("Failed to allocate embeddable header filepath.\n");
+
+    FILE *header = fopen(headerPath, "wb");
+    if (header == NULL)
+        FATAL_ERROR("Failed to open output file %s\n", headerPath);
+
+    fprintf(header, "#ifndef GUARD_EMBED_%s_H\n", embedName);
+    fprintf(header, "#define GUARD_EMBED_%s_H\n", embedName);
+    fprintf(header, "\n");
+    fprintf(header, "__attribute__((aligned(4))) const u8 %s[] = {\n", embedName);
+
+    for (int i = 0; i < bufferSize; i++)
+        fprintf(header, "    0x%02X,\n", buf[i]);
+
+    fprintf(header, "};\n");
+    fprintf(header, "\n");
+    fprintf(header, "#endif // GUARD_EMBEDDABLE_%s_H\n", embedName);
+
+    fclose(header);
+    free(headerPath);
+}
+
+void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, const char *embedName, struct Image *image, bool invertColors)
 {
     int tileSize = bitDepth * 8; // number of bytes per tile
 
@@ -891,6 +921,7 @@ void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int ro
     }
 
     WriteWholeFile(path, buffer, bufferSize);
+    if (embedName != NULL) WriteEmbeddableHeader(path, buffer, bufferSize, embedName);
 
     free(buffer);
 }

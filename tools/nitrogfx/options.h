@@ -21,6 +21,7 @@ struct PngToGbaOptions {
     int bitDepth;
     int colsPerChunk;
     int rowsPerChunk;
+    char *embedName;
 };
 
 struct PngToNtrOptions {

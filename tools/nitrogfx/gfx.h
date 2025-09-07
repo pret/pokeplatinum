@@ -53,7 +53,7 @@ struct Image {
 void ReadImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors);
 uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors, bool scanFrontToBack);
 void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip);
-void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors);
+void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, const char *embedName, struct Image *image, bool invertColors);
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
                    bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, bool vram, uint32_t scanMode,
                    uint32_t mappingType, uint32_t key, bool wrongSize);
