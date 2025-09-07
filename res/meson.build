@@ -1,6 +1,7 @@
 nitrofs_files = []
 naix_headers = []
 h_headers = []
+embed_headers = []
 
 ### PREBUILT FILES ###
 subdir('prebuilt')
