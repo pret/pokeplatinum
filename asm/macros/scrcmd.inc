@@ -4212,7 +4212,7 @@
     .short 713
     .endm
 
-    .macro ScrCmd_2CA
+    .macro EternaGymAdvanceClockState
     .short 714
     .endm
 
