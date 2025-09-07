@@ -479,6 +479,7 @@ struct JsonToAnimationOptions *ParseNANRJson(char *path)
 
         cJSON *resultType = cJSON_GetObjectItemCaseSensitive(animationResult, "resultType");
         options->animationResults[i]->resultType = GetInt(resultType);
+        options->animationResults[i]->padded = false;
         switch (options->animationResults[i]->resultType) {
             case 0: { //index
                 cJSON *index = cJSON_GetObjectItemCaseSensitive(animationResult, "index");
