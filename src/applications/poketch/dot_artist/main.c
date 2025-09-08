@@ -13,7 +13,7 @@
 
 #define PACKED_SIZE ((CANVAS_WIDTH * CANVAS_HEIGHT) / 4)
 
-typedef struct {
+typedef struct PoketchDotArtist {
     u8 activeTask;
     u8 taskFuncState;
     u8 shouldExit;
