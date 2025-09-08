@@ -33,7 +33,7 @@ FS_EXTERN_OVERLAY(poketch_memo_pad);
 FS_EXTERN_OVERLAY(overlay30);
 FS_EXTERN_OVERLAY(poketch_dot_artist);
 FS_EXTERN_OVERLAY(overlay32);
-FS_EXTERN_OVERLAY(overlay33);
+FS_EXTERN_OVERLAY(poketch_friendship_checker);
 FS_EXTERN_OVERLAY(overlay34);
 FS_EXTERN_OVERLAY(overlay35);
 FS_EXTERN_OVERLAY(overlay36);
@@ -91,7 +91,7 @@ static const struct {
     { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
     { POKETCH_APPID_DOTART, FS_OVERLAY_ID(poketch_dot_artist) },
     { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(overlay32) },
-    { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(overlay33) },
+    { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(poketch_friendship_checker) },
     { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(overlay34) },
     { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(overlay35) },
     { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(overlay36) },

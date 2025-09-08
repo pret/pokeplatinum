@@ -192,7 +192,7 @@ static BOOL ScreenIsPressed(PoketchDaycare *apData)
         u32 x, y;
 
         if (TouchScreen_GetTapState(&x, &y)) {
-            if (((u32)(x - 16) < (u32)(207 - 16)) & ((u32)(y - 16) < (u32)(175 - 16))) {
+            if (INSIDE_POKETCH_SCREEN(x, y)) {
                 return TRUE;
             }
         }

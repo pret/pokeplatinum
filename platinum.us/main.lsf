@@ -928,11 +928,11 @@ Overlay overlay32
 	Object main.nef.p/src_overlay032_ov32_02256470.c.o
 }
 
-Overlay overlay33
+Overlay poketch_friendship_checker
 {
 	After overlay25
-	Object main.nef.p/src_overlay033_ov33_022561C0.c.o
-	Object main.nef.p/src_overlay033_ov33_02256474.c.o
+	Object main.nef.p/src_applications_poketch_friendship_checker_main.c.o
+	Object main.nef.p/src_applications_poketch_friendship_checker_graphics.c.o
 }
 
 Overlay overlay34
