@@ -17,7 +17,7 @@ _001A:
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Message 1
-    SetVar VAR_0x8004, 0x1B5
+    SetVar VAR_0x8004, ITEM_PAL_PAD
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GoTo _0046

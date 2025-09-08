@@ -142,14 +142,14 @@ _01C7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x8004, 0x1BE
+    SetVar VAR_0x8004, ITEM_GOOD_ROD
     BufferItemNameWithArticle 0, VAR_0x8004
     CapitalizeFirstLetter 0
-    GoToIfSet FLAG_UNK_0x00A2, _020B
+    GoToIfSet FLAG_GOOD_ROD_OBTAINED, _020B
     Message 10
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0254
-    GoToIfEq VAR_RESULT, MENU_NO, _0249
+    GoToIfEq VAR_RESULT, MENU_YES, AcceptGoodRod
+    GoToIfEq VAR_RESULT, MENU_NO, RefuseGoodRod
     End
 
 _020B:
@@ -174,19 +174,19 @@ _023E:
     ReleaseAll
     End
 
-_0249:
+RefuseGoodRod:
     Message 13
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0254:
+AcceptGoodRod:
     BufferItemName 0, VAR_0x8004
     Message 11
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00A2
+    SetFlag FLAG_GOOD_ROD_OBTAINED
     GoTo _020B
 
 _0270:

@@ -74,7 +74,7 @@ _007D:
 _00D9:
     Message 4
     SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_0x8004, 5
+    SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

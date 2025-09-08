@@ -13,7 +13,7 @@ _000A:
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _003A
     Message 0
-    SetVar VAR_0x8004, 14
+    SetVar VAR_0x8004, POKETCH_APPID_COINTOSS
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

@@ -189,7 +189,7 @@ _0286:
     CallIfEq VAR_0x8005, 0x20A, _0377
     CallIfNe VAR_0x8005, 0x20A, _0383
     Message 7
-    SetVar VAR_0x8004, 0x1A4
+    SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 8

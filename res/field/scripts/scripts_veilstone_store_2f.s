@@ -115,7 +115,7 @@ _012B:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _017A
     Message 11
-    SetVar VAR_0x8004, 10
+    SetVar VAR_0x8004, POKETCH_APPID_COUNTER
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

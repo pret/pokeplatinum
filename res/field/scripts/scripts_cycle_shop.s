@@ -15,7 +15,7 @@ _0016:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0082, _0052
     Message 0
-    SetVar VAR_0x8004, 0x1C2
+    SetVar VAR_0x8004, ITEM_BICYCLE
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0082

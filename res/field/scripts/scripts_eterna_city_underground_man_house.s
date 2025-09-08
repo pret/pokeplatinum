@@ -18,7 +18,7 @@ _001A:
     GoToIfSet FLAG_UNK_0x0113, _0164
     GoToIfSet FLAG_UNK_0x0079, _007E
     Message 0
-    SetVar VAR_0x8004, 0x1AC
+    SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0079

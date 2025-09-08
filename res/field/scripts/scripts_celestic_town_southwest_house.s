@@ -13,7 +13,7 @@ _000A:
     CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _003A
     Message 0
-    SetVar VAR_0x8004, 11
+    SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

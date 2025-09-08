@@ -313,7 +313,7 @@ _04B0:
 
 _04E2:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
+    CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0667
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004

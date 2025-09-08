@@ -340,7 +340,7 @@ _04F7:
 
 _0502:
     Message 12
-    SetVar VAR_0x8004, 0x1D0
+    SetVar VAR_0x8004, ITEM_SECRETPOTION
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 13

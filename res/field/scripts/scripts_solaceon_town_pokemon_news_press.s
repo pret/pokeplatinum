@@ -118,7 +118,7 @@ _01E1:
 
 _01E9:
     CallCommonScript 0x7FC
-    SetVar VAR_0x8004, 93
+    SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     ClearFlag FLAG_UNK_0x00DC
