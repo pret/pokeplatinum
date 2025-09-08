@@ -297,7 +297,7 @@ static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, in
                 }
                 else
                 {
-                   *dest++ = src[idxComponentY * pitch + idxComponentX];
+                    *dest++ = src[idxComponentY * pitch + idxComponentX];
                 }
             }
         }
