@@ -292,19 +292,12 @@ static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, in
                     dest[idxComponentY * pitch + idxComponentX] = *src++;
                     if (palette != -1)
                     {
-                        dest[idxComponentY * pitch + idxComponentX] = dest[idxComponentY * pitch + idxComponentX] % 16 + palette * 16;
+                        dest[idxComponentY * pitch + idxComponentX] += palette * 16;
                     }
                 }
                 else
                 {
-                    if (palette == -1)
-                    {
-                        *dest++ = src[idxComponentY * pitch + idxComponentX];
-                    }
-                    else
-                    {
-                        *dest++ = src[idxComponentY * pitch + idxComponentX] % 16;
-                    }
+                   *dest++ = src[idxComponentY * pitch + idxComponentX];
                 }
             }
         }
