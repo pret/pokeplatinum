@@ -16,4 +16,5 @@ nitrogfx_exe = executable('nitrogfx',
     ],
     dependencies: libpng_dep,
     native: true,
+    c_args: ['-D_GNU_SOURCE=1'],
 )
