@@ -329,9 +329,9 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     EnableTouchPad();
     GF_ASSERT(InitializeTouchPad(4) == 1);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 

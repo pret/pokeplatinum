@@ -90,9 +90,9 @@ BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     dww->task = SysTask_Start(DWWarp_Update, dww, 60000);
     SetVBlankCallback(DWWarp_VBlankIntr, dww);
@@ -158,9 +158,9 @@ BOOL DWWarp_Exit(ApplicationManager *appMan, int *state)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     DisableTouchPad();
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_DISTORTION_WORLD_WARP);
 

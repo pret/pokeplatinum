@@ -594,9 +594,9 @@ int ov70_0225D9A4(ApplicationManager *appMan, int *param1)
 
     GF_ASSERT(ov66_0222E338(v0->unk_34) != 0xffffffff);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     v0->unk_458 = SaveData_GetTrainerInfo(v1->saveData);
     ov70_0225E4EC(&v0->unk_3C, v1->saveData, HEAP_ID_112);

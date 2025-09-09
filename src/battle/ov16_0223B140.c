@@ -771,9 +771,9 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         ov16_0223B3E4(battleSystem);
     }
 
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     Windows_Delete(battleSystem->windows, 3);
     Heap_Free(battleSystem->unk_04);
     Heap_Free(battleSystem->unk_21C);
@@ -2230,13 +2230,13 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
 static void ov16_0223DD4C(BattleSystem *battleSys)
 {
     if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & 0x10)) {
-        RenderControlFlags_SetAutoScrollFlags(1);
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     } else {
-        RenderControlFlags_SetAutoScrollFlags(3);
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
     }
 }
 

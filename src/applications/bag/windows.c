@@ -567,7 +567,7 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
 u8 BagUI_PrintStrBufferToWideMsgBox(BagController *interface)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    RenderControlFlags_SetAutoScrollFlags(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->strBuffer, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
 
     return textPrinterID;

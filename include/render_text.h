@@ -77,6 +77,11 @@ enum RenderResult {
     RENDER_UPDATE,
 };
 
+// The NO_WAIT flag is dependent on ENABLED, so it does not have a unique constant for bitflag 2.
+#define AUTO_SCROLL_DISABLED 0
+#define AUTO_SCROLL_ENABLED  (1 << 0)
+#define AUTO_SCROLL_NO_WAIT  ((1 << 1) | AUTO_SCROLL_ENABLED)
+
 enum RenderResult RenderText(TextPrinter *printer);
 void TextPrinter_SetScrollArrowBaseTile(u16 tile);
 void TextPrinter_InitScrollArrowAnim(TextPrinter *printer);

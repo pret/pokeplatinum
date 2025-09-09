@@ -158,7 +158,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
 
     sub_02015738(v0->unk_58, 1);
     SysTask_Start(sub_0207B0A0, v0, 0);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     sub_02039734();
 
     return v0;
@@ -208,7 +208,7 @@ void sub_0207B0E0(EvolutionData *param0)
     Heap_Free(param0->unk_00);
     NARC_dtor(param0->unk_80);
     Heap_Free(param0);
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 }
 
 static void sub_0207B180(EvolutionData *param0)

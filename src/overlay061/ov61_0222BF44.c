@@ -188,9 +188,9 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     SetVBlankCallback(ov61_0222C1FC, v0);
 
     if (v0->unk_00->unk_10) {
@@ -264,9 +264,9 @@ int ov61_0222C160(ApplicationManager *appMan, int *param1)
     DisableHBlank();
     VramTransfer_Free();
     DisableTouchPad();
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     NetworkIcon_Destroy();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_117);

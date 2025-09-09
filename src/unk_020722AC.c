@@ -1065,8 +1065,8 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     }
 
     Window_FillRectWithColor(&param0->unk_184, (15 << 4) | 15, 0, 0, 27 * 8, 4 * 8);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);
