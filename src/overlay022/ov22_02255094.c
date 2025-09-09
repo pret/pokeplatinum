@@ -79,9 +79,9 @@ void ov22_022550B4(void)
 void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
 {
     SoftwareSpriteManagerTemplate v0 = {
-        .unk_00 = 718,
-        .unk_04 = 118,
-        .unk_08 = 19,
+        .numSprites = 718,
+        .numChars = 118,
+        .numPalettes = 19,
         .heapID = HEAP_ID_14
     };
 
@@ -143,8 +143,8 @@ void ov22_022551B4(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *par
 
 void ov22_022551D0(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_0201517C(param0->unk_00);
-    sub_020151EC(param0->unk_00);
+    SoftwareSpriteManager_FreeAllChars(param0->unk_00);
+    SoftwareSpriteManager_FreeAllPalettes(param0->unk_00);
 }
 
 Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3, int param4, int param5)
@@ -481,7 +481,7 @@ static void ov22_02255738(void)
 
 static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1)
 {
-    param0->unk_00 = sub_02015064(param1);
+    param0->unk_00 = SoftwareSpriteManager_New(param1);
     param0->unk_04 = Heap_Alloc(param1->heapID, sizeof(SoftwareSpriteChars *) * (100 + 18));
     param0->unk_08 = (100 + 18);
     param0->unk_0C = 0;
@@ -493,13 +493,13 @@ static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteM
 
 static void ov22_02255784(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_020150A8(param0->unk_00);
+    SoftwareSpriteManager_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
 static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_020150EC(param0->unk_00);
+    SoftwareSpriteManager_DrawVisible(param0->unk_00);
 }
 
 static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpriteCharsTemplate *param1, int param2)
@@ -509,8 +509,8 @@ static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpriteCharsTe
     for (v0 = 0; v0 < param2; v0++) {
         GF_ASSERT(param0->unk_0C < param0->unk_08);
 
-        if (param1[v0].unk_04 != NULL) {
-            param0->unk_04[param0->unk_0C] = sub_02015128(param1 + v0);
+        if (param1[v0].charsData != NULL) {
+            param0->unk_04[param0->unk_0C] = SoftwareSprite_LoadChars(param1 + v0);
         } else {
             param0->unk_04[param0->unk_0C] = NULL;
         }
@@ -526,8 +526,8 @@ static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpritePalette
     for (v0 = 0; v0 < param2; v0++) {
         GF_ASSERT(param0->unk_18 < param0->unk_14);
 
-        if (param1[v0].unk_04 != NULL) {
-            param0->unk_10[param0->unk_18] = sub_020151A4(param1 + v0);
+        if (param1[v0].paletteData != NULL) {
+            param0->unk_10[param0->unk_18] = SoftwareSprite_LoadPalette(param1 + v0);
         } else {
             param0->unk_10[param0->unk_18] = NULL;
         }
@@ -732,17 +732,17 @@ static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
 
         v1 = v0;
 
-        param1->unk_00[v1].unk_04 = ov22_02255340(param0, v2, v0);
-        param1->unk_00[v1].unk_00 = param0->unk_00;
+        param1->unk_00[v1].charsData = ov22_02255340(param0, v2, v0);
+        param1->unk_00[v1].softSpriteMan = param0->unk_00;
     }
 
     v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, HEAP_ID_14, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
-    NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
+    NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].paletteData);
 
-    param1->unk_08[0].unk_00 = param0->unk_00;
-    param1->unk_08[0].unk_08 = 3;
+    param1->unk_08[0].softSpriteMan = param0->unk_00;
+    param1->unk_08[0].paletteSlot = 3;
 }
 
 static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1)
@@ -755,18 +755,18 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         v1 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 206, 0, HEAP_ID_14, 1);
         v2 = v0 + 100;
 
-        param1->unk_00[v2].unk_04 = ov22_02255340(param0, v1, v2);
-        param1->unk_00[v2].unk_00 = param0->unk_00;
+        param1->unk_00[v2].charsData = ov22_02255340(param0, v1, v2);
+        param1->unk_00[v2].softSpriteMan = param0->unk_00;
 
         v2 = v0 + 1;
         v1 = LoadMemberFromOpenNARC(param0->unk_5C, (v0) * 4 + 134 + 1, 0, HEAP_ID_14, 1);
 
         ResourceCollection_Add(param1->unk_14, v1, v2);
-        NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].unk_04);
-        GF_ASSERT(param1->unk_08[v2].unk_04);
+        NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].paletteData);
+        GF_ASSERT(param1->unk_08[v2].paletteData);
 
-        param1->unk_08[v2].unk_00 = param0->unk_00;
-        param1->unk_08[v2].unk_08 = 1;
+        param1->unk_08[v2].softSpriteMan = param0->unk_00;
+        param1->unk_08[v2].paletteSlot = 1;
     }
 }
 

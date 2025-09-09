@@ -297,9 +297,9 @@ static void ov22_0225B2D4(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 
     param0->unk_00.unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, param1->heapID);
 
-    v1.unk_00 = (700 + 18);
-    v1.unk_04 = (100 + 18);
-    v1.unk_08 = (1 + 18);
+    v1.numSprites = (700 + 18);
+    v1.numChars = (100 + 18);
+    v1.numPalettes = (1 + 18);
     v1.heapID = param1->heapID;
 
     ov22_0225547C(&param0->unk_00, &v1, param1->heapID);
@@ -466,17 +466,17 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
             v2 = LoadMemberFromOpenNARC(param0->unk_5C, v3 + 1, 0, heapID, 1);
 
             ResourceCollection_Add(param1->unk_10, v2, v1);
-            NNS_G2dGetUnpackedCharacterData(v2, &param1->unk_00[v1].unk_04);
+            NNS_G2dGetUnpackedCharacterData(v2, &param1->unk_00[v1].charsData);
 
-            param1->unk_00[v1].unk_00 = param0->unk_00;
+            param1->unk_00[v1].softSpriteMan = param0->unk_00;
         }
     }
 
     v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, heapID, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
-    NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
+    NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].paletteData);
 
-    param1->unk_08[0].unk_00 = param0->unk_00;
-    param1->unk_08[0].unk_08 = 3;
+    param1->unk_08[0].softSpriteMan = param0->unk_00;
+    param1->unk_08[0].paletteSlot = 3;
 }

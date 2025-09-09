@@ -1,473 +1,467 @@
 #include "software_sprite.h"
 
-#include <nitro.h>
-#include <string.h>
+#include <nitro/gx/g3imm.h>
+#include <nnsys/g2d/g2d_Image.h>
+#include <nnsys/g2d/g2d_Softsprite.h>
+#include <nnsys/gfd/VramManager/gfd_PlttVramMan_Types.h>
+#include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
+
+#include "constants/colors.h"
+#include "constants/graphics.h"
+#include "constants/heap.h"
 
 #include "heap.h"
 
 struct SoftwareSpriteChars {
-    NNSGfdTexKey unk_00;
-    NNSG2dImageProxy unk_04;
+    NNSGfdTexKey vramKey;
+    NNSG2dImageProxy proxy;
 };
 
 struct SoftwareSpritePalette {
-    NNSGfdPlttKey unk_00;
-    NNSG2dImagePaletteProxy unk_04;
+    NNSGfdPlttKey vramKey;
+    NNSG2dImagePaletteProxy proxy;
 };
 
 struct SoftwareSprite {
-    NNSG2dSVec2 unk_00;
-    NNSG2dSVec2 unk_04;
-    NNSG2dSVec2 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    int unk_14;
-    int unk_18;
-    BOOL unk_1C;
-    BOOL unk_20;
-    NNSG2dImageAttr *unk_24;
-    u32 unk_28;
-    u32 unk_2C;
-    u32 unk_30;
-    BOOL unk_34;
-    BOOL unk_38;
-    GXRgb unk_3C;
-    u8 unk_3E;
+    NNSG2dSVec2 position;
+    NNSG2dSVec2 center;
+    NNSG2dSVec2 dimensions;
+    fx32 scaleX;
+    fx32 scaleY;
+    int priority;
+    int rotation;
+    BOOL inUse;
+    BOOL visible;
+    NNSG2dImageAttr *attributes;
+    u32 vramAddressChars;
+    u32 vramAddressPalette;
+    u32 paletteSlot;
+    BOOL flipH;
+    BOOL flipV;
+    GXRgb diffuse;
+    u8 alpha;
 };
 
 struct SoftwareSpriteManager {
-    SoftwareSprite *unk_00;
-    int unk_04;
-    SoftwareSpriteChars *unk_08;
-    int unk_0C;
-    SoftwareSpritePalette *unk_10;
-    int unk_14;
+    SoftwareSprite *sprites;
+    int numSprites;
+    SoftwareSpriteChars *chars;
+    int numChars;
+    SoftwareSpritePalette *palettes;
+    int numPalettes;
 };
 
-static void sub_020152C0(SoftwareSprite *param0);
-static void sub_020152E0(SoftwareSpriteChars *param0);
-static void sub_020152EC(SoftwareSpritePalette *param0);
-static void sub_02015468(SoftwareSprite *param0);
-static SoftwareSprite *sub_020152F8(int param0, int heapID);
-static SoftwareSpriteChars *sub_02015328(int param0, int heapID);
-static SoftwareSpritePalette *sub_02015358(int param0, int heapID);
-static SoftwareSprite *sub_02015388(SoftwareSpriteManager *param0);
-static SoftwareSpriteChars *sub_020153B4(SoftwareSpriteManager *param0);
-static SoftwareSpritePalette *sub_020153E0(SoftwareSpriteManager *param0);
-static NNSGfdTexKey sub_0201540C(NNSG2dCharacterData *param0);
-static NNSGfdPlttKey sub_02015420(int param0);
-static void sub_02015434(NNSG2dCharacterData *param0, NNSGfdTexKey param1, NNSG2dImageProxy *param2);
-static void sub_02015444(NNSG2dPaletteData *param0, NNSGfdPlttKey param1, NNSG2dImagePaletteProxy *param2);
-static void sub_020155A8(SoftwareSprite *param0, const SoftwareSpriteTemplate *param1);
+static SoftwareSprite *NewSprites(int count, enum HeapID heapID);
+static SoftwareSpriteChars *NewSpriteChars(int count, enum HeapID heapID);
+static SoftwareSpritePalette *NewSpritePalettes(int count, enum HeapID heapID);
 
-SoftwareSpriteManager *sub_02015064(const SoftwareSpriteManagerTemplate *param0)
+static void ZeroSprite(SoftwareSprite *sprite);
+static void ZeroChars(SoftwareSpriteChars *chars);
+static void ZeroPalette(SoftwareSpritePalette *palette);
+
+static SoftwareSprite *FindAvailableSprite(SoftwareSpriteManager *softSpriteMan);
+static SoftwareSpriteChars *FindAvailableChars(SoftwareSpriteManager *softSpriteMan);
+static SoftwareSpritePalette *FindAvailablePalette(SoftwareSpriteManager *softSpriteMan);
+
+static NNSGfdTexKey AllocateVRAM_Chars(NNSG2dCharacterData *charsData);
+static NNSGfdPlttKey AllocateVRAM_Palette(int paletteSlot);
+static void LoadProxy_Chars(NNSG2dCharacterData *charsData, NNSGfdTexKey vramKey, NNSG2dImageProxy *proxy);
+static void LoadProxy_Palette(NNSG2dPaletteData *paletteData, NNSGfdPlttKey vramKey, NNSG2dImagePaletteProxy *proxy);
+
+static void DrawSprite(SoftwareSprite *sprite);
+static void LoadSprite(SoftwareSprite *sprite, const SoftwareSpriteTemplate *template);
+
+SoftwareSpriteManager *SoftwareSpriteManager_New(const SoftwareSpriteManagerTemplate *template)
 {
-    SoftwareSpriteManager *v0;
-    int v1;
+    SoftwareSpriteManager *softSpriteMan = Heap_Alloc(template->heapID, sizeof(SoftwareSpriteManager));
+    GF_ASSERT(softSpriteMan);
 
-    v0 = Heap_Alloc(param0->heapID, sizeof(SoftwareSpriteManager));
-    GF_ASSERT(v0);
+    softSpriteMan->sprites = NewSprites(template->numSprites, template->heapID);
+    softSpriteMan->numSprites = template->numSprites;
+    softSpriteMan->chars = NewSpriteChars(template->numChars, template->heapID);
+    softSpriteMan->numChars = template->numChars;
+    softSpriteMan->palettes = NewSpritePalettes(template->numPalettes, template->heapID);
+    softSpriteMan->numPalettes = template->numPalettes;
 
-    v0->unk_00 = sub_020152F8(param0->unk_00, param0->heapID);
-    v0->unk_04 = param0->unk_00;
-    v0->unk_08 = sub_02015328(param0->unk_04, param0->heapID);
-    v0->unk_0C = param0->unk_04;
-    v0->unk_10 = sub_02015358(param0->unk_08, param0->heapID);
-    v0->unk_14 = param0->unk_08;
-
-    return v0;
+    return softSpriteMan;
 }
 
-void sub_020150A8(SoftwareSpriteManager *param0)
+void SoftwareSpriteManager_Free(SoftwareSpriteManager *softSpriteMan)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_00);
-    GF_ASSERT(param0->unk_08);
-    GF_ASSERT(param0->unk_10);
+    GF_ASSERT(softSpriteMan);
+    GF_ASSERT(softSpriteMan->sprites);
+    GF_ASSERT(softSpriteMan->chars);
+    GF_ASSERT(softSpriteMan->palettes);
 
-    Heap_Free(param0->unk_00);
-    Heap_Free(param0->unk_08);
-    Heap_Free(param0->unk_10);
-    Heap_Free(param0);
+    Heap_Free(softSpriteMan->sprites);
+    Heap_Free(softSpriteMan->chars);
+    Heap_Free(softSpriteMan->palettes);
+    Heap_Free(softSpriteMan);
 
-    param0 = NULL;
+    softSpriteMan = NULL;
 }
 
-void sub_020150EC(SoftwareSpriteManager *param0)
+void SoftwareSpriteManager_DrawVisible(SoftwareSpriteManager *manager)
 {
-    int v0;
-
     G3_PushMtx();
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_20) {
-            sub_02015468(param0->unk_00 + v0);
+    for (int i = 0; i < manager->numSprites; i++) {
+        if (manager->sprites[i].visible) {
+            DrawSprite(manager->sprites + i);
         }
     }
 
     G3_PopMtx(1);
 }
 
-SoftwareSpriteChars *sub_02015128(const SoftwareSpriteCharsTemplate *param0)
+SoftwareSpriteChars *SoftwareSprite_LoadChars(const SoftwareSpriteCharsTemplate *template)
 {
-    SoftwareSpriteChars *v0 = sub_020153B4(param0->unk_00);
+    SoftwareSpriteChars *chars = FindAvailableChars(template->softSpriteMan);
+    GF_ASSERT(chars);
+    GF_ASSERT(template->charsData->mapingType == GX_OBJVRAMMODE_CHAR_2D);
 
-    GF_ASSERT(v0);
-    GF_ASSERT(param0->unk_04->mapingType == GX_OBJVRAMMODE_CHAR_2D);
+    chars->vramKey = AllocateVRAM_Chars(template->charsData);
+    GF_ASSERT(chars->vramKey);
 
-    v0->unk_00 = sub_0201540C(param0->unk_04);
-    GF_ASSERT(v0->unk_00);
-
-    sub_02015434(param0->unk_04, v0->unk_00, &v0->unk_04);
-
-    return v0;
+    LoadProxy_Chars(template->charsData, chars->vramKey, &chars->proxy);
+    return chars;
 }
 
-void sub_02015164(SoftwareSpriteChars *param0)
+void SoftwareSprite_FreeChars(SoftwareSpriteChars *chars)
 {
-    NNS_GfdFreeTexVram(param0->unk_00);
-    sub_020152E0(param0);
+    NNS_GfdFreeTexVram(chars->vramKey);
+    ZeroChars(chars);
 }
 
-void sub_0201517C(SoftwareSpriteManager *param0)
+void SoftwareSpriteManager_FreeAllChars(SoftwareSpriteManager *softSpriteMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_0C; v0++) {
-        if (param0->unk_08[v0].unk_00) {
-            sub_02015164(param0->unk_08 + v0);
+    for (int i = 0; i < softSpriteMan->numChars; i++) {
+        if (softSpriteMan->chars[i].vramKey) {
+            SoftwareSprite_FreeChars(softSpriteMan->chars + i);
         }
     }
 }
 
-SoftwareSpritePalette *sub_020151A4(const SoftwareSpritePaletteTemplate *param0)
+SoftwareSpritePalette *SoftwareSprite_LoadPalette(const SoftwareSpritePaletteTemplate *template)
 {
-    SoftwareSpritePalette *v0 = sub_020153E0(param0->unk_00);
-    GF_ASSERT(v0);
+    SoftwareSpritePalette *palette = FindAvailablePalette(template->softSpriteMan);
+    GF_ASSERT(palette);
 
-    v0->unk_00 = sub_02015420(param0->unk_08);
-    GF_ASSERT(v0->unk_00);
+    palette->vramKey = AllocateVRAM_Palette(template->paletteSlot);
+    GF_ASSERT(palette->vramKey);
 
-    sub_02015444(param0->unk_04, v0->unk_00, &v0->unk_04);
-
-    return v0;
+    LoadProxy_Palette(template->paletteData, palette->vramKey, &palette->proxy);
+    return palette;
 }
 
-void sub_020151D4(SoftwareSpritePalette *param0)
+void SoftwareSprite_FreePalette(SoftwareSpritePalette *palette)
 {
-    NNS_GfdFreePlttVram(param0->unk_00);
-    sub_020152EC(param0);
+    NNS_GfdFreePlttVram(palette->vramKey);
+    ZeroPalette(palette);
 }
 
-void sub_020151EC(SoftwareSpriteManager *param0)
+void SoftwareSpriteManager_FreeAllPalettes(SoftwareSpriteManager *softSpriteMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_14; v0++) {
-        if (param0->unk_10[v0].unk_00) {
-            sub_020151D4(param0->unk_10 + v0);
+    for (int i = 0; i < softSpriteMan->numPalettes; i++) {
+        if (softSpriteMan->palettes[i].vramKey) {
+            SoftwareSprite_FreePalette(softSpriteMan->palettes + i);
         }
     }
 }
 
-SoftwareSprite *sub_02015214(const SoftwareSpriteTemplate *param0)
+SoftwareSprite *SoftwareSprite_Load(const SoftwareSpriteTemplate *template)
 {
-    SoftwareSprite *v0 = sub_02015388(param0->unk_00);
-    GF_ASSERT(v0);
+    SoftwareSprite *sprite = FindAvailableSprite(template->softSpriteMan);
+    GF_ASSERT(sprite);
 
-    sub_020155A8(v0, param0);
-
-    v0->unk_1C = 1;
-    v0->unk_20 = 1;
-
-    return v0;
+    LoadSprite(sprite, template);
+    sprite->inUse = TRUE;
+    sprite->visible = TRUE;
+    return sprite;
 }
 
-void sub_02015238(SoftwareSprite *param0)
+void SoftwareSprite_Reset(SoftwareSprite *sprite)
 {
-    sub_020152C0(param0);
+    ZeroSprite(sprite);
 }
 
-void sub_02015240(SoftwareSprite *param0, BOOL param1)
+void SoftwareSprite_SetVisible(SoftwareSprite *sprite, BOOL visible)
 {
-    GF_ASSERT(param0);
-    param0->unk_20 = param1;
+    GF_ASSERT(sprite);
+    sprite->visible = visible;
 }
 
-void sub_02015254(SoftwareSprite *param0, s16 param1, s16 param2)
+void SoftwareSprite_SetPosition(SoftwareSprite *sprite, s16 x, s16 y)
 {
-    param0->unk_00.x = param1;
-    param0->unk_00.y = param2;
+    sprite->position.x = x;
+    sprite->position.y = y;
 }
 
-NNSG2dSVec2 sub_0201525C(SoftwareSprite *param0)
+NNSG2dSVec2 SoftwareSprite_GetPosition(SoftwareSprite *sprite)
 {
-    return param0->unk_00;
+    return sprite->position;
 }
 
-void sub_02015268(SoftwareSprite *param0, s16 param1, s16 param2)
+void SoftwareSprite_SetCenter(SoftwareSprite *sprite, s16 param1, s16 param2)
 {
-    param0->unk_04.x = param1;
-    param0->unk_04.y = param2;
+    sprite->center.x = param1;
+    sprite->center.y = param2;
 }
 
-void sub_02015270(SoftwareSprite *param0, fx32 param1, fx32 param2)
+void SoftwareSprite_SetScalingFactors(SoftwareSprite *sprite, fx32 scaleX, fx32 scaleY)
 {
-    param0->unk_0C = param1;
-    param0->unk_10 = param2;
+    sprite->scaleX = scaleX;
+    sprite->scaleY = scaleY;
 }
 
-void sub_02015278(SoftwareSprite *param0, int param1, int param2)
+void SoftwareSprite_SetDimensions(SoftwareSprite *sprite, int x, int y)
 {
-    param0->unk_08.x = param1;
-    param0->unk_08.y = param2;
+    sprite->dimensions.x = x;
+    sprite->dimensions.y = y;
 }
 
-NNSG2dSVec2 sub_02015280(SoftwareSprite *param0)
+NNSG2dSVec2 SoftwareSprite_GetDimensions(SoftwareSprite *sprite)
 {
-    return param0->unk_08;
+    return sprite->dimensions;
 }
 
-void sub_0201528C(SoftwareSprite *param0, int param1)
+void SoftwareSprite_SetPriority(SoftwareSprite *sprite, int priority)
 {
-    param0->unk_14 = param1;
+    sprite->priority = priority;
 }
 
-int sub_02015290(SoftwareSprite *param0)
+int SoftwareSprite_GetPriority(SoftwareSprite *sprite)
 {
-    return param0->unk_14;
+    return sprite->priority;
 }
 
-void sub_02015294(SoftwareSprite *param0, u8 param1)
+void SoftwareSprite_SetAlpha(SoftwareSprite *sprite, u8 alpha)
 {
-    param0->unk_3E = param1;
+    sprite->alpha = alpha;
 }
 
-void sub_0201529C(SoftwareSprite *param0, GXRgb param1)
+void SoftwareSprite_SetDiffuse(SoftwareSprite *sprite, GXRgb diffuse)
 {
-    param0->unk_3C = param1;
+    sprite->diffuse = diffuse;
 }
 
-void sub_020152A0(SoftwareSprite *param0, NNSG2dImageAttr *param1)
+void SoftwareSprite_SetAttributes(SoftwareSprite *sprite, NNSG2dImageAttr *attributes)
 {
-    param0->unk_24 = param1;
+    sprite->attributes = attributes;
 }
 
-void sub_020152A4(SoftwareSprite *param0, u32 param1)
+void SoftwareSprite_SetVRAMAddress_Chars(SoftwareSprite *sprite, u32 address)
 {
-    param0->unk_28 = param1;
+    sprite->vramAddressChars = address;
 }
 
-void sub_020152A8(SoftwareSprite *param0, u32 param1)
+void SoftwareSprite_SetVRAMAddress_Palette(SoftwareSprite *sprite, u32 address)
 {
-    param0->unk_2C = param1;
+    sprite->vramAddressPalette = address;
 }
 
-void sub_020152AC(SoftwareSprite *param0, u32 param1)
+void SoftwareSprite_SetPaletteSlot(SoftwareSprite *sprite, u32 offset)
 {
-    param0->unk_30 = param1;
+    sprite->paletteSlot = offset;
 }
 
-void sub_020152B0(SoftwareSprite *param0, int param1, BOOL param2)
+void SoftwareSprite_SetFlip(SoftwareSprite *sprite, int direction, BOOL flip)
 {
-    if (param1 == 0) {
-        param0->unk_34 = param2;
+    if (direction == SPRITE_FLIP_H) {
+        sprite->flipH = flip;
     } else {
-        param0->unk_38 = param2;
+        sprite->flipV = flip;
     }
 }
 
-void sub_020152BC(SoftwareSprite *param0, u16 param1)
+void SoftwareSprite_SetRotation(SoftwareSprite *sprite, u16 rotation)
 {
-    param0->unk_18 = param1;
+    sprite->rotation = rotation;
 }
 
-static void sub_020152C0(SoftwareSprite *param0)
+static void ZeroSprite(SoftwareSprite *sprite)
 {
-    memset(param0, 0, sizeof(SoftwareSprite));
-
-    param0->unk_3E = 31;
-    param0->unk_3C = GX_RGB(31, 31, 31);
+    memset(sprite, 0, sizeof(SoftwareSprite));
+    sprite->alpha = 31;
+    sprite->diffuse = COLOR_WHITE;
 }
 
-static void sub_020152E0(SoftwareSpriteChars *param0)
+static void ZeroChars(SoftwareSpriteChars *chars)
 {
-    param0->unk_00 = 0;
-    NNS_G2dInitImageProxy(&param0->unk_04);
+    chars->vramKey = 0;
+    NNS_G2dInitImageProxy(&chars->proxy);
 }
 
-static void sub_020152EC(SoftwareSpritePalette *param0)
+static void ZeroPalette(SoftwareSpritePalette *palette)
 {
-    param0->unk_00 = 0;
-    NNS_G2dInitImagePaletteProxy(&param0->unk_04);
+    palette->vramKey = 0;
+    NNS_G2dInitImagePaletteProxy(&palette->proxy);
 }
 
-static SoftwareSprite *sub_020152F8(int param0, int heapID)
+static SoftwareSprite *NewSprites(int count, enum HeapID heapID)
 {
-    SoftwareSprite *v0 = Heap_Alloc(heapID, sizeof(SoftwareSprite) * param0);
-    GF_ASSERT(v0);
+    SoftwareSprite *sprites = Heap_Alloc(heapID, sizeof(SoftwareSprite) * count);
+    GF_ASSERT(sprites);
 
-    for (int i = 0; i < param0; i++) {
-        sub_020152C0(v0 + i);
+    for (int i = 0; i < count; i++) {
+        ZeroSprite(sprites + i);
     }
 
-    return v0;
+    return sprites;
 }
 
-static SoftwareSpriteChars *sub_02015328(int param0, int heapID)
+static SoftwareSpriteChars *NewSpriteChars(int count, enum HeapID heapID)
 {
-    SoftwareSpriteChars *v0 = Heap_Alloc(heapID, sizeof(SoftwareSpriteChars) * param0);
-    GF_ASSERT(v0);
+    SoftwareSpriteChars *chars = Heap_Alloc(heapID, sizeof(SoftwareSpriteChars) * count);
+    GF_ASSERT(chars);
 
-    for (int i = 0; i < param0; i++) {
-        sub_020152E0(v0 + i);
+    for (int i = 0; i < count; i++) {
+        ZeroChars(chars + i);
     }
 
-    return v0;
+    return chars;
 }
 
-static SoftwareSpritePalette *sub_02015358(int param0, int heapID)
+static SoftwareSpritePalette *NewSpritePalettes(int count, enum HeapID heapID)
 {
-    SoftwareSpritePalette *v0 = Heap_Alloc(heapID, sizeof(SoftwareSpritePalette) * param0);
-    GF_ASSERT(v0);
+    SoftwareSpritePalette *palettes = Heap_Alloc(heapID, sizeof(SoftwareSpritePalette) * count);
+    GF_ASSERT(palettes);
 
-    for (int i = 0; i < param0; i++) {
-        sub_020152EC(v0 + i);
+    for (int i = 0; i < count; i++) {
+        ZeroPalette(palettes + i);
     }
 
-    return v0;
+    return palettes;
 }
 
-static SoftwareSprite *sub_02015388(SoftwareSpriteManager *param0)
+static SoftwareSprite *FindAvailableSprite(SoftwareSpriteManager *softSpriteMan)
 {
-    for (int i = 0; i < param0->unk_04; i++) {
-        if (param0->unk_00[i].unk_1C == 0) {
-            return param0->unk_00 + i;
+    for (int i = 0; i < softSpriteMan->numSprites; i++) {
+        if (softSpriteMan->sprites[i].inUse == FALSE) {
+            return softSpriteMan->sprites + i;
         }
     }
 
     return NULL;
 }
 
-static SoftwareSpriteChars *sub_020153B4(SoftwareSpriteManager *param0)
+static SoftwareSpriteChars *FindAvailableChars(SoftwareSpriteManager *softSpriteMan)
 {
-    for (int i = 0; i < param0->unk_04; i++) {
-        if (param0->unk_08[i].unk_00 == 0) {
-            return param0->unk_08 + i;
+    for (int i = 0; i < softSpriteMan->numSprites; i++) {
+        if (softSpriteMan->chars[i].vramKey == 0) {
+            return softSpriteMan->chars + i;
         }
     }
 
     return NULL;
 }
 
-static SoftwareSpritePalette *sub_020153E0(SoftwareSpriteManager *param0)
+static SoftwareSpritePalette *FindAvailablePalette(SoftwareSpriteManager *softSpriteMan)
 {
-    for (int i = 0; i < param0->unk_04; i++) {
-        if (param0->unk_10[i].unk_00 == 0) {
-            return param0->unk_10 + i;
+    for (int i = 0; i < softSpriteMan->numSprites; i++) {
+        if (softSpriteMan->palettes[i].vramKey == 0) {
+            return softSpriteMan->palettes + i;
         }
     }
 
     return NULL;
 }
 
-static NNSGfdTexKey sub_0201540C(NNSG2dCharacterData *param0)
+static NNSGfdTexKey AllocateVRAM_Chars(NNSG2dCharacterData *charsData)
 {
-    return NNS_GfdAllocTexVram(param0->szByte, 0, 0);
+    return NNS_GfdAllocTexVram(charsData->szByte, FALSE, 0);
 }
 
-static NNSGfdPlttKey sub_02015420(int param0)
+static NNSGfdPlttKey AllocateVRAM_Palette(int paletteSlot)
 {
-    return NNS_GfdAllocPlttVram(param0 * 32, 0, 0);
+    return NNS_GfdAllocPlttVram(PLTT_OFFSET(paletteSlot), FALSE, 0);
 }
 
-static void sub_02015434(NNSG2dCharacterData *param0, NNSGfdTexKey param1, NNSG2dImageProxy *param2)
+static void LoadProxy_Chars(NNSG2dCharacterData *charsData, NNSGfdTexKey vramKey, NNSG2dImageProxy *proxy)
 {
-    NNS_G2dLoadImage2DMapping(param0, NNS_GfdGetTexKeyAddr(param1), NNS_G2D_VRAM_TYPE_3DMAIN, param2);
+    NNS_G2dLoadImage2DMapping(charsData, NNS_GfdGetTexKeyAddr(vramKey), NNS_G2D_VRAM_TYPE_3DMAIN, proxy);
 }
 
-static void sub_02015444(NNSG2dPaletteData *param0, NNSGfdPlttKey param1, NNSG2dImagePaletteProxy *param2)
+static void LoadProxy_Palette(NNSG2dPaletteData *paletteData, NNSGfdPlttKey vramKey, NNSG2dImagePaletteProxy *proxy)
 {
-    int v0 = param0->szByte;
-    param0->szByte = NNS_GfdGetPlttKeySize(param1);
+    int size = paletteData->szByte;
+    paletteData->szByte = NNS_GfdGetPlttKeySize(vramKey);
 
-    NNS_G2dLoadPalette(param0, NNS_GfdGetPlttKeyAddr(param1), NNS_G2D_VRAM_TYPE_3DMAIN, param2);
-    param0->szByte = v0;
+    NNS_G2dLoadPalette(paletteData, NNS_GfdGetPlttKeyAddr(vramKey), NNS_G2D_VRAM_TYPE_3DMAIN, proxy);
+    paletteData->szByte = size;
 }
 
-static void sub_02015468(SoftwareSprite *param0)
+static void DrawSprite(SoftwareSprite *sprite)
 {
-    NNSG2dSVec2 v0, v1;
-
     G3_PushMtx();
-    G3_MaterialColorDiffAmb(param0->unk_3C, GX_RGB(31, 31, 31), 1);
-    G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), 0);
-    G3_TexImageParam(param0->unk_24->fmt, GX_TEXGEN_TEXCOORD, param0->unk_24->sizeS, param0->unk_24->sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, param0->unk_24->plttUse, param0->unk_28);
-    G3_TexPlttBase((u32)(param0->unk_2C + (32 * param0->unk_30)), param0->unk_24->fmt);
-    G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 0, param0->unk_3E, 0);
+    G3_MaterialColorDiffAmb(sprite->diffuse, COLOR_WHITE, TRUE);
+    G3_MaterialColorSpecEmi(COLOR_GRAY, COLOR_BLACK, FALSE);
+    G3_TexImageParam(
+        sprite->attributes->fmt,
+        GX_TEXGEN_TEXCOORD,
+        sprite->attributes->sizeS,
+        sprite->attributes->sizeT,
+        GX_TEXREPEAT_NONE,
+        GX_TEXFLIP_NONE,
+        sprite->attributes->plttUse,
+        sprite->vramAddressChars);
+    G3_TexPlttBase(sprite->vramAddressPalette + PLTT_OFFSET(sprite->paletteSlot), sprite->attributes->fmt);
+    G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 0, sprite->alpha, 0);
 
-    if (param0->unk_34) {
-        v0.x = param0->unk_08.x;
-        v1.x = 0;
+    NNSG2dSVec2 uv0, uv1;
+    if (sprite->flipH) {
+        uv0.x = sprite->dimensions.x;
+        uv1.x = 0;
     } else {
-        v1.x = param0->unk_08.x;
-        v0.x = 0;
+        uv1.x = sprite->dimensions.x;
+        uv0.x = 0;
     }
 
-    if (param0->unk_38) {
-        v0.y = param0->unk_08.y;
-        v1.y = 0;
+    if (sprite->flipV) {
+        uv0.y = sprite->dimensions.y;
+        uv1.y = 0;
     } else {
-        v1.y = param0->unk_08.y;
-        v0.y = 0;
+        uv1.y = sprite->dimensions.y;
+        uv0.y = 0;
     }
 
-    G3_Translate((param0->unk_00.x + param0->unk_04.x) * FX32_ONE, (param0->unk_00.y + param0->unk_04.y) * FX32_ONE, param0->unk_14 * FX32_ONE);
-    G3_RotZ(FX_SinIdx(param0->unk_18), FX_CosIdx(param0->unk_18));
-    G3_Scale(param0->unk_0C, param0->unk_10, FX32_ONE);
-    G3_Translate(-param0->unk_04.x * FX32_ONE, -param0->unk_04.y * FX32_ONE, 0);
-    NNS_G2dDrawSpriteFast(0, 0, 0, param0->unk_08.x, param0->unk_08.y, v0.x, v0.y, v1.x, v1.y);
+    G3_Translate(
+        (sprite->position.x + sprite->center.x) * FX32_ONE,
+        (sprite->position.y + sprite->center.y) * FX32_ONE,
+        sprite->priority * FX32_ONE);
+    G3_RotZ(FX_SinIdx(sprite->rotation), FX_CosIdx(sprite->rotation));
+    G3_Scale(sprite->scaleX, sprite->scaleY, FX32_ONE);
+    G3_Translate(-sprite->center.x * FX32_ONE, -sprite->center.y * FX32_ONE, 0);
+    NNS_G2dDrawSpriteFast(0, 0, 0, sprite->dimensions.x, sprite->dimensions.y, uv0.x, uv0.y, uv1.x, uv1.y);
     G3_PopMtx(1);
 }
 
-static void sub_020155A8(SoftwareSprite *param0, const SoftwareSpriteTemplate *param1)
+static void LoadSprite(SoftwareSprite *sprite, const SoftwareSpriteTemplate *template)
 {
-    int v0;
-    int v1, v2;
-    fx32 v3, v4;
-    fx32 v5, v6;
-
-    v1 = 8;
-
-    for (v0 = 0; v0 < param1->unk_04->unk_04.attr.sizeS; v0++) {
-        v1 *= 2;
+    int dimenX = 8;
+    for (int i = 0; i < template->chars->proxy.attr.sizeS; i++) {
+        dimenX *= 2;
     }
 
-    v2 = 8;
-
-    for (v0 = 0; v0 < param1->unk_04->unk_04.attr.sizeT; v0++) {
-        v2 *= 2;
+    int dimenY = 8;
+    for (int i = 0; i < template->chars->proxy.attr.sizeT; i++) {
+        dimenY *= 2;
     }
 
-    v3 = 0;
-    v4 = 0;
-    v5 = v1 << FX32_SHIFT;
-    v6 = v2 << FX32_SHIFT;
+    SoftwareSprite_SetPosition(sprite, template->xPos, template->yPos);
+    SoftwareSprite_SetCenter(sprite, dimenX / 2, dimenY / 2);
 
-    sub_02015254(param0, param1->unk_0C, param1->unk_0E);
-    sub_02015268(param0, v1 / 2, v2 / 2);
+    sprite->scaleX = FX32_ONE;
+    sprite->scaleY = FX32_ONE;
 
-    param0->unk_0C = FX32_ONE;
-    param0->unk_10 = FX32_ONE;
-
-    sub_02015278(param0, v1, v2);
-    sub_0201528C(param0, param1->unk_18);
-    sub_02015294(param0, param1->unk_14);
-    sub_020152A0(param0, &param1->unk_04->unk_04.attr);
-    sub_020152A4(param0, NNS_G2dGetImageLocation(&param1->unk_04->unk_04, NNS_G2D_VRAM_TYPE_3DMAIN));
-    sub_020152A8(param0, NNS_G2dGetImagePaletteLocation(&param1->unk_08->unk_04, NNS_G2D_VRAM_TYPE_3DMAIN));
-    sub_020152AC(param0, param1->unk_1C);
-    sub_020152B0(param0, 0, 0);
-    sub_020152B0(param0, 1, 0);
-    sub_020152BC(param0, param1->unk_10);
+    SoftwareSprite_SetDimensions(sprite, dimenX, dimenY);
+    SoftwareSprite_SetPriority(sprite, template->priority);
+    SoftwareSprite_SetAlpha(sprite, template->alpha);
+    SoftwareSprite_SetAttributes(sprite, &template->chars->proxy.attr);
+    SoftwareSprite_SetVRAMAddress_Chars(sprite, NNS_G2dGetImageLocation(&template->chars->proxy, NNS_G2D_VRAM_TYPE_3DMAIN));
+    SoftwareSprite_SetVRAMAddress_Palette(sprite, NNS_G2dGetImagePaletteLocation(&template->palette->proxy, NNS_G2D_VRAM_TYPE_3DMAIN));
+    SoftwareSprite_SetPaletteSlot(sprite, template->paletteSlot);
+    SoftwareSprite_SetFlip(sprite, SPRITE_FLIP_H, FALSE);
+    SoftwareSprite_SetFlip(sprite, SPRITE_FLIP_V, FALSE);
+    SoftwareSprite_SetRotation(sprite, template->rotation);
 }

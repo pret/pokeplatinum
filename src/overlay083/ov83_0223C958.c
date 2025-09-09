@@ -119,7 +119,7 @@ void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
         NNS_G2dSetupSoftwareSpriteCamera();
 
         if (param0->unk_320) {
-            sub_020150EC(param0->unk_320);
+            SoftwareSpriteManager_DrawVisible(param0->unk_320);
         }
     }
 
@@ -276,19 +276,19 @@ static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0)
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
 {
     SoftwareSpriteManagerTemplate v0 = {
-        .unk_00 = 48,
-        .unk_04 = 32,
-        .unk_08 = 32,
+        .numSprites = 48,
+        .numChars = 32,
+        .numPalettes = 32,
         .heapID = HEAP_ID_SYSTEM
     };
 
     v0.heapID = param0->heapID;
-    param0->unk_320 = sub_02015064(&v0);
+    param0->unk_320 = SoftwareSpriteManager_New(&v0);
 }
 
 static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_020150A8(param0->unk_320);
+    SoftwareSpriteManager_Free(param0->unk_320);
 }
 
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)

@@ -233,7 +233,7 @@ UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapID heapID, PokedexApp *param1)
 
     ov21_021E7EC0(v0, heapID);
     ov21_021E7F40(v0, heapID);
-    sub_02015240(v0->unk_0C, 0);
+    SoftwareSprite_SetVisible(v0->unk_0C, 0);
 
     return v0;
 }
@@ -501,8 +501,8 @@ static void ov21_021E7800(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     ov21_021E7B34(param0, param1, param2, heapID);
     ov21_021E7CF0(param0, param1, param2, heapID);
 
-    sub_020152BC(param1->unk_0C, 0);
-    sub_02015240(param1->unk_0C, 1);
+    SoftwareSprite_SetRotation(param1->unk_0C, 0);
+    SoftwareSprite_SetVisible(param1->unk_0C, 1);
 }
 
 static void ov21_021E785C(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1)
@@ -514,8 +514,8 @@ static void ov21_021E785C(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     Window_FillTilemap(&param1->unk_00->window, 0);
     Bg_ClearTilemap(param1->unk_00->bgConfig, 1);
 
-    sub_02015240(param1->unk_0C, 0);
-    sub_020152BC(param1->unk_0C, 0);
+    SoftwareSprite_SetVisible(param1->unk_0C, 0);
+    SoftwareSprite_SetRotation(param1->unk_0C, 0);
 }
 
 static void ov21_021E789C(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapID heapID)
@@ -755,22 +755,22 @@ static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
     param0->unk_10 = PokedexGraphics_GetGraphicNarcCharacterData(param0->unk_00, 36, 1, &param0->unk_18, heapID);
     param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(param0->unk_00, 6, &param0->unk_1C, heapID);
 
-    v0.unk_00 = param0->unk_00->unk_164;
-    v0.unk_04 = param0->unk_18;
+    v0.softSpriteMan = param0->unk_00->unk_164;
+    v0.charsData = param0->unk_18;
 
-    param0->unk_04 = sub_02015128(&v0);
+    param0->unk_04 = SoftwareSprite_LoadChars(&v0);
 
-    v1.unk_00 = param0->unk_00->unk_164;
-    v1.unk_04 = param0->unk_1C;
-    v1.unk_08 = 16;
+    v1.softSpriteMan = param0->unk_00->unk_164;
+    v1.paletteData = param0->unk_1C;
+    v1.paletteSlot = 16;
 
-    param0->unk_08 = sub_020151A4(&v1);
+    param0->unk_08 = SoftwareSprite_LoadPalette(&v1);
 }
 
 static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0)
 {
-    sub_02015164(param0->unk_04);
-    sub_020151D4(param0->unk_08);
+    SoftwareSprite_FreeChars(param0->unk_04);
+    SoftwareSprite_FreePalette(param0->unk_08);
     Heap_Free(param0->unk_10);
     Heap_Free(param0->unk_14);
 }
@@ -779,23 +779,23 @@ static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1)
 {
     SoftwareSpriteTemplate v0;
 
-    v0.unk_00 = param0->unk_00->unk_164;
-    v0.unk_04 = param0->unk_04;
-    v0.unk_08 = param0->unk_08;
+    v0.softSpriteMan = param0->unk_00->unk_164;
+    v0.chars = param0->unk_04;
+    v0.palette = param0->unk_08;
 
-    v0.unk_0C = 128 - (128 / 2);
-    v0.unk_0E = 96 - (16 / 2);
-    v0.unk_10 = 0;
-    v0.unk_14 = 31;
-    v0.unk_18 = 0;
-    v0.unk_1C = 0;
+    v0.xPos = 128 - (128 / 2);
+    v0.yPos = 96 - (16 / 2);
+    v0.rotation = 0;
+    v0.alpha = 31;
+    v0.priority = 0;
+    v0.paletteSlot = 0;
 
-    param0->unk_0C = sub_02015214(&v0);
+    param0->unk_0C = SoftwareSprite_Load(&v0);
 }
 
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0)
 {
-    sub_02015238(param0->unk_0C);
+    SoftwareSprite_Reset(param0->unk_0C);
 }
 
 static void ov21_021E7F88(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, int param2)
@@ -892,7 +892,7 @@ static void ov21_021E80D4(SoftwareSprite *param0, Sprite *param1, Sprite *param2
     fx32 v0, v1;
     VecFx32 v2;
 
-    sub_020152BC(param0, param5);
+    SoftwareSprite_SetRotation(param0, param5);
 
     v0 = FX_Mul(FX_CosIdx(param5), 56 << FX32_SHIFT);
     v1 = FX_Mul(FX_SinIdx(param5), 56 << FX32_SHIFT);

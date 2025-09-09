@@ -373,7 +373,7 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
         if (v0->unk_04 == 0) {
             UnkStruct_ov22_02255040 *v1 = v0->unk_00;
 
-            sub_0201529C(v1->unk_04, param1);
+            SoftwareSprite_SetDiffuse(v1->unk_04, param1);
         } else {
             UnkStruct_020298D8 *v2 = v0->unk_00;
 
@@ -390,7 +390,7 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
     while (v0 != &param0->unk_00.unk_04) {
         UnkStruct_ov22_02255040 *v3 = v0->unk_00;
 
-        sub_0201529C(v3->unk_04, param1);
+        SoftwareSprite_SetDiffuse(v3->unk_04, param1);
         v0 = v0->unk_08;
     }
 }
