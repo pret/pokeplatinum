@@ -525,7 +525,7 @@ void ReadImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int ro
     free(buffer);
 }
 
-uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors, bool scanFrontToBack, bool convertTo8Bpp, int palIndex)
+uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors, bool scanFrontToBack, bool convertTo8Bpp, int palIndex, bool verbose)
 {
     int fileSize;
     unsigned char *buffer = ReadWholeFile(path, &fileSize);
@@ -547,6 +547,41 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
     unsigned char *imageData = charHeader + 0x20;
 
     bool scanned = charHeader[0x14];
+
+    if (verbose)
+    {
+        if (!convertTo8Bpp) {
+            printf("-bitdepth %d ", bitDepth);
+        } else {
+            printf("-convertTo4Bpp ");
+        }
+
+        if (buffer[0x6] == 1) {
+            printf("-version101 ");
+        }
+
+        if (charHeader[0x8] == 0xFF && charHeader[0x9] == 0xFF && charHeader[0xA] == 0xFF && charHeader[0xB] == 0xFF)
+        {
+            printf("-clobbersize ");
+        }
+
+        if (buffer[0xE] == 2) {
+            printf("-sopc ");
+        }
+
+        if (charHeader[0x12]) {
+            printf("-mappingtype %d ", 1 << (5 + (charHeader[0x12] >> 4)));
+        }
+
+        if (scanned)
+        {
+            printf("-scanned ");
+        }
+
+        if (charHeader[0x15] == 1) {
+            printf("-vram ");
+        }
+    }
 
     if (bitDepth == 4 && (scanned || !convertTo8Bpp))
     {
