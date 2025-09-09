@@ -181,7 +181,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
 
     if (options->cellFilePath != NULL)
     {
-        ApplyCellsToImage(options->cellFilePath, &image, false, options->cellSnap, false, options->convertTo4Bpp);
+        ApplyCellsToImage(options->cellFilePath, &image, false, options->cellSnap, false, false);
     }
 
     WriteNtrImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk,
