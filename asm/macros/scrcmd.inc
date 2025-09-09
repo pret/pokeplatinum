@@ -4983,12 +4983,12 @@
     InitScriptEntry_Fixed INIT_SCRIPT_TYPE_ENTER_LOCATION, \scriptID
     .endm
 
-    .macro InitScriptEntry_MapReady scriptID
-    InitScriptEntry_Fixed INIT_SCRIPT_TYPE_MAP_READY, \scriptID
+    .macro InitScriptEntry_MapLoadFinish scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_TYPE_MAP_LOAD_FINISH, \scriptID
     .endm
 
-    .macro InitScriptEntry_MapLoad scriptID
-    InitScriptEntry_Fixed INIT_SCRIPT_TYPE_MAP_LOAD, \scriptID
+    .macro InitScriptEntry_MapLoadStart scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_TYPE_MAP_LOAD_START, \scriptID
     .endm
 
     .macro InitScriptEntryEnd

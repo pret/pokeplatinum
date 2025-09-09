@@ -2,7 +2,7 @@
 
 
     InitScriptEntry_EnterLocation 1
-    InitScriptEntry_MapReady 5
+    InitScriptEntry_MapLoadFinish 5
     InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 

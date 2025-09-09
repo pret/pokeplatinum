@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_MapReady 13
+    InitScriptEntry_MapLoadFinish 13
     InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 

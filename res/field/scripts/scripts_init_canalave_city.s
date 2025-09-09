@@ -2,7 +2,7 @@
 
 
     InitScriptEntry_EnterLocation 1
-    InitScriptEntry_MapLoad 24
+    InitScriptEntry_MapLoadStart 24
     InitScriptEntry_ConditionMet InitScriptConditions
     InitScriptEntryEnd
 

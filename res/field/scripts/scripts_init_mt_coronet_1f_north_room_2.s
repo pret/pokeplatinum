@@ -2,7 +2,7 @@
 
 
     InitScriptEntry_EnterLocation 2
-    InitScriptEntry_MapLoad 3
+    InitScriptEntry_MapLoadStart 3
     InitScriptEntryEnd
 
     InitScriptEnd
