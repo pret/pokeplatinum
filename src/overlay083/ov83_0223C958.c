@@ -7,7 +7,6 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022550D4.h"
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
@@ -19,11 +18,11 @@
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "software_sprite.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
-#include "unk_02015064.h"
 #include "unk_0202419C.h"
 
 static void ov83_0223CC30(BgConfig **param0, int heapID);
@@ -276,7 +275,7 @@ static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0)
 
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
 {
-    UnkStruct_ov22_022550D4 v0 = {
+    SoftwareSpriteManagerTemplate v0 = {
         .unk_00 = 48,
         .unk_04 = 32,
         .unk_08 = 32,

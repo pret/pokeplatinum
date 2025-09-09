@@ -53,7 +53,7 @@ pokeplatinum_c = files(
     'colored_arrow.c',
     'unk_02014A84.c',
     'unk_02014D38.c',
-    'unk_02015064.c',
+    'software_sprite.c',
     'unk_0201567C.c',
     'unk_020158A8.c',
     'unk_02015920.c',

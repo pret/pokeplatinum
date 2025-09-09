@@ -5,8 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_02015064_decl.h"
-
 #include "applications/pokedex/pokedex_panel.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 
@@ -14,6 +12,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
+#include "software_sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
@@ -82,7 +81,7 @@ typedef struct PokedexGraphicData {
     PokedexTextManager *textMan;
     PokemonSpriteManager *spriteMan;
     PokemonSprite *pokemonSprite[MAX_SPRITE_RESOURCE_GEN4];
-    UnkStruct_02015064 *unk_164;
+    SoftwareSpriteManager *unk_164;
     PokedexBlendTransition blendMain;
     PokedexBlendTransition blendSub;
     PokedexSpeciesLabel pokedexSpeciesLabel;

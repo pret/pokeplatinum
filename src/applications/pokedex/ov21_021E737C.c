@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02015214_decl.h"
-
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -16,9 +12,6 @@
 #include "applications/pokedex/pokedex_sort.h"
 #include "applications/pokedex/pokedex_sort_data.h"
 #include "applications/pokedex/struct_ov21_021E68F4.h"
-#include "applications/pokedex/struct_ov21_021E7F40.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -30,6 +23,7 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokemon_icon.h"
+#include "software_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -38,7 +32,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02015064.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
@@ -59,9 +52,9 @@ typedef struct {
 
 typedef struct {
     PokedexGraphicData *unk_00;
-    UnkStruct_02015128 *unk_04;
-    UnkStruct_020151A4 *unk_08;
-    UnkStruct_02015214 *unk_0C;
+    SoftwareSpriteChars *unk_04;
+    SoftwareSpritePalette *unk_08;
+    SoftwareSprite *unk_0C;
     void *unk_10;
     void *unk_14;
     NNSG2dCharacterData *unk_18;
@@ -74,7 +67,7 @@ typedef struct {
 } UnkStruct_ov21_021E74A0;
 
 typedef struct {
-    UnkStruct_02015214 *unk_00;
+    SoftwareSprite *unk_00;
     Sprite *unk_04;
     Sprite *unk_08;
     Sprite *unk_0C;
@@ -90,7 +83,7 @@ typedef struct {
 } UnkStruct_ov21_021E8084;
 
 typedef struct {
-    UnkStruct_02015214 *unk_00;
+    SoftwareSprite *unk_00;
     Sprite *unk_04;
     Sprite *unk_08;
     Sprite *unk_0C;
@@ -161,7 +154,7 @@ static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0);
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1);
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0);
 static const UnkStruct_ov21_021E9DB0 *ov21_021E83D8(const UnkStruct_ov21_021E9DB0 *param0, int param1, int param2);
-static void ov21_021E80D4(UnkStruct_02015214 *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5);
+static void ov21_021E80D4(SoftwareSprite *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5);
 static void ov21_021E7F88(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, int param2);
 static void ov21_021E7FD0(SysTask *param0, void *param1);
 static void ov21_021E8084(UnkStruct_ov21_021E8084 *param0);
@@ -756,8 +749,8 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
 
 static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
 {
-    UnkStruct_ov22_022557A0 v0;
-    UnkStruct_ov22_02255800 v1;
+    SoftwareSpriteCharsTemplate v0;
+    SoftwareSpritePaletteTemplate v1;
 
     param0->unk_10 = PokedexGraphics_GetGraphicNarcCharacterData(param0->unk_00, 36, 1, &param0->unk_18, heapID);
     param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(param0->unk_00, 6, &param0->unk_1C, heapID);
@@ -784,7 +777,7 @@ static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0)
 
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1)
 {
-    UnkStruct_ov21_021E7F40 v0;
+    SoftwareSpriteTemplate v0;
 
     v0.unk_00 = param0->unk_00->unk_164;
     v0.unk_04 = param0->unk_04;
@@ -894,7 +887,7 @@ static void ov21_021E8084(UnkStruct_ov21_021E8084 *param0)
     ov21_021E80D4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_1C);
 }
 
-static void ov21_021E80D4(UnkStruct_02015214 *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5)
+static void ov21_021E80D4(SoftwareSprite *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5)
 {
     fx32 v0, v1;
     VecFx32 v2;

@@ -9,17 +9,8 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "applications/pokedex/struct_ov21_021E7F40.h"
-#include "overlay022/struct_ov22_022550D4.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -40,6 +31,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
+#include "software_sprite.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -52,7 +44,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_02015064.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
@@ -166,9 +157,9 @@ typedef struct StarterPreviewAnimation {
 } StarterPreviewAnimation;
 
 typedef struct StarterPreviewWindow {
-    UnkStruct_02015128 *unk_00;
-    UnkStruct_020151A4 *unk_04;
-    UnkStruct_02015214 *unk_08;
+    SoftwareSpriteChars *unk_00;
+    SoftwareSpritePalette *unk_04;
+    SoftwareSprite *unk_08;
     void *unk_0C;
     void *unk_10;
     NNSG2dCharacterData *unk_14;
@@ -211,7 +202,7 @@ typedef struct ChooseStarterApp {
     VecFx32 unk_64C;
     ChooseStarterCursor unk_658;
     GXRgb edgeMarkings[8];
-    UnkStruct_02015064 *spriteDisplay;
+    SoftwareSpriteManager *spriteDisplay;
     StarterPreviewWindow unk_6A8;
     int messageFrame;
     u32 unk_704;
@@ -716,7 +707,7 @@ static void ov78_021D14BC(ChooseStarterApp *param0)
 
 static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
 {
-    UnkStruct_ov22_022550D4 v0 = {
+    SoftwareSpriteManagerTemplate v0 = {
         .unk_00 = 1,
         .unk_04 = 1,
         .unk_08 = 1,
@@ -1528,9 +1519,9 @@ static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
 {
-    UnkStruct_ov22_022557A0 v0;
-    UnkStruct_ov22_02255800 v1;
-    UnkStruct_ov21_021E7F40 v2;
+    SoftwareSpriteCharsTemplate v0;
+    SoftwareSpritePaletteTemplate v1;
+    SoftwareSpriteTemplate v2;
 
     param0->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &param0->unk_14, param2);
     param0->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &param0->unk_18, param2);

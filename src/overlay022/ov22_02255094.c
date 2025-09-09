@@ -5,13 +5,8 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022550D4.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
@@ -25,12 +20,12 @@
 #include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "resource_collection.h"
+#include "software_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
-#include "unk_02015064.h"
 #include "unk_0202419C.h"
 
 static void ov22_02255634(void);
@@ -38,7 +33,7 @@ static void ov22_02255654(void);
 static void ov22_022556DC(void);
 static void ov22_0225572C(void);
 static void ov22_02255738(void);
-static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1);
+static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1);
 static void ov22_02255784(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3);
@@ -50,8 +45,8 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255AC0(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_022559E0(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_022557A0 *param1, int param2);
-static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255800 *param1, int param2);
+static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpriteCharsTemplate *param1, int param2);
+static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpritePaletteTemplate *param1, int param2);
 static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID);
@@ -83,7 +78,7 @@ void ov22_022550B4(void)
 
 void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
 {
-    UnkStruct_ov22_022550D4 v0 = {
+    SoftwareSpriteManagerTemplate v0 = {
         .unk_00 = 718,
         .unk_04 = 118,
         .unk_08 = 19,
@@ -294,7 +289,7 @@ int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param
     return 0;
 }
 
-void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1, int heapID)
+void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, int heapID)
 {
     ov22_02255748(param0, param1);
     ov22_02255C24(param0, heapID, 0x2800, 0x20);
@@ -484,13 +479,13 @@ static void ov22_02255738(void)
     NNS_G2dInitOamManagerModule();
 }
 
-static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1)
+static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1)
 {
     param0->unk_00 = sub_02015064(param1);
-    param0->unk_04 = Heap_Alloc(param1->heapID, sizeof(UnkStruct_02015128 *) * (100 + 18));
+    param0->unk_04 = Heap_Alloc(param1->heapID, sizeof(SoftwareSpriteChars *) * (100 + 18));
     param0->unk_08 = (100 + 18);
     param0->unk_0C = 0;
-    param0->unk_10 = Heap_Alloc(param1->heapID, sizeof(UnkStruct_020151A4 *) * (1 + 18));
+    param0->unk_10 = Heap_Alloc(param1->heapID, sizeof(SoftwareSpritePalette *) * (1 + 18));
     param0->unk_14 = (1 + 18);
     param0->unk_18 = 0;
     param0->unk_1C = 1;
@@ -507,7 +502,7 @@ static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0)
     sub_020150EC(param0->unk_00);
 }
 
-static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_022557A0 *param1, int param2)
+static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpriteCharsTemplate *param1, int param2)
 {
     int v0;
 
@@ -524,7 +519,7 @@ static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_022557
     }
 }
 
-static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255800 *param1, int param2)
+static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpritePaletteTemplate *param1, int param2)
 {
     int v0;
 
@@ -810,13 +805,13 @@ static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID)
 {
-    param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_022557A0) * param1);
-    memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_022557A0) * param1);
+    param0->unk_00 = Heap_Alloc(heapID, sizeof(SoftwareSpriteCharsTemplate) * param1);
+    memset(param0->unk_00, 0, sizeof(SoftwareSpriteCharsTemplate) * param1);
     param0->unk_10 = ResourceCollection_New(param1, heapID);
     param0->unk_04 = param1;
 
-    param0->unk_08 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02255800) * param2);
-    memset(param0->unk_08, 0, sizeof(UnkStruct_ov22_02255800) * param2);
+    param0->unk_08 = Heap_Alloc(heapID, sizeof(SoftwareSpritePaletteTemplate) * param2);
+    memset(param0->unk_08, 0, sizeof(SoftwareSpritePaletteTemplate) * param2);
     param0->unk_14 = ResourceCollection_New(param2, heapID);
     param0->unk_0C = param2;
 }

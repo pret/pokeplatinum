@@ -2,16 +2,14 @@
 
 #include <string.h>
 
-#include "overlay022/struct_ov22_022550D4.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "pokemon.h"
+#include "software_sprite.h"
 #include "sprite_transfer.h"
 #include "sys_task.h"
 #include "unk_02012744.h"
-#include "unk_02015064.h"
 
 static void InitBackgrounds(BgConfig *bgConfig, enum HeapID heapID);
 static void FreeBackgrounds(BgConfig *bgConfig);
@@ -697,7 +695,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
     }
 
     {
-        UnkStruct_ov22_022550D4 v3 = {
+        SoftwareSpriteManagerTemplate v3 = {
             .unk_00 = 8,
             .unk_04 = 8,
             .unk_08 = 8,

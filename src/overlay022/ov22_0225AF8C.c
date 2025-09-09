@@ -15,7 +15,6 @@
 #include "overlay022/ov22_02259484.h"
 #include "overlay022/ov22_0225AF44.h"
 #include "overlay022/struct_ov22_02254DE0.h"
-#include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02259484.h"
@@ -30,6 +29,7 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "resource_collection.h"
+#include "software_sprite.h"
 #include "unk_020298BC.h"
 
 typedef struct UnkStruct_ov22_0225B1BC_t {
@@ -293,7 +293,7 @@ static UnkStruct_ov22_0225B1BC *ov22_0225B258(const UnkStruct_ov22_0225B4E4 *par
 static void ov22_0225B2D4(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_0225B4E4 *param1)
 {
     UnkStruct_ov22_02255CB8 v0;
-    UnkStruct_ov22_022550D4 v1;
+    SoftwareSpriteManagerTemplate v1;
 
     param0->unk_00.unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, param1->heapID);
 

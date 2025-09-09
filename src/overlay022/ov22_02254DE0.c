@@ -3,21 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015214_decl.h"
-
-#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 
 #include "heap.h"
+#include "software_sprite.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02015064.h"
 
 static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
-static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
+static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
 static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable);
 
 UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int heapID)
@@ -180,9 +177,9 @@ static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0)
     return NULL;
 }
 
-static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
+static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
 {
-    UnkStruct_ov21_021E7F40 v0;
+    SoftwareSpriteTemplate v0;
 
     v0.unk_00 = param0->unk_04;
     v0.unk_04 = param0->unk_08;

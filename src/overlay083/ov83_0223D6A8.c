@@ -3,15 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/struct_02015958.h"
 
-#include "applications/pokedex/struct_ov21_021E7F40.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
@@ -46,6 +39,7 @@
 #include "math_util.h"
 #include "narc.h"
 #include "render_window.h"
+#include "software_sprite.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -56,7 +50,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02015064.h"
 #include "unk_02015920.h"
 #include "unk_02098FFC.h"
 
@@ -122,12 +115,12 @@ static int ov83_0223D6A8(int param0, const Strbuf *param1, int param2)
     return param0;
 }
 
-static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpriteChars *ov83_0223D6BC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
 {
-    UnkStruct_ov22_022557A0 v0;
+    SoftwareSpriteCharsTemplate v0;
     void *v1;
     NNSG2dCharacterData *v2;
-    UnkStruct_02015128 *v3;
+    SoftwareSpriteChars *v3;
 
     v1 = Graphics_GetCharDataFromOpenNARC(param3, param1, 0, &v2, param2);
     v0.unk_00 = param0;
@@ -139,12 +132,12 @@ static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1,
     return v3;
 }
 
-static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpritePalette *ov83_0223D6EC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
 {
-    UnkStruct_ov22_02255800 v0;
+    SoftwareSpritePaletteTemplate v0;
     void *v1;
     NNSG2dPaletteData *v2;
-    UnkStruct_020151A4 *v3;
+    SoftwareSpritePalette *v3;
 
     v1 = Graphics_GetPlttDataFromOpenNARC(param3, param1, &v2, param2);
     v0.unk_00 = param0;
@@ -157,10 +150,10 @@ static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1,
     return v3;
 }
 
-static UnkStruct_02015214 *ov83_0223D720(UnkStruct_02015064 *param0, UnkStruct_02015128 *param1, UnkStruct_020151A4 *param2, int param3, int param4, int param5)
+static SoftwareSprite *ov83_0223D720(SoftwareSpriteManager *param0, SoftwareSpriteChars *param1, SoftwareSpritePalette *param2, int param3, int param4, int param5)
 {
-    UnkStruct_ov21_021E7F40 v0;
-    UnkStruct_02015214 *v1;
+    SoftwareSpriteTemplate v0;
+    SoftwareSprite *v1;
 
     v0.unk_00 = param0;
     v0.unk_04 = param1;
@@ -757,7 +750,7 @@ void ov83_0223E34C(UnkStruct_ov83_0223E340 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E340));
 }
 
-void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, UnkStruct_02015064 *param1, u32 param2, NARC *param3)
+void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param1, u32 param2, NARC *param3)
 {
     int v0;
     static const u8 v1[] = {

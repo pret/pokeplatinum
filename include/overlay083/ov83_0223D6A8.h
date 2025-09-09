@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02015064_decl.h"
-
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
 #include "overlay083/struct_ov83_0223D95C.h"
@@ -27,6 +25,7 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "software_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 
@@ -64,7 +63,7 @@ void ov83_0223E2FC(UnkStruct_ov83_0223E244 *param0);
 BOOL ov83_0223E32C(UnkStruct_ov83_0223E244 *param0);
 void ov83_0223E340(UnkStruct_ov83_0223E340 *param0);
 void ov83_0223E34C(UnkStruct_ov83_0223E340 *param0);
-void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, UnkStruct_02015064 *param1, u32 param2, NARC *param3);
+void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param1, u32 param2, NARC *param3);
 void ov83_0223E438(UnkStruct_ov83_0223E340 *param0);
 void ov83_0223E484(UnkStruct_ov83_0223E340 *param0, u32 param1, BOOL param2);
 void ov83_0223E4A4(UnkStruct_ov83_0223E340 *param0, u16 param1);

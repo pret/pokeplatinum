@@ -16,9 +16,9 @@
 #include "inlines.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "software_sprite.h"
 #include "strbuf.h"
 #include "unk_02014A84.h"
-#include "unk_02015064.h"
 
 typedef struct UnkStruct_0202A138_t {
     u32 unk_00;
