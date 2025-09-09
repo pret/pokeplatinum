@@ -441,14 +441,14 @@ static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, param0->heapID);
 
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 2, 2, 0, 0, 0);
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 3, 4, 0, 0, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 2, BG_LAYER_MAIN_2, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 3, BG_LAYER_SUB_0, GRAPHICSMEMBER_TILES, 0, 0);
 
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 0, 2, 2, 0x20 * 0x1, 0);
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 1, 4, 2, 0x20 * 0x5, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 0, BG_LAYER_MAIN_2, GRAPHICSMEMBER_PALETTE, 0x20 * 0x1, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 1, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, 0x20 * 0x5, 0);
 
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 4, 2, 1, 0, 0);
-    sub_0208C210(param0->unk_68, param0->heapID, v0, 87, 5, 4, 1, 0, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 4, BG_LAYER_MAIN_2, GRAPHICSMEMBER_TILEMAP, 0, 0);
+    App_LoadGraphicMember(param0->unk_68, param0->heapID, v0, 87, 5, BG_LAYER_SUB_0, GRAPHICSMEMBER_TILEMAP, 0, 0);
 
     NARC_dtor(v0);
 

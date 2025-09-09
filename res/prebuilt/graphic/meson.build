@@ -30,7 +30,6 @@ prebuilt_files = [
     'plist_gra.narc',
     'pmsi.narc',
     'poketch.narc',
-    'poru_gra.narc',
     'poruact.narc',
     'porudemo.narc',
     'pst_gra.narc',

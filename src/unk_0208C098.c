@@ -149,53 +149,53 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void App_LoadGraphicMember(BgConfig *bgConfig, int heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset)
 {
-    u32 v0;
-    void *v1;
-    NNSG2dCharacterData *v2;
-    NNSG2dScreenData *v3;
-    NNSG2dPaletteData *v4;
+    u32 narcSize;
+    void *dest;
+    NNSG2dCharacterData *ppCharData;
+    NNSG2dScreenData *ppScrData;
+    NNSG2dPaletteData *ppPltData;
 
-    v0 = NARC_GetMemberSize(param2, param4);
-    v1 = Heap_AllocAtEnd(heapID, v0);
+    narcSize = NARC_GetMemberSize(narc, memberIndex);
+    dest = Heap_AllocAtEnd(heapID, narcSize);
 
-    NARC_ReadWholeMember(param2, param4, (void *)v1);
+    NARC_ReadWholeMember(narc, memberIndex, (void *)dest);
 
-    switch (param6) {
-    case 0:
-        NNS_G2dGetUnpackedCharacterData(v1, &v2);
+    switch (memberType) {
+    case GRAPHICSMEMBER_TILES:
+        NNS_G2dGetUnpackedCharacterData(dest, &ppCharData);
 
-        if (param7 == 0) {
-            param7 = v2->szByte;
+        if (memberSize == 0) {
+            memberSize = ppCharData->szByte;
         }
 
-        Bg_LoadTiles(param0, param5, v2->pRawData, param7, param8);
+        Bg_LoadTiles(bgConfig, bgLayer, ppCharData->pRawData, memberSize, offset);
         break;
-    case 1:
-        NNS_G2dGetUnpackedScreenData(v1, &v3);
+    case GRAPHICSMEMBER_TILEMAP:
+        NNS_G2dGetUnpackedScreenData(dest, &ppScrData);
 
-        if (param7 == 0) {
-            param7 = v3->szByte;
+        if (memberSize == 0) {
+            memberSize = ppScrData->szByte;
         }
 
-        if (Bg_GetTilemapBuffer(param0, param5) != NULL) {
-            Bg_LoadTilemapBuffer(param0, param5, v3->rawData, param7);
+        if (Bg_GetTilemapBuffer(bgConfig, bgLayer) != NULL) {
+            Bg_LoadTilemapBuffer(bgConfig, bgLayer, ppScrData->rawData, memberSize);
         }
 
-        Bg_CopyTilemapBufferRangeToVRAM(param0, param5, v3->rawData, param7, param8);
+        Bg_CopyTilemapBufferRangeToVRAM(bgConfig, bgLayer, ppScrData->rawData, memberSize, offset);
         break;
-    case 2:
-        NNS_G2dGetUnpackedPaletteData(v1, &v4);
+    case GRAPHICSMEMBER_PALETTE:
+        NNS_G2dGetUnpackedPaletteData(dest, &ppPltData);
 
-        if (param7 == 0) {
-            param7 = v4->szByte;
+        if (memberSize == 0) {
+            memberSize = ppPltData->szByte;
         }
 
-        Bg_LoadPalette(param5, v4->pRawData, param7, param8);
+        Bg_LoadPalette(bgLayer, ppPltData->pRawData, memberSize, offset);
     }
 
-    Heap_Free(v1);
+    Heap_Free(dest);
 }
 
 void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)
