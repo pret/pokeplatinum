@@ -7,10 +7,25 @@
 #include "bg_window.h"
 #include "pokemon.h"
 
-#define TEXT_WINDOW_SIZE 30
+// These are for the typical window frame used by basic menus and choice-boxes.
+#define STANDARD_WINDOW_TILE_W     3
+#define STANDARD_WINDOW_TILE_H     3
+#define STANDARD_WINDOW_TILE_COUNT (STANDARD_WINDOW_TILE_W * STANDARD_WINDOW_TILE_H)
 
-#define NUM_TILES_STANDARD_WINDOW_FRAME 9
-#define NUM_TILES_MESSAGE_BOX_FRAME     (18 + 12)
+// These are for the typical dialogue window used by, for example, NPC conversations. The frame
+// style for this window is customizable by the player, but its size is still constant.
+#define MESSAGE_BOX_TILE_W     6
+#define MESSAGE_BOX_TILE_H     3
+#define MESSAGE_BOX_TILE_COUNT (MESSAGE_BOX_TILE_W * MESSAGE_BOX_TILE_H)
+
+// This is for the down arrow used as a prompt for dialogue that must wrap its text across viewports
+// or information dialogues which otherwise wait for player confirmation before the text disappears.
+#define SCROLLING_CURSOR_FRAME_TILE_W     2
+#define SCROLLING_CURSOR_FRAME_TILE_H     2
+#define SCROLLING_CURSOR_FRAME_TILE_COUNT (SCROLLING_CURSOR_FRAME_TILE_W * SCROLLING_CURSOR_FRAME_TILE_H)
+#define SCROLLING_CURSOR_FRAME_COUNT      3
+#define SCROLLING_CURSOR_TILE_COUNT       (SCROLLING_CURSOR_FRAME_TILE_COUNT * SCROLLING_CURSOR_FRAME_COUNT)
+#define SCROLLING_MESSAGE_BOX_TILE_COUNT  (MESSAGE_BOX_TILE_COUNT + SCROLLING_CURSOR_TILE_COUNT)
 
 typedef struct WaitDial WaitDial;
 

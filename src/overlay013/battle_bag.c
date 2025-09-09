@@ -733,7 +733,7 @@ static void LoadGraphicsData(BattleBag *battleBag)
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
 
     int optionsFrame = ov16_0223EDE0(battleBag->context->battleSystem);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - NUM_TILES_MESSAGE_BOX_FRAME, 0, FALSE, battleBag->context->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - SCROLLING_MESSAGE_BOX_TILE_COUNT, 0, FALSE, battleBag->context->heapID);
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
 }
 
