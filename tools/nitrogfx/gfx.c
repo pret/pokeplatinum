@@ -260,7 +260,7 @@ static void ConvertFromTiles8Bpp(unsigned char *src, unsigned char *dest, int nu
     }
 }
 
-static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, int oamWidth, int oamHeight, int imageWidth, int startX, int startY, bool hFlip, bool vFlip, bool hvFlip, bool toPNG)
+static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, int oamWidth, int oamHeight, int imageWidth, int startX, int startY, bool hFlip, bool vFlip, bool hvFlip, int palette, bool toPNG)
 {
     int tilesSoFar = 0;
     int rowsSoFar = 0;
@@ -290,6 +290,10 @@ static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, in
                 if (toPNG)
                 {
                     dest[idxComponentY * pitch + idxComponentX] = *src++;
+                    if (palette != -1)
+                    {
+                        dest[idxComponentY * pitch + idxComponentX] += palette * 16;
+                    }
                 }
                 else
                 {
@@ -630,7 +634,7 @@ static int SnapToTile(int val)
     return val;
 }
 
-void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip)
+void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip, bool convertBpp)
 {
     char *cellFileExtension = GetFileExtension(cellFilePath);
     if (cellFileExtension == NULL)
@@ -822,6 +826,12 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             bool vFlip = options->cells[i]->attributes.vFlip && rotationScaling;
             bool hvFlip = options->cells[i]->attributes.hvFlip && rotationScaling;
 
+            int paletteChange = -1;
+            if (convertBpp)
+            {
+                paletteChange = options->cells[i]->oam->attr2.Palette;
+            }
+
             switch (image->bitDepth)
             {
                 case 4:
@@ -838,11 +848,11 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                     pixelOffset *= 2;
                     if (toPNG)
                     {
-                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
+                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
                     }
                     else
                     {
-                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
+                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
                     }
                     break;
             }
