@@ -525,8 +525,8 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->heapID);
 
-    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 5, 1, 0, 0, 0);
-    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 4, 1, 2, 0x20 * 0x2, 0);
+    App_LoadGraphicMember(param0->unk_10, param0->heapID, v1, 123, 5, BG_LAYER_MAIN_1, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(param0->unk_10, param0->heapID, v1, 123, 4, BG_LAYER_MAIN_1, GRAPHICSMEMBER_PALETTE, 0x20 * 0x2, 0);
 
     if (param0->unk_08 == 1) {
         v0 = 7;
@@ -538,7 +538,7 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, v0, 1, 1, 0, 0);
+    App_LoadGraphicMember(param0->unk_10, param0->heapID, v1, 123, v0, BG_LAYER_MAIN_1, GRAPHICSMEMBER_TILEMAP, 0, 0);
     NARC_dtor(v1);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 }
