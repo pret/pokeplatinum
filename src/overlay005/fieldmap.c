@@ -115,7 +115,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem);
 static void FieldSystem_InitLandManager(FieldSystem *fieldSystem);
 static void ov5_021D1878(FieldSystem *fieldSystem);
 static void ov5_021D1968(FieldSystem *fieldSystem);
-static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1);
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *state);
 static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1);
 static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1);
 static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem);

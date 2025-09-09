@@ -40,8 +40,8 @@ static void ScriptContext_JumpToOffsetID(ScriptContext *ctx, u16 param1);
 static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
-static u16 FieldSystem_GetFixedInitScriptID(const u8 *param0, u8 param1);
-static u16 FieldSystem_GetConditionMetInitScriptID(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType);
+static u16 FieldSystem_GetConditionMetInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType);
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
