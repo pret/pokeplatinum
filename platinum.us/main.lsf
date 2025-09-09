@@ -942,11 +942,11 @@ Overlay overlay34
 	Object main.nef.p/src_overlay034_ov34_02256540.c.o
 }
 
-Overlay overlay35
+Overlay poketch_counter
 {
 	After overlay25
-	Object main.nef.p/src_overlay035_ov35_022561C0.c.o
-	Object main.nef.p/src_overlay035_ov35_02256410.c.o
+	Object main.nef.p/src_applications_poketch_counter_main.c.o
+	Object main.nef.p/src_applications_poketch_counter_graphics.c.o
 }
 
 Overlay overlay36
