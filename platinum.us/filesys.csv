@@ -121,7 +121,7 @@ res/prebuilt/data/ug_hole.NCGR,/data/ug_hole.NCGR
 res/prebuilt/data/ug_parts.narc,/data/ug_parts.narc
 res/prebuilt/data/ug_radar.narc,/data/ug_radar.narc
 res/prebuilt/data/ug_trap.narc,/data/ug_trap.narc
-res/prebuilt/data/ugeffect_obj_graphic.narc,/data/ugeffect_obj_graphic.narc
+res/graphics/underground_map_transition/underground_map_transition.narc,/data/ugeffect_obj_graphic.narc
 res/prebuilt/data/uground_cell.resdat,/data/uground_cell.resdat
 res/prebuilt/data/uground_cellanm.resdat,/data/uground_cellanm.resdat
 res/prebuilt/data/uground_char.resdat,/data/uground_char.resdat

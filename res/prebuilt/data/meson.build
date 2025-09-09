@@ -122,7 +122,6 @@ prebuilt_files = [
     'ug_parts.narc',
     'ug_radar.narc',
     'ug_trap.narc',
-    'ugeffect_obj_graphic.narc',
     'uground_cell.resdat',
     'uground_cellanm.resdat',
     'uground_char.resdat',
