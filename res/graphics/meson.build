@@ -1,3 +1,4 @@
+subdir('bag')
 subdir('diploma')
 subdir('item_icons')
 subdir('naming_screen')
