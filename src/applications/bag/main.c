@@ -175,10 +175,10 @@ static void SaveCursorPosition(BagController *controller);
 static int HandleItemUsed(BagController *interface);
 static int RunItemUseCallback(BagController *controller);
 static int TMHMUseTask(BagController *controller);
-static BOOL ShowItemUseMessage(BagController *controller, u16 item);
+static BOOL UseItemInBag(BagController *controller, u16 item);
 static Strbuf *TryUseRepel(BagController *controller, u16 item);
 static void TrashSelectedItem(BagController *controller);
-static int MessageItemUseTask(BagController *controller);
+static int InBagItemUseTask(BagController *controller);
 static void ToggleHideItemSprite(BagController *controller, u8 hide);
 static BOOL CheckDialButtonPressed(BagController *controller);
 static void DrawDialButton(BagController *controller, u8 buttonState);
@@ -2128,8 +2128,8 @@ static int HandleItemUsed(BagController *interface)
         return BAG_APP_STATE_SHOWING_ITEM_USE_MSG;
     }
 
-    if (ShowItemUseMessage(interface, interface->bagCtx->selectedItem) == TRUE) {
-        interface->itemUseCallback = MessageItemUseTask;
+    if (UseItemInBag(interface, interface->bagCtx->selectedItem) == TRUE) {
+        interface->itemUseCallback = InBagItemUseTask;
         return BAG_APP_STATE_RUN_ITEM_USE_TASK;
     }
 
@@ -2230,7 +2230,7 @@ static int TMHMUseTask(BagController *controller)
     return BAG_APP_STATE_RUN_ITEM_USE_TASK;
 }
 
-static BOOL ShowItemUseMessage(BagController *controller, u16 item)
+static BOOL UseItemInBag(BagController *controller, u16 item)
 {
     StringTemplate_SetPlayerName(controller->strTemplate, 0, controller->trainerInfo);
     StringTemplate_SetItemName(controller->strTemplate, 1, item);
@@ -2282,7 +2282,7 @@ static void TrashSelectedItem(BagController *controller)
     CreateItemListMenu(controller, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].cursorScroll, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].cursorPos);
 }
 
-static int MessageItemUseTask(BagController *controller)
+static int InBagItemUseTask(BagController *controller)
 {
     switch (controller->itemUseTaskState) {
     case 0:
