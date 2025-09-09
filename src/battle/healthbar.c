@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "battle/ov16_0223DF00.h"
@@ -73,11 +74,92 @@ typedef struct {
     s8 unk_0A;
 } UnkStruct_ov16_0226834C;
 
+enum HealthbarPart {
+    HEALTHBAR_PART_HP_H = 0,
+    HEALTHBAR_PART_HP_P,
+    HEALTHBAR_PART_GREEN_FILL_0,
+    HEALTHBAR_PART_GREEN_FILL_1,
+    HEALTHBAR_PART_GREEN_FILL_2,
+    HEALTHBAR_PART_GREEN_FILL_3,
+    HEALTHBAR_PART_GREEN_FILL_4,
+    HEALTHBAR_PART_GREEN_FILL_5,
+    HEALTHBAR_PART_GREEN_FILL_6,
+    HEALTHBAR_PART_GREEN_FILL_7,
+    HEALTHBAR_PART_GREEN_FILL_8,
+    HEALTHBAR_PART_YELLOW_FILL_0,
+    HEALTHBAR_PART_YELLOW_FILL_1,
+    HEALTHBAR_PART_YELLOW_FILL_2,
+    HEALTHBAR_PART_YELLOW_FILL_3,
+    HEALTHBAR_PART_YELLOW_FILL_4,
+    HEALTHBAR_PART_YELLOW_FILL_5,
+    HEALTHBAR_PART_YELLOW_FILL_6,
+    HEALTHBAR_PART_YELLOW_FILL_7,
+    HEALTHBAR_PART_YELLOW_FILL_8,
+    HEALTHBAR_PART_RED_FILL_0,
+    HEALTHBAR_PART_RED_FILL_1,
+    HEALTHBAR_PART_RED_FILL_2,
+    HEALTHBAR_PART_RED_FILL_3,
+    HEALTHBAR_PART_RED_FILL_4,
+    HEALTHBAR_PART_RED_FILL_5,
+    HEALTHBAR_PART_RED_FILL_6,
+    HEALTHBAR_PART_RED_FILL_7,
+    HEALTHBAR_PART_RED_FILL_8,
+    HEALTHBAR_PART_EXP_FILL_0,
+    HEALTHBAR_PART_EXP_FILL_1,
+    HEALTHBAR_PART_EXP_FILL_2,
+    HEALTHBAR_PART_EXP_FILL_3,
+    HEALTHBAR_PART_EXP_FILL_4,
+    HEALTHBAR_PART_EXP_FILL_5,
+    HEALTHBAR_PART_EXP_FILL_6,
+    HEALTHBAR_PART_EXP_FILL_7,
+    HEALTHBAR_PART_EXP_FILL_8,
+    HEALTHBAR_PART_STATUS_HEALTHY_0,
+    HEALTHBAR_PART_STATUS_HEALTHY_1,
+    HEALTHBAR_PART_STATUS_HEALTHY_2,
+    HEALTHBAR_PART_STATUS_PARALYSIS_0,
+    HEALTHBAR_PART_STATUS_PARALYSIS_1,
+    HEALTHBAR_PART_STATUS_PARALYSIS_2,
+    HEALTHBAR_PART_STATUS_FREEZE_0,
+    HEALTHBAR_PART_STATUS_FREEZE_1,
+    HEALTHBAR_PART_STATUS_FREEZE_2,
+    HEALTHBAR_PART_STATUS_SLEEP_0,
+    HEALTHBAR_PART_STATUS_SLEEP_1,
+    HEALTHBAR_PART_STATUS_SLEEP_2,
+    HEALTHBAR_PART_STATUS_POISON_0,
+    HEALTHBAR_PART_STATUS_POISON_1,
+    HEALTHBAR_PART_STATUS_POISON_2,
+    HEALTHBAR_PART_STATUS_BURN_0,
+    HEALTHBAR_PART_STATUS_BURN_1,
+    HEALTHBAR_PART_STATUS_BURN_2,
+    HEALTHBAR_PART_EMPTY_0,
+    HEALTHBAR_PART_EMPTY_1,
+    HEALTHBAR_PART_EMPTY_2,
+    HEALTHBAR_PART_CAUGHT_INDICATOR,
+    HEALTHBAR_PART_LEVEL_FEMALE_TOP_0,
+    HEALTHBAR_PART_LEVEL_FEMALE_TOP_1,
+    HEALTHBAR_PART_LEVEL_MALE_TOP_0,
+    HEALTHBAR_PART_LEVEL_MALE_TOP_1,
+    HEALTHBAR_PART_LEVEL_GENDERLESS_TOP_0,
+    HEALTHBAR_PART_LEVEL_GENDERLESS_TOP_1,
+    HEALTHBAR_PART_HP_H_2,
+    HEALTHBAR_PART_HP_P_2,
+    HEALTHBAR_PART_BAR_END,
+    HEALTHBAR_PART_SLASH,
+    HEALTHBAR_PART_NUMBERS_LEFT,
+    HEALTHBAR_PART_NUMBERS_RIGHT,
+    HEALTHBAR_PART_LEVEL_FEMALE_BOTTOM_0,
+    HEALTHBAR_PART_LEVEL_FEMALE_BOTTOM_1,
+    HEALTHBAR_PART_LEVEL_MALE_BOTTOM_0,
+    HEALTHBAR_PART_LEVEL_MALE_BOTTOM_1,
+    HEALTHBAR_PART_LEVEL_GENDERLESS_BOTTOM_0,
+    HEALTHBAR_PART_LEVEL_GENDERLESS_BOTTOM_1,
+};
+
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
 static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset);
 static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
-static const u8 *ov16_02268250(int param0);
+static const u8 *GetHealthbarPartsTile(enum HealthbarPart part);
 static void DrawGauge(Healthbar *param0, u8 param1);
 static void Healthbar_DrawBattlerName(Healthbar *param0);
 static void Healthbar_DrawLevelText(Healthbar *param0);
@@ -85,7 +167,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0);
 static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1);
 static void Healthbar_DrawMaxHP(Healthbar *param0);
 static void Healthbar_DrawCaughtIcon(Healthbar *param0);
-static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1);
+static void Healthbar_DrawStatusIcon(Healthbar *param0, enum HealthbarPart param1);
 static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1);
 static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1);
 static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type);
@@ -509,7 +591,7 @@ static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
     .vramTransfer = FALSE,
 };
 
-#include "battle/rodata_ov16_0226F6AC.h"
+#include "res/graphics/battle/healthbar_parts.4bpp.h"
 
 void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType)
 {
@@ -638,22 +720,22 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
         switch (healthbar->status) {
         default:
         case 0:
-            Healthbar_DrawStatusIcon(healthbar, 38);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_HEALTHY_0);
             break;
         case 1:
-            Healthbar_DrawStatusIcon(healthbar, 47);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_SLEEP_0);
             break;
         case 2:
-            Healthbar_DrawStatusIcon(healthbar, 50);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_POISON_0);
             break;
         case 3:
-            Healthbar_DrawStatusIcon(healthbar, 53);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_BURN_0);
             break;
         case 4:
-            Healthbar_DrawStatusIcon(healthbar, 44);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_FREEZE_0);
             break;
         case 5:
-            Healthbar_DrawStatusIcon(healthbar, 41);
+            Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_PARALYSIS_0);
             break;
         }
     }
@@ -775,23 +857,23 @@ void ov16_0226737C(Healthbar *param0)
     v1 = Sprite_GetImageProxy(param0->mainSprite->sprite);
 
     if (param0->numberMode == 1) {
-        v0 = ov16_02268250(70);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_LEFT);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-        v0 = ov16_02268250(71);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_RIGHT);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
-        v0 = ov16_02268250(69);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_SLASH);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].size);
 
         Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
     } else {
-        v0 = ov16_02268250(66);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_HP_H_2);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].size);
 
-        v0 = ov16_02268250(68);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_BAR_END);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->type].size);
 
-        v0 = ov16_02268250(38);
+        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
         Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_HP_GAUGE);
@@ -1122,18 +1204,18 @@ static void Healthbar_DrawLevelText(Healthbar *param0)
     int v3, v4;
 
     if (param0->unk_49 == 0) {
-        v3 = 74;
-        v4 = 62;
+        v3 = HEALTHBAR_PART_LEVEL_MALE_BOTTOM_0;
+        v4 = HEALTHBAR_PART_LEVEL_MALE_TOP_0;
     } else if (param0->unk_49 == 1) {
-        v3 = 72;
-        v4 = 60;
+        v3 = HEALTHBAR_PART_LEVEL_FEMALE_BOTTOM_0;
+        v4 = HEALTHBAR_PART_LEVEL_FEMALE_TOP_0;
     } else {
-        v3 = 76;
-        v4 = 64;
+        v3 = HEALTHBAR_PART_LEVEL_GENDERLESS_BOTTOM_0;
+        v4 = HEALTHBAR_PART_LEVEL_GENDERLESS_TOP_0;
     }
 
-    v1 = ov16_02268250(v3);
-    v2 = ov16_02268250(v4);
+    v1 = GetHealthbarPartsTile(v3);
+    v2 = GetHealthbarPartsTile(v4);
 
     {
         void *v5;
@@ -1247,9 +1329,9 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0)
     const u8 *v1;
 
     if (param0->unk_4B == 1) {
-        v1 = ov16_02268250(59);
+        v1 = GetHealthbarPartsTile(HEALTHBAR_PART_CAUGHT_INDICATOR);
     } else {
-        v1 = ov16_02268250(38);
+        v1 = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
     }
 
     {
@@ -1262,10 +1344,10 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0)
     }
 }
 
-static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
+static void Healthbar_DrawStatusIcon(Healthbar *param0, enum HealthbarPart param1)
 {
     NNSG2dImageProxy *v0;
-    const u8 *v1 = ov16_02268250(param1);
+    const u8 *v1 = GetHealthbarPartsTile(param1);
 
     {
         void *v2;
@@ -1427,19 +1509,19 @@ static void DrawGauge(Healthbar *param0, u8 param1)
 
             switch (v10) {
             case 3:
-                v3 = 2;
+                v3 = HEALTHBAR_PART_GREEN_FILL_0;
                 break;
             case 2:
-                v3 = 11;
+                v3 = HEALTHBAR_PART_YELLOW_FILL_0;
                 break;
             case 1:
             default:
-                v3 = 20;
+                v3 = HEALTHBAR_PART_RED_FILL_0;
                 break;
             }
         }
 
-        v6 = ov16_02268250(v3);
+        v6 = GetHealthbarPartsTile(v3);
         v9 = Unk_ov16_0226F44C[param0->type][0].size / 0x20;
 
         for (v0 = 0; v0 < 6; v0++) {
@@ -1460,7 +1542,7 @@ static void DrawGauge(Healthbar *param0, u8 param1)
             }
         }
 
-        v6 = ov16_02268250(29);
+        v6 = GetHealthbarPartsTile(HEALTHBAR_PART_EXP_FILL_0);
 
         for (v0 = 0; v0 < 12; v0++) {
             if (v0 < 5) {
@@ -1632,9 +1714,9 @@ static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
     return abs(curPixels - newPixels);
 }
 
-static const u8 *ov16_02268250(int param0)
+static const u8 *GetHealthbarPartsTile(enum HealthbarPart part)
 {
-    return &Unk_ov16_0226F6AC[param0 * 0x20];
+    return &sHealthbarPartsBitmap[part * TILE_SIZE_4BPP];
 }
 
 u8 Healthbar_Type(int battlerType, u32 battleType)
