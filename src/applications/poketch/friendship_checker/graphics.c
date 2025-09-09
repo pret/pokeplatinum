@@ -23,6 +23,7 @@
 #define TIME_STEPS_PER_FRAME 16
 
 #define POKE_ICON_SIZE 32
+#define ICON_RADIUS    16
 
 #define LEFT_EDGE   FX32_CONST(-10)
 #define RIGHT_EDGE  FX32_CONST(217)
@@ -142,8 +143,8 @@ void PoketchFriendshipCheckerGraphics_Free(FriendshipCheckerGraphics *graphics)
 }
 
 static const PoketchTask sFrienshipCheckerTasks[] = {
-    { 0x0, Task_InitGraphics, 0x0 },
-    { 0x1, Task_FreeBackground, 0x0 },
+    { FRIENDSHIP_CHECKER_GRAPHICS_INIT, Task_InitGraphics, 0 },
+    { FRIENDSHIP_CHECKER_GRAPHICS_FREE, Task_FreeBackground, 0 },
     { 0 }
 };
 
@@ -275,8 +276,8 @@ static void SetRandomVelocity(VecFx32 *velocity)
 {
     fx32 x, y;
 
-    x = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
-    y = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
+    x = ((MTRNG_Next() % 64) - 32) * FX32_ONE;
+    y = ((MTRNG_Next() % 64) - 32) * FX32_ONE;
 
     VEC_Set(velocity, x, y, 0);
     VEC_Normalize(velocity, velocity);
@@ -380,7 +381,7 @@ static u32 CheckIfTouchingMon(FriendshipCheckerGraphics *graphics)
         x = (graphics->touchX - x) * (graphics->touchX - x);
         y = (graphics->touchY - y) * (graphics->touchY - y);
 
-        if ((x + y) < (16 * 16)) {
+        if (x + y < (ICON_RADIUS * ICON_RADIUS)) {
             return slot;
         }
     }
