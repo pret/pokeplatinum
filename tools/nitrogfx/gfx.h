@@ -51,7 +51,7 @@ struct Image {
 };
 
 void ReadImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors);
-uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors, bool scanFrontToBack, bool convertTo8Bpp, int palIndex);
+uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image, bool invertColors, bool scanFrontToBack, bool convertTo8Bpp, int palIndex, bool verbose);
 void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip, bool convertBpp);
 void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, const char *embedName, struct Image *image, bool invertColors);
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
