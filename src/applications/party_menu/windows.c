@@ -1210,7 +1210,7 @@ void PartyMenu_PrintLongMessage(PartyMenuApplication *application, u32 bankEntry
 void PartyMenu_AddLongMessagePrinter(PartyMenuApplication *application)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     application->textPrinterID = Text_AddPrinterWithParams(
         &application->windows[PARTY_MENU_WIN_LONG_MESSAGE],
         FONT_MESSAGE,

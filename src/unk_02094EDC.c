@@ -998,21 +998,21 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
 void sub_020959F4(int param0)
 {
     if (param0 == 0) {
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        RenderControlFlags_SetAutoScrollFlags(3);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
     } else {
-        RenderControlFlags_SetAutoScrollFlags(1);
-        RenderControlFlags_SetCanABSpeedUpPrint(0);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
+        RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     }
 }
 
 void sub_02095A24(void)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
 u32 sub_02095A3C(int param0, int param1)
