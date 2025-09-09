@@ -945,7 +945,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
     LoadMessageBoxGraphics(
         application->bgConfig,
         BG_LAYER_MAIN_0,
-        1 + STANDARD_WINDOW_TILE_SIZE,
+        1 + STANDARD_WINDOW_TILE_COUNT,
         15,
         Options_Frame(application->partyMenu->options),
         HEAP_ID_PARTY_MENU);
