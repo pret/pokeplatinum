@@ -182,7 +182,7 @@ static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, i
 {
     RenderControlFlags_SetCanABSpeedUpPrint(param3);
     RenderControlFlags_SetAutoScrollFlags(param4);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     param0->unk_50 = Text_AddPrinterWithParams(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 

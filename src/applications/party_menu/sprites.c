@@ -1,7 +1,7 @@
 #include "applications/party_menu/sprites.h"
 
-#include <nitro.h>
-#include <string.h>
+#include <nitro/gx/gx_load.h>
+#include <nnsys/g2d/g2d_Image.h>
 
 #include "constants/pokemon.h"
 #include "generated/items.h"
@@ -45,11 +45,11 @@ void PartyMenu_InitSpriteResources(PartyMenuApplication *application)
         32,
     };
     CharTransferTemplateWithModes transferTemplate = {
-        NUM_MENU_SPRITES + MAX_PARTY_SIZE, 1024, 1024, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K
+        NUM_PARTY_MENU_SPRITES + MAX_PARTY_SIZE, 1024, 1024, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K
     };
 
     SpriteSystem_Init(application->spriteSystem, &oamTemplate, &transferTemplate, 32);
-    SpriteSystem_InitSprites(application->spriteSystem, application->spriteMan, NUM_MENU_SPRITES + MAX_PARTY_SIZE);
+    SpriteSystem_InitSprites(application->spriteSystem, application->spriteMan, NUM_PARTY_MENU_SPRITES + MAX_PARTY_SIZE);
 
     G2dRenderer *renderer = SpriteSystem_GetRenderer(application->spriteSystem);
     SetSubScreenViewRect(renderer, 0, 256 * FX32_ONE);
@@ -66,11 +66,15 @@ void PartyMenu_InitSpriteResources(PartyMenuApplication *application)
     SpriteSystem_LoadResourceDataFromFilepaths(application->spriteSystem, application->spriteMan, &resdat);
 }
 
+#define SPECIES_ICON_PLTT_SLOT 3
+
 void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot, u16 x, u16 y, NARC *narc)
 {
+#define partyMenuMember application->partyMembers[slot]
+
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    application->partyMembers[slot].spriteXDelta = x;
-    application->partyMembers[slot].spriteYDelta = y;
+    partyMenuMember.spriteXDelta = x;
+    partyMenuMember.spriteYDelta = y;
 
     SpriteSystem_ReplaceCharResObjFromOpenNarc(
         application->spriteSystem,
@@ -89,89 +93,328 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
     template.z = 0;
     template.animIdx = 0;
     template.priority = 0;
-    template.plttIdx = PokeIconPaletteIndex(application->partyMembers[slot].species, application->partyMembers[slot].form, isEgg) + 3;
+    template.plttIdx = PokeIconPaletteIndex(partyMenuMember.species, partyMenuMember.form, isEgg) + SPECIES_ICON_PLTT_SLOT;
     template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     template.dummy18 = 0;
     template.dummy1C = 0;
     template.dummy20 = 0;
     template.dummy24 = 0;
 
-    application->partyMembers[slot].sprite = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &template);
+    partyMenuMember.sprite = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &template);
+
+#undef partyMenuMember
 }
 
-void sub_02082DA8(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_LoadMemberSpeciesIcon(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *v0;
-    NARC *v1;
-    int v2, v3;
-    u32 v4;
-    void *v5;
-    NNSG2dCharacterData *v6;
-    BOOL v7;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
+    u32 offset = NNS_G2dGetImageLocation(Sprite_GetImageProxy(application->partyMembers[slot].sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    void *ncgr = LoadMemberFromOpenNARC(iconNarc, Pokemon_IconSpriteIndex(mon), FALSE, HEAP_ID_PARTY_MENU, TRUE);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param1);
-    v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
-    v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->partyMembers[param1].sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-    v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, HEAP_ID_PARTY_MENU, 1);
-    v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
-
-    if (v7) {
-        DC_FlushRange(v6->pRawData, v6->szByte);
-        GX_LoadOBJ(v6->pRawData, v4, v6->szByte);
+    NNSG2dCharacterData *charData;
+    if (NNS_G2dGetUnpackedCharacterData(ncgr, &charData)) {
+        DC_FlushRange(charData->pRawData, charData->szByte);
+        GX_LoadOBJ(charData->pRawData, offset, charData->szByte);
     }
 
-    Heap_Free(v5);
-    Sprite_SetExplicitPalette2(param0->partyMembers[param1].sprite, PokeIconPaletteIndex(v2, v3, 0) + 3);
-    NARC_dtor(v1);
+    Heap_Free(ncgr);
+    Sprite_SetExplicitPalette2(application->partyMembers[slot].sprite, PokeIconPaletteIndex(species, form, FALSE) + SPECIES_ICON_PLTT_SLOT);
+    NARC_dtor(iconNarc);
 }
 
+enum {
+    SPRITE_TEMPLATE_CURSOR_NORMAL = 0,
+    SPRITE_TEMPLATE_CURSOR_SWITCH,
+    SPRITE_TEMPLATE_CONFIRM_BUTTON,
+    SPRITE_TEMPLATE_CANCEL_BUTTON,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB0,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB1,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB2,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB3,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB4,
+    SPRITE_TEMPLATE_STATUS_ICON_MEMB5,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB0,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB1,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB2,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB3,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB4,
+    SPRITE_TEMPLATE_HELD_ITEM_MEMB5,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB0,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB1,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB2,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB3,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB4,
+    SPRITE_TEMPLATE_BALL_SEAL_MEMB5,
+    SPRITE_TEMPLATE_UNK_22,
+};
+
 static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
-    { 0x1, 0x40, 0x18, 0x0, 0x1, 0x3, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x1, 0x40, 0x48, 0x0, 0x2, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2, 0xE8, 0xA8, 0x0, 0x2, 0x1, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x2, 0xE8, 0xB8, 0x0, 0x2, 0x1, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0x24, 0x2C, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0xA4, 0x34, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0x24, 0x5C, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0xA4, 0x64, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0x24, 0x8C, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0x3, 0xA4, 0x94, 0x0, 0x0, 0x1, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xA, 0xA4, 0x94, 0x0, 0x2, 0x0, 0x6, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0xB, 0xA4, 0x94, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DSUB, 0x0, 0x0, 0x0, 0x0 }
+    [SPRITE_TEMPLATE_CURSOR_NORMAL] = {
+        .resourceHeaderID = 1,
+        .x = 64,
+        .y = 24,
+        .z = 0,
+        .animIdx = 1,
+        .priority = 3,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_CURSOR_SWITCH] = {
+        .resourceHeaderID = 1,
+        .x = 64,
+        .y = 72,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 2,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_CONFIRM_BUTTON] = {
+        .resourceHeaderID = 2,
+        .x = 232,
+        .y = 168,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 1,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_CANCEL_BUTTON] = {
+        .resourceHeaderID = 2,
+        .x = 232,
+        .y = 184,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 1,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB0] = {
+        .resourceHeaderID = 3,
+        .x = 36,
+        .y = 44,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB1] = {
+        .resourceHeaderID = 3,
+        .x = 164,
+        .y = 52,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB2] = {
+        .resourceHeaderID = 3,
+        .x = 36,
+        .y = 92,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB3] = {
+        .resourceHeaderID = 3,
+        .x = 164,
+        .y = 100,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB4] = {
+        .resourceHeaderID = 3,
+        .x = 36,
+        .y = 140,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_STATUS_ICON_MEMB5] = {
+        .resourceHeaderID = 3,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 1,
+        .plttIdx = 2,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB0] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB1] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB2] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB3] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB4] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_HELD_ITEM_MEMB5] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB0] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB1] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB2] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB3] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB4] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_BALL_SEAL_MEMB5] = {
+        .resourceHeaderID = 10,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 2,
+        .priority = 0,
+        .plttIdx = 6,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    },
+    [SPRITE_TEMPLATE_UNK_22] = {
+        .resourceHeaderID = 11,
+        .x = 164,
+        .y = 148,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+    }
 };
 
 void PartyMenu_InitSprites(PartyMenuApplication *application)
 {
-    application->sprites[6] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[0]);
-    application->sprites[7] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[1]);
-    application->sprites[8] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[2]);
-    application->sprites[9] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[3]);
-    application->sprites[28] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[22]);
+#define LoadSpriteFromResourceHeader(__sprite, __template)                         \
+    do {                                                                           \
+        application->sprites[__sprite] = SpriteSystem_NewSpriteFromResourceHeader( \
+            application->spriteSystem,                                             \
+            application->spriteMan,                                                \
+            &sSpriteTemplates[__template]);                                        \
+    } while (0)
+
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CURSOR_NORMAL, SPRITE_TEMPLATE_CURSOR_NORMAL);
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CURSOR_SWITCH, SPRITE_TEMPLATE_CURSOR_SWITCH);
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CONFIRM_BUTTON, SPRITE_TEMPLATE_CONFIRM_BUTTON);
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CANCEL_BUTTON, SPRITE_TEMPLATE_CANCEL_BUTTON);
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT, SPRITE_TEMPLATE_UNK_22);
 
     for (u32 i = 0; i < MAX_PARTY_SIZE; i++) {
-        application->sprites[10 + i] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[4 + i]);
-        application->partyMembers[i].spriteXPos = sSpriteTemplates[4 + i].x;
-        application->partyMembers[i].spriteYPos = sSpriteTemplates[4 + i].y;
-        Sprite_SetDrawFlag(application->sprites[10 + i], FALSE);
-        application->sprites[16 + i] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[10 + i]);
-        application->sprites[22 + i] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &sSpriteTemplates[16 + i]);
+        LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_STATUS_ICON_MEMB0 + i, SPRITE_TEMPLATE_STATUS_ICON_MEMB0 + i);
+
+        application->partyMembers[i].statusXPos = sSpriteTemplates[SPRITE_TEMPLATE_STATUS_ICON_MEMB0 + i].x;
+        application->partyMembers[i].statusYPos = sSpriteTemplates[SPRITE_TEMPLATE_STATUS_ICON_MEMB0 + i].y;
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_STATUS_ICON_MEMB0 + i], FALSE);
+
+        LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_HELD_ITEM_MEMB0 + i, SPRITE_TEMPLATE_HELD_ITEM_MEMB0 + i);
+        LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_BALL_SEAL_MEMB0 + i, SPRITE_TEMPLATE_BALL_SEAL_MEMB0 + i);
     }
 
-    Sprite_SetDrawFlag(application->sprites[7], FALSE);
-    Sprite_SetDrawFlag(application->sprites[28], FALSE);
+    Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], FALSE);
+    Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], FALSE);
+
+#undef LoadSpriteFromResourceHeader
 }
 
 void PartyMenu_DrawMemberPokeBall(PartyMenuApplication *application, u8 slot, u16 x, u16 y)
@@ -190,18 +433,21 @@ void PartyMenu_DrawMemberPokeBall(PartyMenuApplication *application, u8 slot, u1
     template.dummy20 = 0;
     template.dummy24 = 0;
 
-    application->sprites[slot] = SpriteSystem_NewSpriteFromResourceHeader(application->spriteSystem, application->spriteMan, &template);
+    application->sprites[PARTY_MENU_SPRITE_POKE_BALL_MEMB0 + slot] = SpriteSystem_NewSpriteFromResourceHeader(
+        application->spriteSystem,
+        application->spriteMan,
+        &template);
 }
 
-void sub_02082FF4(PartyMenuApplication *param0)
+void PartyMenu_CleanupSprites(PartyMenuApplication *application)
 {
-    SpriteSystem_DestroySpriteManager(param0->spriteSystem, param0->spriteMan);
-    SpriteSystem_Free(param0->spriteSystem);
+    SpriteSystem_DestroySpriteManager(application->spriteSystem, application->spriteMan);
+    SpriteSystem_Free(application->spriteSystem);
 }
 
 void PartyMenu_DrawMemberStatusCondition(PartyMenuApplication *application, u8 slot, u8 icon)
 {
-    Sprite **pSprite = &application->sprites[10 + slot];
+    Sprite **pSprite = &application->sprites[PARTY_MENU_SPRITE_STATUS_ICON_MEMB0 + slot];
     if (icon == SUMMARY_CONDITION_NONE) {
         Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
@@ -213,7 +459,7 @@ void PartyMenu_DrawMemberStatusCondition(PartyMenuApplication *application, u8 s
 
 void PartyMenu_DrawMemberHeldItem(PartyMenuApplication *application, u8 slot, u16 item)
 {
-    Sprite **pSprite = &application->sprites[16 + slot];
+    Sprite **pSprite = &application->sprites[PARTY_MENU_SPRITE_HELD_ITEM_MEMB0 + slot];
     if (item == ITEM_NONE) {
         Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
@@ -228,17 +474,16 @@ void PartyMenu_DrawMemberHeldItem(PartyMenuApplication *application, u8 slot, u1
     Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
-void sub_02083080(PartyMenuApplication *param0, u8 param1)
+void PartyMenu_DrawMemberMail(PartyMenuApplication *application, u8 slot)
 {
-    Sprite **v0 = &param0->sprites[16 + param1];
-
-    Sprite_SetAnim(*v0, 1);
-    Sprite_SetDrawFlag(*v0, TRUE);
+    Sprite **pSprite = &application->sprites[PARTY_MENU_SPRITE_HELD_ITEM_MEMB0 + slot];
+    Sprite_SetAnim(*pSprite, 1);
+    Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
 void PartyMenu_AlignMemberHeldItem(PartyMenuApplication *application, u8 slot, s16 x, s16 y)
 {
-    Sprite **pSprite = &application->sprites[16 + slot];
+    Sprite **pSprite = &application->sprites[PARTY_MENU_SPRITE_HELD_ITEM_MEMB0 + slot];
     application->partyMembers[slot].itemXPos = x + 8;
     application->partyMembers[slot].itemYPos = y + 8;
 
@@ -247,12 +492,15 @@ void PartyMenu_AlignMemberHeldItem(PartyMenuApplication *application, u8 slot, s
 
 void PartyMenu_AlignMemberBallSeal(PartyMenuApplication *application, u8 slot)
 {
-    Sprite_SetPositionXY(application->sprites[22 + slot], application->partyMembers[slot].itemXPos + 8, application->partyMembers[slot].itemYPos);
+    Sprite_SetPositionXY(
+        application->sprites[PARTY_MENU_SPRITE_BALL_SEAL_MEMB0 + slot],
+        application->partyMembers[slot].itemXPos + 8,
+        application->partyMembers[slot].itemYPos);
 }
 
 void PartyMenu_DrawMemberBallSeal(PartyMenuApplication *application, u8 slot)
 {
-    Sprite **pSprite = &application->sprites[22 + slot];
+    Sprite **pSprite = &application->sprites[PARTY_MENU_SPRITE_BALL_SEAL_MEMB0 + slot];
     if (application->partyMembers[slot].ballSeal == 0) {
         Sprite_SetDrawFlag(*pSprite, FALSE);
         return;
@@ -261,109 +509,109 @@ void PartyMenu_DrawMemberBallSeal(PartyMenuApplication *application, u8 slot)
     Sprite_SetDrawFlag(*pSprite, TRUE);
 }
 
-static void sub_02083138(Sprite *param0, u8 param1)
+static void StartSpriteAnim(Sprite *pSprite, u8 anim)
 {
-    if (Sprite_GetActiveAnim(param0) == param1) {
+    if (Sprite_GetActiveAnim(pSprite) == anim) {
         return;
     }
 
-    Sprite_SetAnimFrame(param0, 0);
-    Sprite_SetAnim(param0, param1);
+    Sprite_SetAnimFrame(pSprite, 0);
+    Sprite_SetAnim(pSprite, anim);
 }
 
-static u8 sub_02083158(PartyMenuMember *param0)
+static u8 CalcMemberIconAnim(PartyMenuMember *member)
 {
-    if (param0->curHP == 0) {
-        return 0;
+    if (member->curHP == 0) {
+        return POKEICON_ANIM_FAINTED;
     }
 
-    if ((param0->statusIcon != SUMMARY_CONDITION_NONE) && (param0->statusIcon != SUMMARY_CONDITION_POKERUS) && (param0->statusIcon != SUMMARY_CONDITION_FAINTED)) {
-        return 5;
+    if (member->statusIcon != SUMMARY_CONDITION_NONE
+        && member->statusIcon != SUMMARY_CONDITION_POKERUS
+        && member->statusIcon != SUMMARY_CONDITION_FAINTED) {
+        return POKEICON_ANIM_STATUSED;
     }
 
-    switch (HealthBar_Color(param0->curHP, param0->maxHP, 48)) {
-    case 4:
-        return 1;
-    case 3:
-        return 2;
-    case 2:
-        return 3;
-    case 1:
-        return 4;
+    switch (HealthBar_Color(member->curHP, member->maxHP, 48)) {
+    case BARCOLOR_MAX:
+        return POKEICON_ANIM_HP_MAX;
+    case BARCOLOR_GREEN:
+        return POKEICON_ANIM_HP_GREEN;
+    case BARCOLOR_YELLOW:
+        return POKEICON_ANIM_HP_YELLOW;
+    case BARCOLOR_RED:
+        return POKEICON_ANIM_HP_RED;
     }
 
-    return 0;
+    return POKEICON_ANIM_FAINTED;
 }
 
-void sub_020831B4(PartyMenuApplication *param0)
+void PartyMenu_UpdateMemberIcons(PartyMenuApplication *application)
 {
-    PartyMenuMember *v0;
-    u16 v1;
-    u16 v2;
+    PartyMenuMember *member;
+    u16 slot;
+    u16 anim;
 
-    for (v1 = 0; v1 < 6; v1++) {
-        v0 = &param0->partyMembers[v1];
-
-        if (v0->isPresent == FALSE) {
+    for (slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        member = &application->partyMembers[slot];
+        if (member->isPresent == FALSE) {
             continue;
         }
 
-        if ((param0->unk_7F8.unk_304 == 1) && ((param0->unk_7F8.unk_300[0] == v1) || (param0->unk_7F8.unk_300[1] == v1))) {
-            v2 = 0;
+        if (application->orderSwitch.inProgress == TRUE
+            && (application->orderSwitch.slots[0] == slot || application->orderSwitch.slots[1] == slot)) {
+            anim = POKEICON_ANIM_FAINTED; // Be still while switching members in party order.
         } else {
-            v2 = sub_02083158(v0);
+            anim = CalcMemberIconAnim(member);
         }
 
-        sub_02083138(v0->sprite, v2);
-        Sprite_UpdateAnim(v0->sprite, FX32_ONE);
+        StartSpriteAnim(member->sprite, anim);
+        Sprite_UpdateAnim(member->sprite, FX32_ONE);
 
-        if ((param0->currPartySlot == v1) && (v2 != 0) && (v2 != 5)) {
-            if (Sprite_GetAnimFrame(v0->sprite) == 0) {
-                Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta - 3);
+        // Party members that are active and not statused have a slight vertical "bounce."
+        if (application->currPartySlot == slot && anim != POKEICON_ANIM_FAINTED && anim != POKEICON_ANIM_STATUSED) {
+            if (Sprite_GetAnimFrame(member->sprite) == 0) {
+                Sprite_SetPositionXY(member->sprite, member->spriteXDelta, member->spriteYDelta - 3);
             } else {
-                Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta + 1);
+                Sprite_SetPositionXY(member->sprite, member->spriteXDelta, member->spriteYDelta + 1);
             }
-
-            continue;
+        } else {
+            Sprite_SetPositionXY(member->sprite, member->spriteXDelta, member->spriteYDelta);
         }
-
-        Sprite_SetPositionXY(v0->sprite, v0->spriteXDelta, v0->spriteYDelta);
     }
 }
 
-void sub_0208327C(PartyMenuApplication *param0, u8 param1, u8 param2)
+void PartyMenu_UpdateCursor(PartyMenuApplication *application, u8 slot, u8 palette)
 {
-    u8 v0, v1;
+    u8 x, y;
+    GridMenuCursor_GetFirstCoords(&application->cursorPosTable[slot], &x, &y);
 
-    GridMenuCursor_GetFirstCoords(&param0->cursorPosTable[param1], &v0, &v1);
-    Sprite_SetAnim(param0->sprites[6], sub_020805D0(param0->partyMenu->type, param1));
-    Sprite_SetDrawFlag(param0->sprites[6], TRUE);
-    Sprite_SetPositionXY(param0->sprites[6], v0, v1);
-    Sprite_SetExplicitPalette2(param0->sprites[6], param2);
+    Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, slot));
+    Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
+    Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], x, y);
+    Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], palette);
 }
 
-void sub_020832E4(PartyMenuApplication *param0, s16 param1, s16 param2)
+void PartyMenu_InitTouchButtonEffect(PartyMenuApplication *application, s16 x, s16 y)
 {
-    VecFx32 v0;
+    VecFx32 pos;
+    pos.x = x * FX32_ONE;
+    pos.y = y * FX32_ONE;
+    pos.y += (256 * FX32_ONE);
+    pos.z = 0;
 
-    v0.x = param1 * FX32_ONE;
-    v0.y = param2 * FX32_ONE;
-    v0.y += (256 * FX32_ONE);
-    v0.z = 0;
-
-    Sprite_SetPosition(param0->sprites[28], &v0);
-    Sprite_SetDrawFlag(param0->sprites[28], TRUE);
-    Sprite_SetAnimFrame(param0->sprites[28], 0);
-    Sprite_SetAnim(param0->sprites[28], 0);
+    Sprite_SetPosition(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], &pos);
+    Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], TRUE);
+    Sprite_SetAnimFrame(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], 0);
+    Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], 0);
 }
 
-void sub_02083334(PartyMenuApplication *param0)
+void PartyMenu_UpdateTouchButtonEffect(PartyMenuApplication *application)
 {
-    if (Sprite_GetDrawFlag(param0->sprites[28]) == 1) {
-        Sprite_UpdateAnim(param0->sprites[28], FX32_ONE);
+    if (Sprite_GetDrawFlag(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT]) == TRUE) {
+        Sprite_UpdateAnim(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], FX32_ONE);
 
-        if (Sprite_GetAnimFrame(param0->sprites[28]) == 2) {
-            Sprite_SetDrawFlag(param0->sprites[28], FALSE);
+        if (Sprite_GetAnimFrame(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT]) == 2) {
+            Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT], FALSE);
         }
     }
 }

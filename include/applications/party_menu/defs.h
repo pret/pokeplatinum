@@ -9,7 +9,6 @@
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02083D1C.h"
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_0207F248.h"
@@ -33,7 +32,6 @@
 
 #define NUM_MENU_PALETTES 8
 #define NUM_MENU_COLORS   (PALETTE_SIZE * NUM_MENU_PALETTES)
-#define NUM_MENU_SPRITES  29
 
 #define PARTY_MENU_SHOW_CONFIRM (1 << 0)
 #define PARTY_MENU_SHOW_CANCEL  (1 << 1)
@@ -143,6 +141,40 @@ enum PartyMenuString {
     NUM_PARTY_MENU_STRS,
 };
 
+enum PartyMenuSprite {
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB0 = 0,
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB1,
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB2,
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB3,
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB4,
+    PARTY_MENU_SPRITE_POKE_BALL_MEMB5,
+    PARTY_MENU_SPRITE_CURSOR_NORMAL,
+    PARTY_MENU_SPRITE_CURSOR_SWITCH,
+    PARTY_MENU_SPRITE_CONFIRM_BUTTON,
+    PARTY_MENU_SPRITE_CANCEL_BUTTON,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB0,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB1,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB2,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB3,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB4,
+    PARTY_MENU_SPRITE_STATUS_ICON_MEMB5,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB0,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB1,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB2,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB3,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB4,
+    PARTY_MENU_SPRITE_HELD_ITEM_MEMB5,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB0,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB1,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB2,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB3,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB4,
+    PARTY_MENU_SPRITE_BALL_SEAL_MEMB5,
+    PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT,
+
+    NUM_PARTY_MENU_SPRITES,
+};
+
 typedef struct PartyMenu {
     Party *party;
     Bag *bag;
@@ -190,8 +222,8 @@ typedef struct PartyMenuMember {
     s8 panelYPos;
     s16 spriteXDelta;
     s16 spriteYDelta;
-    s16 spriteXPos;
-    s16 spriteYPos;
+    s16 statusXPos;
+    s16 statusYPos;
     s16 itemXPos;
     s16 itemYPos;
     Sprite *sprite;
@@ -199,19 +231,31 @@ typedef struct PartyMenuMember {
     u8 isPresent;
 } PartyMenuMember;
 
+#define PARTY_MENU_MEMBER_PANEL_SIZE_TILES 96
+
+typedef struct PartyOrderSwitchData {
+    u16 unk_00[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u16 unk_180[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u8 slots[2];
+    u8 unk_302[2];
+    u8 inProgress;
+    u8 unk_305;
+    u8 unk_306;
+} PartyOrderSwitchData;
+
 typedef struct PartyMenuApplication {
     BgConfig *bgConfig;
     Window windows[NUM_PARTY_MENU_WINS];
     Window menuWindows[1]; // There is only ever 1 here, but it is never unrolled by the compiler
-    u16 leadMemberPanel[96];
-    u16 backMemberPanel[96];
-    u16 noneMemberPanel[96];
+    u16 leadMemberPanel[PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u16 backMemberPanel[PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u16 noneMemberPanel[PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
     u16 colors[NUM_MENU_COLORS];
     PartyMenu *partyMenu;
     SpriteSystem *spriteSystem;
     SpriteManager *spriteMan;
-    Sprite *sprites[NUM_MENU_SPRITES];
-    ManagedSprite *sprites_unused[NUM_MENU_SPRITES];
+    Sprite *sprites[NUM_PARTY_MENU_SPRITES];
+    ManagedSprite *sprites_unused[NUM_PARTY_MENU_SPRITES];
     FontSpecialCharsContext *specialChars;
     MessageLoader *messageLoader;
     StringTemplate *template;
@@ -222,7 +266,7 @@ typedef struct PartyMenuApplication {
     Menu *contextMenu;
     PartyMenuMember partyMembers[MAX_PARTY_SIZE];
     const GridMenuCursorPosition *cursorPosTable;
-    DualArrayShortData unk_7F8;
+    PartyOrderSwitchData orderSwitch;
     GenericFunctionPtr unk_B00;
     FunctionPtrPair unk_B04;
     u8 unk_B0C;

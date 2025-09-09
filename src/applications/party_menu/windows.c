@@ -112,7 +112,7 @@ enum {
 #define WIN_COMMENT_MEMB_W     10
 #define WIN_COMMENT_MEMB_H     2
 
-#define WIN_BASE_TILE_START           (1 + STANDARD_WINDOW_TILE_SIZE + MESSAGE_BOX_TILE_SIZE + SCROLL_CURSOR_TILE_SIZE)
+#define WIN_BASE_TILE_START           (1 + STANDARD_WINDOW_TILE_COUNT + SCROLLING_MESSAGE_BOX_TILE_COUNT)
 #define WIN_NAME_MEMB0_BASE_TILE      (WIN_BASE_TILE_START)
 #define WIN_LEVEL_MEMB0_BASE_TILE     (WIN_NAME_MEMB0_BASE_TILE + WIN_SIZE(NAME_MEMB))
 #define WIN_HP_MEMB0_BASE_TILE        (WIN_LEVEL_MEMB0_BASE_TILE + WIN_SIZE(LEVEL_MEMB))
@@ -1170,7 +1170,7 @@ void PartyMenu_PrintButtonText(PartyMenuApplication *application, u8 flags)
 static void PrintPartyMenuMessage(PartyMenuApplication *application, Window *window, u32 bankEntry, u8 drawBox)
 {
     if (drawBox == TRUE) {
-        Window_DrawMessageBoxWithScrollCursor(window, TRUE, 1 + STANDARD_WINDOW_TILE_SIZE, 15);
+        Window_DrawMessageBoxWithScrollCursor(window, TRUE, 1 + STANDARD_WINDOW_TILE_COUNT, 15);
     }
 
     Window_FillTilemap(window, 15);
@@ -1196,7 +1196,7 @@ void PartyMenu_PrintLongMessage(PartyMenuApplication *application, u32 bankEntry
 {
     Window *window = &application->windows[PARTY_MENU_WIN_LONG_MESSAGE];
     if (drawBox == TRUE) {
-        Window_DrawMessageBoxWithScrollCursor(window, TRUE, 1 + STANDARD_WINDOW_TILE_SIZE, 15);
+        Window_DrawMessageBoxWithScrollCursor(window, TRUE, 1 + STANDARD_WINDOW_TILE_COUNT, 15);
     }
 
     Window_FillTilemap(window, 15);
@@ -1210,7 +1210,7 @@ void PartyMenu_PrintLongMessage(PartyMenuApplication *application, u32 bankEntry
 void PartyMenu_AddLongMessagePrinter(PartyMenuApplication *application)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     application->textPrinterID = Text_AddPrinterWithParams(
         &application->windows[PARTY_MENU_WIN_LONG_MESSAGE],
         FONT_MESSAGE,

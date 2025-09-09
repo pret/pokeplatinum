@@ -329,9 +329,9 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     EnableTouchPad();
     GF_ASSERT(InitializeTouchPad(4) == 1);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 
@@ -652,7 +652,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID)
     app->messageWindow = Window_New(heapID, 1);
     Window_Init(app->messageWindow);
 
-    Window_Add(app->bgl, app->messageWindow, BG_LAYER_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, TEXT_WINDOW_SIZE + 1);
+    Window_Add(app->bgl, app->messageWindow, BG_LAYER_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, SCROLLING_MESSAGE_BOX_TILE_COUNT + 1);
 
     Window_FillTilemap(app->messageWindow, 15);
     LoadMessageBoxGraphics(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);

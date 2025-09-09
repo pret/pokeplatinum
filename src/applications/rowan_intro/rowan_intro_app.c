@@ -990,7 +990,7 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
             0x400 - (18 + 12),
             4);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-        RenderControlFlags_SetAutoScrollFlags(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
         {
             Strbuf *tmpStrbuf = Strbuf_Init(0x400, manager->heapID);

@@ -5,8 +5,6 @@
 
 #include "generated/items.h"
 
-#include "struct_defs/struct_02083D1C.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
@@ -221,7 +219,7 @@ int sub_02083658(PartyMenuApplication *param0)
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->windows[34], 1);
             PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
-            Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+            Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             return 1;
         }
     }
@@ -370,7 +368,7 @@ static int sub_02083990(void *param0)
 
     Window_EraseMessageBox(&v0->windows[34], 1);
     PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE);
-    Sprite_SetExplicitPalette2(v0->sprites[6], 0);
+    Sprite_SetExplicitPalette2(v0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     return 1;
 }
@@ -380,7 +378,7 @@ int sub_020839BC(PartyMenuApplication *param0)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
         PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
-        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+        Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     }
 
@@ -423,7 +421,7 @@ int sub_02083AA4(void *param0)
 
     Window_EraseMessageBox(&v0->windows[34], 1);
     PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE);
-    Sprite_SetExplicitPalette2(v0->sprites[6], 0);
+    Sprite_SetExplicitPalette2(v0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     return 1;
 }
@@ -435,11 +433,11 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
     param0->inSwitchMode = 1;
     param0->switchTargetSlot = param0->currPartySlot;
 
-    Sprite_SetExplicitPalette2(param0->sprites[6], 0);
-    Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
-    Sprite_SetPositionXY(param0->sprites[7], v0, v1);
-    Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
-    Sprite_SetDrawFlag(param0->sprites[7], TRUE);
+    Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
+    Sprite_GetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], &v0, &v1);
+    Sprite_SetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], v0, v1);
+    Sprite_SetAnim(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], PartyMenu_GetMemberPanelAnim(param0->partyMenu->type, param0->switchTargetSlot) + 2);
+    Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], TRUE);
     PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
@@ -451,7 +449,7 @@ static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
 void sub_02083B88(PartyMenuApplication *param0)
 {
     param0->inSwitchMode = 0;
-    Sprite_SetDrawFlag(param0->sprites[7], FALSE);
+    Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], FALSE);
 
     if (param0->currPartySlot < 6) {
         PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
@@ -468,46 +466,46 @@ void sub_02083BD4(PartyMenuApplication *param0)
     s8 v2, v3, v4, v5;
     u16 v6;
 
-    param0->unk_7F8.unk_300[0] = param0->currPartySlot;
-    param0->unk_7F8.unk_300[1] = param0->switchTargetSlot;
-    param0->unk_7F8.unk_304 = 1;
-    param0->unk_7F8.unk_306 = 0;
-    param0->unk_7F8.unk_305 = 0;
+    param0->orderSwitch.slots[0] = param0->currPartySlot;
+    param0->orderSwitch.slots[1] = param0->switchTargetSlot;
+    param0->orderSwitch.inProgress = TRUE;
+    param0->orderSwitch.unk_306 = 0;
+    param0->orderSwitch.unk_305 = 0;
 
-    if (param0->unk_7F8.unk_300[0] & 1) {
-        param0->unk_7F8.unk_302[0] = 1;
+    if (param0->orderSwitch.slots[0] & 1) {
+        param0->orderSwitch.unk_302[0] = 1;
     } else {
-        param0->unk_7F8.unk_302[0] = 0;
+        param0->orderSwitch.unk_302[0] = 0;
     }
 
-    if (param0->unk_7F8.unk_300[1] & 1) {
-        param0->unk_7F8.unk_302[1] = 1;
+    if (param0->orderSwitch.slots[1] & 1) {
+        param0->orderSwitch.unk_302[1] = 1;
     } else {
-        param0->unk_7F8.unk_302[1] = 0;
+        param0->orderSwitch.unk_302[1] = 0;
     }
 
     v0 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 2);
     v1 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 1);
 
-    v2 = param0->partyMembers[param0->unk_7F8.unk_300[0]].panelXPos;
-    v3 = param0->partyMembers[param0->unk_7F8.unk_300[0]].panelYPos;
-    v4 = param0->partyMembers[param0->unk_7F8.unk_300[1]].panelXPos;
-    v5 = param0->partyMembers[param0->unk_7F8.unk_300[1]].panelYPos;
+    v2 = param0->partyMembers[param0->orderSwitch.slots[0]].panelXPos;
+    v3 = param0->partyMembers[param0->orderSwitch.slots[0]].panelYPos;
+    v4 = param0->partyMembers[param0->orderSwitch.slots[1]].panelXPos;
+    v5 = param0->partyMembers[param0->orderSwitch.slots[1]].panelYPos;
 
     for (v6 = 0; v6 < 6; v6++) {
-        memcpy(&param0->unk_7F8.unk_00[0][v6 * 16], &v0[v2 + (v3 + v6) * 32], 16 * 2);
-        memcpy(&param0->unk_7F8.unk_180[0][v6 * 16], &v1[v2 + (v3 + v6) * 32], 16 * 2);
-        memcpy(&param0->unk_7F8.unk_00[1][v6 * 16], &v0[v4 + (v5 + v6) * 32], 16 * 2);
-        memcpy(&param0->unk_7F8.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
+        memcpy(&param0->orderSwitch.unk_00[0][v6 * 16], &v0[v2 + (v3 + v6) * 32], 16 * 2);
+        memcpy(&param0->orderSwitch.unk_180[0][v6 * 16], &v1[v2 + (v3 + v6) * 32], 16 * 2);
+        memcpy(&param0->orderSwitch.unk_00[1][v6 * 16], &v0[v4 + (v5 + v6) * 32], 16 * 2);
+        memcpy(&param0->orderSwitch.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
     }
 
-    Sprite_SetDrawFlag(param0->sprites[6], FALSE);
-    Sprite_SetDrawFlag(param0->sprites[7], FALSE);
+    Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], FALSE);
+    Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], FALSE);
 }
 
 BOOL sub_02083D1C(PartyMenuApplication *param0)
 {
-    DualArrayShortData *v0 = &param0->unk_7F8;
+    PartyOrderSwitchData *v0 = &param0->orderSwitch;
 
     switch (v0->unk_305) {
     case 0:
@@ -550,10 +548,10 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
         break;
 
     case 4:
-        Party_SwapSlots(param0->partyMenu->party, v0->unk_300[0], v0->unk_300[1]);
-        Sprite_SetDrawFlag(param0->sprites[6], TRUE);
+        Party_SwapSlots(param0->partyMenu->party, v0->slots[0], v0->slots[1]);
+        Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
 
-        v0->unk_304 = 0;
+        v0->inProgress = FALSE;
         param0->inSwitchMode = 0;
 
         PartyMenu_UpdateSlotPalette(param0, param0->currPartySlot);
@@ -568,13 +566,13 @@ BOOL sub_02083D1C(PartyMenuApplication *param0)
 
 static void sub_02083E8C(PartyMenuApplication *param0, u8 param1)
 {
-    DualArrayShortData *v0;
+    PartyOrderSwitchData *v0;
     s8 v1, v2;
     u8 v3;
 
-    v0 = &param0->unk_7F8;
-    v1 = param0->partyMembers[v0->unk_300[param1]].panelXPos;
-    v2 = param0->partyMembers[v0->unk_300[param1]].panelYPos;
+    v0 = &param0->orderSwitch;
+    v1 = param0->partyMembers[v0->slots[param1]].panelXPos;
+    v2 = param0->partyMembers[v0->slots[param1]].panelYPos;
 
     Bg_FillTilemapRect(param0->bgConfig, 2, 0, v1, v2, 16, 6, 16);
     Bg_FillTilemapRect(param0->bgConfig, 1, 0, v1, v2, 16, 6, 16);
@@ -590,112 +588,112 @@ static void sub_02083E8C(PartyMenuApplication *param0, u8 param1)
 
 static void sub_02083FDC(PartyMenuApplication *param0, u8 param1, u8 param2)
 {
-    DualArrayShortData *v0;
+    PartyOrderSwitchData *v0;
     s16 v1, v2;
 
-    v0 = &param0->unk_7F8;
+    v0 = &param0->orderSwitch;
 
-    Sprite_GetPositionXY(param0->sprites[0 + v0->unk_300[param1]], &v1, &v2);
+    Sprite_GetPositionXY(param0->sprites[0 + v0->slots[param1]], &v1, &v2);
 
     if (param2 == 0) {
-        param0->partyMembers[v0->unk_300[param1]].spriteXDelta -= 8;
-        param0->partyMembers[v0->unk_300[param1]].spriteXPos -= 8;
-        param0->partyMembers[v0->unk_300[param1]].itemXPos -= 8;
+        param0->partyMembers[v0->slots[param1]].spriteXDelta -= 8;
+        param0->partyMembers[v0->slots[param1]].statusXPos -= 8;
+        param0->partyMembers[v0->slots[param1]].itemXPos -= 8;
         v1 -= 8;
     } else {
-        param0->partyMembers[v0->unk_300[param1]].spriteXDelta += 8;
-        param0->partyMembers[v0->unk_300[param1]].spriteXPos += 8;
-        param0->partyMembers[v0->unk_300[param1]].itemXPos += 8;
+        param0->partyMembers[v0->slots[param1]].spriteXDelta += 8;
+        param0->partyMembers[v0->slots[param1]].statusXPos += 8;
+        param0->partyMembers[v0->slots[param1]].itemXPos += 8;
         v1 += 8;
     }
 
-    Sprite_SetPositionXY(param0->partyMembers[v0->unk_300[param1]].sprite, param0->partyMembers[v0->unk_300[param1]].spriteXDelta, param0->partyMembers[v0->unk_300[param1]].spriteYDelta);
-    Sprite_SetPositionXY(param0->sprites[10 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].spriteXPos, param0->partyMembers[v0->unk_300[param1]].spriteYPos);
-    Sprite_SetPositionXY(param0->sprites[16 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].itemXPos, param0->partyMembers[v0->unk_300[param1]].itemYPos);
-    Sprite_SetPositionXY(param0->sprites[22 + v0->unk_300[param1]], param0->partyMembers[v0->unk_300[param1]].itemXPos + 8, param0->partyMembers[v0->unk_300[param1]].itemYPos);
-    Sprite_SetPositionXY(param0->sprites[0 + v0->unk_300[param1]], v1, v2);
+    Sprite_SetPositionXY(param0->partyMembers[v0->slots[param1]].sprite, param0->partyMembers[v0->slots[param1]].spriteXDelta, param0->partyMembers[v0->slots[param1]].spriteYDelta);
+    Sprite_SetPositionXY(param0->sprites[10 + v0->slots[param1]], param0->partyMembers[v0->slots[param1]].statusXPos, param0->partyMembers[v0->slots[param1]].statusYPos);
+    Sprite_SetPositionXY(param0->sprites[16 + v0->slots[param1]], param0->partyMembers[v0->slots[param1]].itemXPos, param0->partyMembers[v0->slots[param1]].itemYPos);
+    Sprite_SetPositionXY(param0->sprites[22 + v0->slots[param1]], param0->partyMembers[v0->slots[param1]].itemXPos + 8, param0->partyMembers[v0->slots[param1]].itemYPos);
+    Sprite_SetPositionXY(param0->sprites[0 + v0->slots[param1]], v1, v2);
 }
 
 static void sub_02084134(PartyMenuApplication *param0)
 {
     PartyMenuMember *v0;
-    DualArrayShortData *v1;
+    PartyOrderSwitchData *v1;
     ManagedSprite *v2;
     s16 v3;
 
-    v1 = &param0->unk_7F8;
+    v1 = &param0->orderSwitch;
 
     v0 = Heap_Alloc(HEAP_ID_PARTY_MENU, sizeof(PartyMenuMember));
-    *v0 = param0->partyMembers[v1->unk_300[0]];
+    *v0 = param0->partyMembers[v1->slots[0]];
 
-    param0->partyMembers[v1->unk_300[0]] = param0->partyMembers[v1->unk_300[1]];
-    param0->partyMembers[v1->unk_300[1]] = *v0;
+    param0->partyMembers[v1->slots[0]] = param0->partyMembers[v1->slots[1]];
+    param0->partyMembers[v1->slots[1]] = *v0;
 
     Heap_FreeExplicit(HEAP_ID_PARTY_MENU, v0);
 
-    v3 = param0->partyMembers[v1->unk_300[0]].spriteXDelta;
-    param0->partyMembers[v1->unk_300[0]].spriteXDelta = param0->partyMembers[v1->unk_300[1]].spriteXDelta;
-    param0->partyMembers[v1->unk_300[1]].spriteXDelta = v3;
+    v3 = param0->partyMembers[v1->slots[0]].spriteXDelta;
+    param0->partyMembers[v1->slots[0]].spriteXDelta = param0->partyMembers[v1->slots[1]].spriteXDelta;
+    param0->partyMembers[v1->slots[1]].spriteXDelta = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].spriteYDelta;
-    param0->partyMembers[v1->unk_300[0]].spriteYDelta = param0->partyMembers[v1->unk_300[1]].spriteYDelta;
-    param0->partyMembers[v1->unk_300[1]].spriteYDelta = v3;
+    v3 = param0->partyMembers[v1->slots[0]].spriteYDelta;
+    param0->partyMembers[v1->slots[0]].spriteYDelta = param0->partyMembers[v1->slots[1]].spriteYDelta;
+    param0->partyMembers[v1->slots[1]].spriteYDelta = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].spriteXPos;
-    param0->partyMembers[v1->unk_300[0]].spriteXPos = param0->partyMembers[v1->unk_300[1]].spriteXPos;
-    param0->partyMembers[v1->unk_300[1]].spriteXPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].statusXPos;
+    param0->partyMembers[v1->slots[0]].statusXPos = param0->partyMembers[v1->slots[1]].statusXPos;
+    param0->partyMembers[v1->slots[1]].statusXPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].spriteYPos;
-    param0->partyMembers[v1->unk_300[0]].spriteYPos = param0->partyMembers[v1->unk_300[1]].spriteYPos;
-    param0->partyMembers[v1->unk_300[1]].spriteYPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].statusYPos;
+    param0->partyMembers[v1->slots[0]].statusYPos = param0->partyMembers[v1->slots[1]].statusYPos;
+    param0->partyMembers[v1->slots[1]].statusYPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].itemXPos;
-    param0->partyMembers[v1->unk_300[0]].itemXPos = param0->partyMembers[v1->unk_300[1]].itemXPos;
-    param0->partyMembers[v1->unk_300[1]].itemXPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].itemXPos;
+    param0->partyMembers[v1->slots[0]].itemXPos = param0->partyMembers[v1->slots[1]].itemXPos;
+    param0->partyMembers[v1->slots[1]].itemXPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].itemYPos;
-    param0->partyMembers[v1->unk_300[0]].itemYPos = param0->partyMembers[v1->unk_300[1]].itemYPos;
-    param0->partyMembers[v1->unk_300[1]].itemYPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].itemYPos;
+    param0->partyMembers[v1->slots[0]].itemYPos = param0->partyMembers[v1->slots[1]].itemYPos;
+    param0->partyMembers[v1->slots[1]].itemYPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].panelXPos;
-    param0->partyMembers[v1->unk_300[0]].panelXPos = param0->partyMembers[v1->unk_300[1]].panelXPos;
-    param0->partyMembers[v1->unk_300[1]].panelXPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].panelXPos;
+    param0->partyMembers[v1->slots[0]].panelXPos = param0->partyMembers[v1->slots[1]].panelXPos;
+    param0->partyMembers[v1->slots[1]].panelXPos = v3;
 
-    v3 = param0->partyMembers[v1->unk_300[0]].panelYPos;
-    param0->partyMembers[v1->unk_300[0]].panelYPos = param0->partyMembers[v1->unk_300[1]].panelYPos;
-    param0->partyMembers[v1->unk_300[1]].panelYPos = v3;
+    v3 = param0->partyMembers[v1->slots[0]].panelYPos;
+    param0->partyMembers[v1->slots[0]].panelYPos = param0->partyMembers[v1->slots[1]].panelYPos;
+    param0->partyMembers[v1->slots[1]].panelYPos = v3;
 
-    PartyMenu_DrawMemberPanelData(param0, v1->unk_300[0]);
-    PartyMenu_DrawMemberPanelData(param0, v1->unk_300[1]);
-    PartyMenu_CopyMemberWindowToVRAM(param0, v1->unk_300[0]);
-    PartyMenu_CopyMemberWindowToVRAM(param0, v1->unk_300[1]);
+    PartyMenu_DrawMemberPanelData(param0, v1->slots[0]);
+    PartyMenu_DrawMemberPanelData(param0, v1->slots[1]);
+    PartyMenu_CopyMemberWindowToVRAM(param0, v1->slots[0]);
+    PartyMenu_CopyMemberWindowToVRAM(param0, v1->slots[1]);
 
     sub_02084420(param0, 0);
     sub_02084420(param0, 1);
 
-    PartyMenu_DrawMemberStatusCondition(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].statusIcon);
-    PartyMenu_DrawMemberStatusCondition(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].statusIcon);
+    PartyMenu_DrawMemberStatusCondition(param0, v1->slots[0], param0->partyMembers[v1->slots[0]].statusIcon);
+    PartyMenu_DrawMemberStatusCondition(param0, v1->slots[1], param0->partyMembers[v1->slots[1]].statusIcon);
 
-    PartyMenu_DrawMemberHeldItem(param0, v1->unk_300[0], param0->partyMembers[v1->unk_300[0]].heldItem);
-    PartyMenu_DrawMemberHeldItem(param0, v1->unk_300[1], param0->partyMembers[v1->unk_300[1]].heldItem);
+    PartyMenu_DrawMemberHeldItem(param0, v1->slots[0], param0->partyMembers[v1->slots[0]].heldItem);
+    PartyMenu_DrawMemberHeldItem(param0, v1->slots[1], param0->partyMembers[v1->slots[1]].heldItem);
 
-    PartyMenu_DrawMemberBallSeal(param0, v1->unk_300[0]);
-    PartyMenu_DrawMemberBallSeal(param0, v1->unk_300[1]);
+    PartyMenu_DrawMemberBallSeal(param0, v1->slots[0]);
+    PartyMenu_DrawMemberBallSeal(param0, v1->slots[1]);
 }
 
 static void sub_02084420(PartyMenuApplication *param0, u8 param1)
 {
-    DualArrayShortData *v0;
+    PartyOrderSwitchData *v0;
     const u16 *v1;
     u16 *v2;
     u16 v3;
     u16 v4;
 
-    v0 = &param0->unk_7F8;
+    v0 = &param0->orderSwitch;
     v2 = v0->unk_00[param1];
     v1 = sub_0207F248(param0);
 
-    if (param0->partyMembers[v0->unk_300[param1]].isEgg == TRUE) {
+    if (param0->partyMembers[v0->slots[param1]].isEgg == TRUE) {
         for (v4 = 0; v4 < 9; v4++) {
             v3 = v2[3 * 16 + 6 + v4] & 0xf000;
             v2[3 * 16 + 6 + v4] = v3 | 0x17;
@@ -724,7 +722,7 @@ static void sub_020844B0(PartyMenuApplication *param0, int *param1)
 
         PartyMenu_PrintSelectionEligibility(param0, param0->currPartySlot);
         PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, TRUE);
-        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+        Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
         if (v0 == param0->partyMenu->maxSelectionSlots - 1) {
             sub_0207FD68(param0, 6);
@@ -761,7 +759,7 @@ int sub_020845A8(PartyMenuApplication *param0)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
         PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00034, TRUE);
-        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+        Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     }
 
@@ -795,7 +793,7 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
     PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
-    Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+    Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     *param1 = 1;
 }
@@ -1013,11 +1011,11 @@ static int sub_02084A18(PartyMenuApplication *param0)
         param0->inSwitchMode = 1;
         param0->switchTargetSlot = param0->currPartySlot;
 
-        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
-        Sprite_GetPositionXY(param0->sprites[6], &v0, &v1);
-        Sprite_SetPositionXY(param0->sprites[7], v0, v1);
-        Sprite_SetAnim(param0->sprites[7], sub_020805D0(param0->partyMenu->type, param0->switchTargetSlot) + 2);
-        Sprite_SetDrawFlag(param0->sprites[7], TRUE);
+        Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
+        Sprite_GetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], &v0, &v1);
+        Sprite_SetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], v0, v1);
+        Sprite_SetAnim(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], PartyMenu_GetMemberPanelAnim(param0->partyMenu->type, param0->switchTargetSlot) + 2);
+        Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], TRUE);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);
         PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00036, TRUE);
 
@@ -1031,7 +1029,7 @@ int sub_02084B34(PartyMenuApplication *param0)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->windows[34], 1);
         PartyMenu_PrintShortMessage(param0, pl_msg_00000453_00029, TRUE);
-        Sprite_SetExplicitPalette2(param0->sprites[6], 0);
+        Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     }
 

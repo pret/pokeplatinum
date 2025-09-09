@@ -65,8 +65,8 @@
 #define BASE_TILE_MONEY                 (BASE_TILE_SELL_COUNT_VALUE + SELL_WINDOW_WIDTH * SELL_WINDOW_HEIGHT)
 #define BASE_TILE_POFFIN_COUNT          903
 #define BASE_TILE_THROW_AWAY_COUNT      903
-#define BASE_TILE_STANDARD_WINDOW_FRAME (1024 - NUM_TILES_STANDARD_WINDOW_FRAME)
-#define BASE_TILE_MSG_BOX_FRAME         (BASE_TILE_STANDARD_WINDOW_FRAME - NUM_TILES_MESSAGE_BOX_FRAME)
+#define BASE_TILE_STANDARD_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
+#define BASE_TILE_MSG_BOX_FRAME         (BASE_TILE_STANDARD_WINDOW_FRAME - SCROLLING_MESSAGE_BOX_TILE_COUNT)
 
 #define DIGIT_WIDTH                 6
 #define ITEM_COUNT_X_OFFSET         7
@@ -567,7 +567,7 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
 u8 BagUI_PrintStrBufferToWideMsgBox(BagController *interface)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    RenderControlFlags_SetAutoScrollFlags(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->strBuffer, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
 
     return textPrinterID;

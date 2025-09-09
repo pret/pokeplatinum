@@ -4682,8 +4682,8 @@ static void ov65_02232B58(UnkStruct_ov65_0222EBE0 *param0, int param1, BOOL para
     StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
     Window_FillTilemap(&param0->unk_330, 15);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_330, 1, 512 - (18 + 12), 10);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
     param0->unk_180 = Text_AddPrinterWithParams(&param0->unk_330, FONT_MESSAGE, param0->unk_174, 0, 0, v0, NULL);
 

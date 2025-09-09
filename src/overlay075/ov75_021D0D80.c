@@ -127,7 +127,7 @@ int ov75_021D0D80(ApplicationManager *appMan, int *param1)
     v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->options);
     v1->unk_0A = Options_Frame(v1->unk_1C->options);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     return 1;
 }
 
@@ -147,7 +147,7 @@ int ov75_021D0E10(ApplicationManager *appMan, int *param1)
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
     int heapID;
 
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
     heapID = v0->heapID;
 
