@@ -66,6 +66,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/party_menu/party_menu_graphics.naix.h"
 #include "res/text/bank/party_menu.h"
 
 FS_EXTERN_OVERLAY(overlay118);
@@ -312,7 +313,7 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
         || application->partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE
         || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL
         || application->partyMenu->mode == PARTY_MENU_MODE_GIVE_MAIL_DONE) {
-        Sprite_SetExplicitPalette2(application->sprites[6], TRUE);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM || application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) {
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00034, TRUE);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
@@ -326,7 +327,7 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
     } else if (application->partyMenu->mode != PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
     } else {
-        Sprite_SetExplicitPalette2(application->sprites[6], TRUE);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
     }
 
     PartyMenu_LoadContextMenuStrings(application);
@@ -471,8 +472,8 @@ static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state)
         break;
     }
 
-    sub_020831B4(v0);
-    sub_02083334(v0);
+    PartyMenu_UpdateMemberIcons(v0);
+    PartyMenu_UpdateTouchButtonEffect(v0);
     sub_0207FE1C(v0);
     SpriteSystem_DrawSprites(v0->spriteMan);
 
@@ -535,7 +536,7 @@ static int sub_0207E518(PartyMenuApplication *application)
             application->partyMenu->menuSelectionResult = 1;
             return 32;
         } else {
-            Sprite_SetExplicitPalette2(application->sprites[6], 1);
+            Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
             return sub_02084780(application);
         }
     }
@@ -548,7 +549,7 @@ static int sub_0207E5B4(PartyMenuApplication *application)
     u8 v0 = HandleSpecialInput(application);
 
     if ((v0 == 0) || (v0 == 2)) {
-        Sprite_SetExplicitPalette2(application->sprites[6], 1);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
         return ApplyItemEffectOnPokemon(application);
     } else if (v0 == 3) {
         application->partyMenu->menuSelectionResult = 0;
@@ -563,7 +564,7 @@ static int sub_0207E5F4(PartyMenuApplication *application)
     u8 v0 = HandleSpecialInput(application);
 
     if ((v0 == 0) || (v0 == 2)) {
-        Sprite_SetExplicitPalette2(application->sprites[6], 1);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
         return ProcessItemApplication(application);
     } else if (v0 == 3) {
         application->partyMenu->menuSelectionResult = 0;
@@ -587,7 +588,7 @@ static int sub_0207E634(PartyMenuApplication *application)
         Menu_Free(application->contextMenu, NULL);
         StringList_Free(application->contextMenuChoices);
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
-        Sprite_SetExplicitPalette2(application->sprites[6], 0);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     default: {
         UnkFuncPtr_0207E634 v1;
@@ -645,7 +646,7 @@ static int sub_0207E750(PartyMenuApplication *application)
     u8 v0 = HandleSpecialInput(application);
 
     if ((v0 == 0) || (v0 == 2)) {
-        Sprite_SetExplicitPalette2(application->sprites[6], 1);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 
         if (application->partyMembers[application->currPartySlot].isEgg != TRUE) {
             return sub_0208615C(application);
@@ -670,7 +671,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     u32 v1;
 
     SetVBlankCallback(NULL, NULL);
-    sub_02082FF4(v0);
+    PartyMenu_CleanupSprites(v0);
     PartyMenu_RemoveWindows(v0);
     sub_0207EA24(v0->bgConfig);
     DisableTouchPad();
@@ -913,7 +914,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        15,
+        menu_tiles_NCGR,
         application->bgConfig,
         BG_LAYER_MAIN_3,
         0,
@@ -922,7 +923,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
         HEAP_ID_PARTY_MENU);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        17,
+        menu_NSCR,
         application->bgConfig,
         BG_LAYER_MAIN_3,
         0,
@@ -931,7 +932,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
         HEAP_ID_PARTY_MENU);
 
     NNSG2dPaletteData *plttData;
-    void *nclr = NARC_AllocAndReadWholeMember(narc, 16, HEAP_ID_PARTY_MENU);
+    void *nclr = NARC_AllocAndReadWholeMember(narc, menu_NCLR, HEAP_ID_PARTY_MENU);
     NNS_G2dGetUnpackedPaletteData(nclr, &plttData);
     Bg_LoadPalette(BG_LAYER_MAIN_3, plttData->pRawData, plttData->szByte, 0);
 
@@ -941,29 +942,54 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
 
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_PARTY_MENU);
     LoadStandardWindowGraphics(application->bgConfig, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_PARTY_MENU);
-    LoadMessageBoxGraphics(application->bgConfig, BG_LAYER_MAIN_0, 1 + 9, 15, Options_Frame(application->partyMenu->options), HEAP_ID_PARTY_MENU);
+    LoadMessageBoxGraphics(
+        application->bgConfig,
+        BG_LAYER_MAIN_0,
+        1 + STANDARD_WINDOW_TILE_SIZE,
+        15,
+        Options_Frame(application->partyMenu->options),
+        HEAP_ID_PARTY_MENU);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        3,
+        touch_button_NCGR,
         application->bgConfig,
         BG_LAYER_SUB_0,
         0,
         0,
         FALSE,
         HEAP_ID_PARTY_MENU);
-    Graphics_LoadPaletteFromOpenNARC(narc, 4, PAL_LOAD_SUB_BG, PLTT_OFFSET(1), PALETTE_SIZE_BYTES, HEAP_ID_PARTY_MENU);
+    Graphics_LoadPaletteFromOpenNARC(
+        narc,
+        touch_button_NCLR,
+        PAL_LOAD_SUB_BG,
+        PLTT_OFFSET(1),
+        PALETTE_SIZE_BYTES,
+        HEAP_ID_PARTY_MENU);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        12,
+        subscreen_tiles_NCGR,
         application->bgConfig,
         BG_LAYER_SUB_1,
         0,
         0,
         FALSE,
         HEAP_ID_PARTY_MENU);
-
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 14, application->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_PARTY_MENU);
-    Graphics_LoadPaletteFromOpenNARC(narc, 13, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_PARTY_MENU);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        narc,
+        subscreen_NSCR,
+        application->bgConfig,
+        BG_LAYER_SUB_1,
+        0,
+        0,
+        FALSE,
+        HEAP_ID_PARTY_MENU);
+    Graphics_LoadPaletteFromOpenNARC(
+        narc,
+        subscreen_NCLR,
+        PAL_LOAD_SUB_BG,
+        PLTT_OFFSET(0),
+        PALETTE_SIZE_BYTES,
+        HEAP_ID_PARTY_MENU);
 
     PartyMenu_LoadMemberPanelTilemaps(HEAP_ID_PARTY_MENU, application->leadMemberPanel, application->backMemberPanel, application->noneMemberPanel);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
@@ -1041,17 +1067,17 @@ static void SetupRequestedMode(PartyMenuApplication *application)
         && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_TOWER
         && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_CASTLE
         && application->partyMenu->mode != PARTY_MENU_MODE_BATTLE_HALL) {
-        Sprite_SetDrawFlag(application->sprites[8], FALSE);
-        Sprite_SetAnim(application->sprites[9], 0);
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CONFIRM_BUTTON], FALSE);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], 0);
 
         s16 x, y;
-        Sprite_GetPositionXY(application->sprites[9], &x, &y);
-        Sprite_SetPositionXY(application->sprites[9], x, y - 8);
+        Sprite_GetPositionXY(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], &x, &y);
+        Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], x, y - 8);
         flags ^= PARTY_MENU_SHOW_CONFIRM;
     }
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_UNK_04 || application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
-        Sprite_SetDrawFlag(application->sprites[9], FALSE);
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], FALSE);
         flags ^= PARTY_MENU_SHOW_CANCEL;
     }
 
@@ -1427,8 +1453,8 @@ static void SetupMenuCursor(PartyMenuApplication *application)
 {
     u8 x, y;
     GridMenuCursor_CheckNavigation(application->cursorPosTable, &x, &y, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-    Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, application->currPartySlot));
-    Sprite_SetPositionXY(application->sprites[6], x, y);
+    Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, application->currPartySlot));
+    Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], x, y);
 }
 
 static const u8 Unk_020F1BD4[][6] = {
@@ -1495,11 +1521,11 @@ static u8 sub_0207FA24(PartyMenuApplication *application)
 
     if ((v0 != application->currPartySlot) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            Sprite_SetDrawFlag(application->sprites[6], FALSE);
+            Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], FALSE);
         } else {
-            Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, v0));
-            Sprite_SetDrawFlag(application->sprites[6], TRUE);
-            Sprite_SetPositionXY(application->sprites[6], v2, v3);
+            Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, v0));
+            Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
+            Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], v2, v3);
         }
 
         {
@@ -1585,9 +1611,9 @@ static u8 sub_0207FC94(PartyMenuApplication *application)
         }
 
         GridMenuCursor_CheckNavigation(application->cursorPosTable, &v1, &v2, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, application->currPartySlot));
-        Sprite_SetDrawFlag(application->sprites[6], TRUE);
-        Sprite_SetPositionXY(application->sprites[6], v1, v2);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, application->currPartySlot));
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
+        Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], v1, v2);
 
         application->unk_B0C = 1;
         application->unk_B0D = application->currPartySlot;
@@ -1607,14 +1633,14 @@ static u8 sub_0207FC94(PartyMenuApplication *application)
 void sub_0207FD68(PartyMenuApplication *application, u8 partySlot)
 {
     if ((partySlot == 6) || (partySlot == 7)) {
-        Sprite_SetDrawFlag(application->sprites[6], FALSE);
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], FALSE);
     } else {
         u8 v0, v1;
 
         GridMenuCursor_CheckNavigation(application->cursorPosTable, &v0, &v1, NULL, NULL, application->currPartySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(application->sprites[6], sub_020805D0(application->partyMenu->type, partySlot));
-        Sprite_SetDrawFlag(application->sprites[6], TRUE);
-        Sprite_SetPositionXY(application->sprites[6], v0, v1);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, partySlot));
+        Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
+        Sprite_SetPositionXY(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], v0, v1);
     }
 
     {
@@ -1642,7 +1668,7 @@ static void sub_0207FE1C(PartyMenuApplication *application)
         s16 v0, v1;
 
         CalculateWindowPosition(application->unk_B0D, &v0, &v1);
-        sub_020832E4(application, v0, v1);
+        PartyMenu_InitTouchButtonEffect(application, v0, v1);
     }
         DrawMemberTouchScreenButton(application, application->unk_B0D, 2);
         Bg_ScheduleTilemapTransfer(application->bgConfig, 4);
@@ -1762,7 +1788,7 @@ static void sub_0207FFC8(PartyMenuApplication *application)
     Heap_FreeExplicit(HEAP_ID_PARTY_MENU, v0);
     PartyMenu_LoadContextMenuPrompt(application);
     PartyMenu_PrintMediumMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
-    Sprite_SetExplicitPalette2(application->sprites[6], 1);
+    Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 }
 
 static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8 *menuEntriesBuffer)
@@ -2006,26 +2032,26 @@ u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 
 static void InitAnimAndPaletteForSlot(PartyMenuApplication *application, u8 slot, u8 isSelected)
 {
     if (slot == 6) {
-        u8 anim = Sprite_GetActiveAnim(application->sprites[8]);
+        u8 anim = Sprite_GetActiveAnim(application->sprites[PARTY_MENU_SPRITE_CONFIRM_BUTTON]);
         if (isSelected == FALSE) {
             anim = (anim & 2);
         } else {
             anim = (anim & 2) + 1;
         }
 
-        Sprite_SetAnim(application->sprites[8], anim);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CONFIRM_BUTTON], anim);
         return;
     }
 
     if (slot == 7) {
-        u8 anim = Sprite_GetActiveAnim(application->sprites[9]);
+        u8 anim = Sprite_GetActiveAnim(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON]);
         if (isSelected == FALSE) {
             anim = (anim & 2);
         } else {
             anim = (anim & 2) + 1;
         }
 
-        Sprite_SetAnim(application->sprites[9], anim);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], anim);
         return;
     }
 
@@ -2033,20 +2059,21 @@ static void InitAnimAndPaletteForSlot(PartyMenuApplication *application, u8 slot
         application->partyMembers[slot].spriteXDelta -= 2;
         application->partyMembers[slot].spriteYDelta -= 2;
 
-        Sprite_SetAnim(application->sprites[slot], 0);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_POKE_BALL_MEMB0 + slot], 0);
     } else {
         application->partyMembers[slot].spriteXDelta += 2;
         application->partyMembers[slot].spriteYDelta += 2;
 
-        Sprite_SetAnim(application->sprites[slot], 1);
+        Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_POKE_BALL_MEMB0 + slot], 1);
     }
 
     PartyMenu_UpdateSlotPalette(application, slot);
 }
 
-u8 sub_020805D0(u8 application, u8 param1)
+u8 PartyMenu_GetMemberPanelAnim(u8 menuType, u8 slot)
 {
-    if ((param1 == 0) || ((application != 0) && (param1 == 1))) {
+    // The lead slot gets a special panel aesthetic.
+    if (slot == 0 || (menuType != PARTY_MENU_TYPE_BASIC && slot == 1)) {
         return 1;
     }
 
@@ -2369,7 +2396,7 @@ static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
             PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
         }
 
-        Sprite_SetExplicitPalette2(application->sprites[6], 0);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     default: {
         UnkFuncPtr_0207E634 v1 = (UnkFuncPtr_0207E634)v0;
@@ -2406,7 +2433,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
                 switch (CheckPokemonCondition(application)) {
                 case 0:
                     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
-                    Sprite_SetExplicitPalette2(application->sprites[6], 1);
+                    Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 
                     if (application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP < application->monStats[0]) {
                         application->monStats[0] = application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP;
@@ -2440,7 +2467,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
                 switch (CheckPokemonCondition(application)) {
                 case 0:
                     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
-                    Sprite_SetExplicitPalette2(application->sprites[6], 1);
+                    Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 
                     if (application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP < application->monStats[0]) {
                         application->monStats[0] = application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP;
@@ -2463,7 +2490,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseMessageBox(&application->windows[34], 1);
-            Sprite_SetExplicitPalette2(application->sprites[6], 0);
+            Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             PartyMenu_PrintShortMessage(application, pl_msg_00000453_00036, TRUE);
             application->monStats[1] = 0;
         }
@@ -2503,7 +2530,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseMessageBox(&application->windows[34], 1);
-            Sprite_SetExplicitPalette2(application->sprites[6], 0);
+            Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             sub_02083B88(application);
             return 1;
         }
@@ -2520,7 +2547,7 @@ static u8 CheckPokemonCondition(PartyMenuApplication *application)
     }
 
     if ((application->currPartySlot == application->switchTargetSlot) || (application->partyMembers[application->currPartySlot].curHP == 0) || (application->partyMembers[application->currPartySlot].curHP == application->partyMembers[application->currPartySlot].maxHP)) {
-        Sprite_SetExplicitPalette2(application->sprites[6], 1);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
         PartyMenu_PrintLongMessage(application, pl_msg_00000453_00131, TRUE);
 
         application->monStats[1] = 1;
@@ -2862,7 +2889,7 @@ static int ResetWindowOnInput(PartyMenuApplication *application)
     if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         Window_EraseMessageBox(&application->windows[34], 1);
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
-        Sprite_SetExplicitPalette2(application->sprites[6], 0);
+        Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         application->partyMenu->mode = PARTY_MENU_MODE_FIELD;
         return 1;
     }
@@ -2920,7 +2947,7 @@ static int CheckForItemApplication(PartyMenuApplication *application)
         return 32;
     }
 
-    Sprite_SetExplicitPalette2(application->sprites[6], 1);
+    Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
     PartyMenu_PrintLongMessage(application, pl_msg_00000453_00195, TRUE);
     application->unk_B04.unk_00 = sub_02083A78;
     application->unk_B04.unk_04 = sub_02083AA4;
