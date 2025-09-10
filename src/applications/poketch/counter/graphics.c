@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-static void SetupSprites(CounterGraphics *graphics, const CounterState *counterState);
+static void SetupSprites(CounterGraphics *graphics, const CounterData *counterData);
 static void UnloadSprites(CounterGraphics *graphics);
 
 static void EndTask(PoketchTaskManager *taskMan);
@@ -23,19 +23,19 @@ static void Task_FreeBackground(SysTask *task, void *taskMan);
 static void Task_UpdateButtonSprite(SysTask *task, void *taskMan);
 static void Task_UpdateValue(SysTask *task, void *taskMan);
 
-static void UpdateDigitSprites(CounterGraphics *graphics, const CounterState *counterState);
+static void UpdateDigitSprites(CounterGraphics *graphics, const CounterData *counterData);
 
-BOOL PoketchCounterGraphics_New(CounterGraphics **dest, const CounterState *counterState, BgConfig *bgConfig)
+BOOL PoketchCounterGraphics_New(CounterGraphics **dest, const CounterData *counterData, BgConfig *bgConfig)
 {
     CounterGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(CounterGraphics));
 
     if (graphics != NULL) {
         PoketchTask_InitActiveTaskList(graphics->activeTasks, 4);
-        graphics->counterState = counterState;
+        graphics->counterData = counterData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
 
-        SetupSprites(graphics, counterState);
+        SetupSprites(graphics, counterData);
 
         *dest = graphics;
 
@@ -53,7 +53,7 @@ void PoketchCounterGraphics_Free(CounterGraphics *graphics)
     }
 }
 
-static void SetupSprites(CounterGraphics *graphics, const CounterState *counterState)
+static void SetupSprites(CounterGraphics *graphics, const CounterData *counterData)
 {
     static const PoketchAnimation_AnimationData buttonAnimData = {
         .translation = { FX32_CONST(114), FX32_CONST(128) },
@@ -87,7 +87,7 @@ static void SetupSprites(CounterGraphics *graphics, const CounterState *counterS
         PoketchAnimation_SetSpritePosition(graphics->digitsAnimation[i], FX32_CONST(88) + (FX32_CONST(16) * i), FX32_CONST(64));
     }
 
-    UpdateDigitSprites(graphics, counterState);
+    UpdateDigitSprites(graphics, counterData);
 }
 
 static void UnloadSprites(CounterGraphics *graphics)
@@ -112,7 +112,7 @@ static const PoketchTask sCounterGraphicsTasks[] = {
 
 void PoketchCounterGraphics_StartTask(CounterGraphics *graphics, enum CounterGraphicsTask taskID)
 {
-    PoketchTask_Start(sCounterGraphicsTasks, taskID, graphics, graphics->counterState, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
+    PoketchTask_Start(sCounterGraphicsTasks, taskID, graphics, graphics->counterData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
 BOOL PoketchCounterGraphics_TaskIsNotActive(CounterGraphics *graphics, enum CounterGraphicsTask taskID)
@@ -176,7 +176,7 @@ static void Task_UpdateButtonSprite(SysTask *task, void *taskMan)
 {
     CounterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    switch (graphics->counterState->buttonPosition) {
+    switch (graphics->counterData->buttonPosition) {
     case COUNTER_BUTTON_PRESSED:
         PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
         PoketchAnimation_UpdateAnimationIdx(graphics->buttonAnimation, 1);
@@ -192,16 +192,16 @@ static void Task_UpdateButtonSprite(SysTask *task, void *taskMan)
 static void Task_UpdateValue(SysTask *task, void *taskMan)
 {
     CounterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
-    const CounterState *counterState = PoketchTask_GetConstTaskData(taskMan);
+    const CounterData *counterData = PoketchTask_GetConstTaskData(taskMan);
 
-    UpdateDigitSprites(graphics, counterState);
+    UpdateDigitSprites(graphics, counterData);
     EndTask(taskMan);
 }
 
-static void UpdateDigitSprites(CounterGraphics *graphics, const CounterState *counterState)
+static void UpdateDigitSprites(CounterGraphics *graphics, const CounterData *counterData)
 {
     int i;
-    u32 counterValue = counterState->value;
+    u32 counterValue = counterData->value;
     u32 divisor = 1000;
 
     for (i = 0; i < NUM_DIGITS; i++) {

@@ -12,13 +12,13 @@ enum CounterButtonPosition {
     COUNTER_BUTTON_UNPRESSED,
 };
 
-typedef struct {
+typedef struct CounterData {
     u32 value;
     enum CounterButtonPosition buttonPosition;
-} CounterState;
+} CounterData;
 
 typedef struct CounterGraphics {
-    const CounterState *counterState;
+    const CounterData *counterData;
     BgConfig *bgConfig;
     u32 activeTasks[6];
     PoketchAnimation_AnimationManager *animMan;
@@ -35,7 +35,7 @@ enum CounterGraphicsTask {
     COUNTER_GRAPHICS_UPDATE_VALUE,
 };
 
-BOOL PoketchCounterGraphics_New(CounterGraphics **graphics, const CounterState *counterState, BgConfig *bgConfig);
+BOOL PoketchCounterGraphics_New(CounterGraphics **graphics, const CounterData *counterState, BgConfig *bgConfig);
 void PoketchCounterGraphics_Free(CounterGraphics *graphics);
 void PoketchCounterGraphics_StartTask(CounterGraphics *graphics, enum CounterGraphicsTask taskID);
 BOOL PoketchCounterGraphics_TaskIsNotActive(CounterGraphics *graphics, enum CounterGraphicsTask taskID);

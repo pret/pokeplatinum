@@ -48,11 +48,11 @@ static BOOL Init(PoketchDigitalWatch *appData, PoketchSystem *poketchSys, BgConf
 static void Free(PoketchDigitalWatch *appData);
 static void Exit(void *appData);
 
-static void ChangeActiveTask(PoketchDigitalWatch *appData, enum DigitalWatchTasks taskID);
+static void ChangeState(PoketchDigitalWatch *appData, enum DigitalWatchTasks taskID);
 static void Task_Main(SysTask *task, void *taskManager);
-static BOOL Task_LoadApp(PoketchDigitalWatch *appData);
-static BOOL Task_UpdateApp(PoketchDigitalWatch *appData);
-static BOOL Task_UnloadApp(PoketchDigitalWatch *appData);
+static BOOL State_LoadApp(PoketchDigitalWatch *appData);
+static BOOL State_UpdateApp(PoketchDigitalWatch *appData);
+static BOOL State_UnloadApp(PoketchDigitalWatch *appData);
 
 static void ToggleBacklight(u32 btnNumber, u32 buttonState, u32 touchState, void *appDataIn);
 
@@ -128,9 +128,9 @@ static void Free(PoketchDigitalWatch *appData)
 static void Task_Main(SysTask *task, void *callbackData)
 {
     static BOOL (*const funcArray[])(PoketchDigitalWatch *) = {
-        Task_LoadApp,
-        Task_UpdateApp,
-        Task_UnloadApp,
+        State_LoadApp,
+        State_UpdateApp,
+        State_UnloadApp,
     };
 
     PoketchDigitalWatch *appData = callbackData;
@@ -167,7 +167,7 @@ static void ToggleBacklight(u32 btnNumber, u32 buttonState, u32 touchState, void
     }
 }
 
-static void ChangeActiveTask(PoketchDigitalWatch *appData, enum DigitalWatchTasks taskID)
+static void ChangeState(PoketchDigitalWatch *appData, enum DigitalWatchTasks taskID)
 {
     if (appData->shouldExit == FALSE) {
         appData->activeTask = taskID;
@@ -178,7 +178,7 @@ static void ChangeActiveTask(PoketchDigitalWatch *appData, enum DigitalWatchTask
     appData->taskFuncState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchDigitalWatch *appData)
+static BOOL State_LoadApp(PoketchDigitalWatch *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
@@ -188,7 +188,7 @@ static BOOL Task_LoadApp(PoketchDigitalWatch *appData)
     case 1:
         if (PoketchDigitalWatchGraphics_TaskIsNotActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            ChangeActiveTask(appData, TASK_UPDATE_LOOP);
+            ChangeState(appData, TASK_UPDATE_LOOP);
         }
         break;
     }
@@ -196,10 +196,10 @@ static BOOL Task_LoadApp(PoketchDigitalWatch *appData)
     return FALSE;
 }
 
-static BOOL Task_UpdateApp(PoketchDigitalWatch *appData)
+static BOOL State_UpdateApp(PoketchDigitalWatch *appData)
 {
     if (appData->shouldExit) {
-        ChangeActiveTask(appData, TASK_SHUTDOWN);
+        ChangeState(appData, TASK_SHUTDOWN);
         return FALSE;
     }
 
@@ -221,7 +221,7 @@ static BOOL Task_UpdateApp(PoketchDigitalWatch *appData)
     return FALSE;
 }
 
-static BOOL Task_UnloadApp(PoketchDigitalWatch *appData)
+static BOOL State_UnloadApp(PoketchDigitalWatch *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
