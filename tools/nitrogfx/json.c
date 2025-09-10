@@ -174,7 +174,12 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
             cJSON *Colours = cJSON_GetObjectItemCaseSensitive(Attr0, "Colours");
             cJSON *Shape = cJSON_GetObjectItemCaseSensitive(Attr0, "Shape");
 
-            options->cells[i]->oam[j].attr0.YCoordinate = GetInt(YCoordinate);
+            int y = GetInt(YCoordinate);
+            if (y & (1 << 7))
+            {
+                y &= 0xFF;
+            }
+            options->cells[i]->oam[j].attr0.YCoordinate = y;
             options->cells[i]->oam[j].attr0.Rotation = GetBool(Rotation);
             options->cells[i]->oam[j].attr0.SizeDisable = GetBool(SizeDisable);
             options->cells[i]->oam[j].attr0.Mode = GetInt(Mode);
@@ -189,7 +194,12 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
             cJSON *RotationScaling = cJSON_GetObjectItemCaseSensitive(Attr1, "RotationScaling");
             cJSON *Size = cJSON_GetObjectItemCaseSensitive(Attr1, "Size");
 
-            options->cells[i]->oam[j].attr1.XCoordinate = GetInt(XCoordinate);
+            int x = GetInt(XCoordinate);
+            if (x & (1 << 8))
+            {
+                x &= 0x1FF;
+            }
+            options->cells[i]->oam[j].attr1.XCoordinate = x;
             options->cells[i]->oam[j].attr1.RotationScaling = GetInt(RotationScaling);
             options->cells[i]->oam[j].attr1.Size = GetInt(Size);
 
@@ -257,7 +267,12 @@ char *GetNCERJson(struct JsonToCellOptions *options)
 
             cJSON *Attr0 = cJSON_AddObjectToObject(OAM, "Attr0");
 
-            cJSON_AddNumberToObject(Attr0, "YCoordinate", options->cells[i]->oam[j].attr0.YCoordinate);
+            int y = options->cells[i]->oam[j].attr0.YCoordinate;
+            if (y & (1 << 7))
+            {
+                y |= ~0xFF;
+            }
+            cJSON_AddNumberToObject(Attr0, "YCoordinate", y);
             cJSON_AddBoolToObject(Attr0, "Rotation", options->cells[i]->oam[j].attr0.Rotation);
             cJSON_AddBoolToObject(Attr0, "SizeDisable", options->cells[i]->oam[j].attr0.SizeDisable);
             cJSON_AddNumberToObject(Attr0, "Mode", options->cells[i]->oam[j].attr0.Mode);
@@ -267,7 +282,12 @@ char *GetNCERJson(struct JsonToCellOptions *options)
 
             cJSON *Attr1 = cJSON_AddObjectToObject(OAM, "Attr1");
 
-            cJSON_AddNumberToObject(Attr1, "XCoordinate", options->cells[i]->oam[j].attr1.XCoordinate);
+            int x = options->cells[i]->oam[j].attr1.XCoordinate;
+            if (x & (1 << 8))
+            {
+                x |= ~0x1FF;
+            }
+            cJSON_AddNumberToObject(Attr1, "XCoordinate", x);
             cJSON_AddNumberToObject(Attr1, "RotationScaling", options->cells[i]->oam[j].attr1.RotationScaling);
             cJSON_AddNumberToObject(Attr1, "Size", options->cells[i]->oam[j].attr1.Size);
 
