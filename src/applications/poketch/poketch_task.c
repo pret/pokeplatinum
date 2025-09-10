@@ -166,15 +166,14 @@ void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state)
     taskMan->poketchTaskState = state;
 }
 
-// Used by OV28
-void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void PoketchTask_UpdateTilemap2x2(u16 *tileBuffer, u32 x, u32 y, u32 bufferWidth, u32 tileIdx, u32 tilesetWidth, u32 palette)
 {
-    param6 <<= FX32_SHIFT;
-    tileBuffer += ((param3 * param2) + param1);
-    tileBuffer[0] = param6 | param4;
-    tileBuffer[1] = param6 | (param4 + 1);
-    tileBuffer[param3] = param6 | (param4 + param5);
-    tileBuffer[param3 + 1] = param6 | (param4 + param5 + 1);
+    palette <<= 12;
+    tileBuffer += ((bufferWidth * y) + x);
+    tileBuffer[0] = palette | tileIdx;
+    tileBuffer[1] = palette | (tileIdx + 1);
+    tileBuffer[bufferWidth] = palette | (tileIdx + tilesetWidth);
+    tileBuffer[bufferWidth + 1] = palette | (tileIdx + tilesetWidth + 1);
 }
 
 void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries)
