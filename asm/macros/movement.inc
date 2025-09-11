@@ -501,7 +501,7 @@
     .endm
 
     .macro PokecenterNurseBow length=1
-    .short MOVEMENT_ACTION_NURSE_JOY_BOW
+    .short MOVEMENT_ACTION_POKECENTER_NURSE_BOW
     .short \length
     .endm
 
