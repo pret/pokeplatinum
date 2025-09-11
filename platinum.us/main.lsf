@@ -921,11 +921,11 @@ Overlay poketch_dot_artist
 	Object main.nef.p/src_applications_poketch_dot_artist_graphics.c.o
 }
 
-Overlay overlay32
+Overlay poketch_party_status
 {
 	After overlay25
-	Object main.nef.p/src_overlay032_ov32_022561C0.c.o
-	Object main.nef.p/src_overlay032_ov32_02256470.c.o
+	Object main.nef.p/src_applications_poketch_party_status_main.c.o
+	Object main.nef.p/src_applications_poketch_party_status_graphics.c.o
 }
 
 Overlay poketch_friendship_checker
