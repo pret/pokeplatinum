@@ -44,147 +44,145 @@ static void UpdateValueGraphic(BgConfig *bgConfig, const u16 *displayValues);
 // clang-format off
 // These are all indices of tiles in the background tile NCGR that draw the
 // button in a pressed state
-static const u16 pressed0Tiles[BUTTON_SIZE_TILES_LARGE] = {
+static const u16 sPressed0Tiles[BUTTON_SIZE_TILES_LARGE] = {
     251, 252, 252, 252, 252, 252, 252, 253,
     291,  85,  86, 292, 292, 292, 292, 293,
     291, 125, 126, 292, 292, 292, 292, 293,
-    337, 338, 338, 338, 338, 338, 338, 339
+    337, 338, 338, 338, 338, 338, 338, 339,
 };
 
-static const u16 pressed1Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed1Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  87,  88, 293,
     291, 127, 128, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed2Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed2Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  89,  90, 293,
     291, 129, 130, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed3Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed3Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  91,  92, 293,
     291, 131, 132, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed4Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed4Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  93,  94, 293,
     291, 133, 134, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed5Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed5Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  95,  96, 293,
     291, 135, 136, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed6Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed6Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  97,  98, 293,
     291, 137, 138, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed7Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed7Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291,  99, 100, 293,
     291, 139, 140, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed8Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed8Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 101, 102, 293,
     291, 141, 142, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressed9Tiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressed9Tiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 103, 104, 293,
     291, 143, 144, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressedDotTiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressedDotTiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 105, 106, 293,
     291, 145, 146, 293,
-    337, 338, 338, 339
+    337, 338, 338, 339,
 };
 
-static const u16 pressedClearTiles[BUTTON_SIZE_TILES_LARGE] = {
+static const u16 sPressedClearTiles[BUTTON_SIZE_TILES_LARGE] = {
     251, 252, 252, 252, 252, 252, 252, 253,
     291, 117, 118, 292, 292, 292, 292, 293,
     291, 157, 158, 292, 292, 292, 292, 293,
-    331, 332, 332, 332, 332, 332, 332, 333
+    331, 332, 332, 332, 332, 332, 332, 333,
 };
 
-static const u16 pressedPlusTiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressedPlusTiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 109, 110, 293,
     291, 149, 150, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressedMinusTiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressedMinusTiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 107, 108, 293,
     291, 147, 148, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressedTimesTiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressedTimesTiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 111, 112, 293,
     291, 151, 152, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressedDivideTiles[BUTTON_SIZE_TILES_SMALL] = {
+static const u16 sPressedDivideTiles[BUTTON_SIZE_TILES_SMALL] = {
     251, 252, 252, 253,
     291, 113, 114, 293,
     291, 153, 154, 293,
-    331, 332, 332, 333
+    331, 332, 332, 333,
 };
 
-static const u16 pressedEqualsTiles[BUTTON_SIZE_TILES_LARGE] = {
+static const u16 sPressedEqualsTiles[BUTTON_SIZE_TILES_LARGE] = {
     251, 252, 252, 252, 252, 252, 252, 253,
     291, 115, 116, 292, 292, 292, 292, 293,
     291, 155, 156, 292, 292, 292, 292, 293,
-    337, 338, 338, 338, 338, 338, 338, 339
-};
-// clang-format on
-
-static const u16 *const pressedButtonTiles[] = {
-    pressed0Tiles,
-    pressed1Tiles,
-    pressed2Tiles,
-    pressed3Tiles,
-    pressed4Tiles,
-    pressed5Tiles,
-    pressed6Tiles,
-    pressed7Tiles,
-    pressed8Tiles,
-    pressed9Tiles,
-    pressedDotTiles,
-    pressedMinusTiles,
-    pressedPlusTiles,
-    pressedTimesTiles,
-    pressedDivideTiles,
-    pressedEqualsTiles,
-    pressedClearTiles
+    337, 338, 338, 338, 338, 338, 338, 339,
 };
 
-// clang-format off
+static const u16 *const sPressedButtonTiles[] = {
+    sPressed0Tiles,
+    sPressed1Tiles,
+    sPressed2Tiles,
+    sPressed3Tiles,
+    sPressed4Tiles,
+    sPressed5Tiles,
+    sPressed6Tiles,
+    sPressed7Tiles,
+    sPressed8Tiles,
+    sPressed9Tiles,
+    sPressedDotTiles,
+    sPressedMinusTiles,
+    sPressedPlusTiles,
+    sPressedTimesTiles,
+    sPressedDivideTiles,
+    sPressedEqualsTiles,
+    sPressedClearTiles,
+};
+
 static const struct {
     u8 x;
     u8 y;
@@ -328,7 +326,7 @@ static void Task_PressButton(SysTask *task, void *taskMan)
 
     PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
 
-    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, pressedButtonTiles[button], buttonPositions[button].x, buttonPositions[button].y, buttonPositions[button].width, buttonPositions[button].height);
+    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, sPressedButtonTiles[button], buttonPositions[button].x, buttonPositions[button].y, buttonPositions[button].width, buttonPositions[button].height);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
     EndTask(taskMan);

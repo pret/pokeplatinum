@@ -635,7 +635,7 @@ static void PlayResultSpeciesCry(PoketchCalculator *appData, const CalculatorVal
 {
     s64 lookupValue = CalculatorValue_GetSignedInt(result);
 
-    if ((lookupValue > 0) && (lookupValue <= NATIONAL_DEX_COUNT)) {
+    if (lookupValue > 0 && lookupValue <= NATIONAL_DEX_COUNT) {
         Pokedex *pokedex;
         u16 species;
 
