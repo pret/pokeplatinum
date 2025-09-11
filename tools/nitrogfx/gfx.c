@@ -809,14 +809,14 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             }
 
             int x = options->cells[i]->oam[j].attr1.XCoordinate; // 8 bits
-            if ((x & 0x80) != 0)
+            if (x & (1 << 8))
             {
-                x = (x | ~0xFF);
+                x |= ~0x1FF;
             }
             int y = options->cells[i]->oam[j].attr0.YCoordinate; // 7 bits
-            if ((y & 0x40) != 0)
+            if (y & (1 << 7))
             {
-                y = (y | ~0x7F);
+                y |= ~0xFF;
             }
             x -= options->cells[i]->minX;
             y -= options->cells[i]->minY;
