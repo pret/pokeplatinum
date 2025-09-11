@@ -4193,7 +4193,7 @@ static BOOL ScrCmd_0B1(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E244(ctx->fieldSystem);
+    *v0 = FieldTask_OpenPCHallOfFameScreen(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

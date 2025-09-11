@@ -61,7 +61,7 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
-#include "overlay086/ov86_0223B140.h"
+#include "overlay086/league_hall_of_fame.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
@@ -158,8 +158,8 @@ FS_EXTERN_OVERLAY(overlay80);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(overlay84);
 FS_EXTERN_OVERLAY(overlay85);
-FS_EXTERN_OVERLAY(overlay86);
-FS_EXTERN_OVERLAY(overlay87);
+FS_EXTERN_OVERLAY(hall_of_fame);
+FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(overlay90);
 FS_EXTERN_OVERLAY(overlay91);
@@ -1401,27 +1401,27 @@ void sub_0203E224(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA328, fieldSystem->saveData);
 }
 
-void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
+void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData)
 {
-    FS_EXTERN_OVERLAY(overlay86);
+    FS_EXTERN_OVERLAY(hall_of_fame);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov86_0223B140,
-        ov86_0223B394,
-        ov86_0223B2E4,
-        FS_OVERLAY_ID(overlay86)
+    static const ApplicationManagerTemplate template = {
+        .init = HallOfFameManager_Init,
+        .main = HallOfFameManager_Main,
+        .exit = HallOfFameManager_Exit,
+        .overlayID = FS_OVERLAY_ID(hall_of_fame)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, displayData);
 }
 
-void *sub_0203E244(FieldSystem *fieldSystem)
+void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
 {
-    static const ApplicationManagerTemplate v0 = {
-        PCHallOfFameManager_Init,
-        PCHallOfFameManager_Main,
-        PCHallOfFameManager_Exit,
-        FS_OVERLAY_ID(overlay87),
+    static const ApplicationManagerTemplate template = {
+        .init = PCHallOfFameManager_Init,
+        .main = PCHallOfFameManager_Main,
+        .exit = PCHallOfFameManager_Exit,
+        .overlayID = FS_OVERLAY_ID(pc_hall_of_fame),
     };
     HallOfFame *hallOfFame;
     int resultCode;
@@ -1432,7 +1432,7 @@ void *sub_0203E244(FieldSystem *fieldSystem)
         Heap_Free(hallOfFame);
         return NULL;
     } else {
-        FieldSystem_StartChildProcess(fieldSystem, &v0, hallOfFame);
+        FieldSystem_StartChildProcess(fieldSystem, &template, hallOfFame);
         return hallOfFame;
     }
 }

@@ -839,7 +839,7 @@ pokeplatinum_c = files(
     'overlay084/ov84_0223F040.c',
     'overlay084/ov84_022403F4.c',
     'overlay085/ov85_02241440.c',
-    'overlay086/ov86_0223B140.c',
+    'overlay086/league_hall_of_fame.c',
     'applications/pc_hall_of_fame/manager.c',
     'applications/pc_hall_of_fame/display.c',
     'overlay088/ov88_0223B140.c',
