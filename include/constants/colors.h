@@ -14,6 +14,7 @@
 #define COLOR_BLACK       RGB(0, 0, 0)
 #define COLOR_DARK_GRAY   RGB(4, 4, 4)
 #define COLOR_WHITE       RGB(31, 31, 31)
+#define COLOR_GRAY        RGB(16, 16, 16)
 #define COLOR_RED         RGB(31, 0, 0)
 #define COLOR_TRANSPARENT RGB(31, 31, 16)
 #define COLOR_SAVED       0xFFFF
