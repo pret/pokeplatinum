@@ -6,7 +6,6 @@
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/save_info_window.h"
-#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
@@ -106,6 +105,12 @@ enum ScriptContextType {
 #define INIT_SCRIPT_TYPE_FIXED_UNK_4 4
 
 typedef void (*FieldSysFunc)(FieldSystem *);
+
+typedef struct HiddenItemTilePosition {
+    u16 screenTileX;
+    u16 screenTileZ;
+    u8 range;
+} HiddenItemTilePosition;
 
 typedef struct ApproachingTrainer {
     int sightRange;
