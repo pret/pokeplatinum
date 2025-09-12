@@ -246,7 +246,7 @@ _0375:
 _0394:
     Message 12
     GivePokedex
-    SetFlag FLAG_UNK_0x0090
+    SetFlag FLAG_HAS_POKEDEX
     BufferPlayerName 0
     Message 13
     PlaySound SEQ_FANFA4

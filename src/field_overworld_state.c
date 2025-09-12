@@ -58,7 +58,7 @@ void FieldOverworldState_Init(FieldOverworldState *fieldState)
     OverworldMapHistory_Clear(&fieldState->mapHistory);
     PlayerData_Init(&fieldState->playerData);
 
-    fieldState->warpId = sub_0203A7EC();
+    fieldState->warpId = FieldOverworldState_GetDefaultWarpID();
 }
 
 Location *FieldOverworldState_GetPlayerLocation(FieldOverworldState *fieldState)

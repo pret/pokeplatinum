@@ -580,7 +580,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_02246A30.c.o
 	Object main.nef.p/src_overlay006_special_dates.c.o
 	Object main.nef.p/src_overlay006_repel_step_update.c.o
-	Object main.nef.p/src_overlay006_ov6_02246C24.c.o
+	Object main.nef.p/src_overlay006_healing_machine_animation_pokecenter.c.o
 	Object main.nef.p/src_overlay006_elevator_animation.c.o
 	Object main.nef.p/src_overlay006_pc_animation.c.o
 	Object main.nef.p/src_overlay006_ov6_02247100.c.o
@@ -589,7 +589,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02247830.c.o
 	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o
-	Object main.nef.p/src_overlay006_ov6_02247D30.c.o
+	Object main.nef.p/src_overlay006_healing_machine_animation_hall_of_fame.c.o
 	Object main.nef.p/src_overlay006_ov6_02247F5C.c.o
 	Object main.nef.p/src_overlay006_ov6_02248050.c.o
 	Object main.nef.p/src_overlay006_ov6_02248948.c.o

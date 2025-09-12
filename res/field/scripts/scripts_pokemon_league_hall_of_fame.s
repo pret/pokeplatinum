@@ -48,7 +48,7 @@ _008C:
     CallIfEq VAR_RESULT, 1, _010A
     CallIfEq VAR_UNK_0x40F4, 0, _0102
     GetPartyCount VAR_RESULT
-    ScrCmd_25A VAR_RESULT
+    PlayHallOfFameHealingAnimation VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_HALL_OF_FAME_ENTRY
