@@ -949,11 +949,11 @@ Overlay poketch_counter
 	Object main.nef.p/src_applications_poketch_counter_graphics.c.o
 }
 
-Overlay overlay36
+Overlay poketch_pedometer
 {
 	After overlay25
-	Object main.nef.p/src_overlay036_ov36_022561C0.c.o
-	Object main.nef.p/src_overlay036_ov36_02256404.c.o
+	Object main.nef.p/src_applications_poketch_pedometer_main.c.o
+	Object main.nef.p/src_applications_poketch_pedometer_graphics.c.o
 }
 
 Overlay overlay37
