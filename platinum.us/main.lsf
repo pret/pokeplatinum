@@ -892,12 +892,12 @@ Overlay poketch_stopwatch
 	Object main.nef.p/src_applications_poketch_stopwatch_graphics.c.o
 }
 
-Overlay overlay28
+Overlay poketch_calculator
 {
 	After overlay25
-	Object main.nef.p/src_overlay028_ov28_022561C0.c.o
-	Object main.nef.p/src_overlay028_ov28_0225697C.c.o
-	Object main.nef.p/src_overlay028_ov28_02256E9C.c.o
+	Object main.nef.p/src_applications_poketch_calculator_main.c.o
+	Object main.nef.p/src_applications_poketch_calculator_graphics.c.o
+	Object main.nef.p/src_applications_poketch_calculator_value.c.o
 }
 
 Overlay poketch_memo_pad

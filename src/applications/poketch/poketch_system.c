@@ -28,7 +28,7 @@
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(poketch_stopwatch);
-FS_EXTERN_OVERLAY(overlay28);
+FS_EXTERN_OVERLAY(poketch_calculator);
 FS_EXTERN_OVERLAY(poketch_memo_pad);
 FS_EXTERN_OVERLAY(overlay30);
 FS_EXTERN_OVERLAY(poketch_dot_artist);
@@ -86,7 +86,7 @@ static const struct {
 } sAppOverlayIDs[] = {
     { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
     { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
-    { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
+    { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(poketch_calculator) },
     { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
     { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
     { POKETCH_APPID_DOTART, FS_OVERLAY_ID(poketch_dot_artist) },
@@ -572,10 +572,10 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 
     if (PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
         switch (touchEvent) {
-        case BUTTON_TOUCH_RELEASED:
+        case BUTTON_TOUCH_PRESSED:
             poketchSys->touchingScreen = TRUE;
             break;
-        case BUTTON_TOUCH_PRESSED:
+        case BUTTON_TOUCH_RELEASED:
             poketchSys->touchingScreen = FALSE;
             break;
         }
@@ -584,17 +584,17 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 
     if (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_SCREEN) {
-        if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
+        if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_PRESSED) {
             Sound_PlayEffect(SEQ_SE_DP_BEEP);
         }
     } else {
         u32 taskId = POKETCH_EMPTY_TASK;
 
         switch (touchEvent) {
-        case BUTTON_TOUCH_PRESSED:
+        case BUTTON_TOUCH_RELEASED:
             taskId = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? TASK_UP_PRESSED : TASK_DOWN_PRESSED;
             break;
-        case BUTTON_TOUCH_RELEASED:
+        case BUTTON_TOUCH_PRESSED:
             if (PoketechSystem_IsRunningTask(poketchSys) || poketchSys->appStarting) {
                 taskId = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? TASK_UP_HALF_PRESSED : TASK_DOWN_HALF_PRESSED;
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;
