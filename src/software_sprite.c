@@ -202,10 +202,10 @@ NNSG2dSVec2 SoftwareSprite_GetPosition(SoftwareSprite *sprite)
     return sprite->position;
 }
 
-void SoftwareSprite_SetCenter(SoftwareSprite *sprite, s16 param1, s16 param2)
+void SoftwareSprite_SetCenter(SoftwareSprite *sprite, s16 x, s16 y)
 {
-    sprite->center.x = param1;
-    sprite->center.y = param2;
+    sprite->center.x = x;
+    sprite->center.y = y;
 }
 
 void SoftwareSprite_SetScalingFactors(SoftwareSprite *sprite, fx32 scaleX, fx32 scaleY)
