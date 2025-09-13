@@ -669,35 +669,44 @@ static int SnapToTile(int val)
     return val;
 }
 
-static void CalculateOAMDimensions(struct OAM *oam, int *oamHeightOut, int *oamWidthOut)
+
+struct Dimensions {
+    int width;
+    int height;
+};
+
+static struct Dimensions CalculateOAMDimensions(struct OAM *oam)
 {
-    *oamHeightOut = 0;
-    *oamWidthOut = 0;
+    struct Dimensions oamdim = {
+        .width = 0,
+        .height = 0,
+    };
+
     int oamSize = oam->attr1.Size;
     switch (oam->attr0.Shape)
     {
     case 0:
-        *oamHeightOut = 1 << oamSize;
-        *oamWidthOut = *oamHeightOut;
+        oamdim.height = 1 << oamSize;
+        oamdim.width = oamdim.height;
         break;
     case 1:
         switch (oamSize)
         {
         case 0:
-            *oamHeightOut = 1;
-            *oamWidthOut = 2;
+            oamdim.height = 1;
+            oamdim.width = 2;
             break;
         case 1:
-            *oamHeightOut = 1;
-            *oamWidthOut = 4;
+            oamdim.height = 1;
+            oamdim.width = 4;
             break;
         case 2:
-            *oamHeightOut = 2;
-            *oamWidthOut = 4;
+            oamdim.height = 2;
+            oamdim.width = 4;
             break;
         case 3:
-            *oamHeightOut = 4;
-            *oamWidthOut = 8;
+            oamdim.height = 4;
+            oamdim.width = 8;
             break;
         }
         break;
@@ -705,24 +714,26 @@ static void CalculateOAMDimensions(struct OAM *oam, int *oamHeightOut, int *oamW
         switch (oamSize)
         {
         case 0:
-            *oamHeightOut = 2;
-            *oamWidthOut = 1;
+            oamdim.height = 2;
+            oamdim.width = 1;
             break;
         case 1:
-            *oamHeightOut = 4;
-            *oamWidthOut = 1;
+            oamdim.height = 4;
+            oamdim.width = 1;
             break;
         case 2:
-            *oamHeightOut = 4;
-            *oamWidthOut = 2;
+            oamdim.height = 4;
+            oamdim.width = 2;
             break;
         case 3:
-            *oamHeightOut = 8;
-            *oamWidthOut = 4;
+            oamdim.height = 8;
+            oamdim.width = 4;
             break;
         }
         break;
     }
+
+    return oamdim;
 }
 
 void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip, bool convertBpp)
@@ -786,9 +797,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             int maxY = 0;
             for (int j = 0; j < options->cells[i]->oamCount; j++)
             {
-                int oamHeight;
-                int oamWidth;
-                CalculateOAMDimensions(&options->cells[i]->oam[j], &oamHeight, &oamWidth);
+                struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
                 int xCoord = options->cells[i]->oam[j].attr1.XCoordinate;
                 if (xCoord & (1 << 8))
                 {
@@ -807,13 +816,13 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 {
                     minY = yCoord;
                 }
-                if (xCoord + (oamWidth * 8) > maxX || j == 0)
+                if (xCoord + (oamdim.width * 8) > maxX || j == 0)
                 {
-                    maxX = xCoord + (oamWidth * 8);
+                    maxX = xCoord + (oamdim.width * 8);
                 }
-                if (yCoord + (oamHeight * 8) > maxY || j == 0)
+                if (yCoord + (oamdim.height * 8) > maxY || j == 0)
                 {
-                    maxY = yCoord + (oamHeight * 8);
+                    maxY = yCoord + (oamdim.height * 8);
                 }
             }
             cellWidth = maxX - minX;
@@ -856,9 +865,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
 
         for (int j = 0; j < options->cells[i]->oamCount; j++)
         {
-            int oamHeight;
-            int oamWidth;
-            CalculateOAMDimensions(&options->cells[i]->oam[j], &oamHeight, &oamWidth);
+            struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
 
             int x = options->cells[i]->oam[j].attr1.XCoordinate; // 8 bits
             if (x & (1 << 8))
@@ -906,7 +913,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 continue;
             }
             tileMask[pixelOffset] = 1;
-            numTiles += oamHeight * oamWidth;
+            numTiles += oamdim.height * oamdim.width;
 
             bool rotationScaling = options->cells[i]->oam[j].attr1.RotationScaling;
             bool hFlip = options->cells[i]->attributes.hFlip && rotationScaling;
@@ -924,22 +931,22 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 case 4:
                     if (toPNG)
                     {
-                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
+                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
                     }
                     else
                     {
-                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
+                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
                     }
                     break;
                 case 8:
                     pixelOffset *= 2;
                     if (toPNG)
                     {
-                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
+                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
                     }
                     else
                     {
-                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
+                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
                     }
                     break;
             }
