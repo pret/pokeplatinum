@@ -86,6 +86,11 @@
 #include "unk_02055C50.h"
 #include "vram_transfer.h"
 
+#define FIELD_MAP_INIT_STATE_RESET         0
+#define FIELD_MAP_INIT_STATE_LOAD          1
+#define FIELD_MAP_INIT_STATE_BOTTOM_SCREEN 2
+#define FIELD_MAP_INIT_STATE_DONE          3
+
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);
 FS_EXTERN_OVERLAY(overlay8);
@@ -96,7 +101,7 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(BgConfig *bgl);
+static void BgConfig_Init(BgConfig *bgl);
 static void ov5_021D1524(BgConfig *bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
@@ -107,15 +112,15 @@ static void ov5_021D1414(void);
 static void ov5_021D15B4(void);
 static void ov5_021D15E8(void);
 static void ov5_021D1790(FieldSystem *fieldSystem);
-static void ov5_021D17EC(FieldSystem *fieldSystem);
+static void FieldSystem_InitLandManager(FieldSystem *fieldSystem);
 static void ov5_021D1878(FieldSystem *fieldSystem);
 static void ov5_021D1968(FieldSystem *fieldSystem);
-static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1);
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *state);
 static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1);
 static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1);
 static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem);
 static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1);
-static BOOL ov5_021D119C(FieldSystem *fieldSystem);
+static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem);
 static void fieldmap(void *param0);
 static void ov5_021D13B4(FieldSystem *fieldSystem);
 static int ov5_021D1178(FieldSystem *fieldSystem);
@@ -144,15 +149,15 @@ static void fieldmap(void *param0)
     inline_fieldmap(fieldSystem);
 }
 
-static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
 {
     FieldSystem *fieldSystem;
     BOOL ret = FALSE;
 
     fieldSystem = ApplicationManager_Args(appMan);
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case FIELD_MAP_INIT_STATE_RESET:
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
 
@@ -198,45 +203,45 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
 
         GXLayers_SwapDisplay();
         fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD1);
-        ov5_021D1444(fieldSystem->bgConfig);
+        BgConfig_Init(fieldSystem->bgConfig);
         FieldMessage_LoadTextPalettes(PAL_LOAD_MAIN_BG, TRUE);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_4);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_LOAD);
         break;
-    case 1:
+    case FIELD_MAP_INIT_STATE_LOAD:
         ov5_021D1790(fieldSystem);
         AreaDataManager_Load(fieldSystem->areaDataManager);
 
         fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
 
         ov5_021F0824(fieldSystem);
-        ov5_021D17EC(fieldSystem);
+        FieldSystem_InitLandManager(fieldSystem);
         ov5_021D1878(fieldSystem);
         ov5_021D1968(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            u16 v3 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-            ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
+            u16 weather = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+            ov5_021D5F24(fieldSystem->unk_04->unk_0C, weather);
         }
 
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_3);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_RESUME);
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD1);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
         fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD1, fieldSystem->unk_04->hBlankSystem);
         break;
-    case 2:
-        ov5_021D5BD8(fieldSystem);
+    case FIELD_MAP_INIT_STATE_BOTTOM_SCREEN:
+        FieldSystem_InitBottomScreen(fieldSystem);
         break;
-    case 3:
-        if (ov5_021D5BF4(fieldSystem)) {
+    case FIELD_MAP_INIT_STATE_DONE:
+        if (FieldSystem_IsBottomScreenRunningDummy(fieldSystem)) {
             fieldSystem->runningFieldMap = TRUE;
             ret = TRUE;
         }
         break;
     }
 
-    (*param1)++;
+    (*state)++;
     return ret;
 }
 
@@ -244,7 +249,7 @@ static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
 {
     FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
 
-    if (ov5_021D119C(fieldSystem)) {
+    if (FieldSystem_UpdateLocationToPlayerPosition(fieldSystem)) {
         sub_02055D94(fieldSystem);
         ov5_021D13B4(fieldSystem);
         FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_PLAYER_MOVED, 1);
@@ -323,12 +328,12 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             ModelAttributes_Free(&fieldSystem->areaModelAttrs);
             ov5_021D1570();
             ov5_021D1524(fieldSystem->bgConfig);
-            ov5_021D5C14(fieldSystem);
+            FieldSystem_EndBottomScreen(fieldSystem);
             (*param1)++;
         }
         break;
     case 2:
-        if (ov5_021D5C30(fieldSystem)) {
+        if (FieldSystem_IsBottomScreenDone(fieldSystem)) {
             ov5_021D15E8();
             sub_02020BD0();
             VramTransfer_Free();
@@ -380,14 +385,14 @@ static int ov5_021D1178(FieldSystem *fieldSystem)
     return 0;
 }
 
-static BOOL ov5_021D119C(FieldSystem *fieldSystem)
+static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem)
 {
     int x = Player_GetXPos(fieldSystem->playerAvatar);
-    int y = Player_GetZPos(fieldSystem->playerAvatar);
+    int z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if ((x != fieldSystem->location->x) || (y != fieldSystem->location->z)) {
+    if ((x != fieldSystem->location->x) || (z != fieldSystem->location->z)) {
         fieldSystem->location->x = x;
-        fieldSystem->location->z = y;
+        fieldSystem->location->z = z;
         return TRUE;
     } else {
         return FALSE;
@@ -543,7 +548,7 @@ static void ov5_021D1414(void)
 
 void ov5_021D1434(BgConfig *bgl)
 {
-    ov5_021D1444(bgl);
+    BgConfig_Init(bgl);
 }
 
 void ov5_021D143C(BgConfig *bgl)
@@ -551,7 +556,7 @@ void ov5_021D143C(BgConfig *bgl)
     ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444(BgConfig *bgl)
+static void BgConfig_Init(BgConfig *bgl)
 {
     {
         GraphicsModes v0 = {
@@ -791,7 +796,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
     }
 }
 
-static void ov5_021D17EC(FieldSystem *fieldSystem)
+static void FieldSystem_InitLandManager(FieldSystem *fieldSystem)
 {
     fieldSystem->landDataMan = LandDataManager_New(fieldSystem->mapMatrix, fieldSystem->areaDataManager, fieldSystem->mapPropAnimMan, fieldSystem->skipMapAttributes);
 
@@ -874,7 +879,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     sub_02062C3C(fieldSystem->mapObjMan);
     LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->landDataMan);
 
-    fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, 4);
+    fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, HEAP_ID_FIELD1);
 }
 
 static void ov5_021D1968(FieldSystem *fieldSystem)

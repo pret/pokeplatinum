@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_SCRIPT_MANAGER_H
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
+#include "constants/init_script_types.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
@@ -99,11 +101,6 @@ enum ScriptContextType {
 #define FLAG_OFFSET_TRAINER_DEFEATED 1360
 
 #define SCRIPT_MANAGER_MAGIC_NUMBER 0x3643F
-
-#define INIT_SCRIPT_TYPE_FIRST_MATCH 1
-#define INIT_SCRIPT_TYPE_FIXED_UNK_2 2
-#define INIT_SCRIPT_TYPE_FIXED_UNK_3 3
-#define INIT_SCRIPT_TYPE_FIXED_UNK_4 4
 
 typedef void (*FieldSysFunc)(FieldSystem *);
 

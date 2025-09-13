@@ -1,8 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 14, 0
-    .byte 0
+    InitScriptEntry_OnTransition 14
+    InitScriptEntryEnd
 
-    .balign 4, 0
+    InitScriptEnd

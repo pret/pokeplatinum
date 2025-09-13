@@ -1,14 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 1, 0
-    .byte 1
-    ScriptEntry _000B
-    .byte 0
+    InitScriptEntry_OnTransition 1
+    InitScriptEntry_OnFrameTable InitScriptFrameTable
+    InitScriptEntryEnd
 
-_000B:
-    .short 0x4055, 7, 3
-    .short 0
+InitScriptFrameTable:
+    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, 7, 3
+    InitScriptFrameTableEnd
 
-    .balign 4, 0
+    InitScriptEnd

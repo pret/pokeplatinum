@@ -40,8 +40,8 @@ static void ScriptContext_JumpToOffsetID(ScriptContext *ctx, u16 param1);
 static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
-static u16 FieldSystem_GetFixedInitScriptID(const u8 *param0, u8 param1);
-static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType);
+static u16 FieldSystem_GetFrameTableInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType);
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
@@ -496,7 +496,7 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
     GF_ASSERT(graphicsVarID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + graphicsVarID));
+    return FieldSystem_TryGetVar(fieldSystem, ((0 + VARS_START) + 32) + graphicsVarID);
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
@@ -518,8 +518,8 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, (64 / 8));
-    memset(VarsFlags_GetVarAddress(varsFlags, (0 + VARS_START)), 0, 2 * 32);
+    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
+    memset(VarsFlags_GetVarAddress(varsFlags, 0 + VARS_START), 0, 2 * 32);
 }
 
 void sub_0203F1FC(FieldSystem *fieldSystem)
@@ -602,7 +602,7 @@ void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, (FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]));
+        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
@@ -754,8 +754,8 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
     }
 
     u16 scriptID;
-    if (initScriptType == INIT_SCRIPT_TYPE_FIRST_MATCH) {
-        scriptID = FieldSystem_GetFirstMatchInitScriptID(fieldSystem, initScriptBytes, initScriptType);
+    if (initScriptType == INIT_SCRIPT_ON_FRAME_TABLE) {
+        scriptID = FieldSystem_GetFrameTableInitScriptID(fieldSystem, initScriptBytes, initScriptType);
     } else {
         scriptID = FieldSystem_GetFixedInitScriptID(initScriptBytes, initScriptType);
     }
@@ -764,7 +764,7 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
         return FALSE;
     }
 
-    if (initScriptType == INIT_SCRIPT_TYPE_FIRST_MATCH) {
+    if (initScriptType == INIT_SCRIPT_ON_FRAME_TABLE) {
         ScriptManager_Set(fieldSystem, scriptID, NULL);
     } else {
         FieldSystem_RunScript(fieldSystem, scriptID);
@@ -795,7 +795,7 @@ static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initSc
     return 0xffff;
 }
 
-static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
+static u16 FieldSystem_GetFrameTableInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
 {
     u16 currentVar, compareVar;
     u32 offset = 0;
