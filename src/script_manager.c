@@ -219,9 +219,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= SCRIPT_ID_OFFSET_FIELD_MOVES) {
         ScriptContext_Load(fieldSystem, ctx, scripts_field_moves, TEXT_BANK_FIELD_MOVES);
         retScriptID -= SCRIPT_ID_OFFSET_FIELD_MOVES;
-    } else if (retScriptID >= 9950) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, TEXT_BANK_UNK_0383);
-        retScriptID -= 9950;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_POKEDEX_RATINGS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_pokedex_ratings, TEXT_BANK_POKEDEX_RATINGS);
+        retScriptID -= SCRIPT_ID_OFFSET_POKEDEX_RATINGS;
     } else if (retScriptID >= 9900) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= 9900;
@@ -496,7 +496,7 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
     GF_ASSERT(graphicsVarID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + graphicsVarID));
+    return FieldSystem_TryGetVar(fieldSystem, OBJ_GFX_VARS_START + graphicsVarID);
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
@@ -518,8 +518,8 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, (64 / 8));
-    memset(VarsFlags_GetVarAddress(varsFlags, (0 + VARS_START)), 0, 2 * 32);
+    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
+    memset(VarsFlags_GetVarAddress(varsFlags, VARS_START), 0, 2 * 32);
 }
 
 void sub_0203F1FC(FieldSystem *fieldSystem)
@@ -602,7 +602,7 @@ void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, (FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]));
+        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);

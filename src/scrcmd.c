@@ -443,7 +443,7 @@ static BOOL ScrCmd_GetLocalDexCaughtCount_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_GetNationalDexSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_GetNationalDexCaughtCount(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_122(ScriptContext *ctx);
-static BOOL ScrCmd_123(ScriptContext *ctx);
+static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx);
 static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
@@ -1060,7 +1060,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetNationalDexSeenCount,
     ScrCmd_GetNationalDexCaughtCount,
     ScrCmd_Unused_122,
-    ScrCmd_123,
+    ScrCmd_LoadPokedexRating,
     ScrCmd_StartWildBattle,
     ScrCmd_StartFirstBattle,
     ScrCmd_StartCatchingTutorial,
@@ -4826,20 +4826,20 @@ static BOOL ScrCmd_Unused_122(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_123(ScriptContext *ctx)
+static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    const TrainerInfo *v1 = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
-    u8 v2 = ScriptContext_ReadByte(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
-    u16 v4;
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
+    u8 nationalDex = ScriptContext_ReadByte(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 pokemonCount;
 
-    if (v2 == 0) {
-        v4 = Pokedex_NumCaught_Local(v0);
-        *v3 = sub_0205E078(v4, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
+    if (nationalDex == FALSE) {
+        pokemonCount = Pokedex_NumCaught_Local(pokedex);
+        *destVar = Pokedex_GetRatingMessageID_Local(pokemonCount, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
     } else {
-        v4 = Pokedex_NumCaught_National(v0);
-        *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
+        pokemonCount = Pokedex_NumCaught_National(pokedex);
+        *destVar = Pokedex_GetRatingMessageID_National(pokemonCount, TrainerInfo_Gender(trainerInfo));
     }
 
     return FALSE;
