@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_MapLoadStart 6
+    InitScriptEntry_OnLoad 6
     InitScriptEntryEnd
 
     InitScriptEnd

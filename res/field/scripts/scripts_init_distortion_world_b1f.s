@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_EnterLocation 1
-    InitScriptEntry_ConditionMet InitScriptConditions
+    InitScriptEntry_OnTransition 1
+    InitScriptEntry_OnFrameTable InitScriptFrameTable
     InitScriptEntryEnd
 
-InitScriptConditions:
+InitScriptFrameTable:
     InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, 2, 2
-    InitScriptConditionsEnd
+    InitScriptFrameTableEnd
 
     InitScriptEnd

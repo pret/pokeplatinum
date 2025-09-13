@@ -205,7 +205,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD1);
         BgConfig_Init(fieldSystem->bgConfig);
         FieldMessage_LoadTextPalettes(PAL_LOAD_MAIN_BG, TRUE);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_MAP_LOAD_START);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_LOAD);
         break;
     case FIELD_MAP_INIT_STATE_LOAD:
         ov5_021D1790(fieldSystem);
@@ -224,7 +224,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         }
 
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_MAP_LOAD_FINISH);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_RESUME);
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD1);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);

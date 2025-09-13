@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_EnterLocation 1
+    InitScriptEntry_OnTransition 1
     InitScriptEntryEnd
 
     InitScriptEnd

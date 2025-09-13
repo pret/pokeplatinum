@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_EnterLocation 4
-    InitScriptEntry_ConditionMet InitScriptConditions
+    InitScriptEntry_OnTransition 4
+    InitScriptEntry_OnFrameTable InitScriptFrameTable
     InitScriptEntryEnd
 
-InitScriptConditions:
+InitScriptFrameTable:
     InitScriptGoToIfEqual VAR_UNK_0x40C1, 0, 3
-    InitScriptConditionsEnd
+    InitScriptFrameTableEnd
 
     InitScriptEnd

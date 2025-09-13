@@ -41,7 +41,7 @@ static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
 static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType);
-static u16 FieldSystem_GetConditionMetInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType);
+static u16 FieldSystem_GetFrameTableInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType);
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
@@ -754,8 +754,8 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
     }
 
     u16 scriptID;
-    if (initScriptType == INIT_SCRIPT_TYPE_CONDITION_MET) {
-        scriptID = FieldSystem_GetConditionMetInitScriptID(fieldSystem, initScriptBytes, initScriptType);
+    if (initScriptType == INIT_SCRIPT_ON_FRAME_TABLE) {
+        scriptID = FieldSystem_GetFrameTableInitScriptID(fieldSystem, initScriptBytes, initScriptType);
     } else {
         scriptID = FieldSystem_GetFixedInitScriptID(initScriptBytes, initScriptType);
     }
@@ -764,7 +764,7 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
         return FALSE;
     }
 
-    if (initScriptType == INIT_SCRIPT_TYPE_CONDITION_MET) {
+    if (initScriptType == INIT_SCRIPT_ON_FRAME_TABLE) {
         ScriptManager_Set(fieldSystem, scriptID, NULL);
     } else {
         FieldSystem_RunScript(fieldSystem, scriptID);
@@ -795,7 +795,7 @@ static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initSc
     return 0xffff;
 }
 
-static u16 FieldSystem_GetConditionMetInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
+static u16 FieldSystem_GetFrameTableInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
 {
     u16 currentVar, compareVar;
     u32 offset = 0;

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    InitScriptEntry_MapLoadFinish 0x264C
-    InitScriptEntry_EnterLocation 0x264A
+    InitScriptEntry_OnResume 0x264C
+    InitScriptEntry_OnTransition 0x264A
     InitScriptEntryEnd
 
     InitScriptEnd
