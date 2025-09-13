@@ -669,6 +669,73 @@ static int SnapToTile(int val)
     return val;
 }
 
+
+struct Dimensions {
+    int width;
+    int height;
+};
+
+static struct Dimensions CalculateOAMDimensions(struct OAM *oam)
+{
+    struct Dimensions oamdim = {
+        .width = 0,
+        .height = 0,
+    };
+
+    int oamSize = oam->attr1.Size;
+    switch (oam->attr0.Shape)
+    {
+    case 0:
+        oamdim.height = 1 << oamSize;
+        oamdim.width = oamdim.height;
+        break;
+    case 1:
+        switch (oamSize)
+        {
+        case 0:
+            oamdim.height = 1;
+            oamdim.width = 2;
+            break;
+        case 1:
+            oamdim.height = 1;
+            oamdim.width = 4;
+            break;
+        case 2:
+            oamdim.height = 2;
+            oamdim.width = 4;
+            break;
+        case 3:
+            oamdim.height = 4;
+            oamdim.width = 8;
+            break;
+        }
+        break;
+    case 2:
+        switch (oamSize)
+        {
+        case 0:
+            oamdim.height = 2;
+            oamdim.width = 1;
+            break;
+        case 1:
+            oamdim.height = 4;
+            oamdim.width = 1;
+            break;
+        case 2:
+            oamdim.height = 4;
+            oamdim.width = 2;
+            break;
+        case 3:
+            oamdim.height = 8;
+            oamdim.width = 4;
+            break;
+        }
+        break;
+    }
+
+    return oamdim;
+}
+
 void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip, bool convertBpp)
 {
     char *cellFileExtension = GetFileExtension(cellFilePath);
@@ -698,6 +765,9 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
     int outputHeight = -1;
     int outputWidth = 0;
     int numTiles = 0;
+    int cellHeights[options->cellCount];
+    int minXs[options->cellCount];
+    int minYs[options->cellCount];
 
     for (int i = 0; i < options->cellCount; i++)
     {
@@ -716,10 +786,49 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 cellHeight = SnapToTile(cellHeight);
                 cellWidth = SnapToTile(cellWidth);
             }
+            minXs[i] = options->cells[i]->minX;
+            minYs[i] = options->cells[i]->minY;
         }
         else
         {
-            FATAL_ERROR("No bounding rectangle. Incompatible NCER\n");
+            int minX = 0;
+            int minY = 0;
+            int maxX = 0;
+            int maxY = 0;
+            for (int j = 0; j < options->cells[i]->oamCount; j++)
+            {
+                struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
+                int xCoord = options->cells[i]->oam[j].attr1.XCoordinate;
+                if (xCoord & (1 << 8))
+                {
+                    xCoord |= ~0x1FF;
+                }
+                int yCoord = options->cells[i]->oam[j].attr0.YCoordinate;
+                if (yCoord & (1 << 7))
+                {
+                    yCoord |= ~0xFF;
+                }
+                if (xCoord < minX || j == 0)
+                {
+                    minX = xCoord;
+                }
+                if (yCoord < minY || j == 0)
+                {
+                    minY = yCoord;
+                }
+                if (xCoord + (oamdim.width * 8) > maxX || j == 0)
+                {
+                    maxX = xCoord + (oamdim.width * 8);
+                }
+                if (yCoord + (oamdim.height * 8) > maxY || j == 0)
+                {
+                    maxY = yCoord + (oamdim.height * 8);
+                }
+            }
+            cellWidth = maxX - minX;
+            cellHeight = maxY - minY;
+            minXs[i] = minX;
+            minYs[i] = minY;
         }
 
         outputHeight += cellHeight + 1;
@@ -727,6 +836,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
         {
             outputWidth = cellWidth;
         }
+        cellHeights[i] = cellHeight;
     }
 
     if (outputHeight < 1 || outputWidth == 0)
@@ -746,7 +856,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             continue;
         }
         scanHeight++;
-        int cellHeight = options->cells[i]->maxY - options->cells[i]->minY;
+        int cellHeight = cellHeights[i];
         if (snap)
         {
             cellHeight = SnapToTile(cellHeight);
@@ -755,58 +865,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
 
         for (int j = 0; j < options->cells[i]->oamCount; j++)
         {
-            int oamHeight = 0;
-            int oamWidth = 0;
-            int oamSize = options->cells[i]->oam[j].attr1.Size;
-            switch (options->cells[i]->oam[j].attr0.Shape)
-            {
-            case 0:
-                oamHeight = 1 << oamSize;
-                oamWidth = oamHeight;
-                break;
-            case 1:
-                switch (oamSize)
-                {
-                    case 0:
-                        oamHeight = 1;
-                        oamWidth = 2;
-                        break;
-                    case 1:
-                        oamHeight = 1;
-                        oamWidth = 4;
-                        break;
-                    case 2:
-                        oamHeight = 2;
-                        oamWidth = 4;
-                        break;
-                    case 3:
-                        oamHeight = 4;
-                        oamWidth = 8;
-                        break;
-                }
-                break;
-            case 2:
-                switch (oamSize)
-                {
-                    case 0:
-                        oamHeight = 2;
-                        oamWidth = 1;
-                        break;
-                    case 1:
-                        oamHeight = 4;
-                        oamWidth = 1;
-                        break;
-                    case 2:
-                        oamHeight = 4;
-                        oamWidth = 2;
-                        break;
-                    case 3:
-                        oamHeight = 8;
-                        oamWidth = 4;
-                        break;
-                }
-                break;
-            }
+            struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
 
             int x = options->cells[i]->oam[j].attr1.XCoordinate; // 8 bits
             if (x & (1 << 8))
@@ -818,8 +877,8 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             {
                 y |= ~0xFF;
             }
-            x -= options->cells[i]->minX;
-            y -= options->cells[i]->minY;
+            x -= minXs[i];
+            y -= minYs[i];
 
             if (snap)
             {
@@ -854,7 +913,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 continue;
             }
             tileMask[pixelOffset] = 1;
-            numTiles += oamHeight * oamWidth;
+            numTiles += oamdim.height * oamdim.width;
 
             bool rotationScaling = options->cells[i]->oam[j].attr1.RotationScaling;
             bool hFlip = options->cells[i]->attributes.hFlip && rotationScaling;
@@ -872,22 +931,22 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 case 4:
                     if (toPNG)
                     {
-                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
+                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
                     }
                     else
                     {
-                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
+                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
                     }
                     break;
                 case 8:
                     pixelOffset *= 2;
                     if (toPNG)
                     {
-                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
+                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
                     }
                     else
                     {
-                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
+                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
                     }
                     break;
             }
