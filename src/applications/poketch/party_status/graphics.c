@@ -19,19 +19,16 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define POKE_ICON_SIZE       16
-#define POKE_ICON_SIZE_BYTES (POKE_ICON_SIZE * TILE_SIZE_4BPP)
+#define POKE_ICON_TILE_COUNT 16
+#define POKE_ICON_SIZE_BYTES (POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP)
 
-#define HP_BAR_WIDTH_TILES 8
-#define HP_BAR_SEGMENTS    ((HP_BAR_WIDTH_TILES * TILE_WIDTH_PIXELS) / 2)
+#define HEALTHBAR_WIDTH_TILES 8
+#define HEALTHBAR_SEGMENTS    ((HEALTHBAR_WIDTH_TILES * TILE_WIDTH_PIXELS) / 2)
 
-#define FLIP_H (1 << 10)
-#define FLIP_V (1 << 11)
-
-static void DrawHpBars(PartyStatusGraphics *graphics, const PartyStatus *partyData, u32 offset);
-static void DrawHpBarBorder(Window *window, PartyStatusGraphics *graphics);
-static void FillHpBar(Window *hpBar, u32 hpBarFill);
-static u32 GetHpBarFillAmount(u32 currentHp, u32 maxHp);
+static void DrawHealthbars(PartyStatusGraphics *graphics, const PartyStatus *partyData, u32 offset);
+static void DrawHealthbarBorders(Window *window, PartyStatusGraphics *graphics);
+static void FillHealthbars(Window *hpBar, u32 hpBarFill);
+static u32 GetHealthbarFillAmount(u32 currentHp, u32 maxHp);
 static void UnloadSprites(PartyStatusGraphics *graphics);
 static void SetupItemSprites(PartyStatusGraphics *graphics, const PartyStatus *partyData);
 static void SetupMonIconSprites(PartyStatusGraphics *graphics, const PartyStatus *partyData);
@@ -43,7 +40,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *bounceAnimData);
 static void Task_RedrawAppScreen(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
 
-static const struct MonIconPosition {
+static const struct {
     u16 x;
     u16 y;
 } sMonPosition[] = {
@@ -156,7 +153,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     PoketchGraphics_LoadActivePalette(0, 0);
 
     graphics->hpBarBaseTile = bgTileCount;
-    DrawHpBars(graphics, graphics->partyData, bgTileCount);
+    DrawHealthbars(graphics, graphics->partyData, bgTileCount);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
     PoketchTask_FillPaletteFromActivePaletteSlot(15, 1);
@@ -170,7 +167,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void DrawHpBars(PartyStatusGraphics *graphics, const PartyStatus *partyData, u32 offset)
+static void DrawHealthbars(PartyStatusGraphics *graphics, const PartyStatus *partyData, u32 offset)
 {
     static const struct {
         u16 x;
@@ -186,33 +183,33 @@ static void DrawHpBars(PartyStatusGraphics *graphics, const PartyStatus *partyDa
 
     for (int slot = 0; slot < partyData->partyCount; slot++) {
         Window_Init(&graphics->hpBarWindows[slot]);
-        Window_Add(graphics->bgConfig, &graphics->hpBarWindows[slot], BG_LAYER_SUB_2, hpBarCorners[slot].x, hpBarCorners[slot].y, HP_BAR_WIDTH_TILES, 1, 0, offset + slot * HP_BAR_WIDTH_TILES);
+        Window_Add(graphics->bgConfig, &graphics->hpBarWindows[slot], BG_LAYER_SUB_2, hpBarCorners[slot].x, hpBarCorners[slot].y, HEALTHBAR_WIDTH_TILES, 1, 0, offset + slot * HEALTHBAR_WIDTH_TILES);
         Window_PutToTilemap(&graphics->hpBarWindows[slot]);
 
-        DrawHpBarBorder(&graphics->hpBarWindows[slot], graphics);
-        FillHpBar(&graphics->hpBarWindows[slot], GetHpBarFillAmount(partyData->mons[slot].currentHp, partyData->mons[slot].maxHp));
+        DrawHealthbarBorders(&graphics->hpBarWindows[slot], graphics);
+        FillHealthbars(&graphics->hpBarWindows[slot], GetHealthbarFillAmount(partyData->mons[slot].currentHp, partyData->mons[slot].maxHp));
     }
 
     graphics->partyCount = partyData->partyCount;
 }
 
-static void DrawHpBarBorder(Window *window, PartyStatusGraphics *graphics)
+static void DrawHealthbarBorders(Window *window, PartyStatusGraphics *graphics)
 {
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 1, window->tilemapLeft - 1, window->tilemapTop - 1, 1, 1, 0);
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 2, window->tilemapLeft, window->tilemapTop - 1, window->width, 1, 0);
-    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, FLIP_H | 1, window->tilemapLeft + window->width, window->tilemapTop - 1, 1, 1, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, BG_TILE_FLIP_H | 1, window->tilemapLeft + window->width, window->tilemapTop - 1, 1, 1, 0);
 
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 6, window->tilemapLeft - 1, window->tilemapTop, 1, window->height, 0);
-    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, FLIP_H | 6, window->tilemapLeft + window->width, window->tilemapTop, 1, window->height, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, BG_TILE_FLIP_H | 6, window->tilemapLeft + window->width, window->tilemapTop, 1, window->height, 0);
 
-    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, FLIP_V | 1, window->tilemapLeft - 1, window->tilemapTop + window->height, 1, 1, 0);
-    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, FLIP_V | 2, window->tilemapLeft, window->tilemapTop + window->height, window->width, 1, 0);
-    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, FLIP_V | FLIP_H | 1, window->tilemapLeft + window->width, window->tilemapTop + window->height, 1, 1, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, BG_TILE_FLIP_V | 1, window->tilemapLeft - 1, window->tilemapTop + window->height, 1, 1, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, BG_TILE_FLIP_V | 2, window->tilemapLeft, window->tilemapTop + window->height, window->width, 1, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, BG_TILE_FLIP_V | BG_TILE_FLIP_H | 1, window->tilemapLeft + window->width, window->tilemapTop + window->height, 1, 1, 0);
 }
 
-static void FillHpBar(Window *hpBar, u32 hpBarFill)
+static void FillHealthbars(Window *hpBar, u32 hpBarFill)
 {
-    Window_FillRectWithColor(hpBar, 4, 0, 0, HP_BAR_WIDTH_TILES * TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS);
+    Window_FillRectWithColor(hpBar, 4, 0, 0, HEALTHBAR_WIDTH_TILES * TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS);
 
     if (hpBarFill) {
         Window_FillRectWithColor(hpBar, 15, 0, 0, hpBarFill, TILE_HEIGHT_PIXELS);
@@ -221,7 +218,7 @@ static void FillHpBar(Window *hpBar, u32 hpBarFill)
     Window_LoadTiles(hpBar);
 }
 
-static u32 GetHpBarFillAmount(u32 currentHp, u32 maxHp)
+static u32 GetHealthbarFillAmount(u32 currentHp, u32 maxHp)
 {
     u32 width;
 
@@ -230,15 +227,15 @@ static u32 GetHpBarFillAmount(u32 currentHp, u32 maxHp)
     }
 
     if (currentHp == maxHp) {
-        return HP_BAR_WIDTH_TILES * TILE_WIDTH_PIXELS;
+        return HEALTHBAR_WIDTH_TILES * TILE_WIDTH_PIXELS;
     }
 
-    width = (((currentHp << FX32_SHIFT) / maxHp) * HP_BAR_SEGMENTS) >> FX32_SHIFT;
+    width = (((currentHp << FX32_SHIFT) / maxHp) * HEALTHBAR_SEGMENTS) >> FX32_SHIFT;
 
     if (width == 0) { // if HP isn't 0, add a pixel to the bar even if calculated width is 0
         width = 1;
-    } else if (width == HP_BAR_SEGMENTS) { // if HP isn't full, remove a pixel from the bar even if calculated with is max
-        width = HP_BAR_SEGMENTS - 1;
+    } else if (width == HEALTHBAR_SEGMENTS) { // if HP isn't full, remove a pixel from the bar even if calculated with is max
+        width = HEALTHBAR_SEGMENTS - 1;
     }
 
     return width * 2;
@@ -284,15 +281,15 @@ static void SetupMonIconSprites(PartyStatusGraphics *graphics, const PartyStatus
             NARC_ReadFromMember(narc, partyData->mons[slot].iconSpriteIndex, 0, 640, graphics->iconSpriteBuffer);
 
             NNS_G2dGetUnpackedCharacterData(graphics->iconSpriteBuffer, &charData);
-            DC_FlushRange(charData->pRawData, POKE_ICON_SIZE * TILE_SIZE_4BPP);
-            GXS_LoadOBJ(charData->pRawData, 8 * TILE_SIZE_4BPP + (POKE_ICON_SIZE * TILE_SIZE_4BPP) * slot, POKE_ICON_SIZE * TILE_SIZE_4BPP);
+            DC_FlushRange(charData->pRawData, POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP);
+            GXS_LoadOBJ(charData->pRawData, 8 * TILE_SIZE_4BPP + (POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP) * slot, POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP);
 
             animData.translation.x = sMonPosition[slot].x << FX32_SHIFT;
             animData.translation.y = sMonPosition[slot].y << FX32_SHIFT;
 
             graphics->monSprites[slot] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->monAnimData);
 
-            PoketchAnimation_SetSpriteCharNo(graphics->monSprites[slot], 8 + POKE_ICON_SIZE * slot);
+            PoketchAnimation_SetSpriteCharNo(graphics->monSprites[slot], 8 + POKE_ICON_TILE_COUNT * slot);
             PoketchAnimation_UpdateAnimationIdx(graphics->monSprites[slot], 4);
 
             if ((partyData->mons[slot].currentHp == 0) || partyData->mons[slot].hasStatus) { // darken sprite if mon is incapacitated
@@ -387,7 +384,7 @@ u32 PoketchPartyStatusGraphics_CheckTouchingMon(u32 x, u32 y, u32 partyCount)
         left = sMonPosition[slot].x - 16;
         right = sMonPosition[slot].x + 16;
 
-        if ((x - left < right - left) & (y - top < bottom - top)) {
+        if (x - left < right - left & y - top < bottom - top) {
             return slot;
         }
     }
@@ -435,7 +432,7 @@ static void Task_RedrawAppScreen(SysTask *task, void *taskMan)
 
     SetupItemSprites(graphics, partyData);
     SetupMonIconSprites(graphics, partyData);
-    DrawHpBars(graphics, partyData, graphics->hpBarBaseTile);
+    DrawHealthbars(graphics, partyData, graphics->hpBarBaseTile);
 
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
