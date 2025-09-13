@@ -20,6 +20,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#include "res/text/bank/pokedex_ratings.h"
+
 typedef struct {
     MapObject *unk_00;
     fx32 unk_04;
@@ -37,8 +39,8 @@ typedef struct {
     u8 unk_09;
 } UnkStruct_0205E3AC;
 
-u16 sub_0205E078(u16 param0, u16 param1);
-u16 sub_0205E0E4(u16 param0, u16 param1);
+u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity);
+u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
 int sub_0205E430(u8 param0, u8 param1);
 int sub_0205E45C(u8 param0, u8 param1);
 int sub_0205E488(u8 param0, u8 param1);
@@ -94,145 +96,145 @@ u16 Item_IsTMHM(u16 item)
     return FALSE;
 }
 
-u16 sub_0205E078(u16 param0, u16 param1)
+u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity)
 {
-    if (param0 <= 15) {
-        return 6;
+    if (pokemonSeen <= 15) {
+        return PokedexRatings_Text_RowanPokemonSeenUpTo15;
     }
 
-    if (param0 <= 30) {
-        return 7;
+    if (pokemonSeen <= 30) {
+        return PokedexRatings_Text_RowanPokemonSeenOver15;
     }
 
-    if (param0 <= 45) {
-        return 8;
+    if (pokemonSeen <= 45) {
+        return PokedexRatings_Text_RowanPokemonSeenOver30;
     }
 
-    if (param0 <= 60) {
-        return 9;
+    if (pokemonSeen <= 60) {
+        return PokedexRatings_Text_RowanPokemonSeenOver45;
     }
 
-    if (param0 <= 80) {
-        return 10;
+    if (pokemonSeen <= 80) {
+        return PokedexRatings_Text_RowanPokemonSeenOver60;
     }
 
-    if (param0 <= 100) {
-        return 11;
+    if (pokemonSeen <= 100) {
+        return PokedexRatings_Text_RowanPokemonSeenOver80;
     }
 
-    if (param0 <= 120) {
-        return 12;
+    if (pokemonSeen <= 120) {
+        return PokedexRatings_Text_RowanPokemonSeenOver100;
     }
 
-    if (param0 <= 140) {
-        return 13;
+    if (pokemonSeen <= 140) {
+        return PokedexRatings_Text_RowanPokemonSeenOver120;
     }
 
-    if (param0 <= 160) {
-        return 14;
+    if (pokemonSeen <= 160) {
+        return PokedexRatings_Text_RowanPokemonSeenOver140;
     }
 
-    if (param0 <= 180) {
-        return 15;
+    if (pokemonSeen <= 180) {
+        return PokedexRatings_Text_RowanPokemonSeenOver160;
     }
 
-    if (param0 <= 200) {
-        return 16;
+    if (pokemonSeen <= 200) {
+        return PokedexRatings_Text_RowanPokemonSeenOver180;
     }
 
-    if (param0 <= 209) {
-        return 17;
+    if (pokemonSeen <= 209) {
+        return PokedexRatings_Text_RowanPokemonSeenOver200;
     }
 
-    if (param1) {
-        return 4;
+    if (reachedEternaCity) {
+        return PokedexRatings_Text_RowanCompleteLocalDex;
     } else {
-        return 5;
+        return PokedexRatings_Text_RowanCompleteLocalDex_TooEarly;
     }
 }
 
-u16 sub_0205E0E4(u16 param0, u16 param1)
+u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender)
 {
-    if (param0 <= 39) {
-        return 22;
+    if (pokemonCaught <= 39) {
+        return PokedexRatings_Text_OakPokemonCaughtUnder40;
     }
 
-    if (param0 <= 59) {
-        return 23;
+    if (pokemonCaught <= 59) {
+        return PokedexRatings_Text_OakPokemonCaught40;
     }
 
-    if (param0 <= 89) {
-        return 24;
+    if (pokemonCaught <= 89) {
+        return PokedexRatings_Text_OakPokemonCaught60;
     }
 
-    if (param0 <= 119) {
-        return 25;
+    if (pokemonCaught <= 119) {
+        return PokedexRatings_Text_OakPokemonCaught90;
     }
 
-    if (param0 <= 149) {
-        return 26;
+    if (pokemonCaught <= 149) {
+        return PokedexRatings_Text_OakPokemonCaught120;
     }
 
-    if (param0 <= 189) {
-        return 27;
+    if (pokemonCaught <= 189) {
+        return PokedexRatings_Text_OakPokemonCaught150;
     }
 
-    if (param0 <= 229) {
-        return 28;
+    if (pokemonCaught <= 229) {
+        return PokedexRatings_Text_OakPokemonCaught190;
     }
 
-    if (param0 <= 269) {
-        return 29;
+    if (pokemonCaught <= 269) {
+        return PokedexRatings_Text_OakPokemonCaught230;
     }
 
-    if (param0 <= 309) {
-        return 30;
+    if (pokemonCaught <= 309) {
+        return PokedexRatings_Text_OakPokemonCaught270;
     }
 
-    if (param0 <= 349) {
-        return 31;
+    if (pokemonCaught <= 349) {
+        return PokedexRatings_Text_OakPokemonCaught310;
     }
 
-    if (param0 <= 379) {
-        return 32;
+    if (pokemonCaught <= 379) {
+        return PokedexRatings_Text_OakPokemonCaught350;
     }
 
-    if (param0 <= 409) {
-        return 33;
+    if (pokemonCaught <= 409) {
+        return PokedexRatings_Text_OakPokemonCaught380;
     }
 
-    if (param0 <= 429) {
-        if (param1) {
-            return 35;
+    if (pokemonCaught <= 429) {
+        if (playerGender) {
+            return PokedexRatings_Text_OakPokemonCaught410_Female;
         } else {
-            return 34;
+            return PokedexRatings_Text_OakPokemonCaught410_Male;
         }
     }
 
-    if (param0 <= 449) {
-        return 36;
+    if (pokemonCaught <= 449) {
+        return PokedexRatings_Text_OakPokemonCaught430;
     }
 
-    if (param0 <= 459) {
-        return 37;
+    if (pokemonCaught <= 459) {
+        return PokedexRatings_Text_OakPokemonCaught450;
     }
 
-    if (param0 <= 469) {
-        return 38;
+    if (pokemonCaught <= 469) {
+        return PokedexRatings_Text_OakPokemonCaught460;
     }
 
-    if (param0 <= 475) {
-        return 39;
+    if (pokemonCaught <= 475) {
+        return PokedexRatings_Text_OakPokemonCaught470;
     }
 
-    if (param0 <= 481) {
-        return 40;
+    if (pokemonCaught <= 481) {
+        return PokedexRatings_Text_OakPokemonCaught476;
     }
 
-    if (param1) {
-        return 42;
+    if (playerGender) {
+        return PokedexRatings_Text_OakCompleteNationalDex_Female;
     } else {
-        return 41;
+        return PokedexRatings_Text_OakCompleteNationalDex_Male;
     }
 }
 

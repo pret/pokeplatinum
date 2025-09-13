@@ -219,9 +219,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= SCRIPT_ID_OFFSET_FIELD_MOVES) {
         ScriptContext_Load(fieldSystem, ctx, scripts_field_moves, TEXT_BANK_FIELD_MOVES);
         retScriptID -= SCRIPT_ID_OFFSET_FIELD_MOVES;
-    } else if (retScriptID >= 9950) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, TEXT_BANK_UNK_0383);
-        retScriptID -= 9950;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_POKEDEX_RATINGS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_pokedex_ratings, TEXT_BANK_POKEDEX_RATINGS);
+        retScriptID -= SCRIPT_ID_OFFSET_POKEDEX_RATINGS;
     } else if (retScriptID >= 9900) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= 9900;
@@ -496,7 +496,7 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
     GF_ASSERT(graphicsVarID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, VARS_START + 32 + graphicsVarID);
+    return FieldSystem_TryGetVar(fieldSystem, OBJ_GFX_VARS_START + graphicsVarID);
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)

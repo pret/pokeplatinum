@@ -51,7 +51,7 @@ _00AF:
 _00B7:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
-    GoToIfUnset FLAG_UNK_0x09BA, _00E5
+    GoToIfUnset FLAG_FIRST_ARRIVAL_ETERNA_CITY, _00E5
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
@@ -508,7 +508,7 @@ _05FD:
     End
 
 _060E:
-    GoToIfSet FLAG_UNK_0x0110, _0621
+    GoToIfSet FLAG_SHOWN_COMPLETE_LOCAL_DEX, _0621
     GoTo _0631
     End
 
