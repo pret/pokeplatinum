@@ -2,7 +2,7 @@
   "key": 2287,
   "messages": [
     {
-      "id": "pl_msg_00000383_00000",
+      "id": "PokedexRatings_Text_RowanShowMeYourPokedex",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\r",
         "You’ve come to show me the progress\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00001",
+      "id": "PokedexRatings_Text_PokemonSpottedInSinnoh",
       "en_US": [
         "Hmm...\r",
         "You’ve spotted {STRVAR_1 52, 0, 0} Pokémon in\n",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00002",
+      "id": "PokedexRatings_Text_RowanAfraidToShowMe",
       "en_US": [
         "What’s wrong?\r",
         "You’re not suggesting you’ve seen so\n",
@@ -30,7 +30,7 @@
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000383_00004",
+      "id": "PokedexRatings_Text_RowanCompleteLocalDex",
       "en_US": [
         "I see!\r",
         "You’ve met all the Pokémon there\n",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00005",
+      "id": "PokedexRatings_Text_RowanCompleteLocalDex_TooEarly",
       "en_US": [
         "I see!\r",
         "You’ve met all the Pokémon there\n",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00006",
+      "id": "PokedexRatings_Text_RowanPokemonSeenUpTo15",
       "en_US": [
         "Look harder for wild Pokémon.\r",
         "Don’t be afraid of going into tall\n",
@@ -56,14 +56,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00007",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver15",
       "en_US": [
         "Your pace is picking up.\n",
         "Things can only get better!"
       ]
     },
     {
-      "id": "pl_msg_00000383_00008",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver30",
       "en_US": [
         "Be persistent when you’re searching\n",
         "for Pokémon that appear only in\f",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00009",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver45",
       "en_US": [
         "Are you using fishing rods?\r",
         "Pokémon that live underwater need to\n",
@@ -79,14 +79,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00010",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver60",
       "en_US": [
         "Remember, it’s important to make the\n",
         "Pokémon you’ve caught evolve."
       ]
     },
     {
-      "id": "pl_msg_00000383_00011",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver80",
       "en_US": [
         "Pokémon don’t just hide in tall grass.\r",
         "You can find many others in caves and\n",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00012",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver100",
       "en_US": [
         "The Trainers that challenge you to\n",
         "battle have Pokémon, obviously.\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00013",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver120",
       "en_US": [
         "Some Pokémon appear only in the\n",
         "morning and some only at night.\r",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00014",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver140",
       "en_US": [
         "Fantastic! Your effort is helping us\n",
         "understand what evolving involves.\r",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00015",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver160",
       "en_US": [
         "I’m simply astounded by the huge\n",
         "variety of Pokémon in Sinnoh.\r",
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00016",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver180",
       "en_US": [
         "Your Pokédex is well on the way to\n",
         "being filled up.\r",
@@ -139,14 +139,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00017",
+      "id": "PokedexRatings_Text_RowanPokemonSeenOver200",
       "en_US": [
         "You’re not far from seeing every\n",
         "Pokémon there is to see in Sinnoh!"
       ]
     },
     {
-      "id": "pl_msg_00000383_00018",
+      "id": "PokedexRatings_Text_OakShowMeYourPokedex_Male",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\r",
         "You’ve come to show me how\n",
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00019",
+      "id": "PokedexRatings_Text_OakShowMeYourPokedex_Female",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\r",
         "You’ve come to show me how\n",
@@ -162,14 +162,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00020",
+      "id": "PokedexRatings_Text_PokemonCaughtSoFar",
       "en_US": [
         "Hmhm...\n",
         "You’ve caught {STRVAR_1 52, 0, 0} so far...\r"
       ]
     },
     {
-      "id": "pl_msg_00000383_00021",
+      "id": "PokedexRatings_Text_OakComeSeeMe",
       "en_US": [
         "I see...\r",
         "Come see me if you’d like me to have\n",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00022",
+      "id": "PokedexRatings_Text_OakPokemonCaughtUnder40",
       "en_US": [
         "They say there are at least 400\n",
         "species of Pokémon nationwide.\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00023",
+      "id": "PokedexRatings_Text_OakPokemonCaught40",
       "en_US": [
         "Hm! Little by little, you’re filling\n",
         "the Pokédex with complete\f",
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00024",
+      "id": "PokedexRatings_Text_OakPokemonCaught60",
       "en_US": [
         "Here’s a tip on catching Pokémon\n",
         "in the wild.\r",
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00025",
+      "id": "PokedexRatings_Text_OakPokemonCaught90",
       "en_US": [
         "Remember: If you can’t catch them,\n",
         "you can always trade for them.\r",
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00026",
+      "id": "PokedexRatings_Text_OakPokemonCaught120",
       "en_US": [
         "Have you visited the Great Marsh?\r",
         "Some Pokémon only appear in places\n",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00027",
+      "id": "PokedexRatings_Text_OakPokemonCaught150",
       "en_US": [
         "As you know, there are Pokémon\n",
         "that eventually evolve.\r",
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00028",
+      "id": "PokedexRatings_Text_OakPokemonCaught190",
       "en_US": [
         "You’ve proven yourself capable.\n",
         "There’s nothing to worry about.\r",
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00029",
+      "id": "PokedexRatings_Text_OakPokemonCaught230",
       "en_US": [
         "Are you aware that there is more than\n",
         "one style of evolution?\r",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00030",
+      "id": "PokedexRatings_Text_OakPokemonCaught270",
       "en_US": [
         "Apparently, there are some Pokémon\n",
         "that appear in swarms on occasion.\r",
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00031",
+      "id": "PokedexRatings_Text_OakPokemonCaught310",
       "en_US": [
         "Amazing! You’ve already gotten over\n",
         "300 Pokémon!\r",
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00032",
+      "id": "PokedexRatings_Text_OakPokemonCaught350",
       "en_US": [
         "Some wild Pokémon only appear during\n",
         "certain times of the day.\r",
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00033",
+      "id": "PokedexRatings_Text_OakPokemonCaught380",
       "en_US": [
         "I’ve been getting reports of\n",
         "different Pokémon sightings.\r",
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00034",
+      "id": "PokedexRatings_Text_OakPokemonCaught410_Male",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, have you visited\n",
         "the Pal Park recently?\r",
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00035",
+      "id": "PokedexRatings_Text_OakPokemonCaught410_Female",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, have you visited\n",
         "the Pal Park recently?\r",
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00036",
+      "id": "PokedexRatings_Text_OakPokemonCaught430",
       "en_US": [
         "Hm! Your Pokédex is getting closer\n",
         "to completion.\r",
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00037",
+      "id": "PokedexRatings_Text_OakPokemonCaught450",
       "en_US": [
         "Hmm... You’ve caught quite the\n",
         "impressive collection of Pokémon.\r",
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00038",
+      "id": "PokedexRatings_Text_OakPokemonCaught460",
       "en_US": [
         "I can only marvel at the diversity\n",
         "of Pokémon.\r",
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00039",
+      "id": "PokedexRatings_Text_OakPokemonCaught470",
       "en_US": [
         "Good, good, you’re getting close to\n",
         "completing the Pokédex.\r",
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00040",
+      "id": "PokedexRatings_Text_OakPokemonCaught476",
       "en_US": [
         "Hmm... You are so very close to\n",
         "completing your Pokédex.\r",
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00041",
+      "id": "PokedexRatings_Text_OakCompleteNationalDex_Male",
       "en_US": [
         "{STRVAR_1 3, 0, 0}!\n",
         "You’ve finally done it!\r",
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00042",
+      "id": "PokedexRatings_Text_OakCompleteNationalDex_Female",
       "en_US": [
         "{STRVAR_1 3, 0, 0}!\n",
         "You’ve finally done it!\r",
@@ -389,11 +389,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000383_00043",
+      "id": "PokedexRatings_Text_AccessedProfessorRowansPC",
       "en_US": "Accessed Professor Rowan’s PC.\r"
     },
     {
-      "id": "pl_msg_00000383_00044",
+      "id": "PokedexRatings_Text_AccessedProfessorOaksPC",
       "en_US": "Accessed Professor Oak’s PC.\r"
     }
   ]
