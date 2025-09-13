@@ -34,7 +34,7 @@
       "garbage": 350
     },
     {
-      "id": "pl_msg_00000415_00008",
+      "id": "TVProgramInterviews_Text_BattleTowerCorner_Win",
       "en_US": [
         "DJ: Wa-hey!\r",
         "This is the Battle Tower Corner going\n",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00009",
+      "id": "TVProgramInterviews_Text_BattleTowerCorner_Lose",
       "en_US": [
         "DJ: Wa-hey!\r",
         "This is the Battle Tower Corner going\n",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00010",
+      "id": "TVProgramInterviews_Text_YourPokemonCorner_Nickname",
       "en_US": [
         "MC: Hello, this is Your Pokémon\n",
         "Corner.\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00011",
+      "id": "TVProgramInterviews_Text_YourPokemonCorner_NoNickname",
       "en_US": [
         "MC: Hello, this is Your Pokémon\n",
         "Corner.\r",
@@ -120,7 +120,7 @@
       "garbage": 201
     },
     {
-      "id": "pl_msg_00000415_00016",
+      "id": "TVProgramInterviews_Text_ThePoketchWatch",
       "en_US": [
         "MC: Sorry to keep you waiting.\n",
         "It’s time for The Pokétch Watch!\r",
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00017",
+      "id": "TVProgramInterviews_Text_ContestHall_Lose",
       "en_US": [
         "Reporter: We’re bringing you this live\n",
         "from the Contest Hall!\r",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00018",
+      "id": "TVProgramInterviews_Text_ContestHall_Win",
       "en_US": [
         "Reporter: We’re bringing you this live\n",
         "from the Contest Hall!\r",
@@ -196,7 +196,7 @@
       "garbage": 243
     },
     {
-      "id": "pl_msg_00000415_00020",
+      "id": "TVProgramInterviews_Text_RightOnPhotoCorner",
       "en_US": [
         "MC: Thanks for tuning in to the\n",
         "Right-On Photo Corner!\r",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00021",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_NormalType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00022",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_FireType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00023",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_WaterType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00024",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_ElectricType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00025",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_GrassType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00026",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_IceType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00027",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_FightingType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00028",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_PoisonType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00029",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_GroundType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00030",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_FlyingType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00031",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_PsychicType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00032",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_BugType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -470,7 +470,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00033",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_RockType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -490,7 +490,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00034",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_GhostType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00035",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_DragonType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -530,7 +530,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00036",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_DarkType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -550,7 +550,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00037",
+      "id": "TVProgramInterviews_Text_StreetCornerPersonalityCheckup_SteelType",
       "en_US": [
         "Announcer: It’s the Street Corner\n",
         "Personality Checkup!\r",
@@ -571,7 +571,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00038",
+      "id": "TVProgramInterviews_Text_ThreeCheersForPoffinCorner_RegularPoffin",
       "en_US": [
         "MC: It’s the Three Cheers for Poffin\n",
         "Corner! How do you do?\r",
@@ -596,7 +596,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00039",
+      "id": "TVProgramInterviews_Text_ThreeCheersForPoffinCorner_RichPoffin",
       "en_US": [
         "MC: It’s the Three Cheers for Poffin\n",
         "Corner! How do you do?\r",
@@ -621,7 +621,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00040",
+      "id": "TVProgramInterviews_Text_ThreeCheersForPoffinCorner_OverripePoffin",
       "en_US": [
         "MC: It’s the Three Cheers for Poffin\n",
         "Corner! How do you do?\r",
@@ -646,7 +646,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00041",
+      "id": "TVProgramInterviews_Text_ThreeCheersForPoffinCorner_FoulPoffin",
       "en_US": [
         "MC: It’s the Three Cheers for Poffin\n",
         "Corner! How do you do?\r",
@@ -671,7 +671,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00042",
+      "id": "TVProgramInterviews_Text_ThreeCheersForPoffinCorner_MildPoffin",
       "en_US": [
         "MC: It’s the Three Cheers for Poffin\n",
         "Corner! How do you do?\r",
@@ -700,7 +700,7 @@
       "garbage": 242
     },
     {
-      "id": "pl_msg_00000415_00044",
+      "id": "TVProgramInterviews_Text_AmitySquareWatch_FoundAccessory",
       "en_US": [
         "MC: Hello, ladies and gentlemen.\n",
         "I trust you’ve been well.\r",
@@ -727,7 +727,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00045",
+      "id": "TVProgramInterviews_Text_AmitySquareWatch",
       "en_US": [
         "MC: Hello, ladies and gentlemen.\n",
         "I trust you’ve been well.\r",
@@ -751,7 +751,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00046",
+      "id": "TVProgramInterviews_Text_AmitySquareWatch_FoundItem",
       "en_US": [
         "MC: Hello, ladies and gentlemen.\n",
         "I trust you’ve been well.\r",
@@ -778,7 +778,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00047",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Single",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",
@@ -802,7 +802,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00048",
+      "id": "TVProgramInterviews_Text_InYourFaceInterview_Question1",
       "en_US": [
         "Reporter: It’s begun!\n",
         "In-Your-Face Interview!\r",
@@ -817,7 +817,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00049",
+      "id": "TVProgramInterviews_Text_InYourFaceInterview_Question2",
       "en_US": [
         "Reporter: It’s begun!\n",
         "In-Your-Face Interview!\r",
@@ -832,7 +832,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00050",
+      "id": "TVProgramInterviews_Text_InYourFaceInterview_Question3",
       "en_US": [
         "Reporter: It’s begun!\n",
         "In-Your-Face Interview!\r",
@@ -846,7 +846,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00051",
+      "id": "TVProgramInterviews_Text_InYourFaceInterview_Question4",
       "en_US": [
         "Reporter: It’s begun!\n",
         "In-Your-Face Interview!\r",
@@ -862,7 +862,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00052",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Multi_BattleTower",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",
@@ -886,7 +886,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00053",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Multi_BattleCastle",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",
@@ -910,7 +910,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00054",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Multi_BattleHall",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",
@@ -934,7 +934,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00055",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Multi_BattleFactory",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",
@@ -958,7 +958,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000415_00056",
+      "id": "TVProgramInterviews_Text_BattleFrontierFrontlineNews_Multi_BattleArcade",
       "en_US": [
         "Reporter: The Battle Frontier\n",
         "Frontline News!\r",

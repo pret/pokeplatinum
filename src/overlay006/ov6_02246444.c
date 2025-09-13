@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/tv_broadcast.h"
+
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202E4D4_decl.h"
 #include "struct_decls/struct_0202E768_decl.h"
@@ -134,19 +136,19 @@ static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1
     return v1;
 }
 
-UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int param2)
+UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int programType, int param2)
 {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    if ((param1 == 4) || (param1 == 5)) {
+    if ((programType == TV_PROGRAM_TYPE_SINNOH_NOW) || (programType == TV_PROGRAM_TYPE_VARIETY_HOUR)) {
         return ov6_02246550(fieldSystem, param2);
     }
 
     if (sub_0202E7C0(param2) == 0) {
-        UnkStruct_0202E794 *v1 = sub_0202E794(broadcast, param1, param2);
+        UnkStruct_0202E794 *v1 = sub_0202E794(broadcast, programType, param2);
         return ov6_022464A8(fieldSystem, v1);
     } else {
-        UnkStruct_0202E768 *v2 = sub_0202E768(broadcast, param1, param2);
+        UnkStruct_0202E768 *v2 = sub_0202E768(broadcast, programType, param2);
         return ov6_022464F8(fieldSystem, v2);
     }
 }

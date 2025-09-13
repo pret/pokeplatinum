@@ -5,11 +5,11 @@
 
 #include "string_template.h"
 
-void ov6_022465FC(FieldSystem *fieldSystem);
-int ov6_0224660C(FieldSystem *fieldSystem);
+void FieldSystem_SetTVProgramFinished(FieldSystem *fieldSystem);
+int TVBroadcast_GetPendingBroadcastType(FieldSystem *fieldSystem);
 int ov6_022468B0(FieldSystem *fieldSystem, BOOL param1, BOOL param2);
 int ov6_02246920(FieldSystem *fieldSystem);
-int ov6_02246978(FieldSystem *fieldSystem, int param1);
-BOOL ov6_022469E0(FieldSystem *fieldSystem, StringTemplate *param1, int param2, u16 *param3, u16 *param4);
+int TVBroadcast_GetProgramFramingMessage(FieldSystem *fieldSystem, int framingMessageType);
+BOOL TVBroadcast_LoadSegmentMessage(FieldSystem *fieldSystem, StringTemplate *template, int segmentID, u16 *bankDestVar, u16 *messageDestVar);
 
 #endif // POKEPLATINUM_OV6_022465FC_H

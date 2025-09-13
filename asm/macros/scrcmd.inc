@@ -37,6 +37,7 @@
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
 #include "macros/movement.inc"
@@ -2854,10 +2855,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1FB arg0, arg1
+    .macro ExternalMessage bankID, messageID
     .short 507
-    .short \arg0
-    .short \arg1
+    .short \bankID
+    .short \messageID
     .endm
 
     .macro ScrCmd_Unused_1FC arg0, arg1, arg2, arg3
@@ -3183,22 +3184,72 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_235 arg0, arg1=0, arg2=0, arg3=0
+    .macro TVBroadcastCall callID, arg1=0, arg2=0, arg3=0
     .short 565
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 6
+    .short \callID
+    .if \callID == 0 || \callID == 6
         .short \arg1
     .else
-        .if \arg0 == 1 || \arg0 == 3 || \arg0 == 5
+        .if \callID == 1 || \callID == 3 || \callID == 5
             .short \arg1
             .short \arg2
             .short \arg3
         .else
-            .if \arg0 == 4
+            .if \callID == 4
                 .short \arg1
                 .short \arg2
             .endif
         .endif
+    .endif
+    .endm
+
+    .macro CheckBroadcastStatus destVar
+    TVBroadcastCall TV_BROADCAST_CALL_CHECK_STATUS, \destVar
+    .endm
+
+    .macro LoadTVCommercial bankDestVar, messageDestVar
+    TVBroadcastCall TV_BROADCAST_CALL_LOAD_COMMERCIAL, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFramingMessage framingMessageType, bankDestVar, messageDestVar
+    TVBroadcastCall TV_BROADCAST_CALL_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegment segmentID, bankDestVar, messageDestVar
+    TVBroadcastCall TV_BROADCAST_CALL_LOAD_SEGMENT \segmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVGreeting bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_GREETING \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegmentIntro bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_SEGMENT_INTRO \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewell bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewellExtended bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL_EXTENDED \bankDestVar, \messageDestVar
+    .endm
+
+    .macro NextTVSegment destVar
+    TVBroadcastCall TV_BROADCAST_CALL_NEXT_SEGMENT, \destVar
+    .endm
+
+    .macro FinishTVProgram
+    TVBroadcastCall TV_BROADCAST_CALL_FINISH_PROGRAM
+    .endm
+
+    .macro TVBroadcastDummy arg0, arg1, arg2
+    Dummy1F9 \arg0
+    .ifnb \arg1
+        Dummy1F9 \arg1
+    .endif
+    .ifnb \arg2
+        Dummy1F9 \arg2
     .endif
     .endm
 
@@ -3207,18 +3258,26 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_237 arg0, arg1, arg2, arg3
+    .macro TVInterviewCall callID, segmentID, arg2, arg3
     .short 567
-    .short \arg0
-    .short \arg1
+    .short \callID
+    .short \segmentID
     .short \arg2
     .short \arg3
     .endm
 
-    .macro ScrCmd_238 arg0, arg1
+    .macro ShowTVInterviewMessage segmentID, bankDestVar, messageDestVar
+    TVInterviewCall TV_INTERVIEW_CALL_SHOW_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro SaveTVInterviewResponse segmentID, customWordMessage, unused
+    TVInterviewCall TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
+    .endm
+
+    .macro CheckTVInterview segmentID, destVar
     .short 568
-    .short \arg0
-    .short \arg1
+    .short \segmentID
+    .short \destVar
     .endm
 
     .macro ScrCmd_239 arg0
