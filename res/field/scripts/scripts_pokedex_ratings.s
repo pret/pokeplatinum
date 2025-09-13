@@ -98,7 +98,7 @@ PokedexRatings_JustRateLocalDex:
     Return
 
 PokedexRatings_LocalDexCompleted:
-    SetFlag FLAG_COMPLETE_LOCAL_DEX_RATING
+    SetFlag FLAG_COMPLETE_LOCAL_DEX_ALREADY_RATED
     Return
 
 PokedexRatings_RateNationalDex:

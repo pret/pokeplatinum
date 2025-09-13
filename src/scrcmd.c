@@ -4829,7 +4829,7 @@ static BOOL ScrCmd_Unused_122(ScriptContext *ctx)
 static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx)
 {
     const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    const TrainerInfo *player = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
+    const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     u8 nationalDex = ScriptContext_ReadByte(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 pokemonCount;
@@ -4839,7 +4839,7 @@ static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx)
         *destVar = Pokedex_GetRatingMessageID_Local(pokemonCount, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
     } else {
         pokemonCount = Pokedex_NumCaught_National(pokedex);
-        *destVar = Pokedex_GetRatingMessageID_National(pokemonCount, TrainerInfo_Gender(player));
+        *destVar = Pokedex_GetRatingMessageID_National(pokemonCount, TrainerInfo_Gender(trainerInfo));
     }
 
     return FALSE;
