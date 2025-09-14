@@ -8,7 +8,6 @@
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/save_info_window.h"
-#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
@@ -103,6 +102,12 @@ enum ScriptContextType {
 #define SCRIPT_MANAGER_MAGIC_NUMBER 0x3643F
 
 typedef void (*FieldSysFunc)(FieldSystem *);
+
+typedef struct HiddenItemTilePosition {
+    u16 screenTileX;
+    u16 screenTileZ;
+    u8 range;
+} HiddenItemTilePosition;
 
 typedef struct ApproachingTrainer {
     int sightRange;

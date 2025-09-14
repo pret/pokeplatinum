@@ -935,11 +935,11 @@ Overlay poketch_friendship_checker
 	Object main.nef.p/src_applications_poketch_friendship_checker_graphics.c.o
 }
 
-Overlay overlay34
+Overlay poketch_dowsing_machine
 {
 	After overlay25
-	Object main.nef.p/src_overlay034_ov34_022561C0.c.o
-	Object main.nef.p/src_overlay034_ov34_02256540.c.o
+	Object main.nef.p/src_applications_poketch_dowsing_machine_main.c.o
+	Object main.nef.p/src_applications_poketch_dowsing_machine_graphics.c.o
 }
 
 Overlay poketch_counter
