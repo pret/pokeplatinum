@@ -338,8 +338,9 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     VecFx32 v1;
     fx32 v2;
     fx32 v3[3] = {
-        (FX32_ONE * 12),
-        FX32_ONE * 16, (FX32_ONE * 12)
+        FX32_ONE * 12,
+        FX32_ONE * 16,
+        FX32_ONE * 12,
     };
 
     *param1 = param0->unk_50;
@@ -418,7 +419,7 @@ static void ov5_021F1C60(UnkStruct_ov101_021D5D90 *param0, void *param1)
         v0->unk_4C = -v0->unk_4C;
     }
 
-    {
+    {   
         VecFx32 v1;
 
         ov5_021F1B4C(v0, &v1);

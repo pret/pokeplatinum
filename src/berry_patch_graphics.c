@@ -35,7 +35,7 @@ static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage g
 
 BOOL BerryPatch_IsBerryPatch(int graphicsID)
 {
-    if (graphicsID == 0x64) {
+    if (graphicsID == 100) {
         return TRUE;
     }
 
@@ -117,7 +117,7 @@ void BerryPatch_UpdateGraphics(MapObject *mapObject)
 
             ov5_021ECEB4(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
         } else {
-            if ((graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE) && (patchData->needsUpdate == FALSE)) {
+            if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE && patchData->needsUpdate == FALSE) {
                 ov5_021F22BC(mapObject);
             }
         }
@@ -195,19 +195,17 @@ static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage g
     default:
         berryID--;
 
-        {
-            const BerryGraphicsData *graphicsData = &gBerryGraphicsTable[berryID];
+        const BerryGraphicsData *graphicsData = &gBerryGraphicsTable[berryID];
 
-            switch (growthStage) {
-            case BERRY_GROWTH_STAGE_SPROUTED:
-                return 0x1000 + 0x0;
-            case BERRY_GROWTH_STAGE_GROWING:
-                return graphicsData->growingResourceID;
-            case BERRY_GROWTH_STAGE_BLOOMING:
-                return graphicsData->bloomingResourceID;
-            case BERRY_GROWTH_STAGE_FRUIT:
-                return graphicsData->fruitResourceID;
-            }
+        switch (growthStage) {
+        case BERRY_GROWTH_STAGE_SPROUTED:
+            return 4096;
+        case BERRY_GROWTH_STAGE_GROWING:
+            return graphicsData->growingResourceID;
+        case BERRY_GROWTH_STAGE_BLOOMING:
+            return graphicsData->bloomingResourceID;
+        case BERRY_GROWTH_STAGE_FRUIT:
+            return graphicsData->fruitResourceID;
         }
     }
 
