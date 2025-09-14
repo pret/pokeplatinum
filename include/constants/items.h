@@ -59,7 +59,7 @@
 #define BERRY_ID(__name) (ITEM_##__name##_BERRY - FIRST_BERRY_IDX)
 #define BERRY_ID_NONE    0xFF
 
-#define BERRY_TAG_NONE   0
+#define BERRY_TAG_NONE 0
 
 #define FIRST_MULCH_IDX  ITEM_GROWTH_MULCH
 #define LAST_MULCH_IDX   ITEM_GOOEY_MULCH
