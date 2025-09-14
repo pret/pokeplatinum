@@ -281,13 +281,13 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 }
 
 // Animation sequence for watering berries while facing left
-static const MapObjectAnimCmd BerryPatches_LeftAnimation[] = {
+static const MapObjectAnimCmd BerryWatering_LeftAnimation[] = {
     { 10, 1 }, // Play animation frame 10 for 1 frame
     { 0xfe, 0 } // End of animation sequence
 };
 
 // Animation sequence for watering berries while facing right
-static const MapObjectAnimCmd BerryPatches_RightAnimation[] = {
+static const MapObjectAnimCmd BerryWatering_RightAnimation[] = {
     { 11, 1 }, // Play animation frame 11 for 1 frame
     { 0xfe, 0 } // End of animation sequence
 };
@@ -391,7 +391,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
                 task->state = BERRY_WATERING_STATE_CLEANUP;
                 break;
             } else if (!BerryPatches_CheckCollision(fieldSystem, task, FACE_LEFT)) {
-                BerryPatches_StartAnimation(fieldSystem, task, BerryPatches_LeftAnimation);
+                BerryPatches_StartAnimation(fieldSystem, task, BerryWatering_LeftAnimation);
                 task->state = BERRY_WATERING_STATE_ANIMATION;
                 break;
             }
@@ -402,7 +402,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
                 task->state = BERRY_WATERING_STATE_CLEANUP;
                 break;
             } else if (!BerryPatches_CheckCollision(fieldSystem, task, FACE_RIGHT)) {
-                BerryPatches_StartAnimation(fieldSystem, task, BerryPatches_RightAnimation);
+                BerryPatches_StartAnimation(fieldSystem, task, BerryWatering_RightAnimation);
                 task->state = BERRY_WATERING_STATE_ANIMATION;
                 break;
             }
