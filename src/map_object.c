@@ -25,6 +25,7 @@
 #include "overlay005/struct_ov5_021FB0F0.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
+#include "berry_patch_graphics.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object_move.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "berry_patch_graphics.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {
@@ -1980,15 +1980,15 @@ int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj)
 void sub_02062FC4(MapObject *mapObj, int param1)
 {
     if (param1 == TRUE) {
-        sub_020628F0(mapObj, (1 << 2));
+        sub_020628F0(mapObj, 1 << 2);
     } else {
-        sub_020628F8(mapObj, (1 << 2));
+        sub_020628F8(mapObj, 1 << 2);
     }
 }
 
 int sub_02062FDC(const MapObject *mapObj)
 {
-    if (sub_02062904(mapObj, (1 << 2))) {
+    if (sub_02062904(mapObj, 1 << 2)) {
         return TRUE;
     }
 

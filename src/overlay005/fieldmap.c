@@ -47,6 +47,7 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "berry_patch_manager.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "char_transfer.h"
@@ -83,7 +84,6 @@
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
-#include "berry_patch_manager.h"
 #include "vram_transfer.h"
 
 #define FIELD_MAP_INIT_STATE_RESET         0

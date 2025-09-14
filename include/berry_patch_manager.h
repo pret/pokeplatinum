@@ -7,18 +7,18 @@
 #include "field/field_system_decl.h"
 
 enum BerryWateringState {
-    BERRY_WATERING_STATE_INIT = 0,        // Initial state - setting up watering mode
-    BERRY_WATERING_STATE_WATERING,        // Watering the current patch
-    BERRY_WATERING_STATE_INPUT,           // Waiting for player input (movement keys)
-    BERRY_WATERING_STATE_ANIMATION,       // Playing watering animation
-    BERRY_WATERING_STATE_CLEANUP,         // Cleaning up and exiting watering mode
+    BERRY_WATERING_STATE_INIT = 0, // Initial state - setting up watering mode
+    BERRY_WATERING_STATE_WATERING, // Watering the current patch
+    BERRY_WATERING_STATE_INPUT, // Waiting for player input (movement keys)
+    BERRY_WATERING_STATE_ANIMATION, // Playing watering animation
+    BERRY_WATERING_STATE_CLEANUP, // Cleaning up and exiting watering mode
 };
 
 enum BerryPatchFlags {
-    BERRY_PATCH_FLAG_INVALID = 0x0,      // Not a berry patch or NULL
-    BERRY_PATCH_FLAG_EMPTY = 0x1,        // Patch is empty, can plant
-    BERRY_PATCH_FLAG_CAN_MULCH = 0x2,    // Patch can have mulch applied
-    BERRY_PATCH_FLAG_HAS_BERRY = 0x4,    // Patch has berry growing
+    BERRY_PATCH_FLAG_INVALID = 0x0, // Not a berry patch or NULL
+    BERRY_PATCH_FLAG_EMPTY = 0x1, // Patch is empty, can plant
+    BERRY_PATCH_FLAG_CAN_MULCH = 0x2, // Patch can have mulch applied
+    BERRY_PATCH_FLAG_HAS_BERRY = 0x4, // Patch has berry growing
 };
 
 BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID);

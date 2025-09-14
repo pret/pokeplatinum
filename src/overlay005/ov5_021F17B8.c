@@ -16,10 +16,10 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "berry_patch_graphics.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "unk_02020AEC.h"
-#include "berry_patch_graphics.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -71,7 +71,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200338;
 
 void *ov5_021F17B8(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F17E4 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F17E4)), 0, 0);
+    UnkStruct_ov5_021F17E4 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F17E4), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F17E4(v0);
@@ -257,8 +257,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
     fx32 v1, v2;
     fx32 v3[3] = {
         (FX32_ONE * 12),
-        (FX32_ONE * 16),
-        (FX32_ONE * 12)
+        FX32_ONE * 16, (FX32_ONE * 12)
     };
 
     sub_02063078(param1, param2);
@@ -340,8 +339,7 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     fx32 v2;
     fx32 v3[3] = {
         (FX32_ONE * 12),
-        (FX32_ONE * 16),
-        (FX32_ONE * 12)
+        FX32_ONE * 16, (FX32_ONE * 12)
     };
 
     *param1 = param0->unk_50;

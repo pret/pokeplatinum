@@ -15,9 +15,9 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "berry_patch_manager.h"
 #include "map_object.h"
 #include "unk_02020AEC.h"
-#include "berry_patch_manager.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -77,7 +77,7 @@ const UnkStruct_020217F4 Unk_ov5_0220044C[];
 
 void *ov5_021F204C(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F2078 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F2078)), 0, 0);
+    UnkStruct_ov5_021F2078 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2078), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F2078(v0);
@@ -207,7 +207,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200438 = {
 
 void *ov5_021F21E0(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F2204 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F2204)), 0, 0);
+    UnkStruct_ov5_021F2204 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2204), 0, 0);
     v0->unk_08 = param0;
 
     return v0;

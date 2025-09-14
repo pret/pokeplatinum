@@ -25,6 +25,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
+#include "berry_patch_manager.h"
 #include "bg_window.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -58,7 +59,6 @@
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
-#include "berry_patch_manager.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "unk_020989DC.h"

@@ -1861,7 +1861,7 @@ const BerryGraphicsData BerryGraphicsTable[] = {
     { 0x1025, 0x1026, 0x1027 },
     { 0x1028, 0x1029, 0x102A },
     { 0x102B, 0x102C, 0x102D },
-    { 0x102E, (0x1000 + 0x2f), 0x1030 },
+    { 0x102E, 0x1000 + 0x2f, 0x1030 },
     { 0x1031, 0x1032, 0x1033 },
     { 0x1034, 0x1035, 0x1036 },
     { 0x1037, 0x1038, 0x1039 },
@@ -1877,7 +1877,7 @@ const BerryGraphicsData BerryGraphicsTable[] = {
     { 0x1055, 0x1056, 0x1057 },
     { 0x1058, 0x1059, 0x105A },
     { 0x105B, 0x105C, 0x105D },
-    { 0x105E, (0x1000 + 0x5f), 0x1060 },
+    { 0x105E, 0x1000 + 0x5f, 0x1060 },
     { 0x1061, 0x1062, 0x1063 },
     { 0x1064, 0x1065, 0x1066 },
     { 0x1067, 0x1068, 0x1069 },
@@ -1893,7 +1893,7 @@ const BerryGraphicsData BerryGraphicsTable[] = {
     { 0x1085, 0x1086, 0x1087 },
     { 0x1088, 0x1089, 0x108A },
     { 0x108B, 0x108C, 0x108D },
-    { 0x108E, (0x1000 + 0x8f), 0x1090 },
+    { 0x108E, 0x1000 + 0x8f, 0x1090 },
     { 0x1091, 0x1092, 0x1093 },
     { 0x1094, 0x1095, 0x1096 },
     { 0x1097, 0x1098, 0x1099 },
@@ -1909,7 +1909,7 @@ const BerryGraphicsData BerryGraphicsTable[] = {
     { 0x10B5, 0x10B6, 0x10B7 },
     { 0x10B8, 0x10B9, 0x10BA },
     { 0x10BB, 0x10BC, 0x10BD },
-    { 0x10BE, (0x1000 + 0xbf), 0x10C0 }
+    { 0x10BE, 0x1000 + 0xbf, 0x10C0 }
 };
 
 const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
@@ -1918,7 +1918,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1926,7 +1926,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1934,7 +1934,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1942,7 +1942,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1950,7 +1950,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1958,7 +1958,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1966,7 +1966,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {
@@ -1974,7 +1974,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {
@@ -1982,7 +1982,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {

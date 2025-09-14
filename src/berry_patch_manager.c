@@ -8,18 +8,19 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "location.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "bag.h"
+#include "berry_patch_graphics.h"
 #include "berry_patches.h"
 #include "easy3d.h"
 #include "field_task.h"
 #include "gfx_box_test.h"
 #include "heap.h"
+#include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
@@ -27,7 +28,6 @@
 #include "system.h"
 #include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
-#include "berry_patch_graphics.h"
 #include "unk_0206CCB0.h"
 
 struct BerryPatchManager {
@@ -156,7 +156,7 @@ void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
     MapObject *mapObject;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, (1 << 0)) == 1) {
+    while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, 1 << 0) == 1) {
         if (BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == 1) {
             if (BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
                 int patchID = MapObject_GetDataAt(mapObject, 0);
@@ -289,14 +289,14 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 
 // Animation sequence for watering berries while facing left
 static const MapObjectAnimCmd BerryWatering_LeftAnimation[] = {
-    { 0xA, 0x1 },    // Play animation frame 0xA for 1 frame
-    { 0xfe, 0x0 }    // End of animation sequence
+    { 0xA, 0x1 }, // Play animation frame 0xA for 1 frame
+    { 0xfe, 0x0 } // End of animation sequence
 };
 
 // Animation sequence for watering berries while facing right
 static const MapObjectAnimCmd BerryWatering_RightAnimation[] = {
-    { 0xB, 0x1 },    // Play animation frame 0xB for 1 frame
-    { 0xfe, 0x0 }    // End of animation sequence
+    { 0xB, 0x1 }, // Play animation frame 0xB for 1 frame
+    { 0xfe, 0x0 } // End of animation sequence
 };
 
 static BOOL BerryWatering_CheckCollision(FieldSystem *fieldSystem, BerryWateringTask *task, enum FaceDirection direction)

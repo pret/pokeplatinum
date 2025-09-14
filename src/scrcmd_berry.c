@@ -8,11 +8,11 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
+#include "berry_patch_manager.h"
 #include "field_script_context.h"
 #include "game_records.h"
 #include "inlines.h"
 #include "script_manager.h"
-#include "berry_patch_manager.h"
 
 BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *ctx)
 {

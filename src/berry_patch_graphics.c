@@ -13,11 +13,11 @@
 #include "overlay005/struct_ov5_021ED01C.h"
 #include "overlay005/struct_ov5_021FB67C.h"
 
+#include "berry_patch_manager.h"
+#include "berry_patches.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "unk_02020AEC.h"
-#include "berry_patch_manager.h"
-#include "berry_patches.h"
 
 typedef struct {
     u16 growthStage;
@@ -71,7 +71,7 @@ void BerryPatch_MarkForUpdate(MapObject *mapObject)
 
 void BerryPatch_InitData(MapObject *mapObject)
 {
-    BerryPatchData *patchData = sub_02062A54(mapObject, (sizeof(BerryPatchData)));
+    BerryPatchData *patchData = sub_02062A54(mapObject, sizeof(BerryPatchData));
     patchData->growthStage = BERRY_GROWTH_STAGE_NONE;
 }
 
@@ -88,7 +88,7 @@ void BerryPatch_NoOp(MapObject *mapObject)
 
 void BerryPatch_InitGraphics(MapObject *mapObject)
 {
-    BerryPatchGraphics *graphicsData = sub_02062ACC(mapObject, (sizeof(BerryPatchGraphics)));
+    BerryPatchGraphics *graphicsData = sub_02062ACC(mapObject, sizeof(BerryPatchGraphics));
 
     graphicsData->graphicsResourceID = 0xffff;
     graphicsData->lastGrowthStage = BERRY_GROWTH_STAGE_NONE;
@@ -137,7 +137,7 @@ void BerryPatch_UpdateGraphics(MapObject *mapObject)
         ov5_021EDEB4(mapObject, graphicsData->graphicsObject);
 
         if (ov5_021ECD38(mapObject) == 0) {
-            sub_02021368(graphicsData->graphicsObject, (FX32_ONE));
+            sub_02021368(graphicsData->graphicsObject, FX32_ONE );
         }
 
         ov5_021EDED8(mapObject, graphicsData->graphicsObject);

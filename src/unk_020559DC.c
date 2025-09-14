@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "berry_patch_manager.h"
 #include "field_system.h"
 #include "inlines.h"
 #include "party.h"
@@ -22,7 +23,6 @@
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
-#include "berry_patch_manager.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
