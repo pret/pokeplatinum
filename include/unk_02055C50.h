@@ -6,22 +6,22 @@
 
 #include "field/field_system_decl.h"
 
-UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID);
-void sub_02055CBC(UnkStruct_02055CBC *param0);
-void sub_02055CD4(FieldSystem *fieldSystem, int param1);
-void sub_02055D94(FieldSystem *fieldSystem);
-BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1);
-void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2);
-void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2);
-void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1);
-int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1);
-int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1);
-u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1);
-u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1);
-int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1);
-int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1);
-u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1);
-void sub_020562AC(FieldSystem *fieldSystem);
-void sub_020562D8(FieldSystem *fieldSystem);
+BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID);
+void BerryPatchManager_Destroy(BerryPatchManager *manager);
+void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes);
+void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem);
+BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *param1);
+void BerryPatches_SetMulchType(FieldSystem *fieldSystem, MapObject *param1, u16 param2);
+void BerryPatches_PlantBerry(FieldSystem *fieldSystem, MapObject *param1, u16 param2);
+void BerryPatches_ResetMoisture(FieldSystem *fieldSystem, MapObject *mapObject);
+int BerryPatches_GetGrowthStage(const FieldSystem *fieldSystem, const MapObject *param1);
+int BerryPatches_GetBerryID(const FieldSystem *fieldSystem, const MapObject *mapObject);
+u16 BerryPatches_GetItemID(const FieldSystem *fieldSystem, const MapObject *param1);
+u16 BerryPatches_GetMulchItemID(const FieldSystem *fieldSystem, const MapObject *param1);
+int BerryPatches_GetMoisture(const FieldSystem *fieldSystem, const MapObject *param1);
+int BerryPatches_GetYield(const FieldSystem *fieldSystem, const MapObject *param1);
+u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *mapObject);
+void BerryPatches_StartWatering(FieldSystem *fieldSystem);
+void BerryPatches_EndWatering(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_UNK_02055C50_H

@@ -117,7 +117,7 @@ static int ov5_021F38AC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v4 = sub_020715BC(param0);
 
     v3->unk_18 = *v4;
-    v3->unk_04 = sub_02062924(v3->unk_18.unk_18);
+    v3->unk_04 = MapObject_GetEffectiveGraphicsID(v3->unk_18.unk_18);
     v3->unk_08 = MapObject_GetLocalID(v3->unk_18.unk_18);
     v3->unk_0C = sub_02062918(v3->unk_18.unk_18);
 

@@ -1561,7 +1561,7 @@ void ov5_021EC734(MapObject *mapObj)
 {
     VecFx32 v0;
     UnkStruct_ov5_021EC760 *v1 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC760)));
-    ov5_021EC700(sub_02062924(mapObj), &v0);
+    ov5_021EC700(MapObject_GetEffectiveGraphicsID(mapObj), &v0);
     v1->unk_00 = ov5_021F121C(mapObj, &v0);
 }
 
@@ -1594,7 +1594,7 @@ void ov5_021EC790(MapObject *mapObj)
 {
     VecFx32 v0;
     UnkStruct_ov5_021EC760 *v1 = sub_02062AF0(mapObj);
-    ov5_021EC700(sub_02062924(mapObj), &v0);
+    ov5_021EC700(MapObject_GetEffectiveGraphicsID(mapObj), &v0);
     v1->unk_00 = ov5_021F121C(mapObj, &v0);
 }
 

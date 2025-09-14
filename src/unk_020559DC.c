@@ -129,7 +129,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime)
 {
-    sub_02055CD4(fieldSystem, param1);
+    BerryPatches_ElapseTime(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 

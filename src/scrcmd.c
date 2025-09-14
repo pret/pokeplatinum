@@ -159,6 +159,7 @@
 #include "scrcmd_strings.h"
 #include "scrcmd_system_flags.h"
 #include "scrcmd_underground_inventory.h"
+#include "unk_0204B64C.h"
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
@@ -1150,15 +1151,15 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_17A,
     ScrCmd_BufferBerryName,
     ScrCmd_BufferNatureName,
-    ScrCmd_17D,
-    ScrCmd_17E,
-    ScrCmd_17F,
-    ScrCmd_180,
-    ScrCmd_181,
-    ScrCmd_182,
-    ScrCmd_183,
-    ScrCmd_184,
-    ScrCmd_185,
+    ScrCmd_GetBerryGrowthStage,
+    ScrCmd_GetBerryItemID,
+    ScrCmd_GetBerryMulchType,
+    ScrCmd_GetBerryMoisture,
+    ScrCmd_GetBerryYield,
+    ScrCmd_SetBerryMulch,
+    ScrCmd_PlantBerry,
+    ScrCmd_BerryWatering,
+    ScrCmd_HarvestBerry,
     ScrCmd_SetObjectEventPos,
     ScrCmd_SetPosition,
     ScrCmd_SetObjectEventMovementType,

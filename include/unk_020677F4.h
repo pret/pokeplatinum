@@ -4,17 +4,17 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-int sub_020677F4(int param0);
-int sub_02067800(const MapObject *param0);
-void sub_02067834(MapObject *param0);
-void sub_02067840(MapObject *param0);
-void sub_02067850(MapObject *param0);
-void sub_0206786C(MapObject *param0);
-void sub_02067870(MapObject *param0);
-void sub_02067890(MapObject *param0);
-void sub_02067950(MapObject *param0);
-void sub_02067968(MapObject *param0);
-void sub_02067998(MapObject *param0);
-UnkStruct_020216E0 *sub_02067A58(MapObject *param0);
+int BerryPatch_IsBerryPatch(int graphicsID);
+int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject);
+void BerryPatch_MarkForUpdate(MapObject *mapObject);
+void BerryPatch_InitData(MapObject *mapObject);
+void BerryPatch_UpdateGrowthStage(MapObject *mapObject);
+void BerryPatch_NoOp(MapObject *mapObject);
+void BerryPatch_InitGraphics(MapObject *mapObject);
+void BerryPatch_UpdateGraphics(MapObject *mapObject);
+void BerryPatch_CleanupGraphics(MapObject *mapObject);
+void BerryPatch_PauseGraphics(MapObject *mapObject);
+void BerryPatch_ResumeGraphics(MapObject *mapObject);
+UnkStruct_020216E0 *BerryPatch_GetGraphicsObject(MapObject *mapObject);
 
 #endif // POKEPLATINUM_UNK_020677F4_H

@@ -29,261 +29,261 @@
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
 
-struct UnkStruct_02055CBC_t {
+struct BerryPatchManager {
     int heapID;
-    BerryGrowthData *unk_04;
-    NNSG3dRenderObj unk_08;
-    NNSG3dResMdl *unk_5C;
-    NNSG3dResFileHeader *unk_60;
+    BerryGrowthData *growthData;
+    NNSG3dRenderObj renderObj;
+    NNSG3dResMdl *model;
+    NNSG3dResFileHeader *resource;
 };
 
 typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    SysTask *unk_0C;
-} UnkStruct_020562AC;
+    int state;
+    int direction;
+    int timer;
+    SysTask *animationTask;
+} BerryWateringTask;
 
-static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1);
-static void sub_02055D48(UnkStruct_02055CBC *param0);
+static void BerryPatchManager_Init3DRendering(FieldSystem *fieldSystem, BerryPatchManager *manager);
+static void BerryPatchManager_Cleanup3DRendering(BerryPatchManager *manager);
 
-static u16 sub_02055C50(int param0)
+static u16 BerryPatches_ConvertBerryIDToItemID(int berryID)
 {
-    if (param0 == 0) {
+    if (berryID == 0) {
         return 0;
     }
 
-    return param0 + 149 - 1;
+    return berryID + 149 - 1;
 }
 
-static u16 sub_02055C60(int param0)
+static u16 BerryPatches_ConvertItemIDToBerryID(int itemID)
 {
-    if (param0 == 0) {
+    if (itemID == 0) {
         return 0;
     }
 
-    return param0 - 149 + 1;
+    return itemID - 149 + 1;
 }
 
-static u16 sub_02055C70(int param0)
+static u16 BerryPatches_ConvertMulchTypeToItemID(int mulchType)
 {
-    if (param0 == 0) {
+    if (mulchType == 0) {
         return 0;
     }
 
-    return param0 + 95 - 1;
+    return mulchType + 95 - 1;
 }
 
-static int sub_02055C80(int param0)
+static int BerryPatches_ConvertItemIDToMulchType(int itemID)
 {
-    if (param0 == 0) {
+    if (itemID == 0) {
         return 0;
     }
 
-    return param0 - 95 + 1;
+    return itemID - 95 + 1;
 }
 
-UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
+BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_02055CBC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02055CBC));
-    MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
+    BerryPatchManager *manager = Heap_Alloc(heapID, sizeof(BerryPatchManager));
+    MI_CpuClear8(manager, sizeof(BerryPatchManager));
 
-    v0->heapID = heapID;
-    v0->unk_04 = BerryGrowthData_Init(heapID);
+    manager->heapID = heapID;
+    manager->growthData = BerryGrowthData_Init(heapID);
 
-    sub_02055D14(fieldSystem, v0);
-    return v0;
+    BerryPatchManager_Init3DRendering(fieldSystem, manager);
+    return manager;
 }
 
-void sub_02055CBC(UnkStruct_02055CBC *param0)
+void BerryPatchManager_Destroy(BerryPatchManager *manager)
 {
-    sub_02055D48(param0);
-    Heap_Free(param0->unk_04);
-    Heap_Free(param0);
+    BerryPatchManager_Cleanup3DRendering(manager);
+    Heap_Free(manager->growthData);
+    Heap_Free(manager);
 }
 
-void sub_02055CD4(FieldSystem *fieldSystem, int param1)
+void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes)
 {
-    BerryPatch *v0;
-    BerryGrowthData *v1;
+    BerryPatch *berryPatches;
+    BerryGrowthData *growthData;
 
     if (fieldSystem->unk_04 == NULL) {
-        v1 = BerryGrowthData_Init(11);
-        v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-        BerryPatches_ElapseMinutes(v0, v1, param1);
-        Heap_Free(v1);
+        growthData = BerryGrowthData_Init(11);
+        berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryPatches_ElapseMinutes(berryPatches, growthData, minutes);
+        Heap_Free(growthData);
     } else {
-        v1 = fieldSystem->unk_04->unk_18->unk_04;
-        v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-        BerryPatches_ElapseMinutes(v0, v1, param1);
+        growthData = fieldSystem->unk_04->berryPatchManager->growthData;
+        berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryPatches_ElapseMinutes(berryPatches, growthData, minutes);
     }
 }
 
-static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
+static void BerryPatchManager_Init3DRendering(FieldSystem *fieldSystem, BerryPatchManager *manager)
 {
-    UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
-    u32 v1 = ov5_021DF5A8(v0, 17);
+    UnkStruct_ov5_021DF47C *renderManager = fieldSystem->unk_40;
+    u32 resourceSize = ov5_021DF5A8(renderManager, 17);
 
-    param1->unk_60 = Heap_Alloc(param1->heapID, v1);
+    manager->resource = Heap_Alloc(manager->heapID, resourceSize);
 
-    ov5_021DF5B4(v0, 17, param1->unk_60);
-    Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
+    ov5_021DF5B4(renderManager, 17, manager->resource);
+    Easy3D_InitRenderObjFromResource(&manager->renderObj, &manager->model, &manager->resource);
 }
 
-static void sub_02055D48(UnkStruct_02055CBC *param0)
+static void BerryPatchManager_Cleanup3DRendering(BerryPatchManager *manager)
 {
-    ov5_021DF554(param0->unk_60);
+    ov5_021DF554(manager->resource);
 }
 
-static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
+static BOOL BerryPatches_IsInView(FieldSystem *fieldSystem, const VecFx32 *position)
 {
-    const VecFx32 v0 = { FX32_ONE, FX32_ONE, FX32_ONE };
-    MtxFx33 v1;
+    const VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
+    MtxFx33 transform;
 
-    MTX_Identity33(&v1);
+    MTX_Identity33(&transform);
 
-    if (GFXBoxTest_IsModelInView(fieldSystem->unk_04->unk_18->unk_5C, param1, &v1, &v0) != 0) {
+    if (GFXBoxTest_IsModelInView(fieldSystem->unk_04->berryPatchManager->model, position, &transform, &scale) != 0) {
         return 1;
     } else {
         return 0;
     }
 }
 
-void sub_02055D94(FieldSystem *fieldSystem)
+void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
 {
-    int v0 = 0;
-    MapObject *v1;
-    BerryPatch *v2 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int objectIndex = 0;
+    MapObject *mapObject;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
-        if (sub_020677F4(MapObject_GetGraphicsID(v1)) == 1) {
-            if (sub_02055D54(fieldSystem, MapObject_GetPos(v1))) {
-                int v3 = MapObject_GetDataAt(v1, 0);
-                BerryPatches_SetIsPatchGrowing(v2, v3, 1);
+    while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, (1 << 0)) == 1) {
+        if (BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == 1) {
+            if (BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
+                int patchID = MapObject_GetDataAt(mapObject, 0);
+                BerryPatches_SetIsPatchGrowing(berryPatches, patchID, 1);
             }
         }
     }
 }
 
-BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
+BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *param1)
 {
-    int v0, v1, v2;
-    BerryPatch *v3 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID, yieldAmount, berryID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    v2 = BerryPatches_GetPatchBerryID(v3, v0);
-    v1 = BerryPatches_GetPatchYield(v3, v0);
+    patchID = MapObject_GetDataAt(param1, 0);
+    berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
+    yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    sub_0206D914(fieldSystem, sub_02055C50(v2), BerryPatches_GetPatchYieldRating(v3, v0), v1);
-    BerryPatches_HarvestPatch(v3, v0);
-    sub_02067834(param1);
+    sub_0206D914(fieldSystem, BerryPatches_ConvertBerryIDToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    BerryPatches_HarvestPatch(berryPatches, patchID);
+    BerryPatch_MarkForUpdate(param1);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD1);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), BerryPatches_ConvertBerryIDToItemID(berryID), yieldAmount, HEAP_ID_FIELD1);
 }
 
-void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
+void BerryPatches_SetMulchType(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    BerryPatches_SetPatchMulchType(v1, v0, sub_02055C80(param2));
+    patchID = MapObject_GetDataAt(param1, 0);
+    BerryPatches_SetPatchMulchType(berryPatches, patchID, BerryPatches_ConvertItemIDToMulchType(param2));
 }
 
-void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
+void BerryPatches_PlantBerry(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    BerryPatches_PlantInPatch(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
+    patchID = MapObject_GetDataAt(param1, 0);
+    BerryPatches_PlantInPatch(berryPatches, patchID, fieldSystem->unk_04->berryPatchManager->growthData, BerryPatches_ConvertItemIDToBerryID(param2));
 }
 
-void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
+void BerryPatches_ResetMoisture(FieldSystem *fieldSystem, MapObject *mapObject)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    BerryPatches_ResetPatchMoisture(v1, v0);
+    patchID = MapObject_GetDataAt(mapObject, 0);
+    BerryPatches_ResetPatchMoisture(berryPatches, patchID);
 }
 
-int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
+int BerryPatches_GetGrowthStage(const FieldSystem *fieldSystem, const MapObject *param1)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return BerryPatches_GetPatchGrowthStage(v1, v0);
+    patchID = MapObject_GetDataAt(param1, 0);
+    return BerryPatches_GetPatchGrowthStage(berryPatches, patchID);
 }
 
-int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
+int BerryPatches_GetBerryID(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return BerryPatches_GetPatchBerryID(v1, v0);
+    patchID = MapObject_GetDataAt(mapObject, 0);
+    return BerryPatches_GetPatchBerryID(berryPatches, patchID);
 }
 
-u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
+u16 BerryPatches_GetItemID(const FieldSystem *fieldSystem, const MapObject *param1)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return sub_02055C50(BerryPatches_GetPatchBerryID(v1, v0));
+    patchID = MapObject_GetDataAt(param1, 0);
+    return BerryPatches_ConvertBerryIDToItemID(BerryPatches_GetPatchBerryID(berryPatches, patchID));
 }
 
-u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
+u16 BerryPatches_GetMulchItemID(const FieldSystem *fieldSystem, const MapObject *param1)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return sub_02055C70(BerryPatches_GetPatchMulchType(v1, v0));
+    patchID = MapObject_GetDataAt(param1, 0);
+    return BerryPatches_ConvertMulchTypeToItemID(BerryPatches_GetPatchMulchType(berryPatches, patchID));
 }
 
-int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
+int BerryPatches_GetMoisture(const FieldSystem *fieldSystem, const MapObject *param1)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return BerryPatches_GetPatchMoisture(v1, v0);
+    patchID = MapObject_GetDataAt(param1, 0);
+    return BerryPatches_GetPatchMoisture(berryPatches, patchID);
 }
 
-int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
+int BerryPatches_GetYield(const FieldSystem *fieldSystem, const MapObject *param1)
 {
-    int v0;
-    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+    int patchID;
+    BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = MapObject_GetDataAt(param1, 0);
-    return BerryPatches_GetPatchYield(v1, v0);
+    patchID = MapObject_GetDataAt(param1, 0);
+    return BerryPatches_GetPatchYield(berryPatches, patchID);
 }
 
-u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1)
+u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    u32 v0 = 0;
+    u32 patchFlags = 0;
 
-    if ((param1 == NULL) || (MapObject_GetGraphicsID(param1) != 0x64)) {
+    if ((mapObject == NULL) || (MapObject_GetGraphicsID(mapObject) != 0x64)) {
         return 0x0;
     }
 
-    switch (sub_02055F00(fieldSystem, param1)) {
+    switch (BerryPatches_GetGrowthStage(fieldSystem, mapObject)) {
     case 0:
-        v0 |= 0x1;
+        patchFlags |= 0x1;
 
-        if (sub_02055F64(fieldSystem, param1) == 0) {
-            v0 |= 0x2;
+        if (BerryPatches_GetMulchItemID(fieldSystem, mapObject) == 0) {
+            patchFlags |= 0x2;
         }
         break;
     default:
-        v0 |= 0x4;
+        patchFlags |= 0x4;
         break;
     }
 
-    return v0;
+    return patchFlags;
 }
 
 static const MapObjectAnimCmd Unk_020EC51C[] = {
@@ -296,177 +296,177 @@ static const MapObjectAnimCmd Unk_020EC524[] = {
     { 0xfe, 0x0 }
 };
 
-static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, int param2)
+static BOOL BerryWatering_CheckCollision(FieldSystem *fieldSystem, BerryWateringTask *task, int direction)
 {
-    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if (param2 == 2) {
-        v0--;
-    } else if (param2 == 3) {
-        v0++;
-    } else if (param2 == 0) {
-        v1--;
-    } else if (param2 == 1) {
-        v1++;
+    if (direction == 2) {
+        playerX--;
+    } else if (direction == 3) {
+        playerX++;
+    } else if (direction == 0) {
+        playerZ--;
+    } else if (direction == 1) {
+        playerZ++;
     } else {
         GF_ASSERT(0);
     }
 
-    if (TerrainCollisionManager_CheckCollision(fieldSystem, v0, v1)) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, playerX, playerZ)) {
         return 1;
     }
 
-    return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0) != NULL;
+    return sub_0206326C(fieldSystem->mapObjMan, playerX, playerZ, 0) != NULL;
 }
 
-static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
+static MapObject *BerryWatering_GetAdjacentObject(FieldSystem *fieldSystem, int direction)
 {
-    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
-    v1 -= 1;
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerZ -= 1;
 
-    if (param1 == 2) {
-        v0 -= 1;
-    } else if (param1 == 3) {
-        v0 += 1;
+    if (direction == 2) {
+        playerX -= 1;
+    } else if (direction == 3) {
+        playerX += 1;
     }
 
-    return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
+    return sub_0206326C(fieldSystem->mapObjMan, playerX, playerZ, 0);
 }
 
-static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
+static MapObject *BerryWatering_GetTargetPatch(FieldSystem *fieldSystem, BerryWateringTask *task)
 {
-    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if (param1->unk_04 == 0) {
-        v1 -= 1;
-    } else if (param1->unk_04 == 1) {
-        v1 += 1;
+    if (task->direction == 0) {
+        playerZ -= 1;
+    } else if (task->direction == 1) {
+        playerZ += 1;
     } else {
         GF_ASSERT(0);
     }
 
-    return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
+    return sub_0206326C(fieldSystem->mapObjMan, playerX, playerZ, 0);
 }
 
-static BOOL sub_020560E4(MapObject *mapObj)
+static BOOL BerryWatering_IsBerryPatch(MapObject *mapObject)
 {
-    return MapObject_GetGraphicsID(mapObj) == 0x64;
+    return MapObject_GetGraphicsID(mapObject) == 0x64;
 }
 
-static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
+static void BerryWatering_WaterPatch(FieldSystem *fieldSystem, BerryWateringTask *task)
 {
-    MapObject *v0 = sub_020560A8(fieldSystem, param1);
+    MapObject *targetPatch = BerryWatering_GetTargetPatch(fieldSystem, task);
 
-    if (v0 != NULL) {
-        sub_02055EE0(fieldSystem, v0);
+    if (targetPatch != NULL) {
+        BerryPatches_ResetMoisture(fieldSystem, targetPatch);
     }
 }
 
-static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, const MapObjectAnimCmd *param2)
+static void BerryWatering_StartAnimation(FieldSystem *fieldSystem, BerryWateringTask *task, const MapObjectAnimCmd *animationCmd)
 {
-    MapObject *v0 = Player_MapObject(fieldSystem->playerAvatar);
-    param1->unk_0C = MapObject_StartAnimation(v0, param2);
+    MapObject *playerObject = Player_MapObject(fieldSystem->playerAvatar);
+    task->animationTask = MapObject_StartAnimation(playerObject, animationCmd);
 }
 
-static BOOL sub_02056124(FieldTask *taskMan)
+static BOOL BerryWatering_TaskMain(FieldTask *taskManager)
 {
-    FieldSystem *v0 = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_020562AC *v1 = FieldTask_GetEnv(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
+    BerryWateringTask *task = FieldTask_GetEnv(taskManager);
 
-    switch (v1->unk_00) {
+    switch (task->state) {
     case 0:
-        PlayerAvatar_SetTransitionState(v0->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
-        PlayerAvatar_RequestChangeState(v0->playerAvatar);
-        MapObject_SetPauseMovementOff(Player_MapObject(v0->playerAvatar));
-        v1->unk_00 = 1;
+        PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
+        PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
+        MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+        task->state = 1;
         break;
     case 1:
-        sub_020560F8(v0, v1);
-        v1->unk_08 = 0;
-        v1->unk_00 = 2;
+        BerryWatering_WaterPatch(fieldSystem, task);
+        task->timer = 0;
+        task->state = 2;
     case 2:
         if (gSystem.heldKeys & PAD_KEY_LEFT) {
-            MapObject *v2 = sub_02056074(v0, 2);
+            MapObject *adjacentObject = BerryWatering_GetAdjacentObject(fieldSystem, 2);
 
-            if ((v2 == NULL) || !sub_020560E4(v2)) {
-                v1->unk_00 = 4;
+            if ((adjacentObject == NULL) || !BerryWatering_IsBerryPatch(adjacentObject)) {
+                task->state = 4;
                 break;
-            } else if (!sub_02056010(v0, v1, 2)) {
-                sub_0205610C(v0, v1, Unk_020EC51C);
-                v1->unk_00 = 3;
+            } else if (!BerryWatering_CheckCollision(fieldSystem, task, 2)) {
+                BerryWatering_StartAnimation(fieldSystem, task, Unk_020EC51C);
+                task->state = 3;
                 break;
             }
         } else if (gSystem.heldKeys & PAD_KEY_RIGHT) {
-            MapObject *v2 = sub_02056074(v0, 3);
+            MapObject *adjacentObject = BerryWatering_GetAdjacentObject(fieldSystem, 3);
 
-            if ((v2 == NULL) || !sub_020560E4(v2)) {
-                v1->unk_00 = 4;
+            if ((adjacentObject == NULL) || !BerryWatering_IsBerryPatch(adjacentObject)) {
+                task->state = 4;
                 break;
-            } else if (!sub_02056010(v0, v1, 3)) {
-                sub_0205610C(v0, v1, Unk_020EC524);
-                v1->unk_00 = 3;
+            } else if (!BerryWatering_CheckCollision(fieldSystem, task, 3)) {
+                BerryWatering_StartAnimation(fieldSystem, task, Unk_020EC524);
+                task->state = 3;
                 break;
             }
-        } else if ((gSystem.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
-            Player_SetDir(v0->playerAvatar, 0);
-            v1->unk_00 = 4;
+        } else if ((gSystem.heldKeys & PAD_KEY_UP) && (task->direction == 1)) {
+            Player_SetDir(fieldSystem->playerAvatar, 0);
+            task->state = 4;
             break;
-        } else if ((gSystem.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
-            v1->unk_00 = 4;
+        } else if ((gSystem.heldKeys & PAD_KEY_DOWN) && (task->direction == 0)) {
+            task->state = 4;
             break;
         }
 
-        v1->unk_08++;
+        task->timer++;
 
-        if (v1->unk_08 > 30 * 3) {
-            Player_SetDir(v0->playerAvatar, v1->unk_04);
-            v1->unk_00 = 4;
+        if (task->timer > 30 * 3) {
+            Player_SetDir(fieldSystem->playerAvatar, task->direction);
+            task->state = 4;
         }
         break;
     case 3:
-        if (MapObject_HasAnimationEnded(v1->unk_0C)) {
-            MapObject *v3;
+        if (MapObject_HasAnimationEnded(task->animationTask)) {
+            MapObject *targetPatch;
 
-            MapObject_FinishAnimation(v1->unk_0C);
-            v3 = sub_020560A8(v0, v1);
+            MapObject_FinishAnimation(task->animationTask);
+            targetPatch = BerryWatering_GetTargetPatch(fieldSystem, task);
 
-            if ((v3 != NULL) && sub_020560E4(v3)) {
-                v1->unk_00 = 1;
+            if ((targetPatch != NULL) && BerryWatering_IsBerryPatch(targetPatch)) {
+                task->state = 1;
             } else {
-                Player_SetDir(v0->playerAvatar, v1->unk_04);
-                v1->unk_00 = 4;
+                Player_SetDir(fieldSystem->playerAvatar, task->direction);
+                task->state = 4;
             }
         }
         break;
     case 4:
-        Player_SetDir(v0->playerAvatar, v1->unk_04);
-        MapObject_SetPauseMovementOn(Player_MapObject(v0->playerAvatar));
-        Heap_Free(v1);
+        Player_SetDir(fieldSystem->playerAvatar, task->direction);
+        MapObject_SetPauseMovementOn(Player_MapObject(fieldSystem->playerAvatar));
+        Heap_Free(task);
         return 1;
     }
 
     return 0;
 }
 
-void sub_020562AC(FieldSystem *fieldSystem)
+void BerryPatches_StartWatering(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_020562AC));
+    BerryWateringTask *task = Heap_Alloc(HEAP_ID_FIELD3, sizeof(BerryWateringTask));
 
-    v0->unk_00 = 0;
-    v0->unk_0C = NULL;
-    v0->unk_04 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    task->state = 0;
+    task->animationTask = NULL;
+    task->direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    FieldTask_InitCall(fieldSystem->task, sub_02056124, v0);
+    FieldTask_InitCall(fieldSystem->task, BerryWatering_TaskMain, task);
 }
 
-void sub_020562D8(FieldSystem *fieldSystem)
+void BerryPatches_EndWatering(FieldSystem *fieldSystem)
 {
-    int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
-    u32 v1 = Player_ConvertStateToTransition(v0);
+    int playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
+    u32 transitionState = Player_ConvertStateToTransition(playerState);
 
-    PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, v1);
+    PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, transitionState);
     PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 }

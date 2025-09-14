@@ -129,8 +129,8 @@ static int ov5_021F184C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_04 = sub_02062918(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
 
-    if (sub_020677F4(v1->unk_08) == 1) {
-        v1->unk_08 = sub_02067800(v1->unk_14.unk_0C);
+    if (BerryPatch_IsBerryPatch(v1->unk_08) == 1) {
+        v1->unk_08 = BerryPatch_GetCurrentGraphicsResourceID(v1->unk_14.unk_0C);
     }
 
     v1->unk_28.x = FX32_ONE;
@@ -165,8 +165,8 @@ static void ov5_021F18E0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     MapObject *v2 = v1->unk_14.unk_0C;
     v0 = MapObject_GetGraphicsID(v2);
 
-    if (sub_020677F4(v0) == 1) {
-        v0 = sub_02067800(v1->unk_14.unk_0C);
+    if (BerryPatch_IsBerryPatch(v0) == 1) {
+        v0 = BerryPatch_GetCurrentGraphicsResourceID(v1->unk_14.unk_0C);
     }
 
     if ((v1->unk_08 != v0) || (sub_02062764(v2, v1->unk_00, v1->unk_04) == 0) || (sub_02062F64(v2) == 0)) {
@@ -206,8 +206,8 @@ static void ov5_021F1978(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         int v2 = MapObject_GetGraphicsID(v1);
 
-        if (sub_020677F4(v2) == 1) {
-            v2 = sub_02067800(v0->unk_14.unk_0C);
+        if (BerryPatch_IsBerryPatch(v2) == 1) {
+            v2 = BerryPatch_GetCurrentGraphicsResourceID(v0->unk_14.unk_0C);
         }
 
         if ((v0->unk_08 != v2) || (sub_02062764(v1, v0->unk_00, v0->unk_04) == 0) || (sub_02062F64(v1) == 0)) {

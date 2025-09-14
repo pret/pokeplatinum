@@ -271,8 +271,8 @@ void ov5_021ECFA4(const MapObject *param0, UnkStruct_020216E0 **param1)
     if ((*param1) != NULL) {
         int v0 = MapObject_GetGraphicsID(param0);
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(param0);
+        if (BerryPatch_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatch_GetCurrentGraphicsResourceID(param0);
         }
 
         ov5_021ECF70(param0, param1, v0);
@@ -467,8 +467,8 @@ static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1,
             if (sub_02062CF8(v2) == 1) {
                 v1 = MapObject_GetGraphicsID(v2);
 
-                if (sub_020677F4(v1) == 1) {
-                    v1 = sub_02067800(v2);
+                if (BerryPatch_IsBerryPatch(v1) == 1) {
+                    v1 = BerryPatch_GetCurrentGraphicsResourceID(v2);
                 }
 
                 if ((v1 != 0xffff) && (v1 == param2)) {
@@ -1055,8 +1055,8 @@ static int ov5_021EDA54(const MapObjectManager *param0, int param1, const MapObj
 
         v1 = MapObject_GetGraphicsID(v2);
 
-        if (sub_020677F4(v1) == 1) {
-            v1 = sub_02067800(v2);
+        if (BerryPatch_IsBerryPatch(v1) == 1) {
+            v1 = BerryPatch_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v1 == param1) {
@@ -1091,8 +1091,8 @@ static int ov5_021EDAB4(const MapObjectManager *param0, int param1, const MapObj
             }
         }
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(v2);
+        if (BerryPatch_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatch_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v0 != 0xffff) {
@@ -1129,8 +1129,8 @@ static int ov5_021EDB3C(const MapObjectManager *param0, int param1, const MapObj
 
         v0 = MapObject_GetGraphicsID(v2);
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(v2);
+        if (BerryPatch_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatch_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v0 != 0xffff) {

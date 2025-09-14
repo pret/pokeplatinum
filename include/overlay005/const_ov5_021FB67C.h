@@ -3,6 +3,6 @@
 
 #include "overlay005/struct_ov5_021FB67C.h"
 
-extern const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[];
+extern const BerryGraphicsData BerryGraphicsTable[];
 
 #endif // POKEPLATINUM_CONST_OV5_021FB67C_H

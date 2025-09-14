@@ -140,12 +140,12 @@ static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB000 = {
     ov5_021EC790
 };
 
-static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FAF74 = {
-    sub_02067870,
-    sub_02067890,
-    sub_02067950,
-    sub_02067968,
-    sub_02067998
+static const UnkStruct_ov5_021FB0F0 BerryPatchRenderer = {
+    BerryPatch_InitGraphics,
+    BerryPatch_UpdateGraphics,
+    BerryPatch_CleanupGraphics,
+    BerryPatch_PauseGraphics,
+    BerryPatch_ResumeGraphics
 };
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB078 = {
@@ -313,7 +313,7 @@ const UnkStruct_ov5_021FB97C Unk_ov5_021FB97C[] = {
     { 0x61, &Unk_ov5_021FB0F0 },
     { 0x62, &Unk_ov5_021FAF88 },
     { 0x63, &Unk_ov5_021FAFD8 },
-    { 0x64, &Unk_ov5_021FAF74 },
+    { 0x64, &BerryPatchRenderer },
     { 0x76, &Unk_ov5_021FB050 },
     { 0x78, &Unk_ov5_021FAFD8 },
     { 0x79, &Unk_ov5_021FAFD8 },
@@ -1845,7 +1845,7 @@ const UnkStruct_ov5_021ECD10 Unk_ov5_021FC194[] = {
     { 0xffff, 0x0, 0x0, 0x0, 0x0, 0x0 }
 };
 
-const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
+const BerryGraphicsData BerryGraphicsTable[] = {
     { 0x1001, 0x1002, 0x1003 },
     { 0x1004, 0x1005, 0x1006 },
     { 0x1007, 0x1008, 0x1009 },

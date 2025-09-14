@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV5_021FB67C_H
 
 typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-} UnkStruct_ov5_021FB67C;
+    u32 stage3ResourceID;
+    u32 stage4ResourceID;
+    u32 stage5ResourceID;
+} BerryGraphicsData;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021FB67C_H

@@ -3,14 +3,14 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_17D(ScriptContext *param0);
-BOOL ScrCmd_17E(ScriptContext *param0);
-BOOL ScrCmd_17F(ScriptContext *param0);
-BOOL ScrCmd_180(ScriptContext *param0);
-BOOL ScrCmd_181(ScriptContext *param0);
-BOOL ScrCmd_182(ScriptContext *param0);
-BOOL ScrCmd_183(ScriptContext *param0);
-BOOL ScrCmd_184(ScriptContext *param0);
-BOOL ScrCmd_185(ScriptContext *param0);
+BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *param0);
+BOOL ScrCmd_GetBerryItemID(ScriptContext *param0);
+BOOL ScrCmd_GetBerryMulchType(ScriptContext *param0);
+BOOL ScrCmd_GetBerryMoisture(ScriptContext *param0);
+BOOL ScrCmd_GetBerryYield(ScriptContext *param0);
+BOOL ScrCmd_SetBerryMulch(ScriptContext *param0);
+BOOL ScrCmd_PlantBerry(ScriptContext *param0);
+BOOL ScrCmd_BerryWatering(ScriptContext *param0);
+BOOL ScrCmd_HarvestBerry(ScriptContext *param0);
 
 #endif // POKEPLATINUM_UNK_0204B64C_H

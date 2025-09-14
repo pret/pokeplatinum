@@ -1017,7 +1017,7 @@ int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
         return 0;
     }
 
-    int v0 = sub_02062924(mapObj);
+    int v0 = MapObject_GetEffectiveGraphicsID(mapObj);
 
     if (v0 != param1) {
         return 0;
@@ -1236,12 +1236,12 @@ u32 MapObject_GetGraphicsID(const MapObject *mapObj)
     return mapObj->graphicsID;
 }
 
-u32 sub_02062924(const MapObject *mapObj)
+u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj)
 {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
-    if (sub_020677F4(graphicsID) == TRUE) {
-        graphicsID = sub_02067800(mapObj);
+    if (BerryPatch_IsBerryPatch(graphicsID) == TRUE) {
+        graphicsID = BerryPatch_GetCurrentGraphicsResourceID(mapObj);
     }
 
     return graphicsID;

@@ -18,7 +18,7 @@ struct FieldSystem_sub2_t {
     UnkStruct_ov5_021D5EF8 *unk_0C;
     UnkStruct_ov5_021D5CB0 *unk_10;
     PoketchSystem *poketchSys;
-    UnkStruct_02055CBC *unk_18;
+    BerryPatchManager *berryPatchManager;
     HBlankSystem *hBlankSystem;
     UnkStruct_ov5_021EF4F8 *unk_20;
     void *dynamicMapFeaturesData;

@@ -218,7 +218,7 @@ void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *usageContext)
     usageContext->facingTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerXCoordinate, playerZCoordinate);
     sub_0203C9D4(fieldSystem, &v3);
 
-    usageContext->unk_10 = sub_02055FC8(fieldSystem, v3);
+    usageContext->unk_10 = BerryPatches_GetPatchFlags(fieldSystem, v3);
     usageContext->playerAvatar = fieldSystem->playerAvatar;
 }
 
@@ -235,7 +235,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *usageContext)
         usageContext->facingTileBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, v0);
     }
 
-    usageContext->unk_10 = sub_02055FC8(fieldSystem, NULL);
+    usageContext->unk_10 = BerryPatches_GetPatchFlags(fieldSystem, NULL);
     usageContext->playerAvatar = fieldSystem->playerAvatar;
 }
 
