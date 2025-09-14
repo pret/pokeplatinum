@@ -2829,7 +2829,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
-    StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
+    StringTemplate_SetContestAccessoryName(param1, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 

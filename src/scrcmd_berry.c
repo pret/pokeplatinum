@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/scrcmd.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -77,7 +78,7 @@ BOOL ScrCmd_PlantBerry(ScriptContext *ctx)
     u16 berryItemID = ScriptContext_GetVar(ctx);
 
     BerryPatches_PlantBerry(ctx->fieldSystem, *targetObject, berryItemID);
-    GameRecords_IncrementRecordValue(gameRecords, RECORD_UNK_004);
+    GameRecords_IncrementRecordValue(gameRecords, RECORD_BERRIES_PLANTED);
 
     return FALSE;
 }
@@ -92,7 +93,7 @@ BOOL ScrCmd_WaterBerry(ScriptContext *ctx)
         BerryPatches_EndWatering(ctx->fieldSystem);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return TRUE;
@@ -104,7 +105,7 @@ BOOL ScrCmd_HarvestBerry(ScriptContext *ctx)
     MapObject **targetObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
     BerryPatches_HarvestBerry(ctx->fieldSystem, *targetObject);
-    GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_UNK_00);
+    GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_BERRY_HARVESTED);
 
     return FALSE;
 }

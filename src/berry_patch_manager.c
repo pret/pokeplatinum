@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -16,7 +18,6 @@
 #include "bag.h"
 #include "berry_patch_graphics.h"
 #include "berry_patches.h"
-#include "constants/items.h"
 #include "easy3d.h"
 #include "field_task.h"
 #include "gfx_box_test.h"
@@ -28,8 +29,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "unk_0206CCB0.h"
 #include "unk_020655F4.h"
+#include "unk_0206CCB0.h"
 
 struct BerryPatchManager {
     int heapID;
@@ -281,14 +282,14 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 
 // Animation sequence for watering berries while facing left
 static const MapObjectAnimCmd BerryWatering_LeftAnimation[] = {
-    { 10, 1 },    // Play animation frame 10 for 1 frame
-    { 0xfe, 0 }   // End of animation sequence
+    { 10, 1 }, // Play animation frame 10 for 1 frame
+    { 0xfe, 0 } // End of animation sequence
 };
 
 // Animation sequence for watering berries while facing right
 static const MapObjectAnimCmd BerryWatering_RightAnimation[] = {
-    { 11, 1 },    // Play animation frame 11 for 1 frame
-    { 0xfe, 0 }   // End of animation sequence
+    { 11, 1 }, // Play animation frame 11 for 1 frame
+    { 0xfe, 0 } // End of animation sequence
 };
 
 static BOOL BerryWatering_CheckCollision(FieldSystem *fieldSystem, BerryWateringTask *task, enum FaceDirection direction)

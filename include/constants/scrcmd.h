@@ -4,6 +4,9 @@
 #include "generated/accessories.h"
 #include "generated/backdrops.h"
 
+#define BERRY_WATERING_START 0
+#define BERRY_WATERING_END   1
+
 #define MENU_YES    0
 #define MENU_NO     1
 #define MENU_CANCEL -2
