@@ -1,4 +1,4 @@
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -16,7 +16,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "unk_02020AEC.h"
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 
 typedef struct {
     u16 growthStage;

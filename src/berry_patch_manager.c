@@ -1,9 +1,9 @@
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02055CBC_decl.h"
+#include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -26,7 +26,7 @@
 #include "system.h"
 #include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 #include "unk_0206CCB0.h"
 
 struct BerryPatchManager {

@@ -33,7 +33,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {

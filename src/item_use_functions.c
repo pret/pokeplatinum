@@ -58,7 +58,7 @@
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "unk_020989DC.h"

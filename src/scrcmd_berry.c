@@ -1,4 +1,4 @@
-#include "unk_0204B64C.h"
+#include "scrcmd_berry.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -12,7 +12,7 @@
 #include "game_records.h"
 #include "inlines.h"
 #include "script_manager.h"
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 
 BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *param0)
 {

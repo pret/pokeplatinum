@@ -22,7 +22,7 @@
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"

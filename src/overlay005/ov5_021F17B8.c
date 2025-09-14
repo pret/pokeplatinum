@@ -19,7 +19,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "unk_02020AEC.h"
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 #include "unk_020711EC.h"
 
 typedef struct {

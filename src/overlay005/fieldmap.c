@@ -83,7 +83,7 @@
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
-#include "unk_02055C50.h"
+#include "berry_patch_manager.h"
 #include "vram_transfer.h"
 
 #define FIELD_MAP_INIT_STATE_RESET         0

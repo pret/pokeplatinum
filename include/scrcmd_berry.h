@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0204B64C_H
-#define POKEPLATINUM_UNK_0204B64C_H
+#ifndef POKEPLATINUM_SCRCMD_BERRY_H
+#define POKEPLATINUM_SCRCMD_BERRY_H
 
 #include "field_script_context.h"
 
@@ -13,4 +13,4 @@ BOOL ScrCmd_PlantBerry(ScriptContext *param0);
 BOOL ScrCmd_BerryWatering(ScriptContext *param0);
 BOOL ScrCmd_HarvestBerry(ScriptContext *param0);
 
-#endif // POKEPLATINUM_UNK_0204B64C_H
+#endif // POKEPLATINUM_SCRCMD_BERRY_H

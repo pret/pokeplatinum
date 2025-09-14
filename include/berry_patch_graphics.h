@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020677F4_H
-#define POKEPLATINUM_UNK_020677F4_H
+#ifndef POKEPLATINUM_BERRY_PATCH_GRAPHICS_H
+#define POKEPLATINUM_BERRY_PATCH_GRAPHICS_H
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -17,4 +17,4 @@ void BerryPatch_PauseGraphics(MapObject *mapObject);
 void BerryPatch_ResumeGraphics(MapObject *mapObject);
 UnkStruct_020216E0 *BerryPatch_GetGraphicsObject(MapObject *mapObject);
 
-#endif // POKEPLATINUM_UNK_020677F4_H
+#endif // POKEPLATINUM_BERRY_PATCH_GRAPHICS_H

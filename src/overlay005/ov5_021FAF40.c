@@ -26,7 +26,7 @@
 #include "overlay005/struct_ov5_021FB67C.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB0F0 = {
     ov5_021EBA0C,

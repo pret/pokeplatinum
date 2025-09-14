@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_UNK_02055C50_H
-#define POKEPLATINUM_UNK_02055C50_H
+#ifndef POKEPLATINUM_BERRY_PATCH_MANAGER_H
+#define POKEPLATINUM_BERRY_PATCH_MANAGER_H
 
-#include "struct_decls/struct_02055CBC_decl.h"
+#include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
@@ -24,4 +24,4 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 void BerryPatches_StartWatering(FieldSystem *fieldSystem);
 void BerryPatches_EndWatering(FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_UNK_02055C50_H
+#endif // POKEPLATINUM_BERRY_PATCH_MANAGER_H

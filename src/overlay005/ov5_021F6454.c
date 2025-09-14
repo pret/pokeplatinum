@@ -52,7 +52,7 @@
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"

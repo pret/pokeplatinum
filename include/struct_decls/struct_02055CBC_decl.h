@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_02055CBC_DECL_H
-#define POKEPLATINUM_STRUCT_02055CBC_DECL_H
-
-typedef struct BerryPatchManager BerryPatchManager;
-
-#endif // POKEPLATINUM_STRUCT_02055CBC_DECL_H
