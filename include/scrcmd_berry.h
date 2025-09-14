@@ -8,14 +8,14 @@ enum BerryWateringCommand {
     BERRY_WATERING_END = 1,      // End berry watering mode
 };
 
-BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *param0);
-BOOL ScrCmd_GetBerryItemID(ScriptContext *param0);
-BOOL ScrCmd_GetBerryMulchType(ScriptContext *param0);
-BOOL ScrCmd_GetBerryMoisture(ScriptContext *param0);
-BOOL ScrCmd_GetBerryYield(ScriptContext *param0);
-BOOL ScrCmd_SetBerryMulch(ScriptContext *param0);
-BOOL ScrCmd_PlantBerry(ScriptContext *param0);
-BOOL ScrCmd_BerryWatering(ScriptContext *param0);
-BOOL ScrCmd_HarvestBerry(ScriptContext *param0);
+BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *ctx);
+BOOL ScrCmd_GetBerryItemID(ScriptContext *ctx);
+BOOL ScrCmd_GetBerryMulchType(ScriptContext *ctx);
+BOOL ScrCmd_GetBerryMoisture(ScriptContext *ctx);
+BOOL ScrCmd_GetBerryYield(ScriptContext *ctx);
+BOOL ScrCmd_SetBerryMulch(ScriptContext *ctx);
+BOOL ScrCmd_PlantBerry(ScriptContext *ctx);
+BOOL ScrCmd_BerryWatering(ScriptContext *ctx);
+BOOL ScrCmd_HarvestBerry(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_SCRCMD_BERRY_H
