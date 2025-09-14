@@ -218,7 +218,7 @@ void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *usageContext)
     usageContext->facingTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerXCoordinate, playerZCoordinate);
     sub_0203C9D4(fieldSystem, &v3);
 
-    usageContext->unk_10 = BerryPatches_GetPatchFlags(fieldSystem, v3);
+    usageContext->berryPatchFlags = BerryPatches_GetPatchFlags(fieldSystem, v3);
     usageContext->playerAvatar = fieldSystem->playerAvatar;
 }
 
@@ -235,7 +235,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *usageContext)
         usageContext->facingTileBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, v0);
     }
 
-    usageContext->unk_10 = BerryPatches_GetPatchFlags(fieldSystem, NULL);
+    usageContext->berryPatchFlags = BerryPatches_GetPatchFlags(fieldSystem, NULL);
     usageContext->playerAvatar = fieldSystem->playerAvatar;
 }
 
@@ -582,16 +582,16 @@ static void UseBerryFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     v1 = FieldTask_GetEnv(usageContext->fieldTask);
 
-    if (additionalContext->unk_10 & 0x1) {
+    if (additionalContext->berryPatchFlags & BERRY_PATCH_FLAG_EMPTY) {
         sub_02068540(usageContext, additionalContext, 2801);
     } else {
         UseHealingItemFromMenu(usageContext, additionalContext);
     }
 }
 
-BOOL sub_02068B50(const ItemUseContext *usageContext)
+BOOL BerryPatch_IsEmpty(const ItemUseContext *usageContext)
 {
-    if (usageContext->unk_10 & 0x1) {
+    if (usageContext->berryPatchFlags & BERRY_PATCH_FLAG_EMPTY) {
         return TRUE;
     }
 
@@ -699,7 +699,7 @@ static u32 CanUseSprayDuck(const ItemUseContext *usageContext)
         return 2;
     }
 
-    if (usageContext->unk_10 & 0x4) {
+    if (usageContext->berryPatchFlags & BERRY_PATCH_FLAG_HAS_BERRY) {
         return 0;
     } else {
         return -1;
@@ -713,7 +713,7 @@ static void UseMulchFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
 
 static u32 CanUseMulch(const ItemUseContext *usageContext)
 {
-    if (usageContext->unk_10 & 0x2) {
+    if (usageContext->berryPatchFlags & BERRY_PATCH_FLAG_CAN_MULCH) {
         return 0;
     } else {
         return -1;

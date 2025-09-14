@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-int BerryPatch_IsBerryPatch(int graphicsID);
+BOOL BerryPatch_IsBerryPatch(int graphicsID);
 int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject);
 void BerryPatch_MarkForUpdate(MapObject *mapObject);
 void BerryPatch_InitData(MapObject *mapObject);

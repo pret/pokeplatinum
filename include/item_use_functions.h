@@ -21,7 +21,7 @@ typedef struct ItemUseContext {
     int playerState;
     u16 facingTileBehavior; // behavior of the tile the player is facing
     u16 currTileBehavior;
-    u16 unk_10;
+    u16 berryPatchFlags;
     u8 padding_12[2];
     PlayerAvatar *playerAvatar;
     FieldSystem *fieldSystem;
@@ -64,7 +64,7 @@ typedef struct UnkStruct_02068EFC {
 
 u32 GetItemUseFunction(u16 param0, u16 param1);
 void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *param1);
-BOOL sub_02068B50(const ItemUseContext *param0);
+BOOL BerryPatch_IsEmpty(const ItemUseContext *usageContext);
 BOOL sub_02069238(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_ITEM_USE_FUNCTIONS_H
