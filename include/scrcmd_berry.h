@@ -3,6 +3,11 @@
 
 #include "field_script_context.h"
 
+enum BerryWateringCommand {
+    BERRY_WATERING_START = 0,    // Start berry watering mode
+    BERRY_WATERING_END = 1,      // End berry watering mode
+};
+
 BOOL ScrCmd_GetBerryGrowthStage(ScriptContext *param0);
 BOOL ScrCmd_GetBerryItemID(ScriptContext *param0);
 BOOL ScrCmd_GetBerryMulchType(ScriptContext *param0);
