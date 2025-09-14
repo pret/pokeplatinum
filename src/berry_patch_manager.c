@@ -50,19 +50,19 @@ typedef struct {
 static void BerryPatchManager_Init3DRendering(FieldSystem *fieldSystem, BerryPatchManager *manager);
 static void BerryPatchManager_Cleanup3DRendering(BerryPatchManager *manager);
 
-static u16 BerryPatches_ConvertBerryIDToItemID(int berryID)
+static u16 BerryPatches_ConvertTagNumberToItemID(int tagNumber)
 {
-    if (berryID == 0) {
+    if (tagNumber == BERRY_TAG_NONE) {
         return ITEM_NONE;
     }
 
-    return berryID + FIRST_BERRY_IDX - 1;
+    return tagNumber + FIRST_BERRY_IDX - 1;
 }
 
-static u16 BerryPatches_ConvertItemIDToBerryID(int itemID)
+static u16 BerryPatches_ConvertItemIDToTagNumber(int itemID)
 {
     if (itemID == ITEM_NONE) {
-        return 0;
+        return BERRY_TAG_NONE;
     }
 
     return itemID - FIRST_BERRY_IDX + 1;
@@ -168,11 +168,11 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
     berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
     yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    TVBroadcast_RecordBerryHarvest(fieldSystem, BerryPatches_ConvertBerryIDToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    TVBroadcast_RecordBerryHarvest(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
     BerryPatch_MarkForUpdate(mapObject);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), BerryPatches_ConvertBerryIDToItemID(berryID), yieldAmount, HEAP_ID_FIELD1);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), BerryPatches_ConvertTagNumberToItemID(berryID), yieldAmount, HEAP_ID_FIELD1);
 }
 
 void BerryPatches_SetMulchType(FieldSystem *fieldSystem, MapObject *mapObject, u16 mulchItemID)
@@ -190,7 +190,7 @@ void BerryPatches_PlantBerry(FieldSystem *fieldSystem, MapObject *mapObject, u16
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     patchID = MapObject_GetDataAt(mapObject, 0);
-    BerryPatches_PlantInPatch(berryPatches, patchID, fieldSystem->unk_04->berryPatchManager->growthData, BerryPatches_ConvertItemIDToBerryID(berryItemID));
+    BerryPatches_PlantInPatch(berryPatches, patchID, fieldSystem->unk_04->berryPatchManager->growthData, BerryPatches_ConvertItemIDToTagNumber(berryItemID));
 }
 
 void BerryPatches_ResetMoisture(FieldSystem *fieldSystem, MapObject *mapObject)
@@ -226,7 +226,7 @@ u16 BerryPatches_GetItemID(const FieldSystem *fieldSystem, const MapObject *mapO
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     patchID = MapObject_GetDataAt(mapObject, 0);
-    return BerryPatches_ConvertBerryIDToItemID(BerryPatches_GetPatchBerryID(berryPatches, patchID));
+    return BerryPatches_ConvertTagNumberToItemID(BerryPatches_GetPatchBerryID(berryPatches, patchID));
 }
 
 u16 BerryPatches_GetMulchItemID(const FieldSystem *fieldSystem, const MapObject *mapObject)
