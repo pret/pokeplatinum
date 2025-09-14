@@ -105,17 +105,14 @@ void BerryPatchManager_Destroy(BerryPatchManager *manager)
 
 void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes)
 {
-    BerryPatch *berryPatches;
-    BerryGrowthData *growthData;
-
     if (fieldSystem->unk_04 == NULL) {
-        growthData = BerryGrowthData_Init(11);
-        berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryGrowthData *growthData = BerryGrowthData_Init(11);
+        BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
         BerryPatches_ElapseMinutes(berryPatches, growthData, minutes);
         Heap_Free(growthData);
     } else {
-        growthData = fieldSystem->unk_04->berryPatchManager->growthData;
-        berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryGrowthData *growthData = fieldSystem->unk_04->berryPatchManager->growthData;
+        BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
         BerryPatches_ElapseMinutes(berryPatches, growthData, minutes);
     }
 }
@@ -157,11 +154,9 @@ void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, 1 << 0) == 1) {
-        if (BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == 1) {
-            if (BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
-                int patchID = MapObject_GetDataAt(mapObject, 0);
-                BerryPatches_SetIsPatchGrowing(berryPatches, patchID, 1);
-            }
+        if (BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == TRUE && BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
+            int patchID = MapObject_GetDataAt(mapObject, 0);
+            BerryPatches_SetIsPatchGrowing(berryPatches, patchID, TRUE);
         }
     }
 }

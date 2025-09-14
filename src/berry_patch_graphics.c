@@ -6,12 +6,12 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "overlay005/const_ov5_021FB67C.h"
+#include "overlay005/berry_graphics_table.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F204C.h"
 #include "overlay005/struct_ov5_021ED01C.h"
-#include "overlay005/struct_ov5_021FB67C.h"
+#include "overlay005/berry_graphics_data.h"
 
 #include "berry_patch_manager.h"
 #include "berry_patches.h"
@@ -44,12 +44,10 @@ BOOL BerryPatch_IsBerryPatch(int graphicsID)
 
 int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject)
 {
-    {
-        BerryPatchData *patchData = sub_02062A78((MapObject *)mapObject);
+    BerryPatchData *patchData = sub_02062A78((MapObject *)mapObject);
 
-        if (patchData->growthStage == BERRY_GROWTH_STAGE_NONE) {
-            return 0xffff;
-        }
+    if (patchData->growthStage == BERRY_GROWTH_STAGE_NONE) {
+        return 0xffff;
     }
 
     if (sub_02062DFC(mapObject) == 1) {
@@ -66,7 +64,7 @@ int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject)
 void BerryPatch_MarkForUpdate(MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A78(mapObject);
-    patchData->needsUpdate = 1;
+    patchData->needsUpdate = TRUE;
 }
 
 void BerryPatch_InitData(MapObject *mapObject)
@@ -119,12 +117,12 @@ void BerryPatch_UpdateGraphics(MapObject *mapObject)
 
             ov5_021ECEB4(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
         } else {
-            if ((graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE) && (patchData->needsUpdate == 0)) {
+            if ((graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE) && (patchData->needsUpdate == FALSE)) {
                 ov5_021F22BC(mapObject);
             }
         }
 
-        patchData->needsUpdate = 0;
+        patchData->needsUpdate = FALSE;
     }
 
     graphicsData->lastGrowthStage = currentGrowthStage;
@@ -194,24 +192,23 @@ static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage g
         return 0xffff;
     case BERRY_GROWTH_STAGE_PLANTED:
         return 0xffff;
-    default: {
+    default:
         berryID--;
 
         {
-            const BerryGraphicsData *graphicsData = &BerryGraphicsTable[berryID];
+            const BerryGraphicsData *graphicsData = &gBerryGraphicsTable[berryID];
 
             switch (growthStage) {
             case BERRY_GROWTH_STAGE_SPROUTED:
                 return 0x1000 + 0x0;
             case BERRY_GROWTH_STAGE_GROWING:
-                return graphicsData->stage3ResourceID;
+                return graphicsData->growingResourceID;
             case BERRY_GROWTH_STAGE_BLOOMING:
-                return graphicsData->stage4ResourceID;
+                return graphicsData->bloomingResourceID;
             case BERRY_GROWTH_STAGE_FRUIT:
-                return graphicsData->stage5ResourceID;
+                return graphicsData->fruitResourceID;
             }
         }
-    }
     }
 
     GF_ASSERT(FALSE);
