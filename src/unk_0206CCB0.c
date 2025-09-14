@@ -1100,20 +1100,20 @@ static BOOL sub_0206D910(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return 0;
 }
 
-void sub_0206D914(FieldSystem *fieldSystem, u16 param1, u8 param2, u16 param3)
+void TVBroadcast_RecordBerryHarvest(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D94C *v1 = &v0.val13;
 
-    v1->unk_00 = param1;
-    v1->unk_02 = param2;
-    v1->unk_04 = param3;
+    v1->unk_00 = berryItemID;
+    v1->unk_02 = yieldRating;
+    v1->unk_04 = yieldAmount;
 
-    if (param2 == 5) {
+    if (yieldRating == 5) {
         (void)0;
-    } else if (param2 == 4) {
+    } else if (yieldRating == 4) {
         sub_0206CD70(fieldSystem, 2, 18, v1);
-    } else if (param2 == 0) {
+    } else if (yieldRating == 0) {
         sub_0206CD70(fieldSystem, 2, 19, v1);
     }
 }

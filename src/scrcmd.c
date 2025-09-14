@@ -1157,7 +1157,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetBerryYield,
     ScrCmd_SetBerryMulch,
     ScrCmd_PlantBerry,
-    ScrCmd_BerryWatering,
+    ScrCmd_WaterBerry,
     ScrCmd_HarvestBerry,
     ScrCmd_SetObjectEventPos,
     ScrCmd_SetPosition,

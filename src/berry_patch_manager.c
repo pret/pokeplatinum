@@ -16,6 +16,7 @@
 #include "bag.h"
 #include "berry_patch_graphics.h"
 #include "berry_patches.h"
+#include "constants/items.h"
 #include "easy3d.h"
 #include "field_task.h"
 #include "gfx_box_test.h"
@@ -27,8 +28,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
+#include "unk_020655F4.h"
 
 struct BerryPatchManager {
     int heapID;
@@ -51,37 +52,37 @@ static void BerryPatchManager_Cleanup3DRendering(BerryPatchManager *manager);
 static u16 BerryPatches_ConvertBerryIDToItemID(int berryID)
 {
     if (berryID == 0) {
-        return 0;
+        return ITEM_NONE;
     }
 
-    return berryID + 149 - 1;
+    return berryID + FIRST_BERRY_IDX - 1;
 }
 
 static u16 BerryPatches_ConvertItemIDToBerryID(int itemID)
 {
-    if (itemID == 0) {
+    if (itemID == ITEM_NONE) {
         return 0;
     }
 
-    return itemID - 149 + 1;
+    return itemID - FIRST_BERRY_IDX + 1;
 }
 
-static u16 BerryPatches_ConvertMulchTypeToItemID(int mulchType)
+static u16 BerryPatches_ConvertMulchTypeToItemID(enum MulchType mulchType)
 {
-    if (mulchType == 0) {
-        return 0;
+    if (mulchType == MULCH_TYPE_NONE) {
+        return ITEM_NONE;
     }
 
-    return mulchType + 95 - 1;
+    return mulchType + FIRST_MULCH_IDX - 1;
 }
 
-static int BerryPatches_ConvertItemIDToMulchType(int itemID)
+static enum MulchType BerryPatches_ConvertItemIDToMulchType(int itemID)
 {
-    if (itemID == 0) {
-        return 0;
+    if (itemID == ITEM_NONE) {
+        return MULCH_TYPE_NONE;
     }
 
-    return itemID - 95 + 1;
+    return itemID - FIRST_MULCH_IDX + 1;
 }
 
 BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID)
@@ -106,7 +107,7 @@ void BerryPatchManager_Destroy(BerryPatchManager *manager)
 void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes)
 {
     if (fieldSystem->unk_04 == NULL) {
-        BerryGrowthData *growthData = BerryGrowthData_Init(11);
+        BerryGrowthData *growthData = BerryGrowthData_Init(HEAP_ID_FIELD2);
         BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
         BerryPatches_ElapseMinutes(berryPatches, growthData, minutes);
         Heap_Free(growthData);
@@ -140,11 +141,7 @@ static BOOL BerryPatches_IsInView(FieldSystem *fieldSystem, const VecFx32 *posit
 
     MTX_Identity33(&transform);
 
-    if (GFXBoxTest_IsModelInView(fieldSystem->unk_04->berryPatchManager->model, position, &transform, &scale) != 0) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return GFXBoxTest_IsModelInView(fieldSystem->unk_04->berryPatchManager->model, position, &transform, &scale) != FALSE;
 }
 
 void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
@@ -170,7 +167,7 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
     berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
     yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    sub_0206D914(fieldSystem, BerryPatches_ConvertBerryIDToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    TVBroadcast_RecordBerryHarvest(fieldSystem, BerryPatches_ConvertBerryIDToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
     BerryPatch_MarkForUpdate(mapObject);
 
@@ -262,7 +259,7 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 {
     u32 patchFlags = 0;
 
-    if ((mapObject == NULL) || (MapObject_GetGraphicsID(mapObject) != 0x64)) {
+    if ((mapObject == NULL) || (MapObject_GetGraphicsID(mapObject) != 100)) {
         return BERRY_PATCH_FLAG_INVALID;
     }
 
@@ -270,7 +267,7 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
     case BERRY_GROWTH_STAGE_NONE:
         patchFlags |= BERRY_PATCH_FLAG_EMPTY;
 
-        if (BerryPatches_GetMulchItemID(fieldSystem, mapObject) == 0) {
+        if (BerryPatches_GetMulchItemID(fieldSystem, mapObject) == ITEM_NONE) {
             patchFlags |= BERRY_PATCH_FLAG_CAN_MULCH;
         }
         break;
@@ -284,14 +281,14 @@ u32 BerryPatches_GetPatchFlags(const FieldSystem *fieldSystem, const MapObject *
 
 // Animation sequence for watering berries while facing left
 static const MapObjectAnimCmd BerryWatering_LeftAnimation[] = {
-    { 0xA, 0x1 }, // Play animation frame 0xA for 1 frame
-    { 0xfe, 0x0 } // End of animation sequence
+    { 10, 1 },    // Play animation frame 10 for 1 frame
+    { 0xfe, 0 }   // End of animation sequence
 };
 
 // Animation sequence for watering berries while facing right
 static const MapObjectAnimCmd BerryWatering_RightAnimation[] = {
-    { 0xB, 0x1 }, // Play animation frame 0xB for 1 frame
-    { 0xfe, 0x0 } // End of animation sequence
+    { 11, 1 },    // Play animation frame 11 for 1 frame
+    { 0xfe, 0 }   // End of animation sequence
 };
 
 static BOOL BerryWatering_CheckCollision(FieldSystem *fieldSystem, BerryWateringTask *task, enum FaceDirection direction)
@@ -308,7 +305,7 @@ static BOOL BerryWatering_CheckCollision(FieldSystem *fieldSystem, BerryWatering
     } else if (direction == FACE_DOWN) {
         playerZ++;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (TerrainCollisionManager_CheckCollision(fieldSystem, playerX, playerZ)) {
@@ -343,7 +340,7 @@ static MapObject *BerryWatering_GetTargetPatch(FieldSystem *fieldSystem, BerryWa
     } else if (task->direction == FACE_DOWN) {
         playerZ += 1;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return sub_0206326C(fieldSystem->mapObjMan, playerX, playerZ, 0);
@@ -351,7 +348,7 @@ static MapObject *BerryWatering_GetTargetPatch(FieldSystem *fieldSystem, BerryWa
 
 static BOOL BerryWatering_IsBerryPatch(MapObject *mapObject)
 {
-    return MapObject_GetGraphicsID(mapObject) == 0x64;
+    return MapObject_GetGraphicsID(mapObject) == 100;
 }
 
 static void BerryWatering_WaterPatch(FieldSystem *fieldSystem, BerryWateringTask *task)
