@@ -3,6 +3,8 @@
 
 #include "struct_defs/struct_020217F4.h"
 
+#include "overlay005/berry_graphics_data.h"
+#include "overlay005/berry_graphics_table.h"
 #include "overlay005/const_ov5_021FAF40.h"
 #include "overlay005/const_ov5_021FAF48.h"
 #include "overlay005/const_ov5_021FAF50.h"
@@ -10,7 +12,6 @@
 #include "overlay005/const_ov5_021FB484.h"
 #include "overlay005/const_ov5_021FB51C.h"
 #include "overlay005/const_ov5_021FB5BC.h"
-#include "overlay005/berry_graphics_table.h"
 #include "overlay005/const_ov5_021FB97C.h"
 #include "overlay005/const_ov5_021FC194.h"
 #include "overlay005/const_ov5_021FC9B4.h"
@@ -23,7 +24,6 @@
 #include "overlay005/struct_ov5_021ED2D0.h"
 #include "overlay005/struct_ov5_021EDD04.h"
 #include "overlay005/struct_ov5_021FB0F0.h"
-#include "overlay005/berry_graphics_data.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
 #include "berry_patch_graphics.h"

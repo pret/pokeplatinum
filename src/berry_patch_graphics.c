@@ -6,12 +6,12 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
+#include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F204C.h"
 #include "overlay005/struct_ov5_021ED01C.h"
-#include "overlay005/berry_graphics_data.h"
 
 #include "berry_patch_manager.h"
 #include "berry_patches.h"

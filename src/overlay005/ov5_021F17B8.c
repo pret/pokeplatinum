@@ -419,7 +419,7 @@ static void ov5_021F1C60(UnkStruct_ov101_021D5D90 *param0, void *param1)
         v0->unk_4C = -v0->unk_4C;
     }
 
-    {   
+    {
         VecFx32 v1;
 
         ov5_021F1B4C(v0, &v1);
