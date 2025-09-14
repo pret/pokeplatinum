@@ -46,12 +46,15 @@ static BOOL State_LoadApp(PoketchAnalogWatch *appData);
 static BOOL State_UpdateApp(PoketchAnalogWatch *appData);
 static BOOL State_UnloadApp(PoketchAnalogWatch *appData);
 
-static const TouchScreenRect screenHitBox[] = {
-    { .rect = {
-          .top = POKETCH_SCREEN_MIN_Y,
-          .bottom = POKETCH_SCREEN_MAX_Y,
-          .left = POKETCH_SCREEN_MIN_X,
-          .right = POKETCH_SCREEN_MAX_X } }
+static const TouchScreenRect sScreenHitBox[] = {
+    {
+        .rect = {
+            .top = POKETCH_SCREEN_MIN_Y,
+            .bottom = POKETCH_SCREEN_MAX_Y,
+            .left = POKETCH_SCREEN_MIN_X,
+            .right = POKETCH_SCREEN_MAX_X,
+        },
+    },
 };
 
 static void NitroStaticInit(void)
@@ -98,7 +101,7 @@ static BOOL Init(PoketchAnalogWatch *appData, PoketchSystem *poketchSys, BgConfi
         }
 
         appData->lastUpdateMinute = appData->watchData.time.minute;
-        appData->buttonManager = PoketchButtonManager_New(screenHitBox, NELEMS(screenHitBox), TouchCallback, appData, HEAP_ID_POKETCH_APP);
+        appData->buttonManager = PoketchButtonManager_New(sScreenHitBox, NELEMS(sScreenHitBox), TouchCallback, appData, HEAP_ID_POKETCH_APP);
 
         if (appData->buttonManager == NULL) {
             return FALSE;
