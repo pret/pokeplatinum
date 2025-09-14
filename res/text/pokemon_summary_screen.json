@@ -98,107 +98,107 @@
       "en_US": "TRAINER MEMO"
     },
     {
-      "id": "pl_msg_00000455_00024",
+      "id": "PokemonSummary_Text_Nature_Hardy",
       "en_US": "{COLOR 2}Hardy{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00025",
+      "id": "PokemonSummary_Text_Nature_Lonely",
       "en_US": "{COLOR 2}Lonely{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00026",
+      "id": "PokemonSummary_Text_Nature_Brave",
       "en_US": "{COLOR 2}Brave{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00027",
+      "id": "PokemonSummary_Text_Nature_Adamant",
       "en_US": "{COLOR 2}Adamant{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00028",
+      "id": "PokemonSummary_Text_Nature_Naughty",
       "en_US": "{COLOR 2}Naughty{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00029",
+      "id": "PokemonSummary_Text_Nature_Bold",
       "en_US": "{COLOR 2}Bold{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00030",
+      "id": "PokemonSummary_Text_Nature_Docile",
       "en_US": "{COLOR 2}Docile{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00031",
+      "id": "PokemonSummary_Text_Nature_Relaxed",
       "en_US": "{COLOR 2}Relaxed{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00032",
+      "id": "PokemonSummary_Text_Nature_Impish",
       "en_US": "{COLOR 2}Impish{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00033",
+      "id": "PokemonSummary_Text_Nature_Lax",
       "en_US": "{COLOR 2}Lax{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00034",
+      "id": "PokemonSummary_Text_Nature_Timid",
       "en_US": "{COLOR 2}Timid{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00035",
+      "id": "PokemonSummary_Text_Nature_Hasty",
       "en_US": "{COLOR 2}Hasty{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00036",
+      "id": "PokemonSummary_Text_Nature_Serious",
       "en_US": "{COLOR 2}Serious{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00037",
+      "id": "PokemonSummary_Text_Nature_Jolly",
       "en_US": "{COLOR 2}Jolly{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00038",
+      "id": "PokemonSummary_Text_Nature_Naive",
       "en_US": "{COLOR 2}Naive{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00039",
+      "id": "PokemonSummary_Text_Nature_Modest",
       "en_US": "{COLOR 2}Modest{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00040",
+      "id": "PokemonSummary_Text_Nature_Mild",
       "en_US": "{COLOR 2}Mild{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00041",
+      "id": "PokemonSummary_Text_Nature_Quiet",
       "en_US": "{COLOR 2}Quiet{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00042",
+      "id": "PokemonSummary_Text_Nature_Bashful",
       "en_US": "{COLOR 2}Bashful{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00043",
+      "id": "PokemonSummary_Text_Nature_Rash",
       "en_US": "{COLOR 2}Rash{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00044",
+      "id": "PokemonSummary_Text_Nature_Calm",
       "en_US": "{COLOR 2}Calm{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00045",
+      "id": "PokemonSummary_Text_Nature_Gentle",
       "en_US": "{COLOR 2}Gentle{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00046",
+      "id": "PokemonSummary_Text_Nature_Sassy",
       "en_US": "{COLOR 2}Sassy{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00047",
+      "id": "PokemonSummary_Text_Nature_Careful",
       "en_US": "{COLOR 2}Careful{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00048",
+      "id": "PokemonSummary_Text_Nature_Quirky",
       "en_US": "{COLOR 2}Quirky{COLOR 0} nature."
     },
     {
-      "id": "pl_msg_00000455_00049",
+      "id": "PokemonSummary_Text_MetCondition_WildEncounter",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00050",
+      "id": "PokemonSummary_Text_MetCondition_WildEncounterTraded",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00051",
+      "id": "PokemonSummary_Text_MetCondition_WildEncounterGift",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00052",
+      "id": "PokemonSummary_Text_MetCondition_EggHatched",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00053",
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00054",
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedGift",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00055",
+      "id": "PokemonSummary_Text_MetCondition_EggHatchedGiftTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00056",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEncounter",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00057",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEncounterTraded",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00058",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatched",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00059",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00060",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedArrived",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00061",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedArrivedTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00062",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedGift",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00063",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggHatchedGiftTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 8, 0}{COLOR 0}\n",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00064",
+      "id": "PokemonSummary_Text_MetCondition_Migrated",
       "en_US": [
         "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, 20{STRVAR_1 51, 0, 0}\n",
         "{COLOR 2}{STRVAR_1 4, 4, 0}{COLOR 0}\n",
@@ -366,151 +366,151 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00065",
+      "id": "PokemonSummary_Text_LikesSpicyFood",
       "en_US": "Likes {COLOR 2}spicy{COLOR 0} food."
     },
     {
-      "id": "pl_msg_00000455_00066",
+      "id": "PokemonSummary_Text_LikesDryFood",
       "en_US": "Likes {COLOR 2}dry{COLOR 0} food."
     },
     {
-      "id": "pl_msg_00000455_00067",
+      "id": "PokemonSummary_Text_LikesSweetFood",
       "en_US": "Likes {COLOR 2}sweet{COLOR 0} food."
     },
     {
-      "id": "pl_msg_00000455_00068",
+      "id": "PokemonSummary_Text_LikesBitterFood",
       "en_US": "Likes {COLOR 2}bitter{COLOR 0} food."
     },
     {
-      "id": "pl_msg_00000455_00069",
+      "id": "PokemonSummary_Text_LikesSourFood",
       "en_US": "Likes {COLOR 2}sour{COLOR 0} food."
     },
     {
-      "id": "pl_msg_00000455_00070",
+      "id": "PokemonSummary_Text_HappilyEatsAnything",
       "en_US": "Happily eats anything."
     },
     {
-      "id": "pl_msg_00000455_00071",
+      "id": "PokemonSummary_Text_LovesToEat",
       "en_US": "Loves to eat."
     },
     {
-      "id": "pl_msg_00000455_00072",
+      "id": "PokemonSummary_Text_OftenDozesOff",
       "en_US": "Often dozes off."
     },
     {
-      "id": "pl_msg_00000455_00073",
+      "id": "PokemonSummary_Text_OftenScattersThings",
       "en_US": "Often scatters things."
     },
     {
-      "id": "pl_msg_00000455_00074",
+      "id": "PokemonSummary_Text_ScattersThingsOften",
       "en_US": "Scatters things often."
     },
     {
-      "id": "pl_msg_00000455_00075",
+      "id": "PokemonSummary_Text_LikesToRelax",
       "en_US": "Likes to relax."
     },
     {
-      "id": "pl_msg_00000455_00076",
+      "id": "PokemonSummary_Text_ProudOfItsPower",
       "en_US": "Proud of its power."
     },
     {
-      "id": "pl_msg_00000455_00077",
+      "id": "PokemonSummary_Text_LikesToTrashAbout",
       "en_US": "Likes to thrash about."
     },
     {
-      "id": "pl_msg_00000455_00078",
+      "id": "PokemonSummary_Text_ALittleQuickTempered",
       "en_US": "A little quick tempered."
     },
     {
-      "id": "pl_msg_00000455_00079",
+      "id": "PokemonSummary_Text_LikesToFight",
       "en_US": "Likes to fight."
     },
     {
-      "id": "pl_msg_00000455_00080",
+      "id": "PokemonSummary_Text_QuickTempered",
       "en_US": "Quick tempered."
     },
     {
-      "id": "pl_msg_00000455_00081",
+      "id": "PokemonSummary_Text_SturdyBody",
       "en_US": "Sturdy body."
     },
     {
-      "id": "pl_msg_00000455_00082",
+      "id": "PokemonSummary_Text_CapableOfTakingHits",
       "en_US": "Capable of taking hits."
     },
     {
-      "id": "pl_msg_00000455_00083",
+      "id": "PokemonSummary_Text_HighlyPersistent",
       "en_US": "Highly persistent."
     },
     {
-      "id": "pl_msg_00000455_00084",
+      "id": "PokemonSummary_Text_GoodEndurance",
       "en_US": "Good endurance."
     },
     {
-      "id": "pl_msg_00000455_00085",
+      "id": "PokemonSummary_Text_GoodPerseverance",
       "en_US": "Good perseverance."
     },
     {
-      "id": "pl_msg_00000455_00086",
+      "id": "PokemonSummary_Text_LikesToRun",
       "en_US": "Likes to run."
     },
     {
-      "id": "pl_msg_00000455_00087",
+      "id": "PokemonSummary_Text_AlertToSounds",
       "en_US": "Alert to sounds."
     },
     {
-      "id": "pl_msg_00000455_00088",
+      "id": "PokemonSummary_Text_ImpetuousAndSilly",
       "en_US": "Impetuous and silly."
     },
     {
-      "id": "pl_msg_00000455_00089",
+      "id": "PokemonSummary_Text_SomewhatOfAClown",
       "en_US": "Somewhat of a clown."
     },
     {
-      "id": "pl_msg_00000455_00090",
+      "id": "PokemonSummary_Text_QuickToFlee",
       "en_US": "Quick to flee."
     },
     {
-      "id": "pl_msg_00000455_00091",
+      "id": "PokemonSummary_Text_HighlyCurious",
       "en_US": "Highly curious."
     },
     {
-      "id": "pl_msg_00000455_00092",
+      "id": "PokemonSummary_Text_Mischievous",
       "en_US": "Mischievous."
     },
     {
-      "id": "pl_msg_00000455_00093",
+      "id": "PokemonSummary_Text_ThoroughlyCunning",
       "en_US": "Thoroughly cunning."
     },
     {
-      "id": "pl_msg_00000455_00094",
+      "id": "PokemonSummary_Text_OftenLostInThought",
       "en_US": "Often lost in thought."
     },
     {
-      "id": "pl_msg_00000455_00095",
+      "id": "PokemonSummary_Text_VeryFinicky",
       "en_US": "Very finicky."
     },
     {
-      "id": "pl_msg_00000455_00096",
+      "id": "PokemonSummary_Text_StrongWilled",
       "en_US": "Strong willed."
     },
     {
-      "id": "pl_msg_00000455_00097",
+      "id": "PokemonSummary_Text_SomewhatVain",
       "en_US": "Somewhat vain."
     },
     {
-      "id": "pl_msg_00000455_00098",
+      "id": "PokemonSummary_Text_StronglyDefiant",
       "en_US": "Strongly defiant."
     },
     {
-      "id": "pl_msg_00000455_00099",
+      "id": "PokemonSummary_Text_HatesToLose",
       "en_US": "Hates to lose."
     },
     {
-      "id": "pl_msg_00000455_00100",
+      "id": "PokemonSummary_Text_SomewhatStubborn",
       "en_US": "Somewhat stubborn."
     },
     {
-      "id": "pl_msg_00000455_00101",
+      "id": "PokemonSummary_Text_MetCondition_Egg",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "A mysterious Pokémon\n",
@@ -519,7 +519,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00102",
+      "id": "PokemonSummary_Text_MetCondition_EggTraded",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "A mysterious Pokémon\n",
@@ -528,7 +528,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00103",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEgg",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "A very mysterious\n",
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00104",
+      "id": "PokemonSummary_Text_MetCondition_FatefulEggArrived",
       "en_US": [
         "{STRVAR_1 74, 6, 0} {STRVAR_1 51, 7, 0}, 20{STRVAR_1 51, 5, 0}\n",
         "A very mysterious\n",
@@ -546,7 +546,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00105",
+      "id": "PokemonSummary_Text_EggWatch_ItWillHatchSoon",
       "en_US": [
         "“The Egg Watch”\n",
         "Sounds can be heard\n",
@@ -555,7 +555,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00106",
+      "id": "PokemonSummary_Text_EggWatch_CloseToHatching",
       "en_US": [
         "“The Egg Watch”\n",
         "It appears to move\n",
@@ -564,7 +564,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00107",
+      "id": "PokemonSummary_Text_EggWatch_NotCloseToHatching",
       "en_US": [
         "“The Egg Watch”\n",
         "What will hatch from\n",
@@ -573,7 +573,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000455_00108",
+      "id": "PokemonSummary_Text_EggWatch_LongTimeToHatch",
       "en_US": [
         "“The Egg Watch”\n",
         "It looks like this Egg\n",
