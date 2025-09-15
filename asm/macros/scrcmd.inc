@@ -2174,7 +2174,7 @@
     .short \berryItemID
     .endm
 
-    .macro WaterBerry direction
+    .macro SetBerryWateringState direction
     .short 388
     .short \direction
     .endm

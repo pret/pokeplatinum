@@ -112,10 +112,10 @@ _01F2:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _053A
     CloseMessage
-    WaterBerry 0
+    SetBerryWateringState BERRY_WATERING_START
     Message 20
     WaitABXPadPress
-    WaterBerry 1
+    SetBerryWateringState BERRY_WATERING_END
     GoTo _053A
 
 _021B:
@@ -317,10 +317,10 @@ _055F:
 
 _0583:
     LockAll
-    WaterBerry 0
+    SetBerryWateringState BERRY_WATERING_START
     Message 20
     WaitABXPadPress
-    WaterBerry 1
+    SetBerryWateringState BERRY_WATERING_END
     CloseMessage
     ReleaseAll
     End

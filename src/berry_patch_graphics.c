@@ -19,12 +19,12 @@
 #include "map_object.h"
 #include "unk_02020AEC.h"
 
-typedef struct {
+typedef struct BerryPatchData {
     u16 growthStage;
     u16 needsUpdate;
 } BerryPatchData;
 
-typedef struct {
+typedef struct BerryPatchGraphics {
     int graphicsResourceID;
     enum BerryGrowthStage lastGrowthStage;
     UnkStruct_020216E0 *graphicsObject;

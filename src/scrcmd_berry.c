@@ -83,7 +83,7 @@ BOOL ScrCmd_PlantBerry(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_WaterBerry(ScriptContext *ctx)
+BOOL ScrCmd_SetBerryWateringState(ScriptContext *ctx)
 {
     switch (ScriptContext_ReadHalfWord(ctx)) {
     case BERRY_WATERING_START:

@@ -40,7 +40,7 @@ struct BerryPatchManager {
     NNSG3dResFileHeader *resource;
 };
 
-typedef struct {
+typedef struct BerryWateringTask {
     enum BerryWateringState state;
     enum FaceDirection direction;
     int timer;
@@ -177,82 +177,64 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
 
 void BerryPatches_SetMulchType(FieldSystem *fieldSystem, MapObject *mapObject, u16 mulchItemID)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     BerryPatches_SetPatchMulchType(berryPatches, patchID, BerryPatches_ConvertItemIDToMulchType(mulchItemID));
 }
 
 void BerryPatches_PlantBerry(FieldSystem *fieldSystem, MapObject *mapObject, u16 berryItemID)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     BerryPatches_PlantInPatch(berryPatches, patchID, fieldSystem->unk_04->berryPatchManager->growthData, BerryPatches_ConvertItemIDToTagNumber(berryItemID));
 }
 
 void BerryPatches_ResetMoisture(FieldSystem *fieldSystem, MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     BerryPatches_ResetPatchMoisture(berryPatches, patchID);
 }
 
 int BerryPatches_GetGrowthStage(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_GetPatchGrowthStage(berryPatches, patchID);
 }
 
 int BerryPatches_GetBerryID(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_GetPatchBerryID(berryPatches, patchID);
 }
 
 u16 BerryPatches_GetItemID(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_ConvertTagNumberToItemID(BerryPatches_GetPatchBerryID(berryPatches, patchID));
 }
 
 u16 BerryPatches_GetMulchItemID(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_ConvertMulchTypeToItemID(BerryPatches_GetPatchMulchType(berryPatches, patchID));
 }
 
 int BerryPatches_GetMoisture(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_GetPatchMoisture(berryPatches, patchID);
 }
 
 int BerryPatches_GetYield(const FieldSystem *fieldSystem, const MapObject *mapObject)
 {
-    int patchID;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-
-    patchID = MapObject_GetDataAt(mapObject, 0);
+    int patchID = MapObject_GetDataAt(mapObject, 0);
     return BerryPatches_GetPatchYield(berryPatches, patchID);
 }
 
