@@ -84,6 +84,30 @@ static void ConvertFromTiles1Bpp(unsigned char *src, unsigned char *dest, int nu
     }
 }
 
+static void Rotate4BppTiles90Deg(unsigned char *src, unsigned char *dest, int srcTilesTall, int srcTilesWide)
+{
+    int bufferSize = srcTilesTall * srcTilesWide * 32;
+    for (int i = 0; i < bufferSize; i++)
+    {
+        int srcTileX = (i / 32) % srcTilesWide;
+        int srcTileY = (i / 32) / srcTilesWide;
+        int destTileX = (srcTilesTall - 1) - srcTileY;
+        int destTileY = srcTileX;
+        int destPixelX = 7 - ((i & 31) / 4);
+        int destPixelY = (i & 3) * 2;
+
+        int srcLeftPixel = src[i] & 0xF;
+        int srcRightPixel = src[i] >> 4;
+        if (destPixelX & 1)
+        {
+            srcLeftPixel <<= 4;
+            srcRightPixel <<= 4;
+        }
+        dest[(destTileY * srcTilesTall + destTileX) * 32 + destPixelY * 4 + (destPixelX >> 1)] |= srcLeftPixel;
+        dest[(destTileY * srcTilesTall + destTileX) * 32 + (destPixelY + 1) * 4 + (destPixelX >> 1)] |= srcRightPixel;
+    }
+}
+
 static void ConvertFromTiles4Bpp(unsigned char *src, unsigned char *dest, int numTiles, int chunksWide, int colsPerChunk, int rowsPerChunk, bool invertColors, bool convertTo8Bpp, int palIndex)
 {
     int outputBitDepth = convertTo8Bpp ? 8 : 4;
@@ -1062,7 +1086,7 @@ void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int ro
 
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
                    bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, bool vram, uint32_t scanMode,
-                   uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp)
+                   uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp, int rotate)
 {
     FILE *fp = fopen(path, "wb");
 
@@ -1219,9 +1243,64 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
 
         fwrite(sopcBuffer, 1, 0x10, fp);
     }
-
-    free(pixelBuffer);
     fclose(fp);
+
+    if (charHeader[12] != 3)
+    {
+        free(pixelBuffer);
+        return; // rotation only supported for 4bpp right now
+    }
+
+    int numRotations = rotate / 90;
+    for (int i = 0; i < numRotations; i++)
+    {
+        unsigned char *rotatedPixelBuffer = calloc(bufferSize, sizeof(char));
+        Rotate4BppTiles90Deg(pixelBuffer, rotatedPixelBuffer, tilesTall, tilesWide);
+        
+        char stem[sizeof(path)];
+        for (int j = 0 ;; j++)
+        {
+            if (path[j] == 0 || path[j] == '.')
+            {
+                stem[j] = 0;
+                break;
+            }
+            else
+            {
+                stem[j] = path[j];
+            }
+        }
+        char filename[sizeof(path) + 30];
+        snprintf(filename, sizeof(filename), "%s%s%d%s", stem, "_", (i + 1) * 90, "deg.NCGR");
+        fp = fopen(filename, "wb");
+        if (!clobberSize)
+        {
+            charHeader[8] = tilesWide & 0xFF;
+            charHeader[9] = (tilesWide >> 8) & 0xFF;
+
+            charHeader[10] = tilesTall & 0xFF;
+            charHeader[11] = (tilesTall >> 8) & 0xFF;
+        }
+        WriteGenericNtrHeader(fp, "RGCN", bufferSize + (sopc ? 0x30 : 0x20) + (wrongSize ? -8 : 0), byteOrder, version101, sopc ? 2 : 1);
+        fwrite(charHeader, 1, 0x20, fp);
+        fwrite(rotatedPixelBuffer, 1, bufferSize, fp);
+        if (sopc)
+        {
+            unsigned char sopcBuffer[0x10] = { 0x53, 0x4F, 0x50, 0x43, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+            sopcBuffer[12] = tilesTall & 0xFF;
+            sopcBuffer[13] = (tilesTall >> 8) & 0xFF;
+
+            sopcBuffer[14] = tilesWide & 0xFF;
+            sopcBuffer[15] = (tilesWide >> 8) & 0xFF;
+
+            fwrite(sopcBuffer, 1, 0x10, fp);
+        }
+        fclose(fp);
+        memcpy(pixelBuffer, rotatedPixelBuffer, sizeof(char) * bufferSize);
+        free(rotatedPixelBuffer);
+    }
+    free(pixelBuffer);
 }
 
 void FreeImage(struct Image *image)

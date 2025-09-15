@@ -56,7 +56,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
 void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, const char *embedName, struct Image *image, bool invertColors);
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
                    bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, bool vram, uint32_t scanMode,
-                   uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp);
+                   uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp, int rotate);
 void FreeImage(struct Image *image);
 void ReadGbaPalette(char *path, struct Palette *palette);
 void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIndex, bool inverted, bool convertTo8Bpp);
