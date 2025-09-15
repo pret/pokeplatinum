@@ -30,7 +30,7 @@ FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(poketch_stopwatch);
 FS_EXTERN_OVERLAY(poketch_calculator);
 FS_EXTERN_OVERLAY(poketch_memo_pad);
-FS_EXTERN_OVERLAY(overlay30);
+FS_EXTERN_OVERLAY(poketch_analog_watch);
 FS_EXTERN_OVERLAY(poketch_dot_artist);
 FS_EXTERN_OVERLAY(poketch_party_status);
 FS_EXTERN_OVERLAY(poketch_friendship_checker);
@@ -88,7 +88,7 @@ static const struct {
     { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(poketch_calculator) },
     { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
-    { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
+    { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(poketch_analog_watch) },
     { POKETCH_APPID_DOTART, FS_OVERLAY_ID(poketch_dot_artist) },
     { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(poketch_party_status) },
     { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(poketch_friendship_checker) },

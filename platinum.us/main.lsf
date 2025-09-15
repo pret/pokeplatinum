@@ -907,11 +907,11 @@ Overlay poketch_memo_pad
 	Object main.nef.p/src_applications_poketch_memo_pad_graphics.c.o
 }
 
-Overlay overlay30
+Overlay poketch_analog_watch
 {
 	After overlay25
-	Object main.nef.p/src_overlay030_ov30_022561C0.c.o
-	Object main.nef.p/src_overlay030_ov30_022563EC.c.o
+	Object main.nef.p/src_applications_poketch_analog_watch_main.c.o
+	Object main.nef.p/src_applications_poketch_analog_watch_graphics.c.o
 }
 
 Overlay poketch_dot_artist
