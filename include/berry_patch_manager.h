@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_BERRY_PATCH_MANAGER_H
 #define POKEPLATINUM_BERRY_PATCH_MANAGER_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
-
-#include "constants/heap.h"
 
 enum BerryWateringState {
     BERRY_WATERING_STATE_INIT = 0, // Initial state - setting up watering mode
