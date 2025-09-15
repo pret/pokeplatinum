@@ -406,9 +406,9 @@ static const UnkStruct_020EDF0C Unk_020EDE1C = {
 
 static const UnkStruct_020EDF0C Unk_020EDE30 = {
     0x2f,
-    BerryPatch_InitData,
-    BerryPatch_UpdateGrowthStage,
-    BerryPatch_NoOp,
+    BerryPatchGraphics_NewData,
+    BerryPatchGraphics_UpdateGrowthStage,
+    BerryPatchGraphics_NoOp,
     sub_020633EC
 };
 

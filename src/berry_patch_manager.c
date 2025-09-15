@@ -86,7 +86,7 @@ static enum MulchType BerryPatches_ConvertItemIDToMulchType(int itemID)
     return itemID - FIRST_MULCH_IDX + 1;
 }
 
-BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID)
+BerryPatchManager *BerryPatchManager_New(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     BerryPatchManager *manager = Heap_Alloc(heapID, sizeof(BerryPatchManager));
     MI_CpuClear8(manager, sizeof(BerryPatchManager));
@@ -98,7 +98,7 @@ BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID
     return manager;
 }
 
-void BerryPatchManager_Destroy(BerryPatchManager *manager)
+void BerryPatchManager_Free(BerryPatchManager *manager)
 {
     BerryPatchManager_Cleanup3DRendering(manager);
     Heap_Free(manager->growthData);
@@ -152,7 +152,7 @@ void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, 1 << 0) == 1) {
-        if (BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == TRUE && BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
+        if (BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == TRUE && BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
             int patchID = MapObject_GetDataAt(mapObject, 0);
             BerryPatches_SetIsPatchGrowing(berryPatches, patchID, TRUE);
         }
@@ -170,7 +170,7 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
 
     TVBroadcast_RecordBerryHarvest(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
-    BerryPatch_MarkForUpdate(mapObject);
+    BerryPatchGraphics_MarkForUpdate(mapObject);
 
     return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), BerryPatches_ConvertTagNumberToItemID(berryID), yieldAmount, HEAP_ID_FIELD1);
 }

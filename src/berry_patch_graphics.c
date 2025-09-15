@@ -31,9 +31,9 @@ typedef struct BerryPatchGraphics {
     UnkStruct_ov5_021ED01C graphicsState;
 } BerryPatchGraphics;
 
-static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage growthStage);
+static int BerryPatchGraphics_GetGraphicsResourceID(int berryID, enum BerryGrowthStage growthStage);
 
-BOOL BerryPatch_IsBerryPatch(int graphicsID)
+BOOL BerryPatchGraphics_IsBerryPatch(int graphicsID)
 {
     if (graphicsID == 100) {
         return TRUE;
@@ -42,7 +42,7 @@ BOOL BerryPatch_IsBerryPatch(int graphicsID)
     return FALSE;
 }
 
-int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject)
+int BerryPatchGraphics_GetCurrentGraphicsResourceID(const MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A78((MapObject *)mapObject);
 
@@ -61,30 +61,30 @@ int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject)
     return 0xffff;
 }
 
-void BerryPatch_MarkForUpdate(MapObject *mapObject)
+void BerryPatchGraphics_MarkForUpdate(MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A78(mapObject);
     patchData->needsUpdate = TRUE;
 }
 
-void BerryPatch_InitData(MapObject *mapObject)
+void BerryPatchGraphics_NewData(MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A54(mapObject, sizeof(BerryPatchData));
     patchData->growthStage = BERRY_GROWTH_STAGE_NONE;
 }
 
-void BerryPatch_UpdateGrowthStage(MapObject *mapObject)
+void BerryPatchGraphics_UpdateGrowthStage(MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A78(mapObject);
     patchData->growthStage = BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject);
 }
 
-void BerryPatch_NoOp(MapObject *mapObject)
+void BerryPatchGraphics_NoOp(MapObject *mapObject)
 {
     return;
 }
 
-void BerryPatch_InitGraphics(MapObject *mapObject)
+void BerryPatchGraphics_NewGraphics(MapObject *mapObject)
 {
     BerryPatchGraphics *graphicsData = sub_02062ACC(mapObject, sizeof(BerryPatchGraphics));
 
@@ -94,7 +94,7 @@ void BerryPatch_InitGraphics(MapObject *mapObject)
     ov5_021F20D4(mapObject);
 }
 
-void BerryPatch_UpdateGraphics(MapObject *mapObject)
+void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject)
 {
     BerryPatchData *patchData = sub_02062A78(mapObject);
     BerryPatchGraphics *graphicsData = sub_02062AF0(mapObject);
@@ -107,7 +107,7 @@ void BerryPatch_UpdateGraphics(MapObject *mapObject)
     if (currentGrowthStage != graphicsData->lastGrowthStage) {
         ov5_021ECFD8(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
 
-        graphicsData->graphicsResourceID = BerryPatch_GetGraphicsResourceID(
+        graphicsData->graphicsResourceID = BerryPatchGraphics_GetGraphicsResourceID(
             BerryPatches_GetBerryID(MapObject_FieldSystem(mapObject), mapObject), currentGrowthStage);
 
         if (graphicsData->graphicsResourceID != 0xffff) {
@@ -142,13 +142,13 @@ void BerryPatch_UpdateGraphics(MapObject *mapObject)
     }
 }
 
-void BerryPatch_CleanupGraphics(MapObject *mapObject)
+void BerryPatchGraphics_FreeGraphics(MapObject *mapObject)
 {
     BerryPatchGraphics *graphicsData = sub_02062AF0(mapObject);
     ov5_021ECFD8(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
 }
 
-void BerryPatch_PauseGraphics(MapObject *mapObject)
+void BerryPatchGraphics_PauseGraphics(MapObject *mapObject)
 {
     BerryPatchGraphics *graphicsData = sub_02062AF0(mapObject);
 
@@ -160,7 +160,7 @@ void BerryPatch_PauseGraphics(MapObject *mapObject)
     MapObject_SetStatusFlagOn(mapObject, MAP_OBJ_STATUS_21);
 }
 
-void BerryPatch_ResumeGraphics(MapObject *mapObject)
+void BerryPatchGraphics_ResumeGraphics(MapObject *mapObject)
 {
     BerryPatchGraphics *graphicsData = sub_02062AF0(mapObject);
 
@@ -185,7 +185,7 @@ void BerryPatch_ResumeGraphics(MapObject *mapObject)
     }
 }
 
-static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage growthStage)
+static int BerryPatchGraphics_GetGraphicsResourceID(int berryID, enum BerryGrowthStage growthStage)
 {
     switch (growthStage) {
     case BERRY_GROWTH_STAGE_NONE:
@@ -213,11 +213,11 @@ static int BerryPatch_GetGraphicsResourceID(int berryID, enum BerryGrowthStage g
     return 0xffff;
 }
 
-UnkStruct_020216E0 *BerryPatch_GetGraphicsObject(MapObject *mapObject)
+UnkStruct_020216E0 *BerryPatchGraphics_GetGraphicsObject(MapObject *mapObject)
 {
     UnkStruct_020216E0 *graphicsObject = NULL;
 
-    GF_ASSERT(BerryPatch_IsBerryPatch(MapObject_GetGraphicsID(mapObject)));
+    GF_ASSERT(BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(mapObject)));
 
     if (sub_02062D4C(mapObject) == 1) {
         BerryPatchGraphics *graphicsData = sub_02062AF0(mapObject);

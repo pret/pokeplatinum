@@ -323,7 +323,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 
             ov5_021EF4F8(fieldSystem->unk_04->unk_20);
             HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
-            BerryPatchManager_Destroy(fieldSystem->unk_04->berryPatchManager);
+            BerryPatchManager_Free(fieldSystem->unk_04->berryPatchManager);
             ov5_021D57D8(&fieldSystem->unk_48);
             ModelAttributes_Free(&fieldSystem->areaModelAttrs);
             ov5_021D1570();
@@ -879,7 +879,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     sub_02062C3C(fieldSystem->mapObjMan);
     LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->landDataMan);
 
-    fieldSystem->unk_04->berryPatchManager = BerryPatchManager_Create(fieldSystem, HEAP_ID_FIELD1);
+    fieldSystem->unk_04->berryPatchManager = BerryPatchManager_New(fieldSystem, HEAP_ID_FIELD1);
 }
 
 static void ov5_021D1968(FieldSystem *fieldSystem)

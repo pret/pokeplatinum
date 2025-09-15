@@ -1240,8 +1240,8 @@ u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj)
 {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
-    if (BerryPatch_IsBerryPatch(graphicsID) == TRUE) {
-        graphicsID = BerryPatch_GetCurrentGraphicsResourceID(mapObj);
+    if (BerryPatchGraphics_IsBerryPatch(graphicsID) == TRUE) {
+        graphicsID = BerryPatchGraphics_GetCurrentGraphicsResourceID(mapObj);
     }
 
     return graphicsID;

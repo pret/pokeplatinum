@@ -6,6 +6,8 @@
 
 #include "field/field_system_decl.h"
 
+#include "constants/heap.h"
+
 enum BerryWateringState {
     BERRY_WATERING_STATE_INIT = 0, // Initial state - setting up watering mode
     BERRY_WATERING_STATE_WATERING, // Watering the current patch
@@ -21,8 +23,8 @@ enum BerryPatchFlags {
     BERRY_PATCH_FLAG_HAS_BERRY = 0x4, // Patch has berry growing
 };
 
-BerryPatchManager *BerryPatchManager_Create(FieldSystem *fieldSystem, int heapID);
-void BerryPatchManager_Destroy(BerryPatchManager *manager);
+BerryPatchManager *BerryPatchManager_New(FieldSystem *fieldSystem, enum HeapID heapID);
+void BerryPatchManager_Free(BerryPatchManager *manager);
 void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes);
 void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem);
 BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject);

@@ -141,11 +141,11 @@ static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB000 = {
 };
 
 static const UnkStruct_ov5_021FB0F0 BerryPatchRenderer = {
-    BerryPatch_InitGraphics,
-    BerryPatch_UpdateGraphics,
-    BerryPatch_CleanupGraphics,
-    BerryPatch_PauseGraphics,
-    BerryPatch_ResumeGraphics
+    BerryPatchGraphics_NewGraphics,
+    BerryPatchGraphics_UpdateGraphics,
+    BerryPatchGraphics_FreeGraphics,
+    BerryPatchGraphics_PauseGraphics,
+    BerryPatchGraphics_ResumeGraphics
 };
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB078 = {

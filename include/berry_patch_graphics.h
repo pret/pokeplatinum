@@ -4,17 +4,17 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-BOOL BerryPatch_IsBerryPatch(int graphicsID);
-int BerryPatch_GetCurrentGraphicsResourceID(const MapObject *mapObject);
-void BerryPatch_MarkForUpdate(MapObject *mapObject);
-void BerryPatch_InitData(MapObject *mapObject);
-void BerryPatch_UpdateGrowthStage(MapObject *mapObject);
-void BerryPatch_NoOp(MapObject *mapObject);
-void BerryPatch_InitGraphics(MapObject *mapObject);
-void BerryPatch_UpdateGraphics(MapObject *mapObject);
-void BerryPatch_CleanupGraphics(MapObject *mapObject);
-void BerryPatch_PauseGraphics(MapObject *mapObject);
-void BerryPatch_ResumeGraphics(MapObject *mapObject);
-UnkStruct_020216E0 *BerryPatch_GetGraphicsObject(MapObject *mapObject);
+BOOL BerryPatchGraphics_IsBerryPatch(int graphicsID);
+int BerryPatchGraphics_GetCurrentGraphicsResourceID(const MapObject *mapObject);
+void BerryPatchGraphics_MarkForUpdate(MapObject *mapObject);
+void BerryPatchGraphics_NewData(MapObject *mapObject);
+void BerryPatchGraphics_UpdateGrowthStage(MapObject *mapObject);
+void BerryPatchGraphics_NoOp(MapObject *mapObject);
+void BerryPatchGraphics_NewGraphics(MapObject *mapObject);
+void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject);
+void BerryPatchGraphics_FreeGraphics(MapObject *mapObject);
+void BerryPatchGraphics_PauseGraphics(MapObject *mapObject);
+void BerryPatchGraphics_ResumeGraphics(MapObject *mapObject);
+UnkStruct_020216E0 *BerryPatchGraphics_GetGraphicsObject(MapObject *mapObject);
 
 #endif // POKEPLATINUM_BERRY_PATCH_GRAPHICS_H
