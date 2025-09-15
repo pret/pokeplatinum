@@ -40,6 +40,7 @@
 #include "overlay005/struct_ov5_021F06D8_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "berry_patch_graphics.h"
 #include "enums.h"
 #include "heap.h"
 #include "map_object.h"
@@ -51,7 +52,6 @@
 #include "sys_task_manager.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
-#include "unk_020677F4.h"
 #include "unk_020711EC.h"
 
 typedef enum {
@@ -271,8 +271,8 @@ void ov5_021ECFA4(const MapObject *param0, UnkStruct_020216E0 **param1)
     if ((*param1) != NULL) {
         int v0 = MapObject_GetGraphicsID(param0);
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(param0);
+        if (BerryPatchGraphics_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatchGraphics_GetCurrentGraphicsResourceID(param0);
         }
 
         ov5_021ECF70(param0, param1, v0);
@@ -467,8 +467,8 @@ static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1,
             if (sub_02062CF8(v2) == 1) {
                 v1 = MapObject_GetGraphicsID(v2);
 
-                if (sub_020677F4(v1) == 1) {
-                    v1 = sub_02067800(v2);
+                if (BerryPatchGraphics_IsBerryPatch(v1) == 1) {
+                    v1 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v2);
                 }
 
                 if ((v1 != 0xffff) && (v1 == param2)) {
@@ -592,7 +592,7 @@ static UnkEnum_ov5_021ED334 ov5_021ED3A4(UnkStruct_ov5_021ED0A4 *param0, int par
 static void ov5_021ED3B8(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
 {
     while ((*param1) != 0xffff) {
-        ov5_021ED390(param0, (*param1));
+        ov5_021ED390(param0, *param1);
         param1++;
     }
 }
@@ -616,7 +616,7 @@ static void ov5_021ED40C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED43C(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
 {
     while ((*param1) != 0xffff) {
-        ov5_021ED3DC(param0, (*param1));
+        ov5_021ED3DC(param0, *param1);
         param1++;
     }
 }
@@ -640,7 +640,7 @@ static void ov5_021ED490(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED4C0(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
 {
     while ((*param1) != 0xffff) {
-        ov5_021ED460(param0, (*param1));
+        ov5_021ED460(param0, *param1);
         param1++;
     }
 }
@@ -775,7 +775,7 @@ static void ov5_021ED63C(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 
     do {
         if ((*v1) != 0xffff) {
-            if (ov5_021EDAB4(param0, (*v1), NULL) == 0) {
+            if (ov5_021EDAB4(param0, *v1, NULL) == 0) {
                 ov5_021F0740(param1->unk_F8, *v1);
                 *v1 = 0xffff;
             }
@@ -856,7 +856,7 @@ static void ov5_021ED778(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 
     do {
         if ((*v1) != 0xffff) {
-            if (ov5_021EDB3C(param0, (*v1), NULL) == 0) {
+            if (ov5_021EDB3C(param0, *v1, NULL) == 0) {
                 ov5_021F0740(param1->unk_FC, *v1);
                 *v1 = 0xffff;
             }
@@ -1055,8 +1055,8 @@ static int ov5_021EDA54(const MapObjectManager *param0, int param1, const MapObj
 
         v1 = MapObject_GetGraphicsID(v2);
 
-        if (sub_020677F4(v1) == 1) {
-            v1 = sub_02067800(v2);
+        if (BerryPatchGraphics_IsBerryPatch(v1) == 1) {
+            v1 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v1 == param1) {
@@ -1091,8 +1091,8 @@ static int ov5_021EDAB4(const MapObjectManager *param0, int param1, const MapObj
             }
         }
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(v2);
+        if (BerryPatchGraphics_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v0 != 0xffff) {
@@ -1129,8 +1129,8 @@ static int ov5_021EDB3C(const MapObjectManager *param0, int param1, const MapObj
 
         v0 = MapObject_GetGraphicsID(v2);
 
-        if (sub_020677F4(v0) == 1) {
-            v0 = sub_02067800(v2);
+        if (BerryPatchGraphics_IsBerryPatch(v0) == 1) {
+            v0 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v2);
         }
 
         if (v0 != 0xffff) {

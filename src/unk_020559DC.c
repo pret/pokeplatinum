@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "berry_patch_manager.h"
 #include "field_system.h"
 #include "inlines.h"
 #include "party.h"
@@ -22,7 +23,6 @@
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
-#include "unk_02055C50.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -129,7 +129,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime)
 {
-    sub_02055CD4(fieldSystem, param1);
+    BerryPatches_ElapseTime(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 

@@ -12,9 +12,9 @@ _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_17E VAR_0x8000
-    ScrCmd_181 VAR_0x8001
-    ScrCmd_17D VAR_RESULT
+    GetBerryItemID VAR_0x8000
+    GetBerryYield VAR_0x8001
+    GetBerryGrowthStage VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _033E
     GoToIfEq VAR_0x8008, 1, _0082
@@ -112,10 +112,10 @@ _01F2:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _053A
     CloseMessage
-    ScrCmd_184 0
+    SetBerryWateringState BERRY_WATERING_START
     Message 20
     WaitABXPadPress
-    ScrCmd_184 1
+    SetBerryWateringState BERRY_WATERING_END
     GoTo _053A
 
 _021B:
@@ -144,7 +144,7 @@ _0289:
 _0291:
     PlaySound SEQ_KINOMI
     WaitSound
-    ScrCmd_185
+    HarvestBerry
     BufferPlayerName 0
     GoToIfGt VAR_0x8001, 1, _02B4
     BufferItemName 1, VAR_0x8000
@@ -191,11 +191,11 @@ _0336:
     GoTo _053A
 
 _033E:
-    ScrCmd_17F VAR_RESULT
+    GetBerryMulchType VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0374
     ScrCmd_17A 4, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _054B
-    ScrCmd_17F VAR_RESULT
+    GetBerryMulchType VAR_RESULT
     BufferItemName 0, VAR_RESULT
     Message 1
     GoTo _04DA
@@ -250,7 +250,7 @@ _042D:
 
 _049D:
     RemoveItem VAR_0x8005, 1, VAR_0x8004
-    ScrCmd_182 VAR_0x8005
+    SetBerryMulch VAR_0x8005
     ScrCmd_17A 4, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _04CA
     BufferItemName 0, VAR_0x8005
@@ -281,7 +281,7 @@ _04EE:
     Message 12
     WaitABXPadPress
     RemoveItem VAR_RESULT, 1, VAR_0x8004
-    ScrCmd_183 VAR_RESULT
+    PlantBerry VAR_RESULT
     GoTo _053A
 
 _053A:
@@ -296,7 +296,7 @@ _0540:
     GoTo _053A
 
 _054B:
-    ScrCmd_17F VAR_RESULT
+    GetBerryMulchType VAR_RESULT
     BufferItemName 0, VAR_RESULT
     Message 29
     WaitABXPadPress
@@ -311,16 +311,16 @@ _055F:
     WaitABXPadPress
     CloseMessage
     RemoveItem VAR_0x8000, 1, VAR_0x8004
-    ScrCmd_183 VAR_0x8000
+    PlantBerry VAR_0x8000
     ReleaseAll
     End
 
 _0583:
     LockAll
-    ScrCmd_184 0
+    SetBerryWateringState BERRY_WATERING_START
     Message 20
     WaitABXPadPress
-    ScrCmd_184 1
+    SetBerryWateringState BERRY_WATERING_END
     CloseMessage
     ReleaseAll
     End

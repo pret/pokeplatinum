@@ -25,6 +25,7 @@
 #include "overlay005/struct_ov5_021FB0F0.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
+#include "berry_patch_graphics.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object_move.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {
@@ -1017,7 +1017,7 @@ int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
         return 0;
     }
 
-    int v0 = sub_02062924(mapObj);
+    int v0 = MapObject_GetEffectiveGraphicsID(mapObj);
 
     if (v0 != param1) {
         return 0;
@@ -1236,12 +1236,12 @@ u32 MapObject_GetGraphicsID(const MapObject *mapObj)
     return mapObj->graphicsID;
 }
 
-u32 sub_02062924(const MapObject *mapObj)
+u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj)
 {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
-    if (sub_020677F4(graphicsID) == TRUE) {
-        graphicsID = sub_02067800(mapObj);
+    if (BerryPatchGraphics_IsBerryPatch(graphicsID) == TRUE) {
+        graphicsID = BerryPatchGraphics_GetCurrentGraphicsResourceID(mapObj);
     }
 
     return graphicsID;
@@ -1980,15 +1980,15 @@ int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj)
 void sub_02062FC4(MapObject *mapObj, int param1)
 {
     if (param1 == TRUE) {
-        sub_020628F0(mapObj, (1 << 2));
+        sub_020628F0(mapObj, 1 << 2);
     } else {
-        sub_020628F8(mapObj, (1 << 2));
+        sub_020628F8(mapObj, 1 << 2);
     }
 }
 
 int sub_02062FDC(const MapObject *mapObj)
 {
-    if (sub_02062904(mapObj, (1 << 2))) {
+    if (sub_02062904(mapObj, 1 << 2)) {
         return TRUE;
     }
 

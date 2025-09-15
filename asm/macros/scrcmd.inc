@@ -2139,47 +2139,47 @@
     .short \nature
     .endm
 
-    .macro ScrCmd_17D arg0
+    .macro GetBerryGrowthStage destVar
     .short 381
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17E arg0
+    .macro GetBerryItemID destVar
     .short 382
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17F arg0
+    .macro GetBerryMulchType destVar
     .short 383
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_180 arg0
+    .macro GetBerryMoisture destVar
     .short 384
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_181 arg0
+    .macro GetBerryYield destVar
     .short 385
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_182 arg0
+    .macro SetBerryMulch mulchItemID
     .short 386
-    .short \arg0
+    .short \mulchItemID
     .endm
 
-    .macro ScrCmd_183 arg0
+    .macro PlantBerry berryItemID
     .short 387
-    .short \arg0
+    .short \berryItemID
     .endm
 
-    .macro ScrCmd_184 arg0
+    .macro SetBerryWateringState direction
     .short 388
-    .short \arg0
+    .short \direction
     .endm
 
-    .macro ScrCmd_185
+    .macro HarvestBerry
     .short 389
     .endm
 

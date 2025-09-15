@@ -80,7 +80,7 @@ static void ZeroBerryPatch(BerryPatch *berryPatch)
     berryPatch->yield = 0;
     berryPatch->moistureRating = 0;
     berryPatch->yieldRating = 0;
-    berryPatch->mulchType = 0;
+    berryPatch->mulchType = MULCH_TYPE_NONE;
     berryPatch->isGrowing = FALSE;
 }
 

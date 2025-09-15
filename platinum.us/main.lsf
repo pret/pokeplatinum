@@ -195,7 +195,7 @@ Static main
 	Object main.nef.p/src_unk_020494DC.c.o
 	Object main.nef.p/src_unk_02049D08.c.o
 	Object main.nef.p/src_unk_0204AEE8.c.o
-	Object main.nef.p/src_unk_0204B64C.c.o
+	Object main.nef.p/src_scrcmd_berry.c.o
 	Object main.nef.p/src_scrcmd_mystery_gift.c.o
 	Object main.nef.p/src_scrcmd_catching_show.c.o
 	Object main.nef.p/src_scrcmd_coins.c.o
@@ -233,7 +233,7 @@ Static main
 	Object main.nef.p/src_overworld_map_history.c.o
 	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
-	Object main.nef.p/src_unk_02055C50.c.o
+	Object main.nef.p/src_berry_patch_manager.c.o
 	Object main.nef.p/src_catching_show.c.o
 	Object main.nef.p/src_poketch.c.o
 	Object main.nef.p/src_unk_02056B30.c.o
@@ -257,7 +257,7 @@ Static main
 	Object main.nef.p/src_unk_0206450C.c.o
 	Object main.nef.p/src_unk_020655F4.c.o
 	Object main.nef.p/src_unk_020673B8.c.o
-	Object main.nef.p/src_unk_020677F4.c.o
+	Object main.nef.p/src_berry_patch_graphics.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
 	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_item_use_functions.c.o

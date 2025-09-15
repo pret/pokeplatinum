@@ -47,6 +47,7 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "berry_patch_manager.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "char_transfer.h"
@@ -83,7 +84,6 @@
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
-#include "unk_02055C50.h"
 #include "vram_transfer.h"
 
 #define FIELD_MAP_INIT_STATE_RESET         0
@@ -250,7 +250,7 @@ static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
     FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
 
     if (FieldSystem_UpdateLocationToPlayerPosition(fieldSystem)) {
-        sub_02055D94(fieldSystem);
+        BerryPatches_UpdateGrowthStates(fieldSystem);
         ov5_021D13B4(fieldSystem);
         FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_PLAYER_MOVED, 1);
 
@@ -323,7 +323,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 
             ov5_021EF4F8(fieldSystem->unk_04->unk_20);
             HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
-            sub_02055CBC(fieldSystem->unk_04->unk_18);
+            BerryPatchManager_Free(fieldSystem->unk_04->berryPatchManager);
             ov5_021D57D8(&fieldSystem->unk_48);
             ModelAttributes_Free(&fieldSystem->areaModelAttrs);
             ov5_021D1570();
@@ -879,7 +879,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     sub_02062C3C(fieldSystem->mapObjMan);
     LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->landDataMan);
 
-    fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, HEAP_ID_FIELD1);
+    fieldSystem->unk_04->berryPatchManager = BerryPatchManager_New(fieldSystem, HEAP_ID_FIELD1);
 }
 
 static void ov5_021D1968(FieldSystem *fieldSystem)

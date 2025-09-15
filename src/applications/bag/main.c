@@ -1966,7 +1966,7 @@ static void MakeItemActionsMenu(BagController *controller)
                     itemActions[itemActionsIdx] = ITEM_ACTION_CHECK;
                 } else if (controller->bagCtx->selectedItem == ITEM_POFFIN_CASE) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_OPEN;
-                } else if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_BERRIES && sub_02068B50(controller->bagCtx->itemUseCtx) == TRUE) {
+                } else if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_BERRIES && BerryPatch_IsEmpty(controller->bagCtx->itemUseCtx) == TRUE) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_PLANT;
                 } else {
                     itemActions[itemActionsIdx] = ITEM_ACTION_USE;

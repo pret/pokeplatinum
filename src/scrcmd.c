@@ -144,6 +144,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_amity_square.h"
+#include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
 #include "scrcmd_daycare.h"
@@ -192,7 +193,6 @@
 #include "unk_02048DD8.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
-#include "unk_0204B64C.h"
 #include "unk_0204E240.h"
 #include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
@@ -1150,15 +1150,15 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_17A,
     ScrCmd_BufferBerryName,
     ScrCmd_BufferNatureName,
-    ScrCmd_17D,
-    ScrCmd_17E,
-    ScrCmd_17F,
-    ScrCmd_180,
-    ScrCmd_181,
-    ScrCmd_182,
-    ScrCmd_183,
-    ScrCmd_184,
-    ScrCmd_185,
+    ScrCmd_GetBerryGrowthStage,
+    ScrCmd_GetBerryItemID,
+    ScrCmd_GetBerryMulchType,
+    ScrCmd_GetBerryMoisture,
+    ScrCmd_GetBerryYield,
+    ScrCmd_SetBerryMulch,
+    ScrCmd_PlantBerry,
+    ScrCmd_SetBerryWateringState,
+    ScrCmd_HarvestBerry,
     ScrCmd_SetObjectEventPos,
     ScrCmd_SetPosition,
     ScrCmd_SetObjectEventMovementType,

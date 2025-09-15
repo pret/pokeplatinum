@@ -19,6 +19,7 @@
 #include "overlay005/struct_ov5_021F6704_decl.h"
 
 #include "bag.h"
+#include "berry_patch_graphics.h"
 #include "bg_window.h"
 #include "field_script_context.h"
 #include "font.h"
@@ -52,7 +53,6 @@
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
-#include "unk_020677F4.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
@@ -240,7 +240,7 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     }
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init((40 * 2), HEAP_ID_FIELD1);
+        param1->unk_1C[v0] = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
     }
 
     *param1->unk_210 = 0xeeee;
@@ -294,7 +294,7 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), HEAP_ID_FIELD1);
+        Strbuf *v2 = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
 
         MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
@@ -855,7 +855,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 17:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_004) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_BERRIES_PLANTED) < 50) {
             *v4 = 0;
         }
         break;
@@ -982,15 +982,15 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
                 MapObject_GetPosPtr(v7, &v1);
                 v1.y = v0;
                 MapObject_SetPos(v7, &v1);
-                MapObject_SetY(v7, (((v0) >> 3) / FX32_ONE));
+                MapObject_SetY(v7, ((v0) >> 3) / FX32_ONE );
             }
 
             v2 = ov5_021EB1A0(v7);
 
-            if ((v2 == NULL) && sub_020677F4(MapObject_GetGraphicsID(v7))) {
+            if ((v2 == NULL) && BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(v7))) {
                 if (sub_02062D4C(v7)) {
                     sub_02062B68(v7);
-                    v2 = sub_02067A58(v7);
+                    v2 = BerryPatchGraphics_GetGraphicsObject(v7);
                 }
             }
 
@@ -1032,7 +1032,7 @@ static void ov5_021F7654(MapObject *param0, int param1)
     v0.y = (((param1) << 4) * FX32_ONE);
 
     MapObject_SetPos(param0, &v0);
-    MapObject_SetY(param0, ((param1) * 2));
+    MapObject_SetY(param0, (param1) * 2);
 
     v1 = ov5_021EB1A0(param0);
 
