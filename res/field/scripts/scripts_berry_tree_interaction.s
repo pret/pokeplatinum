@@ -12,9 +12,9 @@
 
 
     ScriptEntry BerryTreeMainScript
-    ScriptEntry PlantBerryScript
-    ScriptEntry WaterBerryScript
-    ScriptEntry ApplyMulchScript
+    ScriptEntry BerryTree_PlantBerryScript
+    ScriptEntry BerryTree_WaterBerryScript
+    ScriptEntry BerryTree_ApplyMulchScript
     ScriptEntryEnd
 
 BerryTreeMainScript:
@@ -25,222 +25,222 @@ BerryTreeMainScript:
     GetBerryYield VAR_BerryYield
     GetBerryGrowthStage VAR_RESULT
     SetVar VAR_MenuSelection, VAR_RESULT
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_NONE, CheckExistingMulch
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_PLANTED, HandleBerryPlanted
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_SPROUTED, HandleBerrySprouted
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_GROWING, HandleBerryGrowing
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_BLOOMING, HandleBerryBlooming
-    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_FRUIT, HandleBerryFruit
-    GoTo CheckExistingMulch
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_NONE, BerryTree_CheckExistingMulch
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_PLANTED, BerryTree_PlantedState
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_SPROUTED, BerryTree_SproutedState
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_GROWING, BerryTree_GrowingState
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_BLOOMING, BerryTree_BloomingState
+    GoToIfEq VAR_MenuSelection, BERRY_GROWTH_STAGE_FRUIT, BerryTree_FruitState
+    GoTo BerryTree_CheckExistingMulch
     End
 
-HandleBerryPlanted:
-    Call CheckPlayerHasSprayduck
-    GoToIfEq VAR_RESULT, 0, HandleBerryPlantedNoWater
+BerryTree_PlantedState:
+    Call BerryTree_CheckPlayerHasSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_PlantedStateNoWater
     BufferItemNameWithArticle 0, VAR_BerryItemID
     CapitalizeFirstLetter 0
     Message BerryTrees_Text_BerryWasPlantedHere
-    GoTo OfferWatering
+    GoTo BerryTree_OfferWatering
 
-HandleBerryPlantedNoWater:
+BerryTree_PlantedStateNoWater:
     BufferItemNameWithArticle 0, VAR_BerryItemID
     CapitalizeFirstLetter 0
     Message BerryTrees_Text_BerryWasPlantedHereAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-HandleBerrySprouted:
-    Call CheckPlayerHasSprayduck
-    GoToIfEq VAR_RESULT, 0, HandleBerrySproutedNoWater
+BerryTree_SproutedState:
+    Call BerryTree_CheckPlayerHasSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_SproutedStateNoWater
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantHasSprouted
-    GoTo OfferWatering
+    GoTo BerryTree_OfferWatering
 
-HandleBerrySproutedNoWater:
+BerryTree_SproutedStateNoWater:
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantHasSproutedAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-HandleBerryGrowing:
-    Call CheckPlayerHasSprayduck
-    GoToIfEq VAR_RESULT, 0, HandleBerryGrowingNoWater
+BerryTree_GrowingState:
+    Call BerryTree_CheckPlayerHasSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_GrowingStateNoWater
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantIsGrowingBigger
-    GoTo OfferWatering
+    GoTo BerryTree_OfferWatering
 
-HandleBerryGrowingNoWater:
+BerryTree_GrowingStateNoWater:
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantIsGrowingBiggerAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-HandleBerryBlooming:
-    Call CheckPlayerHasSprayduck
-    GoToIfEq VAR_RESULT, 0, HandleBerryBloomingNoWater
+BerryTree_BloomingState:
+    Call BerryTree_CheckPlayerHasSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_BloomingStateNoWater
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantIsInBloom
-    GoTo OfferWatering
+    GoTo BerryTree_OfferWatering
 
-HandleBerryBloomingNoWater:
+BerryTree_BloomingStateNoWater:
     BufferBerryName 0, VAR_BerryItemID
     Message BerryTrees_Text_BerryPlantIsInBloomAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-CheckPlayerHasSprayduck:
+BerryTree_CheckPlayerHasSprayduck:
     GetPlayerDir VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, PlayerDoesNotHaveSprayduck
+    GoToIfNe VAR_RESULT, 0, BerryTree_PlayerDoesNotHaveSprayduck
     CheckItem ITEM_SPRAYDUCK, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, PlayerDoesNotHaveSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_PlayerDoesNotHaveSprayduck
     SetVar VAR_RESULT, 1
     Return
 
-PlayerDoesNotHaveSprayduck:
+BerryTree_PlayerDoesNotHaveSprayduck:
     SetVar VAR_RESULT, 0
     Return
 
-CheckPlayerHasMulch:
+BerryTree_CheckPlayerHasMulch:
     CheckItem ITEM_GROWTH_MULCH, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PlayerHasMulch
+    GoToIfEq VAR_RESULT, 1, BerryTree_PlayerHasMulch
     CheckItem ITEM_DAMP_MULCH, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PlayerHasMulch
+    GoToIfEq VAR_RESULT, 1, BerryTree_PlayerHasMulch
     CheckItem ITEM_STABLE_MULCH, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PlayerHasMulch
+    GoToIfEq VAR_RESULT, 1, BerryTree_PlayerHasMulch
     CheckItem ITEM_GOOEY_MULCH, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PlayerHasMulch
+    GoToIfEq VAR_RESULT, 1, BerryTree_PlayerHasMulch
     SetVar VAR_RESULT, 0
     Return
 
-PlayerHasMulch:
+BerryTree_PlayerHasMulch:
     SetVar VAR_RESULT, 1
     Return
 
-OfferWatering:
+BerryTree_OfferWatering:
     Message BerryTrees_Text_WantToSprinkleWater
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, CloseAndEnd
+    GoToIfEq VAR_RESULT, MENU_NO, BerryTree_CloseAndEnd
     CloseMessage
     SetBerryWateringState BERRY_WATERING_START
     Message BerryTrees_Text_ThereAllHappy
     WaitABXPadPress
     SetBerryWateringState BERRY_WATERING_END
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-HandleBerryFruit:
+BerryTree_FruitState:
     BufferNumber 1, VAR_BerryYield
-    GoToIfGt VAR_BerryYield, 1, ShowMultipleBerriesMessage
+    GoToIfGt VAR_BerryYield, 1, BerryTree_ShowMultipleBerriesMessage
     BufferItemNameWithArticle 0, VAR_BerryItemID
     Message BerryTrees_Text_ThereIsBerryWantToPickIt
-    GoTo ShowHarvestMenu
+    GoTo BerryTree_ShowHarvestMenu
 
-ShowMultipleBerriesMessage:
+BerryTree_ShowMultipleBerriesMessage:
     BufferItemNamePlural 0, VAR_BerryItemID
     Message BerryTrees_Text_ThereAreBerriesWantToPickThem
-ShowHarvestMenu:
+BerryTree_ShowHarvestMenu:
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, HandleHarvestDeclined
-    GoToIfCannotFitItem VAR_BerryItemID, VAR_BerryYield, VAR_RESULT, CheckBagSpace
+    GoToIfEq VAR_RESULT, MENU_NO, BerryTree_HandleHarvestDeclined
+    GoToIfCannotFitItem VAR_BerryItemID, VAR_BerryYield, VAR_RESULT, BerryTree_CheckBagSpace
     BufferNumber 1, VAR_BerryYield
-    GoToIfGt VAR_BerryYield, 1, ShowMultipleBerriesPickedMessage
+    GoToIfGt VAR_BerryYield, 1, BerryTree_ShowMultipleBerriesPickedMessage
     BufferItemName 0, VAR_BerryItemID
     Message BerryTrees_Text_YouPickedTheBerry
-    GoTo HarvestBerries
+    GoTo BerryTree_HarvestBerries
 
-ShowMultipleBerriesPickedMessage:
+BerryTree_ShowMultipleBerriesPickedMessage:
     BufferItemNamePlural 0, VAR_BerryItemID
     Message BerryTrees_Text_YouPickedTheBerries
-HarvestBerries:
+BerryTree_HarvestBerries:
     PlaySound SEQ_KINOMI
     WaitSound
     HarvestBerry
     BufferPlayerName 0
-    GoToIfGt VAR_BerryYield, 1, ShowMultipleBerriesStoredMessage
+    GoToIfGt VAR_BerryYield, 1, BerryTree_ShowMultipleBerriesStoredMessage
     BufferItemName 1, VAR_BerryItemID
-    GoTo ShowBerriesStoredMessage
+    GoTo BerryTree_ShowBerriesStoredMessage
 
-ShowMultipleBerriesStoredMessage:
+BerryTree_ShowMultipleBerriesStoredMessage:
     BufferItemNamePlural 1, VAR_BerryItemID
-ShowBerriesStoredMessage:
+BerryTree_ShowBerriesStoredMessage:
     GetItemPocket VAR_BerryItemID, VAR_RESULT
     BufferPocketName 3, VAR_RESULT
     Message BerryTrees_Text_PlayerPutAwayBerriesInBagPocket
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-CheckBagSpace:
-    GoToIfGt VAR_BerryYield, 1, ShowMultipleBerriesBagFullMessage
+BerryTree_CheckBagSpace:
+    GoToIfGt VAR_BerryYield, 1, BerryTree_ShowMultipleBerriesBagFullMessage
     BufferItemName 0, VAR_BerryItemID
-    GoTo ShowBagFullMessage
+    GoTo BerryTree_ShowBagFullMessage
 
-ShowMultipleBerriesBagFullMessage:
+BerryTree_ShowMultipleBerriesBagFullMessage:
     BufferItemNamePlural 0, VAR_BerryItemID
-ShowBagFullMessage:
+BerryTree_ShowBagFullMessage:
     Message BerryTrees_Text_BagIsFullBerriesCouldntBeTaken
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-HandleHarvestDeclined:
-    Call CheckPlayerHasSprayduck
-    GoToIfEq VAR_RESULT, 0, ShowLeftBerryMessage
-    GoTo OfferWatering
+BerryTree_HandleHarvestDeclined:
+    Call BerryTree_CheckPlayerHasSprayduck
+    GoToIfEq VAR_RESULT, 0, BerryTree_ShowLeftBerryMessage
+    GoTo BerryTree_OfferWatering
 
-ShowLeftBerryMessage:
+BerryTree_ShowLeftBerryMessage:
     BufferPlayerName 0
-    GoToIfGt VAR_BerryYield, 1, ShowLeftBerriesMessage
+    GoToIfGt VAR_BerryYield, 1, BerryTree_ShowLeftBerriesMessage
     BufferItemName 1, VAR_BerryItemID
     Message BerryTrees_Text_PlayerLeftBerryWhereItWas
-    GoTo EndLeftBerryMessage
+    GoTo BerryTree_EndLeftBerryMessage
 
-ShowLeftBerriesMessage:
+BerryTree_ShowLeftBerriesMessage:
     BufferItemNamePlural 1, VAR_BerryItemID
     Message BerryTrees_Text_PlayerLeftBerriesWhereTheyWere
-EndLeftBerryMessage:
+BerryTree_EndLeftBerryMessage:
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-CheckExistingMulch:
+BerryTree_CheckExistingMulch:
     GetBerryMulchType VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, CheckEmptySoil
+    GoToIfEq VAR_RESULT, 0, BerryTree_CheckEmptySoil
     CheckPocketHasItems POCKET_BERRIES, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, ShowMulchExistsMessage
+    GoToIfEq VAR_RESULT, 0, BerryTree_ShowMulchExistsMessage
     GetBerryMulchType VAR_RESULT
     BufferItemName 0, VAR_RESULT
     Message BerryTrees_Text_MulchHasBeenLaidDown
-    GoTo OfferPlantBerry
+    GoTo BerryTree_OfferPlantBerry
 
-CheckEmptySoil:
+BerryTree_CheckEmptySoil:
     GetPlayerDir VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, ShowEmptySoilMessage
-    Call CheckPlayerHasMulch
-    GoToIfEq VAR_RESULT, 1, ShowSoilMenu
+    GoToIfNe VAR_RESULT, 0, BerryTree_ShowEmptySoilMessage
+    Call BerryTree_CheckPlayerHasMulch
+    GoToIfEq VAR_RESULT, 1, BerryTree_ShowSoilMenu
     CheckPocketHasItems POCKET_BERRIES, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, ShowEmptySoilMessage
+    GoToIfEq VAR_RESULT, 0, BerryTree_ShowEmptySoilMessage
     Message BerryTrees_Text_SoftEarthySoil
-    GoTo OfferPlantBerry
+    GoTo BerryTree_OfferPlantBerry
 
-ShowSoilMenu:
+BerryTree_ShowSoilMenu:
     Message BerryTrees_Text_SoftEarthySoil
     CheckPocketHasItems POCKET_BERRIES, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, OfferFertilizer
+    GoToIfEq VAR_RESULT, 0, BerryTree_OfferFertilizer
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm BerryTrees_Text_Fertilize, 0
     AddMenuEntryImm BerryTrees_Text_PlantBerry, 1
     AddMenuEntryImm BerryTrees_Text_Exit, 2
     ShowMenu
     SetVar VAR_MenuSelection, VAR_RESULT
-    GoToIfEq VAR_MenuSelection, 0, OpenMulchMenu
-    GoToIfEq VAR_MenuSelection, 1, OpenBerryMenu
-    GoToIfEq VAR_MenuSelection, 2, CloseAndEnd
-    GoTo CloseAndEnd
+    GoToIfEq VAR_MenuSelection, 0, BerryTree_OpenMulchMenu
+    GoToIfEq VAR_MenuSelection, 1, BerryTree_OpenBerryMenu
+    GoToIfEq VAR_MenuSelection, 2, BerryTree_CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-OfferFertilizer:
+BerryTree_OfferFertilizer:
     Message BerryTrees_Text_PutDownSomeFertilizer
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, OpenMulchMenu
-    GoTo CloseAndEnd
+    GoToIfEq VAR_RESULT, MENU_YES, BerryTree_OpenMulchMenu
+    GoTo BerryTree_CloseAndEnd
 
-OpenMulchMenu:
+BerryTree_OpenMulchMenu:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -250,33 +250,33 @@ OpenMulchMenu:
     WaitFadeScreen
     GetSelectedItem VAR_SelectedMulchID
     SetVar VAR_MenuSelection, VAR_SelectedMulchID
-    GoToIfEq VAR_MenuSelection, ITEM_NONE, ReleaseAndEnd
-    GoToIfEq VAR_MenuSelection, ITEM_GROWTH_MULCH, ApplyMulch
-    GoToIfEq VAR_MenuSelection, ITEM_DAMP_MULCH, ApplyMulch
-    GoToIfEq VAR_MenuSelection, ITEM_STABLE_MULCH, ApplyMulch
-    GoToIfEq VAR_MenuSelection, ITEM_GOOEY_MULCH, ApplyMulch
-    GoTo ReleaseAndEnd
+    GoToIfEq VAR_MenuSelection, ITEM_NONE, BerryTree_ReleaseAndEnd
+    GoToIfEq VAR_MenuSelection, ITEM_GROWTH_MULCH, BerryTree_ApplyMulch
+    GoToIfEq VAR_MenuSelection, ITEM_DAMP_MULCH, BerryTree_ApplyMulch
+    GoToIfEq VAR_MenuSelection, ITEM_STABLE_MULCH, BerryTree_ApplyMulch
+    GoToIfEq VAR_MenuSelection, ITEM_GOOEY_MULCH, BerryTree_ApplyMulch
+    GoTo BerryTree_ReleaseAndEnd
 
-ApplyMulch:
+BerryTree_ApplyMulch:
     RemoveItem VAR_SelectedMulchID, 1, VAR_TempItemCount
     SetBerryMulch VAR_SelectedMulchID
     CheckPocketHasItems POCKET_BERRIES, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, ShowMulchAppliedMessage
+    GoToIfEq VAR_RESULT, 0, BerryTree_ShowMulchAppliedMessage
     BufferItemName 0, VAR_SelectedMulchID
     Message BerryTrees_Text_MulchWasScatteredOnSoil
-    GoTo OfferPlantBerry
+    GoTo BerryTree_OfferPlantBerry
 
-ShowMulchAppliedMessage:
+BerryTree_ShowMulchAppliedMessage:
     BufferItemName 0, VAR_SelectedMulchID
     Message BerryTrees_Text_MulchWasScatteredOnSoilAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-OfferPlantBerry:
+BerryTree_OfferPlantBerry:
     Message BerryTrees_Text_WantToPlantBerry
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, CloseAndEnd
-OpenBerryMenu:
+    GoToIfEq VAR_RESULT, MENU_NO, BerryTree_CloseAndEnd
+BerryTree_OpenBerryMenu:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -285,33 +285,33 @@ OpenBerryMenu:
     FadeScreenIn
     WaitFadeScreen
     GetSelectedItem VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, ReleaseAndEnd
+    GoToIfEq VAR_RESULT, 0, BerryTree_ReleaseAndEnd
     BufferItemName 0, VAR_RESULT
     Message BerryTrees_Text_BerryWasPlantedInSoftSoil
     WaitABXPadPress
     RemoveItem VAR_RESULT, 1, VAR_TempItemCount
     PlantBerry VAR_RESULT
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-CloseAndEnd:
+BerryTree_CloseAndEnd:
     CloseMessage
-ReleaseAndEnd:
+BerryTree_ReleaseAndEnd:
     ReleaseAll
     End
 
-ShowEmptySoilMessage:
+BerryTree_ShowEmptySoilMessage:
     Message BerryTrees_Text_SoftEarthySoilAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-ShowMulchExistsMessage:
+BerryTree_ShowMulchExistsMessage:
     GetBerryMulchType VAR_RESULT
     BufferItemName 0, VAR_RESULT
     Message BerryTrees_Text_MulchHasBeenLaidDownAfterHarvest
     WaitABXPadPress
-    GoTo CloseAndEnd
+    GoTo BerryTree_CloseAndEnd
 
-PlantBerryScript:
+BerryTree_PlantBerryScript:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -324,7 +324,7 @@ PlantBerryScript:
     ReleaseAll
     End
 
-WaterBerryScript:
+BerryTree_WaterBerryScript:
     LockAll
     SetBerryWateringState BERRY_WATERING_START
     Message BerryTrees_Text_ThereAllHappy
@@ -334,8 +334,8 @@ WaterBerryScript:
     ReleaseAll
     End
 
-ApplyMulchScript:
+BerryTree_ApplyMulchScript:
     LockAll
     SetVar VAR_RESULT, VAR_BerryItemID
     SetVar VAR_SelectedMulchID, VAR_BerryItemID
-    GoTo ApplyMulch
+    GoTo BerryTree_ApplyMulch
