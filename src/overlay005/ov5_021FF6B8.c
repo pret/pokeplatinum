@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay005/berry_patch_effects.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
@@ -9,7 +10,6 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
 #include "overlay005/ov5_021F1CC8.h"
-#include "overlay005/berry_patch_effects.h"
 #include "overlay005/ov5_021F23D0.h"
 #include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F2850.h"

@@ -8,9 +8,9 @@
 
 #include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
+#include "overlay005/berry_patch_effects.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/berry_patch_effects.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "berry_patch_manager.h"

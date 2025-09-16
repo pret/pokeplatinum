@@ -124,13 +124,13 @@ void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
     renderManager = ov5_021DF578(mapObject);
 
     context.renderManager = renderManager;
-    context.graphicsManager = ov5_021DF55C(renderManager, 12);  // Get graphics manager from overlay 12
+    context.graphicsManager = ov5_021DF55C(renderManager, 12); // Get graphics manager from overlay 12
     context.mapObject = mapObject;
 
     MapObject_GetPosPtr(mapObject, &position);
 
     priority = 0;
-    effectPriority = sub_02062C0C(mapObject) + 1;  // Get map object priority and add 1 for effect
+    effectPriority = sub_02062C0C(mapObject) + 1; // Get map object priority and add 1 for effect
 
     ov5_021DF72C(renderManager, &BerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
@@ -233,8 +233,8 @@ static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *count
     if (counter->isEnabled == FALSE) {
         counter->isEnabled = TRUE;
         // Load sparkle effect graphics resources
-        ov5_021DF9E0(counter->renderManager, 11, 109);  // Load graphics resource 109 into slot 11
-        ov5_021DFA14(counter->renderManager, 11, 181);  // Load additional graphics resource 181 into slot 11
+        ov5_021DF9E0(counter->renderManager, 11, 109); // Load graphics resource 109 into slot 11
+        ov5_021DFA14(counter->renderManager, 11, 181); // Load additional graphics resource 181 into slot 11
         ov5_021DFA3C(counter->renderManager, 12, 14, 1); // Create texture resource 14 in slot 12
         ov5_021DF864(counter->renderManager, 13, 11, 11, 12, 0, BerryPatchSparkleEffectData); // Create graphics object 13 using resources 11, 11, 12
     }
@@ -245,10 +245,10 @@ static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *coun
     if (counter->isEnabled == TRUE) {
         counter->isEnabled = FALSE;
         // Clean up sparkle effect graphics resources (in reverse order of creation)
-        ov5_021DFA08(counter->renderManager, 11);  // Free graphics resource from slot 11
-        ov5_021DFA30(counter->renderManager, 11);  // Free additional graphics resource from slot 11
-        ov5_021DFA7C(counter->renderManager, 12);  // Remove texture resource from slot 12
-        ov5_021DF9D4(counter->renderManager, 13);  // Destroy graphics object from slot 13
+        ov5_021DFA08(counter->renderManager, 11); // Free graphics resource from slot 11
+        ov5_021DFA30(counter->renderManager, 11); // Free additional graphics resource from slot 11
+        ov5_021DFA7C(counter->renderManager, 12); // Remove texture resource from slot 12
+        ov5_021DF9D4(counter->renderManager, 13); // Destroy graphics object from slot 13
     }
 }
 
@@ -275,11 +275,11 @@ UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObje
 
     renderManager = ov5_021DF578(mapObject);
     ov5_021ECDA0(mapObject, &position);
-    position.z += (FX32_ONE * 8);  // Offset sparkle effect 8 units above ground
+    position.z += (FX32_ONE * 8); // Offset sparkle effect 8 units above ground
 
     effectContext.renderManager = renderManager;
-    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);  // Retrieve stored effect counter object
-    effectTask = ov5_021DF72C(renderManager, &BerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);  // Priority 255 for sparkle effect
+    effectContext.effectCounter = ov5_021DF55C(renderManager, 28); // Retrieve stored effect counter object
+    effectTask = ov5_021DF72C(renderManager, &BerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255); // Priority 255 for sparkle effect
 
     return effectTask;
 }
@@ -297,7 +297,7 @@ static int BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *
     BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
     sub_020715E4(effect, &position);
 
-    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);  // Create graphics object with ID 13
+    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position); // Create graphics object with ID 13
     BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
 
     return 1;
@@ -322,7 +322,7 @@ static void BerryPatchSparkleEffect_Update(UnkStruct_ov101_021D5D90 *effect, voi
         sparkleEffect->isAnimating = FALSE;
         sparkleEffect->animationFrame++;
 
-        if (sparkleEffect->animationFrame >= 5) {  // Animation has 5 frames total
+        if (sparkleEffect->animationFrame >= 5) { // Animation has 5 frames total
             ov5_021DF74C(effect);
             return;
         }
@@ -357,14 +357,14 @@ static const UnkStruct_ov101_021D86B0 BerryPatchSparkleEffectDefinition = {
 // Resource IDs for different moisture levels of berry patches
 // These correspond to different visual states: dry, moist, wet
 static const u32 BerryPatchMoistureResourceIDs[3] = {
-    77,  // Dry berry patch moisture indicator
-    76,  // Moist berry patch moisture indicator  
-    75   // Wet berry patch moisture indicator
+    77, // Dry berry patch moisture indicator
+    76, // Moist berry patch moisture indicator
+    75 // Wet berry patch moisture indicator
 };
 
 // Sparkle effect configuration data for berry patches
 // Each entry defines: { model_variant, animation_frame_count, effect_type }
 static const UnkStruct_020217F4 BerryPatchSparkleEffectData[] = {
-    { 0, 9, 1 },  // Animated sparkle effect (9 animation frames, type 1)
-    { 0, 0, 2 }   // Static sparkle effect (no animation, type 2)
+    { 0, 9, 1 }, // Animated sparkle effect (9 animation frames, type 1)
+    { 0, 0, 2 } // Static sparkle effect (no animation, type 2)
 };
