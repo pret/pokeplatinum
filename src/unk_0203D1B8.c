@@ -280,7 +280,7 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
 void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
-    void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELD2);
+    void *v1 = BagContext_CreateWithPockets(v0, Unk_020EA164, HEAP_ID_FIELD2);
 
     BagContext_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
     BagContext_SetMapLoadType(v1, fieldSystem->mapLoadType);
@@ -295,42 +295,42 @@ void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
     return v1;
 }
 
-void *sub_0203D264(FieldSystem *fieldSystem, int param1)
+void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
 {
-    void *v0;
-    static const u8 *v1;
-    static const u8 v2[] = { 4, 0xff };
-    static const u8 v3[] = { 0, 0xff };
-    Bag *v4 = SaveData_GetBag(fieldSystem->saveData);
+    void *bagContext;
+    static const u8 *pocketList;
+    static const u8 berriesPockets[] = { POCKET_BERRIES, 255 };
+    static const u8 itemsPockets[] = { POCKET_ITEMS, 255 };
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
-    switch (param1) {
+    switch (pocketType) {
     case 0:
-        v1 = v3;
+        pocketList = itemsPockets;
         break;
     case 1:
-        v1 = v2;
+        pocketList = berriesPockets;
         break;
     default:
         GF_ASSERT(0);
     }
 
-    v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD3);
+    bagContext = BagContext_CreateWithPockets(bag, pocketList, HEAP_ID_FIELD3);
 
-    BagContext_Init(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
-    sub_0203D1E4(fieldSystem, v0);
+    BagContext_Init(bagContext, fieldSystem->saveData, 3, fieldSystem->bagCursor);
+    sub_0203D1E4(fieldSystem, bagContext);
 
-    return v0;
+    return bagContext;
 }
 
-u16 sub_0203D2C4(void *param0)
+u16 BagContext_GetSelectedItem(void *bagContext)
 {
-    u16 v0 = BagContext_GetItem(param0);
+    u16 selectedItem = BagContext_GetItem(bagContext);
 
-    if ((v0 != 0) && (BagContext_GetExitCode(param0) == 5)) {
+    if (selectedItem != 0 && BagContext_GetExitCode(bagContext) == 5) {
         GF_ASSERT(0);
     }
 
-    return v0;
+    return selectedItem;
 }
 
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)

@@ -98,7 +98,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
         4, 0xff
     };
 
-    v0 = sub_0207D824(param0->unk_10->bag, v3, param0->heapID);
+    v0 = BagContext_CreateWithPockets(param0->unk_10->bag, v3, param0->heapID);
 
     if (param0->unk_06_0 == 1) {
         v1 = 5;

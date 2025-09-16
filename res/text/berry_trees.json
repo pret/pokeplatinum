@@ -2,142 +2,142 @@
   "key": 10527,
   "messages": [
     {
-      "id": "pl_msg_00000397_00000",
+      "id": "BerryTrees_Text_SoftEarthySoil",
       "en_US": "It’s soft, earthy soil.\r"
     },
     {
-      "id": "pl_msg_00000397_00001",
+      "id": "BerryTrees_Text_MulchHasBeenLaidDown",
       "en_US": "{STRVAR_1 8, 0, 0} has been laid down.\r"
     },
     {
-      "id": "pl_msg_00000397_00002",
+      "id": "BerryTrees_Text_Fertilize",
       "en_US": "FERTILIZE"
     },
     {
-      "id": "pl_msg_00000397_00003",
+      "id": "BerryTrees_Text_PlantBerry",
       "en_US": "PLANT BERRY"
     },
     {
-      "id": "pl_msg_00000397_00004",
+      "id": "BerryTrees_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000397_00005",
+      "id": "BerryTrees_Text_PutDownSomeFertilizer",
       "en_US": "Put down some fertilizer?"
     },
     {
-      "id": "pl_msg_00000397_00006",
+      "id": "BerryTrees_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000397_00007",
+      "id": "BerryTrees_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000397_00008",
+      "id": "BerryTrees_Text_WantToPlantBerry",
       "en_US": "Want to plant a Berry?"
     },
     {
-      "id": "pl_msg_00000397_00009",
+      "id": "BerryTrees_Text_YesPlantBerry",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000397_00010",
+      "id": "BerryTrees_Text_NoPlantBerry",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000397_00011",
+      "id": "BerryTrees_Text_MulchWasScatteredOnSoil",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} was scattered\n",
         "on the soil.\r"
       ]
     },
     {
-      "id": "pl_msg_00000397_00012",
+      "id": "BerryTrees_Text_BerryWasPlantedInSoftSoil",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} was planted\n",
         "in the soft, earthy soil."
       ]
     },
     {
-      "id": "pl_msg_00000397_00013",
+      "id": "BerryTrees_Text_BerryWasPlantedHere",
       "en_US": [
         "{STRVAR_1 8, 0, 0} was planted\n",
         "here.\r"
       ]
     },
     {
-      "id": "pl_msg_00000397_00014",
+      "id": "BerryTrees_Text_BerryPlantHasSprouted",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} Berry Plant\n",
         "has sprouted.\r"
       ]
     },
     {
-      "id": "pl_msg_00000397_00015",
+      "id": "BerryTrees_Text_BerryPlantIsGrowingBigger",
       "en_US": [
         "This {STRVAR_1 8, 0, 0} Plant is growing\n",
         "bigger.\r"
       ]
     },
     {
-      "id": "pl_msg_00000397_00016",
+      "id": "BerryTrees_Text_BerryPlantIsInBloom",
       "en_US": [
         "This {STRVAR_1 8, 0, 0} Plant is\n",
         "in bloom!\r"
       ]
     },
     {
-      "id": "pl_msg_00000397_00017",
+      "id": "BerryTrees_Text_WantToSprinkleWater",
       "en_US": "Want to sprinkle some water?"
     },
     {
-      "id": "pl_msg_00000397_00018",
+      "id": "BerryTrees_Text_YesWater",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000397_00019",
+      "id": "BerryTrees_Text_NoWater",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000397_00020",
+      "id": "BerryTrees_Text_ThereAllHappy",
       "en_US": "There! All happy!"
     },
     {
-      "id": "pl_msg_00000397_00021",
+      "id": "BerryTrees_Text_ThereAreBerriesWantToPickThem",
       "en_US": [
         "There are {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}!\n",
         "Want to pick them?"
       ]
     },
     {
-      "id": "pl_msg_00000397_00022",
+      "id": "BerryTrees_Text_YesPickBerries",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000397_00023",
+      "id": "BerryTrees_Text_NoPickBerries",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000397_00024",
+      "id": "BerryTrees_Text_PlayerLeftBerriesWhereTheyWere",
       "en_US": [
         "{STRVAR_1 3, 0, 0} left the {STRVAR_1 8, 1, 0}\n",
         "where they were."
       ]
     },
     {
-      "id": "pl_msg_00000397_00025",
+      "id": "BerryTrees_Text_YouPickedTheBerries",
       "en_US": "You picked the {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}.\r"
     },
     {
-      "id": "pl_msg_00000397_00026",
+      "id": "BerryTrees_Text_BagIsFullBerriesCouldntBeTaken",
       "en_US": [
         "Your Bag is full.\n",
         "The {STRVAR_1 8, 0, 0} couldn’t be taken."
       ]
     },
     {
-      "id": "pl_msg_00000397_00027",
+      "id": "BerryTrees_Text_PlayerPutAwayBerriesInBagPocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the {STRVAR_1 8, 1, 0}\n",
         "in the Bag’s {STRVAR_1 18, 3, 0} Pocket.\r",
@@ -146,64 +146,64 @@
       ]
     },
     {
-      "id": "pl_msg_00000397_00028",
+      "id": "BerryTrees_Text_SoftEarthySoilAfterHarvest",
       "en_US": "It’s soft, earthy soil."
     },
     {
-      "id": "pl_msg_00000397_00029",
+      "id": "BerryTrees_Text_MulchHasBeenLaidDownAfterHarvest",
       "en_US": "{STRVAR_1 8, 0, 0} has been laid down."
     },
     {
-      "id": "pl_msg_00000397_00030",
+      "id": "BerryTrees_Text_MulchWasScatteredOnSoilAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} was scattered\n",
         "on the soil."
       ]
     },
     {
-      "id": "pl_msg_00000397_00031",
+      "id": "BerryTrees_Text_BerryWasPlantedHereAfterHarvest",
       "en_US": [
         "{STRVAR_1 8, 0, 0} was planted\n",
         "here."
       ]
     },
     {
-      "id": "pl_msg_00000397_00032",
+      "id": "BerryTrees_Text_BerryPlantHasSproutedAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} Berry Plant\n",
         "has sprouted."
       ]
     },
     {
-      "id": "pl_msg_00000397_00033",
+      "id": "BerryTrees_Text_BerryPlantIsGrowingBiggerAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} Plant is growing\n",
         "bigger."
       ]
     },
     {
-      "id": "pl_msg_00000397_00034",
+      "id": "BerryTrees_Text_BerryPlantIsInBloomAfterHarvest",
       "en_US": [
         "This {STRVAR_1 8, 0, 0} Plant is\n",
         "in bloom!"
       ]
     },
     {
-      "id": "pl_msg_00000397_00035",
+      "id": "BerryTrees_Text_ThereIsBerryWantToPickIt",
       "en_US": [
         "There is {STRVAR_1 8, 0, 0}!\n",
         "Want to pick it?"
       ]
     },
     {
-      "id": "pl_msg_00000397_00036",
+      "id": "BerryTrees_Text_PlayerLeftBerryWhereItWas",
       "en_US": [
         "{STRVAR_1 3, 0, 0} left the {STRVAR_1 8, 1, 0}\n",
         "where it was."
       ]
     },
     {
-      "id": "pl_msg_00000397_00037",
+      "id": "BerryTrees_Text_YouPickedTheBerry",
       "en_US": "You picked the {STRVAR_1 8, 0, 0}.\r"
     }
   ]
