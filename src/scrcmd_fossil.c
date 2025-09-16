@@ -1,4 +1,4 @@
-#include "unk_0204E240.h"
+#include "scrcmd_fossil.h"
 
 #include <nitro.h>
 #include <string.h>

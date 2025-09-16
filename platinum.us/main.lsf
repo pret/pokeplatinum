@@ -203,7 +203,7 @@ Static main
 	Object main.nef.p/src_scrcmd_daycare.c.o
 	Object main.nef.p/src_scrcmd_amity_square.c.o
 	Object main.nef.p/src_scrcmd_party.c.o
-	Object main.nef.p/src_unk_0204E240.c.o
+	Object main.nef.p/src_scrcmd_fossil.c.o
 	Object main.nef.p/src_scrcmd_game_corner_prize.c.o
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_scrcmd_item.c.o
