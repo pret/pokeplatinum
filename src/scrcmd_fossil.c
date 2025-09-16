@@ -25,7 +25,7 @@ BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 i;
-    u16 totalCount; // dummy variable to preserve hash
+    u16 totalCount;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     for (i = 0, totalCount = 0; i < 7; i++) {
