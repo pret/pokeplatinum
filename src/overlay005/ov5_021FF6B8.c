@@ -9,7 +9,7 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
 #include "overlay005/ov5_021F1CC8.h"
-#include "overlay005/ov5_021F204C.h"
+#include "overlay005/berry_patch_effects.h"
 #include "overlay005/ov5_021F23D0.h"
 #include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F2850.h"

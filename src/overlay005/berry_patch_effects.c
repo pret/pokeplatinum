@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021F204C.h"
+#include "overlay005/berry_patch_effects.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -101,7 +101,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
             manager->renderManager, &manager->resources[i], 0, BerryPatchMoistureResourceIDs[i], 0);
         sub_02073B70(&manager->resourceData[i], &manager->resources[i]);
         i++;
-    } while (i < (2 + 1));
+    } while (i < 3);
 }
 
 static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *manager)
@@ -111,7 +111,7 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
     do {
         sub_0207395C(&manager->resources[i]);
         i++;
-    } while (i < (2 + 1));
+    } while (i < 3);
 }
 
 void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
@@ -167,7 +167,7 @@ static void BerryPatchMoistureEffect_Update(UnkStruct_ov101_021D5D90 *effectTask
 
     berryPatchEffect->isHidden = FALSE;
 
-    if (MapObject_CheckStatusFlag(mapObject, MAP_OBJ_STATUS_HIDE) || !BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject)) {
+    if (MapObject_CheckStatusFlag(mapObject, MAP_OBJ_STATUS_HIDE) == TRUE || !BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject)) {
         berryPatchEffect->isHidden = TRUE;
         return;
     }
@@ -278,7 +278,7 @@ UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObje
     position.z += (FX32_ONE * 8);  // Offset sparkle effect 8 units above ground
 
     effectContext.renderManager = renderManager;
-    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);  // Get effect counter from overlay 28
+    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);  // Retrieve stored effect counter object
     effectTask = ov5_021DF72C(renderManager, &BerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);  // Priority 255 for sparkle effect
 
     return effectTask;
