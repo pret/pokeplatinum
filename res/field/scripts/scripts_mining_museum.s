@@ -111,7 +111,7 @@ MiningMuseum_FossilMenuContinue:
     CallIfEq VAR_MENU_SELECTION, 4, MiningMuseum_GetClawFossilVar
     CallIfEq VAR_MENU_SELECTION, 5, MiningMuseum_GetArmorFossilVar
     CallIfEq VAR_MENU_SELECTION, 6, MiningMuseum_GetSkullFossilVar
-    GetFossilTypeID VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
+    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
     GoToIfEq VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_DeclinedRevival
     RemoveItem VAR_SELECTED_FOSSIL_ITEM, 1, VAR_RESULT
     GoTo MiningMuseum_ExtractingPokemon
@@ -209,7 +209,7 @@ MiningMuseum_GetSkullFossilVar:
 
 MiningMuseum_SingleFossilRevival:
     FindFossilAtThreshold VAR_SELECTED_FOSSIL_ITEM, VAR_MENU_ENTRY_INDEX, 1
-    GetFossilTypeID VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
+    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
     RemoveItem VAR_SELECTED_FOSSIL_ITEM, 1, VAR_RESULT
     GoTo MiningMuseum_ExtractingPokemon
 

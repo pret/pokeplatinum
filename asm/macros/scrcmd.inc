@@ -2814,7 +2814,7 @@
     .short 499
     .endm
 
-    .macro GetFossilTypeID speciesVar, itemVar
+    .macro GetSpeciesFromFossil speciesVar, itemVar
     .short 500
     .short \speciesVar
     .short \itemVar

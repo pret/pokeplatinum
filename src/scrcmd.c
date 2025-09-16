@@ -1269,7 +1269,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetFossilCount,
     ScrCmd_Dummy_1F2,
     ScrCmd_Dummy_1F3,
-    ScrCmd_GetFossilTypeID,
+    ScrCmd_GetSpeciesFromFossil,
     ScrCmd_FindFossilAtThreshold,
     ScrCmd_CountPartyMonsBelowLevelThreshold,
     ScrCmd_SurvivePoison,

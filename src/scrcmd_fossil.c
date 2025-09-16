@@ -11,7 +11,7 @@
 #include "field_script_context.h"
 #include "inlines.h"
 
-const u16 sFossilItemToTypeMapping[7][2] = {
+const u16 sFossilItemToSpeciesMapping[7][2] = {
     { ITEM_OLD_AMBER, SPECIES_AERODACTYL },
     { ITEM_HELIX_FOSSIL, SPECIES_OMANYTE },
     { ITEM_DOME_FOSSIL, SPECIES_KABUTO },
@@ -29,7 +29,7 @@ BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     for (i = 0, totalCount = 0; i < 7; i++) {
-        totalCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToTypeMapping[i][0], HEAP_ID_FIELD1);
+        totalCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i][0], HEAP_ID_FIELD1);
     }
 
     *destVar = totalCount;
@@ -37,7 +37,7 @@ BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetFossilTypeID(ScriptContext *ctx)
+BOOL ScrCmd_GetSpeciesFromFossil(ScriptContext *ctx)
 {
     u16 i;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -46,8 +46,8 @@ BOOL ScrCmd_GetFossilTypeID(ScriptContext *ctx)
     *destVar = 0;
 
     for (i = 0; i < 7; i++) {
-        if (sFossilItemToTypeMapping[i][0] == inputItemID) {
-            *destVar = sFossilItemToTypeMapping[i][1];
+        if (sFossilItemToSpeciesMapping[i][0] == inputItemID) {
+            *destVar = sFossilItemToSpeciesMapping[i][1];
             break;
         }
     }
@@ -68,10 +68,10 @@ BOOL ScrCmd_FindFossilAtThreshold(ScriptContext *ctx)
     *outIndex = 0;
 
     for (i = 0, currentCount = 0; i < 7; i++) {
-        currentCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToTypeMapping[i][0], HEAP_ID_FIELD1);
+        currentCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i][0], HEAP_ID_FIELD1);
 
         if (currentCount >= threshold) {
-            *outItemID = sFossilItemToTypeMapping[i][0];
+            *outItemID = sFossilItemToSpeciesMapping[i][0];
             *outIndex = i;
             break;
         }
