@@ -2801,26 +2801,26 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_1F1 arg0
+    .macro GetFossilCount arg0
     .short 497
     .short \arg0
     .endm
 
-    .macro ScrCmd_1F2
+    .macro ScrCmd_Unused_1F2
     .short 498
     .endm
 
-    .macro ScrCmd_1F3
+    .macro ScrCmd_Unused_1F3
     .short 499
     .endm
 
-    .macro ScrCmd_1F4 arg0, arg1
+    .macro GetFossilTypeID arg0, arg1
     .short 500
     .short \arg0
     .short \arg1
     .endm
 
-    .macro ScrCmd_1F5 arg0, arg1, arg2
+    .macro FindFossilAtThreshold arg0, arg1, arg2
     .short 501
     .short \arg0
     .short \arg1

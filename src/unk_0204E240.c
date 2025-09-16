@@ -3,49 +3,51 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "field/field_system.h"
 
 #include "bag.h"
 #include "field_script_context.h"
 #include "inlines.h"
 
-const u16 Unk_020EBFFC[7][2] = {
-    { 0x67, 0x8E },
-    { 0x65, 0x8A },
-    { 0x66, 0x8C },
-    { 0x63, 0x159 },
-    { 0x64, 0x15B },
-    { 0x68, 0x19A },
-    { 0x69, 0x198 }
+const u16 sFossilItemToTypeMapping[7][2] = {
+    { ITEM_OLD_AMBER, FOSSIL_TYPE_OLD_AMBER }, // dataID 0x67 → 0x8E
+    { ITEM_HELIX_FOSSIL, FOSSIL_TYPE_HELIX }, // dataID 0x65 → 0x8A
+    { ITEM_DOME_FOSSIL, FOSSIL_TYPE_DOME }, // dataID 0x66 → 0x8C
+    { ITEM_ROOT_FOSSIL, FOSSIL_TYPE_ROOT }, // dataID 0x63 → 0x159
+    { ITEM_CLAW_FOSSIL, FOSSIL_TYPE_CLAW }, // dataID 0x64 → 0x15B
+    { ITEM_ARMOR_FOSSIL, FOSSIL_TYPE_ARMOR }, // dataID 0x68 → 0x19A
+    { ITEM_SKULL_FOSSIL, FOSSIL_TYPE_SKULL } // dataID 0x69 → 0x198
 };
 
-BOOL ScrCmd_1F1(ScriptContext *param0)
+BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u8 v1;
-    u16 v2, v3;
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 i;
+    u16 dummy, totalCount; // dummy variable to preserve hash
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD1);
+    for (i = 0, totalCount = 0; i < 7; i++) {
+        totalCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToTypeMapping[i][0], HEAP_ID_FIELD1);
     }
 
-    *v4 = v3;
+    *destVar = totalCount;
 
     return 0;
 }
 
-BOOL ScrCmd_1F4(ScriptContext *param0)
+BOOL ScrCmd_GetFossilTypeID(ScriptContext *ctx)
 {
-    u16 v0;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
+    u16 i;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 inputItemID = ScriptContext_GetVar(ctx);
 
-    *v1 = 0;
+    *destVar = 0;
 
-    for (v0 = 0; v0 < 7; v0++) {
-        if (Unk_020EBFFC[v0][0] == v2) {
-            *v1 = Unk_020EBFFC[v0][1];
+    for (i = 0; i < 7; i++) {
+        if (sFossilItemToTypeMapping[i][0] == inputItemID) {
+            *destVar = sFossilItemToTypeMapping[i][1];
             break;
         }
     }
@@ -53,24 +55,24 @@ BOOL ScrCmd_1F4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F5(ScriptContext *param0)
+BOOL ScrCmd_FindFossilAtThreshold(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u8 v1;
-    u16 v2, v3;
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
-    u16 v6 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 i;
+    u16 dummy, currentCount;
+    u16 *outItemID = ScriptContext_GetVarPointer(ctx);
+    u16 *outIndex = ScriptContext_GetVarPointer(ctx);
+    u16 threshold = ScriptContext_GetVar(ctx);
 
-    *v4 = 0;
-    *v5 = 0;
+    *outItemID = 0;
+    *outIndex = 0;
 
-    for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD1);
+    for (i = 0, currentCount = 0; i < 7; i++) {
+        currentCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToTypeMapping[i][0], HEAP_ID_FIELD1);
 
-        if (v3 >= v6) {
-            *v4 = Unk_020EBFFC[v1][0];
-            *v5 = v1;
+        if (currentCount >= threshold) {
+            *outItemID = sFossilItemToTypeMapping[i][0];
+            *outIndex = i;
             break;
         }
     }
@@ -78,12 +80,12 @@ BOOL ScrCmd_1F5(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F2(ScriptContext *param0)
+BOOL ScrCmd_Unused_1F2(ScriptContext *ctx)
 {
     return 0;
 }
 
-BOOL ScrCmd_1F3(ScriptContext *param0)
+BOOL ScrCmd_Unused_1F3(ScriptContext *ctx)
 {
     return 0;
 }

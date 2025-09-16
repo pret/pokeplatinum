@@ -184,7 +184,7 @@ _0261:
     End
 
 _02B6:
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
 _02BC:
