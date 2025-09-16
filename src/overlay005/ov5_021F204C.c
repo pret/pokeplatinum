@@ -21,348 +21,350 @@
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
-typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073B50 unk_04[3];
-    UnkStruct_02073838 unk_100[3];
-} UnkStruct_ov5_021F2078;
+typedef struct BerryPatchGraphicsManager {
+    UnkStruct_ov5_021DF47C *renderManager;
+    UnkStruct_02073B50 resourceData[3];
+    UnkStruct_02073838 resources[3];
+} BerryPatchGraphicsManager;
 
-typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_ov5_021F2078 *unk_04;
-    MapObject *unk_08;
-} UnkStruct_ov5_021F20D4;
+typedef struct BerryPatchMoistureEffectContext {
+    UnkStruct_ov5_021DF47C *renderManager;
+    BerryPatchGraphicsManager *graphicsManager;
+    MapObject *mapObject;
+} BerryPatchMoistureEffectContext;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    UnkStruct_ov5_021F20D4 unk_10;
-} UnkStruct_ov5_021F2118;
+typedef struct BerryPatchMoistureEffect {
+    int localID;
+    int mapID;
+    BOOL isHidden;
+    int moistureLevel;
+    BerryPatchMoistureEffectContext context;
+} BerryPatchMoistureEffect;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    UnkStruct_ov5_021DF47C *unk_08;
-} UnkStruct_ov5_021F2204;
+typedef struct BerryPatchEffectCounter {
+    int counter;
+    BOOL isEnabled;
+    UnkStruct_ov5_021DF47C *renderManager;
+} BerryPatchEffectCounter;
 
-typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_ov5_021F2204 *unk_04;
-    MapObject *unk_08;
-} UnkStruct_ov5_021F22BC;
+typedef struct BerryPatchSparkleEffectContext {
+    UnkStruct_ov5_021DF47C *renderManager;
+    BerryPatchEffectCounter *effectCounter;
+    MapObject *mapObject;
+} BerryPatchSparkleEffectContext;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    UnkStruct_ov5_021F22BC unk_0C;
-    UnkStruct_020216E0 *unk_18;
-} UnkStruct_ov5_021F2304;
+typedef struct BerryPatchSparkleEffect {
+    int dummy;
+    int animationFrame;
+    BOOL isAnimating;
+    BerryPatchSparkleEffectContext context;
+    UnkStruct_020216E0 *graphicsObject;
+} BerryPatchSparkleEffect;
 
-static void ov5_021F2078(UnkStruct_ov5_021F2078 *param0);
-static void ov5_021F20B8(UnkStruct_ov5_021F2078 *param0);
-static void ov5_021F2204(UnkStruct_ov5_021F2204 *param0);
-static void ov5_021F220C(UnkStruct_ov5_021F2204 *param0);
-static void ov5_021F221C(UnkStruct_ov5_021F2204 *param0);
-static void ov5_021F226C(UnkStruct_ov5_021F2204 *param0);
-static void ov5_021F229C(UnkStruct_ov5_021F2204 *param0);
-static void ov5_021F22AC(UnkStruct_ov5_021F2204 *param0);
+static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *manager);
+static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *manager);
+static void BerryPatchEffectCounter_Increment(BerryPatchEffectCounter *counter);
+static void BerryPatchEffectCounter_Decrement(BerryPatchEffectCounter *counter);
+static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *counter);
+static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *counter);
+static void BerryPatchEffectCounter_CheckEnable(BerryPatchEffectCounter *counter);
+static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counter);
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200438;
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200410;
-static const u32 Unk_ov5_02200404[3];
-const UnkStruct_020217F4 Unk_ov5_0220044C[];
+static const UnkStruct_ov101_021D86B0 BerryPatchMoistureEffectDefinition;
+static const UnkStruct_ov101_021D86B0 BerryPatchSparkleEffectDefinition;
+static const u32 BerryPatchMoistureResourceIDs[3];
+const UnkStruct_020217F4 BerryPatchSparkleEffectData[];
 
-void *ov5_021F204C(UnkStruct_ov5_021DF47C *param0)
+void *BerryPatchGraphicsManager_New(UnkStruct_ov5_021DF47C *renderManager)
 {
-    UnkStruct_ov5_021F2078 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2078), 0, 0);
-    v0->unk_00 = param0;
+    BerryPatchGraphicsManager *manager = ov5_021DF53C(renderManager, sizeof(BerryPatchGraphicsManager), 0, 0);
+    manager->renderManager = renderManager;
 
-    ov5_021F2078(v0);
-    return v0;
+    BerryPatchGraphicsManager_InitResources(manager);
+    return manager;
 }
 
-void ov5_021F2068(void *param0)
+void BerryPatchGraphicsManager_Free(void *manager)
 {
-    UnkStruct_ov5_021F2078 *v0 = param0;
+    BerryPatchGraphicsManager *graphicsManager = manager;
 
-    ov5_021F20B8(v0);
-    ov5_021DF554(v0);
+    BerryPatchGraphicsManager_FreeResources(graphicsManager);
+    ov5_021DF554(graphicsManager);
 }
 
-static void ov5_021F2078(UnkStruct_ov5_021F2078 *param0)
+static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *manager)
 {
-    int v0 = 0;
+    int i = 0;
 
     do {
         ov5_021DFB00(
-            param0->unk_00, &param0->unk_100[v0], 0, Unk_ov5_02200404[v0], 0);
-        sub_02073B70(&param0->unk_04[v0], &param0->unk_100[v0]);
-        v0++;
-    } while (v0 < (2 + 1));
+            manager->renderManager, &manager->resources[i], 0, BerryPatchMoistureResourceIDs[i], 0);
+        sub_02073B70(&manager->resourceData[i], &manager->resources[i]);
+        i++;
+    } while (i < (2 + 1));
 }
 
-static void ov5_021F20B8(UnkStruct_ov5_021F2078 *param0)
+static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *manager)
 {
-    int v0 = 0;
+    int i = 0;
 
     do {
-        sub_0207395C(&param0->unk_100[v0]);
-        v0++;
-    } while (v0 < (2 + 1));
+        sub_0207395C(&manager->resources[i]);
+        i++;
+    } while (i < (2 + 1));
 }
 
-void ov5_021F20D4(MapObject *param0)
+void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
 {
-    int v0, v1;
-    UnkStruct_ov5_021F20D4 v2;
-    UnkStruct_ov5_021DF47C *v3;
-    VecFx32 v4;
+    int priority, effectPriority;
+    BerryPatchMoistureEffectContext context;
+    UnkStruct_ov5_021DF47C *renderManager;
+    VecFx32 position;
 
-    v3 = ov5_021DF578(param0);
+    renderManager = ov5_021DF578(mapObject);
 
-    v2.unk_00 = v3;
-    v2.unk_04 = ov5_021DF55C(v3, 12);
-    v2.unk_08 = param0;
+    context.renderManager = renderManager;
+    context.graphicsManager = ov5_021DF55C(renderManager, 12);  // Get graphics manager from overlay 12
+    context.mapObject = mapObject;
 
-    MapObject_GetPosPtr(param0, &v4);
+    MapObject_GetPosPtr(mapObject, &position);
 
-    v0 = 0;
-    v1 = sub_02062C0C(param0) + 1;
+    priority = 0;
+    effectPriority = sub_02062C0C(mapObject) + 1;  // Get map object priority and add 1 for effect
 
-    ov5_021DF72C(v3, &Unk_ov5_02200438, &v4, v0, &v2, v1);
+    ov5_021DF72C(renderManager, &BerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
 
-static int ov5_021F2118(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int BerryPatchMoistureEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    UnkStruct_ov5_021F2118 *v0;
-    const UnkStruct_ov5_021F20D4 *v1;
+    BerryPatchMoistureEffect *moistureEffect;
+    const BerryPatchMoistureEffectContext *effectContext;
 
-    v0 = param1;
-    v1 = sub_020715BC(param0);
+    moistureEffect = context;
+    effectContext = sub_020715BC(effect);
 
-    v0->unk_10 = *v1;
-    v0->unk_00 = MapObject_GetLocalID(v0->unk_10.unk_08);
-    v0->unk_04 = sub_02062918(v0->unk_10.unk_08);
+    moistureEffect->context = *effectContext;
+    moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
+    moistureEffect->mapID = sub_02062918(moistureEffect->context.mapObject);
 
     return 1;
 }
 
-static void ov5_021F2144(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchMoistureEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
     return;
 }
 
-static void BerryPatchGraphicsEffect_Update(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
+static void BerryPatchMoistureEffect_Update(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
 {
-    UnkStruct_ov5_021F2118 *berryPatchEffect = effectData;
-    MapObject *mapObject = berryPatchEffect->unk_10.unk_08;
+    BerryPatchMoistureEffect *berryPatchEffect = effectData;
+    MapObject *mapObject = berryPatchEffect->context.mapObject;
 
-    if (sub_02062764(mapObject, berryPatchEffect->unk_00, berryPatchEffect->unk_04) == 0) {
+    if (sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapID) == FALSE) {
         ov5_021DF74C(effectTask);
         return;
     }
 
-    berryPatchEffect->unk_08 = 0;
+    berryPatchEffect->isHidden = FALSE;
 
-    if ((MapObject_CheckStatusFlag(mapObject, MAP_OBJ_STATUS_HIDE) == 1) || (!BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject))) {
-        berryPatchEffect->unk_08 = 1;
+    if (MapObject_CheckStatusFlag(mapObject, MAP_OBJ_STATUS_HIDE) || !BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject)) {
+        berryPatchEffect->isHidden = TRUE;
         return;
     }
 
-    {
-        berryPatchEffect->unk_0C = BerryPatches_GetMoisture(MapObject_FieldSystem(mapObject), mapObject);
-    }
+    berryPatchEffect->moistureLevel = BerryPatches_GetMoisture(MapObject_FieldSystem(mapObject), mapObject);
 
-    {
-        VecFx32 mapObjectPosition;
+    VecFx32 mapObjectPosition;
 
-        MapObject_GetPosPtr(mapObject, &mapObjectPosition);
-        sub_020715D4(effectTask, &mapObjectPosition);
-    }
+    MapObject_GetPosPtr(mapObject, &mapObjectPosition);
+    sub_020715D4(effectTask, &mapObjectPosition);
 }
 
-static void BerryPatchGraphicsEffect_Render(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
+static void BerryPatchMoistureEffect_Render(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
 {
-    UnkStruct_ov5_021F2118 *berryPatchEffect = effectData;
+    BerryPatchMoistureEffect *berryPatchEffect = effectData;
 
-    if (berryPatchEffect->unk_08 != 1) {
+    if (berryPatchEffect->isHidden != TRUE) {
         VecFx32 effectPosition;
 
         sub_020715E4(effectTask, &effectPosition);
         effectPosition.z += (FX32_ONE * 0);
-        sub_02073BB4(&berryPatchEffect->unk_10.unk_04->unk_04[berryPatchEffect->unk_0C], &effectPosition);
+        sub_02073BB4(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200438 = {
-    sizeof(UnkStruct_ov5_021F2118),
-    ov5_021F2118,
-    ov5_021F2144,
-    BerryPatchGraphicsEffect_Update,
-    BerryPatchGraphicsEffect_Render
+static const UnkStruct_ov101_021D86B0 BerryPatchMoistureEffectDefinition = {
+    sizeof(BerryPatchMoistureEffect),
+    BerryPatchMoistureEffect_Init,
+    BerryPatchMoistureEffect_Free,
+    BerryPatchMoistureEffect_Update,
+    BerryPatchMoistureEffect_Render
 };
 
-void *ov5_021F21E0(UnkStruct_ov5_021DF47C *param0)
+void *BerryPatchGraphicsManager_NewEffectCounter(UnkStruct_ov5_021DF47C *renderManager)
 {
-    UnkStruct_ov5_021F2204 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2204), 0, 0);
-    v0->unk_08 = param0;
+    BerryPatchEffectCounter *effectCounter = ov5_021DF53C(renderManager, sizeof(BerryPatchEffectCounter), 0, 0);
+    effectCounter->renderManager = renderManager;
 
-    return v0;
+    return effectCounter;
 }
 
-void ov5_021F21F4(void *param0)
+void BerryPatchGraphicsManager_FreeEffectCounter(void *counter)
 {
-    UnkStruct_ov5_021F2204 *v0 = param0;
+    BerryPatchEffectCounter *effectCounter = counter;
 
-    ov5_021F226C(v0);
-    ov5_021DF554(v0);
+    BerryPatchEffectCounter_DisableEffects(effectCounter);
+    ov5_021DF554(effectCounter);
 }
 
-static void ov5_021F2204(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_Increment(BerryPatchEffectCounter *counter)
 {
-    param0->unk_00++;
+    counter->counter++;
 }
 
-static void ov5_021F220C(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_Decrement(BerryPatchEffectCounter *counter)
 {
-    param0->unk_00--;
-    GF_ASSERT(param0->unk_00 >= 0);
+    counter->counter--;
+    GF_ASSERT(counter->counter >= 0);
 }
 
-static void ov5_021F221C(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *counter)
 {
-    if (param0->unk_04 == 0) {
-        param0->unk_04 = 1;
-        ov5_021DF9E0(param0->unk_08, 11, 109);
-        ov5_021DFA14(param0->unk_08, 11, 181);
-        ov5_021DFA3C(param0->unk_08, 12, 14, 1);
-        ov5_021DF864(param0->unk_08, 13, 11, 11, 12, 0, Unk_ov5_0220044C);
+    if (counter->isEnabled == FALSE) {
+        counter->isEnabled = TRUE;
+        // Load sparkle effect graphics resources
+        ov5_021DF9E0(counter->renderManager, 11, 109);  // Load graphics resource 109 into slot 11
+        ov5_021DFA14(counter->renderManager, 11, 181);  // Load additional graphics resource 181 into slot 11
+        ov5_021DFA3C(counter->renderManager, 12, 14, 1); // Create texture resource 14 in slot 12
+        ov5_021DF864(counter->renderManager, 13, 11, 11, 12, 0, BerryPatchSparkleEffectData); // Create graphics object 13 using resources 11, 11, 12
     }
 }
 
-static void ov5_021F226C(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *counter)
 {
-    if (param0->unk_04 == 1) {
-        param0->unk_04 = 0;
-
-        ov5_021DFA08(param0->unk_08, 11);
-        ov5_021DFA30(param0->unk_08, 11);
-        ov5_021DFA7C(param0->unk_08, 12);
-        ov5_021DF9D4(param0->unk_08, 13);
+    if (counter->isEnabled == TRUE) {
+        counter->isEnabled = FALSE;
+        // Clean up sparkle effect graphics resources (in reverse order of creation)
+        ov5_021DFA08(counter->renderManager, 11);  // Free graphics resource from slot 11
+        ov5_021DFA30(counter->renderManager, 11);  // Free additional graphics resource from slot 11
+        ov5_021DFA7C(counter->renderManager, 12);  // Remove texture resource from slot 12
+        ov5_021DF9D4(counter->renderManager, 13);  // Destroy graphics object from slot 13
     }
 }
 
-static void ov5_021F229C(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_CheckEnable(BerryPatchEffectCounter *counter)
 {
-    if (param0->unk_00 == 0) {
-        ov5_021F221C(param0);
+    if (counter->counter == 0) {
+        BerryPatchEffectCounter_EnableEffects(counter);
     }
 }
 
-static void ov5_021F22AC(UnkStruct_ov5_021F2204 *param0)
+static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counter)
 {
-    if (param0->unk_00 == 0) {
-        ov5_021F226C(param0);
+    if (counter->counter == 0) {
+        BerryPatchEffectCounter_DisableEffects(counter);
     }
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F22BC(MapObject *param0)
+UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObject)
 {
-    VecFx32 v0;
-    UnkStruct_ov5_021DF47C *v1;
-    UnkStruct_ov5_021F22BC v2;
-    UnkStruct_ov101_021D5D90 *v3;
+    VecFx32 position;
+    UnkStruct_ov5_021DF47C *renderManager;
+    BerryPatchSparkleEffectContext effectContext;
+    UnkStruct_ov101_021D5D90 *effectTask;
 
-    v1 = ov5_021DF578(param0);
-    ov5_021ECDA0(param0, &v0);
-    v0.z += (FX32_ONE * 8);
+    renderManager = ov5_021DF578(mapObject);
+    ov5_021ECDA0(mapObject, &position);
+    position.z += (FX32_ONE * 8);  // Offset sparkle effect 8 units above ground
 
-    v2.unk_00 = v1;
-    v2.unk_04 = ov5_021DF55C(v1, 28);
-    v3 = ov5_021DF72C(v1, &Unk_ov5_02200410, &v0, 0, &v2, 0xff);
+    effectContext.renderManager = renderManager;
+    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);  // Get effect counter from overlay 28
+    effectTask = ov5_021DF72C(renderManager, &BerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);  // Priority 255 for sparkle effect
 
-    return v3;
+    return effectTask;
 }
 
-static int ov5_021F2304(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov5_021F2304 *v1;
-    const UnkStruct_ov5_021F22BC *v2;
+    VecFx32 position;
+    BerryPatchSparkleEffect *sparkleEffect;
+    const BerryPatchSparkleEffectContext *effectContext;
 
-    v1 = param1;
-    v2 = sub_020715BC(param0);
-    v1->unk_0C = *v2;
+    sparkleEffect = context;
+    effectContext = sub_020715BC(effect);
+    sparkleEffect->context = *effectContext;
 
-    ov5_021F229C(v1->unk_0C.unk_04);
-    sub_020715E4(param0, &v0);
+    BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
+    sub_020715E4(effect, &position);
 
-    v1->unk_18 = ov5_021DF84C(v1->unk_0C.unk_00, 13, &v0);
-    ov5_021F2204(v1->unk_0C.unk_04);
+    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);  // Create graphics object with ID 13
+    BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
 
     return 1;
 }
 
-static void ov5_021F2344(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchSparkleEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    UnkStruct_ov5_021F2304 *v0 = param1;
+    BerryPatchSparkleEffect *sparkleEffect = context;
 
-    sub_020211FC(v0->unk_18);
-    ov5_021F220C(v0->unk_0C.unk_04);
-    ov5_021F22AC(v0->unk_0C.unk_04);
+    sub_020211FC(sparkleEffect->graphicsObject);
+    BerryPatchEffectCounter_Decrement(sparkleEffect->context.effectCounter);
+    BerryPatchEffectCounter_CheckDisable(sparkleEffect->context.effectCounter);
 }
 
-static void ov5_021F235C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchSparkleEffect_Update(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    fx32 v0[5] = { 0x1000, 0x1000, 0x2000, 0x2000, 0x1000 };
-    UnkStruct_ov5_021F2304 *v1 = param1;
+    // Animation speed multipliers for different sparkle effect frames
+    fx32 animationSpeeds[5] = { 4096, 4096, 8192, 8192, 4096 };
+    BerryPatchSparkleEffect *sparkleEffect = context;
 
-    if (v1->unk_08 == 1) {
-        v1->unk_08 = 0;
-        v1->unk_04++;
+    if (sparkleEffect->isAnimating == TRUE) {
+        sparkleEffect->isAnimating = FALSE;
+        sparkleEffect->animationFrame++;
 
-        if (v1->unk_04 >= 5) {
-            ov5_021DF74C(param0);
+        if (sparkleEffect->animationFrame >= 5) {  // Animation has 5 frames total
+            ov5_021DF74C(effect);
             return;
         }
 
-        sub_02021380(v1->unk_18, 0);
+        sub_02021380(sparkleEffect->graphicsObject, 0);
     }
 
-    if (sub_02021368(v1->unk_18, v0[v1->unk_04]) != 1) {
+    if (sub_02021368(sparkleEffect->graphicsObject, animationSpeeds[sparkleEffect->animationFrame]) != 1) {
         return;
     }
 
-    v1->unk_08 = 1;
+    sparkleEffect->isAnimating = TRUE;
 }
 
-static void ov5_021F23B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchSparkleEffect_Render(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov5_021F2304 *v1 = param1;
+    VecFx32 position;
+    BerryPatchSparkleEffect *sparkleEffect = context;
 
-    sub_020715E4(param0, &v0);
-    sub_020212A8(v1->unk_18, &v0);
+    sub_020715E4(effect, &position);
+    sub_020212A8(sparkleEffect->graphicsObject, &position);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200410 = {
-    sizeof(UnkStruct_ov5_021F2304),
-    ov5_021F2304,
-    ov5_021F2344,
-    ov5_021F235C,
-    ov5_021F23B8
+static const UnkStruct_ov101_021D86B0 BerryPatchSparkleEffectDefinition = {
+    sizeof(BerryPatchSparkleEffect),
+    BerryPatchSparkleEffect_Init,
+    BerryPatchSparkleEffect_Free,
+    BerryPatchSparkleEffect_Update,
+    BerryPatchSparkleEffect_Render
 };
 
-static const u32 Unk_ov5_02200404[3] = {
-    0x4D,
-    0x4C,
-    0x4B
+// Resource IDs for different moisture levels of berry patches
+// These correspond to different visual states: dry, moist, wet
+static const u32 BerryPatchMoistureResourceIDs[3] = {
+    77,  // Dry berry patch moisture indicator
+    76,  // Moist berry patch moisture indicator  
+    75   // Wet berry patch moisture indicator
 };
 
-static const UnkStruct_020217F4 Unk_ov5_0220044C[] = {
-    { 0x0, 0x9, 0x1 },
-    { 0x0, 0x0, 0x2 }
+// Sparkle effect configuration data for berry patches
+// Each entry defines: { model_variant, animation_frame_count, effect_type }
+static const UnkStruct_020217F4 BerryPatchSparkleEffectData[] = {
+    { 0, 9, 1 },  // Animated sparkle effect (9 animation frames, type 1)
+    { 0, 0, 2 }   // Static sparkle effect (no animation, type 2)
 };
