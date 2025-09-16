@@ -244,7 +244,7 @@ static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *coun
 {
     if (counter->isEnabled == TRUE) {
         counter->isEnabled = FALSE;
-        // Clean up sparkle effect graphics resources (in reverse order of creation)
+        // Clean up sparkle effect graphics resources
         ov5_021DFA08(counter->renderManager, 11); // Free graphics resource from slot 11
         ov5_021DFA30(counter->renderManager, 11); // Free additional graphics resource from slot 11
         ov5_021DFA7C(counter->renderManager, 12); // Remove texture resource from slot 12
