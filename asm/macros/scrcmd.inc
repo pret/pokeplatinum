@@ -2806,11 +2806,11 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_Unused_1F2
+    .macro ScrCmd_Dummy_1F2
     .short 498
     .endm
 
-    .macro ScrCmd_Unused_1F3
+    .macro ScrCmd_Dummy_1F3
     .short 499
     .endm
 

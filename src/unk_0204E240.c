@@ -12,20 +12,20 @@
 #include "inlines.h"
 
 const u16 sFossilItemToTypeMapping[7][2] = {
-    { ITEM_OLD_AMBER, FOSSIL_TYPE_OLD_AMBER }, // dataID 0x67 → 0x8E
-    { ITEM_HELIX_FOSSIL, FOSSIL_TYPE_HELIX }, // dataID 0x65 → 0x8A
-    { ITEM_DOME_FOSSIL, FOSSIL_TYPE_DOME }, // dataID 0x66 → 0x8C
-    { ITEM_ROOT_FOSSIL, FOSSIL_TYPE_ROOT }, // dataID 0x63 → 0x159
-    { ITEM_CLAW_FOSSIL, FOSSIL_TYPE_CLAW }, // dataID 0x64 → 0x15B
-    { ITEM_ARMOR_FOSSIL, FOSSIL_TYPE_ARMOR }, // dataID 0x68 → 0x19A
-    { ITEM_SKULL_FOSSIL, FOSSIL_TYPE_SKULL } // dataID 0x69 → 0x198
+    { ITEM_OLD_AMBER, SPECIES_AERODACTYL },
+    { ITEM_HELIX_FOSSIL, SPECIES_OMANYTE },
+    { ITEM_DOME_FOSSIL, SPECIES_KABUTO },
+    { ITEM_ROOT_FOSSIL, SPECIES_LILEEP },
+    { ITEM_CLAW_FOSSIL, SPECIES_ANORITH },
+    { ITEM_ARMOR_FOSSIL, SPECIES_SHIELDON },
+    { ITEM_SKULL_FOSSIL, SPECIES_CRANIDOS }
 };
 
 BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 i;
-    u16 dummy, totalCount; // dummy variable to preserve hash
+    u16 totalCount; // dummy variable to preserve hash
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     for (i = 0, totalCount = 0; i < 7; i++) {
@@ -34,7 +34,7 @@ BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
 
     *destVar = totalCount;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetFossilTypeID(ScriptContext *ctx)
@@ -52,14 +52,14 @@ BOOL ScrCmd_GetFossilTypeID(ScriptContext *ctx)
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_FindFossilAtThreshold(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 i;
-    u16 dummy, currentCount;
+    u16 currentCount;
     u16 *outItemID = ScriptContext_GetVarPointer(ctx);
     u16 *outIndex = ScriptContext_GetVarPointer(ctx);
     u16 threshold = ScriptContext_GetVar(ctx);
@@ -77,15 +77,15 @@ BOOL ScrCmd_FindFossilAtThreshold(ScriptContext *ctx)
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_Unused_1F2(ScriptContext *ctx)
+BOOL ScrCmd_Dummy_1F2(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_Unused_1F3(ScriptContext *ctx)
+BOOL ScrCmd_Dummy_1F3(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
