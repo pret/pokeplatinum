@@ -187,7 +187,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
     WriteNtrImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk,
                   &image, !image.hasPalette, options->clobberSize, options->byteOrder, options->version101,
                   options->sopc, options->vramTransfer, options->scanMode, options->mappingType, key, options->wrongSize,
-                  options->convertTo4Bpp);
+                  options->convertTo4Bpp, options->rotate);
 
     FreeImage(&image);
 }
@@ -522,6 +522,7 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     options.vramTransfer = false;
     options.mappingType = 0;
     options.convertTo4Bpp = false;
+    options.rotate = 0;
 
     for (int i = 3; i < argc; i++)
     {
@@ -650,6 +651,19 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
         else if (strcmp(option, "-convertTo4Bpp") == 0)
         {
             options.convertTo4Bpp = true;
+        }
+        else if (strcmp(option, "-rotate") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No mapping type value following \"-rotate\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &options.rotate))
+                FATAL_ERROR("Failed to parse rotate.\n");
+
+            if (options.rotate != 90 && options.rotate != 180 && options.rotate != 270)
+                FATAL_ERROR("rotate must be one of the following: 90, 180, 270\n");
         }
         else
         {
