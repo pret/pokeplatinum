@@ -42,10 +42,10 @@ typedef struct {
     s16 padding;
 } DistortionDirectionOffset;
 
-static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
+static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_State_HandleDeepSwampMovement(PlayerAvatar *playerAvatar);
-static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar);
+static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, int direction);
 static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction);
 static int PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction);
@@ -53,8 +53,8 @@ static void PlayerAvatar_SpecialMovement_ClearState(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction);
 static int PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, int elevationChange);
 static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction);
-static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
 static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction);
 static int PlayerAvatar_Walking_MapTypeToState(int movementType);
 static int PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, int animationCode);
@@ -106,7 +106,7 @@ static int PlayerAvatar_Input_DetermineMovementDirection(PlayerAvatar *playerAva
 static int PlayerAvatar_State_IsTurnAction(int animationCode);
 static void PlayerAvatar_State_IncrementStepCounter(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction);
+static int PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction);
 static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration);
 
 static const DistortionDirectionOffset sDistortionFloorOffsets[4] = {
@@ -148,11 +148,11 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
 
     PlayerAvatar_TryCyclingGearChange(playerAvatar, keyPad);
 
-    if (PlayerAvatar_CheckStartMoveInternal(playerAvatar, dir) == FALSE) {
+    if (PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir) == FALSE) {
         return;
     }
 
-    PlayerAvatar_StartMoveInit(playerAvatar, dir, keyPad, keyPress);
+    PlayerAvatar_Movement_StartMoveInit(playerAvatar, dir, keyPad, keyPress);
     PlayerAvatar_RequestChangeState(playerAvatar);
 
     if (PlayerAvatar_Movement_ValidateSpecialMovement(playerAvatar, dir) == 1) {
@@ -170,18 +170,18 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
         }
     }
 
-    inline_0205F180(playerAvatar, landDataManager, dir, keyPad, keyPress);
+    PlayerAvatar_Movement_HandleByState(playerAvatar, landDataManager, dir, keyPad, keyPress);
 
     PlayerAvatar_State_HandleDeepSwampMovement(playerAvatar);
-    PlayerAvatar_PlayWalkSE(playerAvatar);
+    PlayerAvatar_Audio_PlayWalkSE(playerAvatar);
 }
 
 int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir)
 {
-    return PlayerAvatar_CheckStartMoveInternal(playerAvatar, dir);
+    return PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir);
 }
 
-static BOOL PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction)
 {
     int movementAction;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -241,7 +241,7 @@ static BOOL PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int 
     return FALSE;
 }
 
-static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress)
 {
     sub_0205EBEC(playerAvatar, PlayerAvatar_Input_GetHorizontalDirection(keyPress), PlayerAvatar_Input_GetVerticalDirection(keyPress));
     sub_0205F054(playerAvatar);
@@ -259,7 +259,7 @@ static void PlayerAvatar_State_HandleDeepSwampMovement(PlayerAvatar *playerAvata
     }
 }
 
-static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
+static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar)
 {
     if (PlayerAvatar_MoveState(playerAvatar) == 1) {
         MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -453,7 +453,7 @@ static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvat
     int i = 0;
     u32 tileBehavior = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
-    if (PlayerAvatar_IsUnderCyclingRoad(playerAvatar, tileBehavior, direction) == 1) {
+    if (PlayerAvatar_Cycling_IsUnderCyclingRoad(playerAvatar, tileBehavior, direction) == 1) {
         return 5;
     }
 
@@ -767,7 +767,7 @@ static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, i
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -775,7 +775,7 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *l
     switch (playerState) {
     case PLAYER_STATE_WALKING:
     case PLAYER_STATE_SURFING:
-        inline_0205F180_sub(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
+        PlayerAvatar_Movement_HandleWalkingSurfing(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
         break;
     case PLAYER_STATE_CYCLING:
         PlayerAvatar_Cycling_RouteMovement(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
@@ -786,7 +786,7 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *l
     }
 }
 
-static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
     int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
 
@@ -2376,7 +2376,7 @@ static BOOL PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvata
     return FALSE;
 }
 
-static BOOL PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction)
+static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction)
 {
     if (direction != -1) {
         return FALSE;
