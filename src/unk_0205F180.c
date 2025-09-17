@@ -31,16 +31,16 @@
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
 typedef struct {
-    UnkFuncPtr_020EDB84 unk_00;
-    u32 unk_04;
-} UnkStruct_020EDB84;
+    UnkFuncPtr_020EDB84 checkTileBehavior;
+    u32 movementType;
+} TileBehaviorMapping;
 
 typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
-    s16 unk_06;
-} UnkStruct_020EDB04;
+    s16 xOffset;
+    s16 yOffset;
+    s16 zOffset;
+    s16 padding;
+} DistortionDirectionOffset;
 
 static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress);
@@ -109,35 +109,35 @@ static int PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar
 static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction);
 static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration);
 
-static const UnkStruct_020EDB04 Unk_020EDB04[4] = {
-    { 0x0, 0x0, -1 },
-    { 0x0, 0x0, 0x1 },
-    { -1, 0x0, 0x0 },
-    { 0x1, 0x0, 0x0 }
+static const DistortionDirectionOffset sDistortionFloorOffsets[4] = {
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
+    { .xOffset = -1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 }
 };
 
-static const UnkStruct_020EDB04 Unk_020EDB24[4] = {
-    { 0x0, 0x1, 0x0 },
-    { 0x0, -1, 0x0 },
-    { 0x0, 0x0, 0x1 },
-    { 0x0, 0x0, -1 }
+static const DistortionDirectionOffset sDistortionWestWallOffsets[4] = {
+    { .xOffset = 0x0, .yOffset = 0x1, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = -1, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 }
 };
 
-static const UnkStruct_020EDB04 Unk_020EDB44[4] = {
-    { 0x0, 0x1, 0x0 },
-    { 0x0, -1, 0x0 },
-    { 0x0, 0x0, -1 },
-    { 0x0, 0x0, 0x1 }
+static const DistortionDirectionOffset sDistortionEastWallOffsets[4] = {
+    { .xOffset = 0x0, .yOffset = 0x1, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = -1, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 }
 };
 
-static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
-    { 0x0, 0x0, 0x1 },
-    { 0x0, 0x0, -1 },
-    { -1, 0x0, 0x0 },
-    { 0x1, 0x0, 0x0 }
+static const DistortionDirectionOffset sDistortionCeilingOffsets[4] = {
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
+    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
+    { .xOffset = -1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 },
+    { .xOffset = 0x1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 }
 };
 
-const UnkStruct_020EDB84 Unk_020EDB84[];
+static const TileBehaviorMapping sTileBehaviorMappings[];
 static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int);
 
 void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int dir, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
@@ -462,22 +462,22 @@ static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvat
     }
 
     do {
-        if (Unk_020EDB84[i].unk_00(tileBehavior) == 1) {
-            return Unk_020EDB84[i].unk_04;
+        if (sTileBehaviorMappings[i].checkTileBehavior(tileBehavior) == 1) {
+            return sTileBehaviorMappings[i].movementType;
         }
 
         i++;
-    } while (Unk_020EDB84[i].unk_00 != NULL);
+    } while (sTileBehaviorMappings[i].checkTileBehavior != NULL);
 
     return FALSE;
 }
 
-static const UnkStruct_020EDB84 Unk_020EDB84[] = {
-    { TileBehavior_IsIce, 0x1 },
-    { TileBehavior_IsBikeSlope, 0x2 },
-    { TileBehavior_IsBikeRampEastward, 0x3 },
-    { TileBehavior_IsBikeRampWestward, 0x4 },
-    { NULL, 0x6 }
+static const TileBehaviorMapping sTileBehaviorMappings[] = {
+    { .checkTileBehavior = TileBehavior_IsIce, .movementType = 0x1 },
+    { .checkTileBehavior = TileBehavior_IsBikeSlope, .movementType = 0x2 },
+    { .checkTileBehavior = TileBehavior_IsBikeRampEastward, .movementType = 0x3 },
+    { .checkTileBehavior = TileBehavior_IsBikeRampWestward, .movementType = 0x4 },
+    { .checkTileBehavior = NULL, .movementType = 0x6 }
 };
 
 static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction)
@@ -2401,31 +2401,31 @@ static BOOL PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tile
 
 void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *xOut, int *yOut, int *zOut)
 {
-    const UnkStruct_020EDB04 *directionOffset;
+    const DistortionDirectionOffset *directionOffset;
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_NONE:
     case AVATAR_DISTORTION_STATE_ACTIVE:
     case AVATAR_DISTORTION_STATE_FLOOR:
-        directionOffset = &Unk_020EDB04[direction];
+        directionOffset = &sDistortionFloorOffsets[direction];
         break;
     case AVATAR_DISTORTION_STATE_WEST_WALL:
-        directionOffset = &Unk_020EDB24[direction];
+        directionOffset = &sDistortionWestWallOffsets[direction];
         break;
     case AVATAR_DISTORTION_STATE_EAST_WALL:
-        directionOffset = &Unk_020EDB44[direction];
+        directionOffset = &sDistortionEastWallOffsets[direction];
         break;
     case AVATAR_DISTORTION_STATE_CEILING:
-        directionOffset = &Unk_020EDB64[direction];
+        directionOffset = &sDistortionCeilingOffsets[direction];
         break;
     default:
         return;
     }
 
-    (*xOut) += directionOffset->unk_00;
-    (*yOut) += directionOffset->unk_02;
-    (*zOut) += directionOffset->unk_04;
+    (*xOut) += directionOffset->xOffset;
+    (*yOut) += directionOffset->yOffset;
+    (*zOut) += directionOffset->zOffset;
 }
 
 u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int direction)
