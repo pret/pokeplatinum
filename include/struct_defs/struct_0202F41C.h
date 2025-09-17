@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0202F41C_H
 #define POKEPLATINUM_STRUCT_0202F41C_H
 
-#include "struct_defs/struct_0202610C.h"
+#include "struct_defs/battle_regulation.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 
 typedef struct UnkStruct_0202F41C_t {
