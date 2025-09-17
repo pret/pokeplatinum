@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/heap.h"
+#include "constants/pokemon.h"
 
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/battle_regulation.h"
@@ -95,17 +96,17 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
     return TRUE;
 }
 
-int BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots)
+enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots)
 {
     Pokemon *pokemon;
     int ruleValue, selectedCount = 0, i, j, totalLevel = 0;
-    u16 species[6], heldItems[6];
+    u16 species[MAX_PARTY_SIZE], heldItems[MAX_PARTY_SIZE];
 
     if (regulation == NULL) {
-        return 0;
+        return BATTLE_REGULATION_VALIDATION_SUCCESS;
     }
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < MAX_PARTY_SIZE; i++) {
         species[i] = 0;
         heldItems[i] = 0;
 
@@ -117,17 +118,17 @@ int BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
 
     if (selectedCount != ruleValue) {
-        return 4;
+        return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_TEAM_SIZE;
     }
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < MAX_PARTY_SIZE; i++) {
         if (selectedSlots[i]) {
             int slotIndex = selectedSlots[i] - 1;
 
             pokemon = Party_GetPokemonBySlotIndex(party, slotIndex);
 
             if (BattleRegulation_ValidatePokemon(regulation, pokemon, heightWeightData) == FALSE) {
-                return 5;
+                return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_POKEMON;
             }
 
             species[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
@@ -139,17 +140,21 @@ int BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, 
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
-    if ((totalLevel > ruleValue) && (ruleValue != 0)) {
-        return 1;
+    if (totalLevel > ruleValue && ruleValue != 0) {
+        return BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED;
     }
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_UNIQUE);
 
-    if ((ruleValue == 0) && (selectedCount > 1)) {
-        for (i = 0; i < (6 - 1); i++) {
-            for (j = i + 1; j < 6; j++) {
-                if ((species[i] == species[j]) && (species[i] != 0)) {
-                    return 2;
+    // Check for duplicate species if species uniqueness is required
+    if (ruleValue == 0 && selectedCount > 1) {
+        // Compare all pairs of Pokémon to detect duplicates
+        // i goes from 0 to MAX_PARTY_SIZE-2 (avoids self-comparison)
+        // j goes from i+1 to MAX_PARTY_SIZE-1 (avoids duplicate pairs)
+        for (i = 0; i < (MAX_PARTY_SIZE - 1); i++) {
+            for (j = i + 1; j < MAX_PARTY_SIZE; j++) {
+                if (species[i] == species[j] && species[i] != 0) {
+                    return BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES;
                 }
             }
         }
@@ -157,17 +162,20 @@ int BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, 
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_ITEM_UNIQUE);
 
-    if ((ruleValue == 0) && (selectedCount > 1)) {
-        for (i = 0; i < (6 - 1); i++) {
-            for (j = i + 1; j < 6; j++) {
-                if ((heldItems[i] == heldItems[j]) && (species[i] != 0) && (0 != heldItems[i])) {
-                    return 3;
+    // Check for duplicate held items if item uniqueness is required
+    if (ruleValue == 0 && selectedCount > 1) {
+        // Compare all pairs of Pokémon to detect duplicate held items
+        // Only check items for valid Pokémon (species[i] != 0) and non-empty items (heldItems[i] != 0)
+        for (i = 0; i < (MAX_PARTY_SIZE - 1); i++) {
+            for (j = i + 1; j < MAX_PARTY_SIZE; j++) {
+                if (heldItems[i] == heldItems[j] && species[i] != 0 && heldItems[i] != 0) {
+                    return BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS;
                 }
             }
         }
     }
 
-    return 0;
+    return BATTLE_REGULATION_VALIDATION_SUCCESS;
 }
 
 static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels, u16 *used, int maxLevelSum, int slotIndex, int remainingSlots, int totalSlots)
@@ -176,15 +184,18 @@ static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels,
     int i;
     int slotsNeeded = remainingSlots;
 
-    if ((species[slotIndex] != 0) && (used[slotIndex] == 0)) {
+    // Try to use the current slot if it has a valid Pokémon and hasn't been used
+    if (species[slotIndex] != 0 && used[slotIndex] == 0) {
         currentLevelSum -= levels[slotIndex];
 
+        // If adding this Pokémon would exceed the level limit, backtrack
         if (currentLevelSum < 0) {
             return FALSE;
         }
 
         slotsNeeded--;
 
+        // If we've filled all required slots, we found a valid combination
         if (slotsNeeded == 0) {
             return TRUE;
         }
@@ -192,27 +203,29 @@ static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels,
         used[slotIndex] = 1;
     }
 
+    // Try all remaining slots to complete the team
     for (i = slotIndex + 1; i < totalSlots; i++) {
         if (BattleRegulation_FindValidTeamCombination(species, levels, used, currentLevelSum, i, slotsNeeded, totalSlots)) {
             return TRUE;
         }
     }
 
+    // Backtrack: unmark this slot and return failure
     used[slotIndex] = 0;
     return FALSE;
 }
 
-int BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData)
+enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData)
 {
     Pokemon *pokemon;
     int ruleValue, partyCount, i, j, validCount = 0;
-    u16 species[6], levels[6], used[6];
+    u16 species[MAX_PARTY_SIZE], levels[MAX_PARTY_SIZE], used[MAX_PARTY_SIZE];
     int requiredCount;
 
     partyCount = Party_GetCurrentCount(party);
     validCount = partyCount;
 
-    MI_CpuClear8(used, 6 * sizeof(u16));
+    MI_CpuClear8(used, MAX_PARTY_SIZE * sizeof(u16));
 
     for (i = 0; i < partyCount; i++) {
         pokemon = Party_GetPokemonBySlotIndex(party, i);
@@ -227,10 +240,12 @@ int BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Part
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_UNIQUE);
 
-    if ((ruleValue == 0) && (partyCount > 1)) {
+    // Remove duplicate species by keeping the higher-level Pokémon
+    if (ruleValue == 0 && partyCount > 1) {
+        // Compare all pairs of Pokémon to find duplicates
         for (i = 0; i < (partyCount - 1); i++) {
             for (j = i + 1; j < partyCount; j++) {
-                if ((species[i] == species[j]) && (species[i] != 0)) {
+                if (species[i] == species[j] && species[i] != 0) {
                     if (levels[i] > levels[j]) {
                         species[i] = 0;
                     } else {
@@ -246,21 +261,21 @@ int BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Part
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
 
     if (validCount < ruleValue) {
-        return 4;
+        return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_TEAM_SIZE;
     }
 
     requiredCount = ruleValue;
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
     if (ruleValue == 0) {
-        return 0;
+        return BATTLE_REGULATION_VALIDATION_SUCCESS;
     }
 
     for (i = 0; i < partyCount; i++) {
         if (BattleRegulation_FindValidTeamCombination(species, levels, used, ruleValue, i, requiredCount, partyCount)) {
-            return 0;
+            return BATTLE_REGULATION_VALIDATION_SUCCESS;
         }
     }
 
-    return 1;
+    return BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED;
 }
