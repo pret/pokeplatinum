@@ -202,7 +202,7 @@ static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAva
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == TRUE) {
             collisionResult = PlayerAvatar_Collision_CheckDistortion(playerAvatar, mapObj, direction);
 
-            if ((collisionResult & (~(1 << 7))) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
+            if ((collisionResult & (~COLLISION_FLAG_DOUBLE_JUMP_TILES)) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
                 FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
                 int xOut, x = MapObject_GetX(mapObj);
                 int yOut, y = MapObject_GetY(mapObj);
@@ -231,7 +231,7 @@ static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAva
             return TRUE;
         }
 
-        if ((collisionResult == (1 << 5)) && (PlayerAvatar_GetPlayerState(playerAvatar) == 2)) {
+        if ((collisionResult == COLLISION_FLAG_WATER_TILES) && (PlayerAvatar_GetPlayerState(playerAvatar) == 2)) {
             return TRUE;
         }
 
@@ -914,17 +914,17 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
-        if (collisionResult & (1 << 2)) {
+        if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
             animationCode = 56;
             duration = 3;
-        } else if (collisionResult & (1 << 7)) {
+        } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
             animationCode = 117;
             duration = 2;
         } else if (collisionResult != 0) {
             animationCode = 28;
             duration = 1;
 
-            if ((collisionResult & (1 << 3)) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -950,7 +950,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
             sub_0205F048(playerAvatar);
         }
     } else {
-        if ((collisionResult == 0) || (collisionResult == (1 << 5))) {
+        if ((collisionResult == 0) || (collisionResult == COLLISION_FLAG_WATER_TILES)) {
             duration = 5;
             animationCode = 16;
             animationCode = PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(mapObj, MapObject_GetCurrTileBehavior(mapObj), animationCode);
@@ -961,7 +961,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
             animationCode = 28;
             duration = 1;
 
-            if ((collisionResult & (1 << 3)) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -981,7 +981,7 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
 
     collisionResult = PlayerAvatar_Collision_CheckDistortion(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (~(1 << 7))) {
+    if (collisionResult & (~COLLISION_FLAG_DOUBLE_JUMP_TILES)) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj);
@@ -999,7 +999,7 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
     }
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
-        if (collisionResult & (1 << 7)) {
+        if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
             animationCode = 117;
             duration = 2;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
@@ -1025,7 +1025,7 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
             sub_0205F048(playerAvatar);
         }
     } else {
-        if ((collisionResult == 0) || (collisionResult == (1 << 5))) {
+        if ((collisionResult == 0) || (collisionResult == COLLISION_FLAG_WATER_TILES)) {
             duration = 5;
             animationCode = 16;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
@@ -1071,7 +1071,7 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         }
     } else {
-        if ((collisionResult == 0) || (collisionResult == (1 << 5))) {
+        if ((collisionResult == 0) || (collisionResult == COLLISION_FLAG_WATER_TILES)) {
             duration = 4;
             animationCode = surfAnimations[direction];
 
@@ -1340,23 +1340,23 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
 
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (1 << 2)) {
+    if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
         animationCode = 56;
         duration = 3;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
-    } else if (collisionResult & (1 << 7)) {
+    } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
         animationCode = 117;
         duration = 2;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
-    } else if (collisionResult & (1 << 4)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_RAMPS) {
         animationCode = 80;
         duration = 5;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
         sub_0205EF40(playerAvatar, 1);
-    } else if (collisionResult & (1 << 6)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         animationCode = 0;
         duration = 1;
         direction = MapObject_GetMovingDir(mapObj);
@@ -1368,7 +1368,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
             animationCode = 28;
             duration = 1;
 
-            if ((collisionResult & (1 << 3)) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -1416,13 +1416,13 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
     direction = PlayerAvatar_GetMoveDir(playerAvatar);
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (1 << 2)) {
+    if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
-    } else if (collisionResult & (1 << 7)) {
+    } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
-    } else if (collisionResult & (1 << 6)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
         PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1431,7 +1431,7 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
         duration = 1;
 
-        if ((collisionResult & (1 << 3)) == 0) {
+        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
@@ -1543,19 +1543,19 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
 
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (1 << 2)) {
+    if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
-    } else if (collisionResult & (1 << 7)) {
+    } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
-    } else if (collisionResult & (1 << 4)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_RAMPS) {
         if (PlayerAvatar_Speed(playerAvatar) >= 3) {
             animationCode = PlayerAvatar_Animation_GetCyclingAnimationCode(playerAvatar, direction);
             duration = 5;
@@ -1565,14 +1565,14 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
             animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             duration = 1;
 
-            if ((collisionResult & (1 << 3)) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, direction);
             PlayerAvatar_ClearSpeed(playerAvatar);
         }
-    } else if (collisionResult & (1 << 6)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         direction = MapObject_GetMovingDir(mapObj);
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
@@ -1584,7 +1584,7 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
             animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             duration = 1;
 
-            if ((collisionResult & (1 << 3)) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -1633,13 +1633,13 @@ static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *player
     direction = PlayerAvatar_GetMoveDir(playerAvatar);
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (1 << 2)) {
+    if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
-    } else if (collisionResult & (1 << 7)) {
+    } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
-    } else if (collisionResult & (1 << 6)) {
+    } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
         PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1648,7 +1648,7 @@ static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *player
         duration = 1;
         animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
 
-        if ((collisionResult & (1 << 3)) == 0) {
+        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
@@ -1677,40 +1677,40 @@ u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *map
     u32 collisionResult = 0, internalResult;
     internalResult = PlayerAvatar_Collision_CheckBasicInternal(playerAvatar, mapObj, direction);
 
-    if (internalResult & ((1 << 1) | (1 << 3))) {
-        collisionResult |= (1 << 0);
+    if (internalResult & (COLLISION_FLAG_TERRAIN | COLLISION_FLAG_WARP_ENTRANCES)) {
+        collisionResult |= COLLISION_FLAG_BLOCKED;
 
         if (PlayerAvatar_Collision_CheckWarpEntrances(playerAvatar, mapObj, direction)) {
-            collisionResult |= (1 << 3);
+            collisionResult |= COLLISION_FLAG_WARP_ENTRANCES;
         }
     }
 
-    if (internalResult & (1 << 2)) {
-        collisionResult |= (1 << 1);
+    if (internalResult & COLLISION_FLAG_JUMP_TILES) {
+        collisionResult |= COLLISION_FLAG_TERRAIN;
     }
 
     if (PlayerAvatar_Collision_CheckJumpTiles(playerAvatar, mapObj, direction)) {
-        collisionResult |= (1 << 2);
+        collisionResult |= COLLISION_FLAG_JUMP_TILES;
     }
 
     if (PlayerAvatar_Collision_CheckDoubleJumpTiles(playerAvatar, mapObj, direction)) {
-        collisionResult |= (1 << 7);
+        collisionResult |= COLLISION_FLAG_DOUBLE_JUMP_TILES;
     }
 
     if (PlayerAvatar_Collision_CheckBikeRamps(playerAvatar, mapObj, direction) == 1) {
-        collisionResult |= (1 << 4);
+        collisionResult |= COLLISION_FLAG_BIKE_RAMPS;
     }
 
     if (PlayerAvatar_Collision_CheckWaterTiles(playerAvatar, mapObj, direction) == 1) {
-        collisionResult |= (1 << 5);
+        collisionResult |= COLLISION_FLAG_WATER_TILES;
     }
 
     if (PlayerAvatar_Collision_CheckBikeBridgeRestrictions(playerAvatar, mapObj, direction) == 1) {
-        collisionResult |= (1 << 6) | (1 << 0);
+        collisionResult |= COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS | COLLISION_FLAG_BLOCKED;
     }
 
     if (PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(playerAvatar, mapObj, direction) == 1) {
-        collisionResult |= (1 << 0);
+        collisionResult |= COLLISION_FLAG_BLOCKED;
     }
 
     return collisionResult;
@@ -1729,7 +1729,7 @@ static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar,
     collisionFlags = 0;
 
     if (MapObject_IsOutOfRange(mapObj, x, y, z) == 1) {
-        collisionFlags |= (1 << 0);
+        collisionFlags |= COLLISION_FLAG_BLOCKED;
     }
 
     {
@@ -1737,20 +1737,20 @@ static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar,
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &nextPos, x, z, &collisionType) == 1) {
-            collisionFlags |= (1 << 1);
+            collisionFlags |= COLLISION_FLAG_TERRAIN;
 
             if (collisionType != 0) {
-                collisionFlags |= (1 << 3);
+                collisionFlags |= COLLISION_FLAG_WARP_ENTRANCES;
             }
         }
     }
 
     if (sub_02064004(mapObj, x, z, direction) == 1) {
-        collisionFlags |= (1 << 1);
+        collisionFlags |= COLLISION_FLAG_TERRAIN;
     }
 
     if (sub_02063F00(mapObj, x, y, z) == 1) {
-        collisionFlags |= (1 << 2);
+        collisionFlags |= COLLISION_FLAG_JUMP_TILES;
     }
 
     return collisionFlags;
@@ -1993,13 +1993,13 @@ static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, Ma
         PlayerAvatar_Distortion_GetCoordsInDirection(playerAvatar, direction, &x, &y, &z);
 
         if (DistWorld_CheckCollisionOnCurrentFloatingPlatform(fieldSystem, x, y, z) == 1) {
-            collisionFlags |= (1 << 1);
+            collisionFlags |= COLLISION_FLAG_TERRAIN;
         }
 
         y = y * 2;
 
         if (sub_02063F00(mapObj, x, y, z) == 1) {
-            collisionFlags |= (1 << 2);
+            collisionFlags |= COLLISION_FLAG_JUMP_TILES;
         }
     }
 
@@ -2037,20 +2037,20 @@ u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject
 
     collisionResult = PlayerAvatar_Distortion_CheckCollision(playerAvatar, mapObj, direction);
 
-    if (collisionResult & ((1 << 1) | (1 << 3))) {
-        distortionFlags |= (1 << 0);
+    if (collisionResult & (COLLISION_FLAG_TERRAIN | COLLISION_FLAG_WARP_ENTRANCES)) {
+        distortionFlags |= COLLISION_FLAG_BLOCKED;
     }
 
-    if (collisionResult & (1 << 2)) {
-        distortionFlags |= (1 << 1);
+    if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
+        distortionFlags |= COLLISION_FLAG_TERRAIN;
     }
 
     if (PlayerAvatar_Distortion_CheckSurfableTiles(playerAvatar, mapObj, direction) == 1) {
-        distortionFlags |= (1 << 5);
+        distortionFlags |= COLLISION_FLAG_WATER_TILES;
     }
 
     if (PlayerAvatar_Distortion_CheckDoubleJump(playerAvatar, mapObj, direction) == 1) {
-        distortionFlags |= (1 << 7);
+        distortionFlags |= COLLISION_FLAG_DOUBLE_JUMP_TILES;
     }
 
     return distortionFlags;
@@ -2266,14 +2266,14 @@ u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, 
         MapObject *mapObj = Player_MapObject(playerAvatar);
         u32 stateFlags = stateValue;
 
-        if (stateFlags & (1 << 2)) {
+        if (stateFlags & COLLISION_FLAG_JUMP_TILES) {
             animationCode = 56;
-        } else if (stateFlags & (1 << 7)) {
+        } else if (stateFlags & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
             animationCode = 117;
         } else if (stateFlags != 0) {
             animationCode = 28;
 
-            if ((stateFlags & (1 << 3)) == 0) {
+            if ((stateFlags & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
         } else {
