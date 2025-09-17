@@ -45,56 +45,56 @@ Strbuf *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int h
 
 int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum BattleRegulationRule rule)
 {
-    int v0 = 0;
+    int ruleValue = 0;
 
     switch (rule) {
     case BATTLE_REGULATION_RULE_TEAM_SIZE:
-        v0 = regulation->teamSize;
+        ruleValue = regulation->teamSize;
         break;
     case BATTLE_REGULATION_RULE_MAX_LEVEL:
-        v0 = regulation->maxLevel;
+        ruleValue = regulation->maxLevel;
         break;
     case BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL:
-        v0 = regulation->maxTotalLevel;
+        ruleValue = regulation->maxTotalLevel;
         break;
     case BATTLE_REGULATION_RULE_SPECIES_RESTRICT:
-        v0 = regulation->speciesRestriction;
+        ruleValue = regulation->speciesRestriction;
         break;
     case BATTLE_REGULATION_RULE_HEIGHT_RESTRICT:
-        v0 = regulation->heightRestriction;
+        ruleValue = regulation->heightRestriction;
         break;
     case BATTLE_REGULATION_RULE_HEIGHT_TYPE:
         if (regulation->heightRestriction > 0) {
-            v0 = 1;
+            ruleValue = 1;
         } else if (regulation->heightRestriction < 0) {
-            v0 = -1;
+            ruleValue = -1;
         }
         break;
     case BATTLE_REGULATION_RULE_WEIGHT_RESTRICT:
-        v0 = regulation->weightRestriction;
+        ruleValue = regulation->weightRestriction;
         break;
     case BATTLE_REGULATION_RULE_WEIGHT_TYPE:
         if (regulation->weightRestriction > 0) {
-            v0 = 1;
+            ruleValue = 1;
         } else if (regulation->weightRestriction < 0) {
-            v0 = -1;
+            ruleValue = -1;
         }
         break;
     case BATTLE_REGULATION_RULE_ITEM_UNIQUE:
-        v0 = regulation->itemUniqueness;
+        ruleValue = regulation->itemUniqueness;
         break;
     case BATTLE_REGULATION_RULE_SPECIES_UNIQUE:
-        v0 = regulation->speciesUniqueness;
+        ruleValue = regulation->speciesUniqueness;
         break;
     case BATTLE_REGULATION_RULE_ITEM_RESTRICT:
-        v0 = regulation->itemRestriction;
+        ruleValue = regulation->itemRestriction;
         break;
     case BATTLE_REGULATION_RULE_MOVE_RESTRICTIONS:
-        v0 = regulation->moveRestrictions;
+        ruleValue = regulation->moveRestrictions;
         break;
     }
 
-    return v0;
+    return ruleValue;
 }
 
 BattleRegulation *BattleRegulation_Load(SaveData *saveData, int index)
