@@ -33,8 +33,8 @@
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
 void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1);
-void *sub_0203D264(FieldSystem *fieldSystem, int param1);
-u16 sub_0203D2C4(void *param0);
+void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType);
+u16 BagContext_GetSelectedItem(void *bagContext);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs);

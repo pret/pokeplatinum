@@ -1126,7 +1126,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         Bag *bag = SaveData_GetBag(fieldSystem->saveData);
         TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->taskData = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELD2);
+        menu->taskData = BagContext_CreateWithPockets(bag, Unk_020EA020, HEAP_ID_FIELD2);
 
         BagContext_Init(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
 

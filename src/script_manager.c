@@ -277,7 +277,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= SCRIPT_ID_OFFSET_SINGLE_BATTLES;
     } else if (retScriptID >= 2800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0413, TEXT_BANK_BERRY_TREES);
+        ScriptContext_Load(fieldSystem, ctx, scripts_berry_tree_interaction, TEXT_BANK_BERRY_TREES);
         retScriptID -= 2800;
     } else if (retScriptID >= 2500) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0001, TEXT_BANK_UNK_0017);

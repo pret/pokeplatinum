@@ -523,9 +523,9 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
-static BOOL ScrCmd_178(ScriptContext *ctx);
-static BOOL ScrCmd_179(ScriptContext *ctx);
-static BOOL ScrCmd_17A(ScriptContext *ctx);
+static BOOL ScrCmd_OpenBag(ScriptContext *ctx);
+static BOOL ScrCmd_GetSelectedItem(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPocketHasItems(ScriptContext *ctx);
 static BOOL ScrCmd_ShowSavingIcon(ScriptContext *ctx);
 static BOOL ScrCmd_HideSavingIcon(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
@@ -1145,9 +1145,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitPersistedMapFeaturesForSunyshoreGym,
     ScrCmd_176,
     ScrCmd_GetPartyCount,
-    ScrCmd_178,
-    ScrCmd_179,
-    ScrCmd_17A,
+    ScrCmd_OpenBag,
+    ScrCmd_GetSelectedItem,
+    ScrCmd_CheckPocketHasItems,
     ScrCmd_BufferBerryName,
     ScrCmd_BufferNatureName,
     ScrCmd_GetBerryGrowthStage,
@@ -4265,7 +4265,7 @@ static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_178(ScriptContext *ctx)
+static BOOL ScrCmd_OpenBag(ScriptContext *ctx)
 {
     void **v0;
     u8 v1;
@@ -4279,22 +4279,22 @@ static BOOL ScrCmd_178(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     GF_ASSERT(*v0 == 0);
 
-    *v0 = sub_0203D264(ctx->fieldSystem, v1);
+    *v0 = FieldSystem_CreateBagContext(ctx->fieldSystem, v1);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_179(ScriptContext *ctx)
+static BOOL ScrCmd_GetSelectedItem(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    void **bagContextPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v1 != 0);
-    *v0 = sub_0203D2C4(*v1);
+    GF_ASSERT(*bagContextPtr != 0);
+    *resultVar = BagContext_GetSelectedItem(*bagContextPtr);
 
-    Heap_Free(*v1);
-    *v1 = NULL;
+    Heap_Free(*bagContextPtr);
+    *bagContextPtr = NULL;
 
     return FALSE;
 }
@@ -5404,12 +5404,12 @@ static BOOL ScrCmd_152(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_17A(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPocketHasItems(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 pocketID = ScriptContext_GetVar(ctx);
+    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), v0);
+    *resultVar = Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), pocketID);
     return FALSE;
 }
 

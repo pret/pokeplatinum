@@ -1,5 +1,6 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
 #include "generated/fade_types.h"
@@ -2110,20 +2111,28 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_178 arg0
+    .macro OpenBag pocketType
     .short 376
-    .byte \arg0
+    .byte \pocketType
     .endm
 
-    .macro ScrCmd_179 arg0
+    .macro OpenItemsBag
+    OpenBag 0
+    .endm
+
+    .macro OpenBerriesBag
+    OpenBag 1
+    .endm
+
+    .macro GetSelectedItem destVar
     .short 377
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17A arg0, arg1
+    .macro CheckPocketHasItems pocketID, destVar
     .short 378
-    .short \arg0
-    .short \arg1
+    .short \pocketID
+    .short \destVar
     .endm
 
     .macro BufferBerryName templateArg, item, unused=VAR_0x8001

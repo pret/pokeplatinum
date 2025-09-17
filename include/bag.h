@@ -80,7 +80,7 @@ u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapID heapID);
 u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapID heapID);
 void Pocket_SortEmpty(BagItem *pocket, const u32 size); // Moves empty slots to the end of the pocket
 void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, but also sorts by item ID
-void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapID heapID);
+void *BagContext_CreateWithPockets(Bag *bag, const u8 *pockets, enum HeapID heapID);
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot);
 Bag *SaveData_GetBag(SaveData *saveData);
 BagCursor *BagCursor_New(u32 heapID);
