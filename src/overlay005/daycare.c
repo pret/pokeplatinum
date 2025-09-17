@@ -633,7 +633,7 @@ static u16 Egg_DetermineEggSpeciesAndParentSlots(Daycare *daycare, u8 parentSlot
         }
     }
 
-    eggSpecies = sub_02076F84(species[parentSlots[0]]);
+    eggSpecies = Pokemon_GetBaseSpeciesFromPersonalData(species[parentSlots[0]]);
 
     if (eggSpecies == SPECIES_NIDORAN_F) {
         if (Daycare_GetOffspringPersonality(daycare) & EGG_GENDER_MALE) {
