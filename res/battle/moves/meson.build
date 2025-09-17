@@ -995,6 +995,29 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
     ]
 )
 
+battle_anim_script_bin_gen = generator(make_script_bin_sh,
+    arguments: [
+        '-i', relative_source_root / 'include',
+        '-i', relative_source_root / 'asm',
+        '-i', '.' / 'res' / 'text',
+        '-i', '.' / 'res',
+        '-i', '.',
+        '--depfile',
+        '--assembler', arm_none_eabi_gcc_exe.full_path(),
+        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
+        '@EXTRA_ARGS@',
+        '@INPUT@',
+    ],
+    depends: [
+        text_banks,
+        c_consts_generators,
+        h_headers,
+        waza_particle_narc[1],
+    ],
+    output: '@BASENAME@',
+    depfile: '@BASENAME@.d',
+)
+
 we_data_srcs = []
 foreach subdir : we_subdirs
     we_data_srcs += subdir / 'anim' / (subdir + '.s')
@@ -1012,7 +1035,7 @@ we_narc = custom_target(we_narc_name,
     output: [
         we_narc_name,
     ],
-    input: script_bin_gen.process(
+    input: battle_anim_script_bin_gen.process(
         we_data_srcs,
         extra_args: ['--out-dir', we_private_dir]
     ),
