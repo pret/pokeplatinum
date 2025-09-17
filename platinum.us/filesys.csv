@@ -209,7 +209,7 @@ res/prebuilt/graphic/imageclip.narc,/graphic/imageclip.narc
 res/prebuilt/graphic/library_tv.narc,/graphic/library_tv.narc
 res/prebuilt/graphic/lobby_news.narc,/graphic/lobby_news.narc
 res/prebuilt/graphic/mail_gra.narc,/graphic/mail_gra.narc
-res/prebuilt/graphic/menu_gra.narc,/graphic/menu_gra.narc
+res/graphics/start_menu/start_menu.narc,/graphic/menu_gra.narc
 res/prebuilt/graphic/mysign.narc,/graphic/mysign.narc
 res/prebuilt/graphic/mystery.narc,/graphic/mystery.narc
 res/prebuilt/graphic/ntag_gra.narc,/graphic/ntag_gra.narc

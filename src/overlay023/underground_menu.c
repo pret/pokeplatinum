@@ -52,6 +52,7 @@
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 
+#include "res/graphics/start_menu/start_menu.naix.h"
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
 #include "res/text/bank/underground_goods.h"
@@ -252,18 +253,18 @@ static void UndergroundMenu_InitStartMenuSprites(UndergroundMenu *menu, u8 *opti
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
 
     ov5_021D3190(&menu->unk_74, &capacities, UNDERGROUND_START_MENU_OPTION_COUNT + 1, HEAP_ID_FIELD2);
-    ov5_021D32E8(&menu->unk_74, narc, 9, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
-    ov5_021D3374(&menu->unk_74, narc, 1, FALSE, 14528);
-    ov5_021D339C(&menu->unk_74, narc, 0, FALSE, 14528);
-    ov5_021D3414(&menu->unk_74, narc, 2, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
+    ov5_021D32E8(&menu->unk_74, narc, underground_menu_NCLR, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
+    ov5_021D3374(&menu->unk_74, narc, cursor_cell_NCER, FALSE, 14528);
+    ov5_021D339C(&menu->unk_74, narc, cursor_anim_NANR, FALSE, 14528);
+    ov5_021D3414(&menu->unk_74, narc, cursor_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
 
     menu->sprites[ICON_CURSOR_INDEX] = ov5_021D3584(&menu->unk_74, &sSpriteTemplates[UNDERGROUND_MENU_CURSOR_TEMPLATE]);
 
     UndergroundMenu_SetStartMenuCursorPos(menu->sprites[ICON_CURSOR_INDEX]->sprite, menu->menuCursorPos);
 
-    ov5_021D3374(&menu->unk_74, narc, 8, FALSE, 14529);
-    ov5_021D339C(&menu->unk_74, narc, 7, FALSE, 14529);
-    ov5_021D3414(&menu->unk_74, narc, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 14529);
+    ov5_021D3374(&menu->unk_74, narc, underground_icons_cell_NCER, FALSE, 14529);
+    ov5_021D339C(&menu->unk_74, narc, underground_icons_anim_NANR, FALSE, 14529);
+    ov5_021D3414(&menu->unk_74, narc, underground_icons_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 14529);
 
     NARC_dtor(narc);
 
