@@ -11,16 +11,18 @@
 #include "field_script_context.h"
 #include "inlines.h"
 
-const u16 sFossilItemToSpeciesMapping[7][2] = {
-    { ITEM_OLD_AMBER, SPECIES_AERODACTYL },
-    { ITEM_HELIX_FOSSIL, SPECIES_OMANYTE },
-    { ITEM_DOME_FOSSIL, SPECIES_KABUTO },
-    { ITEM_ROOT_FOSSIL, SPECIES_LILEEP },
-    { ITEM_CLAW_FOSSIL, SPECIES_ANORITH },
-    { ITEM_ARMOR_FOSSIL, SPECIES_SHIELDON },
-    { ITEM_SKULL_FOSSIL, SPECIES_CRANIDOS }
+static const struct {
+    u16 item;
+    u16 species;
+} sFossilItemToSpeciesMapping[7] = {
+    { .item = ITEM_OLD_AMBER, .species = SPECIES_AERODACTYL },
+    { .item = ITEM_HELIX_FOSSIL, .species = SPECIES_OMANYTE },
+    { .item = ITEM_DOME_FOSSIL, .species = SPECIES_KABUTO },
+    { .item = ITEM_ROOT_FOSSIL, .species = SPECIES_LILEEP },
+    { .item = ITEM_CLAW_FOSSIL, .species = SPECIES_ANORITH },
+    { .item = ITEM_ARMOR_FOSSIL, .species = SPECIES_SHIELDON },
+    { .item = ITEM_SKULL_FOSSIL, .species = SPECIES_CRANIDOS },
 };
-
 BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -29,7 +31,7 @@ BOOL ScrCmd_GetFossilCount(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     for (i = 0, totalCount = 0; i < 7; i++) {
-        totalCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i][0], HEAP_ID_FIELD1);
+        totalCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i].item, HEAP_ID_FIELD1);
     }
 
     *destVar = totalCount;
@@ -46,8 +48,8 @@ BOOL ScrCmd_GetSpeciesFromFossil(ScriptContext *ctx)
     *destVar = 0;
 
     for (i = 0; i < 7; i++) {
-        if (sFossilItemToSpeciesMapping[i][0] == inputItemID) {
-            *destVar = sFossilItemToSpeciesMapping[i][1];
+        if (sFossilItemToSpeciesMapping[i].item == inputItemID) {
+            *destVar = sFossilItemToSpeciesMapping[i].species;
             break;
         }
     }
@@ -68,10 +70,10 @@ BOOL ScrCmd_FindFossilAtThreshold(ScriptContext *ctx)
     *outIndex = 0;
 
     for (i = 0, currentCount = 0; i < 7; i++) {
-        currentCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i][0], HEAP_ID_FIELD1);
+        currentCount += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), sFossilItemToSpeciesMapping[i].item, HEAP_ID_FIELD1);
 
         if (currentCount >= threshold) {
-            *outItemID = sFossilItemToSpeciesMapping[i][0];
+            *outItemID = sFossilItemToSpeciesMapping[i].item;
             *outIndex = i;
             break;
         }
