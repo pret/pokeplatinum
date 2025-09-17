@@ -6,6 +6,17 @@
 
 #include "overlay005/land_data_manager_decl.h"
 
+enum CollisionFlag {
+    COLLISION_FLAG_BLOCKED = 1, // Bit 0: General collision/blocked movement
+    COLLISION_FLAG_TERRAIN = 2, // Bit 1: Terrain collision (walls, obstacles)
+    COLLISION_FLAG_JUMP_TILES = 4, // Bit 2: Jump tiles
+    COLLISION_FLAG_WARP_ENTRANCES = 8, // Bit 3: Warp entrances
+    COLLISION_FLAG_BIKE_RAMPS = 16, // Bit 4: Bike ramps
+    COLLISION_FLAG_WATER_TILES = 32, // Bit 5: Water tiles
+    COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS = 64, // Bit 6: Bike bridge restrictions
+    COLLISION_FLAG_DOUBLE_JUMP_TILES = 128 // Bit 7: Double jump tiles
+};
+
 void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement);
 BOOL PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int direction);
 void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar);
