@@ -8,26 +8,26 @@
 
 void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4, BOOL param5);
 int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int param1);
-void sub_0205F490(PlayerAvatar *playerAvatar);
-void sub_0205F56C(PlayerAvatar *playerAvatar);
-int sub_0205F588(PlayerAvatar *playerAvatar);
-void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1);
-u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
-u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
-int sub_02061308(PlayerAvatar *playerAvatar, u16 param1, u16 param2);
-int sub_020613AC(PlayerAvatar *playerAvatar);
-int sub_020613FC(PlayerAvatar *playerAvatar, u16 param1);
-int sub_0206140C(PlayerAvatar *playerAvatar);
-int sub_02061434(PlayerAvatar *playerAvatar, int param1);
-u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3, int param4, int param5);
-int sub_02061544(PlayerAvatar *playerAvatar);
+void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar);
+void PlayerAvatar_State_ClearMovementState(PlayerAvatar *playerAvatar);
+int PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar);
+void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, int param1);
+u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
+u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
+int PlayerAvatar_Input_ProcessDirection(PlayerAvatar *playerAvatar, u16 param1, u16 param2);
+int PlayerAvatar_State_IsAnimationActive(PlayerAvatar *playerAvatar);
+int PlayerAvatar_Input_CheckRunningShoes(PlayerAvatar *playerAvatar, u16 param1);
+int PlayerAvatar_State_IsRunningAnimation(PlayerAvatar *playerAvatar);
+int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, int param1);
+u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3, int param4, int param5);
+int PlayerAvatar_Animation_IsSet(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2);
-u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1);
+u32 PlayerAvatar_Animation_GetTileBehavior(PlayerAvatar *playerAvatar, int param1);
 void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z);
 void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z);
-void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4);
+void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4);
 u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1);
 u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar);
-void sub_020617BC(PlayerAvatar *const playerAvatar, int *param1, int *param2, int *param3);
+void PlayerAvatar_Distortion_GetCurrentCoords(PlayerAvatar *const playerAvatar, int *param1, int *param2, int *param3);
 
 #endif // POKEPLATINUM_UNK_0205F180_H

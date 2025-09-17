@@ -93,7 +93,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
         v0->unk_08++;
         break;
     case 1:
-        if (sub_02061544(v0->playerAvatar)) {
+        if (PlayerAvatar_Animation_IsSet(v0->playerAvatar)) {
             int v3 = 0xc;
 
             v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
@@ -131,7 +131,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
             }
 
             {
-                u32 v4 = sub_02060B7C(v0->playerAvatar, v1, v0->unk_00);
+                u32 v4 = PlayerAvatar_Collision_CheckBasic(v0->playerAvatar, v1, v0->unk_00);
 
                 if (v4 == 0) {
                     v0->unk_08 = 1;

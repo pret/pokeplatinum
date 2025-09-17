@@ -169,7 +169,7 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
         input->transitionDir = DIR_NONE;
     }
 
-    input->playerDir = sub_02061308(fieldSystem->playerAvatar, pressedKeys, heldKeys);
+    input->playerDir = PlayerAvatar_Input_ProcessDirection(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
@@ -190,7 +190,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && ov8_0224C51C(fieldSystem) == TRUE)) {
 
-            sub_0205F56C(fieldSystem->playerAvatar);
+            PlayerAvatar_State_ClearMovementState(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
@@ -206,7 +206,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->dummy5 == FALSE) {
         int playerEvent = PLAYER_EVENT_NONE;
-        int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
+        int direction = PlayerAvatar_Input_ProcessDirection(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
         if (SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK)) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
@@ -264,8 +264,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         if (validInteraction == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -404,8 +404,8 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMovementType(object) != 0x1) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
@@ -459,8 +459,8 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             sub_02036B84();
@@ -496,8 +496,8 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -1067,7 +1067,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
     int objectIndex = 0;
     int playerX, playerY, playerZ, objectX, objectY, objectZ;
 
-    sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
+    PlayerAvatar_Distortion_GetCurrentCoords(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
     while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);

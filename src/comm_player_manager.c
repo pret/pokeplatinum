@@ -1059,7 +1059,7 @@ static void CommPlayer_MoveClient(int netId)
         if (sCommPlayerManager->forceDirTimer && (netId == CommSys_CurNetId())) {
             sCommPlayerManager->forceDirTimer--;
         } else if (!CommSys_IsSendingMovementData() && sCommPlayerManager->isUnderground && (netId == CommSys_CurNetId())) {
-            animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
+            animCode = PlayerAvatar_State_GetAnimationCode(playerAvatar, pad, pad, v10, 1, 0);
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->collisionFlag)) {
             moveSpeed = 3;
 
@@ -1081,11 +1081,11 @@ static void CommPlayer_MoveClient(int netId)
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->dir != dir)) {
             animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
         } else {
-            animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
+            animCode = PlayerAvatar_State_GetAnimationCode(playerAvatar, pad, pad, v10, 1, 0);
         }
 
-        if (sub_02061544(playerAvatar) == 0) {
-            if (sub_020613AC(playerAvatar) == 0) {
+        if (PlayerAvatar_Animation_IsSet(playerAvatar) == 0) {
+            if (PlayerAvatar_State_IsAnimationActive(playerAvatar) == 0) {
                 return;
             }
         }

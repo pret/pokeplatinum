@@ -239,7 +239,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
 
     FieldInput fieldInput;
     if (processInput) {
-        sub_0205F490(fieldSystem->playerAvatar);
+        PlayerAvatar_State_UpdateMovementState(fieldSystem->playerAvatar);
         FieldInput_Update(&fieldInput, fieldSystem, gSystem.pressedKeys, gSystem.heldKeys);
     }
 
@@ -307,7 +307,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
             if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
                 MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
-                sub_0205F56C(fieldSystem->playerAvatar);
+                PlayerAvatar_State_ClearMovementState(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {

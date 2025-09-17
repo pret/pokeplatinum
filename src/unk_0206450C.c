@@ -1281,7 +1281,7 @@ static int sub_0206537C(MapObject *mapObj)
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
 
-        if (sub_0206140C(playerAvatar) == 0) {
+        if (PlayerAvatar_State_IsRunningAnimation(playerAvatar) == 0) {
             return -1;
         }
 

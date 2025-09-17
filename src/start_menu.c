@@ -298,8 +298,8 @@ void StartMenu_Init(FieldSystem *fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, sub_0203AC44, menu);
@@ -312,8 +312,8 @@ void sub_0203AA78(FieldSystem *fieldSystem)
     menu->hideOptionFlags = GetHiddenOptionFlags_UnionRoom(fieldSystem);
     menu->unk_228 = 1;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, sub_0203AC44, menu);
@@ -326,8 +326,8 @@ void sub_0203AABC(FieldSystem *fieldSystem)
     menu->hideOptionFlags = GetHiddenOptionFlags_Colosseum(fieldSystem);
     menu->unk_228 = 0;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_State_IsMovementBlocked(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_State_ForceTurn(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, sub_0203AC44, menu);

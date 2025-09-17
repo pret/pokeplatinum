@@ -455,7 +455,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, 
 
 static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_State_GetMovementState(playerAvatar, param2);
 
     if (param3 & 1 << 2) {
         if (ov9_0224A59C(fieldSystem, param2) == 1) {
@@ -488,7 +488,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 
 static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_State_GetMovementState(playerAvatar, param2);
 
     if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
         return 1;
@@ -565,7 +565,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         }
 
         if (LocalMapObj_IsAnimationSet(v1) == 0) {
-            if (sub_020613AC(v0->playerAvatar) == 0) {
+            if (PlayerAvatar_State_IsAnimationActive(v0->playerAvatar) == 0) {
                 break;
             }
         }
@@ -691,7 +691,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
             int blobZPos = MapObject_GetZ(taskEnv->surfBlob);
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(taskEnv->playerAvatar);
 
-            sub_02061674(taskEnv->playerAvatar, taskEnv->direction, &blobXPos, &blobYPos, &blobZPos);
+            PlayerAvatar_Distortion_GetCoordsInDirection(taskEnv->playerAvatar, taskEnv->direction, &blobXPos, &blobYPos, &blobZPos);
             taskEnv->unk_28 = ov5_021F85BC(taskEnv->playerAvatar, blobXPos, blobYPos, blobZPos, taskEnv->direction, 0, distortionState);
         }
 
@@ -760,9 +760,9 @@ static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
         MapObject *v1 = Player_MapObject(playerAvatar);
 
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-            v0 = sub_02060B7C(playerAvatar, v1, param2);
+            v0 = PlayerAvatar_Collision_CheckBasic(playerAvatar, v1, param2);
         } else {
-            v0 = sub_020611FC(playerAvatar, v1, param2);
+            v0 = PlayerAvatar_Collision_CheckDistortion(playerAvatar, v1, param2);
         }
 
         if (v0 == (1 << 5)) {
@@ -850,7 +850,7 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 
     {
-        u8 v0 = sub_0206156C(playerAvatar, param2);
+        u8 v0 = PlayerAvatar_Animation_GetTileBehavior(playerAvatar, param2);
 
         if (TileBehavior_IsWaterfall(v0) == 0) {
             return 0;
@@ -902,7 +902,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
         v0->unk_00++;
     case 1:
         if (LocalMapObj_IsAnimationSet(v1) == 0) {
-            if (sub_020613AC(v0->playerAvatar) == 0) {
+            if (PlayerAvatar_State_IsAnimationActive(v0->playerAvatar) == 0) {
                 break;
             }
         }
@@ -918,7 +918,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
     case 2: {
         int v2 = PlayerAvatar_GetDir(v0->playerAvatar);
         u32 v3, v4 = gSystem.pressedKeys, v5 = gSystem.heldKeys;
-        int v6 = sub_02061308(v0->playerAvatar, v4, v5);
+        int v6 = PlayerAvatar_Input_ProcessDirection(v0->playerAvatar, v4, v5);
 
         if ((v6 == -1) || (v6 == v2)) {
             break;

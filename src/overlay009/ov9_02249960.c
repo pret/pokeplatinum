@@ -2075,7 +2075,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
         int v1, v2, v3, v4;
         DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-        v4 = sub_02061434(fieldSystem->playerAvatar, param1);
+        v4 = PlayerAvatar_State_GetMovementState(fieldSystem->playerAvatar, param1);
         GetPlayerPos(v5, &v1, &v2, &v3);
 
         if (v4 == 1) {
