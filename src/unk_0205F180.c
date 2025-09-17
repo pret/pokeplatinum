@@ -140,7 +140,7 @@ static const DistortionDirectionOffset sDistortionCeilingOffsets[4] = {
 static const TileBehaviorMapping sTileBehaviorMappings[];
 static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, enum MovementAction);
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
+void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
 {
     if (direction == -1) {
         direction = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
@@ -176,7 +176,7 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
     PlayerAvatar_Audio_PlayWalkSE(playerAvatar);
 }
 
-int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction dir)
+int PlayerAvatar_Movement_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction dir)
 {
     return PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir);
 }

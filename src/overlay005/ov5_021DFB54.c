@@ -434,7 +434,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, 
         return 0;
     }
 
-    if (PlayerAvatar_CheckStartMove(playerAvatar, dir) == 0) {
+    if (PlayerAvatar_Movement_CheckStartMove(playerAvatar, dir) == 0) {
         return 0;
     }
 

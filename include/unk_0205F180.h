@@ -27,8 +27,8 @@ enum SpecialMovementType {
     SPECIAL_MOVEMENT_TYPE_UNKNOWN = 6 // Unknown movement type
 };
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement);
-BOOL PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction direction);
+void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement);
+BOOL PlayerAvatar_Movement_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction direction);
 void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar);
 void PlayerAvatar_State_ClearMovementState(PlayerAvatar *playerAvatar);
 BOOL PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar);
