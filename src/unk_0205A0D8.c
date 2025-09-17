@@ -11,6 +11,7 @@
 #include "overlay005/fieldmap.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "comm_player_manager.h"
@@ -38,7 +39,6 @@
 #include "text.h"
 #include "trainer_card.h"
 #include "trainer_info.h"
-#include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -160,7 +160,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
     partyMenu->mode = PARTY_MENU_MODE_SELECT_CONFIRM;
 
     if (param0->fieldSystem->unk_B0) {
-        partyMenu->minSelectionSlots = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        partyMenu->minSelectionSlots = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_TEAM_SIZE);
         partyMenu->maxSelectionSlots = partyMenu->minSelectionSlots;
     } else {
         partyMenu->minSelectionSlots = 3;

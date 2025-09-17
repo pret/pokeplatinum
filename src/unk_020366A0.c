@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202610C.h"
+#include "struct_defs/battle_regulation.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay065/struct_ov65_0222F6EC.h"

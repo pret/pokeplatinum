@@ -26,6 +26,8 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
+#include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -58,11 +60,9 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207A2A8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -693,7 +693,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     StringTemplate_Free(v0->template);
 
     if (v0->heightWeight != NULL) {
-        sub_0207A2C0(v0->heightWeight);
+        HeightWeightData_Free(v0->heightWeight);
     }
 
     ApplicationManager_FreeData(appMan);
@@ -1966,7 +1966,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->battleRegulation != NULL) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
-        if (sub_0207A2D0(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
+        if (BattleRegulation_ValidatePokemon(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
             return PARTY_MENU_SELECTION_INELIGIBLE;
         }
     }
@@ -2151,7 +2151,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->battleRegulation != NULL) {
-        switch (sub_0207A3AC(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
+        switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
         case 0:
             break;
 
@@ -2160,7 +2160,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             int v2;
 
             v1 = MessageLoader_GetNewStrbuf(application->messageLoader, 184);
-            v2 = sub_02026074(application->partyMenu->battleRegulation, 3);
+            v2 = BattleRegulation_GetRuleValue(application->partyMenu->battleRegulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
             StringTemplate_SetNumber(application->template, 0, v2, 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
