@@ -42,71 +42,71 @@ typedef struct {
     s16 padding;
 } DistortionDirectionOffset;
 
-static int PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, enum MovementAction direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_State_HandleDeepSwampMovement(PlayerAvatar *playerAvatar);
 static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar);
-static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, int direction);
-static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction);
+static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static int PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, enum MovementAction direction);
 static void PlayerAvatar_SpecialMovement_ClearState(PlayerAvatar *playerAvatar);
-static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction);
+static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, enum MovementAction direction);
 static int PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, int elevationChange);
-static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction);
+static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction);
 static int PlayerAvatar_Walking_MapTypeToState(int movementType);
 static int PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, int animationCode);
 static int PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapObj, u8 tileBehavior, int animationCode);
-static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 keyPad);
-int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, int direction);
+int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, enum MovementAction direction);
 static int PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar);
-static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction);
+static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction);
 static int PlayerAvatar_Cycling_MapNormalTypeToState(int movementType);
-static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, int direction);
+static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction);
 static int PlayerAvatar_CyclingHighGear_MapTypeToState(int movementType);
-static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, int direction);
-static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
-static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckWarpEntrances(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckWaterTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
+static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, enum MovementAction direction);
+static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress);
+static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckWarpEntrances(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckWaterTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
 static int PlayerAvatar_Input_GetHorizontalDirection(u16 keyPad);
 static int PlayerAvatar_Input_GetVerticalDirection(u16 keyPad);
 static int PlayerAvatar_Input_DetermineMovementDirection(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress);
 static int PlayerAvatar_State_IsTurnAction(int animationCode);
 static void PlayerAvatar_State_IncrementStepCounter(PlayerAvatar *playerAvatar);
-static int PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
-static int PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction);
+static int PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction);
+static int PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, enum MovementAction direction);
 static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration);
 
 static const DistortionDirectionOffset sDistortionFloorOffsets[4] = {
@@ -138,30 +138,30 @@ static const DistortionDirectionOffset sDistortionCeilingOffsets[4] = {
 };
 
 static const TileBehaviorMapping sTileBehaviorMappings[];
-static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int);
+static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, enum MovementAction);
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int dir, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
+void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
 {
-    if (dir == -1) {
-        dir = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
+    if (direction == -1) {
+        direction = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
     }
 
     PlayerAvatar_TryCyclingGearChange(playerAvatar, keyPad);
 
-    if (PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir) == FALSE) {
+    if (PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, direction) == FALSE) {
         return;
     }
 
-    PlayerAvatar_Movement_StartMoveInit(playerAvatar, dir, keyPad, keyPress);
+    PlayerAvatar_Movement_StartMoveInit(playerAvatar, direction, keyPad, keyPress);
     PlayerAvatar_RequestChangeState(playerAvatar);
 
-    if (PlayerAvatar_Movement_ValidateSpecialMovement(playerAvatar, dir) == 1) {
+    if (PlayerAvatar_Movement_ValidateSpecialMovement(playerAvatar, direction) == 1) {
         ov5_021E0EEC(playerAvatar);
         return;
     }
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_WALKING) {
-        int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, dir);
+        int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
 
         if (movementType != 0) {
             ov5_021E0EEC(playerAvatar);
@@ -170,18 +170,18 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
         }
     }
 
-    PlayerAvatar_Movement_HandleByState(playerAvatar, landDataManager, dir, keyPad, keyPress);
+    PlayerAvatar_Movement_HandleByState(playerAvatar, landDataManager, direction, keyPad, keyPress);
 
     PlayerAvatar_State_HandleDeepSwampMovement(playerAvatar);
     PlayerAvatar_Audio_PlayWalkSE(playerAvatar);
 }
 
-int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir)
+int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction dir)
 {
     return PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir);
 }
 
-static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int movementAction;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -241,7 +241,7 @@ static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAva
     return FALSE;
 }
 
-static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     sub_0205EBEC(playerAvatar, PlayerAvatar_Input_GetHorizontalDirection(keyPress), PlayerAvatar_Input_GetVerticalDirection(keyPress));
     sub_0205F054(playerAvatar);
@@ -267,7 +267,7 @@ static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar)
 
         {
             int animationCode = MapObject_GetMovementAction(mapObj);
-            int direction = MovementAction_GetDirFromAction(animationCode);
+            enum MovementAction direction = MovementAction_GetDirFromAction(animationCode);
 
             if (direction == -1) {
                 currentTileBehavior = directionTileBehavior;
@@ -424,7 +424,7 @@ BOOL PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar)
     return FALSE;
 }
 
-void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, int direction)
+void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj;
 
@@ -440,7 +440,7 @@ void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, int direction)
     LocalMapObj_SetAnimationCode(mapObj, MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH));
 }
 
-static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     u32 movementType = PlayerAvatar_Movement_GetSpecialMovementType(playerAvatar, direction);
 
@@ -448,7 +448,7 @@ static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAva
     return movementType;
 }
 
-static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction)
+static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int i = 0;
     u32 tileBehavior = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
@@ -473,29 +473,29 @@ static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvat
 }
 
 static const TileBehaviorMapping sTileBehaviorMappings[] = {
-    { .checkTileBehavior = TileBehavior_IsIce, .movementType = 1 },
-    { .checkTileBehavior = TileBehavior_IsBikeSlope, .movementType = 2 },
-    { .checkTileBehavior = TileBehavior_IsBikeRampEastward, .movementType = 3 },
-    { .checkTileBehavior = TileBehavior_IsBikeRampWestward, .movementType = 4 },
-    { .checkTileBehavior = NULL, .movementType = 6 }
+    { .checkTileBehavior = TileBehavior_IsIce, .movementType = SPECIAL_MOVEMENT_TYPE_ICE },
+    { .checkTileBehavior = TileBehavior_IsBikeSlope, .movementType = SPECIAL_MOVEMENT_TYPE_BIKE_SLOPE },
+    { .checkTileBehavior = TileBehavior_IsBikeRampEastward, .movementType = SPECIAL_MOVEMENT_TYPE_BIKE_RAMP_EASTWARD },
+    { .checkTileBehavior = TileBehavior_IsBikeRampWestward, .movementType = SPECIAL_MOVEMENT_TYPE_BIKE_RAMP_WESTWARD },
+    { .checkTileBehavior = NULL, .movementType = SPECIAL_MOVEMENT_TYPE_UNKNOWN }
 };
 
-static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction)
+static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, enum MovementAction direction)
 {
-    if (Unk_020EDAEC[movementType](playerAvatar, direction) == 1) {
+    if (sSpecialMovementHandlers[movementType](playerAvatar, direction) == 1) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleNormal(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleNormal(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     PlayerAvatar_SpecialMovement_ClearState(playerAvatar);
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
@@ -554,7 +554,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, i
     return 1;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     u32 collisionResult;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -564,7 +564,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
 
     if (movingDir == 0) {
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING && PlayerAvatar_Speed(playerAvatar) >= 3) {
-            if (direction == 0) {
+            if (direction == MOVEMENT_ACTION_FACE_NORTH) {
                 PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(movingDir, MOVEMENT_ACTION_WALK_FASTER_SOUTH), 6);
                 sub_0205EB08(playerAvatar, 1);
                 return TRUE;
@@ -611,7 +611,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
@@ -629,7 +629,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *pl
     return TRUE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
@@ -647,7 +647,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *pl
     return TRUE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvatar, int direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int testDirection = 1;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -669,7 +669,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvat
     return TRUE;
 }
 
-static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int) = {
+static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, enum MovementAction) = {
     PlayerAvatar_SpecialMovement_HandleNormal,
     PlayerAvatar_SpecialMovement_HandleIce,
     PlayerAvatar_SpecialMovement_HandleBikeSlope,
@@ -695,7 +695,7 @@ static void PlayerAvatar_SpecialMovement_ClearState(PlayerAvatar *playerAvatar)
     }
 }
 
-static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int elevationResult;
     VecFx32 currentPos, nextPos;
@@ -741,7 +741,7 @@ static BOOL PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, in
     return TRUE;
 }
 
-static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction)
+static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int animationCode = 16;
@@ -767,7 +767,7 @@ static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, i
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -786,7 +786,7 @@ static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, cons
     }
 }
 
-static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
 
@@ -803,7 +803,7 @@ static void PlayerAvatar_Movement_HandleWalkingSurfing(PlayerAvatar *playerAvata
     }
 }
 
-static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int movementState = PlayerAvatar_Walking_DetermineMovementState(playerAvatar, direction);
     int stateValue = PlayerAvatar_Walking_MapTypeToState(movementState);
@@ -849,7 +849,7 @@ static int PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapOb
     return animationCode;
 }
 
-static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int currentDir;
 
@@ -877,13 +877,13 @@ static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvata
     return 1;
 }
 
-static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
 }
 
-static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
@@ -905,7 +905,7 @@ static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAva
     }
 }
 
-static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int animationCode;
@@ -973,7 +973,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int animationCode;
@@ -1042,7 +1042,7 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress, const int *normalAnimations, const int *runningAnimations, const int *surfAnimations, const int *turnAnimations, const int *turnDirections)
+static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress, const int *normalAnimations, const int *runningAnimations, const int *surfAnimations, const int *turnAnimations, const int *turnDirections)
 {
     u32 collisionResult;
     int animationCode;
@@ -1089,7 +1089,7 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int normalAnimations[4] = { 105, 106, 107, 108 };
     int runningAnimations[4] = { 121, 122, 123, 124 };
@@ -1100,7 +1100,7 @@ static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerA
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
 
-static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int normalAnimations[4] = { 109, 110, 111, 112 };
     int runningAnimations[4] = { 125, 126, 127, 128 };
@@ -1111,7 +1111,7 @@ static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerA
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
 
-static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int normalAnimations[4] = { 113, 114, 115, 116 };
     int runningAnimations[4] = { 129, 130, 131, 132 };
@@ -1122,7 +1122,7 @@ static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAv
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
 
-static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int animationCode, turnDirection;
     turnDirection = direction;
@@ -1150,7 +1150,7 @@ static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapOb
     MapObject_Turn(mapObj, direction);
 }
 
-static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int movementType;
 
@@ -1192,7 +1192,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 ke
     }
 }
 
-int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, int direction)
+int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int animationCode = 76;
 
@@ -1252,7 +1252,7 @@ static BOOL PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar)
     return speedResult;
 }
 
-static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int movementType = PlayerAvatar_Cycling_GetNormalMovementType(playerAvatar, direction);
 
@@ -1272,7 +1272,7 @@ static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar,
     }
 }
 
-static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int movementState = PlayerAvatar_Cycling_DetermineNormalState(playerAvatar, direction);
     int stateValue = PlayerAvatar_Cycling_MapNormalTypeToState(movementState);
@@ -1298,7 +1298,7 @@ static int PlayerAvatar_Cycling_MapNormalTypeToState(int movementType)
     return 0;
 }
 
-static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int currentDir;
 
@@ -1324,7 +1324,7 @@ static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar,
     return 1;
 }
 
-static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
@@ -1332,7 +1332,7 @@ static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, M
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int animationCode;
@@ -1394,7 +1394,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     PlayerAvatar_ClearSpeed(playerAvatar);
 
@@ -1407,7 +1407,7 @@ static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObjec
     }
 }
 
-static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int duration;
@@ -1449,7 +1449,7 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int movementType = PlayerAvatar_CyclingHighGear_GetMovementType(playerAvatar, direction);
 
@@ -1469,7 +1469,7 @@ static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvata
     }
 }
 
-static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int movementState = PlayerAvatar_CyclingHighGear_DetermineState(playerAvatar, direction);
     int stateValue = PlayerAvatar_CyclingHighGear_MapTypeToState(movementState);
@@ -1495,7 +1495,7 @@ static int PlayerAvatar_CyclingHighGear_MapTypeToState(int movementType)
     return 0;
 }
 
-static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, int direction)
+static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int currentDir, currentSpeed;
 
@@ -1527,7 +1527,7 @@ static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvata
     return 1;
 }
 
-static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
@@ -1535,7 +1535,7 @@ static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerA
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int duration;
@@ -1609,7 +1609,7 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     PlayerAvatar_ClearSpeed(playerAvatar);
 
@@ -1624,7 +1624,7 @@ static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, 
     }
 }
 
-static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
+static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
     int duration;
@@ -1672,7 +1672,7 @@ static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapOb
     LocalMapObj_SetAnimationCode(mapObj, animationCode);
 }
 
-u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     u32 collisionResult = 0, internalResult;
     internalResult = PlayerAvatar_Collision_CheckBasicInternal(playerAvatar, mapObj, direction);
@@ -1716,7 +1716,7 @@ u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *map
     return collisionResult;
 }
 
-static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     VecFx32 nextPos;
     u32 collisionFlags, tileBehavior;
@@ -1756,7 +1756,7 @@ static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar,
     return collisionFlags;
 }
 
-static BOOL PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1798,7 +1798,7 @@ static BOOL PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, Ma
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     BOOL hasDoubleJump = FALSE;
 
@@ -1835,7 +1835,7 @@ static BOOL PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvat
     return hasDoubleJump;
 }
 
-static BOOL PlayerAvatar_Collision_CheckWarpEntrances(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckWarpEntrances(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1878,7 +1878,7 @@ static BOOL PlayerAvatar_Collision_CheckWarpEntrances(PlayerAvatar *playerAvatar
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1886,11 +1886,11 @@ static BOOL PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, Ma
         int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(direction);
         u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
-        if (direction == 3 && TileBehavior_IsBikeRampEastward(tileBehavior)) {
+        if (direction == MOVEMENT_ACTION_FACE_EAST && TileBehavior_IsBikeRampEastward(tileBehavior)) {
             return TRUE;
         }
 
-        if (direction == 2 && TileBehavior_IsBikeRampWestward(tileBehavior)) {
+        if (direction == MOVEMENT_ACTION_FACE_WEST && TileBehavior_IsBikeRampWestward(tileBehavior)) {
             return TRUE;
         }
     }
@@ -1898,7 +1898,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeRamps(PlayerAvatar *playerAvatar, Ma
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Collision_CheckWaterTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckWaterTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1914,7 +1914,7 @@ static BOOL PlayerAvatar_Collision_CheckWaterTiles(PlayerAvatar *playerAvatar, M
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1924,7 +1924,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *pla
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, tileBehavior) == 1) {
-                if (direction == 0 || direction == 1) {
+                if (direction == MOVEMENT_ACTION_FACE_NORTH || direction == MOVEMENT_ACTION_FACE_SOUTH) {
                     return FALSE;
                 }
 
@@ -1932,7 +1932,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *pla
             }
 
             if (MapObject_IsOnBikeBridgeEastWest(mapObj, tileBehavior) == 1) {
-                if (direction == 2 || direction == 3) {
+                if (direction == MOVEMENT_ACTION_FACE_WEST || direction == MOVEMENT_ACTION_FACE_EAST) {
                     return FALSE;
                 }
 
@@ -1948,7 +1948,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *pla
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if ((direction != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -1980,7 +1980,7 @@ static BOOL PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar 
     return FALSE;
 }
 
-static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     u32 collisionFlags = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -2006,7 +2006,7 @@ static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, Ma
     return collisionFlags;
 }
 
-static BOOL PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -2031,7 +2031,7 @@ static BOOL PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvata
     return FALSE;
 }
 
-u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     u32 collisionResult, distortionFlags = 0;
 
@@ -2056,7 +2056,7 @@ u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject
     return distortionFlags;
 }
 
-static BOOL PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     BOOL hasDoubleJump = FALSE;
     if ((direction != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
@@ -2215,7 +2215,7 @@ BOOL PlayerAvatar_State_IsRunningAnimation(PlayerAvatar *playerAvatar)
     return FALSE;
 }
 
-int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, int direction)
+int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     int movementType, stateValue, state = PlayerAvatar_GetPlayerState(playerAvatar);
 
@@ -2243,7 +2243,7 @@ int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, int directio
     return stateValue;
 }
 
-u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, int direction, int movementType, int stateValue)
+u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, enum MovementAction direction, int movementType, int stateValue)
 {
     u32 animationCode;
     int movementDirection = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
@@ -2300,7 +2300,7 @@ u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, 
                 animationCode = 4;
             }
 
-            if (movementType == 1 && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == 1) {
+            if (movementType == SPECIAL_MOVEMENT_TYPE_ICE && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == 1) {
                 animationCode = 88;
             }
         }
@@ -2324,13 +2324,13 @@ void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 animationCode
     PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
 }
 
-u32 PlayerAvatar_Animation_GetTileBehavior(PlayerAvatar *playerAvatar, int direction)
+u32 PlayerAvatar_Animation_GetTileBehavior(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     return MapObject_GetTileBehaviorFromDir(mapObj, direction);
 }
 
-void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z)
+void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, enum MovementAction direction, int *x, int *z)
 {
     *x = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(direction);
     *z = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(direction);
@@ -2338,7 +2338,7 @@ void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int directio
 
 void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z)
 {
-    int direction = PlayerAvatar_GetDir(playerAvatar);
+    enum MovementAction direction = PlayerAvatar_GetDir(playerAvatar);
     PlayerAvatar_MoveCoordsInDirection(playerAvatar, direction, x, z);
 }
 
@@ -2351,13 +2351,13 @@ static void PlayerAvatar_State_IncrementStepCounter(PlayerAvatar *playerAvatar)
     GameRecords_IncrementRecordValue(gameRecords, RECORD_UNK_000);
 }
 
-static BOOL PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static BOOL PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
 {
     if (direction != -1) {
         u8 tileBehavior = MapObject_GetCurrTileBehavior(mapObj);
 
         if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, tileBehavior) == 1) {
-            if (direction == 0 || direction == 1) {
+            if (direction == MOVEMENT_ACTION_FACE_NORTH || direction == MOVEMENT_ACTION_FACE_SOUTH) {
                 return FALSE;
             }
 
@@ -2376,7 +2376,7 @@ static BOOL PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvata
     return FALSE;
 }
 
-static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction)
+static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, enum MovementAction direction)
 {
     if (direction != -1) {
         return FALSE;
@@ -2399,7 +2399,7 @@ static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, 
     return FALSE;
 }
 
-void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *xOut, int *yOut, int *zOut)
+void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, enum MovementAction direction, int *xOut, int *yOut, int *zOut)
 {
     const DistortionDirectionOffset *directionOffset;
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
@@ -2428,7 +2428,7 @@ void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, in
     (*zOut) += directionOffset->zOffset;
 }
 
-u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int direction)
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, enum MovementAction direction)
 {
     u32 tileBehavior;
 
@@ -2468,7 +2468,7 @@ u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
 
 void PlayerAvatar_Distortion_GetCurrentCoords(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *zOut)
 {
-    int direction = PlayerAvatar_GetDistortionDir(playerAvatar);
+    enum MovementAction direction = PlayerAvatar_GetDistortionDir(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     *xOut = MapObject_GetX(mapObj);
