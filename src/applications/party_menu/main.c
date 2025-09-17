@@ -2151,10 +2151,10 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
 
     if (application->partyMenu->battleRegulation != NULL) {
         switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
-        case 0:
+        case BATTLE_REGULATION_VALIDATION_SUCCESS:
             break;
 
-        case 1: {
+        case BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED: {
             Strbuf *v1;
             int v2;
 
@@ -2169,12 +2169,12 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 2:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 3:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00183, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
