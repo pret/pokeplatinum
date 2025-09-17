@@ -1361,13 +1361,13 @@ Overlay overlay85
 	Object main.nef.p/src_overlay085_ov85_02241440.c.o
 }
 
-Overlay overlay86
+Overlay hall_of_fame
 {
 	After battle_anim
-	Object main.nef.p/src_overlay086_ov86_0223B140.c.o
+	Object main.nef.p/src_overlay086_league_hall_of_fame.c.o
 }
 
-Overlay overlay87
+Overlay pc_hall_of_fame
 {
 	After main
 	Object main.nef.p/src_applications_pc_hall_of_fame_manager.c.o
