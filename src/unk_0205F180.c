@@ -110,31 +110,31 @@ static int PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u
 static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration);
 
 static const DistortionDirectionOffset sDistortionFloorOffsets[4] = {
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
-    { .xOffset = -1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 }
+    { .xOffset = 0, .yOffset = 0, .zOffset = -1, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = 1, .padding = 0 },
+    { .xOffset = -1, .yOffset = 0, .zOffset = 0, .padding = 0 },
+    { .xOffset = 1, .yOffset = 0, .zOffset = 0, .padding = 0 }
 };
 
 static const DistortionDirectionOffset sDistortionWestWallOffsets[4] = {
-    { .xOffset = 0x0, .yOffset = 0x1, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = -1, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 }
+    { .xOffset = 0, .yOffset = 1, .zOffset = 0, .padding = 0 },
+    { .xOffset = 0, .yOffset = -1, .zOffset = 0, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = 1, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = -1, .padding = 0 }
 };
 
 static const DistortionDirectionOffset sDistortionEastWallOffsets[4] = {
-    { .xOffset = 0x0, .yOffset = 0x1, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = -1, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 }
+    { .xOffset = 0, .yOffset = 1, .zOffset = 0, .padding = 0 },
+    { .xOffset = 0, .yOffset = -1, .zOffset = 0, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = -1, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = 1, .padding = 0 }
 };
 
 static const DistortionDirectionOffset sDistortionCeilingOffsets[4] = {
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = 0x1, .padding = 0 },
-    { .xOffset = 0x0, .yOffset = 0x0, .zOffset = -1, .padding = 0 },
-    { .xOffset = -1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 },
-    { .xOffset = 0x1, .yOffset = 0x0, .zOffset = 0x0, .padding = 0 }
+    { .xOffset = 0, .yOffset = 0, .zOffset = 1, .padding = 0 },
+    { .xOffset = 0, .yOffset = 0, .zOffset = -1, .padding = 0 },
+    { .xOffset = -1, .yOffset = 0, .zOffset = 0, .padding = 0 },
+    { .xOffset = 1, .yOffset = 0, .zOffset = 0, .padding = 0 }
 };
 
 static const TileBehaviorMapping sTileBehaviorMappings[];
@@ -231,7 +231,7 @@ static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAva
             return TRUE;
         }
 
-        if ((collisionResult == (1 << 5)) && (PlayerAvatar_GetPlayerState(playerAvatar) == 0x2)) {
+        if ((collisionResult == (1 << 5)) && (PlayerAvatar_GetPlayerState(playerAvatar) == 2)) {
             return TRUE;
         }
 
@@ -434,7 +434,7 @@ void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, int direction)
     mapObj = Player_MapObject(playerAvatar);
 
     MapObject_TryFace(mapObj, direction);
-    sub_02062A0C(mapObj, 0x0);
+    sub_02062A0C(mapObj, 0);
     MapObject_UpdateCoords(mapObj);
     sub_020656DC(mapObj);
     LocalMapObj_SetAnimationCode(mapObj, MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH));
@@ -473,11 +473,11 @@ static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvat
 }
 
 static const TileBehaviorMapping sTileBehaviorMappings[] = {
-    { .checkTileBehavior = TileBehavior_IsIce, .movementType = 0x1 },
-    { .checkTileBehavior = TileBehavior_IsBikeSlope, .movementType = 0x2 },
-    { .checkTileBehavior = TileBehavior_IsBikeRampEastward, .movementType = 0x3 },
-    { .checkTileBehavior = TileBehavior_IsBikeRampWestward, .movementType = 0x4 },
-    { .checkTileBehavior = NULL, .movementType = 0x6 }
+    { .checkTileBehavior = TileBehavior_IsIce, .movementType = 1 },
+    { .checkTileBehavior = TileBehavior_IsBikeSlope, .movementType = 2 },
+    { .checkTileBehavior = TileBehavior_IsBikeRampEastward, .movementType = 3 },
+    { .checkTileBehavior = TileBehavior_IsBikeRampWestward, .movementType = 4 },
+    { .checkTileBehavior = NULL, .movementType = 6 }
 };
 
 static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction)
@@ -618,9 +618,9 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *pl
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 0x5f, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 95, 2);
     } else {
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 0x5d, 3);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 93, 3);
     }
 
     sub_0205EF40(playerAvatar, 1);
@@ -636,9 +636,9 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *pl
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 0x5e, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 94, 2);
     } else {
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 0x5c, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 92, 2);
     }
 
     sub_0205EF40(playerAvatar, 1);
@@ -744,21 +744,21 @@ static BOOL PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, in
 static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int animationCode = 0x10;
+    int animationCode = 16;
     int currentSpeed = PlayerAvatar_Speed(playerAvatar);
     int duration = 5;
 
     switch (currentSpeed) {
     case 1:
-        animationCode = 0x50;
+        animationCode = 80;
         duration = 5;
         break;
     case 2:
-        animationCode = 0x14;
+        animationCode = 20;
         duration = 6;
         break;
     case 3:
-        animationCode = 0x14;
+        animationCode = 20;
         duration = 6;
         break;
     }
@@ -830,15 +830,15 @@ static int PlayerAvatar_Walking_MapTypeToState(int movementType)
 static int PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, int animationCode)
 {
     if (TileBehavior_IsDeepestSnow(tileBehavior) == 1) {
-        return 0x4;
+        return 4;
     }
 
     if (TileBehavior_IsDeeperSnow(tileBehavior) == 1) {
-        return 0x8;
+        return 8;
     }
 
     if (TileBehavior_IsDeepSnow(tileBehavior) == 1) {
-        return 0xc;
+        return 12;
     }
 
     return animationCode;
@@ -915,13 +915,13 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
         if (collisionResult & (1 << 2)) {
-            animationCode = 0x38;
+            animationCode = 56;
             duration = 3;
         } else if (collisionResult & (1 << 7)) {
-            animationCode = 0x75;
+            animationCode = 117;
             duration = 2;
         } else if (collisionResult != 0) {
-            animationCode = 0x1c;
+            animationCode = 28;
             duration = 1;
 
             if ((collisionResult & (1 << 3)) == 0) {
@@ -930,7 +930,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
 
             MapObject_Turn(mapObj, direction);
         } else {
-            animationCode = 0xc;
+            animationCode = 12;
             duration = 4;
 
             {
@@ -938,7 +938,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
 
                 if (PlayerData_HasRunningShoes(playerData) == 1) {
                     if (PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == 1) {
-                        animationCode = 0x58;
+                        animationCode = 88;
                         duration = 5;
                     }
                 }
@@ -952,13 +952,13 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
     } else {
         if ((collisionResult == 0) || (collisionResult == (1 << 5))) {
             duration = 5;
-            animationCode = 0x10;
+            animationCode = 16;
             animationCode = PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(mapObj, MapObject_GetCurrTileBehavior(mapObj), animationCode);
 
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else {
-            animationCode = 0x1c;
+            animationCode = 28;
             duration = 1;
 
             if ((collisionResult & (1 << 3)) == 0) {
@@ -1000,24 +1000,24 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
         if (collisionResult & (1 << 7)) {
-            animationCode = 0x75;
+            animationCode = 117;
             duration = 2;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else if (collisionResult != 0) {
-            animationCode = 0x1c;
+            animationCode = 28;
             duration = 1;
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, direction);
         } else {
             PlayerData *player;
 
-            animationCode = 0xc;
+            animationCode = 12;
             duration = 4;
             player = PlayerAvatar_PlayerData(playerAvatar);
 
             if (PlayerData_HasRunningShoes(player) == TRUE && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == 1) {
-                animationCode = 0x58;
+                animationCode = 88;
                 duration = 5;
             }
 
@@ -1027,11 +1027,11 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
     } else {
         if ((collisionResult == 0) || (collisionResult == (1 << 5))) {
             duration = 5;
-            animationCode = 0x10;
+            animationCode = 16;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else {
-            animationCode = 0x1c;
+            animationCode = 28;
             duration = 1;
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, direction);
@@ -1091,10 +1091,10 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
 
 static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 0x69, 0x6a, 0x6b, 0x6c };
-    int runningAnimations[4] = { 0x79, 0x7a, 0x7b, 0x7c };
-    int surfAnimations[4] = { 0x69, 0x6a, 0x6b, 0x6c };
-    int turnAnimations[4] = { 0x1e, 0x1f, 0x1d, 0x1c };
+    int normalAnimations[4] = { 105, 106, 107, 108 };
+    int runningAnimations[4] = { 121, 122, 123, 124 };
+    int surfAnimations[4] = { 105, 106, 107, 108 };
+    int turnAnimations[4] = { 30, 31, 29, 28 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
@@ -1102,10 +1102,10 @@ static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerA
 
 static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 0x6d, 0x6e, 0x6f, 0x70 };
-    int runningAnimations[4] = { 0x7d, 0x7e, 0x7f, 0x80 };
-    int surfAnimations[4] = { 0x6d, 0x6e, 0x6f, 0x70 };
-    int turnAnimations[4] = { 0x1f, 0x1e, 0x1c, 0x1d };
+    int normalAnimations[4] = { 109, 110, 111, 112 };
+    int runningAnimations[4] = { 125, 126, 127, 128 };
+    int surfAnimations[4] = { 109, 110, 111, 112 };
+    int turnAnimations[4] = { 31, 30, 28, 29 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
@@ -1113,10 +1113,10 @@ static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerA
 
 static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 0x71, 0x72, 0x73, 0x74 };
-    int runningAnimations[4] = { 0x81, 0x82, 0x83, 0x84 };
-    int surfAnimations[4] = { 0x71, 0x72, 0x73, 0x74 };
-    int turnAnimations[4] = { 0x1d, 0x1c, 0x1f, 0x1e };
+    int normalAnimations[4] = { 113, 114, 115, 116 };
+    int runningAnimations[4] = { 129, 130, 131, 132 };
+    int surfAnimations[4] = { 113, 114, 115, 116 };
+    int turnAnimations[4] = { 29, 28, 31, 30 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
@@ -1194,17 +1194,17 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 ke
 
 int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, int direction)
 {
-    int animationCode = 0x4c;
+    int animationCode = 76;
 
     switch (PlayerAvatar_Speed(playerAvatar)) {
     case 1:
-        animationCode = 0x10;
+        animationCode = 16;
         break;
     case 2:
-        animationCode = 0x50;
+        animationCode = 80;
         break;
     case 3:
-        animationCode = 0x14;
+        animationCode = 20;
         break;
     }
 
@@ -1341,23 +1341,23 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (collisionResult & (1 << 2)) {
-        animationCode = 0x38;
+        animationCode = 56;
         duration = 3;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & (1 << 7)) {
-        animationCode = 0x75;
+        animationCode = 117;
         duration = 2;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & (1 << 4)) {
-        animationCode = 0x50;
+        animationCode = 80;
         duration = 5;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
         sub_0205EF40(playerAvatar, 1);
     } else if (collisionResult & (1 << 6)) {
-        animationCode = 0x0;
+        animationCode = 0;
         duration = 1;
         direction = MapObject_GetMovingDir(mapObj);
         MapObject_Turn(mapObj, direction);
@@ -1365,7 +1365,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
         sub_0205EBEC(playerAvatar, -1, -1);
     } else if (collisionResult != 0) {
         if (PlayerAvatar_State_CheckBikeBridgeValidity(playerAvatar, mapObj, direction) == 0) {
-            animationCode = 0x1c;
+            animationCode = 28;
             duration = 1;
 
             if ((collisionResult & (1 << 3)) == 0) {
@@ -1375,7 +1375,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
             MapObject_Turn(mapObj, direction);
             PlayerAvatar_ClearSpeed(playerAvatar);
         } else {
-            animationCode = 0x0;
+            animationCode = 0;
             duration = 1;
             direction = MapObject_GetMovingDir(mapObj);
             MapObject_Turn(mapObj, direction);
@@ -1383,7 +1383,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
             sub_0205EBEC(playerAvatar, -1, -1);
         }
     } else {
-        animationCode = 0x50;
+        animationCode = 80;
         duration = 5;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
@@ -2181,10 +2181,10 @@ BOOL PlayerAvatar_State_IsAnimationActive(PlayerAvatar *playerAvatar)
 static BOOL PlayerAvatar_State_IsTurnAction(int animationCode)
 {
     switch (animationCode) {
-    case 0x1c:
-    case 0x1d:
-    case 0x1e:
-    case 0x1f:
+    case 28:
+    case 29:
+    case 30:
+    case 31:
         return TRUE;
     }
 
@@ -2205,10 +2205,10 @@ BOOL PlayerAvatar_State_IsRunningAnimation(PlayerAvatar *playerAvatar)
     u32 animationCode = sub_0205EC14(playerAvatar);
 
     switch (animationCode) {
-    case 0x58:
-    case 0x59:
-    case 0x5a:
-    case 0x5b:
+    case 88:
+    case 89:
+    case 90:
+    case 91:
         return TRUE;
     }
 
@@ -2267,11 +2267,11 @@ u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, 
         u32 stateFlags = stateValue;
 
         if (stateFlags & (1 << 2)) {
-            animationCode = 0x38;
+            animationCode = 56;
         } else if (stateFlags & (1 << 7)) {
-            animationCode = 0x75;
+            animationCode = 117;
         } else if (stateFlags != 0) {
-            animationCode = 0x1c;
+            animationCode = 28;
 
             if ((stateFlags & (1 << 3)) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
@@ -2279,29 +2279,29 @@ u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, 
         } else {
             switch (direction) {
             case 0:
-                animationCode = 0x4;
+                animationCode = 4;
                 break;
             case 1:
-                animationCode = 0x8;
+                animationCode = 8;
                 break;
             case 2:
-                animationCode = 0xc;
+                animationCode = 12;
                 break;
             case 3:
-                animationCode = 0x4c;
+                animationCode = 76;
                 break;
             case 4:
-                animationCode = 0x10;
+                animationCode = 16;
                 break;
             case 5:
-                animationCode = 0x14;
+                animationCode = 20;
                 break;
             default:
-                animationCode = 0x4;
+                animationCode = 4;
             }
 
             if ((movementType == 1) && (PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == 1)) {
-                animationCode = 0x58;
+                animationCode = 88;
             }
         }
 
