@@ -2251,7 +2251,7 @@ int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, int directio
     return stateValue;
 }
 
-enum MovementAction PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, int movementActionIndex, int movementType, int stateValue)
+enum MovementAction PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, int movementSpeed, int movementType, int stateValue)
 {
     enum MovementAction movementAction;
     int movementDirection = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
@@ -2285,24 +2285,25 @@ enum MovementAction PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvat
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
         } else {
-            // Select base movement action based on index into gMovementActionCodes array
-            switch (movementActionIndex) {
-            case 0: // gMovementActionCodes[0]
+            // Note: Cases 0 and 3 are never reached due to the speed mapping in CommPlayer_MoveClient
+            // which only produces values 1, 2, 4, 5. This appears to be a GameFreak implementation bug.
+            switch (movementSpeed) {
+            case WALKING_SPEED_SLOWER:
                 movementAction = MOVEMENT_ACTION_WALK_SLOWER_NORTH;
                 break;
-            case 1: // gMovementActionCodes[1]
+            case WALKING_SPEED_SLOW:
                 movementAction = MOVEMENT_ACTION_WALK_SLOW_NORTH;
                 break;
-            case 2: // gMovementActionCodes[2]
+            case WALKING_SPEED_NORMAL:
                 movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
                 break;
-            case 3: // gMovementActionCodes[3]
+            case WALKING_SPEED_SLIGHTLY_FAST:
                 movementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_NORTH;
                 break;
-            case 4: // gMovementActionCodes[4]
+            case WALKING_SPEED_FAST:
                 movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
                 break;
-            case 5: // gMovementActionCodes[5]
+            case WALKING_SPEED_FASTER:
                 movementAction = MOVEMENT_ACTION_WALK_FASTER_NORTH;
                 break;
             default:

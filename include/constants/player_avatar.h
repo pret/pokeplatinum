@@ -43,6 +43,15 @@ enum CyclingSpeed {
     CYCLING_SPEED_FAST = 3,
 };
 
+enum WalkingSpeed {
+    WALKING_SPEED_SLOWER = 0,
+    WALKING_SPEED_SLOW = 1,
+    WALKING_SPEED_NORMAL = 2,
+    WALKING_SPEED_SLIGHTLY_FAST = 3,
+    WALKING_SPEED_FAST = 4,
+    WALKING_SPEED_FASTER = 5,
+};
+
 enum CyclingMovementType {
     CYCLING_MOVEMENT_TURN_IN_PLACE = 0,
     CYCLING_MOVEMENT_NORMAL = 1,
