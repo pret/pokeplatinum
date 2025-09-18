@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/player_avatar.h"
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
@@ -32,7 +33,7 @@ typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
 typedef struct {
     UnkFuncPtr_020EDB84 checkTileBehavior;
-    u32 movementType;
+    enum SpecialMovementType movementType;
 } TileBehaviorMapping;
 
 typedef struct {
@@ -42,24 +43,24 @@ typedef struct {
     s16 padding;
 } DistortionDirectionOffset;
 
-static int PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
+static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_Movement_StartMoveInit(PlayerAvatar *playerAvatar, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_State_HandleDeepSwampMovement(PlayerAvatar *playerAvatar);
 static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, int direction);
-static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction);
+static enum SpecialMovementType PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction);
+static int PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, enum SpecialMovementType movementType, int direction);
 static void PlayerAvatar_SpecialMovement_ClearState(PlayerAvatar *playerAvatar);
-static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, int elevationChange);
+static enum ElevationChange PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction);
+static int PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, enum ElevationChange elevationChange);
 static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Movement_HandleWalking(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_Walking_MapTypeToState(int movementType);
-static int PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, int animationCode);
-static int PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapObj, u8 tileBehavior, int animationCode);
-static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction);
+static enum WalkingMovementType PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction);
+static enum AvatarMoveState PlayerAvatar_Walking_MapTypeToState(enum WalkingMovementType movementType);
+static enum MovementAction PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, enum MovementAction movementAction);
+static enum MovementAction PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapObj, u8 tileBehavior, enum MovementAction movementAction);
+static enum WalkingMovementType PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
@@ -70,21 +71,21 @@ static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAv
 static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 keyPad);
-int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar);
-static int PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar);
+enum MovementAction PlayerAvatar_Animation_GetCyclingMovementAction(PlayerAvatar *playerAvatar, int direction);
+static BOOL PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar);
+static BOOL PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar);
 static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_Cycling_MapNormalTypeToState(int movementType);
-static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction);
+static enum CyclingMovementType PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction);
+static enum AvatarMoveState PlayerAvatar_Cycling_MapNormalTypeToState(int movementType);
+static enum CyclingMovementType PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, int direction);
-static int PlayerAvatar_CyclingHighGear_MapTypeToState(int movementType);
-static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, int direction);
+static enum CyclingMovementType PlayerAvatar_Cycling_GetMovementType(PlayerAvatar *playerAvatar, int direction);
+static enum AvatarMoveState PlayerAvatar_Cycling_MapTypeToState(enum CyclingMovementType movementType);
+static enum CyclingMovementType PlayerAvatar_Cycling_DetermineState(PlayerAvatar *playerAvatar, int direction);
 static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
 static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress);
@@ -103,11 +104,11 @@ static int PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, M
 static int PlayerAvatar_Input_GetHorizontalDirection(u16 keyPad);
 static int PlayerAvatar_Input_GetVerticalDirection(u16 keyPad);
 static int PlayerAvatar_Input_DetermineMovementDirection(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress);
-static int PlayerAvatar_State_IsTurnAction(int animationCode);
+static int PlayerAvatar_State_IsTurnAction(enum MovementAction movementAction);
 static void PlayerAvatar_State_IncrementStepCounter(PlayerAvatar *playerAvatar);
 static int PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 static int PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 tileBehavior, int direction);
-static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration);
+static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int duration);
 
 static const DistortionDirectionOffset sDistortionFloorOffsets[4] = {
     { .xOffset = 0, .yOffset = 0, .zOffset = -1, .padding = 0 },
@@ -138,9 +139,9 @@ static const DistortionDirectionOffset sDistortionCeilingOffsets[4] = {
 };
 
 static const TileBehaviorMapping sTileBehaviorMappings[];
-static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, enum MovementAction);
+static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, int);
 
-void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, enum MovementAction direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
+void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress, BOOL allowSpecialMovement)
 {
     if (direction == DIR_NONE) {
         direction = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
@@ -160,12 +161,12 @@ void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataMan
         return;
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) == AVATAR_MOVE_STATE_NONE) {
-        int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
+    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_WALKING) {
+        enum WalkingMovementType movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
 
-        if (movementType != 0) {
+        if (movementType != WALKING_MOVEMENT_TURN_IN_PLACE) {
             ov5_021E0EEC(playerAvatar);
-        } else if (allowSpecialMovement == 1) {
+        } else if (allowSpecialMovement == TRUE) {
             ov5_021E0E94(playerAvatar);
         }
     }
@@ -176,14 +177,14 @@ void PlayerAvatar_Movement_Control(PlayerAvatar *playerAvatar, const LandDataMan
     PlayerAvatar_Audio_PlayWalkSE(playerAvatar);
 }
 
-int PlayerAvatar_Movement_CheckStartMove(PlayerAvatar *playerAvatar, enum MovementAction dir)
+BOOL PlayerAvatar_Movement_CheckStartMove(PlayerAvatar *playerAvatar, int direction)
 {
-    return PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, dir);
+    return PlayerAvatar_Movement_CheckStartMoveInternal(playerAvatar, direction);
 }
 
 static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int direction)
 {
-    int movementAction;
+    enum MovementAction movementAction;
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(mapObj) == TRUE) {
@@ -227,11 +228,11 @@ static BOOL PlayerAvatar_Movement_CheckStartMoveInternal(PlayerAvatar *playerAva
             collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
         }
 
-        if (collisionResult == 0) {
+        if (collisionResult == COLLISION_FLAG_NONE) {
             return TRUE;
         }
 
-        if ((collisionResult == COLLISION_FLAG_WATER_TILES) && (PlayerAvatar_GetPlayerState(playerAvatar) == 2)) {
+        if ((collisionResult == COLLISION_FLAG_WATER_TILES) && (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING)) {
             return TRUE;
         }
 
@@ -253,7 +254,7 @@ static void PlayerAvatar_State_HandleDeepSwampMovement(PlayerAvatar *playerAvata
         sub_0205EF6C(playerAvatar, 0);
 
         if (PlayerAvatar_IsNotInDeepSwamp(playerAvatar) == TRUE) {
-            PlayerAvatar_SetInDeepSwamp(playerAvatar, 0);
+            PlayerAvatar_SetInDeepSwamp(playerAvatar, FALSE);
             sub_02062EE0(Player_MapObject(playerAvatar), 0);
         }
     }
@@ -266,8 +267,8 @@ static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar)
         u8 currentTileBehavior, directionTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
 
         {
-            int animationCode = MapObject_GetMovementAction(mapObj);
-            int direction = MovementAction_GetDirFromAction(animationCode);
+            enum MovementAction movementAction = MapObject_GetMovementAction(mapObj);
+            int direction = MovementAction_GetDirFromAction(movementAction);
 
             if (direction == DIR_NONE) {
                 currentTileBehavior = directionTileBehavior;
@@ -307,7 +308,9 @@ static void PlayerAvatar_Audio_PlayWalkSE(PlayerAvatar *playerAvatar)
 
 void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar)
 {
-    int moveState, playerMoveState, animationCode;
+    enum AvatarMoveState moveState;
+    enum PlayerMoveState playerMoveState;
+    enum MovementAction movementAction;
     const MapObject *mapObj;
 
     moveState = PlayerAvatar_MoveState(playerAvatar);
@@ -316,9 +319,9 @@ void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar)
 
     sub_0205EB10(playerAvatar, 0);
 
-    u32 specialMovementType = PlayerAvatar_Movement_GetSpecialMovementType(playerAvatar, DIR_NONE);
+    enum SpecialMovementType specialMovementType = PlayerAvatar_Movement_GetSpecialMovementType(playerAvatar, DIR_NONE);
 
-    if (specialMovementType != 0 && specialMovementType != 5) {
+    if (specialMovementType != SPECIAL_MOVEMENT_TYPE_NONE && specialMovementType != SPECIAL_MOVEMENT_TYPE_CYCLING_ROAD) {
         sub_0205EB10(playerAvatar, 2);
         return;
     }
@@ -328,9 +331,9 @@ void PlayerAvatar_State_UpdateMovementState(PlayerAvatar *playerAvatar)
         case AVATAR_MOVE_STATE_NONE:
             break;
         case AVATAR_MOVE_STATE_MOVING:
-            animationCode = MapObject_GetMovementAction(mapObj);
+            movementAction = MapObject_GetMovementAction(mapObj);
 
-            if (PlayerAvatar_State_IsTurnAction(animationCode) == TRUE) {
+            if (PlayerAvatar_State_IsTurnAction(movementAction) == TRUE) {
                 break;
             }
 
@@ -389,7 +392,9 @@ void PlayerAvatar_State_ClearMovementState(PlayerAvatar *playerAvatar)
 
 BOOL PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar)
 {
-    int moveState, playerMoveState, animationCode;
+    enum AvatarMoveState moveState;
+    enum PlayerMoveState playerMoveState;
+    enum MovementAction movementAction;
     const MapObject *mapObj;
 
     moveState = PlayerAvatar_MoveState(playerAvatar);
@@ -414,9 +419,9 @@ BOOL PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar)
             return TRUE;
         }
 
-        animationCode = MapObject_GetMovementAction(mapObj);
+        movementAction = MapObject_GetMovementAction(mapObj);
 
-        if (PlayerAvatar_State_IsTurnAction(animationCode) == TRUE) {
+        if (PlayerAvatar_State_IsTurnAction(movementAction) == TRUE) {
             return TRUE;
         }
     }
@@ -424,7 +429,7 @@ BOOL PlayerAvatar_State_IsMovementBlocked(PlayerAvatar *playerAvatar)
     return FALSE;
 }
 
-void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, enum MovementAction direction)
+void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj;
 
@@ -442,23 +447,23 @@ void PlayerAvatar_State_ForceTurn(PlayerAvatar *playerAvatar, enum MovementActio
 
 static int PlayerAvatar_Movement_ValidateSpecialMovement(PlayerAvatar *playerAvatar, int direction)
 {
-    u32 movementType = PlayerAvatar_Movement_GetSpecialMovementType(playerAvatar, direction);
+    enum SpecialMovementType movementType = PlayerAvatar_Movement_GetSpecialMovementType(playerAvatar, direction);
 
     movementType = PlayerAvatar_Movement_ExecuteSpecialMovement(playerAvatar, movementType, direction);
     return movementType;
 }
 
-static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction)
+static enum SpecialMovementType PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvatar, int direction)
 {
     int i = 0;
     u32 tileBehavior = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
     if (PlayerAvatar_Cycling_IsUnderCyclingRoad(playerAvatar, tileBehavior, direction) == TRUE) {
-        return 5;
+        return SPECIAL_MOVEMENT_TYPE_CYCLING_ROAD;
     }
 
     if (sub_0205EF84(playerAvatar) == TRUE) {
-        return FALSE;
+        return SPECIAL_MOVEMENT_TYPE_NONE;
     }
 
     do {
@@ -469,7 +474,7 @@ static u32 PlayerAvatar_Movement_GetSpecialMovementType(PlayerAvatar *playerAvat
         i++;
     } while (sTileBehaviorMappings[i].checkTileBehavior != NULL);
 
-    return FALSE;
+    return SPECIAL_MOVEMENT_TYPE_NONE;
 }
 
 static const TileBehaviorMapping sTileBehaviorMappings[] = {
@@ -480,7 +485,7 @@ static const TileBehaviorMapping sTileBehaviorMappings[] = {
     { .checkTileBehavior = NULL, .movementType = SPECIAL_MOVEMENT_TYPE_UNKNOWN }
 };
 
-static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, u32 movementType, int direction)
+static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAvatar, enum SpecialMovementType movementType, int direction)
 {
     if (sSpecialMovementHandlers[movementType](playerAvatar, direction) == TRUE) {
         return TRUE;
@@ -489,25 +494,25 @@ static BOOL PlayerAvatar_Movement_ExecuteSpecialMovement(PlayerAvatar *playerAva
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleNormal(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleNormal(PlayerAvatar *playerAvatar, int direction)
 {
     PlayerAvatar_SpecialMovement_ClearState(playerAvatar);
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
-    int elevationChange = PlayerAvatar_State_CheckElevationChange(playerAvatar, movingDir);
+    enum ElevationChange elevationChange = PlayerAvatar_State_CheckElevationChange(playerAvatar, movingDir);
     u32 collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, movingDir);
 
     sub_0205EF40(playerAvatar, 1);
 
-    if (collisionResult != 0) {
+    if (collisionResult != COLLISION_FLAG_NONE) {
         PlayerAvatar_SpecialMovement_ClearState(playerAvatar);
 
-        if (elevationChange != 1) {
+        if (elevationChange != ELEVATION_CHANGE_UP) {
             sub_0205EF6C(playerAvatar, 1);
             sub_0205EB08(playerAvatar, 0);
             return FALSE;
@@ -516,7 +521,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, e
         movingDir = Direction_GetOpposite(movingDir);
         collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, movingDir);
 
-        if (collisionResult != 0) {
+        if (collisionResult != COLLISION_FLAG_NONE) {
             return FALSE;
         }
 
@@ -536,7 +541,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, e
         movingDir = Direction_GetOpposite(movingDir);
         collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, movingDir);
 
-        if (collisionResult != 0) {
+        if (collisionResult != COLLISION_FLAG_NONE) {
             return FALSE;
         }
 
@@ -554,7 +559,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleIce(PlayerAvatar *playerAvatar, e
     return 1;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAvatar, int direction)
 {
     u32 collisionResult;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -562,8 +567,8 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
 
     Sound_PlayEffect(SEQ_SE_DP_SUNA);
 
-    if (movingDir == 0) {
-        if (PlayerAvatar_GetPlayerState(playerAvatar) == AVATAR_MOVE_STATE_MOVING && PlayerAvatar_Speed(playerAvatar) >= 3) {
+    if (movingDir == DIR_NORTH) {
+        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING && PlayerAvatar_Speed(playerAvatar) >= CYCLING_SPEED_FAST) {
             if (direction == MOVEMENT_ACTION_FACE_NORTH) {
                 PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(movingDir, MOVEMENT_ACTION_WALK_FASTER_SOUTH), 6);
                 sub_0205EB08(playerAvatar, 1);
@@ -574,7 +579,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
         movingDir = Direction_GetOpposite(movingDir);
         collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, movingDir);
 
-        if (collisionResult != 0) {
+        if (collisionResult != COLLISION_FLAG_NONE) {
             return FALSE;
         }
 
@@ -586,13 +591,13 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
         sub_0205F01C(playerAvatar, 1);
         sub_0205EBEC(playerAvatar, -1, -1);
         return TRUE;
-    } else if (movingDir == 1) {
+    } else if (movingDir == DIR_SOUTH) {
         if (sub_0205F034(playerAvatar) == FALSE) {
             PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(movingDir, MOVEMENT_ACTION_WALK_FASTER_SOUTH), 6);
             sub_0205EB08(playerAvatar, 1);
 
             if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
-                PlayerAvatar_SetSpeed(playerAvatar, 3);
+                PlayerAvatar_SetSpeed(playerAvatar, CYCLING_SPEED_FAST);
             }
 
             sub_0205EBEC(playerAvatar, -1, -1);
@@ -611,16 +616,16 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeSlope(PlayerAvatar *playerAva
     return FALSE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 95, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_FARTHER_EAST, 2);
     } else {
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 93, 3);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_NEAR_SLOW_EAST, 3);
     }
 
     sub_0205EF40(playerAvatar, 1);
@@ -629,16 +634,16 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampEastward(PlayerAvatar *pl
     return TRUE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int movingDir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 94, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_FARTHER_WEST, 2);
     } else {
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, 92, 2);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_NEAR_SLOW_WEST, 2);
     }
 
     sub_0205EF40(playerAvatar, 1);
@@ -647,16 +652,16 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRampWestward(PlayerAvatar *pl
     return TRUE;
 }
 
-static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvatar, enum MovementAction direction)
+static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvatar, int direction)
 {
     int testDirection = 1;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     u32 collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, testDirection);
 
-    if (collisionResult == 0) {
+    if (collisionResult == COLLISION_FLAG_NONE) {
         PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(testDirection, MOVEMENT_ACTION_WALK_FASTER_NORTH), 6);
         sub_0205EB08(playerAvatar, 1);
-        PlayerAvatar_SetSpeed(playerAvatar, 3);
+        PlayerAvatar_SetSpeed(playerAvatar, CYCLING_SPEED_FAST);
 
         return TRUE;
     } else {
@@ -669,7 +674,7 @@ static BOOL PlayerAvatar_SpecialMovement_HandleBikeRamp(PlayerAvatar *playerAvat
     return TRUE;
 }
 
-static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, enum MovementAction) = {
+static int (*const sSpecialMovementHandlers[6])(PlayerAvatar *, int) = {
     PlayerAvatar_SpecialMovement_HandleNormal,
     PlayerAvatar_SpecialMovement_HandleIce,
     PlayerAvatar_SpecialMovement_HandleBikeSlope,
@@ -695,7 +700,7 @@ static void PlayerAvatar_SpecialMovement_ClearState(PlayerAvatar *playerAvatar)
     }
 }
 
-static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction)
+static enum ElevationChange PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, int direction)
 {
     int elevationResult;
     VecFx32 currentPos, nextPos;
@@ -709,31 +714,31 @@ static int PlayerAvatar_State_CheckElevationChange(PlayerAvatar *playerAvatar, i
     elevationResult = sub_020644A4(fieldSystem, &nextPos);
 
     if (elevationResult == 0 || currentPos.y == nextPos.y) {
-        return 0;
+        return ELEVATION_CHANGE_NONE;
     }
 
     if (currentPos.y > nextPos.y) {
-        return 2;
+        return ELEVATION_CHANGE_DOWN;
     }
 
-    return 1;
+    return ELEVATION_CHANGE_UP;
 }
 
-static BOOL PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, int elevationChange)
+static BOOL PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, enum ElevationChange elevationChange)
 {
-    int currentSpeed = PlayerAvatar_Speed(playerAvatar);
+    enum CyclingSpeed currentSpeed = PlayerAvatar_Speed(playerAvatar);
 
-    if (elevationChange == 1) {
+    if (elevationChange == ELEVATION_CHANGE_UP) {
         currentSpeed--;
 
-        if (currentSpeed < 0) {
+        if (currentSpeed < CYCLING_SPEED_STOPPED) {
             return FALSE;
         }
-    } else if (elevationChange == 2) {
+    } else if (elevationChange == ELEVATION_CHANGE_DOWN) {
         currentSpeed++;
 
-        if (currentSpeed > 3) {
-            currentSpeed = 3;
+        if (currentSpeed > CYCLING_SPEED_FAST) {
+            currentSpeed = CYCLING_SPEED_FAST;
         }
     }
 
@@ -744,27 +749,27 @@ static BOOL PlayerAvatar_State_AdjustCyclingSpeed(PlayerAvatar *playerAvatar, in
 static void PlayerAvatar_State_SetCyclingAnimation(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int animationCode = 16;
-    int currentSpeed = PlayerAvatar_Speed(playerAvatar);
+    enum MovementAction baseMovementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
+    enum CyclingSpeed currentSpeed = PlayerAvatar_Speed(playerAvatar);
     int duration = 5;
 
     switch (currentSpeed) {
-    case 1:
-        animationCode = 80;
+    case CYCLING_SPEED_SLOW:
+        baseMovementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_NORTH;
         duration = 5;
         break;
-    case 2:
-        animationCode = 20;
+    case CYCLING_SPEED_MEDIUM:
+        baseMovementAction = MOVEMENT_ACTION_WALK_FASTER_NORTH;
         duration = 6;
         break;
-    case 3:
-        animationCode = 20;
+    case CYCLING_SPEED_FAST:
+        baseMovementAction = MOVEMENT_ACTION_WALK_FASTER_NORTH;
         duration = 6;
         break;
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(direction, animationCode);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(direction, baseMovementAction);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
@@ -773,11 +778,11 @@ static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, cons
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     switch (playerState) {
-    case AVATAR_MOVE_STATE_NONE:
-    case AVATAR_MOVE_STATE_TURNING:
+    case PLAYER_STATE_WALKING:
+    case PLAYER_STATE_SURFING:
         PlayerAvatar_Movement_HandleWalking(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
         break;
-    case AVATAR_MOVE_STATE_MOVING:
+    case PLAYER_STATE_CYCLING:
         PlayerAvatar_Cycling_RouteMovement(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
         break;
     default:
@@ -788,74 +793,74 @@ static void PlayerAvatar_Movement_HandleByState(PlayerAvatar *playerAvatar, cons
 
 static void PlayerAvatar_Movement_HandleWalking(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
-    int movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
+    enum WalkingMovementType movementType = PlayerAvatar_Walking_GetMovementType(playerAvatar, direction);
 
     switch (movementType) {
-    case 0:
+    case WALKING_MOVEMENT_TURN_IN_PLACE:
         PlayerAvatar_Walking_HandleTurnInPlace(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 1:
+    case WALKING_MOVEMENT_DISTORTED:
         PlayerAvatar_Walking_HandleDistortedMovement(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 2:
+    case WALKING_MOVEMENT_DISTORTION_TURN:
         PlayerAvatar_Distortion_HandleTurn(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
     }
 }
 
-static int PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction)
+static enum WalkingMovementType PlayerAvatar_Walking_GetMovementType(PlayerAvatar *playerAvatar, int direction)
 {
-    int movementState = PlayerAvatar_Walking_DetermineMovementState(playerAvatar, direction);
-    int stateValue = PlayerAvatar_Walking_MapTypeToState(movementState);
+    enum WalkingMovementType movementState = PlayerAvatar_Walking_DetermineMovementState(playerAvatar, direction);
+    enum AvatarMoveState stateValue = PlayerAvatar_Walking_MapTypeToState(movementState);
 
     sub_0205EB08(playerAvatar, stateValue);
     return movementState;
 }
 
-static int PlayerAvatar_Walking_MapTypeToState(int movementType)
+static enum AvatarMoveState PlayerAvatar_Walking_MapTypeToState(enum WalkingMovementType movementType)
 {
     switch (movementType) {
-    case 0:
-        return 0;
-    case 1:
-        return 1;
-    case 2:
-        return 2;
+    case WALKING_MOVEMENT_TURN_IN_PLACE:
+        return AVATAR_MOVE_STATE_NONE;
+    case WALKING_MOVEMENT_DISTORTED:
+        return AVATAR_MOVE_STATE_MOVING;
+    case WALKING_MOVEMENT_DISTORTION_TURN:
+        return AVATAR_MOVE_STATE_TURNING;
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return AVATAR_MOVE_STATE_NONE;
 }
 
-static int PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, int animationCode)
+static enum MovementAction PlayerAvatar_Walking_AdjustAnimationForSnow(MapObject *mapObj, u8 tileBehavior, enum MovementAction movementAction)
 {
     if (TileBehavior_IsDeepestSnow(tileBehavior) == TRUE) {
-        return 4;
+        return MOVEMENT_ACTION_WALK_SLOWER_NORTH;
     }
 
     if (TileBehavior_IsDeeperSnow(tileBehavior) == TRUE) {
-        return 8;
+        return MOVEMENT_ACTION_WALK_SLOW_NORTH;
     }
 
     if (TileBehavior_IsDeepSnow(tileBehavior) == TRUE) {
-        return 12;
+        return MOVEMENT_ACTION_WALK_NORMAL_NORTH;
     }
 
-    return animationCode;
+    return movementAction;
 }
 
-static int PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapObj, u8 tileBehavior, int animationCode)
+static enum MovementAction PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(MapObject *mapObj, u8 tileBehavior, enum MovementAction movementAction)
 {
-    return animationCode;
+    return movementAction;
 }
 
-static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction)
+static enum WalkingMovementType PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvatar, int direction)
 {
     int currentDir;
 
     if (direction == DIR_NONE) {
         sub_0205EB08(playerAvatar, 0);
-        return 0;
+        return WALKING_MOVEMENT_TURN_IN_PLACE;
     }
 
     currentDir = PlayerAvatar_GetDir(playerAvatar);
@@ -868,19 +873,19 @@ static int PlayerAvatar_Walking_DetermineMovementState(PlayerAvatar *playerAvata
         currentDir = PlayerAvatar_GetMoveDir(playerAvatar);
     }
 
-    if ((currentDir != direction) && (PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING)) {
+    if (currentDir != direction && PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING) {
         sub_0205EB08(playerAvatar, 2);
-        return 2;
+        return WALKING_MOVEMENT_DISTORTION_TURN;
     }
 
     sub_0205EB08(playerAvatar, 1);
-    return 1;
+    return WALKING_MOVEMENT_DISTORTED;
 }
 
 static void PlayerAvatar_Walking_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+    enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
 }
 
 static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
@@ -908,29 +913,29 @@ static void PlayerAvatar_Walking_HandleDistortedMovement(PlayerAvatar *playerAva
 static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
-    int animationCode;
+    enum MovementAction movementAction;
     int duration;
 
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != AVATAR_MOVE_STATE_TURNING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
         if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
-            animationCode = 56;
+            movementAction = MOVEMENT_ACTION_JUMP_FAR_NORTH;
             duration = 3;
         } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            animationCode = 117;
+            movementAction = MOVEMENT_ACTION_117;
             duration = 2;
-        } else if (collisionResult != 0) {
-            animationCode = 28;
+        } else if (collisionResult != COLLISION_FLAG_NONE) {
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             duration = 1;
 
-            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, direction);
         } else {
-            animationCode = 12;
+            movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
             duration = 4;
 
             {
@@ -938,30 +943,30 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
 
                 if (PlayerData_HasRunningShoes(playerData) == TRUE) {
                     if (PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == TRUE) {
-                        animationCode = 88;
+                        movementAction = MOVEMENT_ACTION_RUN_NORTH;
                         duration = 5;
                     }
                 }
             }
 
-            animationCode = PlayerAvatar_Walking_AdjustAnimationForSnow(mapObj, MapObject_GetCurrTileBehavior(mapObj), animationCode);
+            movementAction = PlayerAvatar_Walking_AdjustAnimationForSnow(mapObj, MapObject_GetCurrTileBehavior(mapObj), movementAction);
 
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         }
     } else {
-        if (collisionResult == 0 || collisionResult == COLLISION_FLAG_WATER_TILES) {
+        if (collisionResult == COLLISION_FLAG_NONE || collisionResult == COLLISION_FLAG_WATER_TILES) {
             duration = 5;
-            animationCode = 16;
-            animationCode = PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(mapObj, MapObject_GetCurrTileBehavior(mapObj), animationCode);
+            movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
+            movementAction = PlayerAvatar_Walking_ApplyDefaultAnimationAdjustment(mapObj, MapObject_GetCurrTileBehavior(mapObj), movementAction);
 
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else {
-            animationCode = 28;
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             duration = 1;
 
-            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -969,19 +974,19 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
         }
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(direction, animationCode);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    movementAction = MovementAction_TurnActionTowardsDir(direction, movementAction);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
-    int animationCode;
+    enum MovementAction movementAction;
     int duration;
 
     collisionResult = PlayerAvatar_Collision_CheckDistortion(playerAvatar, mapObj, direction);
 
-    if (collisionResult & (~COLLISION_FLAG_DOUBLE_JUMP_TILES)) {
+    if (collisionResult & ~COLLISION_FLAG_DOUBLE_JUMP_TILES) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj);
@@ -998,26 +1003,26 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
         }
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != AVATAR_MOVE_STATE_TURNING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
         if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            animationCode = 117;
+            movementAction = MOVEMENT_ACTION_117;
             duration = 2;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
-        } else if (collisionResult != 0) {
-            animationCode = 28;
+        } else if (collisionResult != COLLISION_FLAG_NONE) {
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             duration = 1;
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, direction);
         } else {
             PlayerData *player;
 
-            animationCode = 12;
+            movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
             duration = 4;
             player = PlayerAvatar_PlayerData(playerAvatar);
 
             if (PlayerData_HasRunningShoes(player) == TRUE && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == TRUE) {
-                animationCode = 88;
+                movementAction = MOVEMENT_ACTION_RUN_NORTH;
                 duration = 5;
             }
 
@@ -1025,34 +1030,34 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
             sub_0205F048(playerAvatar);
         }
     } else {
-        if (collisionResult == 0 || collisionResult == COLLISION_FLAG_WATER_TILES) {
+        if (collisionResult == COLLISION_FLAG_NONE || collisionResult == COLLISION_FLAG_WATER_TILES) {
             duration = 5;
-            animationCode = 16;
+            movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else {
-            animationCode = 28;
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             duration = 1;
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, direction);
         }
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(direction, animationCode);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    movementAction = MovementAction_TurnActionTowardsDir(direction, movementAction);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress, const int *normalAnimations, const int *runningAnimations, const int *surfAnimations, const int *turnAnimations, const int *turnDirections)
 {
     u32 collisionResult;
-    int animationCode;
+    enum MovementAction movementAction;
     int duration;
 
     collisionResult = PlayerAvatar_Collision_CheckDistortion(playerAvatar, mapObj, direction);
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != AVATAR_MOVE_STATE_TURNING) {
-        if (collisionResult != 0) {
-            animationCode = turnAnimations[direction];
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
+        if (collisionResult != COLLISION_FLAG_NONE) {
+            movementAction = turnAnimations[direction];
             duration = 1;
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, turnDirections[direction]);
@@ -1060,25 +1065,25 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
             PlayerData *playerData;
 
             duration = 4;
-            animationCode = normalAnimations[direction];
+            movementAction = normalAnimations[direction];
             playerData = PlayerAvatar_PlayerData(playerAvatar);
 
             if (PlayerData_HasRunningShoes(playerData) == TRUE && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == TRUE) {
                 duration = 5;
-                animationCode = runningAnimations[direction];
+                movementAction = runningAnimations[direction];
             }
 
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         }
     } else {
-        if (collisionResult == 0 || collisionResult == COLLISION_FLAG_WATER_TILES) {
+        if (collisionResult == COLLISION_FLAG_NONE || collisionResult == COLLISION_FLAG_WATER_TILES) {
             duration = 4;
-            animationCode = surfAnimations[direction];
+            movementAction = surfAnimations[direction];
 
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
         } else {
-            animationCode = turnAnimations[direction];
+            movementAction = turnAnimations[direction];
             duration = 1;
 
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
@@ -1086,7 +1091,7 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
         }
     }
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
@@ -1124,7 +1129,7 @@ static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAv
 
 static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int animationCode, turnDirection;
+    enum MovementAction movementAction, turnDirection;
     turnDirection = direction;
 
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
@@ -1144,16 +1149,14 @@ static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapOb
         break;
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(turnDirection, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
+    movementAction = MovementAction_TurnActionTowardsDir(turnDirection, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
     MapObject_Turn(mapObj, direction);
 }
 
 static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
-    int movementType;
-
     if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
         PlayerAvatar_CyclingHighGear_RouteMovement(playerAvatar, mapObj, landDataManager, direction, keyPad, keyPress);
     } else {
@@ -1163,7 +1166,7 @@ static void PlayerAvatar_Cycling_RouteMovement(PlayerAvatar *playerAvatar, MapOb
 
 static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 keyPad)
 {
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != AVATAR_MOVE_STATE_MOVING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
         return;
     }
 
@@ -1175,15 +1178,15 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 ke
         }
 
         {
-            int gear = 1;
+            enum CyclingGear gear = CYCLING_GEAR_HIGH;
 
             if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
-                gear = 0;
+                gear = CYCLING_GEAR_LOW;
             }
 
             PlayerAvatar_SetCyclingGear(playerAvatar, gear);
 
-            if (gear == 0) {
+            if (gear == CYCLING_GEAR_LOW) {
                 Sound_PlayEffect(SEQ_SE_DP_GEAR2);
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_GEAR);
@@ -1192,24 +1195,24 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 ke
     }
 }
 
-int PlayerAvatar_Animation_GetCyclingAnimationCode(PlayerAvatar *playerAvatar, int direction)
+enum MovementAction PlayerAvatar_Animation_GetCyclingMovementAction(PlayerAvatar *playerAvatar, int direction)
 {
-    int animationCode = 76;
+    enum MovementAction baseMovementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_NORTH;
 
     switch (PlayerAvatar_Speed(playerAvatar)) {
-    case 1:
-        animationCode = 16;
+    case CYCLING_SPEED_SLOW:
+        baseMovementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
         break;
-    case 2:
-        animationCode = 80;
+    case CYCLING_SPEED_MEDIUM:
+        baseMovementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_NORTH;
         break;
-    case 3:
-        animationCode = 20;
+    case CYCLING_SPEED_FAST:
+        baseMovementAction = MOVEMENT_ACTION_WALK_FASTER_NORTH;
         break;
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(direction, animationCode);
-    return animationCode;
+    enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(direction, baseMovementAction);
+    return movementAction;
 }
 
 static BOOL PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar)
@@ -1217,12 +1220,12 @@ static BOOL PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar)
     int speedResult = PlayerAvatar_AddMoveSpeed(playerAvatar, 1, 3);
 
     if (sub_0205EFB0(playerAvatar) == FALSE) {
-        if (speedResult >= 2) {
+        if (speedResult >= CYCLING_SPEED_MEDIUM) {
             sub_0205EF98(playerAvatar, 1);
         }
     }
 
-    if (speedResult == 3) {
+    if (speedResult == CYCLING_SPEED_FAST) {
         return TRUE;
     }
 
@@ -1231,20 +1234,20 @@ static BOOL PlayerAvatar_Cycling_HandleSpeedIncrease(PlayerAvatar *playerAvatar)
 
 static BOOL PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar)
 {
-    int speedResult = 1;
+    int speedResult = TRUE;
     int currentSpeed = PlayerAvatar_Speed(playerAvatar);
 
     currentSpeed--;
 
-    if (currentSpeed < 0) {
-        currentSpeed = 0;
-        speedResult = 0;
+    if (currentSpeed < CYCLING_SPEED_STOPPED) {
+        currentSpeed = CYCLING_SPEED_STOPPED;
+        speedResult = FALSE;
     }
 
     PlayerAvatar_SetSpeed(playerAvatar, currentSpeed);
 
     if (sub_0205EFB0(playerAvatar) == TRUE) {
-        if (currentSpeed == 0) {
+        if (currentSpeed == CYCLING_SPEED_STOPPED) {
             sub_0205EF98(playerAvatar, 0);
         }
     }
@@ -1254,128 +1257,128 @@ static BOOL PlayerAvatar_Cycling_HandleSpeedDecrease(PlayerAvatar *playerAvatar)
 
 static void PlayerAvatar_Cycling_RouteNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
-    int movementType = PlayerAvatar_Cycling_GetNormalMovementType(playerAvatar, direction);
+    enum CyclingMovementType movementType = PlayerAvatar_Cycling_GetNormalMovementType(playerAvatar, direction);
 
     switch (movementType) {
-    case 0:
+    case CYCLING_MOVEMENT_TURN_IN_PLACE:
         PlayerAvatar_Cycling_HandleTurnInPlace(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 1:
+    case CYCLING_MOVEMENT_NORMAL:
         PlayerAvatar_Cycling_HandleNormalMovement(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 2:
+    case CYCLING_MOVEMENT_TURN:
         PlayerAvatar_Cycling_HandleTurn(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 3:
+    case CYCLING_MOVEMENT_DECELERATION:
         PlayerAvatar_Cycling_HandleDeceleration(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
     }
 }
 
-static int PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction)
+static enum CyclingMovementType PlayerAvatar_Cycling_GetNormalMovementType(PlayerAvatar *playerAvatar, int direction)
 {
-    int movementState = PlayerAvatar_Cycling_DetermineNormalState(playerAvatar, direction);
-    int stateValue = PlayerAvatar_Cycling_MapNormalTypeToState(movementState);
+    enum CyclingMovementType movementType = PlayerAvatar_Cycling_DetermineNormalState(playerAvatar, direction);
+    enum AvatarMoveState stateValue = PlayerAvatar_Cycling_MapNormalTypeToState(movementType);
 
     sub_0205EB08(playerAvatar, stateValue);
-    return movementState;
+    return movementType;
 }
 
-static int PlayerAvatar_Cycling_MapNormalTypeToState(int movementType)
+static enum AvatarMoveState PlayerAvatar_Cycling_MapNormalTypeToState(int movementType)
 {
     switch (movementType) {
-    case 0:
-        return 0;
-    case 1:
-        return 1;
-    case 2:
-        return 2;
-    case 3:
-        return 1;
+    case CYCLING_MOVEMENT_TURN_IN_PLACE:
+        return AVATAR_MOVE_STATE_NONE;
+    case CYCLING_MOVEMENT_NORMAL:
+        return AVATAR_MOVE_STATE_MOVING;
+    case CYCLING_MOVEMENT_TURN:
+        return AVATAR_MOVE_STATE_TURNING;
+    case CYCLING_MOVEMENT_DECELERATION:
+        return AVATAR_MOVE_STATE_MOVING;
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return AVATAR_MOVE_STATE_NONE;
 }
 
-static int PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction)
+static enum CyclingMovementType PlayerAvatar_Cycling_DetermineNormalState(PlayerAvatar *playerAvatar, int direction)
 {
     int currentDir;
 
     if (direction == DIR_NONE) {
         if (sub_0205EFB0(playerAvatar) == TRUE) {
             sub_0205EB08(playerAvatar, 1);
-            return 3;
+            return CYCLING_MOVEMENT_DECELERATION;
         }
 
         sub_0205EB08(playerAvatar, 0);
-        return 0;
+        return CYCLING_MOVEMENT_TURN_IN_PLACE;
     }
 
     currentDir = PlayerAvatar_GetDir(playerAvatar);
     sub_0205EF98(playerAvatar, 0);
 
-    if ((currentDir != direction) && (PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING)) {
+    if (currentDir != direction && PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING) {
         sub_0205EB08(playerAvatar, 2);
-        return 2;
+        return CYCLING_MOVEMENT_TURN;
     }
 
     sub_0205EB08(playerAvatar, 1);
-    return 1;
+    return CYCLING_MOVEMENT_NORMAL;
 }
 
 static void PlayerAvatar_Cycling_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
+    enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
 static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
     u32 collisionResult;
-    int animationCode;
+    enum MovementAction movementAction;
     int duration;
 
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
-        animationCode = 56;
+        movementAction = MOVEMENT_ACTION_JUMP_FAR_NORTH;
         duration = 3;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        animationCode = 117;
+        movementAction = MOVEMENT_ACTION_117;
         duration = 2;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_BIKE_RAMPS) {
-        animationCode = 80;
+        movementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_NORTH;
         duration = 5;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
         sub_0205EF40(playerAvatar, 1);
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
-        animationCode = 0;
+        movementAction = MOVEMENT_ACTION_FACE_NORTH;
         duration = 1;
         direction = MapObject_GetMovingDir(mapObj);
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EBEC(playerAvatar, -1, -1);
-    } else if (collisionResult != 0) {
+    } else if (collisionResult != COLLISION_FLAG_NONE) {
         if (PlayerAvatar_State_CheckBikeBridgeValidity(playerAvatar, mapObj, direction) == FALSE) {
-            animationCode = 28;
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             duration = 1;
 
-            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, direction);
             PlayerAvatar_ClearSpeed(playerAvatar);
         } else {
-            animationCode = 0;
+            movementAction = MOVEMENT_ACTION_FACE_NORTH;
             duration = 1;
             direction = MapObject_GetMovingDir(mapObj);
             MapObject_Turn(mapObj, direction);
@@ -1383,15 +1386,15 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
             sub_0205EBEC(playerAvatar, -1, -1);
         }
     } else {
-        animationCode = 80;
+        movementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_NORTH;
         duration = 5;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
         PlayerAvatar_SetSpeed(playerAvatar, 2);
     }
 
-    animationCode = MovementAction_TurnActionTowardsDir(direction, animationCode);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    movementAction = MovementAction_TurnActionTowardsDir(direction, movementAction);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
@@ -1399,9 +1402,9 @@ static void PlayerAvatar_Cycling_HandleTurn(PlayerAvatar *playerAvatar, MapObjec
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     if (PlayerAvatar_State_CheckBikeBridgeValidity(playerAvatar, mapObj, direction) != TRUE) {
-        int animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
+        enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
 
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
     }
@@ -1411,34 +1414,35 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
 {
     u32 collisionResult;
     int duration;
-    int animationCode, speedDecreaseResult = PlayerAvatar_Cycling_HandleSpeedDecrease(playerAvatar);
+    enum MovementAction movementAction;
+    BOOL speedDecreaseResult = PlayerAvatar_Cycling_HandleSpeedDecrease(playerAvatar);
 
     direction = PlayerAvatar_GetMoveDir(playerAvatar);
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
         PlayerAvatar_ClearSpeed(playerAvatar);
-    } else if (collisionResult != 0) {
-        speedDecreaseResult = 0;
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
+    } else if (collisionResult != COLLISION_FLAG_NONE) {
+        speedDecreaseResult = FALSE;
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
         duration = 1;
 
-        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
     } else {
-        animationCode = PlayerAvatar_Animation_GetCyclingAnimationCode(playerAvatar, direction);
+        movementAction = PlayerAvatar_Animation_GetCyclingMovementAction(playerAvatar, direction);
         duration = 5;
     }
 
@@ -1446,92 +1450,93 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
         sub_0205EF98(playerAvatar, 0);
     }
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_CyclingHighGear_RouteMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *landDataManager, int direction, u16 keyPad, u16 keyPress)
 {
-    int movementType = PlayerAvatar_CyclingHighGear_GetMovementType(playerAvatar, direction);
+    enum CyclingMovementType movementType = PlayerAvatar_Cycling_GetMovementType(playerAvatar, direction);
 
     switch (movementType) {
-    case 0:
+    case CYCLING_MOVEMENT_TURN_IN_PLACE:
         PlayerAvatar_CyclingHighGear_HandleTurnInPlace(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 1:
+    case CYCLING_MOVEMENT_NORMAL:
         PlayerAvatar_CyclingHighGear_HandleMovement(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 2:
+    case CYCLING_MOVEMENT_TURN:
         PlayerAvatar_CyclingHighGear_HandleTurn(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
-    case 3:
+    case CYCLING_MOVEMENT_DECELERATION:
         PlayerAvatar_CyclingHighGear_HandleDeceleration(playerAvatar, mapObj, direction, keyPad, keyPress);
         break;
     }
 }
 
-static int PlayerAvatar_CyclingHighGear_GetMovementType(PlayerAvatar *playerAvatar, int direction)
+static enum CyclingMovementType PlayerAvatar_Cycling_GetMovementType(PlayerAvatar *playerAvatar, int direction)
 {
-    int movementState = PlayerAvatar_CyclingHighGear_DetermineState(playerAvatar, direction);
-    int stateValue = PlayerAvatar_CyclingHighGear_MapTypeToState(movementState);
+    enum CyclingMovementType movementType = PlayerAvatar_Cycling_DetermineState(playerAvatar, direction);
+    enum AvatarMoveState stateValue = PlayerAvatar_Cycling_MapTypeToState(movementType);
 
     sub_0205EB08(playerAvatar, stateValue);
-    return movementState;
+    return movementType;
 }
 
-static int PlayerAvatar_CyclingHighGear_MapTypeToState(int movementType)
+static enum AvatarMoveState PlayerAvatar_Cycling_MapTypeToState(enum CyclingMovementType movementType)
 {
     switch (movementType) {
-    case 0:
-        return 0;
-    case 1:
-        return 1;
-    case 2:
-        return 2;
-    case 3:
-        return 1;
+    case CYCLING_MOVEMENT_TURN_IN_PLACE:
+        return AVATAR_MOVE_STATE_NONE;
+    case CYCLING_MOVEMENT_NORMAL:
+        return AVATAR_MOVE_STATE_MOVING;
+    case CYCLING_MOVEMENT_TURN:
+        return AVATAR_MOVE_STATE_TURNING;
+    case CYCLING_MOVEMENT_DECELERATION:
+        return AVATAR_MOVE_STATE_MOVING;
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return AVATAR_MOVE_STATE_NONE;
 }
 
-static int PlayerAvatar_CyclingHighGear_DetermineState(PlayerAvatar *playerAvatar, int direction)
+static enum CyclingMovementType PlayerAvatar_Cycling_DetermineState(PlayerAvatar *playerAvatar, int direction)
 {
-    int currentDir, currentSpeed;
+    int currentDir;
+    enum CyclingSpeed currentSpeed;
 
     currentSpeed = PlayerAvatar_Speed(playerAvatar);
 
     if (direction == DIR_NONE) {
-        if (currentSpeed < 2) {
+        if (currentSpeed < CYCLING_SPEED_MEDIUM) {
             sub_0205EB08(playerAvatar, 0);
-            return 0;
+            return CYCLING_MOVEMENT_TURN_IN_PLACE;
         }
 
         sub_0205EB08(playerAvatar, 1);
-        return 3;
+        return CYCLING_MOVEMENT_DECELERATION;
     }
 
     currentDir = PlayerAvatar_GetDir(playerAvatar);
 
-    if ((currentDir != direction) && (PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING)) {
-        if (currentSpeed < 2) {
+    if (currentDir != direction && PlayerAvatar_MoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING) {
+        if (currentSpeed < CYCLING_SPEED_MEDIUM) {
             sub_0205EB08(playerAvatar, 2);
-            return 2;
+            return CYCLING_MOVEMENT_TURN;
         }
 
         sub_0205EB08(playerAvatar, 1);
-        return 3;
+        return CYCLING_MOVEMENT_DECELERATION;
     }
 
     sub_0205EB08(playerAvatar, 1);
-    return 1;
+    return CYCLING_MOVEMENT_NORMAL;
 }
 
 static void PlayerAvatar_CyclingHighGear_HandleTurnInPlace(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int animationCode = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
+    enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
@@ -1539,33 +1544,33 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
 {
     u32 collisionResult;
     int duration;
-    int animationCode;
+    enum MovementAction movementAction;
 
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_BIKE_RAMPS) {
-        if (PlayerAvatar_Speed(playerAvatar) >= 3) {
-            animationCode = PlayerAvatar_Animation_GetCyclingAnimationCode(playerAvatar, direction);
+        if (PlayerAvatar_Speed(playerAvatar) >= CYCLING_SPEED_FAST) {
+            movementAction = PlayerAvatar_Animation_GetCyclingMovementAction(playerAvatar, direction);
             duration = 5;
             sub_0205F048(playerAvatar);
             sub_0205EF40(playerAvatar, 1);
         } else {
-            animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
+            movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             duration = 1;
 
-            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -1574,17 +1579,17 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
         }
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         direction = MapObject_GetMovingDir(mapObj);
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EBEC(playerAvatar, -1, -1);
-    } else if (collisionResult != 0) {
+    } else if (collisionResult != COLLISION_FLAG_NONE) {
         if (PlayerAvatar_State_CheckBikeBridgeValidity(playerAvatar, mapObj, direction) == FALSE) {
-            animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
+            movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             duration = 1;
 
-            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
@@ -1593,20 +1598,20 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
         } else {
             duration = 1;
             direction = MapObject_GetMovingDir(mapObj);
-            animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
+            movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
             MapObject_Turn(mapObj, direction);
             PlayerAvatar_ClearSpeed(playerAvatar);
             sub_0205EBEC(playerAvatar, -1, -1);
         }
     } else {
         duration = 5;
-        animationCode = PlayerAvatar_Animation_GetCyclingAnimationCode(playerAvatar, direction);
+        movementAction = PlayerAvatar_Animation_GetCyclingMovementAction(playerAvatar, direction);
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     }
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
 static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
@@ -1614,11 +1619,11 @@ static void PlayerAvatar_CyclingHighGear_HandleTurn(PlayerAvatar *playerAvatar, 
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     if (PlayerAvatar_State_CheckBikeBridgeValidity(playerAvatar, mapObj, direction) == TRUE) {
-        (void)0;
+        return;
     } else {
-        int animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
+        enum MovementAction movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
 
-        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, 1);
+        PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, 1);
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
     }
@@ -1628,34 +1633,35 @@ static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *player
 {
     u32 collisionResult;
     int duration;
-    int animationCode, speedDecreaseResult = PlayerAvatar_Cycling_HandleSpeedDecrease(playerAvatar);
+    enum MovementAction movementAction;
+    BOOL speedDecreaseResult = PlayerAvatar_Cycling_HandleSpeedDecrease(playerAvatar);
 
     direction = PlayerAvatar_GetMoveDir(playerAvatar);
     collisionResult = PlayerAvatar_Collision_CheckBasic(playerAvatar, mapObj, direction);
 
     if (collisionResult & COLLISION_FLAG_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
         duration = 2;
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
         duration = 1;
         PlayerAvatar_ClearSpeed(playerAvatar);
-    } else if (collisionResult != 0) {
-        speedDecreaseResult = 0;
+    } else if (collisionResult != COLLISION_FLAG_NONE) {
+        speedDecreaseResult = FALSE;
         duration = 1;
-        animationCode = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
 
-        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+        if ((collisionResult & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
             Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, direction);
         PlayerAvatar_ClearSpeed(playerAvatar);
     } else {
-        animationCode = PlayerAvatar_Animation_GetCyclingAnimationCode(playerAvatar, direction);
+        movementAction = PlayerAvatar_Animation_GetCyclingMovementAction(playerAvatar, direction);
         duration = 5;
     }
 
@@ -1663,18 +1669,18 @@ static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *player
         sub_0205EF98(playerAvatar, 0);
     }
 
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
-static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 animationCode, int duration)
+static void PlayerAvatar_Animation_SetMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int duration)
 {
-    sub_0205EC20(playerAvatar, animationCode, duration);
-    LocalMapObj_SetAnimationCode(mapObj, animationCode);
+    sub_0205EC20(playerAvatar, movementAction, duration);
+    LocalMapObj_SetAnimationCode(mapObj, movementAction);
 }
 
-u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
+u32 PlayerAvatar_Collision_CheckBasic(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
-    u32 collisionResult = 0, internalResult;
+    u32 collisionResult = COLLISION_FLAG_NONE, internalResult;
     internalResult = PlayerAvatar_Collision_CheckBasicInternal(playerAvatar, mapObj, direction);
 
     if (internalResult & (COLLISION_FLAG_TERRAIN | COLLISION_FLAG_WARP_ENTRANCES)) {
@@ -1726,20 +1732,20 @@ static u32 PlayerAvatar_Collision_CheckBasicInternal(PlayerAvatar *playerAvatar,
 
     MapObject_GetPosPtr(mapObj, &nextPos);
 
-    collisionFlags = 0;
+    collisionFlags = COLLISION_FLAG_NONE;
 
     if (MapObject_IsOutOfRange(mapObj, x, y, z) == TRUE) {
         collisionFlags |= COLLISION_FLAG_BLOCKED;
     }
 
     {
-        s8 collisionType;
+        s8 verticalDirection;
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &nextPos, x, z, &collisionType) == TRUE) {
+        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &nextPos, x, z, &verticalDirection) == TRUE) {
             collisionFlags |= COLLISION_FLAG_TERRAIN;
 
-            if (collisionType != 0) {
+            if (verticalDirection != VERTICAL_DIRECTION_NONE) {
                 collisionFlags |= COLLISION_FLAG_WARP_ENTRANCES;
             }
         }
@@ -1786,7 +1792,7 @@ static BOOL PlayerAvatar_Collision_CheckJumpTiles(PlayerAvatar *playerAvatar, Ma
                     return TRUE;
                 }
                 break;
-            case 3:
+            case DIR_EAST:
                 if (TileBehavior_IsJumpEast(tileBehavior) == TRUE) {
                     return TRUE;
                 }
@@ -1809,21 +1815,21 @@ static BOOL PlayerAvatar_Collision_CheckDoubleJumpTiles(PlayerAvatar *playerAvat
         u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
         switch (direction) {
-        case 0:
+        case DIR_NORTH:
             hasDoubleJump = TileBehavior_IsJumpNorthTwice(tileBehavior);
             break;
-        case 1:
+        case DIR_SOUTH:
             hasDoubleJump = TileBehavior_IsJumpSouthTwice(tileBehavior);
             break;
-        case 2:
+        case DIR_WEST:
             hasDoubleJump = TileBehavior_IsJumpWestTwice(tileBehavior);
             break;
-        case 3:
+        case DIR_EAST:
             hasDoubleJump = TileBehavior_IsJumpEastTwice(tileBehavior);
             break;
         }
 
-        if (hasDoubleJump == 1) {
+        if (hasDoubleJump == TRUE) {
             if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
                 if (ov9_022511A0(fieldSystem, x, z, direction) == TRUE) {
                     hasDoubleJump = FALSE;
@@ -1922,7 +1928,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *pla
         int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(direction);
         u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
-        if (PlayerAvatar_GetPlayerState(playerAvatar) == AVATAR_MOVE_STATE_MOVING) {
+        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, tileBehavior) == TRUE) {
                 if (direction == DIR_NORTH || direction == DIR_SOUTH) {
                     return FALSE;
@@ -1950,7 +1956,7 @@ static BOOL PlayerAvatar_Collision_CheckBikeBridgeRestrictions(PlayerAvatar *pla
 
 static BOOL PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
-    if ((direction != DIR_NONE) && PlayerAvatar_GetPlayerState(playerAvatar) == AVATAR_MOVE_STATE_MOVING) {
+    if ((direction != DIR_NONE) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(direction);
         int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(direction);
@@ -1982,7 +1988,7 @@ static BOOL PlayerAvatar_Collision_CheckCyclingTerrainRestrictions(PlayerAvatar 
 
 static int PlayerAvatar_Distortion_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
-    u32 collisionFlags = 0;
+    u32 collisionFlags = COLLISION_FLAG_NONE;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
     if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
@@ -2031,9 +2037,9 @@ static BOOL PlayerAvatar_Distortion_CheckSurfableTiles(PlayerAvatar *playerAvata
     return FALSE;
 }
 
-u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction direction)
+u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
-    u32 collisionResult, distortionFlags = 0;
+    u32 collisionResult, distortionFlags = COLLISION_FLAG_NONE;
 
     collisionResult = PlayerAvatar_Distortion_CheckCollision(playerAvatar, mapObj, direction);
 
@@ -2059,7 +2065,7 @@ u32 PlayerAvatar_Collision_CheckDistortion(PlayerAvatar *playerAvatar, MapObject
 static BOOL PlayerAvatar_Distortion_CheckDoubleJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
     BOOL hasDoubleJump = FALSE;
-    if ((direction != DIR_NONE) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
+    if (direction != DIR_NONE && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
@@ -2142,7 +2148,7 @@ static int PlayerAvatar_Input_DetermineMovementDirection(PlayerAvatar *playerAva
         int lastVerticalDir = sub_0205EBE8(playerAvatar);
 
         if (direction != DIR_NONE) {
-            if ((horizontalDir == lastHorizontalDir) && (verticalDir == lastVerticalDir)) {
+            if (horizontalDir == lastHorizontalDir && verticalDir == lastVerticalDir) {
                 return direction;
             }
 
@@ -2168,9 +2174,9 @@ BOOL PlayerAvatar_State_IsAnimationActive(PlayerAvatar *playerAvatar)
     }
 
     {
-        int animationCode = MapObject_GetMovementAction(mapObj);
+        enum MovementAction movementAction = MapObject_GetMovementAction(mapObj);
 
-        if (PlayerAvatar_State_IsTurnAction(animationCode) == TRUE) {
+        if (PlayerAvatar_State_IsTurnAction(movementAction) == TRUE) {
             return TRUE;
         }
     }
@@ -2178,13 +2184,13 @@ BOOL PlayerAvatar_State_IsAnimationActive(PlayerAvatar *playerAvatar)
     return FALSE;
 }
 
-static BOOL PlayerAvatar_State_IsTurnAction(int animationCode)
+static BOOL PlayerAvatar_State_IsTurnAction(enum MovementAction movementAction)
 {
-    switch (animationCode) {
-    case 28:
-    case 29:
-    case 30:
-    case 31:
+    switch (movementAction) {
+    case MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH:
+    case MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH:
+    case MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST:
+    case MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST:
         return TRUE;
     }
 
@@ -2202,64 +2208,66 @@ BOOL PlayerAvatar_Input_CheckRunningShoes(PlayerAvatar *playerAvatar, u16 keyPad
 
 BOOL PlayerAvatar_State_IsRunningAnimation(PlayerAvatar *playerAvatar)
 {
-    u32 animationCode = sub_0205EC14(playerAvatar);
+    enum MovementAction movementAction = sub_0205EC14(playerAvatar);
 
-    switch (animationCode) {
-    case 88:
-    case 89:
-    case 90:
-    case 91:
+    switch (movementAction) {
+    case MOVEMENT_ACTION_RUN_NORTH:
+    case MOVEMENT_ACTION_RUN_SOUTH:
+    case MOVEMENT_ACTION_RUN_WEST:
+    case MOVEMENT_ACTION_RUN_EAST:
         return TRUE;
     }
 
     return FALSE;
 }
 
-int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, enum MovementAction direction)
+int PlayerAvatar_State_GetMovementState(PlayerAvatar *playerAvatar, int direction)
 {
-    int movementType, stateValue, state = PlayerAvatar_GetPlayerState(playerAvatar);
+    int movementType; // This can be enum CyclingMovementType or enum WalkingMovementType
+    enum AvatarMoveState stateValue;
+    enum AvatarMoveState state = PlayerAvatar_GetPlayerState(playerAvatar);
 
     switch (state) {
-    case AVATAR_MOVE_STATE_NONE:
-    case AVATAR_MOVE_STATE_TURNING:
+    case PLAYER_STATE_WALKING:
+    case PLAYER_STATE_SURFING:
         movementType = PlayerAvatar_Walking_DetermineMovementState(playerAvatar, direction);
         stateValue = PlayerAvatar_Walking_MapTypeToState(movementType);
         break;
-    case AVATAR_MOVE_STATE_MOVING:
-        if (PlayerAvatar_CyclingGear(playerAvatar) == TRUE) {
-            movementType = PlayerAvatar_CyclingHighGear_DetermineState(playerAvatar, direction);
-            stateValue = PlayerAvatar_CyclingHighGear_MapTypeToState(movementType);
+    case PLAYER_STATE_CYCLING:
+        if (PlayerAvatar_CyclingGear(playerAvatar) == CYCLING_GEAR_HIGH) {
+            movementType = PlayerAvatar_Cycling_DetermineState(playerAvatar, direction);
+            stateValue = PlayerAvatar_Cycling_MapTypeToState(movementType);
         } else {
-            movementType = PlayerAvatar_CyclingHighGear_DetermineState(playerAvatar, direction);
-            stateValue = PlayerAvatar_CyclingHighGear_MapTypeToState(movementType);
+            movementType = PlayerAvatar_Cycling_DetermineState(playerAvatar, direction);
+            stateValue = PlayerAvatar_Cycling_MapTypeToState(movementType);
         }
 
         break;
     default:
-        stateValue = 0;
+        stateValue = AVATAR_MOVE_STATE_NONE;
         GF_ASSERT(FALSE);
     }
 
     return stateValue;
 }
 
-u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, enum MovementAction direction, int movementType, int stateValue)
+enum MovementAction PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, u16 keyPress, int movementActionIndex, int movementType, int stateValue)
 {
-    u32 animationCode;
+    enum MovementAction movementAction;
     int movementDirection = PlayerAvatar_Input_DetermineMovementDirection(playerAvatar, keyPad, keyPress);
-    int movementState = PlayerAvatar_State_GetMovementState(playerAvatar, movementDirection);
+    enum AvatarMoveState movementState = PlayerAvatar_State_GetMovementState(playerAvatar, movementDirection);
 
     sub_0205EB08(playerAvatar, movementState);
 
-    if (movementState == 0) {
+    if (movementState == AVATAR_MOVE_STATE_NONE) {
         movementDirection = PlayerAvatar_GetDir(playerAvatar);
-        animationCode = MovementAction_TurnActionTowardsDir(movementDirection, MOVEMENT_ACTION_FACE_NORTH);
-        return animationCode;
+        movementAction = MovementAction_TurnActionTowardsDir(movementDirection, MOVEMENT_ACTION_FACE_NORTH);
+        return movementAction;
     }
 
-    if (movementState == 2) {
-        animationCode = MovementAction_TurnActionTowardsDir(movementDirection, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
-        return animationCode;
+    if (movementState == AVATAR_MOVE_STATE_TURNING) {
+        movementAction = MovementAction_TurnActionTowardsDir(movementDirection, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH);
+        return movementAction;
     }
 
     {
@@ -2267,46 +2275,47 @@ u32 PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvatar, u16 keyPad, 
         u32 stateFlags = stateValue;
 
         if (stateFlags & COLLISION_FLAG_JUMP_TILES) {
-            animationCode = 56;
+            movementAction = MOVEMENT_ACTION_JUMP_FAR_NORTH;
         } else if (stateFlags & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            animationCode = 117;
-        } else if (stateFlags != 0) {
-            animationCode = 28;
+            movementAction = MOVEMENT_ACTION_117;
+        } else if (stateFlags != COLLISION_FLAG_NONE) {
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
 
-            if ((stateFlags & COLLISION_FLAG_WARP_ENTRANCES) == 0) {
+            if ((stateFlags & COLLISION_FLAG_WARP_ENTRANCES) == COLLISION_FLAG_NONE) {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
         } else {
-            switch (direction) {
-            case 0:
-                animationCode = 4;
+            // Select base movement action based on index into gMovementActionCodes array
+            switch (movementActionIndex) {
+            case 0: // gMovementActionCodes[0]
+                movementAction = MOVEMENT_ACTION_WALK_SLOWER_NORTH;
                 break;
-            case 1:
-                animationCode = 8;
+            case 1: // gMovementActionCodes[1]
+                movementAction = MOVEMENT_ACTION_WALK_SLOW_NORTH;
                 break;
-            case 2:
-                animationCode = 12;
+            case 2: // gMovementActionCodes[2]
+                movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
                 break;
-            case 3:
-                animationCode = 76;
+            case 3: // gMovementActionCodes[3]
+                movementAction = MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_NORTH;
                 break;
-            case 4:
-                animationCode = 16;
+            case 4: // gMovementActionCodes[4]
+                movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
                 break;
-            case 5:
-                animationCode = 20;
+            case 5: // gMovementActionCodes[5]
+                movementAction = MOVEMENT_ACTION_WALK_FASTER_NORTH;
                 break;
             default:
-                animationCode = 4;
+                movementAction = MOVEMENT_ACTION_WALK_SLOWER_NORTH;
             }
 
             if (movementType == SPECIAL_MOVEMENT_TYPE_ICE && PlayerAvatar_Input_CheckRunningShoes(playerAvatar, keyPress) == TRUE) {
-                animationCode = 88;
+                movementAction = MOVEMENT_ACTION_RUN_NORTH;
             }
         }
 
-        animationCode = MovementAction_TurnActionTowardsDir(movementDirection, animationCode);
-        return animationCode;
+        movementAction = MovementAction_TurnActionTowardsDir(movementDirection, movementAction);
+        return movementAction;
     }
 
     return 0xff;
@@ -2318,19 +2327,19 @@ BOOL PlayerAvatar_Animation_IsSet(PlayerAvatar *playerAvatar)
     return LocalMapObj_IsAnimationSet(mapObj);
 }
 
-void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 animationCode, int duration)
+void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, enum MovementAction movementAction, int duration)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, animationCode, duration);
+    PlayerAvatar_Animation_SetMovement(playerAvatar, mapObj, movementAction, duration);
 }
 
-u32 PlayerAvatar_Animation_GetTileBehavior(PlayerAvatar *playerAvatar, enum MovementAction direction)
+u32 PlayerAvatar_Animation_GetTileBehavior(PlayerAvatar *playerAvatar, int direction)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     return MapObject_GetTileBehaviorFromDir(mapObj, direction);
 }
 
-void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, enum MovementAction direction, int *x, int *z)
+void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z)
 {
     *x = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(direction);
     *z = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(direction);
@@ -2365,7 +2374,7 @@ static BOOL PlayerAvatar_State_CheckBikeBridgeValidity(PlayerAvatar *playerAvata
         }
 
         if (MapObject_IsOnBikeBridgeEastWest(mapObj, tileBehavior) == TRUE) {
-            if ((direction == 2) || (direction == 3)) {
+            if (direction == DIR_WEST || direction == DIR_EAST) {
                 return FALSE;
             }
 
@@ -2382,7 +2391,7 @@ static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, 
         return FALSE;
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != AVATAR_MOVE_STATE_MOVING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
         return FALSE;
     }
 
@@ -2399,7 +2408,7 @@ static BOOL PlayerAvatar_Cycling_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, 
     return FALSE;
 }
 
-void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, enum MovementAction direction, int *xOut, int *yOut, int *zOut)
+void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *xOut, int *yOut, int *zOut)
 {
     const DistortionDirectionOffset *directionOffset;
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
@@ -2428,7 +2437,7 @@ void PlayerAvatar_Distortion_GetCoordsInDirection(PlayerAvatar *playerAvatar, en
     (*zOut) += directionOffset->zOffset;
 }
 
-u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, enum MovementAction direction)
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int direction)
 {
     u32 tileBehavior;
 

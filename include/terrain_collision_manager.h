@@ -28,6 +28,12 @@ enum CalculatedHeightSource {
     CALCULATED_HEIGHT_SOURCE_DYNAMIC
 };
 
+enum VerticalDirection {
+    VERTICAL_DIRECTION_DOWN = -1,
+    VERTICAL_DIRECTION_NONE,
+    VERTICAL_DIRECTION_UP
+};
+
 void TerrainCollisionManager_Init(const TerrainCollisionManager **terrainCollisionMan, BOOL useSimpleTerrainCollisions);
 BOOL TerrainCollisionManager_CheckCollision(const FieldSystem *fieldSystem, const int tileX, const int tileZ);
 u8 TerrainCollisionManager_GetTileBehavior(const FieldSystem *fieldSystem, const int tileX, const int tileZ);
