@@ -1012,11 +1012,11 @@ Overlay overlay44
 	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
 }
 
-Overlay overlay45
+Overlay poketch_alarm_clock
 {
 	After overlay25
-	Object main.nef.p/src_overlay045_ov45_022561C0.c.o
-	Object main.nef.p/src_overlay045_ov45_022566EC.c.o
+	Object main.nef.p/src_applications_poketch_alarm_clock_main.c.o
+	Object main.nef.p/src_applications_poketch_alarm_clock_graphics.c.o
 }
 
 Overlay overlay46
