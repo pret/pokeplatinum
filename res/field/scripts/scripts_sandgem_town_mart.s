@@ -2,40 +2,40 @@
 #include "res/text/bank/sandgem_town_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _002A
-    ScriptEntry _003D
+    ScriptEntry SandgemTownMart_Vendor
+    ScriptEntry SandgemTownMart_Dummy
+    ScriptEntry SandgemTownMart_Breeder
+    ScriptEntry SandgemTownMart_SchoolBoy
     ScriptEntryEnd
 
-_0012:
+SandgemTownMart_Vendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon 0
     ReleaseAll
     End
 
-_0028:
+SandgemTownMart_Dummy:
     End
 
-_002A:
+SandgemTownMart_Breeder:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SandgemTownMart_Text_BuyLotsOfPotions
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_003D:
+SandgemTownMart_SchoolBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message SandgemTownMart_Text_TossAPokeBall
     WaitABXPadPress
     CloseMessage
     ReleaseAll

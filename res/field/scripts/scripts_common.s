@@ -1141,7 +1141,7 @@ _0FA7:
     End
 
 CommonScript_VendorGreetingGeneric:
-    Message pl_msg_00000213_00037
+    Message CommonStrings_Text_VendorGreetingGeneric
     ReturnCommonScript
     End
 

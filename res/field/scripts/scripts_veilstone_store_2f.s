@@ -150,7 +150,7 @@ _0198:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     ReleaseAll
@@ -160,7 +160,7 @@ _01AE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     ReleaseAll

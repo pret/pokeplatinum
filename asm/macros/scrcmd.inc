@@ -3253,6 +3253,10 @@
     CallCommonScript 0x7D2
     .endm
 
+    .macro GenericVendorGreeting
+    CallCommonScript 0x7E3
+    .endm
+
     .macro PlayElevatorAnimation elevatorDir, loopCount
     .short 572
     .short \elevatorDir
