@@ -31,8 +31,12 @@ extern int (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *
  *
  * Array of movement action descriptors that define multi-phase movement
  * behaviors with initialization, update, completion, and cleanup functions.
+ *
+ * Known descriptors:
+ * - sMovementActionDescriptor_BerryPatch: Berry patch growth stage management
+ * - All others: Unknown purposes, kept as Unk_ names until functionality is determined
  */
-extern const UnkStruct_020EDF0C *const Unk_020EE3A8[];
+extern const MovementActionDescriptor *const gMovementActionDescriptors[];
 
 /**
  * @brief Movement action codes lookup table
