@@ -38,6 +38,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "player_avatar.h"
+#include "player_avatar_movement.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -45,7 +46,6 @@
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
 

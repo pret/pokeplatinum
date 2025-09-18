@@ -40,13 +40,13 @@
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "player_avatar_movement.h"
 #include "pokemon.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020553DC.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
 typedef struct MonRideTask {
