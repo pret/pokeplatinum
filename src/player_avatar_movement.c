@@ -1096,33 +1096,108 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
 
 static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST };
-    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST };
-    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST };
-    int turnAnimations[4] = { 30, 31, 29, 28 };
-    int turnDirections[4] = { 0, 1, 2, 3 };
+    int normalAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST
+    };
+    int runningAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST
+    };
+    int surfAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST
+    };
+    int turnAnimations[4] = {
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH
+    };
+    int turnDirections[4] = {
+        DIR_NORTH,
+        DIR_SOUTH,
+        DIR_WEST,
+        DIR_EAST
+    };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
 
 static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST };
-    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST };
-    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST };
-    int turnAnimations[4] = { 31, 30, 28, 29 };
-    int turnDirections[4] = { 0, 1, 2, 3 };
+    int normalAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST
+    };
+    int runningAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST
+    };
+    int surfAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST
+    };
+    int turnAnimations[4] = {
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH
+    };
+    int turnDirections[4] = {
+        DIR_NORTH,
+        DIR_SOUTH,
+        DIR_WEST,
+        DIR_EAST
+    };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
 
 static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST };
-    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST };
-    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST };
-    int turnAnimations[4] = { 29, 28, 31, 30 };
-    int turnDirections[4] = { 0, 1, 2, 3 };
+    int normalAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST
+    };
+    int runningAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST,
+        MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST
+    };
+    int surfAnimations[4] = {
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST,
+        MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST
+    };
+    int turnAnimations[4] = {
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST,
+        MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST
+    };
+    int turnDirections[4] = {
+        DIR_NORTH,
+        DIR_SOUTH,
+        DIR_WEST,
+        DIR_EAST
+    };
 
     PlayerAvatar_Distortion_HandleGenericMovement(playerAvatar, mapObj, direction, keyPad, keyPress, normalAnimations, runningAnimations, surfAnimations, turnAnimations, turnDirections);
 }
@@ -1136,15 +1211,15 @@ static void PlayerAvatar_Distortion_HandleTurn(PlayerAvatar *playerAvatar, MapOb
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_WEST_WALL:
-        int westWallDirections[4] = { 2, 3, 1, 0 };
+        int westWallDirections[4] = { DIR_WEST, DIR_EAST, DIR_SOUTH, DIR_NORTH };
         turnDirection = westWallDirections[direction];
         break;
     case AVATAR_DISTORTION_STATE_EAST_WALL:
-        int eastWallDirections[4] = { 3, 2, 0, 1 };
+        int eastWallDirections[4] = { DIR_EAST, DIR_WEST, DIR_NORTH, DIR_SOUTH };
         turnDirection = eastWallDirections[direction];
         break;
     case AVATAR_DISTORTION_STATE_CEILING:
-        int ceilingDirections[4] = { 1, 0, 3, 2 };
+        int ceilingDirections[4] = { DIR_SOUTH, DIR_NORTH, DIR_EAST, DIR_WEST };
         turnDirection = ceilingDirections[direction];
         break;
     }
