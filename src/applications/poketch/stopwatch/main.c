@@ -24,8 +24,8 @@ typedef struct SavedTimerValue {
 } SavedTimerValue;
 
 typedef struct PoketchStopwatch {
-    u8 activeTask;
-    u8 taskFuncState;
+    u8 state;
+    u8 subState;
     u8 shouldExit;
     u8 previousTask;
     u8 buttonState;
@@ -40,13 +40,13 @@ typedef struct PoketchStopwatch {
     PoketchSystem *poketchSys;
 } PoketchStopwatch;
 
-enum StopwatchTasks {
-    TASK_LOAD_APP = 0,
-    TASK_INACTIVE_TIMER,
-    TASK_ACTIVE_TIMER,
-    TASK_BUTTON_HELD,
-    TASK_RESET_TIMER,
-    TASK_SHUTDOWN
+enum StopwatchTask {
+    STATE_LOAD_APP = 0,
+    STATE_INACTIVE_TIMER,
+    STATE_ACTIVE_TIMER,
+    STATE_BUTTON_HELD,
+    STATE_RESET_TIMER,
+    STATE_SHUTDOWN
 };
 
 static void NitroStaticInit(void);
@@ -54,15 +54,17 @@ static void NitroStaticInit(void);
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static BOOL Init(PoketchStopwatch *appData, BgConfig *bgConfig, u32 appID);
 static void Free(PoketchStopwatch *appData);
-static void Task_Main(SysTask *task, void *appData);
 static void Exit(void *appData);
-static void ChangeActiveTask(PoketchStopwatch *appData, enum StopwatchTasks taskID);
-static BOOL Task_LoadApp(PoketchStopwatch *appData);
-static BOOL Task_HandleInactiveTimer(PoketchStopwatch *appData);
-static BOOL Task_HandleActiveTimer(PoketchStopwatch *appData);
-static BOOL Task_HandleHeldButton(PoketchStopwatch *appData);
-static BOOL Task_HandleResetSequence(PoketchStopwatch *appData);
-static BOOL Task_UnloadApp(PoketchStopwatch *appData);
+
+static void Task_Main(SysTask *task, void *appData);
+static void ChangeState(PoketchStopwatch *appData, enum StopwatchTask newState);
+static BOOL State_LoadApp(PoketchStopwatch *appData);
+static BOOL State_InactiveTimer(PoketchStopwatch *appData);
+static BOOL State_ActiveTimer(PoketchStopwatch *appData);
+static BOOL State_HoldingButton(PoketchStopwatch *appData);
+static BOOL State_ResetSequence(PoketchStopwatch *appData);
+static BOOL State_UnloadApp(PoketchStopwatch *appData);
+
 static BOOL RegisterButtonCallback(PoketchStopwatch *appData);
 static void FreeButtonManager(PoketchStopwatch *appData);
 static void ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
@@ -78,7 +80,7 @@ static void NitroStaticInit(void)
 
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    PoketchStopwatch *stopwatch = (PoketchStopwatch *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchStopwatch));
+    PoketchStopwatch *stopwatch = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchStopwatch));
 
     if (stopwatch != NULL) {
         if (Init(stopwatch, bgConfig, appID)) {
@@ -121,9 +123,9 @@ static BOOL Init(PoketchStopwatch *appData, BgConfig *bgConfig, u32 appID)
     }
 
     if (PoketchStopwatchGraphics_New(&appData->graphics, &appData->timerState, bgConfig)) {
-        appData->activeTask = TASK_DRAW_APP_SCREEN;
-        appData->taskFuncState = 0;
-        appData->previousTask = appData->activeTask;
+        appData->state = STOPWATCH_GRAPHICS_INIT;
+        appData->subState = 0;
+        appData->previousTask = appData->state;
         appData->shouldExit = FALSE;
 
         if (RegisterButtonCallback(appData)) {
@@ -155,26 +157,26 @@ static void Free(PoketchStopwatch *appData)
 static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const stateFuncs[])(PoketchStopwatch *) = {
-        Task_LoadApp,
-        Task_HandleInactiveTimer,
-        Task_HandleActiveTimer,
-        Task_HandleHeldButton,
-        Task_HandleResetSequence,
-        Task_UnloadApp
+        State_LoadApp,
+        State_InactiveTimer,
+        State_ActiveTimer,
+        State_HoldingButton,
+        State_ResetSequence,
+        State_UnloadApp
     };
 
     PoketchStopwatch *stopwatch = appData;
 
-    if (stopwatch->activeTask < NELEMS(stateFuncs)) {
-        if (stopwatch->shouldExit && (stopwatch->activeTask != TASK_SHUTDOWN)) {
-            ChangeActiveTask(stopwatch, TASK_SHUTDOWN);
+    if (stopwatch->state < NELEMS(stateFuncs)) {
+        if (stopwatch->shouldExit && (stopwatch->state != STATE_SHUTDOWN)) {
+            ChangeState(stopwatch, STATE_SHUTDOWN);
             stopwatch->shouldExit = FALSE;
         }
 
         PoketechSystem_UpdateButtonManager(stopwatch->poketchSys, stopwatch->buttonManager);
         CalcTimerValues(stopwatch, &stopwatch->timerState);
 
-        if (stateFuncs[stopwatch->activeTask](stopwatch)) {
+        if (stateFuncs[stopwatch->state](stopwatch)) {
             Free(stopwatch);
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(stopwatch->poketchSys);
@@ -187,35 +189,35 @@ static void Exit(void *appData)
     ((PoketchStopwatch *)appData)->shouldExit = TRUE;
 }
 
-static void ChangeActiveTask(PoketchStopwatch *appData, enum StopwatchTasks taskID)
+static void ChangeState(PoketchStopwatch *appData, enum StopwatchTask taskID)
 {
-    appData->previousTask = appData->activeTask;
+    appData->previousTask = appData->state;
 
     if (appData->shouldExit == FALSE) {
-        appData->activeTask = taskID;
+        appData->state = taskID;
     } else {
-        appData->activeTask = TASK_SHUTDOWN;
+        appData->state = STATE_SHUTDOWN;
         appData->shouldExit = FALSE;
     }
 
-    appData->taskFuncState = 0;
+    appData->subState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchStopwatch *appData)
+static BOOL State_LoadApp(PoketchStopwatch *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
-        PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_DRAW_APP_SCREEN);
-        appData->taskFuncState++;
+        PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_INIT);
+        appData->subState++;
         break;
     case 1:
-        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
+        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, STOPWATCH_GRAPHICS_INIT)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
 
             if (appData->timerState.isActive) {
-                ChangeActiveTask(appData, TASK_ACTIVE_TIMER);
+                ChangeState(appData, STATE_ACTIVE_TIMER);
             } else {
-                ChangeActiveTask(appData, TASK_INACTIVE_TIMER);
+                ChangeState(appData, STATE_INACTIVE_TIMER);
             }
         }
         break;
@@ -224,33 +226,33 @@ static BOOL Task_LoadApp(PoketchStopwatch *appData)
     return FALSE;
 }
 
-static BOOL Task_HandleInactiveTimer(PoketchStopwatch *appData)
+static BOOL State_InactiveTimer(PoketchStopwatch *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) {
             appData->timerState.buttonSequence = 1;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            appData->taskFuncState++;
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            appData->subState++;
         }
         break;
     case 1:
         switch (appData->buttonState) {
         case BUTTON_MANAGER_STATE_DRAGGING:
             appData->timerState.buttonSequence = 0;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            appData->taskFuncState--;
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            appData->subState--;
             break;
         case BUTTON_MANAGER_STATE_TAP:
             appData->timerState.buttonSequence = 2;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
             StartTimer(appData);
-            ChangeActiveTask(appData, TASK_ACTIVE_TIMER);
+            ChangeState(appData, STATE_ACTIVE_TIMER);
             break;
         case BUTTON_MANAGER_STATE_TIMER0:
             appData->timerState.buttonSequence = 3;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_BUTTON_HELD);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_BUTTON_HELD);
             break;
         }
         break;
@@ -259,33 +261,33 @@ static BOOL Task_HandleInactiveTimer(PoketchStopwatch *appData)
     return FALSE;
 }
 
-static BOOL Task_HandleActiveTimer(PoketchStopwatch *appData)
+static BOOL State_ActiveTimer(PoketchStopwatch *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) {
             appData->timerState.buttonSequence = 1;
             PauseTimer(appData);
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            appData->taskFuncState++;
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            appData->subState++;
         }
         break;
     case 1:
         switch (appData->buttonState) {
         case BUTTON_MANAGER_STATE_DRAGGING:
             appData->timerState.buttonSequence = 0;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_INACTIVE_TIMER);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_INACTIVE_TIMER);
             break;
         case BUTTON_MANAGER_STATE_TAP:
             appData->timerState.buttonSequence = 0;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_INACTIVE_TIMER);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_INACTIVE_TIMER);
             break;
         case BUTTON_MANAGER_STATE_TIMER0:
             appData->timerState.buttonSequence = 3;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_BUTTON_HELD);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_BUTTON_HELD);
             break;
         }
         break;
@@ -294,60 +296,60 @@ static BOOL Task_HandleActiveTimer(PoketchStopwatch *appData)
     return FALSE;
 }
 
-static BOOL Task_HandleHeldButton(PoketchStopwatch *appData)
+static BOOL State_HoldingButton(PoketchStopwatch *appData)
 {
     switch (appData->buttonState) {
     case BUTTON_MANAGER_STATE_TAP:
-        if (appData->previousTask == TASK_INACTIVE_TIMER) {
+        if (appData->previousTask == STATE_INACTIVE_TIMER) {
             StartTimer(appData);
             appData->timerState.buttonSequence = 2;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_ACTIVE_TIMER);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_ACTIVE_TIMER);
             break;
         }
     case BUTTON_MANAGER_STATE_DRAGGING:
         appData->timerState.buttonSequence = 0;
-        PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-        ChangeActiveTask(appData, TASK_INACTIVE_TIMER);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+        ChangeState(appData, STATE_INACTIVE_TIMER);
         break;
     case BUTTON_MANAGER_STATE_TIMER1:
         appData->timerState.buttonSequence = 4;
-        PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-        ChangeActiveTask(appData, TASK_RESET_TIMER);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+        ChangeState(appData, STATE_RESET_TIMER);
         break;
     }
 
     return FALSE;
 }
 
-static BOOL Task_HandleResetSequence(PoketchStopwatch *appData)
+static BOOL State_ResetSequence(PoketchStopwatch *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         appData->resetSequenceTimer = 0;
-        appData->taskFuncState++;
+        appData->subState++;
     case 1:
         if (++appData->resetSequenceTimer >= 90) {
             appData->timerState.buttonSequence = 5;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
             appData->resetSequenceTimer = 0;
-            appData->taskFuncState++;
+            appData->subState++;
         }
         break;
     case 2:
         if (++appData->resetSequenceTimer >= 60) {
             appData->timerState.buttonSequence = 6;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
             ResetTimer(appData);
             appData->resetSequenceTimer = 0;
-            appData->taskFuncState++;
+            appData->subState++;
         }
         break;
     case 3:
-        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, TASK_UPDATE_GRAPHICS)) {
+        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, STOPWATCH_GRAPHICS_UPDATE)) {
             appData->timerState.buttonSequence = 0;
-            PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
-            ChangeActiveTask(appData, TASK_INACTIVE_TIMER);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_UPDATE);
+            ChangeState(appData, STATE_INACTIVE_TIMER);
         }
         break;
     }
@@ -355,13 +357,13 @@ static BOOL Task_HandleResetSequence(PoketchStopwatch *appData)
     return FALSE;
 }
 
-static BOOL Task_UnloadApp(PoketchStopwatch *appData)
+static BOOL State_UnloadApp(PoketchStopwatch *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         appData->timerState.buttonSequence = 7;
-        PoketchStopwatchGraphics_StartTask(appData->graphics, TASK_FREE_GRAPHICS);
-        appData->taskFuncState++;
+        PoketchStopwatchGraphics_StartTask(appData->graphics, STOPWATCH_GRAPHICS_FREE);
+        appData->subState++;
         break;
     case 1:
         if (PoketchStopwatchGraphics_NoActiveTasks(appData->graphics)) {
@@ -376,7 +378,7 @@ static BOOL Task_UnloadApp(PoketchStopwatch *appData)
 static BOOL RegisterButtonCallback(PoketchStopwatch *appData)
 {
     static const TouchScreenHitTable buttonHitBox[] = {
-        { TOUCHSCREEN_USE_CIRCLE, 112, 112, 39 },
+        { .circle = { .code = TOUCHSCREEN_USE_CIRCLE, .x = 112, .y = 112, .r = 39 } },
     };
 
     appData->buttonManager = PoketchButtonManager_New(buttonHitBox, NELEMS(buttonHitBox), ButtonChanged, appData, HEAP_ID_POKETCH_APP);

@@ -28,13 +28,13 @@ BOOL PoketchAnalogWatch_New(AnalogWatchGraphics **dest, const AnalogWatchData *w
     AnalogWatchGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(AnalogWatchGraphics));
 
     if (graphics != NULL) {
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, 8);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, ANALOG_WATCH_TASK_SLOTS);
 
         graphics->watchData = watchData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
 
-        if (SetupSprites(graphics) == 0) {
+        if (SetupSprites(graphics) == FALSE) {
             Heap_Free(graphics);
             return FALSE;
         }

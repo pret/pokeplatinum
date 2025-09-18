@@ -48,8 +48,8 @@ enum IconActions {
 
 static void PrintDebugLog(const char *text, ...);
 
-static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
+static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
 static void SetupTapState(FriendshipCheckerGraphics *graphics);
 static void SetRandomVelocity(VecFx32 *velocity);
 
@@ -59,11 +59,11 @@ static void Task_UpdateGraphics(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
 
 static void UpdateTapState(FriendshipCheckerGraphics *graphics, enum TapState newTapState);
-static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
+static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
+static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
+static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
+static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
 static void TriggerJumpSequence(FriendshipCheckerGraphics *graphics);
 
 static void ShowHeartSprite(FriendshipCheckerGraphics *graphics, int slot);
@@ -72,7 +72,7 @@ static void HideActionSprite(FriendshipCheckerGraphics *graphics, int slot);
 
 static BOOL NoJumpingMons(FriendshipCheckerGraphics *graphics);
 static u32 CheckIfTouchingMon(FriendshipCheckerGraphics *graphics);
-static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
 static void UpdateIconAction(FriendshipCheckerGraphics *graphics, int slot, enum IconActions newAction);
 static inline void UpdateIconDirection(PokemonGraphic *pokemon);
 
@@ -82,21 +82,21 @@ static BOOL VectorIsZero(const VecFx32 *vec);
 static inline BOOL VectorIsZeroInline(const VecFx32 *vec);
 static inline void InvertVector(VecFx32 *vec);
 
-static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot);
+static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState);
 
-BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerState *appState, BgConfig *bgConfig)
+BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerData *appState, BgConfig *bgConfig)
 {
     FriendshipCheckerGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(FriendshipCheckerGraphics));
 
     if (graphics != NULL) {
 
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, HEAP_ID_POKETCH_APP);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, FRIENDSHIP_CHECKER_TASK_SLOTS);
 
         graphics->appState = appState;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
@@ -148,12 +148,12 @@ static const PoketchTask sFrienshipCheckerTasks[] = {
     { 0 }
 };
 
-void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID)
+void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID)
 {
     PoketchTask_Start(sFrienshipCheckerTasks, taskID, graphics, graphics->appState, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID)
+BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -203,7 +203,7 @@ static void Task_InitGraphics(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     static const struct {
         u16 x;
@@ -295,7 +295,7 @@ static inline void UpdateIconDirection(PokemonGraphic *pokemon)
     }
 }
 
-static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     for (int slot = 0; slot < appState->monCount; slot++) {
         SetRandomVelocity(&graphics->pokemon[slot].velocity);
@@ -335,7 +335,7 @@ static void UpdateTapState(FriendshipCheckerGraphics *graphics, enum TapState ne
 
 static void Task_UpdateGraphics(SysTask *task, void *taskData)
 {
-    static void (*const tapStateHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerState *) = {
+    static void (*const tapStateHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerData *) = {
         TapStateIdle,
         TapStateFirstTap,
         TapStateHeldTooLong,
@@ -344,7 +344,7 @@ static void Task_UpdateGraphics(SysTask *task, void *taskData)
     };
 
     FriendshipCheckerGraphics *graphics = taskData;
-    const FriendshipCheckerState *appState = graphics->appState;
+    const FriendshipCheckerData *appState = graphics->appState;
 
     if (appState->screenHeld) {
         graphics->touchX = appState->touchX;
@@ -410,7 +410,7 @@ static BOOL PointWithinDistance(u32 x, u32 y, u32 distance, const VecFx32 *point
     return FALSE;
 }
 
-static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     if (appState->screenTapped) {
         graphics->tappedOnMonIcon = graphics->touchingMonIcon;
@@ -418,7 +418,7 @@ static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCh
     }
 }
 
-static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     if (appState->screenHeld) {
         graphics->tapStateCounter++;
@@ -435,14 +435,14 @@ static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const Friendsh
     }
 }
 
-static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     if (appState->screenHeld == FALSE) {
         UpdateTapState(graphics, TAP_STATE_IDLE);
     }
 }
 
-static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     if (appState->screenTapped == FALSE) {
         graphics->tapStateCounter++;
@@ -460,7 +460,7 @@ static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const Fri
     }
 }
 
-static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     if (graphics->tapStateCounter == 0) {
         TriggerJumpSequence(graphics);
@@ -481,9 +481,9 @@ static void PrintDebugLog(const char *text, ...)
     }
 }
 
-static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
-    static void (*const actionHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerState *, int) = {
+    static void (*const actionHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerData *, int) = {
         HandleWanderAction,
         HandleGatherAction,
         HandleRunAwayAction,
@@ -580,7 +580,7 @@ static BOOL VectorIsZero(const VecFx32 *vec)
     return (vec->x == 0) && (vec->y == 0);
 }
 
-static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PrintDebugLog(" icon[%d] Default\n", slot);
 
@@ -609,7 +609,7 @@ static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const Friend
     }
 }
 
-static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PrintDebugLog(" icon[%d] ReaLike\n", slot);
 
@@ -641,7 +641,7 @@ static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const Friend
     }
 }
 
-static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PrintDebugLog(" icon[%d] ReaHate\n", slot);
 
@@ -665,7 +665,7 @@ static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const Frien
     }
 }
 
-static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PrintDebugLog(" icon[%d] TcgLike\n", slot);
 
@@ -696,7 +696,7 @@ static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const Frie
     UpdateIconAction(graphics, slot, ACTION_WANDER);
 }
 
-static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PrintDebugLog(" icon[%d] TchHate\n", slot);
 
@@ -720,7 +720,7 @@ static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const F
     UpdateIconAction(graphics, slot, ACTION_WANDER);
 }
 
-static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState, int slot)
 {
     PokemonGraphic *monSprite = &graphics->pokemon[slot];
 
@@ -762,7 +762,7 @@ static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const Friendsh
     }
 }
 
-static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *appState)
 {
     VecFx32 iconDisplacement;
     fx32 usedTimeSteps, remainingTimeSteps;

@@ -18,16 +18,16 @@ typedef struct PoketchMemoPad {
     u8 shouldExit;
     u8 currentlyDrawing;
     u32 unused;
-    MemoPadState padState;
+    MemoPadData padData;
     MemoPadGraphics *graphics;
     PoketchSystem *poketchSys;
     PoketchButtonManager *buttonManager;
 } PoketchMemoPad;
 
-enum MemoPadTasks {
-    TASK_LOAD_APP = 0,
-    TASK_UPDATE_LOOP,
-    TASK_SHUTDOWN,
+enum MemoPadState {
+    STATE_LOAD_APP = 0,
+    STATE_UPDATE_LOOP,
+    STATE_SHUTDOWN,
 };
 
 static void NitroStaticInit(void);
@@ -35,21 +35,18 @@ static void NitroStaticInit(void);
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static BOOL Init(PoketchMemoPad *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static void Free(PoketchMemoPad *appData);
-static void Task_Main(SysTask *task, void *appData);
-static void ButtonCallback(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
 static void Exit(void *appData);
-static void ChangeActiveTask(PoketchMemoPad *appData, u32 taskID);
-static BOOL Task_LoadApp(PoketchMemoPad *appData);
-static BOOL Task_UpdateApp(PoketchMemoPad *appData);
+static void ButtonCallback(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
+
+static void Task_Main(SysTask *task, void *appData);
+static void ChangeState(PoketchMemoPad *appData, u32 newState);
+static BOOL State_LoadApp(PoketchMemoPad *appData);
+static BOOL State_UpdateApp(PoketchMemoPad *appData);
+static BOOL State_UnloadApp(PoketchMemoPad *appData);
+
 static BOOL GetTouchStartLocation(PoketchMemoPad *appData);
 static BOOL GetTouchContinueLocation(PoketchMemoPad *appData);
 static void UpdatePixelsOnPath(PoketchMemoPad *appData, u32 x, u32 y, u32 endX, u32 endY);
-static BOOL Task_UnloadApp(PoketchMemoPad *appData);
-
-static const TouchScreenHitTable sHitTableMemoPad[] = {
-    { .rect = { .top = 0x18, .bottom = 0x58, .left = 0xB4, .right = 0xCC } },
-    { .rect = { .top = 0x68, .bottom = 0xA8, .left = 0xB4, .right = 0xCC } }
-};
 
 static void NitroStaticInit(void)
 {
@@ -74,13 +71,18 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 
 static BOOL Init(PoketchMemoPad *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    memset(appData->padState.pixels, 0, sizeof(u8) * (MEMO_PAD_WIDTH * MEMO_PAD_HEIGHT));
+    static const TouchScreenRect sHitTableMemoPad[] = {
+        { .rect = { .top = 24, .bottom = 88, .left = 180, .right = 204 } },
+        { .rect = { .top = 104, .bottom = 168, .left = 180, .right = 204 } }
+    };
 
-    appData->padState.appID = appID;
-    appData->padState.pencilActive = TRUE;
+    memset(appData->padData.pixels, 0, sizeof(u8) * (MEMO_PAD_WIDTH * MEMO_PAD_HEIGHT));
 
-    if (MemoPadGraphics_New(&appData->graphics, &appData->padState, bgConfig)) {
-        appData->activeTask = TASK_LOAD_APP;
+    appData->padData.appID = appID;
+    appData->padData.pencilActive = TRUE;
+
+    if (MemoPadGraphics_New(&appData->graphics, &appData->padData, bgConfig)) {
+        appData->activeTask = STATE_LOAD_APP;
         appData->taskFuncState = 0;
         appData->shouldExit = FALSE;
         appData->currentlyDrawing = FALSE;
@@ -103,9 +105,9 @@ static void Free(PoketchMemoPad *appData)
 static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const stateFuncs[])(PoketchMemoPad *) = {
-        Task_LoadApp,
-        Task_UpdateApp,
-        Task_UnloadApp
+        State_LoadApp,
+        State_UpdateApp,
+        State_UnloadApp
     };
 
     PoketchMemoPad *memoPad = appData;
@@ -126,9 +128,9 @@ static void ButtonCallback(u32 buttonID, u32 buttonState, u32 touchState, void *
     PoketchMemoPad *memoPad = appData;
 
     if (touchState == 1) {
-        if (((memoPad->padState.pencilActive == TRUE) && (buttonID == 0)) || ((memoPad->padState.pencilActive == FALSE) && (buttonID == 1))) {
-            memoPad->padState.pencilActive ^= 1;
-            PoketchMemoPadGraphics_StartTask(memoPad->graphics, TASK_CHANGE_DRAW_TOOL);
+        if (((memoPad->padData.pencilActive == TRUE) && (buttonID == 0)) || ((memoPad->padData.pencilActive == FALSE) && (buttonID == 1))) {
+            memoPad->padData.pencilActive ^= 1;
+            PoketchMemoPadGraphics_StartTask(memoPad->graphics, MEMO_PAD_GRAPHICS_CHANGE_TOOL);
         }
     }
 }
@@ -138,28 +140,28 @@ static void Exit(void *appData)
     ((PoketchMemoPad *)appData)->shouldExit = TRUE;
 }
 
-static void ChangeActiveTask(PoketchMemoPad *appData, u32 taskID)
+static void ChangeState(PoketchMemoPad *appData, u32 taskID)
 {
     if (appData->shouldExit == FALSE) {
         appData->activeTask = taskID;
     } else {
-        appData->activeTask = TASK_SHUTDOWN;
+        appData->activeTask = STATE_SHUTDOWN;
     }
 
     appData->taskFuncState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchMemoPad *appData)
+static BOOL State_LoadApp(PoketchMemoPad *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_DRAW_APP_SCREEN);
+        PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_INIT);
         appData->taskFuncState++;
         break;
     case 1:
-        if (PoketchMemoPadGraphics_TaskIsNotActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
+        if (PoketchMemoPadGraphics_TaskIsNotActive(appData->graphics, MEMO_PAD_GRAPHICS_INIT)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            ChangeActiveTask(appData, TASK_UPDATE_LOOP);
+            ChangeState(appData, STATE_UPDATE_LOOP);
         }
         break;
     }
@@ -167,10 +169,10 @@ static BOOL Task_LoadApp(PoketchMemoPad *appData)
     return FALSE;
 }
 
-static BOOL Task_UpdateApp(PoketchMemoPad *appData)
+static BOOL State_UpdateApp(PoketchMemoPad *appData)
 {
     if (appData->shouldExit) {
-        ChangeActiveTask(appData, TASK_SHUTDOWN);
+        ChangeState(appData, STATE_SHUTDOWN);
     }
 
     switch (appData->taskFuncState) {
@@ -182,17 +184,17 @@ static BOOL Task_UpdateApp(PoketchMemoPad *appData)
         if (appData->currentlyDrawing) {
             u32 prevX, prevY;
 
-            prevX = appData->padState.x;
-            prevY = appData->padState.y;
+            prevX = appData->padData.x;
+            prevY = appData->padData.y;
 
             if (GetTouchContinueLocation(appData)) {
-                UpdatePixelsOnPath(appData, prevX, prevY, appData->padState.x, appData->padState.y);
+                UpdatePixelsOnPath(appData, prevX, prevY, appData->padData.x, appData->padData.y);
             } else {
                 appData->currentlyDrawing = FALSE;
             }
         } else {
             if (GetTouchStartLocation(appData)) {
-                PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_UPDATE_MEMO_CONTENT);
+                PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_UPDATE_CONTENT);
                 appData->currentlyDrawing = TRUE;
             }
         }
@@ -211,9 +213,9 @@ static BOOL GetTouchStartLocation(PoketchMemoPad *appData)
             x = (x - POKETCH_SCREEN_MIN_X) / 2;
             y = (y - POKETCH_SCREEN_MIN_Y) / 2;
 
-            appData->padState.pixels[x][y] = appData->padState.pencilActive;
-            appData->padState.x = x;
-            appData->padState.y = y;
+            appData->padData.pixels[x][y] = appData->padData.pencilActive;
+            appData->padData.x = x;
+            appData->padData.y = y;
 
             return TRUE;
         }
@@ -231,8 +233,8 @@ static BOOL GetTouchContinueLocation(PoketchMemoPad *appData)
             x = (x - POKETCH_SCREEN_MIN_X) / 2;
             y = (y - POKETCH_SCREEN_MIN_Y) / 2;
 
-            appData->padState.x = x;
-            appData->padState.y = y;
+            appData->padData.x = x;
+            appData->padData.y = y;
 
             return TRUE;
         }
@@ -267,7 +269,7 @@ static void ErasePixelsAroundPoint(PoketchMemoPad *appData, u32 x, u32 y)
 
     for (i = left; i < right; i++) {
         for (j = top; j < bottom; j++) {
-            appData->padState.pixels[i][j] = 0;
+            appData->padData.pixels[i][j] = 0;
         }
     }
 }
@@ -301,16 +303,16 @@ static void UpdatePixelsOnPath(PoketchMemoPad *appData, u32 x, u32 y, u32 endX, 
             minorAxisRounded = minorAxis >> FX32_SHIFT;
 
             if ((x < MEMO_PAD_WIDTH) && (minorAxisRounded < MEMO_PAD_HEIGHT)) {
-                if ((appData->padState.pencilActive == FALSE) || (appData->padState.pixels[x][minorAxisRounded] != appData->padState.pencilActive)) {
-                    if (appData->padState.pencilActive == FALSE) {
+                if ((appData->padData.pencilActive == FALSE) || (appData->padData.pixels[x][minorAxisRounded] != appData->padData.pencilActive)) {
+                    if (appData->padData.pencilActive == FALSE) {
                         ErasePixelsAroundPoint(appData, x, minorAxisRounded);
                     }
 
-                    appData->padState.pixels[x][minorAxisRounded] = appData->padState.pencilActive;
-                    appData->padState.x = x;
-                    appData->padState.y = minorAxisRounded;
+                    appData->padData.pixels[x][minorAxisRounded] = appData->padData.pencilActive;
+                    appData->padData.x = x;
+                    appData->padData.y = minorAxisRounded;
 
-                    PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_UPDATE_MEMO_CONTENT);
+                    PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_UPDATE_CONTENT);
                 }
             }
 
@@ -334,16 +336,16 @@ static void UpdatePixelsOnPath(PoketchMemoPad *appData, u32 x, u32 y, u32 endX, 
             minorAxisRounded = minorAxis >> FX32_SHIFT;
 
             if ((y < MEMO_PAD_HEIGHT) && (minorAxisRounded < MEMO_PAD_WIDTH)) {
-                if ((appData->padState.pencilActive == 0) || (appData->padState.pixels[minorAxisRounded][y] != appData->padState.pencilActive)) {
-                    if (appData->padState.pencilActive == 0) {
+                if ((appData->padData.pencilActive == 0) || (appData->padData.pixels[minorAxisRounded][y] != appData->padData.pencilActive)) {
+                    if (appData->padData.pencilActive == 0) {
                         ErasePixelsAroundPoint(appData, minorAxisRounded, y);
                     }
 
-                    appData->padState.pixels[minorAxisRounded][y] = appData->padState.pencilActive;
-                    appData->padState.x = minorAxisRounded;
-                    appData->padState.y = y;
+                    appData->padData.pixels[minorAxisRounded][y] = appData->padData.pencilActive;
+                    appData->padData.x = minorAxisRounded;
+                    appData->padData.y = y;
 
-                    PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_UPDATE_MEMO_CONTENT);
+                    PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_UPDATE_CONTENT);
                 }
             }
 
@@ -353,22 +355,22 @@ static void UpdatePixelsOnPath(PoketchMemoPad *appData, u32 x, u32 y, u32 endX, 
     }
 
     if ((endY < MEMO_PAD_HEIGHT) && (endX < MEMO_PAD_WIDTH)) {
-        if (appData->padState.pencilActive == FALSE) {
+        if (appData->padData.pencilActive == FALSE) {
             ErasePixelsAroundPoint(appData, endX, endY);
         }
 
-        appData->padState.x = endX;
-        appData->padState.y = endY;
+        appData->padData.x = endX;
+        appData->padData.y = endY;
 
-        PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_UPDATE_MEMO_CONTENT);
+        PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_UPDATE_CONTENT);
     }
 }
 
-static BOOL Task_UnloadApp(PoketchMemoPad *appData)
+static BOOL State_UnloadApp(PoketchMemoPad *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PoketchMemoPadGraphics_StartTask(appData->graphics, TASK_FREE_BG);
+        PoketchMemoPadGraphics_StartTask(appData->graphics, MEMO_PAD_GRAPHICS_FREE);
         appData->taskFuncState++;
         break;
     case 1:

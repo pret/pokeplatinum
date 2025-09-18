@@ -2,8 +2,11 @@
 #define POKEPLATINUM_POKETCH_COUNTER_GRAPHICS_H
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
+
+#define COUNTER_TASK_SLOTS 4
 
 #define NUM_DIGITS 4
 
@@ -20,7 +23,7 @@ typedef struct CounterData {
 typedef struct CounterGraphics {
     const CounterData *counterData;
     BgConfig *bgConfig;
-    u32 activeTasks[6];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + COUNTER_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_AnimatedSpriteData *buttonAnimation;
     PoketchAnimation_AnimatedSpriteData *digitsAnimation[NUM_DIGITS];
@@ -29,7 +32,7 @@ typedef struct CounterGraphics {
 } CounterGraphics;
 
 enum CounterGraphicsTask {
-    COUNTER_GRAPHICS_INIT,
+    COUNTER_GRAPHICS_INIT = 0,
     COUNTER_GRAPHICS_FREE,
     COUNTER_GRAPHICS_UPDATE_BUTTON,
     COUNTER_GRAPHICS_UPDATE_VALUE,

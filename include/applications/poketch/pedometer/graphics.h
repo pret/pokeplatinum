@@ -2,8 +2,11 @@
 #define POKEPLATINUM_POKETCH_PEDOMETER_GRAPHICS_H
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
+
+#define PEDOMETER_TASK_SLOTS 4
 
 #define NUM_DIGITS 5
 
@@ -20,7 +23,7 @@ typedef struct PedometerData {
 typedef struct PedometerGraphics {
     const PedometerData *pedometerData;
     BgConfig *bgConfig;
-    u32 activeTasks[6];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + PEDOMETER_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_AnimatedSpriteData *buttonAnimation;
     PoketchAnimation_AnimatedSpriteData *digitsAnimation[NUM_DIGITS];

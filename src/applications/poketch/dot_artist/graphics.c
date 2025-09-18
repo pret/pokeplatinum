@@ -13,23 +13,24 @@
 
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
-static void GenerateDotTiles(BgConfig *bgConfig);
 static void Task_UpdateCanvas(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
+
+static void GenerateDotTiles(BgConfig *bgConfig);
 static void UpdateTilemap(BgConfig *bgConfig, const DotArt *dotArt);
 
-BOOL PoketchDotArtistGraphics_New(DotArtistGraphics **graphics, const DotArt *dotArt, BgConfig *bgConfig)
+BOOL PoketchDotArtistGraphics_New(DotArtistGraphics **dest, const DotArt *dotArt, BgConfig *bgConfig)
 {
-    DotArtistGraphics *dotArtistGraphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(DotArtistGraphics));
+    DotArtistGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(DotArtistGraphics));
 
-    if (dotArtistGraphics != NULL) {
-        PoketchTask_InitActiveTaskList(dotArtistGraphics->activeTasks, NUM_TASK_SLOTS);
+    if (graphics != NULL) {
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, DOT_ARTIST_TASK_SLOTS);
 
-        dotArtistGraphics->dotArt = dotArt;
-        dotArtistGraphics->bgConfig = PoketchGraphics_GetBgConfig();
+        graphics->dotArt = dotArt;
+        graphics->bgConfig = PoketchGraphics_GetBgConfig();
 
-        if (dotArtistGraphics->bgConfig != NULL) {
-            *graphics = dotArtistGraphics;
+        if (graphics->bgConfig != NULL) {
+            *dest = graphics;
             return TRUE;
         }
     }
@@ -45,18 +46,18 @@ void PoketchDotArtistGraphics_Free(DotArtistGraphics *graphics)
 }
 
 static const PoketchTask sDotArtistGraphicsTasks[] = {
-    { DOT_ARTIST_GRAPHICS_INIT, Task_DrawBackground, 0x0 },
-    { DOT_ARTIST_GRAPHICS_UPDATE, Task_UpdateCanvas, 0x0 },
-    { DOT_ARTIST_GRAPHICS_FREE, Task_FreeBackground, 0x0 },
+    { DOT_ARTIST_GRAPHICS_INIT, Task_DrawBackground, 0 },
+    { DOT_ARTIST_GRAPHICS_UPDATE, Task_UpdateCanvas, 0 },
+    { DOT_ARTIST_GRAPHICS_FREE, Task_FreeBackground, 0 },
     { 0 }
 };
 
-void PoketchDotArtistGraphics_StartTask(DotArtistGraphics *graphics, enum DotArtistGraphicsTasks taskID)
+void PoketchDotArtistGraphics_StartTask(DotArtistGraphics *graphics, enum DotArtistGraphicsTask taskID)
 {
     PoketchTask_Start(sDotArtistGraphicsTasks, taskID, graphics, graphics->dotArt, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDotArtistGraphics_TaskIsNotActive(DotArtistGraphics *graphics, enum DotArtistGraphicsTasks taskID)
+BOOL PoketchDotArtistGraphics_TaskIsNotActive(DotArtistGraphics *graphics, enum DotArtistGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }

@@ -30,7 +30,7 @@ BOOL PoketchCounterGraphics_New(CounterGraphics **dest, const CounterData *count
     CounterGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(CounterGraphics));
 
     if (graphics != NULL) {
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, 4);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, COUNTER_TASK_SLOTS);
         graphics->counterData = counterData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
@@ -64,7 +64,7 @@ static void SetupSprites(CounterGraphics *graphics, const CounterData *counterDa
         .hasAffineTransform = FALSE,
     };
     static const PoketchAnimation_AnimationData digitsAnimData = {
-        .translation = { 0, 0 },
+        .translation = { 0 },
         .animIdx = 0,
         .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
@@ -73,14 +73,14 @@ static void SetupSprites(CounterGraphics *graphics, const CounterData *counterDa
     };
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 47, DS_SCREEN_SUB, 80 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 47, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_SIZE_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchAnimation_LoadSpriteFromNARC(&graphics->buttonSprites, NARC_INDEX_GRAPHIC__POKETCH, 45, 46, HEAP_ID_POKETCH_APP);
     PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP);
 
     graphics->buttonAnimation = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &buttonAnimData, &graphics->buttonSprites);
 
-    PoketchAnimation_SetSpriteCharNo(graphics->buttonAnimation, 80);
+    PoketchAnimation_SetSpriteCharNo(graphics->buttonAnimation, POKETCH_DIGITS_NCGR_SIZE_TILES);
 
     for (int i = 0; i < NUM_DIGITS; i++) {
         graphics->digitsAnimation[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &digitsAnimData, &graphics->digitSprites);
@@ -103,10 +103,10 @@ static void UnloadSprites(CounterGraphics *graphics)
 }
 
 static const PoketchTask sCounterGraphicsTasks[] = {
-    { COUNTER_GRAPHICS_INIT, Task_DrawBackground, 0x0 },
-    { COUNTER_GRAPHICS_FREE, Task_FreeBackground, 0x0 },
-    { COUNTER_GRAPHICS_UPDATE_BUTTON, Task_UpdateButtonSprite, 0x0 },
-    { COUNTER_GRAPHICS_UPDATE_VALUE, Task_UpdateValue, 0x0 },
+    { COUNTER_GRAPHICS_INIT, Task_DrawBackground, 0 },
+    { COUNTER_GRAPHICS_FREE, Task_FreeBackground, 0 },
+    { COUNTER_GRAPHICS_UPDATE_BUTTON, Task_UpdateButtonSprite, 0 },
+    { COUNTER_GRAPHICS_UPDATE_VALUE, Task_UpdateValue, 0 },
     { 0 }
 };
 

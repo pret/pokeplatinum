@@ -63,28 +63,6 @@ static void ResetCalculatorState(PoketchCalculator *appData);
 static BOOL EvaluateResult(PoketchCalculator *appData, u32 operator);
 static void PlayResultSpeciesCry(PoketchCalculator *appData, const CalculatorValue *result);
 
-// clang-format off
-static const TouchScreenRect buttonHitboxes[] = {
-    { .rect = { .top = 144, .bottom = 175, .left =  32, .right =  95 } }, // 0
-    { .rect = { .top = 112, .bottom = 143, .left =  32, .right =  63 } }, // 1
-    { .rect = { .top = 112, .bottom = 143, .left =  64, .right =  95 } }, // 2
-    { .rect = { .top = 112, .bottom = 143, .left =  96, .right = 127 } }, // 3
-    { .rect = { .top =  80, .bottom = 111, .left =  32, .right =  63 } }, // 4
-    { .rect = { .top =  80, .bottom = 111, .left =  64, .right =  95 } }, // 5
-    { .rect = { .top =  80, .bottom = 111, .left =  96, .right = 127 } }, // 6
-    { .rect = { .top =  48, .bottom =  79, .left =  32, .right =  63 } }, // 7
-    { .rect = { .top =  48, .bottom =  79, .left =  64, .right =  95 } }, // 8
-    { .rect = { .top =  48, .bottom =  79, .left =  96, .right = 127 } }, // 9
-    { .rect = { .top = 144, .bottom = 175, .left =  96, .right = 127 } }, // decimal point
-    { .rect = { .top =  80, .bottom = 111, .left = 160, .right = 191 } }, // minus
-    { .rect = { .top =  80, .bottom = 111, .left = 128, .right = 159 } }, // plus
-    { .rect = { .top = 112, .bottom = 143, .left = 128, .right = 159 } }, // times
-    { .rect = { .top = 112, .bottom = 143, .left = 160, .right = 191 } }, // divide
-    { .rect = { .top = 144, .bottom = 175, .left = 128, .right = 191 } }, // equals
-    { .rect = { .top =  48, .bottom =  79, .left = 128, .right = 191 } }, // clear
-};
-// clang-format on
-
 static void NitroStaticInit(void)
 {
     PoketchSystem_SetAppFunctions(New, Exit);
@@ -108,6 +86,28 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 
 static BOOL Init(PoketchCalculator *appData, u32 appID, BgConfig *bgConfig)
 {
+    // clang-format off
+    static const TouchScreenRect sButtonHitboxes[] = {
+        { .rect = { .top = 144, .bottom = 175, .left =  32, .right =  95 } }, // 0
+        { .rect = { .top = 112, .bottom = 143, .left =  32, .right =  63 } }, // 1
+        { .rect = { .top = 112, .bottom = 143, .left =  64, .right =  95 } }, // 2
+        { .rect = { .top = 112, .bottom = 143, .left =  96, .right = 127 } }, // 3
+        { .rect = { .top =  80, .bottom = 111, .left =  32, .right =  63 } }, // 4
+        { .rect = { .top =  80, .bottom = 111, .left =  64, .right =  95 } }, // 5
+        { .rect = { .top =  80, .bottom = 111, .left =  96, .right = 127 } }, // 6
+        { .rect = { .top =  48, .bottom =  79, .left =  32, .right =  63 } }, // 7
+        { .rect = { .top =  48, .bottom =  79, .left =  64, .right =  95 } }, // 8
+        { .rect = { .top =  48, .bottom =  79, .left =  96, .right = 127 } }, // 9
+        { .rect = { .top = 144, .bottom = 175, .left =  96, .right = 127 } }, // decimal point
+        { .rect = { .top =  80, .bottom = 111, .left = 160, .right = 191 } }, // minus
+        { .rect = { .top =  80, .bottom = 111, .left = 128, .right = 159 } }, // plus
+        { .rect = { .top = 112, .bottom = 143, .left = 128, .right = 159 } }, // times
+        { .rect = { .top = 112, .bottom = 143, .left = 160, .right = 191 } }, // divide
+        { .rect = { .top = 144, .bottom = 175, .left = 128, .right = 191 } }, // equals
+        { .rect = { .top =  48, .bottom =  79, .left = 128, .right = 191 } }, // clear
+    };
+    // clang-format on
+
     if (PoketchCalculatorGraphics_New(&appData->graphics, &appData->calcData, bgConfig)) {
         appData->state = STATE_LOAD_APP;
         appData->subState = 0;
@@ -125,7 +125,7 @@ static BOOL Init(PoketchCalculator *appData, u32 appID, BgConfig *bgConfig)
             return FALSE;
         }
 
-        appData->buttonManager = PoketchButtonManager_New(buttonHitboxes, NUM_BUTTONS, ButtonCallback, appData, HEAP_ID_POKETCH_APP);
+        appData->buttonManager = PoketchButtonManager_New(sButtonHitboxes, NUM_BUTTONS, ButtonCallback, appData, HEAP_ID_POKETCH_APP);
 
         if (appData->buttonManager == NULL) {
             return FALSE;

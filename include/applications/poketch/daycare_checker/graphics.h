@@ -1,17 +1,18 @@
-#ifndef POKEPLATINUM_OV40_0225645C_H
-#define POKEPLATINUM_OV40_0225645C_H
+#ifndef POKEPLATINUM_POKETCH_DAYCARE_CHECKER_GRAPHICS_H
+#define POKEPLATINUM_POKETCH_DAYCARE_CHECKER_GRAPHICS_H
 
 #include "constants/daycare.h"
 #include "generated/genders.h"
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "sys_task_manager.h"
 
-#define NUM_DAYCARE_SPRITES 11
+#define DAYCARE_CHECKER_TASK_SLOTS 4
 
-#define NUM_TASK_SLOTS 4
+#define NUM_DAYCARE_SPRITES 11
 
 typedef struct DaycareStatus {
     u8 numMons;
@@ -26,7 +27,7 @@ typedef struct DaycareStatus {
 typedef struct DaycareCheckerGraphics {
     const DaycareStatus *dayCareSummary;
     BgConfig *bgConfig;
-    u32 activeTasks[2 + NUM_TASK_SLOTS];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + DAYCARE_CHECKER_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_AnimatedSpriteData *sprites[NUM_DAYCARE_SPRITES];
     PoketchAnimation_SpriteData symbolAnimData;
@@ -39,16 +40,16 @@ typedef struct DaycareCheckerGraphics {
     SysTask *mosaicTask;
 } DaycareCheckerGraphics;
 
-enum DaycareGraphicsTasks {
-    TASK_DRAW_APP_BACKGROUND = 0,
-    TASK_FREE_BACKGROUND,
-    TASK_RELOAD_DAYCARE_STATE,
+enum DaycareGraphicsTask {
+    DAYCARE_CHECKER_GRAPHICS_INIT = 0,
+    DAYCARE_CHECKER_GRAPHICS_FREE,
+    DAYCARE_CHECKER_GRAPHICS_RELOAD,
 };
 
-BOOL DaycareCheckerGraphics_New(DaycareCheckerGraphics **graphics, const DaycareStatus *daycareStatus, BgConfig *bgConfig);
-void DaycareCheckerGraphics_Free(DaycareCheckerGraphics *graphics);
-void PoketchDaycareCheckerGraphics_StartTask(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTasks taskID);
-BOOL PoketchDaycareCheckerGraphics_TaskIsNotActive(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTasks taskID);
+BOOL PoketchDaycareCheckerGraphics_New(DaycareCheckerGraphics **dest, const DaycareStatus *daycareStatus, BgConfig *bgConfig);
+void PoketchDaycareCheckerGraphics_Free(DaycareCheckerGraphics *graphics);
+void PoketchDaycareCheckerGraphics_StartTask(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTask taskID);
+BOOL PoketchDaycareCheckerGraphics_TaskIsNotActive(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTask taskID);
 BOOL PoketchDaycareCheckerGraphics_NoActiveTasks(DaycareCheckerGraphics *graphics);
 
-#endif // POKEPLATINUM_OV40_0225645C_H
+#endif // POKEPLATINUM_POKETCH_DAYCARE_CHECKER_GRAPHICS_H

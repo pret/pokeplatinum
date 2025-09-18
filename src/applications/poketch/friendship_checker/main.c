@@ -15,18 +15,18 @@
 #include "touch_screen.h"
 
 typedef struct PoketchFriendshipChecker {
-    u8 activeTask;
-    u8 taskFuncState;
+    u8 state;
+    u8 subState;
     u8 shouldExit;
-    FriendshipCheckerState state;
+    FriendshipCheckerData friendshipCheckerData;
     FriendshipCheckerGraphics *graphics;
     PoketchSystem *poketchSys;
 } PoketchFriendshipChecker;
 
-enum FriendshipCheckerTask {
-    TASK_LOAD_APP = 0,
-    TASK_UPDATE_LOOP,
-    TASK_SHUTDOWN,
+enum FriendshipCheckerState {
+    STATE_LOAD_APP = 0,
+    STATE_UPDATE_LOOP,
+    STATE_SHUTDOWN,
 };
 
 static void NitroStaticInit(void);
@@ -37,11 +37,11 @@ static void Free(PoketchFriendshipChecker *appData);
 static void Exit(void *appData);
 static u32 GetFriendshipLevel(u32 friendship);
 
-static void ChangeActiveTask(PoketchFriendshipChecker *appData, enum FriendshipCheckerTask taskID);
+static void ChangeState(PoketchFriendshipChecker *appData, enum FriendshipCheckerState newState);
 static void Task_Main(SysTask *task, void *appData);
-static BOOL Task_LoadApp(PoketchFriendshipChecker *appData);
-static BOOL Task_UpdateApp(PoketchFriendshipChecker *appData);
-static BOOL Task_UnloadApp(PoketchFriendshipChecker *appData);
+static BOOL State_LoadApp(PoketchFriendshipChecker *appData);
+static BOOL State_UpdateApp(PoketchFriendshipChecker *appData);
+static BOOL State_UnloadApp(PoketchFriendshipChecker *appData);
 
 static void NitroStaticInit(void)
 {
@@ -68,9 +68,9 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 
 static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    if (PoketchFriendshipCheckerGraphics_New(&appData->graphics, &appData->state, bgConfig)) {
-        appData->activeTask = TASK_LOAD_APP;
-        appData->taskFuncState = 0;
+    if (PoketchFriendshipCheckerGraphics_New(&appData->graphics, &appData->friendshipCheckerData, bgConfig)) {
+        appData->state = STATE_LOAD_APP;
+        appData->subState = 0;
         appData->shouldExit = FALSE;
         appData->poketchSys = poketchSys;
 
@@ -80,34 +80,34 @@ static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, B
         int slot;
 
         slot = 0;
-        appData->state.monCount = Party_GetCurrentCount(party);
+        appData->friendshipCheckerData.monCount = Party_GetCurrentCount(party);
 
-        for (int i = 0; i < appData->state.monCount; i++) {
+        for (int i = 0; i < appData->friendshipCheckerData.monCount; i++) {
             pokemon = Party_GetPokemonBySlotIndex(party, i);
 
             if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
-                appData->state.party[slot].species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-                appData->state.party[slot].form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
-                appData->state.party[slot].spriteIdx = BoxPokemon_IconSpriteIndex((const BoxPokemon *)pokemon);
+                appData->friendshipCheckerData.party[slot].species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+                appData->friendshipCheckerData.party[slot].form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+                appData->friendshipCheckerData.party[slot].spriteIdx = BoxPokemon_IconSpriteIndex((const BoxPokemon *)pokemon);
                 friendshipLevel = GetFriendshipLevel(Pokemon_GetValue(pokemon, MON_DATA_FRIENDSHIP, NULL));
 
                 switch (friendshipLevel) {
                 case 0:
                 case 1:
                 case 2:
-                    appData->state.party[slot].friendship = FRIENDSHIP_HATE;
-                    appData->state.party[slot].intensity = 3 - friendshipLevel;
+                    appData->friendshipCheckerData.party[slot].friendship = FRIENDSHIP_HATE;
+                    appData->friendshipCheckerData.party[slot].intensity = 3 - friendshipLevel;
                     break;
                 case 3:
                 default:
-                    appData->state.party[slot].friendship = FRIENDSHIP_NEUTRAL;
-                    appData->state.party[slot].intensity = 0;
+                    appData->friendshipCheckerData.party[slot].friendship = FRIENDSHIP_NEUTRAL;
+                    appData->friendshipCheckerData.party[slot].intensity = 0;
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    appData->state.party[slot].friendship = FRIENDSHIP_LIKE;
-                    appData->state.party[slot].intensity = -(3 - friendshipLevel);
+                    appData->friendshipCheckerData.party[slot].friendship = FRIENDSHIP_LIKE;
+                    appData->friendshipCheckerData.party[slot].intensity = -(3 - friendshipLevel);
                     break;
                 }
 
@@ -115,11 +115,11 @@ static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, B
             }
         }
 
-        appData->state.monCount = slot;
-        appData->state.screenHeld = FALSE;
-        appData->state.screenTapped = FALSE;
-        appData->state.touchX = 0;
-        appData->state.touchY = 0;
+        appData->friendshipCheckerData.monCount = slot;
+        appData->friendshipCheckerData.screenHeld = FALSE;
+        appData->friendshipCheckerData.screenTapped = FALSE;
+        appData->friendshipCheckerData.touchX = 0;
+        appData->friendshipCheckerData.touchY = 0;
 
         return TRUE;
     }
@@ -156,15 +156,15 @@ static void Free(PoketchFriendshipChecker *appData)
 static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const stateFuncs[])(PoketchFriendshipChecker *) = {
-        Task_LoadApp,
-        Task_UpdateApp,
-        Task_UnloadApp,
+        State_LoadApp,
+        State_UpdateApp,
+        State_UnloadApp,
     };
 
     PoketchFriendshipChecker *friendshipChecker = appData;
 
-    if (friendshipChecker->activeTask < NELEMS(stateFuncs)) {
-        if (stateFuncs[friendshipChecker->activeTask](friendshipChecker)) {
+    if (friendshipChecker->state < NELEMS(stateFuncs)) {
+        if (stateFuncs[friendshipChecker->state](friendshipChecker)) {
             Free(friendshipChecker);
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(friendshipChecker->poketchSys);
@@ -177,28 +177,28 @@ static void Exit(void *appData)
     ((PoketchFriendshipChecker *)appData)->shouldExit = TRUE;
 }
 
-static void ChangeActiveTask(PoketchFriendshipChecker *appData, enum FriendshipCheckerTask taskID)
+static void ChangeState(PoketchFriendshipChecker *appData, enum FriendshipCheckerState newState)
 {
     if (appData->shouldExit == FALSE) {
-        appData->activeTask = taskID;
+        appData->state = newState;
     } else {
-        appData->activeTask = TASK_SHUTDOWN;
+        appData->state = STATE_SHUTDOWN;
     }
 
-    appData->taskFuncState = 0;
+    appData->subState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchFriendshipChecker *appData)
+static BOOL State_LoadApp(PoketchFriendshipChecker *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         PoketchFriendshipCheckerGraphics_StartTask(appData->graphics, FRIENDSHIP_CHECKER_GRAPHICS_INIT);
-        appData->taskFuncState++;
+        appData->subState++;
         break;
     case 1:
         if (PoketchFriendshipCheckerGraphics_TaskIsNotActive(appData->graphics, FRIENDSHIP_CHECKER_GRAPHICS_INIT)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            ChangeActiveTask(appData, TASK_UPDATE_LOOP);
+            ChangeState(appData, STATE_UPDATE_LOOP);
         }
         break;
     }
@@ -206,37 +206,37 @@ static BOOL Task_LoadApp(PoketchFriendshipChecker *appData)
     return FALSE;
 }
 
-static BOOL Task_UpdateApp(PoketchFriendshipChecker *appData)
+static BOOL State_UpdateApp(PoketchFriendshipChecker *appData)
 {
     if (appData->shouldExit) {
-        ChangeActiveTask(appData, TASK_SHUTDOWN);
+        ChangeState(appData, STATE_SHUTDOWN);
         return FALSE;
     }
 
-    appData->state.screenHeld = PoketchSystem_GetDisplayHeldCoords(&appData->state.touchX, &appData->state.touchY);
+    appData->friendshipCheckerData.screenHeld = PoketchSystem_GetDisplayHeldCoords(&appData->friendshipCheckerData.touchX, &appData->friendshipCheckerData.touchY);
 
-    if (appData->state.screenHeld) {
-        if (INSIDE_POKETCH_SCREEN(appData->state.touchX, appData->state.touchY)) {
-            appData->state.screenTapped = TouchScreen_Tapped();
+    if (appData->friendshipCheckerData.screenHeld) {
+        if (INSIDE_POKETCH_SCREEN(appData->friendshipCheckerData.touchX, appData->friendshipCheckerData.touchY)) {
+            appData->friendshipCheckerData.screenTapped = TouchScreen_Tapped();
             return FALSE;
         }
 
-        appData->state.screenHeld = FALSE;
+        appData->friendshipCheckerData.screenHeld = FALSE;
     }
 
-    appData->state.touchX = 0;
-    appData->state.touchY = 0;
-    appData->state.screenTapped = FALSE;
+    appData->friendshipCheckerData.touchX = 0;
+    appData->friendshipCheckerData.touchY = 0;
+    appData->friendshipCheckerData.screenTapped = FALSE;
 
     return FALSE;
 }
 
-static BOOL Task_UnloadApp(PoketchFriendshipChecker *appData)
+static BOOL State_UnloadApp(PoketchFriendshipChecker *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         PoketchFriendshipCheckerGraphics_StartTask(appData->graphics, FRIENDSHIP_CHECKER_GRAPHICS_FREE);
-        appData->taskFuncState++;
+        appData->subState++;
         break;
 
     case 1:

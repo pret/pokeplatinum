@@ -57,7 +57,7 @@ BOOL PartyStatusGraphics_New(PartyStatusGraphics **dest, const PartyStatus *part
     PartyStatusGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PartyStatusGraphics));
 
     if (graphics != NULL) {
-        PoketchTask_InitActiveTaskList(graphics->activeTaskIds, 8);
+        PoketchTask_InitActiveTaskList(graphics->activeTaskIds, PARTY_STATUS_TASK_SLOTS);
 
         graphics->partyData = partyData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();

@@ -56,7 +56,7 @@ typedef struct PoketchGraphics_AppCounterAnimationData {
 
 struct PoketchGraphics_TaskData {
     const PoketchGraphics_ConstTaskData *constTaskData;
-    u32 activeTasks[BASE_IDX + NUM_TASK_SLOTS];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + NUM_TASK_SLOTS];
     u16 tilemapUpBtnPressed[BUTTON_TILEMAP_SIZE];
     u16 tilemapUpBtnHalfPressed[BUTTON_TILEMAP_SIZE];
     u16 tilemapUpBtn[BUTTON_TILEMAP_SIZE];

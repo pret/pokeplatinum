@@ -25,6 +25,7 @@
 #define PENCIL_PRESSED   3
 
 static BOOL SetupWindow(MemoPadGraphics *graphics);
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawAppBackground(SysTask *task, void *taskMan);
 static void Task_ChangeActiveDrawingTool(SysTask *task, void *taskMan);
@@ -32,24 +33,25 @@ static void Task_PrintWindow(SysTask *task, void *taskMan);
 static void Task_UpdateMemoContent(SysTask *task, void *taskMan);
 static void Task_PrintWindow2(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
+
 static void SetupSprites(MemoPadGraphics *graphics);
 static void UnloadSprites(MemoPadGraphics *graphics);
 
-BOOL MemoPadGraphics_New(MemoPadGraphics **graphics, const MemoPadState *padState, BgConfig *bgConfig)
+BOOL MemoPadGraphics_New(MemoPadGraphics **dest, const MemoPadData *padState, BgConfig *bgConfig)
 {
-    MemoPadGraphics *memoPadGraphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(MemoPadGraphics));
+    MemoPadGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(MemoPadGraphics));
 
-    if (memoPadGraphics != NULL) {
+    if (graphics != NULL) {
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
-        PoketchTask_InitActiveTaskList(memoPadGraphics->activeTasks, NUM_TASK_SLOTS);
-
-        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
-        memoPadGraphics->padState = padState;
-        memoPadGraphics->bgConfig = PoketchGraphics_GetBgConfig();
-        memoPadGraphics->animMan = PoketchGraphics_GetAnimationManager();
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, MEMO_PAD_TASK_SLOTS);
 
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
-        *graphics = memoPadGraphics;
+        graphics->padData = padState;
+        graphics->bgConfig = PoketchGraphics_GetBgConfig();
+        graphics->animMan = PoketchGraphics_GetAnimationManager();
+
+        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
+        *dest = graphics;
         return TRUE;
     }
 
@@ -73,7 +75,7 @@ static BOOL SetupWindow(MemoPadGraphics *graphics)
     if (graphics->window) {
         Window_AddFromTemplate(graphics->bgConfig, graphics->window, &windowTemplate);
 
-        if (PoketchMemory_ReadFast(graphics->padState->appID, graphics->window->pixels, WINDOW_WIDTH_TILES * WINDOW_HEIGHT_TILES * TILE_SIZE_4BPP) == FALSE) {
+        if (PoketchMemory_ReadFast(graphics->padData->appID, graphics->window->pixels, WINDOW_WIDTH_TILES * WINDOW_HEIGHT_TILES * TILE_SIZE_4BPP) == FALSE) {
             Window_FillTilemap(graphics->window, 0x4);
         }
 
@@ -89,7 +91,7 @@ void MemoPadGraphics_Free(MemoPadGraphics *graphics)
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
 
         if (graphics->window) {
-            PoketchMemory_WriteFast(graphics->padState->appID, graphics->window->pixels, WINDOW_WIDTH_TILES * WINDOW_HEIGHT_TILES * TILE_SIZE_4BPP);
+            PoketchMemory_WriteFast(graphics->padData->appID, graphics->window->pixels, WINDOW_WIDTH_TILES * WINDOW_HEIGHT_TILES * TILE_SIZE_4BPP);
             Window_Remove(graphics->window);
             Heap_Free(graphics->window);
         }
@@ -99,21 +101,21 @@ void MemoPadGraphics_Free(MemoPadGraphics *graphics)
 }
 
 static const PoketchTask memoPadTasks[] = {
-    { TASK_DRAW_APP_SCREEN, Task_DrawAppBackground, 0x0 },
-    { TASK_CHANGE_DRAW_TOOL, Task_ChangeActiveDrawingTool, 0x0 },
-    { TASK_PRINT_WINDOW, Task_PrintWindow, 0x0 },
-    { TASK_UPDATE_MEMO_CONTENT, Task_UpdateMemoContent, 0x0 },
-    { TASK_PRINT_WINDOW_2, Task_PrintWindow2, 0x0 },
-    { TASK_FREE_BG, Task_FreeBackground, 0x0 },
+    { MEMO_PAD_GRAPHICS_INIT, Task_DrawAppBackground, 0 },
+    { MEMO_PAD_GRAPHICS_CHANGE_TOOL, Task_ChangeActiveDrawingTool, 0 },
+    { MEMO_PAD_GRAPHICS_PRINT_WINDOW, Task_PrintWindow, 0 },
+    { MEMO_PAD_GRAPHICS_UPDATE_CONTENT, Task_UpdateMemoContent, 0 },
+    { MEMO_PAD_GRAPHICS_PRINT_WINDOW_2, Task_PrintWindow2, 0 },
+    { MEMO_PAD_GRAPHICS_FREE, Task_FreeBackground, 0 },
     { 0 }
 };
 
-void PoketchMemoPadGraphics_StartTask(MemoPadGraphics *graphics, enum MemoPadGraphicsTasks taskID)
+void PoketchMemoPadGraphics_StartTask(MemoPadGraphics *graphics, enum MemoPadGraphicsTask taskID)
 {
-    PoketchTask_Start(memoPadTasks, taskID, graphics, graphics->padState, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
+    PoketchTask_Start(memoPadTasks, taskID, graphics, graphics->padData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchMemoPadGraphics_TaskIsNotActive(MemoPadGraphics *graphics, enum MemoPadGraphicsTasks taskID)
+BOOL PoketchMemoPadGraphics_TaskIsNotActive(MemoPadGraphics *graphics, enum MemoPadGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -199,7 +201,7 @@ static void Task_ChangeActiveDrawingTool(SysTask *task, void *taskMan)
 {
     MemoPadGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    if (graphics->padState->pencilActive == TRUE) {
+    if (graphics->padData->pencilActive == TRUE) {
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[0], ERASER_UNPRESSED);
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[1], PENCIL_PRESSED);
     } else {
@@ -245,12 +247,12 @@ static void Task_UpdateMemoContent(SysTask *task, void *taskMan)
     s32 x, y;
     MemoPadGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    if (graphics->padState->pencilActive == FALSE) {
+    if (graphics->padData->pencilActive == FALSE) {
         int width, height;
 
         width = height = ERASER_SIZE * 2;
-        x = (graphics->padState->x * 2) - ERASER_SIZE;
-        y = (graphics->padState->y * 2) - ERASER_SIZE;
+        x = (graphics->padData->x * 2) - ERASER_SIZE;
+        y = (graphics->padData->y * 2) - ERASER_SIZE;
 
         if (x < 0) {
             width += x;
@@ -265,8 +267,8 @@ static void Task_UpdateMemoContent(SysTask *task, void *taskMan)
         Window_FillRectWithColor(graphics->window, 0x4, x, y, width, height);
         RedrawWindowRegion(graphics->window->pixels, x, y, width, height);
     } else {
-        x = graphics->padState->x * 2;
-        y = graphics->padState->y * 2;
+        x = graphics->padData->x * 2;
+        y = graphics->padData->y * 2;
 
         Window_FillRectWithColor(graphics->window, 0x1, x, y, 2, 2);
         RedrawWindowRegion(graphics->window->pixels, x, y, 2, 2);

@@ -188,7 +188,7 @@ static const struct {
     u8 y;
     u8 width;
     u8 height;
-} buttonPositions[] = {
+} sButtonPositions[] = {
     {  4, 18, 8, 4 }, // 0
     {  4, 14, 4, 4 }, // 1
     {  8, 14, 4, 4 }, // 2
@@ -216,7 +216,7 @@ BOOL PoketchCalculatorGraphics_New(CalculatorGraphics **dest, const CalculatorDa
     if (graphics != NULL) {
         graphics->calcData = calcState;
         graphics->bgConfig = bgConfig;
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, 8);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, CALCULATOR_TASK_SLOTS);
         *dest = graphics;
 
         return TRUE;
@@ -288,7 +288,7 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     const CalculatorData *calcState = PoketchTask_GetConstTaskData(taskMan);
     CalculatorGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, 0);
+    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 16, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 17, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
@@ -310,8 +310,8 @@ static void SaveReleasedButtonTiles(CalculatorGraphics *graphics)
     for (u32 button = 0; button < NUM_BUTTONS; button++) {
         u32 tile = 0;
 
-        for (u32 y = buttonPositions[button].y; y < buttonPositions[button].y + buttonPositions[button].height; y++) {
-            for (u32 x = buttonPositions[button].x; x < buttonPositions[button].x + buttonPositions[button].width; x++) {
+        for (u32 y = sButtonPositions[button].y; y < sButtonPositions[button].y + sButtonPositions[button].height; y++) {
+            for (u32 x = sButtonPositions[button].x; x < sButtonPositions[button].x + sButtonPositions[button].width; x++) {
                 graphics->releasedButtonTiles[button][tile++] = tilemapBuffer[y * POKETCH_WIDTH_TILES + x];
             }
         }
@@ -326,7 +326,7 @@ static void Task_PressButton(SysTask *task, void *taskMan)
 
     PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
 
-    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, sPressedButtonTiles[button], buttonPositions[button].x, buttonPositions[button].y, buttonPositions[button].width, buttonPositions[button].height);
+    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, sPressedButtonTiles[button], sButtonPositions[button].x, sButtonPositions[button].y, sButtonPositions[button].width, sButtonPositions[button].height);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
     EndTask(taskMan);
@@ -339,7 +339,7 @@ static void Task_ReleaseButton(SysTask *task, void *taskMan)
 
     CalculatorGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, graphics->releasedButtonTiles[button], buttonPositions[button].x, buttonPositions[button].y, buttonPositions[button].width, buttonPositions[button].height);
+    Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, graphics->releasedButtonTiles[button], sButtonPositions[button].x, sButtonPositions[button].y, sButtonPositions[button].width, sButtonPositions[button].height);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
     EndTask(taskMan);
@@ -406,7 +406,6 @@ static void Task_DisplayOperatorAndResult(SysTask *task, void *taskMan)
 static void Task_DisplayInvalidValue(SysTask *task, void *taskMan)
 {
     u32 i;
-
     CalculatorGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     for (i = 0; i < CALCULATOR_MAX_DIGITS; i++) {
