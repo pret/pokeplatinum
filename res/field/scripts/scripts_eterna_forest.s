@@ -73,13 +73,13 @@ _00E0:
 
     .balign 4, 0
 _00E8:
-    MoveAction_153
+    MoveAction_EmoteQuestionMark
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _00F4:
-    MoveAction_153
+    MoveAction_EmoteQuestionMark
     WalkNormalSouth
     WalkNormalEast
     WalkOnSpotNormalSouth
@@ -217,7 +217,7 @@ _02CB:
     .balign 4, 0
 _0300:
     WalkOnSpotNormalEast
-    MoveAction_153
+    MoveAction_EmoteQuestionMark
     EndMovement
 
     .balign 4, 0

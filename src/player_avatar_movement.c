@@ -923,7 +923,7 @@ static void PlayerAvatar_Walking_HandleNormalMovement(PlayerAvatar *playerAvatar
             movementAction = MOVEMENT_ACTION_JUMP_FAR_NORTH;
             duration = 3;
         } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            movementAction = MOVEMENT_ACTION_117;
+            movementAction = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH;
             duration = 2;
         } else if (collisionResult != COLLISION_FLAG_NONE) {
             movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
@@ -1005,7 +1005,7 @@ static void PlayerAvatar_Distortion_HandleFloorMovement(PlayerAvatar *playerAvat
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
         if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            movementAction = MOVEMENT_ACTION_117;
+            movementAction = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH;
             duration = 2;
             PlayerAvatar_State_IncrementStepCounter(playerAvatar);
             sub_0205F048(playerAvatar);
@@ -1096,9 +1096,9 @@ static void PlayerAvatar_Distortion_HandleGenericMovement(PlayerAvatar *playerAv
 
 static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 105, 106, 107, 108 };
-    int runningAnimations[4] = { 121, 122, 123, 124 };
-    int surfAnimations[4] = { 105, 106, 107, 108 };
+    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST };
+    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST };
+    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST };
     int turnAnimations[4] = { 30, 31, 29, 28 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
@@ -1107,9 +1107,9 @@ static void PlayerAvatar_Distortion_HandleWestWallMovement(PlayerAvatar *playerA
 
 static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 109, 110, 111, 112 };
-    int runningAnimations[4] = { 125, 126, 127, 128 };
-    int surfAnimations[4] = { 109, 110, 111, 112 };
+    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST };
+    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST };
+    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST, MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST };
     int turnAnimations[4] = { 31, 30, 28, 29 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
@@ -1118,9 +1118,9 @@ static void PlayerAvatar_Distortion_HandleEastWallMovement(PlayerAvatar *playerA
 
 static void PlayerAvatar_Distortion_HandleCeilingMovement(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction, u16 keyPad, u16 keyPress)
 {
-    int normalAnimations[4] = { 113, 114, 115, 116 };
-    int runningAnimations[4] = { 129, 130, 131, 132 };
-    int surfAnimations[4] = { 113, 114, 115, 116 };
+    int normalAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST };
+    int runningAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST };
+    int surfAnimations[4] = { MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST, MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST };
     int turnAnimations[4] = { 29, 28, 31, 30 };
     int turnDirections[4] = { 0, 1, 2, 3 };
 
@@ -1349,7 +1349,7 @@ static void PlayerAvatar_Cycling_HandleNormalMovement(PlayerAvatar *playerAvatar
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        movementAction = MOVEMENT_ACTION_117;
+        movementAction = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH;
         duration = 2;
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
@@ -1424,7 +1424,7 @@ static void PlayerAvatar_Cycling_HandleDeceleration(PlayerAvatar *playerAvatar, 
         movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_DOUBLE_NORTH);
         duration = 2;
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
@@ -1555,7 +1555,7 @@ static void PlayerAvatar_CyclingHighGear_HandleMovement(PlayerAvatar *playerAvat
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
         sub_0205F048(playerAvatar);
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_DOUBLE_NORTH);
         duration = 2;
         PlayerAvatar_Cycling_HandleSpeedIncrease(playerAvatar);
         PlayerAvatar_State_IncrementStepCounter(playerAvatar);
@@ -1643,7 +1643,7 @@ static void PlayerAvatar_CyclingHighGear_HandleDeceleration(PlayerAvatar *player
         movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_FAR_NORTH);
         duration = 3;
     } else if (collisionResult & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_117);
+        movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_JUMP_DOUBLE_NORTH);
         duration = 2;
     } else if (collisionResult & COLLISION_FLAG_BIKE_BRIDGE_RESTRICTIONS) {
         movementAction = MovementAction_TurnActionTowardsDir(direction, MOVEMENT_ACTION_FACE_NORTH);
@@ -2277,7 +2277,7 @@ enum MovementAction PlayerAvatar_State_GetAnimationCode(PlayerAvatar *playerAvat
         if (stateFlags & COLLISION_FLAG_JUMP_TILES) {
             movementAction = MOVEMENT_ACTION_JUMP_FAR_NORTH;
         } else if (stateFlags & COLLISION_FLAG_DOUBLE_JUMP_TILES) {
-            movementAction = MOVEMENT_ACTION_117;
+            movementAction = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH;
         } else if (stateFlags != COLLISION_FLAG_NONE) {
             movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
 

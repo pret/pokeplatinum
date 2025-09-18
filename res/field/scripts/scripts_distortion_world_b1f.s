@@ -73,9 +73,9 @@ _00B4:
     WalkNormalSouth 2
     WalkOnSpotNormalWest
     Delay16
-    MoveAction_119 2
-    MoveAction_118
-    MoveAction_119
+    MoveAction_JumpDoubleWest 2
+    MoveAction_JumpDoubleSouth
+    MoveAction_JumpDoubleWest
     Delay16
     EndMovement
 

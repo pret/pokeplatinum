@@ -1,5 +1,25 @@
+/**
+ * @file unk_020EDBAC.c
+ * @brief Movement Action System - Core movement behavior definitions for map objects
+ *
+ * This file contains the central movement action system used by all map objects
+ * (player, NPCs, etc.) in Pokemon Platinum. It provides:
+ *
+ * 1. Movement Action Function Tables - Maps movement action IDs to implementation functions
+ * 2. Movement Action Code Lookup Tables - Maps movement types to specific action codes
+ * 3. Movement Action Descriptors - Complex movement behaviors with multiple phases
+ *
+ * The system supports 153 different movement actions (0-152) including:
+ * - Basic movement: walk, run, jump in all directions and speeds
+ * - Special animations: face directions, delays, visibility changes
+ * - Advanced behaviors: warping, emotes, trainer interactions
+ * - Custom actions: berry patches, special NPC behaviors
+ *
+ * @author Pokemon Platinum Development Team
+ * @date 2008
+ */
+
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/movement_actions.h"
 
@@ -11,6 +31,16 @@
 #include "unk_0206450C.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
+
+// ============================================================================
+// Movement Action Descriptors
+// ============================================================================
+// These structures define complex movement behaviors with multiple phases.
+// Each descriptor contains an ID and 4 function pointers for different phases:
+// - unk_04: Initialization function
+// - unk_08: Update function
+// - unk_0C: Completion function
+// - unk_10: Cleanup function
 
 static const UnkStruct_020EDF0C Unk_020EDF0C = {
     0x0,
@@ -627,6 +657,13 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
+// ============================================================================
+// Movement Action Function Table
+// ============================================================================
+// Maps each movement action ID (0-152) to its implementation function.
+// This is the central dispatch table used by the movement system to execute
+// specific movement behaviors based on the action ID.
+
 BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_FACE_NORTH] = gMovementActionFuncs_FaceNorth,
     [MOVEMENT_ACTION_FACE_SOUTH] = gMovementActionFuncs_FaceSouth,
@@ -733,57 +770,65 @@ BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_PLAYER_GIVE] = gMovementActionFuncs_PlayerGive,
     [MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK] = gMovementActionFuncs_EmoteDoubleExclamationMark,
     [MOVEMENT_ACTION_PLAYER_RECEIVE] = gMovementActionFuncs_PlayerReceive,
-    [MOVEMENT_ACTION_105] = gMovementActionFuncs_105,
-    [MOVEMENT_ACTION_106] = gMovementActionFuncs_106,
-    [MOVEMENT_ACTION_107] = gMovementActionFuncs_107,
-    [MOVEMENT_ACTION_108] = gMovementActionFuncs_108,
-    [MOVEMENT_ACTION_109] = gMovementActionFuncs_109,
-    [MOVEMENT_ACTION_110] = gMovementActionFuncs_110,
-    [MOVEMENT_ACTION_111] = gMovementActionFuncs_111,
-    [MOVEMENT_ACTION_112] = gMovementActionFuncs_112,
-    [MOVEMENT_ACTION_113] = gMovementActionFuncs_113,
-    [MOVEMENT_ACTION_114] = gMovementActionFuncs_114,
-    [MOVEMENT_ACTION_115] = gMovementActionFuncs_115,
-    [MOVEMENT_ACTION_116] = gMovementActionFuncs_116,
-    [MOVEMENT_ACTION_117] = gMovementActionFuncs_117,
-    [MOVEMENT_ACTION_118] = gMovementActionFuncs_118,
-    [MOVEMENT_ACTION_119] = gMovementActionFuncs_119,
-    [MOVEMENT_ACTION_120] = gMovementActionFuncs_120,
-    [MOVEMENT_ACTION_121] = gMovementActionFuncs_121,
-    [MOVEMENT_ACTION_122] = gMovementActionFuncs_122,
-    [MOVEMENT_ACTION_123] = gMovementActionFuncs_123,
-    [MOVEMENT_ACTION_124] = gMovementActionFuncs_124,
-    [MOVEMENT_ACTION_125] = gMovementActionFuncs_125,
-    [MOVEMENT_ACTION_126] = gMovementActionFuncs_126,
-    [MOVEMENT_ACTION_127] = gMovementActionFuncs_127,
-    [MOVEMENT_ACTION_128] = gMovementActionFuncs_128,
-    [MOVEMENT_ACTION_129] = gMovementActionFuncs_129,
-    [MOVEMENT_ACTION_130] = gMovementActionFuncs_130,
-    [MOVEMENT_ACTION_131] = gMovementActionFuncs_131,
-    [MOVEMENT_ACTION_132] = gMovementActionFuncs_132,
-    [MOVEMENT_ACTION_133] = gMovementActionFuncs_133,
-    [MOVEMENT_ACTION_134] = gMovementActionFuncs_134,
-    [MOVEMENT_ACTION_135] = gMovementActionFuncs_135,
-    [MOVEMENT_ACTION_136] = gMovementActionFuncs_136,
-    [MOVEMENT_ACTION_137] = gMovementActionFuncs_137,
-    [MOVEMENT_ACTION_138] = gMovementActionFuncs_138,
-    [MOVEMENT_ACTION_139] = gMovementActionFuncs_139,
-    [MOVEMENT_ACTION_140] = gMovementActionFuncs_140,
-    [MOVEMENT_ACTION_141] = gMovementActionFuncs_141,
-    [MOVEMENT_ACTION_142] = gMovementActionFuncs_142,
-    [MOVEMENT_ACTION_143] = gMovementActionFuncs_143,
-    [MOVEMENT_ACTION_144] = gMovementActionFuncs_144,
-    [MOVEMENT_ACTION_145] = gMovementActionFuncs_145,
-    [MOVEMENT_ACTION_146] = gMovementActionFuncs_146,
-    [MOVEMENT_ACTION_147] = gMovementActionFuncs_147,
-    [MOVEMENT_ACTION_148] = gMovementActionFuncs_148,
-    [MOVEMENT_ACTION_149] = gMovementActionFuncs_149,
-    [MOVEMENT_ACTION_150] = gMovementActionFuncs_150,
-    [MOVEMENT_ACTION_151] = gMovementActionFuncs_151,
-    [MOVEMENT_ACTION_152] = gMovementActionFuncs_152,
-    [MOVEMENT_ACTION_153] = gMovementActionFuncs_153,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH] = gMovementActionFuncs_DistortionWestWallWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH] = gMovementActionFuncs_DistortionWestWallWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST] = gMovementActionFuncs_DistortionWestWallWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST] = gMovementActionFuncs_DistortionWestWallWalkEast,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH] = gMovementActionFuncs_DistortionEastWallWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH] = gMovementActionFuncs_DistortionEastWallWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST] = gMovementActionFuncs_DistortionEastWallWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST] = gMovementActionFuncs_DistortionEastWallWalkEast,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH] = gMovementActionFuncs_DistortionCeilingWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH] = gMovementActionFuncs_DistortionCeilingWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST] = gMovementActionFuncs_DistortionCeilingWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST] = gMovementActionFuncs_DistortionCeilingWalkEast,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_NORTH] = gMovementActionFuncs_JumpDoubleNorth,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_SOUTH] = gMovementActionFuncs_JumpDoubleSouth,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_WEST] = gMovementActionFuncs_JumpDoubleWest,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_EAST] = gMovementActionFuncs_JumpDoubleEast,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH] = gMovementActionFuncs_DistortionWestWallRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH] = gMovementActionFuncs_DistortionWestWallRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST] = gMovementActionFuncs_DistortionWestWallRunWest,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST] = gMovementActionFuncs_DistortionWestWallRunEast,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH] = gMovementActionFuncs_DistortionEastWallRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH] = gMovementActionFuncs_DistortionEastWallRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST] = gMovementActionFuncs_DistortionEastWallRunWest,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST] = gMovementActionFuncs_DistortionEastWallRunEast,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH] = gMovementActionFuncs_DistortionCeilingRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH] = gMovementActionFuncs_DistortionCeilingRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST] = gMovementActionFuncs_DistortionCeilingRunWest,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST] = gMovementActionFuncs_DistortionCeilingRunEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH] = gMovementActionFuncs_DistortionSurfingSlowNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_SOUTH] = gMovementActionFuncs_DistortionSurfingSlowSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_WEST] = gMovementActionFuncs_DistortionSurfingSlowWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_EAST] = gMovementActionFuncs_DistortionSurfingSlowEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH] = gMovementActionFuncs_DistortionSurfingMediumNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_SOUTH] = gMovementActionFuncs_DistortionSurfingMediumSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_WEST] = gMovementActionFuncs_DistortionSurfingMediumWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_EAST] = gMovementActionFuncs_DistortionSurfingMediumEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH] = gMovementActionFuncs_DistortionSurfingFastNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_SOUTH] = gMovementActionFuncs_DistortionSurfingFastSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_WEST] = gMovementActionFuncs_DistortionSurfingFastWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_EAST] = gMovementActionFuncs_DistortionSurfingFastEast,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_NORTH] = gMovementActionFuncs_DistortionTurnSlowNorth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_SOUTH] = gMovementActionFuncs_DistortionTurnSlowSouth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_WEST] = gMovementActionFuncs_DistortionTurnSlowWest,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_EAST] = gMovementActionFuncs_DistortionTurnSlowEast,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_NORTH] = gMovementActionFuncs_DistortionTurnFastNorth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_SOUTH] = gMovementActionFuncs_DistortionTurnFastSouth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_WEST] = gMovementActionFuncs_DistortionTurnFastWest,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_EAST] = gMovementActionFuncs_DistortionTurnFastEast,
+    [MOVEMENT_ACTION_EMOTE_QUESTION_MARK] = gMovementActionFuncs_EmoteQuestionMark,
 };
 
+// ============================================================================
+// Movement Action Code Lookup Tables
+// ============================================================================
+// These tables map movement types and directions to specific movement action codes.
+// They are used by the movement system to convert high-level movement commands
+// into specific action IDs that can be executed.
+
+// Basic directional facing actions
 static const int sMovementActionCodes_Face[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_FACE_NORTH,
     [DIR_SOUTH] = MOVEMENT_ACTION_FACE_SOUTH,
@@ -938,89 +983,96 @@ static const int sMovementActionCodes_WalkEverSoSlightlyFast[] = {
     [DIR_EAST] = MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_EAST,
 };
 
-static const int Unk_020EDC2C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_117,
-    [DIR_SOUTH] = MOVEMENT_ACTION_118,
-    [DIR_WEST] = MOVEMENT_ACTION_119,
-    [DIR_EAST] = MOVEMENT_ACTION_120,
+static const int sMovementActionCodes_JumpDouble[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_DOUBLE_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_JUMP_DOUBLE_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_JUMP_DOUBLE_EAST,
 };
 
-static const int Unk_020EDCCC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_105,
-    [DIR_SOUTH] = MOVEMENT_ACTION_106,
-    [DIR_WEST] = MOVEMENT_ACTION_107,
-    [DIR_EAST] = MOVEMENT_ACTION_108,
+static const int sMovementActionCodes_DistortionWestWallWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST,
 };
 
-static const int Unk_020EDC0C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_109,
-    [DIR_SOUTH] = MOVEMENT_ACTION_110,
-    [DIR_WEST] = MOVEMENT_ACTION_111,
-    [DIR_EAST] = MOVEMENT_ACTION_112,
+static const int sMovementActionCodes_DistortionEastWallWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST,
 };
 
-static const int Unk_020EDCAC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_113,
-    [DIR_SOUTH] = MOVEMENT_ACTION_114,
-    [DIR_WEST] = MOVEMENT_ACTION_115,
-    [DIR_EAST] = MOVEMENT_ACTION_116,
+static const int sMovementActionCodes_DistortionCeilingWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST,
 };
 
-static const int Unk_020EDC1C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_145,
-    [DIR_SOUTH] = MOVEMENT_ACTION_146,
-    [DIR_WEST] = MOVEMENT_ACTION_147,
-    [DIR_EAST] = MOVEMENT_ACTION_148,
+static const int sMovementActionCodes_DistortionTurnSlow[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_EAST,
 };
 
-static const int Unk_020EDD8C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_149,
-    [DIR_SOUTH] = MOVEMENT_ACTION_150,
-    [DIR_WEST] = MOVEMENT_ACTION_151,
-    [DIR_EAST] = MOVEMENT_ACTION_152,
+static const int sMovementActionCodes_DistortionTurnFast[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_EAST,
 };
 
-static const int Unk_020EDD4C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_121,
-    [DIR_SOUTH] = MOVEMENT_ACTION_122,
-    [DIR_WEST] = MOVEMENT_ACTION_123,
-    [DIR_EAST] = MOVEMENT_ACTION_124,
+static const int sMovementActionCodes_DistortionWestWallRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST,
 };
 
-static const int Unk_020EDD1C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_125,
-    [DIR_SOUTH] = MOVEMENT_ACTION_126,
-    [DIR_WEST] = MOVEMENT_ACTION_127,
-    [DIR_EAST] = MOVEMENT_ACTION_128,
+static const int sMovementActionCodes_DistortionEastWallRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST,
 };
 
-static const int Unk_020EDD6C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_129,
-    [DIR_SOUTH] = MOVEMENT_ACTION_130,
-    [DIR_WEST] = MOVEMENT_ACTION_131,
-    [DIR_EAST] = MOVEMENT_ACTION_132,
+static const int sMovementActionCodes_DistortionCeilingRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST,
 };
 
-static const int Unk_020EDBCC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_133,
-    [DIR_SOUTH] = MOVEMENT_ACTION_134,
-    [DIR_WEST] = MOVEMENT_ACTION_135,
-    [DIR_EAST] = MOVEMENT_ACTION_136,
+static const int sMovementActionCodes_DistortionSurfingSlow[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_EAST,
 };
 
-static const int Unk_020EDDAC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_137,
-    [DIR_SOUTH] = MOVEMENT_ACTION_138,
-    [DIR_WEST] = MOVEMENT_ACTION_139,
-    [DIR_EAST] = MOVEMENT_ACTION_140,
+static const int sMovementActionCodes_DistortionSurfingMedium[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_EAST,
 };
 
-static const int Unk_020EDBBC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_141,
-    [DIR_SOUTH] = MOVEMENT_ACTION_142,
-    [DIR_WEST] = MOVEMENT_ACTION_143,
-    [DIR_EAST] = MOVEMENT_ACTION_144,
+static const int sMovementActionCodes_DistortionSurfingFast[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_EAST,
 };
+
+// ============================================================================
+// Main Movement Action Codes Lookup Table
+// ============================================================================
+// This is the primary lookup table that maps movement type indices to their
+// corresponding directional action code arrays. The movement system uses this
+// to convert movement commands into specific action codes.
 
 const int *const gMovementActionCodes[] = {
     sMovementActionCodes_Face,
@@ -1045,17 +1097,17 @@ const int *const gMovementActionCodes[] = {
     sMovementActionCodes_JumpNearSlow,
     sMovementActionCodes_JumpFarther,
     sMovementActionCodes_WalkEverSoSlightlyFast,
-    Unk_020EDCCC,
-    Unk_020EDC0C,
-    Unk_020EDC2C,
-    Unk_020EDCAC,
-    Unk_020EDD4C,
-    Unk_020EDD1C,
-    Unk_020EDD6C,
-    Unk_020EDBCC,
-    Unk_020EDDAC,
-    Unk_020EDBBC,
-    Unk_020EDC1C,
-    Unk_020EDD8C,
+    sMovementActionCodes_DistortionWestWallWalk,
+    sMovementActionCodes_DistortionEastWallWalk,
+    sMovementActionCodes_JumpDouble,
+    sMovementActionCodes_DistortionCeilingWalk,
+    sMovementActionCodes_DistortionWestWallRun,
+    sMovementActionCodes_DistortionEastWallRun,
+    sMovementActionCodes_DistortionCeilingRun,
+    sMovementActionCodes_DistortionSurfingSlow,
+    sMovementActionCodes_DistortionSurfingMedium,
+    sMovementActionCodes_DistortionSurfingFast,
+    sMovementActionCodes_DistortionTurnSlow,
+    sMovementActionCodes_DistortionTurnFast,
     NULL
 };

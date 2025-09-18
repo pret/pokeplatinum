@@ -2627,295 +2627,295 @@ BOOL (*const gMovementActionFuncs_PlayerReceive[])(MapObject *) = {
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_105[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallWalkNorth[])(MapObject *) = {
     sub_02066934,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_106[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallWalkSouth[])(MapObject *) = {
     sub_02066968,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_107[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallWalkWest[])(MapObject *) = {
     sub_02066998,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_108[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallWalkEast[])(MapObject *) = {
     sub_020669CC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_109[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallWalkNorth[])(MapObject *) = {
     sub_020669FC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_110[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallWalkSouth[])(MapObject *) = {
     sub_02066A2C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_111[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallWalkWest[])(MapObject *) = {
     sub_02066A60,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_112[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallWalkEast[])(MapObject *) = {
     sub_02066A94,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_113[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingWalkNorth[])(MapObject *) = {
     sub_02066AC8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_114[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingWalkSouth[])(MapObject *) = {
     sub_02066AFC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_115[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingWalkWest[])(MapObject *) = {
     sub_02066B30,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_116[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingWalkEast[])(MapObject *) = {
     sub_02066B60,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_145[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnSlowNorth[])(MapObject *) = {
     sub_02066B90,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_146[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnSlowSouth[])(MapObject *) = {
     sub_02066BC0,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_147[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnSlowWest[])(MapObject *) = {
     sub_02066BF0,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_148[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnSlowEast[])(MapObject *) = {
     sub_02066C20,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_149[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnFastNorth[])(MapObject *) = {
     sub_02066C50,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_150[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnFastSouth[])(MapObject *) = {
     sub_02066C84,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_151[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnFastWest[])(MapObject *) = {
     sub_02066CB8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_152[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionTurnFastEast[])(MapObject *) = {
     sub_02066CE8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_117[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_JumpDoubleNorth[])(MapObject *) = {
     sub_0206621C,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_118[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_JumpDoubleSouth[])(MapObject *) = {
     sub_02066240,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_119[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_JumpDoubleWest[])(MapObject *) = {
     sub_02066264,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_120[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_JumpDoubleEast[])(MapObject *) = {
     sub_02066288,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_121[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallRunNorth[])(MapObject *) = {
     sub_02066D18,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_122[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallRunSouth[])(MapObject *) = {
     sub_02066D4C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_123[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallRunWest[])(MapObject *) = {
     sub_02066D80,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_124[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionWestWallRunEast[])(MapObject *) = {
     sub_02066DB4,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_125[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallRunNorth[])(MapObject *) = {
     sub_02066DE8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_126[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallRunSouth[])(MapObject *) = {
     sub_02066E1C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_127[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallRunWest[])(MapObject *) = {
     sub_02066E50,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_128[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionEastWallRunEast[])(MapObject *) = {
     sub_02066E84,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_129[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingRunNorth[])(MapObject *) = {
     sub_02066EB8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_130[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingRunSouth[])(MapObject *) = {
     sub_02066EEC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_131[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingRunWest[])(MapObject *) = {
     sub_02066F20,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_132[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionCeilingRunEast[])(MapObject *) = {
     sub_02066F54,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_133[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingSlowNorth[])(MapObject *) = {
     sub_020671F0,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_134[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingSlowSouth[])(MapObject *) = {
     sub_02067214,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_135[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingSlowWest[])(MapObject *) = {
     sub_0206723C,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_136[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingSlowEast[])(MapObject *) = {
     sub_02067260,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_137[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingMediumNorth[])(MapObject *) = {
     sub_02067288,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_138[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingMediumSouth[])(MapObject *) = {
     sub_020672AC,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_139[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingMediumWest[])(MapObject *) = {
     sub_020672D4,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_140[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingMediumEast[])(MapObject *) = {
     sub_020672FC,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_141[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingFastNorth[])(MapObject *) = {
     sub_02067320,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_142[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingFastSouth[])(MapObject *) = {
     sub_02067344,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_143[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingFastWest[])(MapObject *) = {
     sub_0206736C,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_144[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_DistortionSurfingFastEast[])(MapObject *) = {
     sub_02067394,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_153[])(MapObject *) = {
+BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])(MapObject *) = {
     MovementAction_153_Step0,
     MovementAction_Emote_Step1,
     MovementAction_End,

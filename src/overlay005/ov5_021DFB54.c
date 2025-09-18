@@ -710,9 +710,9 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
                 MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH,
                 MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH,
                 MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH,
-                MOVEMENT_ACTION_133,
-                MOVEMENT_ACTION_137,
-                MOVEMENT_ACTION_141
+                MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH,
+                MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH,
+                MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH
             };
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(taskEnv->playerAvatar);
 
