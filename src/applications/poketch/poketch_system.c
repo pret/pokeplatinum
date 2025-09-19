@@ -36,7 +36,7 @@ FS_EXTERN_OVERLAY(poketch_party_status);
 FS_EXTERN_OVERLAY(poketch_friendship_checker);
 FS_EXTERN_OVERLAY(poketch_dowsing_machine);
 FS_EXTERN_OVERLAY(poketch_counter);
-FS_EXTERN_OVERLAY(overlay36);
+FS_EXTERN_OVERLAY(poketch_pedometer);
 FS_EXTERN_OVERLAY(overlay37);
 FS_EXTERN_OVERLAY(overlay38);
 FS_EXTERN_OVERLAY(overlay39);
@@ -94,7 +94,7 @@ static const struct {
     { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(poketch_friendship_checker) },
     { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(poketch_dowsing_machine) },
     { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(poketch_counter) },
-    { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(overlay36) },
+    { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(poketch_pedometer) },
     { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(poketch_daycare_checker) },
     { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(overlay41) },
     { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
