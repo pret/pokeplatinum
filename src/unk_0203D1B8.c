@@ -706,14 +706,14 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
+void sub_0203D884(FieldSystem *fieldSystem, TownMapContext *param1)
 {
     FS_EXTERN_OVERLAY(overlay80);
 
     const ApplicationManagerTemplate v0 = {
-        ov80_021D0D80,
-        ov80_021D0DD8,
-        ov80_021D0E50,
+        TownMap_Init,
+        TownMap_Main,
+        TownMap_Exit,
         FS_OVERLAY_ID(overlay80)
     };
 
@@ -722,12 +722,12 @@ void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
 
 void *sub_0203D8AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203D8AC *v0;
+    TownMapContext *v0;
     TrainerInfo *v1;
     int v2 = 0, v3 = 0;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
     sub_0206B70C(fieldSystem, v0, 0);
     sub_0203D884(fieldSystem, v0);

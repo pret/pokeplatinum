@@ -4076,7 +4076,7 @@ static BOOL ScrCmd_0AA(ScriptContext *ctx)
 {
     void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
     sub_0206B70C(ctx->fieldSystem, *v1, 2);
     sub_0203D884(ctx->fieldSystem, *v1);

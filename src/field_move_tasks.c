@@ -347,7 +347,7 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     *fieldMonID = fieldMoveMon->fieldMonId;
     menu->unk_260 = fieldMonID;
 
-    menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
     sub_0206B70C(fieldSystem, menu->taskData, 1);
     sub_0203D884(fieldSystem, menu->taskData);
