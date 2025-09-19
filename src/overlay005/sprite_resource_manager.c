@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager_struct.h"
 
 #include "heap.h"
 #include "narc.h"

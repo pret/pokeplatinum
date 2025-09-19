@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_OV5_021D2F14_H
-#define POKEPLATINUM_OV5_021D2F14_H
+#ifndef POKEPLATINUM_SPRITE_RESOURCE_MANAGER_H
+#define POKEPLATINUM_SPRITE_RESOURCE_MANAGER_H
 
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager_struct.h"
 
 #include "narc.h"
 #include "sprite.h"
@@ -22,4 +22,4 @@ void SpriteResourceManager_LoadTiles(SpriteResourceManager *spriteManager, NARC 
 ManagedSprite *SpriteResourceManager_CreateManagedSprite(SpriteResourceManager *spriteManager, const SpriteTemplate *template);
 void SpriteResourceManager_Cleanup(SpriteResourceManager *spriteManager);
 
-#endif // POKEPLATINUM_OV5_021D2F14_H
+#endif // POKEPLATINUM_SPRITE_RESOURCE_MANAGER_H

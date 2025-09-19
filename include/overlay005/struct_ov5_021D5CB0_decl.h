@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV5_021D5CB0_DECL_H
-#define POKEPLATINUM_STRUCT_OV5_021D5CB0_DECL_H
-
-typedef struct FieldTextureManager_t FieldTextureManager;
-
-#endif // POKEPLATINUM_STRUCT_OV5_021D5CB0_DECL_H

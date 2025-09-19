@@ -4,7 +4,7 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager_struct.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/underground_item_list_menu.h"
 
