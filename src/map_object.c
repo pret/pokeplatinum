@@ -147,10 +147,10 @@ static const ObjectEvent *sub_020631A4(int param0, int param1, const ObjectEvent
 static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent);
 static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent);
 
-static const UnkStruct_020EDF0C *sub_0206320C(u32 param0);
-static UnkFuncPtr_020EDF0C sub_02063224(const UnkStruct_020EDF0C *param0);
-static UnkFuncPtr_020EDF0C_1 sub_02063228(const UnkStruct_020EDF0C *param0);
-static UnkFuncPtr_020EDF0C_2 sub_0206322C(const UnkStruct_020EDF0C *param0);
+static const MovementActionDescriptor *sub_0206320C(u32 param0);
+static UnkFuncPtr_020EDF0C sub_02063224(const MovementActionDescriptor *param0);
+static UnkFuncPtr_020EDF0C_1 sub_02063228(const MovementActionDescriptor *param0);
+static UnkFuncPtr_020EDF0C_2 sub_0206322C(const MovementActionDescriptor *param0);
 static UnkFuncPtr_ov5_021FB0F0_3 sub_0206323C(const UnkStruct_ov5_021FB0F0 *param0);
 static UnkFuncPtr_ov5_021FB0F0_4 sub_02063240(const UnkStruct_ov5_021FB0F0 *param0);
 
@@ -750,7 +750,7 @@ static void sub_0206234C(MapObject *mapObj, const MapObjectManager *mapObjMan)
 
 static void sub_0206239C(MapObject *mapObj)
 {
-    const UnkStruct_020EDF0C *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
+    const MovementActionDescriptor *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
 
     sub_02062AF8(mapObj, sub_02063224(v0));
     sub_02062B0C(mapObj, sub_02063228(v0));
@@ -1528,8 +1528,8 @@ void sub_02062B28(MapObject *mapObj)
 
 void sub_02062B34(MapObject *mapObj)
 {
-    const UnkStruct_020EDF0C *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
-    v0->unk_10(mapObj);
+    const MovementActionDescriptor *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
+    v0->cleanupFunc(mapObj);
 }
 
 void sub_02062B4C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0 param1)
@@ -2347,25 +2347,25 @@ static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent)
     return ObjectEvent_GetFlag(objectEvent);
 }
 
-static const UnkStruct_020EDF0C *sub_0206320C(u32 param0)
+static const MovementActionDescriptor *sub_0206320C(u32 param0)
 {
     GF_ASSERT(param0 < 0x44);
-    return Unk_020EE3A8[param0];
+    return gMovementActionDescriptors[param0];
 }
 
-static UnkFuncPtr_020EDF0C sub_02063224(const UnkStruct_020EDF0C *param0)
+static UnkFuncPtr_020EDF0C sub_02063224(const MovementActionDescriptor *param0)
 {
-    return param0->unk_04;
+    return param0->initFunc;
 }
 
-static UnkFuncPtr_020EDF0C_1 sub_02063228(const UnkStruct_020EDF0C *param0)
+static UnkFuncPtr_020EDF0C_1 sub_02063228(const MovementActionDescriptor *param0)
 {
-    return param0->unk_08;
+    return param0->updateFunc;
 }
 
-static UnkFuncPtr_020EDF0C_2 sub_0206322C(const UnkStruct_020EDF0C *param0)
+static UnkFuncPtr_020EDF0C_2 sub_0206322C(const MovementActionDescriptor *param0)
 {
-    return param0->unk_0C;
+    return param0->completeFunc;
 }
 
 static UnkFuncPtr_ov5_021FB0F0 sub_02063230(const UnkStruct_ov5_021FB0F0 *param0)

@@ -14,7 +14,7 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
-#include "unk_0205F180.h"
+#include "player_avatar_movement.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 
@@ -1281,7 +1281,7 @@ static int sub_0206537C(MapObject *mapObj)
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
 
-        if (sub_0206140C(playerAvatar) == 0) {
+        if (PlayerAvatar_State_IsRunningAnimation(playerAvatar) == 0) {
             return -1;
         }
 
