@@ -60,16 +60,16 @@ BOOL PoketchSystem_IsBottomScreenDone(FieldSystem *fieldSystem)
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay25));
-            return 1;
+            return TRUE;
         }
     } else {
         if (PoketchUnavailableScreen_IsDone(fieldSystem->bgConfig)) {
             Overlay_UnloadByID(FS_OVERLAY_ID(poketch_unavailable));
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void BottomScreen_InitPoketchUnavailable(FieldSystem *fieldSystem)
