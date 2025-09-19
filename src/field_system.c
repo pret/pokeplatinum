@@ -15,7 +15,7 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021EA714.h"
+#include "overlay005/poketch_system.h"
 #include "overlay005/signpost.h"
 
 #include "bag.h"

@@ -384,7 +384,7 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
 
     fieldSystem->mapLoadMode = &sMapLoadMode[fieldSystem->mapLoadType];
     fieldSystem->skipMapAttributes = fieldSystem->mapLoadMode->skipMapAttributes;
-    fieldSystem->bottomScreen = fieldSystem->mapLoadMode->fieldBottomScreen;
+    fieldSystem->bottomScreenMode = fieldSystem->mapLoadMode->bottomScreenMode;
 
     TerrainCollisionManager_Init(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->useSimpleTerrainCollisions);
 
@@ -398,7 +398,7 @@ static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSyste
     GF_ASSERT(fieldSystem->terrainCollisionMan != NULL);
 
     fieldSystem->terrainCollisionMan = NULL;
-    fieldSystem->bottomScreen = 5;
+    fieldSystem->bottomScreenMode = BOTTOM_SCREEN_MODE_TRANSITION;
 
     if (fieldSystem->mapLoadMode->useSeparateTerrainAttributes) {
         TerrainAttributes_Free(fieldSystem);
