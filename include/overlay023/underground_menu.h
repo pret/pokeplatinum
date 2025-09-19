@@ -54,7 +54,7 @@ typedef struct UndergroundMenu {
     Strbuf *strbuf;
     Strbuf *fmtString;
     StringTemplate *template;
-    UnkStruct_ov5_021D30A8 unk_74;
+    SpriteResourceManager spriteManager;
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];
     u32 spriteCount;
     UnkFuncPtr_ov23_0224F758 unk_260;

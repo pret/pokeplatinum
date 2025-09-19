@@ -14,7 +14,7 @@ enum ScrollPromptArrows {
 };
 
 typedef struct ScrollPrompts {
-    UnkStruct_ov5_021D30A8 unk_00;
+    SpriteResourceManager spriteManager;
     ManagedSprite *arrowSprites[SCROLL_PROMPT_ARROW_COUNT];
 } ScrollPrompts;
 

@@ -6,13 +6,13 @@
 #include "sprite_util.h"
 
 typedef struct {
-    SpriteList *unk_00;
-    G2dRenderer unk_04;
-    SpriteResourcesHeaderList *unk_190;
-    SpriteResourceCollection *unk_194[6];
-    SpriteResourceList *unk_1AC[6];
-    u16 unk_1C4;
+    SpriteList *spriteList;
+    G2dRenderer renderer;
+    SpriteResourcesHeaderList *resourceHeaderList;
+    SpriteResourceCollection *resourceCollections[6];
+    SpriteResourceList *resourceLists[6];
+    u16 resourceTypeCount;
     u16 heapID;
-} UnkStruct_ov5_021D30A8;
+} SpriteResourceManager;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021D30A8_H

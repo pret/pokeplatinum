@@ -87,7 +87,7 @@ typedef struct {
     MessageLoader *msgLoader;
     StringTemplate *strTemplate;
     Camera *camera;
-    UnkStruct_ov5_021D30A8 unk_94;
+    SpriteResourceManager spriteManager;
     Sprite *sprites[SHOP_SPRITE_MAX];
     u16 spriteDrawFlags[2];
     TrainerInfo *trainerInfo;
