@@ -31,11 +31,7 @@ static BOOL BottomScreen_IsUndergroundDone(FieldSystem *fieldSystem);
 static BOOL BottomScreen_IsColosseumDone(FieldSystem *fieldSystem);
 
 static const BottomScreenHandlers sBottomScreenModeHandlers[] = {
-    [0] = {
-        .initFn = BottomScreen_InitStandardField,
-        .isRunningDummyFn = NULL,
-        .endFn = BottomScreen_EndStandardField,
-        .isDoneFn = BottomScreen_IsStandardFieldDone },
+    [0] = { .initFn = BottomScreen_InitStandardField, .isRunningDummyFn = NULL, .endFn = BottomScreen_EndStandardField, .isDoneFn = BottomScreen_IsStandardFieldDone },
     [1] = { .initFn = BottomScreen_InitUnderground, .isRunningDummyFn = NULL, .endFn = BottomScreen_EndUnderground, .isDoneFn = BottomScreen_IsUndergroundDone },
     [2] = { .initFn = BottomScreen_InitColosseum, .isRunningDummyFn = NULL, .endFn = BottomScreen_EndColosseum, .isDoneFn = BottomScreen_IsColosseumDone },
     [3] = { .initFn = BottomScreen_InitPoketchUnavailable, .isRunningDummyFn = NULL, .endFn = BottomScreen_EndPoketchUnavailable, .isDoneFn = BottomScreen_IsPoketchUnavailableDone }
