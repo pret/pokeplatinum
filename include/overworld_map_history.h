@@ -5,7 +5,7 @@ typedef struct OverworldMapHistoryItem {
     u8 mapX;
     u8 mapZ;
     u8 faceDirection;
-    u8 dummy_03; // this is always set to 1
+    u8 isSet;
 } OverworldMapHistoryItem;
 
 typedef struct OverworldMapHistory {

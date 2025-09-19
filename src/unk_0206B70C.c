@@ -34,7 +34,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_0206B878;
 
-static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2);
+static void sub_0206B878(FieldSystem *fieldSystem, TownMapContext *param1, const char *param2);
 
 static const int Unk_020EFA98[10][4] = {
     { 0x23D, 0x15, 0x120, 0xA },
@@ -72,7 +72,7 @@ static const u8 Unk_020EFA84[20] = {
     FIRST_ARRIVAL_POKEMON_LEAGUE,
 };
 
-void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int param2)
+void sub_0206B70C(FieldSystem *fieldSystem, TownMapContext *param1, int param2)
 {
     TrainerInfo *v0;
     int v1 = 0, v2 = 0, v3 = 0;
@@ -82,7 +82,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *v10 = FieldOverworldState_GetExitLocation(fieldState);
 
-    memset(param1, 0, sizeof(UnkStruct_0203D8AC));
+    memset(param1, 0, sizeof(TownMapContext));
 
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
@@ -105,58 +105,58 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     v6 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {
-        param1->unk_00 = x;
-        param1->unk_04 = z;
+        param1->playerX = x;
+        param1->playerY = z;
     } else {
-        param1->unk_00 = v10->x;
-        param1->unk_04 = v10->z;
+        param1->playerX = v10->x;
+        param1->playerY = v10->z;
     }
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-    param1->unk_0C = TrainerInfo_Gender(v0);
+    param1->trainerGender = TrainerInfo_Gender(v0);
     v7 = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = (v7->historyPointer - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
-        param1->unk_20[v1].unk_00 = v7->items[v2].mapX;
-        param1->unk_20[v1].unk_04 = v7->items[v2].mapZ;
-        param1->unk_20[v1].unk_0A = v7->items[v2].dummy_03;
+        param1->locationHistory[v1].x = v7->items[v2].mapX;
+        param1->locationHistory[v1].y = v7->items[v2].mapZ;
+        param1->locationHistory[v1].isSet = v7->items[v2].isSet;
 
         if (v7->items[v2].faceDirection > 3) {
-            param1->unk_20[v1].unk_08 = 3 + 1;
+            param1->locationHistory[v1].faceDirection = 3 + 1;
         } else {
-            param1->unk_20[v1].unk_08 = v7->items[v2].faceDirection;
+            param1->locationHistory[v1].faceDirection = v7->items[v2].faceDirection;
         }
 
         v2 = (v2 - 1 + 6) % 6;
 
-        if (param1->unk_20[v1].unk_0A) {
+        if (param1->locationHistory[v1].isSet) {
             v3++;
         }
     }
 
     for (v1 = 0; v1 < HIDDEN_LOCATION_MAX; v1++) {
         if (SystemVars_CheckHiddenLocation(v8, v1)) {
-            param1->unk_13C |= (0x1 << v1);
+            param1->unlockedHiddenLocations |= (0x1 << v1);
         }
     }
 
     for (v1 = 0; v1 < 20; v1++) {
-        param1->unk_124[v1] = SystemFlag_HandleFirstArrivalToZone(v8, HANDLE_FLAG_CHECK, Unk_020EFA84[v1]);
+        param1->unlockedFlyDestination[v1] = SystemFlag_HandleFirstArrivalToZone(v8, HANDLE_FLAG_CHECK, Unk_020EFA84[v1]);
     }
 
     sub_0206B878(fieldSystem, param1, "data/tmap_flags.dat");
 
-    param1->unk_139 = param2;
+    param1->townMapMode = param2;
 }
 
-static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2)
+static void sub_0206B878(FieldSystem *fieldSystem, TownMapContext *param1, const char *param2)
 {
     FSFile v0;
     int v1, i;
     int v3;
     UnkStruct_0206B878 *v4;
-    UnkUnion_0206B878 *v5;
+    TownMapLocationDescCheckResults *v5;
     VarsFlags *v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     FS_InitFile(&v0);
@@ -172,31 +172,31 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
     v4 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206B878));
     MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
 
-    param1->unk_13A = v3;
+    param1->numDescChecks = v3;
 
     for (i = 0; i < v3; i++) {
-        v5 = &(param1->unk_5C[i]);
+        v5 = &(param1->descCheckResults[i]);
         v1 = FS_ReadFile(&v0, v4, sizeof(UnkStruct_0206B878));
 
         switch (v4->unk_00) {
         case 1:
-            v5->val1_2 = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_01);
-            v5->val1_0 = 1;
+            v5->descPart1CheckResult = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_01);
+            v5->descPart1HasCheck = TRUE;
             break;
         case 2:
-            v5->val1_2 = FieldSystem_CheckFlag(fieldSystem, v4->unk_01);
-            v5->val1_0 = 1;
+            v5->descPart1CheckResult = FieldSystem_CheckFlag(fieldSystem, v4->unk_01);
+            v5->descPart1HasCheck = TRUE;
             break;
         }
 
         switch (v4->unk_02) {
         case 1:
-            v5->val1_6 = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_03);
-            v5->val1_4 = 1;
+            v5->descPart2CheckResult = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_03);
+            v5->descPart2HasCheck = TRUE;
             break;
         case 2:
-            v5->val1_6 = FieldSystem_CheckFlag(fieldSystem, v4->unk_03);
-            v5->val1_4 = 1;
+            v5->descPart2CheckResult = FieldSystem_CheckFlag(fieldSystem, v4->unk_03);
+            v5->descPart2HasCheck = TRUE;
             break;
         }
     }

@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV80_021D2C5C_SUB1_H
 
 typedef struct {
-    int unk_00;
-    int unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u16 unk_0A;
-    fx32 unk_0C;
-    fx32 unk_10;
-} UnkStruct_ov80_021D2C5C_sub1;
+    int mapHeader;
+    int unusedUnlockFirstArrivalFlag;
+    u8 blockShape;
+    u8 palette;
+    u16 specialFlyDestID;
+    u32 spriteX;
+    u32 spriteY;
+} TownMapFlyDestDescriptor;
 
 #endif // POKEPLATINUM_STRUCT_OV80_021D2C5C_SUB1_H

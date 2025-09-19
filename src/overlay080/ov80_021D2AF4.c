@@ -3,6 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/first_arrival_to_zones.h"
+#include "generated/map_headers.h"
+
+#include "overlay080/ov80_021D0D80.h"
 #include "overlay080/struct_ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
@@ -13,119 +17,320 @@
 #include "sprite.h"
 #include "sprite_system.h"
 
-const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
-    { 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
-    { 0x1A2, 0x1, 0x0, 0x0, 0x0, 0x23, 0xB6 },
-    { 0x1AA, 0x2, 0x1, 0x0, 0x0, 0x23, 0x88 },
-    { 0x1B1, 0x3, 0x5, 0x0, 0x0, 0x7A, 0x8C },
-    { 0x1BA, 0x4, 0x0, 0x0, 0x0, 0x62, 0x70 },
-    { 0x1C2, 0x5, 0x0, 0x0, 0x0, 0x8C, 0x46 },
-    { 0x1C9, 0x6, 0x0, 0x0, 0x0, 0xAF, 0x62 },
-    { 0x3, 0x7, 0x2, 0x1, 0x0, 0x1F, 0xA4 },
-    { 0x21, 0x8, 0x1, 0x1, 0x0, 0x7, 0x9D },
-    { 0x2D, 0x9, 0x4, 0x1, 0x0, 0x3C, 0xA4 },
-    { 0x41, 0xA, 0x3, 0x1, 0x0, 0x42, 0x73 },
-    { 0x56, 0xB, 0x2, 0x1, 0x0, 0x65, 0x96 },
-    { 0x78, 0xC, 0x2, 0x1, 0x0, 0x81, 0xB2 },
-    { 0x84, 0xD, 0x2, 0x1, 0x0, 0x96, 0x81 },
-    { 0x96, 0xE, 0x2, 0x1, 0x0, 0xB9, 0xA4 },
-    { 0xA5, 0xF, 0x1, 0x1, 0x0, 0x4D, 0x2D },
-    { 0xBC, 0x11, 0x5, 0x1, 0x0, 0x89, 0x5B },
-    { 0x188, 0x43, 0x6, 0x1, 0x1, 0x3F, 0xC4 },
-    { 0xAC, 0x10, 0x6, 0x1, 0x2, 0xB6, 0x7E },
-    { 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
+enum TownMapFlyDestinationShape {
+    FLY_DEST_SPRITE_SHAPE_1x1_SQUARE = 0,
+    FLY_DEST_SPRITE_SHAPE_VERTICAL,
+    FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+    FLY_DEST_SPRITE_SHAPE_TOP_LEFT_ANGLE,
+    FLY_DEST_SPRITE_SHAPE_TOP_RIGHT_ANGLE,
+    FLY_DEST_SPRITE_SHAPE_HORIZONTAL,
+    FLY_DEST_SPRITE_SHAPE_SMALL_RECTANGLE,
 };
 
-UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int heapID)
+enum TownMapTownBlockPalette {
+    FLY_DEST_SPRITE_PALETTE_BLUE = 0,
+    FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+};
+
+enum TownMapSpecialFlyDest {
+    REGULAR_FLY_DEST = 0,
+    FLY_DEST_PAL_PARK,
+    FLY_DEST_VICTORY_ROAD,
+    FLY_DEST_POKEMON_LEAGUE,
+};
+
+/*
+ * The spriteX and spriteY can be determined from the main map matrix (the one at
+ * index 0) and some offset depending on the block shape.
+ * For the ones that span multiple map matrix blocks, the following uses the
+ * coordinates of the north-westernmost one.
+ */
+const TownMapFlyDestDescriptor sTownBlocks[20] = {
+    {
+        .mapHeader = MAP_HEADER_TWINLEAF_TOWN,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_TWINLEAF_TOWN,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 3 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 27 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_SANDGEM_TOWN,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_SANDGEM_TOWN,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 5 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 26 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_FLOAROMA_TOWN,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_FLOAROMA_TOWN,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_VERTICAL,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 5 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 19 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_SOLACEON_TOWN,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_SOLACEON_TOWN,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_HORIZONTAL,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 17 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 20 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_CELESTIC_TOWN,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_CELESTIC_TOWN,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 14 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 16 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_SURVIVAL_AREA,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_SURVIVAL_AREA,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 20 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 10 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_RESORT_AREA,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_RESORT_AREA,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_BLUE,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 25 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 14 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_JUBILIFE_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_JUBILIFE_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 4 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 23 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_CANALAVE_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_CANALAVE_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_VERTICAL,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 1 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 22 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_OREBURGH_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_OREBURGH_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_TOP_RIGHT_ANGLE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 8 * TOWN_MAP_GRID_SPACING + 4,
+        .spriteY = 23 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_ETERNA_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_ETERNA_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_TOP_LEFT_ANGLE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 9 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 16 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_HEARTHOME_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_HEARTHOME_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 14 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 21 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_PASTORIA_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_PASTORIA_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 18 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 25 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_VEILSTONE_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_VEILSTONE_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 21 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 18 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_SUNYSHORE_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_SUNYSHORE_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_2x2_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 26 * TOWN_MAP_GRID_SPACING + 3,
+        .spriteY = 23 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_SNOWPOINT_CITY,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_SNOWPOINT_CITY,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_VERTICAL,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 11 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 6 * TOWN_MAP_GRID_SPACING + 3,
+    },
+    {
+        .mapHeader = MAP_HEADER_FIGHT_AREA,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_FIGHT_AREA,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_HORIZONTAL,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = REGULAR_FLY_DEST,
+        .spriteX = 19 * TOWN_MAP_GRID_SPACING + 4,
+        .spriteY = 13 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_ROUTE_221,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_POKE_PARK_FRONT_GATE,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_SMALL_RECTANGLE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = FLY_DEST_PAL_PARK,
+        .spriteX = 9 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 28 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_POKEMON_LEAGUE,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_SMALL_RECTANGLE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = FLY_DEST_VICTORY_ROAD,
+        .spriteX = 26 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 18 * TOWN_MAP_GRID_SPACING,
+    },
+    {
+        .mapHeader = MAP_HEADER_POKEMON_LEAGUE,
+        .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_POKEMON_LEAGUE,
+        .blockShape = FLY_DEST_SPRITE_SHAPE_1x1_SQUARE,
+        .palette = FLY_DEST_SPRITE_PALETTE_RED_GREEN,
+        .specialFlyDestID = FLY_DEST_POKEMON_LEAGUE,
+        .spriteX = 26 * TOWN_MAP_GRID_SPACING,
+        .spriteY = 17 * TOWN_MAP_GRID_SPACING,
+    }
+};
+
+TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, int heapID)
 {
-    UnkStruct_ov80_021D2C1C *v0;
-    UnkStruct_ov80_021D2C5C *v1;
-    const UnkStruct_ov80_021D2C5C_sub1 *v2;
-    short v3;
-    static const SpriteTemplateFromResourceHeader v4 = {
-        4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
+    TownMapAppFlyDestinations *flyDestinations;
+    TownMapAppFlyDestination *flyDest;
+    const TownMapFlyDestDescriptor *flyDestBlocks;
+    short i;
+    static const SpriteTemplateFromResourceHeader spriteTemplate = {
+        .resourceHeaderID = 4,
+        .x = 0,
+        .y = 0,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 10,
+        .plttIdx = PLTT_5,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
     };
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov80_021D2C1C));
-    memset(v0, 0, sizeof(UnkStruct_ov80_021D2C1C));
+    flyDestinations = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestinations));
+    memset(flyDestinations, 0, sizeof(TownMapAppFlyDestinations));
 
-    v0->unk_00 = param3;
-    v0->unk_08 = Heap_Alloc(heapID, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
-    memset(v0->unk_08, 0, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
+    flyDestinations->numBlocks = count;
+    flyDestinations->flyDestinationsList = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
+    memset(flyDestinations->flyDestinationsList, 0, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
 
-    v2 = Unk_ov80_021D31D8;
+    flyDestBlocks = sTownBlocks;
 
-    for (v3 = 0; v3 < v0->unk_00; v3++) {
-        v1 = &v0->unk_08[v3];
-        v1->unk_00.unk_00 = v2[v3].unk_00;
-        v1->unk_00.unk_08 = v2[v3].unk_08;
-        v1->unk_00.unk_09 = v2[v3].unk_09;
-        v1->unk_00.unk_0A = v2[v3].unk_0A;
-        v1->unk_00.unk_0C = v2[v3].unk_0C;
-        v1->unk_00.unk_10 = v2[v3].unk_10;
-        v1->unk_14 = param2[v3];
-        v1->unk_18 = SpriteSystem_NewSpriteFromResourceHeader(param0, param1, &v4);
+    for (i = 0; i < flyDestinations->numBlocks; i++) {
+        flyDest = &flyDestinations->flyDestinationsList[i];
+        flyDest->flyDestBlockDescriptor.mapHeader = flyDestBlocks[i].mapHeader;
+        flyDest->flyDestBlockDescriptor.blockShape = flyDestBlocks[i].blockShape;
+        flyDest->flyDestBlockDescriptor.palette = flyDestBlocks[i].palette;
+        flyDest->flyDestBlockDescriptor.specialFlyDestID = flyDestBlocks[i].specialFlyDestID;
+        flyDest->flyDestBlockDescriptor.spriteX = flyDestBlocks[i].spriteX;
+        flyDest->flyDestBlockDescriptor.spriteY = flyDestBlocks[i].spriteY;
+        flyDest->isUnlocked = unlocked[i];
+        flyDest->sprite = SpriteSystem_NewSpriteFromResourceHeader(spriteSystem, spriteMan, &spriteTemplate);
 
-        Sprite_SetDrawFlag(v1->unk_18, TRUE);
+        Sprite_SetDrawFlag(flyDest->sprite, TRUE);
 
-        if (v1->unk_14) {
-            Sprite_SetExplicitPalette(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
+        if (flyDest->isUnlocked) {
+            Sprite_SetExplicitPalette(flyDest->sprite, PLTT_5 + flyDest->flyDestBlockDescriptor.palette + flyDest->isUnlocked);
         } else {
-            if ((v1->unk_00.unk_0A == 1) || (v1->unk_00.unk_0A == 2)) {
-                Sprite_SetDrawFlag(v1->unk_18, FALSE);
+            if ((flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_PAL_PARK) || (flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_VICTORY_ROAD)) {
+                Sprite_SetDrawFlag(flyDest->sprite, FALSE);
             }
         }
 
-        Sprite_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        Sprite_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        Sprite_UpdateAnim(flyDest->sprite, FX32_CONST(flyDest->flyDestBlockDescriptor.blockShape));
+        Sprite_SetPositionXY(flyDest->sprite, flyDest->flyDestBlockDescriptor.spriteX + TOWN_MAP_GRID_X_OFFSET, flyDest->flyDestBlockDescriptor.spriteY + TOWN_MAP_GRID_Y_OFFSET);
     }
 
-    return v0;
+    return flyDestinations;
 }
 
-void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0)
+void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *param0)
 {
-    UnkStruct_ov80_021D2C5C *v0;
+    TownMapAppFlyDestination *v0;
     short v1;
 
-    for (v1 = 0; v1 < param0->unk_00; v1++) {
-        v0 = &param0->unk_08[v1];
-        Sprite_SetAffineZRotationEx(v0->unk_18, 0, 0);
-        Sprite_Delete(v0->unk_18);
+    for (v1 = 0; v1 < param0->numBlocks; v1++) {
+        v0 = &param0->flyDestinationsList[v1];
+        Sprite_SetAffineZRotationEx(v0->sprite, 0, 0);
+        Sprite_Delete(v0->sprite);
     }
 
-    Heap_Free(param0->unk_08);
+    Heap_Free(param0->flyDestinationsList);
     Heap_Free(param0);
 }
 
-UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
+TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDestinations *param0, int mapHeader, int x, int y)
 {
-    UnkStruct_ov80_021D2C5C *v0;
-    short v1, v2;
+    TownMapAppFlyDestination *flyDest;
+    short i;
 
-    for (v1 = 0; v1 < param0->unk_00; v1++) {
-        v0 = &(param0->unk_08[v1]);
+    for (i = 0; i < param0->numBlocks; i++) {
+        flyDest = &(param0->flyDestinationsList[i]);
 
-        if (v0->unk_00.unk_00 != param1) {
+        if (flyDest->flyDestBlockDescriptor.mapHeader != mapHeader) {
             continue;
         }
 
-        switch (v0->unk_00.unk_0A) {
-        case 0:
-            return v0;
-        case 1:
-            if ((9 == param2) && (28 == param3)) {
-                return v0;
+        // Some map headers span several tiles but have a fly target that take up a single tile
+        // For these, we need to check for the fly target's exact position
+        switch (flyDest->flyDestBlockDescriptor.specialFlyDestID) {
+        case REGULAR_FLY_DEST:
+            return flyDest;
+        case FLY_DEST_PAL_PARK:
+            if (x == 9 && y == 28) {
+                return flyDest;
             }
             break;
-        case 2:
-            if ((26 == param2) && (18 == param3)) {
-                return v0;
+        case FLY_DEST_VICTORY_ROAD:
+            if (x == 26 && y == 18) {
+                return flyDest;
             }
             break;
-        case 3:
-            if ((26 == param2) && (17 == param3)) {
-                return v0;
+        case FLY_DEST_POKEMON_LEAGUE:
+            if (x == 26 && y == 17) {
+                return flyDest;
             }
             break;
         }
@@ -134,115 +339,115 @@ UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int para
     return NULL;
 }
 
-int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
+BOOL TownMapApp_UpdateHoveredFlyTarget(TownMapAppFlyDestinations *param0, enum MapHeader mapHeader, int x, int y)
 {
-    UnkStruct_ov80_021D2C5C *v0;
-    short v1, v2 = 0;
+    TownMapAppFlyDestination *hoveredFlyDest;
 
     if (param0 == NULL) {
-        return 0;
+        return FALSE;
     }
 
-    v0 = ov80_021D2C5C(param0, param1, param2, param3);
+    hoveredFlyDest = TownMapApp_GetHoveredFlyDestination(param0, mapHeader, x, y);
 
-    if ((v0 == NULL) || (v0->unk_14 == 0)) {
-        if (param0->unk_04 != NULL) {
-            Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+    if ((hoveredFlyDest == NULL) || (hoveredFlyDest->isUnlocked == FALSE)) {
+        if (param0->hoveredFlyDest != NULL) {
+            Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
         }
 
-        param0->unk_04 = NULL;
-        return 0;
+        param0->hoveredFlyDest = NULL;
+        return FALSE;
     }
 
-    if (param0->unk_04 == NULL) {
-        param0->unk_02 = 0;
-        param0->unk_03 = 0;
+    if (param0->hoveredFlyDest == NULL) {
+        param0->flyTargetBlinkTimer = 0;
+        param0->flyTargetBlinkState = 0;
     } else {
-        if ((v0->unk_00.unk_0A == 2) || (v0->unk_00.unk_0A == 3)) {
-            Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+        if (hoveredFlyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_VICTORY_ROAD
+            || hoveredFlyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_POKEMON_LEAGUE) {
+            Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
         }
     }
 
-    param0->unk_04 = v0;
-    return 1;
+    param0->hoveredFlyDest = hoveredFlyDest;
+    return TRUE;
 }
 
-void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1)
+void TownMapApp_BlinkHoveredFlyTarget(TownMapAppFlyDestinations *param0, enum TownMapMode param1)
 {
     short v0;
-    UnkStruct_ov80_021D2C5C *v1;
+    TownMapAppFlyDestination *v1;
 
-    if ((param0->unk_04 == NULL) || (param1 != 1)) {
+    if ((param0->hoveredFlyDest == NULL) || (param1 != TOWN_MAP_MODE_FLY)) {
         return;
     }
 
-    if (param0->unk_03 == 0) {
-        Sprite_SetExplicitPalette(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
+    if (param0->flyTargetBlinkState == 0) {
+        Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_8 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette);
     } else {
-        Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+        Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
     }
 
-    param0->unk_02++;
+    param0->flyTargetBlinkTimer++;
 
-    if (param0->unk_02 == 16) {
-        param0->unk_02 = 0;
-        param0->unk_03 ^= 1;
+    if (param0->flyTargetBlinkTimer == 16) {
+        param0->flyTargetBlinkTimer = 0;
+        param0->flyTargetBlinkState ^= 1;
     }
 }
 
-UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID)
+TownMapBlockList *TownMap_ReadBlockData(const char *path, int heapID)
 {
-    FSFile v0;
-    int v1, v2;
-    int v3;
-    UnkStruct_ov80_021D2E10 *v4;
-    UnkStruct_ov80_021D2AF4 *v5;
+    FSFile tmapBlockFile;
+    int readLength, i;
+    int locationCount;
+    TownMapBlockList *tmapBlock;
+    TownMapBlock *entry;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&tmapBlockFile);
 
-    if (!FS_OpenFile(&v0, param0)) {
-        GF_ASSERT(0);
+    if (!FS_OpenFile(&tmapBlockFile, path)) {
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
-    v1 = FS_ReadFile(&v0, &v3, 4);
-    GF_ASSERT(v1 >= 0);
+    readLength = FS_ReadFile(&tmapBlockFile, &locationCount, sizeof(int));
+    GF_ASSERT(readLength >= 0);
 
-    v4 = Heap_Alloc(heapID, sizeof(UnkStruct_ov80_021D2E10));
-    memset(v4, 0, sizeof(UnkStruct_ov80_021D2E10));
+    tmapBlock = Heap_Alloc(heapID, sizeof(TownMapBlockList));
+    memset(tmapBlock, 0, sizeof(TownMapBlockList));
 
-    v4->unk_04 = Heap_Alloc(heapID, sizeof(UnkStruct_ov80_021D2AF4) * v3);
-    memset(v4->unk_04, 0, sizeof(UnkStruct_ov80_021D2AF4) * v3);
+    tmapBlock->entries = Heap_Alloc(heapID, sizeof(TownMapBlock) * locationCount);
+    memset(tmapBlock->entries, 0, sizeof(TownMapBlock) * locationCount);
 
-    v4->unk_00 = v3;
+    tmapBlock->locationCount = locationCount;
 
-    for (v2 = 0; v2 < v4->unk_00; v2++) {
-        v5 = &(v4->unk_04[v2]);
-        v1 = FS_ReadFile(&v0, v5, sizeof(UnkStruct_ov80_021D2AF4));
-        v5->unk_16 = v2;
+    for (i = 0; i < tmapBlock->locationCount; i++) {
+        entry = &(tmapBlock->entries[i]);
+        readLength = FS_ReadFile(&tmapBlockFile, entry, sizeof(TownMapBlock));
+        entry->index = i;
     }
 
-    (void)FS_CloseFile(&v0);
+    (void)FS_CloseFile(&tmapBlockFile);
 
-    return v4;
+    return tmapBlock;
 }
 
-void ov80_021D2E10(UnkStruct_ov80_021D2E10 *param0)
+void TownMapApp_FreeTownMapBlockData(TownMapBlockList *param0)
 {
-    Heap_Free(param0->unk_04);
+    Heap_Free(param0->entries);
     Heap_Free(param0);
 }
 
-UnkStruct_ov80_021D2AF4 *ov80_021D2E24(UnkStruct_ov80_021D2E10 *param0, int param1, int param2, u16 param3)
+TownMapBlock *TownMapApp_GetHoveredMapBlock(TownMapBlockList *param0, int param1, int param2, u16 param3)
 {
     int v0;
-    UnkStruct_ov80_021D2AF4 *v1;
+    TownMapBlock *v1;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        v1 = &(param0->unk_04[v0]);
+    for (v0 = 0; v0 < param0->locationCount; v0++) {
+        v1 = &(param0->entries[v0]);
 
-        if ((v1->unk_00 == param1) && (v1->unk_02 == param2)) {
-            if ((v1->unk_14 == 0) || (v1->unk_14 & param3)) {
+        if ((v1->x == param1) && (v1->y == param2)) {
+            if ((v1->hiddenLocationFlags == 0) || (v1->hiddenLocationFlags & param3)) {
                 return v1;
             } else {
                 return NULL;
