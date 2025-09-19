@@ -1,7 +1,6 @@
-#include "overlay005/ov5_021EA714.h"
+#include "overlay005/poketch_system.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "applications/poketch/unavailable/graphics.h"
 #include "field/field_system.h"
@@ -23,41 +22,41 @@ void FieldSystem_SendPoketchEvent(FieldSystem *fieldSystem, enum PoketchEventID 
     }
 }
 
-void ov5_021EA728(FieldSystem *fieldSystem)
+void PoketchSystem_InitBottomScreen(FieldSystem *fieldSystem)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (Poketch_IsEnabled(poketch)
-        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
-        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
+        && SystemFlag_CheckPoketchHidden(varsFlags) == FALSE) {
+        Overlay_LoadByID(FS_OVERLAY_ID(overlay25), OVERLAY_LOAD_ASYNC);
+        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(DS_SCREEN_SUB));
     } else {
-        Overlay_LoadByID(FS_OVERLAY_ID(poketch_unavailable), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(poketch_unavailable), OVERLAY_LOAD_ASYNC);
         PoketchUnavailableScreen_Init(fieldSystem->bgConfig);
     }
 }
 
-void ov5_021EA790(FieldSystem *fieldSystem)
+void PoketchSystem_EndBottomScreen(FieldSystem *fieldSystem)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (Poketch_IsEnabled(poketch)
-        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
+        && SystemFlag_CheckPoketchHidden(varsFlags) == FALSE) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
         PoketchUnavailableScreen_Exit(fieldSystem->bgConfig);
     }
 }
 
-u8 ov5_021EA7CC(FieldSystem *fieldSystem)
+BOOL PoketchSystem_IsBottomScreenDone(FieldSystem *fieldSystem)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (Poketch_IsEnabled(poketch)
-        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
+        && SystemFlag_CheckPoketchHidden(varsFlags) == FALSE) {
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay25));
@@ -73,23 +72,23 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
     return 0;
 }
 
-void ov5_021EA830(FieldSystem *fieldSystem)
+void BottomScreen_InitPoketchUnavailable(FieldSystem *fieldSystem)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(poketch_unavailable), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(poketch_unavailable), OVERLAY_LOAD_ASYNC);
     PoketchUnavailableScreen_Init(fieldSystem->bgConfig);
 }
 
-void ov5_021EA848(FieldSystem *fieldSystem)
+void BottomScreen_EndPoketchUnavailable(FieldSystem *fieldSystem)
 {
     PoketchUnavailableScreen_Exit(fieldSystem->bgConfig);
 }
 
-BOOL ov5_021EA854(FieldSystem *fieldSystem)
+BOOL BottomScreen_IsPoketchUnavailableDone(FieldSystem *fieldSystem)
 {
     if (PoketchUnavailableScreen_IsDone(fieldSystem->bgConfig)) {
         Overlay_UnloadByID(FS_OVERLAY_ID(poketch_unavailable));
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

@@ -476,7 +476,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_model_attributes.c.o
 	Object main.nef.p/src_overlay005_field_camera.c.o
-	Object main.nef.p/src_overlay005_ov5_021D5BC0.c.o
+	Object main.nef.p/src_overlay005_bottom_screen_manager.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5CB0.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5EB8.c.o
 	Object main.nef.p/src_overlay005_vs_seeker.c.o
@@ -497,7 +497,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_encounter_effect_core.c.o
 	Object main.nef.p/src_overlay005_daycare.c.o
 	Object main.nef.p/src_overlay005_land_data.c.o
-	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
+	Object main.nef.p/src_overlay005_poketch_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA874.c.o
 	Object main.nef.p/src_overlay005_ov5_021EAFA4.c.o
 	Object main.nef.p/src_overlay005_ov5_021FAF40.c.o

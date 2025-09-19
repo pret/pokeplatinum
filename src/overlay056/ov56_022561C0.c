@@ -216,7 +216,7 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
     }
 }
 
-UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
+UnkStruct_ov56_02256468 *ColosseumSystem_Init(FieldSystem *fieldSystem)
 {
     SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
     UnkStruct_ov56_02256468 *v0 = SysTask_GetParam(v1);
@@ -233,7 +233,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
     return v0;
 }
 
-void ov56_02256468(UnkStruct_ov56_02256468 *param0)
+void ColosseumSystem_End(UnkStruct_ov56_02256468 *param0)
 {
     if (param0->unk_00 == 2) {
         BgConfig *v0 = param0->unk_14;

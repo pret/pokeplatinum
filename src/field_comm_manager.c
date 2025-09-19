@@ -724,14 +724,14 @@ UnkStruct_02029894 *sub_0205A080(SaveData *saveData)
     return ov23_02242E10(saveData);
 }
 
-void sub_0205A0A0(void)
+void UndergroundComm_End(void)
 {
     if (sFieldCommMan && sFieldCommMan->unk_41) {
         ov23_02242C78();
     }
 }
 
-void sub_0205A0BC(void)
+void UndergroundComm_Init(void)
 {
     if (sFieldCommMan && sFieldCommMan->unk_41) {
         ov23_02242CB4();

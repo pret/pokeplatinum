@@ -13,6 +13,7 @@
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
+#include "overlay005/bottom_screen_manager.h"
 #include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
@@ -73,7 +74,7 @@ typedef struct FieldSystem_t {
     SaveData *saveData;
     FieldTask *task;
     MapHeaderData *mapHeaderData;
-    int bottomScreen;
+    enum BottomScreenMode bottomScreenMode;
     Location *location;
     int unk_20;
     Camera *camera;
@@ -100,7 +101,7 @@ typedef struct FieldSystem_t {
     FieldWildBattleMetadata wildBattleMetadata;
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;
-    UnkStruct_ov56_02256468 *unk_84;
+    UnkStruct_ov56_02256468 *colosseumData;
     UnkStruct_02095E80 *unk_88;
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int menuCursorPos;
