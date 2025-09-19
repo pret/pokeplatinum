@@ -19,7 +19,7 @@ typedef struct {
     u16 state;
     u32 unk_2C;
     u8 options[7];
-    UnkStruct_ov5_021D30A8 unk_38;
+    SpriteResourceManager spriteManager;
     ManagedSprite *unk_200[8];
     u32 unk_220;
     u32 hideOptionFlags;
