@@ -7,9 +7,9 @@
 #include "overlay005/hblank_system.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
-#include "overlay005/struct_ov5_021D5CB0_decl.h"
 #include "overlay005/struct_ov5_021D5EF8_decl.h"
 #include "overlay005/struct_ov5_021EF4F8_decl.h"
+#include "overlay005/texture_resource_manager_decl.h"
 
 struct FieldSystem_sub2_t {
     BOOL unk_00;

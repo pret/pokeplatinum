@@ -7,7 +7,7 @@
 #include "generated/signpost_types.h"
 
 #include "overlay005/sprite_resource_manager.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager_struct.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
