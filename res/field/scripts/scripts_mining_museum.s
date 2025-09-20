@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mining_museum.h"
 
+
     ScriptEntry MiningMuseum_Welcome
     ScriptEntry MiningMuseum_FossilResearcher
     ScriptEntry MiningMuseum_CoalExhibit1
