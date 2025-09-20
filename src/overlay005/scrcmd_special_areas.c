@@ -19,7 +19,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/struct_ov5_021F6704_decl.h"
+#include "overlay005/pokedex_data_menu_decl.h"
 
 #include "bag.h"
 #include "berry_patch_graphics.h"
