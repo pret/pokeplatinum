@@ -1,15 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mining_museum.h"
 
-// Script variable constants for fossil revival system
-#define VAR_FOSSIL_COUNT VAR_0x8000          // Total fossil count from GetFossilCount
-#define VAR_FOSSIL_COUNT_ACCUM VAR_0x8001    // Accumulator for counting fossils
-#define VAR_SELECTED_FOSSIL_ITEM VAR_0x8002  // Selected fossil item ID
-#define VAR_MENU_SELECTION VAR_0x8003        // Menu selection result
-#define VAR_MENU_ENTRY_INDEX VAR_0x8004      // Menu entry index counter
-#define VAR_FOSSIL_TYPE_INDEX VAR_0x8005     // Fossil type loop counter
-#define VAR_MENU_ENTRY_ID VAR_0x8006         // Menu entry ID (fossil type + 156)
-
     ScriptEntry MiningMuseum_Welcome
     ScriptEntry MiningMuseum_FossilResearcher
     ScriptEntry MiningMuseum_CoalExhibit1
@@ -46,74 +37,74 @@ MiningMuseum_FossilResearcher:
     Message MiningMuseum_Text_FossilResearcherGreeting
     GoToIfUnset FLAG_EXPLORER_KIT_RECEIVED, MiningMuseum_NotYetReady
     GoToIfNe VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_PokemonRevival
-    GetFossilCount VAR_FOSSIL_COUNT
-    GoToIfEq VAR_FOSSIL_COUNT, 0, MiningMuseum_NoFossils
+    GetFossilCount VAR_0x8000
+    GoToIfEq VAR_0x8000, 0, MiningMuseum_NoFossils
     Message MiningMuseum_Text_HaveFossilForMe
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, MiningMuseum_DeclinedRevival
-    GoToIfEq VAR_FOSSIL_COUNT, 1, MiningMuseum_SingleFossilRevival
-    SetVar VAR_FOSSIL_COUNT_ACCUM, 0
+    GoToIfEq VAR_0x8000, 1, MiningMuseum_SingleFossilRevival
+    SetVar VAR_0x8001, 0
     CheckItem ITEM_OLD_AMBER, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_HELIX_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_DOME_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_ROOT_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_CLAW_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_ARMOR_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     CheckItem ITEM_SKULL_FOSSIL, 1, VAR_RESULT
-    AddVar VAR_FOSSIL_COUNT_ACCUM, VAR_RESULT
-    GoToIfEq VAR_FOSSIL_COUNT_ACCUM, 1, MiningMuseum_SingleFossilRevival
-    SetVar VAR_MENU_ENTRY_INDEX, 0
-    SetVar VAR_FOSSIL_TYPE_INDEX, 0
-    InitGlobalTextMenu 1, 1, 0, VAR_MENU_SELECTION
+    AddVar VAR_0x8001, VAR_RESULT
+    GoToIfEq VAR_0x8001, 1, MiningMuseum_SingleFossilRevival
+    SetVar VAR_0x8004, 0
+    SetVar VAR_0x8005, 0
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8003
 MiningMuseum_FossilMenuLoop:
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 0, MiningMuseum_CheckFossil_OldAmber
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 1, MiningMuseum_CheckFossil_HelixFossil
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 2, MiningMuseum_CheckFossil_DomeFossil
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 3, MiningMuseum_CheckFossil_RootFossil
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 4, MiningMuseum_CheckFossil_ClawFossil
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 5, MiningMuseum_CheckFossil_ArmorFossil
-    CallIfEq VAR_FOSSIL_TYPE_INDEX, 6, MiningMuseum_CheckFossil_SkullFossil
+    CallIfEq VAR_0x8005, 0, MiningMuseum_CheckFossil_OldAmber
+    CallIfEq VAR_0x8005, 1, MiningMuseum_CheckFossil_HelixFossil
+    CallIfEq VAR_0x8005, 2, MiningMuseum_CheckFossil_DomeFossil
+    CallIfEq VAR_0x8005, 3, MiningMuseum_CheckFossil_RootFossil
+    CallIfEq VAR_0x8005, 4, MiningMuseum_CheckFossil_ClawFossil
+    CallIfEq VAR_0x8005, 5, MiningMuseum_CheckFossil_ArmorFossil
+    CallIfEq VAR_0x8005, 6, MiningMuseum_CheckFossil_SkullFossil
     GoToIfEq VAR_RESULT, FALSE, MiningMuseum_FossilMenuNext
-    CallIfEq VAR_MENU_ENTRY_INDEX, 0, MiningMuseum_SetOldAmberVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 1, MiningMuseum_SetHelixFossilVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 2, MiningMuseum_SetDomeFossilVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 3, MiningMuseum_SetRootFossilVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 4, MiningMuseum_SetClawFossilVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 5, MiningMuseum_SetArmorFossilVar
-    CallIfEq VAR_MENU_ENTRY_INDEX, 6, MiningMuseum_SetSkullFossilVar
-    SetVar VAR_MENU_ENTRY_ID, VAR_FOSSIL_TYPE_INDEX
-    AddVar VAR_MENU_ENTRY_ID, 156
-    AddMenuEntry VAR_MENU_ENTRY_ID, VAR_MENU_ENTRY_INDEX
+    CallIfEq VAR_0x8004, 0, MiningMuseum_SetOldAmberVar
+    CallIfEq VAR_0x8004, 1, MiningMuseum_SetHelixFossilVar
+    CallIfEq VAR_0x8004, 2, MiningMuseum_SetDomeFossilVar
+    CallIfEq VAR_0x8004, 3, MiningMuseum_SetRootFossilVar
+    CallIfEq VAR_0x8004, 4, MiningMuseum_SetClawFossilVar
+    CallIfEq VAR_0x8004, 5, MiningMuseum_SetArmorFossilVar
+    CallIfEq VAR_0x8004, 6, MiningMuseum_SetSkullFossilVar
+    SetVar VAR_0x8006, VAR_0x8005
+    AddVar VAR_0x8006, 156
+    AddMenuEntry VAR_0x8006, VAR_0x8004
     GoTo MiningMuseum_FossilMenuContinue
 
 MiningMuseum_FossilMenuNext:
-    AddVar VAR_FOSSIL_TYPE_INDEX, 1
+    AddVar VAR_0x8005, 1
     GoTo MiningMuseum_FossilMenuLoop
 
 MiningMuseum_FossilMenuContinue:
-    AddVar VAR_MENU_ENTRY_INDEX, 1
-    AddVar VAR_FOSSIL_TYPE_INDEX, 1
-    GoToIfNe VAR_MENU_ENTRY_INDEX, VAR_FOSSIL_COUNT_ACCUM, MiningMuseum_FossilMenuLoop
-    AddMenuEntry 44, VAR_MENU_ENTRY_INDEX
+    AddVar VAR_0x8004, 1
+    AddVar VAR_0x8005, 1
+    GoToIfNe VAR_0x8004, VAR_0x8001, MiningMuseum_FossilMenuLoop
+    AddMenuEntry 44, VAR_0x8004
     ShowMenu
-    GoToIfEq VAR_MENU_SELECTION, 0xFF, MiningMuseum_DeclinedRevival
-    GoToIfEq VAR_MENU_SELECTION, VAR_MAP_LOCAL_0, MiningMuseum_DeclinedRevival
-    CallIfEq VAR_MENU_SELECTION, 0, MiningMuseum_GetOldAmberVar
-    CallIfEq VAR_MENU_SELECTION, 1, MiningMuseum_GetHelixFossilVar
-    CallIfEq VAR_MENU_SELECTION, 2, MiningMuseum_GetDomeFossilVar
-    CallIfEq VAR_MENU_SELECTION, 3, MiningMuseum_GetRootFossilVar
-    CallIfEq VAR_MENU_SELECTION, 4, MiningMuseum_GetClawFossilVar
-    CallIfEq VAR_MENU_SELECTION, 5, MiningMuseum_GetArmorFossilVar
-    CallIfEq VAR_MENU_SELECTION, 6, MiningMuseum_GetSkullFossilVar
-    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
+    GoToIfEq VAR_0x8003, 0xFF, MiningMuseum_DeclinedRevival
+    GoToIfEq VAR_0x8003, VAR_MAP_LOCAL_0, MiningMuseum_DeclinedRevival
+    CallIfEq VAR_0x8003, 0, MiningMuseum_GetOldAmberVar
+    CallIfEq VAR_0x8003, 1, MiningMuseum_GetHelixFossilVar
+    CallIfEq VAR_0x8003, 2, MiningMuseum_GetDomeFossilVar
+    CallIfEq VAR_0x8003, 3, MiningMuseum_GetRootFossilVar
+    CallIfEq VAR_0x8003, 4, MiningMuseum_GetClawFossilVar
+    CallIfEq VAR_0x8003, 5, MiningMuseum_GetArmorFossilVar
+    CallIfEq VAR_0x8003, 6, MiningMuseum_GetSkullFossilVar
+    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_0x8002
     GoToIfEq VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_DeclinedRevival
-    RemoveItem VAR_SELECTED_FOSSIL_ITEM, 1, VAR_RESULT
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo MiningMuseum_ExtractingPokemon
 
 MiningMuseum_CheckFossil_OldAmber:
@@ -180,37 +171,37 @@ MiningMuseum_SetSkullFossilVar:
     Return
 
 MiningMuseum_GetOldAmberVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_1
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_1
     Return
 
 MiningMuseum_GetHelixFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_2
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_2
     Return
 
 MiningMuseum_GetDomeFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_3
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_3
     Return
 
 MiningMuseum_GetRootFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_4
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_4
     Return
 
 MiningMuseum_GetClawFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_5
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_5
     Return
 
 MiningMuseum_GetArmorFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_6
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_6
     Return
 
 MiningMuseum_GetSkullFossilVar:
-    SetVar VAR_SELECTED_FOSSIL_ITEM, VAR_MAP_LOCAL_7
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_7
     Return
 
 MiningMuseum_SingleFossilRevival:
-    FindFossilAtThreshold VAR_SELECTED_FOSSIL_ITEM, VAR_MENU_ENTRY_INDEX, 1
-    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_SELECTED_FOSSIL_ITEM
-    RemoveItem VAR_SELECTED_FOSSIL_ITEM, 1, VAR_RESULT
+    FindFossilAtThreshold VAR_0x8002, VAR_0x8004, 1
+    GetSpeciesFromFossil VAR_REVIVED_POKEMON_SPECIES, VAR_0x8002
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo MiningMuseum_ExtractingPokemon
 
 MiningMuseum_ExtractingPokemon:
