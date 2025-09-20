@@ -768,8 +768,8 @@ _094C:
 
 _0954:
     LockAll
-    ScrCmd_32D
-    ScrCmd_331
+    ElevateAllMapObjects
+    ElevateSpecificMapObjects
     SetObjectEventPos 33, 0x12B, 0x215
     ClearFlag FLAG_UNK_0x018C
     AddObject 33
@@ -851,8 +851,8 @@ _0AB6:
     Message 2
     CloseMessage
     CallCommonScript 0x7FB
-    ScrCmd_32E
-    ScrCmd_332
+    ResetAllMapObjectElevation
+    ResetSpecificMapObjectElevation
     AddFreeCamera 0x143, 0x20C
     ApplyFreeCameraMovement _0CD4
     WaitMovement

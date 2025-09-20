@@ -380,7 +380,7 @@ static int sub_02069FE8(MapObject *mapObj, UnkStruct_02069F48 *param1)
     int v3 = MapObject_GetXPrev(v0);
     int v4 = MapObject_GetZPrev(v0);
 
-    if (((v1 != v3) || (v2 != v4)) && ((MapObject_IsMoving(v0) == 1) || (!MapObject_CheckStatus(v0, (MAP_OBJ_STATUS_11 | MAP_OBJ_STATUS_12 | MAP_OBJ_STATUS_PAUSE_MOVEMENT))))) {
+    if (((v1 != v3) || (v2 != v4)) && ((MapObject_IsMoving(v0) == 1) || (!MapObject_CheckStatus(v0, (MAP_OBJ_STATUS_11 | MAP_OBJ_STATUS_ELEVATION_TARGET | MAP_OBJ_STATUS_PAUSE_MOVEMENT))))) {
         return 1;
     }
 

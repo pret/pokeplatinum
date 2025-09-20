@@ -366,7 +366,7 @@ static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param
 
     v0 = 0;
 
-    while (sub_020625B0(param1, &v1, &v0, MAP_OBJ_STATUS_0)) {
+    while (sub_020625B0(param1, &v1, &v0, MAP_OBJ_STATUS_ACTIVE)) {
         if (v1 != param2) {
             int v2 = sub_02067C54(v1);
 

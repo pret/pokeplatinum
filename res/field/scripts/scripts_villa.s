@@ -1757,7 +1757,7 @@ _1B4F:
     Return
 
 _1B7B:
-    ScrCmd_30F 13, VAR_RESULT
+    CheckAchievementRequirements 13, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, _1E05
@@ -1765,7 +1765,7 @@ _1B7B:
     Return
 
 _1BAF:
-    ScrCmd_30F 14, VAR_RESULT
+    CheckAchievementRequirements 14, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1E19
@@ -1773,7 +1773,7 @@ _1BAF:
     Return
 
 _1BE3:
-    ScrCmd_30F 15, VAR_RESULT
+    CheckAchievementRequirements 15, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 146700, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_PIANO, _1E2D
@@ -1781,7 +1781,7 @@ _1BE3:
     Return
 
 _1C17:
-    ScrCmd_30F 16, VAR_RESULT
+    CheckAchievementRequirements 16, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 208000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _1E41
@@ -1789,7 +1789,7 @@ _1C17:
     Return
 
 _1C4B:
-    ScrCmd_30F 17, VAR_RESULT
+    CheckAchievementRequirements 17, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 52000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, _1E55
@@ -1797,7 +1797,7 @@ _1C4B:
     Return
 
 _1C7F:
-    ScrCmd_30F 18, VAR_RESULT
+    CheckAchievementRequirements 18, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 140000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, _1E69
@@ -1812,7 +1812,7 @@ _1CB3:
     Return
 
 _1CDF:
-    ScrCmd_30F 20, VAR_RESULT
+    CheckAchievementRequirements 20, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
     BufferValuePaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
     CallIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, _1E91

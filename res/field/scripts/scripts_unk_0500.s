@@ -105,7 +105,7 @@ _0199:
     End
 
 _01D3:
-    ScrCmd_2DE VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8006, VAR_0x8007
+    ShowPokedexDataMenu VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8006, VAR_0x8007
     GoToIfEq VAR_0x8003, -2, _0199
     Call _032B
     Message 6

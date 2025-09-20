@@ -465,7 +465,7 @@ _05A0:
     End
 
 _05AB:
-    ScrCmd_300
+    SetFavoritePokemon
     Message pl_msg_00000046_00020
     GoTo _05F9
     End

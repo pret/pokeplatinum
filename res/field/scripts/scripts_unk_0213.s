@@ -406,7 +406,7 @@ _05CF:
     Message 124
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _01D3
-    ScrCmd_31D VAR_RESULT
+    CountGriseousOrbs VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _068E
     SetVar VAR_UNK_0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE

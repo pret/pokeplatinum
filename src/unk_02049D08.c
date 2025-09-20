@@ -389,7 +389,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
         }
 
-        v3->unk_20 = GameRecords_GetRecordValue(v5, RECORD_UNK_029);
+        v3->unk_20 = GameRecords_GetRecordValue(v5, RECORD_BATTLE_TOWER_WIN_STREAK);
     }
 
     if (v3->unk_0F == 6) {
@@ -628,7 +628,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 2);
     }
 
-    GameRecords_AddToRecordValue(v5, RECORD_UNK_029, param0->unk_0D);
+    GameRecords_AddToRecordValue(v5, RECORD_BATTLE_TOWER_WIN_STREAK, param0->unk_0D);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 2);
 
     if (param0->unk_0F != 6) {
@@ -685,7 +685,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
     v3 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
     v4 = sub_02030848(frontier, v1, sub_0205E6A8(v1), v0);
 
-    GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
+    GameRecords_AddToRecordValue(v6, RECORD_BATTLE_TOWER_WIN_STREAK, 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);
 
     if (param0->unk_0F != 6) {

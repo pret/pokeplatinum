@@ -59,7 +59,7 @@ FightArea_ActivateRivalFight_Unused:
 
 _00D8:
     LockAll
-    ScrCmd_32D
+    ElevateAllMapObjects
     ApplyMovement 7, _0340
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _03DC
@@ -74,7 +74,7 @@ _00D8:
     WaitMovement
     CallCommonScript 0x801
     SetVar VAR_UNK_0x4081, 1
-    ScrCmd_32E
+    ResetAllMapObjectElevation
     Message 1
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _02EE

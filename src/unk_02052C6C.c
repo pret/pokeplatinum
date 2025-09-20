@@ -207,7 +207,7 @@ void sub_02052E58(FieldTask *param0)
 
     v6 = SaveData_GetGameRecords(fieldSystem->saveData);
 
-    GameRecords_IncrementRecordValue(v6, RECORD_UNK_073);
+    GameRecords_IncrementRecordValue(v6, RECORD_HALL_OF_FAME_ENTRIES);
     FieldTask_InitCall(param0, sub_02052CBC, v5);
 }
 

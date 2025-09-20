@@ -149,7 +149,7 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
             v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_015);
 
             if (v1 > 0) {
-                v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_029) / v1;
+                v1 = GameRecords_GetRecordValue(v2, RECORD_BATTLE_TOWER_WIN_STREAK) / v1;
             }
 
             v4[v0] = v1;

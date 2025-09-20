@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
+#include "generated/maps.h"
 #include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
@@ -13,6 +15,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "applications/pokedex/pokedex_sort.h"
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
@@ -52,327 +55,350 @@
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
+#include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
 
+#define MAX_MENU_SYSTEM_ITEMS 120
+
+// Achievement requirement constants
+#define ACHIEVEMENT_MIN_WIN_STREAK           1
+#define ACHIEVEMENT_MIN_PRINT_STATE          2
+#define ACHIEVEMENT_MIN_HALL_OF_FAME_ENTRIES 10
+#define ACHIEVEMENT_MIN_BATTLEGROUND_BATTLES 50
+#define ACHIEVEMENT_MIN_BERRIES_PLANTED      50
+#define ACHIEVEMENT_MIN_EGGS_HATCHED         30
+#define ACHIEVEMENT_MIN_STEP_COUNT           300000
+
+// PokedexDataMenu Constants
+#define POKEDEX_MENU_MAX_DISPLAY_ITEMS 8
+#define POKEDEX_MENU_ITEM_WIDTH        11
+#define POKEDEX_MENU_ITEM_HEIGHT       2
+
+// Secret Base Progress System Constants
+// 127 (0x7F): Maximum progress when all 7 locations are discovered (bit flags 0-6 set)
+// 260 (0x104): Special completion marker to distinguish from bit-flag progress
+#define SECRET_BASE_MAX_PROGRESS     127
+#define SECRET_BASE_COMPLETION_VALUE 260
+
 typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov5_02200C90;
+    s16 tileX;
+    s16 tileY;
+} TilePosition;
 
-struct UnkStruct_ov5_021F6704_t {
+struct PokedexDataMenu_t {
     FieldSystem *fieldSystem;
-    SysTask *unk_04;
-    Window unk_08;
-    Window *unk_18;
-    Strbuf *unk_1C[120];
-    MessageLoader *unk_1FC;
-    StringTemplate *unk_200;
-    u8 unk_204;
-    u8 unk_205;
-    u8 unk_206;
-    u8 unk_207_0 : 1;
-    u8 unk_207_1 : 1;
-    u8 unk_207_2 : 6;
-    u8 unk_208;
-    u8 unk_209;
-    u8 unk_20A;
-    u8 unk_20B;
-    u16 *unk_20C;
-    u16 *unk_210;
-    u16 *unk_214;
-    u16 *unk_218;
-    ListMenuTemplate unk_21C;
-    ListMenu *unk_23C;
-    u16 unk_240;
-    u16 unk_242;
-    StringList unk_244[120];
-    u16 unk_604[120];
-    u16 unk_6F4;
+    SysTask *task;
+    Window menuWindow;
+    Window *parentWindow;
+    Strbuf *itemTextBuffers[MAX_MENU_SYSTEM_ITEMS];
+    MessageLoader *messageLoader;
+    StringTemplate *stringTemplate;
+    u8 delayCounter;
+    u8 unused_205;
+    u8 maxItems;
+    u8 allowCancel : 1;
+    u8 ownsMessageLoader : 1;
+    u8 unused_207_2 : 6;
+    u8 windowX;
+    u8 windowY;
+    u8 unused_20A;
+    u8 itemCount;
+    u16 *unused_20C;
+    u16 *selectedIndexPtr;
+    u16 *cursorPosPtr;
+    u16 *scrollPosPtr;
+    ListMenuTemplate listMenuTemplate;
+    ListMenu *listMenu;
+    u16 unused_240;
+    u16 unused_242;
+    StringList menuChoices[MAX_MENU_SYSTEM_ITEMS];
+    u16 unused_230[MAX_MENU_SYSTEM_ITEMS];
+    u16 currentCursorPos;
 };
 
-static u16 *ov5_021F65FC(int param0, int param1, int *param2);
-BOOL ScrCmd_2DE(ScriptContext *ctx);
-static BOOL ov5_021F65D4(ScriptContext *ctx);
-static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2);
-BOOL ScrCmd_300(ScriptContext *ctx);
-BOOL ScrCmd_301(ScriptContext *ctx);
-BOOL ScrCmd_30F(ScriptContext *ctx);
-BOOL ScrCmd_2F1(ScriptContext *ctx);
-static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1);
-static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11);
-UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8, u16 *param9, u16 *param10);
-void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
-static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
-static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2);
-static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2);
-static void ov5_021F6A34(SysTask *param0, void *param1);
-static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0);
+static u16 *LoadPokedexData(int heapID, int fileIndex, int *pokedexLength);
+BOOL ScrCmd_ShowPokedexDataMenu(ScriptContext *ctx);
+static BOOL PokedexDataMenu_IsSelectionComplete(ScriptContext *ctx);
+static void CalculatePokemonPotential(Pokemon *pokemon, int *potential, int *rating);
+BOOL ScrCmd_SetFavoritePokemon(ScriptContext *ctx);
+BOOL ScrCmd_GetFavoritePokemon(ScriptContext *ctx);
+BOOL ScrCmd_CheckAchievementRequirements(ScriptContext *ctx);
+BOOL ScrCmd_SetPokemonForm(ScriptContext *ctx);
+static void PokedexDataMenu_SetMessageLoader(PokedexDataMenu *menu, MessageLoader *loader);
+static void PokedexDataMenu_Init(FieldSystem *fieldSystem, PokedexDataMenu *menu, u8 x, u8 y, u8 maxItems, u8 allowCancel, u16 *selectedIndex, StringTemplate *template, Window *window, MessageLoader *loader, u16 *cursorPos, u16 *scrollPos);
+PokedexDataMenu *PokedexDataMenu_New(FieldSystem *fieldSystem, u8 x, u8 y, u8 maxItems, u8 allowCancel, u16 *selectedIndex, StringTemplate *template, Window *window, MessageLoader *loader, u16 *cursorPos, u16 *scrollPos);
+void PokedexDataMenu_AddMenuEntry(PokedexDataMenu *menu, u32 messageIndex, u32 colorIndex, u32 itemIndex);
+static void PokedexDataMenu_ShowMenu(PokedexDataMenu *menu);
+static void PokedexDataMenu_AddMenuEntryInternal(PokedexDataMenu *menu, u32 messageIndex, u32 colorIndex, u32 itemIndex);
+static void PokedexDataMenu_InitMenuTemplate(PokedexDataMenu *menu);
+static void PokedexDataMenu_PrintCallback(ListMenu *menu, u32 index, u8 y);
+static void PokedexDataMenu_CursorCallback(ListMenu *menu, u32 index, u8 y);
+static void PokedexDataMenu_ProcessInput(SysTask *task, void *data);
+static void PokedexDataMenu_Delete(PokedexDataMenu *menu);
 
-static u16 Unk_ov5_0220210C[] = {
-    0x12,
-    0x13,
-    0x14,
-    0x15,
-    0x16,
-    0x17,
-    0x18,
-    0x19,
-    0x1A
+static u16 BattleFrontierPokedexFileIndices[] = {
+    NUMSTATFILES + PDSI_ABC,
+    NUMSTATFILES + PDSI_DEF,
+    NUMSTATFILES + PDSI_GHI,
+    NUMSTATFILES + PDSI_JKL,
+    NUMSTATFILES + PDSI_MNO,
+    NUMSTATFILES + PDSI_PQR,
+    NUMSTATFILES + PDSI_STU,
+    NUMSTATFILES + PDSI_VWX,
+    NUMSTATFILES + PDSI_YZ
 };
 
-BOOL ScrCmd_2DE(ScriptContext *ctx)
+BOOL ScrCmd_ShowPokedexDataMenu(ScriptContext *ctx)
 {
-    int v0;
-    BattleFrontierStage *v1;
-    u16 v2;
-    u16 *v3;
-    int v4, v5;
-    MessageLoader *v6;
-    MessageLoader *v7;
+    int battleStageCount;
+    BattleFrontierStage *battleStage;
+    u16 pokemonSpecies;
+    u16 *pokedexData;
+    int i, pokedexLength;
+    MessageLoader *speciesLoader;
+    MessageLoader *menuLoader;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021F6704 *v9;
-    StringTemplate **v10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 v11 = ScriptContext_GetVar(ctx);
-    u16 v12 = ScriptContext_GetVar(ctx);
-    u16 v13 = ScriptContext_ReadHalfWord(ctx);
-    u16 v14 = ScriptContext_ReadHalfWord(ctx);
-    u16 v15 = ScriptContext_ReadHalfWord(ctx);
+    PokedexDataMenu *menuSystem;
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 battleStageIndex = ScriptContext_GetVar(ctx);
+    u16 stageType = ScriptContext_GetVar(ctx);
+    u16 selectedIndexVar = ScriptContext_ReadHalfWord(ctx);
+    u16 cursorPosVar = ScriptContext_ReadHalfWord(ctx);
+    u16 scrollPosVar = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->data[0] = v13;
+    ctx->data[0] = selectedIndexVar;
 
-    v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
-    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
-    v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
+    speciesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
+    menuSystem = PokedexDataMenu_New(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, selectedIndexVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), speciesLoader, FieldSystem_GetVarPointer(fieldSystem, cursorPosVar), FieldSystem_GetVarPointer(fieldSystem, scrollPosVar));
+    battleStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &battleStageCount);
 
-    if (v0 == 1) {
-        v3 = ov5_021F65FC(32, Unk_ov5_0220210C[v12], &v5);
+    if (battleStageCount == 1) {
+        pokedexData = LoadPokedexData(HEAP_ID_FIELD3, BattleFrontierPokedexFileIndices[stageType], &pokedexLength);
 
-        for (v4 = 0; v4 < v5; v4++) {
-            v2 = sub_020308BC(fieldSystem->saveData, v1, sub_0205E584(v11), v3[v4]);
+        for (i = 0; i < pokedexLength; i++) {
+            pokemonSpecies = sub_020308BC(fieldSystem->saveData, battleStage, sub_0205E584(battleStageIndex), pokedexData[i]);
 
-            if (v2 != 0) {
-                ov5_021F6760(v9, v3[v4], 0xff, v3[v4]);
+            if (pokemonSpecies != SPECIES_NONE) {
+                PokedexDataMenu_AddMenuEntry(menuSystem, pokedexData[i], 0xff, pokedexData[i]);
             }
         }
 
-        Heap_Free(v3);
+        Heap_Free(pokedexData);
     }
 
-    if (v1 != NULL) {
-        Heap_Free(v1);
+    if (battleStage != NULL) {
+        Heap_Free(battleStage);
     }
 
-    v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
+    menuLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
 
-    ov5_021F661C(v9, v7);
-    ov5_021F6760(v9, 12, 0xff, 0xfffe);
+    PokedexDataMenu_SetMessageLoader(menuSystem, menuLoader);
+    PokedexDataMenu_AddMenuEntry(menuSystem, 12, 0xff, 0xfffe);
 
-    MessageLoader_Free(v7);
+    MessageLoader_Free(menuLoader);
 
-    ov5_021F661C(v9, v6);
-    ov5_021F6768(v9);
+    PokedexDataMenu_SetMessageLoader(menuSystem, speciesLoader);
+    PokedexDataMenu_ShowMenu(menuSystem);
 
-    ScriptContext_Pause(ctx, ov5_021F65D4);
-    MessageLoader_Free(v6);
+    ScriptContext_Pause(ctx, PokedexDataMenu_IsSelectionComplete);
+    MessageLoader_Free(speciesLoader);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov5_021F65D4(ScriptContext *ctx)
+static BOOL PokedexDataMenu_IsSelectionComplete(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u16 *selectedIndex = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == 0xeeee) {
-        return 0;
+    if (*selectedIndex == LIST_MENU_NO_SELECTION_YET) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
+static u16 *LoadPokedexData(int heapID, int fileIndex, int *pokedexLength)
 {
     u32 pokedexSize;
     u16 *pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
-    *pokedexLength = pokedexSize / (sizeof(u16));
+    *pokedexLength = pokedexSize / sizeof(u16);
 
     return pokedex;
 }
 
-static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1)
+static void PokedexDataMenu_SetMessageLoader(PokedexDataMenu *menu, MessageLoader *loader)
 {
-    param0->unk_1FC = param1;
+    menu->messageLoader = loader;
     return;
 }
 
-static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11)
+static void PokedexDataMenu_Init(FieldSystem *fieldSystem, PokedexDataMenu *menu, u8 x, u8 y, u8 maxItems, u8 allowCancel, u16 *selectedIndex, StringTemplate *template, Window *window, MessageLoader *loader, u16 *cursorPos, u16 *scrollPos)
 {
-    int v0;
+    int i;
 
-    param1->unk_1FC = param9;
-    param1->unk_207_1 = 0;
-    param1->unk_200 = param7;
-    param1->fieldSystem = fieldSystem;
-    param1->unk_210 = param6;
+    menu->messageLoader = loader;
+    menu->ownsMessageLoader = 0;
+    menu->stringTemplate = template;
+    menu->fieldSystem = fieldSystem;
+    menu->selectedIndexPtr = selectedIndex;
 
-    *param1->unk_210 = 0;
+    *menu->selectedIndexPtr = 0;
 
-    param1->unk_214 = param10;
-    param1->unk_218 = param11;
-    param1->unk_207_0 = param5;
-    param1->unk_206 = param4;
-    param1->unk_208 = param2;
-    param1->unk_209 = param3;
-    param1->unk_20B = 0;
-    param1->unk_18 = param8;
-    param1->unk_204 = 3;
-    param1->unk_6F4 = param4;
+    menu->cursorPosPtr = cursorPos;
+    menu->scrollPosPtr = scrollPos;
+    menu->allowCancel = allowCancel;
+    menu->maxItems = maxItems;
+    menu->windowX = x;
+    menu->windowY = y;
+    menu->itemCount = 0;
+    menu->parentWindow = window;
+    menu->delayCounter = 3;
+    menu->currentCursorPos = maxItems;
 
-    for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_244[v0].entry = NULL;
-        param1->unk_244[v0].index = 0;
-        param1->unk_604[v0] = 0xff;
+    for (i = 0; i < MAX_MENU_SYSTEM_ITEMS; i++) {
+        menu->menuChoices[i].entry = NULL;
+        menu->menuChoices[i].index = 0;
+        menu->unused_230[i] = 0xff;
     }
 
-    for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
+    for (i = 0; i < MAX_MENU_SYSTEM_ITEMS; i++) {
+        menu->itemTextBuffers[i] = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
     }
 
-    *param1->unk_210 = 0xeeee;
+    *menu->selectedIndexPtr = LIST_MENU_NO_SELECTION_YET;
     return;
 }
 
-UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8, u16 *param9, u16 *param10)
+PokedexDataMenu *PokedexDataMenu_New(FieldSystem *fieldSystem, u8 x, u8 y, u8 maxItems, u8 allowCancel, u16 *selectedIndex, StringTemplate *template, Window *window, MessageLoader *loader, u16 *cursorPos, u16 *scrollPos)
 {
-    UnkStruct_ov5_021F6704 *v0;
-    int v1;
+    PokedexDataMenu *menu;
+    int i;
 
-    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021F6704));
+    menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(PokedexDataMenu));
 
-    if (v0 == NULL) {
+    if (menu == NULL) {
         return NULL;
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov5_021F6704));
-    ov5_021F6624(fieldSystem, v0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+    memset(menu, 0, sizeof(PokedexDataMenu));
+    PokedexDataMenu_Init(fieldSystem, menu, x, y, maxItems, allowCancel, selectedIndex, template, window, loader, cursorPos, scrollPos);
 
-    return v0;
+    return menu;
 }
 
-void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3)
+void PokedexDataMenu_AddMenuEntry(PokedexDataMenu *menu, u32 messageIndex, u32 colorIndex, u32 itemIndex)
 {
-    ov5_021F6830(param0, param1, param2, param3);
+    PokedexDataMenu_AddMenuEntryInternal(menu, messageIndex, colorIndex, itemIndex);
     return;
 }
 
-static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
+static void PokedexDataMenu_ShowMenu(PokedexDataMenu *menu)
 {
-    if (param0->unk_20B > 8) {
-        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
+    if (menu->itemCount > POKEDEX_MENU_MAX_DISPLAY_ITEMS) {
+        Window_Add(menu->fieldSystem->bgConfig, &menu->menuWindow, BG_LAYER_MAIN_3, menu->windowX, menu->windowY, POKEDEX_MENU_ITEM_WIDTH, POKEDEX_MENU_MAX_DISPLAY_ITEMS * POKEDEX_MENU_ITEM_HEIGHT, PLTT_13, 1);
     } else {
-        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
+        Window_Add(menu->fieldSystem->bgConfig, &menu->menuWindow, BG_LAYER_MAIN_3, menu->windowX, menu->windowY, POKEDEX_MENU_ITEM_WIDTH, menu->itemCount * POKEDEX_MENU_ITEM_HEIGHT, PLTT_13, 1);
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
-    ov5_021F68BC(param0);
+    LoadStandardWindowGraphics(menu->fieldSystem->bgConfig, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menu->menuWindow, TRUE, (1024 - (18 + 12) - 9), PLTT_11);
+    PokedexDataMenu_InitMenuTemplate(menu);
 
-    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, HEAP_ID_FIELD1);
-    param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
+    menu->listMenu = ListMenu_New((const ListMenuTemplate *)&menu->listMenuTemplate, *menu->cursorPosPtr, *menu->scrollPosPtr, HEAP_ID_FIELD1);
+    menu->task = SysTask_Start(PokedexDataMenu_ProcessInput, menu, 0);
 
     return;
 }
 
-static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3)
+static void PokedexDataMenu_AddMenuEntryInternal(PokedexDataMenu *menu, u32 messageIndex, u32 colorIndex, u32 itemIndex)
 {
-    int v0;
-    void *v1;
+    int i;
+    void *temp;
 
     {
-        Strbuf *v2 = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
+        Strbuf *tempStrbuf = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
 
-        MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
-        StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
-        param0->unk_244[param0->unk_20B].entry = (const void *)param0->unk_1C[param0->unk_20B];
-        Strbuf_Free(v2);
+        MessageLoader_GetStrbuf(menu->messageLoader, messageIndex, tempStrbuf);
+        StringTemplate_Format(menu->stringTemplate, menu->itemTextBuffers[menu->itemCount], tempStrbuf);
+        menu->menuChoices[menu->itemCount].entry = (void *)menu->itemTextBuffers[menu->itemCount];
+        Strbuf_Free(tempStrbuf);
     }
 
-    if (param3 == 0xfa) {
-        param0->unk_244[param0->unk_20B].index = 0xfffffffd;
+    if (itemIndex == 0xfa) {
+        menu->menuChoices[menu->itemCount].index = 0xfffffffd;
     } else {
-        param0->unk_244[param0->unk_20B].index = param3;
+        menu->menuChoices[menu->itemCount].index = itemIndex;
     }
 
-    param0->unk_604[param0->unk_20B] = param2;
-    param0->unk_20B++;
+    menu->unused_230[menu->itemCount] = colorIndex;
+    menu->itemCount++;
 
     return;
 }
 
-static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
+static void PokedexDataMenu_InitMenuTemplate(PokedexDataMenu *menu)
 {
-    param0->unk_21C.choices = param0->unk_244;
-    param0->unk_21C.cursorCallback = ov5_021F69F0;
-    param0->unk_21C.printCallback = ov5_021F69CC;
-    param0->unk_21C.window = &param0->unk_08;
-    param0->unk_21C.count = param0->unk_20B;
-    param0->unk_21C.maxDisplay = 8;
-    param0->unk_21C.headerXOffset = 1;
-    param0->unk_21C.textXOffset = 12;
-    param0->unk_21C.cursorXOffset = 2;
-    param0->unk_21C.yOffset = 1;
-    param0->unk_21C.textColorFg = 1;
-    param0->unk_21C.textColorBg = 15;
-    param0->unk_21C.textColorShadow = 2;
-    param0->unk_21C.letterSpacing = 0;
-    param0->unk_21C.lineSpacing = 0;
-    param0->unk_21C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
-    param0->unk_21C.fontID = FONT_SYSTEM;
-    param0->unk_21C.cursorType = 0;
-    param0->unk_21C.parent = (void *)param0;
+    menu->listMenuTemplate.choices = menu->menuChoices;
+    menu->listMenuTemplate.cursorCallback = PokedexDataMenu_CursorCallback;
+    menu->listMenuTemplate.printCallback = PokedexDataMenu_PrintCallback;
+    menu->listMenuTemplate.window = &menu->menuWindow;
+    menu->listMenuTemplate.count = menu->itemCount;
+    menu->listMenuTemplate.maxDisplay = POKEDEX_MENU_MAX_DISPLAY_ITEMS;
+    menu->listMenuTemplate.headerXOffset = 1;
+    menu->listMenuTemplate.textXOffset = 12;
+    menu->listMenuTemplate.cursorXOffset = 2;
+    menu->listMenuTemplate.yOffset = 1;
+    menu->listMenuTemplate.textColorFg = 1;
+    menu->listMenuTemplate.textColorBg = 15;
+    menu->listMenuTemplate.textColorShadow = 2;
+    menu->listMenuTemplate.letterSpacing = 0;
+    menu->listMenuTemplate.lineSpacing = 0;
+    menu->listMenuTemplate.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
+    menu->listMenuTemplate.fontID = FONT_SYSTEM;
+    menu->listMenuTemplate.cursorType = 0;
+    menu->listMenuTemplate.parent = (void *)menu;
 
     return;
 }
 
-static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2)
+static void PokedexDataMenu_PrintCallback(ListMenu *menu, u32 index, u8 y)
 {
-    if (param1 == 0xfffffffd) {
-        ListMenu_SetAltTextColors(param0, 3, 15, 4);
+    if (index == 0xfffffffd) {
+        ListMenu_SetAltTextColors(menu, 3, 15, 4);
     } else {
-        ListMenu_SetAltTextColors(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(menu, 1, 15, 2);
     }
 }
 
-static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2)
+static void PokedexDataMenu_CursorCallback(ListMenu *menu, u32 index, u8 y)
 {
-    u32 v0, v1;
-    u16 v2 = 0;
-    u16 v3 = 0;
-    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)ListMenu_GetAttribute(param0, 19);
+    u32 temp1, temp2;
+    u16 listPos = 0;
+    u16 cursorPos = 0;
+    PokedexDataMenu *menuSystem = (PokedexDataMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(menu, &listPos, &cursorPos);
 
-    if ((v4->unk_214 != NULL) && (v4->unk_218 != NULL)) {
-        *v4->unk_214 = v2;
-        *v4->unk_218 = v3;
+    if (menuSystem->cursorPosPtr != NULL && menuSystem->scrollPosPtr != NULL) {
+        *menuSystem->cursorPosPtr = listPos;
+        *menuSystem->scrollPosPtr = cursorPos;
     }
 
     return;
 }
 
-static void ov5_021F6A34(SysTask *param0, void *param1)
+static void PokedexDataMenu_ProcessInput(SysTask *task, void *data)
 {
-    u16 v0;
-    u32 v1;
-    UnkStruct_ov5_021F6704 *v2 = (UnkStruct_ov5_021F6704 *)param1;
+    u16 oldCursorPos;
+    u32 inputResult;
+    PokedexDataMenu *menuSystem = (PokedexDataMenu *)data;
 
-    if (v2->unk_204 != 0) {
-        v2->unk_204--;
+    if (menuSystem->delayCounter != 0) {
+        menuSystem->delayCounter--;
         return;
     }
 
@@ -380,54 +406,54 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = ListMenu_ProcessInput(v2->unk_23C);
-    v0 = v2->unk_6F4;
+    inputResult = ListMenu_ProcessInput(menuSystem->listMenu);
+    oldCursorPos = menuSystem->currentCursorPos;
 
-    ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
+    ListMenu_CalcTrueCursorPos(menuSystem->listMenu, &menuSystem->currentCursorPos);
 
-    if (v0 != v2->unk_6F4) {
+    if (oldCursorPos != menuSystem->currentCursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    switch (v1) {
+    switch (inputResult) {
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        if (v2->unk_207_0 == 1) {
+        if (menuSystem->allowCancel == 1) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *v2->unk_210 = 0xfffe;
-            ov5_021F6AD4(param1);
+            *menuSystem->selectedIndexPtr = 0xfffe;
+            PokedexDataMenu_Delete(data);
         }
         break;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        *v2->unk_210 = v1;
-        ov5_021F6AD4(param1);
+        *menuSystem->selectedIndexPtr = inputResult;
+        PokedexDataMenu_Delete(data);
         break;
     }
 
     return;
 }
 
-static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
+static void PokedexDataMenu_Delete(PokedexDataMenu *menu)
 {
-    int v0;
+    int i;
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
-    ListMenu_Free(param0->unk_23C, NULL, NULL);
-    Window_EraseStandardFrame(param0->unk_21C.window, 0);
-    Window_Remove(&param0->unk_08);
+    ListMenu_Free(menu->listMenu, NULL, NULL);
+    Window_EraseStandardFrame(menu->listMenuTemplate.window, 0);
+    Window_Remove(&menu->menuWindow);
 
-    for (v0 = 0; v0 < 120; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+    for (i = 0; i < MAX_MENU_SYSTEM_ITEMS; i++) {
+        Strbuf_Free(menu->itemTextBuffers[i]);
     }
 
-    if (param0->unk_207_1 == 1) {
-        MessageLoader_Free(param0->unk_1FC);
+    if (menu->ownsMessageLoader == 1) {
+        MessageLoader_Free(menu->messageLoader);
     }
 
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
+    SysTask_Done(menu->task);
+    Heap_Free(menu);
 
     return;
 }
@@ -451,7 +477,7 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
 
     Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), selectedIndex);
 
-    u32 pokemonIVs[6];
+    u32 pokemonIVs[MAX_PARTY_SIZE];
     pokemonIVs[0] = Pokemon_GetValue(targetPokemon, MON_DATA_HP_IV, NULL);
     pokemonIVs[1] = Pokemon_GetValue(targetPokemon, MON_DATA_ATK_IV, NULL);
     pokemonIVs[2] = Pokemon_GetValue(targetPokemon, MON_DATA_DEF_IV, NULL);
@@ -462,19 +488,19 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     *totalIVs = 0;
     u8 i;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < MAX_PARTY_SIZE; i++) {
         *totalIVs += pokemonIVs[i];
     }
 
     *highestIVIndex = 0;
     *highestIVValue = pokemonIVs[0];
 
-    for (i = 1; i < 6; i++) {
+    for (i = 1; i < MAX_PARTY_SIZE; i++) {
         if (pokemonIVs[*highestIVIndex] < pokemonIVs[i]) {
             *highestIVIndex = i;
             *highestIVValue = pokemonIVs[i];
         } else if (pokemonIVs[*highestIVIndex] == pokemonIVs[i]) {
-            if ((LCRNG_Next() % 2) == 0) {
+            if (LCRNG_Next() % 2 == 0) {
                 *highestIVIndex = i;
                 *highestIVValue = pokemonIVs[i];
             }
@@ -482,77 +508,77 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     }
 
     *highestIVIndex = sHighestIVMessageIndices[*highestIVIndex];
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_31D(ScriptContext *param0)
+BOOL ScrCmd_CountGriseousOrbs(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    Party *v1;
-    int v2, v3, v4;
-    int v5, v6;
-    u32 v7;
-    int v8[6];
-    int v9 = 0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v11 = ScriptContext_GetVarPointer(param0);
+    Pokemon *pokemon;
+    Party *party;
+    int partyCount, i, bagResult;
+    int pokemonSpecies, pokemonForm;
+    u32 emptyHeldItem;
+    int heldItems[MAX_PARTY_SIZE];
+    int griseousOrbCount = 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    v1 = SaveData_GetParty(fieldSystem->saveData);
-    v2 = Party_GetCurrentCount(v1);
-    *v11 = 0;
+    party = SaveData_GetParty(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
+    *result = 0;
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+    for (i = 0; i < partyCount; i++) {
+        pokemon = Party_GetPokemonBySlotIndex(party, i);
+        heldItems[i] = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
 
-        if (v8[v3] == ITEM_GRISEOUS_ORB) {
-            v9++;
+        if (heldItems[i] == ITEM_GRISEOUS_ORB) {
+            griseousOrbCount++;
         }
     }
 
-    if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, HEAP_ID_FIELD1);
+    if (griseousOrbCount > 0) {
+        bagResult = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, griseousOrbCount, HEAP_ID_FIELD1);
 
-        if (v4 == 0) {
-            *v11 = 0xff;
-            return 0;
+        if (bagResult == 0) {
+            *result = 0xff;
+            return FALSE;
         }
 
-        v7 = 0;
+        emptyHeldItem = 0;
 
-        for (v3 = 0; v3 < v2; v3++) {
-            if (v8[v3] == ITEM_GRISEOUS_ORB) {
-                v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
+        for (i = 0; i < partyCount; i++) {
+            if (heldItems[i] == ITEM_GRISEOUS_ORB) {
+                pokemon = Party_GetPokemonBySlotIndex(party, i);
+                Pokemon_SetValue(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
             }
         }
     }
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v6 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    for (i = 0; i < partyCount; i++) {
+        pokemon = Party_GetPokemonBySlotIndex(party, i);
+        pokemonForm = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
 
-        if (v6 > 0) {
-            v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        if (pokemonForm > 0) {
+            pokemonSpecies = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
 
-            switch (v5) {
+            switch (pokemonSpecies) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaFormByHeldItem(v0);
+                Pokemon_SetGiratinaFormByHeldItem(pokemon);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+                Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+                Pokemon_SetShayminForm(pokemon, SHAYMIN_FORM_LAND);
                 break;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *ctx)
 {
     Pokemon *pokemon;
     Party *party;
@@ -560,17 +586,17 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     u32 emptyHeldItem;
     int currentHeldItem;
     int bagNotFull;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 partySlot = ScriptContext_GetVar(param0);
-    u16 *result = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
     party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, partySlot);
 
     *result = 0;
 
-    if (partySlot == 0xff) {
-        return 0;
+    if (partySlot == PARTY_SLOT_NONE) {
+        return FALSE;
     }
 
     currentHeldItem = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
@@ -580,7 +606,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
 
         if (bagNotFull == 0) {
             *result = 0xff;
-            return 0;
+            return FALSE;
         }
 
         emptyHeldItem = 0;
@@ -605,20 +631,20 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_2F1(ScriptContext *param0)
+BOOL ScrCmd_SetPokemonForm(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    Pokemon *pokemon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 newForm = ScriptContext_GetVar(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
-    Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
+    pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
+    Pokemon_SetValue(pokemon, MON_DATA_FORM, &newForm);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
@@ -629,7 +655,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
     u16 *destVarPartySlot = ScriptContext_GetVarPointer(ctx);
 
     count = 0;
-    *destVarPartySlot = 0xff;
+    *destVarPartySlot = PARTY_SLOT_NONE;
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
 
@@ -640,7 +666,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
         u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
         if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
-            if (*destVarPartySlot == 0xff) {
+            if (*destVarPartySlot == PARTY_SLOT_NONE) {
                 *destVarPartySlot = i;
             }
 
@@ -649,7 +675,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
     }
 
     *destVarCount = count;
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
@@ -657,7 +683,7 @@ BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
-    u16 v9 = ScriptContext_GetVar(ctx);
+    u16 newForm = ScriptContext_GetVar(ctx);
     u16 form = ScriptContext_GetVar(ctx);
 
     Party *party = SaveData_GetParty(fieldSystem->saveData);
@@ -669,20 +695,20 @@ BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2FF(ScriptContext *param0)
+BOOL ScrCmd_GetPokemonPotential(ScriptContext *ctx)
 {
-    u16 v0;
-    int v1, v2;
-    Pokemon *v3;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v5 = ScriptContext_GetVar(param0);
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
+    u16 species;
+    int potential, rating;
+    Pokemon *pokemon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
-    v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+    pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
+    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
 
-    if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-        switch (v0) {
+    if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
+        switch (species) {
         case SPECIES_CATERPIE:
         case SPECIES_METAPOD:
         case SPECIES_WEEDLE:
@@ -699,79 +725,98 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
         case SPECIES_BURMY:
         case SPECIES_COMBEE:
         case SPECIES_KRICKETOT:
-            *v6 = 0xffff;
-            return 0;
+            *result = 0xffff;
+            return FALSE;
         }
     }
 
-    ov5_021F70CC(v3, &v1, &v2);
-    *v6 = v2;
+    CalculatePokemonPotential(pokemon, &potential, &rating);
+    *result = rating;
 
-    return 0;
+    return FALSE;
 }
 
-static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2)
+static void CalculatePokemonPotential(Pokemon *pokemon, int *potential, int *rating)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    int hpIV;
+    int atkIV;
+    int defIV;
+    int speedIV;
+    int spAtkIV;
+    int spDefIV;
 
-    v0 = Pokemon_GetValue(param0, MON_DATA_HP_IV, NULL);
-    v1 = Pokemon_GetValue(param0, MON_DATA_ATK_IV, NULL);
-    v2 = Pokemon_GetValue(param0, MON_DATA_DEF_IV, NULL);
-    v3 = Pokemon_GetValue(param0, MON_DATA_SPEED_IV, NULL);
-    v4 = Pokemon_GetValue(param0, MON_DATA_SPATK_IV, NULL);
-    v5 = Pokemon_GetValue(param0, MON_DATA_SPDEF_IV, NULL);
+    hpIV = Pokemon_GetValue(pokemon, MON_DATA_HP_IV, NULL);
+    atkIV = Pokemon_GetValue(pokemon, MON_DATA_ATK_IV, NULL);
+    defIV = Pokemon_GetValue(pokemon, MON_DATA_DEF_IV, NULL);
+    speedIV = Pokemon_GetValue(pokemon, MON_DATA_SPEED_IV, NULL);
+    spAtkIV = Pokemon_GetValue(pokemon, MON_DATA_SPATK_IV, NULL);
+    spDefIV = Pokemon_GetValue(pokemon, MON_DATA_SPDEF_IV, NULL);
 
-    if (param1 != NULL) {
-        *param1 = ((v0 & 2) >> 1) | ((v1 & 2) >> 0) | ((v2 & 2) << 1) | ((v3 & 2) << 2) | ((v4 & 2) << 3) | ((v5 & 2) << 4);
-        *param1 = ((*param1) * 40 / 63) + 30;
+    if (potential != NULL) {
+        // Calculate Pokemon potential using the 2nd bit (bit 1) of each IV
+        // This creates a 6-bit value where each stat contributes 0 or 2
+        *potential = ((hpIV & 2) >> 1) | // HP bit 1 → position 0
+            ((atkIV & 2) >> 0) | // Attack bit 1 → position 1
+            ((defIV & 2) << 1) | // Defense bit 1 → position 2
+            ((speedIV & 2) << 2) | // Speed bit 1 → position 3
+            ((spAtkIV & 2) << 3) | // Sp.Atk bit 1 → position 4
+            ((spDefIV & 2) << 4); // Sp.Def bit 1 → position 5
+
+        // Scale from 0-63 range to 30-70 range for potential display
+        *potential = (*potential * 40 / 63) + 30;
     }
 
-    if (param2 != NULL) {
-        *param2 = ((v0 & 1) >> 0) | ((v1 & 1) << 1) | ((v2 & 1) << 2) | ((v3 & 1) << 3) | ((v4 & 1) << 4) | ((v5 & 1) << 5);
-        *param2 = ((*param2) * 15 / 63) + 1;
+    if (rating != NULL) {
+        // Calculate Pokemon rating using the 1st bit (bit 0) of each IV
+        // This creates a 6-bit value where each stat contributes 0 or 1
+        *rating = ((hpIV & 1) >> 0) | // HP bit 0 → position 0
+            ((atkIV & 1) << 1) | // Attack bit 0 → position 1
+            ((defIV & 1) << 2) | // Defense bit 0 → position 2
+            ((speedIV & 1) << 3) | // Speed bit 0 → position 3
+            ((spAtkIV & 1) << 4) | // Sp.Atk bit 0 → position 4
+            ((spDefIV & 1) << 5); // Sp.Def bit 0 → position 5
 
-        if (*param2 >= 9) {
-            *param2 = (*param2) + 1;
+        // Scale from 0-63 range to 1-16 range for rating display
+        *rating = (*rating * 15 / 63) + 1;
+
+        // Apply bonus to high ratings (9+ gets +1 boost)
+        if (*rating >= 9) {
+            *rating = (*rating) + 1;
         }
     }
 }
 
-BOOL ScrCmd_300(ScriptContext *param0)
+BOOL ScrCmd_SetFavoritePokemon(ScriptContext *ctx)
 {
-    MiscSaveBlock *v0;
-    Pokemon *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    MiscSaveBlock *miscSaveBlock;
+    Pokemon *pokemon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
-    v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
+    miscSaveBlock = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
-    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
-    return 0;
+    MiscSaveBlock_SetFavoriteMon(miscSaveBlock, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL), Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL));
+    return FALSE;
 }
 
-BOOL ScrCmd_301(ScriptContext *param0)
+BOOL ScrCmd_GetFavoritePokemon(ScriptContext *ctx)
 {
-    int v0, v1, v2;
-    MiscSaveBlock *v3;
-    Pokemon *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
-    u16 *v7 = ScriptContext_GetVarPointer(param0);
-    u16 *v8 = ScriptContext_GetVarPointer(param0);
+    int species, form, isEgg;
+    MiscSaveBlock *miscSaveBlock;
+    Pokemon *pokemon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *speciesPtr = ScriptContext_GetVarPointer(ctx);
+    u16 *formPtr = ScriptContext_GetVarPointer(ctx);
+    u16 *isEggPtr = ScriptContext_GetVarPointer(ctx);
 
-    v3 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-    MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
+    miscSaveBlock = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    MiscSaveBlock_FavoriteMon(miscSaveBlock, &species, &form, &isEgg);
 
-    *v6 = v0;
-    *v7 = v1;
-    *v8 = v2;
+    *speciesPtr = species;
+    *formPtr = form;
+    *isEggPtr = isEgg;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
@@ -787,350 +832,351 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_30F(ScriptContext *param0)
+BOOL ScrCmd_CheckAchievementRequirements(ScriptContext *ctx)
 {
-    VarsFlags *v0;
-    GameRecords *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    VarsFlags *varsFlags;
+    GameRecords *gameRecords;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 achievementType = ScriptContext_GetVar(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = SaveData_GetGameRecords(fieldSystem->saveData);
-    *v4 = 1;
+    varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
+    *result = TRUE;
 
-    switch (v3) {
+    switch (achievementType) {
     case 13:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_029) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_TOWER_WIN_STREAK) < ACHIEVEMENT_MIN_WIN_STREAK) {
+            *result = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_060) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_FACTORY_WIN_STREAK) < ACHIEVEMENT_MIN_WIN_STREAK) {
+            *result = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_061) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_HALL_WIN_STREAK) < ACHIEVEMENT_MIN_WIN_STREAK) {
+            *result = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_CASTLE_WIN_STREAK) < ACHIEVEMENT_MIN_WIN_STREAK) {
+            *result = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_063) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_ARCADE_WIN_STREAK) < ACHIEVEMENT_MIN_WIN_STREAK) {
+            *result = FALSE;
         }
         break;
     case 14:
-        *v4 = 0;
+        *result = FALSE;
 
-        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleFactoryPrintState(varsFlags) >= ACHIEVEMENT_MIN_PRINT_STATE) {
+            *result = TRUE;
         }
 
-        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleHallPrintState(varsFlags) >= ACHIEVEMENT_MIN_PRINT_STATE) {
+            *result = TRUE;
         }
 
-        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleCastlePrintState(varsFlags) >= ACHIEVEMENT_MIN_PRINT_STATE) {
+            *result = TRUE;
         }
 
-        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleArcadePrintState(varsFlags) >= ACHIEVEMENT_MIN_PRINT_STATE) {
+            *result = TRUE;
         }
 
-        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleTowerPrintState(varsFlags) >= ACHIEVEMENT_MIN_PRINT_STATE) {
+            *result = TRUE;
         }
         break;
     case 15:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_073) < 10) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_HALL_OF_FAME_ENTRIES) < ACHIEVEMENT_MIN_HALL_OF_FAME_ENTRIES) {
+            *result = FALSE;
         }
         break;
     case 16:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_057) < 50) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLEGROUND_BATTLES) < ACHIEVEMENT_MIN_BATTLEGROUND_BATTLES) {
+            *result = FALSE;
         }
         break;
     case 17:
-        if (GameRecords_GetRecordValue(v1, RECORD_BERRIES_PLANTED) < 50) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BERRIES_PLANTED) < ACHIEVEMENT_MIN_BERRIES_PLANTED) {
+            *result = FALSE;
         }
         break;
     case 18:
-        if (GameRecords_GetRecordValue(v1, RECORD_EGGS_HATCHED) < 30) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_EGGS_HATCHED) < ACHIEVEMENT_MIN_EGGS_HATCHED) {
+            *result = FALSE;
         }
         break;
     case 20:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_000) < 300000) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_STEP_COUNT) < ACHIEVEMENT_MIN_STEP_COUNT) {
+            *result = FALSE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_316(ScriptContext *param0)
+BOOL ScrCmd_ScriptSync(ScriptContext *ctx)
 {
-    return 1;
+    return TRUE;
 }
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200C90[] = {
-    { 0x4, 0x7 },
-    { 0x5, 0x5 },
-    { 0x5, 0x9 },
-    { 0x7, 0x7 },
-    { 0x9, 0x5 },
-    { 0x9, 0x9 },
-    { 0xA, 0x7 }
+static const TilePosition SecretBasePositions1[] = {
+    { 4, 7 },
+    { 5, 5 },
+    { 5, 9 },
+    { 7, 7 },
+    { 9, 5 },
+    { 9, 9 },
+    { 10, 7 }
 };
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200CAC[] = {
-    { 0x3, 0x7 },
-    { 0x5, 0x7 },
-    { 0x7, 0x5 },
-    { 0x7, 0x7 },
-    { 0x7, 0x9 },
-    { 0x9, 0x7 },
-    { 0xB, 0x7 }
+static const TilePosition SecretBasePositions2[] = {
+    { 3, 7 },
+    { 5, 7 },
+    { 7, 5 },
+    { 7, 7 },
+    { 7, 9 },
+    { 9, 7 },
+    { 11, 7 }
 };
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200CC8[] = {
-    { 0x5, 0x5 },
-    { 0x5, 0x7 },
-    { 0x5, 0x9 },
-    { 0x7, 0x7 },
-    { 0x9, 0x5 },
-    { 0x9, 0x7 },
-    { 0x9, 0x9 }
+static const TilePosition SecretBasePositions3[] = {
+    { 5, 5 },
+    { 5, 7 },
+    { 5, 9 },
+    { 7, 7 },
+    { 9, 5 },
+    { 9, 7 },
+    { 9, 9 }
 };
 
-BOOL ScrCmd_32C(ScriptContext *param0)
+BOOL ScrCmd_IncrementSecretBaseProgress(ScriptContext *ctx)
 {
-    int v0, v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
+    int i, maxProgress;
+    u16 *progressPtr = ScriptContext_GetVarPointer(ctx);
+    enum MapID secretBaseType = ScriptContext_GetVar(ctx);
+    u16 currentTileX = ScriptContext_GetVar(ctx);
+    u16 currentTileY = ScriptContext_GetVar(ctx);
 
-    switch (v3) {
-    case 588:
-        v1 = 127;
+    switch (secretBaseType) {
+    case MAP_UNDERGROUND_SECRET_BASE_AREA_1:
+        maxProgress = SECRET_BASE_MAX_PROGRESS;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200C90)); v0++) {
-            if ((v4 == Unk_ov5_02200C90[v0].unk_00) && (v5 == Unk_ov5_02200C90[v0].unk_02)) {
+        for (i = 0; i < NELEMS(SecretBasePositions1); i++) {
+            if (currentTileX == SecretBasePositions1[i].tileX && currentTileY == SecretBasePositions1[i].tileY) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *progressPtr |= (1 << i);
                 break;
             }
         }
         break;
-    case 590:
-        v1 = 127;
+    case MAP_UNDERGROUND_SECRET_BASE_AREA_2:
+        maxProgress = SECRET_BASE_MAX_PROGRESS;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CAC)); v0++) {
-            if ((v4 == Unk_ov5_02200CAC[v0].unk_00) && (v5 == Unk_ov5_02200CAC[v0].unk_02)) {
+        for (i = 0; i < NELEMS(SecretBasePositions2); i++) {
+            if (currentTileX == SecretBasePositions2[i].tileX && currentTileY == SecretBasePositions2[i].tileY) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *progressPtr |= (1 << i);
                 break;
             }
         }
         break;
-    case 592:
-        v1 = 127;
+    case MAP_UNDERGROUND_SECRET_BASE_AREA_3:
+        maxProgress = SECRET_BASE_MAX_PROGRESS;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CC8)); v0++) {
-            if ((v4 == Unk_ov5_02200CC8[v0].unk_00) && (v5 == Unk_ov5_02200CC8[v0].unk_02)) {
+        for (i = 0; i < NELEMS(SecretBasePositions3); i++) {
+            if (currentTileX == SecretBasePositions3[i].tileX && currentTileY == SecretBasePositions3[i].tileY) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *progressPtr |= (1 << i);
                 break;
             }
         }
         break;
     }
 
-    if (*v2 == v1) {
-        *v2 = 260;
+    // When all 7 locations are discovered (127), set special completion marker (260)
+    if (*progressPtr == maxProgress) {
+        *progressPtr = SECRET_BASE_COMPLETION_VALUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_32D(ScriptContext *ctx)
+BOOL ScrCmd_ElevateAllMapObjects(ScriptContext *ctx)
 {
-    fx32 v0;
-    VecFx32 v1;
-    UnkStruct_020216E0 *v2;
-    int v3 = 0;
+    fx32 playerY;
+    VecFx32 position;
+    UnkStruct_020216E0 *graphics;
+    int index = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v6 = Player_MapObject(fieldSystem->playerAvatar);
-    MapObject *v7;
+    MapObject *playerMapObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *currentMapObject;
 
-    MapObject_GetPosPtr(v6, &v1);
-    v0 = v1.y;
+    MapObject_GetPosPtr(playerMapObject, &position);
+    playerY = position.y;
 
-    while (sub_020625B0(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
-        if (v7 != v6) {
-            MapObject_SetStatusFlagOn(v7, MAP_OBJ_STATUS_13);
+    while (sub_020625B0(mapObjMan, &currentMapObject, &index, MAP_OBJ_STATUS_ACTIVE) == 1) {
+        if (currentMapObject != playerMapObject) {
+            MapObject_SetStatusFlagOn(currentMapObject, MAP_OBJ_STATUS_ELEVATED);
 
-            if (MapObject_CheckStatusFlag(v7, MAP_OBJ_STATUS_12) == 1) {
-                MapObject_GetPosPtr(v7, &v1);
-                v1.y = v0;
-                MapObject_SetPos(v7, &v1);
-                MapObject_SetY(v7, ((v0) >> 3) / FX32_ONE );
+            if (MapObject_CheckStatusFlag(currentMapObject, MAP_OBJ_STATUS_ELEVATION_TARGET) == TRUE) {
+                MapObject_GetPosPtr(currentMapObject, &position);
+                position.y = playerY;
+                MapObject_SetPos(currentMapObject, &position);
+                MapObject_SetY(currentMapObject, (playerY >> 3) / FX32_ONE );
             }
 
-            v2 = ov5_021EB1A0(v7);
+            graphics = ov5_021EB1A0(currentMapObject);
 
-            if ((v2 == NULL) && BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(v7))) {
-                if (sub_02062D4C(v7)) {
-                    sub_02062B68(v7);
-                    v2 = BerryPatchGraphics_GetGraphicsObject(v7);
+            if (graphics == NULL && BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(currentMapObject))) {
+                if (sub_02062D4C(currentMapObject)) {
+                    sub_02062B68(currentMapObject);
+                    graphics = BerryPatchGraphics_GetGraphicsObject(currentMapObject);
                 }
             }
 
-            if (v2 != NULL) {
-                ov5_021EDEB4(v7, v2);
-                sub_02021320(v2, 1);
+            if (graphics != NULL) {
+                ov5_021EDEB4(currentMapObject, graphics);
+                sub_02021320(graphics, 1);
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_32E(ScriptContext *ctx)
+BOOL ScrCmd_ResetAllMapObjectElevation(ScriptContext *ctx)
 {
-    int v0 = 0;
+    int index = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
-    MapObject *v4;
+    MapObject *playerMapObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *currentMapObject;
 
-    while (sub_020625B0(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
-        if (v4 != v3) {
-            MapObject_SetStatusFlagOff(v4, MAP_OBJ_STATUS_13);
+    while (sub_020625B0(mapObjMan, &currentMapObject, &index, MAP_OBJ_STATUS_ACTIVE) == 1) {
+        if (currentMapObject != playerMapObject) {
+            MapObject_SetStatusFlagOff(currentMapObject, MAP_OBJ_STATUS_ELEVATED);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov5_021F7654(MapObject *param0, int param1)
+static void ElevateMapObject(MapObject *mapObject, int yPosition)
 {
-    VecFx32 v0;
-    UnkStruct_020216E0 *v1;
+    VecFx32 position;
+    UnkStruct_020216E0 *graphics;
 
-    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_13);
-    MapObject_GetPosPtr(param0, &v0);
+    MapObject_SetStatusFlagOn(mapObject, MAP_OBJ_STATUS_ELEVATED);
+    MapObject_GetPosPtr(mapObject, &position);
 
-    v0.y = (((param1) << 4) * FX32_ONE);
+    position.y = ((yPosition << 4) * FX32_ONE);
 
-    MapObject_SetPos(param0, &v0);
-    MapObject_SetY(param0, (param1) * 2);
+    MapObject_SetPos(mapObject, &position);
+    MapObject_SetY(mapObject, yPosition * 2);
 
-    v1 = ov5_021EB1A0(param0);
+    graphics = ov5_021EB1A0(mapObject);
 
-    if (v1 != NULL) {
-        ov5_021EDEB4(param0, v1);
-        sub_02021320(v1, 1);
+    if (graphics != NULL) {
+        ov5_021EDEB4(mapObject, graphics);
+        sub_02021320(graphics, 1);
     }
 }
 
-BOOL ScrCmd_331(ScriptContext *ctx)
+BOOL ScrCmd_ElevateSpecificMapObjects(ScriptContext *ctx)
 {
-    MapObject *v0;
+    MapObject *mapObject;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
 
-    v0 = MapObjMan_LocalMapObjByIndex(mapObjMan, 32);
+    mapObject = MapObjMan_LocalMapObjByIndex(mapObjMan, 32);
 
-    if (v0 != NULL) {
-        ov5_021F7654(v0, 9);
+    if (mapObject != NULL) {
+        ElevateMapObject(mapObject, 9);
     }
 
-    v0 = MapObjMan_LocalMapObjByIndex(mapObjMan, 2);
+    mapObject = MapObjMan_LocalMapObjByIndex(mapObjMan, 2);
 
-    if (v0 != NULL) {
-        ov5_021F7654(v0, 9);
+    if (mapObject != NULL) {
+        ElevateMapObject(mapObject, 9);
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_332(ScriptContext *ctx)
+BOOL ScrCmd_ResetSpecificMapObjectElevation(ScriptContext *ctx)
 {
-    MapObject *v0;
-    MapObjectManager *v1 = ctx->fieldSystem->mapObjMan;
+    MapObject *mapObject;
+    MapObjectManager *mapObjMan = ctx->fieldSystem->mapObjMan;
 
-    v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
+    mapObject = MapObjMan_LocalMapObjByIndex(mapObjMan, 32);
 
-    if (v0 != NULL) {
-        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_13);
+    if (mapObject != NULL) {
+        MapObject_SetStatusFlagOff(mapObject, MAP_OBJ_STATUS_ELEVATED);
     }
 
-    v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
+    mapObject = MapObjMan_LocalMapObjByIndex(mapObjMan, 2);
 
-    if (v0 != NULL) {
-        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_13);
+    if (mapObject != NULL) {
+        MapObject_SetStatusFlagOff(mapObject, MAP_OBJ_STATUS_ELEVATED);
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_338(ScriptContext *ctx)
+BOOL ScrCmd_ElevateMapObjectByPosition(ScriptContext *ctx)
 {
-    int v0;
-    MapObject *v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
-    if (v1 != NULL) {
-        switch (MapObject_GetX(v1)) {
+    int elevationHeight;
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
+    if (mapObject != NULL) {
+        switch (MapObject_GetX(mapObject)) {
         case 28:
-            v0 = 6;
+            elevationHeight = 6;
             break;
         case 38:
-            v0 = 5;
+            elevationHeight = 5;
             break;
         case 40:
-            v0 = 3;
+            elevationHeight = 3;
             break;
         case 48:
-            v0 = 2;
+            elevationHeight = 2;
             break;
         default:
-            v0 = 4;
+            elevationHeight = 4;
             break;
         }
-        ov5_021F7654(v1, v0);
+        ElevateMapObject(mapObject, elevationHeight);
     }
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_339(ScriptContext *ctx)
+BOOL ScrCmd_ResetMapObjectElevation(ScriptContext *ctx)
 {
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
-    if (v0 != NULL) {
-        MapObject_SetStatusFlagOff(v0, 8192);
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
+    if (mapObject != NULL) {
+        MapObject_SetStatusFlagOff(mapObject, MAP_OBJ_STATUS_ELEVATED);
     }
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_330(ScriptContext *ctx)
+BOOL ScrCmd_ClearWiFiHistory(ScriptContext *ctx)
 {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(ctx->fieldSystem->saveData);
 
     sub_02038F8C(wiFiHistory);
-    return 1;
+    return TRUE;
 }
 
-BOOL ScrCmd_333(ScriptContext *ctx)
+BOOL ScrCmd_SetPlayerVolume(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 volume = ScriptContext_GetVar(ctx);
 
-    Sound_SetPlayerVolume(1, v0);
-    return 0;
+    Sound_SetPlayerVolume(1, volume);
+    return FALSE;
 }

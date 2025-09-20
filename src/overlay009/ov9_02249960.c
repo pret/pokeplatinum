@@ -7167,7 +7167,7 @@ static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkS
     sub_02062FC4(*param1, 1);
     sub_02062E5C(*param1, 1);
     MapObject_SetHeightCalculationDisabled(*param1, TRUE);
-    MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_13);
+    MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_ELEVATED);
 
     if (v0 == NULL) {
         UnkStruct_020216E0 *v1;

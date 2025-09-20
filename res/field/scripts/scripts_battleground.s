@@ -228,7 +228,7 @@ _02B4:
 _032F:
     Call _0811
     CloseMessage
-    IncrementGameRecord RECORD_UNK_057
+    IncrementGameRecord RECORD_BATTLEGROUND_BATTLES
     Call _0605
     StartTrainerBattle VAR_MAP_LOCAL_5
     CheckWonBattle VAR_0x8000

@@ -4236,13 +4236,13 @@
     .short \species
     .endm
 
-    .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4
+    .macro ShowPokedexDataMenu battleStageIndex, stageType, selectedIndexVar, cursorPosVar, scrollPosVar
     .short 734
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \battleStageIndex
+    .short \stageType
+    .short \selectedIndexVar
+    .short \cursorPosVar
+    .short \scrollPosVar
     .endm
 
     .macro CalcAmitySquareBerryAndAccessoryManOptionID destBerryAndAccessoryManOptionID
@@ -4353,10 +4353,10 @@
     .short 752
     .endm
 
-    .macro ScrCmd_2F1 arg0, arg1
+    .macro SetPokemonForm partySlot, newForm
     .short 753
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \newForm
     .endm
 
     .macro InitPersistedMapFeaturesForDistortionWorld
@@ -4432,21 +4432,21 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2FF arg0, arg1
+    .macro GetPokemonPotential partySlot, destVar
     .short 767
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
-    .macro ScrCmd_300
+    .macro SetFavoritePokemon
     .short 768
     .endm
 
-    .macro ScrCmd_301 arg0, arg1, arg2
+    .macro GetFavoritePokemon destVarSpecies, destVarForm, destVarIsEgg
     .short 769
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVarSpecies
+    .short \destVarForm
+    .short \destVarIsEgg
     .endm
 
     .macro GetRotomFormsInSave destVarHeat, destVarWash, destVarFrost, destVarFan, destVarMow
@@ -4522,10 +4522,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_30F arg0, arg1
+    .macro CheckAchievementRequirements achievementType, destVar
     .short 783
-    .short \arg0
-    .short \arg1
+    .short \achievementType
+    .short \destVar
     .endm
 
     .macro ScrCmd_310
@@ -4565,7 +4565,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_316
+    .macro ScriptSync
     .short 790
     .endm
 
@@ -4604,9 +4604,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31D arg0
+    .macro CountGriseousOrbs destVar
     .short 797
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro TryRevertPokemonForm partySlot, destVar
@@ -4685,19 +4685,19 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_32C arg0, arg1, arg2, arg3
+    .macro IncrementSecretBaseProgress progressPtr, secretBaseType, currentTileX, currentTileY
     .short 812
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \progressPtr
+    .short \secretBaseType
+    .short \currentTileX
+    .short \currentTileY
     .endm
 
-    .macro ScrCmd_32D
+    .macro ElevateAllMapObjects
     .short 813
     .endm
 
-    .macro ScrCmd_32E
+    .macro ResetAllMapObjectElevation
     .short 814
     .endm
 
@@ -4707,21 +4707,21 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_330
+    .macro ClearWiFiHistory
     .short 816
     .endm
 
-    .macro ScrCmd_331
+    .macro ElevateSpecificMapObjects
     .short 817
     .endm
 
-    .macro ScrCmd_332
+    .macro ResetSpecificMapObjectElevation
     .short 818
     .endm
 
-    .macro ScrCmd_333 arg0
+    .macro SetPlayerVolume volume
     .short 819
-    .short \arg0
+    .short \volume
     .endm
 
     .macro AddToGameRecord recordID, value
@@ -4748,11 +4748,11 @@
     .short \ret
     .endm
 
-    .macro ScrCmd_338
+    .macro ElevateMapObjectByPosition
     .short 824
     .endm
 
-    .macro ScrCmd_339
+    .macro ResetMapObjectElevation
     .short 825
     .endm
 

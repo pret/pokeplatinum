@@ -44,7 +44,7 @@ static inline u32 HashEncodingSeed(GameRecords *records)
 
 static void EncodeGameRecords(GameRecords *records, int id)
 {
-    if (id == RECORD_UNK_000) {
+    if (id == RECORD_STEP_COUNT) {
         return;
     }
 
@@ -54,7 +54,7 @@ static void EncodeGameRecords(GameRecords *records, int id)
 
 static void DecodeGameRecords(GameRecords *records, int id)
 {
-    if (id == RECORD_UNK_000) {
+    if (id == RECORD_STEP_COUNT) {
         return;
     }
 
@@ -87,7 +87,7 @@ static u32 SetRecordValue(GameRecords *records, int id, u32 val)
 }
 
 static u8 sUsesHighLimit[MAX_RECORDS] = {
-    [RECORD_UNK_000] = TRUE,
+    [RECORD_STEP_COUNT] = TRUE,
     [RECORD_TRAINER_SCORE] = TRUE,
     [RECORD_UNK_002] = TRUE,
     [RECORD_UNK_003] = FALSE,
@@ -116,7 +116,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_WIFI_BATTLE_WINS] = TRUE,
     [RECORD_WIFI_BATTLE_LOSSES] = TRUE,
     [RECORD_UNK_028] = TRUE,
-    [RECORD_UNK_029] = TRUE,
+    [RECORD_BATTLE_TOWER_WIN_STREAK] = TRUE,
     [RECORD_UNK_030] = TRUE,
     [RECORD_UNK_031] = TRUE,
     [RECORD_UNK_032] = TRUE,
@@ -144,13 +144,13 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_054] = FALSE,
     [RECORD_UNK_055] = FALSE,
     [RECORD_UNK_056] = FALSE,
-    [RECORD_UNK_057] = TRUE,
+    [RECORD_BATTLEGROUND_BATTLES] = TRUE,
     [RECORD_UNK_058] = TRUE,
     [RECORD_UNK_059] = TRUE,
-    [RECORD_UNK_060] = TRUE,
-    [RECORD_UNK_061] = TRUE,
-    [RECORD_UNK_062] = TRUE,
-    [RECORD_UNK_063] = TRUE,
+    [RECORD_BATTLE_FACTORY_WIN_STREAK] = TRUE,
+    [RECORD_BATTLE_HALL_WIN_STREAK] = TRUE,
+    [RECORD_BATTLE_CASTLE_WIN_STREAK] = TRUE,
+    [RECORD_BATTLE_ARCADE_WIN_STREAK] = TRUE,
     [RECORD_UNK_064] = TRUE,
     [RECORD_UNK_065] = TRUE,
     [RECORD_UNK_066] = TRUE,
@@ -160,7 +160,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_070] = FALSE,
     [RECORD_UNK_071] = TRUE,
     [RECORD_UNK_072] = TRUE,
-    [RECORD_UNK_073] = FALSE,
+    [RECORD_HALL_OF_FAME_ENTRIES] = FALSE,
     [RECORD_UNK_074] = TRUE,
     [RECORD_UNK_075] = TRUE,
     [RECORD_USED_SPLASH] = FALSE,

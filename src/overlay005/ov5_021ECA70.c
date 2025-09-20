@@ -159,8 +159,8 @@ static void ov5_021ECBCC(MapObject *param0, UnkStruct_020216E0 *param1)
         v0 = 0;
     }
 
-    if (MapObject_CheckStatusFlag(param0, MAP_OBJ_STATUS_12) == 1) {
-        if (!MapObject_CheckStatusFlag(param0, MAP_OBJ_STATUS_13)) {
+    if (MapObject_CheckStatusFlag(param0, MAP_OBJ_STATUS_ELEVATION_TARGET) == 1) {
+        if (!MapObject_CheckStatusFlag(param0, MAP_OBJ_STATUS_ELEVATED)) {
             v0 = 0;
         }
     }
