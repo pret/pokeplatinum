@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021F6454.h"
+#include "overlay005/scrcmd_special_areas.h"
 
 #include <nitro.h>
 #include <string.h>

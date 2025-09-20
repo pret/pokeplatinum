@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021F6454_H
-#define POKEPLATINUM_OV5_021F6454_H
+#ifndef POKEPLATINUM_OVERLAY005_SCRCMD_SPECIAL_AREAS_H
+#define POKEPLATINUM_OVERLAY005_SCRCMD_SPECIAL_AREAS_H
 
 #include "field_script_context.h"
 
@@ -26,4 +26,4 @@ BOOL ScrCmd_ResetMapObjectElevation(ScriptContext *param0);
 BOOL ScrCmd_ClearWiFiHistory(ScriptContext *param0);
 BOOL ScrCmd_SetPlayerVolume(ScriptContext *param0);
 
-#endif // POKEPLATINUM_OV5_021F6454_H
+#endif // POKEPLATINUM_OVERLAY005_SCRCMD_SPECIAL_AREAS_H
