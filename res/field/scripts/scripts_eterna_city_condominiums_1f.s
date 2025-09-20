@@ -75,7 +75,7 @@ _00D9:
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0129
     ScrCmd_2B8 VAR_0x8005
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     BufferPartyMonNickname 0, VAR_0x8005
     Message 4
     WaitABXPadPress

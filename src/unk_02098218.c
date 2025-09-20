@@ -249,7 +249,7 @@ static BOOL sub_0209843C(FieldTask *param0)
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
                 GameRecords *v11 = SaveData_GetGameRecords(FieldSystem_GetSaveData(fieldSystem));
 
-                GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
+                GameRecords_IncrementRecordValue(v11, RECORD_POKEMON_NICKNAMED);
             }
         }
 

@@ -439,7 +439,7 @@ _056E:
     End
 
 _057F:
-    GoToIfSet FLAG_UNK_0x0079, _059D
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _059D
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

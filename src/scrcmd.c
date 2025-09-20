@@ -149,6 +149,7 @@
 #include "scrcmd_coins.h"
 #include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"
+#include "scrcmd_fossil.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_item.h"
 #include "scrcmd_jubilife_lottery.h"
@@ -193,7 +194,6 @@
 #include "unk_02048DD8.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
-#include "unk_0204E240.h"
 #include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
@@ -1266,11 +1266,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonHeldItem_Unused,
     ScrCmd_Unused_1EF,
     ScrCmd_DeletePartyMonHeldItem_Unused,
-    ScrCmd_1F1,
-    ScrCmd_1F2,
-    ScrCmd_1F3,
-    ScrCmd_1F4,
-    ScrCmd_1F5,
+    ScrCmd_GetFossilCount,
+    ScrCmd_Dummy_1F2,
+    ScrCmd_Dummy_1F3,
+    ScrCmd_GetSpeciesFromFossil,
+    ScrCmd_FindFossilAtThreshold,
     ScrCmd_CountPartyMonsBelowLevelThreshold,
     ScrCmd_SurvivePoison,
     ScrCmd_1F8,
