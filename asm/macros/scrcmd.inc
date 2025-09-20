@@ -2810,30 +2810,30 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_1F1 arg0
+    .macro GetFossilCount destVar
     .short 497
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1F2
+    .macro ScrCmd_Dummy_1F2
     .short 498
     .endm
 
-    .macro ScrCmd_1F3
+    .macro ScrCmd_Dummy_1F3
     .short 499
     .endm
 
-    .macro ScrCmd_1F4 arg0, arg1
+    .macro GetSpeciesFromFossil speciesVar, itemVar
     .short 500
-    .short \arg0
-    .short \arg1
+    .short \speciesVar
+    .short \itemVar
     .endm
 
-    .macro ScrCmd_1F5 arg0, arg1, arg2
+    .macro FindFossilAtThreshold itemVar, thresholdVar, thresholdValue
     .short 501
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \itemVar
+    .short \thresholdVar
+    .short \thresholdValue
     .endm
 
     .macro CountPartyMonsBelowLevelThreshold destVar, threshold

@@ -57,7 +57,7 @@ _00A8:
     End
 
 _00E3:
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
 _00E9:
