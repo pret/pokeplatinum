@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay005/berry_patch_effects.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
@@ -9,7 +10,6 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
 #include "overlay005/ov5_021F1CC8.h"
-#include "overlay005/ov5_021F204C.h"
 #include "overlay005/ov5_021F23D0.h"
 #include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F2850.h"
@@ -53,7 +53,7 @@ const UnkStruct_ov5_021FF85C Unk_ov5_021FF85C[35] = {
     { 0x9, ov5_021F575C, ov5_021F5778 },
     { 0xA, ov5_021F5894, ov5_021F58B0 },
     { 0xB, ov5_021F1CC8, ov5_021F1CE8 },
-    { 0xC, ov5_021F204C, ov5_021F2068 },
+    { 0xC, BerryPatchGraphicsManager_New, BerryPatchGraphicsManager_Free },
     { 0xD, ov5_021F23D0, ov5_021F23EC },
     { 0xE, ov5_021F61BC, ov5_021F61D8 },
     { 0xF, ov5_021F25C0, ov5_021F25DC },
@@ -69,7 +69,7 @@ const UnkStruct_ov5_021FF85C Unk_ov5_021FF85C[35] = {
     { 0x19, ov5_021F3A50, ov5_021F3A6C },
     { 0x1A, ov5_021F3D00, ov5_021F3D1C },
     { 0x1B, ov5_021F3E74, ov5_021F3E90 },
-    { 0x1C, ov5_021F21E0, ov5_021F21F4 },
+    { 0x1C, BerryPatchGraphicsManager_NewEffectCounter, BerryPatchGraphicsManager_FreeEffectCounter },
     { 0x1D, ov5_021F10E8, ov5_021F10FC },
     { 0x1E, ov5_021F4018, ov5_021F4034 },
     { 0x1F, ov5_021F428C, ov5_021F42A8 },
