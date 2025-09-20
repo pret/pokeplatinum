@@ -80,6 +80,15 @@ u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapID heapID);
 u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapID heapID);
 void Pocket_SortEmpty(BagItem *pocket, const u32 size); // Moves empty slots to the end of the pocket
 void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, but also sorts by item ID
+
+/**
+ * @brief Creates a BagContext with the given pocket types.
+ *
+ * @param bag The Bag from which to pull the pockets
+ * @param pockets A 0xFF-terminated array of which pocket types should be available.
+ * @param heapID
+ * @return A new BagContext giving access to the chosen pockets
+ */
 void *BagContext_CreateWithPockets(Bag *bag, const u8 *pockets, enum HeapID heapID);
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot);
 Bag *SaveData_GetBag(SaveData *saveData);

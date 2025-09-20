@@ -174,26 +174,26 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 it
     return TRUE;
 }
 
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, u32 error, u32 heapID)
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
     Strbuf *templateString;
 
     switch (error) {
-    case 1:
+    case ITEM_USE_CANNOT_DISMOUNT:
         msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotDismount, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
-    case 2:
+    case ITEM_USE_CANNOT_USE_WITH_PARTNER:
         msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseWithPartner, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
-    case 3:
+    case ITEM_USE_CANNOT_FISH_HERE:
         msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseNoFishing, dstString);
         MessageLoader_Free(msgLoader);

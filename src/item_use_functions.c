@@ -119,16 +119,16 @@ static void *sub_02068708(void *some_param);
 static void *sub_02068A28(void *some_param);
 static void *sub_020691CC(void *some_param);
 static void *OpenPartyMenuForGracidea(void *fieldSystem);
-static u32 CanUseBicycle(const ItemUseContext *usageContext);
-static u32 CanUseExplorerKit(const ItemUseContext *usageContext);
-static u32 CanUseBerry(const ItemUseContext *usageContext);
-static u32 CanUsePokeRadar(const ItemUseContext *usageContext);
-static u32 CanUseSprayDuck(const ItemUseContext *usageContext);
-static u32 CanUseMulch(const ItemUseContext *usageContext);
-static u32 CanUseVsSeeker(const ItemUseContext *usageContext);
-static u32 CanUseFishingRod(const ItemUseContext *usageContext);
-static u32 CanUseEscapeRope(const ItemUseContext *usageContext);
-static u32 CanUseAzureFlute(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseBerry(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUsePokeRadar(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseSprayDuck(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseMulch(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseVsSeeker(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseFishingRod(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseEscapeRope(const ItemUseContext *usageContext);
+static enum ItemUseCheckResult CanUseAzureFlute(const ItemUseContext *usageContext);
 static BOOL MountOrUnmountBicycle(FieldTask *task);
 static BOOL PrintRegisteredKeyItemUseMessage(FieldTask *task);
 static void RegisteredItem_CreateGoToAppTask(ItemFieldUseContext *usageContext, void *param1);
@@ -367,35 +367,35 @@ static BOOL UseExplorerKitInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUseExplorerKit(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageContext)
 {
     if (MapHeader_GetMapLabelTextID(usageContext->mapHeaderID) == LocationNames_Text_MysteryZone) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (!(MapHeader_IsOnMainMatrix(usageContext->mapHeaderID))) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (sub_0205EFDC(usageContext->playerAvatar) == TRUE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(usageContext->fieldSystem->saveData)) == TRUE
         || SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(usageContext->fieldSystem->saveData)) == TRUE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == 0x2) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (TileBehavior_IsBridge(usageContext->currTileBehavior) == TRUE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (TileBehavior_ForbidsExplorationKit(usageContext->currTileBehavior) == TRUE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     {
@@ -405,11 +405,11 @@ static u32 CanUseExplorerKit(const ItemUseContext *usageContext)
         v1 = Player_GetZPos(usageContext->fieldSystem->playerAvatar);
 
         if (MapHeaderData_IsAnyObjectEventAtPos(usageContext->fieldSystem, v0, v1) == FALSE) {
-            return -1;
+            return ITEM_USE_CANNOT_USE_GENERIC;
         }
     }
 
-    return 0;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseBicycleFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -471,43 +471,43 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
     return FALSE;
 }
 
-static u32 CanUseBicycle(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(usageContext->fieldSystem->saveData);
 
     if (usageContext->hasPartner == TRUE) {
-        return 2;
+        return ITEM_USE_CANNOT_USE_WITH_PARTNER;
     }
 
     if (SystemFlag_HandleForceBikingInGate(v0, HANDLE_FLAG_CHECK) == TRUE) {
-        return 1;
+        return ITEM_USE_CANNOT_DISMOUNT;
     }
 
     if (sub_0205EFDC(usageContext->playerAvatar) == TRUE) {
-        return 1;
+        return ITEM_USE_CANNOT_DISMOUNT;
     }
 
     {
         MapObject *v1 = Player_MapObject(usageContext->playerAvatar);
 
         if (MapObject_IsOnBikeBridgeNorthSouth(v1, usageContext->currTileBehavior) == TRUE || MapObject_IsOnBikeBridgeEastWest(v1, usageContext->currTileBehavior) == TRUE) {
-            return 1;
+            return ITEM_USE_CANNOT_DISMOUNT;
         }
     }
 
     if (TileBehavior_IsVeryTallGrass(usageContext->currTileBehavior) == TRUE || TileBehavior_IsMud(usageContext->currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(usageContext->currTileBehavior) == TRUE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (MapHeader_IsBikeAllowed(usageContext->mapHeaderID) == FALSE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (usageContext->playerState == PLAYER_STATE_SURFING) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    return 0;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseJournalFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -568,9 +568,9 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
     sub_0203B674(menu, sub_0203C558);
 }
 
-static u32 CanUseBerry(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseBerry(const ItemUseContext *usageContext)
 {
-    return 0;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseBerryFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -665,21 +665,21 @@ static BOOL UsePokeRadarInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUsePokeRadar(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUsePokeRadar(const ItemUseContext *usageContext)
 {
     if (usageContext->hasPartner == TRUE) {
-        return 2;
+        return ITEM_USE_CANNOT_USE_WITH_PARTNER;
     }
 
     if (PlayerAvatar_GetPlayerState(usageContext->fieldSystem->playerAvatar) == 0x1) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (!TileBehavior_IsTallGrass(usageContext->currTileBehavior)) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    return 0;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseSprayDuckFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -693,16 +693,16 @@ static BOOL UseSprayDuckInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUseSprayDuck(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseSprayDuck(const ItemUseContext *usageContext)
 {
     if (usageContext->hasPartner == TRUE) {
-        return 2;
+        return ITEM_USE_CANNOT_USE_WITH_PARTNER;
     }
 
     if (usageContext->berryPatchFlags & BERRY_PATCH_FLAG_HAS_BERRY) {
-        return 0;
+        return ITEM_USE_CAN_USE;
     } else {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 }
 
@@ -711,12 +711,12 @@ static void UseMulchFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     sub_02068540(usageContext, additionalContext, 2803);
 }
 
-static u32 CanUseMulch(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseMulch(const ItemUseContext *usageContext)
 {
     if (usageContext->berryPatchFlags & BERRY_PATCH_FLAG_CAN_MULCH) {
-        return 0;
+        return ITEM_USE_CAN_USE;
     } else {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 }
 
@@ -755,13 +755,13 @@ static BOOL UseVsSeekerInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUseVsSeeker(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseVsSeeker(const ItemUseContext *usageContext)
 {
     if (MapHeader_IsOnMainMatrix(usageContext->mapHeaderID)) {
-        return 0;
+        return ITEM_USE_CAN_USE;
     }
 
-    return -1;
+    return ITEM_USE_CANNOT_USE_GENERIC;
 }
 
 static void UseOldRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -824,10 +824,10 @@ static BOOL UseSuperRodInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUseFishingRod(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseFishingRod(const ItemUseContext *usageContext)
 {
     if (usageContext->hasPartner == TRUE) {
-        return 2;
+        return ITEM_USE_CANNOT_USE_WITH_PARTNER;
     }
 
     if (usageContext->mapHeaderID == MAP_HEADER_DISTORTION_WORLD_1F
@@ -841,7 +841,7 @@ static u32 CanUseFishingRod(const ItemUseContext *usageContext)
         || usageContext->mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B7F
         || usageContext->mapHeaderID == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM
         || usageContext->mapHeaderID == MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
-        return 3;
+        return ITEM_USE_CANNOT_FISH_HERE;
     }
 
     if (TileBehavior_IsSurfable(usageContext->facingTileBehavior) == TRUE) {
@@ -849,14 +849,14 @@ static u32 CanUseFishingRod(const ItemUseContext *usageContext)
             MapObject *v0 = Player_MapObject(usageContext->playerAvatar);
 
             if (sub_02062F30(v0) == TRUE) {
-                return -1;
+                return ITEM_USE_CANNOT_USE_GENERIC;
             }
         }
 
-        return 0;
+        return ITEM_USE_CAN_USE;
     }
 
-    return -1;
+    return ITEM_USE_CANNOT_USE_GENERIC;
 }
 
 static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext)
@@ -946,17 +946,17 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUs
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELD2);
 }
 
-static u32 CanUseEscapeRope(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseEscapeRope(const ItemUseContext *usageContext)
 {
     if (usageContext->hasPartner == TRUE) {
-        return 2;
+        return ITEM_USE_CANNOT_USE_WITH_PARTNER;
     }
 
     if ((MapHeader_IsCave(usageContext->mapHeaderID) == TRUE) && (MapHeader_IsEscapeRopeAllowed(usageContext->mapHeaderID) == TRUE)) {
-        return 0;
+        return ITEM_USE_CAN_USE;
     }
 
-    return -1;
+    return ITEM_USE_CANNOT_USE_GENERIC;
 }
 
 static BOOL sub_020690F0(FieldTask *task)
@@ -979,27 +979,27 @@ static BOOL UseAzureFluteInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-static u32 CanUseAzureFlute(const ItemUseContext *usageContext)
+static enum ItemUseCheckResult CanUseAzureFlute(const ItemUseContext *usageContext)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(usageContext->fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v0) == FALSE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (SystemVars_CheckDistributionEvent(v0, DISTRIBUTION_EVENT_ARCEUS) == FALSE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (Pokedex_IsNationalDexObtained(SaveData_GetPokedex(usageContext->fieldSystem->saveData)) == FALSE) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     if (!MapHeader_IsAzureFluteAllowed(usageContext->mapHeaderID)) {
-        return -1;
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    return 0;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseVsRecorderFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
