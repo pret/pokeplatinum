@@ -32,12 +32,12 @@ void RegulationBattles_Init(BattleRegulationData *regulationData)
 
 void BattleRegulation_GetName(const BattleRegulation *regulation, Strbuf *strbuf)
 {
-    Strbuf_CopyNumChars(strbuf, regulation->name, (11 + 1));
+    Strbuf_CopyNumChars(strbuf, regulation->name, (BATTLE_REGULATION_NAME_LENGTH));
 }
 
 Strbuf *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int heapID)
 {
-    Strbuf *strbuf = Strbuf_Init((11 + 1) * 2, heapID);
+    Strbuf *strbuf = Strbuf_Init((BATTLE_REGULATION_NAME_LENGTH) * 2, heapID);
 
     Strbuf_CopyChars(strbuf, regulation->name);
     return strbuf;
