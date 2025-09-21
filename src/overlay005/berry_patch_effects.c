@@ -1,7 +1,6 @@
 #include "overlay005/berry_patch_effects.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -21,10 +20,16 @@
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
+// Berry patch moisture effect resource IDs
+#define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3
+#define BERRY_PATCH_MOISTURE_RESOURCE_DRY   77
+#define BERRY_PATCH_MOISTURE_RESOURCE_MOIST 76
+#define BERRY_PATCH_MOISTURE_RESOURCE_WET   75
+
 typedef struct BerryPatchGraphicsManager {
     UnkStruct_ov5_021DF47C *renderManager;
-    UnkStruct_02073B50 resourceData[3];
-    UnkStruct_02073838 resources[3];
+    UnkStruct_02073B50 resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    UnkStruct_02073838 resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 } BerryPatchGraphicsManager;
 
 typedef struct BerryPatchMoistureEffectContext {
@@ -72,7 +77,7 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
 
 static const UnkStruct_ov101_021D86B0 sBerryPatchMoistureEffectDefinition;
 static const UnkStruct_ov101_021D86B0 sBerryPatchSparkleEffectDefinition;
-static const u32 sBerryPatchMoistureResourceIDs[3];
+static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[];
 
 void *BerryPatchGraphicsManager_New(UnkStruct_ov5_021DF47C *renderManager)
@@ -101,7 +106,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
             manager->renderManager, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
         sub_02073B70(&manager->resourceData[i], &manager->resources[i]);
         i++;
-    } while (i < 3);
+    } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
 
 static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *manager)
@@ -111,7 +116,7 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
     do {
         sub_0207395C(&manager->resources[i]);
         i++;
-    } while (i < 3);
+    } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
 
 void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
@@ -124,7 +129,7 @@ void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
     renderManager = ov5_021DF578(mapObject);
 
     context.renderManager = renderManager;
-    context.graphicsManager = ov5_021DF55C(renderManager, 12); // Get graphics manager from overlay 12
+    context.graphicsManager = ov5_021DF55C(renderManager, 12);
     context.mapObject = mapObject;
 
     MapObject_GetPosPtr(mapObject, &position);
@@ -188,7 +193,6 @@ static void BerryPatchMoistureEffect_Render(UnkStruct_ov101_021D5D90 *effectTask
         VecFx32 effectPosition;
 
         sub_020715E4(effectTask, &effectPosition);
-        effectPosition.z += (FX32_ONE * 0);
         sub_02073BB4(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
     }
 }
@@ -233,10 +237,10 @@ static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *count
     if (!counter->isEnabled) {
         counter->isEnabled = TRUE;
         // Load sparkle effect graphics resources
-        ov5_021DF9E0(counter->renderManager, 11, 109); // Load graphics resource 109 into slot 11
-        ov5_021DFA14(counter->renderManager, 11, 181); // Load additional graphics resource 181 into slot 11
-        ov5_021DFA3C(counter->renderManager, 12, 14, 1); // Create texture resource 14 in slot 12
-        ov5_021DF864(counter->renderManager, 13, 11, 11, 12, 0, sBerryPatchSparkleEffectData); // Create graphics object 13 using resources 11, 11, 12
+        ov5_021DF9E0(counter->renderManager, 11, 109);
+        ov5_021DFA14(counter->renderManager, 11, 181);
+        ov5_021DFA3C(counter->renderManager, 12, 14, 1);
+        ov5_021DF864(counter->renderManager, 13, 11, 11, 12, 0, sBerryPatchSparkleEffectData);
     }
 }
 
@@ -245,10 +249,10 @@ static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *coun
     if (counter->isEnabled == TRUE) {
         counter->isEnabled = FALSE;
         // Clean up sparkle effect graphics resources
-        ov5_021DFA08(counter->renderManager, 11); // Free graphics resource from slot 11
-        ov5_021DFA30(counter->renderManager, 11); // Free additional graphics resource from slot 11
-        ov5_021DFA7C(counter->renderManager, 12); // Remove texture resource from slot 12
-        ov5_021DF9D4(counter->renderManager, 13); // Destroy graphics object from slot 13
+        ov5_021DFA08(counter->renderManager, 11);
+        ov5_021DFA30(counter->renderManager, 11);
+        ov5_021DFA7C(counter->renderManager, 12);
+        ov5_021DF9D4(counter->renderManager, 13);
     }
 }
 
@@ -278,8 +282,8 @@ UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObje
     position.z += (FX32_ONE * 8); // Offset sparkle effect 8 units above ground
 
     effectContext.renderManager = renderManager;
-    effectContext.effectCounter = ov5_021DF55C(renderManager, 28); // Retrieve stored effect counter object
-    effectTask = ov5_021DF72C(renderManager, &sBerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255); // Priority 255 for sparkle effect
+    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);
+    effectTask = ov5_021DF72C(renderManager, &sBerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);
 
     return effectTask;
 }
@@ -297,7 +301,7 @@ static int BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *
     BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
     sub_020715E4(effect, &position);
 
-    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position); // Create graphics object with ID 13
+    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);
     BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
 
     return 1;
@@ -322,7 +326,7 @@ static void BerryPatchSparkleEffect_Update(UnkStruct_ov101_021D5D90 *effect, voi
         sparkleEffect->isAnimating = FALSE;
         sparkleEffect->animationFrame++;
 
-        if (sparkleEffect->animationFrame >= 5) { // Animation has 5 frames total
+        if (sparkleEffect->animationFrame >= (int)NELEMS(animationSpeeds)) {
             ov5_021DF74C(effect);
             return;
         }
@@ -354,12 +358,10 @@ static const UnkStruct_ov101_021D86B0 sBerryPatchSparkleEffectDefinition = {
     BerryPatchSparkleEffect_Render
 };
 
-// Resource IDs for different moisture levels of berry patches
-// These correspond to different visual states: dry, moist, wet
-static const u32 sBerryPatchMoistureResourceIDs[3] = {
-    77, // Dry berry patch moisture indicator
-    76, // Moist berry patch moisture indicator
-    75 // Wet berry patch moisture indicator
+static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT] = {
+    BERRY_PATCH_MOISTURE_RESOURCE_DRY,
+    BERRY_PATCH_MOISTURE_RESOURCE_MOIST,
+    BERRY_PATCH_MOISTURE_RESOURCE_WET
 };
 
 // Sparkle effect configuration data for berry patches
