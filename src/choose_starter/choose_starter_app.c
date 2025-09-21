@@ -9,17 +9,8 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "applications/pokedex/struct_ov21_021E7F40.h"
-#include "overlay022/struct_ov22_022550D4.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -40,6 +31,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
+#include "software_sprite.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -52,7 +44,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_02015064.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
@@ -166,9 +157,9 @@ typedef struct StarterPreviewAnimation {
 } StarterPreviewAnimation;
 
 typedef struct StarterPreviewWindow {
-    UnkStruct_02015128 *unk_00;
-    UnkStruct_020151A4 *unk_04;
-    UnkStruct_02015214 *unk_08;
+    SoftwareSpriteChars *unk_00;
+    SoftwareSpritePalette *unk_04;
+    SoftwareSprite *unk_08;
     void *unk_0C;
     void *unk_10;
     NNSG2dCharacterData *unk_14;
@@ -211,7 +202,7 @@ typedef struct ChooseStarterApp {
     VecFx32 unk_64C;
     ChooseStarterCursor unk_658;
     GXRgb edgeMarkings[8];
-    UnkStruct_02015064 *spriteDisplay;
+    SoftwareSpriteManager *spriteDisplay;
     StarterPreviewWindow unk_6A8;
     int messageFrame;
     u32 unk_704;
@@ -716,20 +707,20 @@ static void ov78_021D14BC(ChooseStarterApp *param0)
 
 static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
 {
-    UnkStruct_ov22_022550D4 v0 = {
-        .unk_00 = 1,
-        .unk_04 = 1,
-        .unk_08 = 1,
+    SoftwareSpriteManagerTemplate v0 = {
+        .numSprites = 1,
+        .numChars = 1,
+        .numPalettes = 1,
         .heapID = HEAP_ID_SYSTEM
     };
 
     v0.heapID = heapID;
-    param0->spriteDisplay = sub_02015064(&v0);
+    param0->spriteDisplay = SoftwareSpriteManager_New(&v0);
 }
 
 static void ov78_021D1518(ChooseStarterApp *param0)
 {
-    sub_020150A8(param0->spriteDisplay);
+    SoftwareSpriteManager_Free(param0->spriteDisplay);
 }
 
 static void MakeCellActors(ChooseStarterApp *param0, int heapID)
@@ -1015,7 +1006,7 @@ static void DrawScene(ChooseStarterApp *param0)
         NNS_G2dSetupSoftwareSpriteCamera();
 
         PokemonSpriteManager_DrawSprites(param0->spriteManager);
-        sub_020150EC(param0->spriteDisplay);
+        SoftwareSpriteManager_DrawVisible(param0->spriteDisplay);
     }
 
     NNS_G3dGePopMtx(1);
@@ -1528,52 +1519,52 @@ static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
 {
-    UnkStruct_ov22_022557A0 v0;
-    UnkStruct_ov22_02255800 v1;
-    UnkStruct_ov21_021E7F40 v2;
+    SoftwareSpriteCharsTemplate v0;
+    SoftwareSpritePaletteTemplate v1;
+    SoftwareSpriteTemplate v2;
 
     param0->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &param0->unk_14, param2);
     param0->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &param0->unk_18, param2);
 
-    v0.unk_00 = param1->spriteDisplay;
-    v0.unk_04 = param0->unk_14;
+    v0.softSpriteMan = param1->spriteDisplay;
+    v0.charsData = param0->unk_14;
 
-    param0->unk_00 = sub_02015128(&v0);
+    param0->unk_00 = SoftwareSprite_LoadChars(&v0);
 
-    v1.unk_00 = param1->spriteDisplay;
-    v1.unk_04 = param0->unk_18;
-    v1.unk_08 = 1;
+    v1.softSpriteMan = param1->spriteDisplay;
+    v1.paletteData = param0->unk_18;
+    v1.paletteSlot = 1;
 
-    param0->unk_04 = sub_020151A4(&v1);
+    param0->unk_04 = SoftwareSprite_LoadPalette(&v1);
 
-    v2.unk_00 = param1->spriteDisplay;
-    v2.unk_04 = param0->unk_00;
-    v2.unk_08 = param0->unk_04;
-    v2.unk_0C = 0;
-    v2.unk_0E = 0;
-    v2.unk_10 = 0;
-    v2.unk_14 = 31;
-    v2.unk_18 = 1022;
-    v2.unk_1C = 0;
+    v2.softSpriteMan = param1->spriteDisplay;
+    v2.chars = param0->unk_00;
+    v2.palette = param0->unk_04;
+    v2.xPos = 0;
+    v2.yPos = 0;
+    v2.rotation = 0;
+    v2.alpha = 31;
+    v2.priority = 1022;
+    v2.paletteSlot = 0;
 
-    param0->unk_08 = sub_02015214(&v2);
+    param0->unk_08 = SoftwareSprite_Load(&v2);
 
-    sub_02015240(param0->unk_08, 0);
-    sub_02015268(param0->unk_08, 128 / 2, 128 / 2);
+    SoftwareSprite_SetVisible(param0->unk_08, 0);
+    SoftwareSprite_SetCenter(param0->unk_08, 128 / 2, 128 / 2);
 }
 
 static void ov78_021D24E4(StarterPreviewWindow *param0)
 {
-    sub_02015238(param0->unk_08);
-    sub_02015164(param0->unk_00);
-    sub_020151D4(param0->unk_04);
+    SoftwareSprite_Reset(param0->unk_08);
+    SoftwareSprite_FreeChars(param0->unk_00);
+    SoftwareSprite_FreePalette(param0->unk_04);
     Heap_Free(param0->unk_0C);
     Heap_Free(param0->unk_10);
 }
 
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1)
 {
-    sub_02015240(param0->unk_08, param1);
+    SoftwareSprite_SetVisible(param0->unk_08, param1);
 }
 
 static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
@@ -1616,8 +1607,8 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
     v2 = v0->unk_1C.unk_00.unk_00 - ((128 / 2) * FX32_ONE);
     v3 = v0->unk_1C.unk_10.unk_00 - ((128 / 2) * FX32_ONE);
 
-    sub_02015254(v0->unk_08, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
-    sub_02015270(v0->unk_08, v0->unk_1C.unk_20.unk_00, v0->unk_1C.unk_20.unk_00);
+    SoftwareSprite_SetPosition(v0->unk_08, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
+    SoftwareSprite_SetScalingFactors(v0->unk_08, v0->unk_1C.unk_20.unk_00, v0->unk_1C.unk_20.unk_00);
 
     if ((v1 == 1) || (v0->unk_1C.unk_30 < 0)) {
         SysTask_Done(param0);

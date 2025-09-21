@@ -1,16 +1,11 @@
 #include "main.h"
 
 #include <dwc.h>
-#include <nitro.h>
-#include <string.h>
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "game_opening/const_ov77_021D742C.h"
-
 #include "assert.h"
-#include "bg_window.h"
 #include "brightness_controller.h"
 #include "communication_system.h"
 #include "font.h"

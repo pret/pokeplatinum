@@ -15,9 +15,9 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "berry_patch_manager.h"
 #include "map_object.h"
 #include "unk_02020AEC.h"
-#include "unk_02055C50.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -77,7 +77,7 @@ const UnkStruct_020217F4 Unk_ov5_0220044C[];
 
 void *ov5_021F204C(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F2078 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F2078)), 0, 0);
+    UnkStruct_ov5_021F2078 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2078), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F2078(v0);
@@ -155,45 +155,45 @@ static void ov5_021F2144(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return;
 }
 
-static void ov5_021F2148(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchGraphicsEffect_Update(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
 {
-    UnkStruct_ov5_021F2118 *v0 = param1;
-    MapObject *v1 = v0->unk_10.unk_08;
+    UnkStruct_ov5_021F2118 *berryPatchEffect = effectData;
+    MapObject *mapObject = berryPatchEffect->unk_10.unk_08;
 
-    if (sub_02062764(v1, v0->unk_00, v0->unk_04) == 0) {
-        ov5_021DF74C(param0);
+    if (sub_02062764(mapObject, berryPatchEffect->unk_00, berryPatchEffect->unk_04) == 0) {
+        ov5_021DF74C(effectTask);
         return;
     }
 
-    v0->unk_08 = 0;
+    berryPatchEffect->unk_08 = 0;
 
-    if ((MapObject_CheckStatusFlag(v1, MAP_OBJ_STATUS_HIDE) == 1) || (!sub_02055F00(MapObject_FieldSystem(v1), v1))) {
-        v0->unk_08 = 1;
+    if ((MapObject_CheckStatusFlag(mapObject, MAP_OBJ_STATUS_HIDE) == 1) || (!BerryPatches_GetGrowthStage(MapObject_FieldSystem(mapObject), mapObject))) {
+        berryPatchEffect->unk_08 = 1;
         return;
     }
 
     {
-        v0->unk_0C = sub_02055F88(MapObject_FieldSystem(v1), v1);
+        berryPatchEffect->unk_0C = BerryPatches_GetMoisture(MapObject_FieldSystem(mapObject), mapObject);
     }
 
     {
-        VecFx32 v2;
+        VecFx32 mapObjectPosition;
 
-        MapObject_GetPosPtr(v1, &v2);
-        sub_020715D4(param0, &v2);
+        MapObject_GetPosPtr(mapObject, &mapObjectPosition);
+        sub_020715D4(effectTask, &mapObjectPosition);
     }
 }
 
-static void ov5_021F21B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void BerryPatchGraphicsEffect_Render(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
 {
-    UnkStruct_ov5_021F2118 *v0 = param1;
+    UnkStruct_ov5_021F2118 *berryPatchEffect = effectData;
 
-    if (v0->unk_08 != 1) {
-        VecFx32 v1;
+    if (berryPatchEffect->unk_08 != 1) {
+        VecFx32 effectPosition;
 
-        sub_020715E4(param0, &v1);
-        v1.z += (FX32_ONE * 0);
-        sub_02073BB4(&v0->unk_10.unk_04->unk_04[v0->unk_0C], &v1);
+        sub_020715E4(effectTask, &effectPosition);
+        effectPosition.z += (FX32_ONE * 0);
+        sub_02073BB4(&berryPatchEffect->unk_10.unk_04->unk_04[berryPatchEffect->unk_0C], &effectPosition);
     }
 }
 
@@ -201,13 +201,13 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200438 = {
     sizeof(UnkStruct_ov5_021F2118),
     ov5_021F2118,
     ov5_021F2144,
-    ov5_021F2148,
-    ov5_021F21B8
+    BerryPatchGraphicsEffect_Update,
+    BerryPatchGraphicsEffect_Render
 };
 
 void *ov5_021F21E0(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F2204 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F2204)), 0, 0);
+    UnkStruct_ov5_021F2204 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F2204), 0, 0);
     v0->unk_08 = param0;
 
     return v0;

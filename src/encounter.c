@@ -394,7 +394,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);
             RadarChain_Clear(fieldSystem->chain);
-            FieldTask_InitJump(task, sub_02052B2C, NULL);
+            FieldTask_InitJump(task, FieldTask_BlackOutFromBattle, NULL);
             return FALSE;
         }
 
@@ -617,7 +617,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
+        FieldSystem_UpdateCatchingShowResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;
@@ -636,7 +636,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 6:
         FreeEncounter(encounter);
 
-        if (CatchingShow_GetParkBallCount(fieldSystem) == 0) {
+        if (FieldSystem_GetParkBallCount(fieldSystem) == 0) {
             ScriptManager_Change(task, 3, NULL);
             return FALSE;
         } else {

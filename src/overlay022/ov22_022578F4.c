@@ -20,8 +20,8 @@
 
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "software_sprite.h"
 #include "touch_screen.h"
-#include "unk_02015064.h"
 
 static void ov22_02257DEC(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_02259560 *param1, BOOL param2, NNSG2dCharacterData **param3);
 static void ov22_02257EC8(UnkStruct_ov22_02259560 *param0, int *param1, int *param2);
@@ -373,7 +373,7 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
         if (v0->unk_04 == 0) {
             UnkStruct_ov22_02255040 *v1 = v0->unk_00;
 
-            sub_0201529C(v1->unk_04, param1);
+            SoftwareSprite_SetDiffuse(v1->unk_04, param1);
         } else {
             UnkStruct_020298D8 *v2 = v0->unk_00;
 
@@ -390,7 +390,7 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
     while (v0 != &param0->unk_00.unk_04) {
         UnkStruct_ov22_02255040 *v3 = v0->unk_00;
 
-        sub_0201529C(v3->unk_04, param1);
+        SoftwareSprite_SetDiffuse(v3->unk_04, param1);
         v0 = v0->unk_08;
     }
 }

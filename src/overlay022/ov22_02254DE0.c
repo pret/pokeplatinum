@@ -3,21 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015214_decl.h"
-
-#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 
 #include "heap.h"
+#include "software_sprite.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02015064.h"
 
 static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
-static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
+static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
 static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable);
 
 UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int heapID)
@@ -100,14 +97,14 @@ BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
 
 void ov22_02254EF4(UnkStruct_ov22_02255040 *param0, s16 param1, s16 param2)
 {
-    sub_02015254(param0->unk_04, param1, param2);
+    SoftwareSprite_SetPosition(param0->unk_04, param1, param2);
 }
 
 void ov22_02254F00(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
-    v0 = sub_0201525C(param0->unk_04);
+    v0 = SoftwareSprite_GetPosition(param0->unk_04);
     *param1 = v0.x;
     *param2 = v0.y;
 }
@@ -116,24 +113,24 @@ void ov22_02254F30(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
-    v0 = sub_02015280(param0->unk_04);
+    v0 = SoftwareSprite_GetDimensions(param0->unk_04);
     *param1 = v0.x;
     *param2 = v0.y;
 }
 
 void ov22_02254F60(UnkStruct_ov22_02255040 *param0, BOOL param1)
 {
-    sub_02015240(param0->unk_04, param1);
+    SoftwareSprite_SetVisible(param0->unk_04, param1);
 }
 
 void ov22_02254F6C(UnkStruct_ov22_02255040 *param0, int param1)
 {
-    sub_0201528C(param0->unk_04, param1);
+    SoftwareSprite_SetPriority(param0->unk_04, param1);
 }
 
 int ov22_02254F78(UnkStruct_ov22_02255040 *param0)
 {
-    return sub_02015290(param0->unk_04);
+    return SoftwareSprite_GetPriority(param0->unk_04);
 }
 
 void ov22_02254F84(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
@@ -180,27 +177,27 @@ static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0)
     return NULL;
 }
 
-static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
+static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
 {
-    UnkStruct_ov21_021E7F40 v0;
+    SoftwareSpriteTemplate v0;
 
-    v0.unk_00 = param0->unk_04;
-    v0.unk_04 = param0->unk_08;
-    v0.unk_08 = param0->unk_0C;
-    v0.unk_0C = param0->unk_10;
-    v0.unk_0E = param0->unk_14;
-    v0.unk_10 = 0;
-    v0.unk_14 = 31;
-    v0.unk_18 = 0;
-    v0.unk_1C = param0->unk_1C;
+    v0.softSpriteMan = param0->unk_04;
+    v0.chars = param0->unk_08;
+    v0.palette = param0->unk_0C;
+    v0.xPos = param0->unk_10;
+    v0.yPos = param0->unk_14;
+    v0.rotation = 0;
+    v0.alpha = 31;
+    v0.priority = 0;
+    v0.paletteSlot = param0->unk_1C;
 
-    return sub_02015214(&v0);
+    return SoftwareSprite_Load(&v0);
 }
 
 static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable)
 {
-    NNSG2dSVec2 v0 = sub_0201525C(param0->unk_04);
-    NNSG2dSVec2 v1 = sub_02015280(param0->unk_04);
+    NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param0->unk_04);
+    NNSG2dSVec2 v1 = SoftwareSprite_GetDimensions(param0->unk_04);
 
     hitTable->rect.top = v0.y;
     hitTable->rect.bottom = v0.y + v1.y;

@@ -319,43 +319,43 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
     }
 }
 
-void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapID heapID)
+void *BagContext_CreateWithPockets(Bag *bag, const u8 *pockets, enum HeapID heapID)
 {
-    BagContext *v0;
+    BagContext *bagContext;
     int i;
 
-    v0 = BagContext_New(heapID);
+    bagContext = BagContext_New(heapID);
 
     for (i = 0; pockets[i] != 0xff; i++) {
         switch (pockets[i]) {
         case POCKET_KEY_ITEMS:
-            BagContext_InitPocket(v0, bag->keyItems, POCKET_KEY_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->keyItems, POCKET_KEY_ITEMS, i);
             break;
         case POCKET_ITEMS:
-            BagContext_InitPocket(v0, bag->items, POCKET_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->items, POCKET_ITEMS, i);
             break;
         case POCKET_BERRIES:
-            BagContext_InitPocket(v0, bag->berries, POCKET_BERRIES, i);
+            BagContext_InitPocket(bagContext, bag->berries, POCKET_BERRIES, i);
             break;
         case POCKET_MEDICINE:
-            BagContext_InitPocket(v0, bag->medicine, POCKET_MEDICINE, i);
+            BagContext_InitPocket(bagContext, bag->medicine, POCKET_MEDICINE, i);
             break;
         case POCKET_BALLS:
-            BagContext_InitPocket(v0, bag->pokeballs, POCKET_BALLS, i);
+            BagContext_InitPocket(bagContext, bag->pokeballs, POCKET_BALLS, i);
             break;
         case POCKET_BATTLE_ITEMS:
-            BagContext_InitPocket(v0, bag->battleItems, POCKET_BATTLE_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->battleItems, POCKET_BATTLE_ITEMS, i);
             break;
         case POCKET_MAIL:
-            BagContext_InitPocket(v0, bag->mail, POCKET_MAIL, i);
+            BagContext_InitPocket(bagContext, bag->mail, POCKET_MAIL, i);
             break;
         case POCKET_TMHMS:
-            BagContext_InitPocket(v0, bag->tmHms, POCKET_TMHMS, i);
+            BagContext_InitPocket(bagContext, bag->tmHms, POCKET_TMHMS, i);
             break;
         }
     }
 
-    return v0;
+    return bagContext;
 }
 
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot)

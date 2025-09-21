@@ -42,6 +42,7 @@ struct PngToNtrOptions {
     bool vramTransfer;
     int mappingType;
     bool convertTo4Bpp;
+    int rotate;
 };
 
 struct NtrToPngOptions {

@@ -91,6 +91,7 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020EA02C.h"
+#include "res/graphics/start_menu/start_menu.naix.h"
 #include "res/text/bank/start_menu.h"
 
 typedef enum StartMenuPos {
@@ -702,7 +703,7 @@ static void sub_0203B094(FieldTask *taskMan)
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
-        int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
+        int parkBallCount = FieldSystem_GetParkBallCount(fieldSystem);
 
         StringTemplate_SetNumber(v3, 0, parkBallCount, 2, 0, 1);
     }
@@ -788,24 +789,23 @@ static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gende
         8, 1, 2, 2, 0, 0
     };
     u32 i;
-    NARC *v2;
 
     ov5_021D3190(&menu->unk_38, &v0, (7 + 1), HEAP_ID_FIELD2);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
 
-    ov5_021D32E8(&menu->unk_38, v2, 5, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
-    ov5_021D3374(&menu->unk_38, v2, 1, 0, 13528);
-    ov5_021D339C(&menu->unk_38, v2, 0, 0, 13528);
-    ov5_021D3414(&menu->unk_38, v2, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+    ov5_021D32E8(&menu->unk_38, narc, menu_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+    ov5_021D3374(&menu->unk_38, narc, cursor_cell_NCER, 0, 13528);
+    ov5_021D339C(&menu->unk_38, narc, cursor_anim_NANR, 0, 13528);
+    ov5_021D3414(&menu->unk_38, narc, cursor_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
 
     menu->unk_200[0] = ov5_021D3584(&menu->unk_38, &Unk_020EA0A4[0]);
 
     sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
 
-    ov5_021D3374(&menu->unk_38, v2, 4, 0, 13529);
-    ov5_021D339C(&menu->unk_38, v2, 3, 0, 13529);
-    ov5_021D3414(&menu->unk_38, v2, 6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
+    ov5_021D3374(&menu->unk_38, narc, icons_cell_NCER, 0, 13529);
+    ov5_021D339C(&menu->unk_38, narc, icons_anim_NANR, 0, 13529);
+    ov5_021D3414(&menu->unk_38, narc, icons_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
 
     for (i = 0; i < optionCount; i++) {
         SpriteTemplate v3;
@@ -832,7 +832,7 @@ static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gende
     menu->unk_220 = optionCount + 1;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    NARC_dtor(v2);
+    NARC_dtor(narc);
 }
 
 static void sub_0203B4E8(StartMenu *menu)
@@ -1126,7 +1126,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         Bag *bag = SaveData_GetBag(fieldSystem->saveData);
         TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->taskData = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELD2);
+        menu->taskData = BagContext_CreateWithPockets(bag, Unk_020EA020, HEAP_ID_FIELD2);
 
         BagContext_Init(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
 

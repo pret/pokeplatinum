@@ -111,7 +111,7 @@ void sub_02062914(MapObject *mapObj, int param1);
 int sub_02062918(const MapObject *mapObj);
 void MapObject_SetGraphicsID(MapObject *mapObj, u32 graphicsID);
 u32 MapObject_GetGraphicsID(const MapObject *mapObj);
-u32 sub_02062924(const MapObject *mapObj);
+u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj);
 void MapObject_SetMovementType(MapObject *mapObj, u32 movementType);
 u32 MapObject_GetMovementType(const MapObject *mapObj);
 void MapObject_SetTrainerType(MapObject *mapObj, u32 trainerType);

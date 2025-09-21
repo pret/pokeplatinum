@@ -13,7 +13,7 @@ _0012:
     LockAll
     FacePlayer
     Message 0
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -23,7 +23,7 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -33,7 +33,7 @@ _0041:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_CELESTIC
     ReleaseAll

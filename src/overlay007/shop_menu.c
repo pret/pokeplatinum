@@ -1617,7 +1617,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Shop_CloseContextMenu(shopMenu);
 
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELD2);
+    shopMenu->unk_04 = BagContext_CreateWithPockets(bag, sShop_BagPockets, HEAP_ID_FIELD2);
 
     BagContext_Init(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);

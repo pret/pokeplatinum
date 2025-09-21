@@ -2586,7 +2586,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
 
             Bag *bag = SaveData_GetBag(boxAppMan->saveData);
-            boxAppMan->bagAppArgs = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
+            boxAppMan->bagAppArgs = BagContext_CreateWithPockets(bag, bagPockets, HEAP_ID_BOX_DATA);
             BagContext_Init(boxAppMan->bagAppArgs, boxAppMan->saveData, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(bag), OVERLAY_LOAD_ASYNC);
             boxAppMan->ApplicationManager = ApplicationManager_New(&gBagApplicationTemplate, boxAppMan->bagAppArgs, HEAP_ID_BOX_DATA);

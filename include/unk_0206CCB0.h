@@ -16,6 +16,7 @@ int sub_0206CD00(int param0, FieldSystem *fieldSystem, StringTemplate *param2, U
 BOOL sub_0206CD2C(int param0, FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param2);
 void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param3, int param4);
 void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID);
+void TVBroadcast_RecordBerryHarvest(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount);
 void sub_0206CF9C(TVBroadcast *broadcast, int param1);
 void sub_0206CFB4(TVBroadcast *broadcast, int param1);
 void sub_0206CFCC(TVBroadcast *broadcast, int param1);

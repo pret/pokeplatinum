@@ -3,6 +3,8 @@
 
 #include "struct_defs/struct_020217F4.h"
 
+#include "overlay005/berry_graphics_data.h"
+#include "overlay005/berry_graphics_table.h"
 #include "overlay005/const_ov5_021FAF40.h"
 #include "overlay005/const_ov5_021FAF48.h"
 #include "overlay005/const_ov5_021FAF50.h"
@@ -10,7 +12,6 @@
 #include "overlay005/const_ov5_021FB484.h"
 #include "overlay005/const_ov5_021FB51C.h"
 #include "overlay005/const_ov5_021FB5BC.h"
-#include "overlay005/const_ov5_021FB67C.h"
 #include "overlay005/const_ov5_021FB97C.h"
 #include "overlay005/const_ov5_021FC194.h"
 #include "overlay005/const_ov5_021FC9B4.h"
@@ -23,10 +24,9 @@
 #include "overlay005/struct_ov5_021ED2D0.h"
 #include "overlay005/struct_ov5_021EDD04.h"
 #include "overlay005/struct_ov5_021FB0F0.h"
-#include "overlay005/struct_ov5_021FB67C.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
-#include "unk_020677F4.h"
+#include "berry_patch_graphics.h"
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB0F0 = {
     ov5_021EBA0C,
@@ -140,12 +140,12 @@ static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB000 = {
     ov5_021EC790
 };
 
-static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FAF74 = {
-    sub_02067870,
-    sub_02067890,
-    sub_02067950,
-    sub_02067968,
-    sub_02067998
+static const UnkStruct_ov5_021FB0F0 BerryPatchRenderer = {
+    BerryPatchGraphics_NewGraphics,
+    BerryPatchGraphics_UpdateGraphics,
+    BerryPatchGraphics_FreeGraphics,
+    BerryPatchGraphics_PauseGraphics,
+    BerryPatchGraphics_ResumeGraphics
 };
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB078 = {
@@ -313,7 +313,7 @@ const UnkStruct_ov5_021FB97C Unk_ov5_021FB97C[] = {
     { 0x61, &Unk_ov5_021FB0F0 },
     { 0x62, &Unk_ov5_021FAF88 },
     { 0x63, &Unk_ov5_021FAFD8 },
-    { 0x64, &Unk_ov5_021FAF74 },
+    { 0x64, &BerryPatchRenderer },
     { 0x76, &Unk_ov5_021FB050 },
     { 0x78, &Unk_ov5_021FAFD8 },
     { 0x79, &Unk_ov5_021FAFD8 },
@@ -1845,7 +1845,7 @@ const UnkStruct_ov5_021ECD10 Unk_ov5_021FC194[] = {
     { 0xffff, 0x0, 0x0, 0x0, 0x0, 0x0 }
 };
 
-const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
+const BerryGraphicsData gBerryGraphicsTable[] = {
     { 0x1001, 0x1002, 0x1003 },
     { 0x1004, 0x1005, 0x1006 },
     { 0x1007, 0x1008, 0x1009 },
@@ -1861,7 +1861,7 @@ const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
     { 0x1025, 0x1026, 0x1027 },
     { 0x1028, 0x1029, 0x102A },
     { 0x102B, 0x102C, 0x102D },
-    { 0x102E, (0x1000 + 0x2f), 0x1030 },
+    { 0x102E, 0x1000 + 0x2f, 0x1030 },
     { 0x1031, 0x1032, 0x1033 },
     { 0x1034, 0x1035, 0x1036 },
     { 0x1037, 0x1038, 0x1039 },
@@ -1877,7 +1877,7 @@ const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
     { 0x1055, 0x1056, 0x1057 },
     { 0x1058, 0x1059, 0x105A },
     { 0x105B, 0x105C, 0x105D },
-    { 0x105E, (0x1000 + 0x5f), 0x1060 },
+    { 0x105E, 0x1000 + 0x5f, 0x1060 },
     { 0x1061, 0x1062, 0x1063 },
     { 0x1064, 0x1065, 0x1066 },
     { 0x1067, 0x1068, 0x1069 },
@@ -1893,7 +1893,7 @@ const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
     { 0x1085, 0x1086, 0x1087 },
     { 0x1088, 0x1089, 0x108A },
     { 0x108B, 0x108C, 0x108D },
-    { 0x108E, (0x1000 + 0x8f), 0x1090 },
+    { 0x108E, 0x1000 + 0x8f, 0x1090 },
     { 0x1091, 0x1092, 0x1093 },
     { 0x1094, 0x1095, 0x1096 },
     { 0x1097, 0x1098, 0x1099 },
@@ -1909,7 +1909,7 @@ const UnkStruct_ov5_021FB67C Unk_ov5_021FB67C[] = {
     { 0x10B5, 0x10B6, 0x10B7 },
     { 0x10B8, 0x10B9, 0x10BA },
     { 0x10BB, 0x10BC, 0x10BD },
-    { 0x10BE, (0x1000 + 0xbf), 0x10C0 }
+    { 0x10BE, 0x1000 + 0xbf, 0x10C0 }
 };
 
 const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
@@ -1918,7 +1918,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1926,7 +1926,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1934,7 +1934,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1942,7 +1942,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1950,7 +1950,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1958,7 +1958,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+            (FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2),
         },
     },
     {
@@ -1966,7 +1966,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {
@@ -1974,7 +1974,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {
@@ -1982,7 +1982,7 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+            (FX32_ONE * 6) - (FX32_ONE * 6),
         },
     },
     {

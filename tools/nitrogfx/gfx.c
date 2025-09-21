@@ -84,6 +84,30 @@ static void ConvertFromTiles1Bpp(unsigned char *src, unsigned char *dest, int nu
     }
 }
 
+static void Rotate4BppTiles90Deg(unsigned char *src, unsigned char *dest, int srcTilesTall, int srcTilesWide)
+{
+    int bufferSize = srcTilesTall * srcTilesWide * 32;
+    for (int i = 0; i < bufferSize; i++)
+    {
+        int srcTileX = (i / 32) % srcTilesWide;
+        int srcTileY = (i / 32) / srcTilesWide;
+        int destTileX = (srcTilesTall - 1) - srcTileY;
+        int destTileY = srcTileX;
+        int destPixelX = 7 - ((i & 31) / 4);
+        int destPixelY = (i & 3) * 2;
+
+        int srcLeftPixel = src[i] & 0xF;
+        int srcRightPixel = src[i] >> 4;
+        if (destPixelX & 1)
+        {
+            srcLeftPixel <<= 4;
+            srcRightPixel <<= 4;
+        }
+        dest[(destTileY * srcTilesTall + destTileX) * 32 + destPixelY * 4 + (destPixelX >> 1)] |= srcLeftPixel;
+        dest[(destTileY * srcTilesTall + destTileX) * 32 + (destPixelY + 1) * 4 + (destPixelX >> 1)] |= srcRightPixel;
+    }
+}
+
 static void ConvertFromTiles4Bpp(unsigned char *src, unsigned char *dest, int numTiles, int chunksWide, int colsPerChunk, int rowsPerChunk, bool invertColors, bool convertTo8Bpp, int palIndex)
 {
     int outputBitDepth = convertTo8Bpp ? 8 : 4;
@@ -641,6 +665,73 @@ static int SnapToTile(int val)
     return val;
 }
 
+
+struct Dimensions {
+    int width;
+    int height;
+};
+
+static struct Dimensions CalculateOAMDimensions(struct OAM *oam)
+{
+    struct Dimensions oamdim = {
+        .width = 0,
+        .height = 0,
+    };
+
+    int oamSize = oam->attr1.Size;
+    switch (oam->attr0.Shape)
+    {
+    case 0:
+        oamdim.height = 1 << oamSize;
+        oamdim.width = oamdim.height;
+        break;
+    case 1:
+        switch (oamSize)
+        {
+        case 0:
+            oamdim.height = 1;
+            oamdim.width = 2;
+            break;
+        case 1:
+            oamdim.height = 1;
+            oamdim.width = 4;
+            break;
+        case 2:
+            oamdim.height = 2;
+            oamdim.width = 4;
+            break;
+        case 3:
+            oamdim.height = 4;
+            oamdim.width = 8;
+            break;
+        }
+        break;
+    case 2:
+        switch (oamSize)
+        {
+        case 0:
+            oamdim.height = 2;
+            oamdim.width = 1;
+            break;
+        case 1:
+            oamdim.height = 4;
+            oamdim.width = 1;
+            break;
+        case 2:
+            oamdim.height = 4;
+            oamdim.width = 2;
+            break;
+        case 3:
+            oamdim.height = 8;
+            oamdim.width = 4;
+            break;
+        }
+        break;
+    }
+
+    return oamdim;
+}
+
 void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool snap, bool noSkip, bool convertBpp)
 {
     char *cellFileExtension = GetFileExtension(cellFilePath);
@@ -670,6 +761,9 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
     int outputHeight = -1;
     int outputWidth = 0;
     int numTiles = 0;
+    int cellHeights[options->cellCount];
+    int minXs[options->cellCount];
+    int minYs[options->cellCount];
 
     for (int i = 0; i < options->cellCount; i++)
     {
@@ -688,10 +782,49 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 cellHeight = SnapToTile(cellHeight);
                 cellWidth = SnapToTile(cellWidth);
             }
+            minXs[i] = options->cells[i]->minX;
+            minYs[i] = options->cells[i]->minY;
         }
         else
         {
-            FATAL_ERROR("No bounding rectangle. Incompatible NCER\n");
+            int minX = 0;
+            int minY = 0;
+            int maxX = 0;
+            int maxY = 0;
+            for (int j = 0; j < options->cells[i]->oamCount; j++)
+            {
+                struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
+                int xCoord = options->cells[i]->oam[j].attr1.XCoordinate;
+                if (xCoord & (1 << 8))
+                {
+                    xCoord |= ~0x1FF;
+                }
+                int yCoord = options->cells[i]->oam[j].attr0.YCoordinate;
+                if (yCoord & (1 << 7))
+                {
+                    yCoord |= ~0xFF;
+                }
+                if (xCoord < minX || j == 0)
+                {
+                    minX = xCoord;
+                }
+                if (yCoord < minY || j == 0)
+                {
+                    minY = yCoord;
+                }
+                if (xCoord + (oamdim.width * 8) > maxX || j == 0)
+                {
+                    maxX = xCoord + (oamdim.width * 8);
+                }
+                if (yCoord + (oamdim.height * 8) > maxY || j == 0)
+                {
+                    maxY = yCoord + (oamdim.height * 8);
+                }
+            }
+            cellWidth = maxX - minX;
+            cellHeight = maxY - minY;
+            minXs[i] = minX;
+            minYs[i] = minY;
         }
 
         outputHeight += cellHeight + 1;
@@ -699,6 +832,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
         {
             outputWidth = cellWidth;
         }
+        cellHeights[i] = cellHeight;
     }
 
     if (outputHeight < 1 || outputWidth == 0)
@@ -718,7 +852,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             continue;
         }
         scanHeight++;
-        int cellHeight = options->cells[i]->maxY - options->cells[i]->minY;
+        int cellHeight = cellHeights[i];
         if (snap)
         {
             cellHeight = SnapToTile(cellHeight);
@@ -727,58 +861,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
 
         for (int j = 0; j < options->cells[i]->oamCount; j++)
         {
-            int oamHeight = 0;
-            int oamWidth = 0;
-            int oamSize = options->cells[i]->oam[j].attr1.Size;
-            switch (options->cells[i]->oam[j].attr0.Shape)
-            {
-            case 0:
-                oamHeight = 1 << oamSize;
-                oamWidth = oamHeight;
-                break;
-            case 1:
-                switch (oamSize)
-                {
-                    case 0:
-                        oamHeight = 1;
-                        oamWidth = 2;
-                        break;
-                    case 1:
-                        oamHeight = 1;
-                        oamWidth = 4;
-                        break;
-                    case 2:
-                        oamHeight = 2;
-                        oamWidth = 4;
-                        break;
-                    case 3:
-                        oamHeight = 4;
-                        oamWidth = 8;
-                        break;
-                }
-                break;
-            case 2:
-                switch (oamSize)
-                {
-                    case 0:
-                        oamHeight = 2;
-                        oamWidth = 1;
-                        break;
-                    case 1:
-                        oamHeight = 4;
-                        oamWidth = 1;
-                        break;
-                    case 2:
-                        oamHeight = 4;
-                        oamWidth = 2;
-                        break;
-                    case 3:
-                        oamHeight = 8;
-                        oamWidth = 4;
-                        break;
-                }
-                break;
-            }
+            struct Dimensions oamdim = CalculateOAMDimensions(&options->cells[i]->oam[j]);
 
             int x = options->cells[i]->oam[j].attr1.XCoordinate; // 8 bits
             if (x & (1 << 8))
@@ -790,8 +873,8 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
             {
                 y |= ~0xFF;
             }
-            x -= options->cells[i]->minX;
-            y -= options->cells[i]->minY;
+            x -= minXs[i];
+            y -= minYs[i];
 
             if (snap)
             {
@@ -826,7 +909,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 continue;
             }
             tileMask[pixelOffset] = 1;
-            numTiles += oamHeight * oamWidth;
+            numTiles += oamdim.height * oamdim.width;
 
             bool rotationScaling = options->cells[i]->oam[j].attr1.RotationScaling;
             bool hFlip = options->cells[i]->attributes.hFlip && rotationScaling;
@@ -844,22 +927,22 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 case 4:
                     if (toPNG)
                     {
-                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
+                        ConvertFromTiles4BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, true);
                     }
                     else
                     {
-                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
+                        ConvertFromTiles4BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, false);
                     }
                     break;
                 case 8:
                     pixelOffset *= 2;
                     if (toPNG)
                     {
-                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
+                        ConvertFromTiles8BppCell(image->pixels + pixelOffset, newPixels, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, true);
                     }
                     else
                     {
-                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamWidth, oamHeight, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
+                        ConvertFromTiles8BppCell(image->pixels, newPixels + pixelOffset, oamdim.width, oamdim.height, outputWidth, x, y + scanHeight, hFlip, vFlip, hvFlip, paletteChange, false);
                     }
                     break;
             }
@@ -975,7 +1058,7 @@ void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int ro
 
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
                    bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, bool vram, bool scan,
-                   uint32_t encodeMode, uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp)
+                   uint32_t encodeMode, uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp, int rotate)
 {
     FILE *fp = fopen(path, "wb");
 
@@ -1136,9 +1219,64 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
 
         fwrite(sopcBuffer, 1, 0x10, fp);
     }
-
-    free(pixelBuffer);
     fclose(fp);
+
+    if (charHeader[12] != 3)
+    {
+        free(pixelBuffer);
+        return; // rotation only supported for 4bpp right now
+    }
+
+    int numRotations = rotate / 90;
+    for (int i = 0; i < numRotations; i++)
+    {
+        unsigned char *rotatedPixelBuffer = calloc(bufferSize, sizeof(char));
+        Rotate4BppTiles90Deg(pixelBuffer, rotatedPixelBuffer, tilesTall, tilesWide);
+        
+        char stem[sizeof(path)];
+        for (int j = 0 ;; j++)
+        {
+            if (path[j] == 0 || path[j] == '.')
+            {
+                stem[j] = 0;
+                break;
+            }
+            else
+            {
+                stem[j] = path[j];
+            }
+        }
+        char filename[sizeof(path) + 30];
+        snprintf(filename, sizeof(filename), "%s%s%d%s", stem, "_", (i + 1) * 90, "deg.NCGR");
+        fp = fopen(filename, "wb");
+        if (!clobberSize)
+        {
+            charHeader[8] = tilesWide & 0xFF;
+            charHeader[9] = (tilesWide >> 8) & 0xFF;
+
+            charHeader[10] = tilesTall & 0xFF;
+            charHeader[11] = (tilesTall >> 8) & 0xFF;
+        }
+        WriteGenericNtrHeader(fp, "RGCN", bufferSize + (sopc ? 0x30 : 0x20) + (wrongSize ? -8 : 0), byteOrder, version101, sopc ? 2 : 1);
+        fwrite(charHeader, 1, 0x20, fp);
+        fwrite(rotatedPixelBuffer, 1, bufferSize, fp);
+        if (sopc)
+        {
+            unsigned char sopcBuffer[0x10] = { 0x53, 0x4F, 0x50, 0x43, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+            sopcBuffer[12] = tilesTall & 0xFF;
+            sopcBuffer[13] = (tilesTall >> 8) & 0xFF;
+
+            sopcBuffer[14] = tilesWide & 0xFF;
+            sopcBuffer[15] = (tilesWide >> 8) & 0xFF;
+
+            fwrite(sopcBuffer, 1, 0x10, fp);
+        }
+        fclose(fp);
+        memcpy(pixelBuffer, rotatedPixelBuffer, sizeof(char) * bufferSize);
+        free(rotatedPixelBuffer);
+    }
+    free(pixelBuffer);
 }
 
 void FreeImage(struct Image *image)

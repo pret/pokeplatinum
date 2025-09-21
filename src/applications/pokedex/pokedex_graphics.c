@@ -2,16 +2,14 @@
 
 #include <string.h>
 
-#include "overlay022/struct_ov22_022550D4.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "pokemon.h"
+#include "software_sprite.h"
 #include "sprite_transfer.h"
 #include "sys_task.h"
 #include "unk_02012744.h"
-#include "unk_02015064.h"
 
 #include "res/graphics/pokedex/zukan.naix.h"
 
@@ -112,7 +110,7 @@ void PokemonGraphics_UpdateSprites(PokedexGraphicData *pokedexGraphicData)
     NNS_G2dSetupSoftwareSpriteCamera();
 
     PokemonSpriteManager_DrawSprites(pokedexGraphicData->spriteMan);
-    sub_020150EC(pokedexGraphicData->unk_164);
+    SoftwareSpriteManager_DrawVisible(pokedexGraphicData->unk_164);
 }
 
 void PokemonGraphics_UpdateCharAndPltt(PokedexGraphicData *pokedexGraphicData)
@@ -699,15 +697,15 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
     }
 
     {
-        UnkStruct_ov22_022550D4 v3 = {
-            .unk_00 = 8,
-            .unk_04 = 8,
-            .unk_08 = 8,
+        SoftwareSpriteManagerTemplate v3 = {
+            .numSprites = 8,
+            .numChars = 8,
+            .numPalettes = 8,
             .heapID = HEAP_ID_SYSTEM
         };
 
         v3.heapID = heapID;
-        pokedexGraphicData->unk_164 = sub_02015064(&v3);
+        pokedexGraphicData->unk_164 = SoftwareSpriteManager_New(&v3);
     }
 }
 
@@ -720,7 +718,7 @@ static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
     }
 
     PokemonSpriteManager_Free(pokedexGraphicData->spriteMan);
-    sub_020150A8(pokedexGraphicData->unk_164);
+    SoftwareSpriteManager_Free(pokedexGraphicData->unk_164);
 }
 
 static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)

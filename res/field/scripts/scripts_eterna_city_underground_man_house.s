@@ -16,12 +16,12 @@ _001A:
     FacePlayer
     GoToIfGe VAR_UNK_0x40B6, 9, _00B2
     GoToIfSet FLAG_UNK_0x0113, _0164
-    GoToIfSet FLAG_UNK_0x0079, _007E
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _007E
     Message 0
     SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0079
+    SetFlag FLAG_EXPLORER_KIT_RECEIVED
     ClearFlag FLAG_UNK_0x0111
     Message 1
     ShowYesNoMenu VAR_RESULT

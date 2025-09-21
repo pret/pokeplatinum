@@ -1,19 +1,16 @@
 #include "macros/scrcmd.inc"
 
 
-    .byte 2
-    .short 22, 0
-    .byte 3
-    .short 23, 0
-    .byte 1
-    ScriptEntry _0010
-    .byte 0
+    InitScriptEntry_OnTransition 22
+    InitScriptEntry_OnResume 23
+    InitScriptEntry_OnFrameTable InitScriptFrameTable
+    InitScriptEntryEnd
 
-_0010:
-    .short 0x40D8, 1, 4
-    .short 0x40D8, 2, 5
-    .short 0x40D8, 3, 8
-    .short 0x40D8, 0xFF, 6
-    .short 0
+InitScriptFrameTable:
+    InitScriptGoToIfEqual VAR_UNK_0x40D8, 1, 4
+    InitScriptGoToIfEqual VAR_UNK_0x40D8, 2, 5
+    InitScriptGoToIfEqual VAR_UNK_0x40D8, 3, 8
+    InitScriptGoToIfEqual VAR_UNK_0x40D8, 0xFF, 6
+    InitScriptFrameTableEnd
 
-    .balign 4, 0
+    InitScriptEnd

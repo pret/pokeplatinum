@@ -118,7 +118,7 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 p7zip
+    sudo apt install bison flex g++ gcc-arm-none-eabi git lib32zl make ninja-build pkg-config python3 p7zip
     ```
 
 2. [Download the repository](#2-downloading-the-repository).

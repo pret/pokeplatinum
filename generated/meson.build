@@ -38,6 +38,7 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
@@ -74,6 +75,7 @@ metang_generators = {
     'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
+    'player_transitions': { 'type': 'mask', 'tag': 'PlayerTransition' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
     'pokemon_colors': { 'type': 'enum', 'tag': 'PokemonColor' },
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
@@ -93,6 +95,7 @@ metang_generators = {
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
+    'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },

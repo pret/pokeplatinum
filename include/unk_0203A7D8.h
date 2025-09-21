@@ -5,7 +5,7 @@
 
 #include "location.h"
 
-int sub_0203A7EC(void);
+int FieldOverworldState_GetDefaultWarpID(void);
 void Location_InitFly(int flyDestination, Location *location);
 void Location_InitWhiteOut(int whiteOutDestination, Location *location);
 int sub_0203A858(int param0);

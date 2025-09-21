@@ -1,5 +1,6 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
 #include "generated/fade_types.h"
@@ -33,6 +34,7 @@
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
+#include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
@@ -1900,7 +1902,7 @@
     .short \martID
     .endm
 
-    .macro ScrCmd_14B
+    .macro BlackOutFromBattle2
     .short 331
     .endm
 
@@ -2109,20 +2111,28 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_178 arg0
+    .macro OpenBag pocketType
     .short 376
-    .byte \arg0
+    .byte \pocketType
     .endm
 
-    .macro ScrCmd_179 arg0
+    .macro OpenItemsBag
+    OpenBag 0
+    .endm
+
+    .macro OpenBerriesBag
+    OpenBag 1
+    .endm
+
+    .macro GetSelectedItem destVar
     .short 377
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17A arg0, arg1
+    .macro CheckPocketHasItems pocketID, destVar
     .short 378
-    .short \arg0
-    .short \arg1
+    .short \pocketID
+    .short \destVar
     .endm
 
     .macro BufferBerryName templateArg, item, unused=VAR_0x8001
@@ -2138,47 +2148,47 @@
     .short \nature
     .endm
 
-    .macro ScrCmd_17D arg0
+    .macro GetBerryGrowthStage destVar
     .short 381
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17E arg0
+    .macro GetBerryItemID destVar
     .short 382
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17F arg0
+    .macro GetBerryMulchType destVar
     .short 383
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_180 arg0
+    .macro GetBerryMoisture destVar
     .short 384
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_181 arg0
+    .macro GetBerryYield destVar
     .short 385
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_182 arg0
+    .macro SetBerryMulch mulchItemID
     .short 386
-    .short \arg0
+    .short \mulchItemID
     .endm
 
-    .macro ScrCmd_183 arg0
+    .macro PlantBerry berryItemID
     .short 387
-    .short \arg0
+    .short \berryItemID
     .endm
 
-    .macro ScrCmd_184 arg0
+    .macro SetBerryWateringState direction
     .short 388
-    .short \arg0
+    .short \direction
     .endm
 
-    .macro ScrCmd_185
+    .macro HarvestBerry
     .short 389
     .endm
 
@@ -2800,30 +2810,30 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_1F1 arg0
+    .macro GetFossilCount destVar
     .short 497
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1F2
+    .macro ScrCmd_Dummy_1F2
     .short 498
     .endm
 
-    .macro ScrCmd_1F3
+    .macro ScrCmd_Dummy_1F3
     .short 499
     .endm
 
-    .macro ScrCmd_1F4 arg0, arg1
+    .macro GetSpeciesFromFossil speciesVar, itemVar
     .short 500
-    .short \arg0
-    .short \arg1
+    .short \speciesVar
+    .short \itemVar
     .endm
 
-    .macro ScrCmd_1F5 arg0, arg1, arg2
+    .macro FindFossilAtThreshold itemVar, thresholdVar, thresholdValue
     .short 501
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \itemVar
+    .short \thresholdVar
+    .short \thresholdValue
     .endm
 
     .macro CountPartyMonsBelowLevelThreshold destVar, threshold
@@ -3233,9 +3243,18 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_23B arg0
+    .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
-    .short \arg0
+    .short \pokeballCount
+    .endm
+
+    .macro CallPokecenterNurse nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript 0x7D2
+    .endm
+
+    .macro GenericVendorGreeting
+    CallCommonScript 0x7E3
     .endm
 
     .macro PlayElevatorAnimation elevatorDir, loopCount
@@ -3481,9 +3500,9 @@
     .short 601
     .endm
 
-    .macro ScrCmd_25A arg0
+    .macro PlayHallOfFameHealingAnimation pokeballCount
     .short 602
-    .short \arg0
+    .short \pokeballCount
     .endm
 
     .macro InitPersistedMapFeaturesForPlatformLift
@@ -4949,6 +4968,74 @@
     .macro ScriptEntryEnd
     .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
+    .endm
+    
+    .set F_INIT_SCRIPT_FRAME_TABLE_OPENED, FALSE
+    .set F_INIT_SCRIPT_FRAME_TABLE_CLOSED, FALSE
+
+    .macro InitScriptEntry_Fixed type, scriptID
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .byte \type
+        .short \scriptID, 0
+    .else
+        .error "cannot specify InitScriptEntry after InitScriptEntryEnd"
+    .endif
+    .endm
+
+    .macro InitScriptEntry_OnFrameTable checksLabel
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .set F_INIT_SCRIPT_FRAME_TABLE_OPENED, TRUE
+        .byte INIT_SCRIPT_ON_FRAME_TABLE
+        ScriptEntry \checksLabel
+    .else
+        .error "cannot specify InitScriptEntry after InitScriptEntryEnd"
+    .endif
+    .endm
+
+    .macro InitScriptEntry_OnTransition scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_TRANSITION, \scriptID
+    .endm
+
+    .macro InitScriptEntry_OnResume scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_RESUME, \scriptID
+    .endm
+
+    .macro InitScriptEntry_OnLoad scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_LOAD, \scriptID
+    .endm
+
+    .macro InitScriptEntryEnd
+    .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
+    .byte 0
+    .endm
+
+    .macro InitScriptGoToIfEqual var1, var2, scriptID
+    .if F_INIT_SCRIPT_FRAME_TABLE_OPENED == TRUE
+        .if F_INIT_SCRIPT_FRAME_TABLE_CLOSED == FALSE
+            .short \var1, \var2, \scriptID
+        .else
+            .error "cannot specify InitScriptGoToIfEqual after InitScriptFrameTableEnd"
+        .endif
+    .else
+        .error "cannot specify InitScriptGoToIfEqual before InitScriptEntry_OnFrameTable"
+    .endif
+    .endm
+
+    .macro InitScriptFrameTableEnd
+    .set F_INIT_SCRIPT_FRAME_TABLE_CLOSED, TRUE
+    .short 0
+    .endm
+
+    .macro InitScriptEnd
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .error "cannot specify InitScriptEnd before InitScriptEntryEnd"
+    .endif
+    .if F_INIT_SCRIPT_FRAME_TABLE_OPENED == TRUE
+        .if F_INIT_SCRIPT_FRAME_TABLE_CLOSED == FALSE
+            .error "must close InitScriptEntry_OnFrameTable with InitScriptFrameTableEnd before InitScriptEnd"
+        .endif
+    .endif
+    .balign 4, 0
     .endm
 
     .macro GoToIfCannotFitItem item, count, destVarID, offset

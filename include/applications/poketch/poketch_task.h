@@ -38,7 +38,7 @@ void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan);
 u32 PoketchTask_GetState(PoketchTaskManager *taskMan);
 void PoketchTask_IncrementState(PoketchTaskManager *taskMan);
 void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state);
-void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
+void PoketchTask_UpdateTilemap2x2(u16 *tileBuffer, u32 x, u32 y, u32 bufferWidth, u32 tileIdx, u32 tilesetWidth, u32 palette);
 void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries);
 void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset);
 void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset);

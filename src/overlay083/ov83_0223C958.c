@@ -7,7 +7,6 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022550D4.h"
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
@@ -19,11 +18,11 @@
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "software_sprite.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
-#include "unk_02015064.h"
 #include "unk_0202419C.h"
 
 static void ov83_0223CC30(BgConfig **param0, int heapID);
@@ -120,7 +119,7 @@ void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
         NNS_G2dSetupSoftwareSpriteCamera();
 
         if (param0->unk_320) {
-            sub_020150EC(param0->unk_320);
+            SoftwareSpriteManager_DrawVisible(param0->unk_320);
         }
     }
 
@@ -276,20 +275,20 @@ static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0)
 
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
 {
-    UnkStruct_ov22_022550D4 v0 = {
-        .unk_00 = 48,
-        .unk_04 = 32,
-        .unk_08 = 32,
+    SoftwareSpriteManagerTemplate v0 = {
+        .numSprites = 48,
+        .numChars = 32,
+        .numPalettes = 32,
         .heapID = HEAP_ID_SYSTEM
     };
 
     v0.heapID = param0->heapID;
-    param0->unk_320 = sub_02015064(&v0);
+    param0->unk_320 = SoftwareSpriteManager_New(&v0);
 }
 
 static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_020150A8(param0->unk_320);
+    SoftwareSpriteManager_Free(param0->unk_320);
 }
 
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)

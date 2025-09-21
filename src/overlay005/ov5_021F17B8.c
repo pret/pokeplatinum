@@ -16,10 +16,10 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "berry_patch_graphics.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "unk_02020AEC.h"
-#include "unk_020677F4.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -71,7 +71,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200338;
 
 void *ov5_021F17B8(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F17E4 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F17E4)), 0, 0);
+    UnkStruct_ov5_021F17E4 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F17E4), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F17E4(v0);
@@ -129,8 +129,8 @@ static int ov5_021F184C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_04 = sub_02062918(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
 
-    if (sub_020677F4(v1->unk_08) == 1) {
-        v1->unk_08 = sub_02067800(v1->unk_14.unk_0C);
+    if (BerryPatchGraphics_IsBerryPatch(v1->unk_08) == 1) {
+        v1->unk_08 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v1->unk_14.unk_0C);
     }
 
     v1->unk_28.x = FX32_ONE;
@@ -165,8 +165,8 @@ static void ov5_021F18E0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     MapObject *v2 = v1->unk_14.unk_0C;
     v0 = MapObject_GetGraphicsID(v2);
 
-    if (sub_020677F4(v0) == 1) {
-        v0 = sub_02067800(v1->unk_14.unk_0C);
+    if (BerryPatchGraphics_IsBerryPatch(v0) == 1) {
+        v0 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v1->unk_14.unk_0C);
     }
 
     if ((v1->unk_08 != v0) || (sub_02062764(v2, v1->unk_00, v1->unk_04) == 0) || (sub_02062F64(v2) == 0)) {
@@ -206,8 +206,8 @@ static void ov5_021F1978(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         int v2 = MapObject_GetGraphicsID(v1);
 
-        if (sub_020677F4(v2) == 1) {
-            v2 = sub_02067800(v0->unk_14.unk_0C);
+        if (BerryPatchGraphics_IsBerryPatch(v2) == 1) {
+            v2 = BerryPatchGraphics_GetCurrentGraphicsResourceID(v0->unk_14.unk_0C);
         }
 
         if ((v0->unk_08 != v2) || (sub_02062764(v1, v0->unk_00, v0->unk_04) == 0) || (sub_02062F64(v1) == 0)) {
@@ -257,8 +257,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
     fx32 v1, v2;
     fx32 v3[3] = {
         (FX32_ONE * 12),
-        (FX32_ONE * 16),
-        (FX32_ONE * 12)
+        FX32_ONE * 16, (FX32_ONE * 12)
     };
 
     sub_02063078(param1, param2);
@@ -339,9 +338,9 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     VecFx32 v1;
     fx32 v2;
     fx32 v3[3] = {
-        (FX32_ONE * 12),
-        (FX32_ONE * 16),
-        (FX32_ONE * 12)
+        FX32_ONE * 12,
+        FX32_ONE * 16,
+        FX32_ONE * 12,
     };
 
     *param1 = param0->unk_50;

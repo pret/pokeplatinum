@@ -13,7 +13,7 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -23,7 +23,7 @@ _002C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    GenericVendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_PASTORIA
     ReleaseAll

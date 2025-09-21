@@ -3,15 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02015128_decl.h"
-#include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/struct_02015958.h"
 
-#include "applications/pokedex/struct_ov21_021E7F40.h"
-#include "overlay022/struct_ov22_022557A0.h"
-#include "overlay022/struct_ov22_02255800.h"
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
@@ -46,6 +39,7 @@
 #include "math_util.h"
 #include "narc.h"
 #include "render_window.h"
+#include "software_sprite.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -56,7 +50,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02015064.h"
 #include "unk_02015920.h"
 #include "unk_02098FFC.h"
 
@@ -122,58 +115,58 @@ static int ov83_0223D6A8(int param0, const Strbuf *param1, int param2)
     return param0;
 }
 
-static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpriteChars *ov83_0223D6BC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
 {
-    UnkStruct_ov22_022557A0 v0;
+    SoftwareSpriteCharsTemplate v0;
     void *v1;
     NNSG2dCharacterData *v2;
-    UnkStruct_02015128 *v3;
+    SoftwareSpriteChars *v3;
 
     v1 = Graphics_GetCharDataFromOpenNARC(param3, param1, 0, &v2, param2);
-    v0.unk_00 = param0;
-    v0.unk_04 = v2;
-    v3 = sub_02015128(&v0);
+    v0.softSpriteMan = param0;
+    v0.charsData = v2;
+    v3 = SoftwareSprite_LoadChars(&v0);
 
     Heap_Free(v1);
 
     return v3;
 }
 
-static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpritePalette *ov83_0223D6EC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
 {
-    UnkStruct_ov22_02255800 v0;
+    SoftwareSpritePaletteTemplate v0;
     void *v1;
     NNSG2dPaletteData *v2;
-    UnkStruct_020151A4 *v3;
+    SoftwareSpritePalette *v3;
 
     v1 = Graphics_GetPlttDataFromOpenNARC(param3, param1, &v2, param2);
-    v0.unk_00 = param0;
-    v0.unk_04 = v2;
-    v0.unk_08 = 1;
-    v3 = sub_020151A4(&v0);
+    v0.softSpriteMan = param0;
+    v0.paletteData = v2;
+    v0.paletteSlot = 1;
+    v3 = SoftwareSprite_LoadPalette(&v0);
 
     Heap_Free(v1);
 
     return v3;
 }
 
-static UnkStruct_02015214 *ov83_0223D720(UnkStruct_02015064 *param0, UnkStruct_02015128 *param1, UnkStruct_020151A4 *param2, int param3, int param4, int param5)
+static SoftwareSprite *ov83_0223D720(SoftwareSpriteManager *param0, SoftwareSpriteChars *param1, SoftwareSpritePalette *param2, int param3, int param4, int param5)
 {
-    UnkStruct_ov21_021E7F40 v0;
-    UnkStruct_02015214 *v1;
+    SoftwareSpriteTemplate v0;
+    SoftwareSprite *v1;
 
-    v0.unk_00 = param0;
-    v0.unk_04 = param1;
-    v0.unk_08 = param2;
-    v0.unk_0C = param3;
-    v0.unk_0E = param4;
-    v0.unk_10 = 0;
-    v0.unk_14 = 31;
-    v0.unk_18 = param5;
-    v0.unk_1C = 0;
+    v0.softSpriteMan = param0;
+    v0.chars = param1;
+    v0.palette = param2;
+    v0.xPos = param3;
+    v0.yPos = param4;
+    v0.rotation = 0;
+    v0.alpha = 31;
+    v0.priority = param5;
+    v0.paletteSlot = 0;
 
-    v1 = sub_02015214(&v0);
-    sub_02015240(v1, 0);
+    v1 = SoftwareSprite_Load(&v0);
+    SoftwareSprite_SetVisible(v1, 0);
 
     return v1;
 }
@@ -757,7 +750,7 @@ void ov83_0223E34C(UnkStruct_ov83_0223E340 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E340));
 }
 
-void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, UnkStruct_02015064 *param1, u32 param2, NARC *param3)
+void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param1, u32 param2, NARC *param3)
 {
     int v0;
     static const u8 v1[] = {
@@ -831,7 +824,7 @@ void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, UnkStruct_02015064 *param1, 
 
     for (v0 = 0; v0 < 8; v0++) {
         param0->unk_38[v0] = ov83_0223D720(param1, param0->unk_00[v3[v0]], param0->unk_18[v0], v5[v0], v6[v0], v4[v0]);
-        sub_02015268(param0->unk_38[v0], 128 - v5[v0], 96 - v6[v0]);
+        SoftwareSprite_SetCenter(param0->unk_38[v0], 128 - v5[v0], 96 - v6[v0]);
     }
 
     param0->unk_74 = 1;
@@ -844,15 +837,15 @@ void ov83_0223E438(UnkStruct_ov83_0223E340 *param0)
     GF_ASSERT(param0->unk_74 == 1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_02015238(param0->unk_38[v0]);
+        SoftwareSprite_Reset(param0->unk_38[v0]);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02015164(param0->unk_00[v0]);
+        SoftwareSprite_FreeChars(param0->unk_00[v0]);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_020151D4(param0->unk_18[v0]);
+        SoftwareSprite_FreePalette(param0->unk_18[v0]);
     }
 
     param0->unk_74 = 0;
@@ -861,7 +854,7 @@ void ov83_0223E438(UnkStruct_ov83_0223E340 *param0)
 void ov83_0223E484(UnkStruct_ov83_0223E340 *param0, u32 param1, BOOL param2)
 {
     GF_ASSERT(param1 < 8);
-    sub_02015240(param0->unk_38[param1], param2);
+    SoftwareSprite_SetVisible(param0->unk_38[param1], param2);
 }
 
 void ov83_0223E4A4(UnkStruct_ov83_0223E340 *param0, u16 param1)
@@ -869,7 +862,7 @@ void ov83_0223E4A4(UnkStruct_ov83_0223E340 *param0, u16 param1)
     int v0;
 
     for (v0 = 5; v0 <= 7; v0++) {
-        sub_020152BC(param0->unk_38[v0], param1);
+        SoftwareSprite_SetRotation(param0->unk_38[v0], param1);
     }
 }
 
@@ -878,14 +871,14 @@ void ov83_0223E4C0(UnkStruct_ov83_0223E340 *param0, fx32 param1)
     int v0;
 
     for (v0 = 5; v0 <= 7; v0++) {
-        sub_02015270(param0->unk_38[v0], param1, param1);
+        SoftwareSprite_SetScalingFactors(param0->unk_38[v0], param1, param1);
     }
 }
 
 void ov83_0223E4E0(UnkStruct_ov83_0223E340 *param0, u32 param1, u32 param2)
 {
     GF_ASSERT(param1 < 8);
-    sub_02015294(param0->unk_38[param1], param2);
+    SoftwareSprite_SetAlpha(param0->unk_38[param1], param2);
 }
 
 void ov83_0223E500(UnkStruct_ov83_0223E340 *param0)
@@ -915,7 +908,7 @@ void ov83_0223E51C(UnkStruct_ov83_0223E340 *param0, int param1)
         v0 = ov83_0223D9EC(&param0->unk_58);
 
         for (v1 = 0; v1 <= 2; v1++) {
-            sub_02015270(param0->unk_38[v1], param0->unk_58.unk_00, param0->unk_58.unk_00);
+            SoftwareSprite_SetScalingFactors(param0->unk_38[v1], param0->unk_58.unk_00, param0->unk_58.unk_00);
         }
 
         if (v0 == 1) {
