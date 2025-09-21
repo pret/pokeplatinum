@@ -117,7 +117,7 @@ void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject)
 
             ov5_021ECEB4(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
         } else {
-            if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE && patchData->needsUpdate == FALSE) {
+            if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE && !patchData->needsUpdate) {
                 BerryPatchGraphics_NewSparkleEffect(mapObject);
             }
         }

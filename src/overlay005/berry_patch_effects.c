@@ -160,7 +160,7 @@ static void BerryPatchMoistureEffect_Update(UnkStruct_ov101_021D5D90 *effectTask
     BerryPatchMoistureEffect *berryPatchEffect = effectData;
     MapObject *mapObject = berryPatchEffect->context.mapObject;
 
-    if (sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapID) == FALSE) {
+    if (!sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapID)) {
         ov5_021DF74C(effectTask);
         return;
     }
@@ -230,7 +230,7 @@ static void BerryPatchEffectCounter_Decrement(BerryPatchEffectCounter *counter)
 
 static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *counter)
 {
-    if (counter->isEnabled == FALSE) {
+    if (!counter->isEnabled) {
         counter->isEnabled = TRUE;
         // Load sparkle effect graphics resources
         ov5_021DF9E0(counter->renderManager, 11, 109); // Load graphics resource 109 into slot 11
