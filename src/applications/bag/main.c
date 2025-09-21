@@ -2076,7 +2076,7 @@ static int ItemActionFunc_Use(BagController *controller)
     ItemCheckUseFunc checkFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
 
     if (checkFunc != NULL) {
-        u32 checkResult = checkFunc(controller->bagCtx->itemUseCtx);
+        enum ItemUseCheckResult checkResult = checkFunc(controller->bagCtx->itemUseCtx);
 
         if (checkResult != 0) {
             BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, checkResult, HEAP_ID_BAG);
@@ -2863,7 +2863,7 @@ static int ProcessItemListInput_Gardening(BagController *controller)
             if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_ITEMS
                 && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG) != ITEM_USE_FUNC_MULCH) {
 
-                BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, -1, HEAP_ID_BAG);
+                BagContext_FormatErrorMessage(controller->trainerInfo, controller->strBuffer, controller->bagCtx->selectedItem, ITEM_USE_CANNOT_USE_GENERIC, HEAP_ID_BAG);
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
                 Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
 

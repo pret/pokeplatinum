@@ -13,6 +13,14 @@
 #define USE_ITEM_TASK_FIELD 1
 #define USE_ITEM_TASK_CHECK 2
 
+enum ItemUseCheckResult {
+    ITEM_USE_CANNOT_USE_GENERIC = -1,
+    ITEM_USE_CAN_USE,
+    ITEM_USE_CANNOT_DISMOUNT,
+    ITEM_USE_CANNOT_USE_WITH_PARTNER,
+    ITEM_USE_CANNOT_FISH_HERE,
+};
+
 typedef void *(*FieldApplicationWorkCtor)(void *fieldSystem);
 
 typedef struct ItemUseContext {
@@ -45,7 +53,7 @@ typedef struct ItemMenuUseContext {
 
 typedef BOOL (*ItemFieldUseFunc)(ItemFieldUseContext *);
 typedef void (*ItemMenuUseFunc)(ItemMenuUseContext *, const ItemUseContext *);
-typedef u32 (*ItemCheckUseFunc)(const ItemUseContext *);
+typedef enum ItemUseCheckResult (*ItemCheckUseFunc)(const ItemUseContext *);
 
 typedef struct UnkStruct_0206851C {
     u32 unk_00;
