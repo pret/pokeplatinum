@@ -2,14 +2,14 @@
   "key": 37922,
   "messages": [
     {
-      "id": "pl_msg_00000102_00000",
+      "id": "EternaCityHerbShop_Text_Welcome",
       "en_US": [
         "Welcome to the Herb Shop, home of\n",
         "effective yet inexpensive medicine."
       ]
     },
     {
-      "id": "pl_msg_00000102_00001",
+      "id": "EternaCityHerbShop_Text_YourPokemonWontLikeThem",
       "en_US": [
         "Herbal meds work most impressively.\n",
         "But your Pokémon won’t like them.\f",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000102_00002",
+      "id": "EternaCityHerbShop_Text_NonBitterWouldBeMedicalBreakthrough",
       "en_US": [
         "Someone ought to invent herbal\n",
         "medicine that isn’t bitter.\r",
