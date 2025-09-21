@@ -1,23 +1,4 @@
-/**
- * @file unk_020EDBAC.c
- * @brief Movement Action System - Core movement behavior definitions for map objects
- *
- * This file contains the central movement action system used by all map objects
- * (player, NPCs, etc.) in Pokemon Platinum. It provides:
- *
- * 1. Movement Action Function Tables - Maps movement action IDs to implementation functions
- * 2. Movement Action Code Lookup Tables - Maps movement types to specific action codes
- * 3. Movement Action Descriptors - Complex movement behaviors with multiple phases
- *
- * The system supports 153 different movement actions (0-152) including:
- * - Basic movement: walk, run, jump in all directions and speeds
- * - Special animations: face directions, delays, visibility changes
- * - Advanced behaviors: warping, emotes, trainer interactions
- * - Custom actions: berry patches, special NPC behaviors
- *
- * @author Pokemon Platinum Development Team
- * @date 2008
- */
+
 
 #include <nitro.h>
 
@@ -42,10 +23,6 @@
 // - updateFunc: Update function
 // - completeFunc: Completion function
 // - cleanupFunc: Cleanup function
-//
-// Known descriptors:
-// - sMovementActionDescriptor_BerryPatch: Berry patch growth stage management (ID 0x2F)
-// - All others: Unknown purposes, kept as Unk_ names until functionality is determined
 
 static const MovementActionDescriptor Unk_020EDF0C = {
     0x0,
