@@ -177,7 +177,7 @@ _0244:
 
     .balign 4, 0
 _0250:
-    MoveAction_JumpDoubleNorth 2
+    JumpDoubleNorth 2
     EndMovement
 
     .balign 4, 0
@@ -193,12 +193,12 @@ _0264:
 
     .balign 4, 0
 _026C:
-    MoveAction_JumpDoubleNorth
+    JumpDoubleNorth
     EndMovement
 
     .balign 4, 0
 _0274:
-    MoveAction_JumpDoubleSouth
+    JumpDoubleSouth
     WalkNormalSouth 5
     EndMovement
 

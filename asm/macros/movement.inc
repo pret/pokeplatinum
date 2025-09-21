@@ -525,247 +525,247 @@
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallWalkNorth length=1
+    .macro DistortionWestWallWalkNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallWalkSouth length=1
+    .macro DistortionWestWallWalkSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallWalkWest length=1
+    .macro DistortionWestWallWalkWest length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallWalkEast length=1
+    .macro DistortionWestWallWalkEast length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallWalkNorth length=1
+    .macro DistortionEastWallWalkNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallWalkSouth length=1
+    .macro DistortionEastWallWalkSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallWalkWest length=1
+    .macro DistortionEastWallWalkWest length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallWalkEast length=1
+    .macro DistortionEastWallWalkEast length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingWalkNorth length=1
+    .macro DistortionCeilingWalkNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingWalkSouth length=1
+    .macro DistortionCeilingWalkSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingWalkWest length=1
+    .macro DistortionCeilingWalkWest length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingWalkEast length=1
+    .macro DistortionCeilingWalkEast length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST
     .short \length
     .endm
 
-    .macro MoveAction_JumpDoubleNorth length=1
+    .macro JumpDoubleNorth length=1
     .short MOVEMENT_ACTION_JUMP_DOUBLE_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_JumpDoubleSouth length=1
+    .macro JumpDoubleSouth length=1
     .short MOVEMENT_ACTION_JUMP_DOUBLE_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_JumpDoubleWest length=1
+    .macro JumpDoubleWest length=1
     .short MOVEMENT_ACTION_JUMP_DOUBLE_WEST
     .short \length
     .endm
 
-    .macro MoveAction_JumpDoubleEast length=1
+    .macro JumpDoubleEast length=1
     .short MOVEMENT_ACTION_JUMP_DOUBLE_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallRunNorth length=1
+    .macro DistortionWestWallRunNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallRunSouth length=1
+    .macro DistortionWestWallRunSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallRunWest length=1
+    .macro DistortionWestWallRunWest length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionWestWallRunEast length=1
+    .macro DistortionWestWallRunEast length=1
     .short MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallRunNorth length=1
+    .macro DistortionEastWallRunNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallRunSouth length=1
+    .macro DistortionEastWallRunSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallRunWest length=1
+    .macro DistortionEastWallRunWest length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionEastWallRunEast length=1
+    .macro DistortionEastWallRunEast length=1
     .short MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingRunNorth length=1
+    .macro DistortionCeilingRunNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingRunSouth length=1
+    .macro DistortionCeilingRunSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingRunWest length=1
+    .macro DistortionCeilingRunWest length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionCeilingRunEast length=1
+    .macro DistortionCeilingRunEast length=1
     .short MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingSlowNorth length=1
+    .macro DistortionSurfingSlowNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingSlowSouth length=1
+    .macro DistortionSurfingSlowSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingSlowWest length=1
+    .macro DistortionSurfingSlowWest length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingSlowEast length=1
+    .macro DistortionSurfingSlowEast length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingMediumNorth length=1
+    .macro DistortionSurfingMediumNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingMediumSouth length=1
+    .macro DistortionSurfingMediumSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingMediumWest length=1
+    .macro DistortionSurfingMediumWest length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingMediumEast length=1
+    .macro DistortionSurfingMediumEast length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingFastNorth length=1
+    .macro DistortionSurfingFastNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingFastSouth length=1
+    .macro DistortionSurfingFastSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_FAST_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingFastWest length=1
+    .macro DistortionSurfingFastWest length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_FAST_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionSurfingFastEast length=1
+    .macro DistortionSurfingFastEast length=1
     .short MOVEMENT_ACTION_DISTORTION_SURFING_FAST_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnSlowNorth length=1
+    .macro DistortionTurnSlowNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_SLOW_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnSlowSouth length=1
+    .macro DistortionTurnSlowSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_SLOW_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnSlowWest length=1
+    .macro DistortionTurnSlowWest length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_SLOW_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnSlowEast length=1
+    .macro DistortionTurnSlowEast length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_SLOW_EAST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnFastNorth length=1
+    .macro DistortionTurnFastNorth length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_FAST_NORTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnFastSouth length=1
+    .macro DistortionTurnFastSouth length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_FAST_SOUTH
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnFastWest length=1
+    .macro DistortionTurnFastWest length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_FAST_WEST
     .short \length
     .endm
 
-    .macro MoveAction_DistortionTurnFastEast length=1
+    .macro DistortionTurnFastEast length=1
     .short MOVEMENT_ACTION_DISTORTION_TURN_FAST_EAST
     .short \length
     .endm
 
-    .macro MoveAction_EmoteQuestionMark length=1
+    .macro EmoteQuestionMark length=1
     .short MOVEMENT_ACTION_EMOTE_QUESTION_MARK
     .short \length
     .endm
