@@ -1257,14 +1257,9 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
     {
         unsigned char *rotatedPixelBuffer = calloc(bufferSize, sizeof(char));
         Rotate4BppTiles90Deg(pixelBuffer, rotatedPixelBuffer, tilesTall, tilesWide);
-        
-        char *stem = calloc(length, sizeof(char));
-        strcpy(stem, path);
-        stem[length - 5] = 0;
 
         char *filename = calloc(length + 10, sizeof(char));
-        snprintf(filename, length + 10, "%s%s%d%s", stem, "_", (i + 1) * 90, "deg.NCGR");
-        free(stem);
+        snprintf(filename, length + 10, "%.*s_%ddeg.NCGR", length - 5, path, (i + 1) * 90);
         fp = fopen(filename, "wb");
         if (!clobberSize)
         {
