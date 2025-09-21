@@ -121,12 +121,9 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
 
 void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
 {
-    int priority, effectPriority;
     BerryPatchMoistureEffectContext context;
-    UnkStruct_ov5_021DF47C *renderManager;
+    UnkStruct_ov5_021DF47C *renderManager = ov5_021DF578(mapObject);
     VecFx32 position;
-
-    renderManager = ov5_021DF578(mapObject);
 
     context.renderManager = renderManager;
     context.graphicsManager = ov5_021DF55C(renderManager, 12);
@@ -134,25 +131,22 @@ void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
 
     MapObject_GetPosPtr(mapObject, &position);
 
-    priority = 0;
-    effectPriority = sub_02062C0C(mapObject) + 1; // Get map object priority and add 1 for effect
+    int priority = 0;
+    int effectPriority = sub_02062C0C(mapObject) + 1;
 
     ov5_021DF72C(renderManager, &sBerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
 
-static int BerryPatchMoistureEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
+static BOOL BerryPatchMoistureEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
-    BerryPatchMoistureEffect *moistureEffect;
-    const BerryPatchMoistureEffectContext *effectContext;
-
-    moistureEffect = context;
-    effectContext = sub_020715BC(effect);
+    BerryPatchMoistureEffect *moistureEffect = context;
+    const BerryPatchMoistureEffectContext *effectContext = sub_020715BC(effect);
 
     moistureEffect->context = *effectContext;
     moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
     moistureEffect->mapID = sub_02062918(moistureEffect->context.mapObject);
 
-    return 1;
+    return TRUE;
 }
 
 static void BerryPatchMoistureEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
@@ -288,14 +282,12 @@ UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObje
     return effectTask;
 }
 
-static int BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
+static BOOL BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
 {
     VecFx32 position;
-    BerryPatchSparkleEffect *sparkleEffect;
-    const BerryPatchSparkleEffectContext *effectContext;
+    BerryPatchSparkleEffect *sparkleEffect = context;
+    const BerryPatchSparkleEffectContext *effectContext = sub_020715BC(effect);
 
-    sparkleEffect = context;
-    effectContext = sub_020715BC(effect);
     sparkleEffect->context = *effectContext;
 
     BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
@@ -304,7 +296,7 @@ static int BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *
     sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);
     BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
 
-    return 1;
+    return TRUE;
 }
 
 static void BerryPatchSparkleEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
