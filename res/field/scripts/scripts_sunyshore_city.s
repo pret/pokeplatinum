@@ -610,7 +610,7 @@ _0791:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT

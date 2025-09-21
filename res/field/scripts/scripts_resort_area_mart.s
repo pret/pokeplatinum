@@ -9,7 +9,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll

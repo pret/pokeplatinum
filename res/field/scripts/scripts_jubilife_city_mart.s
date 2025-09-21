@@ -2,58 +2,58 @@
 #include "res/text/bank/jubilife_city_mart.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _002C
-    ScriptEntry _0042
-    ScriptEntry _0055
-    ScriptEntry _0068
+    ScriptEntry JubilifeCityMart_CommonVendor
+    ScriptEntry JubilifeCityMart_SpecialtyVendor
+    ScriptEntry JubilifeCityMart_Guitarist
+    ScriptEntry JubilifeCityMart_Pokefan
+    ScriptEntry JubilifeCityMart_Beauty
     ScriptEntryEnd
 
-_0016:
+JubilifeCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_002C:
+JubilifeCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_JUBILIFE
     ReleaseAll
     End
 
-_0042:
+JubilifeCityMart_Guitarist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCityMart_Text_WastedMoneyOnPokeBalls
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0055:
+JubilifeCityMart_Pokefan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeCityMart_Text_PackSomePotions
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0068:
+JubilifeCityMart_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeCityMart_Text_JustUseARepel
     WaitABXPadPress
     CloseMessage
     ReleaseAll

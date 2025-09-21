@@ -13,7 +13,7 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -23,7 +23,7 @@ _002C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_PASTORIA
     ReleaseAll
