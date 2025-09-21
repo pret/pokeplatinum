@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "struct_decls/battle_regulation_data_decl.h"
 #include "struct_defs/battle_regulation.h"
 #include "struct_defs/battle_regulation_data.h"
@@ -14,7 +16,7 @@
 
 BattleRegulation BattleRegulation_PredefinedRules[] = {
     {
-        .name = { 0xffff },
+        .name = { CHAR_EOS },
         .maxTotalLevel = 0,
         .teamSize = 3,
         .maxLevel = 50,
@@ -27,7 +29,7 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .moveRestrictions = 0,
     },
     {
-        .name = { 0xffff },
+        .name = { CHAR_EOS },
         .maxTotalLevel = 80,
         .teamSize = 3,
         .maxLevel = 30,
@@ -40,7 +42,7 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .moveRestrictions = 0,
     },
     {
-        .name = { 0xffff },
+        .name = { CHAR_EOS },
         .maxTotalLevel = 0,
         .teamSize = 3,
         .maxLevel = 5,
@@ -53,7 +55,7 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .moveRestrictions = 1,
     },
     {
-        .name = { 0xffff },
+        .name = { CHAR_EOS },
         .maxTotalLevel = 0,
         .teamSize = 3,
         .maxLevel = 50,
@@ -66,7 +68,7 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .moveRestrictions = 0,
     },
     {
-        .name = { 0xffff },
+        .name = { CHAR_EOS },
         .maxTotalLevel = 0,
         .teamSize = 4,
         .maxLevel = 50,
@@ -81,7 +83,7 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
 };
 
 BattleRegulation BattleRegulation_DefaultRule = {
-    .name = { 0xffff },
+    .name = { CHAR_EOS },
     .maxTotalLevel = 0,
     .teamSize = 6,
     .maxLevel = 100,
@@ -127,13 +129,11 @@ const BattleRegulation *BattleRegulation_GetDefault(void)
 
 int BattleRegulation_GetIndex(const BattleRegulation *regulation)
 {
-    int i;
-
     if (regulation == NULL) {
         return 0xff;
     }
 
-    for (i = 0; i < NELEMS(BattleRegulation_PredefinedRules); i++) {
+    for (int i = 0; i < NELEMS(BattleRegulation_PredefinedRules); i++) {
         if (memcmp(regulation, &BattleRegulation_PredefinedRules[i], sizeof(BattleRegulation)) == 0) {
             return i;
         }
