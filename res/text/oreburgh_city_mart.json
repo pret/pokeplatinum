@@ -2,7 +2,7 @@
   "key": 19185,
   "messages": [
     {
-      "id": "pl_msg_00000066_00000",
+      "id": "OreburghCityMart_Text_MoreBadgesMoreItems",
       "en_US": [
         "The Badges that Pokémon Gyms give you\n",
         "are a measure of a Trainer’s worth.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000066_00001",
+      "id": "OreburghCityMart_Text_TwoStaffOfferDifferentMerchandise",
       "en_US": [
         "The Poké Mart is staffed by a lady and\n",
         "a young fellow.\r",

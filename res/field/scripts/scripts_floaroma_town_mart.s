@@ -2,13 +2,13 @@
 #include "res/text/bank/floaroma_town_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _0051
+    ScriptEntry FloaromaTownMart_CommonVendor
+    ScriptEntry FloaromaTownMart_SpecialityVendor
+    ScriptEntry FloaromaTownMart_Beauty
+    ScriptEntry FloaromaTownMart_SchoolGirl
     ScriptEntryEnd
 
-_0012:
+FloaromaTownMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -18,7 +18,7 @@ _0012:
     ReleaseAll
     End
 
-_0028:
+FloaromaTownMart_SpecialityVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -28,21 +28,21 @@ _0028:
     ReleaseAll
     End
 
-_003E:
+FloaromaTownMart_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message FloaromaTownMart_Text_DressUpPokemonWithAccessories
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0051:
+FloaromaTownMart_SchoolGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message FloaromaTownMart_Text_CantBuyBerriesAtMarts
     WaitABXPadPress
     CloseMessage
     ReleaseAll

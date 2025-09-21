@@ -456,7 +456,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         Strbuf_Free(shopMenu->strbuf);
 
         if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
-            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
+            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_HERB_SHOP
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELD2);

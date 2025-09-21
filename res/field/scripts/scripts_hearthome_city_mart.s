@@ -2,13 +2,13 @@
 #include "res/text/bank/hearthome_city_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _0051
+    ScriptEntry HearthomeCityMart_CommonVendor
+    ScriptEntry HearthomeCityMart_SpecialityVendor
+    ScriptEntry HearthomeCityMart_Hiker
+    ScriptEntry HearthomeCityMart_Beauty
     ScriptEntryEnd
 
-_0012:
+HearthomeCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -18,7 +18,7 @@ _0012:
     ReleaseAll
     End
 
-_0028:
+HearthomeCityMart_SpecialityVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -28,21 +28,21 @@ _0028:
     ReleaseAll
     End
 
-_003E:
+HearthomeCityMart_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message HearthomeCityMart_Text_CantBuyRevivesWithTwoBadges
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0051:
+HearthomeCityMart_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message HearthomeCityMart_Text_FindAccessoriesInAmitySquare
     WaitABXPadPress
     CloseMessage
     ReleaseAll

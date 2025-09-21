@@ -1,14 +1,15 @@
 #include "macros/scrcmd.inc"
+#include "generated/items.h"
 #include "res/text/bank/eterna_city_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _005B
+    ScriptEntry EternaCityMart_CommonVendor
+    ScriptEntry EternaCityMart_SpecialityVendor
+    ScriptEntry EternaCityMart_Guitarist
+    ScriptEntry EternaCityMart_Hiker
     ScriptEntryEnd
 
-_0012:
+EternaCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -18,7 +19,7 @@ _0012:
     ReleaseAll
     End
 
-_0028:
+EternaCityMart_SpecialityVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -28,23 +29,23 @@ _0028:
     ReleaseAll
     End
 
-_003E:
-    BufferItemName 0, 26
-    BufferItemName 1, 0x14A
+EternaCityMart_Guitarist:
+    BufferItemName 0, ITEM_SUPER_POTION //Unused?
+    BufferItemName 1, ITEM_TM03         //Unused?
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message EternaCityMart_Text_GardeniaIsTooMuch
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_005B:
+EternaCityMart_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message EternaCityMart_Text_EscapeRopeIsIndispensable
     WaitABXPadPress
     CloseMessage
     ReleaseAll
