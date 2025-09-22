@@ -3259,7 +3259,7 @@
     TVInterviewCall TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
     .endm
 
-    .macro CheckTVInterview segmentID, destVar
+    .macro CheckTVInterviewEligible segmentID, destVar
     .short 568
     .short \segmentID
     .short \destVar

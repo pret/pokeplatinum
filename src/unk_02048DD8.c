@@ -177,7 +177,7 @@ BOOL ScrCmd_TVInterviewCall(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckTVInterview(ScriptContext *ctx)
+BOOL ScrCmd_CheckTVInterviewEligible(ScriptContext *ctx)
 {
     u16 segmentID;
     u16 *destVar;

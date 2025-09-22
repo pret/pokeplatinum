@@ -106,7 +106,7 @@ _0159:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckTVInterview VAR_0x8000, VAR_RESULT
+    CheckTVInterviewEligible VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _02A1
     Message 0
     ShowYesNoMenu VAR_RESULT

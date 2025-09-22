@@ -1339,7 +1339,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TVBroadcastCall,
     ScrCmd_236,
     ScrCmd_TVInterviewCall,
-    ScrCmd_CheckTVInterview,
+    ScrCmd_CheckTVInterviewEligible,
     ScrCmd_239,
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
