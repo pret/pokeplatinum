@@ -3220,8 +3220,8 @@
     LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL_EXTENDED \bankDestVar, \messageDestVar
     .endm
 
-    .macro NextTVSegment destVar
-    TVBroadcastCall TV_BROADCAST_CALL_NEXT_SEGMENT, \destVar
+    .macro GetNextTVSegmentID destVar
+    TVBroadcastCall TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID, \destVar
     .endm
 
     .macro FinishTVProgram

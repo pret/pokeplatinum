@@ -41,7 +41,7 @@ TVBroadcast_BeginProgram:
     End
 
 TVBroadcast_ContinueProgram:
-    NextTVSegment VAR_0x8006
+    GetNextTVSegmentID VAR_0x8006
     GoToIfNe VAR_0x8006, 0, TVBroadcast_PlaySegment
     GoTo TVBroadcast_FinishProgram_Early
     End

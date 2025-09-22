@@ -96,7 +96,7 @@ BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0)
 
         *v12 = ov6_022468B0(param0->fieldSystem, v10, v11);
     } break;
-    case TV_BROADCAST_CALL_NEXT_SEGMENT: {
+    case TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID: {
         u16 *segmentDestVar = ScriptContext_GetVarPointer(param0);
         *segmentDestVar = ov6_02246920(param0->fieldSystem);
     } break;
