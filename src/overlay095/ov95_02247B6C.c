@@ -349,7 +349,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
                     u8 delay;
 
                     PokemonSprite_InitAnim(param0->unk_10, 1);
-                    PokeSprite_LoadCryDelay(param0->unk_80, &delay, ov95_0224764C(param0->unk_00), 1);
+                    PokemonSprite_LoadCryDelay(param0->unk_80, &delay, ov95_0224764C(param0->unk_00), 1);
                     Sound_PlayDelayedPokemonCry(ov95_0224764C(param0->unk_00), delay, ov95_02247654(param0->unk_00));
                 }
 
@@ -456,7 +456,7 @@ static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
     v1 = (BoxPokemon *)TradeSequence_GetSendingPokemon(param0->unk_00);
 
     BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
-    PokeSprite_LoadAnimationFrames(param0->unk_80, param0->unk_14, ov95_0224764C(param0->unk_00), 1);
+    PokemonSprite_LoadAnimationFrames(param0->unk_80, param0->unk_14, ov95_0224764C(param0->unk_00), 1);
 
     v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
 

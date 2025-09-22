@@ -875,7 +875,7 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
         GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * 3200 + 3200, 3200);
 
         Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, 1, i * 0x20, 0x20, HEAP_ID_HALL_OF_FAME);
-        PokeSprite_LoadAnimationFrames(hallOfFameMan->narc, &hallOfFameMan->animFrames[i][0], hallOfFameMan->species[i], 1);
+        PokemonSprite_LoadAnimationFrames(hallOfFameMan->narc, &hallOfFameMan->animFrames[i][0], hallOfFameMan->species[i], 1);
     }
 
     NNS_G2dInitImageProxy(&imageProxy);

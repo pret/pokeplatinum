@@ -5135,7 +5135,7 @@ static inline int Pokemon_Face(int clientType)
     return (clientType & 1) ? 0 : 1;
 }
 
-void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
+void PokemonSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
@@ -5144,7 +5144,7 @@ void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u1
     MI_CpuCopy8(data.faceAnims[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
+void PokemonSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 
@@ -5159,7 +5159,7 @@ void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Pok
     PokeAnimation_Init(animationSys, sprite, &settings, frame);
 }
 
-void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
+void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
@@ -5169,7 +5169,7 @@ void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientTy
     *cryDelay = data.faceAnims[face].cryDelay;
 }
 
-void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
+void PokemonSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
 {
     SpeciesSpriteData data;
 
@@ -5177,7 +5177,7 @@ void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
     *yOffset = data.yOffset;
 }
 
-void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
+void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
 {
     SpeciesSpriteData data;
 
@@ -5185,7 +5185,7 @@ void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
     *xOffsetShadow = data.xOffsetShadow;
 }
 
-void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
+void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
 {
     SpeciesSpriteData data;
 
