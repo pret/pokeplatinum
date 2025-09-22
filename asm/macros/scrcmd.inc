@@ -3197,7 +3197,7 @@
     .endm
 
     .macro LoadTVFramingMessage framingMessageType, bankDestVar, messageDestVar
-    TVBroadcastCall TV_BROADCAST_CALL_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
+    TVBroadcastCall TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
     .endm
 
     .macro LoadTVSegment segmentID, bankDestVar, messageDestVar

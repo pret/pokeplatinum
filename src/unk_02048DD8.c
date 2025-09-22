@@ -63,7 +63,7 @@ BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0)
 
         *statusDestVar = TVBroadcast_GetPendingBroadcastType(param0->fieldSystem);
     } break;
-    case TV_BROADCAST_CALL_FRAMING_MESSAGE: {
+    case TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE: {
         u16 framingMessageType = ScriptContext_ReadHalfWord(param0);
         u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
         u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
