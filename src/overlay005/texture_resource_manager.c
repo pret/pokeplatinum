@@ -117,11 +117,7 @@ void TextureResourceManager_Free(FieldTextureManager *textureManager)
     for (int slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
         TextureSlot *textureSlot = &textureManager->textureSlots[slotIndex];
 
-        if (textureSlot->narcData == NULL) {
-            continue;
-        }
-
-        if (textureSlot->animationData == NULL) {
+        if (textureSlot->narcData == NULL || textureSlot->animationData == NULL) {
             continue;
         }
 
