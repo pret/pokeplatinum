@@ -369,19 +369,37 @@ static const TVBroadcastSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_N
 static const TVBroadcastSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS];
 static const TVBroadcastSegment sVarietyHourSegments[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS];
 
-#define TV_PROGRAM_TYPE_HANDLER(type, segments) { \
-    TV_PROGRAM_TYPE_##type,                       \
-    TEXT_BANK_TV_PROGRAMS_##type,                 \
-    TV_PROGRAM_TYPE_##type##_NUM_SEGMENTS + 1,    \
-    segments,                                     \
-}
-
-static const TVProgramType tvProgramTypes[] = {
-    TV_PROGRAM_TYPE_HANDLER(INTERVIEWS, sInterviewsSegments),
-    TV_PROGRAM_TYPE_HANDLER(TRAINER_SIGHTINGS, sTrainerSightingsSegments),
-    TV_PROGRAM_TYPE_HANDLER(RECORDS, sRecordsSegments),
-    TV_PROGRAM_TYPE_HANDLER(SINNOH_NOW, sSinnohNowSegments),
-    TV_PROGRAM_TYPE_HANDLER(VARIETY_HOUR, sVarietyHourSegments),
+static const TVProgramType sProgramTypes[] = {
+    {
+        TV_PROGRAM_TYPE_INTERVIEWS,
+        TEXT_BANK_TV_PROGRAMS_INTERVIEWS,
+        TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS + 1,
+        sInterviewsSegments,
+    },
+    {
+        TV_PROGRAM_TYPE_TRAINER_SIGHTINGS,
+        TEXT_BANK_TV_PROGRAMS_TRAINER_SIGHTINGS,
+        TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS + 1,
+        sTrainerSightingsSegments,
+    },
+    {
+        TV_PROGRAM_TYPE_RECORDS,
+        TEXT_BANK_TV_PROGRAMS_RECORDS,
+        TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS + 1,
+        sRecordsSegments,
+    },
+    {
+        TV_PROGRAM_TYPE_SINNOH_NOW,
+        TEXT_BANK_TV_PROGRAMS_SINNOH_NOW,
+        TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS + 1,
+        sSinnohNowSegments,
+    },
+    {
+        TV_PROGRAM_TYPE_VARIETY_HOUR,
+        TEXT_BANK_TV_PROGRAMS_VARIETY_HOUR,
+        TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS + 1,
+        sVarietyHourSegments,
+    },
 };
 
 static const TVProgramType *TVBroadcast_GetProgramType(int programTypeID)

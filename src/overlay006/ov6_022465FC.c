@@ -27,16 +27,6 @@
 #define TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS 16
 #define TV_PROGRAM_MAX_FILTERED_PENDING_SEGMENTS   11
 
-#define TV_PROGRAM_MESSAGES(ProgramName) {             \
-    TVBroadcast_Text_##ProgramName##_GoodMorning,      \
-    TVBroadcast_Text_##ProgramName##_GoodDay,          \
-    TVBroadcast_Text_##ProgramName##_GoodEvening,      \
-    TVBroadcast_Text_##ProgramName##_LeadSegment,      \
-    TVBroadcast_Text_##ProgramName##_NextSegment,      \
-    TVBroadcast_Text_##ProgramName##_Farewell,         \
-    TVBroadcast_Text_##ProgramName##_FarewellExtended, \
-}
-
 typedef struct TVProgramFramingMessages {
     u8 goodMorning;
     u8 goodDay;
@@ -48,15 +38,87 @@ typedef struct TVProgramFramingMessages {
 } TVProgramFramingMessages;
 
 static const TVProgramFramingMessages sProgramFramingMessages[] = {
-    TV_PROGRAM_MESSAGES(BattlingTrainers),
-    TV_PROGRAM_MESSAGES(TrainerResearch),
-    TV_PROGRAM_MESSAGES(BattleWatch),
-    TV_PROGRAM_MESSAGES(TrainersDay),
-    TV_PROGRAM_MESSAGES(SinnohNewsNet),
-    TV_PROGRAM_MESSAGES(RackEmUpRecords),
-    TV_PROGRAM_MESSAGES(SinnohNow),
-    TV_PROGRAM_MESSAGES(TrendTracker),
-    TV_PROGRAM_MESSAGES(VarietyHour),
+    {
+        TVBroadcast_Text_BattlingTrainers_GoodMorning,
+        TVBroadcast_Text_BattlingTrainers_GoodDay,
+        TVBroadcast_Text_BattlingTrainers_GoodEvening,
+        TVBroadcast_Text_BattlingTrainers_LeadSegment,
+        TVBroadcast_Text_BattlingTrainers_NextSegment,
+        TVBroadcast_Text_BattlingTrainers_Farewell,
+        TVBroadcast_Text_BattlingTrainers_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_TrainerResearch_GoodMorning,
+        TVBroadcast_Text_TrainerResearch_GoodDay,
+        TVBroadcast_Text_TrainerResearch_GoodEvening,
+        TVBroadcast_Text_TrainerResearch_LeadSegment,
+        TVBroadcast_Text_TrainerResearch_NextSegment,
+        TVBroadcast_Text_TrainerResearch_Farewell,
+        TVBroadcast_Text_TrainerResearch_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_BattleWatch_GoodMorning,
+        TVBroadcast_Text_BattleWatch_GoodDay,
+        TVBroadcast_Text_BattleWatch_GoodEvening,
+        TVBroadcast_Text_BattleWatch_LeadSegment,
+        TVBroadcast_Text_BattleWatch_NextSegment,
+        TVBroadcast_Text_BattleWatch_Farewell,
+        TVBroadcast_Text_BattleWatch_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_TrainersDay_GoodMorning,
+        TVBroadcast_Text_TrainersDay_GoodDay,
+        TVBroadcast_Text_TrainersDay_GoodEvening,
+        TVBroadcast_Text_TrainersDay_LeadSegment,
+        TVBroadcast_Text_TrainersDay_NextSegment,
+        TVBroadcast_Text_TrainersDay_Farewell,
+        TVBroadcast_Text_TrainersDay_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_SinnohNewsNet_GoodMorning,
+        TVBroadcast_Text_SinnohNewsNet_GoodDay,
+        TVBroadcast_Text_SinnohNewsNet_GoodEvening,
+        TVBroadcast_Text_SinnohNewsNet_LeadSegment,
+        TVBroadcast_Text_SinnohNewsNet_NextSegment,
+        TVBroadcast_Text_SinnohNewsNet_Farewell,
+        TVBroadcast_Text_SinnohNewsNet_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_RackEmUpRecords_GoodMorning,
+        TVBroadcast_Text_RackEmUpRecords_GoodDay,
+        TVBroadcast_Text_RackEmUpRecords_GoodEvening,
+        TVBroadcast_Text_RackEmUpRecords_LeadSegment,
+        TVBroadcast_Text_RackEmUpRecords_NextSegment,
+        TVBroadcast_Text_RackEmUpRecords_Farewell,
+        TVBroadcast_Text_RackEmUpRecords_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_SinnohNow_GoodMorning,
+        TVBroadcast_Text_SinnohNow_GoodDay,
+        TVBroadcast_Text_SinnohNow_GoodEvening,
+        TVBroadcast_Text_SinnohNow_LeadSegment,
+        TVBroadcast_Text_SinnohNow_NextSegment,
+        TVBroadcast_Text_SinnohNow_Farewell,
+        TVBroadcast_Text_SinnohNow_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_TrendTracker_GoodMorning,
+        TVBroadcast_Text_TrendTracker_GoodDay,
+        TVBroadcast_Text_TrendTracker_GoodEvening,
+        TVBroadcast_Text_TrendTracker_LeadSegment,
+        TVBroadcast_Text_TrendTracker_NextSegment,
+        TVBroadcast_Text_TrendTracker_Farewell,
+        TVBroadcast_Text_TrendTracker_FarewellExtended,
+    },
+    {
+        TVBroadcast_Text_VarietyHour_GoodMorning,
+        TVBroadcast_Text_VarietyHour_GoodDay,
+        TVBroadcast_Text_VarietyHour_GoodEvening,
+        TVBroadcast_Text_VarietyHour_LeadSegment,
+        TVBroadcast_Text_VarietyHour_NextSegment,
+        TVBroadcast_Text_VarietyHour_Farewell,
+        TVBroadcast_Text_VarietyHour_FarewellExtended,
+    },
 };
 
 void FieldSystem_SetTVProgramFinished(FieldSystem *fieldSystem)
