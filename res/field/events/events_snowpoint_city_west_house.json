@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_west_house_ace_trainer_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_west_house_beauty_1"
         }
     ],
     "warp_events": [

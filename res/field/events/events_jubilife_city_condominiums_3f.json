@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 12,
-            "y": 1
+            "y": 1,
+            "id": "jubilife_city_condominiums_3f_lass_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -27,7 +28,8 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 12,
-            "y": 1
+            "y": 1,
+            "id": "jubilife_city_condominiums_3f_collector_1"
         }
     ],
     "warp_events": [

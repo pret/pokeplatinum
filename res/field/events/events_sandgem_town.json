@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 187,
             "z": 855,
-            "y": 1
+            "y": 1,
+            "id": "sandgem_town_youngster_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 171,
             "z": 854,
-            "y": 1
+            "y": 1,
+            "id": "sandgem_town_pokemon_breeder_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 183,
             "z": 852,
-            "y": 1
+            "y": 1,
+            "id": "sandgem_town_pokemon_breeder_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 842,
-            "y": 1
+            "y": 1,
+            "id": "sandgem_town_barry_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 845,
-            "y": 1
+            "y": 1,
+            "id": "sandgem_town_unk_101_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 165,
             "z": 843,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_signboard_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 174,
             "z": 854,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_signboard_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -113,10 +120,11 @@
             "movement_range_z": 0,
             "x": 182,
             "z": 854,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_map_signpost_7"
         },
         {
-            "local_id": 2,
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -130,10 +138,11 @@
             "movement_range_z": 0,
             "x": 179,
             "z": 866,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_arrow_signpost_8"
         },
         {
-            "local_id": 4,
+            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,10 +156,11 @@
             "movement_range_z": 0,
             "x": 183,
             "z": 825,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_arrow_signpost_9"
         },
         {
-            "local_id": 4,
+            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -164,10 +174,11 @@
             "movement_range_z": 0,
             "x": 151,
             "z": 843,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_arrow_signpost_10"
         },
         {
-            "local_id": 9,
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -179,7 +190,8 @@
             "movement_range_z": 0,
             "x": 153,
             "z": 847,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_school_kid_m_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -193,7 +205,8 @@
             "movement_range_z": 0,
             "x": 180,
             "z": 842,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_signboard_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -207,7 +220,8 @@
             "movement_range_z": 0,
             "x": 185,
             "z": 842,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_signboard_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -221,7 +235,8 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 842,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_prof_rowan_14"
         }
     ],
     "warp_events": [
@@ -269,3 +284,4 @@
         }
     ]
 }
+

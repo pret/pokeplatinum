@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "verity_cavern_mesprit_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 22,
-            "y": 0
+            "y": 0,
+            "id": "verity_cavern_prof_rowan_1"
         }
     ],
     "warp_events": [

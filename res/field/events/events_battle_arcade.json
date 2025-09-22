@@ -22,7 +22,8 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_frontier_single_attendant_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
@@ -36,7 +37,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_frontier_multi_attendant_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -50,7 +52,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_psychic_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
@@ -64,7 +67,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_waitress_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -78,7 +82,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_camper_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -92,7 +97,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_beauty_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -106,7 +112,8 @@
             "movement_range_z": 1,
             "x": 12,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_worker_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -120,7 +127,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_bug_catcher_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
@@ -134,7 +142,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_tuber_f_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
@@ -148,7 +157,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_parasol_lady_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -162,7 +172,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_hiker_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -176,7 +187,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "battle_arcade_hiker_11"
         }
     ],
     "warp_events": [
@@ -201,3 +213,4 @@
     ],
     "coord_events": []
 }
+

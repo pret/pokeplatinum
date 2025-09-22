@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 367,
             "z": 523,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_ace_trainer_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -48,7 +49,8 @@
             "movement_range_z": 0,
             "x": 377,
             "z": 529,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_hiker_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -64,7 +66,8 @@
             "movement_range_z": 0,
             "x": 361,
             "z": 525,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_ninja_boy_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -80,7 +83,8 @@
             "movement_range_z": 0,
             "x": 379,
             "z": 531,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_arrow_signpost_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -94,7 +98,8 @@
             "movement_range_z": 0,
             "x": 379,
             "z": 527,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_rock_smash_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -108,10 +113,11 @@
             "movement_range_z": 0,
             "x": 368,
             "z": 535,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_pokeball_5"
         },
         {
-            "local_id": 9,
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -125,7 +131,8 @@
             "movement_range_z": 0,
             "x": 344,
             "z": 530,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_map_signpost_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -141,7 +148,8 @@
             "movement_range_z": 0,
             "x": 353,
             "z": 531,
-            "y": 0
+            "y": 0,
+            "id": "route_211_west_arrow_signpost_7"
         }
     ],
     "warp_events": [

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "wifi_plaza_entrance_wifi_plaza_attendant_0"
         }
     ],
     "warp_events": [],

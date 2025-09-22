@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 119,
             "z": 878,
-            "y": 1
+            "y": 1,
+            "id": "twinleaf_town_pokemon_breeder_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -36,7 +37,8 @@
             "movement_range_z": 2,
             "x": 108,
             "z": 889,
-            "y": 1
+            "y": 1,
+            "id": "twinleaf_town_collector_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -50,7 +52,8 @@
             "movement_range_z": 0,
             "x": 105,
             "z": 875,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_barry"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
@@ -64,7 +67,8 @@
             "movement_range_z": 0,
             "x": 108,
             "z": 869,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_guitarist"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -80,7 +84,8 @@
             "movement_range_z": 0,
             "x": 112,
             "z": 878,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_map_signpost_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
@@ -94,7 +99,8 @@
             "movement_range_z": 0,
             "x": 114,
             "z": 885,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_mailbox_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
@@ -108,10 +114,11 @@
             "movement_range_z": 0,
             "x": 109,
             "z": 875,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_mailbox_6"
         },
         {
-            "local_id": 3,
+            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -125,7 +132,8 @@
             "movement_range_z": 0,
             "x": 109,
             "z": 856,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_arrow_signpost_7"
         }
     ],
     "warp_events": [

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_nurse_joy_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_expert_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
@@ -41,7 +43,8 @@
             "movement_range_z": 1,
             "x": 10,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_twin_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_pokefan_m_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_unk_111_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "celestic_town_pokecenter_1f_unk_112_5"
         }
     ],
     "warp_events": [

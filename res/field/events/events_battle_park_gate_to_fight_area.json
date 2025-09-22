@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_maid_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAID",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_maid_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAID",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_maid_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAID",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_maid_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_collector_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAID",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_gate_to_fight_area_maid_5"
         }
     ],
     "warp_events": [

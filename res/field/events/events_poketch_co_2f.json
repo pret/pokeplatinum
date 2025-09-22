@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "poketch_co_2f_pokefan_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "poketch_co_2f_old_man_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "poketch_co_2f_clefairy_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "poketch_co_2f_pachirisu_3"
         }
     ],
     "warp_events": [

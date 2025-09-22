@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_battle_girl_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_clown_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_gym_guide_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_pokemon_breeder_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_youngster_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_youngster_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_west_house_youngster_6"
         }
     ],
     "warp_events": [

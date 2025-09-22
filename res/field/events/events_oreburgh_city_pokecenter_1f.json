@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_psychic_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_ace_trainer_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_ninja_boy_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_nurse_joy_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_gentleman_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_unk_111_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_unk_112_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_KID_WITH_NDS",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_kid_with_nds_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_KID_WITH_NDS",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokecenter_1f_kid_with_nds_8"
         }
     ],
     "warp_events": [

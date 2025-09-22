@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_1f_beauty_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_1f_gym_guide_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_1f_middle_aged_man_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_1f_ace_trainer_snow_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_1f_ace_trainer_m_4"
         }
     ],
     "warp_events": [

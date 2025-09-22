@@ -54,7 +54,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_rotom_heat_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FAN",
@@ -68,7 +69,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_rotom_fan_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FROST",
@@ -82,7 +84,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_rotom_frost_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_WASH",
@@ -96,7 +99,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_rotom_wash_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_MOW",
@@ -110,7 +114,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_rotom_mow_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
@@ -124,7 +129,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_book_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -138,7 +144,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_prof_rowan_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
@@ -152,7 +159,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "rotoms_room_book_7"
         }
     ],
     "warp_events": [

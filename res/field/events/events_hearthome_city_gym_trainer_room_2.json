@@ -15,7 +15,8 @@
             "movement_range_z": 2,
             "x": 4,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_gym_trainer_room_2_school_kid_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -31,7 +32,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_gym_trainer_room_2_ace_trainer_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
@@ -47,7 +49,8 @@
             "movement_range_z": 3,
             "x": 21,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_gym_trainer_room_2_school_kid_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -63,7 +66,8 @@
             "movement_range_z": 3,
             "x": 11,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_gym_trainer_room_2_ace_trainer_f_3"
         }
     ],
     "warp_events": [

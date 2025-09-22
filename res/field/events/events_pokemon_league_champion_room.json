@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "pokemon_league_champion_room_cynthia_0"
         }
     ],
     "warp_events": [

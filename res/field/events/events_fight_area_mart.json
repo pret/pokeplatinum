@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "fight_area_mart_clown_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "fight_area_mart_socialite_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
@@ -41,7 +43,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "fight_area_mart_cashier_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "fight_area_mart_mystery_gift_deliveryman_3"
         }
     ],
     "warp_events": [

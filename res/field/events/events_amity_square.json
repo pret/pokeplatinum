@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 46,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_receptionist_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 53,
             "z": 46,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_receptionist_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 20,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 36,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 45,
             "z": 42,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokeball_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 45,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_unk_101_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 26,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokemon_breeder_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_DRIFLOON",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 26,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_drifloon_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_happiny_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -139,7 +148,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokemon_breeder_f_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -153,7 +163,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_collector_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
@@ -167,7 +178,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pikachu_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
@@ -181,7 +193,8 @@
             "movement_range_z": 0,
             "x": 47,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_twin_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
@@ -195,7 +208,8 @@
             "movement_range_z": 0,
             "x": 48,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_clefairy_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -209,7 +223,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_pokeball_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -223,7 +238,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "amity_square_collector_15"
         }
     ],
     "warp_events": [
@@ -565,3 +581,4 @@
         }
     ]
 }
+

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 1,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_teala_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CHERYL",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_cheryl_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MIRA",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_mira_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RILEY",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_riley_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MARLEY",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_marley_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "battle_tower_battle_salon_buck_5"
         }
     ],
     "warp_events": [],

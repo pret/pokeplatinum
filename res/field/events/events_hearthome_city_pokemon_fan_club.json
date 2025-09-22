@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_gentleman_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_beauty_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
@@ -41,7 +43,8 @@
             "movement_range_z": 1,
             "x": 9,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_psyduck_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
@@ -55,7 +58,8 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_buneary_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
@@ -69,7 +73,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_clefairy_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_pokemon_fan_club_reporter_5"
         }
     ],
     "warp_events": [

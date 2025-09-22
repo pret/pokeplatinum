@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 740,
             "z": 248,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 762,
             "z": 232,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -43,7 +45,8 @@
             "movement_range_z": 0,
             "x": 749,
             "z": 248,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_ace_trainer_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -57,7 +60,8 @@
             "movement_range_z": 0,
             "x": 748,
             "z": 232,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_signboard_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
@@ -71,7 +75,8 @@
             "movement_range_z": 0,
             "x": 751,
             "z": 232,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_looker_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
@@ -85,7 +90,8 @@
             "movement_range_z": 0,
             "x": 750,
             "z": 233,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_buck_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -99,7 +105,8 @@
             "movement_range_z": 0,
             "x": 742,
             "z": 232,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_grunt_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -113,7 +120,8 @@
             "movement_range_z": 0,
             "x": 742,
             "z": 233,
-            "y": 0
+            "y": 0,
+            "id": "stark_mountain_outside_grunt_m_7"
         }
     ],
     "warp_events": [

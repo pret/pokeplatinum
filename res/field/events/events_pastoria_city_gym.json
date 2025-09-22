@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_crasher_wake_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
@@ -44,7 +45,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_gym_guide_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
@@ -60,7 +62,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_tuber_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -76,7 +79,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 22,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_sailor_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
@@ -92,7 +96,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_tuber_f_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -108,7 +113,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_sailor_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -122,7 +128,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 18,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_fisherman_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -136,7 +143,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_fisherman_7"
         }
     ],
     "warp_events": [

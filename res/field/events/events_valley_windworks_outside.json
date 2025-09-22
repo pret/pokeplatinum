@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 243,
             "z": 655,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_grunt_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -46,10 +47,11 @@
             "movement_range_z": 0,
             "x": 240,
             "z": 659,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_signboard_1"
         },
         {
-            "local_id": 6,
+            "clone_id": 6,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -63,7 +65,8 @@
             "movement_range_z": 0,
             "x": 215,
             "z": 659,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_arrow_signpost_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -77,7 +80,8 @@
             "movement_range_z": 0,
             "x": 242,
             "z": 644,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_DRIFLOON",
@@ -93,7 +97,8 @@
             "movement_range_z": 0,
             "x": 241,
             "z": 660,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_drifloon_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -107,7 +112,8 @@
             "movement_range_z": 0,
             "x": 246,
             "z": 660,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_pokeball_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
@@ -123,7 +129,8 @@
             "movement_range_z": 0,
             "x": 242,
             "z": 659,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_looker_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -137,7 +144,8 @@
             "movement_range_z": 0,
             "x": 232,
             "z": 649,
-            "y": 0
+            "y": 0,
+            "id": "valley_windworks_outside_pokeball_7"
         }
     ],
     "warp_events": [

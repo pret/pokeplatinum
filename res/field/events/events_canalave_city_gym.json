@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 3,
-            "y": 20
+            "y": 20,
+            "id": "canalave_city_gym_black_belt_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
@@ -46,7 +47,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 25,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_gym_gym_guide_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -62,7 +64,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 3,
-            "y": 10
+            "y": 10,
+            "id": "canalave_city_gym_worker_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -78,7 +81,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_gym_worker_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
@@ -92,7 +96,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 3,
-            "y": 30
+            "y": 30,
+            "id": "canalave_city_gym_bryon_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -108,7 +113,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_gym_black_belt_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -124,7 +130,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 25,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_gym_ace_trainer_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -140,7 +147,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 3,
-            "y": 20
+            "y": 20,
+            "id": "canalave_city_gym_worker_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -156,7 +164,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 5,
-            "y": 10
+            "y": 10,
+            "id": "canalave_city_gym_ace_trainer_f_8"
         }
     ],
     "warp_events": [

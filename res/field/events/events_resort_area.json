@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 805,
             "z": 451,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_map_signpost_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -46,7 +47,8 @@
             "movement_range_z": 0,
             "x": 813,
             "z": 457,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_signboard_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -60,7 +62,8 @@
             "movement_range_z": 0,
             "x": 815,
             "z": 462,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -74,7 +77,8 @@
             "movement_range_z": 2,
             "x": 806,
             "z": 458,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_beauty_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -88,7 +92,8 @@
             "movement_range_z": 0,
             "x": 822,
             "z": 459,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_beauty_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -102,7 +107,8 @@
             "movement_range_z": 0,
             "x": 809,
             "z": 477,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_black_belt_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -116,7 +122,8 @@
             "movement_range_z": 1,
             "x": 806,
             "z": 471,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_ace_trainer_f_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -132,7 +139,8 @@
             "movement_range_z": 0,
             "x": 828,
             "z": 469,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_unk_100_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -148,7 +156,8 @@
             "movement_range_z": 0,
             "x": 816,
             "z": 469,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_unk_100_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -164,7 +173,8 @@
             "movement_range_z": 0,
             "x": 817,
             "z": 469,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_unk_100_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -180,7 +190,8 @@
             "movement_range_z": 0,
             "x": 827,
             "z": 469,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_unk_100_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
@@ -194,7 +205,8 @@
             "movement_range_z": 0,
             "x": 816,
             "z": 455,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_swimmer_m_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -208,7 +220,8 @@
             "movement_range_z": 0,
             "x": 810,
             "z": 471,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_signboard_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
@@ -222,7 +235,8 @@
             "movement_range_z": 0,
             "x": 816,
             "z": 473,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_school_kid_m_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -236,7 +250,8 @@
             "movement_range_z": 1,
             "x": 821,
             "z": 473,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_prof_rowan_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
@@ -250,7 +265,8 @@
             "movement_range_z": 1,
             "x": 822,
             "z": 473,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_gardenia_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
@@ -264,7 +280,8 @@
             "movement_range_z": 1,
             "x": 823,
             "z": 473,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_bryon_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
@@ -278,7 +295,8 @@
             "movement_range_z": 1,
             "x": 822,
             "z": 472,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_roark_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
@@ -292,7 +310,8 @@
             "movement_range_z": 1,
             "x": 822,
             "z": 474,
-            "y": 0
+            "y": 0,
+            "id": "resort_area_maylene_18"
         }
     ],
     "warp_events": [
@@ -334,3 +353,4 @@
         }
     ]
 }
+

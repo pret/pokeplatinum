@@ -30,7 +30,8 @@
             "movement_range_z": 1,
             "x": 58,
             "z": 749,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_collector_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -44,7 +45,8 @@
             "movement_range_z": 1,
             "x": 52,
             "z": 717,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_lass_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
@@ -58,7 +60,8 @@
             "movement_range_z": 1,
             "x": 59,
             "z": 728,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_pokemon_breeder_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -72,7 +75,8 @@
             "movement_range_z": 1,
             "x": 33,
             "z": 730,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_ace_trainer_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -86,7 +90,8 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 722,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_signboard_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
@@ -100,7 +105,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 732,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_gym_signpost_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -114,7 +120,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 752,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_signboard_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -130,7 +137,8 @@
             "movement_range_z": 0,
             "x": 54,
             "z": 754,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_map_signpost_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -144,7 +152,8 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 748,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_signboard_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
@@ -158,7 +167,8 @@
             "movement_range_z": 1,
             "x": 52,
             "z": 718,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_psyduck_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
@@ -172,7 +182,8 @@
             "movement_range_z": 1,
             "x": 41,
             "z": 735,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_old_man_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -186,7 +197,8 @@
             "movement_range_z": 1,
             "x": 37,
             "z": 723,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_barry_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -200,7 +212,8 @@
             "movement_range_z": 1,
             "x": 39,
             "z": 720,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_unk_101_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -214,7 +227,8 @@
             "movement_range_z": 1,
             "x": 38,
             "z": 720,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_prof_rowan_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -228,7 +242,8 @@
             "movement_range_z": 1,
             "x": 43,
             "z": 725,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_sailor_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -242,7 +257,8 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 762,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_pokeball_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -256,7 +272,8 @@
             "movement_range_z": 1,
             "x": 45,
             "z": 750,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_sailor_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -270,7 +287,8 @@
             "movement_range_z": 0,
             "x": 56,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_signboard_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -284,7 +302,8 @@
             "movement_range_z": 1,
             "x": 37,
             "z": 719,
-            "y": 1
+            "y": 1,
+            "id": "canalave_city_barry_18"
         }
     ],
     "warp_events": [
@@ -368,3 +387,4 @@
         }
     ]
 }
+

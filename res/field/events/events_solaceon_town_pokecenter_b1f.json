@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "solaceon_town_pokecenter_b1f_wifi_plaza_attendant_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "solaceon_town_pokecenter_b1f_teala_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "solaceon_town_pokecenter_b1f_teala_2"
         }
     ],
     "warp_events": [

@@ -24,7 +24,8 @@
             "movement_range_z": 0,
             "x": 432,
             "z": 520,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_ace_trainer_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -40,7 +41,8 @@
             "movement_range_z": 0,
             "x": 425,
             "z": 520,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_ninja_boy_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -56,7 +58,8 @@
             "movement_range_z": 0,
             "x": 428,
             "z": 540,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_black_belt_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -70,7 +73,8 @@
             "movement_range_z": 0,
             "x": 423,
             "z": 533,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_cut_tree_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -84,7 +88,8 @@
             "movement_range_z": 0,
             "x": 438,
             "z": 522,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -98,7 +103,8 @@
             "movement_range_z": 0,
             "x": 431,
             "z": 519,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -112,7 +118,8 @@
             "movement_range_z": 0,
             "x": 429,
             "z": 519,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -126,7 +133,8 @@
             "movement_range_z": 0,
             "x": 435,
             "z": 522,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -140,7 +148,8 @@
             "movement_range_z": 0,
             "x": 430,
             "z": 520,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -154,7 +163,8 @@
             "movement_range_z": 0,
             "x": 427,
             "z": 526,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_strength_boulder_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -168,7 +178,8 @@
             "movement_range_z": 0,
             "x": 426,
             "z": 530,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_trainer_tips_signpost_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -184,7 +195,8 @@
             "movement_range_z": 0,
             "x": 420,
             "z": 526,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_arrow_signpost_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -198,7 +210,8 @@
             "movement_range_z": 0,
             "x": 424,
             "z": 514,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_pokeball_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -214,7 +227,8 @@
             "movement_range_z": 0,
             "x": 435,
             "z": 524,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_unk_100_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -230,7 +244,8 @@
             "movement_range_z": 0,
             "x": 436,
             "z": 524,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_unk_100_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -246,7 +261,8 @@
             "movement_range_z": 0,
             "x": 437,
             "z": 524,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_unk_100_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -262,7 +278,8 @@
             "movement_range_z": 0,
             "x": 438,
             "z": 524,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_unk_100_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -276,7 +293,8 @@
             "movement_range_z": 0,
             "x": 430,
             "z": 529,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_ace_trainer_m_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -290,7 +308,8 @@
             "movement_range_z": 0,
             "x": 438,
             "z": 520,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_rock_smash_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -306,7 +325,8 @@
             "movement_range_z": 0,
             "x": 429,
             "z": 525,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_ruin_maniac_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -322,7 +342,8 @@
             "movement_range_z": 0,
             "x": 440,
             "z": 526,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_arrow_signpost_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -336,7 +357,8 @@
             "movement_range_z": 0,
             "x": 433,
             "z": 535,
-            "y": 0
+            "y": 0,
+            "id": "route_211_east_pokeball_21"
         }
     ],
     "warp_events": [
@@ -349,3 +371,4 @@
     ],
     "coord_events": []
 }
+

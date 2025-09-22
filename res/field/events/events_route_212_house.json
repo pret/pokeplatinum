@@ -30,7 +30,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "route_212_house_beauty_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -44,7 +45,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "route_212_house_hiker_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
@@ -58,7 +60,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "route_212_house_twin_2"
         }
     ],
     "warp_events": [

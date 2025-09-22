@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 48,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_grunt_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_cyrus_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MARS",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_mars_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 48,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_grunt_m_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_jupiter_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 35,
-            "y": 0
+            "y": 0,
+            "id": "spear_pillar_barry_5"
         }
     ],
     "warp_events": [

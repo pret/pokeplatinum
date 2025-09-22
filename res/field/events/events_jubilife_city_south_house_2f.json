@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 8,
-            "y": 1
+            "y": 1,
+            "id": "jubilife_city_south_house_2f_youngster_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 1,
             "x": 13,
             "z": 9,
-            "y": 1
+            "y": 1,
+            "id": "jubilife_city_south_house_2f_pokefan_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_city_south_house_2f_pokemon_breeder_f_2"
         }
     ],
     "warp_events": [

@@ -46,7 +46,8 @@
             "movement_range_z": 1,
             "x": 303,
             "z": 762,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_hiker_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
@@ -60,7 +61,8 @@
             "movement_range_z": 2,
             "x": 288,
             "z": 754,
-            "y": 5
+            "y": 5,
+            "id": "oreburgh_city_school_kid_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -74,7 +76,8 @@
             "movement_range_z": 1,
             "x": 301,
             "z": 774,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_pokefan_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -88,7 +91,8 @@
             "movement_range_z": 0,
             "x": 282,
             "z": 757,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_barry_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -102,7 +106,8 @@
             "movement_range_z": 1,
             "x": 266,
             "z": 752,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_youngster_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -118,7 +123,8 @@
             "movement_range_z": 0,
             "x": 260,
             "z": 747,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_map_signpost_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
@@ -132,7 +138,8 @@
             "movement_range_z": 0,
             "x": 278,
             "z": 756,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_gym_signpost_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -146,7 +153,8 @@
             "movement_range_z": 0,
             "x": 301,
             "z": 748,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_signboard_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -160,7 +168,8 @@
             "movement_range_z": 0,
             "x": 301,
             "z": 792,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_signboard_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -176,7 +185,8 @@
             "movement_range_z": 0,
             "x": 300,
             "z": 737,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_map_signpost_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -190,7 +200,8 @@
             "movement_range_z": 0,
             "x": 267,
             "z": 762,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_vent_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -204,7 +215,8 @@
             "movement_range_z": 0,
             "x": 265,
             "z": 762,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_vent_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -218,7 +230,8 @@
             "movement_range_z": 0,
             "x": 269,
             "z": 762,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_vent_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -232,7 +245,8 @@
             "movement_range_z": 0,
             "x": 316,
             "z": 789,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_vent_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -246,7 +260,8 @@
             "movement_range_z": 0,
             "x": 316,
             "z": 788,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_vent_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -260,7 +275,8 @@
             "movement_range_z": 0,
             "x": 267,
             "z": 761,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_worker_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -274,7 +290,8 @@
             "movement_range_z": 3,
             "x": 312,
             "z": 793,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_worker_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -288,7 +305,8 @@
             "movement_range_z": 0,
             "x": 292,
             "z": 755,
-            "y": 5
+            "y": 5,
+            "id": "oreburgh_city_camper_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -302,7 +320,8 @@
             "movement_range_z": 1,
             "x": 293,
             "z": 775,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_worker_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -316,7 +335,8 @@
             "movement_range_z": 3,
             "x": 306,
             "z": 777,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_worker_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
@@ -330,7 +350,8 @@
             "movement_range_z": 3,
             "x": 279,
             "z": 749,
-            "y": 3
+            "y": 3,
+            "id": "oreburgh_city_guitarist_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -344,7 +365,8 @@
             "movement_range_z": 2,
             "x": 292,
             "z": 759,
-            "y": 5
+            "y": 5,
+            "id": "oreburgh_city_battle_girl_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -358,7 +380,8 @@
             "movement_range_z": 2,
             "x": 311,
             "z": 792,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_machop_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -372,7 +395,8 @@
             "movement_range_z": 0,
             "x": 295,
             "z": 774,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokeball_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -386,7 +410,8 @@
             "movement_range_z": 0,
             "x": 291,
             "z": 773,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_pokeball_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -400,7 +425,8 @@
             "movement_range_z": 2,
             "x": 312,
             "z": 782,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_machop_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -414,7 +440,8 @@
             "movement_range_z": 2,
             "x": 291,
             "z": 781,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_machop_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -428,7 +455,8 @@
             "movement_range_z": 0,
             "x": 307,
             "z": 757,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_city_battle_girl_27"
         }
     ],
     "warp_events": [
@@ -552,3 +580,4 @@
         }
     ]
 }
+

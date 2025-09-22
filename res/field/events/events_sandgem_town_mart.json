@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_mart_cashier_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_mart_school_kid_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
@@ -41,7 +43,8 @@
             "movement_range_z": 1,
             "x": 9,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_mart_pokemon_breeder_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sandgem_town_mart_mystery_gift_deliveryman_3"
         }
     ],
     "warp_events": [

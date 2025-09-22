@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "route_221_house_expert_m_0"
         }
     ],
     "warp_events": [

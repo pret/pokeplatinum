@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -36,7 +37,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -50,7 +52,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -64,7 +67,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -80,7 +84,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_m_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -96,7 +101,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 18,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_f_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -112,7 +118,8 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 35,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_grunt_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -126,7 +133,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -140,7 +148,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 36,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -154,7 +163,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -168,7 +178,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -182,7 +193,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -196,7 +208,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -210,7 +223,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -224,7 +238,8 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 44,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -238,7 +253,8 @@
             "movement_range_z": 0,
             "x": 44,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -252,7 +268,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -266,7 +283,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -280,7 +298,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -294,7 +313,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -308,7 +328,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -322,7 +343,8 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -336,7 +358,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -350,7 +373,8 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -364,7 +388,8 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 25,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -378,7 +403,8 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -392,7 +418,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 36,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -406,7 +433,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
@@ -420,7 +448,8 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_magikarp_28"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -434,7 +463,8 @@
             "movement_range_z": 0,
             "x": 53,
             "z": 46,
-            "y": 0
+            "y": 0,
+            "id": "lake_valor_drained_pokeball_29"
         }
     ],
     "warp_events": [
@@ -459,3 +489,4 @@
     ],
     "coord_events": []
 }
+

@@ -13,7 +13,8 @@
             "movement_range_z": 1,
             "x": 123,
             "z": 854,
-            "y": 1
+            "y": 1,
+            "id": "route_201_pokemon_breeder_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 140,
             "z": 842,
-            "y": 1
+            "y": 1,
+            "id": "route_201_cashier_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 112,
             "z": 855,
-            "y": 1
+            "y": 1,
+            "id": "route_201_barry_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -57,7 +60,8 @@
             "movement_range_z": 0,
             "x": 109,
             "z": 856,
-            "y": 0
+            "y": 0,
+            "id": "route_201_arrow_signpost_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -73,7 +77,8 @@
             "movement_range_z": 0,
             "x": 151,
             "z": 843,
-            "y": 0
+            "y": 0,
+            "id": "route_201_arrow_signpost_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -87,7 +92,8 @@
             "movement_range_z": 0,
             "x": 105,
             "z": 853,
-            "y": 0
+            "y": 0,
+            "id": "route_201_prof_rowan_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -101,10 +107,11 @@
             "movement_range_z": 0,
             "x": 105,
             "z": 853,
-            "y": 0
+            "y": 0,
+            "id": "route_201_unk_101_6"
         },
         {
-            "local_id": 5,
+            "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,10 +123,11 @@
             "movement_range_z": 0,
             "x": 165,
             "z": 843,
-            "y": 0
+            "y": 0,
+            "id": "route_201_signboard_7"
         },
         {
-            "local_id": 3,
+            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,7 +139,8 @@
             "movement_range_z": 0,
             "x": 108,
             "z": 869,
-            "y": 0
+            "y": 0,
+            "id": "route_201_guitarist_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
@@ -145,7 +154,8 @@
             "movement_range_z": 0,
             "x": 153,
             "z": 847,
-            "y": 1
+            "y": 1,
+            "id": "route_201_school_kid_m_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -159,7 +169,8 @@
             "movement_range_z": 0,
             "x": 136,
             "z": 851,
-            "y": 0
+            "y": 0,
+            "id": "route_201_trainer_tips_signpost_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -173,7 +184,8 @@
             "movement_range_z": 0,
             "x": 142,
             "z": 855,
-            "y": 0
+            "y": 0,
+            "id": "route_201_lass_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BRIEFCASE",
@@ -187,7 +199,8 @@
             "movement_range_z": 0,
             "x": 112,
             "z": 854,
-            "y": 0
+            "y": 0,
+            "id": "route_201_briefcase_12"
         }
     ],
     "warp_events": [],
@@ -254,3 +267,4 @@
         }
     ]
 }
+

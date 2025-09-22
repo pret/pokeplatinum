@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 8,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_northwest_house_2f_worker_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 8,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_northwest_house_2f_school_kid_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_northwest_house_2f_lass_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 8,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_city_northwest_house_2f_psyduck_3"
         }
     ],
     "warp_events": [

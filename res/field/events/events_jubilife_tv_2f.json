@@ -13,7 +13,8 @@
             "movement_range_z": 2,
             "x": 11,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_2f_idol_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
@@ -27,7 +28,8 @@
             "movement_range_z": 1,
             "x": 12,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_2f_gym_guide_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_2f_reporter_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_tv_2f_roughneck_3"
         }
     ],
     "warp_events": [

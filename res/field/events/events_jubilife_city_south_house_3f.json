@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "jubilife_city_south_house_3f_pokefan_m_0"
         }
     ],
     "warp_events": [

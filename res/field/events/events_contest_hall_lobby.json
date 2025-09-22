@@ -62,7 +62,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_nurse_joy_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
@@ -76,7 +77,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_nurse_joy_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
@@ -90,7 +92,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_nurse_joy_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -104,7 +107,8 @@
             "movement_range_z": 1,
             "x": 28,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_ace_trainer_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
@@ -118,7 +122,8 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_clown_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MOM",
@@ -132,7 +137,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_mom_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
@@ -146,7 +152,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_idol_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
@@ -160,7 +167,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_reporter_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
@@ -174,7 +182,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_school_kid_f_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
@@ -188,7 +197,8 @@
             "movement_range_z": 2,
             "x": 16,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_rich_boy_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
@@ -202,7 +212,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "contest_hall_lobby_fantina_10"
         }
     ],
     "warp_events": [
@@ -221,3 +232,4 @@
     ],
     "coord_events": []
 }
+

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_mart_lady_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 2,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_mart_pokefan_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_mart_cashier_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_mart_mystery_gift_deliveryman_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_mart_cashier_m_4"
         }
     ],
     "warp_events": [

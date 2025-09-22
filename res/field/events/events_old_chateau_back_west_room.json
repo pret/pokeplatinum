@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "old_chateau_back_west_room_pokeball_0"
         }
     ],
     "warp_events": [

@@ -40,7 +40,8 @@
             "movement_range_z": 0,
             "x": 755,
             "z": 314,
-            "y": 0
+            "y": 0,
+            "id": "route_227_arrow_signpost_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -54,7 +55,8 @@
             "movement_range_z": 0,
             "x": 759,
             "z": 283,
-            "y": 0
+            "y": 0,
+            "id": "route_227_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -68,7 +70,8 @@
             "movement_range_z": 0,
             "x": 745,
             "z": 295,
-            "y": 0
+            "y": 0,
+            "id": "route_227_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -82,7 +85,8 @@
             "movement_range_z": 0,
             "x": 739,
             "z": 305,
-            "y": 0
+            "y": 0,
+            "id": "route_227_barry_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
@@ -96,7 +100,8 @@
             "movement_range_z": 0,
             "x": 738,
             "z": 305,
-            "y": 0
+            "y": 0,
+            "id": "route_227_crasher_wake_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -112,7 +117,8 @@
             "movement_range_z": 0,
             "x": 756,
             "z": 308,
-            "y": 0
+            "y": 0,
+            "id": "route_227_ace_trainer_m_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -128,7 +134,8 @@
             "movement_range_z": 0,
             "x": 747,
             "z": 311,
-            "y": 0
+            "y": 0,
+            "id": "route_227_ace_trainer_f_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -144,7 +151,8 @@
             "movement_range_z": 0,
             "x": 764,
             "z": 266,
-            "y": 0
+            "y": 0,
+            "id": "route_227_black_belt_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -160,7 +168,8 @@
             "movement_range_z": 0,
             "x": 752,
             "z": 295,
-            "y": 0
+            "y": 0,
+            "id": "route_227_ace_trainer_f_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -174,7 +183,8 @@
             "movement_range_z": 0,
             "x": 754,
             "z": 297,
-            "y": 0
+            "y": 0,
+            "id": "route_227_vent_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -188,7 +198,8 @@
             "movement_range_z": 0,
             "x": 754,
             "z": 296,
-            "y": 0
+            "y": 0,
+            "id": "route_227_vent_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
@@ -202,7 +213,8 @@
             "movement_range_z": 0,
             "x": 758,
             "z": 275,
-            "y": 0
+            "y": 0,
+            "id": "route_227_buck_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -216,7 +228,8 @@
             "movement_range_z": 0,
             "x": 751,
             "z": 271,
-            "y": 0
+            "y": 0,
+            "id": "route_227_pokeball_12"
         }
     ],
     "warp_events": [
@@ -250,3 +263,4 @@
         }
     ]
 }
+

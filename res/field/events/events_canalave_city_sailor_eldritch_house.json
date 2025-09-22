@@ -13,7 +13,8 @@
             "movement_range_z": 3,
             "x": 5,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_sailor_eldritch_house_ninja_boy_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_sailor_eldritch_house_pokefan_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_sailor_eldritch_house_sailor_2"
         }
     ],
     "warp_events": [

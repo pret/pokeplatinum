@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -139,7 +148,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -153,7 +163,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "turnback_cave_pillar_1_room_1_rock_smash_10"
         }
     ],
     "warp_events": [
@@ -184,3 +195,4 @@
     ],
     "coord_events": []
 }
+

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_pokemon_breeder_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_expert_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_ruin_maniac_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_frontier_booth_attendant_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -139,7 +148,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "battle_frontier_gate_to_fight_area_beauty_9"
         }
     ],
     "warp_events": [
@@ -182,3 +192,4 @@
     ],
     "coord_events": []
 }
+

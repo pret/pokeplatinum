@@ -24,7 +24,8 @@
             "movement_range_z": 0,
             "x": 171,
             "z": 887,
-            "y": 0
+            "y": 0,
+            "id": "route_219_tuber_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
@@ -40,7 +41,8 @@
             "movement_range_z": 0,
             "x": 176,
             "z": 887,
-            "y": 0
+            "y": 0,
+            "id": "route_219_tuber_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -56,7 +58,8 @@
             "movement_range_z": 0,
             "x": 179,
             "z": 866,
-            "y": 0
+            "y": 0,
+            "id": "route_219_arrow_signpost_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -70,7 +73,8 @@
             "movement_range_z": 0,
             "x": 169,
             "z": 877,
-            "y": 0
+            "y": 0,
+            "id": "route_219_pokeball_3"
         }
     ],
     "warp_events": [],

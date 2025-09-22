@@ -38,7 +38,8 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -52,7 +53,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -66,7 +68,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -80,7 +83,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RILEY",
@@ -94,7 +98,8 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_riley_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -108,7 +113,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_grunt_m_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -122,7 +128,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 41,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_grunt_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -138,7 +145,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 2,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_hiker_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -154,7 +162,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_hiker_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -170,7 +179,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 18,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_black_belt_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -186,7 +196,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 21,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_battle_girl_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -202,7 +213,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 25,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_worker_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -218,7 +230,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_worker_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -234,7 +247,8 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 31,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_ace_trainer_m_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -250,7 +264,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 31,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_ace_trainer_f_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -264,7 +279,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -278,7 +294,8 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 23,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b2f_left_room_pokeball_16"
         }
     ],
     "warp_events": [
@@ -338,3 +355,4 @@
         }
     ]
 }
+

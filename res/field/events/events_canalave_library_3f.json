@@ -190,7 +190,8 @@
             "movement_range_z": 1,
             "x": 15,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_3f_scientist_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -204,7 +205,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_3f_youngster_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
@@ -218,7 +220,8 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_3f_prof_rowan_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -232,7 +235,8 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_3f_unk_101_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -246,7 +250,8 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_3f_barry_4"
         }
     ],
     "warp_events": [

@@ -62,7 +62,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -76,7 +77,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 23,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -90,7 +92,8 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -104,7 +107,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -118,7 +122,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -132,7 +137,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -146,7 +152,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 35,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -160,7 +167,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -174,7 +182,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 41,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -188,7 +197,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 43,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -202,7 +212,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 54,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -216,7 +227,8 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 55,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -230,7 +242,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 57,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_rock_smash_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -246,7 +259,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_grunt_m_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -262,7 +276,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 48,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_grunt_m_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -279,7 +294,8 @@
             "movement_range_z": 10,
             "x": 25,
             "z": 31,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_grunt_f_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -293,7 +309,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_1f_tunnel_room_grunt_m_16"
         }
     ],
     "warp_events": [
@@ -312,3 +329,4 @@
     ],
     "coord_events": []
 }
+

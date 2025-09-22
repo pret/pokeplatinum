@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "twinleaf_town_rival_house_2f_barry_0"
         }
     ],
     "warp_events": [

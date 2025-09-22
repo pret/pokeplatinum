@@ -52,7 +52,7 @@ def parse_object_event(obj: dict, i: int) -> bytes:
 
     return b"".join(
         [
-            u16(obj.get("local_id", i)),
+            u16(obj.get("clone_id", i)),
             u16(from_object_event_gfx(obj["graphics_id"])),
             u16(from_movement_type(obj["movement_type"])),
             u16(from_trainer_type(obj["trainer_type"])),

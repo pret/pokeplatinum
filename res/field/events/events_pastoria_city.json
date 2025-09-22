@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 592,
             "z": 819,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_vent_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -36,7 +37,8 @@
             "movement_range_z": 0,
             "x": 592,
             "z": 816,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_vent_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -50,7 +52,8 @@
             "movement_range_z": 0,
             "x": 603,
             "z": 824,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_vent_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -64,7 +67,8 @@
             "movement_range_z": 0,
             "x": 603,
             "z": 822,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_vent_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -80,7 +84,8 @@
             "movement_range_z": 0,
             "x": 604,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_map_signpost_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
@@ -94,7 +99,8 @@
             "movement_range_z": 0,
             "x": 593,
             "z": 827,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_gym_signpost_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -108,7 +114,8 @@
             "movement_range_z": 0,
             "x": 613,
             "z": 810,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_signboard_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -122,7 +129,8 @@
             "movement_range_z": 0,
             "x": 625,
             "z": 829,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_pokeball_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -136,7 +144,8 @@
             "movement_range_z": 0,
             "x": 609,
             "z": 841,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_signboard_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
@@ -150,7 +159,8 @@
             "movement_range_z": 2,
             "x": 607,
             "z": 818,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_picnicker_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -164,7 +174,8 @@
             "movement_range_z": 0,
             "x": 599,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_black_belt_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
@@ -178,7 +189,8 @@
             "movement_range_z": 0,
             "x": 597,
             "z": 840,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_clefairy_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -192,7 +204,8 @@
             "movement_range_z": 0,
             "x": 596,
             "z": 840,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_ace_trainer_m_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -208,7 +221,8 @@
             "movement_range_z": 0,
             "x": 608,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_unk_100_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -224,7 +238,8 @@
             "movement_range_z": 0,
             "x": 611,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_unk_100_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -240,7 +255,8 @@
             "movement_range_z": 0,
             "x": 609,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_unk_100_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -256,7 +272,8 @@
             "movement_range_z": 0,
             "x": 610,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_unk_100_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -270,7 +287,8 @@
             "movement_range_z": 0,
             "x": 613,
             "z": 836,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_collector_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
@@ -284,7 +302,8 @@
             "movement_range_z": 1,
             "x": 595,
             "z": 847,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_scientist_m_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -298,10 +317,11 @@
             "movement_range_z": 3,
             "x": 623,
             "z": 814,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_beauty_19"
         },
         {
-            "local_id": 9,
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -315,7 +335,8 @@
             "movement_range_z": 0,
             "x": 570,
             "z": 845,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_arrow_signpost_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -329,10 +350,11 @@
             "movement_range_z": 2,
             "x": 614,
             "z": 810,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_grunt_m_21"
         },
         {
-            "local_id": 39,
+            "clone_id": 39,
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -344,7 +366,8 @@
             "movement_range_z": 0,
             "x": 570,
             "z": 852,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_collector_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
@@ -358,7 +381,8 @@
             "movement_range_z": 2,
             "x": 614,
             "z": 818,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_parasol_lady_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -372,7 +396,8 @@
             "movement_range_z": 0,
             "x": 607,
             "z": 833,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_collector_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -386,7 +411,8 @@
             "movement_range_z": 0,
             "x": 609,
             "z": 844,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_ace_trainer_m_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -400,7 +426,8 @@
             "movement_range_z": 0,
             "x": 589,
             "z": 828,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_barry_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
@@ -414,7 +441,8 @@
             "movement_range_z": 0,
             "x": 589,
             "z": 827,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_crasher_wake_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CROAGUNK",
@@ -428,7 +456,8 @@
             "movement_range_z": 2,
             "x": 611,
             "z": 821,
-            "y": 0
+            "y": 0,
+            "id": "pastoria_city_croagunk_28"
         }
     ],
     "warp_events": [
@@ -548,3 +577,4 @@
         }
     ]
 }
+

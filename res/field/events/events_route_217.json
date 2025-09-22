@@ -96,7 +96,8 @@
             "movement_range_z": 8,
             "x": 318,
             "z": 344,
-            "y": 0
+            "y": 0,
+            "id": "route_217_skier_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
@@ -112,7 +113,8 @@
             "movement_range_z": 6,
             "x": 294,
             "z": 296,
-            "y": 0
+            "y": 0,
+            "id": "route_217_skier_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
@@ -128,7 +130,8 @@
             "movement_range_z": 6,
             "x": 314,
             "z": 296,
-            "y": 0
+            "y": 0,
+            "id": "route_217_skier_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
@@ -144,7 +147,8 @@
             "movement_range_z": 0,
             "x": 291,
             "z": 344,
-            "y": 0
+            "y": 0,
+            "id": "route_217_skier_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -160,7 +164,8 @@
             "movement_range_z": 0,
             "x": 310,
             "z": 351,
-            "y": 0
+            "y": 0,
+            "id": "route_217_ninja_boy_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -176,7 +181,8 @@
             "movement_range_z": 0,
             "x": 290,
             "z": 321,
-            "y": 0
+            "y": 0,
+            "id": "route_217_ninja_boy_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -192,7 +198,8 @@
             "movement_range_z": 8,
             "x": 291,
             "z": 273,
-            "y": 0
+            "y": 0,
+            "id": "route_217_black_belt_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
@@ -208,7 +215,8 @@
             "movement_range_z": 0,
             "x": 307,
             "z": 369,
-            "y": 0
+            "y": 0,
+            "id": "route_217_ace_trainer_snow_m_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
@@ -224,7 +232,8 @@
             "movement_range_z": 0,
             "x": 302,
             "z": 267,
-            "y": 0
+            "y": 0,
+            "id": "route_217_ace_trainer_snow_f_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -240,7 +249,8 @@
             "movement_range_z": 0,
             "x": 292,
             "z": 270,
-            "y": 0
+            "y": 0,
+            "id": "route_217_arrow_signpost_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -254,7 +264,8 @@
             "movement_range_z": 0,
             "x": 296,
             "z": 305,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -268,7 +279,8 @@
             "movement_range_z": 0,
             "x": 305,
             "z": 330,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -282,7 +294,8 @@
             "movement_range_z": 0,
             "x": 300,
             "z": 316,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ICE_ROCK",
@@ -296,7 +309,8 @@
             "movement_range_z": 0,
             "x": 313,
             "z": 275,
-            "y": 0
+            "y": 0,
+            "id": "route_217_ice_rock_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_065",
@@ -310,7 +324,8 @@
             "movement_range_z": 0,
             "x": 313,
             "z": 281,
-            "y": 0
+            "y": 0,
+            "id": "route_217_unk_065_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
@@ -324,7 +339,8 @@
             "movement_range_z": 0,
             "x": 305,
             "z": 383,
-            "y": 0
+            "y": 0,
+            "id": "route_217_maylene_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -338,7 +354,8 @@
             "movement_range_z": 0,
             "x": 297,
             "z": 358,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -352,7 +369,8 @@
             "movement_range_z": 0,
             "x": 311,
             "z": 350,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -366,7 +384,8 @@
             "movement_range_z": 0,
             "x": 316,
             "z": 309,
-            "y": 0
+            "y": 0,
+            "id": "route_217_pokeball_18"
         }
     ],
     "warp_events": [
@@ -396,3 +415,4 @@
         }
     ]
 }
+

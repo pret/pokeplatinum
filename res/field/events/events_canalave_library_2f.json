@@ -294,7 +294,8 @@
             "movement_range_z": 1,
             "x": 11,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_2f_school_kid_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -308,7 +309,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_library_2f_hiker_1"
         }
     ],
     "warp_events": [

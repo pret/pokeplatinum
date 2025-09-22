@@ -78,7 +78,8 @@
             "movement_range_z": 0,
             "x": 777,
             "z": 790,
-            "y": 0
+            "y": 0,
+            "id": "route_222_fisherman_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -92,7 +93,8 @@
             "movement_range_z": 0,
             "x": 761,
             "z": 789,
-            "y": 0
+            "y": 0,
+            "id": "route_222_fisherman_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -106,7 +108,8 @@
             "movement_range_z": 0,
             "x": 769,
             "z": 789,
-            "y": 0
+            "y": 0,
+            "id": "route_222_fisherman_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -120,7 +123,8 @@
             "movement_range_z": 0,
             "x": 782,
             "z": 790,
-            "y": 0
+            "y": 0,
+            "id": "route_222_fisherman_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -136,7 +140,8 @@
             "movement_range_z": 0,
             "x": 771,
             "z": 777,
-            "y": 0
+            "y": 0,
+            "id": "route_222_beauty_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
@@ -152,7 +157,8 @@
             "movement_range_z": 0,
             "x": 812,
             "z": 781,
-            "y": 0
+            "y": 0,
+            "id": "route_222_tuber_m_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
@@ -168,7 +174,8 @@
             "movement_range_z": 0,
             "x": 751,
             "z": 782,
-            "y": 0
+            "y": 0,
+            "id": "route_222_rich_boy_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -184,7 +191,8 @@
             "movement_range_z": 0,
             "x": 814,
             "z": 785,
-            "y": 0
+            "y": 0,
+            "id": "route_222_sailor_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
@@ -201,7 +209,8 @@
             "movement_range_z": 0,
             "x": 794,
             "z": 778,
-            "y": 0
+            "y": 0,
+            "id": "route_222_policeman_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
@@ -217,7 +226,8 @@
             "movement_range_z": 0,
             "x": 787,
             "z": 788,
-            "y": 0
+            "y": 0,
+            "id": "route_222_tuber_f_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -233,7 +243,8 @@
             "movement_range_z": 0,
             "x": 808,
             "z": 781,
-            "y": 0
+            "y": 0,
+            "id": "route_222_sailor_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -249,7 +260,8 @@
             "movement_range_z": 0,
             "x": 821,
             "z": 784,
-            "y": 0
+            "y": 0,
+            "id": "route_222_arrow_signpost_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -265,7 +277,8 @@
             "movement_range_z": 0,
             "x": 749,
             "z": 787,
-            "y": 0
+            "y": 0,
+            "id": "route_222_arrow_signpost_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -279,7 +292,8 @@
             "movement_range_z": 0,
             "x": 793,
             "z": 784,
-            "y": 0
+            "y": 0,
+            "id": "route_222_signboard_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -293,7 +307,8 @@
             "movement_range_z": 0,
             "x": 804,
             "z": 784,
-            "y": 0
+            "y": 0,
+            "id": "route_222_signboard_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -307,7 +322,8 @@
             "movement_range_z": 0,
             "x": 801,
             "z": 791,
-            "y": 0
+            "y": 0,
+            "id": "route_222_fisherman_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -321,7 +337,8 @@
             "movement_range_z": 0,
             "x": 789,
             "z": 785,
-            "y": 0
+            "y": 0,
+            "id": "route_222_rock_smash_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -335,7 +352,8 @@
             "movement_range_z": 0,
             "x": 804,
             "z": 792,
-            "y": 0
+            "y": 0,
+            "id": "route_222_rock_smash_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -349,7 +367,8 @@
             "movement_range_z": 0,
             "x": 814,
             "z": 775,
-            "y": 0
+            "y": 0,
+            "id": "route_222_cut_tree_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -363,7 +382,8 @@
             "movement_range_z": 0,
             "x": 785,
             "z": 781,
-            "y": 0
+            "y": 0,
+            "id": "route_222_pokeball_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -377,7 +397,8 @@
             "movement_range_z": 0,
             "x": 816,
             "z": 783,
-            "y": 0
+            "y": 0,
+            "id": "route_222_pokeball_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -393,7 +414,8 @@
             "movement_range_z": 0,
             "x": 760,
             "z": 772,
-            "y": 0
+            "y": 0,
+            "id": "route_222_unk_100_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -409,7 +431,8 @@
             "movement_range_z": 0,
             "x": 761,
             "z": 772,
-            "y": 0
+            "y": 0,
+            "id": "route_222_unk_100_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -425,7 +448,8 @@
             "movement_range_z": 0,
             "x": 762,
             "z": 772,
-            "y": 0
+            "y": 0,
+            "id": "route_222_unk_100_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -441,7 +465,8 @@
             "movement_range_z": 0,
             "x": 763,
             "z": 772,
-            "y": 0
+            "y": 0,
+            "id": "route_222_unk_100_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
@@ -455,7 +480,8 @@
             "movement_range_z": 0,
             "x": 788,
             "z": 781,
-            "y": 0
+            "y": 0,
+            "id": "route_222_rich_boy_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -469,7 +495,8 @@
             "movement_range_z": 0,
             "x": 775,
             "z": 780,
-            "y": 0
+            "y": 0,
+            "id": "route_222_vent_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -483,7 +510,8 @@
             "movement_range_z": 0,
             "x": 773,
             "z": 780,
-            "y": 0
+            "y": 0,
+            "id": "route_222_vent_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -497,7 +525,8 @@
             "movement_range_z": 0,
             "x": 771,
             "z": 780,
-            "y": 0
+            "y": 0,
+            "id": "route_222_vent_28"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
@@ -514,7 +543,8 @@
             "movement_range_z": 0,
             "x": 794,
             "z": 778,
-            "y": 0
+            "y": 0,
+            "id": "route_222_policeman_29"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -528,7 +558,8 @@
             "movement_range_z": 0,
             "x": 809,
             "z": 790,
-            "y": 0
+            "y": 0,
+            "id": "route_222_pokeball_30"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -542,7 +573,8 @@
             "movement_range_z": 0,
             "x": 798,
             "z": 782,
-            "y": 0
+            "y": 0,
+            "id": "route_222_pokeball_31"
         }
     ],
     "warp_events": [
@@ -573,3 +605,4 @@
     ],
     "coord_events": []
 }
+

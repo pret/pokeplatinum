@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "canalave_city_west_house_reporter_0"
         }
     ],
     "warp_events": [

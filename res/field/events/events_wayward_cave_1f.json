@@ -62,7 +62,8 @@
             "movement_range_z": 0,
             "x": 56,
             "z": 55,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -76,7 +77,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 44,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -90,7 +92,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -104,7 +107,8 @@
             "movement_range_z": 0,
             "x": 44,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MIRA",
@@ -118,7 +122,8 @@
             "movement_range_z": 1,
             "x": 72,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_mira_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -134,7 +139,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_camper_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
@@ -150,7 +156,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_picnicker_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -166,7 +173,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 42,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_lass_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -182,7 +190,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 42,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_youngster_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -198,7 +207,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_hiker_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -214,7 +224,8 @@
             "movement_range_z": 0,
             "x": 91,
             "z": 48,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_collector_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
@@ -230,7 +241,8 @@
             "movement_range_z": 0,
             "x": 73,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_picnicker_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -246,7 +258,8 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_camper_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -262,7 +275,8 @@
             "movement_range_z": 0,
             "x": 93,
             "z": 48,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_ruin_maniac_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -278,7 +292,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_hiker_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -292,7 +307,8 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 42,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -306,7 +322,8 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -320,7 +337,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -334,7 +352,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 44,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -348,7 +367,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -362,7 +382,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -376,7 +397,8 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -390,7 +412,8 @@
             "movement_range_z": 0,
             "x": 54,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -404,7 +427,8 @@
             "movement_range_z": 0,
             "x": 57,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -418,7 +442,8 @@
             "movement_range_z": 0,
             "x": 66,
             "z": 52,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -432,7 +457,8 @@
             "movement_range_z": 0,
             "x": 88,
             "z": 27,
-            "y": 0
+            "y": 0,
+            "id": "wayward_cave_1f_rock_smash_25"
         }
     ],
     "warp_events": [
@@ -474,3 +500,4 @@
         }
     ]
 }
+

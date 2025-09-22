@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_cyrus_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_looker_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -139,7 +148,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -153,7 +163,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -167,7 +178,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -181,7 +193,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -195,7 +208,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -209,7 +223,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -223,7 +238,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -237,7 +253,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -251,7 +268,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
@@ -265,7 +283,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_3_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -279,7 +298,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -293,7 +313,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -307,7 +328,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -321,7 +343,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -335,7 +358,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -349,7 +373,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -363,7 +388,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -377,7 +403,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -391,7 +418,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
@@ -405,7 +433,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunts_group_of_4_28"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -419,7 +448,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_29"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -433,7 +463,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_30"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -447,7 +478,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_31"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -461,7 +493,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_32"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -475,7 +508,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_33"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -489,7 +523,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_m_34"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -503,7 +538,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "galactic_hq_hall_grunt_f_35"
         }
     ],
     "warp_events": [
@@ -539,3 +575,4 @@
         }
     ]
 }
+

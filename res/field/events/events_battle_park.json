@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 39,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_pokefan_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 35,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_signboard_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
@@ -41,7 +43,8 @@
             "movement_range_z": 1,
             "x": 35,
             "z": 39,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_baby_in_pram_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_signboard_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
@@ -69,7 +73,8 @@
             "movement_range_z": 1,
             "x": 29,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_beauty_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 37,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_expert_f_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
@@ -97,7 +103,8 @@
             "movement_range_z": 1,
             "x": 28,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_school_kid_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
@@ -111,7 +118,8 @@
             "movement_range_z": 2,
             "x": 15,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_middle_aged_man_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -125,7 +133,8 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 47,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_black_belt_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -139,7 +148,8 @@
             "movement_range_z": 1,
             "x": 26,
             "z": 47,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_ace_trainer_m_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -153,7 +163,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 52,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_pokeball_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PALMER",
@@ -167,7 +178,8 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_palmer_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -181,7 +193,8 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 40,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_barry_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -195,7 +208,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 35,
-            "y": 0
+            "y": 0,
+            "id": "battle_park_signboard_13"
         }
     ],
     "warp_events": [
@@ -237,3 +251,4 @@
         }
     ]
 }
+

@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 18,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -46,7 +47,8 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 43,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_ace_trainer_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -62,7 +64,8 @@
             "movement_range_z": 1,
             "x": 33,
             "z": 44,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_ace_trainer_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -78,7 +81,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_ace_trainer_m_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -94,7 +98,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_psychic_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -110,7 +115,8 @@
             "movement_range_z": 6,
             "x": 32,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_ace_trainer_m_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -124,7 +130,8 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_pokeball_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -138,7 +145,8 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 39,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_b1f_pokeball_7"
         }
     ],
     "warp_events": [

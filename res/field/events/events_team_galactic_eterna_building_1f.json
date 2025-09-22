@@ -22,7 +22,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_grunt_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -36,7 +37,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_grunt_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -52,7 +54,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_grunt_m_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
@@ -68,7 +71,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_grunt_f_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -82,7 +86,8 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_grunt_m_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
@@ -96,7 +101,8 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_looker_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WALL_BLOCKING_ROTOMS_ROOM",
@@ -110,7 +116,8 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "team_galactic_eterna_building_1f_wall_blocking_rotoms_room_6"
         }
     ],
     "warp_events": [

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "battleground_expert_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battleground_buck_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "battleground_unk_102_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "battleground_unk_103_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "battleground_unk_104_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_105",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "battleground_unk_105_5"
         }
     ],
     "warp_events": [

@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 594,
-            "y": 0
+            "y": 0,
+            "id": "fuego_ironworks_outside_unk_100_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -48,7 +49,8 @@
             "movement_range_z": 0,
             "x": 169,
             "z": 594,
-            "y": 0
+            "y": 0,
+            "id": "fuego_ironworks_outside_unk_100_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -64,7 +66,8 @@
             "movement_range_z": 0,
             "x": 170,
             "z": 594,
-            "y": 0
+            "y": 0,
+            "id": "fuego_ironworks_outside_unk_100_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -80,7 +83,8 @@
             "movement_range_z": 0,
             "x": 171,
             "z": 594,
-            "y": 0
+            "y": 0,
+            "id": "fuego_ironworks_outside_unk_100_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -94,7 +98,8 @@
             "movement_range_z": 0,
             "x": 172,
             "z": 588,
-            "y": 0
+            "y": 0,
+            "id": "fuego_ironworks_outside_signboard_4"
         }
     ],
     "warp_events": [

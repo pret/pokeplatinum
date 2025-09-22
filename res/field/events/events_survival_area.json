@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 646,
             "z": 338,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_map_signpost_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -46,7 +47,8 @@
             "movement_range_z": 0,
             "x": 660,
             "z": 327,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_vent_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -60,7 +62,8 @@
             "movement_range_z": 0,
             "x": 652,
             "z": 327,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_vent_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -74,7 +77,8 @@
             "movement_range_z": 1,
             "x": 659,
             "z": 350,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_ruin_maniac_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -88,7 +92,8 @@
             "movement_range_z": 0,
             "x": 652,
             "z": 341,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_battle_girl_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -102,10 +107,11 @@
             "movement_range_z": 0,
             "x": 667,
             "z": 338,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_youngster_5"
         },
         {
-            "local_id": 0,
+            "clone_id": 0,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -119,7 +125,8 @@
             "movement_range_z": 0,
             "x": 679,
             "z": 340,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_arrow_signpost_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
@@ -133,7 +140,8 @@
             "movement_range_z": 0,
             "x": 651,
             "z": 348,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_cameraman_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
@@ -147,7 +155,8 @@
             "movement_range_z": 0,
             "x": 652,
             "z": 339,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_buck_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -161,7 +170,8 @@
             "movement_range_z": 0,
             "x": 662,
             "z": 335,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_pokeball_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -175,7 +185,8 @@
             "movement_range_z": 0,
             "x": 649,
             "z": 324,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_pokeball_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -189,7 +200,8 @@
             "movement_range_z": 0,
             "x": 651,
             "z": 339,
-            "y": 0
+            "y": 0,
+            "id": "survival_area_barry_11"
         }
     ],
     "warp_events": [
@@ -226,3 +238,4 @@
     ],
     "coord_events": []
 }
+

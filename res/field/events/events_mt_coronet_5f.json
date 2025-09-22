@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_5f_grunt_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -48,7 +49,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 22,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_5f_grunt_m_1"
         }
     ],
     "warp_events": [

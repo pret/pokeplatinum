@@ -70,7 +70,8 @@
             "movement_range_z": 3,
             "x": 722,
             "z": 614,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_guitarist_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
@@ -84,7 +85,8 @@
             "movement_range_z": 2,
             "x": 706,
             "z": 614,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_pokefan_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -98,7 +100,8 @@
             "movement_range_z": 0,
             "x": 701,
             "z": 618,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_battle_girl_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LADY",
@@ -112,7 +115,8 @@
             "movement_range_z": 0,
             "x": 699,
             "z": 606,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_lady_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -126,7 +130,8 @@
             "movement_range_z": 0,
             "x": 710,
             "z": 605,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_battle_girl_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
@@ -140,7 +145,8 @@
             "movement_range_z": 0,
             "x": 709,
             "z": 612,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_roughneck_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
@@ -154,7 +160,8 @@
             "movement_range_z": 0,
             "x": 682,
             "z": 614,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_unk_101_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -168,7 +175,8 @@
             "movement_range_z": 0,
             "x": 697,
             "z": 595,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_grunt_m_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -184,7 +192,8 @@
             "movement_range_z": 0,
             "x": 697,
             "z": 612,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_map_signpost_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -200,7 +209,8 @@
             "movement_range_z": 0,
             "x": 696,
             "z": 594,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -216,7 +226,8 @@
             "movement_range_z": 0,
             "x": 719,
             "z": 593,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -232,7 +243,8 @@
             "movement_range_z": 0,
             "x": 704,
             "z": 603,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
@@ -248,7 +260,8 @@
             "movement_range_z": 0,
             "x": 688,
             "z": 611,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_gym_signpost_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -264,7 +277,8 @@
             "movement_range_z": 0,
             "x": 709,
             "z": 623,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -280,7 +294,8 @@
             "movement_range_z": 0,
             "x": 714,
             "z": 623,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -296,7 +311,8 @@
             "movement_range_z": 0,
             "x": 715,
             "z": 635,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_signboard_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -310,7 +326,8 @@
             "movement_range_z": 0,
             "x": 710,
             "z": 635,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_vent_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -324,7 +341,8 @@
             "movement_range_z": 0,
             "x": 712,
             "z": 637,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_vent_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -338,7 +356,8 @@
             "movement_range_z": 0,
             "x": 690,
             "z": 613,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_pokeball_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -352,7 +371,8 @@
             "movement_range_z": 0,
             "x": 710,
             "z": 584,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_pokeball_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -366,7 +386,8 @@
             "movement_range_z": 0,
             "x": 697,
             "z": 597,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_grunt_m_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
@@ -380,7 +401,8 @@
             "movement_range_z": 0,
             "x": 711,
             "z": 625,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_guitarist_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
@@ -394,7 +416,8 @@
             "movement_range_z": 1,
             "x": 687,
             "z": 624,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_roughneck_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -408,7 +431,8 @@
             "movement_range_z": 0,
             "x": 721,
             "z": 593,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_grunt_m_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
@@ -422,7 +446,8 @@
             "movement_range_z": 2,
             "x": 720,
             "z": 632,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_grunt_m_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
@@ -436,7 +461,8 @@
             "movement_range_z": 0,
             "x": 684,
             "z": 611,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_crasher_wake_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
@@ -450,7 +476,8 @@
             "movement_range_z": 0,
             "x": 692,
             "z": 603,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_looker_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -464,7 +491,8 @@
             "movement_range_z": 0,
             "x": 693,
             "z": 584,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_pokeball_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -478,7 +506,8 @@
             "movement_range_z": 0,
             "x": 705,
             "z": 632,
-            "y": 7
+            "y": 7,
+            "id": "veilstone_city_battle_girl_28"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
@@ -492,7 +521,8 @@
             "movement_range_z": 0,
             "x": 695,
             "z": 613,
-            "y": 0
+            "y": 0,
+            "id": "veilstone_city_guitarist_29"
         }
     ],
     "warp_events": [
@@ -622,3 +652,4 @@
         }
     ]
 }
+

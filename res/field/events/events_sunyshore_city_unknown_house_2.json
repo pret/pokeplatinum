@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_unknown_house_2_sailor_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_unknown_house_2_lass_1"
         }
     ],
     "warp_events": [

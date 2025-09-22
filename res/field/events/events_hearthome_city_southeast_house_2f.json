@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_southeast_house_2f_ace_trainer_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "hearthome_city_southeast_house_2f_clefairy_1"
         }
     ],
     "warp_events": [

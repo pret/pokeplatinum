@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "pokemon_league_south_pokecenter_1f_nurse_joy_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "pokemon_league_south_pokecenter_1f_pokefan_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "pokemon_league_south_pokecenter_1f_ace_trainer_f_2"
         }
     ],
     "warp_events": [

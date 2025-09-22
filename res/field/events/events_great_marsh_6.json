@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 91,
             "z": 105,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -44,7 +45,8 @@
             "movement_range_z": 0,
             "x": 72,
             "z": 113,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_signboard_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -58,10 +60,11 @@
             "movement_range_z": 1,
             "x": 74,
             "z": 115,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_ace_trainer_m_2"
         },
         {
-            "local_id": 2,
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +76,11 @@
             "movement_range_z": 0,
             "x": 62,
             "z": 115,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_youngster_3"
         },
         {
-            "local_id": 1,
+            "clone_id": 1,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +92,11 @@
             "movement_range_z": 0,
             "x": 63,
             "z": 113,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_signboard_4"
         },
         {
-            "local_id": 2,
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +108,8 @@
             "movement_range_z": 0,
             "x": 72,
             "z": 86,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_6_signboard_5"
         }
     ],
     "warp_events": [

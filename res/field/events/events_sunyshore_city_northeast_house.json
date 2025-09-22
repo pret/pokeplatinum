@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_northeast_house_beauty_0"
         }
     ],
     "warp_events": [

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "route_206_cycling_road_south_gate_cashier_m_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "route_206_cycling_road_south_gate_cashier_m_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "id": "route_206_cycling_road_south_gate_battle_girl_2"
         }
     ],
     "warp_events": [

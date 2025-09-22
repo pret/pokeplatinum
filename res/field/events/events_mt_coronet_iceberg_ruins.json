@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_iceberg_ruins_pokeball_0"
         }
     ],
     "warp_events": [

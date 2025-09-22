@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 883,
             "z": 770,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_sailor_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -44,7 +45,8 @@
             "movement_range_z": 2,
             "x": 856,
             "z": 782,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_pokefan_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -58,7 +60,8 @@
             "movement_range_z": 0,
             "x": 848,
             "z": 785,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_pokemon_breeder_f_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -72,7 +75,8 @@
             "movement_range_z": 0,
             "x": 881,
             "z": 793,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_worker_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -86,7 +90,8 @@
             "movement_range_z": 0,
             "x": 848,
             "z": 763,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_signboard_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
@@ -102,7 +107,8 @@
             "movement_range_z": 0,
             "x": 841,
             "z": 788,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_map_signpost_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
@@ -116,7 +122,8 @@
             "movement_range_z": 0,
             "x": 847,
             "z": 748,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_gym_signpost_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -130,7 +137,8 @@
             "movement_range_z": 5,
             "x": 854,
             "z": 754,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_sailor_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -144,7 +152,8 @@
             "movement_range_z": 0,
             "x": 882,
             "z": 790,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_signboard_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_JASMINE",
@@ -158,7 +167,8 @@
             "movement_range_z": 0,
             "x": 857,
             "z": 741,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_jasmine_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -172,7 +182,8 @@
             "movement_range_z": 0,
             "x": 853,
             "z": 751,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_vent_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -186,7 +197,8 @@
             "movement_range_z": 0,
             "x": 853,
             "z": 745,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_vent_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -200,7 +212,8 @@
             "movement_range_z": 0,
             "x": 853,
             "z": 755,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_vent_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -214,7 +227,8 @@
             "movement_range_z": 0,
             "x": 885,
             "z": 744,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_signboard_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -228,7 +242,8 @@
             "movement_range_z": 0,
             "x": 885,
             "z": 770,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_signboard_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -242,7 +257,8 @@
             "movement_range_z": 0,
             "x": 858,
             "z": 759,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_signboard_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -256,7 +272,8 @@
             "movement_range_z": 0,
             "x": 884,
             "z": 794,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_vent_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -270,7 +287,8 @@
             "movement_range_z": 0,
             "x": 881,
             "z": 779,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_pokeball_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
@@ -284,7 +302,8 @@
             "movement_range_z": 0,
             "x": 845,
             "z": 748,
-            "y": 7
+            "y": 7,
+            "id": "sunyshore_city_flint_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_VENT",
@@ -298,7 +317,8 @@
             "movement_range_z": 0,
             "x": 878,
             "z": 794,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_vent_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -312,7 +332,8 @@
             "movement_range_z": 0,
             "x": 855,
             "z": 747,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_barry_20"
         }
     ],
     "warp_events": [
@@ -414,3 +435,4 @@
         }
     ]
 }
+

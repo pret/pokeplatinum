@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b1f_left_room_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -29,7 +30,8 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b1f_left_room_camper_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -43,7 +45,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_b1f_left_room_pokeball_2"
         }
     ],
     "warp_events": [

@@ -46,7 +46,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -60,7 +61,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -74,7 +76,8 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -88,7 +91,8 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 13,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -102,7 +106,8 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -116,7 +121,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 15,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -130,7 +136,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 23,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -144,7 +151,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 25,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -158,7 +166,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -172,7 +181,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -186,7 +196,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -200,7 +211,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -214,7 +226,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 43,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -228,7 +241,8 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 45,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -242,7 +256,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 57,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -256,7 +271,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 60,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_rock_smash_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -270,7 +286,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_strength_boulder_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -284,7 +301,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 26,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_strength_boulder_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -298,7 +316,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -312,7 +331,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 18,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -326,7 +346,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 36,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -340,7 +361,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 17,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -354,7 +376,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -368,7 +391,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 60,
-            "y": 0
+            "y": 0,
+            "id": "mt_coronet_b1f_pokeball_23"
         }
     ],
     "warp_events": [
@@ -387,3 +411,4 @@
     ],
     "coord_events": []
 }
+

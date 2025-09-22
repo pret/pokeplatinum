@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_nurse_joy_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -27,7 +28,8 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_lass_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 11,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_battle_girl_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
@@ -55,7 +58,8 @@
             "movement_range_z": 1,
             "x": 10,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_psyduck_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
@@ -69,7 +73,8 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_maylene_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_unk_111_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "snowpoint_city_pokecenter_1f_unk_112_6"
         }
     ],
     "warp_events": [

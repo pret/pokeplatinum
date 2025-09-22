@@ -15,7 +15,8 @@
             "movement_range_z": 0,
             "x": 234,
             "z": 757,
-            "y": 0
+            "y": 0,
+            "id": "route_203_youngster_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -31,7 +32,8 @@
             "movement_range_z": 0,
             "x": 204,
             "z": 750,
-            "y": 1
+            "y": 1,
+            "id": "route_203_youngster_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -47,7 +49,8 @@
             "movement_range_z": 1,
             "x": 243,
             "z": 757,
-            "y": 0
+            "y": 0,
+            "id": "route_203_lass_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -63,7 +66,8 @@
             "movement_range_z": 0,
             "x": 222,
             "z": 756,
-            "y": 4
+            "y": 4,
+            "id": "route_203_youngster_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -79,7 +83,8 @@
             "movement_range_z": 0,
             "x": 240,
             "z": 748,
-            "y": 1
+            "y": 1,
+            "id": "route_203_lass_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
@@ -93,7 +98,8 @@
             "movement_range_z": 0,
             "x": 201,
             "z": 757,
-            "y": 1
+            "y": 1,
+            "id": "route_203_barry_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -109,7 +115,8 @@
             "movement_range_z": 0,
             "x": 200,
             "z": 756,
-            "y": 0
+            "y": 0,
+            "id": "route_203_arrow_signpost_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -125,7 +132,8 @@
             "movement_range_z": 0,
             "x": 244,
             "z": 747,
-            "y": 0
+            "y": 0,
+            "id": "route_203_arrow_signpost_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -139,7 +147,8 @@
             "movement_range_z": 0,
             "x": 238,
             "z": 752,
-            "y": 0
+            "y": 0,
+            "id": "route_203_trainer_tips_signpost_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -153,7 +162,8 @@
             "movement_range_z": 0,
             "x": 217,
             "z": 750,
-            "y": 0
+            "y": 0,
+            "id": "route_203_trainer_tips_signpost_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -167,7 +177,8 @@
             "movement_range_z": 0,
             "x": 222,
             "z": 745,
-            "y": 0
+            "y": 0,
+            "id": "route_203_pokeball_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -181,7 +192,8 @@
             "movement_range_z": 0,
             "x": 211,
             "z": 750,
-            "y": 0
+            "y": 0,
+            "id": "route_203_pokeball_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -195,10 +207,11 @@
             "movement_range_z": 0,
             "x": 206,
             "z": 757,
-            "y": 0
+            "y": 0,
+            "id": "route_203_lass_12"
         },
         {
-            "local_id": 9,
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,7 +225,8 @@
             "movement_range_z": 0,
             "x": 187,
             "z": 756,
-            "y": 0
+            "y": 0,
+            "id": "route_203_map_signpost_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -226,7 +240,8 @@
             "movement_range_z": 0,
             "x": 231,
             "z": 754,
-            "y": 0
+            "y": 0,
+            "id": "route_203_pokeball_14"
         }
     ],
     "warp_events": [
@@ -250,3 +265,4 @@
         }
     ]
 }
+

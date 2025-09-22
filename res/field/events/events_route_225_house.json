@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0
+            "y": 0,
+            "id": "route_225_house_worker_0"
         }
     ],
     "warp_events": [

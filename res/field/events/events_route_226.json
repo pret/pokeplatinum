@@ -56,7 +56,8 @@
             "movement_range_z": 0,
             "x": 679,
             "z": 341,
-            "y": 0
+            "y": 0,
+            "id": "route_226_arrow_signpost_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -70,7 +71,8 @@
             "movement_range_z": 0,
             "x": 717,
             "z": 339,
-            "y": 0
+            "y": 0,
+            "id": "route_226_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -84,7 +86,8 @@
             "movement_range_z": 0,
             "x": 690,
             "z": 344,
-            "y": 0
+            "y": 0,
+            "id": "route_226_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -98,7 +101,8 @@
             "movement_range_z": 0,
             "x": 693,
             "z": 333,
-            "y": 0
+            "y": 0,
+            "id": "route_226_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -114,7 +118,8 @@
             "movement_range_z": 0,
             "x": 689,
             "z": 328,
-            "y": 0
+            "y": 0,
+            "id": "route_226_unk_100_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -130,7 +135,8 @@
             "movement_range_z": 0,
             "x": 692,
             "z": 328,
-            "y": 0
+            "y": 0,
+            "id": "route_226_unk_100_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -146,7 +152,8 @@
             "movement_range_z": 0,
             "x": 690,
             "z": 328,
-            "y": 0
+            "y": 0,
+            "id": "route_226_unk_100_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -162,7 +169,8 @@
             "movement_range_z": 0,
             "x": 691,
             "z": 328,
-            "y": 0
+            "y": 0,
+            "id": "route_226_unk_100_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
@@ -178,10 +186,11 @@
             "movement_range_z": 0,
             "x": 727,
             "z": 342,
-            "y": 0
+            "y": 0,
+            "id": "route_226_swimmer_f_8"
         },
         {
-            "local_id": 0,
+            "clone_id": 0,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -195,7 +204,8 @@
             "movement_range_z": 0,
             "x": 755,
             "z": 314,
-            "y": 0
+            "y": 0,
+            "id": "route_226_arrow_signpost_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -211,7 +221,8 @@
             "movement_range_z": 0,
             "x": 689,
             "z": 335,
-            "y": 0
+            "y": 0,
+            "id": "route_226_ace_trainer_m_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -227,7 +238,8 @@
             "movement_range_z": 0,
             "x": 707,
             "z": 331,
-            "y": 0
+            "y": 0,
+            "id": "route_226_ace_trainer_f_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -243,10 +255,11 @@
             "movement_range_z": 0,
             "x": 707,
             "z": 329,
-            "y": 0
+            "y": 0,
+            "id": "route_226_ace_trainer_m_12"
         },
         {
-            "local_id": 5,
+            "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -258,7 +271,8 @@
             "movement_range_z": 0,
             "x": 667,
             "z": 338,
-            "y": 0
+            "y": 0,
+            "id": "route_226_youngster_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -274,7 +288,8 @@
             "movement_range_z": 0,
             "x": 760,
             "z": 327,
-            "y": 0
+            "y": 0,
+            "id": "route_226_arrow_signpost_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
@@ -290,7 +305,8 @@
             "movement_range_z": 0,
             "x": 760,
             "z": 342,
-            "y": 0
+            "y": 0,
+            "id": "route_226_swimmer_m_15"
         }
     ],
     "warp_events": [
@@ -315,3 +331,4 @@
     ],
     "coord_events": []
 }
+

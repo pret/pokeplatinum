@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -44,7 +45,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_pokeball_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -58,7 +60,8 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 22,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_pokeball_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -72,7 +75,8 @@
             "movement_range_z": 0,
             "x": 43,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -88,7 +92,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 27,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_ace_trainer_m_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -104,7 +109,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 37,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_ace_trainer_f_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
@@ -120,7 +126,8 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_expert_m_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
@@ -136,7 +143,8 @@
             "movement_range_z": 0,
             "x": 57,
             "z": 20,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_ace_trainer_m_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -152,7 +160,8 @@
             "movement_range_z": 0,
             "x": 57,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_ace_trainer_f_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -166,7 +175,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -180,7 +190,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -194,7 +205,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -208,7 +220,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -222,7 +235,8 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -236,7 +250,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 36,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -250,7 +265,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -264,7 +280,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -278,7 +295,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 29,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -292,7 +310,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -306,7 +325,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -320,7 +340,8 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -334,7 +355,8 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 37,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -348,7 +370,8 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 38,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -362,7 +385,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -376,7 +400,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 32,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_24"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
@@ -390,7 +415,8 @@
             "movement_range_z": 0,
             "x": 42,
             "z": 30,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_strength_boulder_25"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -404,7 +430,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 16,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_26"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -418,7 +445,8 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_27"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -432,7 +460,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 19,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_28"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -446,7 +475,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 34,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_29"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -460,7 +490,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 31,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_30"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -474,7 +505,8 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 10,
-            "y": 0
+            "y": 0,
+            "id": "victory_road_2f_rock_smash_31"
         }
     ],
     "warp_events": [
@@ -499,3 +531,4 @@
     ],
     "coord_events": []
 }
+

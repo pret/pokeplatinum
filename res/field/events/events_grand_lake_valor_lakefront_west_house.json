@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 3,
-            "y": 0
+            "y": 0,
+            "id": "grand_lake_valor_lakefront_west_house_game_director_0"
         }
     ],
     "warp_events": [

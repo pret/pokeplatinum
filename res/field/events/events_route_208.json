@@ -32,7 +32,8 @@
             "movement_range_z": 0,
             "x": 420,
             "z": 722,
-            "y": 0
+            "y": 0,
+            "id": "route_208_hiker_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -48,7 +49,8 @@
             "movement_range_z": 0,
             "x": 390,
             "z": 719,
-            "y": 0
+            "y": 0,
+            "id": "route_208_hiker_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -64,7 +66,8 @@
             "movement_range_z": 0,
             "x": 408,
             "z": 723,
-            "y": 0
+            "y": 0,
+            "id": "route_208_hiker_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -80,7 +83,8 @@
             "movement_range_z": 1,
             "x": 405,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_black_belt_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -94,7 +98,8 @@
             "movement_range_z": 0,
             "x": 413,
             "z": 727,
-            "y": 0
+            "y": 0,
+            "id": "route_208_fisherman_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -110,7 +115,8 @@
             "movement_range_z": 0,
             "x": 433,
             "z": 720,
-            "y": 0
+            "y": 0,
+            "id": "route_208_pokemon_breeder_f_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
@@ -126,7 +132,8 @@
             "movement_range_z": 0,
             "x": 439,
             "z": 724,
-            "y": 0
+            "y": 0,
+            "id": "route_208_artist_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -140,7 +147,8 @@
             "movement_range_z": 0,
             "x": 419,
             "z": 713,
-            "y": 0
+            "y": 0,
+            "id": "route_208_rock_smash_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -154,7 +162,8 @@
             "movement_range_z": 0,
             "x": 420,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_rock_smash_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -168,7 +177,8 @@
             "movement_range_z": 0,
             "x": 420,
             "z": 715,
-            "y": 0
+            "y": 0,
+            "id": "route_208_rock_smash_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -184,7 +194,8 @@
             "movement_range_z": 0,
             "x": 444,
             "z": 724,
-            "y": 0
+            "y": 0,
+            "id": "route_208_arrow_signpost_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -198,7 +209,8 @@
             "movement_range_z": 0,
             "x": 439,
             "z": 716,
-            "y": 0
+            "y": 0,
+            "id": "route_208_signboard_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -214,7 +226,8 @@
             "movement_range_z": 0,
             "x": 392,
             "z": 723,
-            "y": 0
+            "y": 0,
+            "id": "route_208_arrow_signpost_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -230,7 +243,8 @@
             "movement_range_z": 0,
             "x": 435,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_unk_100_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -246,7 +260,8 @@
             "movement_range_z": 0,
             "x": 436,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_unk_100_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -262,7 +277,8 @@
             "movement_range_z": 0,
             "x": 437,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_unk_100_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
@@ -278,7 +294,8 @@
             "movement_range_z": 0,
             "x": 438,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_unk_100_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -292,7 +309,8 @@
             "movement_range_z": 0,
             "x": 416,
             "z": 714,
-            "y": 0
+            "y": 0,
+            "id": "route_208_pokeball_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -306,7 +324,8 @@
             "movement_range_z": 0,
             "x": 401,
             "z": 705,
-            "y": 0
+            "y": 0,
+            "id": "route_208_pokeball_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -320,7 +339,8 @@
             "movement_range_z": 0,
             "x": 399,
             "z": 720,
-            "y": 0
+            "y": 0,
+            "id": "route_208_pokeball_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -334,7 +354,8 @@
             "movement_range_z": 0,
             "x": 390,
             "z": 717,
-            "y": 0
+            "y": 0,
+            "id": "route_208_rock_smash_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -348,7 +369,8 @@
             "movement_range_z": 0,
             "x": 391,
             "z": 718,
-            "y": 0
+            "y": 0,
+            "id": "route_208_rock_smash_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
@@ -362,7 +384,8 @@
             "movement_range_z": 0,
             "x": 437,
             "z": 733,
-            "y": 0
+            "y": 0,
+            "id": "route_208_black_belt_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -376,7 +399,8 @@
             "movement_range_z": 0,
             "x": 434,
             "z": 716,
-            "y": 0
+            "y": 0,
+            "id": "route_208_trainer_tips_signpost_23"
         }
     ],
     "warp_events": [
@@ -407,3 +431,4 @@
     ],
     "coord_events": []
 }
+

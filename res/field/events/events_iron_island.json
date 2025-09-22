@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 99,
             "z": 502,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_sailor_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RILEY",
@@ -36,7 +37,8 @@
             "movement_range_z": 0,
             "x": 117,
             "z": 490,
-            "y": 0
+            "y": 0,
+            "id": "iron_island_riley_1"
         }
     ],
     "warp_events": [

@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_mart_cashier_f_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 8,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_mart_ruin_maniac_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_mart_sailor_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_mart_mystery_gift_deliveryman_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_mart_cashier_f_4"
         }
     ],
     "warp_events": [

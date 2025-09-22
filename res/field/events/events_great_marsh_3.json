@@ -30,7 +30,8 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 79,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_3_pokeball_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -44,7 +45,8 @@
             "movement_range_z": 0,
             "x": 59,
             "z": 86,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_3_signboard_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
@@ -58,7 +60,8 @@
             "movement_range_z": 1,
             "x": 38,
             "z": 75,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_3_collector_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
@@ -72,10 +75,11 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 58,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_3_ruin_maniac_3"
         },
         {
-            "local_id": 2,
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -87,7 +91,8 @@
             "movement_range_z": 0,
             "x": 71,
             "z": 86,
-            "y": 0
+            "y": 0,
+            "id": "great_marsh_3_signboard_4"
         }
     ],
     "warp_events": [],

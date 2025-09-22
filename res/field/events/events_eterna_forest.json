@@ -22,7 +22,8 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 83,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cheryl_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -36,7 +37,8 @@
             "movement_range_z": 1,
             "x": 24,
             "z": 80,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_bug_catcher_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -52,7 +54,8 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_bug_catcher_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -68,7 +71,8 @@
             "movement_range_z": 0,
             "x": 65,
             "z": 87,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_bug_catcher_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -84,7 +88,8 @@
             "movement_range_z": 0,
             "x": 74,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_psychic_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -100,7 +105,8 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_psychic_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -116,7 +122,8 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_lass_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -132,7 +139,8 @@
             "movement_range_z": 0,
             "x": 65,
             "z": 83,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_bug_catcher_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -146,7 +154,8 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 81,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -160,7 +169,8 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 59,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -174,7 +184,8 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 85,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -188,7 +199,8 @@
             "movement_range_z": 0,
             "x": 66,
             "z": 42,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_11"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -202,7 +214,8 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 82,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_signboard_12"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
@@ -216,7 +229,8 @@
             "movement_range_z": 0,
             "x": 76,
             "z": 72,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_trainer_tips_signpost_13"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -232,7 +246,8 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_psychic_14"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
@@ -248,7 +263,8 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 67,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_psychic_15"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MOSS_ROCK",
@@ -262,7 +278,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 66,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_moss_rock_16"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -276,7 +293,8 @@
             "movement_range_z": 0,
             "x": 81,
             "z": 12,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_17"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -290,7 +308,8 @@
             "movement_range_z": 0,
             "x": 84,
             "z": 82,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_pokeball_18"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -304,7 +323,8 @@
             "movement_range_z": 0,
             "x": 74,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cut_tree_19"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -318,7 +338,8 @@
             "movement_range_z": 0,
             "x": 75,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cut_tree_20"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -332,7 +353,8 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cut_tree_21"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -346,7 +368,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 64,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cut_tree_22"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -360,7 +383,8 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 65,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_cut_tree_23"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
@@ -374,7 +398,8 @@
             "movement_range_z": 0,
             "x": 73,
             "z": 33,
-            "y": 0
+            "y": 0,
+            "id": "eterna_forest_gardenia_24"
         }
     ],
     "warp_events": [
@@ -442,3 +467,4 @@
         }
     ]
 }
+

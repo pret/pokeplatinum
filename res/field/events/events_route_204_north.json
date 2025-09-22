@@ -15,7 +15,8 @@
             "movement_range_z": 0,
             "x": 182,
             "z": 685,
-            "y": 5
+            "y": 5,
+            "id": "route_204_north_bug_catcher_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
@@ -31,7 +32,8 @@
             "movement_range_z": 0,
             "x": 177,
             "z": 692,
-            "y": 5
+            "y": 5,
+            "id": "route_204_north_pokemon_breeder_f_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
@@ -47,7 +49,8 @@
             "movement_range_z": 0,
             "x": 175,
             "z": 679,
-            "y": 5
+            "y": 5,
+            "id": "route_204_north_twin_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
@@ -63,7 +66,8 @@
             "movement_range_z": 0,
             "x": 176,
             "z": 679,
-            "y": 5
+            "y": 5,
+            "id": "route_204_north_twin_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -77,7 +81,8 @@
             "movement_range_z": 0,
             "x": 175,
             "z": 700,
-            "y": 5
+            "y": 5,
+            "id": "route_204_north_youngster_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
@@ -93,7 +98,8 @@
             "movement_range_z": 0,
             "x": 177,
             "z": 681,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_arrow_signpost_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
@@ -107,7 +113,8 @@
             "movement_range_z": 0,
             "x": 170,
             "z": 706,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_signboard_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -121,7 +128,8 @@
             "movement_range_z": 0,
             "x": 173,
             "z": 706,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_youngster_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
@@ -135,7 +143,8 @@
             "movement_range_z": 0,
             "x": 181,
             "z": 678,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_cut_tree_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -149,7 +158,8 @@
             "movement_range_z": 0,
             "x": 162,
             "z": 682,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_pokeball_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
@@ -163,7 +173,8 @@
             "movement_range_z": 0,
             "x": 191,
             "z": 676,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_ace_trainer_f_10"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -177,7 +188,8 @@
             "movement_range_z": 0,
             "x": 180,
             "z": 695,
-            "y": 0
+            "y": 0,
+            "id": "route_204_north_pokeball_11"
         }
     ],
     "warp_events": [
@@ -190,3 +202,4 @@
     ],
     "coord_events": []
 }
+

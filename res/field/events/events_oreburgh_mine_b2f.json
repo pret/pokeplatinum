@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 28,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_roark_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_mine_b2f_rock_smash_1"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
@@ -41,7 +43,8 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_mine_b2f_rock_smash_2"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -55,7 +58,8 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 28,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_mine_b2f_pokeball_3"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
@@ -69,7 +73,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 24,
-            "y": 0
+            "y": 0,
+            "id": "oreburgh_mine_b2f_pokeball_4"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -83,7 +88,8 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 28,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_worker_5"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -97,7 +103,8 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 20,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_worker_6"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
@@ -111,7 +118,8 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 15,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_worker_7"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -125,7 +133,8 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 28,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_machop_8"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -139,7 +148,8 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 15,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_machop_9"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
@@ -153,7 +163,8 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 15,
-            "y": 1
+            "y": 1,
+            "id": "oreburgh_mine_b2f_machop_10"
         }
     ],
     "warp_events": [
@@ -166,3 +177,4 @@
     ],
     "coord_events": []
 }
+

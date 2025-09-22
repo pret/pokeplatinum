@@ -13,7 +13,8 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 5,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_unknown_house_1_old_man_0"
         },
         {
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -27,7 +28,8 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 4,
-            "y": 0
+            "y": 0,
+            "id": "sunyshore_city_unknown_house_1_bug_catcher_1"
         }
     ],
     "warp_events": [
