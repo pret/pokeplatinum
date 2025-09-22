@@ -389,7 +389,7 @@ static const TVProgramType *TVBroadcast_GetProgramType(int programTypeID)
     const TVProgramType *programType;
 
     GF_ASSERT(0 < programTypeID && programTypeID < TV_PROGRAM_TYPE_MAX);
-    programType = &tvProgramTypes[programTypeID - 1];
+    programType = &sProgramTypes[programTypeID - 1];
     GF_ASSERT(programType->programTypeID == programTypeID);
 
     return programType;

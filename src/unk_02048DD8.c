@@ -140,7 +140,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
     return 0;
 }
 
-static const TVInterview tvInterviews[19];
+static const TVInterview sInterviews[19];
 
 BOOL ScrCmd_CallTVInterview(ScriptContext *ctx)
 {
@@ -215,7 +215,7 @@ static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u1
 {
     TVInterview_SaveResponseFunction saveResponseFn;
 
-    saveResponseFn = tvInterviews[segmentID - 1].saveResponseFn;
+    saveResponseFn = sInterviews[segmentID - 1].saveResponseFn;
 
     if (saveResponseFn != NULL) {
         saveResponseFn(fieldSystem, customMessageWord);
@@ -226,13 +226,13 @@ static int TVInterview_LoadMessage(int segmentID, FieldSystem *fieldSystem, Stri
 {
     TVInterview_LoadMessageFunction loadMessageFn;
 
-    loadMessageFn = tvInterviews[segmentID - 1].loadMessageFn;
+    loadMessageFn = sInterviews[segmentID - 1].loadMessageFn;
 
     if (loadMessageFn != NULL) {
         loadMessageFn(fieldSystem, template);
     }
 
-    return tvInterviews[segmentID - 1].messageID;
+    return sInterviews[segmentID - 1].messageID;
 }
 
 static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
@@ -244,7 +244,7 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
         return FALSE;
     }
 
-    isEligibleFn = tvInterviews[segmentID - 1].isEligibleFn;
+    isEligibleFn = sInterviews[segmentID - 1].isEligibleFn;
 
     if (isEligibleFn == NULL) {
         return TRUE;
@@ -357,7 +357,7 @@ static BOOL sub_020493B8(FieldSystem *fieldSystem)
     return v0->unk_00;
 }
 
-static const TVInterview tvInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
+static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
     { NULL, NULL, NULL, 0x3 },
     { TVBroadcastSegment_SaveInterviewData_BattleTowerCorner, NULL, sub_02049348, 0x4 },
     { NULL, NULL, NULL, 0x5 },

@@ -47,7 +47,7 @@ typedef struct TVProgramFramingMessages {
     u8 farewellExtended;
 } TVProgramFramingMessages;
 
-static const TVProgramFramingMessages programFramingMessages[] = {
+static const TVProgramFramingMessages sProgramFramingMessages[] = {
     TV_PROGRAM_MESSAGES(BattlingTrainers),
     TV_PROGRAM_MESSAGES(TrainerResearch),
     TV_PROGRAM_MESSAGES(BattleWatch),
@@ -306,8 +306,8 @@ static const TVProgramFramingMessages *TVBroadcast_GetScheduledProgramMessages(F
 {
     int scheduledProgramID = TVBroadcast_GetScheduledProgramID(fieldSystem);
 
-    GF_ASSERT(scheduledProgramID <= NELEMS(programFramingMessages));
-    return &programFramingMessages[scheduledProgramID - 1];
+    GF_ASSERT(scheduledProgramID <= NELEMS(sProgramFramingMessages));
+    return &sProgramFramingMessages[scheduledProgramID - 1];
 }
 
 int TVBroadcast_GetProgramFramingMessage(FieldSystem *fieldSystem, int framingMessageType)
