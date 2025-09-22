@@ -2,7 +2,7 @@
 #define POKEPLATINUM_SHOP_MENU_H
 
 #include "field/field_system_decl.h"
-#include "overlay005/sprite_resource_manager_struct.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "camera.h"

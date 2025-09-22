@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "overlay005/sprite_resource_manager_struct.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "sprite_system.h"
 

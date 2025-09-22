@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020708E0_H
 #define POKEPLATINUM_STRUCT_020708E0_H
 
-#include "overlay005/sprite_resource_manager_struct.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "field_move_tasks.h"
