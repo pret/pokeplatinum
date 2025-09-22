@@ -3251,8 +3251,8 @@
     .short \arg3
     .endm
 
-    .macro ShowTVInterviewMessage segmentID, bankDestVar, messageDestVar
-    TVInterviewCall TV_INTERVIEW_CALL_SHOW_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
+    .macro LoadTVInterviewMessage segmentID, bankDestVar, messageDestVar
+    TVInterviewCall TV_INTERVIEW_CALL_LOAD_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
     .endm
 
     .macro SaveTVInterviewResponse segmentID, customWordMessage, unused

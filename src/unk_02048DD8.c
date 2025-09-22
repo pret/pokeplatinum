@@ -149,7 +149,7 @@ BOOL ScrCmd_TVInterviewCall(ScriptContext *ctx)
     template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     switch (ScriptContext_ReadHalfWord(ctx)) {
-    case TV_INTERVIEW_CALL_SHOW_MESSAGE: {
+    case TV_INTERVIEW_CALL_LOAD_MESSAGE: {
         int segmentID;
         u16 *bankIDVar;
         u16 *messageIDVar;

@@ -115,7 +115,7 @@ _0159:
     End
 
 _0190:
-    ShowTVInterviewMessage VAR_0x8000, VAR_0x8004, VAR_0x8005
+    LoadTVInterviewMessage VAR_0x8000, VAR_0x8004, VAR_0x8005
     ExternalMessage VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8000, 10, _01F0
     FadeScreenOut
