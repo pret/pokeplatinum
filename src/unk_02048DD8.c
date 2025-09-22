@@ -55,7 +55,7 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int param1);
 BOOL ScrCmd_31B(ScriptContext *param0);
 BOOL ScrCmd_329(ScriptContext *param0);
 
-BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0)
+BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case TV_BROADCAST_CALL_CHECK_STATUS: {
@@ -142,7 +142,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
 
 static const TVInterview tvInterviews[19];
 
-BOOL ScrCmd_TVInterviewCall(ScriptContext *ctx)
+BOOL ScrCmd_CallTVInterview(ScriptContext *ctx)
 {
     StringTemplate **template;
 

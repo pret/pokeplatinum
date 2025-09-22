@@ -3,13 +3,13 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_TVBroadcastCall(ScriptContext *param0);
+BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0);
 BOOL ScrCmd_236(ScriptContext *param0);
 BOOL ScrCmd_2B8(ScriptContext *param0);
 BOOL ScrCmd_30B(ScriptContext *param0);
 BOOL ScrCmd_30C(ScriptContext *param0);
 BOOL ScrCmd_30D(ScriptContext *param0);
-BOOL ScrCmd_TVInterviewCall(ScriptContext *ctx);
+BOOL ScrCmd_CallTVInterview(ScriptContext *ctx);
 BOOL ScrCmd_CheckTVInterviewEligible(ScriptContext *ctx);
 BOOL ScrCmd_27C(ScriptContext *param0);
 BOOL ScrCmd_31B(ScriptContext *param0);

@@ -3169,7 +3169,7 @@
     .short \destVarID
     .endm
 
-    .macro TVBroadcastCall callID, arg1=0, arg2=0, arg3=0
+    .macro CallTVBroadcast callID, arg1=0, arg2=0, arg3=0
     .short 565
     .short \callID
     .if \callID == 0 || \callID == 6
@@ -3189,19 +3189,19 @@
     .endm
 
     .macro CheckBroadcastStatus destVar
-    TVBroadcastCall TV_BROADCAST_CALL_CHECK_STATUS, \destVar
+    CallTVBroadcast TV_BROADCAST_CALL_CHECK_STATUS, \destVar
     .endm
 
     .macro LoadTVCommercial bankDestVar, messageDestVar
-    TVBroadcastCall TV_BROADCAST_CALL_LOAD_COMMERCIAL, \bankDestVar, \messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_COMMERCIAL, \bankDestVar, \messageDestVar
     .endm
 
     .macro LoadTVFramingMessage framingMessageType, bankDestVar, messageDestVar
-    TVBroadcastCall TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
     .endm
 
     .macro LoadTVSegment segmentID, bankDestVar, messageDestVar
-    TVBroadcastCall TV_BROADCAST_CALL_LOAD_SEGMENT \segmentID, \bankDestVar, \messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_SEGMENT \segmentID, \bankDestVar, \messageDestVar
     .endm
 
     .macro LoadTVGreeting bankDestVar, messageDestVar
@@ -3221,11 +3221,11 @@
     .endm
 
     .macro GetNextTVSegmentID destVar
-    TVBroadcastCall TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID, \destVar
+    CallTVBroadcast TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID, \destVar
     .endm
 
     .macro FinishTVProgram
-    TVBroadcastCall TV_BROADCAST_CALL_FINISH_PROGRAM
+    CallTVBroadcast TV_BROADCAST_CALL_FINISH_PROGRAM
     .endm
 
     .macro TVBroadcastDummy arg0, arg1, arg2
@@ -3243,7 +3243,7 @@
     .short \arg0
     .endm
 
-    .macro TVInterviewCall callID, segmentID, arg2, arg3
+    .macro CallTVInterview callID, segmentID, arg2, arg3
     .short 567
     .short \callID
     .short \segmentID
@@ -3252,11 +3252,11 @@
     .endm
 
     .macro LoadTVInterviewMessage segmentID, bankDestVar, messageDestVar
-    TVInterviewCall TV_INTERVIEW_CALL_LOAD_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
+    CallTVInterview TV_INTERVIEW_CALL_LOAD_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
     .endm
 
     .macro SaveTVInterviewResponse segmentID, customWordMessage, unused
-    TVInterviewCall TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
+    CallTVInterview TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
     .endm
 
     .macro CheckTVInterviewEligible segmentID, destVar
