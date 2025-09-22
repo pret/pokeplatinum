@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "overlay005/texture_resource_manager_decl.h"
+typedef struct FieldTextureManager_t FieldTextureManager;
 
 FieldTextureManager *TextureResourceManager_Create(void);
 int TextureResourceManager_LoadTexture(FieldTextureManager *textureManager, NNSG3dResTex *textureResource);
