@@ -21,7 +21,6 @@ static void SpriteResourceManager_LoadResourceByType(SpriteResourceManager *spri
 void SpriteResourceManager_Init(SpriteResourceManager *spriteManager, const SpriteResourceDataPaths *resourcePaths, u32 maxSprites, u32 heapID)
 {
     SpriteResourceTable *resourceTable;
-    SpriteResourceTable *resourceTableArray;
     void *fileData;
     u32 resourceCount;
     u32 resourceTypeIndex;
@@ -35,7 +34,7 @@ void SpriteResourceManager_Init(SpriteResourceManager *spriteManager, const Spri
         spriteManager->resourceTypeCount = SPRITE_RESOURCE_MAX;
     }
 
-    resourceTableArray = Heap_Alloc(heapID, SpriteResourceTable_Size() * spriteManager->resourceTypeCount);
+    SpriteResourceTable *resourceTableArray = Heap_Alloc(heapID, SpriteResourceTable_Size() * spriteManager->resourceTypeCount);
 
     for (resourceTypeIndex = 0; resourceTypeIndex < spriteManager->resourceTypeCount; resourceTypeIndex++) {
         resourceTable = SpriteResourceTable_GetArrayElement(resourceTableArray, resourceTypeIndex);
@@ -75,14 +74,12 @@ void SpriteResourceManager_Init(SpriteResourceManager *spriteManager, const Spri
 
 void SpriteResourceManager_Free(SpriteResourceManager *spriteManager)
 {
-    u32 resourceTypeIndex;
-
     SpriteList_Delete(spriteManager->spriteList);
     SpriteResourcesHeaderList_Free(spriteManager->resourceHeaderList);
     SpriteTransfer_ResetCharTransferList(spriteManager->resourceLists[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransferList(spriteManager->resourceLists[SPRITE_RESOURCE_PLTT]);
 
-    for (resourceTypeIndex = 0; resourceTypeIndex < spriteManager->resourceTypeCount; resourceTypeIndex++) {
+    for (u32 resourceTypeIndex = 0; resourceTypeIndex < spriteManager->resourceTypeCount; resourceTypeIndex++) {
         SpriteResourceList_Delete(spriteManager->resourceLists[resourceTypeIndex]);
         SpriteResourceCollection_Delete(spriteManager->resourceCollections[resourceTypeIndex]);
     }
@@ -91,7 +88,6 @@ void SpriteResourceManager_Free(SpriteResourceManager *spriteManager)
 Sprite *SpriteResourceManager_CreateSprite(SpriteResourceManager *spriteManager, const SpriteTemplateFromResourceHeader *template)
 {
     AffineSpriteListTemplate spriteTemplate;
-    Sprite *sprite;
     VecFx32 defaultScale = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 position;
 
@@ -108,7 +104,7 @@ Sprite *SpriteResourceManager_CreateSprite(SpriteResourceManager *spriteManager,
     spriteTemplate.vramType = template->vramType;
     spriteTemplate.heapID = spriteManager->heapID;
 
-    sprite = SpriteList_AddAffine(&spriteTemplate);
+    Sprite *sprite = SpriteList_AddAffine(&spriteTemplate);
     GF_ASSERT(sprite);
 
     Sprite_SetAnim(sprite, template->animIdx);
@@ -119,7 +115,7 @@ Sprite *SpriteResourceManager_CreateSprite(SpriteResourceManager *spriteManager,
 
 void SpriteResourceManager_SetCapacities(SpriteResourceManager *spriteManager, SpriteResourceCapacities *capacities, u32 maxElements, u32 heapID)
 {
-    u32 resourceTypeIndex, resourceIndex;
+    u32 resourceTypeIndex;
 
     spriteManager->spriteList = SpriteList_InitRendering(maxElements, &spriteManager->renderer, heapID);
     spriteManager->heapID = heapID;
@@ -143,7 +139,7 @@ void SpriteResourceManager_SetCapacities(SpriteResourceManager *spriteManager, S
 
         spriteManager->resourceLists[resourceTypeIndex] = SpriteResourceList_New(capacities->asArray[resourceTypeIndex], heapID);
 
-        for (resourceIndex = 0; resourceIndex < spriteManager->resourceLists[resourceTypeIndex]->capacity; resourceIndex++) {
+        for (u32 resourceIndex = 0; resourceIndex < spriteManager->resourceLists[resourceTypeIndex]->capacity; resourceIndex++) {
             spriteManager->resourceLists[resourceTypeIndex]->resources[resourceIndex] = NULL;
         }
     }
@@ -151,18 +147,15 @@ void SpriteResourceManager_SetCapacities(SpriteResourceManager *spriteManager, S
 
 void SpriteResourceManager_AddPalette(SpriteResourceManager *spriteManager, int data, int size, int offset, int vramType, int paletteIdx, int id)
 {
-    SpriteResource *spriteResource;
-    BOOL transferResult;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_AddPalette(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], data, size, offset, id, paletteIdx, vramType, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddPalette(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], data, size, offset, id, paletteIdx, vramType, spriteManager->heapID);
 
     if (spriteResource != NULL) {
-        transferResult = SpriteTransfer_RequestPlttFreeSpace(spriteResource);
+        BOOL transferResult = SpriteTransfer_RequestPlttFreeSpace(spriteResource);
         GF_ASSERT(transferResult == TRUE);
 
         SpriteResourceList_AddResource(spriteManager->resourceLists[SPRITE_RESOURCE_PLTT], spriteResource);
@@ -175,18 +168,15 @@ void SpriteResourceManager_AddPalette(SpriteResourceManager *spriteManager, int 
 
 void SpriteResourceManager_LoadPalette(SpriteResourceManager *spriteManager, NARC *narc, int memberIdx, BOOL compressed, int paletteIdx, int vramType, int id)
 {
-    SpriteResource *spriteResource;
-    BOOL transferResult;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_AddPaletteFrom(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], narc, memberIdx, compressed, id, vramType, paletteIdx, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(spriteManager->resourceCollections[SPRITE_RESOURCE_PLTT], narc, memberIdx, compressed, id, vramType, paletteIdx, spriteManager->heapID);
 
     if (spriteResource != NULL) {
-        transferResult = SpriteTransfer_RequestPlttFreeSpace(spriteResource);
+        BOOL transferResult = SpriteTransfer_RequestPlttFreeSpace(spriteResource);
         GF_ASSERT(transferResult == TRUE);
 
         SpriteResourceList_AddResource(spriteManager->resourceLists[SPRITE_RESOURCE_PLTT], spriteResource);
@@ -219,14 +209,12 @@ void SpriteResourceManager_LoadAnimation(SpriteResourceManager *spriteManager, N
 
 void SpriteResourceManager_AddTiles(SpriteResourceManager *spriteManager, int data, int size, BOOL compressed, int vramType, int id)
 {
-    SpriteResource *spriteResource;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_AddTiles(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], data, size, compressed, id, vramType, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddTiles(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], data, size, compressed, id, vramType, spriteManager->heapID);
 
     if (spriteResource != NULL) {
         SpriteTransfer_RequestCharAtEnd(spriteResource);
@@ -239,14 +227,12 @@ void SpriteResourceManager_AddTiles(SpriteResourceManager *spriteManager, int da
 
 void SpriteResourceManager_LoadTiles(SpriteResourceManager *spriteManager, NARC *narc, int memberIdx, BOOL compressed, int vramType, int id)
 {
-    SpriteResource *spriteResource;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_AddTilesFrom(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], narc, memberIdx, compressed, id, vramType, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(spriteManager->resourceCollections[SPRITE_RESOURCE_CHAR], narc, memberIdx, compressed, id, vramType, spriteManager->heapID);
 
     if (spriteResource != NULL) {
         SpriteTransfer_RequestCharAtEnd(spriteResource);
@@ -260,9 +246,7 @@ void SpriteResourceManager_LoadTiles(SpriteResourceManager *spriteManager, NARC 
 
 static BOOL SpriteResourceList_AddResource(SpriteResourceList *resourceList, SpriteResource *resource)
 {
-    int slotIndex;
-
-    for (slotIndex = 0; slotIndex < resourceList->capacity; slotIndex++) {
+    for (int slotIndex = 0; slotIndex < resourceList->capacity; slotIndex++) {
         if (resourceList->resources[slotIndex] != NULL) {
             continue;
         }
@@ -278,18 +262,15 @@ static BOOL SpriteResourceList_AddResource(SpriteResourceList *resourceList, Spr
 
 static void SpriteResourceManager_AddResourceByType(SpriteResourceManager *spriteManager, int data, int size, int offset, int resourceType, int id)
 {
-    SpriteResource *spriteResource;
-    BOOL addResult;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[resourceType], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[resourceType], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_Add(spriteManager->resourceCollections[resourceType], data, size, offset, id, resourceType, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_Add(spriteManager->resourceCollections[resourceType], data, size, offset, id, resourceType, spriteManager->heapID);
 
     if (spriteResource != NULL) {
-        addResult = SpriteResourceList_AddResource(spriteManager->resourceLists[resourceType], spriteResource);
+        BOOL addResult = SpriteResourceList_AddResource(spriteManager->resourceLists[resourceType], spriteResource);
         GF_ASSERT(addResult == TRUE);
         return;
     }
@@ -299,18 +280,15 @@ static void SpriteResourceManager_AddResourceByType(SpriteResourceManager *sprit
 
 static void SpriteResourceManager_LoadResourceByType(SpriteResourceManager *spriteManager, NARC *narc, int memberIdx, BOOL compressed, enum SpriteResourceType type, int id)
 {
-    SpriteResource *spriteResource;
-    BOOL addResult;
-
-    if (SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[type], id) == FALSE) {
+    if (!SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[type], id)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    spriteResource = SpriteResourceCollection_AddFrom(spriteManager->resourceCollections[type], narc, memberIdx, compressed, id, type, spriteManager->heapID);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddFrom(spriteManager->resourceCollections[type], narc, memberIdx, compressed, id, type, spriteManager->heapID);
 
     if (spriteResource != NULL) {
-        addResult = SpriteResourceList_AddResource(spriteManager->resourceLists[type], spriteResource);
+        BOOL addResult = SpriteResourceList_AddResource(spriteManager->resourceLists[type], spriteResource);
 
         GF_ASSERT(addResult == TRUE);
         return;
@@ -321,19 +299,16 @@ static void SpriteResourceManager_LoadResourceByType(SpriteResourceManager *spri
 
 ManagedSprite *SpriteResourceManager_CreateManagedSprite(SpriteResourceManager *spriteManager, const SpriteTemplate *template)
 {
-    int resourceTypeIndex;
-    int paletteOffset;
-    ManagedSprite *managedSprite = NULL;
     AffineSpriteListTemplate spriteTemplate;
     int resourceIDs[SPRITE_RESOURCE_MAX];
 
-    managedSprite = Heap_Alloc(spriteManager->heapID, sizeof(ManagedSprite));
+    ManagedSprite *managedSprite = Heap_Alloc(spriteManager->heapID, sizeof(ManagedSprite));
 
     managedSprite->resourceHeaderList = Heap_Alloc(spriteManager->heapID, sizeof(SpriteResourcesHeaderList));
     managedSprite->resourceHeaderList->headers = Heap_Alloc(spriteManager->heapID, sizeof(SpriteResourcesHeader));
     managedSprite->resourceHeader = managedSprite->resourceHeaderList->headers;
 
-    for (resourceTypeIndex = 0; resourceTypeIndex < SPRITE_RESOURCE_MAX; resourceTypeIndex++) {
+    for (int resourceTypeIndex = 0; resourceTypeIndex < SPRITE_RESOURCE_MAX; resourceTypeIndex++) {
         resourceIDs[resourceTypeIndex] = template->resources[resourceTypeIndex];
     }
 
@@ -341,11 +316,11 @@ ManagedSprite *SpriteResourceManager_CreateManagedSprite(SpriteResourceManager *
         resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_RESOURCE_NONE;
         resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_RESOURCE_NONE;
     } else {
-        if (resourceIDs[SPRITE_RESOURCE_MULTI_CELL] != SPRITE_RESOURCE_NONE && SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_MULTI_CELL], resourceIDs[SPRITE_RESOURCE_MULTI_CELL]) == FALSE) {
+        if (resourceIDs[SPRITE_RESOURCE_MULTI_CELL] != SPRITE_RESOURCE_NONE && !SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_MULTI_CELL], resourceIDs[SPRITE_RESOURCE_MULTI_CELL])) {
             resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_RESOURCE_NONE;
         }
 
-        if (resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] != SPRITE_RESOURCE_NONE && SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_MULTI_ANIM], resourceIDs[SPRITE_RESOURCE_MULTI_ANIM]) == FALSE) {
+        if (resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] != SPRITE_RESOURCE_NONE && !SpriteResourceCollection_IsIDUnused(spriteManager->resourceCollections[SPRITE_RESOURCE_MULTI_ANIM], resourceIDs[SPRITE_RESOURCE_MULTI_ANIM])) {
             resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_RESOURCE_NONE;
         }
     }
@@ -373,7 +348,7 @@ ManagedSprite *SpriteResourceManager_CreateManagedSprite(SpriteResourceManager *
     managedSprite->sprite = SpriteList_AddAffine(&spriteTemplate);
 
     if (managedSprite->sprite != NULL) {
-        paletteOffset = Sprite_GetExplicitPalette(managedSprite->sprite);
+        int paletteOffset = Sprite_GetExplicitPalette(managedSprite->sprite);
         Sprite_SetAnim(managedSprite->sprite, template->animIdx);
         Sprite_SetExplicitPalette(managedSprite->sprite, paletteOffset + template->plttIdx);
     } else {
@@ -385,13 +360,11 @@ ManagedSprite *SpriteResourceManager_CreateManagedSprite(SpriteResourceManager *
 
 void SpriteResourceManager_Cleanup(SpriteResourceManager *spriteManager)
 {
-    u32 resourceTypeIndex;
-
     SpriteList_Delete(spriteManager->spriteList);
     SpriteTransfer_ResetCharTransferList(spriteManager->resourceLists[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransferList(spriteManager->resourceLists[SPRITE_RESOURCE_PLTT]);
 
-    for (resourceTypeIndex = 0; resourceTypeIndex < spriteManager->resourceTypeCount; resourceTypeIndex++) {
+    for (u32 resourceTypeIndex = 0; resourceTypeIndex < spriteManager->resourceTypeCount; resourceTypeIndex++) {
         SpriteResourceList_Delete(spriteManager->resourceLists[resourceTypeIndex]);
         SpriteResourceCollection_Delete(spriteManager->resourceCollections[resourceTypeIndex]);
     }

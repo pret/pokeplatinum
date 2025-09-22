@@ -39,14 +39,11 @@ static int TextureResourceManager_LoadSingleTexture(FieldTextureManager *texture
 
 FieldTextureManager *TextureResourceManager_Create(void)
 {
-    int slotIndex;
-    FieldTextureManager *textureManager = NULL;
-
-    textureManager = Heap_Alloc(HEAP_ID_FIELD1, sizeof(FieldTextureManager));
+    FieldTextureManager *textureManager = Heap_Alloc(HEAP_ID_FIELD1, sizeof(FieldTextureManager));
 
     GF_ASSERT(textureManager);
 
-    for (slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
+    for (int slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
         textureManager->textureSlots[slotIndex].currentFrame = 0;
         textureManager->textureSlots[slotIndex].frameCounter = 0;
         textureManager->textureSlots[slotIndex].textureData = NULL;
@@ -60,13 +57,13 @@ FieldTextureManager *TextureResourceManager_Create(void)
 
 int TextureResourceManager_LoadTexture(FieldTextureManager *textureManager, NNSG3dResTex *textureResource)
 {
-    int textureIndex, loadedCount = 0;
+    int loadedCount = 0;
     NARC *narc = NARC_ctor(NARC_INDEX_DATA__FLDTANIME, HEAP_ID_FIELD1);
 
     textureManager->dataBuffer = NARC_AllocAndReadWholeMember(narc, 0, 4);
     textureManager->dataHeader = (TextureDataHeader *)textureManager->dataBuffer;
 
-    for (textureIndex = 0; textureIndex < textureManager->dataHeader->textureCount; textureIndex++) {
+    for (int textureIndex = 0; textureIndex < textureManager->dataHeader->textureCount; textureIndex++) {
         if (TextureResourceManager_LoadSingleTexture(textureManager, textureResource, textureIndex, narc) >= 0) {
             loadedCount++;
         }
@@ -79,7 +76,7 @@ int TextureResourceManager_LoadTexture(FieldTextureManager *textureManager, NNSG
 
 static int TextureResourceManager_LoadSingleTexture(FieldTextureManager *textureManager, NNSG3dResTex *textureResource, int textureIndex, NARC *narc)
 {
-    int slotIndex, unused;
+    int slotIndex;
     char debugString[40];
 
     if (textureManager == NULL) {
@@ -113,13 +110,11 @@ static int TextureResourceManager_LoadSingleTexture(FieldTextureManager *texture
 
 void TextureResourceManager_Free(FieldTextureManager *textureManager)
 {
-    int slotIndex;
-
     if (textureManager == NULL) {
         return;
     }
 
-    for (slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
+    for (int slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
         TextureSlot *textureSlot = &textureManager->textureSlots[slotIndex];
 
         if (textureSlot->narcData == NULL) {
@@ -165,13 +160,11 @@ void TextureResourceManager_FreeSlot(FieldTextureManager *textureManager, int sl
 
 void TextureResourceManager_FreeAllSlots(FieldTextureManager *textureManager)
 {
-    int slotIndex;
-
     if (textureManager == NULL) {
         return;
     }
 
-    for (slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
+    for (int slotIndex = 0; slotIndex < MAX_TEXTURE_KEYS; slotIndex++) {
         TextureResourceManager_FreeSlot(textureManager, slotIndex);
     }
 
