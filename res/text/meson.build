@@ -75,7 +75,7 @@ text_banks_order = custom_target('text_banks.order',
 )
 
 # 4. Generate individual text bank binaries from JSON files.
-bank_header_target = meson.current_build_dir() / 'bank'
+bank_header_target = fs.relative_to(meson.current_build_dir() / 'bank', meson.project_build_root())
 bank_header_dir = custom_target('bank_header_dir',
     capture: true,
     output: 'bank_header_dir',
