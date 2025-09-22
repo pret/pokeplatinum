@@ -9,7 +9,6 @@
 
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"
-#include "overlay005/sprite_resource_manager_struct.h"
 
 #include "bg_window.h"
 #include "field_task.h"
