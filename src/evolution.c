@@ -279,7 +279,7 @@ static void sub_0207B180(EvolutionData *param0)
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v0[0], param0->unk_60, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[0], &v0[0]);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[0], &v0[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
@@ -383,7 +383,7 @@ static void sub_0207B180(EvolutionData *param0)
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v2[0], param0->unk_62, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[1], &v2[0]);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[1], &v2[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[1], NULL);
             }
 
@@ -645,7 +645,7 @@ static void sub_0207B180(EvolutionData *param0)
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v4[0], param0->unk_60, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[0], &v4[0]);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[0], &v4[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 

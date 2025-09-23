@@ -192,7 +192,7 @@ void *PokemonSpriteManager_New(enum HeapID heapID);
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy);
-void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames);
+void PokemonSprite_SetAnimFrames(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames);
 BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite);
 PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
 PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);

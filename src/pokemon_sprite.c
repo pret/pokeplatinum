@@ -591,7 +591,7 @@ void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy)
     }
 }
 
-void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames)
+void PokemonSprite_SetAnimFrames(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames)
 {
     MI_CpuCopy8(animFrames, &monSprite->animFrames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
