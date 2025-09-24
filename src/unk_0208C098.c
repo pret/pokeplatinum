@@ -198,16 +198,13 @@ void App_LoadGraphicMember(BgConfig *bgConfig, int heapID, NARC *narc, int unuse
     Heap_Free(dest);
 }
 
-void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)
+void *App_LoadScreenData(NARC *narc, enum NarcID unused, int memberIdx, NNSG2dScreenData **dst, enum HeapID heapID)
 {
-    int v0;
-    void *v1;
+    int size = NARC_GetMemberSize(narc, memberIdx);
+    void *file = Heap_Alloc(heapID, size);
 
-    v0 = NARC_GetMemberSize(param0, param2);
-    v1 = Heap_Alloc(heapID, v0);
+    NARC_ReadWholeMember(narc, memberIdx, file);
+    NNS_G2dGetUnpackedScreenData(file, dst);
 
-    NARC_ReadWholeMember(param0, param2, v1);
-    NNS_G2dGetUnpackedScreenData(v1, param3);
-
-    return v1;
+    return file;
 }
