@@ -2,7 +2,7 @@
   "key": 51920,
   "messages": [
     {
-      "id": "pl_msg_00000055_00000",
+      "id": "CanalaveCityMart_Text_ThatsTheRepeatBall",
       "en_US": [
         "A Poké Ball that makes it easy to\n",
         "catch the same kinds of Pokémon...\r",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000055_00001",
+      "id": "CanalaveCityMart_Text_ShouldTakeReviveToIronIsland",
       "en_US": [
         "I should take a Revive out to\n",
         "everyone training on Iron Island.\r",

@@ -2,13 +2,13 @@
 #include "res/text/bank/snowpoint_city_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
+    ScriptEntry SnowpointCityMart_CommonVendor
+    ScriptEntry SnowpointCityMart_SpecialityVendor
+    ScriptEntry SnowpointCityMart_Youngster
     ScriptEntry _0051
     ScriptEntryEnd
 
-_0012:
+SnowpointCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -18,7 +18,7 @@ _0012:
     ReleaseAll
     End
 
-_0028:
+SnowpointCityMart_SpecialityVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -28,11 +28,11 @@ _0028:
     ReleaseAll
     End
 
-_003E:
+SnowpointCityMart_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SnowpointCityMart_Text_UsingTmsForEliteFour
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -42,7 +42,7 @@ _0051:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message SnowpointCityMart_Text_KeepSomeIceHeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll

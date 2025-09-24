@@ -2,7 +2,7 @@
   "key": 19377,
   "messages": [
     {
-      "id": "pl_msg_00000177_00000",
+      "id": "SnowpointCityMart_Text_UsingTmsForEliteFour",
       "en_US": [
         "I’m using Technical Machines to teach\n",
         "moves to my Pokémon.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000177_00001",
+      "id": "SnowpointCityMart_Text_KeepSomeIceHeals",
       "en_US": [
         "If your Pokémon gets frozen, it will\n",
         "thaw out after a while.\r",
