@@ -1,2 +1,1 @@
-subdir('effectclact')
 subdir('effectdata')

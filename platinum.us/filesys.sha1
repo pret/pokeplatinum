@@ -179,10 +179,10 @@ c7e601f3c145dd3c36c6f1deee1f63d526be3c37 *res/battle/moves/we.arc
 20e86a2ef9050edef59a91bfcefcc2869ab29349 *res/battle/scripts/be_seq.narc
 b646973b4c92a1d25479c5b08d28ff283274db33 *res/battle/scripts/sub_seq.narc
 abbe7036e7117af7f4fd397cd3619b83f5e1d321 *res/battle/scripts/waza_seq.narc
-64c710d25e5dd7f0d8b7558b6d183648b1f56721 *res/prebuilt/wazaeffect/effectclact/wecell.narc
-82101cf2a686e2834dd45fa0a6c11407120b863d *res/prebuilt/wazaeffect/effectclact/wecellanm.narc
-8aa94ec2f9b21eab75e33d2a21b83a61c55e67b0 *res/prebuilt/wazaeffect/effectclact/wechar.narc
-e3bb819c8dbab8a8db5e4ddccc788b234424e605 *res/prebuilt/wazaeffect/effectclact/wepltt.narc
+64c710d25e5dd7f0d8b7558b6d183648b1f56721 *res/graphics/battle/moves/wecell.narc
+82101cf2a686e2834dd45fa0a6c11407120b863d *res/graphics/battle/moves/wecellanm.narc
+8aa94ec2f9b21eab75e33d2a21b83a61c55e67b0 *res/graphics/battle/moves/wechar.narc
+e3bb819c8dbab8a8db5e4ddccc788b234424e605 *res/graphics/battle/moves/wepltt.narc
 42e2b71655a74d6e5bffb9ec75a25df930b20c59 *res/battle/moves/pl_waza_tbl.narc
 20a2a364629e4eb897f3cf443e15e65b7f1ac957 *res/prebuilt/poketool/waza/waza_tbl.narc
 9f4d3587b7032f4f673ccc1b8971685b2199396b *res/field/scripts/scr_seq.narc

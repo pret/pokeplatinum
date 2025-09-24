@@ -180,10 +180,10 @@ res/battle/scripts/subscripts/anims/we_sub.narc,/wazaeffect/we_sub.narc
 res/battle/scripts/be_seq.narc,/battle/skill/be_seq.narc
 res/battle/scripts/sub_seq.narc,/battle/skill/sub_seq.narc
 res/battle/scripts/waza_seq.narc,/battle/skill/waza_seq.narc
-res/prebuilt/wazaeffect/effectclact/wecell.narc,/wazaeffect/effectclact/wecell.narc
-res/prebuilt/wazaeffect/effectclact/wecellanm.narc,/wazaeffect/effectclact/wecellanm.narc
-res/prebuilt/wazaeffect/effectclact/wechar.narc,/wazaeffect/effectclact/wechar.narc
-res/prebuilt/wazaeffect/effectclact/wepltt.narc,/wazaeffect/effectclact/wepltt.narc
+res/graphics/battle/moves/wecell.narc,/wazaeffect/effectclact/wecell.narc
+res/graphics/battle/moves/wecellanm.narc,/wazaeffect/effectclact/wecellanm.narc
+res/graphics/battle/moves/wechar.narc,/wazaeffect/effectclact/wechar.narc
+res/graphics/battle/moves/wepltt.narc,/wazaeffect/effectclact/wepltt.narc
 res/battle/moves/pl_waza_tbl.narc,/poketool/waza/pl_waza_tbl.narc
 res/prebuilt/poketool/waza/waza_tbl.narc,/poketool/waza/waza_tbl.narc
 res/field/scripts/scr_seq.narc,/fielddata/script/scr_seq.narc
