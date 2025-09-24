@@ -1252,26 +1252,14 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
     }
 
     int numRotations = rotate / 90;
+    int length = strlen(path);
     for (int i = 0; i < numRotations; i++)
     {
         unsigned char *rotatedPixelBuffer = calloc(bufferSize, sizeof(char));
         Rotate4BppTiles90Deg(pixelBuffer, rotatedPixelBuffer, tilesTall, tilesWide);
-        
-        char stem[sizeof(path)];
-        for (int j = 0 ;; j++)
-        {
-            if (path[j] == 0 || path[j] == '.')
-            {
-                stem[j] = 0;
-                break;
-            }
-            else
-            {
-                stem[j] = path[j];
-            }
-        }
-        char filename[sizeof(path) + 30];
-        snprintf(filename, sizeof(filename), "%s%s%d%s", stem, "_", (i + 1) * 90, "deg.NCGR");
+
+        char *filename = calloc(length + 10, sizeof(char));
+        snprintf(filename, length + 10, "%.*s_%ddeg.NCGR", length - 5, path, (i + 1) * 90);
         fp = fopen(filename, "wb");
         if (!clobberSize)
         {
@@ -1297,8 +1285,14 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
             fwrite(sopcBuffer, 1, 0x10, fp);
         }
         fclose(fp);
+        free(filename);
         memcpy(pixelBuffer, rotatedPixelBuffer, sizeof(char) * bufferSize);
         free(rotatedPixelBuffer);
+
+        // swap dimensions for next iteration
+        tilesTall ^= tilesWide;
+        tilesWide ^= tilesTall;
+        tilesTall ^= tilesWide; 
     }
     free(pixelBuffer);
 }
