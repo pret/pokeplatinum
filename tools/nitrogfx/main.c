@@ -699,6 +699,7 @@ void HandlePngToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, c
     bool nopad = false;
     int bitdepth = 0;
     int compNum = 0;
+    int pcmpStartIndex = 0;
     bool pcmp = false;
     bool inverted = false;
     bool convertTo4Bpp = false;
@@ -748,6 +749,16 @@ void HandlePngToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, c
         else if (strcmp(option, "-pcmp") == 0)
         {
             pcmp = true;
+
+            if (i + 2 < argc)
+            {
+                if (strcmp(argv[i + 1], "-start") == 0)
+                {
+                    i += 2;
+                    if (!ParseNumber(argv[i], NULL, 10, &pcmpStartIndex))
+                        FATAL_ERROR("Failed to parse PCMP start index value.\n");
+                }
+            }
         }
         else if (strcmp(option, "-invertsize") == 0)
         {
@@ -764,7 +775,7 @@ void HandlePngToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, c
     }
 
     ReadPngPalette(inputPath, &palette);
-    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, inverted, convertTo4Bpp);
+    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, convertTo4Bpp);
 }
 
 void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
@@ -857,6 +868,7 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
     bool nopad = false;
     int bitdepth = 0;
     int compNum = 0;
+    int pcmpStartIndex = 0;
     bool pcmp = false;
     bool inverted = false;
 
@@ -918,6 +930,16 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
         else if (strcmp(option, "-pcmp") == 0)
         {
             pcmp = true;
+
+            if (i + 2 < argc)
+            {
+                if (strcmp(argv[i + 1], "-start") == 0)
+                {
+                    i += 2;
+                    if (!ParseNumber(argv[i], NULL, 10, &pcmpStartIndex))
+                        FATAL_ERROR("Failed to parse PCMP start index value.\n");
+                }
+            }
         }
         else if (strcmp(option, "-invertsize") == 0)
         {
@@ -936,7 +958,7 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
     if (numColors != 0)
         palette.numColors = numColors;
 
-    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, inverted, false);
+    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, false);
 }
 
 void HandleJsonToNtrCellCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
