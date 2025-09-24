@@ -97,7 +97,7 @@ static BOOL sub_02063478(const MapObject *mapObj)
         return TRUE;
     }
 
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_12 | MAP_OBJ_STATUS_11) == FALSE) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_ELEVATION_TARGET | MAP_OBJ_STATUS_11) == FALSE) {
         return TRUE;
     } else if (MapObject_GetMovementType(mapObj) == 0x32) {
         return TRUE;
@@ -118,7 +118,7 @@ static BOOL sub_02063478(const MapObject *mapObj)
 
 static void sub_020634DC(MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_12)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_ELEVATION_TARGET)) {
         MapObject_RecalculateObjectHeight(mapObj);
     }
 }
@@ -623,7 +623,7 @@ int sub_02063F00(const MapObject *mapObj, int x, int y, int z)
 
     do {
         if (v4 != mapObj
-            && MapObject_CheckStatus(v4, MAP_OBJ_STATUS_0)
+            && MapObject_CheckStatus(v4, MAP_OBJ_STATUS_ACTIVE)
             && !MapObject_CheckStatus(v4, MAP_OBJ_STATUS_18)) {
             objX = MapObject_GetX(v4);
             objZ = MapObject_GetZ(v4);
@@ -912,7 +912,7 @@ int MapObject_RecalculateObjectHeight(MapObject *mapObj)
     updatedPos = pos;
 
     if (MapObject_IsHeightCalculationDisabled(mapObj) == TRUE) {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_ELEVATION_TARGET);
         return FALSE;
     }
 
@@ -925,9 +925,9 @@ int MapObject_RecalculateObjectHeight(MapObject *mapObj)
         MapObject_SetPos(mapObj, &pos);
         MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
         MapObject_SetY(mapObj, (((pos.y) >> 3) / FX32_ONE));
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_ELEVATION_TARGET);
     } else {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_12);
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_ELEVATION_TARGET);
     }
 
     return heightUpdated;

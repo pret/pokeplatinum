@@ -124,7 +124,7 @@ _01CB:
     GoToIfEq VAR_0x8000, 0xFF, _0250
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, _025B
-    ScrCmd_2FF VAR_0x8000, VAR_0x8004
+    GetPokemonPotential VAR_0x8000, VAR_0x8004
     GoToIfEq VAR_0x8004, -1, _0245
     CheckPartyMonHasMove VAR_RESULT, MOVE_HIDDEN_POWER, VAR_0x8000
     GoToIfEq VAR_RESULT, 0, _0266

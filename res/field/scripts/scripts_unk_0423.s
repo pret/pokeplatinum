@@ -172,7 +172,7 @@ _026C:
     End
 
 _0277:
-    ScrCmd_31D VAR_RESULT
+    CountGriseousOrbs VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _02A9
     HealParty
     CallCommonScript 0x7D6
