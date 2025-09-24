@@ -1685,11 +1685,13 @@ void ReadNtrCell(char *path, struct JsonToCellOptions *options)
     }
 
     options->labelEnabled = false;
+    options->dontPadKbec = false;
 
     unsigned int blockSize;
     offset = FindNitroDataBlock(data, "KBEC", fileSize, &blockSize);
     if (offset != -1u)
     {
+        options->dontPadKbec = blockSize % 4 != 0;
         ReadNtrCell_CEBK(data, offset, blockSize, options);
     }
     else {
@@ -1727,8 +1729,11 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
         kbecSize += options->cells[idx / iterNum]->oamCount * 0x06;
     }
 
-    // KBEC size is padded to be 4-byte aligned
-    kbecSize += kbecSize % 4;
+    if (!options->dontPadKbec)
+    {
+        // KBEC size is padded to be 4-byte aligned
+        kbecSize = (kbecSize + 3) & ~3;
+    }
 
     unsigned int totalSize = (options->labelEnabled > 0 ? 0x34 : 0x20) + kbecSize;
 
