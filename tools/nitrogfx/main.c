@@ -550,6 +550,23 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
 
             options.cellFilePath = argv[i];
 
+            if (strcmp(options.cellFilePath, "-preservepath") == 0)
+            {
+                options.cellFilePath = malloc(strlen(inputPath) + 7);
+                strcpy(options.cellFilePath, inputPath);
+                options.cellFilePath[strlen(inputPath) - 4] = '_';
+                options.cellFilePath[strlen(inputPath) - 3] = 'c';
+                options.cellFilePath[strlen(inputPath) - 2] = 'e';
+                options.cellFilePath[strlen(inputPath) - 1] = 'l';
+                options.cellFilePath[strlen(inputPath)] = 'l';
+                options.cellFilePath[strlen(inputPath) + 1] = '.';
+                options.cellFilePath[strlen(inputPath) + 2] = 'j';
+                options.cellFilePath[strlen(inputPath) + 3] = 's';
+                options.cellFilePath[strlen(inputPath) + 4] = 'o';
+                options.cellFilePath[strlen(inputPath) + 5] = 'n';
+                options.cellFilePath[strlen(inputPath) + 6] = 0;
+            }
+
             if (i + 1 < argc)
             {
                 if (strcmp(argv[i + 1], "-nosnap") == 0)

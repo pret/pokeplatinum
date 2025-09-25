@@ -152,6 +152,7 @@ endforeach
 npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
+trainer_classes_txt = files('trainer_classes.txt')
 trainers_txt = files('trainers.txt')
 
 py_consts_env = environment()
