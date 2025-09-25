@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 143
+    LoadParticleResource 0, bide_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT, 3, 4
     CreateEmitter 0, 0, 3
     Func_Shake 1, 0, 1, 4, 258
@@ -18,7 +18,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 51
+    LoadParticleResource 0, slam_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     Func_MoveBattler 258, 14, 4, 2

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 151
+    LoadParticleResource 0, waterfall_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0

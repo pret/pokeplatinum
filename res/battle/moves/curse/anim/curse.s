@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 193
+    LoadParticleResource 0, curse_spa
     CreateEmitter 0, 1, 3
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
@@ -25,7 +25,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 193
+    LoadParticleResource 0, curse_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_032, BATTLE_SOUND_PAN_LEFT, 12, 3

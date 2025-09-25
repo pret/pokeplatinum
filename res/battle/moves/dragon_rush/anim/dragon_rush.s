@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 424
+    LoadParticleResource 0, dragon_rush_spa
     PlayPannedSoundEffect SEQ_SE_DP_MUCHI, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0

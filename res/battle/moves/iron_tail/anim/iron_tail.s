@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 248
+    LoadParticleResource 0, iron_tail_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W231, BATTLE_SOUND_PAN_LEFT, 8, 2
     CreateEmitter 0, 1, 3
     InitPokemonSpriteManager

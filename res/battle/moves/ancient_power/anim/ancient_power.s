@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 263
+    LoadParticleResource 0, ancient_power_spa
     JumpIfContest L_1
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3

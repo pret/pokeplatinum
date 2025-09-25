@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 40
+    LoadParticleResource 0, scratch_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     Func_Shake 1, 0, 1, 2, 264

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 448
+    LoadParticleResource 0, rock_climb_spa
     PlayPannedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_LEFT
     BeginLoop 3
     Func_MoveBattler 258, 0, 8, 4

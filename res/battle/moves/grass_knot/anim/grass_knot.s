@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 464
+    LoadParticleResource 0, grass_knot_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     PlayPannedSoundEffect SEQ_SE_DP_300, BATTLE_SOUND_PAN_RIGHT

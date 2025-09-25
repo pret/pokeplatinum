@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 106
+    LoadParticleResource 0, solar_beam_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

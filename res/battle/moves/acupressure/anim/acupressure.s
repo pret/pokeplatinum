@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 384
+    LoadParticleResource 0, acupressure_spa
     JumpIfFriendlyFire L_1
     PlayDelayedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT, 1
     CreateEmitter 0, 0, 17

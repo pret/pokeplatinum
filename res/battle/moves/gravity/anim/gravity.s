@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 373
+    LoadParticleResource 0, gravity_spa
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W356, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 0, 17

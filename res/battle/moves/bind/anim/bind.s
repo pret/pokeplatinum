@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 50
+    LoadParticleResource 0, bind_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     BeginLoop 2

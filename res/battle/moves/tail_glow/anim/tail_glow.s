@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 311
+    LoadParticleResource 0, tail_glow_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 0, 0, 17

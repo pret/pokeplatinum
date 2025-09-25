@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 86
+    LoadParticleResource 0, hydro_pump_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1

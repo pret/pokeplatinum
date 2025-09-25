@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 96
-    LoadParticleResource 1, 34
+    LoadParticleResource 0, submission_spa
+    LoadParticleResource 1, comet_punch_spa
     Func_Submission 7, 10, 2
     Func_Submission 7, 10, 8
     CreateEmitter 0, 0, 4

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 378
+    LoadParticleResource 0, healing_wish_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

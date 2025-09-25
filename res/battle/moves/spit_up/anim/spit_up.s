@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 272
+    LoadParticleResource 0, spit_up_spa
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
     Func_ShakeAndScaleAttacker 70, 120, 10, 5, 15
     Delay 25

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 455
+    LoadParticleResource 0, power_whip_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 7, BATTLE_BG_SWITCH_MODE_FADE

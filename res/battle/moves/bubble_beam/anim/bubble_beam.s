@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 91
+    LoadParticleResource 0, bubble_beam_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 4096, 0
     BtlAnimCmd_055 5, 4, 0, 2, 5, 0

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 94
+    LoadParticleResource 0, peck_spa
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
     CallFunc 9, 0
     Delay 18

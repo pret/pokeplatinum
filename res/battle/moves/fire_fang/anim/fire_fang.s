@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 441
+    LoadParticleResource 0, fire_fang_spa
     Func_FadeBg 0, 1, 0, 12, 2124
     PlayDelayedSoundEffect SEQ_SE_DP_W044, BATTLE_SOUND_PAN_RIGHT, 6
     CreateEmitter 0, 0, 17

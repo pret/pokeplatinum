@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 98
+    LoadParticleResource 0, counter_spa
     PlayPannedSoundEffect SEQ_SE_DP_BASI, BATTLE_SOUND_PAN_LEFT
     Func_RevolveBattler 2, 1, 10
     WaitForAnimTasks

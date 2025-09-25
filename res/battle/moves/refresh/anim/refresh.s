@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 304
+    LoadParticleResource 0, refresh_spa
     PlayPannedSoundEffect SEQ_SE_DP_W287, BATTLE_SOUND_PAN_LEFT
     Func_FadeBg 0, 1, 0, 12, 32767
     WaitForAnimTasks

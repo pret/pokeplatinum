@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 206
+    LoadParticleResource 0, belly_drum_spa
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 2, 3

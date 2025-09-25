@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 65
+    LoadParticleResource 0, wrap_spa
     BeginLoop 2
     PlayLoopedSoundEffect SEQ_SE_DP_W020B, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 4

@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 1, 426
-    LoadParticleResource 0, 161
+    LoadParticleResource 1, drain_punch_spa
+    LoadParticleResource 0, dream_eater_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 1, 1, 17

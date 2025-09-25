@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 119
+    LoadParticleResource 0, earthquake_spa
     Func_Earthquake 0
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_W089, 0

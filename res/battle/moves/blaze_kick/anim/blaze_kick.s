@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 316
+    LoadParticleResource 0, blaze_kick_spa
     PlayPannedSoundEffect SEQ_SE_DP_W172, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4

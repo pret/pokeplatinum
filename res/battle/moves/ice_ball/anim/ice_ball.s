@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 318
+    LoadParticleResource 0, ice_ball_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 14, 64

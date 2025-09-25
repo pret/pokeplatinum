@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 308
+    LoadParticleResource 0, dive_spa
     BtlAnimCmd_013 L_1, L_2
     WaitForAllEmitters
     UnloadParticleSystem 0

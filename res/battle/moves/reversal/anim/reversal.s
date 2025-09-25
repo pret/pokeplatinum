@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 198
+    LoadParticleResource 0, reversal_spa
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
     BeginLoop 2
     Func_FadeBg 0, -2, 0, 8, 32767

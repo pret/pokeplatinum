@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 34
+    LoadParticleResource 0, comet_punch_spa
     Func_Strength 70, 120, 10, 5
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks

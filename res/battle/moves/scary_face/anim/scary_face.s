@@ -7,11 +7,11 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W060, 0
     WaitForAnimTasks
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 8
-    LoadPlttRes 0, 8, 1
-    LoadCellResObj 0, 8
-    LoadAnimResObj 0, 8
-    AddSpriteWithFunc 0, 7, 8, 8, 8, 8, 0, 0, 0
+    LoadCharResObj 0, scary_face_NCGR_lz
+    LoadPlttRes 0, scary_face_NCLR, 1
+    LoadCellResObj 0, scary_face_cell_NCER_lz
+    LoadAnimResObj 0, scary_face_anim_NANR_lz
+    AddSpriteWithFunc 0, 7, scary_face_NCGR_lz, scary_face_NCLR, scary_face_cell_NCER_lz, scary_face_anim_NANR_lz, 0, 0, 0
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W043D, 0
     WaitForAnimTasks

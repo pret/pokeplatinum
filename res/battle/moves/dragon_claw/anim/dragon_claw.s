@@ -3,18 +3,18 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 354
+    LoadParticleResource 0, dragon_claw_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     PlayPannedSoundEffect SEQ_SE_DP_W221B, BATTLE_SOUND_PAN_LEFT
     Func_FadeBattlerSprite 2, 0, 2, 31, 10, 0
     Delay 30
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 17
-    LoadPlttRes 0, 16, 1
-    LoadCellResObj 0, 17
-    LoadAnimResObj 0, 17
-    AddSpriteWithFunc 0, 22, 17, 16, 17, 17, 0, 0, 1, 4
+    LoadCharResObj 0, claw_NCGR_lz
+    LoadPlttRes 0, claw_NCLR, 1
+    LoadCellResObj 0, claw_cell_NCER_lz
+    LoadAnimResObj 0, claw_anim_NANR_lz
+    AddSpriteWithFunc 0, 22, claw_NCGR_lz, claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 1, 4
     Delay 1
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT

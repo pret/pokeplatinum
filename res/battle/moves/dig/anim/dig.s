@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 121
-    LoadParticleResource 1, 31
+    LoadParticleResource 0, dig_spa
+    LoadParticleResource 1, pound_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

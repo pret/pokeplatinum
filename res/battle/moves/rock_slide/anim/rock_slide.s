@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 177
+    LoadParticleResource 0, rock_slide_spa
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 1, 20
     CreateEmitter 0, 2, 20

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 130
+    LoadParticleResource 0, mimic_spa
     JumpIfContest L_1
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

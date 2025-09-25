@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 56
+    LoadParticleResource 0, jump_kick_spa
     Func_MoveBattlerX2 3, 24, 258
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 4096, 0

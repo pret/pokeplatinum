@@ -4,11 +4,11 @@
 
 L_0:
     InitSpriteManager 0, 6, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 23
-    LoadPlttRes 0, 22, 1
-    LoadCellResObj 0, 23
-    LoadAnimResObj 0, 23
-    AddSpriteWithFunc 0, 20, 23, 22, 23, 23, 0, 0, 1, 6
+    LoadCharResObj 0, helping_hand_NCGR_lz
+    LoadPlttRes 0, helping_hand_NCLR, 1
+    LoadCellResObj 0, helping_hand_cell_NCER_lz
+    LoadAnimResObj 0, helping_hand_anim_NANR_lz
+    AddSpriteWithFunc 0, 20, helping_hand_NCGR_lz, helping_hand_NCLR, helping_hand_cell_NCER_lz, helping_hand_anim_NANR_lz, 0, 0, 1, 6
     PlayDelayedSoundEffect SEQ_SE_DP_W227, 0, 20
     Delay 14
     BeginLoop 2

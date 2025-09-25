@@ -4,11 +4,11 @@
 
 L_0:
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 4
-    LoadPlttRes 0, 4, 1
-    LoadCellResObj 0, 4
-    LoadAnimResObj 0, 4
-    AddSpriteWithFunc 0, 5, 4, 4, 4, 4, 0, 0, 0
+    LoadCharResObj 0, constrict_NCGR_lz
+    LoadPlttRes 0, constrict_NCLR, 1
+    LoadCellResObj 0, constrict_cell_NCER_lz
+    LoadAnimResObj 0, constrict_anim_NANR_lz
+    AddSpriteWithFunc 0, 5, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0, 0
     BeginLoop 5
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_W020, BATTLE_SOUND_PAN_RIGHT

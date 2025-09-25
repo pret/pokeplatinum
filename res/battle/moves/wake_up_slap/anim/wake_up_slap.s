@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 375
+    LoadParticleResource 0, wake_up_slap_spa
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

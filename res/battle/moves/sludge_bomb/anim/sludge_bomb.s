@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 207
+    LoadParticleResource 0, sludge_bomb_spa
     CreateEmitterEx 0, 1, 2, 3
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 14, 64
     PlayLoopedSoundEffect SEQ_SE_DP_W145B, 0, 2, 4

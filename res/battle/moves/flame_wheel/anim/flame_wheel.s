@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 191
+    LoadParticleResource 0, flame_wheel_spa
     CreateEmitter 0, 0, 3
     PlayLoopedSoundEffect SEQ_SE_DP_W172, BATTLE_SOUND_PAN_LEFT, 3, 12
     Delay 20

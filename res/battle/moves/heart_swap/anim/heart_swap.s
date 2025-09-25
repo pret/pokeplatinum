@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 408
-    LoadParticleResource 1, 408
+    LoadParticleResource 0, heart_swap_spa
+    LoadParticleResource 1, heart_swap_spa
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 1
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 15
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 30

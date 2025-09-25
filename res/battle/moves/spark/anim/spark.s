@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 227
+    LoadParticleResource 0, spark_spa
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
     PlayPannedSoundEffect SEQ_SE_DP_W209, BATTLE_SOUND_PAN_LEFT

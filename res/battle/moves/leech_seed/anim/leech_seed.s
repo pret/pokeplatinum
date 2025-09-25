@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 103
-    LoadParticleResource 1, 348
+    LoadParticleResource 0, leech_seed_spa
+    LoadParticleResource 1, bullet_seed_spa
     CreateEmitterEx 1, 0, 0, 3
     Func_MoveEmitterA2BParabolic 0, 0, -2, 0, 13, 64
     Delay 2

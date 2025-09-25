@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 246
+    LoadParticleResource 0, rapid_spin_spa
     PlayPannedSoundEffect SEQ_SE_DP_207, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3

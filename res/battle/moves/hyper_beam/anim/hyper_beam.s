@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 93
+    LoadParticleResource 0, hyper_beam_spa
     JumpIfFriendlyFire L_1
     JumpIfContest L_2
     ResetVar

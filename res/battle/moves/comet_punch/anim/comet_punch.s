@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 34
+    LoadParticleResource 0, comet_punch_spa
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     BeginLoop 4

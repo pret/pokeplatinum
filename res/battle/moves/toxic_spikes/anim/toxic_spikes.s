@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 407
+    LoadParticleResource 0, toxic_spikes_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_RIGHT, 6, 5
     CreateEmitterEx 0, 0, 1, 3
     Func_MoveEmitterA2BParabolic 0, 8, -3, 0, 12, 64

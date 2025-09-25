@@ -8,8 +8,8 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 79
-    LoadParticleResource 1, 79
+    LoadParticleResource 0, sonic_boom_spa
+    LoadParticleResource 1, sonic_boom_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 3, 3
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64
@@ -31,8 +31,8 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 79
-    LoadParticleResource 1, 79
+    LoadParticleResource 0, sonic_boom_spa
+    LoadParticleResource 1, sonic_boom_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 1, 3
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64
@@ -54,8 +54,8 @@ L_2:
     End
 
 L_3:
-    LoadParticleResource 0, 79
-    LoadParticleResource 1, 79
+    LoadParticleResource 0, sonic_boom_spa
+    LoadParticleResource 1, sonic_boom_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 2, 3
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64

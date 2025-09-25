@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 213
+    LoadParticleResource 0, destiny_bond_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 34, 26, 0, 0
     JumpIfBattlerSide 0, L_1, L_2

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 46
+    LoadParticleResource 0, gust_spa
     SetCameraProjection 0, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 8

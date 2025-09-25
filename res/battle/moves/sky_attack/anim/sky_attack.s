@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 166
+    LoadParticleResource 0, sky_attack_spa
     CreateEmitter 0, 2, 3
     JumpIfFriendlyFire L_3
     Func_FadeBg 0, 1, 0, 10, 0
@@ -62,7 +62,7 @@ L_5:
     End
 
 L_2:
-    LoadParticleResource 0, 166
+    LoadParticleResource 0, sky_attack_spa
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1

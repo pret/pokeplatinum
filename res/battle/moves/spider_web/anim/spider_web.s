@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 189
-    LoadParticleResource 1, 189
+    LoadParticleResource 0, spider_web_spa
+    LoadParticleResource 1, spider_web_spa
     JumpIfContest L_1
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W081B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 17

@@ -3,13 +3,13 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 269
+    LoadParticleResource 0, fake_out_spa
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 18
-    LoadPlttRes 0, 17, 1
-    LoadCellResObj 0, 18
-    LoadAnimResObj 0, 18
-    AddSpriteWithFunc 0, 18, 18, 17, 18, 18, 0, 0, 0
+    LoadCharResObj 0, fake_out_NCGR_lz
+    LoadPlttRes 0, fake_out_NCLR, 1
+    LoadCellResObj 0, fake_out_cell_NCER_lz
+    LoadAnimResObj 0, fake_out_anim_NANR_lz
+    AddSpriteWithFunc 0, 18, fake_out_NCGR_lz, fake_out_NCLR, fake_out_cell_NCER_lz, fake_out_anim_NANR_lz, 0, 0, 0
     PlayDelayedSoundEffect SEQ_SE_DP_W260, 0, 20
     Delay 2
     CallFunc 41, 0

@@ -5,7 +5,7 @@
 L_0:
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    LoadParticleResource 0, 244
+    LoadParticleResource 0, encore_spa
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4

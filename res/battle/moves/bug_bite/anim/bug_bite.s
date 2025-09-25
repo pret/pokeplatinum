@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 467
+    LoadParticleResource 0, bug_bite_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 4, 4

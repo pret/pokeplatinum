@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 226
+    LoadParticleResource 0, milk_drink_spa
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3

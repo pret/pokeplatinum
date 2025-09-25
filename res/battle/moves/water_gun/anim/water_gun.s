@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 85
+    LoadParticleResource 0, water_gun_spa
     JumpIfFriendlyFire L_1
     JumpIfContest L_2
     CreateEmitterForMove 0, 2, 3, 4, 5, 7, 6, 18

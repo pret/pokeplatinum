@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 153
+    LoadParticleResource 0, swift_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_165, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

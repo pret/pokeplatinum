@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 61
+    LoadParticleResource 0, fury_attack_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 4

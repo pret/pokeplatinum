@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 463
+    LoadParticleResource 0, stealth_rock_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W070, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 0, 0, 3
     Func_MoveEmitterA2BParabolic 0, 8, -3, 0, 12, 64

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 63
+    LoadParticleResource 0, tackle_spa
     PlayPannedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_RIGHT
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks

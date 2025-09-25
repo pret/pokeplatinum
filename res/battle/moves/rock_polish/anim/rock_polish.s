@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 414
+    LoadParticleResource 0, rock_polish_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_BRADE, BATTLE_SOUND_PAN_LEFT, 4, 8

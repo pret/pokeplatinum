@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 154
+    LoadParticleResource 0, skull_bash_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 233
+    LoadParticleResource 0, return_spa
     CallFunc 29, 0
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT

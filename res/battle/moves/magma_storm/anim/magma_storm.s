@@ -3,9 +3,9 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 480
-    LoadParticleResource 1, 480
-    LoadParticleResource 2, 480
+    LoadParticleResource 0, magma_storm_spa
+    LoadParticleResource 1, magma_storm_spa
+    LoadParticleResource 2, magma_storm_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0

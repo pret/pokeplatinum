@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 80
+    LoadParticleResource 0, disable_spa
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3
     CreateEmitter 0, 0, 17

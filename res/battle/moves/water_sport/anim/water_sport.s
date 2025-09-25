@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 363
+    LoadParticleResource 0, water_sport_spa
     Func_ScaleBattlerSprite 258, 100, 110, 100, 80, 100, 327681, 327685
     WaitForAnimTasks
     Func_ScaleBattlerSprite 258, 100, 100, 100, 120, 100, 1, 327685

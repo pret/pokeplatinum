@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 209
+    LoadParticleResource 0, octazooka_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 17

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 76
+    LoadParticleResource 0, roar_spa
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     PlayPokemonCry 7, -117, 100

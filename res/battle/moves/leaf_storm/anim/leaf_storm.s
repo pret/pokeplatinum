@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 454
+    LoadParticleResource 0, leaf_storm_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0

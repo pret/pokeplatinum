@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 360
+    LoadParticleResource 0, covet_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
     Func_Flail 0
@@ -23,7 +23,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 188
+    LoadParticleResource 0, thief_spa
     CreateEmitter 0, 2, 3
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64, 1
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2

@@ -7,8 +7,8 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 478
-    LoadParticleResource 1, 478
+    LoadParticleResource 0, lunar_dance_spa
+    LoadParticleResource 1, lunar_dance_spa
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
@@ -56,8 +56,8 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
     SwitchBg 42, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    LoadParticleResource 0, 478
-    LoadParticleResource 1, 478
+    LoadParticleResource 0, lunar_dance_spa
+    LoadParticleResource 1, lunar_dance_spa
     PlayPannedSoundEffect SEQ_SE_DP_W461, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 0, 3

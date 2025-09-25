@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 270
+    LoadParticleResource 0, uproar_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT, 29, 3
     Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 327685
     WaitForAnimTasks

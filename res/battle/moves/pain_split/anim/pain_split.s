@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 237
+    LoadParticleResource 0, pain_split_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 4
     Func_Shake 2, 0, 1, 8, 264

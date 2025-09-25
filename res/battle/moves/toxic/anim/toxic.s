@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 122
-    LoadParticleResource 1, 122
+    LoadParticleResource 0, toxic_spa
+    LoadParticleResource 1, toxic_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

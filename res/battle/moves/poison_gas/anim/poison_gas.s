@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 162
-    LoadParticleResource 1, 162
+    LoadParticleResource 0, poison_gas_spa
+    LoadParticleResource 1, poison_gas_spa
     JumpIfContest L_1
     PlayLoopedSoundEffect SEQ_SE_DP_W054, BATTLE_SOUND_PAN_RIGHT, 4, 12
     CreateEmitter 0, 0, 17

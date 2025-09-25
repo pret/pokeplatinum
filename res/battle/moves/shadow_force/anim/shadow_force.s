@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 484
+    LoadParticleResource 0, shadow_force_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

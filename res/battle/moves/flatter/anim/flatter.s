@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 277
+    LoadParticleResource 0, flatter_spa
     PlayPannedSoundEffect SEQ_SE_DP_W227B, 0
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4

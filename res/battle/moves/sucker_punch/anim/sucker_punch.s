@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 406
+    LoadParticleResource 0, sucker_punch_spa
     JumpIfContest L_1
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0

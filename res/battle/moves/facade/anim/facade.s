@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 280
+    LoadParticleResource 0, facade_spa
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     PlayLoopedSoundEffect SEQ_SE_DP_W207, BATTLE_SOUND_PAN_LEFT, 8, 6

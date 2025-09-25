@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 256
+    LoadParticleResource 0, twister_spa
     SetCameraProjection 0, 0
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 1, 20

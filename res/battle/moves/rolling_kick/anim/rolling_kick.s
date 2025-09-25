@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 57
+    LoadParticleResource 0, rolling_kick_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

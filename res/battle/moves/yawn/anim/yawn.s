@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 298
+    LoadParticleResource 0, yawn_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W281, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 327695
     Delay 5

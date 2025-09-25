@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 339
+    LoadParticleResource 0, cosmic_power_spa
     JumpIfFriendlyFire L_1
     Func_FadeBattlerSprite 4, 0, 1, 0, 16, 60
     Func_FadeBattlerSprite 8, 0, 1, 0, 16, 60

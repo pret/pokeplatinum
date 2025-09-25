@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 62
+    LoadParticleResource 0, horn_drill_spa
     JumpIfContest L_1
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks

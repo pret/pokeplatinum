@@ -8,7 +8,7 @@ L_0:
     End
 
 L_2:
-    LoadParticleResource 0, 72
+    LoadParticleResource 0, pin_missile_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_LEFT, 4, 3
@@ -42,7 +42,7 @@ L_2:
     End
 
 L_1:
-    LoadParticleResource 0, 72
+    LoadParticleResource 0, pin_missile_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_LEFT, 4, 3

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 155
+    LoadParticleResource 0, spike_cannon_spa
     Func_MoveBattlerX2 2, -8, 258
     WaitForAnimTasks
     CreateEmitter 0, 1, 17

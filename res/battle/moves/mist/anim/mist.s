@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 84
+    LoadParticleResource 0, mist_spa
     Func_FadeBg 0, 1, 0, 12, 32767
     PlayLoopedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_LEFT, 4, 3
     CreateEmitter 0, 0, 19

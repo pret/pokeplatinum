@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 336
+    LoadParticleResource 0, metal_sound_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayDelayedSoundEffect SEQ_SE_DP_W103, 0, 1

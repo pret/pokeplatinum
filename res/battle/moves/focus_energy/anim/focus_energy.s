@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 142
+    LoadParticleResource 0, focus_energy_spa
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 0, 3
     Func_Shake 1, 0, 1, 4, 258

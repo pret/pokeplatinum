@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 88
+    LoadParticleResource 0, ice_beam_spa
     Func_FadeBg 0, 1, 0, 8, 32631
     WaitForAnimTasks
     CreateEmitter 0, 1, 17

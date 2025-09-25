@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 442
+    LoadParticleResource 0, shadow_sneak_spa
     Func_SetBgGrayscale 1
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

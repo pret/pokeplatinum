@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 220
+    LoadParticleResource 0, giga_drain_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W202, 0, 2, 18
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 17

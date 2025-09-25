@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 451
+    LoadParticleResource 0, draco_meteor_spa
     Func_FadeBg 0, 1, 0, 12, 10272
     PlayPannedSoundEffect SEQ_SE_DP_201, 0
     WaitForAnimTasks

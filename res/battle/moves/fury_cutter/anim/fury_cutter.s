@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 228
+    LoadParticleResource 0, fury_cutter_spa
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W043, 0
     Func_FadeBg 0, 0, 0, 8, 0

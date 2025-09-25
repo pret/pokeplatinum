@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 163
+    LoadParticleResource 0, barrage_spa
     CreateEmitterEx 0, 1, 0, 3
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 15, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W207, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

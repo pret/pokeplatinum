@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 242
+    LoadParticleResource 0, dragon_breath_spa
     PlayLoopedSoundEffect SEQ_SE_DP_400, 0, 3, 6
     JumpIfBattlerSide 0, L_1, L_1
     End

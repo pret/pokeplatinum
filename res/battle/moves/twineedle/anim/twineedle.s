@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 71
+    LoadParticleResource 0, twineedle_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_HURU2, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 8, 2
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks

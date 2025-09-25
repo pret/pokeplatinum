@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 218
+    LoadParticleResource 0, outrage_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

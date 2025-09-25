@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 479
+    LoadParticleResource 0, crush_grip_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W462, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3

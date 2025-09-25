@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 301
+    LoadParticleResource 0, eruption_spa
     Func_FadeBg 0, 1, 0, 12, 2124
     WaitForAnimTasks
     CreateEmitter 0, 2, 3

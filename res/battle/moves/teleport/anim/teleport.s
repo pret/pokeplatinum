@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 129
+    LoadParticleResource 0, teleport_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CallFunc 15, 0

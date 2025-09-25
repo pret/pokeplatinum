@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 274
+    LoadParticleResource 0, heat_wave_spa
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3
     End

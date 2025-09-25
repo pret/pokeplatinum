@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 68
+    LoadParticleResource 0, double_edge_spa
     PlayPannedSoundEffect SEQ_SE_DP_W025, BATTLE_SOUND_PAN_LEFT
     PlayDelayedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_RIGHT, 10
     WaitForAnimTasks

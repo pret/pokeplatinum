@@ -3,14 +3,14 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 347
+    LoadParticleResource 0, muddy_water_spa
     InitSpriteManager 0, 2, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 0
-    LoadPlttRes 0, 29, 1
-    LoadCellResObj 0, 0
-    LoadAnimResObj 0, 0
-    AddSprite 0, 0, 0, 29, 0, 0, 0, 0
-    AddSprite 0, 1, 0, 29, 0, 0, 0, 0
+    LoadCharResObj 0, surf_NCGR_lz
+    LoadPlttRes 0, muddy_water_NCLR, 1
+    LoadCellResObj 0, surf_cell_NCER_lz
+    LoadAnimResObj 0, surf_anim_NANR_lz
+    AddSprite 0, 0, surf_NCGR_lz, muddy_water_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
+    AddSprite 0, 1, surf_NCGR_lz, muddy_water_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_W057, BATTLE_SOUND_PAN_LEFT
     Func_Surf 1
     WaitForAnimTasks

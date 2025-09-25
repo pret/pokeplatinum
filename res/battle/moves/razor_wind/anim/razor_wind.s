@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 43
+    LoadParticleResource 0, razor_wind_spa
     CreateEmitter 0, 1, 3
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_060, BATTLE_SOUND_PAN_LEFT
@@ -17,7 +17,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 43
+    LoadParticleResource 0, razor_wind_spa
     CreateEmitter 0, 0, 20
     PlayDelayedSoundEffect SEQ_SE_DP_146, BATTLE_SOUND_PAN_RIGHT, 5
     Delay 10

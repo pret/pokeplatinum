@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 247
+    LoadParticleResource 0, sweet_scent_spa
     PlayPannedSoundEffect SEQ_SE_DP_W230, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 3, 0, 0, 0
@@ -21,7 +21,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 247
+    LoadParticleResource 0, sweet_scent_spa
     PlayPannedSoundEffect SEQ_SE_DP_W230, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 3, 0, 0, 0

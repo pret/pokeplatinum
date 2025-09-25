@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 465
+    LoadParticleResource 0, chatter_spa
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 0, 3
     PlayPokemonCry 0, -117, 127

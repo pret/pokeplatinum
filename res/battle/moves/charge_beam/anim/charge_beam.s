@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 468
+    LoadParticleResource 0, charge_beam_spa
     JumpIfFriendlyFire L_1
     JumpIfContest L_2
     Func_FadeBg 0, 1, 0, 12, 0

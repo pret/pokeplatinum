@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 185
+    LoadParticleResource 0, struggle_spa
     Func_Flail 0
     PlayLoopedSoundEffect SEQ_SE_DP_001, BATTLE_SOUND_PAN_LEFT, 2, 4
     Delay 15

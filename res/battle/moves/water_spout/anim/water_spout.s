@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 340
+    LoadParticleResource 0, water_spout_spa
     Func_ScaleBattlerSprite 258, 100, 110, 100, 80, 100, 327681, 327685
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks

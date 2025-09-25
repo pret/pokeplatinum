@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 49
-    LoadParticleResource 1, 357
+    LoadParticleResource 0, fly_spa
+    LoadParticleResource 1, bounce_spa
     BtlAnimCmd_013 L_1, L_2
     End
 

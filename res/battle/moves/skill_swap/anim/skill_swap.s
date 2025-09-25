@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 302
-    LoadParticleResource 1, 302
+    LoadParticleResource 0, skill_swap_spa
+    LoadParticleResource 1, skill_swap_spa
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 1
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 15
     PlayDelayedSoundEffect SEQ_SE_DP_W179, 0, 30

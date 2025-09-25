@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 329
+    LoadParticleResource 0, aromatherapy_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 2, 4
     Func_FadeBg 0, 0, 0, 8, 1003

@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 1, 31
-    LoadParticleResource 0, 300
+    LoadParticleResource 1, pound_spa
+    LoadParticleResource 0, endeavor_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, 20, 4
     CreateEmitter 0, 2, 3
     BeginLoop 4

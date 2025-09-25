@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 281
+    LoadParticleResource 0, focus_punch_spa
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 2, 3
     WaitForAllEmitters
@@ -15,7 +15,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 281
+    LoadParticleResource 0, focus_punch_spa
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 5, 4

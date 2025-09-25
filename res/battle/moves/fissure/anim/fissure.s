@@ -3,12 +3,12 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 120
+    LoadParticleResource 0, fissure_spa
     InitSpriteManager 0, 1, 2, 2, 2, 2, 0, 0
-    LoadCharResObj 0, 2
-    LoadPlttRes 0, 2, 1
-    LoadCellResObj 0, 2
-    LoadAnimResObj 0, 2
+    LoadCharResObj 0, fissure_NCGR_lz
+    LoadPlttRes 0, fissure_NCLR, 1
+    LoadCellResObj 0, fissure_cell_NCER_lz
+    LoadAnimResObj 0, fissure_anim_NANR_lz
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
@@ -19,7 +19,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W090, 0
     Func_Shake 4, 0, 1, 30, 264
     Func_ShakeBg 8, 0, 0, 31, 0
-    AddSpriteWithFunc 0, 27, 2, 2, 2, 2, 0, 0, 0
+    AddSpriteWithFunc 0, 27, fissure_NCGR_lz, fissure_NCLR, fissure_cell_NCER_lz, fissure_anim_NANR_lz, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

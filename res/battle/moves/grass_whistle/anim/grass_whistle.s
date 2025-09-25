@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 337
+    LoadParticleResource 0, grass_whistle_spa
     Func_FadeBg 0, 1, 0, 8, 11252
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
@@ -20,7 +20,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 337
+    LoadParticleResource 0, grass_whistle_spa
     Func_FadeBg 0, 1, 0, 8, 11252
     WaitForAnimTasks
     CreateEmitter 0, 0, 17

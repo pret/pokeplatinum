@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 327
+    LoadParticleResource 0, astonish_spa
     Func_MoveBattlerX2 3, 24, 258
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W280B, BATTLE_SOUND_PAN_RIGHT

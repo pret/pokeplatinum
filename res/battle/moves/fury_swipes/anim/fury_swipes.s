@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 175
-    LoadParticleResource 1, 31
+    LoadParticleResource 0, fury_swipes_spa
+    LoadParticleResource 1, pound_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_RIGHT, 8, 2

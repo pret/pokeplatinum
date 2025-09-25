@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 194
+    LoadParticleResource 0, flail_spa
     PlayLoopedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_LEFT, 3, 6
     Func_Flail 0
     CreateEmitter 0, 0, 3

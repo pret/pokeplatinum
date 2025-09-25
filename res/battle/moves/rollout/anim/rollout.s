@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 223
+    LoadParticleResource 0, rollout_spa
     Func_MoveBattler 258, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
@@ -23,7 +23,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 223
+    LoadParticleResource 0, rollout_spa
     Func_MoveBattler 258, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 17

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 374
+    LoadParticleResource 0, miracle_eye_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 0, 0, 17

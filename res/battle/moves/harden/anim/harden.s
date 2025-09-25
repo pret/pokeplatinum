@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 133
+    LoadParticleResource 0, harden_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

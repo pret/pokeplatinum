@@ -5,7 +5,7 @@
 L_0:
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    LoadParticleResource 0, 215
+    LoadParticleResource 0, icy_wind_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W016B, 0, 2, 14

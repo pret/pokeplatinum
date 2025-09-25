@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 39
+    LoadParticleResource 0, thunder_punch_spa
     Func_FadeBg 0, 1, 0, 12, 0
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4

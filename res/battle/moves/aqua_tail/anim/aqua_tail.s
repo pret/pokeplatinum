@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 418
+    LoadParticleResource 0, aqua_tail_spa
     Delay 1
     PlayPannedSoundEffect SEQ_SE_DP_W057, BATTLE_SOUND_PAN_LEFT
     InitPokemonSpriteManager

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 330
+    LoadParticleResource 0, fake_tears_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Func_Flail 0

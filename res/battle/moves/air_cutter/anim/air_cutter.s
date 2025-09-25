@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 331
+    LoadParticleResource 0, air_cutter_spa
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 1, 20
     Delay 10

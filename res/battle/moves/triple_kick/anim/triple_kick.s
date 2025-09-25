@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 187
+    LoadParticleResource 0, triple_kick_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W007, BATTLE_SOUND_PAN_RIGHT, 2, 2
     PlayDelayedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 4
     CreateEmitter 0, 0, 4

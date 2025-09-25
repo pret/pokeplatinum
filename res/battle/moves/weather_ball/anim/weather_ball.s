@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 328
+    LoadParticleResource 0, weather_ball_spa
     Func_ScaleBattlerSprite 258, 100, 100, 100, 140, 100, 1, 327685
     PlayPannedSoundEffect SEQ_SE_DP_W207, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3

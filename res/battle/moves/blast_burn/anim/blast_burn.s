@@ -7,8 +7,8 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 324
-    LoadParticleResource 1, 83
+    LoadParticleResource 0, blast_burn_spa
+    LoadParticleResource 1, flamethrower_spa
     Func_FadeBg 0, 1, 0, 12, 2124
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
@@ -130,8 +130,8 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 324
-    LoadParticleResource 1, 83
+    LoadParticleResource 0, blast_burn_spa
+    LoadParticleResource 1, flamethrower_spa
     Func_FadeBg 0, 1, 0, 12, 2124
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 321
+    LoadParticleResource 0, hyper_voice_spa
     BeginLoop 2
     Delay 10
     PlayPokemonCry 4, -117, 100

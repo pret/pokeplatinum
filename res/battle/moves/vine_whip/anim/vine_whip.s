@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 52
+    LoadParticleResource 0, vine_whip_spa
     Func_MoveBattlerX2 3, 24, 258
     WaitForAnimTasks
     Func_MoveBattlerX2 3, -24, 258

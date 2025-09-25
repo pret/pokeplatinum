@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 70
+    LoadParticleResource 0, poison_sting_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 2, 17

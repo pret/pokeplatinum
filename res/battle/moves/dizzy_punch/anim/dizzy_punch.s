@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 168
+    LoadParticleResource 0, dizzy_punch_spa
     BeginLoop 2
     Delay 6
     Func_MoveBattler 258, 24, 0, 3

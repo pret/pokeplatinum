@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 128
+    LoadParticleResource 0, rage_spa
     PlayPannedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_LEFT
     PlayDelayedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 50
     Func_FadeBattlerSprite 2, 0, 2, 31, 10, 0

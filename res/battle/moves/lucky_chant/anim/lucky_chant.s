@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 398
+    LoadParticleResource 0, lucky_chant_spa
     CreateEmitter 0, 1, 19
     CreateEmitter 0, 0, 19
     PlayDelayedSoundEffect SEQ_SE_DP_163, BATTLE_SOUND_PAN_LEFT, 2

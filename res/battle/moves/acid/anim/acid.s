@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 81
+    LoadParticleResource 0, acid_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 1, 3
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 8, 64

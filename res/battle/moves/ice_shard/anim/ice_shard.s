@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 437
+    LoadParticleResource 0, ice_shard_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT

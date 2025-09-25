@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 334
-    LoadParticleResource 1, 334
+    LoadParticleResource 0, rock_tomb_spa
+    LoadParticleResource 1, rock_tomb_spa
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 10

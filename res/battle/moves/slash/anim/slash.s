@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 183
+    LoadParticleResource 0, slash_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

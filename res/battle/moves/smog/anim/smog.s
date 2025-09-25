@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 147
+    LoadParticleResource 0, smog_spa
     CreateEmitter 0, 0, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 4, 3
     Delay 10

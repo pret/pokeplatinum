@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 171
+    LoadParticleResource 0, splash_spa
     CallFunc 19, 0
     BeginLoop 3
     CreateEmitter 0, 0, 3

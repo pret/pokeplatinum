@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 192
+    LoadParticleResource 0, snore_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Func_ShakeBg 5, 0, 0, 8, 0

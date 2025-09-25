@@ -1,6 +1,10 @@
 #include "generated/sdat.h"
 #include "constants/battle/battle_anim.h"
 #include "res/battle/particles/waza_particle.naix.h"
+#include "res/graphics/battle/moves/wecell.naix.h"
+#include "res/graphics/battle/moves/wecellanm.naix.h"
+#include "res/graphics/battle/moves/wechar.naix.h"
+#include "res/graphics/battle/moves/wepltt.naix.h"
 
 #include "macros/btlanimfunc.inc"
 

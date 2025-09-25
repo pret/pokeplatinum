@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 403
+    LoadParticleResource 0, punishment_spa
     PlayPannedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_MUCHI, BATTLE_SOUND_PAN_RIGHT, 10
     CreateEmitter 0, 2, 17

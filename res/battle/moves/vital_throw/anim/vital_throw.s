@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 250
+    LoadParticleResource 0, vital_throw_spa
     CallFunc 30, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W233, BATTLE_SOUND_PAN_LEFT, 22, 3
     Delay 66

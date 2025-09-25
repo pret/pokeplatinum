@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 271
+    LoadParticleResource 0, stockpile_spa
     CreateEmitter 0, 0, 3
     Func_FadeBattlerSprite 2, 1, 1, 32767, 16
     BeginLoop 2

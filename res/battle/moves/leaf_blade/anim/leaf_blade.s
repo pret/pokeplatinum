@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 365
+    LoadParticleResource 0, leaf_blade_spa
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4

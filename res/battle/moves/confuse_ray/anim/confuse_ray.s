@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 135
-    LoadParticleResource 1, 135
+    LoadParticleResource 0, confuse_ray_spa
+    LoadParticleResource 1, confuse_ray_spa
     JumpIfContest L_1
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks

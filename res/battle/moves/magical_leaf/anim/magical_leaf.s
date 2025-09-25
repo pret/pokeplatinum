@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 362
+    LoadParticleResource 0, magical_leaf_spa
     JumpIfContest L_1
     PlayPannedSoundEffect SEQ_SE_DP_PASA2, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 17

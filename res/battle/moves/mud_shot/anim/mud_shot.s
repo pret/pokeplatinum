@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 358
+    LoadParticleResource 0, mud_shot_spa
     JumpIfFriendlyFire L_1
     JumpIfContest L_2
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

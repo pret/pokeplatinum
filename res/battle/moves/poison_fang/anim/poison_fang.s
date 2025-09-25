@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 322
+    LoadParticleResource 0, poison_fang_spa
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 267
+    LoadParticleResource 0, whirlpool_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 35, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE

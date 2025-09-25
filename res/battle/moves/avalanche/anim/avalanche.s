@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 436
+    LoadParticleResource 0, avalanche_spa
     Func_FadeBg 0, 1, 0, 12, 32767
     WaitForAnimTasks
     CreateEmitter 0, 2, 17

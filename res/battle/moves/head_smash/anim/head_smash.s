@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 474
+    LoadParticleResource 0, head_smash_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 40, BATTLE_BG_SWITCH_MODE_FADE

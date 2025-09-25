@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 359
+    LoadParticleResource 0, poison_tail_spa
     PlayPannedSoundEffect SEQ_SE_DP_BRADE, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 6
     CreateEmitter 0, 0, 17

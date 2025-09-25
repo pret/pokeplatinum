@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 73
+    LoadParticleResource 0, leer_spa
     JumpIfContest L_1
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks

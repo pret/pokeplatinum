@@ -18,7 +18,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 370
+    LoadParticleResource 0, doom_desire_spa
     Func_FadeBg 0, 0, 0, 16, 32767
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W466, 0

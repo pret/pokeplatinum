@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 38
+    LoadParticleResource 0, ice_punch_spa
     Func_FadeBg 0, 1, 0, 8, 32631
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

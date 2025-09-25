@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 181
-    LoadParticleResource 1, 181
+    LoadParticleResource 0, tri_attack_spa
+    LoadParticleResource 1, tri_attack_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT, 8, 3

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 99
+    LoadParticleResource 0, seismic_toss_spa
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 26
     SwitchBg 51, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch

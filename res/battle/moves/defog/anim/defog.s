@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 449
+    LoadParticleResource 0, defog_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_BFBRADE, 0

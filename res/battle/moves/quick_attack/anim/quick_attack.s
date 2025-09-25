@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 127
+    LoadParticleResource 0, quick_attack_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 415
+    LoadParticleResource 0, poison_jab_spa
     PlayLoopedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 4, 6
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0

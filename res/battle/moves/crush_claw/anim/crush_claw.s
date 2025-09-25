@@ -4,11 +4,11 @@
 
 L_0:
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 17
-    LoadPlttRes 0, 37, 1
-    LoadCellResObj 0, 17
-    LoadAnimResObj 0, 17
-    AddSpriteWithFunc 0, 22, 17, 37, 17, 17, 0, 0, 1, 4
+    LoadCharResObj 0, claw_NCGR_lz
+    LoadPlttRes 0, crush_claw_NCLR, 1
+    LoadCellResObj 0, claw_cell_NCER_lz
+    LoadAnimResObj 0, claw_anim_NANR_lz
+    AddSpriteWithFunc 0, 22, claw_NCGR_lz, crush_claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 1, 4
     Delay 1
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT

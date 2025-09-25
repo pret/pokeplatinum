@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 145
-    LoadParticleResource 1, 145
+    LoadParticleResource 0, egg_bomb_spa
+    LoadParticleResource 1, egg_bomb_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 0, 3
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 10, 64

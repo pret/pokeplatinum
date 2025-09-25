@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 471
+    LoadParticleResource 0, attack_order_spa
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4

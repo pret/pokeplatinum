@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 314
+    LoadParticleResource 0, feather_dance_spa
     PlayPannedSoundEffect SEQ_SE_DP_W080, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 0, 4
     Func_FadeBattlerSprite 8, 0, 3, 13741, 14, 0

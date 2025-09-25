@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 167
-    LoadParticleResource 1, 167
+    LoadParticleResource 0, bubble_spa
+    LoadParticleResource 1, bubble_spa
     JumpIfContest L_1
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 31, 24, 0, 4

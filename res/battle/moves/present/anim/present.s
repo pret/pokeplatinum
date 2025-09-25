@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 234
+    LoadParticleResource 0, present_spa
     CreateEmitter 0, 2, 3
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
@@ -21,7 +21,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 1, 27
+    LoadParticleResource 1, status_effect_spa
     CreateEmitter 0, 1, 4
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

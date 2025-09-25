@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 117
+    LoadParticleResource 0, thunder_spa
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0

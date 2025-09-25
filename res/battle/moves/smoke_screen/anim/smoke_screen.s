@@ -3,8 +3,8 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 134
-    LoadParticleResource 1, 134
+    LoadParticleResource 0, smoke_screen_spa
+    LoadParticleResource 1, smoke_screen_spa
     CreateEmitter 1, 1, 4
     Delay 1
     CreateEmitterEx 0, 1, 0, 3

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 64
+    LoadParticleResource 0, body_slam_spa
     Func_MoveBattler 258, 0, 16, 4
     WaitForAnimTasks
     Func_MoveBattler 258, 0, -16, 4

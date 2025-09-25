@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 264
+    LoadParticleResource 0, shadow_ball_spa
     CreateEmitter 0, 4, 0
     CreateEmitter 0, 0, 0
     CreateEmitter 0, 1, 0

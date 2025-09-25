@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 170
+    LoadParticleResource 0, psywave_spa
     CreateEmitterEx 0, 0, 0, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 19, 64, 0, 0, 1
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_181, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

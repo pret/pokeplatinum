@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 416
+    LoadParticleResource 0, dark_pulse_spa
     Delay 1
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

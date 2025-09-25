@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 466
+    LoadParticleResource 0, judgment_spa
     Func_FadeBg 0, 1, 0, 15, 32767
     WaitForAnimTasks
     CreateEmitter 0, 3, 4

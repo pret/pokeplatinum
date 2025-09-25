@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 348
+    LoadParticleResource 0, bullet_seed_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W202B, 0, 3, 9
     CreateEmitterEx 0, 0, 0, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 10, 64

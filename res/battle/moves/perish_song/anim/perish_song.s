@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 214
+    LoadParticleResource 0, perish_song_spa
     CreateEmitter 0, 2, 0
     CreateEmitter 0, 3, 0
     CreateEmitter 0, 0, 0

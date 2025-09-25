@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 126
+    LoadParticleResource 0, agility_spa
     JumpIfBattlerSide 0, L_1, L_2
     End
 

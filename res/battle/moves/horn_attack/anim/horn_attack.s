@@ -8,7 +8,7 @@ L_0:
     End
 
 L_1:
-    LoadParticleResource 0, 60
+    LoadParticleResource 0, horn_attack_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 5, 4
@@ -23,7 +23,7 @@ L_1:
     End
 
 L_2:
-    LoadParticleResource 0, 60
+    LoadParticleResource 0, horn_attack_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 3, 4
@@ -38,7 +38,7 @@ L_2:
     End
 
 L_3:
-    LoadParticleResource 0, 60
+    LoadParticleResource 0, horn_attack_spa
     Func_MoveBattler 258, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 4, 4

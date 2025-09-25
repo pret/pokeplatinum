@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 112
+    LoadParticleResource 0, dragon_rage_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W082C, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0

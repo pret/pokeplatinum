@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 405
+    LoadParticleResource 0, worry_seed_spa
     CreateEmitter 0, 1, 4
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_001, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

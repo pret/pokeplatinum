@@ -3,13 +3,13 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 243
+    LoadParticleResource 0, baton_pass_spa
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 16
-    LoadPlttRes 0, 15, 1
-    LoadCellResObj 0, 16
-    LoadAnimResObj 0, 16
-    AddSpriteWithFunc 0, 13, 16, 15, 16, 16, 0, 0, 0
+    LoadCharResObj 0, baton_pass_NCGR_lz
+    LoadPlttRes 0, baton_pass_NCLR, 1
+    LoadCellResObj 0, baton_pass_cell_NCER_lz
+    LoadAnimResObj 0, baton_pass_anim_NANR_lz
+    AddSpriteWithFunc 0, 13, baton_pass_NCGR_lz, baton_pass_NCLR, baton_pass_cell_NCER_lz, baton_pass_anim_NANR_lz, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_SUIKOMU, BATTLE_SOUND_PAN_LEFT
     Delay 32
     PlayPannedSoundEffect SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_LEFT

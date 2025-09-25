@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 205
+    LoadParticleResource 0, sweet_kiss_spa
     CreateEmitter 0, 0, 4
     PlayPannedSoundEffect SEQ_SE_DP_041, BATTLE_SOUND_PAN_RIGHT
     Delay 10

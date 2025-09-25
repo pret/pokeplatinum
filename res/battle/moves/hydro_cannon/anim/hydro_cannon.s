@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 325
+    LoadParticleResource 0, hydro_cannon_spa
     CreateEmitter 0, 2, 3
     PlayLoopedSoundEffect SEQ_SE_DP_W056B, BATTLE_SOUND_PAN_LEFT, 8, 2
     Delay 20

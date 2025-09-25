@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 461
+    LoadParticleResource 0, stone_edge_spa
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 1, 4

@@ -3,16 +3,16 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 350
+    LoadParticleResource 0, icicle_spear_spa
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 30
-    LoadPlttRes 0, 30, 1
-    LoadCellResObj 0, 30
-    LoadAnimResObj 0, 30
-    AddSpriteWithFunc 0, 17, 30, 30, 30, 30, 0, 0, 4, -15, -5, 10, 32
+    LoadCharResObj 0, icicle_spear_NCGR_lz
+    LoadPlttRes 0, icicle_spear_NCLR, 1
+    LoadCellResObj 0, icicle_spear_cell_NCER_lz
+    LoadAnimResObj 0, icicle_spear_anim_NANR_lz
+    AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -15, -5, 10, 32
     PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
     Delay 5
-    AddSpriteWithFunc 0, 17, 30, 30, 30, 30, 0, 0, 4, -5, -20, 10, 32
+    AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -5, -20, 10, 32
     PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
@@ -22,7 +22,7 @@ L_0:
     BtlAnimCmd_055 4, 1, 0, 2752, 0
     Func_Shake 1, 0, 1, 1, 264
     Delay 5
-    AddSpriteWithFunc 0, 17, 30, 30, 30, 30, 0, 0, 4, -10, -15, 10, 32
+    AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -10, -15, 10, 32
     PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0

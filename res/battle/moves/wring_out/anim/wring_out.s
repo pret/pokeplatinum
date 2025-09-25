@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 395
+    LoadParticleResource 0, wring_out_spa
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 0, 17

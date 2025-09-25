@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 51
+    LoadParticleResource 0, slam_spa
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     Func_MoveBattler 258, 14, 4, 2

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 320
+    LoadParticleResource 0, slack_off_spa
     PlayPannedSoundEffect SEQ_SE_DP_W281, BATTLE_SOUND_PAN_LEFT
     Func_ScaleBattlerSprite 258, 100, 100, 100, 60, 100, 1310721, 262148
     WaitForAnimTasks

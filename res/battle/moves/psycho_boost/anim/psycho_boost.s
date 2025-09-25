@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 371
+    LoadParticleResource 0, psycho_boost_spa
     CreateEmitter 0, 4, 3
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 5, 3

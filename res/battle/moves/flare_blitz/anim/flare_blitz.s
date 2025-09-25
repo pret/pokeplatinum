@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 411
+    LoadParticleResource 0, flare_blitz_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 2, 4

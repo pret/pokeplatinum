@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 459
+    LoadParticleResource 0, iron_head_spa
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     Func_MoveBattler 258, 14, -8, 2

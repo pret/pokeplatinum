@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 258
+    LoadParticleResource 0, sunny_day_spa
     Func_FadeBg 0, 1, 0, 10, 13311
     CreateEmitter 0, 1, 0
     CreateEmitter 0, 2, 0

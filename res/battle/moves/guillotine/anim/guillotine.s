@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 42
+    LoadParticleResource 0, guillotine_spa
     Func_FadeBg 0, 1, 0, 12, 0
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 0, 4

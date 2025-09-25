@@ -4,11 +4,11 @@
 
 L_0:
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
-    LoadCharResObj 0, 9
-    LoadPlttRes 0, 9, 1
-    LoadCellResObj 0, 9
-    LoadAnimResObj 0, 9
-    AddSpriteWithFunc 0, 8, 9, 9, 9, 9, 0, 0, 0
+    LoadCharResObj 0, foresight_NCGR_lz
+    LoadPlttRes 0, foresight_NCLR, 1
+    LoadCellResObj 0, foresight_cell_NCER_lz
+    LoadAnimResObj 0, foresight_anim_NANR_lz
+    AddSpriteWithFunc 0, 8, foresight_NCGR_lz, foresight_NCLR, foresight_cell_NCER_lz, foresight_anim_NANR_lz, 0, 0, 0
     BeginLoop 6
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_100, BATTLE_SOUND_PAN_RIGHT

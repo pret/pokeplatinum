@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 241
+    LoadParticleResource 0, megahorn_spa
     CallFunc 47, 0
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
     Delay 10

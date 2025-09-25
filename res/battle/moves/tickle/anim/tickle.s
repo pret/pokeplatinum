@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 216
+    LoadParticleResource 0, detect_spa
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3
     Func_FadeBattlerSprite 2, 0, 1, 0, 12, 0

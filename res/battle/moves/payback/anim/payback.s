@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 388
+    LoadParticleResource 0, payback_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT, 4, 6

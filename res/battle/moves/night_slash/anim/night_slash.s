@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 417
+    LoadParticleResource 0, night_slash_spa
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_BRADE, 0

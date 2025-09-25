@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 342
+    LoadParticleResource 0, shadow_punch_spa
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0

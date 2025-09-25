@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 295
+    LoadParticleResource 0, recycle_spa
     CreateEmitter 0, 0, 3
     PlayPannedSoundEffect SEQ_SE_DP_W278, BATTLE_SOUND_PAN_LEFT
     Delay 10

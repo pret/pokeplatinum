@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 67
+    LoadParticleResource 0, thrash_spa
     Func_RevolveBattler 2, 1, 12
     Func_Shake 4, 0, 1, 4, 264
     CreateEmitter 0, 2, 17

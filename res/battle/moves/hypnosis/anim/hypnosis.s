@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 125
+    LoadParticleResource 0, hypnosis_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 16, 10, 0, 0
     CreateEmitter 0, 1, 17

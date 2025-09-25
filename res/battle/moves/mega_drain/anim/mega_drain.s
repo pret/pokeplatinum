@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 102
+    LoadParticleResource 0, mega_drain_spa
     Func_FadeBg 0, 1, 0, 8, 11252
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W145C, 0, 2, 24

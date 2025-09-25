@@ -3,13 +3,13 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 282
+    LoadParticleResource 0, smelling_salt_spa
     InitSpriteManager 0, 1, 2, 2, 2, 2, 0, 0
-    LoadCharResObj 0, 20
-    LoadPlttRes 0, 19, 1
-    LoadCellResObj 0, 20
-    LoadAnimResObj 0, 20
-    AddSpriteWithFunc 0, 25, 20, 19, 20, 20, 0, 0, 3, 0, 24, 0
+    LoadCharResObj 0, smelling_salts_NCGR_lz
+    LoadPlttRes 0, smelling_salts_NCLR, 1
+    LoadCellResObj 0, smelling_salts_cell_NCER_lz
+    LoadAnimResObj 0, smelling_salts_anim_NANR_lz
+    AddSpriteWithFunc 0, 25, smelling_salts_NCGR_lz, smelling_salts_NCLR, smelling_salts_cell_NCER_lz, smelling_salts_anim_NANR_lz, 0, 0, 3, 0, 24, 0
     Delay 30
     PlayLoopedSoundEffect SEQ_SE_DP_030C, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 2, 4

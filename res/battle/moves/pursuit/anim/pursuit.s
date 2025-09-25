@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    LoadParticleResource 0, 245
+    LoadParticleResource 0, pursuit_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayDelayedSoundEffect SEQ_SE_DP_209, BATTLE_SOUND_PAN_RIGHT, 15
