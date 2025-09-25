@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_TEALA_0",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_teala_0"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_TEALA_1",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 6,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_teala_1"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_101_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 9,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_unk_101_2"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_102_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 9,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_unk_102_3"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_104_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 2,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_unk_104_4"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_103_5",
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,8 +89,7 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 2,
-            "y": 0,
-            "id": "battle_tower_multi_battle_room_unk_103_5"
+            "y": 0
         }
     ],
     "warp_events": [],

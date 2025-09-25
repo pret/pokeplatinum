@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "GREAT_MARSH_5_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 47,
             "z": 112,
-            "y": 0,
-            "id": "great_marsh_5_pokeball_0"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_5_SIGNBOARD_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 63,
             "z": 113,
-            "y": 0,
-            "id": "great_marsh_5_signboard_1"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_5_YOUNGSTER_2",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 62,
             "z": 115,
-            "y": 0,
-            "id": "great_marsh_5_youngster_2"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_5_SIGNBOARD_3",
             "clone_id": 1,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -76,8 +77,7 @@
             "movement_range_z": 0,
             "x": 72,
             "z": 113,
-            "y": 0,
-            "id": "great_marsh_5_signboard_3"
+            "y": 0
         }
     ],
     "warp_events": [],

@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 15,
-            "y": 0,
-            "id": "iron_island_b1f_right_room_pokeball_0"
+            "y": 0
         },
         {
+            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 17,
-            "y": 0,
-            "id": "iron_island_b1f_right_room_pokeball_1"
+            "y": 0
         },
         {
+            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_PICNICKER_2",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -54,10 +55,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 16,
-            "y": 0,
-            "id": "iron_island_b1f_right_room_picnicker_2"
+            "y": 0
         },
         {
+            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,8 +70,7 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 21,
-            "y": 0,
-            "id": "iron_island_b1f_right_room_pokeball_3"
+            "y": 0
         }
     ],
     "warp_events": [

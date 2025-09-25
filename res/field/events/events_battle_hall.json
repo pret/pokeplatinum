@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 9,
-            "y": 0,
-            "id": "battle_hall_frontier_single_attendant_0"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_FRONTIER_MULTI_ATTENDANT_1",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 10,
-            "y": 0,
-            "id": "battle_hall_frontier_multi_attendant_1"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_MAID_2",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -52,10 +53,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0,
-            "id": "battle_hall_maid_2"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_POKEFAN_F_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,10 +68,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 7,
-            "y": 0,
-            "id": "battle_hall_pokefan_f_3"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_TWIN_4",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -82,10 +83,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 5,
-            "y": 0,
-            "id": "battle_hall_twin_4"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_PACHIRISU_5",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,10 +98,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 6,
-            "y": 0,
-            "id": "battle_hall_pachirisu_5"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_065_6",
             "graphics_id": "OBJ_EVENT_GFX_UNK_065",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -112,10 +113,10 @@
             "movement_range_z": 1,
             "x": 20,
             "z": 4,
-            "y": 0,
-            "id": "battle_hall_unk_065_6"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_HIKER_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -127,10 +128,10 @@
             "movement_range_z": 1,
             "x": 23,
             "z": 11,
-            "y": 0,
-            "id": "battle_hall_hiker_7"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_EXPERT_M_8",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -142,10 +143,10 @@
             "movement_range_z": 1,
             "x": 10,
             "z": 3,
-            "y": 0,
-            "id": "battle_hall_expert_m_8"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_IDOL_9",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,10 +158,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "battle_hall_idol_9"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_REPORTER_10",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -172,10 +173,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 7,
-            "y": 0,
-            "id": "battle_hall_reporter_10"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_BUG_CATCHER_11",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -187,10 +188,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 4,
-            "y": 0,
-            "id": "battle_hall_bug_catcher_11"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_104_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -202,10 +203,10 @@
             "movement_range_z": 1,
             "x": 18,
             "z": 11,
-            "y": 0,
-            "id": "battle_hall_unk_104_12"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_102_13",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -217,10 +218,10 @@
             "movement_range_z": 1,
             "x": 4,
             "z": 6,
-            "y": 0,
-            "id": "battle_hall_unk_102_13"
+            "y": 0
         },
         {
+            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_14",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -232,8 +233,7 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 8,
-            "y": 0,
-            "id": "battle_hall_frontier_single_attendant_14"
+            "y": 0
         }
     ],
     "warp_events": [

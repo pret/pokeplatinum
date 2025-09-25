@@ -43,6 +43,7 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_CITY_GYM_MAYLENE_0",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -54,10 +55,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 4,
-            "y": 0,
-            "id": "veilstone_city_gym_maylene_0"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_GYM_GYM_GUIDE_1",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,10 +70,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 29,
-            "y": 0,
-            "id": "veilstone_city_gym_gym_guide_1"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_2",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -86,10 +87,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 23,
-            "y": 0,
-            "id": "veilstone_city_gym_black_belt_2"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_3",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 14,
-            "y": 0,
-            "id": "veilstone_city_gym_black_belt_3"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_4",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -120,10 +121,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0,
-            "id": "veilstone_city_gym_black_belt_4"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_5",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -137,8 +138,7 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 13,
-            "y": 0,
-            "id": "veilstone_city_gym_black_belt_5"
+            "y": 0
         }
     ],
     "warp_events": [

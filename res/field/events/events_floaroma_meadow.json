@@ -91,6 +91,7 @@
     ],
     "object_events": [
         {
+            "id": "FLOAROMA_MEADOW_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -102,10 +103,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 47,
-            "y": 0,
-            "id": "floaroma_meadow_grunt_m_0"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -117,10 +118,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 47,
-            "y": 0,
-            "id": "floaroma_meadow_grunt_m_1"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEFAN_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -132,10 +133,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 46,
-            "y": 0,
-            "id": "floaroma_meadow_pokefan_m_2"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,10 +148,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 47,
-            "y": 0,
-            "id": "floaroma_meadow_pokeball_3"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -162,10 +163,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 15,
-            "y": 0,
-            "id": "floaroma_meadow_pokeball_4"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -177,10 +178,10 @@
             "movement_range_z": 0,
             "x": 46,
             "z": 28,
-            "y": 0,
-            "id": "floaroma_meadow_pokeball_5"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -192,10 +193,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 27,
-            "y": 0,
-            "id": "floaroma_meadow_pokeball_6"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,8 +208,7 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 35,
-            "y": 0,
-            "id": "floaroma_meadow_pokeball_7"
+            "y": 0
         }
     ],
     "warp_events": [

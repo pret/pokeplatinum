@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "JUBILIFE_TV_ELEVATOR_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,8 +23,7 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 6,
-            "y": 0,
-            "id": "jubilife_tv_elevator_receptionist_0"
+            "y": 0
         }
     ],
     "warp_events": [

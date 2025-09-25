@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "PAL_PARK_LOBBY_LASS_0",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 16,
-            "y": 0,
-            "id": "pal_park_lobby_lass_0"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_PROF_OAK_1",
             "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 15,
-            "y": 0,
-            "id": "pal_park_lobby_prof_oak_1"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_BEAUTY_2",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 1,
             "x": 12,
             "z": 17,
-            "y": 0,
-            "id": "pal_park_lobby_beauty_2"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_POKEMON_BREEDER_M_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 11,
-            "y": 0,
-            "id": "pal_park_lobby_pokemon_breeder_m_3"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_LASS_4",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 1,
             "x": 9,
             "z": 4,
-            "y": 0,
-            "id": "pal_park_lobby_lass_4"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_POKEFAN_M_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 4,
-            "y": 0,
-            "id": "pal_park_lobby_pokefan_m_5"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_YOUNGSTER_6",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 4,
-            "y": 0,
-            "id": "pal_park_lobby_youngster_6"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_WORKER_7",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,10 +119,10 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 11,
-            "y": 0,
-            "id": "pal_park_lobby_worker_7"
+            "y": 0
         },
         {
+            "id": "PAL_PARK_LOBBY_LADY_8",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,8 +134,7 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 4,
-            "y": 0,
-            "id": "pal_park_lobby_lady_8"
+            "y": 0
         }
     ],
     "warp_events": [

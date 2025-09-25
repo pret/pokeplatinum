@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_2F_LADY_0",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 3,
             "x": 15,
             "z": 11,
-            "y": 0,
-            "id": "veilstone_store_2f_lady_0"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 1,
             "x": 5,
             "z": 11,
-            "y": 0,
-            "id": "veilstone_store_2f_bug_catcher_1"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -52,10 +53,10 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 8,
-            "y": 0,
-            "id": "veilstone_store_2f_cashier_m_2"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_RECEPTIONIST_3",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,10 +68,10 @@
             "movement_range_z": 1,
             "x": 18,
             "z": 6,
-            "y": 0,
-            "id": "veilstone_store_2f_receptionist_3"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -82,10 +83,10 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 4,
-            "y": 0,
-            "id": "veilstone_store_2f_cashier_f_4"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,10 +98,10 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 6,
-            "y": 0,
-            "id": "veilstone_store_2f_cashier_f_5"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_6",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -112,8 +113,7 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 10,
-            "y": 0,
-            "id": "veilstone_store_2f_bug_catcher_6"
+            "y": 0
         }
     ],
     "warp_events": [

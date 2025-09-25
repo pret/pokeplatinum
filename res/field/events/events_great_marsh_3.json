@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "GREAT_MARSH_3_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 79,
-            "y": 0,
-            "id": "great_marsh_3_pokeball_0"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_SIGNBOARD_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 59,
             "z": 86,
-            "y": 0,
-            "id": "great_marsh_3_signboard_1"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_COLLECTOR_2",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 1,
             "x": 38,
             "z": 75,
-            "y": 0,
-            "id": "great_marsh_3_collector_2"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_RUIN_MANIAC_3",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,10 +76,10 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 58,
-            "y": 0,
-            "id": "great_marsh_3_ruin_maniac_3"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_SIGNBOARD_4",
             "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -91,8 +92,7 @@
             "movement_range_z": 0,
             "x": 71,
             "z": 86,
-            "y": 0,
-            "id": "great_marsh_3_signboard_4"
+            "y": 0
         }
     ],
     "warp_events": [],

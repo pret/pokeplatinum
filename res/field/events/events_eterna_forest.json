@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "ETERNA_FOREST_CHERYL_0",
             "graphics_id": "OBJ_EVENT_GFX_CHERYL",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 83,
-            "y": 0,
-            "id": "eterna_forest_cheryl_0"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 1,
             "x": 24,
             "z": 80,
-            "y": 0,
-            "id": "eterna_forest_bug_catcher_1"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_2",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -54,10 +55,10 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_bug_catcher_2"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_3",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -71,10 +72,10 @@
             "movement_range_z": 0,
             "x": 65,
             "z": 87,
-            "y": 0,
-            "id": "eterna_forest_bug_catcher_3"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_4",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 74,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_psychic_4"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_5",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -105,10 +106,10 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_psychic_5"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_LASS_6",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -122,10 +123,10 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_lass_6"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_7",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -139,10 +140,10 @@
             "movement_range_z": 0,
             "x": 65,
             "z": 83,
-            "y": 0,
-            "id": "eterna_forest_bug_catcher_7"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -154,10 +155,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 81,
-            "y": 0,
-            "id": "eterna_forest_pokeball_8"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -169,10 +170,10 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 59,
-            "y": 0,
-            "id": "eterna_forest_pokeball_9"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -184,10 +185,10 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 85,
-            "y": 0,
-            "id": "eterna_forest_pokeball_10"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -199,10 +200,10 @@
             "movement_range_z": 0,
             "x": 66,
             "z": 42,
-            "y": 0,
-            "id": "eterna_forest_pokeball_11"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_SIGNBOARD_12",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -214,10 +215,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 82,
-            "y": 0,
-            "id": "eterna_forest_signboard_12"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_TRAINER_TIPS_SIGNPOST_13",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -229,10 +230,10 @@
             "movement_range_z": 0,
             "x": 76,
             "z": 72,
-            "y": 0,
-            "id": "eterna_forest_trainer_tips_signpost_13"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_14",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -246,10 +247,10 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_psychic_14"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_15",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -263,10 +264,10 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 67,
-            "y": 0,
-            "id": "eterna_forest_psychic_15"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_MOSS_ROCK_16",
             "graphics_id": "OBJ_EVENT_GFX_MOSS_ROCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -278,10 +279,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 66,
-            "y": 0,
-            "id": "eterna_forest_moss_rock_16"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_17",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -293,10 +294,10 @@
             "movement_range_z": 0,
             "x": 81,
             "z": 12,
-            "y": 0,
-            "id": "eterna_forest_pokeball_17"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_18",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -308,10 +309,10 @@
             "movement_range_z": 0,
             "x": 84,
             "z": 82,
-            "y": 0,
-            "id": "eterna_forest_pokeball_18"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_19",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -323,10 +324,10 @@
             "movement_range_z": 0,
             "x": 74,
             "z": 33,
-            "y": 0,
-            "id": "eterna_forest_cut_tree_19"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_20",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -338,10 +339,10 @@
             "movement_range_z": 0,
             "x": 75,
             "z": 33,
-            "y": 0,
-            "id": "eterna_forest_cut_tree_20"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_21",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -353,10 +354,10 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 33,
-            "y": 0,
-            "id": "eterna_forest_cut_tree_21"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_22",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -368,10 +369,10 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 64,
-            "y": 0,
-            "id": "eterna_forest_cut_tree_22"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_23",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -383,10 +384,10 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 65,
-            "y": 0,
-            "id": "eterna_forest_cut_tree_23"
+            "y": 0
         },
         {
+            "id": "ETERNA_FOREST_GARDENIA_24",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -398,8 +399,7 @@
             "movement_range_z": 0,
             "x": 73,
             "z": 33,
-            "y": 0,
-            "id": "eterna_forest_gardenia_24"
+            "y": 0
         }
     ],
     "warp_events": [

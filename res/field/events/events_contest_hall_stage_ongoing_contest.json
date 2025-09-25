@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_GENTLEMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 5,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_gentleman_0"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_101_1",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_unk_101_1"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_102_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_unk_102_2"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_103_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_unk_103_3"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_104_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_unk_104_4"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_105_5",
             "graphics_id": "OBJ_EVENT_GFX_UNK_105",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 5,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_unk_105_5"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_GUITARIST_6",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_guitarist_6"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_TWIN_7",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,10 +119,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_twin_7"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_YOUNGSTER_8",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,10 +134,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_youngster_8"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_EXPERT_F_9",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -148,10 +149,10 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_expert_f_9"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_POKEMON_BREEDER_M_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,10 +164,10 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_pokemon_breeder_m_10"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_COLLECTOR_11",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,10 +179,10 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_collector_11"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BEAUTY_12",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,10 +194,10 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 11,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_beauty_12"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_POKEMON_BREEDER_F_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -208,10 +209,10 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_pokemon_breeder_f_13"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_NINJA_BOY_14",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -223,10 +224,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_ninja_boy_14"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_POKEFAN_M_15",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -238,10 +239,10 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_pokefan_m_15"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BATTLE_GIRL_16",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -253,10 +254,10 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 11,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_battle_girl_16"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_ACE_TRAINER_M_17",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -268,10 +269,10 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 12,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_ace_trainer_m_17"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_SCHOOL_KID_F_18",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,10 +284,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_school_kid_f_18"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_SCHOOL_KID_M_19",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,10 +299,10 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 12,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_school_kid_m_19"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_LASS_20",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -313,10 +314,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_lass_20"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_ACE_TRAINER_M_21",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -328,10 +329,10 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_ace_trainer_m_21"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_YOUNGSTER_22",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -343,10 +344,10 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_youngster_22"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BATTLE_GIRL_23",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -358,10 +359,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_battle_girl_23"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_SCHOOL_KID_F_24",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -373,10 +374,10 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 11,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_school_kid_f_24"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_POKEMON_BREEDER_F_25",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -388,10 +389,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_pokemon_breeder_f_25"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_NINJA_BOY_26",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -403,10 +404,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_ninja_boy_26"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BEAUTY_27",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -418,10 +419,10 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 11,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_beauty_27"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BUG_CATCHER_28",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -433,10 +434,10 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_bug_catcher_28"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_BEAUTY_29",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -448,10 +449,10 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 14,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_beauty_29"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_LASS_30",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -463,8 +464,7 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_stage_ongoing_contest_lass_30"
+            "y": 0
         }
     ],
     "warp_events": [],

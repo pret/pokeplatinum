@@ -51,6 +51,7 @@
     ],
     "object_events": [
         {
+            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_0",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,10 +63,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_lobby_nurse_joy_0"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_1",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,10 +78,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_lobby_nurse_joy_1"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_2",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,10 +93,10 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 4,
-            "y": 0,
-            "id": "contest_hall_lobby_nurse_joy_2"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_ACE_TRAINER_F_3",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,10 +108,10 @@
             "movement_range_z": 1,
             "x": 28,
             "z": 9,
-            "y": 0,
-            "id": "contest_hall_lobby_ace_trainer_f_3"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_CLOWN_4",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,10 +123,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 10,
-            "y": 0,
-            "id": "contest_hall_lobby_clown_4"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_MOM_5",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,10 +138,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 10,
-            "y": 0,
-            "id": "contest_hall_lobby_mom_5"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_IDOL_6",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,10 +153,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 10,
-            "y": 0,
-            "id": "contest_hall_lobby_idol_6"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_REPORTER_7",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,10 +168,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_lobby_reporter_7"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_SCHOOL_KID_F_8",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,10 +183,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 13,
-            "y": 0,
-            "id": "contest_hall_lobby_school_kid_f_8"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_RICH_BOY_9",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,10 +198,10 @@
             "movement_range_z": 2,
             "x": 16,
             "z": 6,
-            "y": 0,
-            "id": "contest_hall_lobby_rich_boy_9"
+            "y": 0
         },
         {
+            "id": "CONTEST_HALL_LOBBY_FANTINA_10",
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,8 +213,7 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 9,
-            "y": 0,
-            "id": "contest_hall_lobby_fantina_10"
+            "y": 0
         }
     ],
     "warp_events": [
@@ -232,4 +232,3 @@
     ],
     "coord_events": []
 }
-

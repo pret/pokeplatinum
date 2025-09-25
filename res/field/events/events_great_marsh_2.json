@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "GREAT_MARSH_2_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 76,
             "z": 36,
-            "y": 0,
-            "id": "great_marsh_2_pokeball_0"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_2_SIGNBOARD_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 70,
             "z": 46,
-            "y": 0,
-            "id": "great_marsh_2_signboard_1"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_2_PARASOL_LADY_2",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 85,
             "z": 43,
-            "y": 0,
-            "id": "great_marsh_2_parasol_lady_2"
+            "y": 0
         },
         {
+            "id": "GREAT_MARSH_2_SIGNBOARD_3",
             "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -76,8 +77,7 @@
             "movement_range_z": 0,
             "x": 61,
             "z": 46,
-            "y": 0,
-            "id": "great_marsh_2_signboard_3"
+            "y": 0
         }
     ],
     "warp_events": [],

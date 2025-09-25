@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SUNYSHORE_CITY_UNKNOWN_HOUSE_2_SAILOR_0",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 7,
-            "y": 0,
-            "id": "sunyshore_city_unknown_house_2_sailor_0"
+            "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_UNKNOWN_HOUSE_2_LASS_1",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,8 +29,7 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0,
-            "id": "sunyshore_city_unknown_house_2_lass_1"
+            "y": 0
         }
     ],
     "warp_events": [

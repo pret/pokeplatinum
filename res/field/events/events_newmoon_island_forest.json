@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "NEWMOON_ISLAND_FOREST_DARKRAI_0",
             "graphics_id": "OBJ_EVENT_GFX_DARKRAI",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,8 +14,7 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 13,
-            "y": 0,
-            "id": "newmoon_island_forest_darkrai_0"
+            "y": 0
         }
     ],
     "warp_events": [

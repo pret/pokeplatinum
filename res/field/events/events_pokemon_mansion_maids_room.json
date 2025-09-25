@@ -59,6 +59,7 @@
     ],
     "object_events": [
         {
+            "id": "POKEMON_MANSION_MAIDS_ROOM_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -70,10 +71,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 3,
-            "y": 0,
-            "id": "pokemon_mansion_maids_room_pokeball_0"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAIDS_ROOM_MAID_1",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -85,10 +86,10 @@
             "movement_range_z": 2,
             "x": 11,
             "z": 6,
-            "y": 0,
-            "id": "pokemon_mansion_maids_room_maid_1"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAIDS_ROOM_MAID_2",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -100,8 +101,7 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 7,
-            "y": 0,
-            "id": "pokemon_mansion_maids_room_maid_2"
+            "y": 0
         }
     ],
     "warp_events": [

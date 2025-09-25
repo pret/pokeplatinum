@@ -75,6 +75,7 @@
     ],
     "object_events": [
         {
+            "id": "POKEMON_LEAGUE_SIGNBOARD_0",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,10 +87,10 @@
             "movement_range_z": 0,
             "x": 848,
             "z": 598,
-            "y": 0,
-            "id": "pokemon_league_signboard_0"
+            "y": 0
         },
         {
+            "id": "POKEMON_LEAGUE_ARROW_SIGNPOST_1",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,8 +104,7 @@
             "movement_range_z": 0,
             "x": 849,
             "z": 580,
-            "y": 0,
-            "id": "pokemon_league_arrow_signpost_1"
+            "y": 0
         }
     ],
     "warp_events": [

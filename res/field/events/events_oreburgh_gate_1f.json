@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_GATE_1F_PICNICKER_0",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -15,10 +16,10 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 21,
-            "y": 0,
-            "id": "oreburgh_gate_1f_picnicker_0"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_CAMPER_1",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -32,10 +33,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 25,
-            "y": 1,
-            "id": "oreburgh_gate_1f_camper_1"
+            "y": 1
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,10 +48,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 6,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_2"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,10 +63,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 4,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_3"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,10 +78,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 10,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,10 +93,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 11,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,10 +108,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 25,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_6"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,10 +123,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 26,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_7"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,10 +138,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 26,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_8"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,10 +153,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 24,
-            "y": 0,
-            "id": "oreburgh_gate_1f_rock_smash_9"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_1F_HIKER_10",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,8 +168,7 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 20,
-            "y": 1,
-            "id": "oreburgh_gate_1f_hiker_10"
+            "y": 1
         }
     ],
     "warp_events": [

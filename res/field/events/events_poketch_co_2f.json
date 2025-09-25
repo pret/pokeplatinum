@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "POKETCH_CO_2F_POKEFAN_M_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 6,
-            "y": 0,
-            "id": "poketch_co_2f_pokefan_m_0"
+            "y": 0
         },
         {
+            "id": "POKETCH_CO_2F_OLD_MAN_1",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0,
-            "id": "poketch_co_2f_old_man_1"
+            "y": 0
         },
         {
+            "id": "POKETCH_CO_2F_CLEFAIRY_2",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 10,
-            "y": 0,
-            "id": "poketch_co_2f_clefairy_2"
+            "y": 0
         },
         {
+            "id": "POKETCH_CO_2F_PACHIRISU_3",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,8 +59,7 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 11,
-            "y": 0,
-            "id": "poketch_co_2f_pachirisu_3"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -46,10 +47,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 6,
-            "y": 0,
-            "id": "galactic_hq_3f_grunt_m_0"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,10 +62,10 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 12,
-            "y": 0,
-            "id": "galactic_hq_3f_pokeball_1"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
@@ -79,10 +80,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 20,
-            "y": 0,
-            "id": "galactic_hq_3f_grunt_m_2"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -96,10 +97,10 @@
             "movement_range_z": 0,
             "x": 42,
             "z": 7,
-            "y": 0,
-            "id": "galactic_hq_3f_grunt_m_3"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_F_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -113,10 +114,10 @@
             "movement_range_z": 0,
             "x": 42,
             "z": 3,
-            "y": 0,
-            "id": "galactic_hq_3f_grunt_f_4"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_5",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,10 +129,10 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 19,
-            "y": 0,
-            "id": "galactic_hq_3f_galactic_hq_door_5"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_6",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -143,10 +144,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 19,
-            "y": 0,
-            "id": "galactic_hq_3f_galactic_hq_door_6"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_M_7",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -160,10 +161,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 6,
-            "y": 0,
-            "id": "galactic_hq_3f_grunt_m_7"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -175,10 +176,10 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 21,
-            "y": 0,
-            "id": "galactic_hq_3f_pokeball_8"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -190,8 +191,7 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 20,
-            "y": 0,
-            "id": "galactic_hq_3f_pokeball_9"
+            "y": 0
         }
     ],
     "warp_events": [

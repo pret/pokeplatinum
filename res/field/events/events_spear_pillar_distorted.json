@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "SPEAR_PILLAR_DISTORTED_CYNTHIA_0",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 30,
-            "y": 0,
-            "id": "spear_pillar_distorted_cynthia_0"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_DISTORTED_MESPRIT_1",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 28,
-            "y": 0,
-            "id": "spear_pillar_distorted_mesprit_1"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_DISTORTED_JUPITER_2",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 33,
-            "y": 0,
-            "id": "spear_pillar_distorted_jupiter_2"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_DISTORTED_MARS_3",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,10 +76,10 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 33,
-            "y": 0,
-            "id": "spear_pillar_distorted_mars_3"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_DISTORTED_GRUNT_F_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -90,10 +91,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 48,
-            "y": 0,
-            "id": "spear_pillar_distorted_grunt_f_4"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_DISTORTED_GRUNT_M_5",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,8 +106,7 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 48,
-            "y": 0,
-            "id": "spear_pillar_distorted_grunt_m_5"
+            "y": 0
         }
     ],
     "warp_events": [

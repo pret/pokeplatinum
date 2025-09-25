@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_SCHOOL_KID_F_0",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -15,10 +16,10 @@
             "movement_range_z": 2,
             "x": 4,
             "z": 15,
-            "y": 0,
-            "id": "hearthome_city_gym_trainer_room_2_school_kid_f_0"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_ACE_TRAINER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -32,10 +33,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 7,
-            "y": 0,
-            "id": "hearthome_city_gym_trainer_room_2_ace_trainer_m_1"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_SCHOOL_KID_M_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -49,10 +50,10 @@
             "movement_range_z": 3,
             "x": 21,
             "z": 17,
-            "y": 0,
-            "id": "hearthome_city_gym_trainer_room_2_school_kid_m_2"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_ACE_TRAINER_F_3",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -66,8 +67,7 @@
             "movement_range_z": 3,
             "x": 11,
             "z": 9,
-            "y": 0,
-            "id": "hearthome_city_gym_trainer_room_2_ace_trainer_f_3"
+            "y": 0
         }
     ],
     "warp_events": [

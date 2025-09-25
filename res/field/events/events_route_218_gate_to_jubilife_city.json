@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_218_GATE_TO_JUBILIFE_CITY_POLICEMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 6,
-            "y": 0,
-            "id": "route_218_gate_to_jubilife_city_policeman_0"
+            "y": 0
         },
         {
+            "id": "ROUTE_218_GATE_TO_JUBILIFE_CITY_FISHERMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,8 +29,7 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 8,
-            "y": 0,
-            "id": "route_218_gate_to_jubilife_city_fisherman_1"
+            "y": 0
         }
     ],
     "warp_events": [

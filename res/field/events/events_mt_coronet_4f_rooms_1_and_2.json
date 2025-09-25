@@ -67,6 +67,7 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -78,10 +79,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_0"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -93,10 +94,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 8,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_1"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -108,10 +109,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 9,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_2"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -123,10 +124,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 19,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_3"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -138,10 +139,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 23,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -153,10 +154,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 24,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GRUNT_M_6",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -171,10 +172,10 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 5,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_grunt_m_6"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GRUNT_M_7",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
@@ -188,10 +189,10 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 7,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_grunt_m_7"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,10 +204,10 @@
             "movement_range_z": 0,
             "x": 57,
             "z": 2,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_pokeball_8"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -218,8 +219,7 @@
             "movement_range_z": 0,
             "x": 61,
             "z": 2,
-            "y": 0,
-            "id": "mt_coronet_4f_rooms_1_and_2_pokeball_9"
+            "y": 0
         }
     ],
     "warp_events": [

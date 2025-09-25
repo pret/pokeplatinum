@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 21,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_0"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 7,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_1"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 46,
             "z": 20,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_2"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,10 +76,10 @@
             "movement_range_z": 0,
             "x": 51,
             "z": 6,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_3"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_MIDDLE_AGED_MAN_4",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -90,10 +91,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 19,
-            "y": 0,
-            "id": "fuego_ironworks_building_middle_aged_man_4"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_5",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -107,10 +108,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 7,
-            "y": 0,
-            "id": "fuego_ironworks_building_worker_5"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_6",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -124,10 +125,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 6,
-            "y": 0,
-            "id": "fuego_ironworks_building_worker_6"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_7",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -141,10 +142,10 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 25,
-            "y": 0,
-            "id": "fuego_ironworks_building_worker_7"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,10 +157,10 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 18,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_8"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,10 +172,10 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 16,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_9"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,10 +187,10 @@
             "movement_range_z": 0,
             "x": 44,
             "z": 6,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_10"
+            "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -201,8 +202,7 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 18,
-            "y": 0,
-            "id": "fuego_ironworks_building_pokeball_11"
+            "y": 0
         }
     ],
     "warp_events": [

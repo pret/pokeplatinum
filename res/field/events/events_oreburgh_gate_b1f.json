@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_GATE_B1F_EXPERT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -15,10 +16,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 17,
-            "y": 1,
-            "id": "oreburgh_gate_b1f_expert_m_0"
+            "y": 1
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 12,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_1"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 12,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_strength_boulder_2"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 19,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_strength_boulder_3"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,10 +76,10 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 19,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -90,10 +91,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 18,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,10 +106,10 @@
             "movement_range_z": 0,
             "x": 39,
             "z": 13,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_6"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -120,10 +121,10 @@
             "movement_range_z": 0,
             "x": 43,
             "z": 13,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_7"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -135,10 +136,10 @@
             "movement_range_z": 0,
             "x": 47,
             "z": 13,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_8"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -150,10 +151,10 @@
             "movement_range_z": 0,
             "x": 53,
             "z": 10,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_9"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -165,10 +166,10 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 8,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_rock_smash_10"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -180,10 +181,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 9,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_pokeball_11"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -195,10 +196,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 21,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_pokeball_12"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -210,10 +211,10 @@
             "movement_range_z": 0,
             "x": 23,
             "z": 10,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_pokeball_13"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -225,10 +226,10 @@
             "movement_range_z": 0,
             "x": 57,
             "z": 12,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_pokeball_14"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_CYCLIST_F_15",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -240,10 +241,10 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 12,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_cyclist_f_15"
+            "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_16",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -255,8 +256,7 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 11,
-            "y": 0,
-            "id": "oreburgh_gate_b1f_pokeball_16"
+            "y": 0
         }
     ],
     "warp_events": [

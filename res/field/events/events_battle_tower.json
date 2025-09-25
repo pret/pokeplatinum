@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_TOWER_FRONTIER_SINGLE_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -38,10 +39,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 5,
-            "y": 0,
-            "id": "battle_tower_frontier_single_attendant_0"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_FRONTIER_MULTI_ATTENDANT_1",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,10 +54,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 5,
-            "y": 0,
-            "id": "battle_tower_frontier_multi_attendant_1"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_WIFI_PLAZA_ATTENDANT_2",
             "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -68,10 +69,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 5,
-            "y": 0,
-            "id": "battle_tower_wifi_plaza_attendant_2"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_TEALA_3",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,10 +84,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 6,
-            "y": 0,
-            "id": "battle_tower_teala_3"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_ARTIST_4",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -98,10 +99,10 @@
             "movement_range_z": 2,
             "x": 2,
             "z": 14,
-            "y": 0,
-            "id": "battle_tower_artist_4"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_JOGGER_5",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -113,10 +114,10 @@
             "movement_range_z": 1,
             "x": 13,
             "z": 14,
-            "y": 0,
-            "id": "battle_tower_jogger_5"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_IDOL_6",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,10 +129,10 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 10,
-            "y": 0,
-            "id": "battle_tower_idol_6"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_RICH_BOY_7",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -143,10 +144,10 @@
             "movement_range_z": 1,
             "x": 25,
             "z": 13,
-            "y": 0,
-            "id": "battle_tower_rich_boy_7"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_PIKACHU_8",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -158,10 +159,10 @@
             "movement_range_z": 1,
             "x": 25,
             "z": 14,
-            "y": 0,
-            "id": "battle_tower_pikachu_8"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_PIKACHU_9",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -173,10 +174,10 @@
             "movement_range_z": 1,
             "x": 19,
             "z": 16,
-            "y": 0,
-            "id": "battle_tower_pikachu_9"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_SCHOOL_KID_M_10",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,10 +189,10 @@
             "movement_range_z": 1,
             "x": 20,
             "z": 16,
-            "y": 0,
-            "id": "battle_tower_school_kid_m_10"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_PARASOL_LADY_11",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,10 +204,10 @@
             "movement_range_z": 2,
             "x": 9,
             "z": 13,
-            "y": 0,
-            "id": "battle_tower_parasol_lady_11"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_REPORTER_12",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -218,10 +219,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 18,
-            "y": 0,
-            "id": "battle_tower_reporter_12"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_SCHOOL_KID_M_13",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -233,10 +234,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 11,
-            "y": 0,
-            "id": "battle_tower_school_kid_m_13"
+            "y": 0
         },
         {
+            "id": "BATTLE_TOWER_SCIENTIST_M_14",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -248,8 +249,7 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 7,
-            "y": 0,
-            "id": "battle_tower_scientist_m_14"
+            "y": 0
         }
     ],
     "warp_events": [

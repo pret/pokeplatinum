@@ -163,6 +163,7 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -174,10 +175,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 32,
-            "y": 0,
-            "id": "battle_frontier_trainer_tips_signpost_0"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_1",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -189,10 +190,10 @@
             "movement_range_z": 0,
             "x": 47,
             "z": 19,
-            "y": 0,
-            "id": "battle_frontier_trainer_tips_signpost_1"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -204,10 +205,10 @@
             "movement_range_z": 1,
             "x": 44,
             "z": 50,
-            "y": 0,
-            "id": "battle_frontier_pokemon_breeder_f_2"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_EXPERT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -219,10 +220,10 @@
             "movement_range_z": 0,
             "x": 49,
             "z": 64,
-            "y": 0,
-            "id": "battle_frontier_expert_f_3"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_EXPERT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -234,10 +235,10 @@
             "movement_range_z": 0,
             "x": 48,
             "z": 64,
-            "y": 0,
-            "id": "battle_frontier_expert_m_4"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TWIN_5",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -249,10 +250,10 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 57,
-            "y": 0,
-            "id": "battle_frontier_twin_5"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_SCHOOL_KID_M_6",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -264,10 +265,10 @@
             "movement_range_z": 0,
             "x": 59,
             "z": 45,
-            "y": 0,
-            "id": "battle_frontier_school_kid_m_6"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_NINJA_BOY_7",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -279,10 +280,10 @@
             "movement_range_z": 0,
             "x": 50,
             "z": 19,
-            "y": 0,
-            "id": "battle_frontier_ninja_boy_7"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_IDOL_8",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -294,10 +295,10 @@
             "movement_range_z": 1,
             "x": 26,
             "z": 30,
-            "y": 0,
-            "id": "battle_frontier_idol_8"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ROUGHNECK_9",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -309,10 +310,10 @@
             "movement_range_z": 1,
             "x": 67,
             "z": 39,
-            "y": 0,
-            "id": "battle_frontier_roughneck_9"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_BLACK_BELT_10",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -324,10 +325,10 @@
             "movement_range_z": 3,
             "x": 38,
             "z": 23,
-            "y": 0,
-            "id": "battle_frontier_black_belt_10"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_11",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -339,10 +340,10 @@
             "movement_range_z": 0,
             "x": 45,
             "z": 43,
-            "y": 0,
-            "id": "battle_frontier_frontier_booth_attendant_11"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_12",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -354,10 +355,10 @@
             "movement_range_z": 0,
             "x": 45,
             "z": 37,
-            "y": 0,
-            "id": "battle_frontier_frontier_booth_attendant_12"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_13",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -369,10 +370,10 @@
             "movement_range_z": 0,
             "x": 52,
             "z": 43,
-            "y": 0,
-            "id": "battle_frontier_frontier_booth_attendant_13"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_POKEFAN_M_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -384,10 +385,10 @@
             "movement_range_z": 0,
             "x": 60,
             "z": 29,
-            "y": 0,
-            "id": "battle_frontier_pokefan_m_14"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_COLLECTOR_15",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -399,10 +400,10 @@
             "movement_range_z": 0,
             "x": 59,
             "z": 18,
-            "y": 0,
-            "id": "battle_frontier_collector_15"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_GENTLEMAN_16",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -414,10 +415,10 @@
             "movement_range_z": 1,
             "x": 38,
             "z": 37,
-            "y": 0,
-            "id": "battle_frontier_gentleman_16"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TUBER_M_17",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -429,10 +430,10 @@
             "movement_range_z": 0,
             "x": 55,
             "z": 38,
-            "y": 0,
-            "id": "battle_frontier_tuber_m_17"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_M_18",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -444,10 +445,10 @@
             "movement_range_z": 1,
             "x": 54,
             "z": 49,
-            "y": 0,
-            "id": "battle_frontier_ace_trainer_m_18"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_COWGIRL_19",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -459,10 +460,10 @@
             "movement_range_z": 0,
             "x": 66,
             "z": 50,
-            "y": 0,
-            "id": "battle_frontier_cowgirl_19"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FISHERMAN_20",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -474,10 +475,10 @@
             "movement_range_z": 1,
             "x": 60,
             "z": 37,
-            "y": 0,
-            "id": "battle_frontier_fisherman_20"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_PICNICKER_21",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -489,10 +490,10 @@
             "movement_range_z": 0,
             "x": 45,
             "z": 46,
-            "y": 0,
-            "id": "battle_frontier_picnicker_21"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_PARASOL_LADY_22",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -504,10 +505,10 @@
             "movement_range_z": 0,
             "x": 44,
             "z": 61,
-            "y": 0,
-            "id": "battle_frontier_parasol_lady_22"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_WAITRESS_23",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -519,10 +520,10 @@
             "movement_range_z": 2,
             "x": 54,
             "z": 59,
-            "y": 0,
-            "id": "battle_frontier_waitress_23"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_24",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -534,10 +535,10 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 57,
-            "y": 0,
-            "id": "battle_frontier_trainer_tips_signpost_24"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_25",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -549,10 +550,10 @@
             "movement_range_z": 0,
             "x": 62,
             "z": 57,
-            "y": 0,
-            "id": "battle_frontier_trainer_tips_signpost_25"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_26",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -564,10 +565,10 @@
             "movement_range_z": 0,
             "x": 72,
             "z": 32,
-            "y": 0,
-            "id": "battle_frontier_trainer_tips_signpost_26"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_M_27",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -579,10 +580,10 @@
             "movement_range_z": 2,
             "x": 42,
             "z": 41,
-            "y": 0,
-            "id": "battle_frontier_ace_trainer_m_27"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_SNOW_F_28",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -594,10 +595,10 @@
             "movement_range_z": 1,
             "x": 31,
             "z": 40,
-            "y": 0,
-            "id": "battle_frontier_ace_trainer_snow_f_28"
+            "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_REPORTER_29",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -609,8 +610,7 @@
             "movement_range_z": 1,
             "x": 25,
             "z": 36,
-            "y": 0,
-            "id": "battle_frontier_reporter_29"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_MINE_B1F_WORKER_0",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 4,
-            "y": 0,
-            "id": "oreburgh_mine_b1f_worker_0"
+            "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B1F_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 4,
-            "y": 0,
-            "id": "oreburgh_mine_b1f_pokeball_1"
+            "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B1F_TWIN_2",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 3,
-            "y": 0,
-            "id": "oreburgh_mine_b1f_twin_2"
+            "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B1F_HIKER_3",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,8 +59,7 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 4,
-            "y": 0,
-            "id": "oreburgh_mine_b1f_hiker_3"
+            "y": 0
         }
     ],
     "warp_events": [

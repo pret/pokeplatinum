@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_MARS_0",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 26,
-            "y": 0,
-            "id": "stark_mountain_room_1_mars_0"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 11,
-            "y": 0,
-            "id": "stark_mountain_room_1_rock_smash_1"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -52,10 +53,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 17,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_2"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,10 +68,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 15,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_3"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_JUPITER_4",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -82,10 +83,10 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 26,
-            "y": 0,
-            "id": "stark_mountain_room_1_jupiter_4"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_5",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,10 +98,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 15,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_5"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_6",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -112,10 +113,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 16,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_6"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_7",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -127,10 +128,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 17,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_7"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_8",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -142,10 +143,10 @@
             "movement_range_z": 0,
             "x": 27,
             "z": 13,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_8"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_9",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,10 +158,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 9,
-            "y": 0,
-            "id": "stark_mountain_room_1_strength_boulder_9"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -172,10 +173,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "stark_mountain_room_1_pokeball_10"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -187,10 +188,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 23,
-            "y": 0,
-            "id": "stark_mountain_room_1_pokeball_11"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -202,10 +203,10 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 25,
-            "y": 0,
-            "id": "stark_mountain_room_1_pokeball_12"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -217,10 +218,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 7,
-            "y": 0,
-            "id": "stark_mountain_room_1_pokeball_13"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_CHARON_14",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -232,10 +233,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 24,
-            "y": 0,
-            "id": "stark_mountain_room_1_charon_14"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_GRUNT_M_15",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -247,10 +248,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 24,
-            "y": 0,
-            "id": "stark_mountain_room_1_grunt_m_15"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_GRUNT_M_16",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -262,8 +263,7 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 24,
-            "y": 0,
-            "id": "stark_mountain_room_1_grunt_m_16"
+            "y": 0
         }
     ],
     "warp_events": [

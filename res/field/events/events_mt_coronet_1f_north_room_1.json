@@ -43,6 +43,7 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -54,10 +55,10 @@
             "movement_range_z": 0,
             "x": 24,
             "z": 9,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_0"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,10 +70,10 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 26,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_1"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -84,10 +85,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 26,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_2"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -99,10 +100,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 27,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_3"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -114,10 +115,10 @@
             "movement_range_z": 0,
             "x": 21,
             "z": 41,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -129,10 +130,10 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 36,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -144,10 +145,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 52,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_rock_smash_6"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_7",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -159,10 +160,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 30,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_strength_boulder_7"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_8",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -174,10 +175,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 34,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_strength_boulder_8"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_9",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -189,10 +190,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 39,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_strength_boulder_9"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_10",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -204,10 +205,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 43,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_strength_boulder_10"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -219,10 +220,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 26,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_pokeball_11"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -234,10 +235,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 31,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_pokeball_12"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -249,10 +250,10 @@
             "movement_range_z": 0,
             "x": 28,
             "z": 43,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_pokeball_13"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -264,10 +265,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 60,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_pokeball_14"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F_15",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -279,10 +280,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 41,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_grunt_f_15"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_16",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -294,10 +295,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 10,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_grunt_m_16"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_17",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -309,10 +310,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 11,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_grunt_m_17"
+            "y": 0
         },
         {
+            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_18",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -324,8 +325,7 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 37,
-            "y": 0,
-            "id": "mt_coronet_1f_north_room_1_pokeball_18"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 6,
-            "y": 0,
-            "id": "veilstone_store_b1f_receptionist_0"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_1",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 11,
-            "y": 0,
-            "id": "veilstone_store_b1f_cashier_f_1"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -52,10 +53,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 11,
-            "y": 0,
-            "id": "veilstone_store_b1f_cashier_f_2"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_SOCIALITE_3",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,10 +68,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 8,
-            "y": 0,
-            "id": "veilstone_store_b1f_socialite_3"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_4",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -82,10 +83,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0,
-            "id": "veilstone_store_b1f_receptionist_4"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,10 +98,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 11,
-            "y": 0,
-            "id": "veilstone_store_b1f_cashier_f_5"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_6",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -112,10 +113,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 6,
-            "y": 0,
-            "id": "veilstone_store_b1f_cashier_f_6"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_SOCIALITE_7",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -127,10 +128,10 @@
             "movement_range_z": 1,
             "x": 16,
             "z": 9,
-            "y": 0,
-            "id": "veilstone_store_b1f_socialite_7"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_GENTLEMAN_8",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -142,10 +143,10 @@
             "movement_range_z": 1,
             "x": 21,
             "z": 13,
-            "y": 0,
-            "id": "veilstone_store_b1f_gentleman_8"
+            "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_PROF_ROWAN_9",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,8 +158,7 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 4,
-            "y": 0,
-            "id": "veilstone_store_b1f_prof_rowan_9"
+            "y": 0
         }
     ],
     "warp_events": [

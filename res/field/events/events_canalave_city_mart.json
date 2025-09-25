@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CANALAVE_CITY_MART_LADY_0",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 8,
-            "y": 0,
-            "id": "canalave_city_mart_lady_0"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_MART_POKEFAN_F_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 2,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "canalave_city_mart_pokefan_f_1"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_MART_CASHIER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0,
-            "id": "canalave_city_mart_cashier_f_2"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_MART_MYSTERY_GIFT_DELIVERYMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0,
-            "id": "canalave_city_mart_mystery_gift_deliveryman_3"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_MART_CASHIER_M_4",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,8 +74,7 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0,
-            "id": "canalave_city_mart_cashier_m_4"
+            "y": 0
         }
     ],
     "warp_events": [

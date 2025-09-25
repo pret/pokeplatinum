@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_MAID_0",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 4,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_maid_0"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_MAID_1",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 22,
             "z": 4,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_maid_1"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_TWIN_2",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 4,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_twin_2"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_EXPERT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 4,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_expert_f_3"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_GENTLEMAN_4",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 14,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_gentleman_4"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_SOCIALITE_5",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 1,
             "x": 23,
             "z": 14,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_socialite_5"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_CLOWN_6",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 7,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_clown_6"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_COWGIRL_7",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,10 +119,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 12,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_cowgirl_7"
+            "y": 0
         },
         {
+            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_ROUGHNECK_8",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,8 +134,7 @@
             "movement_range_z": 1,
             "x": 11,
             "z": 3,
-            "y": 0,
-            "id": "battle_park_exchange_service_corner_roughneck_8"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_B2F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 26,
             "z": 5,
-            "y": 0,
-            "id": "galactic_hq_b2f_grunt_m_0"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_SCIENTIST_M_1",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 5,
             "x": 8,
             "z": 10,
-            "y": 0,
-            "id": "galactic_hq_b2f_scientist_m_1"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 11,
-            "y": 0,
-            "id": "galactic_hq_b2f_pokeball_2"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GRUNT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -60,10 +61,10 @@
             "movement_range_z": 0,
             "x": 40,
             "z": 15,
-            "y": 0,
-            "id": "galactic_hq_b2f_grunt_m_3"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GRUNT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -77,10 +78,10 @@
             "movement_range_z": 0,
             "x": 71,
             "z": 10,
-            "y": 0,
-            "id": "galactic_hq_b2f_grunt_m_4"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,10 +93,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 5,
-            "y": 0,
-            "id": "galactic_hq_b2f_pokeball_5"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_HQ_DOOR_6",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,10 +108,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 8,
-            "y": 0,
-            "id": "galactic_hq_b2f_galactic_hq_door_6"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_HQ_DOOR_7",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,10 +123,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 8,
-            "y": 0,
-            "id": "galactic_hq_b2f_galactic_hq_door_7"
+            "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,8 +138,7 @@
             "movement_range_z": 0,
             "x": 62,
             "z": 3,
-            "y": 0,
-            "id": "galactic_hq_b2f_pokeball_8"
+            "y": 0
         }
     ],
     "warp_events": [

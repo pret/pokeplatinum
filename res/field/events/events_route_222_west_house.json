@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_0",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 5,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_0"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_1",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 7,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_1"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_2",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 1,
             "x": 1,
             "z": 4,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_2"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_3",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 7,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_3"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_4",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 5,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_4"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_POKEFAN_M_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0,
-            "id": "route_222_west_house_pokefan_m_5"
+            "y": 0
         },
         {
+            "id": "ROUTE_222_WEST_HOUSE_PIKACHU_6",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -103,8 +104,7 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 3,
-            "y": 0,
-            "id": "route_222_west_house_pikachu_6"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_GENTLEMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 7,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_gentleman_0"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_BEAUTY_1",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 4,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_beauty_1"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_PSYDUCK_2",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 1,
             "x": 9,
             "z": 5,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_psyduck_2"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_BUNEARY_3",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 13,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_buneary_3"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_CLEFAIRY_4",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 11,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_clefairy_4"
+            "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER_5",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,8 +89,7 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 17,
-            "y": 0,
-            "id": "hearthome_city_pokemon_fan_club_reporter_5"
+            "y": 0
         }
     ],
     "warp_events": [

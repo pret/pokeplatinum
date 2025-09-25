@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FOREIGN_BUILDING_RUIN_MANIAC_0",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 9,
-            "y": 0,
-            "id": "foreign_building_ruin_maniac_0"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_OLD_MAN_1",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 9,
-            "y": 0,
-            "id": "foreign_building_old_man_1"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_NINJA_BOY_2",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 14,
-            "y": 0,
-            "id": "foreign_building_ninja_boy_2"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_OLD_WOMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 12,
-            "y": 0,
-            "id": "foreign_building_old_woman_3"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_ACE_TRAINER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 15,
-            "y": 0,
-            "id": "foreign_building_ace_trainer_f_4"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_POKEFAN_F_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 18,
-            "y": 0,
-            "id": "foreign_building_pokefan_f_5"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_LADY_6",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 8,
-            "y": 0,
-            "id": "foreign_building_lady_6"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_PSYCHIC_7",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,10 +119,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 19,
-            "y": 0,
-            "id": "foreign_building_psychic_7"
+            "y": 0
         },
         {
+            "id": "FOREIGN_BUILDING_EXPERT_M_8",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,8 +134,7 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 10,
-            "y": 0,
-            "id": "foreign_building_expert_m_8"
+            "y": 0
         }
     ],
     "warp_events": [

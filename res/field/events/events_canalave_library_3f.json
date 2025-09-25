@@ -179,6 +179,7 @@
     ],
     "object_events": [
         {
+            "id": "CANALAVE_LIBRARY_3F_SCIENTIST_F_0",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -190,10 +191,10 @@
             "movement_range_z": 1,
             "x": 15,
             "z": 5,
-            "y": 0,
-            "id": "canalave_library_3f_scientist_f_0"
+            "y": 0
         },
         {
+            "id": "CANALAVE_LIBRARY_3F_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -205,10 +206,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 7,
-            "y": 0,
-            "id": "canalave_library_3f_youngster_1"
+            "y": 0
         },
         {
+            "id": "CANALAVE_LIBRARY_3F_PROF_ROWAN_2",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -220,10 +221,10 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 10,
-            "y": 0,
-            "id": "canalave_library_3f_prof_rowan_2"
+            "y": 0
         },
         {
+            "id": "CANALAVE_LIBRARY_3F_UNK_101_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -235,10 +236,10 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 10,
-            "y": 0,
-            "id": "canalave_library_3f_unk_101_3"
+            "y": 0
         },
         {
+            "id": "CANALAVE_LIBRARY_3F_BARRY_4",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -250,8 +251,7 @@
             "movement_range_z": 1,
             "x": 2,
             "z": 3,
-            "y": 0,
-            "id": "canalave_library_3f_barry_4"
+            "y": 0
         }
     ],
     "warp_events": [

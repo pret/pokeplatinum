@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "RUIN_MANIAC_CAVE_SHORT_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 3,
-            "y": 0,
-            "id": "ruin_maniac_cave_short_pokeball_0"
+            "y": 0
         },
         {
+            "id": "RUIN_MANIAC_CAVE_SHORT_COLLECTOR_1",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,8 +29,7 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 7,
-            "y": 0,
-            "id": "ruin_maniac_cave_short_collector_1"
+            "y": 0
         }
     ],
     "warp_events": [

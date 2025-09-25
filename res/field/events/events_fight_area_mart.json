@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FIGHT_AREA_MART_CLOWN_0",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 8,
-            "y": 0,
-            "id": "fight_area_mart_clown_0"
+            "y": 0
         },
         {
+            "id": "FIGHT_AREA_MART_SOCIALITE_1",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 9,
-            "y": 0,
-            "id": "fight_area_mart_socialite_1"
+            "y": 0
         },
         {
+            "id": "FIGHT_AREA_MART_CASHIER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 5,
-            "y": 0,
-            "id": "fight_area_mart_cashier_f_2"
+            "y": 0
         },
         {
+            "id": "FIGHT_AREA_MART_MYSTERY_GIFT_DELIVERYMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,8 +59,7 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 7,
-            "y": 0,
-            "id": "fight_area_mart_mystery_gift_deliveryman_3"
+            "y": 0
         }
     ],
     "warp_events": [

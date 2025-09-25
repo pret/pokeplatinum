@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_SCHOOL_KID_M_0",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 8,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_school_kid_m_0"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_BATTLE_GIRL_1",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 2,
             "x": 14,
             "z": 6,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_battle_girl_1"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_BUNEARY_2",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 8,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_buneary_2"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_POKECENTER_NURSE_3",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_nurse_joy_3"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_POKEMON_BREEDER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 1,
             "x": 10,
             "z": 9,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_pokemon_breeder_f_4"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_UNK_111_5",
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_unk_111_5"
+            "y": 0
         },
         {
+            "id": "ETERNA_CITY_POKECENTER_1F_UNK_112_6",
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,8 +104,7 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0,
-            "id": "eterna_city_pokecenter_1f_unk_112_6"
+            "y": 0
         }
     ],
     "warp_events": [

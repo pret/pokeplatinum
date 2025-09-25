@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CAFE_RANCHER_0",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 7,
-            "y": 0,
-            "id": "cafe_rancher_0"
+            "y": 0
         },
         {
+            "id": "CAFE_WAITRESS_1",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0,
-            "id": "cafe_waitress_1"
+            "y": 0
         },
         {
+            "id": "CAFE_COLLECTOR_2",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 4,
-            "y": 0,
-            "id": "cafe_collector_2"
+            "y": 0
         },
         {
+            "id": "CAFE_COLLECTOR_3",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 4,
-            "y": 0,
-            "id": "cafe_collector_3"
+            "y": 0
         },
         {
+            "id": "CAFE_WAITRESS_4",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 3,
-            "y": 0,
-            "id": "cafe_waitress_4"
+            "y": 0
         },
         {
+            "id": "CAFE_OLD_MAN_5",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,8 +89,7 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 6,
-            "y": 0,
-            "id": "cafe_old_man_5"
+            "y": 0
         }
     ],
     "warp_events": [

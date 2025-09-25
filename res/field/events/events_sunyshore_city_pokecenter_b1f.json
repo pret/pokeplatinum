@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SUNYSHORE_CITY_POKECENTER_B1F_WIFI_PLAZA_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 4,
-            "y": 0,
-            "id": "sunyshore_city_pokecenter_b1f_wifi_plaza_attendant_0"
+            "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_POKECENTER_B1F_TEALA_1",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 4,
-            "y": 0,
-            "id": "sunyshore_city_pokecenter_b1f_teala_1"
+            "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_POKECENTER_B1F_TEALA_2",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,8 +44,7 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 4,
-            "y": 0,
-            "id": "sunyshore_city_pokecenter_b1f_teala_2"
+            "y": 0
         }
     ],
     "warp_events": [

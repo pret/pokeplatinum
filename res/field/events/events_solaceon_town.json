@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "SOLACEON_TOWN_COWGIRL_0",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 2,
             "x": 563,
             "z": 652,
-            "y": 7,
-            "id": "solaceon_town_cowgirl_0"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_TWIN_1",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 551,
             "z": 658,
-            "y": 7,
-            "id": "solaceon_town_twin_1"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_RANCHER_2",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -52,10 +53,10 @@
             "movement_range_z": 0,
             "x": 569,
             "z": 659,
-            "y": 7,
-            "id": "solaceon_town_rancher_2"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_EXPERT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,10 +68,10 @@
             "movement_range_z": 0,
             "x": 555,
             "z": 648,
-            "y": 0,
-            "id": "solaceon_town_expert_m_3"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_MAP_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -84,10 +85,10 @@
             "movement_range_z": 0,
             "x": 564,
             "z": 667,
-            "y": 0,
-            "id": "solaceon_town_map_signpost_4"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_SIGNBOARD_5",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -99,10 +100,10 @@
             "movement_range_z": 0,
             "x": 556,
             "z": 645,
-            "y": 0,
-            "id": "solaceon_town_signboard_5"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_SIGNBOARD_6",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -114,10 +115,10 @@
             "movement_range_z": 0,
             "x": 569,
             "z": 656,
-            "y": 0,
-            "id": "solaceon_town_signboard_6"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_COWGIRL_7",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -129,10 +130,10 @@
             "movement_range_z": 2,
             "x": 559,
             "z": 653,
-            "y": 7,
-            "id": "solaceon_town_cowgirl_7"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_RUIN_MANIAC_8",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -144,10 +145,10 @@
             "movement_range_z": 2,
             "x": 558,
             "z": 659,
-            "y": 7,
-            "id": "solaceon_town_ruin_maniac_8"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,10 +162,10 @@
             "movement_range_z": 0,
             "x": 565,
             "z": 663,
-            "y": 0,
-            "id": "solaceon_town_unk_100_9"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,10 +179,10 @@
             "movement_range_z": 0,
             "x": 566,
             "z": 663,
-            "y": 0,
-            "id": "solaceon_town_unk_100_10"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_UNK_100_11",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -195,10 +196,10 @@
             "movement_range_z": 0,
             "x": 567,
             "z": 663,
-            "y": 0,
-            "id": "solaceon_town_unk_100_11"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_UNK_100_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,10 +213,10 @@
             "movement_range_z": 0,
             "x": 568,
             "z": 663,
-            "y": 0,
-            "id": "solaceon_town_unk_100_12"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_ARROW_SIGNPOST_13",
             "clone_id": 10,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -230,10 +231,10 @@
             "movement_range_z": 0,
             "x": 563,
             "z": 678,
-            "y": 0,
-            "id": "solaceon_town_arrow_signpost_13"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_RANCHER_14",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -245,10 +246,10 @@
             "movement_range_z": 1,
             "x": 569,
             "z": 650,
-            "y": 7,
-            "id": "solaceon_town_rancher_14"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_BUNEARY_15",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -260,10 +261,10 @@
             "movement_range_z": 3,
             "x": 549,
             "z": 659,
-            "y": 0,
-            "id": "solaceon_town_buneary_15"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_BUNEARY_16",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -275,10 +276,10 @@
             "movement_range_z": 0,
             "x": 552,
             "z": 652,
-            "y": 0,
-            "id": "solaceon_town_buneary_16"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_PACHIRISU_17",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -290,10 +291,10 @@
             "movement_range_z": 1,
             "x": 553,
             "z": 655,
-            "y": 0,
-            "id": "solaceon_town_pachirisu_17"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_BARRY_18",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -305,10 +306,10 @@
             "movement_range_z": 2,
             "x": 560,
             "z": 659,
-            "y": 7,
-            "id": "solaceon_town_barry_18"
+            "y": 7
         },
         {
+            "id": "SOLACEON_TOWN_POKEBALL_19",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -320,10 +321,10 @@
             "movement_range_z": 0,
             "x": 584,
             "z": 662,
-            "y": 0,
-            "id": "solaceon_town_pokeball_19"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_POKEBALL_20",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -335,8 +336,7 @@
             "movement_range_z": 0,
             "x": 594,
             "z": 653,
-            "y": 0,
-            "id": "solaceon_town_pokeball_20"
+            "y": 0
         }
     ],
     "warp_events": [

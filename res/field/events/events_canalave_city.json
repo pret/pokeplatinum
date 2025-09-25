@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "CANALAVE_CITY_COLLECTOR_0",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,10 +31,10 @@
             "movement_range_z": 1,
             "x": 58,
             "z": 749,
-            "y": 1,
-            "id": "canalave_city_collector_0"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_LASS_1",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -45,10 +46,10 @@
             "movement_range_z": 1,
             "x": 52,
             "z": 717,
-            "y": 1,
-            "id": "canalave_city_lass_1"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_POKEMON_BREEDER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,10 +61,10 @@
             "movement_range_z": 1,
             "x": 59,
             "z": 728,
-            "y": 1,
-            "id": "canalave_city_pokemon_breeder_m_2"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_ACE_TRAINER_F_3",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,10 +76,10 @@
             "movement_range_z": 1,
             "x": 33,
             "z": 730,
-            "y": 1,
-            "id": "canalave_city_ace_trainer_f_3"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_SIGNBOARD_4",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -90,10 +91,10 @@
             "movement_range_z": 0,
             "x": 35,
             "z": 722,
-            "y": 0,
-            "id": "canalave_city_signboard_4"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_GYM_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,10 +106,10 @@
             "movement_range_z": 0,
             "x": 36,
             "z": 732,
-            "y": 0,
-            "id": "canalave_city_gym_signpost_5"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_SIGNBOARD_6",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -120,10 +121,10 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 752,
-            "y": 0,
-            "id": "canalave_city_signboard_6"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_MAP_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,10 +138,10 @@
             "movement_range_z": 0,
             "x": 54,
             "z": 754,
-            "y": 0,
-            "id": "canalave_city_map_signpost_7"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_SIGNBOARD_8",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,10 +153,10 @@
             "movement_range_z": 0,
             "x": 37,
             "z": 748,
-            "y": 0,
-            "id": "canalave_city_signboard_8"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_PSYDUCK_9",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,10 +168,10 @@
             "movement_range_z": 1,
             "x": 52,
             "z": 718,
-            "y": 1,
-            "id": "canalave_city_psyduck_9"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_OLD_MAN_10",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,10 +183,10 @@
             "movement_range_z": 1,
             "x": 41,
             "z": 735,
-            "y": 1,
-            "id": "canalave_city_old_man_10"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_BARRY_11",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,10 +198,10 @@
             "movement_range_z": 1,
             "x": 37,
             "z": 723,
-            "y": 1,
-            "id": "canalave_city_barry_11"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_UNK_101_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,10 +213,10 @@
             "movement_range_z": 1,
             "x": 39,
             "z": 720,
-            "y": 1,
-            "id": "canalave_city_unk_101_12"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_PROF_ROWAN_13",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -227,10 +228,10 @@
             "movement_range_z": 1,
             "x": 38,
             "z": 720,
-            "y": 1,
-            "id": "canalave_city_prof_rowan_13"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_SAILOR_14",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -242,10 +243,10 @@
             "movement_range_z": 1,
             "x": 43,
             "z": 725,
-            "y": 1,
-            "id": "canalave_city_sailor_14"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_POKEBALL_15",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -257,10 +258,10 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 762,
-            "y": 0,
-            "id": "canalave_city_pokeball_15"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_SAILOR_16",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -272,10 +273,10 @@
             "movement_range_z": 1,
             "x": 45,
             "z": 750,
-            "y": 1,
-            "id": "canalave_city_sailor_16"
+            "y": 1
         },
         {
+            "id": "CANALAVE_CITY_SIGNBOARD_17",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -287,10 +288,10 @@
             "movement_range_z": 0,
             "x": 56,
             "z": 714,
-            "y": 0,
-            "id": "canalave_city_signboard_17"
+            "y": 0
         },
         {
+            "id": "CANALAVE_CITY_BARRY_18",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -302,8 +303,7 @@
             "movement_range_z": 1,
             "x": 37,
             "z": 719,
-            "y": 1,
-            "id": "canalave_city_barry_18"
+            "y": 1
         }
     ],
     "warp_events": [

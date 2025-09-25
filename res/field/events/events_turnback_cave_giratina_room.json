@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA_ALTERED_0",
             "graphics_id": "OBJ_EVENT_GFX_GIRATINA_ALTERED",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -46,10 +47,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 14,
-            "y": 0,
-            "id": "turnback_cave_giratina_room_giratina_altered_0"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_GIRATINA_ROOM_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,8 +62,7 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 13,
-            "y": 0,
-            "id": "turnback_cave_giratina_room_pokeball_1"
+            "y": 0
         }
     ],
     "warp_events": [

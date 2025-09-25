@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "SOLACEON_TOWN_POKEMON_NEWS_PRESS_GYM_GUIDE_0",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0,
-            "id": "solaceon_town_pokemon_news_press_gym_guide_0"
+            "y": 0
         },
         {
+            "id": "SOLACEON_TOWN_POKEMON_NEWS_PRESS_POKEMON_BREEDER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,8 +38,7 @@
             "movement_range_z": 1,
             "x": 4,
             "z": 3,
-            "y": 0,
-            "id": "solaceon_town_pokemon_news_press_pokemon_breeder_m_1"
+            "y": 0
         }
     ],
     "warp_events": [

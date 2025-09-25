@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "POKEMON_MANSION_MAID_0",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 49,
             "z": 6,
-            "y": 0,
-            "id": "pokemon_mansion_maid_0"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAID_1",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 34,
             "z": 6,
-            "y": 0,
-            "id": "pokemon_mansion_maid_1"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAID_2",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 7,
-            "y": 0,
-            "id": "pokemon_mansion_maid_2"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAID_3",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 56,
             "z": 7,
-            "y": 0,
-            "id": "pokemon_mansion_maid_3"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_UNK_101_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 7,
-            "y": 0,
-            "id": "pokemon_mansion_unk_101_4"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAID_5",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 7,
-            "y": 0,
-            "id": "pokemon_mansion_maid_5"
+            "y": 0
         },
         {
+            "id": "POKEMON_MANSION_MAID_6",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,8 +104,7 @@
             "movement_range_z": 0,
             "x": 42,
             "z": 6,
-            "y": 0,
-            "id": "pokemon_mansion_maid_6"
+            "y": 0
         }
     ],
     "warp_events": [

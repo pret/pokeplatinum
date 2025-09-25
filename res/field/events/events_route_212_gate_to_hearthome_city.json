@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_COLLECTOR_0",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 1,
             "x": 4,
             "z": 4,
-            "y": 0,
-            "id": "route_212_gate_to_hearthome_city_collector_0"
+            "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_COWGIRL_1",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 7,
-            "y": 0,
-            "id": "route_212_gate_to_hearthome_city_cowgirl_1"
+            "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_REPORTER_2",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 2,
             "x": 5,
             "z": 12,
-            "y": 0,
-            "id": "route_212_gate_to_hearthome_city_reporter_2"
+            "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_CAMERAMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,8 +59,7 @@
             "movement_range_z": 2,
             "x": 4,
             "z": 12,
-            "y": 0,
-            "id": "route_212_gate_to_hearthome_city_cameraman_3"
+            "y": 0
         }
     ],
     "warp_events": [

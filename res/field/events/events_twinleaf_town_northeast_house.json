@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "TWINLEAF_TOWN_NORTHEAST_HOUSE_GUITARIST_0",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,8 +14,7 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 6,
-            "y": 0,
-            "id": "twinleaf_town_northeast_house_guitarist_0"
+            "y": 0
         }
     ],
     "warp_events": [

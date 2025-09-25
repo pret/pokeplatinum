@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SANDGEM_TOWN_YOUNGSTER_0",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 1,
             "x": 187,
             "z": 855,
-            "y": 1,
-            "id": "sandgem_town_youngster_0"
+            "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_POKEMON_BREEDER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 171,
             "z": 854,
-            "y": 1,
-            "id": "sandgem_town_pokemon_breeder_m_1"
+            "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 183,
             "z": 852,
-            "y": 1,
-            "id": "sandgem_town_pokemon_breeder_f_2"
+            "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_BARRY_3",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 842,
-            "y": 1,
-            "id": "sandgem_town_barry_3"
+            "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_UNK_101_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 845,
-            "y": 1,
-            "id": "sandgem_town_unk_101_4"
+            "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_5",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 165,
             "z": 843,
-            "y": 0,
-            "id": "sandgem_town_signboard_5"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_6",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 174,
             "z": 854,
-            "y": 0,
-            "id": "sandgem_town_signboard_6"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_MAP_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -120,10 +121,10 @@
             "movement_range_z": 0,
             "x": 182,
             "z": 854,
-            "y": 0,
-            "id": "sandgem_town_map_signpost_7"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_8",
             "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -138,10 +139,10 @@
             "movement_range_z": 0,
             "x": 179,
             "z": 866,
-            "y": 0,
-            "id": "sandgem_town_arrow_signpost_8"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_9",
             "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -156,10 +157,10 @@
             "movement_range_z": 0,
             "x": 183,
             "z": 825,
-            "y": 0,
-            "id": "sandgem_town_arrow_signpost_9"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_10",
             "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -174,10 +175,10 @@
             "movement_range_z": 0,
             "x": 151,
             "z": 843,
-            "y": 0,
-            "id": "sandgem_town_arrow_signpost_10"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SCHOOL_KID_M_11",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
@@ -190,10 +191,10 @@
             "movement_range_z": 0,
             "x": 153,
             "z": 847,
-            "y": 0,
-            "id": "sandgem_town_school_kid_m_11"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_12",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -205,10 +206,10 @@
             "movement_range_z": 0,
             "x": 180,
             "z": 842,
-            "y": 0,
-            "id": "sandgem_town_signboard_12"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_13",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -220,10 +221,10 @@
             "movement_range_z": 0,
             "x": 185,
             "z": 842,
-            "y": 0,
-            "id": "sandgem_town_signboard_13"
+            "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_PROF_ROWAN_14",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -235,8 +236,7 @@
             "movement_range_z": 0,
             "x": 168,
             "z": 842,
-            "y": 0,
-            "id": "sandgem_town_prof_rowan_14"
+            "y": 0
         }
     ],
     "warp_events": [

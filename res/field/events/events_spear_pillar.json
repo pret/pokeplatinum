@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SPEAR_PILLAR_GRUNT_F_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 48,
-            "y": 0,
-            "id": "spear_pillar_grunt_f_0"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_CYRUS_1",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 28,
-            "y": 0,
-            "id": "spear_pillar_cyrus_1"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_MARS_2",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 32,
-            "y": 0,
-            "id": "spear_pillar_mars_2"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_GRUNT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 32,
             "z": 48,
-            "y": 0,
-            "id": "spear_pillar_grunt_m_3"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_JUPITER_4",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 32,
-            "y": 0,
-            "id": "spear_pillar_jupiter_4"
+            "y": 0
         },
         {
+            "id": "SPEAR_PILLAR_BARRY_5",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,8 +89,7 @@
             "movement_range_z": 0,
             "x": 30,
             "z": 35,
-            "y": 0,
-            "id": "spear_pillar_barry_5"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_203_YOUNGSTER_0",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -15,10 +16,10 @@
             "movement_range_z": 0,
             "x": 234,
             "z": 757,
-            "y": 0,
-            "id": "route_203_youngster_0"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -32,10 +33,10 @@
             "movement_range_z": 0,
             "x": 204,
             "z": 750,
-            "y": 1,
-            "id": "route_203_youngster_1"
+            "y": 1
         },
         {
+            "id": "ROUTE_203_LASS_2",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -49,10 +50,10 @@
             "movement_range_z": 1,
             "x": 243,
             "z": 757,
-            "y": 0,
-            "id": "route_203_lass_2"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_3",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -66,10 +67,10 @@
             "movement_range_z": 0,
             "x": 222,
             "z": 756,
-            "y": 4,
-            "id": "route_203_youngster_3"
+            "y": 4
         },
         {
+            "id": "ROUTE_203_LASS_4",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -83,10 +84,10 @@
             "movement_range_z": 0,
             "x": 240,
             "z": 748,
-            "y": 1,
-            "id": "route_203_lass_4"
+            "y": 1
         },
         {
+            "id": "ROUTE_203_BARRY_5",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -98,10 +99,10 @@
             "movement_range_z": 0,
             "x": 201,
             "z": 757,
-            "y": 1,
-            "id": "route_203_barry_5"
+            "y": 1
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -115,10 +116,10 @@
             "movement_range_z": 0,
             "x": 200,
             "z": 756,
-            "y": 0,
-            "id": "route_203_arrow_signpost_6"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -132,10 +133,10 @@
             "movement_range_z": 0,
             "x": 244,
             "z": 747,
-            "y": 0,
-            "id": "route_203_arrow_signpost_7"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_8",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,10 +148,10 @@
             "movement_range_z": 0,
             "x": 238,
             "z": 752,
-            "y": 0,
-            "id": "route_203_trainer_tips_signpost_8"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -162,10 +163,10 @@
             "movement_range_z": 0,
             "x": 217,
             "z": 750,
-            "y": 0,
-            "id": "route_203_trainer_tips_signpost_9"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -177,10 +178,10 @@
             "movement_range_z": 0,
             "x": 222,
             "z": 745,
-            "y": 0,
-            "id": "route_203_pokeball_10"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -192,10 +193,10 @@
             "movement_range_z": 0,
             "x": 211,
             "z": 750,
-            "y": 0,
-            "id": "route_203_pokeball_11"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_LASS_12",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,10 +208,10 @@
             "movement_range_z": 0,
             "x": 206,
             "z": 757,
-            "y": 0,
-            "id": "route_203_lass_12"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_MAP_SIGNPOST_13",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -225,10 +226,10 @@
             "movement_range_z": 0,
             "x": 187,
             "z": 756,
-            "y": 0,
-            "id": "route_203_map_signpost_13"
+            "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -240,8 +241,7 @@
             "movement_range_z": 0,
             "x": 231,
             "z": 754,
-            "y": 0,
-            "id": "route_203_pokeball_14"
+            "y": 0
         }
     ],
     "warp_events": [

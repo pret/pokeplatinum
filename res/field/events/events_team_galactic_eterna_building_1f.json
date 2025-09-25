@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -22,10 +23,10 @@
             "movement_range_z": 1,
             "x": 3,
             "z": 11,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_grunt_m_0"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -37,10 +38,10 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 11,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_grunt_m_1"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -54,10 +55,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 8,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_grunt_m_2"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -71,10 +72,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 8,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_grunt_f_3"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,10 +87,10 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 15,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_grunt_m_4"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_LOOKER_5",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,10 +102,10 @@
             "movement_range_z": 1,
             "x": 14,
             "z": 15,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_looker_5"
+            "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_WALL_BLOCKING_ROTOMS_ROOM_6",
             "graphics_id": "OBJ_EVENT_GFX_WALL_BLOCKING_ROTOMS_ROOM",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,8 +117,7 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 5,
-            "y": 0,
-            "id": "team_galactic_eterna_building_1f_wall_blocking_rotoms_room_6"
+            "y": 0
         }
     ],
     "warp_events": [

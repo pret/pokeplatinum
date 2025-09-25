@@ -91,6 +91,7 @@
     ],
     "object_events": [
         {
+            "id": "GLOBAL_TERMINAL_1F_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -102,10 +103,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 3,
-            "y": 0,
-            "id": "global_terminal_1f_receptionist_0"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_COLLECTOR_1",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -117,10 +118,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 9,
-            "y": 0,
-            "id": "global_terminal_1f_collector_1"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_BUG_CATCHER_2",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -132,10 +133,10 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 7,
-            "y": 0,
-            "id": "global_terminal_1f_bug_catcher_2"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_GUITARIST_3",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,10 +148,10 @@
             "movement_range_z": 2,
             "x": 3,
             "z": 13,
-            "y": 0,
-            "id": "global_terminal_1f_guitarist_3"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_EXPERT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -162,10 +163,10 @@
             "movement_range_z": 1,
             "x": 24,
             "z": 7,
-            "y": 0,
-            "id": "global_terminal_1f_expert_m_4"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_ACE_TRAINER_M_5",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -177,10 +178,10 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 12,
-            "y": 0,
-            "id": "global_terminal_1f_ace_trainer_m_5"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_BEAUTY_6",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -192,10 +193,10 @@
             "movement_range_z": 1,
             "x": 12,
             "z": 7,
-            "y": 0,
-            "id": "global_terminal_1f_beauty_6"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_RECEPTIONIST_7",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,10 +208,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 15,
-            "y": 0,
-            "id": "global_terminal_1f_receptionist_7"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_RECEPTIONIST_8",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -222,10 +223,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 16,
-            "y": 0,
-            "id": "global_terminal_1f_receptionist_8"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_PICNICKER_9",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -237,10 +238,10 @@
             "movement_range_z": 0,
             "x": 25,
             "z": 12,
-            "y": 0,
-            "id": "global_terminal_1f_picnicker_9"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_YOUNGSTER_10",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -252,10 +253,10 @@
             "movement_range_z": 0,
             "x": 16,
             "z": 16,
-            "y": 0,
-            "id": "global_terminal_1f_youngster_10"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_POKEMON_BREEDER_F_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -267,10 +268,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 3,
-            "y": 0,
-            "id": "global_terminal_1f_pokemon_breeder_f_11"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_POKEMON_BREEDER_M_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -282,10 +283,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 13,
-            "y": 0,
-            "id": "global_terminal_1f_pokemon_breeder_m_12"
+            "y": 0
         },
         {
+            "id": "GLOBAL_TERMINAL_1F_BEAUTY_13",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -297,8 +298,7 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 10,
-            "y": 0,
-            "id": "global_terminal_1f_beauty_13"
+            "y": 0
         }
     ],
     "warp_events": [

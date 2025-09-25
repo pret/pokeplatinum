@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "VILLA_UNK_102_0",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -38,10 +39,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 6,
-            "y": 0,
-            "id": "villa_unk_102_0"
+            "y": 0
         },
         {
+            "id": "VILLA_BARRY_1",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,10 +54,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 3,
-            "y": 0,
-            "id": "villa_barry_1"
+            "y": 0
         },
         {
+            "id": "VILLA_PROF_ROWAN_2",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -68,10 +69,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 4,
-            "y": 0,
-            "id": "villa_prof_rowan_2"
+            "y": 0
         },
         {
+            "id": "VILLA_MOM_3",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,10 +84,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 4,
-            "y": 0,
-            "id": "villa_mom_3"
+            "y": 0
         },
         {
+            "id": "VILLA_ROARK_4",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -98,10 +99,10 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 10,
-            "y": 0,
-            "id": "villa_roark_4"
+            "y": 0
         },
         {
+            "id": "VILLA_GARDENIA_5",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -113,10 +114,10 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 6,
-            "y": 0,
-            "id": "villa_gardenia_5"
+            "y": 0
         },
         {
+            "id": "VILLA_FANTINA_6",
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,10 +129,10 @@
             "movement_range_z": 1,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "villa_fantina_6"
+            "y": 0
         },
         {
+            "id": "VILLA_MAYLENE_7",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -143,10 +144,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 6,
-            "y": 0,
-            "id": "villa_maylene_7"
+            "y": 0
         },
         {
+            "id": "VILLA_BRYON_8",
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -158,10 +159,10 @@
             "movement_range_z": 1,
             "x": 9,
             "z": 11,
-            "y": 0,
-            "id": "villa_bryon_8"
+            "y": 0
         },
         {
+            "id": "VILLA_CRASHER_WAKE_9",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -173,10 +174,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 4,
-            "y": 0,
-            "id": "villa_crasher_wake_9"
+            "y": 0
         },
         {
+            "id": "VILLA_CANDICE_10",
             "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,10 +189,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 6,
-            "y": 0,
-            "id": "villa_candice_10"
+            "y": 0
         },
         {
+            "id": "VILLA_VOLKNER_11",
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,10 +204,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 4,
-            "y": 0,
-            "id": "villa_volkner_11"
+            "y": 0
         },
         {
+            "id": "VILLA_CYNTHIA_12",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -218,10 +219,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 5,
-            "y": 0,
-            "id": "villa_cynthia_12"
+            "y": 0
         },
         {
+            "id": "VILLA_FLINT_13",
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -233,10 +234,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 4,
-            "y": 0,
-            "id": "villa_flint_13"
+            "y": 0
         },
         {
+            "id": "VILLA_SCHOOL_KID_M_14",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -248,10 +249,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 6,
-            "y": 0,
-            "id": "villa_school_kid_m_14"
+            "y": 0
         },
         {
+            "id": "VILLA_POKEMON_BREEDER_M_15",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -263,10 +264,10 @@
             "movement_range_z": 1,
             "x": 10,
             "z": 8,
-            "y": 0,
-            "id": "villa_pokemon_breeder_m_15"
+            "y": 0
         },
         {
+            "id": "VILLA_BOOK_16",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -278,8 +279,7 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 7,
-            "y": 0,
-            "id": "villa_book_16"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -59,6 +59,7 @@
     ],
     "object_events": [
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -70,10 +71,10 @@
             "movement_range_z": 0,
             "x": 43,
             "z": 30,
-            "y": 0,
-            "id": "stark_mountain_room_2_rock_smash_0"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_STRENGTH_BOULDER_1",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -85,10 +86,10 @@
             "movement_range_z": 0,
             "x": 20,
             "z": 30,
-            "y": 0,
-            "id": "stark_mountain_room_2_strength_boulder_1"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -100,10 +101,10 @@
             "movement_range_z": 0,
             "x": 29,
             "z": 12,
-            "y": 0,
-            "id": "stark_mountain_room_2_strength_boulder_2"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -115,10 +116,10 @@
             "movement_range_z": 0,
             "x": 53,
             "z": 52,
-            "y": 0,
-            "id": "stark_mountain_room_2_strength_boulder_3"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -130,10 +131,10 @@
             "movement_range_z": 0,
             "x": 60,
             "z": 53,
-            "y": 0,
-            "id": "stark_mountain_room_2_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -145,10 +146,10 @@
             "movement_range_z": 0,
             "x": 41,
             "z": 15,
-            "y": 0,
-            "id": "stark_mountain_room_2_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -160,10 +161,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 44,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_6"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -175,10 +176,10 @@
             "movement_range_z": 0,
             "x": 49,
             "z": 49,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_7"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -190,10 +191,10 @@
             "movement_range_z": 0,
             "x": 54,
             "z": 3,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_8"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -205,10 +206,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 76,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_9"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -220,10 +221,10 @@
             "movement_range_z": 0,
             "x": 56,
             "z": 77,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_10"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -235,10 +236,10 @@
             "movement_range_z": 0,
             "x": 69,
             "z": 55,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_11"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -250,10 +251,10 @@
             "movement_range_z": 0,
             "x": 92,
             "z": 3,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_12"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -265,10 +266,10 @@
             "movement_range_z": 0,
             "x": 38,
             "z": 44,
-            "y": 0,
-            "id": "stark_mountain_room_2_pokeball_13"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_BUCK_14",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -280,10 +281,10 @@
             "movement_range_z": 0,
             "x": 42,
             "z": 68,
-            "y": 0,
-            "id": "stark_mountain_room_2_buck_14"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_15",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -297,10 +298,10 @@
             "movement_range_z": 0,
             "x": 31,
             "z": 73,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_15"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_F_16",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -314,10 +315,10 @@
             "movement_range_z": 0,
             "x": 33,
             "z": 76,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_f_16"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_17",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -331,10 +332,10 @@
             "movement_range_z": 0,
             "x": 52,
             "z": 11,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_17"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_F_18",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -348,10 +349,10 @@
             "movement_range_z": 0,
             "x": 54,
             "z": 11,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_f_18"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_PSYCHIC_19",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -365,10 +366,10 @@
             "movement_range_z": 0,
             "x": 86,
             "z": 75,
-            "y": 0,
-            "id": "stark_mountain_room_2_psychic_19"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_PSYCHIC_20",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -382,10 +383,10 @@
             "movement_range_z": 0,
             "x": 83,
             "z": 75,
-            "y": 0,
-            "id": "stark_mountain_room_2_psychic_20"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_F_21",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -399,10 +400,10 @@
             "movement_range_z": 0,
             "x": 48,
             "z": 53,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_f_21"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_BLACK_BELT_22",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -416,10 +417,10 @@
             "movement_range_z": 0,
             "x": 48,
             "z": 57,
-            "y": 0,
-            "id": "stark_mountain_room_2_black_belt_22"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_23",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -433,10 +434,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 36,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_23"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_F_24",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -450,10 +451,10 @@
             "movement_range_z": 0,
             "x": 9,
             "z": 36,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_f_24"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_25",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -467,10 +468,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 22,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_25"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_BLACK_BELT_26",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -484,10 +485,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 22,
-            "y": 0,
-            "id": "stark_mountain_room_2_black_belt_26"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_27",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -501,10 +502,10 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 64,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_27"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_F_28",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -518,10 +519,10 @@
             "movement_range_z": 0,
             "x": 77,
             "z": 66,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_f_28"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_EXPERT_M_29",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -535,10 +536,10 @@
             "movement_range_z": 0,
             "x": 62,
             "z": 10,
-            "y": 0,
-            "id": "stark_mountain_room_2_expert_m_29"
+            "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_M_30",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -552,8 +553,7 @@
             "movement_range_z": 0,
             "x": 67,
             "z": 12,
-            "y": 0,
-            "id": "stark_mountain_room_2_ace_trainer_m_30"
+            "y": 0
         }
     ],
     "warp_events": [

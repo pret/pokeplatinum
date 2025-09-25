@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FLOAROMA_TOWN_POKECENTER_2F_TEALA_0",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 4,
-            "y": 0,
-            "id": "floaroma_town_pokecenter_2f_teala_0"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_TOWN_POKECENTER_2F_TEALA_1",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 4,
-            "y": 0,
-            "id": "floaroma_town_pokecenter_2f_teala_1"
+            "y": 0
         },
         {
+            "id": "FLOAROMA_TOWN_POKECENTER_2F_TEALA_2",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,8 +44,7 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 4,
-            "y": 0,
-            "id": "floaroma_town_pokecenter_2f_teala_2"
+            "y": 0
         }
     ],
     "warp_events": [

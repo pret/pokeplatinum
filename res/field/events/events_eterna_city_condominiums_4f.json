@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ETERNA_CITY_CONDOMINIUMS_4F_EXPERT_F_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,8 +14,7 @@
             "movement_range_z": 0,
             "x": 18,
             "z": 8,
-            "y": 0,
-            "id": "eterna_city_condominiums_4f_expert_f_0"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CELESTIC_TOWN_SOUTHWEST_HOUSE_HAPPINY_0",
             "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 2,
             "z": 5,
-            "y": 0,
-            "id": "celestic_town_southwest_house_happiny_0"
+            "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_SOUTHWEST_HOUSE_BLACK_BELT_1",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,8 +29,7 @@
             "movement_range_z": 1,
             "x": 7,
             "z": 6,
-            "y": 0,
-            "id": "celestic_town_southwest_house_black_belt_1"
+            "y": 0
         }
     ],
     "warp_events": [

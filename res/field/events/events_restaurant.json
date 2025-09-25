@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "RESTAURANT_GENTLEMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_gentleman_0"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_SOCIALITE_1",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_socialite_1"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_RICH_BOY_2",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 8,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_rich_boy_2"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_LADY_3",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_lady_3"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_REPORTER_4",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 8,
-            "y": 0,
-            "id": "restaurant_reporter_4"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_CAMERAMAN_5",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 8,
-            "y": 0,
-            "id": "restaurant_cameraman_5"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_ARTIST_6",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_artist_6"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_RICH_BOY_7",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -118,10 +119,10 @@
             "movement_range_z": 0,
             "x": 4,
             "z": 11,
-            "y": 0,
-            "id": "restaurant_rich_boy_7"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_BEAUTY_8",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -133,10 +134,10 @@
             "movement_range_z": 0,
             "x": 6,
             "z": 11,
-            "y": 0,
-            "id": "restaurant_beauty_8"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_BEAUTY_9",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -148,10 +149,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 3,
-            "y": 0,
-            "id": "restaurant_beauty_9"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_POKEMON_BREEDER_F_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -163,10 +164,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 6,
-            "y": 0,
-            "id": "restaurant_pokemon_breeder_f_10"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_EXPERT_M_11",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -178,10 +179,10 @@
             "movement_range_z": 0,
             "x": 1,
             "z": 8,
-            "y": 0,
-            "id": "restaurant_expert_m_11"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_LASS_12",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -193,10 +194,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 8,
-            "y": 0,
-            "id": "restaurant_lass_12"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_POKEFAN_F_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -208,10 +209,10 @@
             "movement_range_z": 0,
             "x": 13,
             "z": 6,
-            "y": 0,
-            "id": "restaurant_pokefan_f_13"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_SCIENTIST_M_14",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -223,10 +224,10 @@
             "movement_range_z": 0,
             "x": 12,
             "z": 11,
-            "y": 0,
-            "id": "restaurant_scientist_m_14"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_SCHOOL_KID_M_15",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -238,10 +239,10 @@
             "movement_range_z": 0,
             "x": 11,
             "z": 6,
-            "y": 0,
-            "id": "restaurant_school_kid_m_15"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_POKEMON_BREEDER_F_16",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -253,10 +254,10 @@
             "movement_range_z": 0,
             "x": 14,
             "z": 11,
-            "y": 0,
-            "id": "restaurant_pokemon_breeder_f_16"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_COLLECTOR_17",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -268,10 +269,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 6,
-            "y": 0,
-            "id": "restaurant_collector_17"
+            "y": 0
         },
         {
+            "id": "RESTAURANT_WAITER_18",
             "graphics_id": "OBJ_EVENT_GFX_WAITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,8 +284,7 @@
             "movement_range_z": 0,
             "x": 10,
             "z": 12,
-            "y": 0,
-            "id": "restaurant_waiter_18"
+            "y": 0
         }
     ],
     "warp_events": [

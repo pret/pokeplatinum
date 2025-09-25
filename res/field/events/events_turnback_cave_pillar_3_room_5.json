@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 7,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_0"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,10 +29,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 3,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_1"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,10 +44,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 15,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_2"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,10 +59,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 17,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_3"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,10 +74,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 7,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_4"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,10 +89,10 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 11,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_5"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,10 +104,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 11,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_6"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,10 +119,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 5,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_7"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,10 +134,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 9,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_8"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -148,10 +149,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 15,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_9"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,10 +164,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 7,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_10"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,10 +179,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 15,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_11"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_12",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,10 +194,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 3,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_12"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_13",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -208,10 +209,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 19,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_13"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_14",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -223,10 +224,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 15,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_14"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_15",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -238,10 +239,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 19,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_15"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_16",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -253,10 +254,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 19,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_16"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_17",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -268,10 +269,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 13,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_17"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_18",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,10 +284,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 9,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_18"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_19",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,10 +299,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 19,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_19"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_20",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -313,10 +314,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 13,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_20"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_21",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -328,10 +329,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 3,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_21"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_22",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -343,10 +344,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 7,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_22"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_23",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -358,10 +359,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 9,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_23"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_24",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -373,10 +374,10 @@
             "movement_range_z": 0,
             "x": 19,
             "z": 13,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_24"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_25",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -388,10 +389,10 @@
             "movement_range_z": 0,
             "x": 17,
             "z": 17,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_25"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_26",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -403,10 +404,10 @@
             "movement_range_z": 0,
             "x": 15,
             "z": 3,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_26"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_27",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -418,10 +419,10 @@
             "movement_range_z": 0,
             "x": 7,
             "z": 9,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_27"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_28",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -433,10 +434,10 @@
             "movement_range_z": 0,
             "x": 3,
             "z": 13,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_28"
+            "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_3_ROOM_5_ROCK_SMASH_29",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -448,8 +449,7 @@
             "movement_range_z": 0,
             "x": 5,
             "z": 5,
-            "y": 0,
-            "id": "turnback_cave_pillar_3_room_5_rock_smash_29"
+            "y": 0
         }
     ],
     "warp_events": [

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "JUBILIFE_CITY_CONDOMINIUMS_2F_BUG_CATCHER_0",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -13,10 +14,10 @@
             "movement_range_z": 1,
             "x": 11,
             "z": 11,
-            "y": 1,
-            "id": "jubilife_city_condominiums_2f_bug_catcher_0"
+            "y": 1
         },
         {
+            "id": "JUBILIFE_CITY_CONDOMINIUMS_2F_POKEMON_BREEDER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,8 +29,7 @@
             "movement_range_z": 1,
             "x": 8,
             "z": 8,
-            "y": 1,
-            "id": "jubilife_city_condominiums_2f_pokemon_breeder_m_1"
+            "y": 1
         }
     ],
     "warp_events": [
