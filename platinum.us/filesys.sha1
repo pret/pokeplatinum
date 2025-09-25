@@ -253,7 +253,7 @@ a2eca9df316b9cad191ace16d08a90603966e892 *res/prebuilt/graphic/worldtrade.narc
 7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/pokemon/pokefoot.narc
 21bd9b9e352c828de0a93979589f7ea487c846d6 *res/prebuilt/data/mmodel/mmodel.narc
 70d483c69d9f83dc52de91f2451c6cdfba6a046c *res/prebuilt/data/mmodel/fldeff.narc
-5de52d02105237dc02fb4c87c9b8378a5da93217 *res/prebuilt/wazaeffect/effectdata/ball_particle.narc
+5de52d02105237dc02fb4c87c9b8378a5da93217 *res/battle/particles/pokeballs/ball_particle.narc
 bd80949f0ab84fe4b4963a41063088b2e2d6df92 *res/battle/particles/waza_particle.narc
 e484a4ea105e16977b9f39b965aaad014a4ec923 *res/field/events/zone_event.narc
 bda5c8e66cfa121c2d518d4388bd6f742746cda0 *res/prebuilt/fielddata/encountdata/d_enc_data.narc

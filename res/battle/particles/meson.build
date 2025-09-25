@@ -1,3 +1,4 @@
+subdir('pokeballs')
 
 waza_particle_files = files(
     'hit_1.spa',
@@ -510,3 +511,4 @@ waza_particle_narc = custom_target(waza_particle_narc_name,
 )
 
 nitrofs_files += waza_particle_narc
+naix_headers += waza_particle_narc[1]
