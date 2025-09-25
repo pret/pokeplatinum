@@ -61,7 +61,7 @@ void FreeImage(struct Image *image);
 void ReadGbaPalette(char *path, struct Palette *palette);
 void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIndex, bool inverted, bool convertTo8Bpp);
 void WriteGbaPalette(char *path, struct Palette *palette);
-void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, bool inverted, bool convertTo4Bpp);
+void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp);
 void ReadNtrCell(char *path, struct JsonToCellOptions *options);
 void WriteNtrCell(char *path, struct JsonToCellOptions *options);
 void WriteNtrScreen(char *path, struct JsonToScreenOptions *options);

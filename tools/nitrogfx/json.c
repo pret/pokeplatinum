@@ -47,12 +47,14 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
     }
 
     cJSON *labelBool = cJSON_GetObjectItemCaseSensitive(json, "labelEnabled");
+    cJSON *dontPadKbecBool = cJSON_GetObjectItemCaseSensitive(json, "dontPadKbec");
     cJSON *vramTransferBool = cJSON_GetObjectItemCaseSensitive(json, "vramTransferEnabled");
     cJSON *extended = cJSON_GetObjectItemCaseSensitive(json, "extended");
     cJSON *cellCount = cJSON_GetObjectItemCaseSensitive(json, "cellCount");
     cJSON *mappingType = cJSON_GetObjectItemCaseSensitive(json, "mappingType");
 
     options->labelEnabled = GetBool(labelBool);
+    options->dontPadKbec = GetBool(dontPadKbecBool);
     options->vramTransferEnabled = GetBool(vramTransferBool);
     options->extended = GetBool(extended);
     options->cellCount = GetInt(cellCount);
@@ -230,6 +232,7 @@ char *GetNCERJson(struct JsonToCellOptions *options)
     cJSON *ncer = cJSON_CreateObject();
 
     cJSON_AddBoolToObject(ncer, "labelEnabled", options->labelEnabled);
+    cJSON_AddBoolToObject(ncer, "dontPadKbec", options->dontPadKbec);
     cJSON_AddBoolToObject(ncer, "extended", options->extended);
     cJSON_AddBoolToObject(ncer, "vramTransferEnabled", options->vramTransferEnabled);
     cJSON_AddNumberToObject(ncer, "cellCount", options->cellCount);

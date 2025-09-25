@@ -26,6 +26,16 @@ ncgr_lz_gen = generator(nitrogfx_exe,
     output: '@BASENAME@.NCGR.lz',
 )
 
+ncgr_cell_lz_gen = generator(nitrogfx_exe,
+    arguments: [
+        '@INPUT@',
+        '@OUTPUT@',
+        '-cell', '@CURRENT_SOURCE_DIR@/@BASENAME@_cell.json',
+        '@EXTRA_ARGS@',
+    ],
+    output: '@BASENAME@.NCGR.lz',
+)
+
 nclr_gen = generator(nitrogfx_exe,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
     output: '@BASENAME@.NCLR',

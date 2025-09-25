@@ -1,0 +1,17 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 394
+    PlayPannedSoundEffect SEQ_SE_DP_W377, BATTLE_SOUND_PAN_RIGHT
+    CreateEmitter 0, 0, 20
+    Delay 30
+    Func_SetBgGrayscale 1
+    Func_FadeBattlerSprite 8, 0, 1, 0, 10, 15
+    Func_FadeBattlerSprite 16, 0, 1, 0, 10, 15
+    WaitForAnimTasks
+    Func_SetBgGrayscale 0
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    End
