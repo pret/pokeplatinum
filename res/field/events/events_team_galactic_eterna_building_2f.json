@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_2F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_2F_GRUNT_F_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_2F_GRUNT_F_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_2F_GRUNT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_2F_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

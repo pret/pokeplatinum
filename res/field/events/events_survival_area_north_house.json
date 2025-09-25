@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "SURVIVAL_AREA_NORTH_HOUSE_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_NORTH_HOUSE_PSYCHIC_1",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

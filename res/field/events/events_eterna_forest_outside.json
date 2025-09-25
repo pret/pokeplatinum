@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ETERNA_FOREST_OUTSIDE_UNK_100_0",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_UNK_100_1",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_UNK_100_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -50,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_UNK_100_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -66,6 +70,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_CUT_TREE_4",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -80,6 +85,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_CUT_TREE_5",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,6 +100,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_CUT_TREE_6",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -108,6 +115,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_CUT_TREE_7",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,6 +130,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -136,6 +145,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -150,6 +160,7 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_OUTSIDE_POKEMON_BREEDER_F_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,3 +178,4 @@
     "warp_events": [],
     "coord_events": []
 }
+

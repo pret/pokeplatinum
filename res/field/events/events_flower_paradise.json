@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FLOWER_PARADISE_SHAYMIN_0",
             "graphics_id": "OBJ_EVENT_GFX_SHAYMIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

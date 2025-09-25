@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "VEILSTONE_CITY_NORTHWEST_HOUSE_ACE_TRAINER_F_0",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_NORTHWEST_HOUSE_OLD_WOMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_NORTHWEST_HOUSE_BUNEARY_2",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

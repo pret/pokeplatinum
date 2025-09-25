@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_218_GUITARIST_0",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_SAILOR_1",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -34,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_2",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -48,6 +51,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -62,6 +66,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_ARROW_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -78,6 +83,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_ARROW_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,6 +100,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -108,6 +115,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,6 +130,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_8",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -138,6 +147,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -154,6 +164,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -170,6 +181,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_11",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,6 +198,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_VENT_12",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -200,6 +213,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_VENT_13",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -214,6 +228,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_GUITARIST_14",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -228,6 +243,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_CLEFAIRY_15",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -242,6 +258,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_CLEFAIRY_16",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -256,6 +273,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_PIKACHU_17",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -270,6 +288,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_PIKACHU_18",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -284,6 +303,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_19",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,6 +318,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_20",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -340,3 +361,4 @@
     ],
     "coord_events": []
 }
+

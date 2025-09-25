@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_IDOL_1",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_BEAUTY_2",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_BLACK_BELT_3",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

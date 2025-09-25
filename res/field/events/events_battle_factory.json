@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_FACTORY_FRONTIER_SINGLE_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_FRONTIER_MULTI_ATTENDANT_1",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_YOUNGSTER_2",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_BEAUTY_3",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_POLICEMAN_4",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,6 +86,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_SAILOR_5",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -95,6 +101,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_POKEMON_BREEDER_F_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -109,6 +116,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_CLOWN_7",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -123,6 +131,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FACTORY_LADY_8",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_ELEVATOR_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

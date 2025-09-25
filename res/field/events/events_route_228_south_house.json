@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_228_SOUTH_HOUSE_GENTLEMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

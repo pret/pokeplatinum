@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_SATURN_0",
             "graphics_id": "OBJ_EVENT_GFX_SATURN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,6 +50,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_AZELF_1",
             "graphics_id": "OBJ_EVENT_GFX_AZELF",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -63,6 +65,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_MESPRIT_2",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,6 +80,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_UXIE_3",
             "graphics_id": "OBJ_EVENT_GFX_UXIE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -91,6 +95,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_CHARON_4",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

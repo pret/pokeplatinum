@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_ACE_TRAINER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -46,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_SIGNBOARD_3",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -60,6 +64,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_LOOKER_4",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -74,6 +79,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_BUCK_5",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,6 +94,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_GRUNT_M_6",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -102,6 +109,7 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_OUTSIDE_GRUNT_M_7",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

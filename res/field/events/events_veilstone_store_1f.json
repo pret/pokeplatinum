@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_1F_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_1F_MIDDLE_AGED_MAN_1",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_1F_LADY_2",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,6 +64,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_1F_SOCIALITE_3",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,6 +79,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_1F_CASHIER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -89,6 +94,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_1F_CASHIER_M_5",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -43,6 +43,7 @@
     ],
     "object_events": [
         {
+            "id": "ROTOMS_ROOM_ROTOM_HEAT_0",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_HEAT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -57,6 +58,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_FAN_1",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,6 +73,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_FROST_2",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FROST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -85,6 +88,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_WASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_WASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -99,6 +103,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_MOW_4",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_MOW",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -113,6 +118,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_BOOK_5",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -127,6 +133,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_PROF_ROWAN_6",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -141,6 +148,7 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_BOOK_7",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

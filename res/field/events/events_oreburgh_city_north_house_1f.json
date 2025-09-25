@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_CITY_NORTH_HOUSE_1F_EXPERT_F_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_NORTH_HOUSE_1F_SCHOOL_KID_F_1",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_NORTH_HOUSE_1F_POKEMON_BREEDER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",

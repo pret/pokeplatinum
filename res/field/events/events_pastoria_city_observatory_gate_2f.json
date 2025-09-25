@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_2F_ACE_TRAINER_F_0",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,6 +42,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_2F_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -55,6 +57,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_2F_POKEFAN_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,6 +72,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_2F_PICNICKER_3",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

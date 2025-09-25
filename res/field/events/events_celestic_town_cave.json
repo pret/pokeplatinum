@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "CELESTIC_TOWN_CAVE_EXPERT_F_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_CAVE_CYRUS_1",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_CAVE_CYNTHIA_2",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CELESTIC_TOWN_SOUTHWEST_HOUSE_HAPPINY_0",
             "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_SOUTHWEST_HOUSE_BLACK_BELT_1",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "NEWMOON_ISLAND_FOREST_DARKRAI_0",
             "graphics_id": "OBJ_EVENT_GFX_DARKRAI",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

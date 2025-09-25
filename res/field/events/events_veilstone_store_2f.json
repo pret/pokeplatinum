@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_2F_LADY_0",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_RECEPTIONIST_3",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,6 +86,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_CASHIER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -95,6 +101,7 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_6",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

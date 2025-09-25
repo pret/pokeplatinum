@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FIGHT_AREA_MIDDLE_HOUSE_POKEFAN_M_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_MIDDLE_HOUSE_SCHOOL_KID_M_1",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_MIDDLE_HOUSE_YOUNGSTER_2",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

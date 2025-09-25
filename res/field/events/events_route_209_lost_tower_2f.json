@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_209_LOST_TOWER_2F_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_209_LOST_TOWER_2F_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",

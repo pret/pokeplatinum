@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "VERITY_LAKEFRONT_TRAINER_TIPS_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

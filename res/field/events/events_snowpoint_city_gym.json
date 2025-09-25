@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "SNOWPOINT_CITY_GYM_CANDICE_0",
             "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_GYM_GUIDE_1",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_2",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -63,6 +66,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_3",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -79,6 +83,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_4",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -95,6 +100,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_5",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -111,6 +117,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_6",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -127,6 +134,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_7",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -143,6 +151,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_8",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,6 +166,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,6 +181,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -185,6 +196,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_11",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -199,6 +211,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -213,6 +226,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_13",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -227,6 +241,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_14",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -241,6 +256,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_15",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -255,6 +271,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_16",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -269,6 +286,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_17",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,6 +301,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_18",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -297,6 +316,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_19",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,6 +331,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_20",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -325,6 +346,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_21",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -339,6 +361,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_22",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -353,6 +376,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_23",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -367,6 +391,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_24",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -381,6 +406,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_25",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -395,6 +421,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_GYM_UNK_118_26",
             "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -419,3 +446,4 @@
     ],
     "coord_events": []
 }
+

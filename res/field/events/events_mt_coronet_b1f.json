@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,6 +50,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -63,6 +65,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,6 +80,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -91,6 +95,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,6 +110,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -119,6 +125,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,6 +140,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,6 +155,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,6 +170,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -175,6 +185,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -189,6 +200,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,6 +215,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_12",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -217,6 +230,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_13",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -231,6 +245,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_14",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -245,6 +260,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_ROCK_SMASH_15",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -259,6 +275,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_STRENGTH_BOULDER_16",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -273,6 +290,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_STRENGTH_BOULDER_17",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -287,6 +305,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_18",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -301,6 +320,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_19",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -315,6 +335,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_20",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -329,6 +350,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_21",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -343,6 +365,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_22",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -357,6 +380,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_B1F_POKEBALL_23",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -387,3 +411,4 @@
     ],
     "coord_events": []
 }
+

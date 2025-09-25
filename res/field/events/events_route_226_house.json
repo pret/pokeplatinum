@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_226_HOUSE_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -99,6 +99,7 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_213_SWIMMER_M_0",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -115,6 +116,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SWIMMER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -131,6 +133,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SWIMMER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -147,6 +150,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SWIMMER_F_3",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
@@ -164,6 +168,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_TUBER_M_4",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -180,6 +185,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_TUBER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -196,6 +202,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_BEAUTY_6",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -212,6 +219,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_FISHERMAN_7",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -226,6 +234,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SAILOR_8",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -242,6 +251,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -256,6 +266,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -270,6 +281,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -284,6 +296,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_12",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,6 +311,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_13",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -312,6 +326,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ROCK_SMASH_14",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -326,6 +341,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_ARROW_SIGNPOST_15",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -342,6 +358,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SIGNBOARD_16",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -356,6 +373,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_SIGNBOARD_17",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -370,6 +388,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_UNK_100_18",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -386,6 +405,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_UNK_100_19",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -402,6 +422,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_UNK_100_20",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -418,6 +439,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_UNK_100_21",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -434,6 +456,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_22",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -448,6 +471,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_23",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -462,6 +486,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_24",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -476,6 +501,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_25",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -490,6 +516,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_26",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -504,6 +531,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_27",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -518,6 +546,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_POKEBALL_28",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -532,6 +561,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_FISHERMAN_29",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -546,6 +576,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_GRUNT_M_30",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -560,6 +591,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_BEAUTY_31",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -574,6 +606,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_COLLECTOR_32",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -588,6 +621,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_213_LOOKER_33",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -654,3 +688,4 @@
     ],
     "coord_events": []
 }
+

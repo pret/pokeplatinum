@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_5F_GRUNT_F_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -35,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_5F_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",

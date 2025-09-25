@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_203_YOUNGSTER_0",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -34,6 +36,7 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_LASS_2",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -50,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_3",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -66,6 +70,7 @@
             "y": 4
         },
         {
+            "id": "ROUTE_203_LASS_4",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -82,6 +87,7 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_BARRY_5",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -96,6 +102,7 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -112,6 +119,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,6 +136,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_8",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -142,6 +151,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,6 +166,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -170,6 +181,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -184,6 +196,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_LASS_12",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -198,7 +211,8 @@
             "y": 0
         },
         {
-            "local_id": 9,
+            "id": "ROUTE_203_MAP_SIGNPOST_13",
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -215,6 +229,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -250,3 +265,4 @@
         }
     ]
 }
+

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_B1F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

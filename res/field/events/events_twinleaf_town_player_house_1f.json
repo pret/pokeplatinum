@@ -67,6 +67,7 @@
     ],
     "object_events": [
         {
+            "id": "TWINLEAF_TOWN_PLAYER_HOUSE_1F_MOM_0",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,6 +82,7 @@
             "y": 1
         },
         {
+            "id": "TWINLEAF_TOWN_PLAYER_HOUSE_1F_POKEFAN_F_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

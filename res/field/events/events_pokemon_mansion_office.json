@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "POKEMON_MANSION_OFFICE_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "POKEMON_MANSION_OFFICE_MIDDLE_AGED_MAN_1",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "POKEMON_MANSION_OFFICE_OLD_MAN_2",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,6 +64,7 @@
             "y": 0
         },
         {
+            "id": "POKEMON_MANSION_OFFICE_POLICEMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_4F_CYRUS_0",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,6 +42,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_GALACTIC_HQ_DOOR_1",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -55,6 +57,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_GALACTIC_HQ_DOOR_2",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,6 +72,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_BOLLARD_3",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,6 +87,7 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_BOLLARD_4",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

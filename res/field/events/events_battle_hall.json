@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_FRONTIER_MULTI_ATTENDANT_1",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_MAID_2",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_POKEFAN_F_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_TWIN_4",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,6 +86,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_PACHIRISU_5",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -95,6 +101,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_065_6",
             "graphics_id": "OBJ_EVENT_GFX_UNK_065",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -109,6 +116,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_HIKER_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -123,6 +131,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_EXPERT_M_8",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,6 +146,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_IDOL_9",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -151,6 +161,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_REPORTER_10",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -165,6 +176,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_BUG_CATCHER_11",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -179,6 +191,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_104_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,6 +206,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_UNK_102_13",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,6 +221,7 @@
             "y": 0
         },
         {
+            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_14",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -243,3 +258,4 @@
     ],
     "coord_events": []
 }
+

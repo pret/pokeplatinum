@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_BEAUTY_1",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_PIKACHU_2",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_REPORTER_3",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

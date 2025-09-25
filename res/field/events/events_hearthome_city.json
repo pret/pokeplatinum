@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_FISHERMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_POKEFAN_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_BABY_IN_PRAM_3",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_BREEDER_M_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,6 +86,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_POKEFAN_F_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -95,6 +101,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_ARTIST_6",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -109,6 +116,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_BATTLE_GIRL_7",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -123,6 +131,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_BATTLE_GIRL_8",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,6 +146,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_HIKER_9",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -151,6 +161,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_PACHIRISU_10",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -165,6 +176,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_ARROW_SIGNPOST_11",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -181,6 +193,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_ARROW_SIGNPOST_12",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,6 +210,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_SIGNBOARD_13",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -211,6 +225,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_SIGNBOARD_14",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -225,6 +240,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_SIGNBOARD_15",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -239,6 +255,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_SIGNBOARD_16",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -253,6 +270,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_SIGNPOST_17",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -267,6 +285,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_MAP_SIGNPOST_18",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,6 +302,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEFAN_M_19",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -297,6 +317,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_HIKER_20",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,6 +332,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_HIKER_21",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -325,6 +347,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_BOLLARD_22",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -339,6 +362,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BOLLARD_23",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -353,6 +377,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BOLLARD_24",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -367,6 +392,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BOLLARD_25",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -381,6 +407,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_BREEDER_F_26",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -395,6 +422,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BLACK_BELT_27",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -409,6 +437,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BABY_IN_PRAM_28",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -423,6 +452,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_POKEMON_BREEDER_M_29",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -437,6 +467,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_SIGNBOARD_30",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -451,6 +482,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_BUNEARY_31",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -465,6 +497,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_IDOL_32",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -479,6 +512,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_GYM_GUIDE_33",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -493,6 +527,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_ARTIST_34",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -507,6 +542,7 @@
             "y": 7
         },
         {
+            "id": "HEARTHOME_CITY_BLACK_BELT_35",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -656,3 +692,4 @@
         }
     ]
 }
+

@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA_ALTERED_0",
             "graphics_id": "OBJ_EVENT_GFX_GIRATINA_ALTERED",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,6 +50,7 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_GIRATINA_ROOM_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

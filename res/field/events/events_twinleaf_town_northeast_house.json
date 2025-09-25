@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "TWINLEAF_TOWN_NORTHEAST_HOUSE_GUITARIST_0",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
