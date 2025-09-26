@@ -1116,7 +1116,6 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
 
     int bufferSize = numTiles * tileSize;
     unsigned char *pixelBuffer = malloc(bufferSize);
-    memset(pixelBuffer, 0, bufferSize);
 
     if (pixelBuffer == NULL)
         FATAL_ERROR("Failed to allocate memory for pixels.\n");
