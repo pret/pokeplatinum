@@ -215,7 +215,7 @@ static void ConvertFromTiles4BppCell(unsigned char *src, unsigned char *dest, in
     }
 }
 
-static void ConvertScanned4Bpp(unsigned char *src, unsigned char *dest, int charDataSize, bool invertColours)
+static void ConvertScanned4Bpp(unsigned char *src, unsigned char *dest, int charDataSize, bool invertColours, bool convertTo8Bpp, int palIndex)
 {
     for (int i = 0; i < charDataSize; i++)
     {
@@ -228,7 +228,15 @@ static void ConvertScanned4Bpp(unsigned char *src, unsigned char *dest, int char
             rightPixel = 15 - rightPixel;
         }
 
-        dest[i] = (leftPixel << 4) | rightPixel;
+        if (convertTo8Bpp)
+        {
+            *dest++ = ((palIndex - 1) << 4) | leftPixel;
+            *dest++ = ((palIndex - 1) << 4) | rightPixel;
+        }
+        else
+        {
+            *dest++ = (leftPixel << 4) | rightPixel;
+        }
     }
 }
 
@@ -305,17 +313,32 @@ static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, in
     }
 }
 
-static void ConvertScanned8Bpp(unsigned char *src, unsigned char *dest, int charDataSize, bool invertColours)
+static void ConvertScanned8Bpp(unsigned char *src, unsigned char *dest, int charDataSize, bool invertColors, bool convertTo4Bpp)
 {
+    charDataSize *= convertTo4Bpp + 1;
     for (int i = 0; i < charDataSize; i++)
     {
-        unsigned char srcPixel = src[i];
+        if (convertTo4Bpp)
+        {
+            unsigned char leftPixel = src[i++] & 0xF;
+            unsigned char rightPixel = src[i] & 0xF;
 
-        if (invertColours) {
-            srcPixel = 255 - srcPixel;
+            if (invertColors) {
+                leftPixel = 15 - leftPixel;
+                rightPixel = 15 - rightPixel;
+            }
+
+            *dest++ = (rightPixel << 4) | leftPixel;
         }
+        else
+        {
+            unsigned char srcPixel = src[i];
 
-        dest[i] = srcPixel;
+            if (invertColors) {
+                srcPixel = 255 - srcPixel;
+            }
+            *dest++ = srcPixel;
+        }
     }
 }
 
@@ -574,13 +597,13 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
         }
     }
 
-    if (bitDepth == 4 && (scanned || !convertTo8Bpp))
+    if (bitDepth == 4 && !convertTo8Bpp)
     {
         image->palette.numColors = 16;
     }
 
     int tileSize = bitDepth * 8; // number of bytes per tile
-    if (bitDepth == 4 && convertTo8Bpp && !scanned)
+    if (bitDepth == 4 && convertTo8Bpp)
         tileSize *= 2;
 
     if (tilesWide == 0) {
@@ -605,7 +628,7 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
 
     image->width = tilesWide * 8;
     image->height = tilesTall * 8;
-    image->bitDepth = !scanned && convertTo8Bpp ? 8 : bitDepth;
+    image->bitDepth = convertTo8Bpp ? 8 : bitDepth;
     image->pixels = calloc(tilesWide * tilesTall, tileSize);
 
     if (image->pixels == NULL)
@@ -624,10 +647,10 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
         switch (bitDepth)
         {
             case 4:
-                ConvertScanned4Bpp(imageData, image->pixels, charDataSize, invertColors);
+                ConvertScanned4Bpp(imageData, image->pixels, charDataSize, invertColors, convertTo8Bpp, palIndex);
                 break;
             case 8:
-                ConvertScanned8Bpp(imageData, image->pixels, charDataSize, invertColors);
+                ConvertScanned8Bpp(imageData, image->pixels, charDataSize, invertColors, false);
                 break;
         }
     }
@@ -1093,6 +1116,7 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
 
     int bufferSize = numTiles * tileSize;
     unsigned char *pixelBuffer = malloc(bufferSize);
+    memset(pixelBuffer, 0, bufferSize);
 
     if (pixelBuffer == NULL)
         FATAL_ERROR("Failed to allocate memory for pixels.\n");
@@ -1104,10 +1128,10 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
         switch (bitDepth)
         {
             case 4:
-                ConvertScanned4Bpp(image->pixels, pixelBuffer, bufferSize, invertColors);
+                ConvertScanned4Bpp(image->pixels, pixelBuffer, bufferSize, invertColors, false, 0);
                 break;
             case 8:
-                ConvertScanned8Bpp(image->pixels, pixelBuffer, bufferSize, invertColors);
+                ConvertScanned8Bpp(image->pixels, pixelBuffer, bufferSize, invertColors, convertTo4Bpp);
                 break;
         }
     }
