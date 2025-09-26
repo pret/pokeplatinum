@@ -29,6 +29,7 @@
 #include "strbuf.h"
 #include "text.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 #define EXITSEARCH (1 << 1)
@@ -552,8 +553,8 @@ static void ClearScreen(PokedexSearchDisplay *searchDisplay, PokedexGraphicData 
 
 static void ov21_021D8B8C(PokedexGraphicData **param0, const PokedexSearchSettings *searchSettings, enum HeapID heapID)
 {
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 28, (*param0)->bgConfig, 3, 0, 0, 1, heapID);
-    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 5, 0, 0, 32, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, scroll_main_background_NCGR_lz, (*param0)->bgConfig, 3, 0, 0, TRUE, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, search_NCLR, 0, 0, 32, heapID);
 }
 
 static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapID heapID, int param4)
@@ -561,12 +562,12 @@ static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicDat
     int mapIndex;
 
     if (param4 == 1) {
-        mapIndex = 42;
+        mapIndex = search_national_NSCR_lz;
     } else {
-        mapIndex = 40;
+        mapIndex = search_sinnoh_NSCR_lz;
     }
 
-    searchDisplay->tileMap = PokedexGraphics_GetGraphicNarcScreenData(*param1, mapIndex, 1, &searchDisplay->screenData, heapID);
+    searchDisplay->tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*param1, mapIndex, TRUE, &searchDisplay->screenData, heapID);
 }
 
 static void FreeDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
@@ -589,18 +590,18 @@ static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraphi
     PokedexGraphicData *v0 = *param1;
     NARC *pokedexGraphics = PokedexGraphics_GetNARC(v0);
 
-    searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], pokedexGraphics, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_CHAR], pokedexGraphics, search_body_shapes_NCGR_lz, TRUE, search_body_shapes_NCGR_lz + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR]);
     SpriteResource_ReleaseData(searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR]);
 
-    searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], pokedexGraphics, 3, 0, 3 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, 12, heapID);
+    searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_PLTT], pokedexGraphics, buttons_NCLR, FALSE, buttons_NCLR + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, 12, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT]);
     SpriteResource_ReleaseData(searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT]);
 
-    searchDisplay->searchGraphics[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], pokedexGraphics, 79, 1, 79 + 15000, SPRITE_RESOURCE_CELL, heapID);
-    searchDisplay->searchGraphics[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], pokedexGraphics, 80, 1, 80 + 15000, SPRITE_RESOURCE_ANIM, heapID);
+    searchDisplay->searchGraphics[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_CELL], pokedexGraphics, search_body_shapes_cell_NCER_lz, TRUE, search_body_shapes_cell_NCER_lz + 15000, SPRITE_RESOURCE_CELL, heapID);
+    searchDisplay->searchGraphics[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexGraphics, search_body_shapes_anim_NANR_lz, TRUE, search_body_shapes_anim_NANR_lz + 15000, SPRITE_RESOURCE_ANIM, heapID);
 }
 
 static void FreeSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
@@ -610,10 +611,10 @@ static void FreeSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraph
     SpriteTransfer_ResetCharTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT]);
 
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[1], searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], searchDisplay->searchGraphics[SPRITE_RESOURCE_CELL]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], searchDisplay->searchGraphics[SPRITE_RESOURCE_ANIM]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_CHAR], searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_PLTT], searchDisplay->searchGraphics[SPRITE_RESOURCE_PLTT]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_CELL], searchDisplay->searchGraphics[SPRITE_RESOURCE_CELL]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_ANIM], searchDisplay->searchGraphics[SPRITE_RESOURCE_ANIM]);
 }
 
 static void InitCellActors(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapID heapID)
@@ -622,7 +623,7 @@ static void InitCellActors(PokedexSearchDisplay *searchDisplay, PokedexGraphicDa
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
 
-    SpriteResourcesHeader_Init(&v0, 81 + 15000, 3 + 15000, 79 + 15000, 80 + 15000, 0xffffffff, 0xffffffff, 0, 2, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, search_body_shapes_NCGR_lz + 15000, buttons_NCLR + 15000, search_body_shapes_cell_NCER_lz + 15000, search_body_shapes_anim_NANR_lz + 15000, 0xffffffff, 0xffffffff, FALSE, 2, v2->spriteResourceCollection[SPRITE_RESOURCE_CHAR], v2->spriteResourceCollection[SPRITE_RESOURCE_PLTT], v2->spriteResourceCollection[SPRITE_RESOURCE_CELL], v2->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -760,7 +761,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     int y;
     int mapIndex;
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 43, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, search_filter_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -768,25 +769,25 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     switch (filterMethod) {
     case FM_ORDER:
         y = 6;
-        mapIndex = 44;
+        mapIndex = search_filter_order_NSCR_lz;
         break;
     case FM_NAME:
         y = 9;
-        mapIndex = 45;
+        mapIndex = search_filter_name_NSCR_lz;
         break;
     case FM_TYPE:
         y = 12;
-        mapIndex = 46;
+        mapIndex = search_filter_type_NSCR_lz;
         break;
     case FM_FORM:
         y = 17;
-        mapIndex = 47;
+        mapIndex = search_filter_form_NSCR_lz;
         break;
     default:
         break;
     }
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, mapIndex, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, mapIndex, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 6, y, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);

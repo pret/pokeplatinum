@@ -29,6 +29,8 @@
 #include "touch_screen_actions.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
+
 typedef struct {
     PokedexScreenManager *unk_00;
     PokedexSortData *unk_04;
@@ -381,9 +383,9 @@ static void ov21_021DE13C(PokedexGraphicData **param0, int heapID)
     void *v0;
     NNSG2dScreenData *v1;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 34, (*param0)->bgConfig, 6, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, entry_sub_NCGR_lz, (*param0)->bgConfig, 6, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 69, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, area_sub_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -395,13 +397,13 @@ static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, PokedexGraphicData **
     PokedexGraphicData *v0 = *param1;
     NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
-    param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, time_day_icons_NCGR_lz, TRUE, time_day_icons_NCGR_lz + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_04[0]);
     SpriteResource_ReleaseData(param0->unk_04[0]);
 
-    param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 103, 1, 103 + 6000, 2, param2);
-    param0->unk_04[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 104, 1, 104 + 6000, 3, param2);
+    param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, time_day_icons_cell_NCER_lz, TRUE, time_day_icons_cell_NCER_lz + 6000, 2, param2);
+    param0->unk_04[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, time_day_icons_anim_NANR_lz, TRUE, time_day_icons_anim_NANR_lz + 6000, 3, param2);
 }
 
 static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, PokedexGraphicData **param1)
@@ -421,7 +423,7 @@ static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, PokedexGraphicData **
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
 
-    SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, time_day_icons_NCGR_lz + 6000, info_NCLR + 2100, time_day_icons_cell_NCER_lz + 6000, time_day_icons_anim_NANR_lz + 6000, 0xffffffff, 0xffffffff, FALSE, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -604,7 +606,7 @@ static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, PokedexGraphicData **
                 Heap_Free(param0->unk_14);
             }
 
-            param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(*param1, 15 + param0->unk_18, &param0->unk_20, heapID);
+            param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(*param1, area_morning_NCLR + param0->unk_18, &param0->unk_20, heapID);
             param0->unk_28 = 0;
 
             if (param0->unk_18 > v0) {
@@ -620,7 +622,7 @@ static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, PokedexGraphicData **
                 Heap_Free(param0->unk_14);
             }
 
-            param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(*param1, 15 + param0->unk_1C, &param0->unk_20, heapID);
+            param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(*param1, area_morning_NCLR + param0->unk_1C, &param0->unk_20, heapID);
             param0->unk_28 = 0;
 
             if (param0->unk_18 < param0->unk_1C) {

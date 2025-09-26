@@ -31,6 +31,7 @@
 #include "unk_02012744.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {
@@ -469,7 +470,7 @@ static void ov21_021E894C(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
 {
     int v0;
 
-    PokedexGraphics_LoadGraphicNarcPaletteData(*param1, 9, 4, 4 * 32, 32, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param1, background_sub_2_NCLR, 4, 4 * 32, 32, heapID);
     ov21_021E8B34(param0);
     ov21_021E8BDC(param0, param1);
     ov21_021E8A74(param0, param1);
@@ -486,9 +487,9 @@ static void ov21_021E898C(PokedexGraphicData **param0, int heapID)
     void *v0;
     NNSG2dScreenData *v1;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 34, (*param0)->bgConfig, 6, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, entry_sub_NCGR_lz, (*param0)->bgConfig, 6, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 58, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, forms_sub_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -500,13 +501,13 @@ static void ov21_021E89F4(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
     PokedexGraphicData *v0 = *param1;
     NARC *v1 = PokedexGraphics_GetNARC(v0);
 
-    param0->unk_08[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 102, 1, 102 + 13000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_08[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, size_buttons_pressed_NCGR_lz, TRUE, size_buttons_pressed_NCGR_lz + 13000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_08[0]);
     SpriteResource_ReleaseData(param0->unk_08[0]);
 
-    param0->unk_08[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 100, 1, 100 + 13000, 2, param2);
-    param0->unk_08[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 101, 1, 101 + 13000, 3, param2);
+    param0->unk_08[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, size_buttons_pressed_cell_NCER_lz, TRUE, size_buttons_pressed_cell_NCER_lz + 13000, 2, param2);
+    param0->unk_08[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, size_buttons_pressed_anim_NANR_lz, TRUE, size_buttons_pressed_anim_NANR_lz + 13000, 3, param2);
 }
 
 static void ov21_021E8A74(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **param1)
@@ -526,7 +527,7 @@ static void ov21_021E8AA8(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
     PokedexGraphicData *v2 = *param1;
     int v3;
 
-    SpriteResourcesHeader_Init(&v0, 102 + 13000, 11 + 2100, 100 + 13000, 101 + 13000, 0xffffffff, 0xffffffff, 0, 2, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, size_buttons_pressed_NCGR_lz + 13000, info_NCLR + 2100, size_buttons_pressed_cell_NCER_lz + 13000, size_buttons_pressed_anim_NANR_lz + 13000, 0xffffffff, 0xffffffff, FALSE, 2, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -563,7 +564,7 @@ static void ov21_021E8B40(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
 
     GF_ASSERT(param0->unk_00[0]);
 
-    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 11 + 2100);
+    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], info_NCLR + 2100);
 
     displayBox.textMan = v3->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -614,21 +615,21 @@ static void ov21_021E8BE8(PokedexGraphicData **param0, Sprite *param1, PokedexTe
     case 1:
         if (*param6 != 0) {
             v3 = 1;
-            v4 = 9;
+            v4 = background_sub_2_NCLR;
             *param6 = 0;
         }
         break;
     case 2:
         if (*param6 != 1) {
             v3 = 1;
-            v4 = 10;
+            v4 = background_sub_3_NCLR;
             *param6 = 1;
         }
         break;
     case 3:
         if (*param6 != 2) {
             v3 = 1;
-            v4 = 8;
+            v4 = background_sub_1_NCLR;
             *param6 = 2;
         }
         break;

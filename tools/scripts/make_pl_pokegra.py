@@ -51,7 +51,8 @@ for i, subdir in enumerate(SPECIES_DIRS):
                     args.nitrogfx,
                     source_file,
                     target_file,
-                    '-scanfronttoback'
+                    '-encodefronttoback',
+                    '-scan',
                 ])
             else:
                 subprocess.run(['touch', target_file])

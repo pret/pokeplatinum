@@ -44,7 +44,8 @@ for i in range(args.sprite_entries):
         args.nitrogfx,
         infile,
         target,
-        '-scanfronttoback'
+        '-encodefronttoback',
+        '-scan',
     ])
 
 # The next batch of files should all be palettes
@@ -72,13 +73,15 @@ subprocess.run([
     args.nitrogfx,
     sub_back,
     private_dir / f'pl_otherpoke_{i:04}.NCGR',
-    '-scanfronttoback'
+    '-encodefronttoback',
+    '-scan',
 ])
 subprocess.run([
     args.nitrogfx,
     sub_front,
     private_dir / f'pl_otherpoke_{(i+1):04}.NCGR',
-    '-scanfronttoback'
+    '-encodefronttoback',
+    '-scan',
 ])
 subprocess.run([
     args.nitrogfx,
@@ -92,7 +95,8 @@ subprocess.run([
     args.nitrogfx,
     shadows,
     private_dir / f'pokemon_shadows.NCGR',
-    '-scanfronttoback'
+    '-encodefronttoback',
+    '-scan',
 ])
 subprocess.run([
     args.nitrogfx,
