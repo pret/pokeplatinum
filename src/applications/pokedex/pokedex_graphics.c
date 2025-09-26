@@ -498,7 +498,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
     }
 }
 
-void *PokedexGraphics_GetGraphicNarcTileMapData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapID heapID)
+void *PokedexGraphics_GetGraphicNarcTilemapData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapID heapID)
 {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 

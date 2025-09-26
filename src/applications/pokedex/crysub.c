@@ -839,14 +839,14 @@ static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapID
     NNSG2dScreenData *screenData;
 
     PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, entry_sub_NCGR_lz, (*graphicData)->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, heapID);
-    void *tileMap = PokedexGraphics_GetGraphicNarcTileMapData(*graphicData, cry_sub_NSCR_lz, TRUE, &screenData, heapID);
+    void *tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*graphicData, cry_sub_NSCR_lz, TRUE, &screenData, heapID);
 
     Bg_LoadToTilemapRect((*graphicData)->bgConfig, BG_LAYER_SUB_2, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tileMap);
     Bg_ScheduleTilemapTransfer((*graphicData)->bgConfig, BG_LAYER_SUB_2);
 
     PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, cry_wheel_NCGR_lz, (*graphicData)->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, heapID);
-    tileMap = PokedexGraphics_GetGraphicNarcTileMapData(*graphicData, cry_wheel_NSCR_lz, TRUE, &screenData, heapID);
+    tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*graphicData, cry_wheel_NSCR_lz, TRUE, &screenData, heapID);
 
     Bg_LoadToTilemapRect((*graphicData)->bgConfig, BG_LAYER_SUB_3, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tileMap);

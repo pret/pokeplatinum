@@ -526,7 +526,7 @@ static void ov21_021E789C(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
 
     PokedexGraphics_LoadGraphicNarcCharacterData(param0->unk_00, entry_main_NCGR_lz, param0->unk_00->bgConfig, 3, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, weight_check_main_NSCR_lz, TRUE, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, weight_check_main_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);

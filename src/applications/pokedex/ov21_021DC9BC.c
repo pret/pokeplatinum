@@ -494,34 +494,34 @@ static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_
 
     PokedexGraphics_LoadGraphicNarcCharacterData(param0->unk_00, entry_main_NCGR_lz, param0->unk_00->bgConfig, 3, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, area_map_NSCR_lz, TRUE, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, area_map_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
 
     if (param1->unk_00->newmoonIslandVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, map_newmoon_island_NSCR_lz, TRUE, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_newmoon_island_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 13, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->seabreakPathVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, map_seabreak_path_NSCR_lz, TRUE, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_seabreak_path_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 28, 7, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->fullmoonIslandVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, map_fullmoon_island_NSCR_lz, TRUE, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_fullmoon_island_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 11, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->springPathVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcTileMapData(param0->unk_00, map_spring_path_NSCR_lz, TRUE, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_spring_path_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 25, 16, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);

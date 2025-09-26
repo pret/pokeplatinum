@@ -567,7 +567,7 @@ static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicDat
         mapIndex = search_sinnoh_NSCR_lz;
     }
 
-    searchDisplay->tileMap = PokedexGraphics_GetGraphicNarcTileMapData(*param1, mapIndex, TRUE, &searchDisplay->screenData, heapID);
+    searchDisplay->tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*param1, mapIndex, TRUE, &searchDisplay->screenData, heapID);
 }
 
 static void FreeDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
@@ -761,7 +761,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     int y;
     int mapIndex;
 
-    v0 = PokedexGraphics_GetGraphicNarcTileMapData(*param0, search_filter_NSCR_lz, TRUE, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, search_filter_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -787,7 +787,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
         break;
     }
 
-    v0 = PokedexGraphics_GetGraphicNarcTileMapData(*param0, mapIndex, TRUE, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, mapIndex, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 6, y, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
