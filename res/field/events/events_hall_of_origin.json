@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HALL_OF_ORIGIN_ARCEUS_0",
             "graphics_id": "OBJ_EVENT_GFX_ARCEUS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

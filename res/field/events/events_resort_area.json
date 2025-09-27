@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "RESORT_AREA_MAP_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -35,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_SIGNBOARD_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,6 +51,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -63,6 +66,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_BEAUTY_3",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,6 +81,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_BEAUTY_4",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -91,6 +96,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_BLACK_BELT_5",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,6 +111,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_ACE_TRAINER_F_6",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -119,6 +126,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_UNK_100_7",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -135,6 +143,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_UNK_100_8",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -151,6 +160,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,6 +177,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -183,6 +194,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_SWIMMER_M_11",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,6 +209,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_SIGNBOARD_12",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -211,6 +224,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_SCHOOL_KID_M_13",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -225,6 +239,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_PROF_ROWAN_14",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -239,6 +254,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_GARDENIA_15",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -253,6 +269,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_BRYON_16",
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -267,6 +284,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_ROARK_17",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -281,6 +299,7 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_MAYLENE_18",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -334,3 +353,4 @@
         }
     ]
 }
+

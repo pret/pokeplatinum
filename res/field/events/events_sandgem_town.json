@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SANDGEM_TOWN_YOUNGSTER_0",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_POKEMON_BREEDER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_BARRY_3",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,6 +62,7 @@
             "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_UNK_101_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -72,6 +77,7 @@
             "y": 1
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_5",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,6 +92,7 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_6",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -100,6 +107,7 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_MAP_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,7 +124,8 @@
             "y": 0
         },
         {
-            "local_id": 2,
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_8",
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,7 +142,8 @@
             "y": 0
         },
         {
-            "local_id": 4,
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_9",
+            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -150,7 +160,8 @@
             "y": 0
         },
         {
-            "local_id": 4,
+            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_10",
+            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,7 +178,8 @@
             "y": 0
         },
         {
-            "local_id": 9,
+            "id": "SANDGEM_TOWN_SCHOOL_KID_M_11",
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,6 +194,7 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_12",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -196,6 +209,7 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_SIGNBOARD_13",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -210,6 +224,7 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_PROF_ROWAN_14",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -269,3 +284,4 @@
         }
     ]
 }
+

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "AMITY_SQUARE_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_RECEPTIONIST_1",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,6 +62,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -72,6 +77,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_UNK_101_5",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,6 +92,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEMON_BREEDER_M_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -100,6 +107,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_DRIFLOON_7",
             "graphics_id": "OBJ_EVENT_GFX_DRIFLOON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -114,6 +122,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_HAPPINY_8",
             "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,6 +137,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEMON_BREEDER_F_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -142,6 +152,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_COLLECTOR_10",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,6 +167,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_PIKACHU_11",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -170,6 +182,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_TWIN_12",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -184,6 +197,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_CLEFAIRY_13",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -198,6 +212,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,6 +227,7 @@
             "y": 0
         },
         {
+            "id": "AMITY_SQUARE_COLLECTOR_15",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -565,3 +581,4 @@
         }
     ]
 }
+

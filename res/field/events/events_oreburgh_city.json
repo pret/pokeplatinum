@@ -35,6 +35,7 @@
     ],
     "object_events": [
         {
+            "id": "OREBURGH_CITY_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,6 +50,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_SCHOOL_KID_F_1",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -63,6 +65,7 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_POKEFAN_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,6 +80,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_BARRY_3",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -91,6 +95,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_YOUNGSTER_4",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,6 +110,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_MAP_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -121,6 +127,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_GYM_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -135,6 +142,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_SIGNBOARD_7",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -149,6 +157,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_SIGNBOARD_8",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,6 +172,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_MAP_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -179,6 +189,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_10",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,6 +204,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_11",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,6 +219,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_12",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -221,6 +234,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_13",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -235,6 +249,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_14",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -249,6 +264,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_WORKER_15",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -263,6 +279,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_WORKER_16",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -277,6 +294,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_CAMPER_17",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -291,6 +309,7 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_WORKER_18",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -305,6 +324,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_WORKER_19",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -319,6 +339,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_GUITARIST_20",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -333,6 +354,7 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_BATTLE_GIRL_21",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -347,6 +369,7 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_22",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -361,6 +384,7 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_POKEBALL_23",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -375,6 +399,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_POKEBALL_24",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -389,6 +414,7 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_25",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -403,6 +429,7 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_26",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -417,6 +444,7 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_BATTLE_GIRL_27",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -552,3 +580,4 @@
         }
     ]
 }
+
