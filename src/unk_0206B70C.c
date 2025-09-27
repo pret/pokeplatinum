@@ -27,29 +27,42 @@
 #include "trainer_info.h"
 #include "vars_flags.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-} UnkStruct_0206B878;
+typedef struct TownMapDescriptionFlags {
+    u8 areaDescriptionFlagType;
+    u8 areaDescriptionFlag;
+    u8 landmarkDescriptionFlagType;
+    u8 landmarkDescriptionFlag;
+} TownMapDescriptionFlags;
 
-static void sub_0206B878(FieldSystem *fieldSystem, TownMapContext *param1, const char *param2);
+typedef struct TownMapDistWorldMatrixOffset {
+    int mapHeader;
+    int x;
+    int y;
+    int z;
+} TownMapDistWorldMapOffset;
 
-static const int Unk_020EFA98[10][4] = {
-    { 0x23D, 0x15, 0x120, 0xA },
-    { 0x23E, 0x0, 0x100, 0x23 },
-    { 0x23F, 0xF, 0xE0, 0x0 },
-    { 0x240, 0x2F, 0xC0, 0x15 },
-    { 0x241, 0x39, 0xA0, 0x22 },
-    { 0x243, 0x39, 0x80, 0x22 },
-    { 0x244, 0x38, 0x72, 0x26 },
-    { 0x245, 0x4A, 0x40, 0x20 },
-    { 0x246, 0x0, 0x0, 0x0 },
-    { 0x247, 0x46, 0x40, 0x1E }
+enum TownMapDescriptionFlagType {
+    TOWN_MAP_DESC_FLAG_NONE = 0,
+    TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL,
+    TOWN_MAP_DESC_FLAG_GENERAL,
 };
 
-static const u8 Unk_020EFA84[20] = {
+static void PerformTownMapDescriptionsChecks(FieldSystem *fieldSystem, TownMapContext *ctx, const char *flagsFilePath);
+
+static const TownMapDistWorldMapOffset sDistWorldMapOffsets[10] = {
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_1F, .x = 21, .y = 288, .z = 10 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B1F, .x = 0, .y = 256, .z = 35 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B2F, .x = 15, .y = 224, .z = 0 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B3F, .x = 47, .y = 192, .z = 21 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B4F, .x = 57, .y = 160, .z = 34 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B5F, .x = 57, .y = 128, .z = 34 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B6F, .x = 56, .y = 114, .z = 38 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_B7F, .x = 74, .y = 64, .z = 32 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, .x = 0, .y = 0, .z = 0 },
+    { .mapHeader = MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, .x = 70, .y = 64, .z = 30 }
+};
+
+static const u8 sTownMapFlyLocationUnlockFlags[NUM_FLY_LOCATIONS] = {
     FIRST_ARRIVAL_TWINLEAF_TOWN,
     FIRST_ARRIVAL_SANDGEM_TOWN,
     FIRST_ARRIVAL_FLOAROMA_TOWN,
@@ -72,135 +85,132 @@ static const u8 Unk_020EFA84[20] = {
     FIRST_ARRIVAL_POKEMON_LEAGUE,
 };
 
-void sub_0206B70C(FieldSystem *fieldSystem, TownMapContext *param1, int param2)
+void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int townMapMode)
 {
-    TrainerInfo *v0;
-    int v1 = 0, v2 = 0, v3 = 0;
-    int x, z, v6;
-    OverworldMapHistory *v7;
-    VarsFlags *v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    // forward declarations required for matching
+    TrainerInfo *trainerInfo;
+    int i = 0, locHistIdx = 0;
+    int x, z, currentMap;
+    OverworldMapHistory *mapHistory;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *v10 = FieldOverworldState_GetExitLocation(fieldState);
+    Location *exitLocation = FieldOverworldState_GetExitLocation(fieldState);
 
-    memset(param1, 0, sizeof(TownMapContext));
+    memset(ctx, 0, sizeof(TownMapContext));
 
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    int v11 = 9;
-    Location *location = FieldOverworldState_GetPlayerLocation(fieldState);
+    int j = NELEMS(sDistWorldMapOffsets) - 1;
+    Location *playerLocation = FieldOverworldState_GetPlayerLocation(fieldState);
 
-    v6 = location->mapId;
+    currentMap = playerLocation->mapId;
 
-    while (v11 >= 0) {
-        if (v6 == Unk_020EFA98[v11][0]) {
-            x -= Unk_020EFA98[v11][1];
-            z -= Unk_020EFA98[v11][3];
+    while (j >= 0) {
+        if (currentMap == sDistWorldMapOffsets[j].mapHeader) {
+            x -= sDistWorldMapOffsets[j].x;
+            z -= sDistWorldMapOffsets[j].z;
             break;
         }
 
-        v11--;
+        j--;
     }
 
-    v6 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x / 32, z / 32);
+    currentMap = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x / MAP_TILES_COUNT_X, z / MAP_TILES_COUNT_Z);
 
-    if (MapHeader_IsOnMainMatrix(v6)) {
-        param1->playerX = x;
-        param1->playerY = z;
+    if (MapHeader_IsOnMainMatrix(currentMap)) {
+        ctx->playerX = x;
+        ctx->playerY = z;
     } else {
-        param1->playerX = v10->x;
-        param1->playerY = v10->z;
+        ctx->playerX = exitLocation->x;
+        ctx->playerY = exitLocation->z;
     }
 
-    v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-    param1->trainerGender = TrainerInfo_Gender(v0);
-    v7 = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    v2 = (v7->historyPointer - 2 + 6) % 6;
+    trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+    ctx->trainerGender = TrainerInfo_Gender(trainerInfo);
+    mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    for (v1 = 0; v1 < 5; v1++) {
-        param1->locationHistory[v1].x = v7->items[v2].mapX;
-        param1->locationHistory[v1].y = v7->items[v2].mapZ;
-        param1->locationHistory[v1].isSet = v7->items[v2].isSet;
+    // The history pointer points to the position of the first entry but we
+    // want the second to last entry (the last entry being the current position)
+    locHistIdx = (mapHistory->historyPointer - 2 + OVERWORLD_MAP_HISTORY_LENGTH) % OVERWORLD_MAP_HISTORY_LENGTH;
 
-        if (v7->items[v2].faceDirection > 3) {
-            param1->locationHistory[v1].faceDirection = 3 + 1;
+    for (i = 0; i < TOWN_MAP_HISTORY_LENGTH; i++) {
+        ctx->locationHistory[i].x = mapHistory->items[locHistIdx].mapX;
+        ctx->locationHistory[i].y = mapHistory->items[locHistIdx].mapZ;
+        ctx->locationHistory[i].isSet = mapHistory->items[locHistIdx].isSet;
+
+        if (mapHistory->items[locHistIdx].faceDirection > 3) {
+            ctx->locationHistory[i].faceDirection = 3 + 1;
         } else {
-            param1->locationHistory[v1].faceDirection = v7->items[v2].faceDirection;
+            ctx->locationHistory[i].faceDirection = mapHistory->items[locHistIdx].faceDirection;
         }
 
-        v2 = (v2 - 1 + 6) % 6;
-
-        if (param1->locationHistory[v1].isSet) {
-            v3++;
-        }
+        locHistIdx = (locHistIdx - 1 + OVERWORLD_MAP_HISTORY_LENGTH) % OVERWORLD_MAP_HISTORY_LENGTH;
     }
 
-    for (v1 = 0; v1 < HIDDEN_LOCATION_MAX; v1++) {
-        if (SystemVars_CheckHiddenLocation(v8, v1)) {
-            param1->unlockedHiddenLocations |= (0x1 << v1);
+    for (i = 0; i < HIDDEN_LOCATION_MAX; i++) {
+        if (SystemVars_CheckHiddenLocation(varsFlags, i)) {
+            ctx->unlockedHiddenLocations |= (1 << i);
         }
     }
 
-    for (v1 = 0; v1 < 20; v1++) {
-        param1->unlockedFlyDestination[v1] = SystemFlag_HandleFirstArrivalToZone(v8, HANDLE_FLAG_CHECK, Unk_020EFA84[v1]);
+    for (i = 0; i < NUM_FLY_LOCATIONS; i++) {
+        ctx->unlockedFlyDestination[i] = SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, sTownMapFlyLocationUnlockFlags[i]);
     }
 
-    sub_0206B878(fieldSystem, param1, "data/tmap_flags.dat");
+    PerformTownMapDescriptionsChecks(fieldSystem, ctx, "data/tmap_flags.dat");
 
-    param1->townMapMode = param2;
+    ctx->townMapMode = townMapMode;
 }
 
-static void sub_0206B878(FieldSystem *fieldSystem, TownMapContext *param1, const char *param2)
+static void PerformTownMapDescriptionsChecks(FieldSystem *fieldSystem, TownMapContext *ctx, const char *flagsFilePath)
 {
-    FSFile v0;
-    int v1, i;
-    int v3;
-    UnkStruct_0206B878 *v4;
-    TownMapLocationDescCheckResults *v5;
-    VarsFlags *v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    FS_InitFile(&v0);
+    FSFile flagsFile;
+    FS_InitFile(&flagsFile);
 
-    if (!FS_OpenFile(&v0, param2)) {
-        GF_ASSERT(0);
+    if (!FS_OpenFile(&flagsFile, flagsFilePath)) {
+        GF_ASSERT(FALSE);
         return;
     }
 
-    v1 = FS_ReadFile(&v0, &v3, 4);
-    GF_ASSERT(v1 >= 0);
+    int numFlags;
+    int readLength = FS_ReadFile(&flagsFile, &numFlags, sizeof(int));
+    GF_ASSERT(readLength >= 0);
 
-    v4 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206B878));
-    MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
+    TownMapDescriptionFlags *descFlags = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapDescriptionFlags));
+    MI_CpuClear8(descFlags, sizeof(TownMapDescriptionFlags));
 
-    param1->numDescChecks = v3;
+    ctx->numDescChecks = numFlags;
 
-    for (i = 0; i < v3; i++) {
-        v5 = &(param1->descCheckResults[i]);
-        v1 = FS_ReadFile(&v0, v4, sizeof(UnkStruct_0206B878));
+    for (int i = 0; i < numFlags; i++) {
+        TownMapLocationDescCheckResults *checksResult = &(ctx->descCheckResults[i]);
+        readLength = FS_ReadFile(&flagsFile, descFlags, sizeof(TownMapDescriptionFlags));
 
-        switch (v4->unk_00) {
-        case 1:
-            v5->descPart1CheckResult = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_01);
-            v5->descPart1HasCheck = TRUE;
+        switch (descFlags->areaDescriptionFlagType) {
+        case TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL:
+            checksResult->areaDescCheckResult = SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, descFlags->areaDescriptionFlag);
+            checksResult->areaDescHasCheck = TRUE;
             break;
-        case 2:
-            v5->descPart1CheckResult = FieldSystem_CheckFlag(fieldSystem, v4->unk_01);
-            v5->descPart1HasCheck = TRUE;
+        case TOWN_MAP_DESC_FLAG_GENERAL:
+            checksResult->areaDescCheckResult = FieldSystem_CheckFlag(fieldSystem, descFlags->areaDescriptionFlag);
+            checksResult->areaDescHasCheck = TRUE;
             break;
         }
 
-        switch (v4->unk_02) {
-        case 1:
-            v5->descPart2CheckResult = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_03);
-            v5->descPart2HasCheck = TRUE;
+        switch (descFlags->landmarkDescriptionFlagType) {
+        case TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL:
+            checksResult->landmarkCheckResult = SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, descFlags->landmarkDescriptionFlag);
+            checksResult->landmarkDescHasCheck = TRUE;
             break;
-        case 2:
-            v5->descPart2CheckResult = FieldSystem_CheckFlag(fieldSystem, v4->unk_03);
-            v5->descPart2HasCheck = TRUE;
+        case TOWN_MAP_DESC_FLAG_GENERAL:
+            checksResult->landmarkCheckResult = FieldSystem_CheckFlag(fieldSystem, descFlags->landmarkDescriptionFlag);
+            checksResult->landmarkDescHasCheck = TRUE;
             break;
         }
     }
 
-    (void)FS_CloseFile(&v0);
-    Heap_Free(v4);
+    (void)FS_CloseFile(&flagsFile);
+    Heap_Free(descFlags);
 }

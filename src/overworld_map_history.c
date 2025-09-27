@@ -7,7 +7,7 @@
 
 void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
 {
-    for (u8 i = 0; i < 6; i++) {
+    for (u8 i = 0; i < OVERWORLD_MAP_HISTORY_LENGTH; i++) {
         mapHistory->items[i].mapX = 0;
         mapHistory->items[i].mapZ = 0;
         mapHistory->items[i].faceDirection = 0;
@@ -29,7 +29,7 @@ void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int
         mapHistory->items[mapHistory->historyPointer].mapZ = mapZ;
         mapHistory->items[mapHistory->historyPointer].faceDirection = -1;
         mapHistory->items[mapHistory->historyPointer].isSet = TRUE;
-        mapHistory->historyPointer = (mapHistory->historyPointer + 1) % 6;
+        mapHistory->historyPointer = (mapHistory->historyPointer + 1) % OVERWORLD_MAP_HISTORY_LENGTH;
     }
 }
 
@@ -46,6 +46,6 @@ void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int
 
         mapHistory->currentMapX = mapX;
         mapHistory->currentMapZ = mapZ;
-        mapHistory->historyPointer = (mapHistory->historyPointer + 1) % 6;
+        mapHistory->historyPointer = (mapHistory->historyPointer + 1) % OVERWORLD_MAP_HISTORY_LENGTH;
     }
 }

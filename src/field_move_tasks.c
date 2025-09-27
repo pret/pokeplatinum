@@ -349,7 +349,7 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(fieldSystem, menu->taskData, 1);
+    TownMapContext_Init(fieldSystem, menu->taskData, 1);
     sub_0203D884(fieldSystem, menu->taskData);
     sub_0203B674(menu, sub_0203C434);
 }

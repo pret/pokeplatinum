@@ -52,7 +52,7 @@ static void UpdateGraphics(TownMapAppData *param0);
 static int InitAppResources(TownMapAppData *param0);
 static int DisplayGraphics(TownMapAppData *param0);
 static int CheckAppEnterScreenFadeDone(TownMapAppData *param0);
-static int ov80_021D13A0(TownMapAppData *param0);
+static int HandlePlayerInput(TownMapAppData *param0);
 static int CheckAppExitScreenFadeDone(TownMapAppData *param0);
 static int CleanupAppResources(TownMapAppData *param0);
 int TownMapApp_CreateGraphicsMan(TownMapAppData *param0);
@@ -60,7 +60,7 @@ int TownMapApp_LoadGraphics(TownMapAppData *param0);
 int TownMapApp_FadeInBothScreens(TownMapAppData *param0);
 int TownMapApp_FadeOutBothScreens(TownMapAppData *param0);
 int TownMapApp_HandleInput_Item(TownMapAppData *param0);
-int ov80_021D16F8(TownMapAppData *param0);
+int TownMapApp_UpdateBottomScreen(TownMapAppData *param0);
 int TownMapApp_UpdateFlyTargetSprites(TownMapAppData *param0);
 int TownMapApp_FreeGraphics(TownMapAppData *param0);
 int TownMapApp_UpdateDisplayedLocationInfo(TownMapAppData *param0);
@@ -76,7 +76,7 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInBothScreens,
         .fadeScreensAppExit = TownMapApp_FadeOutBothScreens,
         .handleInput = TownMapApp_HandleInput_Item,
-        .unk_14 = ov80_021D16F8,
+        .unk_14 = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
@@ -87,7 +87,7 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInBothScreens,
         .fadeScreensAppExit = TownMapApp_FadeOutBothScreens,
         .handleInput = TownMap_HandleInput_Fly,
-        .unk_14 = ov80_021D16F8,
+        .unk_14 = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
@@ -98,7 +98,7 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInTopScreen,
         .fadeScreensAppExit = TownMapApp_FadeOutTopScreen,
         .handleInput = TownMap_HandleInput_WallMap,
-        .unk_14 = ov80_021D16F8,
+        .unk_14 = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
@@ -146,7 +146,7 @@ int TownMap_Main(ApplicationManager *appMan, int *unused)
         UpdateGraphics(v0);
         break;
     case TOWN_MAP_APP_STATE_MAIN_LOOP:
-        v0->mainAppState = ov80_021D13A0(v0);
+        v0->mainAppState = HandlePlayerInput(v0);
         UpdateGraphics(v0);
         break;
     case TOWN_MAP_APP_STATE_WAIT_EXIT_SCREEN_FADE:
@@ -495,7 +495,7 @@ static int CheckAppEnterScreenFadeDone(TownMapAppData *appData)
     return TOWN_MAP_APP_STATE_MAIN_LOOP;
 }
 
-static int ov80_021D13A0(TownMapAppData *param0)
+static int HandlePlayerInput(TownMapAppData *param0)
 {
     if (param0->inputHandler(param0) != TRUE) {
         sAppFunctionSets[param0->mode].unk_14(param0);

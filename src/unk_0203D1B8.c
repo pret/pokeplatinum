@@ -729,7 +729,7 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
 
     v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(fieldSystem, v0, 0);
+    TownMapContext_Init(fieldSystem, v0, 0);
     sub_0203D884(fieldSystem, v0);
 
     return v0;
