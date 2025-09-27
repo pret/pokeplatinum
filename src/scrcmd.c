@@ -4078,7 +4078,7 @@ static BOOL ScrCmd_0AA(ScriptContext *ctx)
 
     *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(ctx->fieldSystem, *v1, 2);
+    TownMapContext_Init(ctx->fieldSystem, *v1, 2);
     sub_0203D884(ctx->fieldSystem, *v1);
     ScriptContext_Pause(ctx, sub_02041CC8);
 

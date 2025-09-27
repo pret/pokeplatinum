@@ -45,7 +45,7 @@ enum TownMapSpecialFlyDest {
  * For the ones that span multiple map matrix blocks, the following uses the
  * coordinates of the north-westernmost one.
  */
-const TownMapFlyDestDescriptor sTownBlocks[20] = {
+const TownMapFlyDestDescriptor sFlyDestinations[20] = {
     {
         .mapHeader = MAP_HEADER_TWINLEAF_TOWN,
         .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_TWINLEAF_TOWN,
@@ -256,7 +256,7 @@ TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSy
     flyDestinations->flyDestinationsList = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
     memset(flyDestinations->flyDestinationsList, 0, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
 
-    flyDestBlocks = sTownBlocks;
+    flyDestBlocks = sFlyDestinations;
 
     for (i = 0; i < flyDestinations->numBlocks; i++) {
         flyDest = &flyDestinations->flyDestinationsList[i];
@@ -293,7 +293,7 @@ void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *param0)
 
     for (v1 = 0; v1 < param0->numBlocks; v1++) {
         v0 = &param0->flyDestinationsList[v1];
-        Sprite_SetAffineZRotationEx(v0->sprite, 0, 0);
+        Sprite_SetAffineZRotationEx(v0->sprite, 0, AFFINE_OVERWRITE_MODE_NONE);
         Sprite_Delete(v0->sprite);
     }
 
