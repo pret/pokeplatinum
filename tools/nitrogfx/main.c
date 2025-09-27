@@ -552,19 +552,10 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
 
             if (strcmp(options.cellFilePath, "-preservepath") == 0)
             {
-                options.cellFilePath = malloc(strlen(inputPath) + 7);
-                strcpy(options.cellFilePath, inputPath);
-                options.cellFilePath[strlen(inputPath) - 4] = '_';
-                options.cellFilePath[strlen(inputPath) - 3] = 'c';
-                options.cellFilePath[strlen(inputPath) - 2] = 'e';
-                options.cellFilePath[strlen(inputPath) - 1] = 'l';
-                options.cellFilePath[strlen(inputPath)] = 'l';
-                options.cellFilePath[strlen(inputPath) + 1] = '.';
-                options.cellFilePath[strlen(inputPath) + 2] = 'j';
-                options.cellFilePath[strlen(inputPath) + 3] = 's';
-                options.cellFilePath[strlen(inputPath) + 4] = 'o';
-                options.cellFilePath[strlen(inputPath) + 5] = 'n';
-                options.cellFilePath[strlen(inputPath) + 6] = 0;
+                const char *suffix = "_cell.json";
+                size_t inputStemSize = strlen(inputPath) - sizeof(".png");
+                options.cellFilePath = calloc(inputStemSize + sizeof(suffix) + 1, sizeof(char));
+                sprintf(options.cellFilePath, "%.*s%s" , (int)inputStemSize, inputPath, suffix);
             }
 
             if (i + 1 < argc)
