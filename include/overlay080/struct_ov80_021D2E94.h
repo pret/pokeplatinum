@@ -11,7 +11,7 @@ typedef struct {
     TownMapAppFunc fadeScreensAppEnter;
     TownMapAppFunc fadeScreensAppExit;
     TownMapAppFunc handleInput;
-    TownMapAppFunc unk_14;
+    TownMapAppFunc updateGraphics;
     TownMapAppFunc updateSprites;
     TownMapAppFunc cleanup;
     TownMapAppFunc vBlankCB;

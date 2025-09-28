@@ -9,7 +9,7 @@
 
 typedef struct {
     int playerX;
-    int playerY;
+    int playerZ;
     u8 padding_08[4];
     int trainerGender;
     int flyDestSelected;

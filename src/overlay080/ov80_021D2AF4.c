@@ -16,6 +16,7 @@
 #include "heap.h"
 #include "sprite.h"
 #include "sprite_system.h"
+#include "unk_0206B70C.h"
 
 enum TownMapFlyDestinationShape {
     FLY_DEST_SPRITE_SHAPE_1x1_SQUARE = 0,
@@ -45,7 +46,7 @@ enum TownMapSpecialFlyDest {
  * For the ones that span multiple map matrix blocks, the following uses the
  * coordinates of the north-westernmost one.
  */
-const TownMapFlyDestDescriptor sFlyDestinations[20] = {
+const TownMapFlyDestDescriptor sFlyDestinations[NUM_FLY_LOCATIONS] = {
     {
         .mapHeader = MAP_HEADER_TWINLEAF_TOWN,
         .unusedUnlockFirstArrivalFlag = FIRST_ARRIVAL_TWINLEAF_TOWN,
@@ -230,10 +231,6 @@ const TownMapFlyDestDescriptor sFlyDestinations[20] = {
 
 TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, int heapID)
 {
-    TownMapAppFlyDestinations *flyDestinations;
-    TownMapAppFlyDestination *flyDest;
-    const TownMapFlyDestDescriptor *flyDestBlocks;
-    short i;
     static const SpriteTemplateFromResourceHeader spriteTemplate = {
         .resourceHeaderID = 4,
         .x = 0,
@@ -249,17 +246,17 @@ TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSy
         .dummy24 = 0,
     };
 
-    flyDestinations = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestinations));
+    TownMapAppFlyDestinations *flyDestinations = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestinations));
     memset(flyDestinations, 0, sizeof(TownMapAppFlyDestinations));
 
     flyDestinations->numBlocks = count;
     flyDestinations->flyDestinationsList = Heap_Alloc(heapID, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
     memset(flyDestinations->flyDestinationsList, 0, sizeof(TownMapAppFlyDestination) * flyDestinations->numBlocks);
 
-    flyDestBlocks = sFlyDestinations;
+    const TownMapFlyDestDescriptor *flyDestBlocks = sFlyDestinations;
 
-    for (i = 0; i < flyDestinations->numBlocks; i++) {
-        flyDest = &flyDestinations->flyDestinationsList[i];
+    for (short i = 0; i < flyDestinations->numBlocks; i++) {
+        TownMapAppFlyDestination *flyDest = &flyDestinations->flyDestinationsList[i];
         flyDest->flyDestBlockDescriptor.mapHeader = flyDestBlocks[i].mapHeader;
         flyDest->flyDestBlockDescriptor.blockShape = flyDestBlocks[i].blockShape;
         flyDest->flyDestBlockDescriptor.palette = flyDestBlocks[i].palette;
@@ -274,7 +271,7 @@ TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSy
         if (flyDest->isUnlocked) {
             Sprite_SetExplicitPalette(flyDest->sprite, PLTT_5 + flyDest->flyDestBlockDescriptor.palette + flyDest->isUnlocked);
         } else {
-            if ((flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_PAL_PARK) || (flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_VICTORY_ROAD)) {
+            if (flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_PAL_PARK || flyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_VICTORY_ROAD) {
                 Sprite_SetDrawFlag(flyDest->sprite, FALSE);
             }
         }
@@ -286,28 +283,22 @@ TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSy
     return flyDestinations;
 }
 
-void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *param0)
+void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *flyDests)
 {
-    TownMapAppFlyDestination *v0;
-    short v1;
-
-    for (v1 = 0; v1 < param0->numBlocks; v1++) {
-        v0 = &param0->flyDestinationsList[v1];
-        Sprite_SetAffineZRotationEx(v0->sprite, 0, AFFINE_OVERWRITE_MODE_NONE);
-        Sprite_Delete(v0->sprite);
+    for (short i = 0; i < flyDests->numBlocks; i++) {
+        TownMapAppFlyDestination *dest = &flyDests->flyDestinationsList[i];
+        Sprite_SetAffineZRotationEx(dest->sprite, 0, AFFINE_OVERWRITE_MODE_NONE);
+        Sprite_Delete(dest->sprite);
     }
 
-    Heap_Free(param0->flyDestinationsList);
-    Heap_Free(param0);
+    Heap_Free(flyDests->flyDestinationsList);
+    Heap_Free(flyDests);
 }
 
-TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDestinations *param0, int mapHeader, int x, int y)
+TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, int mapHeader, int x, int z)
 {
-    TownMapAppFlyDestination *flyDest;
-    short i;
-
-    for (i = 0; i < param0->numBlocks; i++) {
-        flyDest = &(param0->flyDestinationsList[i]);
+    for (short i = 0; i < flyDests->numBlocks; i++) {
+        TownMapAppFlyDestination *flyDest = &(flyDests->flyDestinationsList[i]);
 
         if (flyDest->flyDestBlockDescriptor.mapHeader != mapHeader) {
             continue;
@@ -319,17 +310,17 @@ TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDesti
         case REGULAR_FLY_DEST:
             return flyDest;
         case FLY_DEST_PAL_PARK:
-            if (x == 9 && y == 28) {
+            if (x == 9 && z == 28) {
                 return flyDest;
             }
             break;
         case FLY_DEST_VICTORY_ROAD:
-            if (x == 26 && y == 18) {
+            if (x == 26 && z == 18) {
                 return flyDest;
             }
             break;
         case FLY_DEST_POKEMON_LEAGUE:
-            if (x == 26 && y == 17) {
+            if (x == 26 && z == 17) {
                 return flyDest;
             }
             break;
@@ -339,70 +330,60 @@ TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDesti
     return NULL;
 }
 
-BOOL TownMapApp_UpdateHoveredFlyTarget(TownMapAppFlyDestinations *param0, enum MapHeader mapHeader, int x, int y)
+BOOL TownMapApp_UpdateHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum MapHeader mapHeader, int x, int y)
 {
-    TownMapAppFlyDestination *hoveredFlyDest;
-
-    if (param0 == NULL) {
+    if (flyDests == NULL) {
         return FALSE;
     }
 
-    hoveredFlyDest = TownMapApp_GetHoveredFlyDestination(param0, mapHeader, x, y);
+    TownMapAppFlyDestination *hoveredFlyDest = TownMapApp_GetHoveredFlyDestination(flyDests, mapHeader, x, y);
 
-    if ((hoveredFlyDest == NULL) || (hoveredFlyDest->isUnlocked == FALSE)) {
-        if (param0->hoveredFlyDest != NULL) {
-            Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
+    if (hoveredFlyDest == NULL || hoveredFlyDest->isUnlocked == FALSE) {
+        if (flyDests->hoveredFlyDest != NULL) {
+            Sprite_SetExplicitPalette(flyDests->hoveredFlyDest->sprite, PLTT_5 + flyDests->hoveredFlyDest->flyDestBlockDescriptor.palette + flyDests->hoveredFlyDest->isUnlocked);
         }
 
-        param0->hoveredFlyDest = NULL;
+        flyDests->hoveredFlyDest = NULL;
         return FALSE;
     }
 
-    if (param0->hoveredFlyDest == NULL) {
-        param0->flyTargetBlinkTimer = 0;
-        param0->flyTargetBlinkState = 0;
+    if (flyDests->hoveredFlyDest == NULL) {
+        flyDests->flyTargetBlinkTimer = 0;
+        flyDests->flyTargetBlinkState = 0;
     } else {
         if (hoveredFlyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_VICTORY_ROAD
             || hoveredFlyDest->flyDestBlockDescriptor.specialFlyDestID == FLY_DEST_POKEMON_LEAGUE) {
-            Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
+            Sprite_SetExplicitPalette(flyDests->hoveredFlyDest->sprite, PLTT_5 + flyDests->hoveredFlyDest->flyDestBlockDescriptor.palette + flyDests->hoveredFlyDest->isUnlocked);
         }
     }
 
-    param0->hoveredFlyDest = hoveredFlyDest;
+    flyDests->hoveredFlyDest = hoveredFlyDest;
     return TRUE;
 }
 
-void TownMapApp_BlinkHoveredFlyTarget(TownMapAppFlyDestinations *param0, enum TownMapMode param1)
+void TownMapApp_BlinkHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum TownMapMode mapMode)
 {
-    short v0;
-    TownMapAppFlyDestination *v1;
-
-    if ((param0->hoveredFlyDest == NULL) || (param1 != TOWN_MAP_MODE_FLY)) {
+    if (flyDests->hoveredFlyDest == NULL || mapMode != TOWN_MAP_MODE_FLY) {
         return;
     }
 
-    if (param0->flyTargetBlinkState == 0) {
-        Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_8 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette);
+    if (flyDests->flyTargetBlinkState == 0) {
+        Sprite_SetExplicitPalette(flyDests->hoveredFlyDest->sprite, PLTT_8 + flyDests->hoveredFlyDest->flyDestBlockDescriptor.palette);
     } else {
-        Sprite_SetExplicitPalette(param0->hoveredFlyDest->sprite, PLTT_5 + param0->hoveredFlyDest->flyDestBlockDescriptor.palette + param0->hoveredFlyDest->isUnlocked);
+        Sprite_SetExplicitPalette(flyDests->hoveredFlyDest->sprite, PLTT_5 + flyDests->hoveredFlyDest->flyDestBlockDescriptor.palette + flyDests->hoveredFlyDest->isUnlocked);
     }
 
-    param0->flyTargetBlinkTimer++;
+    flyDests->flyTargetBlinkTimer++;
 
-    if (param0->flyTargetBlinkTimer == 16) {
-        param0->flyTargetBlinkTimer = 0;
-        param0->flyTargetBlinkState ^= 1;
+    if (flyDests->flyTargetBlinkTimer == 16) {
+        flyDests->flyTargetBlinkTimer = 0;
+        flyDests->flyTargetBlinkState ^= 1;
     }
 }
 
-TownMapBlockList *TownMap_ReadBlockData(const char *path, int heapID)
+TownMapBlockList *TownMap_ReadBlockData(const char *path, enum HeapID heapID)
 {
     FSFile tmapBlockFile;
-    int readLength, i;
-    int locationCount;
-    TownMapBlockList *tmapBlock;
-    TownMapBlock *entry;
-
     FS_InitFile(&tmapBlockFile);
 
     if (!FS_OpenFile(&tmapBlockFile, path)) {
@@ -410,45 +391,43 @@ TownMapBlockList *TownMap_ReadBlockData(const char *path, int heapID)
         return NULL;
     }
 
-    readLength = FS_ReadFile(&tmapBlockFile, &locationCount, sizeof(int));
+    int blockCount;
+    int readLength = FS_ReadFile(&tmapBlockFile, &blockCount, sizeof(int));
     GF_ASSERT(readLength >= 0);
 
-    tmapBlock = Heap_Alloc(heapID, sizeof(TownMapBlockList));
-    memset(tmapBlock, 0, sizeof(TownMapBlockList));
+    TownMapBlockList *blockList = Heap_Alloc(heapID, sizeof(TownMapBlockList));
+    memset(blockList, 0, sizeof(TownMapBlockList));
 
-    tmapBlock->entries = Heap_Alloc(heapID, sizeof(TownMapBlock) * locationCount);
-    memset(tmapBlock->entries, 0, sizeof(TownMapBlock) * locationCount);
+    blockList->entries = Heap_Alloc(heapID, sizeof(TownMapBlock) * blockCount);
+    memset(blockList->entries, 0, sizeof(TownMapBlock) * blockCount);
 
-    tmapBlock->locationCount = locationCount;
+    blockList->count = blockCount;
 
-    for (i = 0; i < tmapBlock->locationCount; i++) {
-        entry = &(tmapBlock->entries[i]);
-        readLength = FS_ReadFile(&tmapBlockFile, entry, sizeof(TownMapBlock));
-        entry->index = i;
+    for (int i = 0; i < blockList->count; i++) {
+        TownMapBlock *block = &(blockList->entries[i]);
+        readLength = FS_ReadFile(&tmapBlockFile, block, sizeof(TownMapBlock));
+        block->index = i;
     }
 
     (void)FS_CloseFile(&tmapBlockFile);
 
-    return tmapBlock;
+    return blockList;
 }
 
-void TownMapApp_FreeTownMapBlockData(TownMapBlockList *param0)
+void TownMapApp_FreeTownMapBlockData(TownMapBlockList *blockList)
 {
-    Heap_Free(param0->entries);
-    Heap_Free(param0);
+    Heap_Free(blockList->entries);
+    Heap_Free(blockList);
 }
 
-TownMapBlock *TownMapApp_GetHoveredMapBlock(TownMapBlockList *param0, int param1, int param2, u16 param3)
+TownMapBlock *TownMapApp_GetHoveredMapBlock(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
 {
-    int v0;
-    TownMapBlock *v1;
+    for (int i = 0; i < blockList->count; i++) {
+        TownMapBlock *block = &(blockList->entries[i]);
 
-    for (v0 = 0; v0 < param0->locationCount; v0++) {
-        v1 = &(param0->entries[v0]);
-
-        if ((v1->x == param1) && (v1->y == param2)) {
-            if ((v1->hiddenLocationFlags == 0) || (v1->hiddenLocationFlags & param3)) {
-                return v1;
+        if (block->x == x && block->z == z) {
+            if (block->hiddenLocationFlags == 0 || block->hiddenLocationFlags & unlockedHiddenLocations) {
+                return block;
             } else {
                 return NULL;
             }
