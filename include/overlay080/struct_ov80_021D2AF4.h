@@ -3,7 +3,7 @@
 
 typedef struct TownMapBlock {
     u16 x;
-    u16 y;
+    u16 z;
     u16 signpostType;
     u16 signpostNARCMemberIdx;
     u16 areaDescString;

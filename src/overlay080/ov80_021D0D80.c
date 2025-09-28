@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map.h"
+
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -38,36 +40,36 @@ enum TownMapAppState {
     TOWN_MAP_APP_STATE_CLEANUP,
 };
 
-int TownMap_Init(ApplicationManager *appMan, int *param1);
-int TownMap_Main(ApplicationManager *appMan, int *param1);
-int TownMap_Exit(ApplicationManager *appMan, int *param1);
-static void TownMapAppVBlankCB(void *param0);
+BOOL TownMap_Init(ApplicationManager *appMan, int *state);
+BOOL TownMap_Main(ApplicationManager *appMan, int *state);
+BOOL TownMap_Exit(ApplicationManager *appMan, int *state);
+static void TownMapAppVBlankCB(void *appData);
 static void SetVRAMBanks(void);
-static int InitSharedAppResources(TownMapAppData *param0);
-static void InitBGLayers(TownMapAppData *param0, BgConfig *param1);
-static void LoadBGGraphics(TownMapAppData *param0);
-static void FreeTilemapFiles(TownMapAppData *param0);
-static void CleanupSharedAppResources(TownMapAppData *param0);
-static void UpdateGraphics(TownMapAppData *param0);
-static int InitAppResources(TownMapAppData *param0);
-static int DisplayGraphics(TownMapAppData *param0);
-static int CheckAppEnterScreenFadeDone(TownMapAppData *param0);
-static int HandlePlayerInput(TownMapAppData *param0);
-static int CheckAppExitScreenFadeDone(TownMapAppData *param0);
-static int CleanupAppResources(TownMapAppData *param0);
-int TownMapApp_CreateGraphicsMan(TownMapAppData *param0);
-int TownMapApp_LoadGraphics(TownMapAppData *param0);
-int TownMapApp_FadeInBothScreens(TownMapAppData *param0);
-int TownMapApp_FadeOutBothScreens(TownMapAppData *param0);
-int TownMapApp_HandleInput_Item(TownMapAppData *param0);
-int TownMapApp_UpdateBottomScreen(TownMapAppData *param0);
-int TownMapApp_UpdateFlyTargetSprites(TownMapAppData *param0);
-int TownMapApp_FreeGraphics(TownMapAppData *param0);
-int TownMapApp_UpdateDisplayedLocationInfo(TownMapAppData *param0);
-int TownMap_HandleInput_Fly(TownMapAppData *param0);
-int TownMapApp_FadeInTopScreen(TownMapAppData *param0);
-int TownMapApp_FadeOutTopScreen(TownMapAppData *param0);
-int TownMap_HandleInput_WallMap(TownMapAppData *param0);
+static BOOL InitSharedAppResources(TownMapAppData *appData);
+static void InitBGLayers(TownMapAppData *appData, BgConfig *bgConfig);
+static void LoadBGGraphics(TownMapAppData *appData);
+static void FreeTilemapFiles(TownMapAppData *appData);
+static void CleanupSharedAppResources(TownMapAppData *appData);
+static void UpdateGraphics(TownMapAppData *appData);
+static enum TownMapAppState InitAppResources(TownMapAppData *appData);
+static enum TownMapAppState DisplayGraphics(TownMapAppData *appData);
+static enum TownMapAppState CheckAppEnterScreenFadeDone(TownMapAppData *appData);
+static enum TownMapAppState HandlePlayerInput(TownMapAppData *appData);
+static enum TownMapAppState CheckAppExitScreenFadeDone(TownMapAppData *appData);
+static enum TownMapAppState CleanupAppResources(TownMapAppData *appData);
+BOOL TownMapApp_CreateGraphicsMan(TownMapAppData *appData);
+BOOL TownMapApp_LoadGraphics(TownMapAppData *appData);
+BOOL TownMapApp_FadeInBothScreens(TownMapAppData *appData);
+BOOL TownMapApp_FadeOutBothScreens(TownMapAppData *appData);
+BOOL TownMapApp_HandleInput_Item(TownMapAppData *appData);
+BOOL TownMapApp_UpdateBottomScreen(TownMapAppData *appData);
+BOOL TownMapApp_UpdateFlyTargetSprites(TownMapAppData *appData);
+BOOL TownMapApp_FreeGraphics(TownMapAppData *appData);
+BOOL TownMapApp_UpdateDisplayedLocationInfo(TownMapAppData *appData);
+BOOL TownMap_HandleInput_Fly(TownMapAppData *appData);
+BOOL TownMapApp_FadeInTopScreen(TownMapAppData *appData);
+BOOL TownMapApp_FadeOutTopScreen(TownMapAppData *appData);
+BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData);
 
 const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
     [TOWN_MAP_MODE_ITEM] = {
@@ -76,7 +78,7 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInBothScreens,
         .fadeScreensAppExit = TownMapApp_FadeOutBothScreens,
         .handleInput = TownMapApp_HandleInput_Item,
-        .unk_14 = TownMapApp_UpdateBottomScreen,
+        .updateGraphics = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
@@ -87,7 +89,7 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInBothScreens,
         .fadeScreensAppExit = TownMapApp_FadeOutBothScreens,
         .handleInput = TownMap_HandleInput_Fly,
-        .unk_14 = TownMapApp_UpdateBottomScreen,
+        .updateGraphics = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
@@ -98,63 +100,63 @@ const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
         .fadeScreensAppEnter = TownMapApp_FadeInTopScreen,
         .fadeScreensAppExit = TownMapApp_FadeOutTopScreen,
         .handleInput = TownMap_HandleInput_WallMap,
-        .unk_14 = TownMapApp_UpdateBottomScreen,
+        .updateGraphics = TownMapApp_UpdateBottomScreen,
         .updateSprites = TownMapApp_UpdateFlyTargetSprites,
         .cleanup = TownMapApp_FreeGraphics,
         .vBlankCB = TownMapApp_UpdateDisplayedLocationInfo,
     },
 };
 
-int TownMap_Init(ApplicationManager *appMan, int *param1)
+BOOL TownMap_Init(ApplicationManager *appMan, int *unused)
 {
-    TownMapAppData *v0 = NULL;
-    TownMapContext *v1 = (TownMapContext *)ApplicationManager_Args(appMan);
+    TownMapAppData *appData = NULL;
+    TownMapContext *ctx = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_17, 0x20000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(TownMapAppData), HEAP_ID_17);
-    memset(v0, 0, sizeof(TownMapAppData));
-    v0->context = v1;
+    appData = ApplicationManager_NewData(appMan, sizeof(TownMapAppData), HEAP_ID_17);
+    memset(appData, 0, sizeof(TownMapAppData));
+    appData->context = ctx;
 
-    if (v1->townMapMode < NUM_TOWN_MAP_MODES) {
-        v0->mode = v1->townMapMode;
+    if (ctx->townMapMode < NUM_TOWN_MAP_MODES) {
+        appData->mode = ctx->townMapMode;
     } else {
-        v0->mode = TOWN_MAP_MODE_ITEM;
+        appData->mode = TOWN_MAP_MODE_ITEM;
     }
 
-    v0->unlockedHiddenLocations = v1->unlockedHiddenLocations;
-    v0->heapID = HEAP_ID_17;
+    appData->unlockedHiddenLocations = ctx->unlockedHiddenLocations;
+    appData->heapID = HEAP_ID_17;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_55, SEQ_NONE, 0);
 
     return TRUE;
 }
 
-int TownMap_Main(ApplicationManager *appMan, int *unused)
+BOOL TownMap_Main(ApplicationManager *appMan, int *unused)
 {
-    TownMapAppData *v0 = ApplicationManager_Data(appMan);
+    TownMapAppData *appData = ApplicationManager_Data(appMan);
 
-    switch (v0->mainAppState) {
+    switch (appData->mainAppState) {
     case TOWN_MAP_APP_STATE_INIT_RESOURCES:
-        v0->mainAppState = InitAppResources(v0);
+        appData->mainAppState = InitAppResources(appData);
         break;
     case TOWN_MAP_APP_STATE_DISPLAY_GRAPHICS:
-        v0->mainAppState = DisplayGraphics(v0);
+        appData->mainAppState = DisplayGraphics(appData);
         break;
     case TOWN_MAP_APP_STATE_WAIT_ENTER_SCREEN_FADE:
-        v0->mainAppState = CheckAppEnterScreenFadeDone(v0);
-        UpdateGraphics(v0);
+        appData->mainAppState = CheckAppEnterScreenFadeDone(appData);
+        UpdateGraphics(appData);
         break;
     case TOWN_MAP_APP_STATE_MAIN_LOOP:
-        v0->mainAppState = HandlePlayerInput(v0);
-        UpdateGraphics(v0);
+        appData->mainAppState = HandlePlayerInput(appData);
+        UpdateGraphics(appData);
         break;
     case TOWN_MAP_APP_STATE_WAIT_EXIT_SCREEN_FADE:
-        v0->mainAppState = CheckAppExitScreenFadeDone(v0);
-        UpdateGraphics(v0);
+        appData->mainAppState = CheckAppExitScreenFadeDone(appData);
+        UpdateGraphics(appData);
         break;
     case TOWN_MAP_APP_STATE_CLEANUP:
-        v0->mainAppState = CleanupAppResources(v0);
+        appData->mainAppState = CleanupAppResources(appData);
         break;
     case TOWN_MAP_APP_STATE_EXIT:
         return TRUE;
@@ -163,9 +165,9 @@ int TownMap_Main(ApplicationManager *appMan, int *unused)
     return FALSE;
 }
 
-int TownMap_Exit(ApplicationManager *appMan, int *param1)
+BOOL TownMap_Exit(ApplicationManager *appMan, int *unused)
 {
-    TownMapAppData *v1 = ApplicationManager_Data(appMan);
+    TownMapAppData *appData = ApplicationManager_Data(appMan);
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_17);
@@ -173,18 +175,18 @@ int TownMap_Exit(ApplicationManager *appMan, int *param1)
     return TRUE;
 }
 
-static void TownMapAppVBlankCB(void *param0)
+static void TownMapAppVBlankCB(void *_appData)
 {
-    TownMapAppData *v0 = param0;
+    TownMapAppData *appData = _appData;
 
-    if (sAppFunctionSets[v0->mode].vBlankCB != NULL) {
-        (sAppFunctionSets[v0->mode].vBlankCB)(v0);
+    if (sAppFunctionSets[appData->mode].vBlankCB != NULL) {
+        sAppFunctionSets[appData->mode].vBlankCB(appData);
     }
 
     NNS_GfdDoVramTransfer();
 
-    TownMapApp_TransferOam(v0);
-    Bg_RunScheduledUpdates(v0->bgConfig);
+    TownMapApp_TransferOam(appData);
+    Bg_RunScheduledUpdates(appData->bgConfig);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -219,16 +221,16 @@ static BOOL InitSharedAppResources(TownMapAppData *appData)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        if ((appData->context->playerX == 0) && (appData->context->playerY == 0)) {
+        if (appData->context->playerX == 0 && appData->context->playerZ == 0) {
             appData->playerX = 3;
-            appData->playerY = 27;
+            appData->playerZ = 27;
         } else {
-            appData->playerX = appData->context->playerX / 32;
-            appData->playerY = appData->context->playerY / 32;
+            appData->playerX = appData->context->playerX / MAP_TILES_COUNT_X;
+            appData->playerZ = appData->context->playerZ / MAP_TILES_COUNT_Z;
         }
 
         appData->initialCursorX = appData->playerX;
-        appData->initialCursorY = appData->playerY;
+        appData->initialCursorY = appData->playerZ;
         appData->locationNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, appData->heapID);
         appData->townMapStrings = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TOWN_MAP, appData->heapID);
         appData->hoveredMapName = Strbuf_Init(22, appData->heapID);
@@ -442,12 +444,12 @@ static void LoadBGGraphics(TownMapAppData *appData)
 
     appData->topScreenMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 24, &appData->fullScreenMap, appData->heapID);
     appData->topScreenBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 22, &appData->fullScreenBG, appData->heapID);
-    appData->hiddenLocationsBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 23, &appData->hiddenLocationsBG, appData->heapID);
+    appData->hiddenLocationsBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 23, &appData->hiddenLocationsFullScreenMapGraphics, appData->heapID);
     appData->zoomedInBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 25, &appData->zoomedInBG, appData->heapID);
     appData->zoomedInMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 26, &appData->zoomedInMap, appData->heapID);
     appData->zoomButtonStatesFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 27, &appData->zoomButtonStates, appData->heapID);
     appData->zoomButtonScreenFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 28, &appData->zoomButtonScreen, appData->heapID);
-    appData->hiddenLocationsMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 29, &appData->hiddenLocationsMap, appData->heapID);
+    appData->hiddenLocationsMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 29, &appData->hiddenLocationsZoomedInMapGraphics, appData->heapID);
 
     NARC_dtor(townMapGraphicsNarc);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), appData->heapID);
@@ -466,7 +468,7 @@ static void FreeTilemapFiles(TownMapAppData *appData)
     Heap_Free(appData->topScreenMapFile);
 }
 
-static int InitAppResources(TownMapAppData *appData)
+static enum TownMapAppState InitAppResources(TownMapAppData *appData)
 {
     if (InitSharedAppResources(appData) != TRUE) {
         return TOWN_MAP_APP_STATE_INIT_RESOURCES;
@@ -476,7 +478,7 @@ static int InitAppResources(TownMapAppData *appData)
     return TOWN_MAP_APP_STATE_DISPLAY_GRAPHICS;
 }
 
-static int DisplayGraphics(TownMapAppData *appData)
+static enum TownMapAppState DisplayGraphics(TownMapAppData *appData)
 {
     if (sAppFunctionSets[appData->mode].displayGraphics(appData) != TRUE) {
         return TOWN_MAP_APP_STATE_DISPLAY_GRAPHICS;
@@ -486,7 +488,7 @@ static int DisplayGraphics(TownMapAppData *appData)
     return TOWN_MAP_APP_STATE_WAIT_ENTER_SCREEN_FADE;
 }
 
-static int CheckAppEnterScreenFadeDone(TownMapAppData *appData)
+static enum TownMapAppState CheckAppEnterScreenFadeDone(TownMapAppData *appData)
 {
     if (!IsScreenFadeDone()) {
         return TOWN_MAP_APP_STATE_WAIT_ENTER_SCREEN_FADE;
@@ -495,18 +497,18 @@ static int CheckAppEnterScreenFadeDone(TownMapAppData *appData)
     return TOWN_MAP_APP_STATE_MAIN_LOOP;
 }
 
-static int HandlePlayerInput(TownMapAppData *param0)
+static enum TownMapAppState HandlePlayerInput(TownMapAppData *appData)
 {
-    if (param0->inputHandler(param0) != TRUE) {
-        sAppFunctionSets[param0->mode].unk_14(param0);
+    if (appData->inputHandler(appData) != TRUE) {
+        sAppFunctionSets[appData->mode].updateGraphics(appData);
         return TOWN_MAP_APP_STATE_MAIN_LOOP;
     }
 
-    sAppFunctionSets[param0->mode].fadeScreensAppExit(param0);
+    sAppFunctionSets[appData->mode].fadeScreensAppExit(appData);
     return TOWN_MAP_APP_STATE_WAIT_EXIT_SCREEN_FADE;
 }
 
-static int CheckAppExitScreenFadeDone(TownMapAppData *param0)
+static enum TownMapAppState CheckAppExitScreenFadeDone(TownMapAppData *appData)
 {
     if (IsScreenFadeDone()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
@@ -517,14 +519,14 @@ static int CheckAppExitScreenFadeDone(TownMapAppData *param0)
         return TOWN_MAP_APP_STATE_CLEANUP;
     }
 
-    sAppFunctionSets[param0->mode].unk_14(param0);
+    sAppFunctionSets[appData->mode].updateGraphics(appData);
     return TOWN_MAP_APP_STATE_WAIT_EXIT_SCREEN_FADE;
 }
 
-static int CleanupAppResources(TownMapAppData *param0)
+static enum TownMapAppState CleanupAppResources(TownMapAppData *appData)
 {
-    sAppFunctionSets[param0->mode].cleanup(param0);
+    sAppFunctionSets[appData->mode].cleanup(appData);
 
-    CleanupSharedAppResources(param0);
+    CleanupSharedAppResources(appData);
     return TOWN_MAP_APP_STATE_EXIT;
 }

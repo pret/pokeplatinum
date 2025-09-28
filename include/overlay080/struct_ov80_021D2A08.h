@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     int initialCursorX;
     int initialCursorY;
     int playerX;
-    int playerY;
+    int playerZ;
     BgConfig *bgConfig;
     TownMapContext *context;
     MainMapMatrixData *mapMatrixData;
@@ -55,12 +55,12 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     void *hiddenLocationsMapFile;
     NNSG2dScreenData *fullScreenMap;
     NNSG2dScreenData *fullScreenBG;
-    NNSG2dScreenData *hiddenLocationsBG;
+    NNSG2dScreenData *hiddenLocationsFullScreenMapGraphics;
     NNSG2dScreenData *zoomedInBG;
     NNSG2dScreenData *zoomedInMap;
     NNSG2dScreenData *zoomButtonStates;
     NNSG2dScreenData *zoomButtonScreen;
-    NNSG2dScreenData *hiddenLocationsMap;
+    NNSG2dScreenData *hiddenLocationsZoomedInMapGraphics;
     SpriteSystem *spriteSystem;
     SpriteManager *spriteMan;
     ManagedSprite *unused_E0;

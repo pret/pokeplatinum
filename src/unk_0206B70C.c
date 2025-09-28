@@ -120,10 +120,10 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int town
 
     if (MapHeader_IsOnMainMatrix(currentMap)) {
         ctx->playerX = x;
-        ctx->playerY = z;
+        ctx->playerZ = z;
     } else {
         ctx->playerX = exitLocation->x;
-        ctx->playerY = exitLocation->z;
+        ctx->playerZ = exitLocation->z;
     }
 
     trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));

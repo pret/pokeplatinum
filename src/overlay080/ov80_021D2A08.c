@@ -5,42 +5,44 @@
 
 #include "gx_layers.h"
 #include "sprite_system.h"
+#include "unk_0206B70C.h"
 #include "vram_transfer.h"
 
-void TownMapApp_InitSpriteSystem(TownMapAppData *param0);
-void TownMapApp_FreeSpriteSystem(TownMapAppData *param0);
-void TownMapApp_DrawSprites(TownMapAppData *param0);
-void TownMapApp_TransferOam(TownMapAppData *param0);
+void TownMapApp_InitSpriteSystem(TownMapAppData *appData);
+void TownMapApp_FreeSpriteSystem(TownMapAppData *appData);
+void TownMapApp_DrawSprites(TownMapAppData *appData);
+void TownMapApp_TransferOam(TownMapAppData *appData);
 
-void TownMapApp_InitSpriteSystem(TownMapAppData *param0)
+void TownMapApp_InitSpriteSystem(TownMapAppData *appData)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VramTransfer_New(32, param0->heapID);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    VramTransfer_New(32, appData->heapID);
 
-    param0->spriteSystem = SpriteSystem_Alloc(param0->heapID);
-    param0->spriteMan = SpriteManager_New(param0->spriteSystem);
+    appData->spriteSystem = SpriteSystem_Alloc(appData->heapID);
+    appData->spriteMan = SpriteManager_New(appData->spriteSystem);
 
-    RenderOamTemplate v0 = {
-        0,
-        128,
-        0,
-        32,
-        0,
-        128,
-        0,
-        32,
-    };
-    CharTransferTemplateWithModes v1 = {
-        5,
-        1024,
-        1024,
-        GX_OBJVRAMMODE_CHAR_1D_32K,
-        GX_OBJVRAMMODE_CHAR_1D_32K,
+    RenderOamTemplate oamTemplate = {
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
     };
 
-    SpriteSystem_Init(param0->spriteSystem, &v0, &v1, 32);
-    SpriteSystem_InitSprites(param0->spriteSystem, param0->spriteMan, (1 + 1 + 1 + 5 + 20));
+    CharTransferTemplateWithModes charTransferTemplate = {
+        .maxTasks = 5,
+        .sizeMain = 1024,
+        .sizeSub = 1024,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K,
+    };
+
+    SpriteSystem_Init(appData->spriteSystem, &oamTemplate, &charTransferTemplate, 32);
+    SpriteSystem_InitSprites(appData->spriteSystem, appData->spriteMan, 3 + TOWN_MAP_HISTORY_LENGTH + NUM_FLY_LOCATIONS); // player sprite, cursor sprite, zoom button shockwave
     SpriteResourceDataPaths resourcePaths = {
         .asStruct = {
             .charResources = "data/tmapn_chr.resdat",
@@ -53,22 +55,22 @@ void TownMapApp_InitSpriteSystem(TownMapAppData *param0)
         },
     };
 
-    SpriteSystem_LoadResourceDataFromFilepaths(param0->spriteSystem, param0->spriteMan, &resourcePaths);
+    SpriteSystem_LoadResourceDataFromFilepaths(appData->spriteSystem, appData->spriteMan, &resourcePaths);
 }
 
-void TownMapApp_FreeSpriteSystem(TownMapAppData *param0)
+void TownMapApp_FreeSpriteSystem(TownMapAppData *appData)
 {
-    SpriteSystem_DestroySpriteManager(param0->spriteSystem, param0->spriteMan);
-    SpriteSystem_Free(param0->spriteSystem);
+    SpriteSystem_DestroySpriteManager(appData->spriteSystem, appData->spriteMan);
+    SpriteSystem_Free(appData->spriteSystem);
     VramTransfer_Free();
 }
 
-void TownMapApp_DrawSprites(TownMapAppData *param0)
+void TownMapApp_DrawSprites(TownMapAppData *appData)
 {
-    SpriteSystem_DrawSprites(param0->spriteMan);
+    SpriteSystem_DrawSprites(appData->spriteMan);
 }
 
-void TownMapApp_TransferOam(TownMapAppData *param0)
+void TownMapApp_TransferOam(TownMapAppData *appData)
 {
     SpriteSystem_TransferOam();
 }
