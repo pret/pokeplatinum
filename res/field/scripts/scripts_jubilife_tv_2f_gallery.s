@@ -183,7 +183,7 @@ _02C7:
     GoToIfEq VAR_RESULT, 0, _0328
     ScrCmd_130 VAR_0x8004
     IncrementGameRecord RECORD_UNK_054
-    ScrCmd_316
+    ScriptSync
     ScrCmd_245 0, VAR_0x8004
     Message 8
     ApplyMovement 0, _03BC
