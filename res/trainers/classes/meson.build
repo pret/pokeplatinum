@@ -35,7 +35,7 @@ trainer_encounter_mugshot_png = files(
     '.shared/enc_galactic.png',
     '.shared/league_banner.png',
     '.shared/dummy_mugshot.png',
-    '.shared/league_vs.png',
+    '.shared/vs.png',
 )
 trainer_encounter_cell_json += files(
     '.shared/enc_trainer_low_cell.json',
@@ -43,7 +43,7 @@ trainer_encounter_cell_json += files(
     '.shared/enc_galactic_cell.json',
     '.shared/league_banner_cell.json',
     '.shared/dummy_mugshot_cell.json',
-    '.shared/league_vs_cell.json',
+    '.shared/vs_cell.json',
     '.shared/frontier_vs_cell.json',
 )
 trainer_encounter_anim_json += files(
@@ -52,8 +52,7 @@ trainer_encounter_anim_json += files(
     '.shared/enc_galactic_anim.json',
     '.shared/league_banner_anim.json',
     '.shared/dummy_mugshot_anim.json',
-    '.shared/league_vs_anim.json',
-    '.shared/frontier_vs_anim.json',
+    '.shared/vs_anim.json',
 )
 trainer_encounter_pal += files(
     '.shared/enc_trainer.pal',
@@ -61,19 +60,26 @@ trainer_encounter_pal += files(
     '.shared/enc_fade.pal',
     '.shared/dummy_banner.png',
     '.shared/dummy_mugshot.png',
-    '.shared/league_vs.png',
+    '.shared/vs.png',
 )
 trainer_encounter_copy += files(
     '.shared/dummy_banner.NSCR',
     '.shared/elite_particle_1.spa',
     '.shared/elite_particle_2.spa',
 )
-trainer_encounter_frontier_png += files(
-    '.shared/frontier_vs.png',
-)
 trainer_encounter_dummy_png += files(
     '.shared/dummy_banner.png',
 )
+
+# battle frontier repeats the vs icon
+# the cell file is unique due to differing mapping types
+frontier_vs_png = files(
+    '.shared/vs.png',
+)
+frontier_vs_anim_json = files(
+    '.shared/vs_anim.json',
+)
+
 
 # 2. Register trainer classes. The contents of each output file is a listing
 #    of subdirectories which contains some assets that must be compiled.
@@ -280,6 +286,28 @@ trbgra_narc = custom_target('trbgra.narc',
 naix_headers += trbgra_narc[1]
 
 
+# battle frontier repeats the vs icon
+ncgr_gen_frontier_vs = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: 'frontier_@BASENAME@.NCGR',
+)
+nanr_gen_frontier_vs = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: 'frontier_@BASENAME@.NANR'
+)
+frontier_vs_NCGR = ncgr_gen_frontier_vs.process(frontier_vs_png,
+    extra_args: [
+        '-cell', '-preservepath',
+        '-version101',
+        '-clobbersize',
+        '-mappingtype', '128',
+        '-convertTo4Bpp',
+    ],
+    preserve_path_from: trainer_classes_root,
+)
+frontier_vs_anim_NANR = nanr_gen_frontier_vs.process(frontier_vs_anim_json,
+    preserve_path_from: trainer_classes_root,)
+
 trainer_encounter_mugshot_NCGR = ncgr_cell_gen.process(trainer_encounter_mugshot_png,
     extra_args: [
         '-version101',
@@ -341,6 +369,8 @@ field_encounteffect_narc = custom_target('field_encounteffect.narc',
         trainer_encounter_NANR,
         trainer_encounter_NCLR,
         trainer_encounter_paste,
+        frontier_vs_NCGR,
+        frontier_vs_anim_NANR,
     ],
     command: [
         narc_exe, 'create',

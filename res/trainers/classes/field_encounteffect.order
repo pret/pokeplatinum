@@ -49,10 +49,10 @@ champion_cynthia/banner.NCLR
 .shared/dummy_mugshot.NCGR
 .shared/dummy_mugshot_cell.NCER
 .shared/dummy_mugshot_anim.NANR
-.shared/league_vs.NCLR
-.shared/league_vs.NCGR
-.shared/league_vs_cell.NCER
-.shared/league_vs_anim.NANR
+.shared/vs.NCLR
+.shared/vs.NCGR
+.shared/vs_cell.NCER
+.shared/vs_anim.NANR
 leader_roark/mugshot.NCLR
 leader_roark/mugshot.NCGR
 leader_roark/mugshot_cell.NCER

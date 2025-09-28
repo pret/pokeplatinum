@@ -782,7 +782,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
         }
         else
         {
-            FATAL_ERROR("Incompatible cell file type\n");
+            FATAL_ERROR("Incompatible cell file type: %s\n", cellFileExtension);
         }
     }
 

@@ -553,8 +553,8 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
             if (strcmp(options.cellFilePath, "-preservepath") == 0)
             {
                 const char *suffix = "_cell.json";
-                size_t inputStemSize = strlen(inputPath) - sizeof(".png");
-                options.cellFilePath = calloc(inputStemSize + sizeof(suffix) + 1, sizeof(char));
+                size_t inputStemSize = strlen(inputPath) - strlen(".png");
+                options.cellFilePath = calloc(inputStemSize + strlen(suffix) + 1, sizeof(char));
                 sprintf(options.cellFilePath, "%.*s%s" , (int)inputStemSize, inputPath, suffix);
             }
 
