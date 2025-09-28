@@ -80,3 +80,4 @@ we_sub_narc = custom_target(we_sub_narc_name,
 )
 
 nitrofs_files += we_sub_narc
+naix_headers += we_sub_narc[1]

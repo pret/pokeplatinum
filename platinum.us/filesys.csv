@@ -176,7 +176,7 @@ res/prebuilt/battle/graphic/pl_batt_bg.narc,/battle/graphic/pl_batt_bg.narc
 res/prebuilt/battle/graphic/pl_batt_obj.narc,/battle/graphic/pl_batt_obj.narc
 res/prebuilt/battle/graphic/vs_demo_gra.narc,/battle/graphic/vs_demo_gra.narc
 res/battle/moves/we.arc,/wazaeffect/we.arc
-res/battle/scripts/subscripts/anims/we_sub.narc,/wazaeffect/we_sub.narc
+res/battle/scripts/common_anims/we_sub.narc,/wazaeffect/we_sub.narc
 res/battle/scripts/be_seq.narc,/battle/skill/be_seq.narc
 res/battle/scripts/sub_seq.narc,/battle/skill/sub_seq.narc
 res/battle/scripts/waza_seq.narc,/battle/skill/waza_seq.narc

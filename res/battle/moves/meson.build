@@ -1013,14 +1013,22 @@ battle_anim_script_bin_gen = generator(make_script_bin_sh,
         c_consts_generators,
         h_headers,
         waza_particle_narc[1],
+        wecell_narc_files[1],
+        wecellanm_narc_files[1],
+        wechar_narc_files[1],
+        wepltt_narc_files[1],
     ],
     output: '@BASENAME@',
     depfile: '@BASENAME@.d',
 )
 
-we_data_srcs = []
+we_srcs = []
 foreach subdir : we_subdirs
-    we_data_srcs += subdir / 'anim' / (subdir + '.s')
+    we_srcs += configure_file(
+        input: subdir / 'anim.s',
+        output: subdir + '.s',
+        copy: true,
+    )
 endforeach
 
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
@@ -1036,7 +1044,7 @@ we_narc = custom_target(we_narc_name,
         we_narc_name,
     ],
     input: battle_anim_script_bin_gen.process(
-        we_data_srcs,
+        we_srcs,
         extra_args: ['--out-dir', we_private_dir]
     ),
     command: [
