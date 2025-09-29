@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202F264.h"
 
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "mystery_gift.h"
 #include "savedata.h"
 

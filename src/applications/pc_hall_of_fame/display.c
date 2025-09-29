@@ -17,7 +17,7 @@
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"

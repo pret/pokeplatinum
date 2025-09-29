@@ -1,4 +1,4 @@
-#include "overlay086/league_hall_of_fame.h"
+#include "cutscenes/hall_of_fame.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -97,7 +97,7 @@ typedef struct HallOfFameMan {
     NARC *narc;
 } HallOfFameMan;
 
-typedef struct HallOfFameConfetto {
+typedef struct HallOfFameConfetti {
     int color;
     int unk_04;
     VecFx16 unk_08[4];
@@ -105,12 +105,12 @@ typedef struct HallOfFameConfetto {
     VecFx16 unk_26;
     MtxFx44 pDst;
     BOOL unk_6C;
-} HallOfFameConfetto;
+} HallOfFameConfetti;
 
 typedef struct HallOfFameConfettiAnimation {
     BOOL active;
     volatile BOOL unk_04;
-    HallOfFameConfetto confetti[48];
+    HallOfFameConfetti confetti[48];
     GXDLInfo info;
     u32 unk_151C[7680];
     u32 unk_8D1C;

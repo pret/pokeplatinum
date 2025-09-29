@@ -19,7 +19,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "location.h"
