@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, hydro_pump_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
@@ -27,7 +27,7 @@ L_0:
     Func_Shake 2, 0, 1, 14, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32

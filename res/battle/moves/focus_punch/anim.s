@@ -22,7 +22,7 @@ L_2:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 31, BATTLE_BG_SWITCH_MODE_FADE
     Func_MoveBattler 258, 16, -8, 2
@@ -33,7 +33,7 @@ L_2:
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 31, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

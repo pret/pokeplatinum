@@ -9,7 +9,7 @@ L_0:
     WaitForAnimTasks
     Func_RevolveBattler 2, 1, 10
     WaitForAnimTasks
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 6, BATTLE_BG_SWITCH_MODE_FADE
     Func_RevolveBattler 2, 1, 10
@@ -30,7 +30,7 @@ L_0:
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 6, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

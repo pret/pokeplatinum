@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, waterfall_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -20
@@ -26,7 +26,7 @@ L_0:
     Func_Shake 1, 0, 1, 6, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -20

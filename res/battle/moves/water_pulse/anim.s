@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, water_pulse_spa
     LoadParticleResource 1, water_pulse_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 35, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForPartialBgSwitch
@@ -23,7 +23,7 @@ L_0:
     Delay 30
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 35, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForBgSwitch

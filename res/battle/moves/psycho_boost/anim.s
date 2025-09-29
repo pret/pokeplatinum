@@ -13,7 +13,7 @@ L_0:
     Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 50
     Delay 60
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_LEFT
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 4, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
@@ -25,7 +25,7 @@ L_0:
     Func_Shake 4, 0, 1, 8, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 4, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

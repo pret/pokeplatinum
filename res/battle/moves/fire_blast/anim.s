@@ -17,7 +17,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
     Delay 5
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 22, BATTLE_BG_SWITCH_MODE_FADE
     StopSoundEffect SEQ_SE_DP_W172

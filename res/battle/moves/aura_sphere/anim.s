@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, aura_sphere_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -30,7 +30,7 @@ L_0:
     UnloadParticleSystem 0
     Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1

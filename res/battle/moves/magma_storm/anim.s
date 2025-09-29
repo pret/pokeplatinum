@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, magma_storm_spa
     LoadParticleResource 1, magma_storm_spa
     LoadParticleResource 2, magma_storm_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
@@ -53,7 +53,7 @@ L_0:
     UnloadParticleSystem 0
     UnloadParticleSystem 1
     UnloadParticleSystem 2
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32

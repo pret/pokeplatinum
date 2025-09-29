@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, whirlpool_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 35, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForPartialBgSwitch
@@ -20,7 +20,7 @@ L_0:
     Func_FadeBattlerSprite 8, 0, 2, 32720, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 35, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForAnimTasks

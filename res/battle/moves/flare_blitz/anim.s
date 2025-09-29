@@ -13,7 +13,7 @@ L_0:
     Func_MoveBattler 258, 16, -8, 2
     WaitForAnimTasks
     Func_MoveBattler 258, -16, 8, 2
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 33, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
@@ -24,7 +24,7 @@ L_0:
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 33, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

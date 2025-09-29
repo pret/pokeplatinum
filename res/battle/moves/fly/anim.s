@@ -9,7 +9,7 @@ L_0:
     End
 
 L_1:
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
@@ -25,7 +25,7 @@ L_1:
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
@@ -34,7 +34,7 @@ L_1:
     End
 
 L_2:
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -32
@@ -53,7 +53,7 @@ L_2:
     UnloadParticleSystem 0
     UnloadParticleSystem 1
     Func_HideBattler 2, 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -32

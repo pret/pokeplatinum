@@ -7,7 +7,7 @@ L_0:
     CallFunc 47, 0
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
     Delay 10
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 2, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
@@ -25,7 +25,7 @@ L_0:
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 2, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

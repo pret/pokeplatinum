@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, dynamic_punch_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 1, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
@@ -21,7 +21,7 @@ L_0:
     Func_Shake 4, 0, 1, 10, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 1, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 4, 3
     CreateEmitter 0, 0, 3
     Delay 50
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 41, BATTLE_BG_SWITCH_MODE_FADE
     Delay 10
@@ -23,7 +23,7 @@ L_0:
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 41, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

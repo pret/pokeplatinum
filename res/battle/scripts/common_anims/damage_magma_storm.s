@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, 480
     LoadParticleResource 1, 480
     LoadParticleResource 2, 480
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
@@ -53,7 +53,7 @@ L_0:
     UnloadParticleSystem 0
     UnloadParticleSystem 1
     UnloadParticleSystem 2
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32

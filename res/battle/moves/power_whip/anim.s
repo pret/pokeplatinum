@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, power_whip_spa
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 7, BATTLE_BG_SWITCH_MODE_FADE
     PlayPannedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_RIGHT
@@ -17,7 +17,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     RestoreBg 7, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 2, 3
     PlayLoopedSoundEffect SEQ_SE_DP_W056B, BATTLE_SOUND_PAN_LEFT, 8, 2
     Delay 20
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -25,7 +25,7 @@ L_0:
     Func_Shake 5, 0, 1, 15, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1

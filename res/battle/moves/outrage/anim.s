@@ -10,7 +10,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     Delay 1
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -35,7 +35,7 @@ L_0:
     Delay 10
     WaitForAllEmitters
     UnloadParticleSystem 0
-    ResetVar
+    ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
