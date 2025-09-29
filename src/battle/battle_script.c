@@ -4755,7 +4755,7 @@ static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx)
 
     while (TRUE) {
         int i;
-        u16 move = (BattleSystem_RandNext(battleSys) % NUM_MOVES) + 1;
+        u16 move = (BattleSystem_RandNext(battleSys) % NUM_VALID_MOVES) + 1;
 
         // Do not try to invoke a move that we already know.
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
