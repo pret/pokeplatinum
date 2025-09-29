@@ -157,7 +157,7 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_Free(param0);
 }
 
-int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
+int Mailbox_TakeMailFromMon(Mailbox *mailbox, Pokemon *mon, int heapID)
 {
     int item = ITEM_NONE;
     int slot = Mail_GetEmptySlotInArray(mailbox, 0);

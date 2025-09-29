@@ -33,84 +33,84 @@
 
 #include "res/text/bank/party_menu.h"
 
-static void sub_02083AD0(PartyMenuApplication *param0, int *param1);
-static void sub_0208472C(PartyMenuApplication *param0, int *param1);
-static void sub_02084808(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_MoveMon_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_Select1_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Callback(PartyMenuApplication *param0, int *param1); // sub_02084808
 static void sub_02083E8C(PartyMenuApplication *param0, u8 param1);
 static void sub_02083FDC(PartyMenuApplication *param0, u8 param1, u8 param2);
 static void sub_02084134(PartyMenuApplication *param0);
 static void sub_02084420(PartyMenuApplication *param0, u8 param1);
-static void sub_020848A8(PartyMenuApplication *param0, int *param1);
-static void sub_020848C0(PartyMenuApplication *param0, int *param1);
-static void sub_020848D8(PartyMenuApplication *param0, int *param1);
-static void sub_020848F0(PartyMenuApplication *param0, int *param1);
-static void sub_02084908(PartyMenuApplication *param0, int *param1);
-static void sub_02084920(PartyMenuApplication *param0, int *param1);
-static void sub_02084938(PartyMenuApplication *param0, int *param1);
-static void sub_02084950(PartyMenuApplication *param0, int *param1);
-static void sub_02084968(PartyMenuApplication *param0, int *param1);
-static void sub_02084980(PartyMenuApplication *param0, int *param1);
-static void sub_02084998(PartyMenuApplication *param0, int *param1);
-static void sub_020849B0(PartyMenuApplication *param0, int *param1);
-static void sub_020849C8(PartyMenuApplication *param0, int *param1);
-static void sub_020849E0(PartyMenuApplication *param0, int *param1);
-static void sub_020849FC(PartyMenuApplication *param0, int *param1);
-static int sub_02084A18(PartyMenuApplication *param0);
+static void PartyMenu_FieldMove_Cut_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Rock_Smash_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Strength_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Surf_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Defog_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Rock_Climb_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Fly_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Waterfall_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Flash_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Teleport_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Dig_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Sweet_Scent_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Chatter_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Milk_Drink_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_FieldMove_Softboiled_Callback(PartyMenuApplication *param0, int *param1);
+static int PartyMenu_FieldMove_Heal_Select(PartyMenuApplication *param0);
 static void sub_02084760(PartyMenuApplication *param0, int *param1);
-static void sub_020833BC(PartyMenuApplication *param0, int *param1);
-static void sub_0208347C(PartyMenuApplication *param0, int *param1);
-static void sub_020834B0(PartyMenuApplication *param0, int *param1);
-static void sub_02083700(PartyMenuApplication *param0, int *param1);
-static void sub_020837C0(PartyMenuApplication *param0, int *param1);
-static void sub_020837F4(PartyMenuApplication *param0, int *param1);
-static int sub_0208384C(void *param0);
-static int sub_020838C4(void *param0);
-static int sub_020838F4(void *param0);
-static int sub_02083990(void *param0);
-static void sub_020846CC(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_ItemGiveTake_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_ItemGive_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_ItemTake_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_MailReadTake_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_MailRead_Callback(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_MailTake_Callback(PartyMenuApplication *param0, int *param1);
+static int HandleSendMailToPCYesNoInput(void *param0);
+static int LoseMailMessageYesNo(void *param0);
+static int HandleLoseMailMessageYesNoInput(void *param0);
+static int ChoosePokemon(void *param0);
+static void PartyMenu_Select0_Callback(PartyMenuApplication *param0, int *param1);
 static void sub_020844B0(PartyMenuApplication *param0, int *param1);
 static void sub_020845E8(PartyMenuApplication *param0, int *param1);
-static void sub_020846FC(PartyMenuApplication *param0, int *param1);
-static void sub_020839FC(PartyMenuApplication *param0, int *param1);
+static void PartyMenu_Select0_Callback2(PartyMenuApplication *param0, int *param1);
+static void HandleDetachBallCapsuleYesNo(PartyMenuApplication *param0, int *param1);
 
-static const u32 Unk_020F2458[] = {
-    (const u32)sub_02083AD0,
-    (const u32)sub_0208472C,
-    (const u32)sub_020833BC,
-    (const u32)sub_0208347C,
-    (const u32)sub_020834B0,
-    (const u32)sub_02083700,
-    (const u32)sub_020837C0,
-    (const u32)sub_020837F4,
-    (const u32)sub_020839FC,
+static const u32 sPartyMenuCallbacks[] = {
+    (const u32)PartyMenu_MoveMon_Callback,
+    (const u32)PartyMenu_Select1_Callback,
+    (const u32)PartyMenu_ItemGiveTake_Callback, // sub_020833BC
+    (const u32)PartyMenu_ItemGive_Callback, // sub_0208347C
+    (const u32)PartyMenu_ItemTake_Callback, // sub_020834B0
+    (const u32)PartyMenu_MailReadTake_Callback,
+    (const u32)PartyMenu_MailRead_Callback,
+    (const u32)PartyMenu_MailTake_Callback,
+    (const u32)HandleDetachBallCapsuleYesNo,
     0xFFFFFFFE,
     0xFFFFFFFE,
     (const u32)sub_020844B0,
     (const u32)sub_020845E8,
-    (const u32)sub_020846CC,
+    (const u32)PartyMenu_Select0_Callback,
     (const u32)sub_02084760,
-    (const u32)sub_020846FC,
-    (const u32)sub_020848A8,
-    (const u32)sub_02084938,
-    (const u32)sub_020848F0,
-    (const u32)sub_020848D8,
-    (const u32)sub_02084908,
-    (const u32)sub_020848C0,
-    (const u32)sub_02084950,
-    (const u32)sub_02084920,
-    (const u32)sub_02084968,
-    (const u32)sub_02084980,
-    (const u32)sub_02084998,
-    (const u32)sub_020849B0,
-    (const u32)sub_020849C8,
-    (const u32)sub_020849E0,
-    (const u32)sub_020849FC,
+    (const u32)PartyMenu_Select0_Callback2,
+    (const u32)PartyMenu_FieldMove_Cut_Callback,    // sub_020848A8
+    (const u32)PartyMenu_FieldMove_Fly_Callback,    // sub_02084938
+    (const u32)PartyMenu_FieldMove_Surf_Callback,   // sub_020848F0
+    (const u32)PartyMenu_FieldMove_Strength_Callback, // sub_020848D8
+    (const u32)PartyMenu_FieldMove_Defog_Callback, // sub_02084908
+    (const u32)PartyMenu_FieldMove_Rock_Smash_Callback, // sub_020848C0
+    (const u32)PartyMenu_FieldMove_Waterfall_Callback, // sub_02084950
+    (const u32)PartyMenu_FieldMove_Rock_Climb_Callback, // sub_02084920
+    (const u32)PartyMenu_FieldMove_Flash_Callback, // sub_02084968
+    (const u32)PartyMenu_FieldMove_Teleport_Callback, // sub_02084980
+    (const u32)PartyMenu_FieldMove_Dig_Callback, // sub_02084998
+    (const u32)PartyMenu_FieldMove_Sweet_Scent_Callback, // sub_020849B0
+    (const u32)PartyMenu_FieldMove_Chatter_Callback, // sub_020849C8
+    (const u32)PartyMenu_FieldMove_Milk_Drink_Callback, // sub_020849E0
+    (const u32)PartyMenu_FieldMove_Softboiled_Callback, // sub_020849FC
     0xFFFFFFFE
 };
 
-u32 sub_02083370(u8 param0)
+u32 getPartyMenuCallback(u8 param0)
 {
-    return Unk_020F2458[param0];
+    return sPartyMenuCallbacks[param0];
 }
 
 void sub_0208337C(PartyMenuApplication *param0)
@@ -122,44 +122,44 @@ void sub_0208337C(PartyMenuApplication *param0)
     Window_Remove(&param0->menuWindows[0]);
 }
 
-static void sub_020833BC(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_ItemGiveTake_Callback(PartyMenuApplication *param0, int *param1)
 {
-    MenuTemplate v0;
+    MenuTemplate menuTemplate;
 
     sub_0208337C(param0);
     PartyMenu_PrintMediumMessage(param0, pl_msg_00000453_00038, FALSE);
 
     param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[3], sub_02083370(3));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[4], sub_02083370(4));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[3], getPartyMenuCallback(3));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[4], getPartyMenuCallback(4));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], getPartyMenuCallback(9));
 
-    v0.choices = param0->contextMenuChoices;
-    v0.window = &param0->windows[35];
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 3;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
+    menuTemplate.choices = param0->contextMenuChoices;
+    menuTemplate.window = &param0->windows[35];
+    menuTemplate.fontID = FONT_SYSTEM;
+    menuTemplate.xSize = 1;
+    menuTemplate.ySize = 3;
+    menuTemplate.lineSpacing = 0;
+    menuTemplate.suppressCursor = FALSE;
+    menuTemplate.loopAround = FALSE;
 
     Window_DrawStandardFrame(&param0->windows[35], 1, 1, 14);
 
-    param0->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    param0->contextMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
 }
 
-static void sub_0208347C(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_ItemGive_Callback(PartyMenuApplication *param0, int *param1)
 {
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
 
-    param0->partyMenu->menuSelectionResult = 3;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_ITEM_GIVE;
     *param1 = 32;
 }
 
-static void sub_020834B0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_ItemTake_Callback(PartyMenuApplication *param0, int *param1)
 {
     Pokemon *mon;
     int v1;
@@ -250,7 +250,7 @@ int sub_020836E4(PartyMenuApplication *param0)
     return 19;
 }
 
-static void sub_02083700(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_MailReadTake_Callback(PartyMenuApplication *param0, int *param1)
 {
     MenuTemplate v0;
 
@@ -259,9 +259,9 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
 
     param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[6], sub_02083370(6));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[7], sub_02083370(7));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[6], getPartyMenuCallback(6));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[7], getPartyMenuCallback(7));
+    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], getPartyMenuCallback(9));
 
     v0.choices = param0->contextMenuChoices;
     v0.window = &param0->windows[35];
@@ -278,29 +278,29 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
     *param1 = 15;
 }
 
-static void sub_020837C0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_MailRead_Callback(PartyMenuApplication *param0, int *param1)
 {
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
 
-    param0->partyMenu->menuSelectionResult = 7;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_MAIL_READ;
     *param1 = 32;
 }
 
-static void sub_020837F4(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_MailTake_Callback(PartyMenuApplication *param0, int *param1)
 {
     Window_EraseStandardFrame(&param0->windows[35], 1);
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
-    PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00043, TRUE);
+    PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00043, TRUE); // Send removed mail to PC?
 
-    param0->unk_B04.unk_00 = sub_0208384C;
-    param0->unk_B04.unk_04 = sub_020838C4;
+    param0->unk_B04.unk_00 = HandleSendMailToPCYesNoInput;
+    param0->unk_B04.unk_04 = LoseMailMessageYesNo;
     param0->unk_B0E = 26;
     *param1 = 24;
 }
 
-static int sub_0208384C(void *param0)
+static int HandleSendMailToPCYesNoInput(void *param0)
 {
     PartyMenuApplication *v0 = param0;
     Pokemon *v1;
@@ -308,12 +308,12 @@ static int sub_0208384C(void *param0)
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
 
-    if (sub_02097788(v0->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
+    if (Mailbox_TakeMailFromMon(v0->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
         v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
         PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
-        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00046, FALSE);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00046, FALSE); // Mail was sent to your PC
     } else {
-        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00050, FALSE);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00050, FALSE); // Your PC’s Mailbox is full.
     }
 
     v0->unk_B0E = 20;
@@ -321,20 +321,20 @@ static int sub_0208384C(void *param0)
     return 24;
 }
 
-static int sub_020838C4(void *param0)
+static int LoseMailMessageYesNo(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
     PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00047, FALSE);
 
-    v0->unk_B04.unk_00 = sub_020838F4;
-    v0->unk_B04.unk_04 = sub_02083990;
+    v0->unk_B04.unk_00 = HandleLoseMailMessageYesNoInput;
+    v0->unk_B04.unk_04 = ChoosePokemon;
     v0->unk_B0E = 26;
 
     return 24;
 }
 
-static int sub_020838F4(void *param0)
+static int HandleLoseMailMessageYesNoInput(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
@@ -352,9 +352,9 @@ static int sub_020838F4(void *param0)
         v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
 
         PartyMenu_DrawMemberHeldItem(v0, v0->currPartySlot, v0->partyMembers[v0->currPartySlot].heldItem);
-        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00051, FALSE);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00051, FALSE); // Mail Was taken from this pokemon
     } else {
-        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00083, FALSE);
+        PartyMenu_PrintLongMessage(v0, pl_msg_00000453_00083, FALSE); // The bag was full.
     }
 
     v0->unk_B0E = 20;
@@ -362,12 +362,12 @@ static int sub_020838F4(void *param0)
     return 24;
 }
 
-static int sub_02083990(void *param0)
+static int ChoosePokemon(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
     Window_EraseMessageBox(&v0->windows[34], 1);
-    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE);
+    PartyMenu_PrintShortMessage(v0, pl_msg_00000453_00029, TRUE); // Choose a pokemon
     Sprite_SetExplicitPalette2(v0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     return 1;
@@ -385,7 +385,7 @@ int sub_020839BC(PartyMenuApplication *param0)
     return 20;
 }
 
-static void sub_020839FC(PartyMenuApplication *param0, int *param1)
+static void HandleDetachBallCapsuleYesNo(PartyMenuApplication *param0, int *param1)
 {
     if (param0->partyMembers[param0->currPartySlot].ballSeal == 0) {
         Menu_Free(param0->contextMenu, NULL);
@@ -398,13 +398,13 @@ static void sub_020839FC(PartyMenuApplication *param0, int *param1)
     sub_0208337C(param0);
     PartyMenu_PrintLongMessage(param0, pl_msg_00000453_00195, TRUE);
 
-    param0->unk_B04.unk_00 = sub_02083A78;
-    param0->unk_B04.unk_04 = sub_02083AA4;
+    param0->unk_B04.unk_00 = HandleDetachBallCapsule;
+    param0->unk_B04.unk_04 = PartyMenu_ChoosePokemon2;
     param0->unk_B0E = 26;
     *param1 = 24;
 }
 
-int sub_02083A78(void *param0)
+int HandleDetachBallCapsule(void *param0)
 {
     PartyMenuApplication *v0 = param0;
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
@@ -415,7 +415,7 @@ int sub_02083A78(void *param0)
     return 32;
 }
 
-int sub_02083AA4(void *param0)
+int PartyMenu_ChoosePokemon2(void *param0)
 {
     PartyMenuApplication *v0 = param0;
 
@@ -426,7 +426,7 @@ int sub_02083AA4(void *param0)
     return 1;
 }
 
-static void sub_02083AD0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_MoveMon_Callback(PartyMenuApplication *param0, int *param1)
 {
     s16 v0, v1;
 
@@ -798,9 +798,9 @@ static void sub_020845E8(PartyMenuApplication *param0, int *param1)
     *param1 = 1;
 }
 
-static void sub_020846CC(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_Select0_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 0;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_UNK0;
 
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
@@ -808,9 +808,9 @@ static void sub_020846CC(PartyMenuApplication *param0, int *param1)
     *param1 = 32;
 }
 
-static void sub_020846FC(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_Select0_Callback2(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 0;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_UNK0;
 
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
@@ -818,9 +818,9 @@ static void sub_020846FC(PartyMenuApplication *param0, int *param1)
     *param1 = 32;
 }
 
-static void sub_0208472C(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_Select1_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 1;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_UNK1;
 
     Menu_Free(param0->contextMenu, NULL);
     StringList_Free(param0->contextMenuChoices);
@@ -841,28 +841,28 @@ int sub_02084780(PartyMenuApplication *param0)
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString); // The Ball Capsule was set.
         Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00130, param0->tmpString);
+        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00130, param0->tmpString); // Two capsules can't be set
         param0->currPartySlot = 7;
     }
 
     PartyMenu_PrintLongMessage(param0, PRINT_MESSAGE_PRELOADED, TRUE);
 
-    param0->partyMenu->menuSelectionResult = 0;
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_UNK0;
     param0->unk_B0E = 25;
 
     return 24;
 }
 
-static void sub_02084808(PartyMenuApplication *windowLayout, int *param1)
+static void PartyMenu_FieldMove_Callback(PartyMenuApplication *windowLayout, int *param1)
 {
     FieldMoveErrContext fieldMoveErrorCtx;
     u32 v1;
     u32 v2;
 
-    fieldMoveErrorCtx = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, windowLayout->partyMenu->menuSelectionResult - 11);
+    fieldMoveErrorCtx = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, windowLayout->partyMenu->menuSelectionResult - MENU_SELECTION_FIELD_MOVE_CUT);
 
     if (fieldMoveErrorCtx != NULL) {
         v1 = fieldMoveErrorCtx(windowLayout->partyMenu->fieldMoveContext);
@@ -898,103 +898,103 @@ static void sub_02084808(PartyMenuApplication *windowLayout, int *param1)
     *param1 = 24;
 }
 
-static void sub_020848A8(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Cut_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 11;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_CUT;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020848C0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Rock_Smash_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 16;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_ROCK_SMASH;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020848D8(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Strength_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 14;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_STRENGTH;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020848F0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Surf_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 13;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_SURF;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084908(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Defog_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 15;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_DEFOG;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084920(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Rock_Climb_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 18;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_ROCK_CLIMB;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084938(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Fly_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 12;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_FLY;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084950(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Waterfall_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 17;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_WATERFALL;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084968(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Flash_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 19;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_FLASH;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084980(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Teleport_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 20;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_TELEPORT;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_02084998(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Dig_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 21;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_DIG;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020849B0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Sweet_Scent_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 22;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_SWEET_SCENT;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020849C8(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Chatter_Callback(PartyMenuApplication *param0, int *param1)
 {
-    param0->partyMenu->menuSelectionResult = 23;
-    sub_02084808(param0, param1);
+    param0->partyMenu->menuSelectionResult = MENU_SELECTION_FIELD_MOVE_CHATTER;
+    PartyMenu_FieldMove_Callback(param0, param1);
 }
 
-static void sub_020849E0(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Milk_Drink_Callback(PartyMenuApplication *param0, int *param1)
 {
-    *param1 = sub_02084A18(param0);
+    *param1 = PartyMenu_FieldMove_Heal_Select(param0);
 
     if (*param1 == 30) {
         param0->monStats[3] = 24 - 11;
     }
 }
 
-static void sub_020849FC(PartyMenuApplication *param0, int *param1)
+static void PartyMenu_FieldMove_Softboiled_Callback(PartyMenuApplication *param0, int *param1)
 {
-    *param1 = sub_02084A18(param0);
+    *param1 = PartyMenu_FieldMove_Heal_Select(param0);
 
     if (*param1 == 30) {
         param0->monStats[3] = 25 - 11;
     }
 }
 
-static int sub_02084A18(PartyMenuApplication *param0)
+static int PartyMenu_FieldMove_Heal_Select(PartyMenuApplication *param0)
 {
     Window_EraseMessageBox(&param0->windows[33], 1);
     sub_0208337C(param0);
@@ -1006,14 +1006,14 @@ static int sub_02084A18(PartyMenuApplication *param0)
         param0->unk_B0E = 3;
         return 24;
     } else {
-        s16 v0, v1;
+        s16 sx, sy;
 
         param0->inSwitchMode = 1;
         param0->switchTargetSlot = param0->currPartySlot;
 
         Sprite_SetExplicitPalette2(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
-        Sprite_GetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], &v0, &v1);
-        Sprite_SetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], v0, v1);
+        Sprite_GetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], &sx, &sy);
+        Sprite_SetPositionXY(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], sx, sy);
         Sprite_SetAnim(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], PartyMenu_GetMemberPanelAnim(param0->partyMenu->type, param0->switchTargetSlot) + 2);
         Sprite_SetDrawFlag(param0->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], TRUE);
         PartyMenu_UpdateSlotPalette(param0, param0->switchTargetSlot);

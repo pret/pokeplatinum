@@ -245,22 +245,22 @@ static const GridMenuCursorPosition sCursorPosTable_SelectEgg[] = {
 };
 // clang-format on
 
-static const u16 Unk_020F1CB0[] = {
-    0xF,
-    0x13,
-    0x39,
-    0x46,
-    0x1B0,
-    0xF9,
-    0x7F,
-    0x1AF,
-    0x94,
-    0x64,
-    0x5B,
-    0xE6,
-    0x1C0,
-    0xD0,
-    0x87,
+static const u16 sFieldMoves[] = { // Field Moves?
+    MOVE_CUT,
+    MOVE_FLY,
+    MOVE_SURF,
+    MOVE_STRENGTH,
+    MOVE_DEFOG,
+    MOVE_ROCK_SMASH,
+    MOVE_WATERFALL,
+    MOVE_ROCK_CLIMB,
+    MOVE_FLASH,
+    MOVE_TELEPORT,
+    MOVE_DIG,
+    MOVE_SWEET_SCENT,
+    MOVE_CHATTER,
+    MOVE_MILK_DRINK,
+    MOVE_SOFTBOILED,
 };
 
 static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
@@ -2411,8 +2411,8 @@ u8 GetElementIndex(u16 application)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020F1CB0); v0++) {
-        if (application == Unk_020F1CB0[v0]) {
+    for (v0 = 0; v0 < NELEMS(sFieldMoves); v0++) {
+        if (application == sFieldMoves[v0]) {
             return v0 + 16;
         }
     }
@@ -2949,8 +2949,8 @@ static int CheckForItemApplication(PartyMenuApplication *application)
 
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
     PartyMenu_PrintLongMessage(application, pl_msg_00000453_00195, TRUE);
-    application->unk_B04.unk_00 = sub_02083A78;
-    application->unk_B04.unk_04 = sub_02083AA4;
+    application->unk_B04.unk_00 = HandleDetachBallCapsule;
+    application->unk_B04.unk_04 = PartyMenu_ChoosePokemon2;
     application->unk_B0E = 26;
     return 24;
 }
