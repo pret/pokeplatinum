@@ -5,8 +5,8 @@
 #include "generated/poketch_apps.h"
 #include "generated/species.h"
 
+#include "struct_defs/battle_regulation.h"
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_0202610C.h"
 
 #include "savedata.h"
 
