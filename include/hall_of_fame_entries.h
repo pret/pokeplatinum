@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_HALL_OF_FAME_H
-#define POKEPLATINUM_HALL_OF_FAME_H
+#ifndef POKEPLATINUM_HALL_OF_FAME_ENTRIES_H
+#define POKEPLATINUM_HALL_OF_FAME_ENTRIES_H
 
 #include <nitro/rtc.h>
 
@@ -56,4 +56,4 @@ u32 HallOfFame_GetEntryPokemonCount(const HallOfFame *hallOfFame, int entryIndex
 void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex, int pokemonIndex, PCHallOfFamePokemon *pcHallOfFameMon);
 void HallOfFame_GetEntryDate(const HallOfFame *hallOfFame, int entryIndex, RTCDate *date);
 
-#endif // POKEPLATINUM_HALL_OF_FAME_H
+#endif // POKEPLATINUM_HALL_OF_FAME_ENTRIES_H

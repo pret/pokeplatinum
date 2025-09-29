@@ -5,7 +5,7 @@
 
 #include "constants/pokemon.h"
 
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 
 typedef enum PCHallOfFameTextState {
     PC_HALL_OF_FAME_TEXT_GENERAL,

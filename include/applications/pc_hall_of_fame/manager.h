@@ -6,7 +6,7 @@
 
 #include "applications/pc_hall_of_fame/display.h"
 
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "overlay_manager.h"
 
 typedef struct PCHallOfFameMan {

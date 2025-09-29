@@ -1,4 +1,4 @@
-#include "overlay086/league_hall_of_fame.h"
+#include "cutscenes/hall_of_fame.h"
 
 #include <nitro.h>
 #include <string.h>
