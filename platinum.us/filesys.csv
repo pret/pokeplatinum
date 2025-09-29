@@ -120,7 +120,7 @@ res/prebuilt/data/ug_hole.NCER,/data/ug_hole.NCER
 res/prebuilt/data/ug_hole.NCGR,/data/ug_hole.NCGR
 res/graphics/mining/mining.narc,/data/ug_parts.narc
 res/prebuilt/data/ug_radar.narc,/data/ug_radar.narc
-res/prebuilt/data/ug_trap.narc,/data/ug_trap.narc
+res/graphics/trap_effects/trap_effects.narc,/data/ug_trap.narc
 res/graphics/underground_map_transition/underground_map_transition.narc,/data/ugeffect_obj_graphic.narc
 res/prebuilt/data/uground_cell.resdat,/data/uground_cell.resdat
 res/prebuilt/data/uground_cellanm.resdat,/data/uground_cellanm.resdat

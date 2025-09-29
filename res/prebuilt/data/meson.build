@@ -120,7 +120,6 @@ prebuilt_files = [
     'ug_hole.NCER',
     'ug_hole.NCGR',
     'ug_radar.narc',
-    'ug_trap.narc',
     'uground_cell.resdat',
     'uground_cellanm.resdat',
     'uground_char.resdat',
