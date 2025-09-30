@@ -8,12 +8,12 @@
 #include "unk_0206B70C.h"
 #include "vram_transfer.h"
 
-void TownMapApp_InitSpriteSystem(TownMapAppData *appData);
-void TownMapApp_FreeSpriteSystem(TownMapAppData *appData);
-void TownMapApp_DrawSprites(TownMapAppData *appData);
-void TownMapApp_TransferOam(TownMapAppData *appData);
+void TownMap_InitSpriteSystem(TownMapAppData *appData);
+void TownMap_FreeSpriteSystem(TownMapAppData *appData);
+void TownMap_DrawSprites(TownMapAppData *appData);
+void TownMap_TransferOam(TownMapAppData *appData);
 
-void TownMapApp_InitSpriteSystem(TownMapAppData *appData)
+void TownMap_InitSpriteSystem(TownMapAppData *appData)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -58,19 +58,19 @@ void TownMapApp_InitSpriteSystem(TownMapAppData *appData)
     SpriteSystem_LoadResourceDataFromFilepaths(appData->spriteSystem, appData->spriteMan, &resourcePaths);
 }
 
-void TownMapApp_FreeSpriteSystem(TownMapAppData *appData)
+void TownMap_FreeSpriteSystem(TownMapAppData *appData)
 {
     SpriteSystem_DestroySpriteManager(appData->spriteSystem, appData->spriteMan);
     SpriteSystem_Free(appData->spriteSystem);
     VramTransfer_Free();
 }
 
-void TownMapApp_DrawSprites(TownMapAppData *appData)
+void TownMap_DrawSprites(TownMapAppData *appData)
 {
     SpriteSystem_DrawSprites(appData->spriteMan);
 }
 
-void TownMapApp_TransferOam(TownMapAppData *appData)
+void TownMap_TransferOam(TownMapAppData *appData)
 {
     SpriteSystem_TransferOam();
 }

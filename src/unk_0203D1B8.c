@@ -706,33 +706,31 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203D884(FieldSystem *fieldSystem, TownMapContext *param1)
+void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx)
 {
     FS_EXTERN_OVERLAY(overlay80);
 
-    const ApplicationManagerTemplate v0 = {
+    const ApplicationManagerTemplate townMapApp = {
         TownMap_Init,
         TownMap_Main,
         TownMap_Exit,
         FS_OVERLAY_ID(overlay80)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &townMapApp, townMapCtx);
 }
 
-void *sub_0203D8AC(FieldSystem *fieldSystem)
+void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem)
 {
-    TownMapContext *v0;
-    TrainerInfo *v1;
-    int v2 = 0, v3 = 0;
+    TownMapContext *townMapCtx;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
+    townMapCtx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    TownMapContext_Init(fieldSystem, v0, 0);
-    sub_0203D884(fieldSystem, v0);
+    TownMapContext_Init(fieldSystem, townMapCtx, TOWN_MAP_MODE_ITEM);
+    FieldSystem_OpenTownMap(fieldSystem, townMapCtx);
 
-    return v0;
+    return townMapCtx;
 }
 
 static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)

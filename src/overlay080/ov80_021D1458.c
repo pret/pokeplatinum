@@ -111,19 +111,19 @@ typedef struct {
     u8 height;
 } TilemapRectCopyTemplate;
 
-int TownMapApp_CreateGraphicsMan(TownMapAppData *appData);
-int TownMapApp_LoadGraphics(TownMapAppData *appData);
-int TownMapApp_HandleInput_Item(TownMapAppData *appData);
+int TownMap_CreateGraphicsMan(TownMapAppData *appData);
+int TownMap_LoadGraphics(TownMapAppData *appData);
+int TownMap_HandleInput_Item(TownMapAppData *appData);
 int TownMap_HandleInput_Fly(TownMapAppData *appData);
 int TownMap_HandleInput_WallMap(TownMapAppData *appData);
-int TownMapApp_UpdateBottomScreen(TownMapAppData *appData);
-int TownMapApp_UpdateFlyTargetSprites(TownMapAppData *appData);
-int TownMapApp_FreeGraphics(TownMapAppData *appData);
-int TownMapApp_UpdateDisplayedLocationInfo(TownMapAppData *appData);
-int TownMapApp_FadeInBothScreens(TownMapAppData *appData);
-int TownMapApp_FadeOutBothScreens(TownMapAppData *appData);
-int TownMapApp_FadeInTopScreen(TownMapAppData *appData);
-int TownMapApp_FadeOutTopScreen(TownMapAppData *appData);
+int TownMap_UpdateBottomScreen(TownMapAppData *appData);
+int TownMap_UpdateFlyTargetSprites(TownMapAppData *appData);
+int TownMap_FreeGraphics(TownMapAppData *appData);
+int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData);
+int TownMap_FadeInBothScreens(TownMapAppData *appData);
+int TownMap_FadeOutBothScreens(TownMapAppData *appData);
+int TownMap_FadeInTopScreen(TownMapAppData *appData);
+int TownMap_FadeOutTopScreen(TownMapAppData *appData);
 static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *mapBlock, enum MapHeader mapHeader);
 static void EraseSignpost(TownMapAppData *appData);
 static void PrintBottomScreenHeader(TownMapAppData *appData, Window *window);
@@ -149,7 +149,7 @@ static void Task_SwitchBottomScreenToZoomedMap(SysTask *sysTask, void *appData);
 static void Task_SwitchBottomScreenToZoomButton(SysTask *sysTask, void *appData);
 static BOOL CanFlyToHoveredLocation(TownMapAppData *appData);
 
-BOOL TownMapApp_CreateGraphicsMan(TownMapAppData *appData)
+BOOL TownMap_CreateGraphicsMan(TownMapAppData *appData)
 {
     appData->graphicsMan = Heap_Alloc(appData->heapID, sizeof(TownMapGraphicsManager));
 
@@ -158,7 +158,7 @@ BOOL TownMapApp_CreateGraphicsMan(TownMapAppData *appData)
     return TRUE;
 }
 
-BOOL TownMapApp_FreeGraphics(TownMapAppData *appData)
+BOOL TownMap_FreeGraphics(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
@@ -168,14 +168,14 @@ BOOL TownMapApp_FreeGraphics(TownMapAppData *appData)
         DeleteLocationHistorySprites(appData);
     }
 
-    TownMapApp_FreeFlyDestinations(graphicsMan->flyDestinations);
+    TownMap_FreeFlyDestinations(graphicsMan->flyDestinations);
     DeleteAppWindows(appData);
     Heap_Free(graphicsMan);
 
     return TRUE;
 }
 
-BOOL TownMapApp_LoadGraphics(TownMapAppData *appData)
+BOOL TownMap_LoadGraphics(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
@@ -197,7 +197,7 @@ BOOL TownMapApp_LoadGraphics(TownMapAppData *appData)
     case 1:
         LoadMapGraphics(appData);
         CreateSprites(appData);
-        graphicsMan->flyDestinations = TownMapApp_LoadFlyDestinations(appData->spriteSystem, appData->spriteMan, appData->context->unlockedFlyDestination, 20, appData->heapID);
+        graphicsMan->flyDestinations = TownMap_LoadFlyDestinations(appData->spriteSystem, appData->spriteMan, appData->context->unlockedFlyDestination, 20, appData->heapID);
         UpdateHoveredLocation(appData);
         UpdateBottomScreenText(appData);
         graphicsMan->graphicsLoadStage = 0;
@@ -208,7 +208,7 @@ BOOL TownMapApp_LoadGraphics(TownMapAppData *appData)
     return FALSE;
 }
 
-int TownMapApp_FadeInBothScreens(TownMapAppData *appData)
+int TownMap_FadeInBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
@@ -221,7 +221,7 @@ int TownMapApp_FadeInBothScreens(TownMapAppData *appData)
     return 0;
 }
 
-int TownMapApp_FadeOutBothScreens(TownMapAppData *appData)
+int TownMap_FadeOutBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
     StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, appData->heapID);
@@ -229,7 +229,7 @@ int TownMapApp_FadeOutBothScreens(TownMapAppData *appData)
     return 0;
 }
 
-int TownMapApp_FadeInTopScreen(TownMapAppData *appData)
+int TownMap_FadeInTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
@@ -241,7 +241,7 @@ int TownMapApp_FadeInTopScreen(TownMapAppData *appData)
     return 0;
 }
 
-int TownMapApp_FadeOutTopScreen(TownMapAppData *appData)
+int TownMap_FadeOutTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
@@ -251,7 +251,7 @@ int TownMapApp_FadeOutTopScreen(TownMapAppData *appData)
     return 0;
 }
 
-BOOL TownMapApp_HandleInput_Item(TownMapAppData *appData)
+BOOL TownMap_HandleInput_Item(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
@@ -306,7 +306,7 @@ BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData)
     return FALSE;
 }
 
-int TownMapApp_UpdateBottomScreen(TownMapAppData *appData)
+int TownMap_UpdateBottomScreen(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
@@ -325,15 +325,15 @@ int TownMapApp_UpdateBottomScreen(TownMapAppData *appData)
     return 0;
 }
 
-int TownMapApp_UpdateFlyTargetSprites(TownMapAppData *appData)
+int TownMap_UpdateFlyTargetSprites(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
-    TownMapApp_BlinkHoveredFlyDestination(graphicsMan->flyDestinations, appData->mode);
+    TownMap_BlinkHoveredFlyDestination(graphicsMan->flyDestinations, appData->mode);
     return 0;
 }
 
-int TownMapApp_UpdateDisplayedLocationInfo(TownMapAppData *appData)
+int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
     TownMapBlock *mapBlock = appData->hoveredMapBlock;
@@ -495,7 +495,7 @@ static void UpdateBottomScreenText(TownMapAppData *appData)
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
     PrintLocationName(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]), graphicsMan->hoveredLocationMapHeader, graphicsMan->x, graphicsMan->y);
-    TownMapApp_UpdateHoveredFlyDestination(graphicsMan->flyDestinations, graphicsMan->hoveredLocationMapHeader, graphicsMan->x, graphicsMan->y);
+    TownMap_UpdateHoveredFlyDestination(graphicsMan->flyDestinations, graphicsMan->hoveredLocationMapHeader, graphicsMan->x, graphicsMan->y);
 
     if (graphicsMan->showingZoomedInMap == TRUE) {
         SetHoveredLocation(appData, graphicsMan->hoveredBlock, graphicsMan->hoveredLocationMapHeader);
@@ -510,7 +510,7 @@ static void UpdateHoveredLocation(TownMapAppData *appData)
 
     graphicsMan->prevLocationMapHeader = graphicsMan->hoveredLocationMapHeader;
     graphicsMan->hoveredLocationMapHeader = MainMapMatrixData_GetMapHeaderIDAtCoords(appData->mapMatrixData, graphicsMan->x, graphicsMan->y);
-    graphicsMan->hoveredBlock = TownMapApp_GetHoveredMapBlock(appData->mapBlockList, graphicsMan->x, graphicsMan->y, appData->unlockedHiddenLocations);
+    graphicsMan->hoveredBlock = TownMap_GetHoveredMapBlock(appData->mapBlockList, graphicsMan->x, graphicsMan->y, appData->unlockedHiddenLocations);
 }
 
 static void LoadMapName(TownMapAppData *appData, enum MapHeader header, int x, int y)
@@ -652,7 +652,7 @@ static void DoZoomedMapMvt(TownMapAppData *appData)
     graphicsMan->queuedMovement = 0;
 
     if (graphicsMan->prevLocationMapHeader != graphicsMan->hoveredLocationMapHeader) {
-        TownMapApp_UpdateHoveredFlyDestination(graphicsMan->flyDestinations, -1, 0, 0);
+        TownMap_UpdateHoveredFlyDestination(graphicsMan->flyDestinations, -1, 0, 0);
     }
 }
 
@@ -1194,7 +1194,7 @@ static int CanFlyToHoveredLocation(TownMapAppData *appData)
         return FALSE;
     }
 
-    flyDest = TownMapApp_GetHoveredFlyDestination(graphicsMan->flyDestinations, graphicsMan->hoveredLocationMapHeader, graphicsMan->x, graphicsMan->y);
+    flyDest = TownMap_GetHoveredFlyDestination(graphicsMan->flyDestinations, graphicsMan->hoveredLocationMapHeader, graphicsMan->x, graphicsMan->y);
 
     if ((flyDest == NULL) || (flyDest->isUnlocked == FALSE)) {
         return FALSE;

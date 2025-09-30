@@ -91,6 +91,7 @@
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_022521F0.h"
+#include "overlay080/ov80_021D0D80.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
@@ -386,7 +387,7 @@ static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_130(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
-static BOOL ScrCmd_0AA(ScriptContext *ctx);
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
@@ -939,7 +940,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A7,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
-    ScrCmd_0AA,
+    ScrCmd_OpenRegionMap,
     ScrCmd_OpenPokemonStorage,
     ScrCmd_0AC,
     ScrCmd_0AD,
@@ -4072,14 +4073,14 @@ static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AA(ScriptContext *ctx)
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **townMapCtx = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
+    *townMapCtx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    TownMapContext_Init(ctx->fieldSystem, *v1, 2);
-    sub_0203D884(ctx->fieldSystem, *v1);
+    TownMapContext_Init(ctx->fieldSystem, *townMapCtx, TOWN_MAP_MODE_WALL_MAP);
+    FieldSystem_OpenTownMap(ctx->fieldSystem, *townMapCtx);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

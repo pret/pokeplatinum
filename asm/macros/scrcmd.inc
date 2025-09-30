@@ -1052,7 +1052,7 @@
     .short 169
     .endm
 
-    .macro ScrCmd_0AA
+    .macro OpenRegionMap
     .short 170
     .endm
 

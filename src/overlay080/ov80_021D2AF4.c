@@ -229,7 +229,7 @@ const TownMapFlyDestDescriptor sFlyDestinations[NUM_FLY_LOCATIONS] = {
     }
 };
 
-TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, int heapID)
+TownMapAppFlyDestinations *TownMap_LoadFlyDestinations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, int heapID)
 {
     static const SpriteTemplateFromResourceHeader spriteTemplate = {
         .resourceHeaderID = 4,
@@ -283,7 +283,7 @@ TownMapAppFlyDestinations *TownMapApp_LoadFlyDestinations(SpriteSystem *spriteSy
     return flyDestinations;
 }
 
-void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *flyDests)
+void TownMap_FreeFlyDestinations(TownMapAppFlyDestinations *flyDests)
 {
     for (short i = 0; i < flyDests->numBlocks; i++) {
         TownMapAppFlyDestination *dest = &flyDests->flyDestinationsList[i];
@@ -295,7 +295,7 @@ void TownMapApp_FreeFlyDestinations(TownMapAppFlyDestinations *flyDests)
     Heap_Free(flyDests);
 }
 
-TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, int mapHeader, int x, int z)
+TownMapAppFlyDestination *TownMap_GetHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, int mapHeader, int x, int z)
 {
     for (short i = 0; i < flyDests->numBlocks; i++) {
         TownMapAppFlyDestination *flyDest = &(flyDests->flyDestinationsList[i]);
@@ -330,13 +330,13 @@ TownMapAppFlyDestination *TownMapApp_GetHoveredFlyDestination(TownMapAppFlyDesti
     return NULL;
 }
 
-BOOL TownMapApp_UpdateHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum MapHeader mapHeader, int x, int y)
+BOOL TownMap_UpdateHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum MapHeader mapHeader, int x, int y)
 {
     if (flyDests == NULL) {
         return FALSE;
     }
 
-    TownMapAppFlyDestination *hoveredFlyDest = TownMapApp_GetHoveredFlyDestination(flyDests, mapHeader, x, y);
+    TownMapAppFlyDestination *hoveredFlyDest = TownMap_GetHoveredFlyDestination(flyDests, mapHeader, x, y);
 
     if (hoveredFlyDest == NULL || hoveredFlyDest->isUnlocked == FALSE) {
         if (flyDests->hoveredFlyDest != NULL) {
@@ -361,7 +361,7 @@ BOOL TownMapApp_UpdateHoveredFlyDestination(TownMapAppFlyDestinations *flyDests,
     return TRUE;
 }
 
-void TownMapApp_BlinkHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum TownMapMode mapMode)
+void TownMap_BlinkHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enum TownMapMode mapMode)
 {
     if (flyDests->hoveredFlyDest == NULL || mapMode != TOWN_MAP_MODE_FLY) {
         return;
@@ -414,13 +414,13 @@ TownMapBlockList *TownMap_ReadBlockData(const char *path, enum HeapID heapID)
     return blockList;
 }
 
-void TownMapApp_FreeTownMapBlockData(TownMapBlockList *blockList)
+void TownMap_FreeTownMapBlockData(TownMapBlockList *blockList)
 {
     Heap_Free(blockList->entries);
     Heap_Free(blockList);
 }
 
-TownMapBlock *TownMapApp_GetHoveredMapBlock(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
+TownMapBlock *TownMap_GetHoveredMapBlock(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
 {
     for (int i = 0; i < blockList->count; i++) {
         TownMapBlock *block = &(blockList->entries[i]);
