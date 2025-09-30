@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, megahorn_spa
     Func_MegahornAttacker
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     Delay 10
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
@@ -16,7 +16,7 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W011, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W011
     Func_MegahornDefender
     Delay 5
     Func_ShakeBg 5, 0, 1, 6, 0

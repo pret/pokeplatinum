@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, 4
     BeginLoop 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     Delay 6
     EndLoop
     WaitForAllEmitters

@@ -12,8 +12,8 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_003, BATTLE_SOUND_PAN_RIGHT, 4, 5
-    PlayLoopedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 5, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_003, 4, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_030, 5, 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

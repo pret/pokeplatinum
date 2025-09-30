@@ -10,7 +10,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_BLEND_TYPE, 0
     SwitchBg 39, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 4, 17

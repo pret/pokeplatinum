@@ -5,7 +5,7 @@ L_0:
     SwitchBg 25, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch
     Func_ShakeBg 0, 4, 0, 28, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_LEFT, 2, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_W013, 2, 5
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 2, 17

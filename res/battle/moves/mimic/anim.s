@@ -10,13 +10,13 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
-    PlayPannedSoundEffect SEQ_SE_DP_W107, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W107
     Func_Mimic
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_061
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     WaitForAllEmitters
@@ -36,13 +36,13 @@ L_1:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
-    PlayPannedSoundEffect SEQ_SE_DP_W107, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W107
     Func_Mimic
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_061
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     WaitForAllEmitters

@@ -11,7 +11,7 @@ L_0:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_153, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 6
     CreateEmitter 1, 1, 4
-    PlayDelayedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT, 35
+    PlayDelayedSoundEffectR SEQ_SE_DP_061, 35
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
@@ -27,7 +27,7 @@ L_1:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_153, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 6
     CreateEmitter 1, 1, 4
-    PlayDelayedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT, 30
+    PlayDelayedSoundEffectR SEQ_SE_DP_061, 30
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

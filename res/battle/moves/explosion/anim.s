@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, explosion_spa
-    PlayPannedSoundEffect SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_SHUSHU
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
@@ -14,9 +14,9 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 15, 20
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_WHITE, 15, 20
     Delay 1
-    PlayPannedSoundEffect SEQ_SE_DP_186, 0
+    PlaySoundEffectC SEQ_SE_DP_186
     Delay 14
-    PlayLoopedSoundEffect SEQ_SE_DP_W436, BATTLE_SOUND_PAN_LEFT, 3, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W436, 3, 4
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_ALL_BATTLERS
     Delay 15
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 15, 0, BATTLE_COLOR_WHITE

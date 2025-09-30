@@ -3,11 +3,11 @@
 L_0:
     LoadParticleResource 0, vital_throw_spa
     Func_VitalThrow
-    PlayLoopedSoundEffect SEQ_SE_DP_W233, BATTLE_SOUND_PAN_LEFT, 22, 3
+    PlayLoopedSoundEffectL SEQ_SE_DP_W233, 22, 3
     Delay 66
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

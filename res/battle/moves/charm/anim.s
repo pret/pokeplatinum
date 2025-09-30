@@ -5,10 +5,10 @@ L_0:
     CreateEmitter 0, 0, 3
     Func_PlayfulHops
     BeginLoop 3
-    PlayPannedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W204
     Delay 8
     EndLoop
-    PlayPannedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W204
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

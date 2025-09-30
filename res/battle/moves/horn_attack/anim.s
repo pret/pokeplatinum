@@ -2,7 +2,7 @@
 
 L_0:
     JumpIfContest L_1
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_1:
@@ -14,7 +14,7 @@ L_1:
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W030
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -29,7 +29,7 @@ L_2:
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W030
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -44,7 +44,7 @@ L_3:
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W030
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

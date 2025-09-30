@@ -8,7 +8,7 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 8
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W239, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W239
     Delay 15
     Func_Shake 3, 0, 1, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

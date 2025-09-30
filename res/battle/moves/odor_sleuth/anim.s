@@ -10,9 +10,9 @@ L_0:
     BtlAnimCmd_082 3, 0, 4
     Func_Shake -20, 0, 1, 10, BATTLE_ANIM_POKEMON_SPRITE(0)
     Func_Shake 20, 0, 1, 10, BATTLE_ANIM_POKEMON_SPRITE(1)
-    PlayLoopedSoundEffect SEQ_SE_DP_W207, BATTLE_SOUND_PAN_RIGHT, 2, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_W207, 2, 3
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W043, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W043
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

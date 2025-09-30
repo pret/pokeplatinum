@@ -9,12 +9,12 @@ L_1:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
     Func_Flail 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_LEFT, 2, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W204, 2, 4
     Delay 20
-    PlayLoopedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_LEFT, 2, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W204, 2, 4
     Delay 10
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayDelayedSoundEffect SEQ_SE_DP_350, BATTLE_SOUND_PAN_RIGHT, 12
+    PlayDelayedSoundEffectR SEQ_SE_DP_350, 12
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -23,7 +23,7 @@ L_1:
 L_2:
     LoadParticleResource 0, thief_spa
     CreateEmitter 0, 2, 3
-    Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64, 1
+    Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64, EMITTER_ANIMATION_MODE_DEF_TO_ATK
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
     Delay 20
     WaitForAllEmitters

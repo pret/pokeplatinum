@@ -9,7 +9,7 @@ L_0:
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 13, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 13
-    PlayLoopedSoundEffect SEQ_SE_DP_W028B, BATTLE_SOUND_PAN_RIGHT, 3, 6
+    PlayLoopedSoundEffectR SEQ_SE_DP_W028B, 3, 6
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

@@ -13,8 +13,8 @@ L_0:
     Delay 5
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     Func_Shake 1, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayDelayedSoundEffect SEQ_SE_DP_W004, BATTLE_SOUND_PAN_RIGHT, 3
-    PlayLoopedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 8, 4
+    PlayDelayedSoundEffectR SEQ_SE_DP_W004, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 8, 4
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

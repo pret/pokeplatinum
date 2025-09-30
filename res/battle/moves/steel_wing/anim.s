@@ -7,17 +7,17 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 2, 4
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_W231, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W231
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_W231, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W231
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W017, 0
+    PlaySoundEffectC SEQ_SE_DP_W017
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W017, 0
+    PlaySoundEffectC SEQ_SE_DP_W017
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W017, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W017
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W017, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W017
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

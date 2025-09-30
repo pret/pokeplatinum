@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, dragon_claw_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    PlayPannedSoundEffect SEQ_SE_DP_W221B, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W221B
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_RED, 10, 0
     Delay 30
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
@@ -15,7 +15,7 @@ L_0:
     AddSpriteWithFunc 0, 22, claw_NCGR_lz, claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 1, 4
     Delay 1
     BeginLoop 2
-    PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W013
     Func_MoveBattlerX2 2, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 2
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

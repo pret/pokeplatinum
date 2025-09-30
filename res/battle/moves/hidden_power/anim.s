@@ -4,10 +4,10 @@ L_0:
     LoadParticleResource 0, hidden_power_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W036
     CreateEmitter 0, 1, 3
     Delay 40
-    PlayPannedSoundEffect SEQ_SE_DP_W179, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W179
     Delay 40
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3

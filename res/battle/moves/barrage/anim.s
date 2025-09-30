@@ -10,7 +10,7 @@ L_0:
     Delay 15
     Func_ShakeBg 0, 5, 1, 3, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W088
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -5,6 +5,6 @@ L_0:
     Func_AnimExample
     Func_SoundExample
     Func_GenericExample
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     Delay 60
     End

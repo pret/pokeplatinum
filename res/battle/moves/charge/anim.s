@@ -9,9 +9,9 @@ L_0:
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
     Delay 15
-    PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 5
     Delay 77
-    PlayPannedSoundEffect SEQ_SE_DP_W085C, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W085C
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

@@ -7,7 +7,7 @@ L_0:
     CreateEmitterEx 0, 1, 0, 3
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 10, 64
     Delay 8
-    PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W120
     Delay 2
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, 4

@@ -13,8 +13,8 @@ L_0:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_HURU2, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 8, 2
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayDelayedSoundEffect SEQ_SE_DP_W004, BATTLE_SOUND_PAN_RIGHT, 3
-    PlayDelayedSoundEffect SEQ_SE_DP_W004, BATTLE_SOUND_PAN_RIGHT, 6
+    PlayDelayedSoundEffectR SEQ_SE_DP_W004, 3
+    PlayDelayedSoundEffectR SEQ_SE_DP_W004, 6
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

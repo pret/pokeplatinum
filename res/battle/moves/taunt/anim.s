@@ -2,9 +2,9 @@
 
 L_0:
     LoadParticleResource 0, taunt_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W118, 0
-    PlayDelayedSoundEffect SEQ_SE_DP_W039, 0, 30
-    PlayDelayedSoundEffect SEQ_SE_DP_W039, 0, 47
+    PlaySoundEffectC SEQ_SE_DP_W118
+    PlayDelayedSoundEffectC SEQ_SE_DP_W039, 30
+    PlayDelayedSoundEffectC SEQ_SE_DP_W039, 47
     CreateEmitter 0, 0, 0
     CreateEmitter 0, 1, 0
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
@@ -23,7 +23,7 @@ L_0:
     AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     Delay 4
-    PlayLoopedSoundEffect SEQ_SE_DP_W207B, BATTLE_SOUND_PAN_RIGHT, 10, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W207B, 10, 2
     Delay 10
     WaitForAnimTasks
     FreeSpriteManager 0

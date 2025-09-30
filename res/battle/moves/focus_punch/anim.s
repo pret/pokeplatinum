@@ -6,7 +6,7 @@ L_0:
 
 L_1:
     LoadParticleResource 0, focus_punch_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     CreateEmitter 0, 2, 3
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -19,7 +19,7 @@ L_2:
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W025B
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 31, BATTLE_BG_SWITCH_MODE_FADE

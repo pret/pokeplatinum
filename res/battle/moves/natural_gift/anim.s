@@ -6,8 +6,8 @@ L_0:
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
-    PlayPannedSoundEffect SEQ_SE_DP_W363, BATTLE_SOUND_PAN_LEFT
-    PlayDelayedSoundEffect SEQ_SE_DP_REAPOKE, BATTLE_SOUND_PAN_LEFT, 40
+    PlaySoundEffectL SEQ_SE_DP_W363
+    PlayDelayedSoundEffectL SEQ_SE_DP_REAPOKE, 40
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

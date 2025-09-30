@@ -10,11 +10,11 @@ L_0:
     WaitForBgSwitch
     Delay 45
     Func_Nightmare 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W171, BATTLE_SOUND_PAN_RIGHT, 2, 4
+    PlayLoopedSoundEffectR SEQ_SE_DP_W171, 2, 4
     Delay 15
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
-    SetPokemonSpriteVisible 0, 0
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
     Delay 30
     RestoreBg 24, BATTLE_BG_SWITCH_MODE_FADE
     WaitForAnimTasks

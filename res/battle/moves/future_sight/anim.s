@@ -15,7 +15,7 @@ L_1:
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 4
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W060, 0
+    PlaySoundEffectC SEQ_SE_DP_W060
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
@@ -32,10 +32,10 @@ L_2:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W060, 0
+    PlaySoundEffectC SEQ_SE_DP_W060
     Delay 10
     Func_Confusion
-    PlayPannedSoundEffect SEQ_SE_DP_480, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_480
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

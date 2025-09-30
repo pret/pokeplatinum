@@ -6,16 +6,16 @@ L_0:
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:
     BeginLoop 2
-    PlayPannedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W085B
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -8, 8
     Delay 8
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 16, 16
-    PlayPannedSoundEffect SEQ_SE_DP_203, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_203
     Delay 16
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -8, 8
     Delay 8
@@ -26,11 +26,11 @@ L_1:
 
 L_2:
     BeginLoop 2
-    PlayPannedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W085B
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 8
     Delay 8
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -16, 16
-    PlayPannedSoundEffect SEQ_SE_DP_203, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_203
     Delay 16
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 8
     Delay 8

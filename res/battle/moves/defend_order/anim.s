@@ -6,11 +6,11 @@ L_0:
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    PlayLoopedSoundEffect SEQ_SE_DP_W456, BATTLE_SOUND_PAN_LEFT, 6, 12
+    PlayLoopedSoundEffectL SEQ_SE_DP_W456, 6, 12
     Delay 50
-    PlayPannedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W109
     Delay 40
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     CreateEmitter 0, 4, 3
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 0
     WaitForAllEmitters

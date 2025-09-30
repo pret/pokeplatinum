@@ -6,13 +6,13 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_211, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_211
     Delay 30
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W145, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 17, 64
     Delay 16
-    PlayPannedSoundEffect SEQ_SE_DP_402, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_402
     CreateEmitter 0, 2, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_GREEN, 14, 0

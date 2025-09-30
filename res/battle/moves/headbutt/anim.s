@@ -2,8 +2,8 @@
 
 L_0:
     LoadParticleResource 0, headbutt_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectR SEQ_SE_DP_030
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 4

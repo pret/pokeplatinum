@@ -5,10 +5,10 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W112, BATTLE_SOUND_PAN_RIGHT, 5, 4
+    PlayLoopedSoundEffectR SEQ_SE_DP_W112, 5, 4
     CreateEmitter 0, 2, 3
-    PlayDelayedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_RIGHT, 45
-    PlayDelayedSoundEffect SEQ_SE_DP_351, BATTLE_SOUND_PAN_LEFT, 65
+    PlayDelayedSoundEffectR SEQ_SE_DP_W104, 45
+    PlayDelayedSoundEffectL SEQ_SE_DP_351, 65
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

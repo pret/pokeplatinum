@@ -2,7 +2,7 @@
 
 L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
-    PlayPannedSoundEffect SEQ_SE_DP_W060, 0
+    PlaySoundEffectC SEQ_SE_DP_W060
     WaitForAnimTasks
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, scary_face_NCGR_lz
@@ -11,7 +11,7 @@ L_0:
     LoadAnimResObj 0, scary_face_anim_NANR_lz
     AddSpriteWithFunc 0, 7, scary_face_NCGR_lz, scary_face_NCLR, scary_face_cell_NCER_lz, scary_face_anim_NANR_lz, 0, 0, 0
     Delay 8
-    PlayPannedSoundEffect SEQ_SE_DP_W043D, 0
+    PlaySoundEffectC SEQ_SE_DP_W043D
     WaitForAnimTasks
     FreeSpriteManager 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

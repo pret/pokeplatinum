@@ -8,7 +8,7 @@ L_1:
     LoadParticleResource 0, razor_wind_spa
     CreateEmitter 0, 1, 3
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_060, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_060
     Delay 10
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -17,7 +17,7 @@ L_1:
 L_2:
     LoadParticleResource 0, razor_wind_spa
     CreateEmitter 0, 0, 20
-    PlayDelayedSoundEffect SEQ_SE_DP_146, BATTLE_SOUND_PAN_RIGHT, 5
+    PlayDelayedSoundEffectR SEQ_SE_DP_146, 5
     Delay 10
     Func_Shake 3, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 3, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER

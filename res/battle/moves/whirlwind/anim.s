@@ -8,7 +8,7 @@ L_0:
     Delay 10
     Func_Shake 1, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_W059B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W059B
     Func_MoveBattlerOffScreen BATTLE_ANIM_DEFENDER, 20
     WaitForAnimTasks
     Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE

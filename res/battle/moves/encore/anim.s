@@ -7,9 +7,9 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W227B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W227B
     BeginLoop 5
-    PlayPannedSoundEffect SEQ_SE_DP_W227, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W227
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 4
     Delay 4
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -8, 4

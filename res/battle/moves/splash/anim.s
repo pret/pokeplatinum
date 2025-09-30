@@ -6,7 +6,7 @@ L_0:
     BeginLoop 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    PlayPannedSoundEffect SEQ_SE_DP_023, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_023
     Delay 20
     EndLoop
     WaitForAnimTasks

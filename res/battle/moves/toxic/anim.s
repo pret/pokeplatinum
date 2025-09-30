@@ -8,8 +8,8 @@ L_0:
     LoadPokemonSpriteDummyResources 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
-    Func_SetPokemonSpritePriority 0, 81, 3, 0, 1
-    Func_SetPokemonSpritePriority 1, 80, 3, 0, 3
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_0, 81, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_DEFENDER
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 80, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_DEFENDER_PARTNER
     Delay 1
     Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
     Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
@@ -21,10 +21,10 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_161
     Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
     Delay 8
-    PlayLoopedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 2, 7
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 2, 7
     Delay 12
     Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 10, 0, BATTLE_COLOR_PURPLE
     Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE

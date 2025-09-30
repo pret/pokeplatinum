@@ -10,7 +10,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
     SwitchBg 43, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlayPannedSoundEffect SEQ_SE_DP_W463, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W463
     CreateEmitterEx 0, 0, 0, 3
     Func_RevolveEmitter 0, 0, 360, 0, 360, 64, 48, 40, 1, 0
     CreateEmitterEx 0, 1, 1, 3

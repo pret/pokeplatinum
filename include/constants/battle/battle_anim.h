@@ -42,10 +42,18 @@
 #define BATTLE_BG_SWITCH_STATE_RUNNING  1 //< Switch in progress
 #define BATTLE_BG_SWITCH_STATE_PARTIAL  2 //< Faded to black/white. Note: Use only with BATTLE_BG_SWITCH_MODE_FADE
 
-#define BATTLE_BG_ID_UNUSED             0
-#define BATTLE_BG_ID_WINDOW             1
-#define BATTLE_BG_ID_BASE               2
-#define BATTLE_BG_ID_EFFECT             3
+// Do not use in scripts. Use BATTLE_ANIM_BG_* instead.
+#define BATTLE_BG_INTERNAL_ID_UNUSED    0
+#define BATTLE_BG_INTERNAL_ID_WINDOW    1
+#define BATTLE_BG_INTERNAL_ID_BASE      2
+#define BATTLE_BG_INTERNAL_ID_EFFECT    3
+
+#define BATTLE_ANIM_BG_WINDOW           0 //< BG for windows
+#define BATTLE_ANIM_BG_BASE             1 //< BG for base battle BG
+#define BATTLE_ANIM_BG_EFFECT           2 //< BG for move anim BG switching
+#define BATTLE_ANIM_BG_POKEMON          3 //< BG for Pokemon sprites
+#define BATTLE_ANIM_BG_COUNT            4 //< Total number of battle BGs
+#define BATTLE_ANIM_BG_NONE             0xFF
 
 #define BATTLE_BG_PRIORITY_WINDOW       0
 #define BATTLE_BG_PRIORITY_BASE         1

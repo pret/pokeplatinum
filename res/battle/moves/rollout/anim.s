@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:
@@ -12,10 +12,10 @@ L_1:
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, 4
-    PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
+    PlayLoopedSoundEffectC SEQ_SE_DP_W025B, 2, 6
     Delay 20
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W070, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W070
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -28,10 +28,10 @@ L_2:
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, 4
-    PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
+    PlayLoopedSoundEffectC SEQ_SE_DP_W025B, 2, 6
     Delay 20
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W070, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W070
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

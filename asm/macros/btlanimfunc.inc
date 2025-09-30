@@ -387,12 +387,12 @@
     .endif
     .endm
 
-    .macro Func_MoveEmitterA2BParabolic emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve, params
-    .ifnb \params
-        CallFunc 66, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
+    .macro Func_MoveEmitterA2BParabolic emitterID, offsetX, offsetY, startDelay, frames, radius, mode, params, curve
+    .ifnb \curve
+        CallFunc 66, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
     .else
-        .ifnb \curve
-            CallFunc 66, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
+        .ifnb \params
+            CallFunc 66, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params
         .else
             .ifnb \mode
                 CallFunc 66, 7, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
@@ -419,11 +419,11 @@
     Func_MoveEmitterA2BParabolic \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
     .endm
 
-    .macro Func_BattlerPartialDraw a0, a1, a2, a3, a4
-    .ifnb \a4
-        CallFunc 67, 5, \a0, \a1, \a2, \a3, \a4
+    .macro Func_BattlerPartialDraw target, stepSize, stepInterval
+    .ifnb \stepInterval
+        CallFunc 67, 5, \target, 0, 0, \stepSize, \stepInterval
     .else
-        CallFunc 67, 4, \a0, \a1, \a2, \a3
+        CallFunc 67, 4, \target, 0, 0, \stepSize
     .endif
     .endm
 
@@ -467,12 +467,12 @@
     CallFunc 74, 1, \grayscale
     .endm
 
-    .macro Func_SetPokemonSpritePriority sprite, maxFrames, bg, spritePrio, battler
-    CallFunc 75, 5, \sprite, \maxFrames, \bg, \spritePrio, \battler
+    .macro Func_SetPokemonSpritePriority sprite, maxFrames, bg, spritePrio, battlerRole
+    CallFunc 75, 5, \sprite, \maxFrames, \bg, \spritePrio, \battlerRole
     .endm
 
-    .macro Func_DarkVoid sprite, maxFrames, bg, spritePrio, battler, mode, windowType
-    CallFunc 75, 7, \sprite, \maxFrames, \bg, \spritePrio, \battler, \mode, \windowType
+    .macro Func_DarkVoid sprite, maxFrames, bg, spritePrio, battler, windowType
+    CallFunc 75, 7, \sprite, \maxFrames, \bg, \spritePrio, \battler, POKEMON_SPRITE_PRIORITY_MODE_DARK_VOID, \windowType
     .endm
 
     .macro Func_ScrollSwitchedBg frames

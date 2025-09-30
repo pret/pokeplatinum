@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, 0
     CreateEmitter 0, 1, 0
     CreateEmitter 0, 2, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W234, 0
+    PlaySoundEffectC SEQ_SE_DP_W234
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_LIGHT_YELLOW2

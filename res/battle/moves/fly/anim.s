@@ -12,12 +12,12 @@ L_1:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
     SwitchBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    PlayPannedSoundEffect SEQ_SE_DP_W327, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W327
     WaitForBgSwitch
     CreateEmitter 1, 1, 3
     CreateEmitter 1, 3, 3
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W019, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W019
     Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
     WaitForAllEmitters
@@ -37,13 +37,13 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -32
     SwitchBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    PlayPannedSoundEffect SEQ_SE_DP_W327, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W327
     WaitForBgSwitch
     CreateEmitter 0, 3, 3
-    Func_MoveEmitterViewportTop 0, 1, 0, 10, 4
+    Func_MoveEmitterViewportTop 0, EMITTER_ANIMATION_MODE_DEF_TO_ATK, EMITTER_ANIMATION_FROM_TOP, 10, 4
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W019, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 10
+    PlaySoundEffectR SEQ_SE_DP_W019
+    PlayDelayedSoundEffectR SEQ_SE_DP_030, 10
     CreateEmitter 0, 7, 4
     CreateEmitter 0, 8, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 0, 20
     Delay 2
     Delay 18
-    PlayLoopedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT, 4, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_143, 4, 3
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks

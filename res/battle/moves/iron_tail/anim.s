@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, iron_tail_spa
-    PlayLoopedSoundEffect SEQ_SE_DP_W231, BATTLE_SOUND_PAN_LEFT, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W231, 8, 2
     CreateEmitter 0, 1, 3
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
@@ -10,15 +10,15 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
-    Func_StatChangeMetal 0
+    Func_StatChangeMetal STAT_CHANGE_MODE_ATTACKER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
     FreePokemonSpriteManager
     Delay 30
-    PlayPannedSoundEffect SEQ_SE_DP_BRADE, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 6
+    PlaySoundEffectR SEQ_SE_DP_BRADE
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 6
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

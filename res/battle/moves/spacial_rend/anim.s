@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, spacial_rend_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W460, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W460
     CreateEmitter 0, 5, 3
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 4, 3
@@ -13,7 +13,7 @@ L_0:
     SwitchBg 41, BATTLE_BG_SWITCH_MODE_FADE
     Delay 10
     Func_ShakeBg 0, 3, 0, 10, 0
-    PlayPannedSoundEffect SEQ_SE_PL_W460B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_PL_W460B
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

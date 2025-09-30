@@ -13,7 +13,7 @@ L_1:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayLoopedSoundEffect SEQ_SE_DP_140, BATTLE_SOUND_PAN_RIGHT, 3, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_140, 3, 3
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -27,8 +27,8 @@ L_2:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
-    Func_StatChangeHeal 1
-    PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_RIGHT
+    Func_StatChangeHeal STAT_CHANGE_MODE_DEFENDER
+    PlaySoundEffectR SEQ_SE_DP_W071B
     Delay 5
     CreateEmitter 1, 4, 4
     WaitForAnimTasks

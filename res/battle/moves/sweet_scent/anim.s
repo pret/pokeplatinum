@@ -1,12 +1,12 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:
     LoadParticleResource 0, sweet_scent_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W230, 0
+    PlaySoundEffectC SEQ_SE_DP_W230
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 3, 0, 0, 0
     BtlAnimCmd_055 4, 1, -2000, 8000, 0
@@ -20,7 +20,7 @@ L_1:
 
 L_2:
     LoadParticleResource 0, sweet_scent_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W230, 0
+    PlaySoundEffectC SEQ_SE_DP_W230
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 3, 0, 0, 0
     BtlAnimCmd_055 4, 1, -2000, 8000, 0

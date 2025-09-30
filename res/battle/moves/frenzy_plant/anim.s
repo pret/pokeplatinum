@@ -7,7 +7,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 16
     SwitchBg 34, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlayLoopedSoundEffect SEQ_SE_DP_W010, 0, 2, 16
+    PlayLoopedSoundEffectC SEQ_SE_DP_W010, 2, 16
     InitSpriteManager 0, 8, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, vines_NCGR_lz
     LoadPlttRes 0, vines_NCLR, 1
@@ -15,7 +15,7 @@ L_0:
     LoadAnimResObj 0, vines_anim_NANR_lz
     AddSpriteWithFunc 0, 24, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 1, 8
     Delay 96
-    PlayLoopedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 3, 6
+    PlayLoopedSoundEffectR SEQ_SE_DP_W025B, 3, 6
     CreateEmitter 0, 0, 4
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks

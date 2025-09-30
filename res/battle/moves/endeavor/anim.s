@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 1, pound_spa
     LoadParticleResource 0, endeavor_spa
-    PlayLoopedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, 20, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W039, 20, 4
     CreateEmitter 0, 2, 3
     BeginLoop 4
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_YELLOW, 6, 
@@ -14,7 +14,7 @@ L_0:
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 80, 100, 140, 100, CYCLES(1), SCALE_F(4) | RESTORE_F(4)
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 3
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     Delay 4
     EndLoop
     WaitForAllEmitters

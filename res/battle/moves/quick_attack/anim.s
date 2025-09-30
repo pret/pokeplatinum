@@ -5,7 +5,7 @@ L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
-    PlayPannedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W104
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     LoadPokemonSpriteDummyResources 4
@@ -13,7 +13,7 @@ L_0:
     BtlAnimCmd_082 2, 0, 4
     Func_QuickAttack
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     FreePokemonSpriteManager

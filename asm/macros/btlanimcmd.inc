@@ -210,6 +210,19 @@
     .long \repeatCount
     .endm
 
+    // Convenience macros for PlayLoopedSoundEffect with preset panning
+    .macro PlayLoopedSoundEffectL seqID, applyInterval, repeatCount
+    PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_LEFT, \applyInterval, \repeatCount
+    .endm
+
+    .macro PlayLoopedSoundEffectC seqID, applyInterval, repeatCount
+    PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_CENTER, \applyInterval, \repeatCount
+    .endm
+
+    .macro PlayLoopedSoundEffectR seqID, applyInterval, repeatCount
+    PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_RIGHT, \applyInterval, \repeatCount
+    .endm
+
     // Plays a sound effect after a delay
     // seqID: The ID of the sound effect to play. See build/generated/sdat.h
     // pan: The pan of the sound effect.

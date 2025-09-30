@@ -9,11 +9,11 @@ L_0:
     AddSpriteWithFunc 0, 8, foresight_NCGR_lz, foresight_NCLR, foresight_cell_NCER_lz, foresight_anim_NANR_lz, 0, 0, 0
     BeginLoop 6
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_100, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_100
     Delay 10
     EndLoop
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W043, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W043
     WaitForAnimTasks
     FreeSpriteManager 0
     End

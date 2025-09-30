@@ -12,20 +12,20 @@ L_0:
     WaitForBgSwitch
     Delay 1
     Func_BlinkAttacker 5, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W013B, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W013B
     Func_Teleport
     CreateEmitter 0, 0, 3
     WaitForAnimTasks
     CreateEmitter 0, 1, 4
     BeginLoop 3
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     CreateEmitter 1, 1, 4
     Func_MoveBattlerX 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     EndLoop
-    PlayLoopedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, 2, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W104, 2, 2
     Func_MoveBattlerX2 4, -24, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_BlinkAttacker 5, 0

@@ -10,12 +10,12 @@ L_0:
     Func_ScrollSwitchedBg 75
     WaitForBgSwitch
     Call L_1
-    PlayLoopedSoundEffect SEQ_SE_DP_W145C, 0, 4, 6
+    PlayLoopedSoundEffectC SEQ_SE_DP_W145C, 4, 6
     Delay 5
     CreateEmitterEx 1, 0, 2, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 12, 64
     Delay 10
-    PlayLoopedSoundEffect SEQ_SE_DP_W202, BATTLE_SOUND_PAN_RIGHT, 2, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_W202, 2, 3
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_CYAN, 14, 0
     Delay 30

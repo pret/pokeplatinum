@@ -5,9 +5,9 @@ L_0:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 4096, 0
     BtlAnimCmd_055 5, 4, 0, 2, 5, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_AWA, 0, 4, 8
+    PlayLoopedSoundEffectC SEQ_SE_DP_AWA, 4, 8
     BeginLoop 2
-    PlayLoopedSoundEffect SEQ_SE_DP_W145, BATTLE_SOUND_PAN_RIGHT, 2, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W145, 2, 2
     Func_MoveBattlerX2 8, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 8
     Func_MoveBattlerX2 16, -16, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
@@ -15,7 +15,7 @@ L_0:
     Func_MoveBattlerX2 8, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 8
     EndLoop
-    PlayLoopedSoundEffect SEQ_SE_DP_W202B, BATTLE_SOUND_PAN_RIGHT, 4, 6
+    PlayLoopedSoundEffectR SEQ_SE_DP_W202B, 4, 6
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

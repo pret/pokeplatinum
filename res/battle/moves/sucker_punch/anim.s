@@ -5,13 +5,13 @@ L_0:
     JumpIfContest L_1
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_143
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_143
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -20,13 +20,13 @@ L_0:
 L_1:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_143
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_143
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

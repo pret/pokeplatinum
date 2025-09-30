@@ -12,8 +12,8 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 8, 0
-    PlayPannedSoundEffect SEQ_SE_DP_154, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W173B, BATTLE_SOUND_PAN_RIGHT, 15
+    PlaySoundEffectR SEQ_SE_DP_154
+    PlayDelayedSoundEffectR SEQ_SE_DP_W173B, 15
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

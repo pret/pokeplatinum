@@ -5,7 +5,7 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Func_Flail 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, 8, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W039, 8, 4
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

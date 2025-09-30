@@ -5,7 +5,7 @@ L_0:
     End
 
 L_1:
-    PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W036
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -8, 4, 4
     WaitForAnimTasks
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -8, -4, 4
@@ -15,10 +15,10 @@ L_1:
     End
 
 L_2:
-    Func_Snatch 2
-    PlayPannedSoundEffect SEQ_SE_DP_W054, BATTLE_SOUND_PAN_LEFT
-    PlayDelayedSoundEffect SEQ_SE_DP_210, BATTLE_SOUND_PAN_RIGHT, 15
-    PlayDelayedSoundEffect SEQ_SE_DP_W054, BATTLE_SOUND_PAN_LEFT, 30
+    Func_Snatch BATTLE_ANIM_ATTACKER
+    PlaySoundEffectL SEQ_SE_DP_W054
+    PlayDelayedSoundEffectR SEQ_SE_DP_210, 15
+    PlayDelayedSoundEffectL SEQ_SE_DP_W054, 30
     Delay 20
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks

@@ -13,7 +13,7 @@ L_0:
     CreateEmitter 0, 0, 4
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
-    PlayPannedSoundEffect SEQ_SE_DP_W145, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W145
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

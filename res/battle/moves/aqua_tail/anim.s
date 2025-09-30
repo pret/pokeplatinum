@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, aqua_tail_spa
     Delay 1
-    PlayPannedSoundEffect SEQ_SE_DP_W057, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W057
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -15,14 +15,14 @@ L_0:
     EndLoop
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
-    Func_SetPokemonSpritePriority 0, 30, 3, 0, 0
-    Func_SetPokemonSpritePriority 1, 30, 3, 0, 2
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_0, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER_PARTNER
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 3
     Delay 25
-    SetPokemonSpriteVisible 0, 0
-    SetPokemonSpriteVisible 1, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_RIGHT
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_1, FALSE
+    PlaySoundEffectR SEQ_SE_DP_W291
     CreateEmitter 0, 1, 4
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks

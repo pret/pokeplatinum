@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, cross_chop_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W025, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W025
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 4, 4
     Delay 10
@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W013
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

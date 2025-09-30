@@ -7,8 +7,8 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W081B, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W020B, BATTLE_SOUND_PAN_RIGHT, 50
+    PlaySoundEffectR SEQ_SE_DP_W081B
+    PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, string_shot_NCGR_lz
     LoadPlttRes 0, string_shot_NCLR, 1
@@ -28,8 +28,8 @@ L_1:
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W081B, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W020B, BATTLE_SOUND_PAN_RIGHT, 50
+    PlaySoundEffectR SEQ_SE_DP_W081B
+    PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, string_shot_NCGR_lz
     LoadPlttRes 0, string_shot_NCLR, 1

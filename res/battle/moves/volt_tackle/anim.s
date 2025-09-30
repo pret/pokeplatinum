@@ -5,7 +5,7 @@ L_0:
     SwitchBg 27, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch
     Func_ShakeBg 1, 1, 0, 25, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_LEFT, 2, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W120, 2, 4
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 1, 17
@@ -26,7 +26,7 @@ L_0:
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 3, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W085B, 3, 2
     WaitForAllEmitters
     UnloadParticleSystem 0
     RestoreBg 27, BATTLE_BG_SWITCH_MODE_FADE

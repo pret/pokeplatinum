@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, zen_headbutt_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_293, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_293
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -16, 8, 4
     WaitForAnimTasks
     CreateEmitter 0, 3, 17
@@ -14,7 +14,7 @@ L_0:
     Delay 30
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 32, -16, 4
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_186
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17

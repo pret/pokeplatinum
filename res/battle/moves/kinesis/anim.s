@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    PlayPannedSoundEffect SEQ_SE_DP_W060, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W060
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, kinesis_NCGR_lz
     LoadPlttRes 0, kinesis_NCLR, 1
@@ -9,13 +9,13 @@ L_0:
     LoadAnimResObj 0, kinesis_anim_NANR_lz
     AddSpriteWithFunc 0, 2, kinesis_NCGR_lz, kinesis_NCLR, kinesis_cell_NCER_lz, kinesis_anim_NANR_lz, 0, 0, 0
     Delay 32
-    PlayPannedSoundEffect SEQ_SE_DP_154, BATTLE_SOUND_PAN_LEFT
-    PlayDelayedSoundEffect SEQ_SE_DP_154, BATTLE_SOUND_PAN_LEFT, 20
+    PlaySoundEffectL SEQ_SE_DP_154
+    PlayDelayedSoundEffectL SEQ_SE_DP_154, 20
     BeginLoop 3
     Delay 20
     EndLoop
     Delay 27
-    PlayPannedSoundEffect SEQ_SE_DP_150, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_150
     Delay 13
     WaitForAnimTasks
     FreeSpriteManager 0

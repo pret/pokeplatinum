@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, tailwind_spa
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

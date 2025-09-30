@@ -11,7 +11,7 @@ L_0:
     WaitForBgSwitch
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_131
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 3, 17

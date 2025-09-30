@@ -3,7 +3,7 @@
 L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W161
     JumpIfContest L_1
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
@@ -22,7 +22,7 @@ L_0:
     BtlAnimCmd_068 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     Func_RolePlay 0
-    PlayDelayedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT, 20
+    PlayDelayedSoundEffectL SEQ_SE_DP_W161, 20
     Delay 15
     BtlAnimCmd_069 1
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
@@ -51,7 +51,7 @@ L_1:
     BtlAnimCmd_068 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     Func_RolePlay 0
-    PlayDelayedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT, 20
+    PlayDelayedSoundEffectL SEQ_SE_DP_W161, 20
     Delay 15
     BtlAnimCmd_069 1
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE

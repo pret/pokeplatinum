@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, shadow_sneak_spa
-    Func_SetBgGrayscale 1
+    Func_SetBgGrayscale TRUE
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -23,12 +23,12 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
-    PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_186
     CreateEmitter 0, 1, 4
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
-    Func_SetBgGrayscale 0
+    Func_SetBgGrayscale FALSE
     End

@@ -7,8 +7,8 @@ L_0:
     LoadPokemonSpriteDummyResources 1
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_BLACK
     Delay 15
-    PlayPannedSoundEffect SEQ_SE_DP_W013B, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT, 10
+    PlaySoundEffectR SEQ_SE_DP_W013B
+    PlayDelayedSoundEffectR SEQ_SE_DP_W013, 10
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     LoadPokemonSpriteDummyResources 4
@@ -20,7 +20,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4
     Delay 10
-    SetPokemonSpriteVisible 4, 0
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters

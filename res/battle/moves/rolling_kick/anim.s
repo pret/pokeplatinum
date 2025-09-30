@@ -14,7 +14,7 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_050
     Delay 20
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
@@ -24,7 +24,7 @@ L_0:
     Func_Shake 2, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

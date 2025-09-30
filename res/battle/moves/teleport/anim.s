@@ -5,7 +5,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     Func_Teleport
-    PlayPannedSoundEffect SEQ_SE_DP_W100, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W100
     Delay 10
     CreateEmitter 0, 0, 3
     WaitForAnimTasks

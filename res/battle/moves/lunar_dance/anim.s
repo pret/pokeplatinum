@@ -18,10 +18,10 @@ L_1:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     Delay 1
-    Func_SetPokemonSpritePriority 0, 81, 3, 0, 0
-    Func_SetPokemonSpritePriority 1, 80, 3, 0, 2
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_0, 81, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER
+    Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 80, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER_PARTNER
     Delay 1
-    PlayPannedSoundEffect SEQ_SE_DP_W461, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W461
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 0, 3
     CreateEmitter 1, 1, 17
@@ -56,7 +56,7 @@ L_2:
     WaitForBgSwitch
     LoadParticleResource 0, lunar_dance_spa
     LoadParticleResource 1, lunar_dance_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W461, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W461
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 0, 3
     Delay 20

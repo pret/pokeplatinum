@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, -3440, 0
-    PlayPannedSoundEffect SEQ_SE_DP_007, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_007
     Delay 3
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
@@ -15,7 +15,7 @@ L_0:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, 1720, 0
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, 1720, 0
@@ -28,7 +28,7 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 344, 3440, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W025B
     Delay 3
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0

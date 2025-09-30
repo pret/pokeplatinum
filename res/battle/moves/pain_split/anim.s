@@ -6,12 +6,12 @@ L_0:
     CreateEmitter 0, 1, 4
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_LEFT, 1
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 5
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_LEFT, 10
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 15
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_LEFT, 20
-    PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 25
+    PlayDelayedSoundEffectL SEQ_SE_DP_W025B, 1
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 5
+    PlayDelayedSoundEffectL SEQ_SE_DP_W025B, 10
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 15
+    PlayDelayedSoundEffectL SEQ_SE_DP_W025B, 20
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 25
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

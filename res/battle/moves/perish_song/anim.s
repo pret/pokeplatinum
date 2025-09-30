@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 3, 0
     CreateEmitter 0, 0, 0
     CreateEmitter 0, 1, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W195, 0
+    PlaySoundEffectC SEQ_SE_DP_W195
     Delay 10
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 16, BATTLE_COLOR_BLACK
     Delay 15

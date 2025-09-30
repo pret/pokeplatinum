@@ -42,7 +42,7 @@ L_0:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 3440, -344, 0
-    PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_080
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -7,7 +7,7 @@ L_0:
     CreateEmitterForMove 0, 0, 1, 2, 3, 4, 5, 18
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayLoopedSoundEffect SEQ_SE_DP_W062, 0, 6, 2
+    PlayLoopedSoundEffectC SEQ_SE_DP_W062, 6, 2
     BeginLoop 3
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 8, 
     Delay 8
@@ -22,7 +22,7 @@ L_1:
     CreateEmitterForFriendlyFire 0, 7, 8, 7, 8, 3
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayLoopedSoundEffect SEQ_SE_DP_W062, 0, 6, 2
+    PlayLoopedSoundEffectC SEQ_SE_DP_W062, 6, 2
     BeginLoop 3
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 8, 
     Delay 8
@@ -37,7 +37,7 @@ L_2:
     CreateEmitter 0, 6, 3
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayLoopedSoundEffect SEQ_SE_DP_W062, 0, 6, 2
+    PlayLoopedSoundEffectC SEQ_SE_DP_W062, 6, 2
     BeginLoop 3
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 8, 
     Delay 8

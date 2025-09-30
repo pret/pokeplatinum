@@ -4,8 +4,8 @@ L_0:
     LoadParticleResource 0, bullet_punch_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W025C, BATTLE_SOUND_PAN_RIGHT, 3, 5
-    PlayDelayedSoundEffect SEQ_SE_DP_W025C, BATTLE_SOUND_PAN_RIGHT, 20
+    PlayLoopedSoundEffectR SEQ_SE_DP_W025C, 3, 5
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025C, 20
     Func_Shake 1, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

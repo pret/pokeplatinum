@@ -2,6 +2,6 @@
 
 L_0:
     Func_Growth
-    PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W036
     WaitForAnimTasks
     End

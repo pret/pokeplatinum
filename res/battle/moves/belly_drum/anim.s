@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 2, 3
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    PlayLoopedSoundEffect SEQ_SE_DP_W187, BATTLE_SOUND_PAN_LEFT, 8, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W187, 8, 4
     BeginLoop 6
     Delay 8
     EndLoop

@@ -11,7 +11,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 1, 4
     Delay 7
-    PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_030
     Delay 8
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_351, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
     Func_Shake 5, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

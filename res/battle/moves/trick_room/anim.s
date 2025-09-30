@@ -7,7 +7,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 0
     SetVar BATTLE_ANIM_VAR_BG_BLEND_TYPE, 1
     SwitchBg 57, BATTLE_BG_SWITCH_MODE_BLEND
-    PlayDelayedSoundEffect SEQ_SE_DP_061, 0, 2
+    PlayDelayedSoundEffectC SEQ_SE_DP_061, 2
     WaitForBgSwitch
     Delay 60
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0

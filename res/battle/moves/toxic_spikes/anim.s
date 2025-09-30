@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, toxic_spikes_spa
-    PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_RIGHT, 6, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_W026, 6, 5
     CreateEmitterEx 0, 0, 1, 3
     Func_MoveEmitterA2BParabolic 0, 8, -3, 0, 12, 64
     Delay 5
@@ -21,7 +21,7 @@ L_0:
     Delay 5
     CreateEmitter 0, 0, 20
     Delay 10
-    PlayLoopedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 4, 3
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 4, 3
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     WaitForAllEmitters

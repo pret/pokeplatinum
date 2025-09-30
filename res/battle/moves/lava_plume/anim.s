@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, lava_plume_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W436, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W436
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 3
@@ -17,7 +17,7 @@ L_0:
     End
 
 L_1:
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_2:

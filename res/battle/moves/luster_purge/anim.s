@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, luster_purge_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W076, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W076
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
@@ -14,7 +14,7 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_WHITE, 16, 30
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_WHITE, 16, 30
     Delay 20
-    PlayLoopedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 4, 8
+    PlayLoopedSoundEffectR SEQ_SE_DP_W030, 4, 8
     CreateEmitter 0, 0, 4
     Delay 20
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 16, 0, BATTLE_COLOR_WHITE

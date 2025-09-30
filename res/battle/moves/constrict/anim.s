@@ -9,11 +9,11 @@ L_0:
     AddSpriteWithFunc 0, 5, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0, 0
     BeginLoop 5
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W020, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W020
     EndLoop
     BeginLoop 2
     Delay 6
-    PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W030
     EndLoop
     WaitForAnimTasks
     FreeSpriteManager 0

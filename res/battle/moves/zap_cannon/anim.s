@@ -6,7 +6,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 26, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
-    PlayLoopedSoundEffect SEQ_SE_DP_W086, 0, 2, 3
+    PlayLoopedSoundEffectC SEQ_SE_DP_W086, 2, 3
     Func_ShakeBg 8, 8, 0, 20, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
@@ -14,8 +14,8 @@ L_0:
     Delay 5
     CreateEmitter 0, 2, 4
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W085C, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 25
+    PlaySoundEffectR SEQ_SE_DP_W085C
+    PlayDelayedSoundEffectR SEQ_SE_DP_W085B, 25
     Func_Shake 4, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_YELLOW1, 14, 0
     WaitForAnimTasks

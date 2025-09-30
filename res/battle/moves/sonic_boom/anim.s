@@ -2,7 +2,7 @@
 
 L_0:
     JumpIfContest L_1
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_1:

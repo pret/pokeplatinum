@@ -10,7 +10,7 @@ L_1:
     WaitForAnimTasks
     CreateEmitter 0, 19, 3
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_SHUSHU
     Delay 20
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 10, 0
     WaitForAllEmitters

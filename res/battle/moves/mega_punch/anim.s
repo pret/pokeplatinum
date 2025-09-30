@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    PlayDelayedSoundEffect SEQ_SE_DP_140, BATTLE_SOUND_PAN_RIGHT, 1
+    PlayDelayedSoundEffectR SEQ_SE_DP_140, 1
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

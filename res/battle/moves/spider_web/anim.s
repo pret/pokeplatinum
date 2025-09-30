@@ -10,8 +10,8 @@ L_0:
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 2, 4
     Delay 14
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W081, BATTLE_SOUND_PAN_RIGHT, 32
+    PlaySoundEffectR SEQ_SE_DP_061
+    PlayDelayedSoundEffectR SEQ_SE_DP_W081, 32
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
@@ -24,8 +24,8 @@ L_1:
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 2, 4
     Delay 14
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
-    PlayDelayedSoundEffect SEQ_SE_DP_W081, BATTLE_SOUND_PAN_RIGHT, 32
+    PlaySoundEffectR SEQ_SE_DP_061
+    PlayDelayedSoundEffectR SEQ_SE_DP_W081, 32
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

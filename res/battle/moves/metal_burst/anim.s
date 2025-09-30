@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, metal_burst_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayLoopedSoundEffect SEQ_SE_DP_W368, 0, 3, 8
+    PlayLoopedSoundEffectC SEQ_SE_DP_W368, 3, 8
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3

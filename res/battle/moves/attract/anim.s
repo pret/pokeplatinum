@@ -5,7 +5,7 @@ L_0:
     CreateEmitter 0, 0, 4
     Func_PlayfulHops
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_RED, 14, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_RIGHT, 8, 4
+    PlayLoopedSoundEffectR SEQ_SE_DP_W204, 8, 4
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

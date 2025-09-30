@@ -7,7 +7,7 @@ L_0:
     LoadCellResObj 0, helping_hand_cell_NCER_lz
     LoadAnimResObj 0, helping_hand_anim_NANR_lz
     AddSpriteWithFunc 0, 20, helping_hand_NCGR_lz, helping_hand_NCLR, helping_hand_cell_NCER_lz, helping_hand_anim_NANR_lz, 0, 0, 1, 6
-    PlayDelayedSoundEffect SEQ_SE_DP_W227, 0, 20
+    PlayDelayedSoundEffectC SEQ_SE_DP_W227, 20
     Delay 14
     BeginLoop 2
     Func_MoveBattlerX2 2, 12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -15,7 +15,7 @@ L_0:
     Delay 3
     Func_MoveBattlerX2 2, -12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W227, 0
+    PlaySoundEffectC SEQ_SE_DP_W227
     EndLoop
     Delay 1
     Func_MoveBattlerX2 2, 12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

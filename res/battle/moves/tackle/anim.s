@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, tackle_spa
-    PlayPannedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_050
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 4

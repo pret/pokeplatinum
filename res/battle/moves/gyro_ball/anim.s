@@ -2,13 +2,13 @@
 
 L_0:
     LoadParticleResource 0, gyro_ball_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W360
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     Delay 40
-    PlayPannedSoundEffect SEQ_SE_DP_W360C, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W360C
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 16, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 2, 17

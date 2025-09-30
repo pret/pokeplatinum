@@ -2,8 +2,8 @@
 
 L_0:
     LoadParticleResource 0, double_edge_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W025, BATTLE_SOUND_PAN_LEFT
-    PlayDelayedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_RIGHT, 10
+    PlaySoundEffectL SEQ_SE_DP_W025
+    PlayDelayedSoundEffectR SEQ_SE_DP_131, 10
     WaitForAnimTasks
     Func_RevolveBattler BATTLE_ANIM_ATTACKER, 1, 10
     WaitForAnimTasks
@@ -18,7 +18,7 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
-    PlayPannedSoundEffect SEQ_SE_DP_140, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_140
     Delay 2
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, -18, 4, 2
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2

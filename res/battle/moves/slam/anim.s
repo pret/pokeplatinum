@@ -10,7 +10,7 @@ L_0:
     WaitForAnimTasks
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, -4, 2
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 14, 4, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W025B
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

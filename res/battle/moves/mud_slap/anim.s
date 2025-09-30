@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, mud_slap_spa
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W028, 0, 4, 6
+    PlayLoopedSoundEffectC SEQ_SE_DP_W028, 4, 6
     Delay 20
     CreateEmitter 0, 0, 4
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

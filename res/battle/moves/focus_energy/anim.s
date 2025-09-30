@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, 3
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_WHITE, 10, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

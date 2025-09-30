@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, ancient_power_spa
     JumpIfContest L_1
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     CreateEmitter 0, 1, 3
     Delay 10
     CreateEmitter 0, 0, 17
@@ -13,14 +13,14 @@ L_0:
     Delay 20
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W120
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
 
 L_1:
-    PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W082
     CreateEmitter 0, 1, 3
     Delay 10
     CreateEmitter 0, 0, 17
@@ -31,7 +31,7 @@ L_1:
     Delay 20
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W120
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

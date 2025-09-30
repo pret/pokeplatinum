@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W185
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0

@@ -6,13 +6,13 @@ L_0:
     JumpIfContest L_1
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 31, 24, 0, 4
-    PlayLoopedSoundEffect SEQ_SE_DP_W145, 0, 2, 5
+    PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
     CreateEmitter 1, 1, 20
     Delay 10
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
-    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W145C, 2, 2
     Delay 10
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -22,13 +22,13 @@ L_0:
 L_1:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 0, 28, 22, 0, 4
-    PlayLoopedSoundEffect SEQ_SE_DP_W145, 0, 2, 5
+    PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
     CreateEmitter 1, 1, 20
     Delay 10
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
-    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W145C, 2, 2
     Delay 10
     WaitForAllEmitters
     UnloadParticleSystem 0

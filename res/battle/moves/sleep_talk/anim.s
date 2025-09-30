@@ -6,7 +6,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
-    PlayLoopedSoundEffect SEQ_SE_DP_W173B, BATTLE_SOUND_PAN_LEFT, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W173B, 8, 2
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

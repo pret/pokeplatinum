@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W250, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W250
     Delay 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_CYAN, 14, 0

@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, uproar_spa
-    PlayLoopedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT, 29, 3
+    PlayLoopedSoundEffectL SEQ_SE_DP_W253, 29, 3
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 80, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
     CreateEmitter 0, 1, 3

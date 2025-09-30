@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, earth_power_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_W053, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W053
     CreateEmitter 0, 3, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -5504, -1720, 0

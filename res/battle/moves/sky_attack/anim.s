@@ -12,7 +12,7 @@ L_1:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -24,7 +24,7 @@ L_1:
     End
 
 L_3:
-    JumpIfBattlerSide 0, L_4, L_5
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_4, L_5
     End
 
 L_4:
@@ -32,7 +32,7 @@ L_4:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -48,7 +48,7 @@ L_5:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -78,11 +78,11 @@ L_2:
     Delay 1
     Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
-    SetPokemonSpriteVisible 0, 0
-    SetPokemonSpriteVisible 4, 0
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W360C, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     JumpIfContest L_6
-    JumpIfBattlerSide 0, L_7, L_8
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_7, L_8
     End
 
 L_7:
@@ -91,13 +91,13 @@ L_7:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
-    SetPokemonSpriteVisible 0, 1
-    SetPokemonSpriteVisible 4, 1
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, TRUE
     Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
@@ -120,13 +120,13 @@ L_6:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
-    SetPokemonSpriteVisible 0, 1
-    SetPokemonSpriteVisible 4, 1
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, TRUE
     Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
@@ -149,13 +149,13 @@ L_8:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
-    SetPokemonSpriteVisible 0, 1
-    SetPokemonSpriteVisible 4, 1
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
+    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, TRUE
     Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE

@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, razor_leaf_spa
-    PlayPannedSoundEffect SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_KAZE
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
@@ -15,7 +15,7 @@ L_0:
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 7
-    PlayLoopedSoundEffect SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_RIGHT, 3, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_HURU, 3, 5
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

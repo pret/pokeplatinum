@@ -3,15 +3,15 @@
 L_0:
     LoadParticleResource 0, disable_spa
     JumpIfContest L_1
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 0, -4128, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
-    Func_SetBgGrayscale 1
+    Func_SetBgGrayscale TRUE
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_061
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -23,7 +23,7 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
-    Func_SetBgGrayscale 0
+    Func_SetBgGrayscale FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     FreePokemonSpriteManager
@@ -36,11 +36,11 @@ L_2:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 4128, 6192, 0
-    PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
-    Func_SetBgGrayscale 1
+    Func_SetBgGrayscale TRUE
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_061
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -52,7 +52,7 @@ L_2:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
-    Func_SetBgGrayscale 0
+    Func_SetBgGrayscale FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     FreePokemonSpriteManager
@@ -65,11 +65,11 @@ L_3:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -4128, 6192, 0
-    PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
-    Func_SetBgGrayscale 1
+    Func_SetBgGrayscale TRUE
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_061
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -81,7 +81,7 @@ L_3:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
-    Func_SetBgGrayscale 0
+    Func_SetBgGrayscale FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     FreePokemonSpriteManager
@@ -94,11 +94,11 @@ L_1:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -4128, 6192, 0
-    PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
-    Func_SetBgGrayscale 1
+    Func_SetBgGrayscale TRUE
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_061
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -110,7 +110,7 @@ L_1:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
-    Func_SetBgGrayscale 0
+    Func_SetBgGrayscale FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     FreePokemonSpriteManager

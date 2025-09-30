@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, heal_bell_spa
-    PlayPannedSoundEffect SEQ_SE_DP_W234, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W234
     CreateEmitter 0, 0, 19
     CreateEmitter 0, 1, 19
     CreateEmitter 0, 2, 19

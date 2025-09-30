@@ -8,17 +8,17 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SetVar BATTLE_ANIM_VAR_BG_BLEND_TYPE, 0
     SwitchBg 50, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:
-    PlayPannedSoundEffect SEQ_SE_DP_KAZE, 0
+    PlaySoundEffectC SEQ_SE_DP_KAZE
     WaitForBgSwitch
     CreateEmitter 0, 3, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W059, 0
+    PlaySoundEffectC SEQ_SE_DP_W059
     CreateEmitter 0, 1, 20
     Delay 4
-    PlayPannedSoundEffect SEQ_SE_DP_151, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_151
     Delay 12
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 2, 20
@@ -41,13 +41,13 @@ L_1:
     End
 
 L_2:
-    PlayPannedSoundEffect SEQ_SE_DP_KAZE, 0
+    PlaySoundEffectC SEQ_SE_DP_KAZE
     WaitForBgSwitch
     CreateEmitter 0, 4, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W059, 0
+    PlaySoundEffectC SEQ_SE_DP_W059
     CreateEmitter 0, 1, 20
     Delay 4
-    PlayPannedSoundEffect SEQ_SE_DP_151, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_151
     Delay 12
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 2, 20

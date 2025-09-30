@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, gastro_acid_spa
-    PlayLoopedSoundEffect SEQ_SE_DP_W380, BATTLE_SOUND_PAN_RIGHT, 2, 6
+    PlayLoopedSoundEffectR SEQ_SE_DP_W380, 2, 6
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, 17

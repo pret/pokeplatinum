@@ -11,7 +11,7 @@ L_0:
     Delay 10
     CreateEmitter 0, 1, 3
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_153, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
-    PlayDelayedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT, 75
+    PlayDelayedSoundEffectL SEQ_SE_DP_W071B, 75
     Delay 75
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAllEmitters

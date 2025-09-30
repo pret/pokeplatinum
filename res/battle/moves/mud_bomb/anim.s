@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 2, 4
     Delay 23
-    PlayPannedSoundEffect SEQ_SE_DP_W426, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W426
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

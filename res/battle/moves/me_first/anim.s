@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, me_first_spa
-    PlayPannedSoundEffect SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_SHUSHU
     JumpIfContest L_1
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 17

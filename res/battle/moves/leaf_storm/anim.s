@@ -11,13 +11,13 @@ L_0:
     SwitchBg 38, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     Func_ShakeBg 0, 3, 0, 20, 0
-    PlayPannedSoundEffect SEQ_SE_DP_KAZE2, 0
+    PlaySoundEffectC SEQ_SE_DP_KAZE2
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 3, 17
     BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
     Delay 35
-    PlayLoopedSoundEffect SEQ_SE_DP_HURU, 0, 3, 8
+    PlayLoopedSoundEffectC SEQ_SE_DP_HURU, 3, 8
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, 4
     WaitForAllEmitters

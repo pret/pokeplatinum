@@ -9,12 +9,12 @@ L_0:
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 2, 4
-    PlayPannedSoundEffect SEQ_SE_DP_W460, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W460
     Delay 10
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W082B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W082B
     WaitForAnimTasks
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:

@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, comet_punch_spa
     Func_Strength 70, 120, 10, 5
-    PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W036
     WaitForAnimTasks
-    PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W025B
     Func_Submission 3, 10, 8
     CreateEmitter 0, 0, 4
     WaitForAnimTasks

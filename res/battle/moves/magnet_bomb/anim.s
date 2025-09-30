@@ -5,25 +5,25 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    PlayPannedSoundEffect SEQ_SE_DP_290, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_290
     Delay 20
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 3
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 3
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 5
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 2
-    PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W443B
     Delay 3
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayDelayedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT, 5
-    PlayDelayedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT, 15
+    PlayDelayedSoundEffectR SEQ_SE_DP_161, 5
+    PlayDelayedSoundEffectR SEQ_SE_DP_161, 15
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -6,9 +6,9 @@ L_0:
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 0, 3
-    PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W029
     Delay 17
-    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_LEFT, 3, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_W145C, 3, 5
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

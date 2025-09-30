@@ -3,14 +3,14 @@
 L_0:
     LoadParticleResource 0, draco_meteor_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_BLUE
-    PlayPannedSoundEffect SEQ_SE_DP_201, 0
+    PlaySoundEffectC SEQ_SE_DP_201
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
     Delay 50
-    PlayPannedSoundEffect SEQ_SE_DP_W089, 0
+    PlaySoundEffectC SEQ_SE_DP_W089
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 2, 17

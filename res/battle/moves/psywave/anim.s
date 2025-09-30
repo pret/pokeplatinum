@@ -9,7 +9,7 @@ L_0:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_181, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 10
     CreateEmitter 0, 1, 4
-    PlayDelayedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT, 2
+    PlayDelayedSoundEffectR SEQ_SE_DP_161, 2
     Delay 10
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

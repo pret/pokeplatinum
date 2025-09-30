@@ -3813,8 +3813,8 @@ enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAn
 int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
 {
     int bgIDs[][3] = {
-        { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT },
-        { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT }
+        { BATTLE_BG_INTERNAL_ID_WINDOW, BATTLE_BG_INTERNAL_ID_BASE, BATTLE_BG_INTERNAL_ID_EFFECT },
+        { BATTLE_BG_INTERNAL_ID_WINDOW, BATTLE_BG_INTERNAL_ID_BASE, BATTLE_BG_INTERNAL_ID_EFFECT }
     };
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {

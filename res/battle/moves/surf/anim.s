@@ -9,12 +9,12 @@ L_0:
     LoadAnimResObj 0, surf_anim_NANR_lz
     AddSprite 0, 0, surf_NCGR_lz, surf_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
     AddSprite 0, 1, surf_NCGR_lz, surf_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
-    PlayPannedSoundEffect SEQ_SE_DP_W057, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W057
     Func_Surf 0
     WaitForAnimTasks
     FreeSpriteManager 0
     Func_ScrollCustomBg 48, 0, 256, -6, 6, TRUE, 20, 45
-    PlayPannedSoundEffect SEQ_SE_DP_W057B, 0
+    PlaySoundEffectC SEQ_SE_DP_W057B
     Delay 15
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
@@ -30,7 +30,7 @@ L_0:
     End
 
 L_1:
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_2:

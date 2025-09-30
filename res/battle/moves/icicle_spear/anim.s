@@ -8,10 +8,10 @@ L_0:
     LoadCellResObj 0, icicle_spear_cell_NCER_lz
     LoadAnimResObj 0, icicle_spear_anim_NANR_lz
     AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -15, -5, 10, 32
-    PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W196
     Delay 5
     AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -5, -20, 10, 32
-    PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W196
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, 2752, 0
@@ -21,7 +21,7 @@ L_0:
     Func_Shake 1, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 5
     AddSpriteWithFunc 0, 17, icicle_spear_NCGR_lz, icicle_spear_NCLR, icicle_spear_cell_NCER_lz, icicle_spear_anim_NANR_lz, 0, 0, 4, -10, -15, 10, 32
-    PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W196
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, 2752, 0
@@ -29,9 +29,9 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, 2752, 0
     Func_Shake 1, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W196, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_W196
     Delay 6
-    PlayDelayedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 2
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 2
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, 2752, 0

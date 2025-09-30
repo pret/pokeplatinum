@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 11, 3
     CreateEmitter 0, 12, 3
     CreateEmitter 0, 13, 3
-    PlayLoopedSoundEffect SEQ_SE_DP_206, BATTLE_SOUND_PAN_LEFT, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForMove 0, 1, 2, 3, 4, 5, 6, 18
@@ -30,7 +30,7 @@ L_1:
     CreateEmitter 0, 11, 3
     CreateEmitter 0, 12, 3
     CreateEmitter 0, 13, 3
-    PlayLoopedSoundEffect SEQ_SE_DP_206, BATTLE_SOUND_PAN_LEFT, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForFriendlyFire 0, 8, 9, 8, 9, 3
@@ -50,7 +50,7 @@ L_2:
     CreateEmitter 0, 11, 3
     CreateEmitter 0, 12, 3
     CreateEmitter 0, 13, 3
-    PlayLoopedSoundEffect SEQ_SE_DP_206, BATTLE_SOUND_PAN_LEFT, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 7, 0

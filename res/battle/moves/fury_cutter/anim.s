@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, fury_cutter_spa
     BeginLoop 2
-    PlayPannedSoundEffect SEQ_SE_DP_W043, 0
+    PlaySoundEffectC SEQ_SE_DP_W043
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 8, 0, BATTLE_COLOR_BLACK
@@ -13,7 +13,7 @@ L_0:
     CreateEmitter 0, 0, 4
     Delay 5
     Func_Shake 0, 2, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
+    PlaySoundEffectR SEQ_SE_DP_W013
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

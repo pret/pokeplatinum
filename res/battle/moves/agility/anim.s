@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, agility_spa
-    JumpIfBattlerSide 0, L_1, L_2
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 
 L_1:
@@ -17,7 +17,7 @@ L_1:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    PlayPannedSoundEffect SEQ_SE_PL_W097, 0
+    PlaySoundEffectC SEQ_SE_PL_W097
     CreateEmitter 0, 0, 0
     WaitForBgSwitch
     Delay 19
@@ -49,7 +49,7 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    PlayPannedSoundEffect SEQ_SE_PL_W097, 0
+    PlaySoundEffectC SEQ_SE_PL_W097
     CreateEmitter 0, 1, 0
     WaitForBgSwitch
     Delay 19

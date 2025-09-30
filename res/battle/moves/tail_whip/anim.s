@@ -2,7 +2,7 @@
 
 L_0:
     BeginLoop 2
-    PlayPannedSoundEffect SEQ_SE_DP_112, BATTLE_SOUND_PAN_LEFT
+    PlaySoundEffectL SEQ_SE_DP_112
     Func_RevolveBattler BATTLE_ANIM_ATTACKER, 1, 12
     WaitForAnimTasks
     EndLoop

@@ -7,7 +7,7 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W322, 0
+    PlaySoundEffectC SEQ_SE_DP_W322
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
@@ -33,7 +33,7 @@ L_0:
     End
 
 L_1:
-    JumpIfBattlerSide 0, L_2, L_3
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_2:
@@ -41,7 +41,7 @@ L_2:
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W322, 0
+    PlaySoundEffectC SEQ_SE_DP_W322
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
@@ -71,7 +71,7 @@ L_3:
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
-    PlayPannedSoundEffect SEQ_SE_DP_W322, 0
+    PlaySoundEffectC SEQ_SE_DP_W322
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
