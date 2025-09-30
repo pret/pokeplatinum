@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, night_slash_spa
     CreateEmitter 0, 1, 17

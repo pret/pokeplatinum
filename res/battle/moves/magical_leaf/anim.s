@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, magical_leaf_spa
     JumpIfContest L_1

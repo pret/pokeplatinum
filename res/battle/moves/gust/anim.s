@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, gust_spa
     SetCameraProjection 0, 0

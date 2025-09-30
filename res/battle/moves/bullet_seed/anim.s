@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, bullet_seed_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W202B, 0, 3, 9

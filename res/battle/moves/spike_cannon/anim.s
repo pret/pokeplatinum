@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, spike_cannon_spa
     Func_MoveBattlerX2 2, -8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

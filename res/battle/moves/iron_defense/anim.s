@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, thrash_spa
     Func_RevolveBattler BATTLE_ANIM_ATTACKER, 1, 12

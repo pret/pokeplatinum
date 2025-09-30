@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, pound_spa
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0

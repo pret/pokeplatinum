@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, cosmic_power_spa
     JumpIfFriendlyFire L_1

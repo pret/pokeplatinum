@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, roar_of_time_spa
     CreateEmitter 0, 3, 3

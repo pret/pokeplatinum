@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, tri_attack_spa
     LoadParticleResource 1, tri_attack_spa

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, razor_leaf_spa
     PlayPannedSoundEffect SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT

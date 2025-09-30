@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, aqua_jet_spa
     InitSpriteManager 0, 2, 1, 1, 1, 1, 0, 0

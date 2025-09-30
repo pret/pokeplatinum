@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, spider_web_spa
     LoadParticleResource 1, spider_web_spa

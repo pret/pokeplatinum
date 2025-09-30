@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, fury_swipes_spa
     LoadParticleResource 1, pound_spa

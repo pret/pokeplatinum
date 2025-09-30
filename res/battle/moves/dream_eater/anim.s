@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 1, drain_punch_spa
     LoadParticleResource 0, dream_eater_spa

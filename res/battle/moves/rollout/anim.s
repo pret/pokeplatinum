@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     JumpIfBattlerSide 0, L_1, L_2
     End

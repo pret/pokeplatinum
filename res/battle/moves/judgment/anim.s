@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, judgment_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 15, BATTLE_COLOR_WHITE

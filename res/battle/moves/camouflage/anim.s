@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
     InitPokemonSpriteManager

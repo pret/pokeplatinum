@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, aeroblast_spa
     SwitchBg 25, BATTLE_BG_SWITCH_MODE_FADE

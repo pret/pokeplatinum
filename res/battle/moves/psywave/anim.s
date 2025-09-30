@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, psywave_spa
     CreateEmitterEx 0, 0, 0, 3

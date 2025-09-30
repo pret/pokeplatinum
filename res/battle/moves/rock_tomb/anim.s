@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, rock_tomb_spa
     LoadParticleResource 1, rock_tomb_spa

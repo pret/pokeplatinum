@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, dark_void_spa
     LoadParticleResource 1, dark_void_spa

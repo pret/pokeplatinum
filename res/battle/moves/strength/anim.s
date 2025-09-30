@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, comet_punch_spa
     Func_Strength 70, 120, 10, 5

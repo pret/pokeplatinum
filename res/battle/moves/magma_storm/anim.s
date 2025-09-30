@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, magma_storm_spa
     LoadParticleResource 1, magma_storm_spa

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, leaf_blade_spa
     CreateEmitter 0, 2, 4

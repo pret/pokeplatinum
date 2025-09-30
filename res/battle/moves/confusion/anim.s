@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     SwitchBg 20, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

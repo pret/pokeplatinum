@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     InitSpriteManager 0, 12, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, assist_NCGR_lz

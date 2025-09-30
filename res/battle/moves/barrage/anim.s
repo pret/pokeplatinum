@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, barrage_spa
     CreateEmitterEx 0, 1, 0, 3

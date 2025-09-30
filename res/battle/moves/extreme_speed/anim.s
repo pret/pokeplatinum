@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 1, pound_spa
     LoadParticleResource 0, extreme_speed_spa

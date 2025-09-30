@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, confuse_ray_spa
     LoadParticleResource 1, confuse_ray_spa

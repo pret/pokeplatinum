@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, water_pulse_spa
     LoadParticleResource 1, water_pulse_spa

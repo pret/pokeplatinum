@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, selfdestruct_spa
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 2

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, brick_break_spa
     JumpIfBattlerSide 0, L_1, L_2

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, fissure_spa
     InitSpriteManager 0, 1, 2, 2, 2, 2, 0, 0

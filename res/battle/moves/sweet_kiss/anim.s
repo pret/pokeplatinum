@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, sweet_kiss_spa
     CreateEmitter 0, 0, 4

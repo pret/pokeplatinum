@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadPokemonSpriteIntoBg 0, 0
     LoadParticleResource 0, acid_armor_spa

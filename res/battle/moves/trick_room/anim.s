@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0

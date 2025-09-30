@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, leech_seed_spa
     LoadParticleResource 1, bullet_seed_spa

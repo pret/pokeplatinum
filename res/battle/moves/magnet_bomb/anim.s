@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, magnet_bomb_spa
     CreateEmitter 0, 1, 4

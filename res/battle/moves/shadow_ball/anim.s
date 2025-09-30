@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, shadow_ball_spa
     CreateEmitter 0, 4, 0

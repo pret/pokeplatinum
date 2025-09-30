@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, smoke_screen_spa
     LoadParticleResource 1, smoke_screen_spa

@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, guard_swap_spa
     LoadParticleResource 1, guard_swap_spa

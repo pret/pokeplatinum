@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     BtlAnimCmd_013 L_1, L_2
     End

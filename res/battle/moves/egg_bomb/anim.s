@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, egg_bomb_spa
     LoadParticleResource 1, egg_bomb_spa

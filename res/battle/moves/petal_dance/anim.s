@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, petal_dance_spa
     PlayPannedSoundEffect SEQ_SE_DP_W080, BATTLE_SOUND_PAN_LEFT

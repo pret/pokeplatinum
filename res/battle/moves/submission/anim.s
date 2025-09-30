@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, submission_spa
     LoadParticleResource 1, comet_punch_spa

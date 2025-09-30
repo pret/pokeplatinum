@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, nasty_plot_spa
     CreateEmitter 0, 0, 17

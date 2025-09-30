@@ -1,7 +1,5 @@
 #include "macros/btlanimcmd.inc"
 
-.data
-
 L_0:
     LoadParticleResource 0, u_turn_spa
     BtlAnimCmd_013 L_1, L_2
