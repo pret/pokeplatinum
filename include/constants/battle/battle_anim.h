@@ -193,6 +193,8 @@
 #define RESTORE_F(frames) ((frames) & 0xFFFF)
 #define HOLD_F(frames) (((frames) & 0xFFFF) << 16)
 #define CYCLES(cycles) ((cycles) & 0xFFFF)
+#define SKIP_F(frames) (((frames) & 0xFFFF) << 16)
+#define MAX_F(frames) ((frames) & 0xFFFF)
 
 #define SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames) (((scaleFrames & 0xFFFF) << 16) | (restoreFrames & 0xFFFF))
 #define SCALE_POKEMON_SPRITE_SCALE_FRAMES(frames) ((frames) >> 16)

@@ -8,11 +8,11 @@ L_0:
 
 L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
-    Func_MoveBattler 258, -8, 4, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -8, 4, 4
     WaitForAnimTasks
-    Func_MoveBattler 258, -8, -4, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -8, -4, 4
     WaitForAnimTasks
-    Func_MoveBattler 258, 16, 0, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 16, 0, 4
     WaitForAnimTasks
     End
 

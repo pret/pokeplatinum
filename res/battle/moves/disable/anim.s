@@ -23,7 +23,7 @@ L_0:
     BtlAnimCmd_082 3, 0, 4
     Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
-    Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAllEmitters
@@ -52,7 +52,7 @@ L_2:
     BtlAnimCmd_082 3, 0, 4
     Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
-    Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAllEmitters
@@ -81,7 +81,7 @@ L_3:
     BtlAnimCmd_082 3, 0, 4
     Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
-    Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAllEmitters
@@ -110,7 +110,7 @@ L_1:
     BtlAnimCmd_082 3, 0, 4
     Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
-    Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAllEmitters

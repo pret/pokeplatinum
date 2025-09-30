@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, thrash_spa
-    Func_RevolveBattler 2, 1, 12
+    Func_RevolveBattler BATTLE_ANIM_ATTACKER, 1, 12
     Func_Shake 4, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
@@ -22,7 +22,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, 1720, 0
     WaitForAnimTasks
-    Func_RevolveBattler 2, 1, 12
+    Func_RevolveBattler BATTLE_ANIM_ATTACKER, 1, 12
     Func_Shake 4, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0

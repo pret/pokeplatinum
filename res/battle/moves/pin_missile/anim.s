@@ -9,7 +9,7 @@ L_0:
 
 L_2:
     LoadParticleResource 0, pin_missile_spa
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_LEFT, 4, 3
     PlayDelayedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 13
@@ -34,7 +34,7 @@ L_2:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Func_Shake 2, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     Delay 4
     WaitForAnimTasks
     WaitForAllEmitters
@@ -43,7 +43,7 @@ L_2:
 
 L_1:
     LoadParticleResource 0, pin_missile_spa
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W026, BATTLE_SOUND_PAN_LEFT, 4, 3
     PlayDelayedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 13
@@ -69,7 +69,7 @@ L_1:
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 4
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     Delay 4
     WaitForAnimTasks
     WaitForAllEmitters

@@ -12,7 +12,7 @@ L_1:
     CreateEmitter 0, 3, 3
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W100, BATTLE_SOUND_PAN_LEFT
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -25,7 +25,7 @@ L_2:
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

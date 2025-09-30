@@ -15,13 +15,13 @@ L_0:
     Func_PlayfulHops 1
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 10, -20, 258
+    Func_MoveBattlerX2 10, -20, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     EndLoop
     WaitForAllEmitters
@@ -38,13 +38,13 @@ L_2:
     Func_PlayfulHops 1
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 10, -20, 258
+    Func_MoveBattlerX2 10, -20, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     EndLoop
     WaitForAllEmitters
@@ -65,13 +65,13 @@ L_3:
     Func_PlayfulHops 1
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 10, -20, 258
+    Func_MoveBattlerX2 10, -20, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     EndLoop
     WaitForAllEmitters
@@ -92,13 +92,13 @@ L_1:
     Func_PlayfulHops 1
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 10, -20, 258
+    Func_MoveBattlerX2 10, -20, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerX2 5, 10, 258
+    Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     EndLoop
     WaitForAllEmitters

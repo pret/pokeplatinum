@@ -20,7 +20,7 @@ L_1:
     CreateEmitter 1, 3, 3
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W019, BATTLE_SOUND_PAN_LEFT
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -52,7 +52,7 @@ L_2:
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0

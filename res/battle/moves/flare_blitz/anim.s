@@ -10,9 +10,9 @@ L_0:
     CreateEmitter 0, 1, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W052, BATTLE_SOUND_PAN_LEFT, 3, 6
     Delay 25
-    Func_MoveBattler 258, 16, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 16, -8, 2
     WaitForAnimTasks
-    Func_MoveBattler 258, -16, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -16, 8, 2
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 33, BATTLE_BG_SWITCH_MODE_FADE

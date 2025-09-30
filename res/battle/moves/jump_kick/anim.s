@@ -4,12 +4,12 @@
 
 L_0:
     LoadParticleResource 0, jump_kick_spa
-    Func_MoveBattlerX2 3, 24, 258
+    Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 4096, 0
     BtlAnimCmd_055 5, 3, 0, 0, 0, 0
     WaitForAnimTasks
-    Func_MoveBattlerX2 3, -24, 258
+    Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     PlayPannedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     Delay 20

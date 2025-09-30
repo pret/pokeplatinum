@@ -15,9 +15,9 @@ L_0:
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_LEFT
-    Func_MoveBattlerX2 3, 24, 258
+    Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    Func_MoveBattlerX2 3, -24, 258
+    Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 1, 4
     Delay 31
     PlayPannedSoundEffect SEQ_SE_DP_W127, BATTLE_SOUND_PAN_RIGHT

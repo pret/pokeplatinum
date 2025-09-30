@@ -371,12 +371,12 @@
     CallFunc 63, 6, \target, \stepFrames, \stepSize, \startFrac, \endFrac, \color
     .endm
 
-    .macro Func_MoveEmitterA2BLinear emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve, params
-    .ifnb \params
-        CallFunc 65, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
+    .macro Func_MoveEmitterA2BLinear emitterID, offsetX, offsetY, startDelay, frames, radius, mode, params, curve
+    .ifnb \curve
+        CallFunc 65, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
     .else
-        .ifnb \curve
-            CallFunc 65, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
+        .ifnb \params
+            CallFunc 65, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params
         .else
             .ifnb \mode
                 CallFunc 65, 7, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode

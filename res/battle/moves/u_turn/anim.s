@@ -10,7 +10,7 @@ L_0:
 L_1:
     CreateEmitter 0, 0, 3
     JumpIfContest L_3
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_007, 0
@@ -30,14 +30,14 @@ L_1:
     CreateEmitter 0, 3, 3
     Delay 5
     CreateEmitter 0, 0, 3
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
 
 L_2:
     CreateEmitter 0, 0, 3
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_007, BATTLE_SOUND_PAN_LEFT
@@ -59,7 +59,7 @@ L_5:
     End
 
 L_3:
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_007, 0
@@ -79,7 +79,7 @@ L_3:
     CreateEmitter 0, 3, 3
     Delay 5
     CreateEmitter 0, 0, 3
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

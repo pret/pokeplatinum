@@ -15,7 +15,7 @@ L_0:
     Func_Surf 0
     WaitForAnimTasks
     FreeSpriteManager 0
-    Func_ScrollCustomBg 48, 0, 256, -6, 6, 1, 20, 45
+    Func_ScrollCustomBg 48, 0, 256, -6, 6, TRUE, 20, 45
     PlayPannedSoundEffect SEQ_SE_DP_W057B, 0
     Delay 15
     CreateEmitter 0, 0, 4

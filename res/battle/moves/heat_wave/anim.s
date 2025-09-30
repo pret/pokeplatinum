@@ -23,12 +23,12 @@ L_2:
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
-    Func_MoveBattlerX2 4, -20, 264
-    Func_MoveBattlerX2 4, -20, 272
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
     Delay 35
-    Func_MoveBattlerX2 5, 20, 264
-    Func_MoveBattlerX2 5, 20, 272
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -40,12 +40,12 @@ L_3:
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
-    Func_MoveBattlerX2 4, -20, 264
-    Func_MoveBattlerX2 4, -20, 272
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
     Delay 35
-    Func_MoveBattlerX2 5, 20, 264
-    Func_MoveBattlerX2 5, 20, 272
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

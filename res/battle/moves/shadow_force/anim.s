@@ -13,7 +13,7 @@ L_1:
     Delay 2
     Func_SetBgGrayscale 1
     WaitForAnimTasks
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     Delay 15
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -36,7 +36,7 @@ L_2:
     PlayDelayedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 13
     Func_BlinkAttacker 5, 0
     WaitForAnimTasks
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_SetBgGrayscale 0

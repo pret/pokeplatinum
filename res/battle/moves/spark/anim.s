@@ -21,9 +21,9 @@ L_0:
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayPannedSoundEffect SEQ_SE_DP_W086, BATTLE_SOUND_PAN_RIGHT
     Delay 1
-    Func_MoveBattlerX2 3, 24, 258
+    Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
-    Func_MoveBattlerX2 3, -24, 258
+    Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

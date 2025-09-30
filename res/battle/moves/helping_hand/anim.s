@@ -12,18 +12,18 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W227, 0, 20
     Delay 14
     BeginLoop 2
-    Func_MoveBattlerX2 2, 12, 258
+    Func_MoveBattlerX2 2, 12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER_PARTNER
     Delay 3
-    Func_MoveBattlerX2 2, -12, 258
+    Func_MoveBattlerX2 2, -12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_W227, 0
     EndLoop
     Delay 1
-    Func_MoveBattlerX2 2, 12, 258
+    Func_MoveBattlerX2 2, 12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER_PARTNER
     Delay 3
-    Func_MoveBattlerX2 2, -12, 258
+    Func_MoveBattlerX2 2, -12, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 1
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 2, BATTLE_COLOR_LIME, 8, 
     WaitForAnimTasks

@@ -13,8 +13,8 @@ L_0:
     Func_SetPokemonSpritePriority 0, 81, 3, 0, 1
     Func_SetPokemonSpritePriority 1, 80, 3, 0, 3
     Delay 1
-    Func_HideBattler 8, 1
-    Func_HideBattler 16, 1
+    Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
     Delay 1
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
@@ -24,19 +24,19 @@ L_0:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT
-    Func_FadePokemonSprite 8, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
+    Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 2, 7
     Delay 12
-    Func_FadePokemonSprite 8, 0, 1, 10, 0, BATTLE_COLOR_PURPLE
-    Func_HideBattler 8, 0
-    Func_HideBattler 16, 0
+    Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 10, 0, BATTLE_COLOR_PURPLE
+    Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
     WaitForAnimTasks
-    Func_HideBattler 8, 0
-    Func_HideBattler 16, 0
+    Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     FreePokemonSpriteManager

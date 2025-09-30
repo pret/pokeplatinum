@@ -11,10 +11,10 @@ L_0:
     Func_Shake 1, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W059B, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattlerOffScreen 8, 20
+    Func_MoveBattlerOffScreen BATTLE_ANIM_DEFENDER, 20
     WaitForAnimTasks
-    Func_HideBattler 8, 1
-    Func_MoveBattlerToDefaultPos 8
+    Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
+    Func_MoveBattlerToDefaultPos BATTLE_ANIM_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

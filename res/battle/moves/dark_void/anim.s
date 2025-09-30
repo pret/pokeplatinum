@@ -31,22 +31,22 @@ L_2:
     CreateEmitter 1, 2, 17
     BtlAnimCmd_055 6, 2, 2, 13, 0, 0, 0
     BtlAnimCmd_055 4, 1, -600, -4500, -600
-    Func_MoveBattler 264, 0, 4, 1
-    Func_MoveBattler 272, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 4, 1
     Delay 2
-    Func_MoveBattler 264, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 4, 1
     Delay 1
-    Func_MoveBattler 272, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 4, 1
     Delay 1
-    Func_MoveBattler 264, 0, 8, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 1
     Delay 1
-    Func_MoveBattler 272, 0, 8, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 8, 1
     Delay 2
     Delay 5
     PlayDelayedSoundEffect SEQ_SE_DP_290, BATTLE_SOUND_PAN_RIGHT, 15
     BeginLoop 16
-    Func_MoveBattler 264, 0, 4, 1
-    Func_MoveBattler 272, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 4, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 4, 1
     Delay 1
     EndLoop
     Delay 20
@@ -59,8 +59,8 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     RestoreBg 44, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForBgSwitch
-    Func_MoveBattler 264, 0, -80, 1
-    Func_MoveBattler 272, 0, -80, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -80, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, -80, 1
     End
 
 L_1:
@@ -72,8 +72,8 @@ L_1:
     Func_DarkVoid 0, 80, 3, 0, 1, 255, 1
     Func_DarkVoid 1, 80, 3, 0, 3, 255, 1
     Delay 1
-    Func_HideBattler 8, 1
-    Func_HideBattler 16, 1
+    Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
     PlayPannedSoundEffect SEQ_SE_DP_W464, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 13, 0, 0, 0
@@ -105,6 +105,6 @@ L_1:
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     RestoreBg 44, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForBgSwitch
-    Func_HideBattler 8, 0
-    Func_HideBattler 16, 0
+    Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
     End

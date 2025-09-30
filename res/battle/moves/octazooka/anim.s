@@ -9,12 +9,12 @@ L_0:
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 16, 0
     BtlAnimCmd_055 5, 3, 0, 0, 0, 0
-    Func_MoveBattlerX2 3, -24, 258
+    Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 5
     CreateEmitter 0, 1, 4
     PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattlerX2 3, 24, 258
+    Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

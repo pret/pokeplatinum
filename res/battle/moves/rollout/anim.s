@@ -8,11 +8,11 @@ L_0:
 
 L_1:
     LoadParticleResource 0, rollout_spa
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
     Delay 20
@@ -24,11 +24,11 @@ L_1:
 
 L_2:
     LoadParticleResource 0, rollout_spa
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
     Delay 20

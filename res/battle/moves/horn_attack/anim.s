@@ -9,13 +9,13 @@ L_0:
 
 L_1:
     LoadParticleResource 0, horn_attack_spa
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     WaitForAllEmitters
@@ -24,13 +24,13 @@ L_1:
 
 L_2:
     LoadParticleResource 0, horn_attack_spa
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     WaitForAllEmitters
@@ -39,13 +39,13 @@ L_2:
 
 L_3:
     LoadParticleResource 0, horn_attack_spa
-    Func_MoveBattler 258, 14, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattler 258, -14, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     WaitForAllEmitters

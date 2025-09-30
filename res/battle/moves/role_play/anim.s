@@ -20,14 +20,14 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_3, 3
     BtlAnimCmd_082 3, 1, 3
     Delay 1
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     BtlAnimCmd_068 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     Func_RolePlay 0
     PlayDelayedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT, 20
     Delay 15
     BtlAnimCmd_069 1
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
@@ -49,14 +49,14 @@ L_1:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
     Delay 1
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     BtlAnimCmd_068 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     Func_RolePlay 0
     PlayDelayedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT, 20
     Delay 15
     BtlAnimCmd_069 1
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

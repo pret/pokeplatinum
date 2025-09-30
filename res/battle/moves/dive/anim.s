@@ -11,9 +11,9 @@ L_0:
 
 L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_LEFT
-    Func_MoveBattler 258, 0, 8, 8
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 8
     WaitForAnimTasks
-    Func_MoveBattler 258, 0, -16, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -16, 4
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
@@ -21,9 +21,9 @@ L_1:
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
     WaitForAnimTasks
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
-    Func_MoveBattler 258, 0, 8, 1
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 1
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -42,7 +42,7 @@ L_2:
     BtlAnimCmd_055 4, 1, 0, -3440, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

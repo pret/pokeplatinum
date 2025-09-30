@@ -32,9 +32,9 @@ L_1:
     CreateEmitter 1, 2, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -1720, 0
-    Func_FadePokemonSprite 2, 0, 1, 0, 10, BATTLE_COLOR_LIGHT_YELLOW1
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 0, 10, BATTLE_COLOR_LIGHT_YELLOW1
     Delay 20
-    Func_FadePokemonSprite 2, 0, 1, 10, 0, BATTLE_COLOR_LIGHT_YELLOW1
+    Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 10, 0, BATTLE_COLOR_LIGHT_YELLOW1
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

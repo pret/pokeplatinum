@@ -76,9 +76,9 @@ L_2:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
-    Func_AlphaFadePokemonSprite 1, 16, 0, 0, 16, 8
+    Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 16, 0, 0, 16, 8
     Delay 1
-    Func_HideBattler 2, 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
     SetPokemonSpriteVisible 0, 0
     SetPokemonSpriteVisible 4, 0
@@ -100,9 +100,9 @@ L_7:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -129,9 +129,9 @@ L_6:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -158,9 +158,9 @@ L_8:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 0, 16, 16, 0, 8
     Delay 7
-    Func_HideBattler 2, 0
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1

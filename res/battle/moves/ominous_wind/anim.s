@@ -12,10 +12,10 @@ L_1:
     CreateEmitter 0, 0, 4
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
-    Func_MoveBattlerX2 4, -20, 264
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Delay 35
-    Func_MoveBattlerX2 5, 20, 264
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -25,10 +25,10 @@ L_2:
     CreateEmitter 0, 1, 4
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
-    Func_MoveBattlerX2 4, -20, 264
+    Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Delay 35
-    Func_MoveBattlerX2 5, 20, 264
+    Func_MoveBattlerX2 5, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

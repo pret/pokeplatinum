@@ -12,11 +12,11 @@ L_1:
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 10
-    Func_MoveBattlerX2 10, 10, 258
+    Func_MoveBattlerX2 10, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
-    Func_MoveBattlerX2 20, -20, 258
+    Func_MoveBattlerX2 20, -20, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 20
-    Func_MoveBattlerX2 10, 10, 258
+    Func_MoveBattlerX2 10, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     EndLoop
     WaitForAnimTasks

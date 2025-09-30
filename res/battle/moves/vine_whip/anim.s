@@ -4,9 +4,9 @@
 
 L_0:
     LoadParticleResource 0, vine_whip_spa
-    Func_MoveBattlerX2 3, 24, 258
+    Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    Func_MoveBattlerX2 3, -24, 258
+    Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4

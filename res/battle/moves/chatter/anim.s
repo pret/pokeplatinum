@@ -8,11 +8,11 @@ L_0:
     CreateEmitter 0, 0, 3
     PlayPokemonCry 0, -117, 127
     BeginLoop 2
-    Func_MoveBattlerX2 8, 8, 258
+    Func_MoveBattlerX2 8, 8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 8
-    Func_MoveBattlerX2 16, -16, 258
+    Func_MoveBattlerX2 16, -16, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 16
-    Func_MoveBattlerX2 8, 8, 258
+    Func_MoveBattlerX2 8, 8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 8
     EndLoop
     WaitForPokemonCries 0

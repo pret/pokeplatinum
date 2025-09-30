@@ -12,9 +12,9 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W227B, BATTLE_SOUND_PAN_RIGHT
     BeginLoop 5
     PlayPannedSoundEffect SEQ_SE_DP_W227, BATTLE_SOUND_PAN_RIGHT
-    Func_MoveBattler 264, 0, 8, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 4
     Delay 4
-    Func_MoveBattler 264, 0, -8, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -8, 4
     Delay 4
     EndLoop
     WaitForAllEmitters

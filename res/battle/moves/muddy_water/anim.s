@@ -15,7 +15,7 @@ L_0:
     Func_Surf 1
     WaitForAnimTasks
     FreeSpriteManager 0
-    Func_MuddyWater 49, 0, 256, -6, 6, 1, 16, 45
+    Func_MuddyWater 49, 0, 256, -6, 6, TRUE, 16, 45
     PlayPannedSoundEffect SEQ_SE_DP_W057B, 0
     Delay 15
     CreateEmitter 0, 0, 20

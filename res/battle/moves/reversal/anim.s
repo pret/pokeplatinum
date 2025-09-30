@@ -19,13 +19,13 @@ L_0:
     WaitForAnimTasks
     Func_FadeBg FADE_BG_TYPE_BASE, -2, 8, 0, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    Func_MoveBattler 258, 24, 0, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 24, 0, 4
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 1, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    Func_MoveBattler 258, -24, 0, 4
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -24, 0, 4
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

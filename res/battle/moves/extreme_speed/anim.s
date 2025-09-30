@@ -22,13 +22,13 @@ L_0:
     BeginLoop 3
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 1, 4
-    Func_MoveBattlerX 1, 8, 264
+    Func_MoveBattlerX 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     EndLoop
     PlayLoopedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, 2, 2
-    Func_MoveBattlerX2 4, -24, 264
+    Func_MoveBattlerX2 4, -24, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_BlinkAttacker 5, 0
     WaitForAnimTasks

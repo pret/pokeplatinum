@@ -10,9 +10,9 @@ L_0:
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
     BeginLoop 1
-    Func_MoveBattler 258, 0, 8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 2
     Delay 2
-    Func_MoveBattler 258, 0, -8, 2
+    Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -8, 2
     Delay 2
     EndLoop
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
