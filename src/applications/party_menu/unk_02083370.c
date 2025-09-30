@@ -90,9 +90,9 @@ static const u32 sPartyMenuCallbacks[] = {
     (const u32)PartyMenu_Select0_Callback,
     (const u32)sub_02084760,
     (const u32)PartyMenu_Select0_Callback2,
-    (const u32)PartyMenu_FieldMove_Cut_Callback,    // sub_020848A8
-    (const u32)PartyMenu_FieldMove_Fly_Callback,    // sub_02084938
-    (const u32)PartyMenu_FieldMove_Surf_Callback,   // sub_020848F0
+    (const u32)PartyMenu_FieldMove_Cut_Callback, // sub_020848A8
+    (const u32)PartyMenu_FieldMove_Fly_Callback, // sub_02084938
+    (const u32)PartyMenu_FieldMove_Surf_Callback, // sub_020848F0
     (const u32)PartyMenu_FieldMove_Strength_Callback, // sub_020848D8
     (const u32)PartyMenu_FieldMove_Defog_Callback, // sub_02084908
     (const u32)PartyMenu_FieldMove_Rock_Smash_Callback, // sub_020848C0

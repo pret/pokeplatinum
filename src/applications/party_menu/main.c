@@ -245,7 +245,7 @@ static const GridMenuCursorPosition sCursorPosTable_SelectEgg[] = {
 };
 // clang-format on
 
-static const u16 sFieldMoves[] = { // Field Moves?
+static const u16 sFieldMoves[] = {
     MOVE_CUT,
     MOVE_FLY,
     MOVE_SURF,
