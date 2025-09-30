@@ -23,17 +23,17 @@ L_2:
     Delay 3
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 1, 264
+    Func_Shake 1, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitterEx 0, 3, 2, 3
     Func_MoveEmitterA2BParabolic 3, 0, 0, 0, 13, 64
     Delay 5
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 1, 264
+    Func_Shake 1, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 5
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 2, 0, 1, 3, 264
+    Func_Shake 2, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -14, 8, 2
     Delay 4
     WaitForAnimTasks
@@ -57,17 +57,17 @@ L_1:
     Delay 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitterEx 0, 3, 3, 3
     Func_MoveEmitterA2BParabolic 3, 0, 0, 0, 13, 64
     Delay 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 4
     Func_MoveBattler 258, -14, 8, 2
     Delay 4

@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, guillotine_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
@@ -14,9 +14,9 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W011, BATTLE_SOUND_PAN_RIGHT
     Delay 20
     PlayPannedSoundEffect SEQ_SE_PL_W012, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 3, 0, 1, 2, 264
+    Func_Shake 3, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

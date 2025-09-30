@@ -27,7 +27,7 @@ L_0:
     Func_MoveBattler 258, -16, 8, 4
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 5, 0, 5, 0
     WaitForAnimTasks
     WaitForAllEmitters

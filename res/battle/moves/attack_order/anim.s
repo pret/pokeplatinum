@@ -14,7 +14,7 @@ L_0:
     Delay 3
     PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 20
     PlayDelayedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 24
-    Func_Shake 2, 0, 1, 16, 264
+    Func_Shake 2, 0, 1, 16, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

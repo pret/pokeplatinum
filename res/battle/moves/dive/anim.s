@@ -40,7 +40,7 @@ L_2:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     Func_HideBattler 2, 0
     WaitForAllEmitters

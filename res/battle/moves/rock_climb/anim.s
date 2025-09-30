@@ -27,7 +27,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_Shake 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -16, 8, 4
     WaitForAnimTasks
     WaitForAllEmitters

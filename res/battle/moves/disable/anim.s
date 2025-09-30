@@ -21,8 +21,8 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    Func_ScalePokemonSprite 1, 8, 10, 12, 10, 1, 589833, 0
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
+    Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
@@ -50,8 +50,8 @@ L_2:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    Func_ScalePokemonSprite 1, 8, 10, 12, 10, 1, 589833, 0
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
+    Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
@@ -79,8 +79,8 @@ L_3:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    Func_ScalePokemonSprite 1, 8, 10, 12, 10, 1, 589833, 0
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
+    Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0
@@ -108,8 +108,8 @@ L_1:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    Func_ScalePokemonSprite 1, 8, 10, 12, 10, 1, 589833, 0
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
+    Func_ScalePokemonSprite BATTLER_ROLE_DEFENDER, 8, 10, 12, 10, 1, SCALE_F(9) | RESTORE_F(9), BATTLE_ANIM_MON_SPRITE_0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_GRAY, 14, 0
     Func_FadePokemonSprite 2, 0, 1, 14, 14, BATTLE_COLOR_DARK_GRAY
     WaitForAnimTasks
     Func_SetBgGrayscale 0

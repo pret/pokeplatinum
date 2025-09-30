@@ -10,8 +10,8 @@ L_1:
     LoadParticleResource 0, bide_spa
     PlayLoopedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT, 3, 4
     CreateEmitter 0, 0, 3
-    Func_Shake 1, 0, 1, 4, 258
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_RED, 10, 0
+    Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

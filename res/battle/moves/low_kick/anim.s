@@ -10,7 +10,7 @@ L_0:
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 2, 4
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

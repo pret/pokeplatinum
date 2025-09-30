@@ -14,7 +14,7 @@ L_0:
     CreateEmitter 0, 2, 3
     Delay 20
     PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_LEFT
-    Func_Shake 4, 0, 1, 2, 288
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_NOT_ATTACKER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

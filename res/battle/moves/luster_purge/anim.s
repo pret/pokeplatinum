@@ -10,17 +10,17 @@ L_0:
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 4, 3
     Delay 60
-    Func_FadeBg 0, 1, 0, 16, BATTLE_COLOR_WHITE
-    Func_FadeBattlerSprite 2050, 0, 1, BATTLE_COLOR_WHITE, 16, 30
-    Func_FadeBattlerSprite 2056, 0, 1, BATTLE_COLOR_WHITE, 16, 30
-    Func_FadeBattlerSprite 2052, 0, 1, BATTLE_COLOR_WHITE, 16, 30
-    Func_FadeBattlerSprite 2064, 0, 1, BATTLE_COLOR_WHITE, 16, 30
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 16, BATTLE_COLOR_WHITE
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_WHITE, 16, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_WHITE, 16, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_WHITE, 16, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_WHITE, 16, 30
     Delay 20
     PlayLoopedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 4, 8
     CreateEmitter 0, 0, 4
     Delay 20
-    Func_FadeBg 0, 1, 16, 0, BATTLE_COLOR_WHITE
-    Func_Shake 4, 0, 1, 6, 264
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 16, 0, BATTLE_COLOR_WHITE
+    Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

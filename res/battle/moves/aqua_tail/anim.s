@@ -26,7 +26,7 @@ L_0:
     SetPokemonSpriteVisible 1, 0
     PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
-    Func_Shake 1, 0, 1, 6, 264
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1

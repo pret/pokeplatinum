@@ -24,8 +24,8 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W172B, BATTLE_SOUND_PAN_RIGHT
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
-    Func_FadeBattlerSprite 8, 0, 2, BATTLE_COLOR_RED, 10, 0
-    Func_Shake 2, 0, 1, 8, 264
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_RED, 10, 0
+    Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

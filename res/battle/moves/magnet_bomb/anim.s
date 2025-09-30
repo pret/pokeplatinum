@@ -23,7 +23,7 @@ L_0:
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_W443B, BATTLE_SOUND_PAN_RIGHT
     Delay 3
-    Func_Shake 2, 0, 1, 8, 264
+    Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayDelayedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT, 5
     PlayDelayedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT, 15
     WaitForAllEmitters

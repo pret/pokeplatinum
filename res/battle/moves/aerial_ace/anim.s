@@ -7,7 +7,7 @@ L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
-    Func_FadeBg 0, 0, 0, 8, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_BLACK
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_W013B, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT, 10
@@ -23,7 +23,7 @@ L_0:
     CreateEmitter 0, 0, 4
     Delay 10
     SetPokemonSpriteVisible 4, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -32,6 +32,6 @@ L_0:
     FreePokemonSpriteManager
     BtlAnimCmd_083 0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
-    Func_FadeBg 0, 0, 8, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 0, 8, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

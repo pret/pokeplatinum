@@ -14,7 +14,7 @@ L_0:
     Func_Nightmare 1
     PlayLoopedSoundEffect SEQ_SE_DP_W171, BATTLE_SOUND_PAN_LEFT, 2, 4
     Delay 15
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     SetPokemonSpriteVisible 0, 0
     Delay 30

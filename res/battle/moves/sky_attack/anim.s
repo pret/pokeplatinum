@@ -10,16 +10,16 @@ L_1:
     LoadParticleResource 0, sky_attack_spa
     CreateEmitter 0, 2, 3
     JumpIfFriendlyFire L_3
-    Func_FadeBg 0, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite 4, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite 16, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
     Delay 25
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, 258
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 10, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
@@ -30,32 +30,32 @@ L_3:
     End
 
 L_4:
-    Func_FadeBg 0, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite 2056, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite 2064, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
     Delay 25
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, 258
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 10, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     End
 
 L_5:
-    Func_FadeBg 0, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite 2050, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite 2052, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     PlayLoopedSoundEffect SEQ_SE_DP_W360, BATTLE_SOUND_PAN_LEFT, 12, 2
     Delay 25
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, 258
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 10, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
@@ -94,7 +94,7 @@ L_7:
     CreateEmitter 0, 1, 3
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 4, 0, 1, 6, 264
+    Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -123,7 +123,7 @@ L_6:
     CreateEmitter 0, 1, 3
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 4, 0, 1, 6, 264
+    Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -152,7 +152,7 @@ L_8:
     CreateEmitter 0, 1, 3
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 4, 0, 1, 6, 264
+    Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, 4
     WaitForAllEmitters
     UnloadParticleSystem 0

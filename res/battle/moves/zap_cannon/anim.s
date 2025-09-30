@@ -18,8 +18,8 @@ L_0:
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W085C, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 25
-    Func_Shake 4, 0, 1, 4, 264
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_LIGHT_YELLOW1, 14, 0
+    Func_Shake 4, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_YELLOW1, 14, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

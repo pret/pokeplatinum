@@ -13,8 +13,8 @@ L_0:
     Func_MoveEmitterA2BParabolic 1, 4, -5, 0, 12, 64
     Delay 5
     CreateEmitter 0, 1, 20
-    Func_Shake 1, 0, 1, 6, 264
-    Func_Shake 1, 0, 1, 6, 272
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W070, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 2, 0, 3
     Func_MoveEmitterA2BParabolic 2, 0, -6, 0, 12, 64

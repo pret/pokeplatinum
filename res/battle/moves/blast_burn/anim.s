@@ -9,7 +9,7 @@ L_0:
 L_1:
     LoadParticleResource 0, blast_burn_spa
     LoadParticleResource 1, flamethrower_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_DARK_RED2
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     InitPokemonSpriteManager
@@ -116,8 +116,8 @@ L_1:
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 10, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
@@ -125,14 +125,14 @@ L_1:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     FreePokemonSpriteManager
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_DARK_RED2
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     End
 
 L_2:
     LoadParticleResource 0, blast_burn_spa
     LoadParticleResource 1, flamethrower_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_DARK_RED2
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
@@ -232,11 +232,11 @@ L_2:
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 10, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_DARK_RED2
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     End

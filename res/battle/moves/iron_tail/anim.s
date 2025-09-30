@@ -24,7 +24,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

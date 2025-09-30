@@ -12,7 +12,7 @@ L_0:
     WaitForBgSwitch
     PlayLoopedSoundEffect SEQ_SE_DP_W152, BATTLE_SOUND_PAN_LEFT, 2, 4
     CreateEmitter 0, 0, 3
-    Func_Shake 1, 0, 1, 4, 258
+    Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_LEFT
     Func_MoveBattlerX2 3, 24, 258
@@ -22,8 +22,8 @@ L_0:
     Delay 31
     PlayPannedSoundEffect SEQ_SE_DP_W127, BATTLE_SOUND_PAN_RIGHT
     Delay 4
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_LIGHT_BLUE, 14, 0
-    Func_Shake 1, 0, 1, 6, 264
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_BLUE, 14, 0
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

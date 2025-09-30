@@ -7,19 +7,19 @@ L_0:
     End
 
 L_1:
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_GRAY, 10, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_GRAY, 10, 0
     Func_Growth
     PlayPannedSoundEffect SEQ_SE_DP_W060, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End
 
 L_2:
     LoadParticleResource 0, doom_desire_spa
-    Func_FadeBg 0, 0, 0, 16, BATTLE_COLOR_WHITE
+    Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 16, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W466, 0
     CreateEmitter 0, 2, 17
@@ -30,9 +30,9 @@ L_2:
     PlayLoopedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT, 6, 5
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_Shake 4, 0, 1, 10, 264
+    Func_Shake 4, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 0, 16, 0, BATTLE_COLOR_WHITE
+    Func_FadeBg FADE_BG_TYPE_BASE, 0, 16, 0, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     End

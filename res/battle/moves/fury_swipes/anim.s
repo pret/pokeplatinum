@@ -11,7 +11,7 @@ L_0:
     Delay 3
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 0, 4
-    Func_Shake 1, 0, 1, 4, 264
+    Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

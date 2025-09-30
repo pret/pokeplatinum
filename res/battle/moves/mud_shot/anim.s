@@ -10,8 +10,8 @@ L_0:
     CreateEmitterForMove 0, 0, 3, 6, 7, 8, 9, 18
     Delay 10
     CreateEmitter 0, 14, 4
-    Func_Shake 2, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 2, BATTLE_COLOR_DARK_RED1, 14, 0
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_DARK_RED1, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -21,7 +21,7 @@ L_1:
     CreateEmitterForFriendlyFire 0, 11, 12, 11, 12, 3
     Delay 10
     CreateEmitter 0, 14, 4
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -33,7 +33,7 @@ L_2:
     BtlAnimCmd_055 4, 0, 11008, -8256, 0
     Delay 10
     CreateEmitter 0, 14, 4
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

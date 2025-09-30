@@ -197,7 +197,6 @@
     .endm
 
     .macro Func_Magnitude value
-    // Accept 0 or 1 arg; some scripts use CallFunc 28,1,<val>
     .ifnb \value
         CallFunc 28, 1, \value
     .else

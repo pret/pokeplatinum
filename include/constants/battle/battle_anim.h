@@ -189,6 +189,11 @@
 #define FADE_BG_TYPE_MON_SPRITE 1
 #define FADE_BG_TYPE_EFFECT     2
 
+#define SCALE_F(frames) (((frames) & 0xFFFF) << 16)
+#define RESTORE_F(frames) ((frames) & 0xFFFF)
+#define HOLD_F(frames) (((frames) & 0xFFFF) << 16)
+#define CYCLES(cycles) ((cycles) & 0xFFFF)
+
 #define SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames) (((scaleFrames & 0xFFFF) << 16) | (restoreFrames & 0xFFFF))
 #define SCALE_POKEMON_SPRITE_SCALE_FRAMES(frames) ((frames) >> 16)
 #define SCALE_POKEMON_SPRITE_RESTORE_FRAMES(frames) ((frames) & 0xFFFF)

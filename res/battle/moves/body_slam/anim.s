@@ -14,7 +14,7 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 3, 0, 1, 4, 264
+    Func_Shake 3, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -24, 0, 4
     WaitForAnimTasks
     End

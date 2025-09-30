@@ -7,7 +7,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
     Func_DrillPeck
     Delay 18
-    Func_Shake 2, 0, 1, 12, 264
+    Func_Shake 2, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, 4128, 0

@@ -13,7 +13,7 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_LEFT, 40
     Delay 40
     PlayDelayedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT, 5
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 10, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

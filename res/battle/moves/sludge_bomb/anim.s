@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     Delay 5
-    Func_FadeBattlerSprite 8, 0, 2, BATTLE_COLOR_PURPLE, 14, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_PURPLE, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

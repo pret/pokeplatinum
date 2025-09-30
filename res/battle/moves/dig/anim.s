@@ -70,7 +70,7 @@ L_2:
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_HideBattler 2, 0
     WaitForAllEmitters

@@ -13,7 +13,7 @@ L_0:
     Delay 2
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
-    Func_Shake 2, 0, 1, 10, 264
+    Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitterEx 0, 2, 0, 3
     Func_MoveEmitterA2BLinear 2, 0, 0, 0, 10, 64
     Delay 2

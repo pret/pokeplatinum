@@ -20,7 +20,7 @@ L_0:
     CreateEmitterEx 0, 2, 2, 3
     Func_RevolveEmitter 2, 0, 360, 0, 360, 64, 48, 40, 1, 0
     Delay 5
-    Func_FadeBattlerSprite 8, 0, 3, BATTLE_COLOR_RED, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 3, BATTLE_COLOR_RED, 10, 10
     CreateEmitterEx 0, 3, 0, 3
     Func_RevolveEmitter 3, 0, 360, 0, 360, 64, 48, 40, 1, 0
     CreateEmitterEx 0, 4, 1, 3

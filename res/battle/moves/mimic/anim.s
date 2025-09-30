@@ -17,7 +17,7 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 12
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
@@ -43,7 +43,7 @@ L_1:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 12
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0

@@ -11,8 +11,8 @@ L_0:
     PlayPokemonCry 10, -117, 127
     Delay 5
     WaitForPokemonCries 0
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

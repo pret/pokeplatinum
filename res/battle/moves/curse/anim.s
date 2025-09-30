@@ -11,7 +11,7 @@ L_1:
     CreateEmitter 0, 1, 3
     BeginLoop 1
     PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_RED, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 10
     Func_MoveBattlerX2 10, 10, 258
     Delay 10
     Func_MoveBattlerX2 20, -20, 258
@@ -26,17 +26,17 @@ L_1:
 
 L_2:
     LoadParticleResource 0, curse_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_032, BATTLE_SOUND_PAN_LEFT, 12, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 4, 3
     CreateEmitter 0, 0, 3
-    Func_Shake 2, 0, 1, 6, 258
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

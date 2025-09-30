@@ -22,7 +22,7 @@ L_0:
     CreateEmitterEx 0, 3, 1, 3
     Func_MoveEmitterA2BParabolic 3, 0, 0, 0, 18, 64
     Delay 2
-    Func_Shake 1, 0, 1, 12, 264
+    Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayPannedSoundEffect SEQ_SE_DP_HURU2, 0
     CreateEmitterEx 0, 4, 1, 3
     Func_MoveEmitterA2BParabolic 4, 0, 0, 0, 18, 64

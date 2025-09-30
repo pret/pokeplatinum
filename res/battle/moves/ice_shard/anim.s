@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, ice_shard_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 17
@@ -23,13 +23,13 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_Shake 1, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_WHITE, 10, 10
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 10, 10
     PlayLoopedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 2, 3
     PlayDelayedSoundEffect SEQ_SE_DP_W258, BATTLE_SOUND_PAN_RIGHT, 7
     PlayDelayedSoundEffect SEQ_SE_DP_W258, BATTLE_SOUND_PAN_RIGHT, 14
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

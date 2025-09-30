@@ -10,14 +10,14 @@ L_0:
     CreateEmitter 0, 1, 0
     PlayPannedSoundEffect SEQ_SE_DP_W195, 0
     Delay 10
-    Func_FadeBg 0, 1, 0, 16, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 16, BATTLE_COLOR_BLACK
     Delay 15
-    Func_FadeBattlerSprite 2, 1, 1, 13741, 16
-    Func_FadeBattlerSprite 4, 1, 1, 13741, 16
-    Func_FadeBattlerSprite 8, 1, 1, 13741, 16
-    Func_FadeBattlerSprite 16, 1, 1, 13741, 16
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 1, 1, BATTLE_COLOR_GRAY, 16, 
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 1, 1, BATTLE_COLOR_GRAY, 16, 
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 1, 1, BATTLE_COLOR_GRAY, 16, 
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 1, 1, BATTLE_COLOR_GRAY, 16, 
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 16, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 16, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

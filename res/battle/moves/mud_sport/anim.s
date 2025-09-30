@@ -5,19 +5,19 @@
 L_0:
     LoadParticleResource 0, mud_sport_spa
     PlayPannedSoundEffect SEQ_SE_DP_W091, BATTLE_SOUND_PAN_LEFT
-    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 80, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3
-    Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 80, 100, 160, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
-    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 262148
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 80, 100, CYCLES(1), SCALE_F(4) | RESTORE_F(4)
     WaitForAnimTasks
-    Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 262148
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 80, 100, 160, 100, CYCLES(1), SCALE_F(4) | RESTORE_F(4)
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks
     EndLoop

@@ -8,8 +8,8 @@ L_0:
     CreateEmitter 0, 0, 20
     Delay 30
     Func_SetBgGrayscale 1
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_BLACK, 10, 15
-    Func_FadeBattlerSprite 16, 0, 1, BATTLE_COLOR_BLACK, 10, 15
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 10, 15
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 15
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAllEmitters

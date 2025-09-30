@@ -16,7 +16,7 @@ L_1:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4
     Delay 10
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     End
 
 L_2:
@@ -26,5 +26,5 @@ L_2:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4
     Delay 10
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     End

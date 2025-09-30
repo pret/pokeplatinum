@@ -22,6 +22,6 @@ L_2:
     PlayDelayedSoundEffect SEQ_SE_DP_210, BATTLE_SOUND_PAN_RIGHT, 15
     PlayDelayedSoundEffect SEQ_SE_DP_W054, BATTLE_SOUND_PAN_LEFT, 30
     Delay 20
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     End

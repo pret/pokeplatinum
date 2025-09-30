@@ -27,8 +27,8 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
-    Func_Shake 2, 0, 1, 2, 264
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_BLACK, 14, 0
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

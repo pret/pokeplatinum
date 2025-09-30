@@ -23,7 +23,7 @@ L_0:
     Delay 2
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    Func_Shake 8, 0, 1, 4, 264
+    Func_Shake 8, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -16, 8, 2
     WaitForAnimTasks
     WaitForAllEmitters

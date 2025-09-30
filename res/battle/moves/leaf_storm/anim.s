@@ -20,7 +20,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
     Delay 35
     PlayLoopedSoundEffect SEQ_SE_DP_HURU, 0, 3, 8
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, 4
     WaitForAllEmitters
     UnloadParticleSystem 0

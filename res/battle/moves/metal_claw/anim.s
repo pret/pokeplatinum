@@ -28,7 +28,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
     Func_MoveBattlerX2 3, 24, 258
     Delay 2
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 2
     Func_MoveBattlerX2 3, -24, 258
     Delay 4

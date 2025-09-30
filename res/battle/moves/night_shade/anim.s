@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
@@ -21,6 +21,6 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     BtlAnimCmd_083 1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

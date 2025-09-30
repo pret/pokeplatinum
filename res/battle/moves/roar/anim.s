@@ -10,7 +10,7 @@ L_0:
     WaitForPokemonCries 0
     PlayPokemonCry 8, -117, 127
     CreateEmitter 0, 0, 3
-    Func_ScaleBattlerSprite 258, 100, 120, 100, 120, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 120, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     Delay 10
     Func_MoveBattlerOffScreen 8, 20
     WaitForAnimTasks

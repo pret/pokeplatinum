@@ -30,7 +30,7 @@ L_2:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 5
     PlayDelayedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 8
     PlayDelayedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 13

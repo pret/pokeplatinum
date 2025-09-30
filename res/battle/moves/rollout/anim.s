@@ -16,7 +16,7 @@ L_1:
     CreateEmitter 0, 2, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
     Delay 20
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayPannedSoundEffect SEQ_SE_DP_W070, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -32,7 +32,7 @@ L_2:
     CreateEmitter 0, 2, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, 0, 2, 6
     Delay 20
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayPannedSoundEffect SEQ_SE_DP_W070, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0

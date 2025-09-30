@@ -20,11 +20,11 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 10, 6, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_SUIRYU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 8
-    Func_Shake 2, 0, 1, 14, 258
+    Func_Shake 2, 0, 1, 14, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_TEAL_GREEN, 10, 25
-    Func_Shake 2, 0, 1, 14, 264
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_TEAL_GREEN, 10, 25
+    Func_Shake 2, 0, 1, 14, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

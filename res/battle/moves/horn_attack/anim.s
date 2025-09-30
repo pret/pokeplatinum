@@ -14,7 +14,7 @@ L_1:
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
@@ -29,7 +29,7 @@ L_2:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
@@ -44,7 +44,7 @@ L_3:
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -14, 8, 2
     PlayPannedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks

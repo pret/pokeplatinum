@@ -17,10 +17,10 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 33, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     Delay 2
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_RED2, 14, 0
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_RED2, 14, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

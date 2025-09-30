@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 0, 4
     Func_MoveBattler 258, -14, 8, 2
     Delay 5
-    Func_Shake 0, 4, 1, 1, 264
+    Func_Shake 0, 4, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W004, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters

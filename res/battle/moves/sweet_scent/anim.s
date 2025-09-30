@@ -14,8 +14,8 @@ L_1:
     BtlAnimCmd_055 4, 1, -2000, 8000, 0
     CreateEmitter 0, 2, 0
     CreateEmitter 0, 4, 4
-    Func_FadeBattlerSprite 8, 0, 2, 23199, 12
-    Func_FadeBattlerSprite 16, 0, 2, 23199, 12
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_RED, 12, 
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 2, BATTLE_COLOR_LIGHT_RED, 12, 
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -28,8 +28,8 @@ L_2:
     BtlAnimCmd_055 4, 1, -2000, 8000, 0
     CreateEmitter 0, 3, 0
     CreateEmitter 0, 4, 4
-    Func_FadeBattlerSprite 8, 0, 2, 23199, 12
-    Func_FadeBattlerSprite 16, 0, 2, 23199, 12
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_RED, 12, 
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 2, BATTLE_COLOR_LIGHT_RED, 12, 
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

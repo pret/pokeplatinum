@@ -19,7 +19,7 @@ L_0:
     CreateEmitterForMove 0, 10, 10, 10, 11, 11, 11, 18
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    Func_Shake 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars
@@ -45,7 +45,7 @@ L_1:
     CreateEmitterForFriendlyFire 0, 13, 13, 13, 13, 3
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    Func_Shake 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars
@@ -75,7 +75,7 @@ L_2:
     BtlAnimCmd_055 4, 0, 11008, -8256, 0
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    Func_Shake 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

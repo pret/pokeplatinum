@@ -22,7 +22,7 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 20, 14, 0, 0
     Delay 5
-    Func_Shake 5, 0, 1, 15, 264
+    Func_Shake 5, 0, 1, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

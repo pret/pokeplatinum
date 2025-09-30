@@ -16,7 +16,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_182, BATTLE_SOUND_PAN_LEFT
     Delay 40
     PlayLoopedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 3, 4
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

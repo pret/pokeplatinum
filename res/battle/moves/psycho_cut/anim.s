@@ -21,7 +21,7 @@ L_1:
     CreateEmitter 0, 2, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -30,7 +30,7 @@ L_3:
     CreateEmitter 0, 4, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -39,7 +39,7 @@ L_2:
     CreateEmitter 0, 3, 3
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    Func_Shake 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    Func_ScaleBattlerSprite 258, 100, 10, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 10, 100, 80, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     Delay 4
     Func_HideBattler 2, 1
@@ -29,7 +29,7 @@ L_1:
     End
 
 L_2:
-    Func_ScaleBattlerSprite 258, 100, 10, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 10, 100, 80, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     Delay 4
     Func_HideBattler 2, 1

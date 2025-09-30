@@ -22,7 +22,7 @@ L_1:
     End
 
 L_2:
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
     Func_MoveBattler 258, -24, 0, 4
@@ -34,11 +34,11 @@ L_2:
     PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_Shake 6, 0, 1, 6, 264
+    Func_Shake 6, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -14, 8, 2
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

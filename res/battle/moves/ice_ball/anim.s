@@ -13,8 +13,8 @@ L_0:
     CreateEmitter 0, 2, 4
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W280, BATTLE_SOUND_PAN_RIGHT
-    Func_Shake 2, 0, 1, 4, 264
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_WHITE, 10, 0
+    Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

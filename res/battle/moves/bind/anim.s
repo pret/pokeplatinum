@@ -11,7 +11,7 @@ L_0:
     WaitForAnimTasks
     Func_MoveBattlerX2 3, -24, 258
     Delay 1
-    Func_ScaleBattlerSprite 264, 100, 70, 100, 100, 100, 1, 327685
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 100, 70, 100, 100, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W020B, BATTLE_SOUND_PAN_RIGHT
     EndLoop

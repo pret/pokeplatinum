@@ -20,7 +20,7 @@ L_1:
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 8, 4
-    Func_Shake 1, 0, 1, 12, 264
+    Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_MoveBattler 258, -14, 8, 2
@@ -31,7 +31,7 @@ L_2:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 6, 4
-    Func_Shake 1, 0, 1, 12, 264
+    Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_MoveBattler 258, -14, 8, 2
@@ -42,7 +42,7 @@ L_3:
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 7, 4
-    Func_Shake 1, 0, 1, 12, 264
+    Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_MoveBattler 258, -14, 8, 2

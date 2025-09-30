@@ -8,13 +8,13 @@ L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, 20, 4
     CreateEmitter 0, 2, 3
     BeginLoop 4
-    Func_FadeBattlerSprite 2, 0, 1, 797, 6
-    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 262148
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_YELLOW, 6, 
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 80, 100, CYCLES(1), SCALE_F(4) | RESTORE_F(4)
     Delay 7
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 1, 4
-    Func_ScaleBattlerSprite 258, 100, 80, 100, 140, 100, 1, 262148
-    Func_Shake 1, 0, 1, 2, 264
+    Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 80, 100, 140, 100, CYCLES(1), SCALE_F(4) | RESTORE_F(4)
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 3
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     Delay 4

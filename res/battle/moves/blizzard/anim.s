@@ -24,11 +24,11 @@ L_1:
     Delay 12
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 2, 20
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 15
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -20
@@ -53,11 +53,11 @@ L_2:
     Delay 12
     CreateEmitter 0, 0, 20
     CreateEmitter 0, 2, 20
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 15
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -20

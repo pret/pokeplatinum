@@ -42,8 +42,8 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_LIGHT_RED, 10, 15
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_LIGHT_RED, 10, 15
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_LIGHT_RED, 10, 15
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_RED, 10, 15
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

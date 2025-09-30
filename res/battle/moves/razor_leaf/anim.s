@@ -14,8 +14,8 @@ L_0:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_209, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 10
     CreateEmitter 0, 0, 20
-    Func_Shake 1, 0, 1, 2, 264
-    Func_Shake 1, 0, 1, 2, 272
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 7
     PlayLoopedSoundEffect SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_RIGHT, 3, 5
     WaitForAllEmitters

@@ -20,8 +20,8 @@ L_0:
     Delay 25
     SetPokemonSpriteVisible 0, 0
     SetPokemonSpriteVisible 1, 0
-    Func_Shake 1, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_PURPLE, 14, 0
+    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_PURPLE, 14, 0
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAnimTasks

@@ -10,8 +10,8 @@ L_0:
     Delay 10
     PlayLoopedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT, 1, 20
     Delay 5
-    Func_Shake 2, 0, 1, 10, 264
-    Func_Shake 2, 0, 1, 10, 272
+    Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

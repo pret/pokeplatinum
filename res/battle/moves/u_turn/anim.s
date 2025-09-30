@@ -24,7 +24,7 @@ L_1:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 5, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 3, 3
@@ -73,7 +73,7 @@ L_3:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 5, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 3, 3

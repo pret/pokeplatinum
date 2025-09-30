@@ -28,7 +28,7 @@ L_2:
     Func_MoveBattler 258, 16, -8, 2
     Delay 10
     Func_ShakeBg 5, 0, 1, 6, 0
-    Func_Shake 4, 0, 1, 4, 264
+    Func_Shake 4, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler 258, -16, 8, 2
     WaitForAnimTasks
     WaitForAllEmitters

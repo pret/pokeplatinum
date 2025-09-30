@@ -13,7 +13,7 @@ L_0:
     Func_MoveBattlerX2 2, 8, 258
     Delay 10
     CreateEmitter 0, 0, 4
-    Func_Shake 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, draco_meteor_spa
-    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_DARK_BLUE
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_BLUE
     PlayPannedSoundEffect SEQ_SE_DP_201, 0
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
@@ -25,20 +25,20 @@ L_0:
     Delay 15
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W434, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 4
-    Func_Shake 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 3, 0, 1, 0
     Delay 10
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W434, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 4
-    Func_Shake 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 3, 0, 1, 0
     Delay 15
     CreateEmitter 0, 0, 4
-    Func_Shake 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 4, 0, 4, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W434, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 20
-    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_DARK_BLUE
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_DARK_BLUE
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

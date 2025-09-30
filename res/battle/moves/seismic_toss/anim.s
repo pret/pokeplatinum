@@ -30,7 +30,7 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 1, 4
-    Func_Shake 2, 0, 1, 8, 264
+    Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 5, 1, 3, 0
     Delay 10
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -34
