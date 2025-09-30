@@ -3,10 +3,10 @@
 .data
 
 L_0:
-    CallFunc 0, 0
-    CallFunc 1, 0
-    CallFunc 2, 0
-    CallFunc 3, 0
+    Func_Nop
+    Func_AnimExample
+    Func_SoundExample
+    Func_GenericExample
     PlaySoundEffect SEQ_SE_DP_BASI
     Delay 60
     End

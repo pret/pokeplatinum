@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, peck_spa
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_LEFT
-    CallFunc 9, 0
+    Func_DrillPeck
     Delay 18
     Func_Shake 2, 0, 1, 12, 264
     CreateEmitter 0, 1, 17

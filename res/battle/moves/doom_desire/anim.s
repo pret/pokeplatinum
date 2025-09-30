@@ -10,7 +10,7 @@ L_1:
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     Func_FadeBattlerSprite 8, 0, 1, 13741, 10, 0
-    CallFunc 13, 0
+    Func_Growth
     PlayPannedSoundEffect SEQ_SE_DP_W060, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks
     Func_FadeBg 0, 1, 12, 0, 0

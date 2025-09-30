@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, teleport_spa
     Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    CallFunc 15, 0
+    Func_Teleport
     PlayPannedSoundEffect SEQ_SE_DP_W100, BATTLE_SOUND_PAN_LEFT
     Delay 10
     CreateEmitter 0, 0, 3

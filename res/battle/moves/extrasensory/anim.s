@@ -13,7 +13,7 @@ L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     Func_FadeBattlerSprite 2, 0, 2, 49930, 10
-    CallFunc 37, 0
+    Func_Extrasensory
     BeginLoop 3
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 16

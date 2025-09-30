@@ -15,7 +15,7 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    CallFunc 11, 0
+    Func_Confusion
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

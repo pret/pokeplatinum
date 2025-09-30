@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, splash_spa
-    CallFunc 19, 0
+    Func_Splash
     BeginLoop 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3

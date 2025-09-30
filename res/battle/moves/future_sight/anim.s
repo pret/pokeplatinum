@@ -36,7 +36,7 @@ L_2:
     BtlAnimCmd_082 3, 0, 4
     PlayPannedSoundEffect SEQ_SE_DP_W060, 0
     Delay 10
-    CallFunc 11, 0
+    Func_Confusion
     PlayPannedSoundEffect SEQ_SE_DP_480, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     FreePokemonSpriteManager

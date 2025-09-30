@@ -12,7 +12,7 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
-    CallFunc 8, 0
+    Func_QuickAttack
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     Func_Shake 1, 0, 1, 2, 264

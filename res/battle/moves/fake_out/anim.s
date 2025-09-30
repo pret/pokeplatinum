@@ -12,12 +12,12 @@ L_0:
     AddSpriteWithFunc 0, 18, fake_out_NCGR_lz, fake_out_NCLR, fake_out_cell_NCER_lz, fake_out_anim_NANR_lz, 0, 0, 0
     PlayDelayedSoundEffect SEQ_SE_DP_W260, 0, 20
     Delay 2
-    CallFunc 41, 0
+    Func_FakeOutCurtain
     Delay 4
     CreateEmitter 0, 0, 4
     Delay 4
     Delay 8
-    CallFunc 43, 0
+    Func_FakeOut
     PlayPannedSoundEffect SEQ_SE_DP_W166, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     FreeSpriteManager 0

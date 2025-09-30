@@ -11,7 +11,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     BtlAnimCmd_082 1, 1, 0
     Func_FadeBattlerSprite 2, 0, 3, 32767, 10
-    CallFunc 20, 0
+    Func_Spite
     LoadPokemonSpriteIntoBg 1, 0
     PlayPannedSoundEffect SEQ_SE_DP_W060, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks

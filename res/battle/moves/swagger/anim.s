@@ -8,7 +8,7 @@ L_0:
     LoadPlttRes 0, angry_NCLR, 1
     LoadCellResObj 0, angry_cell_NCER_lz
     LoadAnimResObj 0, angry_anim_NANR_lz
-    CallFunc 31, 0
+    Func_Swagger
     PlayPannedSoundEffect SEQ_SE_DP_W207D, BATTLE_SOUND_PAN_LEFT
     Delay 30
     WaitForAnimTasks

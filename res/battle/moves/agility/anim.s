@@ -24,7 +24,7 @@ L_1:
     WaitForBgSwitch
     Delay 19
     Delay 1
-    CallFunc 8, 0
+    Func_QuickAttack
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
@@ -56,7 +56,7 @@ L_2:
     WaitForBgSwitch
     Delay 19
     Delay 1
-    CallFunc 8, 0
+    Func_QuickAttack
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1

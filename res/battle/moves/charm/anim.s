@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, charm_spa
     CreateEmitter 0, 0, 3
-    CallFunc 25, 0
+    Func_PlayfulHops
     BeginLoop 3
     PlayPannedSoundEffect SEQ_SE_DP_W204, BATTLE_SOUND_PAN_LEFT
     Delay 8

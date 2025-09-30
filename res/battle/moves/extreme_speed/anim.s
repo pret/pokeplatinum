@@ -15,7 +15,7 @@ L_0:
     Delay 1
     Func_BlinkAttacker 5, 0
     PlayPannedSoundEffect SEQ_SE_DP_W013B, BATTLE_SOUND_PAN_LEFT
-    CallFunc 15, 0
+    Func_Teleport
     CreateEmitter 0, 0, 3
     WaitForAnimTasks
     CreateEmitter 0, 1, 4

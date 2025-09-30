@@ -14,7 +14,7 @@ L_0:
     LoadPokemonSpriteDummyResources 3
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_3, 3
     BtlAnimCmd_082 3, 1, 3
-    CallFunc 32, 0
+    Func_Memento
     PlayPannedSoundEffect SEQ_SE_DP_W060, BATTLE_SOUND_PAN_LEFT
     Delay 24
     PlayPannedSoundEffect SEQ_SE_DP_W060B, BATTLE_SOUND_PAN_RIGHT

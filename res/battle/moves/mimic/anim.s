@@ -13,7 +13,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
     PlayPannedSoundEffect SEQ_SE_DP_W107, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 58, 0
+    Func_Mimic
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25
@@ -39,7 +39,7 @@ L_1:
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
     PlayPannedSoundEffect SEQ_SE_DP_W107, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 58, 0
+    Func_Mimic
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 1, 1, 0, 0
     Delay 25

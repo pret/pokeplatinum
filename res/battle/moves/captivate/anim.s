@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     PlayPannedSoundEffect SEQ_SE_DP_164, BATTLE_SOUND_PAN_LEFT
-    CallFunc 25, 0
+    Func_PlayfulHops
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

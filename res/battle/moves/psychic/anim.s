@@ -16,7 +16,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
     PlayLoopedSoundEffect SEQ_SE_DP_480, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CallFunc 11, 0
+    Func_Confusion
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
