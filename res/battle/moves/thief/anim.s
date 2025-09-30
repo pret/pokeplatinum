@@ -13,7 +13,7 @@ L_1:
     Func_MoveBattlerX2 3, -24, 258
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, 13741, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_GRAY, 14, 0
     Delay 1
     Func_Shake 1, 0, 1, 2, 264
     PlayPannedSoundEffect SEQ_SE_DP_W233, BATTLE_SOUND_PAN_RIGHT

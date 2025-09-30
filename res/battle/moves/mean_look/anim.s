@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 1, 0, 12, 31764
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_PURPLE
     WaitForAnimTasks
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, mean_look_NCGR_lz
@@ -19,6 +19,6 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     FreeSpriteManager 0
-    Func_FadeBg 0, 1, 12, 0, 31764
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_PURPLE
     WaitForAnimTasks
     End

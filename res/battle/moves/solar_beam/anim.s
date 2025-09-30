@@ -8,22 +8,22 @@ L_0:
     End
 
 L_1:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 19, 3
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_LEFT
     Delay 20
-    Func_FadeBattlerSprite 2, 0, 2, 13311, 10, 0
+    Func_FadeBattlerSprite 2, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End
 
 L_2:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 8, 3
@@ -35,10 +35,10 @@ L_2:
     CreateEmitter 0, 11, 4
     CreateEmitter 0, 1, 4
     Delay 5
-    Func_FadeBattlerSprite 8, 0, 2, 13311, 14, 0
+    Func_FadeBattlerSprite 8, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 14, 0
     Func_Shake 4, 0, 1, 12, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

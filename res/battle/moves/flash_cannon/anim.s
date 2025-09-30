@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, flash_cannon_spa
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT, 3, 10
     CreateEmitter 0, 5, 17
@@ -29,6 +29,6 @@ L_0:
     CreateEmitter 0, 1, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, frustration_spa
-    Func_FadeBattlerSprite 2, 0, 1, 31, 10, 10
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_RED, 10, 10
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks
     Func_Flail 0

@@ -8,9 +8,9 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBg 0, 0, 0, 8, 49930
+    Func_FadeBg 0, 0, 0, 8, BATTLE_COLOR_TEAL_GREEN
     WaitForAnimTasks
-    Func_FadeBg 0, 0, 8, 0, 49930
+    Func_FadeBg 0, 0, 8, 0, BATTLE_COLOR_TEAL_GREEN
     PlayPannedSoundEffect SEQ_SE_DP_W152, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 0, 4, 1, 2, 264
     WaitForAnimTasks

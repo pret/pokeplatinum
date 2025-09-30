@@ -19,7 +19,7 @@ L_0:
     Delay 10
     PlayLoopedSoundEffect SEQ_SE_DP_W202, BATTLE_SOUND_PAN_RIGHT, 2, 3
     Func_Shake 2, 0, 1, 2, 264
-    Func_FadeBattlerSprite 8, 0, 1, 32720, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_LIGHT_CYAN, 14, 0
     Delay 30
     WaitForAllEmitters
     UnloadParticleSystem 0

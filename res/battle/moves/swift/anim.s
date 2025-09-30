@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, swift_spa
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_165, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 2, 17
@@ -20,6 +20,6 @@ L_0:
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W161, BATTLE_SOUND_PAN_LEFT
     JumpIfContest L_1
@@ -37,7 +37,7 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     BtlAnimCmd_083 1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End
 
@@ -62,6 +62,6 @@ L_1:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

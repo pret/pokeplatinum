@@ -9,9 +9,9 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W209, BATTLE_SOUND_PAN_LEFT
     Func_FadeBattlerSprite 2, 1, 1, 13311, 10
     BeginLoop 3
-    Func_FadeBg 0, 0, 0, 8, 13311
+    Func_FadeBg 0, 0, 0, 8, BATTLE_COLOR_LIGHT_YELLOW1
     WaitForAnimTasks
-    Func_FadeBg 0, 0, 8, 0, 13311
+    Func_FadeBg 0, 0, 8, 0, BATTLE_COLOR_LIGHT_YELLOW1
     WaitForAnimTasks
     EndLoop
     Func_FadeBattlerSprite 8, 1, 1, 13311, 10

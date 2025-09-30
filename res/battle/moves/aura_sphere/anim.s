@@ -11,7 +11,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 11, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 2, 17
@@ -28,7 +28,7 @@ L_0:
     Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32

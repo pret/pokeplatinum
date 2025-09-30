@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, fire_fang_spa
-    Func_FadeBg 0, 1, 0, 12, 2124
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     PlayDelayedSoundEffect SEQ_SE_DP_W044, BATTLE_SOUND_PAN_RIGHT, 6
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
@@ -23,6 +23,6 @@ L_0:
     Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 2124
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     End

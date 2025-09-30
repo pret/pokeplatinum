@@ -24,7 +24,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 3, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    Func_FadeBattlerSprite 8, 0, 1, 15103, 10, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_LIGHT_ORANGE, 10, 0
     PlayPannedSoundEffect SEQ_SE_DP_W029, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters

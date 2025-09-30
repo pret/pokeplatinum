@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, supersonic_spa
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitterEx 0, 1, 0, 3
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 14, 64
@@ -13,6 +13,6 @@ L_0:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W048, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

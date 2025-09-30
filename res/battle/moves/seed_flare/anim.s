@@ -8,11 +8,11 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 1, 3
-    Func_FadeBg 0, 0, 0, 13, 32767
+    Func_FadeBg 0, 0, 0, 13, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     Delay 40
     PlayPannedSoundEffect SEQ_SE_DP_W465, 0
-    Func_FadeBg 0, 0, 13, 0, 32767
+    Func_FadeBg 0, 0, 13, 0, BATTLE_COLOR_WHITE
     Func_ShakeBg 4, 4, 0, 10, 0
     Func_Shake 2, 0, 1, 6, 264
     WaitForAnimTasks

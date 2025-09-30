@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     LoadParticleResource 0, icy_wind_spa
     CreateEmitter 0, 0, 17
@@ -15,12 +15,12 @@ L_0:
     CreateEmitter 0, 2, 20
     Func_Shake 2, 0, 1, 10, 264
     Func_Shake 2, 0, 1, 10, 272
-    Func_FadeBattlerSprite 8, 0, 2, 32767, 14, 0
-    Func_FadeBattlerSprite 16, 0, 2, 32767, 14, 0
+    Func_FadeBattlerSprite 8, 0, 2, BATTLE_COLOR_WHITE, 14, 0
+    Func_FadeBattlerSprite 16, 0, 2, BATTLE_COLOR_WHITE, 14, 0
     Delay 10
     PlayLoopedSoundEffect SEQ_SE_DP_W258, BATTLE_SOUND_PAN_RIGHT, 4, 4
     Delay 50
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     PlayPannedSoundEffect SEQ_SE_DP_W221B, BATTLE_SOUND_PAN_LEFT
-    Func_FadeBattlerSprite 2, 0, 2, 31, 10, 0
+    Func_FadeBattlerSprite 2, 0, 2, BATTLE_COLOR_RED, 10, 0
     Delay 30
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, claw_NCGR_lz

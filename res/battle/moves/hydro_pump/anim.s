@@ -23,7 +23,7 @@ L_0:
     Func_Shake 2, 0, 1, 14, 258
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, 49930, 10, 25
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_TEAL_GREEN, 10, 25
     Func_Shake 2, 0, 1, 14, 264
     WaitForAllEmitters
     UnloadParticleSystem 0

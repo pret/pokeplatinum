@@ -12,7 +12,7 @@ L_0:
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_208, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 1, 0, 1, 2, 264
-    Func_FadeBattlerSprite 8, 0, 1, 32767, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_WHITE, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

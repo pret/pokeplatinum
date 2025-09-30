@@ -8,7 +8,7 @@ L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 4, 3
     Delay 10
     Delay 10
-    Func_FadeBattlerSprite 8, 0, 1, 0, 10, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

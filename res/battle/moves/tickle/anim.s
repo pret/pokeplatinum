@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, detect_spa
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3
-    Func_FadeBattlerSprite 2, 0, 1, 0, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 12, 0
     Delay 2
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
@@ -29,7 +29,7 @@ L_0:
     End
 
 L_2:
-    Func_FadeBattlerSprite 2, 0, 1, 0, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 12, 0
     Delay 2
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
@@ -52,7 +52,7 @@ L_2:
     End
 
 L_3:
-    Func_FadeBattlerSprite 2, 0, 1, 0, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 12, 0
     Delay 2
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
@@ -79,7 +79,7 @@ L_3:
     End
 
 L_1:
-    Func_FadeBattlerSprite 2, 0, 1, 0, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 12, 0
     Delay 2
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT

@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, eruption_spa
-    Func_FadeBg 0, 1, 0, 12, 2124
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 1, 3
@@ -25,8 +25,8 @@ L_0:
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT
     Func_ShakeBg 0, 5, 0, 4, 3
-    Func_FadeBattlerSprite 8, 0, 3, 2124, 14, 0
-    Func_FadeBattlerSprite 16, 0, 3, 2124, 14, 0
+    Func_FadeBattlerSprite 8, 0, 3, BATTLE_COLOR_DARK_RED2, 14, 0
+    Func_FadeBattlerSprite 16, 0, 3, BATTLE_COLOR_DARK_RED2, 14, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -6000, 1000, 4000
@@ -64,6 +64,6 @@ L_0:
     BtlAnimCmd_055 4, 1, -5000, -4000, -4000
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 2124
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
     End

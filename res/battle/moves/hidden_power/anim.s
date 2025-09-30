@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, hidden_power_spa
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3
@@ -20,6 +20,6 @@ L_0:
     Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

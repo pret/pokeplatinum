@@ -35,7 +35,7 @@ L_2:
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 4, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17
@@ -73,7 +73,7 @@ L_1:
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 4, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17
@@ -111,7 +111,7 @@ L_3:
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 4, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17

@@ -13,7 +13,7 @@ L_0:
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 8, 255, 0, 262144
     CreateEmitter 0, 3, 4
     Func_Shake 2, 0, 1, 2, 264
-    Func_FadeBattlerSprite 8, 0, 1, 8296, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_PURPLE, 14, 0
     PlayPannedSoundEffect SEQ_SE_DP_480, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0

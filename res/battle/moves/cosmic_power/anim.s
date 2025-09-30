@@ -5,9 +5,9 @@
 L_0:
     LoadParticleResource 0, cosmic_power_spa
     JumpIfFriendlyFire L_1
-    Func_FadeBattlerSprite 4, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 8, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 16, 0, 1, 0, 16, 60
+    Func_FadeBattlerSprite 4, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 16, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W322, 0
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
@@ -39,9 +39,9 @@ L_1:
     End
 
 L_2:
-    Func_FadeBattlerSprite 4, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 2056, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 2064, 0, 1, 0, 16, 60
+    Func_FadeBattlerSprite 4, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 2056, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 2064, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W322, 0
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
@@ -69,9 +69,9 @@ L_2:
     End
 
 L_3:
-    Func_FadeBattlerSprite 4, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 2050, 0, 1, 0, 16, 60
-    Func_FadeBattlerSprite 2052, 0, 1, 0, 16, 60
+    Func_FadeBattlerSprite 4, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 2050, 0, 1, BATTLE_COLOR_BLACK, 16, 60
+    Func_FadeBattlerSprite 2052, 0, 1, BATTLE_COLOR_BLACK, 16, 60
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W322, 0
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0

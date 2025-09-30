@@ -14,7 +14,7 @@ L_0:
     Delay 55
     PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT
     Delay 5
-    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

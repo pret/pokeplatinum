@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, confuse_ray_spa
     LoadParticleResource 1, confuse_ray_spa
     JumpIfContest L_1
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 1
@@ -17,12 +17,12 @@ L_0:
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End
 
 L_1:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 0, 28, 22, 0, 4
@@ -33,6 +33,6 @@ L_1:
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

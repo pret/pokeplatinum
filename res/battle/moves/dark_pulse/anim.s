@@ -21,7 +21,7 @@ L_0:
     SetPokemonSpriteVisible 0, 0
     SetPokemonSpriteVisible 1, 0
     Func_Shake 1, 0, 1, 6, 264
-    Func_FadeBattlerSprite 8, 0, 1, 8296, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_DARK_PURPLE, 14, 0
     WaitForAnimTasks
     Func_SetBgGrayscale 0
     WaitForAnimTasks

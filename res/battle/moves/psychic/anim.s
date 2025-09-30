@@ -10,7 +10,7 @@ L_0:
     SwitchBg 52, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     Func_Shake 1, 0, 1, 2, 264
-    Func_FadeBattlerSprite 2, 0, 1, 13311, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_LIGHT_YELLOW1, 10, 0
     Delay 10
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4

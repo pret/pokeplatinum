@@ -13,7 +13,7 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 12
     PlayDelayedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 15
     CreateEmitter 1, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, 31764, 10, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

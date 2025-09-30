@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     LoadParticleResource 0, encore_spa
     CreateEmitter 0, 2, 4
@@ -19,6 +19,6 @@ L_0:
     EndLoop
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

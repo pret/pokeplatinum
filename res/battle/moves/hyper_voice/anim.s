@@ -12,11 +12,11 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 22, 16, 0, 0
     CreateEmitter 0, 0, 4
-    Func_FadeBg 0, 1, 0, 8, 13311
+    Func_FadeBg 0, 1, 0, 8, BATTLE_COLOR_LIGHT_YELLOW1
     Func_Shake 0, 2, 1, 2, 264
     Func_Shake 0, 2, 1, 2, 272
     WaitForAnimTasks
-    Func_FadeBg 0, 1, 8, 0, 13311
+    Func_FadeBg 0, 1, 8, 0, BATTLE_COLOR_LIGHT_YELLOW1
     WaitForAnimTasks
     WaitForPokemonCries 0
     EndLoop

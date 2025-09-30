@@ -19,7 +19,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 2, 0, 1, 2, 264
     Func_MoveBattler 258, -14, 8, 2
-    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 14, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

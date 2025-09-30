@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, drain_punch_spa
-    Func_FadeBg 0, 1, 0, 8, 0
+    Func_FadeBg 0, 1, 0, 8, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 3, 17
@@ -21,9 +21,9 @@ L_0:
     Delay 5
     PlayLoopedSoundEffect SEQ_SE_DP_W152, 0, 2, 16
     Delay 5
-    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 8, 0, 0
+    Func_FadeBg 0, 1, 8, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

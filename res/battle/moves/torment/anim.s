@@ -28,7 +28,7 @@ L_0:
     LoadCellResObj 0, angry_cell_NCER_lz
     LoadAnimResObj 0, angry_anim_NANR_lz
     AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0, 0
-    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 14, 0
     Delay 4
     PlayLoopedSoundEffect SEQ_SE_DP_W207B, BATTLE_SOUND_PAN_RIGHT, 10, 2
     Delay 10

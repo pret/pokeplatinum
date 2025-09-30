@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, stockpile_spa
     CreateEmitter 0, 0, 3
-    Func_FadeBattlerSprite 2, 1, 1, 32767, 16
+    Func_FadeBattlerSprite 2, 1, 1, BATTLE_COLOR_WHITE, 16
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W025, BATTLE_SOUND_PAN_LEFT
     Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 327685

@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, dragon_pulse_spa
-    Func_FadeBg 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W373, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 4, 17
@@ -23,6 +23,6 @@ L_0:
     Func_Shake 4, 0, 1, 6, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
-    Func_FadeBg 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     End

@@ -19,7 +19,7 @@ L_0:
     Delay 45
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_293, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 3, 4
-    Func_FadeBattlerSprite 8, 0, 1, 31764, 10, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0

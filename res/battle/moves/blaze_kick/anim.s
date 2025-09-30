@@ -8,11 +8,11 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    Func_FadeBattlerSprite 8, 0, 1, 32767, 8, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_WHITE, 8, 0
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W007, BATTLE_SOUND_PAN_RIGHT
     Func_Shake 2, 0, 1, 4, 264
-    Func_FadeBattlerSprite 8, 0, 1, 31, 10, 0
+    Func_FadeBattlerSprite 8, 0, 1, BATTLE_COLOR_RED, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

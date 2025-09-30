@@ -3,13 +3,13 @@
 .data
 
 L_0:
-    Func_FadeBg 0, 0, 0, 12, 32767
+    Func_FadeBg 0, 0, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    Func_FadeBg 0, 0, 12, 0, 32767
+    Func_FadeBg 0, 0, 12, 0, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    Func_FadeBg 0, 0, 0, 12, 32767
+    Func_FadeBg 0, 0, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    Func_FadeBg 0, 0, 12, 0, 32767
+    Func_FadeBg 0, 0, 12, 0, BATTLE_COLOR_WHITE
     PlayLoopedSoundEffect SEQ_SE_DP_W231, BATTLE_SOUND_PAN_LEFT, 8, 2
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

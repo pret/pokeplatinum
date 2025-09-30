@@ -24,11 +24,11 @@ L_0:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_161, BATTLE_SOUND_PAN_RIGHT
-    Func_FadePokemonSprite 8, 0, 1, 0, 10, 31764
+    Func_FadePokemonSprite 8, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W092D, BATTLE_SOUND_PAN_RIGHT, 2, 7
     Delay 12
-    Func_FadePokemonSprite 8, 0, 1, 10, 0, 31764
+    Func_FadePokemonSprite 8, 0, 1, 10, 0, BATTLE_COLOR_PURPLE
     Func_HideBattler 8, 0
     Func_HideBattler 16, 0
     WaitForAllEmitters

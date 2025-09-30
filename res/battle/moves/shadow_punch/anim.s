@@ -8,7 +8,7 @@ L_0:
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
-    Func_FadeBattlerSprite 2, 0, 1, 0, 10, 30
+    Func_FadeBattlerSprite 2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
     Delay 5
