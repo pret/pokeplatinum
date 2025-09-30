@@ -149,6 +149,7 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
+moves_txt = files('moves.txt')
 npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
