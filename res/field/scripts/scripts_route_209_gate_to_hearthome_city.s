@@ -68,7 +68,7 @@ _00CF:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x407B, 2
+    SetVar VAR_HEARTHOME_STATE, 2
     ReleaseAll
     End
 
