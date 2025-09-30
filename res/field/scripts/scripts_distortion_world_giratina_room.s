@@ -18,7 +18,7 @@ _0022:
     End
 
 _0026:
-    GoToIfSet FLAG_UNK_0x008E, _0033
+    GoToIfSet FLAG_MAP_LOCAL, _0033
     End
 
 _0033:
@@ -66,9 +66,9 @@ _00C4:
     Message 2
     WaitCry
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GetBattleResult VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, _0204
