@@ -18,6 +18,7 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
 #include "overlay006/ov6_02247100.h"
+#include "overlay080/ov80_021D0D80.h"
 
 #include "field_overworld_state.h"
 #include "field_task.h"
@@ -349,8 +350,8 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    TownMapContext_Init(fieldSystem, menu->taskData, 1);
-    sub_0203D884(fieldSystem, menu->taskData);
+    TownMapContext_Init(fieldSystem, menu->taskData, TOWN_MAP_MODE_FLY);
+    FieldSystem_OpenTownMap(fieldSystem, menu->taskData);
     sub_0203B674(menu, sub_0203C434);
 }
 
