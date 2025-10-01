@@ -3,6 +3,7 @@
 
 #include "generated/map_headers.h"
 
+#include "applications/town_map/application.h"
 #include "field/field_system_decl.h"
 
 #include "overworld_map_history.h"
@@ -12,7 +13,7 @@
 
 typedef struct TownMapLocationHistoryEntry {
     int x;
-    int y;
+    int z;
     u16 faceDirection;
     u16 isSet;
 } TownMapLocationHistoryEntry;
@@ -29,19 +30,19 @@ typedef struct TownMapContext {
     int playerZ;
     u8 padding_08[4];
     int trainerGender;
-    int flyDestSelected;
-    int flyDestX;
-    int flyDestY;
-    enum MapHeader flyDestMapHeader;
+    BOOL flyLocationSelected;
+    int flyLocationX;
+    int flyLocationZ;
+    enum MapHeader flyLocationMapHeader;
     TownMapLocationHistoryEntry locationHistory[TOWN_MAP_HISTORY_LENGTH];
     TownMapLocationDescCheckResults descCheckResults[200];
-    u8 unlockedFlyDestination[NUM_FLY_LOCATIONS + 1];
+    u8 unlockedFlyLocations[NUM_FLY_LOCATIONS + 1];
     u8 townMapMode;
     u8 numDescChecks;
     u8 padding_13B;
     u16 unlockedHiddenLocations;
 } TownMapContext;
 
-void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *townMapCtx, int townMapMode);
+void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *townMapCtx, enum TownMapMode townMapMode);
 
 #endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_CONTEXT_H

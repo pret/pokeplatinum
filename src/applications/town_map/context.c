@@ -7,12 +7,12 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 
+#include "applications/town_map/application.h"
 #include "field/field_system.h"
 
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "heap.h"
-#include "inlines.h"
 #include "location.h"
 #include "map_header.h"
 #include "map_matrix.h"
@@ -83,12 +83,12 @@ static const u8 sTownMapFlyLocationUnlockFlags[NUM_FLY_LOCATIONS] = {
     FIRST_ARRIVAL_POKEMON_LEAGUE,
 };
 
-void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int townMapMode)
+void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, enum TownMapMode townMapMode)
 {
     // forward declarations required for matching
     TrainerInfo *trainerInfo;
     int i = 0, locHistIdx = 0;
-    int x, z, currentMap;
+    int playerX, playerZ, currentMap;
     OverworldMapHistory *mapHistory;
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -96,8 +96,8 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int town
 
     memset(ctx, 0, sizeof(TownMapContext));
 
-    x = Player_GetXPos(fieldSystem->playerAvatar);
-    z = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 
     int j = NELEMS(sDistWorldMapOffsets) - 1;
     Location *playerLocation = FieldOverworldState_GetPlayerLocation(fieldState);
@@ -106,19 +106,19 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int town
 
     while (j >= 0) {
         if (currentMap == sDistWorldMapOffsets[j].mapHeader) {
-            x -= sDistWorldMapOffsets[j].x;
-            z -= sDistWorldMapOffsets[j].z;
+            playerX -= sDistWorldMapOffsets[j].x;
+            playerZ -= sDistWorldMapOffsets[j].z;
             break;
         }
 
         j--;
     }
 
-    currentMap = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x / MAP_TILES_COUNT_X, z / MAP_TILES_COUNT_Z);
+    currentMap = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, playerX / MAP_TILES_COUNT_X, playerZ / MAP_TILES_COUNT_Z);
 
     if (MapHeader_IsOnMainMatrix(currentMap)) {
-        ctx->playerX = x;
-        ctx->playerZ = z;
+        ctx->playerX = playerX;
+        ctx->playerZ = playerZ;
     } else {
         ctx->playerX = exitLocation->x;
         ctx->playerZ = exitLocation->z;
@@ -128,13 +128,12 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int town
     ctx->trainerGender = TrainerInfo_Gender(trainerInfo);
     mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    // The history pointer points to the position of the first entry but we
-    // want the second to last entry (the last entry being the current position)
+    // Ignore the last entry, which should be the player's current location
     locHistIdx = (mapHistory->historyPointer - 2 + OVERWORLD_MAP_HISTORY_LENGTH) % OVERWORLD_MAP_HISTORY_LENGTH;
 
     for (i = 0; i < TOWN_MAP_HISTORY_LENGTH; i++) {
         ctx->locationHistory[i].x = mapHistory->items[locHistIdx].mapX;
-        ctx->locationHistory[i].y = mapHistory->items[locHistIdx].mapZ;
+        ctx->locationHistory[i].z = mapHistory->items[locHistIdx].mapZ;
         ctx->locationHistory[i].isSet = mapHistory->items[locHistIdx].isSet;
 
         if (mapHistory->items[locHistIdx].faceDirection > 3) {
@@ -153,7 +152,7 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, int town
     }
 
     for (i = 0; i < NUM_FLY_LOCATIONS; i++) {
-        ctx->unlockedFlyDestination[i] = SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, sTownMapFlyLocationUnlockFlags[i]);
+        ctx->unlockedFlyLocations[i] = SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, sTownMapFlyLocationUnlockFlags[i]);
     }
 
     PerformTownMapDescriptionsChecks(fieldSystem, ctx, "data/tmap_flags.dat");

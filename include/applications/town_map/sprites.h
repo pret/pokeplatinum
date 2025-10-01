@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_SPRITES_H
 #define POKEPLATINUM_APPLICATIONS_TOWN_MAP_SPRITES_H
 
-#include "applications/town_map/defs.h"
+#include "applications/town_map/app_data_decl.h"
 
-void TownMap_InitSpriteSystem(TownMapAppData *param0);
-void TownMap_FreeSpriteSystem(TownMapAppData *param0);
-void TownMap_DrawSprites(TownMapAppData *param0);
-void TownMap_TransferOam(TownMapAppData *param0);
+void TownMap_InitSpriteSystem(TownMapAppData *appData);
+void TownMap_FreeSpriteSystem(TownMapAppData *appData);
+void TownMap_DrawSprites(TownMapAppData *appData);
+void TownMap_TransferOam(TownMapAppData *appData);
 
 #endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_SPRITES_H

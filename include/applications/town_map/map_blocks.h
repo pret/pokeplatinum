@@ -3,10 +3,28 @@
 
 #include "constants/heap.h"
 
-#include "applications/town_map/defs.h"
+typedef struct TownMapBlock {
+    u16 x;
+    u16 z;
+    u16 signpostType;
+    u16 signpostNARCMemberIdx;
+    u16 areaDescString;
+    u16 landmarkDescString;
+    u16 areaDescX;
+    u16 areaDescY;
+    u16 landmarkDescX;
+    u16 landmarkDescY;
+    u16 hiddenLocationFlags;
+    u16 index;
+} TownMapBlock;
 
-TownMapBlockList *TownMap_ReadBlockData(const char *param0, enum HeapID heapID);
-void TownMap_FreeTownMapBlockData(TownMapBlockList *param0);
-TownMapBlock *TownMap_GetHoveredMapBlock(TownMapBlockList *param0, int param1, int param2, u16 param3);
+typedef struct TownMapBlockList {
+    int count;
+    TownMapBlock *entries;
+} TownMapBlockList;
+
+TownMapBlockList *TownMap_ReadBlocks(const char *path, enum HeapID heapID);
+void TownMap_FreeBlocks(TownMapBlockList *blockList);
+TownMapBlock *TownMap_GetMapBlockAtPosition(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations);
 
 #endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAP_BLOCKS_H

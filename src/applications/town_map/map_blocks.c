@@ -2,7 +2,7 @@
 
 #include "heap.h"
 
-TownMapBlockList *TownMap_ReadBlockData(const char *path, enum HeapID heapID)
+TownMapBlockList *TownMap_ReadBlocks(const char *path, enum HeapID heapID)
 {
     FSFile tmapBlockFile;
     FS_InitFile(&tmapBlockFile);
@@ -35,13 +35,13 @@ TownMapBlockList *TownMap_ReadBlockData(const char *path, enum HeapID heapID)
     return blockList;
 }
 
-void TownMap_FreeTownMapBlockData(TownMapBlockList *blockList)
+void TownMap_FreeBlocks(TownMapBlockList *blockList)
 {
     Heap_Free(blockList->entries);
     Heap_Free(blockList);
 }
 
-TownMapBlock *TownMap_GetHoveredMapBlock(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
+TownMapBlock *TownMap_GetMapBlockAtPosition(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
 {
     for (int i = 0; i < blockList->count; i++) {
         TownMapBlock *block = &(blockList->entries[i]);

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "applications/town_map/context.h"
-#include "applications/town_map/defs.h"
+#include "applications/town_map/main.h"
 
 #include "gx_layers.h"
 #include "sprite_system.h"
