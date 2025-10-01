@@ -5,13 +5,12 @@
 
 #include "constants/field/map.h"
 
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/town_map/defs.h"
+#include "overlay080/ov80_021D1458.h"
 #include "overlay080/ov80_021D2A08.h"
 #include "overlay080/ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D2A08.h"
-#include "overlay080/struct_ov80_021D2E94.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -26,6 +25,7 @@
 #include "strbuf.h"
 #include "system.h"
 #include "touch_pad.h"
+#include "unk_0206B70C.h"
 #include "unk_0208C098.h"
 
 enum TownMapAppState {
@@ -40,9 +40,18 @@ enum TownMapAppState {
     TOWN_MAP_APP_STATE_CLEANUP,
 };
 
-BOOL TownMap_Init(ApplicationManager *appMan, int *state);
-BOOL TownMap_Main(ApplicationManager *appMan, int *state);
-BOOL TownMap_Exit(ApplicationManager *appMan, int *state);
+typedef struct {
+    TownMapAppFunc initResources;
+    TownMapAppFunc displayGraphics;
+    TownMapAppFunc fadeScreensAppEnter;
+    TownMapAppFunc fadeScreensAppExit;
+    TownMapAppFunc handleInput;
+    TownMapAppFunc updateGraphics;
+    TownMapAppFunc updateSprites;
+    TownMapAppFunc cleanup;
+    TownMapAppFunc vBlankCB;
+} TownMapAppFunctionSet;
+
 static void TownMapAppVBlankCB(void *appData);
 static void SetVRAMBanks(void);
 static BOOL InitSharedAppResources(TownMapAppData *appData);
@@ -57,19 +66,6 @@ static enum TownMapAppState CheckAppEnterScreenFadeDone(TownMapAppData *appData)
 static enum TownMapAppState HandlePlayerInput(TownMapAppData *appData);
 static enum TownMapAppState CheckAppExitScreenFadeDone(TownMapAppData *appData);
 static enum TownMapAppState CleanupAppResources(TownMapAppData *appData);
-BOOL TownMap_CreateGraphicsMan(TownMapAppData *appData);
-BOOL TownMap_LoadGraphics(TownMapAppData *appData);
-BOOL TownMap_FadeInBothScreens(TownMapAppData *appData);
-BOOL TownMap_FadeOutBothScreens(TownMapAppData *appData);
-BOOL TownMap_HandleInput_Item(TownMapAppData *appData);
-BOOL TownMap_UpdateBottomScreen(TownMapAppData *appData);
-BOOL TownMap_UpdateFlyTargetSprites(TownMapAppData *appData);
-BOOL TownMap_FreeGraphics(TownMapAppData *appData);
-BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData);
-BOOL TownMap_HandleInput_Fly(TownMapAppData *appData);
-BOOL TownMap_FadeInTopScreen(TownMapAppData *appData);
-BOOL TownMap_FadeOutTopScreen(TownMapAppData *appData);
-BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData);
 
 const TownMapAppFunctionSet sAppFunctionSets[NUM_TOWN_MAP_MODES] = {
     [TOWN_MAP_MODE_ITEM] = {
@@ -234,7 +230,7 @@ static BOOL InitSharedAppResources(TownMapAppData *appData)
         appData->locationNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, appData->heapID);
         appData->townMapStrings = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TOWN_MAP, appData->heapID);
         appData->hoveredMapName = Strbuf_Init(22, appData->heapID);
-        appData->mapMatrixData = MainMapMatrixData_Load(appData->heapID);
+        appData->mainMapMatrixData = MainMapMatrixData_Load(appData->heapID);
         appData->mapBlockList = TownMap_ReadBlockData("data/tmap_block.dat", appData->heapID);
         break;
     case 1:
@@ -274,7 +270,7 @@ static void CleanupSharedAppResources(TownMapAppData *appData)
 
     Heap_Free(appData->bgConfig);
     TownMap_FreeTownMapBlockData(appData->mapBlockList);
-    MainMapMatrixData_Free(appData->mapMatrixData);
+    MainMapMatrixData_Free(appData->mainMapMatrixData);
     Strbuf_Free(appData->hoveredMapName);
     MessageLoader_Free(appData->townMapStrings);
     MessageLoader_Free(appData->locationNames);

@@ -3,11 +3,8 @@
 
 #include "generated/map_headers.h"
 
+#include "applications/town_map/defs.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2C5C.h"
-#include "overlay080/struct_ov80_021D2E10.h"
 
 #include "sprite_system.h"
 

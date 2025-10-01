@@ -14,7 +14,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 
@@ -82,6 +81,7 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
+#include "unk_0206B70C.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
 #include "unk_020972FC.h"

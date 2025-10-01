@@ -10,7 +10,6 @@
 #include "generated/object_events.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020711C8.h"
 
