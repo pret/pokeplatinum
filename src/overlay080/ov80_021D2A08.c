@@ -1,17 +1,14 @@
+#include "overlay080/ov80_021D2A08.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay080/struct_ov80_021D2A08.h"
+#include "applications/town_map/defs.h"
 
 #include "gx_layers.h"
 #include "sprite_system.h"
 #include "unk_0206B70C.h"
 #include "vram_transfer.h"
-
-void TownMap_InitSpriteSystem(TownMapAppData *appData);
-void TownMap_FreeSpriteSystem(TownMapAppData *appData);
-void TownMap_DrawSprites(TownMapAppData *appData);
-void TownMap_TransferOam(TownMapAppData *appData);
 
 void TownMap_InitSpriteSystem(TownMapAppData *appData)
 {

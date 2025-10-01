@@ -6,8 +6,6 @@
 #include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/union_0206B878.h"
 
 #include "field/field_system.h"
 

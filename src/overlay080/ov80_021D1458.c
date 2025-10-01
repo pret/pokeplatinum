@@ -1,3 +1,5 @@
+#include "overlay080/ov80_021D1458.h"
+
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
@@ -6,14 +8,9 @@
 #include "generated/map_headers.h"
 #include "generated/signpost_types.h"
 
+#include "applications/town_map/defs.h"
 #include "overlay080/ov80_021D0D80.h"
 #include "overlay080/ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D1478_sub1.h"
-#include "overlay080/struct_ov80_021D259C.h"
-#include "overlay080/struct_ov80_021D2A08.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2C5C.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -39,63 +36,6 @@
 #define TOWN_MAP_DOWN  (1 << 2)
 #define TOWN_MAP_UP    (1 << 3)
 
-enum TownMapWindow {
-    TOWN_MAP_WINDOW_LOCATION_NAME,
-    TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_1,
-    TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_2,
-    TOWN_MAP_WINDOW_LOCATION_DESCRIPTION,
-    TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER,
-    NUM_TOWN_MAP_WINDOWS,
-};
-
-typedef struct {
-    int x;
-    int y;
-    u16 faceDirection;
-    u8 index;
-    u8 isSet;
-    Sprite *sprite;
-} TownMapLocationHistoryEntryWithSprite;
-
-typedef struct {
-    int numLocationHistoryEntries;
-    SysTask *sysTask;
-    u16 locationHistoryFrameCount;
-    u8 currentShownHistLocationIdx;
-    u8 previousShownHistLocationIdx;
-    TownMapLocationHistoryEntryWithSprite entries[TOWN_MAP_HISTORY_LENGTH];
-} TownMapLocationHistory;
-
-typedef struct {
-    int graphicsLoadStage;
-    int taskState;
-    int taskFrameCount;
-    int unused_0C;
-    u8 showingZoomedInMap;
-    u8 queuedMovement;
-    u8 zommedMapMvtDone;
-    u8 zoomedMapMvtStage;
-    u8 zoomedInMapTransitionStage;
-    u8 unk_15_0 : 4;
-    u8 currentSignpostType : 4;
-    u16 zoomedMapMvtFrame;
-    int x;
-    int y;
-    int hoveredLocationMapHeader;
-    int prevLocationMapHeader;
-    Window windows[NUM_TOWN_MAP_WINDOWS];
-    Window *signpostWindow;
-    TownMapScreenScroll unused_7C;
-    TownMapScreenScroll zoomedInMapCoords;
-    TownMapAppFlyDestinations *flyDestinations;
-    TownMapBlock *hoveredBlock;
-    TownMapLocationHistory locationHistory;
-    Sprite *zoomBtnShockwave;
-    Sprite *cursorSprite;
-    Sprite *playerSprite;
-    SysTask *sysTask;
-} TownMapGraphicsManager;
-
 typedef struct {
     u16 x;
     u16 y;
@@ -111,19 +51,6 @@ typedef struct {
     u8 height;
 } TilemapRectCopyTemplate;
 
-int TownMap_CreateGraphicsMan(TownMapAppData *appData);
-int TownMap_LoadGraphics(TownMapAppData *appData);
-int TownMap_HandleInput_Item(TownMapAppData *appData);
-int TownMap_HandleInput_Fly(TownMapAppData *appData);
-int TownMap_HandleInput_WallMap(TownMapAppData *appData);
-int TownMap_UpdateBottomScreen(TownMapAppData *appData);
-int TownMap_UpdateFlyTargetSprites(TownMapAppData *appData);
-int TownMap_FreeGraphics(TownMapAppData *appData);
-int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData);
-int TownMap_FadeInBothScreens(TownMapAppData *appData);
-int TownMap_FadeOutBothScreens(TownMapAppData *appData);
-int TownMap_FadeInTopScreen(TownMapAppData *appData);
-int TownMap_FadeOutTopScreen(TownMapAppData *appData);
 static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *mapBlock, enum MapHeader mapHeader);
 static void EraseSignpost(TownMapAppData *appData);
 static void PrintBottomScreenHeader(TownMapAppData *appData, Window *window);
@@ -208,7 +135,7 @@ BOOL TownMap_LoadGraphics(TownMapAppData *appData)
     return FALSE;
 }
 
-int TownMap_FadeInBothScreens(TownMapAppData *appData)
+BOOL TownMap_FadeInBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
@@ -218,18 +145,19 @@ int TownMap_FadeInBothScreens(TownMapAppData *appData)
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
-    return 0;
+    return FALSE;
 }
 
-int TownMap_FadeOutBothScreens(TownMapAppData *appData)
+BOOL TownMap_FadeOutBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
+
     StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
-    return 0;
+    return FALSE;
 }
 
-int TownMap_FadeInTopScreen(TownMapAppData *appData)
+BOOL TownMap_FadeInTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
@@ -238,17 +166,17 @@ int TownMap_FadeInTopScreen(TownMapAppData *appData)
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
-    return 0;
+    return FALSE;
 }
 
-int TownMap_FadeOutTopScreen(TownMapAppData *appData)
+BOOL TownMap_FadeOutTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL TownMap_HandleInput_Item(TownMapAppData *appData)
@@ -306,7 +234,7 @@ BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData)
     return FALSE;
 }
 
-int TownMap_UpdateBottomScreen(TownMapAppData *appData)
+BOOL TownMap_UpdateBottomScreen(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
@@ -322,25 +250,25 @@ int TownMap_UpdateBottomScreen(TownMapAppData *appData)
     }
 
     DoZoomedMapMvt(appData);
-    return 0;
+    return FALSE;
 }
 
-int TownMap_UpdateFlyTargetSprites(TownMapAppData *appData)
+BOOL TownMap_UpdateFlyTargetSprites(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
     TownMap_BlinkHoveredFlyDestination(graphicsMan->flyDestinations, appData->mode);
-    return 0;
+    return FALSE;
 }
 
-int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
+BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
     TownMapBlock *mapBlock = appData->hoveredMapBlock;
     enum MapHeader header = appData->hoveredMapHeader;
 
     if (!appData->locationChanged) {
-        return 0;
+        return FALSE;
     }
 
     appData->locationChanged = FALSE;
@@ -348,7 +276,7 @@ int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     if (mapBlock == NULL) {
         PrintLocationDescription(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), NULL);
         EraseSignpost(appData);
-        return 0;
+        return FALSE;
     }
 
     PrintLocationDescription(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), mapBlock);
@@ -372,7 +300,7 @@ int TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     Window_CopyToVRAM(signpostWindow);
     Window_CopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]);
 
-    return 0;
+    return FALSE;
 }
 
 static int GetTouchedZone(TownMapAppData *appData, BOOL isShowingZoomedInMap)
@@ -509,7 +437,7 @@ static void UpdateHoveredLocation(TownMapAppData *appData)
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
     graphicsMan->prevLocationMapHeader = graphicsMan->hoveredLocationMapHeader;
-    graphicsMan->hoveredLocationMapHeader = MainMapMatrixData_GetMapHeaderIDAtCoords(appData->mapMatrixData, graphicsMan->x, graphicsMan->y);
+    graphicsMan->hoveredLocationMapHeader = MainMapMatrixData_GetMapHeaderIDAtCoords(appData->mainMapMatrixData, graphicsMan->x, graphicsMan->y);
     graphicsMan->hoveredBlock = TownMap_GetHoveredMapBlock(appData->mapBlockList, graphicsMan->x, graphicsMan->y, appData->unlockedHiddenLocations);
 }
 
@@ -622,7 +550,7 @@ static void DoZoomedMapMvt(TownMapAppData *appData)
         Sprite_UpdateAnim(graphicsMan->cursorSprite, FX32_ONE);
 
         UpdateHoveredLocation(appData);
-        PrintLocationName(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]), MainMapMatrixData_GetMapHeaderIDAtCoords(appData->mapMatrixData, graphicsMan->x, graphicsMan->y), graphicsMan->x, graphicsMan->y);
+        PrintLocationName(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]), MainMapMatrixData_GetMapHeaderIDAtCoords(appData->mainMapMatrixData, graphicsMan->x, graphicsMan->y), graphicsMan->x, graphicsMan->y);
         zoomedInMapMoveSpeed += 1; // Move one extra pixel every third step to move in multiples of 16
     }
 
@@ -1185,7 +1113,7 @@ static void Task_SwitchBottomScreenToZoomButton(SysTask *sysTask, void *_appData
     return;
 }
 
-static int CanFlyToHoveredLocation(TownMapAppData *appData)
+static BOOL CanFlyToHoveredLocation(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
     TownMapAppFlyDestination *flyDest = NULL;
