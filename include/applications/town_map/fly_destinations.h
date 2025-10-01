@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_OV80_021D2AF4_H
-#define POKEPLATINUM_OV80_021D2AF4_H
+#ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_FLY_DESTINATIONS_H
+#define POKEPLATINUM_APPLICATIONS_TOWN_MAP_FLY_DESTINATIONS_H
 
 #include "generated/map_headers.h"
 
 #include "applications/town_map/defs.h"
-#include "overlay080/ov80_021D0D80.h"
+#include "applications/town_map/main.h"
 
 #include "sprite_system.h"
 
@@ -13,8 +13,5 @@ void TownMap_FreeFlyDestinations(TownMapAppFlyDestinations *param0);
 TownMapAppFlyDestination *TownMap_GetHoveredFlyDestination(TownMapAppFlyDestinations *param0, int param1, int param2, int param3);
 BOOL TownMap_UpdateHoveredFlyDestination(TownMapAppFlyDestinations *param0, enum MapHeader mapHeader, int x, int y);
 void TownMap_BlinkHoveredFlyDestination(TownMapAppFlyDestinations *param0, enum TownMapMode param1);
-TownMapBlockList *TownMap_ReadBlockData(const char *param0, enum HeapID heapID);
-void TownMap_FreeTownMapBlockData(TownMapBlockList *param0);
-TownMapBlock *TownMap_GetHoveredMapBlock(TownMapBlockList *param0, int param1, int param2, u16 param3);
 
-#endif // POKEPLATINUM_OV80_021D2AF4_H
+#endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_FLY_DESTINATIONS_H

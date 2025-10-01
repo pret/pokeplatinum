@@ -41,6 +41,8 @@
 #include "applications/pc_hall_of_fame/manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/context.h"
+#include "applications/town_map/main.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
@@ -58,7 +60,6 @@
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay072/ov72_0223D7A0.h"
-#include "overlay080/ov80_021D0D80.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
@@ -124,7 +125,6 @@
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
@@ -152,7 +152,7 @@ FS_EXTERN_OVERLAY(trainer_card_screen);
 FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
-FS_EXTERN_OVERLAY(overlay80);
+FS_EXTERN_OVERLAY(town_map);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(overlay85);
@@ -707,13 +707,13 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
 
 void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx)
 {
-    FS_EXTERN_OVERLAY(overlay80);
+    FS_EXTERN_OVERLAY(town_map);
 
     const ApplicationManagerTemplate townMapApp = {
         TownMap_Init,
         TownMap_Main,
         TownMap_Exit,
-        FS_OVERLAY_ID(overlay80)
+        FS_OVERLAY_ID(town_map)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &townMapApp, townMapCtx);

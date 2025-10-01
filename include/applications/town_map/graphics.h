@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV80_021d1458_H
-#define POKEPLATINUM_OV80_021d1458_H
+#ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_GRAPHICS_H
+#define POKEPLATINUM_APPLICATIONS_TOWN_MAP_GRAPHICS_H
 
 #include "applications/town_map/defs.h"
 
@@ -17,4 +17,4 @@ BOOL TownMap_FadeInTopScreen(TownMapAppData *appData);
 BOOL TownMap_FadeOutTopScreen(TownMapAppData *appData);
 BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData);
 
-#endif // POKEPLATINUM_OV80_021d1458_H
+#endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_GRAPHICS_H

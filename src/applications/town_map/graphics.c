@@ -1,4 +1,4 @@
-#include "overlay080/ov80_021D1458.h"
+#include "applications/town_map/graphics.h"
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
@@ -8,9 +8,11 @@
 #include "generated/map_headers.h"
 #include "generated/signpost_types.h"
 
+#include "applications/town_map/context.h"
 #include "applications/town_map/defs.h"
-#include "overlay080/ov80_021D0D80.h"
-#include "overlay080/ov80_021D2AF4.h"
+#include "applications/town_map/fly_destinations.h"
+#include "applications/town_map/main.h"
+#include "applications/town_map/map_blocks.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -29,7 +31,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0206B70C.h"
 
 #define TOWN_MAP_RIGHT (1 << 0)
 #define TOWN_MAP_LEFT  (1 << 1)

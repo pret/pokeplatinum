@@ -18,6 +18,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/context.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
@@ -28,7 +29,6 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
-#include "unk_0206B70C.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0206B70C_H
-#define POKEPLATINUM_UNK_0206B70C_H
+#ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_CONTEXT_H
+#define POKEPLATINUM_APPLICATIONS_TOWN_MAP_CONTEXT_H
 
 #include "generated/map_headers.h"
 
@@ -44,4 +44,4 @@ typedef struct TownMapContext {
 
 void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *townMapCtx, int townMapMode);
 
-#endif // POKEPLATINUM_UNK_0206B70C_H
+#endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_CONTEXT_H

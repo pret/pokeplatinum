@@ -1,4 +1,4 @@
-#include "overlay080/ov80_021D2AF4.h"
+#include "applications/town_map/fly_destinations.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,13 +6,13 @@
 #include "generated/first_arrival_to_zones.h"
 #include "generated/map_headers.h"
 
+#include "applications/town_map/context.h"
 #include "applications/town_map/defs.h"
-#include "overlay080/ov80_021D0D80.h"
+#include "applications/town_map/main.h"
 
 #include "heap.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "unk_0206B70C.h"
 
 enum TownMapFlyDestinationShape {
     FLY_DEST_SPRITE_SHAPE_1x1_SQUARE = 0,
@@ -375,60 +375,4 @@ void TownMap_BlinkHoveredFlyDestination(TownMapAppFlyDestinations *flyDests, enu
         flyDests->flyTargetBlinkTimer = 0;
         flyDests->flyTargetBlinkState ^= 1;
     }
-}
-
-TownMapBlockList *TownMap_ReadBlockData(const char *path, enum HeapID heapID)
-{
-    FSFile tmapBlockFile;
-    FS_InitFile(&tmapBlockFile);
-
-    if (!FS_OpenFile(&tmapBlockFile, path)) {
-        GF_ASSERT(FALSE);
-        return NULL;
-    }
-
-    int blockCount;
-    int readLength = FS_ReadFile(&tmapBlockFile, &blockCount, sizeof(int));
-    GF_ASSERT(readLength >= 0);
-
-    TownMapBlockList *blockList = Heap_Alloc(heapID, sizeof(TownMapBlockList));
-    memset(blockList, 0, sizeof(TownMapBlockList));
-
-    blockList->entries = Heap_Alloc(heapID, sizeof(TownMapBlock) * blockCount);
-    memset(blockList->entries, 0, sizeof(TownMapBlock) * blockCount);
-
-    blockList->count = blockCount;
-
-    for (int i = 0; i < blockList->count; i++) {
-        TownMapBlock *block = &(blockList->entries[i]);
-        readLength = FS_ReadFile(&tmapBlockFile, block, sizeof(TownMapBlock));
-        block->index = i;
-    }
-
-    (void)FS_CloseFile(&tmapBlockFile);
-
-    return blockList;
-}
-
-void TownMap_FreeTownMapBlockData(TownMapBlockList *blockList)
-{
-    Heap_Free(blockList->entries);
-    Heap_Free(blockList);
-}
-
-TownMapBlock *TownMap_GetHoveredMapBlock(TownMapBlockList *blockList, int x, int z, u16 unlockedHiddenLocations)
-{
-    for (int i = 0; i < blockList->count; i++) {
-        TownMapBlock *block = &(blockList->entries[i]);
-
-        if (block->x == x && block->z == z) {
-            if (block->hiddenLocationFlags == 0 || block->hiddenLocationFlags & unlockedHiddenLocations) {
-                return block;
-            } else {
-                return NULL;
-            }
-        }
-    }
-
-    return NULL;
 }
