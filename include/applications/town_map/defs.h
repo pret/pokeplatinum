@@ -4,6 +4,8 @@
 
 #include "generated/map_headers.h"
 
+#include "applications/town_map/context.h"
+
 #include "bg_window.h"
 #include "map_matrix.h"
 #include "message.h"
@@ -11,7 +13,6 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
-#include "unk_0206B70C.h"
 
 #define TOWN_MAP_GRID_SPACING  7
 #define TOWN_MAP_GRID_X_OFFSET (+25)

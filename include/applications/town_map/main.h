@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV80_021D0D80_H
-#define POKEPLATINUM_OV80_021D0D80_H
+#ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAIN_H
+#define POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAIN_H
 
 #include "overlay_manager.h"
 
@@ -15,4 +15,4 @@ BOOL TownMap_Init(ApplicationManager *appMan, int *unused);
 BOOL TownMap_Main(ApplicationManager *appMan, int *unused);
 BOOL TownMap_Exit(ApplicationManager *appMan, int *unused);
 
-#endif // POKEPLATINUM_OV80_021D0D80_H
+#endif // POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAIN_H

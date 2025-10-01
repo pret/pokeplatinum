@@ -1,4 +1,4 @@
-#include "overlay080/ov80_021D0D80.h"
+#include "applications/town_map/main.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,10 +7,11 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/town_map/context.h"
 #include "applications/town_map/defs.h"
-#include "overlay080/ov80_021D1458.h"
-#include "overlay080/ov80_021D2A08.h"
-#include "overlay080/ov80_021D2AF4.h"
+#include "applications/town_map/graphics.h"
+#include "applications/town_map/map_blocks.h"
+#include "applications/town_map/sprites.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -25,7 +26,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0206B70C.h"
 #include "unk_0208C098.h"
 
 enum TownMapAppState {
@@ -108,9 +108,9 @@ BOOL TownMap_Init(ApplicationManager *appMan, int *unused)
     TownMapAppData *appData = NULL;
     TownMapContext *ctx = ApplicationManager_Args(appMan);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_17, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_TOWN_MAP, HEAP_SIZE_TOWN_MAP);
 
-    appData = ApplicationManager_NewData(appMan, sizeof(TownMapAppData), HEAP_ID_17);
+    appData = ApplicationManager_NewData(appMan, sizeof(TownMapAppData), HEAP_ID_TOWN_MAP);
     memset(appData, 0, sizeof(TownMapAppData));
     appData->context = ctx;
 
@@ -121,7 +121,7 @@ BOOL TownMap_Init(ApplicationManager *appMan, int *unused)
     }
 
     appData->unlockedHiddenLocations = ctx->unlockedHiddenLocations;
-    appData->heapID = HEAP_ID_17;
+    appData->heapID = HEAP_ID_TOWN_MAP;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_55, SEQ_NONE, 0);
 
@@ -166,7 +166,7 @@ BOOL TownMap_Exit(ApplicationManager *appMan, int *unused)
     TownMapAppData *appData = ApplicationManager_Data(appMan);
 
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_17);
+    Heap_Destroy(HEAP_ID_TOWN_MAP);
 
     return TRUE;
 }
