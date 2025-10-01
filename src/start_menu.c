@@ -1664,7 +1664,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
 
     v2 = (TownMapContext *)menu->taskData;
 
-    if (!(v2->flyDestSelected)) {
+    if (!(v2->flyLocationSelected)) {
         Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);
         menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v3);
         sub_0203B674(menu, sub_0203B7C0);
@@ -1674,8 +1674,8 @@ BOOL sub_0203C434(FieldTask *taskMan)
         void *journalEntryLocationEvent;
 
         mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
-        v5 = sub_0207064C(HEAP_ID_FIELD2, fieldSystem, mon, v2->flyDestMapHeader, v2->flyDestX * 32 + 16, v2->flyDestY * 32 + 16);
-        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->flyDestMapHeader, HEAP_ID_FIELD2);
+        v5 = sub_0207064C(HEAP_ID_FIELD2, fieldSystem, mon, v2->flyLocationMapHeader, v2->flyLocationX * 32 + 16, v2->flyLocationZ * 32 + 16);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->flyLocationMapHeader, HEAP_ID_FIELD2);
 
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
         Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);

@@ -1318,7 +1318,7 @@ Overlay town_map
 	Object main.nef.p/src_applications_town_map_main.c.o
 	Object main.nef.p/src_applications_town_map_graphics.c.o
 	Object main.nef.p/src_applications_town_map_sprites.c.o
-	Object main.nef.p/src_applications_town_map_fly_destinations.c.o
+	Object main.nef.p/src_applications_town_map_fly_locations.c.o
 	Object main.nef.p/src_applications_town_map_map_blocks.c.o
 }
 

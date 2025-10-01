@@ -823,7 +823,7 @@ pokeplatinum_c = files(
     'applications/town_map/main.c',
     'applications/town_map/graphics.c',
     'applications/town_map/sprites.c',
-    'applications/town_map/fly_destinations.c',
+    'applications/town_map/fly_locations.c',
     'applications/town_map/map_blocks.c',
     'applications/journal_display/journal_controller.c',
     'applications/journal_display/journal_printer.c',
