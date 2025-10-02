@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    CheckTVInterviewEligible TV_BROADCAST_SEGMENT_AMITY_SQUARE_WATCH, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0027
     ClearFlag FLAG_UNK_0x0219
     End

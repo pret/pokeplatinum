@@ -24,9 +24,9 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "sound.h"
+#include "tv_episode_segment.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
-#include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"
 
 #include "constdata/const_020EA358.h"

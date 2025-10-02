@@ -39,8 +39,8 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
-#include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
 

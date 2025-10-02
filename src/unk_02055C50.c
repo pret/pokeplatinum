@@ -25,9 +25,9 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
+#include "tv_episode_segment.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
-#include "unk_0206CCB0.h"
 
 struct UnkStruct_02055CBC_t {
     int heapID;
@@ -155,7 +155,7 @@ void sub_02055D94(FieldSystem *fieldSystem)
     MapObject *v1;
     BerryPatch *v2 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
+    while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, 1 << 0) == 1) {
         if (sub_020677F4(MapObject_GetGraphicsID(v1)) == 1) {
             if (sub_02055D54(fieldSystem, MapObject_GetPos(v1))) {
                 int v3 = MapObject_GetDataAt(v1, 0);

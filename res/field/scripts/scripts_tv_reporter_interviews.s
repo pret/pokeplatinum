@@ -126,7 +126,7 @@ _0190:
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _02AE
-    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004, VAR_0x8005
+    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
     GoTo _02A1
     End
 
@@ -151,7 +151,7 @@ _01F0:
     AddListMenuEntry 38, 17
     ShowListMenu
     GoToIfEq VAR_0x8004, -2, _02AE
-    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004, VAR_0x8005
+    SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
     GoTo _02A1
     End
 

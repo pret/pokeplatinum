@@ -19,12 +19,12 @@
 #include "system_data.h"
 #include "system_vars.h"
 #include "trainer_card_badge_dirt.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_02055C50.h"
 #include "unk_0206B9D8.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1);

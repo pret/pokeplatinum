@@ -33,12 +33,12 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -393,7 +393,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     }
 
     if (v3->unk_0F == 6) {
-        v3->unk_1C = sub_0202D3FC(v3->unk_74, 6, (v3->unk_1A / 7));
+        v3->unk_1C = sub_0202D3FC(v3->unk_74, 6, v3->unk_1A / 7);
     }
 
     return v3;
@@ -620,7 +620,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         v4 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), param0->unk_1A + param0->unk_0D);
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
@@ -674,7 +674,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
         v5 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), param0->unk_1A + param0->unk_0D);
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 1);

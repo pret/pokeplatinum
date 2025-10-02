@@ -15,17 +15,20 @@
 #include "math_util.h"
 #include "narc.h"
 #include "rtc.h"
+#include "tv_episode_segment.h"
 #include "unk_0202E2CC.h"
 #include "unk_020559DC.h"
-#include "unk_0206CCB0.h"
 
 #include "res/text/bank/tv_programs.h"
 
 #define TV_BROADCAST_MAX_PROGRAM 10
 
-#define TV_PROGRAM_MAX_SEGMENT_TYPES               11
-#define TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS 16
-#define TV_PROGRAM_MAX_FILTERED_PENDING_SEGMENTS   11
+#define TV_BROADCAST_MAX_PROGRAM_SEGMENTS            11
+#define TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS 16
+#define TV_BROADCAST_MAX_FILTERED_PENDING_SEGMENTS   11
+
+#define TV_BROADCAST_PROGRAMS_PER_HOUR   4
+#define TV_BROADCAST_MINUTES_PER_PROGRAM (MINUTES_PER_HOUR / TV_BROADCAST_PROGRAMS_PER_HOUR)
 
 typedef struct TVProgramFramingMessages {
     u8 goodMorning;
@@ -142,7 +145,7 @@ int TVBroadcast_GetPendingBroadcastType(FieldSystem *fieldSystem)
         return TV_BROADCAST_STATUS_BEGIN;
     }
 
-    if (playedCount == 4) {
+    if (playedCount == TV_BROADCAST_MAX_PLAYED_SEGMENTS) {
         return TV_BROADCAST_STATUS_FINISH;
     }
 
@@ -152,16 +155,16 @@ int TVBroadcast_GetPendingBroadcastType(FieldSystem *fieldSystem)
 static int TVBroadcast_GetScheduledProgramID(FieldSystem *fieldSystem)
 {
     u8 tvProgramID;
-    u8 weekTimeSlot[7];
+    u8 weekTimeSlot[RTC_WEEK_MAX];
     int dayOfWeek, hour, minute;
     int offset;
 
-    dayOfWeek = (FieldSystem_GetWeek(fieldSystem) + 6) % 7;
+    dayOfWeek = (FieldSystem_GetWeek(fieldSystem) + (RTC_WEEK_MAX - 1)) % RTC_WEEK_MAX;
     hour = FieldSystem_GetHour(fieldSystem);
     minute = FieldSystem_GetMinute(fieldSystem);
-    offset = (((19 + hour) % 24) * 4 + (minute / 15)) * 7;
+    offset = (((19 + hour) % HOURS_PER_DAY) * TV_BROADCAST_PROGRAMS_PER_HOUR + (minute / TV_BROADCAST_MINUTES_PER_PROGRAM)) * RTC_WEEK_MAX;
 
-    NARC_ReadFromMemberByIndexPair(weekTimeSlot, NARC_INDEX_ARC__TV, 0, offset, sizeof(u8) * 7);
+    NARC_ReadFromMemberByIndexPair(weekTimeSlot, NARC_INDEX_ARC__TV, 0, offset, sizeof(weekTimeSlot));
     tvProgramID = weekTimeSlot[dayOfWeek];
 
     GF_ASSERT(0 < tvProgramID && tvProgramID < TV_BROADCAST_MAX_PROGRAM);
@@ -171,7 +174,7 @@ static int TVBroadcast_GetScheduledProgramID(FieldSystem *fieldSystem)
 static int TVBroadcast_GetProgramType(int programID)
 {
     u8 programType;
-    int offset = (1 + TV_PROGRAM_MAX_SEGMENT_TYPES) * (programID - 1);
+    int offset = (1 + TV_BROADCAST_MAX_PROGRAM_SEGMENTS) * (programID - 1);
 
     NARC_ReadFromMemberByIndexPair(&programType, NARC_INDEX_ARC__TV, 1, offset, sizeof(u8));
 
@@ -179,50 +182,50 @@ static int TVBroadcast_GetProgramType(int programID)
     return programType;
 }
 
-static void TVBroadcast_LoadSegmentTypesFromNarc(int programID, u8 *segmentTypes)
+static void TVBroadcast_LoadProgramSegmentIDsFromNarc(int programID, u8 *programSegmentIDs)
 {
     u8 unused;
-    int offset = (1 + TV_PROGRAM_MAX_SEGMENT_TYPES) * (programID - 1) + 1;
+    int offset = (1 + TV_BROADCAST_MAX_PROGRAM_SEGMENTS) * (programID - 1) + 1;
 
-    NARC_ReadFromMemberByIndexPair(segmentTypes, NARC_INDEX_ARC__TV, 1, offset, sizeof(u8) * TV_PROGRAM_MAX_SEGMENT_TYPES);
+    NARC_ReadFromMemberByIndexPair(programSegmentIDs, NARC_INDEX_ARC__TV, 1, offset, sizeof(u8) * TV_BROADCAST_MAX_PROGRAM_SEGMENTS);
 }
 
-static BOOL TVBroadcast_IsValidSegmentTypeDummy(FieldSystem *fieldSystem, int programID, int segmentType)
+static BOOL TVBroadcast_IsValidProgramSegmentDummy(FieldSystem *fieldSystem, int programID, int programSegmentID)
 {
     return TRUE;
 }
 
-static void TVBroadcast_LoadProgramSegmentTypes(int programID, FieldSystem *fieldSystem, u8 *segmentTypes)
+static void TVBroadcast_LoadProgramSegmentIDs(int programID, FieldSystem *fieldSystem, u8 *programSegmentIDs)
 {
-    u8 loadedSegmentTypes[TV_PROGRAM_MAX_SEGMENT_TYPES];
+    u8 loadedSegmentIDs[TV_BROADCAST_MAX_PROGRAM_SEGMENTS];
     int loadedIndex, copiedIndex;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    TVBroadcast_LoadSegmentTypesFromNarc(programID, loadedSegmentTypes);
-    MI_CpuClear8(segmentTypes, sizeof(u8) * TV_PROGRAM_MAX_SEGMENT_TYPES);
+    TVBroadcast_LoadProgramSegmentIDsFromNarc(programID, loadedSegmentIDs);
+    MI_CpuClear8(programSegmentIDs, sizeof(u8) * TV_BROADCAST_MAX_PROGRAM_SEGMENTS);
 
-    for (loadedIndex = 0, copiedIndex = 0; loadedIndex < TV_PROGRAM_MAX_SEGMENT_TYPES; loadedIndex++) {
-        if (loadedSegmentTypes[loadedIndex] == NULL) {
+    for (loadedIndex = 0, copiedIndex = 0; loadedIndex < TV_BROADCAST_MAX_PROGRAM_SEGMENTS; loadedIndex++) {
+        if (loadedSegmentIDs[loadedIndex] == NULL) {
             break;
         }
 
-        if (TVBroadcast_IsValidSegmentTypeDummy(fieldSystem, programID, loadedSegmentTypes[loadedIndex]) == TRUE) {
-            segmentTypes[copiedIndex] = loadedSegmentTypes[loadedIndex];
+        if (TVBroadcast_IsValidProgramSegmentDummy(fieldSystem, programID, loadedSegmentIDs[loadedIndex]) == TRUE) {
+            programSegmentIDs[copiedIndex] = loadedSegmentIDs[loadedIndex];
             copiedIndex++;
         }
     }
 }
 
-static int TVBroadcast_RandomPendingSegment(FieldSystem *fieldSystem, const u8 *pendingSegments)
+static int TVBroadcast_RandomPendingSegment(FieldSystem *fieldSystem, const u8 *pendingSegmentIDs)
 {
-    u8 squashedPendingSegments[TV_PROGRAM_MAX_FILTERED_PENDING_SEGMENTS];
+    u8 squashedPendingSegmentIDs[TV_BROADCAST_MAX_FILTERED_PENDING_SEGMENTS];
     int segmentIndex, pendingCount;
 
-    MI_CpuClear8(squashedPendingSegments, sizeof(u8) * TV_PROGRAM_MAX_FILTERED_PENDING_SEGMENTS);
+    MI_CpuClear8(squashedPendingSegmentIDs, sizeof(u8) * TV_BROADCAST_MAX_FILTERED_PENDING_SEGMENTS);
 
-    for (segmentIndex = 0, pendingCount = 0; segmentIndex < TV_PROGRAM_MAX_FILTERED_PENDING_SEGMENTS; segmentIndex++) {
-        if (pendingSegments[segmentIndex] != NULL) {
-            squashedPendingSegments[pendingCount] = pendingSegments[segmentIndex];
+    for (segmentIndex = 0, pendingCount = 0; segmentIndex < TV_BROADCAST_MAX_FILTERED_PENDING_SEGMENTS; segmentIndex++) {
+        if (pendingSegmentIDs[segmentIndex] != NULL) {
+            squashedPendingSegmentIDs[pendingCount] = pendingSegmentIDs[segmentIndex];
             pendingCount++;
         }
     }
@@ -230,10 +233,10 @@ static int TVBroadcast_RandomPendingSegment(FieldSystem *fieldSystem, const u8 *
     if (pendingCount == 0) {
         return NULL;
     } else if (pendingCount == 1) {
-        return squashedPendingSegments[0];
+        return squashedPendingSegmentIDs[0];
     }
 
-    return squashedPendingSegments[MTRNG_Next() % pendingCount];
+    return squashedPendingSegmentIDs[MTRNG_Next() % pendingCount];
 }
 
 static int ov6_0224678C(TVBroadcast *broadcast, int programType, int param2, BOOL param3, BOOL param4, u8 *param5)
@@ -258,39 +261,39 @@ static int ov6_0224678C(TVBroadcast *broadcast, int programType, int param2, BOO
     return 0;
 }
 
-static int TVBroadcast_GetPendingProgramSegments(int programType, FieldSystem *fieldSystem, BOOL param2, BOOL param3, const u8 *segmentTypes, u8 *pendingSegments)
+static int TVBroadcast_GetPendingEpisodeSegments(int programType, FieldSystem *fieldSystem, BOOL param2, BOOL param3, const u8 *programSegmentIDs, u8 *pendingSegmentIDs)
 {
-    u8 loadedPendingSegments[TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS];
+    u8 loadedPendingSegments[TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     int v2, loadedIndex;
     int pendingCount = 0;
 
-    while (*segmentTypes != NULL) {
-        MI_CpuClear8(loadedPendingSegments, TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS);
+    while (*programSegmentIDs != NULL) {
+        MI_CpuClear8(loadedPendingSegments, TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS);
 
-        if (ov6_0224678C(broadcast, programType, *segmentTypes, param2, param3, loadedPendingSegments)) {
-            for (loadedIndex = 0; loadedPendingSegments[loadedIndex] != 0 && loadedIndex < TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS; loadedIndex++) {
-                pendingSegments[pendingCount] = loadedPendingSegments[loadedIndex];
+        if (ov6_0224678C(broadcast, programType, *programSegmentIDs, param2, param3, loadedPendingSegments)) {
+            for (loadedIndex = 0; loadedPendingSegments[loadedIndex] != 0 && loadedIndex < TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS; loadedIndex++) {
+                pendingSegmentIDs[pendingCount] = loadedPendingSegments[loadedIndex];
                 pendingCount++;
             }
         }
 
-        segmentTypes++;
+        programSegmentIDs++;
     }
 
     return pendingCount;
 }
 
-static void ov6_02246844(FieldSystem *fieldSystem, int programType, u8 *pendingSegments)
+static void ov6_02246844(FieldSystem *fieldSystem, int programType, u8 *pendingSegmentIDs)
 {
     int segmentIndex;
     UnkStruct_ov6_022465F4 *v1;
 
-    for (segmentIndex = 0; *pendingSegments != NULL && segmentIndex < TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS; pendingSegments++, segmentIndex++) {
-        v1 = ov6_022465A0(fieldSystem, programType, *pendingSegments);
+    for (segmentIndex = 0; *pendingSegmentIDs != NULL && segmentIndex < TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS; pendingSegmentIDs++, segmentIndex++) {
+        v1 = ov6_022465A0(fieldSystem, programType, *pendingSegmentIDs);
 
-        if (!TVBroadcastSegment_IsEligible(programType, fieldSystem, v1)) {
-            *pendingSegments = NULL;
+        if (!TVEpisodeSegment_IsEligible(programType, fieldSystem, v1)) {
+            *pendingSegmentIDs = NULL;
         }
 
         ov6_022465F4(v1);
@@ -312,32 +315,32 @@ static void TVBroadcast_ExcludePlayedSegments(FieldSystem *fieldSystem, u8 *para
 
 int ov6_022468B0(FieldSystem *fieldSystem, BOOL param1, BOOL param2)
 {
-    u8 segmentTypes[TV_PROGRAM_MAX_SEGMENT_TYPES];
-    u8 pendingSegments[TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS];
-    int numPendingOrResultID;
+    u8 programSegmentIDs[TV_BROADCAST_MAX_PROGRAM_SEGMENTS];
+    u8 pendingSegmentIDs[TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS];
+    int result;
     int programID;
     int programType;
 
     programID = TVBroadcast_GetScheduledProgramID(fieldSystem);
     programType = TVBroadcast_GetProgramType(programID);
 
-    MI_CpuClear8(segmentTypes, TV_PROGRAM_MAX_SEGMENT_TYPES);
-    MI_CpuClear8(pendingSegments, TV_PROGRAM_MAX_UNFILTERED_PENDING_SEGMENTS);
+    MI_CpuClear8(programSegmentIDs, TV_BROADCAST_MAX_PROGRAM_SEGMENTS);
+    MI_CpuClear8(pendingSegmentIDs, TV_BROADCAST_MAX_UNFILTERED_PENDING_SEGMENTS);
 
-    TVBroadcast_LoadProgramSegmentTypes(programID, fieldSystem, segmentTypes);
+    TVBroadcast_LoadProgramSegmentIDs(programID, fieldSystem, programSegmentIDs);
 
-    numPendingOrResultID = TVBroadcast_GetPendingProgramSegments(programType, fieldSystem, param1, param2, segmentTypes, pendingSegments);
+    result = TVBroadcast_GetPendingEpisodeSegments(programType, fieldSystem, param1, param2, programSegmentIDs, pendingSegmentIDs);
 
-    if (numPendingOrResultID == NULL) {
+    if (result == NULL) {
         return NULL;
     }
 
-    ov6_02246844(fieldSystem, programType, pendingSegments);
-    TVBroadcast_ExcludePlayedSegments(fieldSystem, pendingSegments);
+    ov6_02246844(fieldSystem, programType, pendingSegmentIDs);
+    TVBroadcast_ExcludePlayedSegments(fieldSystem, pendingSegmentIDs);
 
-    numPendingOrResultID = TVBroadcast_RandomPendingSegment(fieldSystem, pendingSegments);
+    result = TVBroadcast_RandomPendingSegment(fieldSystem, pendingSegmentIDs);
 
-    return numPendingOrResultID;
+    return result;
 }
 
 int ov6_02246920(FieldSystem *fieldSystem)
@@ -414,7 +417,7 @@ BOOL TVBroadcast_LoadSegmentMessage(FieldSystem *fieldSystem, StringTemplate *te
     segment = ov6_022465A0(fieldSystem, programType, segmentID);
 
     ov6_0224647C(segment);
-    *messageDestVar = TVBroadcastSegment_LoadMessage(programType, fieldSystem, template, segment, bankDestVar);
+    *messageDestVar = TVEpisodeSegment_LoadMessage(programType, fieldSystem, template, segment, bankDestVar);
     ov6_022465F4(segment);
 
     return TRUE;

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02048DD8_H
-#define POKEPLATINUM_UNK_02048DD8_H
+#ifndef POKEPLATINUM_SCRCMD_TV_BROADCAST_H
+#define POKEPLATINUM_SCRCMD_TV_BROADCAST_H
 
 #include "field_script_context.h"
 
@@ -15,4 +15,4 @@ BOOL ScrCmd_27C(ScriptContext *param0);
 BOOL ScrCmd_31B(ScriptContext *param0);
 BOOL ScrCmd_329(ScriptContext *param0);
 
-#endif // POKEPLATINUM_UNK_02048DD8_H
+#endif // POKEPLATINUM_SCRCMD_TV_BROADCAST_H

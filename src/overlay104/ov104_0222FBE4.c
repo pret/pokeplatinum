@@ -85,6 +85,7 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -92,7 +93,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
@@ -989,7 +989,7 @@ static BOOL ov104_02230260(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
 
-    v0->unk_74 = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, ((1024 - (18 + 12)) - 9), 12, v3, v0->heapID);
+    v0->unk_74 = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, (1024 - (18 + 12)) - 9, 12, v3, v0->heapID);
     param0->unk_78[0] = v2;
 
     ov104_0222E974(param0, ov104_022302B4);
@@ -1202,7 +1202,7 @@ static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const U
     v0->unk_08 = param4;
 
     GF_ASSERT(param1->unk_38 == NULL);
-    param1->unk_38 = SysTask_Start(ov104_02232B78, v0, (60000 + 100));
+    param1->unk_38 = SysTask_Start(ov104_02232B78, v0, 60000 + 100);
 }
 
 static BOOL ov104_022305B8(UnkStruct_ov104_0222E930 *param0)
@@ -1729,7 +1729,7 @@ static BOOL ov104_02230CAC(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
 
-    v0->unk_7C = Window_AddWaitDial(&v0->unk_64, (1024 - (18 + 12)));
+    v0->unk_7C = Window_AddWaitDial(&v0->unk_64, 1024 - (18 + 12));
     return 0;
 }
 
@@ -2331,7 +2331,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
         param0->unk_10 = 0;
         param0->unk_24 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 1;
-        param0->unk_24->unk_600 = ov104_0223F1B4(((u32)&reg_G2_BG2PA), &v0, HEAP_ID_94);
+        param0->unk_24->unk_600 = ov104_0223F1B4((u32)&reg_G2_BG2PA, &v0, HEAP_ID_94);
 
         {
             int v1;
@@ -2391,7 +2391,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
         param0->unk_10 = 0;
         param0->unk_24 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 2;
-        param0->unk_24->unk_600 = ov104_0223F1B4(((u32)&reg_G2_BG2PA), &v0, HEAP_ID_94);
+        param0->unk_24->unk_600 = ov104_0223F1B4((u32)&reg_G2_BG2PA, &v0, HEAP_ID_94);
 
         {
             int v1;
@@ -2450,7 +2450,7 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
         param0->unk_04++;
         break;
     case 1:
-        ov104_0223F0B0(&param0->unk_18, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(18)), (4 * 100), REG_BG3HOFS_ADDR, 0, (5 - 1));
+        ov104_0223F0B0(&param0->unk_18, 0, 191, (0xffff / 192) * 2, FX32_CONST(18), 4 * 100, REG_BG3HOFS_ADDR, 0, 5 - 1);
         param0->unk_04++;
         break;
     default:

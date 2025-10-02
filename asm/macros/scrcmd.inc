@@ -3243,25 +3243,25 @@
     .short \arg0
     .endm
 
-    .macro CallTVInterview callID, segmentID, arg2, arg3
+    .macro CallTVInterview callID, interviewSegmentID, arg2, arg3
     .short 567
     .short \callID
-    .short \segmentID
+    .short \interviewSegmentID
     .short \arg2
     .short \arg3
     .endm
 
-    .macro LoadTVInterviewMessage segmentID, bankDestVar, messageDestVar
-    CallTVInterview TV_INTERVIEW_CALL_LOAD_MESSAGE, \segmentID, \bankDestVar, \messageDestVar
+    .macro LoadTVInterviewMessage interviewSegmentID, bankDestVar, messageDestVar
+    CallTVInterview TV_INTERVIEW_CALL_LOAD_MESSAGE, \interviewSegmentID, \bankDestVar, \messageDestVar
     .endm
 
-    .macro SaveTVInterviewResponse segmentID, customWordMessage, unused
-    CallTVInterview TV_INTERVIEW_CALL_SAVE_RESPONSE, \segmentID, \customWordMessage, \unused
+    .macro SaveTVInterviewResponse interviewSegmentID, customWordMessage, unused=VAR_0x8005
+    CallTVInterview TV_INTERVIEW_CALL_SAVE_RESPONSE, \interviewSegmentID, \customWordMessage, \unused
     .endm
 
-    .macro CheckTVInterviewEligible segmentID, destVar
+    .macro CheckTVInterviewEligible interviewSegmentID, destVar
     .short 568
-    .short \segmentID
+    .short \interviewSegmentID
     .short \destVar
     .endm
 

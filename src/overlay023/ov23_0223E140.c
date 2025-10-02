@@ -60,9 +60,9 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 

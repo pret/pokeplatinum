@@ -1,4 +1,4 @@
-#include "unk_02048DD8.h"
+#include "scrcmd_tv_broadcast.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -33,10 +33,10 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "tv_episode_segment.h"
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"
-#include "unk_0206CCB0.h"
 
 typedef void (*TVInterview_SaveResponseFunction)(FieldSystem *, u16);
 typedef void (*TVInterview_LoadMessageFunction)(FieldSystem *, StringTemplate *);
@@ -52,8 +52,6 @@ typedef struct TVInterview {
 static int TVInterview_LoadMessage(int param0, FieldSystem *fieldSystem, StringTemplate *template);
 static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused);
 static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int param1);
-BOOL ScrCmd_31B(ScriptContext *param0);
-BOOL ScrCmd_329(ScriptContext *param0);
 
 BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
 {
@@ -140,7 +138,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
     return 0;
 }
 
-static const TVInterview sInterviews[19];
+static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
 
 BOOL ScrCmd_CallTVInterview(ScriptContext *ctx)
 {
@@ -359,24 +357,24 @@ static BOOL sub_020493B8(FieldSystem *fieldSystem)
 
 static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
     { NULL, NULL, NULL, 0x3 },
-    { TVBroadcastSegment_SaveInterviewData_BattleTowerCorner, NULL, sub_02049348, 0x4 },
+    { FieldSystem_SaveTVEpisodeSegment_BattleTowerCorner, NULL, sub_02049348, 0x4 },
     { NULL, NULL, NULL, 0x5 },
-    { TVBroadcastSegment_SaveInterviewData_YourPokemonCorner, sub_02049268, NULL, 0x6 },
+    { FieldSystem_SaveTVEpisodeSegment_YourPokemonCorner, sub_02049268, NULL, 0x6 },
     { NULL, NULL, NULL, 0x7 },
-    { TVBroadcastSegment_SaveInterviewData_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
-    { TVBroadcastSegment_SaveInterviewData_ContestHall, NULL, sub_02049368, 0x9 },
+    { FieldSystem_SaveTVEpisodeSegment_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
+    { FieldSystem_SaveTVEpisodeSegment_ContestHall, NULL, sub_02049368, 0x9 },
     { NULL, NULL, NULL, 0xA },
-    { TVBroadcastSegment_SaveInterviewData_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
-    { TVBroadcastSegment_SaveInterviewData_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
-    { TVBroadcastSegment_SaveInterviewData_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
+    { FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
+    { FieldSystem_SaveTVEpisodeSegment_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
+    { FieldSystem_SaveTVEpisodeSegment_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
     { NULL, NULL, NULL, 0xE },
-    { TVBroadcastSegment_SaveInterviewData_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
-    { TVBroadcastSegment_SaveInterviewData_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
-    { TVBroadcastSegment_SaveInterviewData_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
-    { TVBroadcastSegment_SaveInterviewData_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
-    { TVBroadcastSegment_SaveInterviewData_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
-    { TVBroadcastSegment_SaveInterviewData_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
-    { TVBroadcastSegment_SaveInterviewData_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
+    { FieldSystem_SaveTVEpisodeSegment_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
+    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
+    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
 };
 
 BOOL ScrCmd_31B(ScriptContext *param0)
