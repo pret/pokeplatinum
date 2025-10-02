@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "TWINLEAF_TOWN_POKEMON_BREEDER_F_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 1
         },
         {
+            "id": "TWINLEAF_TOWN_COLLECTOR_1",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 1
         },
         {
+            "id": "TWINLEAF_TOWN_BARRY",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "TWINLEAF_TOWN_GUITARIST",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "TWINLEAF_TOWN_MAP_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,6 +88,7 @@
             "y": 0
         },
         {
+            "id": "TWINLEAF_TOWN_MAILBOX_5",
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,6 +103,7 @@
             "y": 0
         },
         {
+            "id": "TWINLEAF_TOWN_MAILBOX_6",
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -111,7 +118,8 @@
             "y": 0
         },
         {
-            "local_id": 3,
+            "id": "TWINLEAF_TOWN_ARROW_SIGNPOST_7",
+            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

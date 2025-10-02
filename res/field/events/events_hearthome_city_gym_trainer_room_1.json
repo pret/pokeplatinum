@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_YOUNGSTER_0",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_LASS_1",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",

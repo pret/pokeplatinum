@@ -259,6 +259,7 @@
     ],
     "object_events": [
         {
+            "id": "MINING_MUSEUM_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -273,6 +274,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_TWIN_1",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -287,6 +289,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_SCHOOL_KID_M_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -301,6 +304,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_SCIENTIST_M_3",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -315,6 +319,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_ACE_TRAINER_F_4",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -329,6 +334,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_POKEMON_BREEDER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -343,6 +349,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_COLLECTOR_6",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -357,6 +364,7 @@
             "y": 0
         },
         {
+            "id": "MINING_MUSEUM_EXPERT_M_7",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

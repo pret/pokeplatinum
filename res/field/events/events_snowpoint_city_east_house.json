@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "SNOWPOINT_CITY_EAST_HOUSE_EXPERT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "SNOWPOINT_CITY_EAST_HOUSE_HIKER_1",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

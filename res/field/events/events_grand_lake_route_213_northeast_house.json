@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE_RICH_BOY_0",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE_LADY_1",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

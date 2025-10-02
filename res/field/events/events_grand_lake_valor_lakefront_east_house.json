@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_BEAUTY_0",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "PASTORIA_CITY_POKECENTER_1F_POKECENTER_NURSE_0",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_POKECENTER_1F_BLACK_BELT_1",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_POKECENTER_1F_SCHOOL_KID_F_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_POKECENTER_1F_UNK_111_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,6 +62,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_POKECENTER_1F_UNK_112_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,6 +42,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -55,6 +57,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,6 +72,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,6 +87,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_RILEY_4",
             "graphics_id": "OBJ_EVENT_GFX_RILEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -97,6 +102,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_GRUNT_M_5",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -111,6 +117,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_GRUNT_M_6",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -125,6 +132,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -141,6 +149,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_8",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -157,6 +166,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BLACK_BELT_9",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -173,6 +183,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BATTLE_GIRL_10",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -189,6 +200,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_11",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -205,6 +217,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_12",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -221,6 +234,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_M_13",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -237,6 +251,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_F_14",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -253,6 +268,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_15",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -267,6 +283,7 @@
             "y": 0
         },
         {
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_POKEBALL_16",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -338,3 +355,4 @@
         }
     ]
 }
+

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "JUBILIFE_CITY_CONDOMINIUMS_3F_LASS_0",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 1
         },
         {
+            "id": "JUBILIFE_CITY_CONDOMINIUMS_3F_COLLECTOR_1",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

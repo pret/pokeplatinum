@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "POFFIN_HOUSE_IDOL_0",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "POFFIN_HOUSE_OLD_WOMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "POFFIN_HOUSE_OLD_MAN_2",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,6 +47,7 @@
             "y": 0
         },
         {
+            "id": "POFFIN_HOUSE_POKEFAN_F_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,6 +62,7 @@
             "y": 0
         },
         {
+            "id": "POFFIN_HOUSE_REPORTER_4",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -72,6 +77,7 @@
             "y": 0
         },
         {
+            "id": "POFFIN_HOUSE_SCHOOL_KID_F_5",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

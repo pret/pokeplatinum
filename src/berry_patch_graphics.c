@@ -8,9 +8,9 @@
 
 #include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
+#include "overlay005/berry_patch_effects.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/ov5_021F204C.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "berry_patch_manager.h"
@@ -91,7 +91,7 @@ void BerryPatchGraphics_NewGraphics(MapObject *mapObject)
     graphicsData->graphicsResourceID = 0xffff;
     graphicsData->lastGrowthStage = BERRY_GROWTH_STAGE_NONE;
 
-    ov5_021F20D4(mapObject);
+    BerryPatchGraphics_NewMoistureEffect(mapObject);
 }
 
 void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject)
@@ -112,13 +112,13 @@ void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject)
 
         if (graphicsData->graphicsResourceID != 0xffff) {
             if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE) {
-                ov5_021F22BC(mapObject);
+                BerryPatchGraphics_NewSparkleEffect(mapObject);
             }
 
             ov5_021ECEB4(mapObject, &graphicsData->graphicsObject, graphicsData->graphicsResourceID);
         } else {
-            if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE && patchData->needsUpdate == FALSE) {
-                ov5_021F22BC(mapObject);
+            if (graphicsData->lastGrowthStage != BERRY_GROWTH_STAGE_NONE && !patchData->needsUpdate) {
+                BerryPatchGraphics_NewSparkleEffect(mapObject);
             }
         }
 
@@ -175,7 +175,7 @@ void BerryPatchGraphics_ResumeGraphics(MapObject *mapObject)
             MapObject_SetStatusFlagOff(mapObject, MAP_OBJ_STATUS_21);
         }
 
-        ov5_021F20D4(mapObject);
+        BerryPatchGraphics_NewMoistureEffect(mapObject);
     }
 
     if (graphicsData->graphicsObject != NULL) {

@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "FUEGO_IRONWORKS_OUTSIDE_UNK_100_0",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -35,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_OUTSIDE_UNK_100_1",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -51,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_OUTSIDE_UNK_100_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +70,7 @@
             "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_OUTSIDE_UNK_100_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,6 +87,7 @@
             "y": 0
         },
         {
+            "id": "FUEGO_IRONWORKS_OUTSIDE_SIGNBOARD_4",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
