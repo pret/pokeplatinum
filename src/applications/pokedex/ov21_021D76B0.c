@@ -33,6 +33,7 @@
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {
@@ -533,19 +534,19 @@ static void ov21_021D7CD8(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     NNSG2dScreenData *v1;
     BgConfig *v2 = (*param0)->bgConfig;
 
-    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 0, 4, 0, 0, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, background_scroll_default_NCLR, 4, 0, 0, heapID);
 
     if (param1->unk_1C->unk_04->unk_1740 == 1) {
-        PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 1, 4, 3 * 32, 32, heapID);
+        PokedexGraphics_LoadGraphicNarcPaletteData(*param0, background_scroll_sinnoh_NCLR, 4, 3 * 32, 32, heapID);
     } else {
         if (PokedexSort_IsNationalDex(param1->unk_1C->unk_04) == 1) {
-            PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 25, 4, 3 * 32, 32, heapID);
+            PokedexGraphics_LoadGraphicNarcPaletteData(*param0, background_scroll_national_NCLR, 4, 3 * 32, 32, heapID);
         }
     }
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 29, v2, 6, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, scroll_sub_background_NCGR_lz, v2, 6, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 41, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, scroll_sub_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect(v2, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -557,18 +558,18 @@ static void ov21_021D7D8C(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     PokedexGraphicData *v0 = *param1;
     NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
-    param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, scroll_buttons_NCGR_lz, TRUE, scroll_buttons_NCGR_lz + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_2C[0]);
     SpriteResource_ReleaseData(param0->unk_2C[0]);
 
-    param0->unk_2C[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, 3, 0, 3 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, 12, param2);
+    param0->unk_2C[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, buttons_NCLR, FALSE, buttons_NCLR + 1000, NNS_G2D_VRAM_TYPE_2DSUB, 12, param2);
 
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_2C[1]);
     SpriteResource_ReleaseData(param0->unk_2C[1]);
 
-    param0->unk_2C[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 82, 1, 82 + 1000, 2, param2);
-    param0->unk_2C[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 83, 1, 83 + 1000, 3, param2);
+    param0->unk_2C[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, scroll_buttons_cell_NCER_lz, TRUE, scroll_buttons_cell_NCER_lz + 1000, 2, param2);
+    param0->unk_2C[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, scroll_buttons_anim_NANR_lz, TRUE, scroll_buttons_anim_NANR_lz + 1000, 3, param2);
 }
 
 static void ov21_021D7E3C(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **param1)
@@ -589,7 +590,7 @@ static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
 
-    SpriteResourcesHeader_Init(&v0, 84 + 1000, 3 + 1000, 82 + 1000, 83 + 1000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, scroll_buttons_NCGR_lz + 1000, buttons_NCLR + 1000, scroll_buttons_cell_NCER_lz + 1000, scroll_buttons_anim_NANR_lz + 1000, 0xffffffff, 0xffffffff, FALSE, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -674,7 +675,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
 
     GF_ASSERT(param0->unk_00[0]);
 
-    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 3 + 1000);
+    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], buttons_NCLR + 1000);
 
     displayBox.textMan = v3->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -757,9 +758,9 @@ static void ov21_021D820C(PokedexGraphicData **param0, int heapID)
     NNSG2dScreenData *v1;
     BgConfig *v2 = (*param0)->bgConfig;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 27, v2, 7, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, scroll_wheel_NCGR_lz, v2, 7, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 37, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, scroll_wheel_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect(v2, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);

@@ -30,6 +30,7 @@
 #include "strbuf.h"
 #include "text.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {
@@ -324,9 +325,9 @@ static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_
 {
     NNSG2dScreenData *v1;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 33, (*param0)->bgConfig, 3, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, entry_main_NCGR_lz, (*param0)->bgConfig, 3, 0, 0, TRUE, heapID);
 
-    void *v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 74, 1, &v1, heapID);
+    void *v0 = PokedexGraphics_GetGraphicNarcTilemapData(*param0, height_check_main_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
@@ -338,18 +339,18 @@ static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, Poked
     PokedexGraphicData *v0 = *param1;
     NARC *pokedexGraphicsNarc = PokedexGraphics_GetNARC(v0);
 
-    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], pokedexGraphicsNarc, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_CHAR], pokedexGraphicsNarc, size_check_icons_NCGR_lz, TRUE, size_check_icons_NCGR_lz + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR]);
     SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR]);
 
-    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], pokedexGraphicsNarc, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_PLTT], pokedexGraphicsNarc, size_check_icons_NCLR, FALSE, size_check_icons_NCLR + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT]);
     SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT]);
 
-    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], pokedexGraphicsNarc, 91, 1, 91 + 7000, 2, heapID);
-    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], pokedexGraphicsNarc, 92, 1, 92 + 7000, 3, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_CELL], pokedexGraphicsNarc, size_check_icons_cell_NCER_lz, TRUE, size_check_icons_cell_NCER_lz + 7000, SPRITE_RESOURCE_CELL, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexGraphicsNarc, size_check_icons_anim_NANR_lz, TRUE, size_check_icons_anim_NANR_lz + 7000, SPRITE_RESOURCE_ANIM, heapID);
 }
 
 static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1)
@@ -358,10 +359,10 @@ static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicDa
 
     SpriteTransfer_ResetCharTransfer(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransfer(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[1], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CELL]);
-    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_ANIM]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_CHAR], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_PLTT], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PLTT]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_CELL], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CELL]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[SPRITE_RESOURCE_ANIM], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_ANIM]);
 }
 
 static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapID heapID)
@@ -371,7 +372,7 @@ static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, Pokedex
     PokedexGraphicData *v2 = *param1;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
 
-    SpriteResourcesHeader_Init(&trainerResource, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&trainerResource, size_check_icons_NCGR_lz + 7000, size_check_icons_NCLR + 7000, size_check_icons_cell_NCER_lz + 7000, size_check_icons_anim_NANR_lz + 7000, 0xffffffff, 0xffffffff, FALSE, 1, v2->spriteResourceCollection[SPRITE_RESOURCE_CHAR], v2->spriteResourceCollection[SPRITE_RESOURCE_PLTT], v2->spriteResourceCollection[SPRITE_RESOURCE_CELL], v2->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     trainerCellParams.list = v2->spriteList;
     trainerCellParams.resourceData = &trainerResource;
