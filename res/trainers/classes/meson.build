@@ -195,7 +195,8 @@ trainer_front_NCLR = nclr_gen.process(trainer_front_png,
 )
 trainer_front_scan_NCGR = ncgr_gen.process(trainer_front_scan_png,
     extra_args: [
-        '-scanfronttoback',
+        '-encodefronttoback',
+        '-scan',
     ],
     preserve_path_from: trainer_classes_root,
 )
@@ -258,7 +259,8 @@ trainer_back_NCLR = nclr_gen.process(trainer_back_png,
 )
 trainer_back_scan_NCGR = ncgr_gen.process(trainer_back_scan_png,
     extra_args: [
-        '-scanfronttoback',
+        '-encodefronttoback',
+        '-scan',
     ],
     preserve_path_from: trainer_classes_root,
 )

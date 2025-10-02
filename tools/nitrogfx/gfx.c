@@ -1640,10 +1640,10 @@ void ReadNtrCell_CEBK(unsigned char * restrict data, unsigned int blockOffset, u
     {
         offset = blockOffset + 0x18 + ucatOffset + 0x04 * options->cellCount;
 
-        options->ucatCellAttribtes = malloc(sizeof(uint32_t) * options->cellCount);
+        options->ucatCellAttributes = malloc(sizeof(uint32_t) * options->cellCount);
         for (int i = 0; i < options->cellCount; i++)
         {
-            options->ucatCellAttribtes[i] = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
+            options->ucatCellAttributes[i] = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
             offset += 0x04;
         }
     }
@@ -1970,7 +1970,7 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
         // attr
         for (int i = 0; i < options->cellCount; i++)
         {
-            unsigned int ucatAttribute = options->ucatCellAttribtes[i];
+            unsigned int ucatAttribute = options->ucatCellAttributes[i];
             KBECContents[offset] = ucatAttribute & 0xFF;
             KBECContents[offset + 1] = (ucatAttribute >> 8) & 0xFF;
             KBECContents[offset + 2] = (ucatAttribute >> 16) & 0xFF;
