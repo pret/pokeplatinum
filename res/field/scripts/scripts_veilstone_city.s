@@ -1076,8 +1076,8 @@ _0D5C:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0D82
-    Message 12
+    GoToIfEq VAR_RESULT, TRUE, _0D82
+    Message VeilstoneCity_Text_ThisIsGalacticWarehouse1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
