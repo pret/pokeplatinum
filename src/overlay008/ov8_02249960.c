@@ -340,26 +340,25 @@ static void ov8_0224996C(const u8 param0, int *param1)
     (*param1) ^= (0x1 << param0);
 }
 
-void ov8_0224997C(FieldSystem *fieldSystem)
+void PastoriaGym_PressButton(FieldSystem *fieldSystem)
 {
-    TerrainCollisionHitbox v0;
-    int v1, v2;
-    BOOL v3;
-    int v4;
-    int v5[] = {
+    TerrainCollisionHitbox terrainCollision;
+    BOOL hasCollisionHit;
+    int mapPropModelID;
+    int pastoriaButtonTypes[] = {
         MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
         MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
         MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
     };
 
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerY = Player_GetZPos(fieldSystem->playerAvatar);
 
-    TerrainCollisionHitbox_Init(v1, v2, 0, 0, 1, 1, &v0);
+    TerrainCollisionHitbox_Init(playerX, playerY, 0, 0, 1, 1, &terrainCollision);
 
-    v3 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
+    hasCollisionHit = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, pastoriaButtonTypes, NELEMS(pastoriaButtonTypes), &terrainCollision, NULL, &mapPropModelID);
 
-    if (v3) {
+    if (hasCollisionHit) {
         UnkStruct_ov8_0224997C *v6;
         PersistedMapFeatures *v7;
         UnkStruct_02071B10 *v8;
@@ -370,13 +369,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
         v6->unk_00 = 0;
 
-        if (v4 == 239) {
+        if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
             v8->unk_00 = 2;
-        } else if (v4 == 240) {
+        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
             v8->unk_00 = 1;
-        } else if (v4 == 241) {
+        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {

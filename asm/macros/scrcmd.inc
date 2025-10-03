@@ -2076,7 +2076,7 @@
     .short 367
     .endm
 
-    .macro ScrCmd_170
+    .macro PressPastoriaGymButton
     .short 368
     .endm
 
