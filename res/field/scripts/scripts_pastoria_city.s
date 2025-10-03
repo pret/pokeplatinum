@@ -389,7 +389,7 @@ _0471:
     BufferRivalName 0
     Message 16
     CloseMessage
-    ApplyMovement PASTORIA_CITY_BARRY, _04C0
+    ApplyMovement PASTORIA_CITY_RIVAL, _04C0
     WaitMovement
     ReleaseAll
     End
@@ -423,21 +423,21 @@ _04C0:
 _04C8:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
-    SetObjectEventPos PASTORIA_CITY_BARRY, 0x253, 0x333
-    SetObjectEventMovementType PASTORIA_CITY_BARRY, MOVEMENT_TYPE_LOOK_LEFT
-    SetObjectEventDir PASTORIA_CITY_BARRY, DIR_WEST
-    AddObject PASTORIA_CITY_BARRY
-    ApplyMovement PASTORIA_CITY_BARRY, _05B0
+    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
+    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_WEST
+    AddObject PASTORIA_CITY_RIVAL
+    ApplyMovement PASTORIA_CITY_RIVAL, _05B0
     WaitMovement
     CallCommonScript 0x7FA
-    ApplyMovement PASTORIA_CITY_BARRY, _05C0
+    ApplyMovement PASTORIA_CITY_RIVAL, _05C0
     ApplyMovement LOCALID_PLAYER, _05A4
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message 5
     CloseMessage
-    ApplyMovement PASTORIA_CITY_BARRY, _05CC
+    ApplyMovement PASTORIA_CITY_RIVAL, _05CC
     WaitMovement
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _054B
@@ -463,9 +463,9 @@ _0563:
     BufferPlayerName 1
     Message 6
     CloseMessage
-    ApplyMovement PASTORIA_CITY_BARRY, _05D4
+    ApplyMovement PASTORIA_CITY_RIVAL, _05D4
     WaitMovement
-    RemoveObject PASTORIA_CITY_BARRY
+    RemoveObject PASTORIA_CITY_RIVAL
     SetVar VAR_PASTORIA_STATE, 2
     ReleaseAll
     End
@@ -509,12 +509,12 @@ _05D4:
 _05E0:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
-    SetObjectEventPos PASTORIA_CITY_BARRY, 0x253, 0x333
-    SetObjectEventMovementType PASTORIA_CITY_BARRY, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir PASTORIA_CITY_BARRY, DIR_SOUTH
-    AddObject PASTORIA_CITY_BARRY
-    LockObject PASTORIA_CITY_BARRY
-    ApplyMovement PASTORIA_CITY_BARRY, _0798
+    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
+    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_SOUTH
+    AddObject PASTORIA_CITY_RIVAL
+    LockObject PASTORIA_CITY_RIVAL
+    ApplyMovement PASTORIA_CITY_RIVAL, _0798
     ApplyMovement LOCALID_PLAYER, _07CC
     WaitMovement
     BufferRivalName 0
@@ -542,7 +542,7 @@ _05E0:
     WaitMovement
     Message 8
     CloseMessage
-    ApplyMovement PASTORIA_CITY_BARRY, _07A4
+    ApplyMovement PASTORIA_CITY_RIVAL, _07A4
     WaitMovement
     BufferRivalName 0
     Message 9
@@ -559,28 +559,28 @@ _05E0:
     Message 13
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07EC
-    ApplyMovement PASTORIA_CITY_BARRY, _07AC
+    ApplyMovement PASTORIA_CITY_RIVAL, _07AC
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _078C
     WaitMovement
     BufferRivalName 0
     Message 14
     CloseMessage
-    ApplyMovement PASTORIA_CITY_BARRY, _07C0
+    ApplyMovement PASTORIA_CITY_RIVAL, _07C0
     WaitMovement
     Call _0737
     ClearFlag FLAG_UNK_0x01FB
     SetPosition PASTORIA_CITY_CRASHER_WAKE, 0x263, 0, 0x32A, 0
     Call _0721
     ClearFlag FLAG_UNK_0x01A9
-    SetPosition PASTORIA_CITY_BARRY, 0x260, 0, 0x32E, 1
+    SetPosition PASTORIA_CITY_RIVAL, 0x260, 0, 0x32E, 1
     SetVar VAR_PASTORIA_STATE, 4
     ReleaseAll
     End
 
 _0721:
-    SetObjectEventPos PASTORIA_CITY_BARRY, 0x260, 0x32E
-    SetObjectEventDir PASTORIA_CITY_BARRY, DIR_SOUTH
-    SetObjectEventMovementType PASTORIA_CITY_BARRY, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x260, 0x32E
+    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_SOUTH
+    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0737:
@@ -590,9 +590,9 @@ _0737:
     Return
 
 _074D:
-    SetObjectEventPos PASTORIA_CITY_BARRY, 0x263, 0x32A
-    SetObjectEventDir PASTORIA_CITY_BARRY, DIR_NORTH
-    SetObjectEventMovementType PASTORIA_CITY_BARRY, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x263, 0x32A
+    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_NORTH
+    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
     .balign 4, 0
@@ -672,13 +672,13 @@ _07F8:
     LockAll
     Call _086F
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
-    ApplyMovement PASTORIA_CITY_BARRY, _0B08
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B08
     ApplyMovement LOCALID_PLAYER, _0AAC
     ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
     WaitMovement
     Call _08D9
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B74
-    ApplyMovement PASTORIA_CITY_BARRY, _0B3C
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B3C
     ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement PASTORIA_CITY_GRUNT_M, _0B54
     WaitMovement
@@ -692,7 +692,7 @@ _07F8:
     End
 
 _086F:
-    ApplyMovement PASTORIA_CITY_BARRY, _0AE4
+    ApplyMovement PASTORIA_CITY_RIVAL, _0AE4
     WaitMovement
     BufferRivalName 0
     Message 17
@@ -701,7 +701,7 @@ _086F:
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B5C
     WaitMovement
     Message 18
-    ApplyMovement PASTORIA_CITY_BARRY, _0AF0
+    ApplyMovement PASTORIA_CITY_RIVAL, _0AF0
     WaitMovement
     PlayFanfare SEQ_SE_DP_FW291
     WaitTime 4, VAR_RESULT
@@ -759,12 +759,12 @@ _091C:
     Return
 
 _0981:
-    ApplyMovement PASTORIA_CITY_BARRY, _0B1C
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B1C
     WaitMovement
     Return
 
 _098D:
-    ApplyMovement PASTORIA_CITY_BARRY, _0B28
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B28
     WaitMovement
     Return
 
@@ -785,7 +785,7 @@ _09A8:
     Call _08D9
     ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B74
-    ApplyMovement PASTORIA_CITY_BARRY, _0B3C
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B3C
     ApplyMovement PASTORIA_CITY_GRUNT_M, _0B54
     WaitMovement
     Call _08FA
@@ -800,7 +800,7 @@ _09A8:
 _0A31:
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
     ApplyMovement LOCALID_PLAYER, _0ABC
-    ApplyMovement PASTORIA_CITY_BARRY, _0B10
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B10
     ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
     WaitMovement
     Return
@@ -808,7 +808,7 @@ _0A31:
 _0A55:
     ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
     ApplyMovement LOCALID_PLAYER, _0ABC
-    ApplyMovement PASTORIA_CITY_BARRY, _0B10
+    ApplyMovement PASTORIA_CITY_RIVAL, _0B10
     ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
     WaitMovement
     Return
@@ -956,14 +956,14 @@ _0B88:
 _0B90:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0BC8
-    ApplyMovement PASTORIA_CITY_BARRY, _0BD8
+    ApplyMovement PASTORIA_CITY_RIVAL, _0BD8
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message 26
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0BD0
-    ApplyMovement PASTORIA_CITY_BARRY, _0BE0
+    ApplyMovement PASTORIA_CITY_RIVAL, _0BE0
     WaitMovement
     ReleaseAll
     End
