@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x411A, 1, 29
+    InitScriptGoToIfEqual VAR_VEILSTONE_STATE, 1, 29
     InitScriptFrameTableEnd
 
     InitScriptEnd

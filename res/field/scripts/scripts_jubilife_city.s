@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city.h"
+#include "res/field/events/events_jubilife_city.h"
 
 
     ScriptEntry _0072
@@ -69,27 +70,27 @@ JubilifeCity_Counterpart:
     End
 
 JubilifeCity_Counterpart_Left:
-    SetObjectEventPos 7, 173, 0x314
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 173, 0x314
     GoTo JubilifeCity_Counterpart_Init
     End
 
 JubilifeCity_Counterpart_Middle:
-    SetObjectEventPos 7, 174, 0x314
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 174, 0x314
     GoTo JubilifeCity_Counterpart_Init
     End
 
 JubilifeCity_Counterpart_Right:
-    SetObjectEventPos 7, 175, 0x314
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 175, 0x314
     GoTo JubilifeCity_Counterpart_Init
     End
 
 JubilifeCity_Counterpart_Init:
     ClearFlag FLAG_JUBILIFE_COUNTERPART
-    AddObject 7
-    LockObject 7
-    ApplyMovement 7, _043C
+    AddObject JUBILIFE_CITY_COUNTERPART
+    LockObject JUBILIFE_CITY_COUNTERPART
+    ApplyMovement JUBILIFE_CITY_COUNTERPART, _043C
     WaitMovement
-    ApplyMovement 7, _044C
+    ApplyMovement JUBILIFE_CITY_COUNTERPART, _044C
     WaitMovement
     CallCommonScript 0x7F8
     GetPlayerGender VAR_RESULT
