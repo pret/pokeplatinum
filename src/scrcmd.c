@@ -512,7 +512,7 @@ static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayDoorOpenAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayDoorCloseAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
-static BOOL ScrCmd_170(ScriptContext *ctx);
+static BOOL ScrCmd_PressPastoriaGymButton(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
 static BOOL ScrCmd_172(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
@@ -1137,7 +1137,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferDaycareMonNicknames,
     ScrCmd_GetDaycareState,
     ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
-    ScrCmd_170,
+    ScrCmd_PressPastoriaGymButton,
     ScrCmd_InitPersistedMapFeaturesForHearthomeGym,
     ScrCmd_172,
     ScrCmd_InitPersistedMapFeaturesForCanalaveGym,
@@ -5563,11 +5563,11 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_170(ScriptContext *ctx)
+static BOOL ScrCmd_PressPastoriaGymButton(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov8_0224997C(fieldSystem);
+    PastoriaGym_PressButton(fieldSystem);
     return TRUE;
 }
 
