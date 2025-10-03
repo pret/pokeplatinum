@@ -3,9 +3,9 @@
 
 
     ScriptEntry SnowpointCityMart_CommonVendor
-    ScriptEntry SnowpointCityMart_SpecialityVendor
+    ScriptEntry SnowpointCityMart_SpecialtyVendor
     ScriptEntry SnowpointCityMart_Youngster
-    ScriptEntry _0051
+    ScriptEntry SnowpointCityMart_SnowpointLady
     ScriptEntryEnd
 
 SnowpointCityMart_CommonVendor:
@@ -18,7 +18,7 @@ SnowpointCityMart_CommonVendor:
     ReleaseAll
     End
 
-SnowpointCityMart_SpecialityVendor:
+SnowpointCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -38,7 +38,7 @@ SnowpointCityMart_Youngster:
     ReleaseAll
     End
 
-_0051:
+SnowpointCityMart_SnowpointLady:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

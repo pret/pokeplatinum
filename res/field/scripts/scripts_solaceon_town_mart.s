@@ -3,7 +3,7 @@
 
 
     ScriptEntry SolaceonTownMart_CommonVendor
-    ScriptEntry SolaceonTownMart_SpecialityVendor
+    ScriptEntry SolaceonTownMart_SpecialtyVendor
     ScriptEntry SolaceonTownMart_NinjaBoy
     ScriptEntry SolaceonTownMart_Pokefan
     ScriptEntryEnd
@@ -18,7 +18,7 @@ SolaceonTownMart_CommonVendor:
     ReleaseAll
     End
 
-SolaceonTownMart_SpecialityVendor:
+SolaceonTownMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

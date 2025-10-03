@@ -3,7 +3,7 @@
 
 
     ScriptEntry SunyshoreCityMart_CommonVendor
-    ScriptEntry SunyshoreCityMart_SpecialityVendor
+    ScriptEntry SunyshoreCityMart_SpecialtyVendor
     ScriptEntry SunyshoreCityMart_RuinManiac
     ScriptEntry SunyshoreCityMart_Sailor
     ScriptEntryEnd
@@ -18,7 +18,7 @@ SunyshoreCityMart_CommonVendor:
     ReleaseAll
     End
 
-SunyshoreCityMart_SpecialityVendor:
+SunyshoreCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

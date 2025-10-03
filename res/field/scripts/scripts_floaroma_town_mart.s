@@ -3,7 +3,7 @@
 
 
     ScriptEntry FloaromaTownMart_CommonVendor
-    ScriptEntry FloaromaTownMart_SpecialityVendor
+    ScriptEntry FloaromaTownMart_SpecialtyVendor
     ScriptEntry FloaromaTownMart_Beauty
     ScriptEntry FloaromaTownMart_SchoolGirl
     ScriptEntryEnd
@@ -18,7 +18,7 @@ FloaromaTownMart_CommonVendor:
     ReleaseAll
     End
 
-FloaromaTownMart_SpecialityVendor:
+FloaromaTownMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

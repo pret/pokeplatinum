@@ -3,7 +3,7 @@
 
 
     ScriptEntry PastoriaCityMart_CommonVendor
-    ScriptEntry PastoriaCityMart_SpecialityVendor
+    ScriptEntry PastoriaCityMart_SpecialtyVendor
     ScriptEntry PastoriaCityMart_BugCatcher
     ScriptEntry PastoriaCityMart_SchoolGirl
     ScriptEntry PastoriaCityMart_CroagunkCarving
@@ -19,7 +19,7 @@ PastoriaCityMart_CommonVendor:
     ReleaseAll
     End
 
-PastoriaCityMart_SpecialityVendor:
+PastoriaCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

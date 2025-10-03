@@ -4,7 +4,7 @@
 
 
     ScriptEntry CanalaveCityMart_CommonVendor
-    ScriptEntry CanalaveCityMart_SpecialityVendor
+    ScriptEntry CanalaveCityMart_SpecialtyVendor
     ScriptEntry CanalaveCityMart_Lady
     ScriptEntry CanalaveCityMart_Pokefan
     ScriptEntryEnd
@@ -19,7 +19,7 @@ CanalaveCityMart_CommonVendor:
     ReleaseAll
     End
 
-CanalaveCityMart_SpecialityVendor:
+CanalaveCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

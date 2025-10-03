@@ -3,7 +3,7 @@
 
 
     ScriptEntry OreburghCityMart_CommonVendor
-    ScriptEntry OreburghCityMart_SpecialityVendor
+    ScriptEntry OreburghCityMart_SpecialtyVendor
     ScriptEntry OreburghCityMart_Hiker
     ScriptEntry OreburghCityMart_Collector
     ScriptEntryEnd
@@ -18,7 +18,7 @@ OreburghCityMart_CommonVendor:
     ReleaseAll
     End
 
-OreburghCityMart_SpecialityVendor:
+OreburghCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

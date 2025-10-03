@@ -4,7 +4,7 @@
 
 
     ScriptEntry EternaCityMart_CommonVendor
-    ScriptEntry EternaCityMart_SpecialityVendor
+    ScriptEntry EternaCityMart_SpecialtyVendor
     ScriptEntry EternaCityMart_Guitarist
     ScriptEntry EternaCityMart_Hiker
     ScriptEntryEnd
@@ -19,7 +19,7 @@ EternaCityMart_CommonVendor:
     ReleaseAll
     End
 
-EternaCityMart_SpecialityVendor:
+EternaCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

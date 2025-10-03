@@ -3,7 +3,7 @@
 
 
     ScriptEntry HearthomeCityMart_CommonVendor
-    ScriptEntry HearthomeCityMart_SpecialityVendor
+    ScriptEntry HearthomeCityMart_SpecialtyVendor
     ScriptEntry HearthomeCityMart_Hiker
     ScriptEntry HearthomeCityMart_Beauty
     ScriptEntryEnd
@@ -18,7 +18,7 @@ HearthomeCityMart_CommonVendor:
     ReleaseAll
     End
 
-HearthomeCityMart_SpecialityVendor:
+HearthomeCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
