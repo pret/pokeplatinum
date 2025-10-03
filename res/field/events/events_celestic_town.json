@@ -59,6 +59,7 @@
     ],
     "object_events": [
         {
+            "id": "CELESTIC_TOWN_EXPERT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,6 +74,7 @@
             "y": 7
         },
         {
+            "id": "CELESTIC_TOWN_NINJA_BOY_1",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -87,6 +89,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,6 +104,7 @@
             "y": 7
         },
         {
+            "id": "CELESTIC_TOWN_EXPERT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -115,6 +119,7 @@
             "y": 7
         },
         {
+            "id": "CELESTIC_TOWN_CYNTHIA_4",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -129,6 +134,7 @@
             "y": 7
         },
         {
+            "id": "CELESTIC_TOWN_MAP_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -145,7 +151,8 @@
             "y": 0
         },
         {
-            "local_id": 11,
+            "id": "CELESTIC_TOWN_ARROW_SIGNPOST_6",
+            "clone_id": 11,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -162,7 +169,8 @@
             "y": 0
         },
         {
-            "local_id": 20,
+            "id": "CELESTIC_TOWN_ARROW_SIGNPOST_7",
+            "clone_id": 20,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -179,6 +187,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_ACE_TRAINER_F_8",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,6 +202,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_VENT_9",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,6 +217,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_VENT_10",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -221,6 +232,7 @@
             "y": 0
         },
         {
+            "id": "CELESTIC_TOWN_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -286,3 +298,4 @@
         }
     ]
 }
+

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_SCHOOL_KID_F_0",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_ACE_TRAINER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -34,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_SCHOOL_KID_M_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -50,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_2_ACE_TRAINER_F_3",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",

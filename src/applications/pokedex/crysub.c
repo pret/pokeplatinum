@@ -33,6 +33,7 @@
 #include "unk_02012744.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 /*
@@ -837,15 +838,15 @@ static void LoadBackgroundTileMaps(PokedexGraphicData **graphicData, enum HeapID
 {
     NNSG2dScreenData *screenData;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, 34, (*graphicData)->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, heapID);
-    void *tileMap = PokedexGraphics_GetGraphicNarcScreenData(*graphicData, 71, TRUE, &screenData, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, entry_sub_NCGR_lz, (*graphicData)->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, heapID);
+    void *tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*graphicData, cry_sub_NSCR_lz, TRUE, &screenData, heapID);
 
     Bg_LoadToTilemapRect((*graphicData)->bgConfig, BG_LAYER_SUB_2, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tileMap);
     Bg_ScheduleTilemapTransfer((*graphicData)->bgConfig, BG_LAYER_SUB_2);
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, 35, (*graphicData)->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, heapID);
-    tileMap = PokedexGraphics_GetGraphicNarcScreenData(*graphicData, 72, TRUE, &screenData, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicData, cry_wheel_NCGR_lz, (*graphicData)->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, heapID);
+    tileMap = PokedexGraphics_GetGraphicNarcTilemapData(*graphicData, cry_wheel_NSCR_lz, TRUE, &screenData, heapID);
 
     Bg_LoadToTilemapRect((*graphicData)->bgConfig, BG_LAYER_SUB_3, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tileMap);
@@ -867,18 +868,18 @@ static void LoadCryDialSprite(PokedexCrySubGraphics *pokedexCrySubGraphics, Poke
     PokedexGraphicData *graphicsData = *graphics;
     NARC *narc = PokedexGraphics_GetNARC(*graphics);
 
-    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], narc, 113, TRUE, 113 + CRYSUB_GRAPHIC_ID, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
+    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], narc, cry_dials_NCGR_lz, TRUE, cry_dials_NCGR_lz + CRYSUB_GRAPHIC_ID, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
 
     SpriteTransfer_RequestCharAtEnd(pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CHAR]);
     SpriteResource_ReleaseData(pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CHAR]);
 
-    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(graphicsData->spriteResourceCollection[1], narc, 18, FALSE, 18 + CRYSUB_GRAPHIC_ID, NNS_G2D_VRAM_TYPE_2DSUB, 3, heapID);
+    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(graphicsData->spriteResourceCollection[1], narc, cry_dials_NCLR, FALSE, cry_dials_NCLR + CRYSUB_GRAPHIC_ID, NNS_G2D_VRAM_TYPE_2DSUB, 3, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_PLTT]);
     SpriteResource_ReleaseData(pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_PLTT]);
 
-    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_CELL], narc, 114, TRUE, 114 + CRYSUB_GRAPHIC_ID, SPRITE_RESOURCE_CELL, heapID);
-    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], narc, 112, TRUE, 112 + CRYSUB_GRAPHIC_ID, SPRITE_RESOURCE_ANIM, heapID);
+    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_CELL], narc, cry_dials_cell_NCER_lz, TRUE, cry_dials_cell_NCER_lz + CRYSUB_GRAPHIC_ID, SPRITE_RESOURCE_CELL, heapID);
+    pokedexCrySubGraphics->dialSpriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(graphicsData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], narc, cry_dials_anim_NANR_lz, TRUE, cry_dials_anim_NANR_lz + CRYSUB_GRAPHIC_ID, SPRITE_RESOURCE_ANIM, heapID);
 }
 
 static void FreeDialSpriteResource(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphics)
@@ -899,7 +900,7 @@ static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
     SpriteListTemplate spriteListTemplate;
     PokedexGraphicData *graphicData = *graphics;
 
-    SpriteResourcesHeader_Init(&spriteResourcesHeader, 113 + CRYSUB_GRAPHIC_ID, 18 + CRYSUB_GRAPHIC_ID, 114 + CRYSUB_GRAPHIC_ID, 112 + CRYSUB_GRAPHIC_ID, 0xffffffff, 0xffffffff, FALSE, 2, graphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], graphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT], graphicData->spriteResourceCollection[SPRITE_RESOURCE_CELL], graphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(&spriteResourcesHeader, cry_dials_NCGR_lz + CRYSUB_GRAPHIC_ID, cry_dials_NCLR + CRYSUB_GRAPHIC_ID, cry_dials_cell_NCER_lz + CRYSUB_GRAPHIC_ID, cry_dials_anim_NANR_lz + CRYSUB_GRAPHIC_ID, 0xffffffff, 0xffffffff, FALSE, 2, graphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], graphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT], graphicData->spriteResourceCollection[SPRITE_RESOURCE_CELL], graphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     spriteListTemplate.list = graphicData->spriteList;
     spriteListTemplate.resourceData = &spriteResourcesHeader;
@@ -975,7 +976,7 @@ static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
     PokedexDisplayBox displayBox;
     PokedexGraphicData *graphicData = *graphics;
 
-    SpriteResource *palette = SpriteResourceCollection_Find(graphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT], 18 + CRYSUB_GRAPHIC_ID);
+    SpriteResource *palette = SpriteResourceCollection_Find(graphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT], cry_dials_NCLR + CRYSUB_GRAPHIC_ID);
 
     displayBox.textMan = graphicData->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(palette, NULL);
@@ -1332,7 +1333,7 @@ static void SetLoop(PokedexCrySubPageData *pokedexCrySubPageData, BOOL loop)
 
 static void LoadCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics, PokedexGraphicData **graphicData, enum HeapID heapID)
 {
-    pokedexCrySubGraphics->backgroundPalette = PokedexGraphics_GetGraphicNarcPaletteData(*graphicData, 20, &pokedexCrySubGraphics->paletteData, heapID);
+    pokedexCrySubGraphics->backgroundPalette = PokedexGraphics_GetGraphicNarcPaletteData(*graphicData, cry_sub_NCLR, &pokedexCrySubGraphics->paletteData, heapID);
 }
 
 static void FreeCryPalette(PokedexCrySubGraphics *pokedexCrySubGraphics)

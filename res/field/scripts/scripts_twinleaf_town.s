@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town.h"
+#include "res/field/events/events_twinleaf_town.h"
 
 
     ScriptEntry _0026
@@ -40,14 +41,14 @@ _0067:
     GoToIfSet FLAG_UNK_0x00EA, _00BC
     BufferPlayerName 0
     BufferRivalName 1
-    Message 4
+    Message TwinleafTown_Text_RivalWasLookingForYou2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00A3:
-    Message 7
+    Message TwinleafTown_Text_EveryoneGoesOnAdventures
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -55,7 +56,7 @@ _00A3:
 
 _00AE:
     BufferRivalName 0
-    Message 6
+    Message TwinleafTown_Text_RivalWentTearingOffOuch
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -64,7 +65,7 @@ _00AE:
 _00BC:
     BufferPlayerName 0
     BufferRivalName 1
-    Message 5
+    Message TwinleafTown_Text_RivalWentTearingOff
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -72,7 +73,7 @@ _00BC:
 
 _00CD:
     LockAll
-    ApplyMovement 3, _03B0
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03B0
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 108, _0140
@@ -86,56 +87,56 @@ _00CD:
 
 _0140:
     ApplyMovement LOCALID_PLAYER, _02F0
-    ApplyMovement 3, _03C4
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03C4
     WaitMovement
     GoTo _0200
 
 _0158:
     ApplyMovement LOCALID_PLAYER, _0308
-    ApplyMovement 3, _03E0
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03E0
     WaitMovement
     GoTo _0200
 
 _0170:
     ApplyMovement LOCALID_PLAYER, _0320
-    ApplyMovement 3, _03F4
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03F4
     WaitMovement
     GoTo _0200
 
 _0188:
     ApplyMovement LOCALID_PLAYER, _0338
-    ApplyMovement 3, _0408
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0408
     WaitMovement
     GoTo _0200
 
 _01A0:
     ApplyMovement LOCALID_PLAYER, _0350
-    ApplyMovement 3, _041C
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _041C
     WaitMovement
     GoTo _0200
 
 _01B8:
     ApplyMovement LOCALID_PLAYER, _0368
-    ApplyMovement 3, _0430
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0430
     WaitMovement
     GoTo _0200
 
 _01D0:
     ApplyMovement LOCALID_PLAYER, _0380
-    ApplyMovement 3, _0444
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0444
     WaitMovement
     GoTo _0200
 
 _01E8:
     ApplyMovement LOCALID_PLAYER, _0398
-    ApplyMovement 3, _0458
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0458
     WaitMovement
     GoTo _0200
 
 _0200:
     BufferPlayerName 0
     BufferRivalName 1
-    Message 3
+    Message TwinleafTown_Text_RivalWasLookingForYou1
     CloseMessage
     GoToIfEq VAR_0x8004, 108, _026C
     GoToIfEq VAR_0x8004, 109, _027C
@@ -147,42 +148,42 @@ _0200:
     GoTo _02DC
 
 _026C:
-    ApplyMovement 3, _046C
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _046C
     WaitMovement
     GoTo _02EC
 
 _027C:
-    ApplyMovement 3, _047C
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _047C
     WaitMovement
     GoTo _02EC
 
 _028C:
-    ApplyMovement 3, _0488
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0488
     WaitMovement
     GoTo _02EC
 
 _029C:
-    ApplyMovement 3, _0494
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0494
     WaitMovement
     GoTo _02EC
 
 _02AC:
-    ApplyMovement 3, _04A0
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04A0
     WaitMovement
     GoTo _02EC
 
 _02BC:
-    ApplyMovement 3, _04AC
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04AC
     WaitMovement
     GoTo _02EC
 
 _02CC:
-    ApplyMovement 3, _04B8
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04B8
     WaitMovement
     GoTo _02EC
 
 _02DC:
-    ApplyMovement 3, _04C4
+    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04C4
     WaitMovement
     GoTo _02EC
 
@@ -391,33 +392,33 @@ _04D0:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x0174
-    AddObject 2
-    ApplyMovement 2, _05A4
+    AddObject TWINLEAF_TOWN_BARRY
+    ApplyMovement TWINLEAF_TOWN_BARRY, _05A4
     ApplyMovement LOCALID_PLAYER, _0588
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
-    Message 0
+    Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
     CallCommonScript 0x7FA
-    ApplyMovement 2, _059C
+    ApplyMovement TWINLEAF_TOWN_BARRY, _059C
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 1
+    Message TwinleafTown_Text_GoingToSeeProfRowan
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0570
-    ApplyMovement 2, _05B0
+    ApplyMovement TWINLEAF_TOWN_BARRY, _05B0
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
-    Message 2
+    Message TwinleafTown_Text_OhJeezForgotSomething
     CloseMessage
-    ApplyMovement 2, _05C8
+    ApplyMovement TWINLEAF_TOWN_BARRY, _05C8
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject 2
+    RemoveObject TWINLEAF_TOWN_BARRY
     CallCommonScript 0x7FB
     SetVar VAR_UNK_0x4070, 1
     SetVar VAR_UNK_0x40E6, 1
@@ -471,7 +472,7 @@ _05D4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 11
+    Message TwinleafTown_Text_TechnologyBlowsMeAway
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -483,38 +484,38 @@ _05E7:
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, _0612
     GoToIfGe VAR_UNK_0x4095, 1, _061D
-    Message 8
+    Message TwinleafTown_Text_WildPokemonAttack
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0612:
-    Message 10
+    Message TwinleafTown_Text_HelpingPutTogetherPokedex
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _061D:
-    Message 9
+    Message TwinleafTown_Text_PokemonYouLookGoodTogether
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0628:
-    ShowMapSign 12
+    ShowMapSign TwinleafTown_Text_MapSign
     End
 
 _063F:
     BufferPlayerName 0
-    ShowLandmarkSign 13
+    ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
     End
 
 _0659:
     BufferRivalName 0
-    ShowLandmarkSign 14
+    ShowLandmarkSign TwinleafTown_Text_RivalMailbox
     End
 
     .balign 4, 0

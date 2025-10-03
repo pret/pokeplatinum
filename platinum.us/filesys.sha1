@@ -117,7 +117,7 @@ da14fe8a18432a8d76ecdc8bc88b220015915dab *res/prebuilt/data/ug_hero.NANR
 b65415bfb95a51df288ce300aa84db510ee10f73 *res/prebuilt/data/ug_hole.NANR
 1a2a014b627ecd9e3bdb3b5852818a0fe1f52253 *res/prebuilt/data/ug_hole.NCER
 914803c8d6a4d785bc71374d81785fccf6588bac *res/prebuilt/data/ug_hole.NCGR
-baea1d536bbf3364fa00a9ee7586075d69ef94e1 *res/prebuilt/data/ug_parts.narc
+baea1d536bbf3364fa00a9ee7586075d69ef94e1 *res/graphics/mining/mining.narc
 8604aca94d462a013d3820c769e6eb45e38f30b9 *res/prebuilt/data/ug_radar.narc
 efcfa6c0c26afef1840af4fd062f6790f4fb1f14 *res/prebuilt/data/ug_trap.narc
 973098a1a60f7923024562e2ac18334567edb574 *res/graphics/underground_map_transition/underground_map_transition.narc
@@ -330,7 +330,7 @@ cec363028fa6bc6240f9c8da7ab8f9e8bb1b1465 *res/prebuilt/contest/graphic/contest_o
 7fa87d90ba039f67221a43782bf6a1a1107d5947 *res/prebuilt/demo/title/op_demo.narc
 d7e86fadf59a54f922fc7cf65ae65fa326b8429e *res/graphics/title_screen/titledemo.narc
 32a0989a18cc7f3eb17c5949adecb3f057a84eea *res/field/trades/fld_trade.narc
-d4b6f9731b808a613338005f59959325ce1e3ac9 *res/prebuilt/resource/eng/zukan/zukan.narc
+d4b6f9731b808a613338005f59959325ce1e3ac9 *res/graphics/pokedex/zukan.narc
 7e85af57b27fa4a0829b24550fc6c0dd275cf994 *res/prebuilt/resource/eng/batt_rec/batt_rec_gra.narc
 2994f2955035001a22a1f225c68bfa809e4c85bf *res/prebuilt/resource/eng/wifi_lobby_minigame/wlmngm_tool.narc
 6be171e5d73a8ce4f6e262e6be0dd47c9bb95e41 *res/prebuilt/resource/eng/frontier_graphic/frontier_bg.narc

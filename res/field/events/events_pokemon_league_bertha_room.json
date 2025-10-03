@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "POKEMON_LEAGUE_BERTHA_ROOM_BERTHA_0",
             "graphics_id": "OBJ_EVENT_GFX_BERTHA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "POKEMON_LEAGUE_BERTHA_ROOM_ELITE_FOUR_ROOM_DOOR_1",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "POKEMON_LEAGUE_BERTHA_ROOM_ELITE_FOUR_ROOM_DOOR_2",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "TRAINERS_SCHOOL_ACE_TRAINER_F_0",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_BARRY_1",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_YOUNGSTER_2",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,6 +64,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_LASS_3",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,6 +79,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_YOUNGSTER_4",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -89,6 +94,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_BOOK_5",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,6 +109,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_SCHOOL_KID_M_6",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -117,6 +124,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_SCHOOL_KID_F_7",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,6 +139,7 @@
             "y": 0
         },
         {
+            "id": "TRAINERS_SCHOOL_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

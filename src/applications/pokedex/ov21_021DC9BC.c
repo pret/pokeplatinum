@@ -29,6 +29,7 @@
 #include "sprite_util.h"
 #include "unk_02012744.h"
 
+#include "res/graphics/pokedex/zukan.naix.h"
 #include "res/text/bank/pokedex.h"
 
 #define TERMINALVALUE      0xffff
@@ -491,36 +492,36 @@ static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_
     void *v0;
     NNSG2dScreenData *v1;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(param0->unk_00, entry_main_NCGR_lz, param0->unk_00->bgConfig, 3, 0, 0, TRUE, heapID);
 
-    v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 64, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, area_map_NSCR_lz, TRUE, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_Free(v0);
 
     if (param1->unk_00->newmoonIslandVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 65, 1, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_newmoon_island_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 13, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->seabreakPathVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 66, 1, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_seabreak_path_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 28, 7, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->fullmoonIslandVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 67, 1, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_fullmoon_island_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 11, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
     }
 
     if (param1->unk_00->springPathVisible) {
-        v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 68, 1, &v1, heapID);
+        v0 = PokedexGraphics_GetGraphicNarcTilemapData(param0->unk_00, map_spring_path_NSCR_lz, TRUE, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 25, 16, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_Free(v0);
@@ -534,25 +535,25 @@ static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = PokedexGraphics_GetNARC(param1->unk_00);
 
-    mapDisplay->unk_B4[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 108, 1, 108 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    mapDisplay->unk_B4[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, dungeon_highlight_NCGR_lz, TRUE, dungeon_highlight_NCGR_lz + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(mapDisplay->unk_B4[0]);
     SpriteResource_ReleaseData(mapDisplay->unk_B4[0]);
 
-    mapDisplay->unk_B4[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 106, 1, 106 + 6000, 2, heapID);
-    mapDisplay->unk_B4[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 107, 1, 107 + 6000, 3, heapID);
-    mapDisplay->unk_D0[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 93, 1, 93 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    mapDisplay->unk_B4[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, dungeon_highlight_cell_NCER_lz, TRUE, dungeon_highlight_cell_NCER_lz + 6000, 2, heapID);
+    mapDisplay->unk_B4[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, dungeon_highlight_anim_NANR_lz, TRUE, dungeon_highlight_anim_NANR_lz + 6000, 3, heapID);
+    mapDisplay->unk_D0[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, size_check_icons_NCGR_lz, TRUE, size_check_icons_NCGR_lz + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(mapDisplay->unk_D0[0]);
     SpriteResource_ReleaseData(mapDisplay->unk_D0[0]);
 
-    mapDisplay->unk_D0[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, 14, 0, 14 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
+    mapDisplay->unk_D0[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, size_check_icons_NCLR, FALSE, size_check_icons_NCLR + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(mapDisplay->unk_D0[1]);
     SpriteResource_ReleaseData(mapDisplay->unk_D0[1]);
 
-    mapDisplay->unk_D0[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 91, 1, 91 + 6000, 2, heapID);
-    mapDisplay->unk_D0[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 92, 1, 92 + 6000, 3, heapID);
+    mapDisplay->unk_D0[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, size_check_icons_cell_NCER_lz, TRUE, size_check_icons_cell_NCER_lz + 6000, 2, heapID);
+    mapDisplay->unk_D0[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, size_check_icons_anim_NANR_lz, TRUE, size_check_icons_anim_NANR_lz + 6000, 3, heapID);
 }
 
 static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
@@ -578,7 +579,7 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphicData *v2 = param1->unk_00;
     int v3;
 
-    SpriteResourcesHeader_Init(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, size_check_icons_NCGR_lz + 6000, size_check_icons_NCLR + 6000, size_check_icons_cell_NCER_lz + 6000, size_check_icons_anim_NANR_lz + 6000, 0xffffffff, 0xffffffff, FALSE, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -591,7 +592,7 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     mapDisplay->AreaUnknownCellActor = SpriteList_Add(&v1);
 
     Sprite_SetAnim(mapDisplay->AreaUnknownCellActor, 2);
-    SpriteResourcesHeader_Init(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, dungeon_highlight_NCGR_lz + 6000, size_check_icons_NCLR + 6000, dungeon_highlight_cell_NCER_lz + 6000, dungeon_highlight_anim_NANR_lz + 6000, 0xffffffff, 0xffffffff, FALSE, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
     v1.list = v2->spriteList;
     v1.resourceData = &v0;
@@ -633,7 +634,7 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     GF_ASSERT(mapDisplay->AreaUnknownCellActor);
 
-    v2 = SpriteResourceCollection_Find(param1->unk_00->spriteResourceCollection[1], 14 + 6000);
+    v2 = SpriteResourceCollection_Find(param1->unk_00->spriteResourceCollection[1], size_check_icons_NCLR + 6000);
 
     displayBox.textMan = v3->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -801,8 +802,8 @@ static void ov21_021DD668(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 {
     Window_FillTilemap(&param1->unk_00->window, 0);
 
-    mapDisplay->unk_7F4 = PokedexGraphics_GetGraphicNarcCharacterData(param1->unk_00, 30, 1, &mapDisplay->unk_7F8, heapID);
-    mapDisplay->unk_7FC = PokedexGraphics_GetGraphicNarcCharacterData(param1->unk_00, 31, 1, &mapDisplay->unk_800, heapID);
+    mapDisplay->unk_7F4 = PokedexGraphics_GetGraphicNarcCharacterData(param1->unk_00, dummy1_NCGR_lz, TRUE, &mapDisplay->unk_7F8, heapID);
+    mapDisplay->unk_7FC = PokedexGraphics_GetGraphicNarcCharacterData(param1->unk_00, dummy2_NCGR_lz, TRUE, &mapDisplay->unk_800, heapID);
 
     Window_SetPalette(&param1->unk_00->window, 8);
 }

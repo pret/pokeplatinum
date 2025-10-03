@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SUNYSHORE_CITY_GYM_ROOM_3_VOLKNER_0",
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_GYM_ROOM_3_ACE_TRAINER_F_1",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -32,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_GYM_ROOM_3_GUITARIST_2",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -48,6 +51,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_GYM_ROOM_3_GUITARIST_3",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -64,6 +68,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_GYM_ROOM_3_ACE_TRAINER_M_4",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",

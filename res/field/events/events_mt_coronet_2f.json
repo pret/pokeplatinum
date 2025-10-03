@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_2F_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,6 +64,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,6 +79,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_CAVE_PAINTING_4",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -89,6 +94,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_LOOKER_5",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,6 +109,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_CAVE_PAINTING_SHARDS_LEFT_6",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_LEFT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -117,6 +124,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_CAVE_PAINTING_SHARDS_RIGHT_7",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_RIGHT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,6 +139,7 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_2F_STRENGTH_BOULDER_8",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

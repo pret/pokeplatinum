@@ -19,6 +19,7 @@
     ],
     "object_events": [
         {
+            "id": "SUNYSHORE_CITY_SAILOR_0",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -33,6 +34,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_POKEFAN_F_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,6 +49,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -61,6 +64,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_WORKER_3",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,6 +79,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_SIGNBOARD_4",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -89,6 +94,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_MAP_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,6 +111,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_GYM_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -119,6 +126,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_SAILOR_7",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,6 +141,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_SIGNBOARD_8",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,6 +156,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_JASMINE_9",
             "graphics_id": "OBJ_EVENT_GFX_JASMINE",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,6 +171,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_VENT_10",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -175,6 +186,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_VENT_11",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -189,6 +201,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_VENT_12",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,6 +216,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_SIGNBOARD_13",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -217,6 +231,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_SIGNBOARD_14",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -231,6 +246,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_SIGNBOARD_15",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -245,6 +261,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_VENT_16",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -259,6 +276,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_POKEBALL_17",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -273,6 +291,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_FLINT_18",
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -287,6 +306,7 @@
             "y": 7
         },
         {
+            "id": "SUNYSHORE_CITY_VENT_19",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -301,6 +321,7 @@
             "y": 0
         },
         {
+            "id": "SUNYSHORE_CITY_BARRY_20",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -414,3 +435,4 @@
         }
     ]
 }
+

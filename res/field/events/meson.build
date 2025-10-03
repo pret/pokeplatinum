@@ -542,6 +542,21 @@ events_files = files(
     'events_rock_peak_ruins.json',
 )
 
+events_headers = []
+foreach events_file : events_files
+    events_h = events_file.full_path().split('/')[-1].split('.')[0] + '.h'
+    events_headers += custom_target(events_h,
+        output: events_h,
+        input: events_file,
+        command: [
+            datagen_events_exe,
+            events_file,
+            events_h,
+            meson.current_build_dir(),
+        ],
+    )
+endforeach
+
 events_order = files('zone_event.order')
 events_narc = custom_target('zone_event.narc',
     output: [
@@ -549,7 +564,7 @@ events_narc = custom_target('zone_event.narc',
         'zone_event.naix.h',
     ],
     input: event_bin_gen.process(events_files, env: json2bin_env),
-    depends: [ py_consts_generators ],
+    depends: [ py_consts_generators, events_headers],
     command: [
         narc_exe, 'create',
         '--naix',

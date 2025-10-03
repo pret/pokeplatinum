@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "LAKE_VERITY_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -34,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_GRUNT_F_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -50,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_GRUNT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -66,6 +70,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -80,6 +85,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_PROF_ROWAN_5",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,6 +100,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_UNK_101_6",
             "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -108,6 +115,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_MARS_7",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,6 +130,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VERITY_GRUNT_M_8",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",

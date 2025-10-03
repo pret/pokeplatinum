@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_205_NORTH_FISHERMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -25,6 +26,7 @@
             "y": 7
         },
         {
+            "id": "ROUTE_205_NORTH_FISHERMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -39,6 +41,7 @@
             "y": 7
         },
         {
+            "id": "ROUTE_205_NORTH_FISHERMAN_2",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -53,6 +56,7 @@
             "y": 7
         },
         {
+            "id": "ROUTE_205_NORTH_ARROW_SIGNPOST_3",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,6 +73,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_ARROW_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -85,6 +90,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_FISHERMAN_5",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -99,6 +105,7 @@
             "y": 7
         },
         {
+            "id": "ROUTE_205_NORTH_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -113,6 +120,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_UNK_100_7",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -129,6 +137,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_UNK_100_8",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -145,6 +154,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,6 +171,7 @@
             "y": 0
         },
         {
+            "id": "ROUTE_205_NORTH_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -177,7 +188,8 @@
             "y": 0
         },
         {
-            "local_id": 7,
+            "id": "ROUTE_205_NORTH_MAP_SIGNPOST_11",
+            "clone_id": 7,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -210,3 +222,4 @@
     ],
     "coord_events": []
 }
+

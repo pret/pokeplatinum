@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_1F_CASHIER_F_0",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -16,6 +17,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_1F_CASHIER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,6 +32,7 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_OBSERVATORY_GATE_1F_COWGIRL_2",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
