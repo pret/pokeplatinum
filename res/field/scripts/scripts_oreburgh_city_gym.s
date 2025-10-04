@@ -18,7 +18,7 @@ OreburghGym_Roark:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_ROARK
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, OreburghGym_LostRoarkBattle
+    GoToIfEq VAR_RESULT, FALSE, OreburghGym_LostBattle
     Message OreburghGym_Text_BeatRoark
     BufferPlayerName 0
     Message OreburghGym_Text_RoarkReceiveCoalBadge
@@ -72,7 +72,7 @@ OreburghGym_AlreadyHaveCoalBadge:
     ReleaseAll
     End
 
-OreburghGym_LostRoarkBattle:
+OreburghGym_LostBattle:
     BlackOutFromBattle
     ReleaseAll
     End
@@ -82,7 +82,7 @@ OreburghGym_GymGuide:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, OreburghGym_GymGuideAfterBadge
+    GoToIfEq VAR_RESULT, TRUE, OreburghGym_GymGuideAfterBadge
     Message OreburghGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage

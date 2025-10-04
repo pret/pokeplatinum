@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "EternaGym_Text_GymGuide_BeforeBadge",
+      "id": "EternaGym_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "EternaGym_Text_GymGuide_AfterBadge",
+      "id": "EternaGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
