@@ -117,6 +117,7 @@ struct JsonToCellOptions {
     bool labelEnabled;
     bool extended;
     bool vramTransferEnabled;
+    bool ucatEnabled;
     int mappingType;
     int cellCount;
     struct Cell **cells;
@@ -124,6 +125,7 @@ struct JsonToCellOptions {
     struct CellVramTransferData **transferData;
     char **labels;
     int labelCount;
+    int *ucatCellAttributes;
 };
 
 struct JsonToScreenOptions {
@@ -174,6 +176,11 @@ struct AnimationResults {
     };
 };
 
+struct UaatData {
+    int *sequenceAttributes;
+    int *frameAttributes;
+};
+
 struct JsonToAnimationOptions {
     bool multiCell;
     short sequenceCount;
@@ -184,6 +191,8 @@ struct JsonToAnimationOptions {
     char **labels;
     int labelCount;
     short resultCount;
+    bool uaatEnabled;
+    struct UaatData uaatData;
 };
 
 struct NtrFontOptions {

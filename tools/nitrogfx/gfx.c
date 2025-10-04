@@ -291,7 +291,7 @@ static void ConvertFromTiles8BppCell(unsigned char *src, unsigned char *dest, in
                 int idxComponentX = (chunkStartX + tilesSoFar) * 8 + k + startX;
                 if (hFlip)
                 {
-                    idxComponentX = (tilesSoFar + oamWidth - chunkStartX) * 4 + - k + startX;
+                    idxComponentX = (tilesSoFar + oamWidth - chunkStartX) * 8 + - k + startX;
                 }
 
                 if (toPNG)
@@ -777,7 +777,7 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
         }
         else
         {
-            FATAL_ERROR("Incompatible cell file type\n");
+            FATAL_ERROR("Incompatible cell file type: %s\n", cellFileExtension);
         }
     }
 
@@ -1524,7 +1524,9 @@ void ReadNtrCell_CEBK(unsigned char * restrict data, unsigned int blockOffset, u
     options->extended = data[blockOffset + 0xA] == 1;
 
     int vramTransferOffset = (data[blockOffset + 0x14] | data[blockOffset + 0x15] << 8);
+    unsigned int ucatOffset = (data[blockOffset + 0x1c] | data[blockOffset + 0x1d] << 8 | data[blockOffset + 0x1e] << 16 | data[blockOffset + 0x1f] << 24);
     options->vramTransferEnabled = vramTransferOffset > 0;
+    options->ucatEnabled = ucatOffset > 0;
     /*if (!options->extended)
     {
         //in theory not extended should be implemented, however not 100% sure
@@ -1633,6 +1635,18 @@ void ReadNtrCell_CEBK(unsigned char * restrict data, unsigned int blockOffset, u
             offset += 8;
         }
     }
+
+    if (options->ucatEnabled)
+    {
+        offset = blockOffset + 0x18 + ucatOffset + 0x04 * options->cellCount;
+
+        options->ucatCellAttributes = malloc(sizeof(uint32_t) * options->cellCount);
+        for (int i = 0; i < options->cellCount; i++)
+        {
+            options->ucatCellAttributes[i] = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
+            offset += 0x04;
+        }
+    }
 }
 
 void ReadNtrCell_LABL(unsigned char * restrict data, unsigned int blockOffset, unsigned int blockSize, struct JsonToCellOptions *options)
@@ -1714,6 +1728,13 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
     {
         kbecSize += 0x08 + (0x08 * options->cellCount);
     }
+    // if UCAT is enabled add size to KBEC
+    unsigned int ucatSize = 0;
+    if (options->ucatEnabled)
+    {
+        ucatSize = options->cellCount * 0x08 + 0x10;
+        kbecSize += ucatSize;
+    }
     // add 0x06 for number of OAMs - can be more than 1
     for (int idx = 0; idx < options->cellCount * iterNum; idx += iterNum)
     {
@@ -1757,11 +1778,21 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
     if (options->vramTransferEnabled) 
     {
         unsigned int vramTransferLength = 0x08 + (0x08 * options->cellCount);
-        unsigned int vramTransferOffset = (kbecSize + 0x20) - vramTransferLength - 0x08;
+        unsigned int vramTransferOffset = (kbecSize + 0x20) - vramTransferLength - ucatSize - 0x08;
         KBECHeader[20] = vramTransferOffset & 0xFF;
         KBECHeader[21] = (vramTransferOffset >> 8) & 0xFF;
         KBECHeader[22] = (vramTransferOffset >> 16) & 0xFF;
         KBECHeader[23] = (vramTransferOffset >> 24) & 0xFF;
+    }
+    
+    // offset to UCAT data within KBEC section (offset from KBEC start + 0x1c)
+    if (options->ucatEnabled) 
+    {
+        unsigned int ucatOffset = (kbecSize + 0x20) - ucatSize - 0x08;
+        KBECHeader[28] = ucatOffset & 0xFF;
+        KBECHeader[29] = (ucatOffset >> 8) & 0xFF;
+        KBECHeader[30] = (ucatOffset >> 16) & 0xFF;
+        KBECHeader[31] = (ucatOffset >> 24) & 0xFF;
     }
 
     fwrite(KBECHeader, 1, 0x20, fp);
@@ -1860,6 +1891,12 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
         }
     }
 
+    // word-aligned
+    while (offset % 4 > 0)
+    {
+        offset += 0x01;
+    }
+
     // VRAM transfer data
     if (options->vramTransferEnabled)
     {
@@ -1888,6 +1925,57 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
             KBECContents[offset + 6] = (options->transferData[idx]->size >> 16) & 0xFF;
             KBECContents[offset + 7] = (options->transferData[idx]->size >> 24) & 0xFF;
             offset += 8;
+        }
+    }
+
+    // UCAT data
+    if (options->ucatEnabled)
+    {
+       // UCAT magic
+        strcpy((char *) (KBECContents + offset), "TACU");
+        offset += 0x04;
+
+       // ucat size
+        KBECContents[offset] = ucatSize & 0xFF;
+        KBECContents[offset + 1] = (ucatSize >> 8) & 0xFF;
+        KBECContents[offset + 2] = (ucatSize >> 16) & 0xFF;
+        KBECContents[offset + 3] = (ucatSize >> 24) & 0xFF;
+        offset += 0x04;
+
+        // num cells
+        KBECContents[offset] = options->cellCount & 0xFF;
+        KBECContents[offset + 1] = (options->cellCount >> 8) & 0xFF;
+        offset += 0x02;
+
+        // num attributes per cell
+        KBECContents[offset] = 0x01;
+        offset += 0x02;
+
+        // **attr
+        KBECContents[offset] = 0x08;
+        offset += 0x04;
+
+        // *attr
+        unsigned int attributeAddress = options->cellCount * 0x04 + 0x08;
+        for (int i = 0; i < options->cellCount; i++)
+        {
+            KBECContents[offset] = attributeAddress & 0xFF;
+            KBECContents[offset + 1] = (attributeAddress >> 8) & 0xFF;
+            KBECContents[offset + 2] = (attributeAddress >> 16) & 0xFF;
+            KBECContents[offset + 3] = (attributeAddress >> 24) & 0xFF;
+            offset += 0x04;
+            attributeAddress += 0x04;
+        }
+
+        // attr
+        for (int i = 0; i < options->cellCount; i++)
+        {
+            unsigned int ucatAttribute = options->ucatCellAttributes[i];
+            KBECContents[offset] = ucatAttribute & 0xFF;
+            KBECContents[offset + 1] = (ucatAttribute >> 8) & 0xFF;
+            KBECContents[offset + 2] = (ucatAttribute >> 16) & 0xFF;
+            KBECContents[offset + 3] = (ucatAttribute >> 24) & 0xFF;
+            offset += 0x04;
         }
     }
 
@@ -2000,6 +2088,9 @@ void ReadNtrAnimation(char *path, struct JsonToAnimationOptions *options)
     options->sequenceCount = data[0x18] | (data[0x19] << 8);
     options->frameCount = data[0x1A] | (data[0x1B] << 8);
 
+    int uaatOffset = (data[0x2c] | data[0x2d] << 8 | data[0x2e] << 16 | data[0x2f] << 24);
+    options->uaatEnabled = uaatOffset > 0;
+
     options->sequenceData = malloc(sizeof(struct SequenceData *) * options->sequenceCount);
 
     for (int i = 0; i < options->sequenceCount; i++)
@@ -2069,6 +2160,25 @@ void ReadNtrAnimation(char *path, struct JsonToAnimationOptions *options)
     }
 
     free(frameOffsets);
+
+    if (options->uaatEnabled)
+    {
+        offset = 0x28 + uaatOffset + 0x0c * options->sequenceCount + 0x04 * options->frameCount; // index of first attribute
+
+        options->uaatData.sequenceAttributes = malloc(sizeof(uint32_t) * options->sequenceCount);
+        for (int i = 0; i < options->sequenceCount; i++)
+        {
+            options->uaatData.sequenceAttributes[i] = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
+            offset += 0x04;
+        }
+
+        options->uaatData.frameAttributes = malloc(sizeof(uint32_t) * options->frameCount);
+        for (int i = 0; i < options->frameCount; i++)
+        {
+            options->uaatData.frameAttributes[i] = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
+            offset += 0x04;
+        }
+    }
 
     offset = 0x18 + (data[0x24] | (data[0x25] << 8) | (data[0x26] << 16) | (data[0x27] << 24)); //start of animation results
 
@@ -2156,8 +2266,7 @@ void ReadNtrAnimation(char *path, struct JsonToAnimationOptions *options)
         }
     }
 
-    // add any missed padding from the final frame before processing labels
-    if (offset % 4 != 0) offset += 2;
+    offset = 0x10 + (data[0x14] | (data[0x15] << 8) | (data[0x26] << 16) | (data[0x17] << 24)); //start of label results
 
     if (options->labelEnabled)
     {
@@ -2247,6 +2356,13 @@ void WriteNtrAnimation(char *path, struct JsonToAnimationOptions *options)
 
     free(usedResults);
 
+    unsigned int uaatSize = 0;
+    if (options->uaatEnabled)
+    {
+        uaatSize = 0x10 + 0x10 * options->sequenceCount + 0x08 * options->frameCount;
+        totalSize += uaatSize;
+    }
+
     unsigned int KNBASize = totalSize;
 
     if (options->labelEnabled)
@@ -2291,10 +2407,21 @@ void WriteNtrAnimation(char *path, struct JsonToAnimationOptions *options)
     KBNAHeader[22] = (resultsOffset >> 16) & 0xff;
     KBNAHeader[23] = resultsOffset >> 24;
 
+    unsigned int uaatOffset = 0;
+    if (options->uaatEnabled)
+    {
+        uaatOffset = KNBASize - uaatSize - 0x08;
+        KBNAHeader[28] = uaatOffset & 0xff;
+        KBNAHeader[29] = (uaatOffset >> 8) & 0xff;
+        KBNAHeader[30] = (uaatOffset >> 16) & 0xff;
+        KBNAHeader[31] = (uaatOffset >> 24) & 0xff;
+    }
+
     fwrite(KBNAHeader, 1, 0x20, fp);
 
     int contentsSize = KNBASize - 0x20;
     unsigned char *KBNAContents = malloc(contentsSize);
+    memset(KBNAContents, 0, contentsSize);
 
     int i;
     int framePtrCounter = 0;
@@ -2397,6 +2524,100 @@ void WriteNtrAnimation(char *path, struct JsonToAnimationOptions *options)
             KBNAContents[resPtrCounter] = 0xCC;
             KBNAContents[resPtrCounter + 1] = 0xCC;
             resPtrCounter += 0x2;
+        }
+    }
+
+    // UAAT data
+    if (options->uaatEnabled)
+    {
+        int offset = uaatOffset - 0x18;
+
+        // UAAT magic
+        strcpy((char *) (KBNAContents + offset), "TAAU");
+        offset += 0x04;
+
+        // uaat size
+        KBNAContents[offset] = uaatSize & 0xFF;
+        KBNAContents[offset + 1] = (uaatSize >> 8) & 0xFF;
+        KBNAContents[offset + 2] = (uaatSize >> 16) & 0xFF;
+        KBNAContents[offset + 3] = (uaatSize >> 24) & 0xFF;
+        offset += 0x04;
+
+        // num sequences
+        KBNAContents[offset] = options->sequenceCount & 0xFF;
+        KBNAContents[offset + 1] = (options->sequenceCount >> 8) & 0xFF;
+        offset += 0x02;
+
+        // num attributes per frame
+        KBNAContents[offset] = 0x01;
+        offset += 0x02;
+
+        // fixed offset 0x08
+        KBNAContents[offset] = 0x08;
+        offset += 0x04;
+
+        unsigned int uaatSinglePointer = 0x08 + 0x0c * options->sequenceCount + 0x04 * options->frameCount;
+        unsigned int uaatDoublePointer = 0x08 + 0x0c * options->sequenceCount;
+        for (int i = 0; i < options->sequenceCount; i++)
+        {
+            // frame count in this sequence
+            KBNAContents[offset] = options->sequenceData[i]->frameCount & 0xFF;
+            KBNAContents[offset + 1] = (options->sequenceData[i]->frameCount >> 8) & 0xFF;
+            offset += 0x02;
+
+            // 0xBEEF
+            KBNAContents[offset] = 0xEF;
+            KBNAContents[offset + 1] = 0xBE;
+            offset += 0x02;
+
+            // sequence attributes *
+            KBNAContents[offset] = uaatSinglePointer & 0xFF;
+            KBNAContents[offset + 1] = (uaatSinglePointer >> 8) & 0xFF;
+            KBNAContents[offset + 2] = (uaatSinglePointer >> 16) & 0xFF;
+            KBNAContents[offset + 3] = (uaatSinglePointer >> 24) & 0xFF;
+            offset += 0x04;
+            uaatSinglePointer += 0x04;
+
+            // frame attributes **
+            KBNAContents[offset] = uaatDoublePointer & 0xFF;
+            KBNAContents[offset + 1] = (uaatDoublePointer >> 8) & 0xFF;
+            KBNAContents[offset + 2] = (uaatDoublePointer >> 16) & 0xFF;
+            KBNAContents[offset + 3] = (uaatDoublePointer >> 24) & 0xFF;
+            offset += 0x04;
+            uaatDoublePointer += options->sequenceData[i]->frameCount * 0x04;
+        }
+
+        for (int i = 0; i < options->frameCount; i++)
+        {
+            // frame attributes *
+            KBNAContents[offset] = uaatSinglePointer & 0xFF;
+            KBNAContents[offset + 1] = (uaatSinglePointer >> 8) & 0xFF;
+            KBNAContents[offset + 2] = (uaatSinglePointer >> 16) & 0xFF;
+            KBNAContents[offset + 3] = (uaatSinglePointer >> 24) & 0xFF;
+            offset += 0x04;
+            uaatSinglePointer += 0x04;
+        }
+
+        for (int i = 0; i < options->sequenceCount; i++)
+        {
+            // sequence attributes
+            unsigned int uaatSequenceAttribute = options->uaatData.sequenceAttributes[i];
+            KBNAContents[offset] = uaatSequenceAttribute & 0xFF;
+            KBNAContents[offset + 1] = (uaatSequenceAttribute >> 8) & 0xFF;
+            KBNAContents[offset + 2] = (uaatSequenceAttribute >> 16) & 0xFF;
+            KBNAContents[offset + 3] = (uaatSequenceAttribute >> 24) & 0xFF;
+            offset += 0x04;
+        }
+
+        for (int i = 0; i < options->frameCount; i++)
+        {
+            // frame attributes
+            unsigned int uaatFrameAttribute = options->uaatData.frameAttributes[i];
+            KBNAContents[offset] = uaatFrameAttribute & 0xFF;
+            KBNAContents[offset + 1] = (uaatFrameAttribute >> 8) & 0xFF;
+            KBNAContents[offset + 2] = (uaatFrameAttribute >> 16) & 0xFF;
+            KBNAContents[offset + 3] = (uaatFrameAttribute >> 24) & 0xFF;
+            offset += 0x04;
         }
     }
 
