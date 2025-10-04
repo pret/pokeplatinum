@@ -4,9 +4,12 @@
 #include "constants/pokemon.h"
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "sys_task_manager.h"
+
+#define FRIENDSHIP_CHECKER_TASK_SLOTS 8
 
 #define FRIENDSHIP_LIKE    0
 #define FRIENDSHIP_HATE    1
@@ -20,17 +23,17 @@ enum TapState {
     TAP_STATE_DOUBLE_TAP,
 };
 
-enum FriendshipCheckerGraphicTask {
+enum FriendshipCheckerGraphicsTask {
     FRIENDSHIP_CHECKER_GRAPHICS_INIT = 0,
     FRIENDSHIP_CHECKER_GRAPHICS_FREE,
 };
 
-typedef struct FriendshipCheckerState {
+typedef struct FriendshipCheckerData {
     int monCount;
     struct {
         u32 spriteIdx;
         u16 species;
-        u16 unk_06;
+        u16 unused;
         u16 form;
         u8 friendship;
         u8 intensity;
@@ -39,7 +42,7 @@ typedef struct FriendshipCheckerState {
     u16 screenTapped;
     u32 touchX;
     u32 touchY;
-} FriendshipCheckerState;
+} FriendshipCheckerData;
 
 typedef struct PokemonGraphic {
     PoketchAnimation_AnimatedSpriteData *iconSprite;
@@ -64,9 +67,9 @@ typedef struct PokemonGraphic {
 } PokemonGraphic;
 
 typedef struct FriendshipCheckerGraphics {
-    const FriendshipCheckerState *appState;
+    const FriendshipCheckerData *friendshipData;
     BgConfig *bgConfig;
-    u32 activeTasks[10];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + FRIENDSHIP_CHECKER_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_SpriteData monAnimData;
     PoketchAnimation_SpriteData heartAnimData;
@@ -88,10 +91,10 @@ typedef struct FriendshipCheckerGraphics {
     u32 touchY;
 } FriendshipCheckerGraphics;
 
-BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerState *appState, BgConfig *bgConfig);
+BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerData *appState, BgConfig *bgConfig);
 void PoketchFriendshipCheckerGraphics_Free(FriendshipCheckerGraphics *graphics);
-void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID);
-BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID);
+void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID);
+BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID);
 BOOL PoketchFriendshipCheckerGraphics_NoActiveTasks(FriendshipCheckerGraphics *graphics);
 
 #endif // POKEPLATINUM_POKETCH_FRIENDSHIP_CHECKER_GRAPHICS_H

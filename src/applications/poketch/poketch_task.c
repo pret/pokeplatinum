@@ -35,7 +35,7 @@ void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
     activeList[VALIDATOR_IDX] = POKETCH_TASK_LIST_VALIDATOR;
 
     for (u32 slot = 0; slot < numTaskSlots; slot++) {
-        activeList[BASE_IDX + slot] = POKETCH_EMPTY_TASK;
+        activeList[POKETCH_TASK_SLOT_BASE + slot] = POKETCH_EMPTY_TASK;
     }
 }
 
@@ -44,8 +44,8 @@ static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
     GF_ASSERT(activeList[VALIDATOR_IDX] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] == POKETCH_EMPTY_TASK) {
-            activeList[BASE_IDX + slot] = taskId;
+        if (activeList[POKETCH_TASK_SLOT_BASE + slot] == POKETCH_EMPTY_TASK) {
+            activeList[POKETCH_TASK_SLOT_BASE + slot] = taskId;
             return TRUE;
         }
     }
@@ -58,8 +58,8 @@ static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
     GF_ASSERT(activeList[VALIDATOR_IDX] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] == taskId) {
-            activeList[BASE_IDX + slot] = POKETCH_EMPTY_TASK;
+        if (activeList[POKETCH_TASK_SLOT_BASE + slot] == taskId) {
+            activeList[POKETCH_TASK_SLOT_BASE + slot] = POKETCH_EMPTY_TASK;
             return;
         }
     }
@@ -70,7 +70,7 @@ static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
 BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 {
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] == taskId) {
+        if (activeList[POKETCH_TASK_SLOT_BASE + slot] == taskId) {
             return FALSE;
         }
     }
@@ -81,7 +81,7 @@ BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 {
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] != POKETCH_EMPTY_TASK) {
+        if (activeList[POKETCH_TASK_SLOT_BASE + slot] != POKETCH_EMPTY_TASK) {
             return FALSE;
         }
     }

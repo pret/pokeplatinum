@@ -2,7 +2,6 @@
 
 #include "nitro/fx/fx.h"
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
@@ -29,7 +28,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(28), FX32_CONST(128) },
         .animIdx = 0,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -37,7 +36,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(116), FX32_CONST(128) },
         .animIdx = 2,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -45,7 +44,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(108), FX32_CONST(40) },
         .animIdx = 0,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -53,7 +52,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(196), FX32_CONST(40) },
         .animIdx = 2,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -61,7 +60,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(108), FX32_CONST(72) },
         .animIdx = 0,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -69,7 +68,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
     {
         .translation = { FX32_CONST(196), FX32_CONST(72) },
         .animIdx = 2,
-        .flip = 0,
+        .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
         .hasAffineTransform = 0,
@@ -79,7 +78,7 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[]
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataExclamation = {
     .translation = { FX32_CONST(44), FX32_CONST(48) },
     .animIdx = 5,
-    .flip = 0,
+    .flip = NNS_G2D_RENDERERFLIP_NONE,
     .oamPriority = 2,
     .priority = 0,
     .hasAffineTransform = 0,
@@ -97,38 +96,40 @@ static const BgTemplate sMoveTesterBgTemplate = {
     .bgExtPltt = GX_BG_EXTPLTT_01,
     .priority = 2,
     .areaOver = 0,
-    .mosaic = FALSE
+    .mosaic = FALSE,
 };
 
 static void SetupSprites(PoketchMoveTesterGraphics *graphics);
 static void UnloadSprites(PoketchMoveTesterGraphics *graphics);
-static void EndTask(PoketchTaskManager *taskMan);
-static void Task_DrawAppScreen(SysTask *task, void *param1);
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile);
 static void RemoveWindows(PoketchMoveTesterGraphics *graphics);
+
+static void EndTask(PoketchTaskManager *taskMan);
+static void Task_DrawAppScreen(SysTask *task, void *taskMan);
 static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan);
 static void Task_ButtonPressed(SysTask *task, void *taskMan);
 static void Task_ButtonReleased(SysTask *task, void *taskMan);
 static void Task_UpdateGraphics(SysTask *task, void *taskMan);
+
 static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData);
 static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enum PokemonType type);
 static void AddEffectivenessText(PoketchMoveTesterGraphics *graphics, Window *window, u32 exclamCount);
 static void DisplayExclamation(PoketchMoveTesterGraphics *graphics, u32 exclamCount);
 
-BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const MoveTesterData *moveTesterData, BgConfig *bgConfig)
+BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **dest, const MoveTesterData *moveTesterData, BgConfig *bgConfig)
 {
-    PoketchMoveTesterGraphics *moveTesterGraphics = (PoketchMoveTesterGraphics *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
+    PoketchMoveTesterGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
 
-    if (moveTesterGraphics != NULL) {
-        PoketchTask_InitActiveTaskList(moveTesterGraphics->activeTasks, NUM_TASK_SLOTS);
-        moveTesterGraphics->moveTesterData = moveTesterData;
-        moveTesterGraphics->bgConfig = PoketchGraphics_GetBgConfig();
-        moveTesterGraphics->animMan = PoketchGraphics_GetAnimationManager();
-        moveTesterGraphics->msgLoaderTypes = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
-        moveTesterGraphics->msgLoaderEffectiveness = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
-        moveTesterGraphics->strBuf = Strbuf_Init(128, HEAP_ID_POKETCH_APP); // Possibly TRAINER_NAME_LEN + 1
-        SetupSprites(moveTesterGraphics);
-        *graphics = moveTesterGraphics;
+    if (graphics != NULL) {
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, MOVE_TESTER_TASK_SLOTS);
+        graphics->moveTesterData = moveTesterData;
+        graphics->bgConfig = PoketchGraphics_GetBgConfig();
+        graphics->animMan = PoketchGraphics_GetAnimationManager();
+        graphics->msgLoaderTypes = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
+        graphics->msgLoaderEffectiveness = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
+        graphics->strBuf = Strbuf_Init(128, HEAP_ID_POKETCH_APP); // Possibly TRAINER_NAME_LEN + 1
+        SetupSprites(graphics);
+        *dest = graphics;
 
         return TRUE;
     }
@@ -184,20 +185,20 @@ void PoketchMoveTesterGraphics_Free(PoketchMoveTesterGraphics *graphics)
 }
 
 static const PoketchTask sMoveTesterTasks[] = {
-    { TASK_DRAW_APP_SCREEN, Task_DrawAppScreen, 0x0 },
-    { TASK_FREE_WINDOWS_AND_BG, Task_FreeWindowsAndBG, 0x0 },
-    { TASK_BUTTON_PRESSED, Task_ButtonPressed, 0x0 },
-    { TASK_BUTTON_RELEASED, Task_ButtonReleased, 0x0 },
-    { TASK_UPDATE_GRAPHICS, Task_UpdateGraphics, 0x0 },
+    { MOVE_TESTER_GRAPHICS_INIT, Task_DrawAppScreen, 0 },
+    { MOVE_TESTER_GRAPHICS_FREE, Task_FreeWindowsAndBG, 0 },
+    { MOVE_TESTER_GRAPHICS_BUTTON_PRESSED, Task_ButtonPressed, 0 },
+    { MOVE_TESTER_GRAPHICS_BUTTON_RELEASED, Task_ButtonReleased, 0 },
+    { MOVE_TESTER_GRAPHICS_UPDATE, Task_UpdateGraphics, 0 },
     { 0 }
 };
 
-void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
+void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTask taskID)
 {
     PoketchTask_Start(sMoveTesterTasks, taskID, graphics, graphics->moveTesterData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
+BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -225,10 +226,10 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     graphics = PoketchTask_GetTaskData(taskMan);
     moveTesterData = PoketchTask_GetConstTaskData(taskMan);
 
-    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &sMoveTesterBgTemplate, 0);
+    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &sMoveTesterBgTemplate, BG_TYPE_STATIC);
 
-    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 61, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 60, graphics->bgConfig, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 61, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 60, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     tileSize /= 0x20;
@@ -254,20 +255,20 @@ static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData
 
     Window_Add(graphics->bgConfig, &(graphics->windowExclamations), BG_LAYER_SUB_2, 3, 19, 22, 2, PLTT_0, baseTile);
 
-    Window_PutToTilemap(&(graphics->windowAttackType));
-    Window_PutToTilemap(&(graphics->windowDefenderType1));
-    Window_PutToTilemap(&(graphics->windowDefenderType2));
-    Window_PutToTilemap(&(graphics->windowExclamations));
+    Window_PutToTilemap(&graphics->windowAttackType);
+    Window_PutToTilemap(&graphics->windowDefenderType1);
+    Window_PutToTilemap(&graphics->windowDefenderType2);
+    Window_PutToTilemap(&graphics->windowExclamations);
 
     UpdateGraphics(graphics, moveTesterData);
 }
 
 static void RemoveWindows(PoketchMoveTesterGraphics *graphics)
 {
-    Window_Remove(&(graphics->windowAttackType));
-    Window_Remove(&(graphics->windowDefenderType1));
-    Window_Remove(&(graphics->windowDefenderType2));
-    Window_Remove(&(graphics->windowExclamations));
+    Window_Remove(&graphics->windowAttackType);
+    Window_Remove(&graphics->windowDefenderType1);
+    Window_Remove(&graphics->windowDefenderType2);
+    Window_Remove(&graphics->windowExclamations);
 }
 
 static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan)
@@ -311,10 +312,10 @@ static void Task_UpdateGraphics(SysTask *task, void *taskMan)
 
 static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData)
 {
-    AddTypeText(graphics, &(graphics->windowAttackType), moveTesterData->attackType);
-    AddTypeText(graphics, &(graphics->windowDefenderType1), moveTesterData->defenderType1);
-    AddTypeText(graphics, &(graphics->windowDefenderType2), moveTesterData->defenderType2);
-    AddEffectivenessText(graphics, &(graphics->windowExclamations), moveTesterData->exclamCount);
+    AddTypeText(graphics, &graphics->windowAttackType, moveTesterData->attackType);
+    AddTypeText(graphics, &graphics->windowDefenderType1, moveTesterData->defenderType1);
+    AddTypeText(graphics, &graphics->windowDefenderType2, moveTesterData->defenderType2);
+    AddEffectivenessText(graphics, &graphics->windowExclamations, moveTesterData->exclamCount);
     DisplayExclamation(graphics, moveTesterData->exclamCount);
 }
 

@@ -20,7 +20,7 @@ typedef struct PoketchPedometer {
     PedometerGraphics *graphics;
     PoketchSystem *poketchSys;
     PoketchButtonManager *buttonManager;
-    u32 buttonState;
+    enum ButtonManagerState buttonState;
     Poketch *poketch;
 } PoketchPedometer;
 

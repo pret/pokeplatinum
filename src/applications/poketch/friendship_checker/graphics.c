@@ -48,8 +48,8 @@ enum IconActions {
 
 static void PrintDebugLog(const char *text, ...);
 
-static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
+static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
 static void SetupTapState(FriendshipCheckerGraphics *graphics);
 static void SetRandomVelocity(VecFx32 *velocity);
 
@@ -59,11 +59,11 @@ static void Task_UpdateGraphics(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
 
 static void UpdateTapState(FriendshipCheckerGraphics *graphics, enum TapState newTapState);
-static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
-static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
+static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
+static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
+static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
+static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
 static void TriggerJumpSequence(FriendshipCheckerGraphics *graphics);
 
 static void ShowHeartSprite(FriendshipCheckerGraphics *graphics, int slot);
@@ -72,7 +72,7 @@ static void HideActionSprite(FriendshipCheckerGraphics *graphics, int slot);
 
 static BOOL NoJumpingMons(FriendshipCheckerGraphics *graphics);
 static u32 CheckIfTouchingMon(FriendshipCheckerGraphics *graphics);
-static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
 static void UpdateIconAction(FriendshipCheckerGraphics *graphics, int slot, enum IconActions newAction);
 static inline void UpdateIconDirection(PokemonGraphic *pokemon);
 
@@ -82,23 +82,23 @@ static BOOL VectorIsZero(const VecFx32 *vec);
 static inline BOOL VectorIsZeroInline(const VecFx32 *vec);
 static inline void InvertVector(VecFx32 *vec);
 
-static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot);
-static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState);
+static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot);
+static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData);
 
-BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerState *appState, BgConfig *bgConfig)
+BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, const FriendshipCheckerData *friendshipData, BgConfig *bgConfig)
 {
     FriendshipCheckerGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(FriendshipCheckerGraphics));
 
     if (graphics != NULL) {
 
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, HEAP_ID_POKETCH_APP);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, FRIENDSHIP_CHECKER_TASK_SLOTS);
 
-        graphics->appState = appState;
+        graphics->friendshipData = friendshipData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
         graphics->updateTask = NULL;
@@ -148,12 +148,12 @@ static const PoketchTask sFrienshipCheckerTasks[] = {
     { 0 }
 };
 
-void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID)
+void PoketchFriendshipCheckerGraphics_StartTask(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID)
 {
-    PoketchTask_Start(sFrienshipCheckerTasks, taskID, graphics, graphics->appState, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
+    PoketchTask_Start(sFrienshipCheckerTasks, taskID, graphics, graphics->friendshipData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicTask taskID)
+BOOL PoketchFriendshipCheckerGraphics_TaskIsNotActive(FriendshipCheckerGraphics *graphics, enum FriendshipCheckerGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -195,15 +195,15 @@ static void Task_InitGraphics(SysTask *task, void *taskMan)
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
-    SetupSprites(graphics, graphics->appState);
-    SetupIconMovement(graphics, graphics->appState);
+    SetupSprites(graphics, graphics->friendshipData);
+    SetupIconMovement(graphics, graphics->friendshipData);
 
     dispCnt = GXS_GetDispCnt();
     GXS_SetVisiblePlane(dispCnt.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
     EndTask(taskMan);
 }
 
-static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
     static const struct {
         u16 x;
@@ -233,8 +233,8 @@ static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCh
         animData.oamPriority = 2;
         animData.hasAffineTransform = TRUE;
 
-        for (int slot = 0; slot < appState->monCount; slot++) {
-            ncgrFile = NARC_AllocAndReadWholeMember(pokeIconNarc, appState->party[slot].spriteIdx, HEAP_ID_POKETCH_APP);
+        for (int slot = 0; slot < friendshipData->monCount; slot++) {
+            ncgrFile = NARC_AllocAndReadWholeMember(pokeIconNarc, friendshipData->party[slot].spriteIdx, HEAP_ID_POKETCH_APP);
             NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
             DC_FlushRange(charData->pRawData, POKE_ICON_SIZE * TILE_SIZE_4BPP);
             GXS_LoadOBJ(charData->pRawData, POKE_ICON_SIZE * TILE_SIZE_4BPP * slot, POKE_ICON_SIZE * TILE_SIZE_4BPP);
@@ -247,7 +247,7 @@ static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCh
             graphics->pokemon[slot].iconSprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->monAnimData);
 
             PoketchAnimation_SetSpriteCharNo(graphics->pokemon[slot].iconSprite, POKE_ICON_SIZE * slot);
-            PoketchAnimation_SetCParam(graphics->pokemon[slot].iconSprite, 1 + PokeIconPaletteIndex(appState->party[slot].species, appState->party[slot].form, FALSE));
+            PoketchAnimation_SetCParam(graphics->pokemon[slot].iconSprite, 1 + PokeIconPaletteIndex(friendshipData->party[slot].species, friendshipData->party[slot].form, FALSE));
 
             animData.priority = 0;
             graphics->pokemon[slot].actionSprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->heartAnimData);
@@ -260,7 +260,7 @@ static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCh
                 GF_ASSERT(0);
             }
 
-            graphics->pokemon[slot].flipSprite = SpeciesData_GetFormValue(appState->party[slot].species, appState->party[slot].form, SPECIES_DATA_FLIP_SPRITE);
+            graphics->pokemon[slot].flipSprite = SpeciesData_GetFormValue(friendshipData->party[slot].species, friendshipData->party[slot].form, SPECIES_DATA_FLIP_SPRITE);
             graphics->pokemon[slot].unused2 = 0;
             graphics->pokemon[slot].bumpedFromRest = FALSE;
 
@@ -295,9 +295,9 @@ static inline void UpdateIconDirection(PokemonGraphic *pokemon)
     }
 }
 
-static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void SetupIconMovement(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    for (int slot = 0; slot < appState->monCount; slot++) {
+    for (int slot = 0; slot < friendshipData->monCount; slot++) {
         SetRandomVelocity(&graphics->pokemon[slot].velocity);
         UpdateIconDirection(&graphics->pokemon[slot]);
     }
@@ -318,12 +318,12 @@ static void SetupTapState(FriendshipCheckerGraphics *graphics)
 {
     graphics->tapState = TAP_STATE_IDLE;
 
-    for (int slot = 0; slot < graphics->appState->monCount; slot++) {
+    for (int slot = 0; slot < graphics->friendshipData->monCount; slot++) {
         graphics->pokemon[slot].action = ACTION_WANDER;
         graphics->pokemon[slot].collisionCooldown = 0;
     }
 
-    graphics->touchedMonIdx = graphics->appState->monCount;
+    graphics->touchedMonIdx = graphics->friendshipData->monCount;
     graphics->prevTouchedMonIdx = graphics->touchedMonIdx;
 }
 
@@ -335,7 +335,7 @@ static void UpdateTapState(FriendshipCheckerGraphics *graphics, enum TapState ne
 
 static void Task_UpdateGraphics(SysTask *task, void *taskData)
 {
-    static void (*const tapStateHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerState *) = {
+    static void (*const tapStateHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerData *) = {
         TapStateIdle,
         TapStateFirstTap,
         TapStateHeldTooLong,
@@ -344,30 +344,30 @@ static void Task_UpdateGraphics(SysTask *task, void *taskData)
     };
 
     FriendshipCheckerGraphics *graphics = taskData;
-    const FriendshipCheckerState *appState = graphics->appState;
+    const FriendshipCheckerData *friendshipData = graphics->friendshipData;
 
-    if (appState->screenHeld) {
-        graphics->touchX = appState->touchX;
-        graphics->touchY = appState->touchY - 8;
+    if (friendshipData->screenHeld) {
+        graphics->touchX = friendshipData->touchX;
+        graphics->touchY = friendshipData->touchY - 8;
         graphics->touchedMonIdx = CheckIfTouchingMon(graphics);
-        graphics->touchingMonIcon = (graphics->touchedMonIdx < appState->monCount);
+        graphics->touchingMonIcon = (graphics->touchedMonIdx < friendshipData->monCount);
 
         if (graphics->touchingMonIcon && (graphics->touchedMonIdx != graphics->prevTouchedMonIdx)) {
-            PoketchSystem_PlayCry(appState->party[graphics->touchedMonIdx].species, appState->party[graphics->touchedMonIdx].form);
+            PoketchSystem_PlayCry(friendshipData->party[graphics->touchedMonIdx].species, friendshipData->party[graphics->touchedMonIdx].form);
         }
 
         graphics->prevTouchedMonIdx = graphics->touchedMonIdx;
     } else {
         graphics->touchingMonIcon = FALSE;
-        graphics->prevTouchedMonIdx = appState->monCount;
+        graphics->prevTouchedMonIdx = friendshipData->monCount;
     }
 
-    tapStateHandlers[graphics->tapState](graphics, appState);
+    tapStateHandlers[graphics->tapState](graphics, friendshipData);
 
-    RunIconActions(graphics, appState);
+    RunIconActions(graphics, friendshipData);
 
     if (graphics->tapState != TAP_STATE_DOUBLE_TAP) {
-        UpdateIconPositions(graphics, appState);
+        UpdateIconPositions(graphics, friendshipData);
     }
 }
 
@@ -375,7 +375,7 @@ static u32 CheckIfTouchingMon(FriendshipCheckerGraphics *graphics)
 {
     int x, y;
 
-    for (int slot = 0; slot < graphics->appState->monCount; slot++) {
+    for (int slot = 0; slot < graphics->friendshipData->monCount; slot++) {
         x = graphics->pokemon[slot].position.x >> FX32_SHIFT;
         y = graphics->pokemon[slot].position.y >> FX32_SHIFT;
         x = (graphics->touchX - x) * (graphics->touchX - x);
@@ -386,7 +386,7 @@ static u32 CheckIfTouchingMon(FriendshipCheckerGraphics *graphics)
         }
     }
 
-    return graphics->appState->monCount;
+    return graphics->friendshipData->monCount;
 }
 
 static BOOL PointWithinDistance(u32 x, u32 y, u32 distance, const VecFx32 *point)
@@ -410,17 +410,17 @@ static BOOL PointWithinDistance(u32 x, u32 y, u32 distance, const VecFx32 *point
     return FALSE;
 }
 
-static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateIdle(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    if (appState->screenTapped) {
+    if (friendshipData->screenTapped) {
         graphics->tappedOnMonIcon = graphics->touchingMonIcon;
         UpdateTapState(graphics, TAP_STATE_FIRST_TAP);
     }
 }
 
-static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    if (appState->screenHeld) {
+    if (friendshipData->screenHeld) {
         graphics->tapStateCounter++;
 
         if (graphics->tapStateCounter > 6) {
@@ -435,16 +435,16 @@ static void TapStateFirstTap(FriendshipCheckerGraphics *graphics, const Friendsh
     }
 }
 
-static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateHeldTooLong(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    if (appState->screenHeld == FALSE) {
+    if (friendshipData->screenHeld == FALSE) {
         UpdateTapState(graphics, TAP_STATE_IDLE);
     }
 }
 
-static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    if (appState->screenTapped == FALSE) {
+    if (friendshipData->screenTapped == FALSE) {
         graphics->tapStateCounter++;
 
         if (graphics->tapStateCounter > 6) {
@@ -460,7 +460,7 @@ static void TapStateReleasedFirst(FriendshipCheckerGraphics *graphics, const Fri
     }
 }
 
-static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void TapStateDoubleTap(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
     if (graphics->tapStateCounter == 0) {
         TriggerJumpSequence(graphics);
@@ -481,9 +481,9 @@ static void PrintDebugLog(const char *text, ...)
     }
 }
 
-static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void RunIconActions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
-    static void (*const actionHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerState *, int) = {
+    static void (*const actionHandlers[])(FriendshipCheckerGraphics *, const FriendshipCheckerData *, int) = {
         HandleWanderAction,
         HandleGatherAction,
         HandleRunAwayAction,
@@ -492,12 +492,12 @@ static void RunIconActions(FriendshipCheckerGraphics *graphics, const Friendship
         HandleJumpAction
     };
 
-    for (int slot = 0; slot < appState->monCount; slot++) {
+    for (int slot = 0; slot < friendshipData->monCount; slot++) {
         if (graphics->pokemon[slot].collisionCooldown) {
             graphics->pokemon[slot].collisionCooldown--;
             PrintDebugLog("icon[%d] REF[%d]\n", slot, graphics->pokemon[slot].collisionCooldown);
         } else {
-            actionHandlers[graphics->pokemon[slot].action](graphics, appState, slot);
+            actionHandlers[graphics->pokemon[slot].action](graphics, friendshipData, slot);
         }
     }
 
@@ -526,12 +526,12 @@ static void UpdateIconAction(FriendshipCheckerGraphics *graphics, int slot, enum
 
 static void TriggerJumpSequence(FriendshipCheckerGraphics *graphics)
 {
-    for (int slot = 0; slot < graphics->appState->monCount; slot++) {
+    for (int slot = 0; slot < graphics->friendshipData->monCount; slot++) {
         UpdateIconAction(graphics, slot, ACTION_JUMP);
         graphics->pokemon[slot].collisionCooldown = 0;
     }
 
-    graphics->jumpingMons = graphics->appState->monCount;
+    graphics->jumpingMons = graphics->friendshipData->monCount;
 }
 
 static BOOL NoJumpingMons(FriendshipCheckerGraphics *graphics)
@@ -541,9 +541,9 @@ static BOOL NoJumpingMons(FriendshipCheckerGraphics *graphics)
 
 static void ShowHeartSprite(FriendshipCheckerGraphics *graphics, int slot)
 {
-    if (graphics->appState->party[slot].friendship == FRIENDSHIP_LIKE) {
+    if (graphics->friendshipData->party[slot].friendship == FRIENDSHIP_LIKE) {
         PoketchAnimation_SetSpritePrority(graphics->animMan, graphics->pokemon[slot].actionSprite, 0);
-        PoketchAnimation_UpdateAnimationIdx(graphics->pokemon[slot].actionSprite, graphics->appState->party[slot].intensity - 1);
+        PoketchAnimation_UpdateAnimationIdx(graphics->pokemon[slot].actionSprite, graphics->friendshipData->party[slot].intensity - 1);
         PoketchAnimation_HideSprite(graphics->pokemon[slot].actionSprite, FALSE);
     }
 }
@@ -580,26 +580,26 @@ static BOOL VectorIsZero(const VecFx32 *vec)
     return (vec->x == 0) && (vec->y == 0);
 }
 
-static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PrintDebugLog(" icon[%d] Default\n", slot);
 
-    if (appState->screenHeld == FALSE) {
+    if (friendshipData->screenHeld == FALSE) {
         LimitIconSpeed(768, 96, &graphics->pokemon[slot].velocity);
     } else {
         if (graphics->touchingMonIcon == FALSE) {
             if (PointWithinDistance(graphics->touchX, graphics->touchY, 48, &graphics->pokemon[slot].position)) {
-                if (appState->party[slot].friendship != FRIENDSHIP_HATE) {
+                if (friendshipData->party[slot].friendship != FRIENDSHIP_HATE) {
                     UpdateIconAction(graphics, slot, ACTION_GATHER);
-                    HandleGatherAction(graphics, appState, slot);
+                    HandleGatherAction(graphics, friendshipData, slot);
                 } else {
                     UpdateIconAction(graphics, slot, ACTION_RUN_AWAY);
-                    HandleRunAwayAction(graphics, appState, slot);
+                    HandleRunAwayAction(graphics, friendshipData, slot);
                 }
             }
         } else if (graphics->touchedMonIdx == slot) {
             if (PointWithinDistance(graphics->touchX, graphics->touchY, 8, &graphics->pokemon[slot].position)) {
-                if (appState->party[slot].friendship != FRIENDSHIP_HATE) {
+                if (friendshipData->party[slot].friendship != FRIENDSHIP_HATE) {
                     UpdateIconAction(graphics, slot, ACTION_SHOW_LIKE);
                 } else {
                     UpdateIconAction(graphics, slot, ACTION_SHOW_DISLIKE);
@@ -609,11 +609,11 @@ static void HandleWanderAction(FriendshipCheckerGraphics *graphics, const Friend
     }
 }
 
-static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PrintDebugLog(" icon[%d] ReaLike\n", slot);
 
-    if (appState->screenHeld && PointWithinDistance(graphics->touchX, graphics->touchY, 64, &graphics->pokemon[slot].position)) {
+    if (friendshipData->screenHeld && PointWithinDistance(graphics->touchX, graphics->touchY, 64, &graphics->pokemon[slot].position)) {
         static const u8 speedFactor[] = {
             100, 150, 175, 200
         };
@@ -628,8 +628,8 @@ static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const Friend
                 VEC_Subtract(&velocity, &graphics->pokemon[slot].position, &velocity);
                 VEC_Normalize(&velocity, &velocity);
 
-                velocity.x = (velocity.x * speedFactor[appState->party[slot].intensity]) / 100;
-                velocity.y = (velocity.y * speedFactor[appState->party[slot].intensity]) / 100;
+                velocity.x = (velocity.x * speedFactor[friendshipData->party[slot].intensity]) / 100;
+                velocity.y = (velocity.y * speedFactor[friendshipData->party[slot].intensity]) / 100;
                 velocity.x /= TIME_STEPS_PER_FRAME;
                 velocity.y /= TIME_STEPS_PER_FRAME;
 
@@ -641,11 +641,11 @@ static void HandleGatherAction(FriendshipCheckerGraphics *graphics, const Friend
     }
 }
 
-static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PrintDebugLog(" icon[%d] ReaHate\n", slot);
 
-    if (appState->screenHeld && PointWithinDistance(graphics->touchX, graphics->touchY, 64, &graphics->pokemon[slot].position)) {
+    if (friendshipData->screenHeld && PointWithinDistance(graphics->touchX, graphics->touchY, 64, &graphics->pokemon[slot].position)) {
         static const u8 speedFactor[] = {
             100, 150, 175, 200
         };
@@ -655,8 +655,8 @@ static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const Frien
         VEC_Subtract(&graphics->pokemon[slot].position, &velocity, &velocity);
         VEC_Normalize(&velocity, &velocity);
 
-        velocity.x = (velocity.x * speedFactor[appState->party[slot].intensity]) / 100;
-        velocity.y = (velocity.y * speedFactor[appState->party[slot].intensity]) / 100;
+        velocity.x = (velocity.x * speedFactor[friendshipData->party[slot].intensity]) / 100;
+        velocity.y = (velocity.y * speedFactor[friendshipData->party[slot].intensity]) / 100;
         velocity.x /= TIME_STEPS_PER_FRAME;
         velocity.y /= TIME_STEPS_PER_FRAME;
         graphics->pokemon[slot].velocity = velocity;
@@ -665,11 +665,11 @@ static void HandleRunAwayAction(FriendshipCheckerGraphics *graphics, const Frien
     }
 }
 
-static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PrintDebugLog(" icon[%d] TcgLike\n", slot);
 
-    if (appState->screenHeld) {
+    if (friendshipData->screenHeld) {
         VecFx32 velocity;
 
         VEC_Set(&velocity, graphics->touchX << FX32_SHIFT, graphics->touchY << FX32_SHIFT, 0);
@@ -696,11 +696,11 @@ static void HandleShowLikeAction(FriendshipCheckerGraphics *graphics, const Frie
     UpdateIconAction(graphics, slot, ACTION_WANDER);
 }
 
-static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PrintDebugLog(" icon[%d] TchHate\n", slot);
 
-    if (appState->screenHeld) {
+    if (friendshipData->screenHeld) {
         VecFx32 unused;
         VEC_Set(&unused, graphics->touchX << FX32_SHIFT, graphics->touchY << FX32_SHIFT, 0);
 
@@ -720,7 +720,7 @@ static void HandleShowDislikeAction(FriendshipCheckerGraphics *graphics, const F
     UpdateIconAction(graphics, slot, ACTION_WANDER);
 }
 
-static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState, int slot)
+static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData, int slot)
 {
     PokemonGraphic *monSprite = &graphics->pokemon[slot];
 
@@ -762,7 +762,7 @@ static void HandleJumpAction(FriendshipCheckerGraphics *graphics, const Friendsh
     }
 }
 
-static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerState *appState)
+static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const FriendshipCheckerData *friendshipData)
 {
     VecFx32 iconDisplacement;
     fx32 usedTimeSteps, remainingTimeSteps;
@@ -777,11 +777,11 @@ static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const Frien
         usedTimeSteps = remainingTimeSteps;
         collisionCheckResult = NO_COLLISION;
 
-        for (slot = 0; slot < appState->monCount; slot++) {
+        for (slot = 0; slot < friendshipData->monCount; slot++) {
             VEC_MultAdd(usedTimeSteps, &graphics->pokemon[slot].velocity, &graphics->pokemon[slot].position, &graphics->plannedPosition[slot]);
         }
 
-        for (slot = 0; slot < appState->monCount; slot++) {
+        for (slot = 0; slot < friendshipData->monCount; slot++) {
             if ((graphics->plannedPosition[slot].x < LEFT_EDGE) && (graphics->pokemon[slot].velocity.x != 0)) {
                 fx32 timeToContact = usedTimeSteps - ((graphics->plannedPosition[slot].x - LEFT_EDGE) / graphics->pokemon[slot].velocity.x);
 
@@ -823,7 +823,7 @@ static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const Frien
             }
         }
 
-        for (slot2 = 0; slot2 < appState->monCount; slot2++) {
+        for (slot2 = 0; slot2 < friendshipData->monCount; slot2++) {
             for (slot = 0; slot < slot2; slot++) {
                 VEC_Subtract(&graphics->plannedPosition[slot], &graphics->plannedPosition[slot2], &iconDisplacement);
 
@@ -849,7 +849,7 @@ static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const Frien
             break;
         }
 
-        for (slot = 0; slot < appState->monCount; slot++) {
+        for (slot = 0; slot < friendshipData->monCount; slot++) {
             VEC_MultAdd(usedTimeSteps, &graphics->pokemon[slot].velocity, &graphics->pokemon[slot].position, &graphics->pokemon[slot].position);
         }
 
@@ -940,7 +940,7 @@ static void UpdateIconPositions(FriendshipCheckerGraphics *graphics, const Frien
         remainingTimeSteps -= usedTimeSteps;
     } while (collisionCheckResult != NO_COLLISION);
 
-    for (slot = 0; slot < appState->monCount; slot++) {
+    for (slot = 0; slot < friendshipData->monCount; slot++) {
         if (graphics->pokemon[slot].action < ACTION_SHOW_LIKE) {
             UpdateIconDirection(&graphics->pokemon[slot]);
         }

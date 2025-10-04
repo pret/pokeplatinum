@@ -30,7 +30,7 @@ BOOL PoketchPedometerGraphics_New(PedometerGraphics **dest, const PedometerData 
     PedometerGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PedometerGraphics));
 
     if (graphics != NULL) {
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, 4);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, PEDOMETER_TASK_SLOTS);
         graphics->pedometerData = pedometerData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
@@ -73,13 +73,13 @@ static void SetupSprites(PedometerGraphics *graphics, const PedometerData *pedom
     };
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 52, DS_SCREEN_SUB, 80 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 52, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchAnimation_LoadSpriteFromNARC(&graphics->buttonSprites, NARC_INDEX_GRAPHIC__POKETCH, 50, 51, HEAP_ID_POKETCH_APP);
     PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP);
 
     graphics->buttonAnimation = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &buttonAnimData, &graphics->buttonSprites);
-    PoketchAnimation_SetSpriteCharNo(graphics->buttonAnimation, 80);
+    PoketchAnimation_SetSpriteCharNo(graphics->buttonAnimation, POKETCH_DIGITS_NCGR_NUM_TILES);
 
     for (int i = 0; i < NUM_DIGITS; i++) {
         graphics->digitsAnimation[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &digitsAnimData, &graphics->digitSprites);

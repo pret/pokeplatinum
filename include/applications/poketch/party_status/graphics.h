@@ -4,9 +4,12 @@
 #include "constants/pokemon.h"
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "sys_task_manager.h"
+
+#define PARTY_STATUS_TASK_SLOTS 8
 
 typedef struct PartyStatus {
     int partyCount;
@@ -44,7 +47,7 @@ struct PartyStatusGraphics {
     const PartyStatus *partyData;
     BgConfig *bgConfig;
     PoketchAnimation_AnimationManager *animMan;
-    u32 activeTaskIds[10];
+    u32 activeTaskIds[POKETCH_TASK_SLOT_BASE + PARTY_STATUS_TASK_SLOTS];
     u32 hpBarBaseTile;
     u32 partyCount;
     Window hpBarWindows[MAX_PARTY_SIZE];

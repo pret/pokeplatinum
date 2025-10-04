@@ -6,9 +6,9 @@
 #define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[VALIDATOR_IDX] is not this value, tasks will not be added or removed.
 #define POKETCH_EMPTY_TASK          0xFFFFFFFF
 
-#define NUM_SLOTS_IDX 0
-#define VALIDATOR_IDX 1
-#define BASE_IDX      2
+#define NUM_SLOTS_IDX          0
+#define VALIDATOR_IDX          1
+#define POKETCH_TASK_SLOT_BASE 2
 
 typedef struct PoketchTask {
     u32 taskId;

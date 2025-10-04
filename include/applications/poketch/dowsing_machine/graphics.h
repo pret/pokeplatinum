@@ -2,8 +2,11 @@
 #define POKEPLATINUM_POKETCH_DOWSING_MACHINE_GRAPHICS_H
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
+
+#define DOWSING_MACHINE_TASK_SLOTS 8
 
 #define MAX_DOWSING_ITEMS 8
 
@@ -25,7 +28,7 @@ typedef struct DowsingMachineData {
 typedef struct DowsingMachingGraphics {
     const DowsingMachineData *dowsingData;
     BgConfig *bgConfig;
-    u32 activeTasks[10];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + DOWSING_MACHINE_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_AnimatedSpriteData *radarSprite;
     PoketchAnimation_AnimatedSpriteData *itemSprites[MAX_DOWSING_ITEMS];

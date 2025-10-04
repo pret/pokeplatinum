@@ -2,9 +2,12 @@
 #define POKEPLATINUM_POKETCH_ANALOG_WATCH_GRAPHICS_H
 
 #include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "sys_task_manager.h"
+
+#define ANALOG_WATCH_TASK_SLOTS 8
 
 #define NUM_SPRITES 2
 
@@ -16,7 +19,7 @@ typedef struct AnalogWatchData {
 typedef struct AnalogWatchGraphics {
     const AnalogWatchData *watchData;
     BgConfig *bgConfig;
-    u32 activeTasks[10];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + ANALOG_WATCH_TASK_SLOTS];
     SysTask *emptyTask;
     PoketchAnimation_SpriteData clockHandSprites;
     PoketchAnimation_AnimationManager *animMan;

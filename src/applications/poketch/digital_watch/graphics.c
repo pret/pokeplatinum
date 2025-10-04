@@ -1,7 +1,6 @@
 #include "applications/poketch/digital_watch/graphics.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_task.h"
@@ -12,36 +11,38 @@
 #include "sys_task_manager.h"
 
 static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan);
 static void Task_UpdateClockDigits(SysTask *sysTask, void *taskMan);
 static void Task_ToggleBacklightPalette(SysTask *sysTask, void *taskMan);
 static void Task_FreeGraphics(SysTask *sysTask, void *taskMan);
+
 static void DrawClockDigits(PoketchDigitalWatchGraphics *graphics);
 
-BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig)
+BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **dest, const DigitalWatchData *watchData, BgConfig *bgConfig)
 {
-    PoketchDigitalWatchGraphics *digitalWatchGraphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatchGraphics));
+    PoketchDigitalWatchGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatchGraphics));
 
-    if (digitalWatchGraphics != NULL) {
+    if (graphics != NULL) {
         NNSG2dScreenData *screenData;
 
-        PoketchTask_InitActiveTaskList(digitalWatchGraphics->activeTasks, NUM_TASK_SLOTS);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, DIGITAL_WATCH_TASK_SLOTS);
 
-        digitalWatchGraphics->watchData = watchData;
-        digitalWatchGraphics->bgConfig = PoketchGraphics_GetBgConfig();
+        graphics->watchData = watchData;
+        graphics->bgConfig = PoketchGraphics_GetBgConfig();
 
         void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
         if (nscrBuffer == NULL) {
-            Heap_Free(digitalWatchGraphics);
+            Heap_Free(graphics);
             return FALSE;
         }
 
-        CopyDigitTilemap((const u16 *)(screenData->rawData), digitalWatchGraphics->digitsTilemap);
+        CopyDigitTilemap((const u16 *)screenData->rawData, graphics->digitsTilemap);
         Heap_Free(nscrBuffer);
 
-        *graphics = digitalWatchGraphics;
+        *dest = graphics;
         return TRUE;
     }
 
@@ -71,19 +72,19 @@ void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics)
 }
 
 static const PoketchTask sDisplayTasks[] = {
-    { TASK_DRAW_APP_SCREEN, Task_DrawAppScreen, 0x0 },
-    { TASK_UPDATE_WATCH_DIGITS, Task_UpdateClockDigits, 0x0 },
-    { TASK_TOGGLE_BACKLIGHT, Task_ToggleBacklightPalette, 0x0 },
-    { TASK_FREE_GRAPHICS, Task_FreeGraphics, 0x0 },
+    { DIGITAL_WATCH_GRAPHICS_INIT, Task_DrawAppScreen, 0 },
+    { DIGITAL_WATCH_GRAPHICS_UPDATE_DIGITS, Task_UpdateClockDigits, 0 },
+    { DIGITAL_WATCH_GRAPHICS_TOGGLE_BACKLIGHT, Task_ToggleBacklightPalette, 0 },
+    { DIGITAL_WATCH_GRAPHICS_FREE, Task_FreeGraphics, 0 },
     { 0 }
 };
 
-void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID)
+void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTask taskID)
 {
     PoketchTask_Start(sDisplayTasks, taskID, graphics, graphics->watchData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID)
+BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }

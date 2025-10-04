@@ -1,4 +1,4 @@
-#include "graphics.h"
+#include "applications/poketch/stopwatch/graphics.h"
 
 #include <nitro.h>
 
@@ -8,9 +8,9 @@
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
 #include "applications/poketch/poketch_task.h"
-#include "applications/poketch/stopwatch/graphics.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -46,12 +46,14 @@ typedef struct ButtonBlinkManager {
     u8 buttonTileGroup;
 } ButtonBlinkManager;
 
-static void Task_UpdateTimer(SysTask *task, void *graphics);
+static void SetupSprites(PoketchStopwatchGraphics *graphics, const TimerState *timerState);
+static void UnloadSprites(PoketchStopwatchGraphics *graphics);
 static void UpdateTimerDigits(PoketchStopwatchGraphics *graphics);
+static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics);
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawAppScreen(SysTask *task, void *taskMan);
-static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics);
-static void SetupSprites(PoketchStopwatchGraphics *graphics, const TimerState *timerState);
+static void Task_UpdateTimer(SysTask *task, void *graphics);
 static void Task_UpdateGraphics(SysTask *task, void *taskMan);
 static void Task_HandleInactiveTimerGraphics(SysTask *task, void *taskMan);
 static void Task_HandleTimerTransition(SysTask *task, void *taskMan);
@@ -60,33 +62,33 @@ static void Task_HandleBeginButtonBlinking(SysTask *task, void *taskMan);
 static void Task_HandleSpeedUpButtonBlinking(SysTask *task, void *taskMan);
 static void Task_BeginExplosion(SysTask *task, void *taskMan);
 static void Task_PostResetBlinkingAnimation(SysTask *task, void *taskMan);
+static void Task_FreeGraphics(SysTask *task, void *taskMan);
+
 static BOOL UpdateBlinkState(ButtonBlinkManager *blinkManager, u32 framesPerBlinkState);
 static void UpdateButtonTiles(BgConfig *bgConfig, enum ButtonTileGroup buttonTileGroup);
-static void Task_FreeGraphics(SysTask *task, void *taskMan);
-static void UnloadSprites(PoketchStopwatchGraphics *graphics);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 
-BOOL PoketchStopwatchGraphics_New(PoketchStopwatchGraphics **graphics, const TimerState *timerState, BgConfig *bgConfig)
+BOOL PoketchStopwatchGraphics_New(PoketchStopwatchGraphics **dest, const TimerState *timerState, BgConfig *bgConfig)
 {
-    PoketchStopwatchGraphics *stopwatchGraphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchStopwatchGraphics));
+    PoketchStopwatchGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchStopwatchGraphics));
 
-    if (stopwatchGraphics != NULL) {
-        stopwatchGraphics->timerState = timerState;
-        stopwatchGraphics->animMan = PoketchGraphics_GetAnimationManager();
-        stopwatchGraphics->bgConfig = BgConfig_New(HEAP_ID_POKETCH_APP);
+    if (graphics != NULL) {
+        graphics->timerState = timerState;
+        graphics->animMan = PoketchGraphics_GetAnimationManager();
+        graphics->bgConfig = BgConfig_New(HEAP_ID_POKETCH_APP);
 
-        if (stopwatchGraphics->bgConfig == NULL) {
+        if (graphics->bgConfig == NULL) {
             return FALSE;
         }
 
-        if (PoketchAnimation_LoadSpriteFromNARC(&stopwatchGraphics->voltorbSprites, NARC_INDEX_GRAPHIC__POKETCH, 18, 19, HEAP_ID_POKETCH_APP)) {
-            if (PoketchAnimation_LoadSpriteFromNARC(&stopwatchGraphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP)) {
-                PoketchTask_InitActiveTaskList(stopwatchGraphics->activeTasks, NUM_TASK_SLOTS);
-                stopwatchGraphics->timerUpdateTask = NULL;
-                *graphics = stopwatchGraphics;
+        if (PoketchAnimation_LoadSpriteFromNARC(&graphics->voltorbSprites, NARC_INDEX_GRAPHIC__POKETCH, 18, 19, HEAP_ID_POKETCH_APP)) {
+            if (PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP)) {
+                PoketchTask_InitActiveTaskList(graphics->activeTasks, STOPWATCH_TASK_SLOTS);
+                graphics->timerUpdateTask = NULL;
+                *dest = graphics;
                 return TRUE;
             } else {
-                PoketchAnimation_FreeSpriteData(&stopwatchGraphics->voltorbSprites);
+                PoketchAnimation_FreeSpriteData(&graphics->voltorbSprites);
             }
         }
     }
@@ -148,9 +150,9 @@ static void UpdateTimerDigits(PoketchStopwatchGraphics *graphics)
 }
 
 static const PoketchTask sStopwatchTasks[] = {
-    { TASK_DRAW_APP_SCREEN, Task_DrawAppScreen, 0x0 },
-    { TASK_UPDATE_GRAPHICS, Task_UpdateGraphics, sizeof(ButtonBlinkManager) },
-    { TASK_FREE_GRAPHICS, Task_FreeGraphics, 0x0 },
+    { STOPWATCH_GRAPHICS_INIT, Task_DrawAppScreen, 0 },
+    { STOPWATCH_GRAPHICS_UPDATE, Task_UpdateGraphics, sizeof(ButtonBlinkManager) },
+    { STOPWATCH_GRAPHICS_FREE, Task_FreeGraphics, 0 },
     { 0 }
 };
 
@@ -212,7 +214,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     UpdateTimerDigits(graphics);
 
     if (timerState->isActive) {
-        PoketchStopwatchGraphics_StartTask(graphics, TASK_UPDATE_GRAPHICS);
+        PoketchStopwatchGraphics_StartTask(graphics, STOPWATCH_GRAPHICS_UPDATE);
     }
 
     dispCnt = GXS_GetDispCnt();
@@ -224,7 +226,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics)
 {
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, 80 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     return TRUE;
 }

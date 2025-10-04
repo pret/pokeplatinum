@@ -2,8 +2,11 @@
 #define POKEPLATINUM_POKETCH_CALCULATOR_GRAPHICS_H
 
 #include "applications/poketch/calculator/value.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
+
+#define CALCULATOR_TASK_SLOTS 8
 
 #define NUM_BUTTONS 17
 
@@ -30,7 +33,7 @@ typedef struct CalculatorData {
 typedef struct CalculatorGraphics {
     const CalculatorData *calcData;
     BgConfig *bgConfig;
-    u32 activeTasks[10];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + CALCULATOR_TASK_SLOTS];
     u16 outputRowTiles[14];
     u16 releasedButtonTiles[NUM_BUTTONS][BUTTON_SIZE_TILES_LARGE];
 } CalculatorGraphics;
@@ -49,7 +52,7 @@ enum CalculatorGraphicsTask {
     CALCULATOR_GRAPHICS_FREE,
 };
 
-BOOL PoketchCalculatorGraphics_New(CalculatorGraphics **graphics, const CalculatorData *calcState, BgConfig *bgConfig);
+BOOL PoketchCalculatorGraphics_New(CalculatorGraphics **dest, const CalculatorData *calcState, BgConfig *bgConfig);
 void PoketchCalculatorGraphics_Free(CalculatorGraphics *graphics);
 void PoketchCalculatorGraphics_StartTask(CalculatorGraphics *graphics, enum CalculatorGraphicsTask taskID);
 BOOL PoketchCalculatorGraphics_TaskIsNotActive(CalculatorGraphics *graphics, enum CalculatorGraphicsTask taskID);

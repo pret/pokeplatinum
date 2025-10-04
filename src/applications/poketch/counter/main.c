@@ -67,7 +67,7 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 
 static BOOL Init(PoketchCounter *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    static const TouchScreenRect buttonHitBox[] = {
+    static const TouchScreenRect sButtonHitBox[] = {
         { .rect = { .top = 100, .bottom = 156, .left = 82, .right = 146 } },
     };
 
@@ -83,7 +83,7 @@ static BOOL Init(PoketchCounter *appData, PoketchSystem *poketchSys, BgConfig *b
         appData->state = STATE_LOAD_APP;
         appData->subState = 0;
         appData->shouldExit = FALSE;
-        appData->buttonManager = PoketchButtonManager_New(buttonHitBox, NELEMS(buttonHitBox), ButtonCallback, appData, HEAP_ID_POKETCH_APP);
+        appData->buttonManager = PoketchButtonManager_New(sButtonHitBox, NELEMS(sButtonHitBox), ButtonCallback, appData, HEAP_ID_POKETCH_APP);
         appData->buttonState = BUTTON_MANAGER_STATE_NULL;
         appData->poketchSys = poketchSys;
 

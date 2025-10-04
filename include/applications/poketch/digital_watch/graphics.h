@@ -1,9 +1,11 @@
 #ifndef POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H
 #define POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H
 
+#include "applications/poketch/poketch_task.h"
+
 #include "bg_window.h"
 
-#define NUM_TASK_SLOTS 8
+#define DIGITAL_WATCH_TASK_SLOTS 8
 
 // Graphics
 #define POKETCH_DIGITAL_WATCH_NARC_TILES_IDX   23
@@ -26,26 +28,26 @@
 typedef struct {
     RTCTime time;
     u32 backlightActive;
-} WatchData;
+} DigitalWatchData;
 
 typedef struct PoketchDigitalWatchGraphics {
-    const WatchData *watchData;
+    const DigitalWatchData *watchData;
     BgConfig *bgConfig;
-    u32 activeTasks[2 + NUM_TASK_SLOTS];
+    u32 activeTasks[POKETCH_TASK_SLOT_BASE + DIGITAL_WATCH_TASK_SLOTS];
     u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
 } PoketchDigitalWatchGraphics;
 
-enum DigitalWatchGraphicsTasks {
-    TASK_DRAW_APP_SCREEN = 0,
-    TASK_UPDATE_WATCH_DIGITS,
-    TASK_TOGGLE_BACKLIGHT,
-    TASK_FREE_GRAPHICS,
+enum DigitalWatchGraphicsTask {
+    DIGITAL_WATCH_GRAPHICS_INIT = 0,
+    DIGITAL_WATCH_GRAPHICS_UPDATE_DIGITS,
+    DIGITAL_WATCH_GRAPHICS_TOGGLE_BACKLIGHT,
+    DIGITAL_WATCH_GRAPHICS_FREE,
 };
 
-BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig);
+BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **dest, const DigitalWatchData *watchData, BgConfig *bgConfig);
 void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics);
-void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID);
-BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID);
+void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTask taskID);
+BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTask taskID);
 BOOL PoketchDigitalWatchGraphics_NoActiveTasks(PoketchDigitalWatchGraphics *graphics);
 
 #endif // POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H

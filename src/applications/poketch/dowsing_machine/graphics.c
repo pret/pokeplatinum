@@ -30,7 +30,7 @@ BOOL PoketchDowsingMachineGraphics_New(DowsingMachineGraphics **dest, const Dows
     DowsingMachineGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(DowsingMachineGraphics));
 
     if (graphics != NULL) {
-        PoketchTask_InitActiveTaskList(graphics->activeTasks, 8);
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, DOWSING_MACHINE_TASK_SLOTS);
 
         graphics->dowsingData = dowsingData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();

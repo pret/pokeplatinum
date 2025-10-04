@@ -14,41 +14,43 @@
 #define PACKED_SIZE ((CANVAS_WIDTH * CANVAS_HEIGHT) / 4)
 
 typedef struct PoketchDotArtist {
-    u8 activeTask;
-    u8 taskFuncState;
+    u8 state;
+    u8 subState;
     u8 shouldExit;
     u32 x;
     u32 y;
-    DotArt state;
+    DotArt dotArt;
     DotArtistGraphics *graphics;
     PoketchSystem *poketchSys;
     u8 packedData[PACKED_SIZE];
 } PoketchDotArtist;
 
-enum DotArtistTasks {
-    TASK_LOAD_APP = 0,
-    TASK_UPDATE_LOOP,
-    TASK_SHUTDOWN,
+enum DotArtistState {
+    STATE_LOAD_APP = 0,
+    STATE_UPDATE_LOOP,
+    STATE_SHUTDOWN,
 };
 
 static void NitroStaticInit(void);
 
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static BOOL Init(PoketchDotArtist *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
+static void Free(PoketchDotArtist *appData);
+static void Exit(void *appData);
+
 static void SetupDotArtGrid(PoketchDotArtist *appData, DotArt *dotArt);
 static inline u8 LoadDot(const u8 *packedData, int index);
 static inline void SaveDot(u8 *packedData, int index, int value);
 static void LoadDotArtGrid(PoketchDotArtist *appData, DotArt *dotArt, Poketch *poketch);
 static void SaveDotArtGrid(PoketchDotArtist *appData, DotArt *dotArt, Poketch *poketch);
 static void InitDotArtGrid(DotArt *dotArt);
-static void Free(PoketchDotArtist *appData);
 static void SaveCallback(void *appData);
+
 static void Task_Main(SysTask *task, void *appData);
-static void Exit(void *appData);
-static void ChangeActiveTask(PoketchDotArtist *appData, enum DotArtistTasks taskID);
-static BOOL Task_LoadApp(PoketchDotArtist *appData);
-static BOOL Task_UpdateApp(PoketchDotArtist *appData);
-static BOOL Task_UnloadApp(PoketchDotArtist *appData);
+static void ChangeState(PoketchDotArtist *appData, enum DotArtistState newState);
+static BOOL State_LoadApp(PoketchDotArtist *appData);
+static BOOL State_UpdateApp(PoketchDotArtist *appData);
+static BOOL State_UnloadApp(PoketchDotArtist *appData);
 
 static void NitroStaticInit(void)
 {
@@ -77,11 +79,11 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 static BOOL Init(PoketchDotArtist *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
     appData->poketchSys = poketchSys;
-    SetupDotArtGrid(appData, &appData->state);
+    SetupDotArtGrid(appData, &appData->dotArt);
 
-    if (PoketchDotArtistGraphics_New(&appData->graphics, &appData->state, bgConfig)) {
-        appData->activeTask = TASK_LOAD_APP;
-        appData->taskFuncState = 0;
+    if (PoketchDotArtistGraphics_New(&appData->graphics, &appData->dotArt, bgConfig)) {
+        appData->state = STATE_LOAD_APP;
+        appData->subState = 0;
         appData->shouldExit = FALSE;
         appData->x = CANVAS_WIDTH + 1;
         appData->y = CANVAS_HEIGHT + 1;
@@ -180,7 +182,7 @@ static void InitDotArtGrid(DotArt *dotArt)
 
 static void Free(PoketchDotArtist *appData)
 {
-    SaveDotArtGrid(appData, &appData->state, PoketchSystem_GetPoketchData(appData->poketchSys));
+    SaveDotArtGrid(appData, &appData->dotArt, PoketchSystem_GetPoketchData(appData->poketchSys));
     PoketchDotArtistGraphics_Free(appData->graphics);
 
     Heap_Free(appData);
@@ -189,21 +191,21 @@ static void Free(PoketchDotArtist *appData)
 static void SaveCallback(void *appData)
 {
     PoketchDotArtist *dotArtist = appData;
-    SaveDotArtGrid(dotArtist, &dotArtist->state, PoketchSystem_GetPoketchData(dotArtist->poketchSys));
+    SaveDotArtGrid(dotArtist, &dotArtist->dotArt, PoketchSystem_GetPoketchData(dotArtist->poketchSys));
 }
 
 static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const stateFuncs[])(PoketchDotArtist *) = {
-        Task_LoadApp,
-        Task_UpdateApp,
-        Task_UnloadApp
+        State_LoadApp,
+        State_UpdateApp,
+        State_UnloadApp
     };
 
     PoketchDotArtist *dotArtist = appData;
 
-    if (dotArtist->activeTask < NELEMS(stateFuncs)) {
-        if (stateFuncs[dotArtist->activeTask](dotArtist)) {
+    if (dotArtist->state < NELEMS(stateFuncs)) {
+        if (stateFuncs[dotArtist->state](dotArtist)) {
             Free(dotArtist);
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(dotArtist->poketchSys);
@@ -216,28 +218,28 @@ static void Exit(void *appData)
     ((PoketchDotArtist *)appData)->shouldExit = TRUE;
 }
 
-static void ChangeActiveTask(PoketchDotArtist *appData, enum DotArtistTasks taskID)
+static void ChangeState(PoketchDotArtist *appData, enum DotArtistState newState)
 {
     if (appData->shouldExit == FALSE) {
-        appData->activeTask = taskID;
+        appData->state = newState;
     } else {
-        appData->activeTask = TASK_SHUTDOWN;
+        appData->state = STATE_SHUTDOWN;
     }
 
-    appData->taskFuncState = 0;
+    appData->subState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchDotArtist *appData)
+static BOOL State_LoadApp(PoketchDotArtist *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         PoketchDotArtistGraphics_StartTask(appData->graphics, DOT_ARTIST_GRAPHICS_INIT);
-        appData->taskFuncState++;
+        appData->subState++;
         break;
     case 1:
         if (PoketchDotArtistGraphics_TaskIsNotActive(appData->graphics, DOT_ARTIST_GRAPHICS_INIT)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            ChangeActiveTask(appData, TASK_UPDATE_LOOP);
+            ChangeState(appData, STATE_UPDATE_LOOP);
         }
         break;
     }
@@ -245,10 +247,10 @@ static BOOL Task_LoadApp(PoketchDotArtist *appData)
     return FALSE;
 }
 
-static BOOL Task_UpdateApp(PoketchDotArtist *appData)
+static BOOL State_UpdateApp(PoketchDotArtist *appData)
 {
     if (appData->shouldExit) {
-        ChangeActiveTask(appData, TASK_SHUTDOWN);
+        ChangeState(appData, STATE_SHUTDOWN);
         return FALSE;
     }
 
@@ -263,9 +265,9 @@ static BOOL Task_UpdateApp(PoketchDotArtist *appData)
                 if ((x < CANVAS_WIDTH) && (y < CANVAS_HEIGHT)) {
                     if (((appData->x != x) || (appData->y != y)) || (TouchScreen_Tapped() == TRUE)) {
 
-                        appData->state.dots[y][x]++;
-                        if (appData->state.dots[y][x] > 4) {
-                            appData->state.dots[y][x] = 1;
+                        appData->dotArt.dots[y][x]++;
+                        if (appData->dotArt.dots[y][x] > 4) {
+                            appData->dotArt.dots[y][x] = 1;
                         }
 
                         appData->x = x;
@@ -281,12 +283,12 @@ static BOOL Task_UpdateApp(PoketchDotArtist *appData)
     return FALSE;
 }
 
-static BOOL Task_UnloadApp(PoketchDotArtist *appData)
+static BOOL State_UnloadApp(PoketchDotArtist *appData)
 {
-    switch (appData->taskFuncState) {
+    switch (appData->subState) {
     case 0:
         PoketchDotArtistGraphics_StartTask(appData->graphics, DOT_ARTIST_GRAPHICS_FREE);
-        appData->taskFuncState++;
+        appData->subState++;
         break;
     case 1:
         if (PoketchDotArtistGraphics_NoActiveTasks(appData->graphics)) {

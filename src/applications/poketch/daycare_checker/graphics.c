@@ -1,7 +1,6 @@
 #include "applications/poketch/daycare_checker/graphics.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/graphics.h"
 #include "generated/sdat.h"
@@ -21,34 +20,36 @@
 
 static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *daycareStatus);
 static void UnloadSprites(DaycareCheckerGraphics *graphics);
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawAppBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
 static void Task_ReloadDaycareState(SysTask *task, void *taskMan);
-static void TriggerMosaicUpdate(DaycareCheckerGraphics *graphics);
 static void Task_UpdateMosaicSize(SysTask *task, void *taskMan);
+
+static void TriggerMosaicUpdate(DaycareCheckerGraphics *graphics);
 static void LoadDaycareMonIcons(u32 offset, const DaycareStatus *daycareStatus);
 static void DrawSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *daycareStatus);
 static void SetLevelSprites(PoketchAnimation_AnimatedSpriteData **digitSprites, u32 level);
 static void SetGenderSprites(PoketchAnimation_AnimatedSpriteData *genderSymbol, enum Gender gender);
 
-BOOL DaycareCheckerGraphics_New(DaycareCheckerGraphics **graphics, const DaycareStatus *daycareStatus, BgConfig *bgConfig)
+BOOL PoketchDaycareCheckerGraphics_New(DaycareCheckerGraphics **dest, const DaycareStatus *daycareStatus, BgConfig *bgConfig)
 {
-    DaycareCheckerGraphics *daycareGraphics = (DaycareCheckerGraphics *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(DaycareCheckerGraphics));
+    DaycareCheckerGraphics *graphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(DaycareCheckerGraphics));
 
-    if (daycareGraphics != NULL) {
-        PoketchTask_InitActiveTaskList(daycareGraphics->activeTasks, NUM_TASK_SLOTS);
+    if (graphics != NULL) {
+        PoketchTask_InitActiveTaskList(graphics->activeTasks, DAYCARE_CHECKER_TASK_SLOTS);
 
-        daycareGraphics->dayCareSummary = daycareStatus;
-        daycareGraphics->bgConfig = PoketchGraphics_GetBgConfig();
-        daycareGraphics->animMan = PoketchGraphics_GetAnimationManager();
-        daycareGraphics->updateMosaic = FALSE;
-        daycareGraphics->mosaicTask = SysTask_ExecuteAfterVBlank(Task_UpdateMosaicSize, daycareGraphics, 0);
+        graphics->dayCareSummary = daycareStatus;
+        graphics->bgConfig = PoketchGraphics_GetBgConfig();
+        graphics->animMan = PoketchGraphics_GetAnimationManager();
+        graphics->updateMosaic = FALSE;
+        graphics->mosaicTask = SysTask_ExecuteAfterVBlank(Task_UpdateMosaicSize, graphics, 0);
 
-        SetupSprites(daycareGraphics, daycareStatus);
+        SetupSprites(graphics, daycareStatus);
 
-        if (daycareGraphics->bgConfig != NULL) {
-            *graphics = daycareGraphics;
+        if (graphics->bgConfig != NULL) {
+            *dest = graphics;
             return TRUE;
         }
     }
@@ -56,7 +57,7 @@ BOOL DaycareCheckerGraphics_New(DaycareCheckerGraphics **graphics, const Daycare
     return FALSE;
 }
 
-void DaycareCheckerGraphics_Free(DaycareCheckerGraphics *graphics)
+void PoketchDaycareCheckerGraphics_Free(DaycareCheckerGraphics *graphics)
 {
     if (graphics != NULL) {
         UnloadSprites(graphics);
@@ -71,7 +72,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(56), FX32_CONST(128) },
             .animIdx = 7,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = TRUE,
@@ -79,7 +80,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(168), FX32_CONST(128) },
             .animIdx = 6,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = TRUE,
@@ -87,7 +88,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(112), FX32_CONST(136) },
             .animIdx = 4,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = TRUE,
@@ -95,7 +96,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(48), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -103,7 +104,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(64), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -111,7 +112,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(80), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -119,7 +120,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(152), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -127,7 +128,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(168), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -135,7 +136,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(184), FX32_CONST(40) },
             .animIdx = 0,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -143,7 +144,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(96), FX32_CONST(40) },
             .animIdx = 10,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -151,7 +152,7 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
         {
             .translation = { FX32_CONST(200), FX32_CONST(40) },
             .animIdx = 10,
-            .flip = 0,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
             .hasAffineTransform = FALSE,
@@ -197,18 +198,18 @@ static void UnloadSprites(DaycareCheckerGraphics *graphics)
 }
 
 static const PoketchTask daycareTasks[] = {
-    { TASK_DRAW_APP_BACKGROUND, Task_DrawAppBackground, 0x0 },
-    { TASK_FREE_BACKGROUND, Task_FreeBackground, 0x0 },
-    { TASK_RELOAD_DAYCARE_STATE, Task_ReloadDaycareState, 0x0 },
+    { DAYCARE_CHECKER_GRAPHICS_INIT, Task_DrawAppBackground, 0 },
+    { DAYCARE_CHECKER_GRAPHICS_FREE, Task_FreeBackground, 0 },
+    { DAYCARE_CHECKER_GRAPHICS_RELOAD, Task_ReloadDaycareState, 0 },
     { 0 }
 };
 
-void PoketchDaycareCheckerGraphics_StartTask(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTasks taskID)
+void PoketchDaycareCheckerGraphics_StartTask(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTask taskID)
 {
     PoketchTask_Start(daycareTasks, taskID, graphics, graphics->dayCareSummary, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDaycareCheckerGraphics_TaskIsNotActive(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTasks taskID)
+BOOL PoketchDaycareCheckerGraphics_TaskIsNotActive(DaycareCheckerGraphics *graphics, enum DaycareGraphicsTask taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -243,7 +244,7 @@ static void Task_DrawAppBackground(SysTask *task, void *taskMan)
     GXSDispCnt dispCnt;
     DaycareCheckerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, 0);
+    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 81, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 80, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
@@ -269,7 +270,7 @@ static void Task_FreeBackground(SysTask *task, void *taskMan)
         PoketchTask_IncrementState(taskMan);
         break;
     case 1:
-        if (PoketchDaycareCheckerGraphics_TaskIsNotActive(graphics, TASK_RELOAD_DAYCARE_STATE)) {
+        if (PoketchDaycareCheckerGraphics_TaskIsNotActive(graphics, DAYCARE_CHECKER_GRAPHICS_RELOAD)) {
             G2S_SetBGMosaicSize(0, 0);
             G2S_SetOBJMosaicSize(0, 0);
             Bg_FreeTilemapBuffer(graphics->bgConfig, BG_LAYER_SUB_2);
@@ -306,7 +307,7 @@ static void Task_ReloadDaycareState(SysTask *task, void *taskMan)
             break;
         }
 
-        if (++(graphics->mosaicProgress) >= 4) {
+        if (++graphics->mosaicProgress >= 4) {
             graphics->mosaicProgress = 0;
             graphics->mosaicSize--;
 
