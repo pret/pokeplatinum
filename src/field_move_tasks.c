@@ -10,10 +10,11 @@
 #include "generated/object_events.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020711C8.h"
 
+#include "applications/town_map/application.h"
+#include "applications/town_map/context.h"
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
@@ -38,7 +39,6 @@
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_0205F180.h"
-#include "unk_0206B70C.h"
 #include "unk_020711C8.h"
 #include "vars_flags.h"
 
@@ -347,10 +347,10 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     *fieldMonID = fieldMoveMon->fieldMonId;
     menu->unk_260 = fieldMonID;
 
-    menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(fieldSystem, menu->taskData, 1);
-    sub_0203D884(fieldSystem, menu->taskData);
+    TownMapContext_Init(fieldSystem, menu->taskData, TOWN_MAP_MODE_FLY);
+    FieldSystem_OpenTownMap(fieldSystem, menu->taskData);
     sub_0203B674(menu, sub_0203C434);
 }
 
