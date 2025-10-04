@@ -42,7 +42,7 @@ typedef struct AIContext {
 
     u8 selectedTarget[MAX_BATTLERS];
 
-    MoveTable moveTable[NUM_MOVES + 1];
+    MoveTable moveTable[MAX_MOVES];
     ItemData *itemTable;
 
     u16 padding1DD0[4]; // unused

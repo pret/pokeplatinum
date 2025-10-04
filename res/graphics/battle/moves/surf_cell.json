@@ -1,0 +1,159 @@
+{
+	"labelEnabled":	true,
+	"dontPadKbec":	false,
+	"extended":	true,
+	"vramTransferEnabled":	false,
+	"cellCount":	2,
+	"mappingType":	1,
+	"cells":	[{
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	28
+			},
+			"maxX":	103,
+			"maxY":	24,
+			"minX":	-87,
+			"minY":	-40,
+			"oamCount":	3,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-87,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	0,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-24,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	32,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	39,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	64,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	28
+			},
+			"maxX":	103,
+			"maxY":	24,
+			"minX":	-87,
+			"minY":	-40,
+			"oamCount":	3,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-87,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	96,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-24,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	128,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	-40,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	39,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	160,
+						"Priority":	0,
+						"Palette":	9
+					}
+				}]
+		}],
+	"labels":	["CellAnime0", "CellAnime1"],
+	"labelCount":	2
+}
