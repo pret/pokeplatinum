@@ -2113,7 +2113,7 @@
     .byte \floorID
     .endm
 
-    .macro ScrCmd_176 arg0
+    .macro SunnyshoreGymButton arg0
     .short 374
     .byte \arg0
     .endm

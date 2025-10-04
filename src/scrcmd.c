@@ -518,7 +518,7 @@ static BOOL ScrCmd_172(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
-static BOOL ScrCmd_176(ScriptContext *ctx);
+static BOOL ScrCmd_SunnyshoreGymButton(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
@@ -1143,7 +1143,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitPersistedMapFeaturesForCanalaveGym,
     ScrCmd_InitPersistedMapFeaturesForVeilstoneGym,
     ScrCmd_InitPersistedMapFeaturesForSunyshoreGym,
-    ScrCmd_176,
+    ScrCmd_SunnyshoreGymButton,
     ScrCmd_GetPartyCount,
     ScrCmd_OpenBag,
     ScrCmd_GetSelectedItem,
@@ -5606,7 +5606,7 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_176(ScriptContext *ctx)
+static BOOL ScrCmd_SunnyshoreGymButton(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);
