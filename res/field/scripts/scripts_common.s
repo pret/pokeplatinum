@@ -717,14 +717,14 @@ CommonScript_InternalObtainUndergroundSphere:
 
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
-    Message pl_msg_00000213_00031
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
 CommonScript_ObtainAccessory:
     Call CommonScript_InternalObtainAccessory
-    Message pl_msg_00000213_00127
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
@@ -732,7 +732,7 @@ CommonScript_InternalObtainAccessory:
     PlaySound SEQ_ACCE
     AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
@@ -740,14 +740,14 @@ CommonScript_InternalObtainAccessory:
 
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
-    Message pl_msg_00000213_00031
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
 CommonScript_ObtainContestBackdrop:
     Call CommonScript_InternalObtainContestBackdrop
-    Message pl_msg_00000213_00127
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
@@ -755,7 +755,7 @@ CommonScript_InternalObtainContestBackdrop:
     PlaySound SEQ_FANFA4
     AddContestBackdrop VAR_0x8004
     BufferContestBackdropName 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
     BufferContestBackdropName 1, VAR_0x8004
@@ -804,7 +804,7 @@ CommonScript_PrepareMessageObtainedItem:
 CommonScript_PrintMessageObtainedItemsPlural:
     BufferItemNamePlural 0, VAR_0x8004
 CommonScript_PrintMessageObtainedItem:
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     GoTo CommonScript_AfterObtainedItem
 
 CommonScript_AfterObtainedItem:

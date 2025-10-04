@@ -2649,6 +2649,10 @@
     .short \destVarID
     .endm
 
+    .macro ObtainAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
+    .endm
+
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0

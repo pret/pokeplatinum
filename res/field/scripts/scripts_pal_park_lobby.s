@@ -579,7 +579,7 @@ PalParkLobby_GBASlotGiftLady_Emerald:
     End
 
 PalParkLobby_GBASlotGiftLady_GiveAccessory:
-    CallCommonScript 0x7DF
+    ObtainAccessoryWaitForConfirm
     SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll

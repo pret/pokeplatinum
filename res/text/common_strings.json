@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00025",
+      "id": "CommonStrings_Text_ObtainedItem",
       "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
     },
     {
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00031",
+      "id": "CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case."
@@ -838,7 +838,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00127",
+      "id": "CommonStrings_Text_PutAwayItemInTheFashionCase",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case.\r"
