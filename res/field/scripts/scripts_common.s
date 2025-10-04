@@ -1188,8 +1188,7 @@ CommonScript_PokecenterBlackOutRecover:
     Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
     Call CommonScript_PokecenterNurse_FindNurseObject
     Call CommonScript_PokecenterNurse_HealPokemon
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
+    GoToIfBadgeAcquired BADGE_ID_COAL, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
     Message CommonStrings_Text_PokecenterHealedToPerfectHealth
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement

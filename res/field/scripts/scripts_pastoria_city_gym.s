@@ -43,8 +43,7 @@ PastoriaGym_Wake:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, PastoriaGym_WakeAlreadyHaveFenBadge
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_WakeAlreadyHaveFenBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
     Message PastoriaGym_Text_WakeIntro
     CloseMessage
@@ -109,8 +108,7 @@ PastoriaGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, PastoriaGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymGuideAfterBadge
     Message PastoriaGym_Text_GymGuideBeforebadge
     WaitABXPadPress
     CloseMessage
@@ -128,8 +126,7 @@ PastoriaGym_GymGuideAfterBadge:
 PastoriaGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, PastoriaGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message PastoriaGym_Text_GymStatueBeforeBadge

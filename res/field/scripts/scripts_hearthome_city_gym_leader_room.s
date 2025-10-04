@@ -54,8 +54,7 @@ HearthomeGym_FantinaPrepareSpinFaceWest:
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaMain:
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, HearthomeGym_FantinaAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_FantinaAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
     Message HearthomeGym_Text_FantinaIntro
     CloseMessage

@@ -21,8 +21,7 @@ SunyshoreGymRoom1_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SunyshoreGymRoom1_GymGuideAfterbadge
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymGuideAfterbadge
     Message SunyshoreGymRoom1_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -40,8 +39,7 @@ SunyshoreGymRoom1_GymGuideAfterbadge:
 SunyshoreGymRoom1_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SunyshoreGymRoom1_GymStatue_AfterBadge
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymStatue_AfterBadge
     Message SunyshoreGymRoom1_Text_GymStatue_BeforeBadge
     WaitABXPadPress
     CloseMessage

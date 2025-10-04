@@ -441,8 +441,7 @@ _058C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _05B2
+    GoToIfBadgeAcquired BADGE_ID_COAL, _05B2
     Message 29
     WaitABXPadPress
     CloseMessage

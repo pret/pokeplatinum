@@ -12,8 +12,7 @@ EternaGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_RELIC, EternaGym_GymGuideAfterBadge
     Message HearthomeGym_Text_GymGuideHearLongSpielAgain
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, EternaGym_GymGuideExplanation
@@ -45,8 +44,7 @@ EternaGym_GymGuideAfterBadge:
 HearthomeGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, HearthomeGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message HearthomeGym_Text_GymStatueBeforeBadge

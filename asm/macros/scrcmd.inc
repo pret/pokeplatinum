@@ -2007,6 +2007,11 @@
     .short \destVarID
     .endm
 
+    .macro GoToIfBadgeAcquired badge label
+    CheckBadgeAcquired \badge, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, \label
+    .endm
+
     .macro GiveBag
     .short 351
     .endm

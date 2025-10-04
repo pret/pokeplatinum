@@ -19,8 +19,7 @@ VeilstoneGym_Maylene:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_MayleneAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_MayleneAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
     Message VeilstoneGym_Text_MayleneIntro
     CloseMessage
@@ -85,8 +84,7 @@ VeilstoneGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, VeilstoneGym_GymGuideAfterbadge
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymGuideAfterbadge
     Message VeilstoneGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -104,8 +102,7 @@ VeilstoneGym_GymGuideAfterbadge:
 VeilstoneGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message VeilstoneGym_Text_GymStatueBeforeBadge
