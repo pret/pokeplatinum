@@ -2,7 +2,7 @@
   "key": 39279,
   "messages": [
     {
-      "id": "pl_msg_00000108_00000",
+      "id": "HearthomeGym_Text_GymGuideInitialVisit",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000108_00001",
+      "id": "HearthomeGym_Text_GymGuideHearLongSpielAgain",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000108_00002",
+      "id": "HearthomeGym_Text_GymGuideExplanation",
       "en_US": [
         "Hey, there! Hello, Champ-to-be!\n",
         "Let me tell you how this Gym is wicked!\r",
@@ -74,11 +74,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000108_00003",
+      "id": "HearthomeGym_Text_GymGuideGoGetEm",
       "en_US": "OK, go get ’em!"
     },
     {
-      "id": "pl_msg_00000108_00004",
+      "id": "HearthomeGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000108_00005",
+      "id": "HearthomeGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Hearthome City Pokémon Gym\n",
         "Leader: Fantina\r",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000108_00006",
+      "id": "HearthomeGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Hearthome City Pokémon Gym\n",
         "Leader: Fantina\r",

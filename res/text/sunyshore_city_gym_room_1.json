@@ -2,7 +2,7 @@
   "key": 14701,
   "messages": [
     {
-      "id": "pl_msg_00000164_00000",
+      "id": "SunyshoreGymRoom1_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000164_00001",
+      "id": "SunyshoreGymRoom1_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "Did you beat the Gym Leader?\f",
@@ -40,14 +40,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000164_00002",
+      "id": "SunyshoreGymRoom1_Text_GymStatue_BeforeBadge",
       "en_US": [
         "Sunyshore City Pokémon Gym\r",
         "Leader: Volkner"
       ]
     },
     {
-      "id": "pl_msg_00000164_00003",
+      "id": "SunyshoreGymRoom1_Text_GymStatue_AfterBadge",
       "en_US": [
         "Sunyshore City Pokémon Gym\r",
         "Leader: Volkner\n",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000164_00004",
+      "id": "SunyshoreGymRoom1_Text_GymStatue_AfterRivalBadge",
       "en_US": [
         "Sunyshore City Pokémon Gym\r",
         "Leader: Volkner\n",
