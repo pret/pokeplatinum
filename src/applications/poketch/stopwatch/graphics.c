@@ -226,7 +226,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics)
 {
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_SIZE_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     return TRUE;
 }

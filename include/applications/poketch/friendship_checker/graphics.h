@@ -67,7 +67,7 @@ typedef struct PokemonGraphic {
 } PokemonGraphic;
 
 typedef struct FriendshipCheckerGraphics {
-    const FriendshipCheckerData *appState;
+    const FriendshipCheckerData *friendshipData;
     BgConfig *bgConfig;
     u32 activeTasks[POKETCH_TASK_SLOT_BASE + FRIENDSHIP_CHECKER_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
