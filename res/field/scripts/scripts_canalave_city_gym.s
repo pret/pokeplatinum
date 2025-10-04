@@ -16,8 +16,7 @@ CanalaveGym_Byron:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CanalaveGym_ByronAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_ByronAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 35, 0, 0, 0
     Message CanalaveGym_Text_ByronIntro
     CloseMessage
@@ -87,8 +86,7 @@ CanalaveGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CanalaveGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymGuideAfterBadge
     Message CanalaveGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -106,8 +104,7 @@ CanalaveGym_GymGuideAfterBadge:
 CanalaveGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, CanalaveGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message CanalaveGym_Text_GymStatueBeforeBadge

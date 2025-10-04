@@ -25,8 +25,7 @@ SunyshoreGymRoom3_Volkner:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 156, 0, 0, 0
     Message SunyshoreGymRoom3_Text_VolknerIntro
     CloseMessage

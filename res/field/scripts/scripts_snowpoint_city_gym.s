@@ -20,8 +20,7 @@ SnowpointGym_Candice:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_CandiceAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_ICICLE SnowpointGym_CandiceAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message SnowpointGym_Text_CandiceIntro
     CloseMessage
@@ -83,8 +82,7 @@ SnowpointGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymGuideAfterBadge
     Message SnowpointGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -102,8 +100,7 @@ SnowpointGym_GymGuideAfterBadge:
 SnowpointGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message SnowpointGym_Text_GymStatueBeforeBadge

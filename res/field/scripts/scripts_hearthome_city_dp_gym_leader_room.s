@@ -40,8 +40,7 @@ _0086:
     GoTo _0096
 
 _0096:
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0173
+    GoToIfBadgeAcquired BADGE_ID_RELIC, _0173
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 100, 0, 0, 0
     Message 0
     CloseMessage

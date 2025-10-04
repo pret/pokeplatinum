@@ -1075,8 +1075,7 @@ _0D5C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _0D82
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, _0D82
     Message VeilstoneCity_Text_ThisIsGalacticWarehouse1
     WaitABXPadPress
     CloseMessage
@@ -1094,8 +1093,7 @@ _0D8D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0DB3
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, _0DB3
     Message 13
     WaitABXPadPress
     CloseMessage

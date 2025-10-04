@@ -398,8 +398,7 @@ _054D:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0586
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0591
+    GoToIfBadgeAcquired BADGE_ID_MINE, _0591
     GoTo _057B
     End
 

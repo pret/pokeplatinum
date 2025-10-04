@@ -20,8 +20,7 @@ EternaGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymGuideAfterBadge
     Message EternaGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -39,8 +38,7 @@ EternaGym_GymGuideAfterBadge:
 EternaGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaGym_GymStatueAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message EternaGym_Text_GymStatueBeforeBadge
@@ -63,8 +61,7 @@ EternaGym_Gardenia:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaGym_Gardenia_AlreadyHaveForestbadge
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_Gardenia_AlreadyHaveForestbadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
     Message EternaGym_Text_GardeniaIntro
     CloseMessage
