@@ -8,7 +8,7 @@
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "global_trade.h"
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "journal.h"
 #include "mail.h"
 #include "mystery_gift.h"
