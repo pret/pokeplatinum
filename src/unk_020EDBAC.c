@@ -1,5 +1,6 @@
+
+
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/movement_actions.h"
 
@@ -12,7 +13,18 @@
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
 
-static const UnkStruct_020EDF0C Unk_020EDF0C = {
+// ============================================================================
+// Movement Action Descriptors
+// ============================================================================
+// These structures define complex movement behaviors with multiple phases.
+// Each descriptor contains an ID and 4 function pointers for different phases:
+// - movementType: Movement type/ID (0x0-0x42)
+// - initFunc: Initialization function
+// - updateFunc: Update function
+// - completeFunc: Completion function
+// - cleanupFunc: Cleanup function
+
+static const MovementActionDescriptor Unk_020EDF0C = {
     0x0,
     sub_020633E0,
     sub_020633E4,
@@ -20,7 +32,7 @@ static const UnkStruct_020EDF0C Unk_020EDF0C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE58 = {
+static const MovementActionDescriptor Unk_020EDE58 = {
     0x1,
     sub_020633E0,
     sub_020633E4,
@@ -28,7 +40,7 @@ static const UnkStruct_020EDF0C Unk_020EDE58 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE308 = {
+static const MovementActionDescriptor Unk_020EE308 = {
     0x2,
     sub_0206453C,
     sub_020645C0,
@@ -36,7 +48,7 @@ static const UnkStruct_020EDF0C Unk_020EE308 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE2F4 = {
+static const MovementActionDescriptor Unk_020EE2F4 = {
     0x3,
     sub_02064628,
     sub_02064690,
@@ -44,7 +56,7 @@ static const UnkStruct_020EDF0C Unk_020EE2F4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE2E0 = {
+static const MovementActionDescriptor Unk_020EE2E0 = {
     0x3,
     sub_02064638,
     sub_02064690,
@@ -52,7 +64,7 @@ static const UnkStruct_020EDF0C Unk_020EE2E0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDEE4 = {
+static const MovementActionDescriptor Unk_020EDEE4 = {
     0x3,
     sub_02064648,
     sub_02064690,
@@ -60,7 +72,7 @@ static const UnkStruct_020EDF0C Unk_020EDEE4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE2B8 = {
+static const MovementActionDescriptor Unk_020EE2B8 = {
     0x3,
     sub_02064658,
     sub_02064690,
@@ -68,7 +80,7 @@ static const UnkStruct_020EDF0C Unk_020EE2B8 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE94 = {
+static const MovementActionDescriptor Unk_020EDE94 = {
     0x3,
     sub_02064548,
     sub_020645C0,
@@ -76,7 +88,7 @@ static const UnkStruct_020EDF0C Unk_020EDE94 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDEBC = {
+static const MovementActionDescriptor Unk_020EDEBC = {
     0x3,
     sub_02064554,
     sub_020645C0,
@@ -84,7 +96,7 @@ static const UnkStruct_020EDF0C Unk_020EDEBC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDED0 = {
+static const MovementActionDescriptor Unk_020EDED0 = {
     0x3,
     sub_02064560,
     sub_020645C0,
@@ -92,7 +104,7 @@ static const UnkStruct_020EDF0C Unk_020EDED0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE268 = {
+static const MovementActionDescriptor Unk_020EE268 = {
     0x3,
     sub_0206456C,
     sub_020645C0,
@@ -100,7 +112,7 @@ static const UnkStruct_020EDF0C Unk_020EE268 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE254 = {
+static const MovementActionDescriptor Unk_020EE254 = {
     0x3,
     sub_02064578,
     sub_020645C0,
@@ -108,7 +120,7 @@ static const UnkStruct_020EDF0C Unk_020EE254 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE240 = {
+static const MovementActionDescriptor Unk_020EE240 = {
     0x3,
     sub_02064584,
     sub_020645C0,
@@ -116,7 +128,7 @@ static const UnkStruct_020EDF0C Unk_020EE240 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF70 = {
+static const MovementActionDescriptor Unk_020EDF70 = {
     0x3,
     sub_02064590,
     sub_020645C0,
@@ -124,7 +136,7 @@ static const UnkStruct_020EDF0C Unk_020EDF70 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE218 = {
+static const MovementActionDescriptor Unk_020EE218 = {
     0x3,
     sub_0206459C,
     sub_020645C0,
@@ -132,7 +144,7 @@ static const UnkStruct_020EDF0C Unk_020EE218 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE204 = {
+static const MovementActionDescriptor Unk_020EE204 = {
     0x3,
     sub_020645A8,
     sub_020645C0,
@@ -140,7 +152,7 @@ static const UnkStruct_020EDF0C Unk_020EE204 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDFC0 = {
+static const MovementActionDescriptor Unk_020EDFC0 = {
     0x3,
     sub_020645B4,
     sub_020645C0,
@@ -148,7 +160,7 @@ static const UnkStruct_020EDF0C Unk_020EDFC0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDFD4 = {
+static const MovementActionDescriptor Unk_020EDFD4 = {
     0x3,
     sub_0206493C,
     sub_02064918,
@@ -156,7 +168,7 @@ static const UnkStruct_020EDF0C Unk_020EDFD4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE1C8 = {
+static const MovementActionDescriptor Unk_020EE1C8 = {
     0x3,
     sub_02064948,
     sub_02064918,
@@ -164,7 +176,7 @@ static const UnkStruct_020EDF0C Unk_020EE1C8 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE1B4 = {
+static const MovementActionDescriptor Unk_020EE1B4 = {
     0x3,
     sub_02064954,
     sub_02064918,
@@ -172,7 +184,7 @@ static const UnkStruct_020EDF0C Unk_020EE1B4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE1A0 = {
+static const MovementActionDescriptor Unk_020EE1A0 = {
     0x3,
     sub_02064960,
     sub_02064918,
@@ -180,7 +192,7 @@ static const UnkStruct_020EDF0C Unk_020EE1A0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE024 = {
+static const MovementActionDescriptor Unk_020EE024 = {
     0x3,
     sub_02064990,
     sub_020649A8,
@@ -188,7 +200,7 @@ static const UnkStruct_020EDF0C Unk_020EE024 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE178 = {
+static const MovementActionDescriptor Unk_020EE178 = {
     0x3,
     sub_0206499C,
     sub_020649A8,
@@ -196,7 +208,7 @@ static const UnkStruct_020EDF0C Unk_020EE178 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE164 = {
+static const MovementActionDescriptor Unk_020EE164 = {
     0x3,
     sub_02064AF0,
     sub_02064AFC,
@@ -204,7 +216,7 @@ static const UnkStruct_020EDF0C Unk_020EE164 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE060 = {
+static const MovementActionDescriptor Unk_020EE060 = {
     0x3,
     sub_02064C28,
     sub_02064C48,
@@ -212,7 +224,7 @@ static const UnkStruct_020EDF0C Unk_020EE060 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE074 = {
+static const MovementActionDescriptor Unk_020EE074 = {
     0x3,
     sub_02064DC8,
     sub_02064EC8,
@@ -220,7 +232,7 @@ static const UnkStruct_020EDF0C Unk_020EE074 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE128 = {
+static const MovementActionDescriptor Unk_020EE128 = {
     0x3,
     sub_02064DD8,
     sub_02064EC8,
@@ -228,7 +240,7 @@ static const UnkStruct_020EDF0C Unk_020EE128 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE114 = {
+static const MovementActionDescriptor Unk_020EE114 = {
     0x3,
     sub_02064DE8,
     sub_02064EC8,
@@ -236,7 +248,7 @@ static const UnkStruct_020EDF0C Unk_020EE114 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE0B0 = {
+static const MovementActionDescriptor Unk_020EE0B0 = {
     0x3,
     sub_02064DF8,
     sub_02064EC8,
@@ -244,7 +256,7 @@ static const UnkStruct_020EDF0C Unk_020EE0B0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE0C4 = {
+static const MovementActionDescriptor Unk_020EE0C4 = {
     0x3,
     sub_02064E08,
     sub_02064EC8,
@@ -252,7 +264,7 @@ static const UnkStruct_020EDF0C Unk_020EE0C4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE0EC = {
+static const MovementActionDescriptor Unk_020EE0EC = {
     0x3,
     sub_02064E18,
     sub_02064EC8,
@@ -260,7 +272,7 @@ static const UnkStruct_020EDF0C Unk_020EE0EC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE100 = {
+static const MovementActionDescriptor Unk_020EE100 = {
     0x3,
     sub_02064E28,
     sub_02064EC8,
@@ -268,7 +280,7 @@ static const UnkStruct_020EDF0C Unk_020EE100 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE13C = {
+static const MovementActionDescriptor Unk_020EE13C = {
     0x3,
     sub_02064E38,
     sub_02064EC8,
@@ -276,7 +288,7 @@ static const UnkStruct_020EDF0C Unk_020EE13C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE150 = {
+static const MovementActionDescriptor Unk_020EE150 = {
     0x3,
     sub_02064E48,
     sub_02064EC8,
@@ -284,7 +296,7 @@ static const UnkStruct_020EDF0C Unk_020EE150 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE18C = {
+static const MovementActionDescriptor Unk_020EE18C = {
     0x3,
     sub_02064E58,
     sub_02064EC8,
@@ -292,7 +304,7 @@ static const UnkStruct_020EDF0C Unk_020EE18C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE1DC = {
+static const MovementActionDescriptor Unk_020EE1DC = {
     0x3,
     sub_02064E68,
     sub_02064EC8,
@@ -300,7 +312,7 @@ static const UnkStruct_020EDF0C Unk_020EE1DC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE1F0 = {
+static const MovementActionDescriptor Unk_020EE1F0 = {
     0x3,
     sub_02064E78,
     sub_02064EC8,
@@ -308,7 +320,7 @@ static const UnkStruct_020EDF0C Unk_020EE1F0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE22C = {
+static const MovementActionDescriptor Unk_020EE22C = {
     0x3,
     sub_02064E88,
     sub_02064EC8,
@@ -316,7 +328,7 @@ static const UnkStruct_020EDF0C Unk_020EE22C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE27C = {
+static const MovementActionDescriptor Unk_020EE27C = {
     0x3,
     sub_02064E98,
     sub_02064EC8,
@@ -324,7 +336,7 @@ static const UnkStruct_020EDF0C Unk_020EE27C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE290 = {
+static const MovementActionDescriptor Unk_020EE290 = {
     0x3,
     sub_02064EA8,
     sub_02064EC8,
@@ -332,7 +344,7 @@ static const UnkStruct_020EDF0C Unk_020EE290 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE2A4 = {
+static const MovementActionDescriptor Unk_020EE2A4 = {
     0x3,
     sub_02064EB8,
     sub_02064EC8,
@@ -340,7 +352,7 @@ static const UnkStruct_020EDF0C Unk_020EE2A4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE2CC = {
+static const MovementActionDescriptor Unk_020EE2CC = {
     0x3,
     sub_0206505C,
     sub_020650DC,
@@ -348,7 +360,7 @@ static const UnkStruct_020EDF0C Unk_020EE2CC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDFE8 = {
+static const MovementActionDescriptor Unk_020EDFE8 = {
     0x3,
     sub_0206506C,
     sub_020650DC,
@@ -356,7 +368,7 @@ static const UnkStruct_020EDF0C Unk_020EDFE8 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDDCC = {
+static const MovementActionDescriptor Unk_020EDDCC = {
     0x3,
     sub_0206507C,
     sub_020650DC,
@@ -364,7 +376,7 @@ static const UnkStruct_020EDF0C Unk_020EDDCC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDDE0 = {
+static const MovementActionDescriptor Unk_020EDDE0 = {
     0x3,
     sub_0206508C,
     sub_020650DC,
@@ -372,7 +384,7 @@ static const UnkStruct_020EDF0C Unk_020EDDE0 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDDF4 = {
+static const MovementActionDescriptor Unk_020EDDF4 = {
     0x3,
     sub_0206509C,
     sub_020650DC,
@@ -380,7 +392,7 @@ static const UnkStruct_020EDF0C Unk_020EDDF4 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF98 = {
+static const MovementActionDescriptor Unk_020EDF98 = {
     0x3,
     sub_020650AC,
     sub_020650DC,
@@ -388,7 +400,7 @@ static const UnkStruct_020EDF0C Unk_020EDF98 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE08 = {
+static const MovementActionDescriptor Unk_020EDE08 = {
     0x3,
     sub_020650BC,
     sub_020650DC,
@@ -396,7 +408,7 @@ static const UnkStruct_020EDF0C Unk_020EDE08 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE1C = {
+static const MovementActionDescriptor Unk_020EDE1C = {
     0x3,
     sub_020650CC,
     sub_020650DC,
@@ -404,7 +416,7 @@ static const UnkStruct_020EDF0C Unk_020EDE1C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE30 = {
+static const MovementActionDescriptor sMovementActionDescriptor_BerryPatch = {
     0x2f,
     BerryPatchGraphics_NewData,
     BerryPatchGraphics_UpdateGrowthStage,
@@ -412,7 +424,7 @@ static const UnkStruct_020EDF0C Unk_020EDE30 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF48 = {
+static const MovementActionDescriptor Unk_020EDF48 = {
     0x3,
     sub_02069BE0,
     sub_02069C0C,
@@ -420,7 +432,7 @@ static const UnkStruct_020EDF0C Unk_020EDF48 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE44 = {
+static const MovementActionDescriptor Unk_020EDE44 = {
     0x3,
     sub_02069DF4,
     sub_02069E1C,
@@ -428,7 +440,7 @@ static const UnkStruct_020EDF0C Unk_020EDE44 = {
     sub_02069E50
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF20 = {
+static const MovementActionDescriptor Unk_020EDF20 = {
     0x33,
     sub_0206A104,
     sub_0206A134,
@@ -436,7 +448,7 @@ static const UnkStruct_020EDF0C Unk_020EDF20 = {
     sub_0206A168
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE6C = {
+static const MovementActionDescriptor Unk_020EDE6C = {
     0x34,
     sub_0206A110,
     sub_0206A134,
@@ -444,7 +456,7 @@ static const UnkStruct_020EDF0C Unk_020EDE6C = {
     sub_0206A168
 };
 
-static const UnkStruct_020EDF0C Unk_020EDEF8 = {
+static const MovementActionDescriptor Unk_020EDEF8 = {
     0x35,
     sub_0206A11C,
     sub_0206A134,
@@ -452,7 +464,7 @@ static const UnkStruct_020EDF0C Unk_020EDEF8 = {
     sub_0206A168
 };
 
-static const UnkStruct_020EDF0C Unk_020EDE80 = {
+static const MovementActionDescriptor Unk_020EDE80 = {
     0x36,
     sub_0206A128,
     sub_0206A134,
@@ -460,7 +472,7 @@ static const UnkStruct_020EDF0C Unk_020EDE80 = {
     sub_0206A168
 };
 
-static const UnkStruct_020EDF0C Unk_020EDEA8 = {
+static const MovementActionDescriptor Unk_020EDEA8 = {
     0x37,
     sub_0206A25C,
     sub_0206A2BC,
@@ -468,7 +480,7 @@ static const UnkStruct_020EDF0C Unk_020EDEA8 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF34 = {
+static const MovementActionDescriptor Unk_020EDF34 = {
     0x38,
     sub_0206A268,
     sub_0206A2BC,
@@ -476,7 +488,7 @@ static const UnkStruct_020EDF0C Unk_020EDF34 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF5C = {
+static const MovementActionDescriptor Unk_020EDF5C = {
     0x39,
     sub_0206A274,
     sub_0206A2BC,
@@ -484,7 +496,7 @@ static const UnkStruct_020EDF0C Unk_020EDF5C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDF84 = {
+static const MovementActionDescriptor Unk_020EDF84 = {
     0x3A,
     sub_0206A280,
     sub_0206A2BC,
@@ -492,7 +504,7 @@ static const UnkStruct_020EDF0C Unk_020EDF84 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDFAC = {
+static const MovementActionDescriptor Unk_020EDFAC = {
     0x3B,
     sub_0206A28C,
     sub_0206A2BC,
@@ -500,7 +512,7 @@ static const UnkStruct_020EDF0C Unk_020EDFAC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EDFFC = {
+static const MovementActionDescriptor Unk_020EDFFC = {
     0x3C,
     sub_0206A298,
     sub_0206A2BC,
@@ -508,7 +520,7 @@ static const UnkStruct_020EDF0C Unk_020EDFFC = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE010 = {
+static const MovementActionDescriptor Unk_020EE010 = {
     0x3D,
     sub_0206A2A4,
     sub_0206A2BC,
@@ -516,7 +528,7 @@ static const UnkStruct_020EDF0C Unk_020EE010 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE038 = {
+static const MovementActionDescriptor Unk_020EE038 = {
     0x3E,
     sub_0206A2B0,
     sub_0206A2BC,
@@ -524,7 +536,7 @@ static const UnkStruct_020EDF0C Unk_020EE038 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE04C = {
+static const MovementActionDescriptor Unk_020EE04C = {
     0x3f,
     sub_0206A490,
     sub_0206A4C0,
@@ -532,7 +544,7 @@ static const UnkStruct_020EDF0C Unk_020EE04C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE088 = {
+static const MovementActionDescriptor Unk_020EE088 = {
     0x40,
     sub_0206A49C,
     sub_0206A4C0,
@@ -540,7 +552,7 @@ static const UnkStruct_020EDF0C Unk_020EE088 = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE09C = {
+static const MovementActionDescriptor Unk_020EE09C = {
     0x41,
     sub_0206A4A8,
     sub_0206A4C0,
@@ -548,7 +560,7 @@ static const UnkStruct_020EDF0C Unk_020EE09C = {
     sub_020633EC
 };
 
-static const UnkStruct_020EDF0C Unk_020EE0D8 = {
+static const MovementActionDescriptor Unk_020EE0D8 = {
     0x42,
     sub_0206A4B4,
     sub_0206A4C0,
@@ -556,7 +568,7 @@ static const UnkStruct_020EDF0C Unk_020EE0D8 = {
     sub_020633EC
 };
 
-const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
+const MovementActionDescriptor *const gMovementActionDescriptors[] = {
     &Unk_020EDF0C,
     &Unk_020EDE58,
     &Unk_020EE308,
@@ -604,7 +616,7 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EDE1C,
     &Unk_020EE204,
     &Unk_020EDFC0,
-    &Unk_020EDE30,
+    &sMovementActionDescriptor_BerryPatch,
     &Unk_020EDF48,
     &Unk_020EE164,
     &Unk_020EDE44,
@@ -626,6 +638,13 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE0D8,
     &Unk_020EE2B8
 };
+
+// ============================================================================
+// Movement Action Function Table
+// ============================================================================
+// Maps each movement action ID (0-152) to its implementation function.
+// This is the central dispatch table used by the movement system to execute
+// specific movement behaviors based on the action ID.
 
 BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_FACE_NORTH] = gMovementActionFuncs_FaceNorth,
@@ -733,57 +752,65 @@ BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_PLAYER_GIVE] = gMovementActionFuncs_PlayerGive,
     [MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK] = gMovementActionFuncs_EmoteDoubleExclamationMark,
     [MOVEMENT_ACTION_PLAYER_RECEIVE] = gMovementActionFuncs_PlayerReceive,
-    [MOVEMENT_ACTION_105] = gMovementActionFuncs_105,
-    [MOVEMENT_ACTION_106] = gMovementActionFuncs_106,
-    [MOVEMENT_ACTION_107] = gMovementActionFuncs_107,
-    [MOVEMENT_ACTION_108] = gMovementActionFuncs_108,
-    [MOVEMENT_ACTION_109] = gMovementActionFuncs_109,
-    [MOVEMENT_ACTION_110] = gMovementActionFuncs_110,
-    [MOVEMENT_ACTION_111] = gMovementActionFuncs_111,
-    [MOVEMENT_ACTION_112] = gMovementActionFuncs_112,
-    [MOVEMENT_ACTION_113] = gMovementActionFuncs_113,
-    [MOVEMENT_ACTION_114] = gMovementActionFuncs_114,
-    [MOVEMENT_ACTION_115] = gMovementActionFuncs_115,
-    [MOVEMENT_ACTION_116] = gMovementActionFuncs_116,
-    [MOVEMENT_ACTION_117] = gMovementActionFuncs_117,
-    [MOVEMENT_ACTION_118] = gMovementActionFuncs_118,
-    [MOVEMENT_ACTION_119] = gMovementActionFuncs_119,
-    [MOVEMENT_ACTION_120] = gMovementActionFuncs_120,
-    [MOVEMENT_ACTION_121] = gMovementActionFuncs_121,
-    [MOVEMENT_ACTION_122] = gMovementActionFuncs_122,
-    [MOVEMENT_ACTION_123] = gMovementActionFuncs_123,
-    [MOVEMENT_ACTION_124] = gMovementActionFuncs_124,
-    [MOVEMENT_ACTION_125] = gMovementActionFuncs_125,
-    [MOVEMENT_ACTION_126] = gMovementActionFuncs_126,
-    [MOVEMENT_ACTION_127] = gMovementActionFuncs_127,
-    [MOVEMENT_ACTION_128] = gMovementActionFuncs_128,
-    [MOVEMENT_ACTION_129] = gMovementActionFuncs_129,
-    [MOVEMENT_ACTION_130] = gMovementActionFuncs_130,
-    [MOVEMENT_ACTION_131] = gMovementActionFuncs_131,
-    [MOVEMENT_ACTION_132] = gMovementActionFuncs_132,
-    [MOVEMENT_ACTION_133] = gMovementActionFuncs_133,
-    [MOVEMENT_ACTION_134] = gMovementActionFuncs_134,
-    [MOVEMENT_ACTION_135] = gMovementActionFuncs_135,
-    [MOVEMENT_ACTION_136] = gMovementActionFuncs_136,
-    [MOVEMENT_ACTION_137] = gMovementActionFuncs_137,
-    [MOVEMENT_ACTION_138] = gMovementActionFuncs_138,
-    [MOVEMENT_ACTION_139] = gMovementActionFuncs_139,
-    [MOVEMENT_ACTION_140] = gMovementActionFuncs_140,
-    [MOVEMENT_ACTION_141] = gMovementActionFuncs_141,
-    [MOVEMENT_ACTION_142] = gMovementActionFuncs_142,
-    [MOVEMENT_ACTION_143] = gMovementActionFuncs_143,
-    [MOVEMENT_ACTION_144] = gMovementActionFuncs_144,
-    [MOVEMENT_ACTION_145] = gMovementActionFuncs_145,
-    [MOVEMENT_ACTION_146] = gMovementActionFuncs_146,
-    [MOVEMENT_ACTION_147] = gMovementActionFuncs_147,
-    [MOVEMENT_ACTION_148] = gMovementActionFuncs_148,
-    [MOVEMENT_ACTION_149] = gMovementActionFuncs_149,
-    [MOVEMENT_ACTION_150] = gMovementActionFuncs_150,
-    [MOVEMENT_ACTION_151] = gMovementActionFuncs_151,
-    [MOVEMENT_ACTION_152] = gMovementActionFuncs_152,
-    [MOVEMENT_ACTION_153] = gMovementActionFuncs_153,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH] = gMovementActionFuncs_DistortionWestWallWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH] = gMovementActionFuncs_DistortionWestWallWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST] = gMovementActionFuncs_DistortionWestWallWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST] = gMovementActionFuncs_DistortionWestWallWalkEast,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH] = gMovementActionFuncs_DistortionEastWallWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH] = gMovementActionFuncs_DistortionEastWallWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST] = gMovementActionFuncs_DistortionEastWallWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST] = gMovementActionFuncs_DistortionEastWallWalkEast,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH] = gMovementActionFuncs_DistortionCeilingWalkNorth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH] = gMovementActionFuncs_DistortionCeilingWalkSouth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST] = gMovementActionFuncs_DistortionCeilingWalkWest,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST] = gMovementActionFuncs_DistortionCeilingWalkEast,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_NORTH] = gMovementActionFuncs_JumpDoubleNorth,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_SOUTH] = gMovementActionFuncs_JumpDoubleSouth,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_WEST] = gMovementActionFuncs_JumpDoubleWest,
+    [MOVEMENT_ACTION_JUMP_DOUBLE_EAST] = gMovementActionFuncs_JumpDoubleEast,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH] = gMovementActionFuncs_DistortionWestWallRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH] = gMovementActionFuncs_DistortionWestWallRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST] = gMovementActionFuncs_DistortionWestWallRunWest,
+    [MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST] = gMovementActionFuncs_DistortionWestWallRunEast,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH] = gMovementActionFuncs_DistortionEastWallRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH] = gMovementActionFuncs_DistortionEastWallRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST] = gMovementActionFuncs_DistortionEastWallRunWest,
+    [MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST] = gMovementActionFuncs_DistortionEastWallRunEast,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH] = gMovementActionFuncs_DistortionCeilingRunNorth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH] = gMovementActionFuncs_DistortionCeilingRunSouth,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST] = gMovementActionFuncs_DistortionCeilingRunWest,
+    [MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST] = gMovementActionFuncs_DistortionCeilingRunEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH] = gMovementActionFuncs_DistortionSurfingSlowNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_SOUTH] = gMovementActionFuncs_DistortionSurfingSlowSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_WEST] = gMovementActionFuncs_DistortionSurfingSlowWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_EAST] = gMovementActionFuncs_DistortionSurfingSlowEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH] = gMovementActionFuncs_DistortionSurfingMediumNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_SOUTH] = gMovementActionFuncs_DistortionSurfingMediumSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_WEST] = gMovementActionFuncs_DistortionSurfingMediumWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_EAST] = gMovementActionFuncs_DistortionSurfingMediumEast,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH] = gMovementActionFuncs_DistortionSurfingFastNorth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_SOUTH] = gMovementActionFuncs_DistortionSurfingFastSouth,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_WEST] = gMovementActionFuncs_DistortionSurfingFastWest,
+    [MOVEMENT_ACTION_DISTORTION_SURFING_FAST_EAST] = gMovementActionFuncs_DistortionSurfingFastEast,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_NORTH] = gMovementActionFuncs_DistortionTurnSlowNorth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_SOUTH] = gMovementActionFuncs_DistortionTurnSlowSouth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_WEST] = gMovementActionFuncs_DistortionTurnSlowWest,
+    [MOVEMENT_ACTION_DISTORTION_TURN_SLOW_EAST] = gMovementActionFuncs_DistortionTurnSlowEast,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_NORTH] = gMovementActionFuncs_DistortionTurnFastNorth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_SOUTH] = gMovementActionFuncs_DistortionTurnFastSouth,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_WEST] = gMovementActionFuncs_DistortionTurnFastWest,
+    [MOVEMENT_ACTION_DISTORTION_TURN_FAST_EAST] = gMovementActionFuncs_DistortionTurnFastEast,
+    [MOVEMENT_ACTION_EMOTE_QUESTION_MARK] = gMovementActionFuncs_EmoteQuestionMark,
 };
 
+// ============================================================================
+// Movement Action Code Lookup Tables
+// ============================================================================
+// These tables map movement types and directions to specific movement action codes.
+// They are used by the movement system to convert high-level movement commands
+// into specific action IDs that can be executed.
+
+// Basic directional facing actions
 static const int sMovementActionCodes_Face[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_FACE_NORTH,
     [DIR_SOUTH] = MOVEMENT_ACTION_FACE_SOUTH,
@@ -938,89 +965,96 @@ static const int sMovementActionCodes_WalkEverSoSlightlyFast[] = {
     [DIR_EAST] = MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_EAST,
 };
 
-static const int Unk_020EDC2C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_117,
-    [DIR_SOUTH] = MOVEMENT_ACTION_118,
-    [DIR_WEST] = MOVEMENT_ACTION_119,
-    [DIR_EAST] = MOVEMENT_ACTION_120,
+static const int sMovementActionCodes_JumpDouble[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_JUMP_DOUBLE_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_DOUBLE_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_JUMP_DOUBLE_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_JUMP_DOUBLE_EAST,
 };
 
-static const int Unk_020EDCCC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_105,
-    [DIR_SOUTH] = MOVEMENT_ACTION_106,
-    [DIR_WEST] = MOVEMENT_ACTION_107,
-    [DIR_EAST] = MOVEMENT_ACTION_108,
+static const int sMovementActionCodes_DistortionWestWallWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_WALK_EAST,
 };
 
-static const int Unk_020EDC0C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_109,
-    [DIR_SOUTH] = MOVEMENT_ACTION_110,
-    [DIR_WEST] = MOVEMENT_ACTION_111,
-    [DIR_EAST] = MOVEMENT_ACTION_112,
+static const int sMovementActionCodes_DistortionEastWallWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_WALK_EAST,
 };
 
-static const int Unk_020EDCAC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_113,
-    [DIR_SOUTH] = MOVEMENT_ACTION_114,
-    [DIR_WEST] = MOVEMENT_ACTION_115,
-    [DIR_EAST] = MOVEMENT_ACTION_116,
+static const int sMovementActionCodes_DistortionCeilingWalk[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_CEILING_WALK_EAST,
 };
 
-static const int Unk_020EDC1C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_145,
-    [DIR_SOUTH] = MOVEMENT_ACTION_146,
-    [DIR_WEST] = MOVEMENT_ACTION_147,
-    [DIR_EAST] = MOVEMENT_ACTION_148,
+static const int sMovementActionCodes_DistortionTurnSlow[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_TURN_SLOW_EAST,
 };
 
-static const int Unk_020EDD8C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_149,
-    [DIR_SOUTH] = MOVEMENT_ACTION_150,
-    [DIR_WEST] = MOVEMENT_ACTION_151,
-    [DIR_EAST] = MOVEMENT_ACTION_152,
+static const int sMovementActionCodes_DistortionTurnFast[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_TURN_FAST_EAST,
 };
 
-static const int Unk_020EDD4C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_121,
-    [DIR_SOUTH] = MOVEMENT_ACTION_122,
-    [DIR_WEST] = MOVEMENT_ACTION_123,
-    [DIR_EAST] = MOVEMENT_ACTION_124,
+static const int sMovementActionCodes_DistortionWestWallRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_WEST_WALL_RUN_EAST,
 };
 
-static const int Unk_020EDD1C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_125,
-    [DIR_SOUTH] = MOVEMENT_ACTION_126,
-    [DIR_WEST] = MOVEMENT_ACTION_127,
-    [DIR_EAST] = MOVEMENT_ACTION_128,
+static const int sMovementActionCodes_DistortionEastWallRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_EAST_WALL_RUN_EAST,
 };
 
-static const int Unk_020EDD6C[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_129,
-    [DIR_SOUTH] = MOVEMENT_ACTION_130,
-    [DIR_WEST] = MOVEMENT_ACTION_131,
-    [DIR_EAST] = MOVEMENT_ACTION_132,
+static const int sMovementActionCodes_DistortionCeilingRun[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_CEILING_RUN_EAST,
 };
 
-static const int Unk_020EDBCC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_133,
-    [DIR_SOUTH] = MOVEMENT_ACTION_134,
-    [DIR_WEST] = MOVEMENT_ACTION_135,
-    [DIR_EAST] = MOVEMENT_ACTION_136,
+static const int sMovementActionCodes_DistortionSurfingSlow[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_SLOW_EAST,
 };
 
-static const int Unk_020EDDAC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_137,
-    [DIR_SOUTH] = MOVEMENT_ACTION_138,
-    [DIR_WEST] = MOVEMENT_ACTION_139,
-    [DIR_EAST] = MOVEMENT_ACTION_140,
+static const int sMovementActionCodes_DistortionSurfingMedium[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_MEDIUM_EAST,
 };
 
-static const int Unk_020EDBBC[] = {
-    [DIR_NORTH] = MOVEMENT_ACTION_141,
-    [DIR_SOUTH] = MOVEMENT_ACTION_142,
-    [DIR_WEST] = MOVEMENT_ACTION_143,
-    [DIR_EAST] = MOVEMENT_ACTION_144,
+static const int sMovementActionCodes_DistortionSurfingFast[] = {
+    [DIR_NORTH] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_NORTH,
+    [DIR_SOUTH] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_SOUTH,
+    [DIR_WEST] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_WEST,
+    [DIR_EAST] = MOVEMENT_ACTION_DISTORTION_SURFING_FAST_EAST,
 };
+
+// ============================================================================
+// Main Movement Action Codes Lookup Table
+// ============================================================================
+// This is the primary lookup table that maps movement type indices to their
+// corresponding directional action code arrays. The movement system uses this
+// to convert movement commands into specific action codes.
 
 const int *const gMovementActionCodes[] = {
     sMovementActionCodes_Face,
@@ -1045,17 +1079,17 @@ const int *const gMovementActionCodes[] = {
     sMovementActionCodes_JumpNearSlow,
     sMovementActionCodes_JumpFarther,
     sMovementActionCodes_WalkEverSoSlightlyFast,
-    Unk_020EDCCC,
-    Unk_020EDC0C,
-    Unk_020EDC2C,
-    Unk_020EDCAC,
-    Unk_020EDD4C,
-    Unk_020EDD1C,
-    Unk_020EDD6C,
-    Unk_020EDBCC,
-    Unk_020EDDAC,
-    Unk_020EDBBC,
-    Unk_020EDC1C,
-    Unk_020EDD8C,
+    sMovementActionCodes_DistortionWestWallWalk,
+    sMovementActionCodes_DistortionEastWallWalk,
+    sMovementActionCodes_JumpDouble,
+    sMovementActionCodes_DistortionCeilingWalk,
+    sMovementActionCodes_DistortionWestWallRun,
+    sMovementActionCodes_DistortionEastWallRun,
+    sMovementActionCodes_DistortionCeilingRun,
+    sMovementActionCodes_DistortionSurfingSlow,
+    sMovementActionCodes_DistortionSurfingMedium,
+    sMovementActionCodes_DistortionSurfingFast,
+    sMovementActionCodes_DistortionTurnSlow,
+    sMovementActionCodes_DistortionTurnFast,
     NULL
 };
