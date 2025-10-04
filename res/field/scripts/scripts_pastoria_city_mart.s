@@ -2,57 +2,57 @@
 #include "res/text/bank/pastoria_city_mart.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _002C
-    ScriptEntry _0042
-    ScriptEntry _0055
-    ScriptEntry _0068
+    ScriptEntry PastoriaCityMart_CommonVendor
+    ScriptEntry PastoriaCityMart_SpecialtyVendor
+    ScriptEntry PastoriaCityMart_BugCatcher
+    ScriptEntry PastoriaCityMart_SchoolGirl
+    ScriptEntry PastoriaCityMart_CroagunkCarving
     ScriptEntryEnd
 
-_0016:
+PastoriaCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_002C:
+PastoriaCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_PASTORIA
     ReleaseAll
     End
 
-_0042:
+PastoriaCityMart_BugCatcher:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message PastoriaCityMart_Text_CroagunkIsOfficialCityMascot
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0055:
+PastoriaCityMart_SchoolGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message PastoriaCityMart_Text_AreYouUsingBallCapsules
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0068:
+PastoriaCityMart_CroagunkCarving:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 2
+    Message PastoriaCityMart_Text_LooksLikeItsSeepingPoison
     WaitABXPadPress
     CloseMessage
     ReleaseAll

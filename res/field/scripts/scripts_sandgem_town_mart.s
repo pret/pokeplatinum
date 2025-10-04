@@ -2,17 +2,17 @@
 #include "res/text/bank/sandgem_town_mart.h"
 
 
-    ScriptEntry SandgemTownMart_Vendor
+    ScriptEntry SandgemTownMart_CommonVendor
     ScriptEntry SandgemTownMart_Dummy
     ScriptEntry SandgemTownMart_Breeder
     ScriptEntry SandgemTownMart_SchoolBoy
     ScriptEntryEnd
 
-SandgemTownMart_Vendor:
+SandgemTownMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon 0
     ReleaseAll

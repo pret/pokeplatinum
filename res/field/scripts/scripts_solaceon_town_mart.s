@@ -2,47 +2,47 @@
 #include "res/text/bank/solaceon_town_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _0051
+    ScriptEntry SolaceonTownMart_CommonVendor
+    ScriptEntry SolaceonTownMart_SpecialtyVendor
+    ScriptEntry SolaceonTownMart_NinjaBoy
+    ScriptEntry SolaceonTownMart_Pokefan
     ScriptEntryEnd
 
-_0012:
+SolaceonTownMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_0028:
+SolaceonTownMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_SOLACEON
     ReleaseAll
     End
 
-_003E:
+SolaceonTownMart_NinjaBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SolaceonTownMart_Text_NeedPCToSealPokeBalls
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0051:
+SolaceonTownMart_Pokefan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message SolaceonTownMart_Text_ConsiderSuperRepels
     WaitABXPadPress
     CloseMessage
     ReleaseAll

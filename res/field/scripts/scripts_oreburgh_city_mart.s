@@ -2,47 +2,47 @@
 #include "res/text/bank/oreburgh_city_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _0051
+    ScriptEntry OreburghCityMart_CommonVendor
+    ScriptEntry OreburghCityMart_SpecialtyVendor
+    ScriptEntry OreburghCityMart_Hiker
+    ScriptEntry OreburghCityMart_Collector
     ScriptEntryEnd
 
-_0012:
+OreburghCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_0028:
+OreburghCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_OREBURGH
     ReleaseAll
     End
 
-_003E:
+OreburghCityMart_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityMart_Text_MoreBadgesMoreItems
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0051:
+OreburghCityMart_Collector:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityMart_Text_TwoStaffOfferDifferentMerchandise
     WaitABXPadPress
     CloseMessage
     ReleaseAll

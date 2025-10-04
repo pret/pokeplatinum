@@ -1,37 +1,37 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/eterna_city_north_house.h"
+#include "res/text/bank/eterna_city_herb_shop.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0023
-    ScriptEntry _0036
+    ScriptEntry EternaCityHerbShop_Vendor
+    ScriptEntry EternaCityHerbShop_ExpertF
+    ScriptEntry EternaCityHerbShop_ExpertM
     ScriptEntryEnd
 
-_000E:
+EternaCityHerbShop_Vendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message EternaCityHerbShop_Text_Welcome
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_ETERNA_HOUSE
     ReleaseAll
     End
 
-_0023:
+EternaCityHerbShop_ExpertF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message EternaCityHerbShop_Text_YourPokemonWontLikeThem
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0036:
+EternaCityHerbShop_ExpertM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message EternaCityHerbShop_Text_NonBitterWouldBeMedicalBreakthrough
     WaitABXPadPress
     CloseMessage
     ReleaseAll

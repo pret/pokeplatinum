@@ -2,7 +2,7 @@
   "key": 51728,
   "messages": [
     {
-      "id": "pl_msg_00000086_00000",
+      "id": "EternaCityMart_Text_GardeniaIsTooMuch",
       "en_US": [
         "The more Gym Badges you have, the\n",
         "better they treat you at Poké Marts.\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000086_00001",
+      "id": "EternaCityMart_Text_EscapeRopeIsIndispensable",
       "en_US": [
         "An Escape Rope is indispensable!\r",
         "I wish I’d had one when I got into a \n",

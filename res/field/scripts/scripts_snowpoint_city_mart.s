@@ -2,47 +2,47 @@
 #include "res/text/bank/snowpoint_city_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _003E
-    ScriptEntry _0051
+    ScriptEntry SnowpointCityMart_CommonVendor
+    ScriptEntry SnowpointCityMart_SpecialtyVendor
+    ScriptEntry SnowpointCityMart_Youngster
+    ScriptEntry SnowpointCityMart_SnowpointLady
     ScriptEntryEnd
 
-_0012:
+SnowpointCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_0028:
+SnowpointCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GenericVendorGreeting
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_SNOWPOINT
     ReleaseAll
     End
 
-_003E:
+SnowpointCityMart_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SnowpointCityMart_Text_UsingTmsForEliteFour
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0051:
+SnowpointCityMart_SnowpointLady:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message SnowpointCityMart_Text_KeepSomeIceHeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll

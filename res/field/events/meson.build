@@ -86,7 +86,7 @@ events_files = files(
     'events_eterna_city_condominiums_3f.json',
     'events_eterna_city_condominiums_4f.json',
     'events_route_206_cycling_road_north_gate.json',
-    'events_eterna_city_north_house.json',
+    'events_eterna_city_herb_shop.json',
     'events_eterna_city_south_house.json',
     'events_eterna_city_east_house.json',
     'events_eterna_city_underground_man_house.json',
