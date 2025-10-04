@@ -85,8 +85,8 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_GYM_BRYON_4",
-            "graphics_id": "OBJ_EVENT_GFX_BRYON",
+            "id": "CANALAVE_CITY_GYM_BYRON_4",
+            "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",

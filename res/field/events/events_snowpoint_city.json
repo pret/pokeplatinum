@@ -58,8 +58,8 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_UNK_064_3",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_064",
+            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_M_3",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",
@@ -73,8 +73,8 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_UNK_065_4",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_F_4",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",
@@ -148,8 +148,8 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_UNK_065_9",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_F_9",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",

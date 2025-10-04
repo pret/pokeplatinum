@@ -32,8 +32,8 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_MART_UNK_065_2",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "SNOWPOINT_CITY_MART_SNOWPOINT_NPC_F_2",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",
