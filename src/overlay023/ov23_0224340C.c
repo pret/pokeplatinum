@@ -57,6 +57,8 @@
 #include "unk_020711EC.h"
 #include "vars_flags.h"
 
+#include "res/graphics/trap_effects/trap_effects.naix.h"
+
 typedef void (*UnkFuncPtr_ov23_02257764)(BgConfig *);
 typedef void (*UnkFuncPtr_ov23_02256670)(int, BOOL);
 typedef void (*UnkFuncPtr_ov23_02256440)(int, BOOL, int);
@@ -785,10 +787,10 @@ static void ov23_02243754(void)
 
         v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD1);
 
-        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
-        Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
-        Unk_ov23_02257764->unk_1F4[1][2] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][2], v1, 16, 0, 0, 2, HEAP_ID_FIELD1);
-        Unk_ov23_02257764->unk_1F4[1][3] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][3], v1, 15, 0, 0, 3, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, radar_NCGR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, radar_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[1][2] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][2], v1, radar_cell_NCER, 0, 0, 2, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[1][3] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][3], v1, radar_anim_NANR, 0, 0, 3, HEAP_ID_FIELD1);
 
         NARC_dtor(v1);
     }
@@ -2338,20 +2340,20 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 1:
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_TRAP, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, HEAP_ID_FIELD1);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_TRAP, smoke_tiles_NCGR, v0->unk_10, 2, 0, 8 * 6 * 6, 0, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 2:
-        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 10, 0, 0, 32, HEAP_ID_FIELD1);
+        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, smoke_tiles_NCLR, 0, 0, 32, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD1);
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, big_smoke_pattern_NSCR, v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD1);
         } else {
-            u16 v2[] = { 11, 12, 13, 14 };
+            u16 v2[] = { smoke_pattern_1_NSCR, smoke_pattern_2_NSCR, smoke_pattern_3_NSCR, smoke_pattern_4_NSCR };
             u16 v3 = LCRNG_Next() % 4;
 
             Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD1);
@@ -3087,44 +3089,44 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 29) {
-            v2 = 2;
+            v2 = petal_NCGR;
         } else {
-            v2 = 28;
+            v2 = leaf_NCGR;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 2:
         if (Unk_ov23_02257764->unk_B9F == 29) {
-            v2 = 3;
+            v2 = petal_NCLR;
         } else {
-            v2 = 29;
+            v2 = leaf_NCLR;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 29) {
-            v2 = 1;
+            v2 = petal_cell_NCER;
         } else {
-            v2 = 27;
+            v2 = leaf_cell_NCER;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, 2, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 4:
         if (Unk_ov23_02257764->unk_B9F == 29) {
-            v2 = 0;
+            v2 = petal_anim_NANR;
         } else {
-            v2 = 26;
+            v2 = leaf_anim_NANR;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, 3, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 5:
@@ -3537,21 +3539,21 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], NARC_INDEX_DATA__UG_TRAP, bubble_NCGR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], NARC_INDEX_DATA__UG_TRAP, bubble_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 5, 0, 0, 2, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], NARC_INDEX_DATA__UG_TRAP, bubble_cell_NCER, 0, 0, 2, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 4:
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 4, 0, 0, 3, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], NARC_INDEX_DATA__UG_TRAP, bubble_anim_NANR, 0, 0, 3, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 5:
@@ -4094,12 +4096,12 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
 static void ov23_022479F4(UnkStruct_ov23_022471D8 *param0)
 {
     int v0[] = {
-        35,
-        38,
-        41,
-        44,
-        47,
-        50,
+        boulder_damaged_1_NCGR,
+        boulder_damaged_2_NCGR,
+        boulder_damaged_3_NCGR,
+        boulder_damaged_4_NCGR,
+        boulder_damaged_5_NCGR,
+        boulder_damaged_6_NCGR,
     };
     int v1 = param0->unk_124 - 1;
 
@@ -4151,21 +4153,21 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         break;
     case 1:
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], NARC_INDEX_DATA__UG_TRAP, boulder_NCGR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
         v0->unk_F8[0] = Unk_ov23_02257764->unk_1F4[0][0];
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 51, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], NARC_INDEX_DATA__UG_TRAP, boulder_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 31, 0, 0, 2, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], NARC_INDEX_DATA__UG_TRAP, boulder_cell_NCER, 0, 0, 2, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 4:
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 30, 0, 0, 3, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], NARC_INDEX_DATA__UG_TRAP, boulder_anim_NANR, 0, 0, 3, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 5:
@@ -4430,38 +4432,38 @@ static void ov23_022480C4(SysTask *param0, void *param1)
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 31) {
-            v2 = 22;
+            v2 = fire_NCGR;
         } else {
-            v2 = 25;
+            v2 = ember_NCGR;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 19, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], NARC_INDEX_DATA__UG_TRAP, ember_fire_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 31) {
-            v2 = 21;
+            v2 = fire_cell_NCER;
         } else {
-            v2 = 24;
+            v2 = ember_cell_NCER;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, 2, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 4:
         if (Unk_ov23_02257764->unk_B9F == 31) {
-            v2 = 20;
+            v2 = fire_anim_NANR;
         } else {
-            v2 = 23;
+            v2 = ember_anim_NANR;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, HEAP_ID_FIELD1);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], NARC_INDEX_DATA__UG_TRAP, v2, 0, 0, 3, HEAP_ID_FIELD1);
         v0->unk_00++;
         break;
     case 5:

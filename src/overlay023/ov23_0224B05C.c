@@ -64,6 +64,8 @@
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
+#include "res/graphics/trap_effects/trap_effects.naix.h"
+
 typedef struct {
     u8 unk_00;
     u8 unk_01;
@@ -1630,7 +1632,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommSys_EnableSendMovementData();
         CommPlayerMan_PauseFieldSystem();
 
-        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
+        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
         LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
         if (v1->unk_2D) {

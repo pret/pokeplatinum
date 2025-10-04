@@ -49,6 +49,8 @@
 #include "unk_020366A0.h"
 #include "vars_flags.h"
 
+#include "res/graphics/trap_effects/trap_effects.naix.h"
+
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
 
 typedef struct StoredListMenuPos {
@@ -141,7 +143,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
-    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
     for (i = 0; i < (7 + 1); i++) {

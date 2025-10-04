@@ -1,0 +1,220 @@
+{
+	"labelEnabled":	true,
+	"extended":	false,
+	"vramTransferEnabled":	false,
+	"cellCount":	7,
+	"mappingType":	0,
+	"cells":	[{
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	23
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-64,
+						"Rotation":	true,
+						"SizeDisable":	true,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-64,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	0,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	64,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	65,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	66,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	67,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	68,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	3
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-8,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	0,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	69,
+						"Priority":	0,
+						"Palette":	0
+					}
+				}]
+		}],
+	"labels":	["CellAnime0", "CellAnime1", "CellAnime2"],
+	"labelCount":	3
+}

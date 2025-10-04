@@ -67,6 +67,7 @@
 #include "vram_transfer.h"
 
 #include "res/graphics/mining/mining.naix.h"
+#include "res/graphics/trap_effects/trap_effects.naix.h"
 #include "res/text/bank/underground_common.h"
 
 typedef struct {
@@ -1310,7 +1311,7 @@ static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
         NARC_dtor(narc);
     }
 
-    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_MINING);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_MINING);
     Mining_GenerateGameLayout(bgConfig, v0, param0);
 }
 
@@ -1562,7 +1563,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
-            Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
+            Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
             CommPlayerMan_Restart();
 
