@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "VeilstoneGym_Text_GymGuide_BeforeBadge",
+      "id": "VeilstoneGym_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "VeilstoneGym_Text_GymGuide_AfterBadge",
+      "id": "VeilstoneGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "VeilstoneGym_Text_GymStatue_BeforeBadge",
+      "id": "VeilstoneGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Veilstone City Pokémon Gym\n",
         "Leader: Maylene\r",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "VeilstoneGym_Text_GymStatue_AfterBadge",
+      "id": "VeilstoneGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Veilstone City Pokémon Gym\n",
         "Leader: Maylene\r",

@@ -13,53 +13,53 @@ EternaGym_GymGuide:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaGym_GymGuide_AfterBadge
-    Message HearthomeGym_Text_GymGuide_HearLongSpielAgain
+    GoToIfEq VAR_RESULT, TRUE, EternaGym_GymGuideAfterBadge
+    Message HearthomeGym_Text_GymGuideHearLongSpielAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, EternaGym_GymGuide_Explanation
-    GoToIfEq VAR_RESULT, MENU_NO, EternaGym_GymGuide_Encouragement
+    GoToIfEq VAR_RESULT, MENU_YES, EternaGym_GymGuideExplanation
+    GoToIfEq VAR_RESULT, MENU_NO, EternaGym_GymGuideEncouragement
     End
 
-EternaGym_GymGuide_Explanation:
-    Message HearthomeGym_Text_GymGuide_Explanation
-    GoTo EternaGym_GymGuide_End
+EternaGym_GymGuideExplanation:
+    Message HearthomeGym_Text_GymGuideExplanation
+    GoTo EternaGym_GymGuideEnd
     End
 
-EternaGym_GymGuide_Encouragement:
-    Message HearthomeGym_Text_GymGuide_GoGetEm
-    GoTo EternaGym_GymGuide_End
+EternaGym_GymGuideEncouragement:
+    Message HearthomeGym_Text_GymGuideGoGetEm
+    GoTo EternaGym_GymGuideEnd
     End
 
-EternaGym_GymGuide_End:
+EternaGym_GymGuideEnd:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-EternaGym_GymGuide_AfterBadge:
+EternaGym_GymGuideAfterBadge:
     BufferPlayerName 0
-    Message HearthomeGym_Text_GymGuide_AfterBadge
-    GoTo EternaGym_GymGuide_End
+    Message HearthomeGym_Text_GymGuideAfterBadge
+    GoTo EternaGym_GymGuideEnd
     End
 
 HearthomeGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, HearthomeGym_GymStatue_AfterBadge
+    GoToIfEq VAR_RESULT, TRUE, HearthomeGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
-    Message HearthomeGym_Text_GymStatue_BeforeBadge
+    Message HearthomeGym_Text_GymStatueBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-HearthomeGym_GymStatue_AfterBadge:
+HearthomeGym_GymStatueAfterBadge:
     BufferRivalName 0
     BufferPlayerName 1
     BufferRivalName 2
-    Message HearthomeGym_Text_GymStatue_AfterBadge
+    Message HearthomeGym_Text_GymStatueAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -67,18 +67,18 @@ HearthomeGym_GymStatue_AfterBadge:
 
 HearthomeGym_GymGuide_InitialVisit:
     LockAll
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuide_MoveToPlayer
+    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
     WaitMovement
-    Message HearthomeGym_Text_GymGuide_InitialVisit
+    Message HearthomeGym_Text_GymGuideInitialVisit
     CloseMessage
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuide_ReturnToPosition
+    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
     WaitMovement
     SetVar VAR_HAS_ENTERED_HEARTHOME_GYM_BEFORE, TRUE
     ReleaseAll
     End
 
     .balign 4, 0
-HearthomeGym_GymGuide_MoveToPlayer:
+HearthomeGym_GymGuideMoveToPlayer:
     EmoteExclamationMark
     Delay8
     WalkNormalWest
@@ -86,7 +86,7 @@ HearthomeGym_GymGuide_MoveToPlayer:
     EndMovement
 
     .balign 4, 0
-HearthomeGym_GymGuide_ReturnToPosition:
+HearthomeGym_GymGuideReturnToPosition:
     WalkNormalNorth
     WalkNormalEast
     WalkOnSpotNormalSouth

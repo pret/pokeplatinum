@@ -5,7 +5,7 @@
     ScriptEntry VeilstoneGym_Init
     ScriptEntry VeilstoneGym_Maylene
     ScriptEntry VeilstoneGym_GymGuide
-    ScriptEntry VeilstoneGym_GymStatue_BeforeBadge
+    ScriptEntry VeilstoneGym_GymStatue
     ScriptEntry VeilstoneGym_LeftPoster
     ScriptEntry VeilstoneGym_RightPoster
     ScriptEntry VeilstoneGym_MiddlePoster
@@ -20,7 +20,7 @@ VeilstoneGym_Maylene:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_Maylene_AfterBadge
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_MayleneAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
     Message VeilstoneGym_Text_MayleneIntro
     CloseMessage
@@ -44,13 +44,13 @@ VeilstoneGym_Maylene:
     SetVar VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, TRUE
     SetVar VAR_VEILSTONE_STATE, 1
     Message VeilstoneGym_Text_MayleneExplainBadge
-    GoTo VeilstoneGym_Maylene_TryGiveTM60
+    GoTo VeilstoneGym_MayleneTryGiveTM60
     End
 
-VeilstoneGym_Maylene_TryGiveTM60:
+VeilstoneGym_MayleneTryGiveTM60:
     SetVar VAR_0x8004, ITEM_TM60
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneGym_Maylene_CannotGiveTM60
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneGym_MayleneCannotGiveTM60
     GiveItemQuantity
     SetFlag FLAG_OBTAINED_MAYLENE_TM60
     BufferItemName 0, VAR_0x8004
@@ -61,14 +61,14 @@ VeilstoneGym_Maylene_TryGiveTM60:
     ReleaseAll
     End
 
-VeilstoneGym_Maylene_CannotGiveTM60:
+VeilstoneGym_MayleneCannotGiveTM60:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneGym_Maylene_AfterBadge:
-    GoToIfUnset FLAG_OBTAINED_MAYLENE_TM60, VeilstoneGym_Maylene_TryGiveTM60
+VeilstoneGym_MayleneAfterBadge:
+    GoToIfUnset FLAG_OBTAINED_MAYLENE_TM60, VeilstoneGym_MayleneTryGiveTM60
     BufferPlayerName 0
     Message VeilstoneGym_Text_MayleneAfterBadge
     WaitABXPadPress
@@ -86,39 +86,39 @@ VeilstoneGym_GymGuide:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, VeilstoneGym_GymGuide_Afterbadge
-    Message VeilstoneGym_Text_GymGuide_BeforeBadge
+    GoToIfEq VAR_RESULT, 1, VeilstoneGym_GymGuideAfterbadge
+    Message VeilstoneGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneGym_GymGuide_Afterbadge:
+VeilstoneGym_GymGuideAfterbadge:
     BufferPlayerName 0
-    Message VeilstoneGym_Text_GymGuide_AfterBadge
+    Message VeilstoneGym_Text_GymGuideAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneGym_GymStatue_BeforeBadge:
+VeilstoneGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, VeilstoneGym_GymStatue_AfterBadge
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
-    Message VeilstoneGym_Text_GymStatue_BeforeBadge
+    Message VeilstoneGym_Text_GymStatueBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneGym_GymStatue_AfterBadge:
+VeilstoneGym_GymStatueAfterBadge:
     BufferRivalName 0
     BufferPlayerName 1
     BufferRivalName 2
-    Message VeilstoneGym_Text_GymStatue_AfterBadge
+    Message VeilstoneGym_Text_GymStatueAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll

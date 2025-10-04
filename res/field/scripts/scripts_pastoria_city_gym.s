@@ -44,7 +44,7 @@ PastoriaGym_Wake:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PastoriaGym_Wake_AlreadyHaveFenBadge
+    GoToIfEq VAR_RESULT, TRUE, PastoriaGym_WakeAlreadyHaveFenBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
     Message PastoriaGym_Text_WakeIntro
     CloseMessage
@@ -69,13 +69,13 @@ PastoriaGym_Wake:
     SetFlag FLAG_UNK_0x0156
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, TRAINER_LEADER_WAKE, 0, 0
     Message PastoriaGym_Text_WakeExplainFenBadge
-    GoTo PastoriaGym_Wake_TryGiveTm55
+    GoTo PastoriaGym_WakeTryGiveTm55
     End
 
-PastoriaGym_Wake_TryGiveTm55:
+PastoriaGym_WakeTryGiveTm55:
     SetVar VAR_0x8004, ITEM_TM55
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_Wake_CannotGiveTm55
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTm55
     GiveItemQuantity
     SetFlag FLAG_OBTAINED_WAKE_TM55
     BufferItemName 0, VAR_0x8004
@@ -86,14 +86,14 @@ PastoriaGym_Wake_TryGiveTm55:
     ReleaseAll
     End
 
-PastoriaGym_Wake_CannotGiveTm55:
+PastoriaGym_WakeCannotGiveTm55:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-PastoriaGym_Wake_AlreadyHaveFenBadge:
-    GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_Wake_TryGiveTm55
+PastoriaGym_WakeAlreadyHaveFenBadge:
+    GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_WakeTryGiveTm55
     Message PastoriaGym_Text_WakeAfterbadge
     WaitABXPadPress
     CloseMessage
@@ -129,7 +129,7 @@ PastoriaGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, PastoriaGym_GymStatueAfterBadge
+    GoToIfEq VAR_RESULT, TRUE, PastoriaGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message PastoriaGym_Text_GymStatueBeforeBadge

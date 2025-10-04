@@ -21,7 +21,7 @@ SnowpointGym_Candice:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_Candice_AfterBadge
+    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_CandiceAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message SnowpointGym_Text_CandiceIntro
     CloseMessage
@@ -44,12 +44,12 @@ SnowpointGym_Candice:
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 167, TRAINER_LEADER_CANDICE, 0, 0
     SetFlag FLAG_VEILSTONE_GALACTIC_GRUNTS
     Message SnowpointGym_Text_CandiceExplainIcicleBadge
-    GoTo SnowpointGym_Candice_TryGiveTM72
+    GoTo SnowpointGym_CandiceTryGiveTM72
 
-SnowpointGym_Candice_TryGiveTM72:
+SnowpointGym_CandiceTryGiveTM72:
     SetVar VAR_0x8004, ITEM_TM72
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SnowpointGym_Candice_CannotGiveTM72
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SnowpointGym_CandiceCannotGiveTM72
     GiveItemQuantity
     SetFlag FLAG_OBTAINED_CANDICE_TM72
     BufferItemName 0, VAR_0x8004
@@ -60,14 +60,14 @@ SnowpointGym_Candice_TryGiveTM72:
     ReleaseAll
     End
 
-SnowpointGym_Candice_CannotGiveTM72:
+SnowpointGym_CandiceCannotGiveTM72:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-SnowpointGym_Candice_AfterBadge:
-    GoToIfUnset FLAG_OBTAINED_CANDICE_TM72, SnowpointGym_Candice_TryGiveTM72
+SnowpointGym_CandiceAfterBadge:
+    GoToIfUnset FLAG_OBTAINED_CANDICE_TM72, SnowpointGym_CandiceTryGiveTM72
     Message SnowpointGym_Text_CandiceAfterBadge
     WaitABXPadPress
     CloseMessage
@@ -84,7 +84,7 @@ SnowpointGym_GymGuide:
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, SnowpointGym_GymGuideAfterBadge
+    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_GymGuideAfterBadge
     Message SnowpointGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
@@ -103,7 +103,7 @@ SnowpointGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, SnowpointGym_GymStatueAfterBadge
+    GoToIfEq VAR_RESULT, TRUE, SnowpointGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message SnowpointGym_Text_GymStatueBeforeBadge
