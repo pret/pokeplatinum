@@ -218,10 +218,8 @@ static BOOL State_UpdateApp(PoketchRoulette *appData)
         }
 
         if (appData->currentlyDrawing) {
-            u32 prevX, prevY;
-
-            prevX = appData->rouletteData.x;
-            prevY = appData->rouletteData.y;
+            u32 prevX = appData->rouletteData.x;
+            u32 prevY = appData->rouletteData.y;
 
             if (GetTouchContinuePosition(appData)) {
                 UpdatePixelsOnPath(appData, prevX, prevY, appData->rouletteData.x, appData->rouletteData.y);
@@ -326,18 +324,17 @@ static BOOL GetTouchContinuePosition(PoketchRoulette *appData)
 
 static void UpdatePixelsOnPath(PoketchRoulette *appData, u32 x, u32 y, u32 endX, u32 endY)
 {
-    u32 deltaX, deltaY, majorAxisStep, minorAxisRounded;
-    fx32 minorAxis, minorAxisStep;
+    fx32 minorAxisStep;
 
     if ((y == endY) && (x == endX)) {
         return;
     }
 
-    deltaX = endX > x ? endX - x : x - endX;
-    deltaY = endY > y ? endY - y : y - endY;
+    u32 deltaX = endX > x ? endX - x : x - endX;
+    u32 deltaY = endY > y ? endY - y : y - endY;
 
     if (deltaX > deltaY) {
-        majorAxisStep = endX > x ? 1 : -1;
+        u32 xStep = endX > x ? 1 : -1;
 
         if (deltaX) {
             minorAxisStep = (endY - y) * FX32_ONE;
@@ -346,11 +343,11 @@ static void UpdatePixelsOnPath(PoketchRoulette *appData, u32 x, u32 y, u32 endX,
             minorAxisStep = 0;
         }
 
-        minorAxis = (y << FX32_SHIFT) + minorAxisStep;
-        x += majorAxisStep;
+        fx32 minorAxis = (y << FX32_SHIFT) + minorAxisStep;
+        x += xStep;
 
         while (x != endX) {
-            minorAxisRounded = minorAxis >> FX32_SHIFT;
+            u32 minorAxisRounded = minorAxis >> FX32_SHIFT;
 
             if ((x < DRAWING_REGION_WIDTH) && (minorAxisRounded < DRAWING_REGION_HEIGHT)) {
                 if (appData->rouletteData.pixels[x][minorAxisRounded] == 0) {
@@ -361,11 +358,11 @@ static void UpdatePixelsOnPath(PoketchRoulette *appData, u32 x, u32 y, u32 endX,
                 }
             }
 
-            x += majorAxisStep;
+            x += xStep;
             minorAxis += minorAxisStep;
         }
     } else {
-        majorAxisStep = endY > y ? 1 : -1;
+        u32 yStep = endY > y ? 1 : -1;
 
         if (deltaY) {
             minorAxisStep = (endX - x) * FX32_ONE;
@@ -374,11 +371,11 @@ static void UpdatePixelsOnPath(PoketchRoulette *appData, u32 x, u32 y, u32 endX,
             minorAxisStep = 0;
         }
 
-        minorAxis = (x << FX32_SHIFT) + minorAxisStep;
-        y += majorAxisStep;
+        fx32 minorAxis = (x << FX32_SHIFT) + minorAxisStep;
+        y += yStep;
 
         while (y != endY) {
-            minorAxisRounded = minorAxis >> FX32_SHIFT;
+            u32 minorAxisRounded = minorAxis >> FX32_SHIFT;
 
             if ((y < DRAWING_REGION_HEIGHT) && (minorAxisRounded < DRAWING_REGION_WIDTH)) {
                 if (appData->rouletteData.pixels[minorAxisRounded][y] == 0) {
@@ -389,7 +386,7 @@ static void UpdatePixelsOnPath(PoketchRoulette *appData, u32 x, u32 y, u32 endX,
                 }
             }
 
-            y += majorAxisStep;
+            y += yStep;
             minorAxis += minorAxisStep;
         }
     }

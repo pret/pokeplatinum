@@ -184,19 +184,16 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
         .areaOver = 0,
         .mosaic = FALSE,
     };
-    GXSDispCnt dispCnt;
-    RouletteGraphics *graphics;
-    u32 bgTileCount;
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
-    graphics = PoketchTask_GetTaskData(taskMan);
+    RouletteGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &mainBgTemplate, BG_TYPE_STATIC);
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_3, &windowBgTemplate, BG_TYPE_STATIC);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
-    bgTileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 86, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    u32 bgTileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 86, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     bgTileCount /= TILE_SIZE_4BPP;
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 85, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
@@ -207,7 +204,7 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     SetupWindow(graphics, bgTileCount);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_3);
 
-    dispCnt = GXS_GetDispCnt();
+    GXSDispCnt dispCnt = GXS_GetDispCnt();
     GXS_SetVisiblePlane(dispCnt.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
 
     EndTask(taskMan);
@@ -266,12 +263,11 @@ static void Task_Unused(SysTask *task, void *taskMan)
 
 static void Task_UpdateDrawing(SysTask *task, void *taskMan)
 {
-    s32 x, y, tileIdx;
     RouletteGraphics *graphics = PoketchTask_GetTaskData(taskMan);
-    x = graphics->rouletteData->x * 2;
-    y = graphics->rouletteData->y * 2;
+    s32 x = graphics->rouletteData->x * 2;
+    s32 y = graphics->rouletteData->y * 2;
     // Dividing x and y by 8 (TILE_WIDTH/HEIGHT_PIXELS) here
-    tileIdx = ((y >> 3) * WINDOW_WIDTH_TILES) + (x >> 3);
+    s32 tileIdx = ((y >> 3) * WINDOW_WIDTH_TILES) + (x >> 3);
 
     Window_FillRectWithColor(&graphics->window, 1, x, y, 2, 2);
     GXS_LoadBG3Char(graphics->window.pixels + (tileIdx * TILE_SIZE_4BPP), (graphics->windowBaseTile + tileIdx) * TILE_SIZE_4BPP, TILE_SIZE_4BPP);
