@@ -532,9 +532,9 @@ CommonScript_InternalObtainPoketchApp:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
     PlaySound SEQ_POCKETCH
-    Message pl_msg_00000213_00024
+    Message CommonStrings_Text_ObtainedPoketchApp
     WaitSound
-    Message pl_msg_00000213_00026
+    Message CommonStrings_Text_InstalledPoketchApp
     RegisterPoketchApp VAR_0x8004
     CallIfEq VAR_0x8004, POKETCH_APPID_DIGITALWATCH, CommonScript_ObtainedPoketchDigitalWatch
     CallIfEq VAR_0x8004, POKETCH_APPID_CALCULATOR, CommonScript_ObtainedPoketchCalculator
@@ -604,7 +604,7 @@ CommonScript_ObtainedPoketchPokemonHistory:
     Return
 
 CommonScript_ObtainedPoketchCounter:
-    Message pl_msg_00000213_00093
+    Message CommonStrings_Text_ObtainedPoketchCounter
     Return
 
 CommonScript_ObtainedPoketchAnalogWatch:

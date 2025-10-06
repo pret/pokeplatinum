@@ -176,7 +176,7 @@
       "garbage": 19
     },
     {
-      "id": "pl_msg_00000213_00024",
+      "id": "CommonStrings_Text_ObtainedPoketchApp",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained the Pokétch\n",
         "app {STRVAR_1 24, 1, 0}."
@@ -187,7 +187,7 @@
       "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000213_00026",
+      "id": "CommonStrings_Text_InstalledPoketchApp",
       "en_US": [
         "{STRVAR_1 3, 0, 0} installed the app on\n",
         "the Pokétch.\r"
@@ -584,7 +584,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00093",
+      "id": "CommonStrings_Text_ObtainedPoketchCounter",
       "en_US": [
         "The {COLOR 2}Counter{COLOR 0} app can be used\n",
         "to count up to 9,999."

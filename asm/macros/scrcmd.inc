@@ -2649,6 +2649,10 @@
     .short \destVarID
     .endm
 
+    .macro ObtainPoketchApp
+    CallCommonScript 0x7D9
+    .endm
+
     .macro ObtainAccessoryWaitForConfirm
     CallCommonScript 0x7DF
     .endm

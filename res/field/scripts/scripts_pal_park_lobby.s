@@ -401,7 +401,7 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
     SetVar VAR_0x8004, POKETCH_APPID_RADARCHAINCOUNTER
-    CallCommonScript 0x7D9
+    ObtainPoketchApp
     Message PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime
     CloseMessage
     WaitTime 15, VAR_RESULT
@@ -458,7 +458,7 @@ PalParkLobby_PoketchAppLady:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat
     SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
-    CallCommonScript 0x7D9
+    ObtainPoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 1
     CloseMessage
@@ -471,7 +471,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhAKecleonHowColorful
     SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
-    CallCommonScript 0x7D9
+    ObtainPoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 2
     CloseMessage
