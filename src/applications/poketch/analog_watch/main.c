@@ -26,6 +26,8 @@ typedef struct PoketchAnalogWatch {
     PoketchSystem *poketchSys;
 } PoketchAnalogWatch;
 
+typedef BOOL (*StateFunc)(PoketchAnalogWatch *);
+
 enum AnalogWatchState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE,
@@ -116,7 +118,7 @@ static void Free(PoketchAnalogWatch *appData)
 
 static void Task_Main(SysTask *task, void *taskMan)
 {
-    static BOOL (*const stateFuncs[])(PoketchAnalogWatch *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

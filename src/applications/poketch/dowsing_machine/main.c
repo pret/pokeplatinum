@@ -27,6 +27,8 @@ typedef struct PoketchDowsingMachine {
     void *unused;
 } PoketchDowsingMachine;
 
+typedef BOOL (*StateFunc)(PoketchDowsingMachine *);
+
 enum DowsingMachineState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -100,7 +102,7 @@ static void Free(PoketchDowsingMachine *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchDowsingMachine *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

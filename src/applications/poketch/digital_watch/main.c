@@ -28,6 +28,8 @@ typedef struct PoketchDigitalWatch {
     PoketchSystem *poketchSys;
 } PoketchDigitalWatch;
 
+typedef BOOL (*StateFunc)(PoketchDigitalWatch *);
+
 enum DigitalWatchState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -120,7 +122,7 @@ static void Free(PoketchDigitalWatch *appData)
 
 static void Task_Main(SysTask *task, void *callbackData)
 {
-    static BOOL (*const stateFuncs[])(PoketchDigitalWatch *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp,

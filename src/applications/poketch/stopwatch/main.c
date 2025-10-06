@@ -40,6 +40,8 @@ typedef struct PoketchStopwatch {
     PoketchSystem *poketchSys;
 } PoketchStopwatch;
 
+typedef BOOL (*StateFunc)(PoketchStopwatch *);
+
 enum StopwatchTask {
     STATE_LOAD_APP = 0,
     STATE_INACTIVE_TIMER,
@@ -156,7 +158,7 @@ static void Free(PoketchStopwatch *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchStopwatch *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_InactiveTimer,
         State_ActiveTimer,

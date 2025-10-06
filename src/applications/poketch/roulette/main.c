@@ -30,6 +30,8 @@ typedef struct Poketch_Roulette {
     u32 button;
 } PoketchRoulette;
 
+typedef BOOL (*StateFunc)(PoketchRoulette *);
+
 enum RouletteState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -118,7 +120,7 @@ static void Free(PoketchRoulette *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchRoulette *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

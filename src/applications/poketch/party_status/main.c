@@ -22,6 +22,8 @@ typedef struct PoketchPartyStatus {
     PoketchSystem *poketchSys;
 } PoketchPartyStatus;
 
+typedef BOOL (*StateFunc)(PoketchPartyStatus *);
+
 enum PartyStatusState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -93,7 +95,7 @@ static void Free(PoketchPartyStatus *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchPartyStatus *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp
