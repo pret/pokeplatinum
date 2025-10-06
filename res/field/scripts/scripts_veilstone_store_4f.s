@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_4f.h"
+#include "res/text/bank/menu_entries.h"
 
 
     ScriptEntry _001E
@@ -19,8 +20,8 @@ _001E:
     GoToIfEq VAR_RESULT, TRUE, _005F
     Message 0
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 229, 1
-    AddMenuEntryImm 228, 0
+    AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 1
+    AddMenuEntryImm MenuEntries_Text_NothingThanks, 0
     ShowMenu
     GoToIfEq VAR_RESULT, 1, _00C2
     GoTo _00B7
@@ -29,8 +30,8 @@ _005F:
     BufferPlayerName 0
     Message 1
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 229, 0
-    AddMenuEntryImm 228, 1
+    AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 0
+    AddMenuEntryImm MenuEntries_Text_NothingThanks, 1
     ShowMenu
     GoToIfNe VAR_RESULT, 0, _00B7
     GetRandom VAR_RESULT, 4
