@@ -86,7 +86,7 @@ VeilstoneStore1F_Socialite:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_VEILSTONE_STORE_MASK_RECEIVED, VeilstoneStore1F_Socialite_AfterMaskGiven
+    GoToIfSet FLAG_VEILSTONE_STORE_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, VeilstoneStore1F_Socialite_Turtwig
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneStore1F_Socialite_Chimchar
@@ -96,7 +96,7 @@ VeilstoneStore1F_Socialite:
     Message VeilstoneStore1F_Text_IMadeAnAccessory
     SetVar LOCALID_QUANTITY, 1
     ObtainAccessoryWaitForConfirm
-    SetFlag FLAG_VEILSTONE_STORE_MASK_RECEIVED
+    SetFlag FLAG_VEILSTONE_STORE_RECEIVED_MASK
     CloseMessage
     ReleaseAll
     End
