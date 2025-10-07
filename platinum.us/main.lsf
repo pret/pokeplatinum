@@ -1040,11 +1040,11 @@ Overlay overlay48
 	Object main.nef.p/src_overlay048_ov48_0225650C.c.o
 }
 
-Overlay overlay49
+Overlay poketch_color_changer
 {
 	After overlay25
-	Object main.nef.p/src_overlay049_ov49_022561C0.c.o
-	Object main.nef.p/src_overlay049_ov49_022563D4.c.o
+	Object main.nef.p/src_applications_poketch_color_changer_main.c.o
+	Object main.nef.p/src_applications_poketch_color_changer_graphics.c.o
 }
 
 Overlay overlay50
