@@ -194,14 +194,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00027",
+      "id": "CommonStrings_Text_BagIsFull",
       "en_US": [
         "Too bad!\n",
         "The Bag is full..."
       ]
     },
     {
-      "id": "pl_msg_00000213_00028",
+      "id": "CommonStrings_Text_ObtainedKeyItem",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!"
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00030",
+      "id": "CommonStrings_Text_PutItemInThePocketNoLineFeed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."
@@ -831,7 +831,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00126",
+      "id": "CommonStrings_Text_PutItemInThePocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r"

@@ -656,7 +656,7 @@ PalParkLobby_Receptionist_GivePrize:
     Message PalParkLobby_Text_ItsTimeForYourPrize
     SetVar VAR_0x8004, VAR_0x8006
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    AddItemQuantity
     Return
 
 PalParkLobby_SetPrize_CheriBerry:

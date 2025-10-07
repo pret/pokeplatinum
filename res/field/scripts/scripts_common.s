@@ -772,7 +772,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message pl_msg_00000213_00030
+    Message CommonStrings_Text_PutItemInThePocketNoLineFeed
     WaitABXPadPress
     Return
 
@@ -787,13 +787,13 @@ CommonScript_InternalAddItemQuantity:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message pl_msg_00000213_00126
+    Message CommonStrings_Text_PutItemInThePocket
     Return
 
 CommonScript_PrintMessageObtainedKeyItem:
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
-    Message pl_msg_00000213_00028
+    Message CommonStrings_Text_ObtainedKeyItem
     GoTo CommonScript_AfterObtainedItem
 
 CommonScript_PrepareMessageObtainedItem:
@@ -880,7 +880,7 @@ CommonScript_BagIsFull:
     End
 
 CommonScript_InternalBagIsFull:
-    Message pl_msg_00000213_00027
+    Message CommonStrings_Text_BagIsFull
     WaitABXPadPress
     Return
 

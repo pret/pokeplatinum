@@ -85,7 +85,7 @@ _012F:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar VAR_0x8004, ITEM_VS_SEEKER
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    AddItemQuantity
     Return
 
 _0145:

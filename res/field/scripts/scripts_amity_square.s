@@ -1019,7 +1019,7 @@ AmitySquare_Unused2:
     End
 
 AmitySquare_GiftMan_CannotFitItem:
-    CallCommonScript 0x7E1
+    BagIsFull
     CloseMessage
     ReleaseAll
     End

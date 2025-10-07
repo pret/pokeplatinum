@@ -28,7 +28,7 @@ _004B:
     End
 
 _0056:
-    CallCommonScript 0x7E1
+    BagIsFull
     CloseMessage
     ReleaseAll
     End

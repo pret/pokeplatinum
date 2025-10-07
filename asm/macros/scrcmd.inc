@@ -2657,6 +2657,14 @@
     CallCommonScript 0x7DF
     .endm
 
+    .macro BagIsFull
+    CallCommonScript 0x7E1
+    .endm
+
+    .macro AddItemQuantity
+    CallCommonScript 0x7FC
+    .endm
+
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0
