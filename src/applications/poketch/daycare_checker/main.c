@@ -26,6 +26,8 @@ typedef struct PoketchDaycare {
     Daycare *daycareSaveData;
 } PoketchDaycareChecker;
 
+typedef BOOL (*StateFunc)(PoketchDaycareChecker *);
+
 enum DaycareCheckerState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -93,7 +95,7 @@ static void Free(PoketchDaycareChecker *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchDaycareChecker *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

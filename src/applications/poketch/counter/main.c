@@ -24,6 +24,8 @@ typedef struct PoketchCounter {
     enum ButtonManagerState buttonState;
 } PoketchCounter;
 
+typedef BOOL (*StateFunc)(PoketchCounter *);
+
 enum CounterState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -111,7 +113,7 @@ static void Free(PoketchCounter *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchCounter *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

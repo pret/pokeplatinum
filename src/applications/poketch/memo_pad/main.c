@@ -24,6 +24,8 @@ typedef struct PoketchMemoPad {
     PoketchButtonManager *buttonManager;
 } PoketchMemoPad;
 
+typedef BOOL (*StateFunc)(PoketchMemoPad *);
+
 enum MemoPadState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -104,7 +106,7 @@ static void Free(PoketchMemoPad *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchMemoPad *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

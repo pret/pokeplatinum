@@ -25,6 +25,8 @@ typedef struct PoketchDotArtist {
     u8 packedData[PACKED_SIZE];
 } PoketchDotArtist;
 
+typedef BOOL (*StateFunc)(PoketchDotArtist *);
+
 enum DotArtistState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -196,7 +198,7 @@ static void SaveCallback(void *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchDotArtist *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp

@@ -15,7 +15,7 @@ ncgr_cell_gen = generator(nitrogfx_exe,
     arguments: [
         '@INPUT@',
         '@OUTPUT@',
-        '-cell', '@CURRENT_SOURCE_DIR@/@BASENAME@_cell.json',
+        '-cell', '-preservepath',
         '@EXTRA_ARGS@',
     ],
     output: '@BASENAME@.NCGR',
@@ -66,6 +66,11 @@ lz_gen = generator(nitrogfx_exe,
     output: '@PLAINNAME@.lz',
 )
 
+copy_gen = generator(find_program('cp'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@PLAINNAME@'
+)
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.
@@ -75,11 +80,6 @@ subdir('text')
 
 # Common generator for "scripting" files, i.e. field and battle scripts
 relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
-
-copy_gen = generator(find_program('cp'),
-    arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@PLAINNAME@'
-)
 
 # NOTE: The members of the `depends` clause below will always be modified by the
 # postconf script to be order-only dependencies. This means that this generator

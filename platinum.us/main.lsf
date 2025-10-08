@@ -984,11 +984,11 @@ Overlay poketch_daycare_checker
 	Object main.nef.p/src_applications_poketch_daycare_checker_graphics.c.o
 }
 
-Overlay overlay41
+Overlay poketch_roulette
 {
 	After overlay25
-	Object main.nef.p/src_overlay041_ov41_022561C0.c.o
-	Object main.nef.p/src_overlay041_ov41_022567B0.c.o
+	Object main.nef.p/src_applications_poketch_roulette_main.c.o
+	Object main.nef.p/src_applications_poketch_roulette_graphics.c.o
 }
 
 Overlay overlay42
