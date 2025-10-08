@@ -2,107 +2,107 @@
 #include "res/text/bank/veilstone_store_b1f.h"
 
 
-    ScriptEntry _0032
-    ScriptEntry _0045
-    ScriptEntry _0058
-    ScriptEntry _006B
-    ScriptEntry _007E
-    ScriptEntry _0091
-    ScriptEntry _00A4
-    ScriptEntry _00FE
-    ScriptEntry _022A
-    ScriptEntry _06FE
-    ScriptEntry _00E8
-    ScriptEntry _0708
+    ScriptEntry VeilstoneStoreB1F_Gentleman
+    ScriptEntry VeilstoneStoreB1F_Socialite1
+    ScriptEntry VeilstoneStoreB1F_Socialite2
+    ScriptEntry VeilstoneStoreB1F_Attendant1
+    ScriptEntry VeilstoneStoreB1F_Attendant2
+    ScriptEntry VeilstoneStoreB1F_RageCandyBarVendor
+    ScriptEntry VeilstoneStoreB1F_ProfRowan
+    ScriptEntry VeilstoneStoreB1F_LavaCookieVendor
+    ScriptEntry VeilstoneStoreB1F_PoffinVendor
+    ScriptEntry VeilstoneStoreB1F_Dummy
+    ScriptEntry VeilstoneStoreB1F_BerryVendor
+    ScriptEntry VeilstoneStoreB1F_Directory
     ScriptEntryEnd
 
-_0032:
+VeilstoneStoreB1F_Gentleman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message VeilstoneStoreB1F_Text_IBoughtAllTheRageCandyBars
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0045:
+VeilstoneStoreB1F_Socialite1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 3
+    Message VeilstoneStoreB1F_Text_HopelessAtCookingPoffins
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0058:
+VeilstoneStoreB1F_Socialite2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 4
+    Message VeilstoneStoreB1F_Text_FlavorsOfPoffinsAffectConditionOfPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006B:
+VeilstoneStoreB1F_Attendant1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 5
+    Message VeilstoneStoreB1F_Text_Welcome
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_007E:
+VeilstoneStoreB1F_Attendant2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 6
+    Message VeilstoneStoreB1F_Text_WeHaveBerriesOnSale
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0091:
+VeilstoneStoreB1F_RageCandyBarVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 7
+    Message VeilstoneStoreB1F_Text_AllSoldOut
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A4:
+VeilstoneStoreB1F_ProfRowan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x00B9, _00D0
-    SetFlag FLAG_UNK_0x00B9
-    SetFlag FLAG_UNK_0x0185
-    Message 0
+    GoToIfSet FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
+    SetFlag FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN
+    SetFlag FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN
+    Message VeilstoneStoreB1F_Text_RageCandyBarsAreTooPopular
     FacePlayer
     BufferPlayerName 0
-    Message 1
-    GoTo _00E0
+    Message VeilstoneStoreB1F_Text_DoesLifeContinueToThrillYou
+    GoTo VeilstoneStoreB1F_ProfRowanClose
     End
 
-_00D0:
+VeilstoneStoreB1F_ProfRowanAfterSpokenTo:
     FacePlayer
     BufferPlayerName 0
-    Message 1
-    GoTo _00E0
+    Message VeilstoneStoreB1F_Text_DoesLifeContinueToThrillYou
+    GoTo VeilstoneStoreB1F_ProfRowanClose
     End
 
-_00E0:
+VeilstoneStoreB1F_ProfRowanClose:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00E8:
+VeilstoneStoreB1F_BerryVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -112,83 +112,83 @@ _00E8:
     ReleaseAll
     End
 
-_00FE:
+VeilstoneStoreB1F_LavaCookieVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message 8
+    Message VeilstoneStoreB1F_Text_WouldYouLikeSomeLavaCookies
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 14, 0
-    AddMenuEntryImm 15, 1
-    AddMenuEntryImm 16, 2
+    AddMenuEntryImm VeilstoneStoreB1F_Text_MenuEntry_One, 0
+    AddMenuEntryImm VeilstoneStoreB1F_Text_MenuEntry_Ten, 1
+    AddMenuEntryImm VeilstoneStoreB1F_Text_MenuEntry_LavaCookiesNoThanks, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0150
-    GoToIfEq VAR_0x8008, 1, _018F
-    GoTo _0215
+    GoToIfEq VAR_0x8008, 0, VeilstoneStoreB1F_LavaCookieVendorBuyOne
+    GoToIfEq VAR_0x8008, 1, VeilstoneStoreB1F_LavaCookieVendorBuyTen
+    GoTo VeilstoneStoreB1F_LavaCookieVendorComeAgain
     End
 
-_0150:
+VeilstoneStoreB1F_LavaCookieVendorBuyOne:
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 200
-    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
     CheckMoney2 VAR_RESULT, 200
-    GoToIfEq VAR_RESULT, 0, _020A
-    Message 9
-    GoTo _01CE
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_LavaCookieVendorNotEnoughMoney
+    Message VeilstoneStoreB1F_Text_OneLavaCookie
+    GoTo VeilstoneStoreB1F_LavaCookieVendorReceiveCookies
     End
 
-_018F:
+VeilstoneStoreB1F_LavaCookieVendorBuyTen:
     SetVar VAR_0x8004, 10
     SetVar VAR_0x8005, 2000
-    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
     CheckMoney2 VAR_RESULT, 2000
-    GoToIfEq VAR_RESULT, 0, _020A
-    Message 10
-    GoTo _01CE
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_LavaCookieVendorNotEnoughMoney
+    Message VeilstoneStoreB1F_Text_TenLavaCookies
+    GoTo VeilstoneStoreB1F_LavaCookieVendorReceiveCookies
     End
 
-_01CE:
+VeilstoneStoreB1F_LavaCookieVendorReceiveCookies:
     AddItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT
     PlayFanfare SEQ_SE_DP_REGI
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8005
     RemoveMoney2 VAR_0x8005
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
-    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 0x2710, _0700
-    GoTo _0220
+    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 10000, VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter
+    GoTo VeilstoneStoreB1F_LavaCookieVendorClose
     End
 
-_01FF:
-    Message 11
-    GoTo _0220
+VeilstoneStoreB1F_LavaCookieVendorBagIsFull:
+    Message VeilstoneStoreB1F_Text_NoMoreRoom
+    GoTo VeilstoneStoreB1F_LavaCookieVendorClose
     End
 
-_020A:
-    Message 12
-    GoTo _0220
+VeilstoneStoreB1F_LavaCookieVendorNotEnoughMoney:
+    Message VeilstoneStoreB1F_Text_LavaCookiesNotEnoughMoney
+    GoTo VeilstoneStoreB1F_LavaCookieVendorClose
     End
 
-_0215:
-    Message 13
-    GoTo _0220
+VeilstoneStoreB1F_LavaCookieVendorComeAgain:
+    Message VeilstoneStoreB1F_Text_LavaCookiesPleaseComeAgain
+    GoTo VeilstoneStoreB1F_LavaCookieVendorClose
     End
 
-_0220:
+VeilstoneStoreB1F_LavaCookieVendorClose:
     WaitABXPadPress
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_022A:
+VeilstoneStoreB1F_PoffinVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message 17
+    Message VeilstoneStoreB1F_Text_ISellPoffins
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _025B
     GoToIfEq VAR_RESULT, MENU_NO, _0306
@@ -312,28 +312,28 @@ _04CE:
 _0503:
     PlayFanfare SEQ_SE_DP_REGI
     UpdateMoneyDisplay
-    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 0x2710, _0700
-    Message 20
+    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 10000, VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter
+    Message VeilstoneStoreB1F_Text_ThankYouVeryMuch
     GoTo _054D
     End
 
 _0521:
-    Message 22
+    Message VeilstoneStoreB1F_Text_PoffinCaseIsFull
     GoTo _054D
     End
 
 _052C:
-    Message 21
+    Message VeilstoneStoreB1F_Text_PoffinsNotEnoughMoney
     GoTo _054D
     End
 
 _0537:
-    Message 24
+    Message VeilstoneStoreB1F_Text_YouNeedAPoffinCase
     GoTo _054D
     End
 
 VeilstoneStoreB1F_Unused:
-    Message 23
+    Message VeilstoneStoreB1F_Text_PoffinsPleaseComeAgain
     GoTo _054D
     End
 
@@ -425,33 +425,33 @@ _0677:
     Return
 
 _0697:
-    Message 18
+    Message VeilstoneStoreB1F_Text_WhichPoffinWouldYouLike
     InitLocalTextListMenu 1, 1, 0, VAR_RESULT
-    AddListMenuEntry 25, 0
-    AddListMenuEntry 26, 1
-    AddListMenuEntry 27, 2
-    AddListMenuEntry 28, 3
-    AddListMenuEntry 29, 4
-    AddListMenuEntry 30, 5
-    AddListMenuEntry 31, 6
-    AddListMenuEntry 32, 7
-    AddListMenuEntry 33, 8
-    AddListMenuEntry 34, 9
-    AddListMenuEntry 35, 10
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SpicyDry, 0
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SpicySweet, 1
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SpicyBitter, 2
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SpicySour, 3
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_DrySweet, 4
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_DryBitter, 5
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_DrySour, 6
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SweetBitter, 7
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_SweetSour, 8
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_BitterSour, 9
+    AddListMenuEntry VeilstoneStoreB1F_Text_MenuEntry_PoffinsNoThanks, 10
     ShowListMenu
     Return
 
-_06FE:
+VeilstoneStoreB1F_Dummy:
     End
 
-_0700:
-    AddVar 0x4042, 1
+VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter:
+    AddVar VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 1
     Return
 
-_0708:
+VeilstoneStoreB1F_Directory:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 37
+    Message VeilstoneStoreB1F_Text_Directory
     WaitABXPadPress
     CloseMessage
     ReleaseAll

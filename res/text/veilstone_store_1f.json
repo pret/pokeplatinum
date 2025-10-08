@@ -2,14 +2,14 @@
   "key": 9243,
   "messages": [
     {
-      "id": "pl_msg_00000148_00000",
+      "id": "VeilstoneStore1F_Text_Welcome",
       "en_US": [
         "Welcome to the fabulous Veilstone\n",
         "Department Store."
       ]
     },
     {
-      "id": "pl_msg_00000148_00001",
+      "id": "VeilstoneStore1F_Text_EnsureCustomerSatisfaction",
       "en_US": [
         "This department store knows how to\n",
         "ensure customer satisfaction.\r",
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000148_00002",
+      "id": "VeilstoneStore1F_Text_FormalAirOfLuxury",
       "en_US": [
         "I like the formal air of a luxury\n",
         "department store."
       ]
     },
     {
-      "id": "pl_msg_00000148_00003",
+      "id": "VeilstoneStore1F_Text_IMadeAnAccessory",
       "en_US": [
         "I made an Accessory modeled after\n",
         "the Pokémon of a Trainer I met.\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000148_00004",
+      "id": "VeilstoneStore1F_Text_GiveADifferentLookForContests",
       "en_US": [
         "It’s a {STRVAR_1 31, 0, 0}.\r",
         "It will give your Pokémon a\n",
@@ -41,14 +41,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000148_00005",
+      "id": "VeilstoneStore1F_Text_DiscoverANewYou",
       "en_US": [
         "Discover a new you!\n",
         "Veilstone Department Store"
       ]
     },
     {
-      "id": "pl_msg_00000148_00006",
+      "id": "VeilstoneStore1F_Text_Directory",
       "en_US": [
         "B1F: Food & Produce\r",
         "1F: Trainers’ Zone\r",
