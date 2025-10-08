@@ -3,8 +3,8 @@
 L_0:
     LoadParticleResource 0, submission_spa
     LoadParticleResource 1, comet_punch_spa
-    Func_Submission 7, 10, 2
-    Func_Submission 7, 10, 8
+    Func_Submission 7, 10, BATTLE_ANIM_ATTACKER
+    Func_Submission 7, 10, BATTLE_ANIM_DEFENDER
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     PlayDelayedSoundEffectL SEQ_SE_DP_W104, 1

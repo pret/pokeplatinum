@@ -5,7 +5,7 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 10
     PlaySoundEffectL SEQ_SE_DP_W082
     WaitForAnimTasks
-    Func_Flail 0
+    Func_Flail FLAIL_MODE_ATTACKER
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

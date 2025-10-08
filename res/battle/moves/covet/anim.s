@@ -8,7 +8,7 @@ L_1:
     LoadParticleResource 0, covet_spa
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
-    Func_Flail 0
+    Func_Flail FLAIL_MODE_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_W204, 2, 4
     Delay 20
     PlayLoopedSoundEffectL SEQ_SE_DP_W204, 2, 4

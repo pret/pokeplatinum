@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, struggle_spa
-    Func_Flail 0
+    Func_Flail FLAIL_MODE_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_001, 2, 4
     Delay 15
     CreateEmitter 0, 0, 4

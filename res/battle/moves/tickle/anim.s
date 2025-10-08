@@ -10,7 +10,7 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_W197
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    Func_PlayfulHops 1
+    Func_PlayfulHops BATTLER_ROLE_DEFENDER
     BeginLoop 1
     PlaySoundEffectR SEQ_SE_DP_W039
     Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -33,7 +33,7 @@ L_2:
     PlaySoundEffectL SEQ_SE_DP_W197
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    Func_PlayfulHops 1
+    Func_PlayfulHops BATTLER_ROLE_DEFENDER
     BeginLoop 1
     PlaySoundEffectR SEQ_SE_DP_W039
     Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -60,7 +60,7 @@ L_3:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -8256, 0, 0
-    Func_PlayfulHops 1
+    Func_PlayfulHops BATTLER_ROLE_DEFENDER
     BeginLoop 1
     PlaySoundEffectR SEQ_SE_DP_W039
     Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -87,7 +87,7 @@ L_1:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -8256, 0, 0
-    Func_PlayfulHops 1
+    Func_PlayfulHops BATTLER_ROLE_DEFENDER
     BeginLoop 1
     PlaySoundEffectR SEQ_SE_DP_W039
     Func_MoveBattlerX2 5, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

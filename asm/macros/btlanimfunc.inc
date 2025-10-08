@@ -230,7 +230,7 @@
     .endm
 
     // Performs the Magnitude animation
-    // value: Doesn't do anything
+    // value: Doesn't do anything, can be omitted
     .macro Func_Magnitude value
     .ifnb \value
         CallFunc 28, 1, \value
@@ -733,7 +733,7 @@
     .endm
 
     // Plays the generic heal animation
-    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE
+    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
     .macro Func_StatChangeHeal mode
     CallFunc 82, 2, 2, \mode
     .endm

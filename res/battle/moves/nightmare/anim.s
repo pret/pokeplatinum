@@ -9,7 +9,7 @@ L_0:
     Func_ScrollSwitchedBg 130
     WaitForBgSwitch
     Delay 45
-    Func_Nightmare 0
+    Func_Nightmare FALSE
     PlayLoopedSoundEffectR SEQ_SE_DP_W171, 2, 4
     Delay 15
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
