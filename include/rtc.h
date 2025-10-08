@@ -17,7 +17,7 @@ static inline BOOL IsLeapYear(u32 year)
 void InitRTC(void);
 void UpdateRTC(void);
 void GetCurrentDateTime(RTCDate *date, RTCTime *time);
-void GetCurrentTime(RTCTime *time);
+void RTC_GetCurrentTime(RTCTime *time);
 void GetCurrentDate(RTCDate *date);
 int GetSecondsSinceMidnight(void);
 s64 GetTimestamp(void);

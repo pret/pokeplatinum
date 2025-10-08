@@ -87,7 +87,7 @@ static BOOL Init(PoketchDigitalWatch *appData, PoketchSystem *poketchSys, BgConf
         appData->backlightChange = FALSE;
         appData->watchData.backlightActive = FALSE;
 
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if (appData->watchData.time.hour >= 24) {
             appData->watchData.time.hour %= 24;
@@ -206,7 +206,7 @@ static BOOL State_UpdateApp(PoketchDigitalWatch *appData)
     if (PoketchDigitalWatchGraphics_TaskIsNotActive(appData->graphics, DIGITAL_WATCH_GRAPHICS_UPDATE_DIGITS)) {
         appData->minute = appData->watchData.time.minute;
         appData->hour = appData->watchData.time.hour;
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if ((appData->minute != appData->watchData.time.minute) || (appData->hour != appData->watchData.time.hour)) {
             PoketchDigitalWatchGraphics_StartTask(appData->graphics, DIGITAL_WATCH_GRAPHICS_UPDATE_DIGITS);

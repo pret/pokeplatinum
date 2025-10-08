@@ -75,7 +75,7 @@ void GetCurrentDateTime(RTCDate *date, RTCTime *time)
     *time = sRTCState.time;
 }
 
-void GetCurrentTime(RTCTime *time)
+void RTC_GetCurrentTime(RTCTime *time)
 {
     GF_ASSERT(sRTCState.valid == 1);
     *time = sRTCState.time;
@@ -146,7 +146,7 @@ enum TimeOfDay GetTimeOfDay(void)
 {
     RTCTime time;
 
-    GetCurrentTime(&time);
+    RTC_GetCurrentTime(&time);
     return TimeOfDayForHour(time.hour);
 }
 

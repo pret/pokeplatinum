@@ -4459,7 +4459,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
     u32 fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     RTCTime rtcTime;
-    GetCurrentTime(&rtcTime);
+    RTC_GetCurrentTime(&rtcTime);
 
     return species == SPECIES_SHAYMIN
         && monForm == SHAYMIN_FORM_LAND

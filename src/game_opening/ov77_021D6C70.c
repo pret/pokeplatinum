@@ -113,7 +113,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
     int v6, v7;
     RTCTime v8;
 
-    GetCurrentTime(&v8);
+    RTC_GetCurrentTime(&v8);
 
     v6 = (v8.hour * v8.minute + v8.second) & 1;
     v7 = v8.second % 3;
