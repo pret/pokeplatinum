@@ -206,7 +206,7 @@
     // mode: The mode of the animation (see FLAIL_MODE_*)
     // shakeExtentX: The extent of the shaking in the X direction
     // shakeExtentY: The extent of the shaking in the Y direction
-    // shakeInterval: The interval of the shaking
+    // shakeInterval: The number of frames between shakes
     // shakeAmount: The number of shake cycles
     // Note: Technically all arguments except mode are optional, but they all default to 0
     .macro Func_Flail mode, shakeExtentX, shakeExtentY, shakeInterval, shakeAmount
@@ -301,7 +301,7 @@
     // Shakes one or more battlers/sprites
     // extentX: The extent of the shaking in the X direction
     // extentY: The extent of the shaking in the Y direction
-    // interval: The interval of the shaking
+    // interval: The number of frames between shakes
     // amount: The number of shake cycles
     // targets: The targets to shake, valid values:
     //   - A combination of BATTLE_ANIM_BATTLER_SPRITE_*
@@ -562,6 +562,10 @@
     .endif
     .endm
 
+    // Makes a battler sprite gradually appear/disappear (think Dig)
+    // target: The battler whose sprite to affect (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
+    // stepSize: The amount to move the battler by each step (values >0 make the sprite disappear, values <0 make it appear)
+    // stepInterval: The number of frames between each step
     .macro Func_BattlerPartialDraw target, stepSize, stepInterval
     .ifnb \stepInterval
         CallFunc 67, 5, \target, 0, 0, \stepSize, \stepInterval
@@ -570,6 +574,13 @@
     .endif
     .endm
 
+    // Shakes the background
+    // extentX: The extent of the shaking in the X direction
+    // extentY: The extent of the shaking in the Y direction
+    // interval: The number of frames between shakes
+    // amount: The number of shakes per cycle
+    // cycles: The number of shake cycles
+    // target: The target background to shake (optional, see SHAKE_BG_TARGET_*, default: SHAKE_BG_TARGET_EFFECT)
     .macro Func_ShakeBg extentX, extentY, interval, amount, cycles, target
     .ifnb \target
         CallFunc 68, 6, \extentX, \extentY, \interval, \amount, \cycles, \target
@@ -578,6 +589,11 @@
     .endif
     .endm
 
+    // Pixelates a Pokemon sprite
+    // sprite: The sprite to pixelate (See BATTLE_ANIM_MON_SPRITE_*)
+    // step: The amount to change the pixelation by each step (positive values increase pixelation, negative values decrease it)
+    // startX: The starting pixelation value on the X axis (0-15)
+    // startY: The starting pixelation value on the Y axis (0-15)
     .macro Func_PixelatePokemonSprite sprite, step, startX, startY
     CallFunc 69, 4, \sprite, \step, \startX, \startY
     .endm
@@ -590,14 +606,36 @@
     .endif
     .endm
 
+    // Performs the Snatch animation
+    // target: The battler whose sprite to animate (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     .macro Func_Snatch target
     CallFunc 71, 1, \target
     .endm
 
+    // Revolves a particle emitter around a battler
+    // emitterID: The ID of the emitter to revolve (0-19)
+    // sx: The starting X value of the emitter's orbit (in degrees)
+    // ex: The ending X value of the emitter's orbit (in degrees)
+    // sy: The starting Y value of the emitter's orbit (in degrees)
+    // ey: The ending Y value of the emitter's orbit (in degrees)
+    // rx: The radius of the emitter's orbit in the X direction
+    // ry: The radius of the emitter's orbit in the Y direction
+    // frames: The number of frames to revolve over
+    // mode: The revolution mode (see EMITTER_REVOLUTION_MODE_*)
+    // particleSystem: The particle system the emitter belongs to (0-15)
     .macro Func_RevolveEmitter emitterID, sx, ex, sy, ey, rx, ry, frames, mode, particleSystem
     CallFunc 72, 10, \emitterID, \sx, \ex, \sy, \ey, \rx, \ry, \frames, \mode, \particleSystem
     .endm
 
+    // Moves a particle emitter to/from the top of the viewport
+    // emitterID: The ID of the emitter to move (0-19)
+    // mode: The movement mode (see EMITTER_ANIMATION_MODE_*)
+    // type: The type of movement (EMITTER_ANIMATION_FROM_TOP or EMITTER_ANIMATION_TO_TOP)
+    // frames: The number of frames to move over
+    // startDelay: The number of frames to wait before starting the movement
+    // params: Combination of
+    //   - SKIP_F(n): Skip the first n frames of the movement
+    //   - MAX_F(n): Cap the movement to n frames (if the movement would take longer), set to EMITTER_ANIMATION_DEFAULT_FRAMES to disable
     .macro Func_MoveEmitterViewportTop emitterID, mode, type, frames, startDelay, params
     .ifnb \params
         CallFunc 73, 6, \emitterID, \mode, \type, \frames, \startDelay, \params
@@ -606,26 +644,59 @@
     .endif
     .endm
 
+    // Sets whether the background is displayed in grayscale
+    // grayscale: TRUE to set the background to grayscale, FALSE to set it to normal color
     .macro Func_SetBgGrayscale grayscale
     CallFunc 74, 1, \grayscale
     .endm
 
+    // Sets the priority of a Pokemon sprite for a certain number of frames
+    // sprite: The sprite to set the priority of (See BATTLE_ANIM_MON_SPRITE_*)
+    // maxFrames: The maximum number of frames to set the priority for
+    // bg: The background to set the priority relative to (See BATTLE_ANIM_BG_*)
+    // spritePrio: The priority to set the sprite to (Or BATTLE_ANIM_DEFAULT_PRIORITY for default behavior)
+    // battlerRole: The role of the battler whose sprite to set the priority for (See BATTLER_ROLE_*)
+    // Note: This function has a bug, which results in the priority being set to default values if you pass
+    //       anything other than BATTLE_ANIM_DEFAULT_PRIORITY for spritePrio. If you pass BATTLE_ANIM_DEFAULT_PRIORITY
+    //       it will not set the priority at all, leaving it at whatever it was before.
     .macro Func_SetPokemonSpritePriority sprite, maxFrames, bg, spritePrio, battlerRole
     CallFunc 75, 5, \sprite, \maxFrames, \bg, \spritePrio, \battlerRole
     .endm
 
+    // Performs the Dark Void animation
+    // See Func_SetPokemonSpritePriority for parameter descriptions
+    // windowType: 0 or 1, not sure what the difference is
+    // Note: This function has the same bug as Func_SetPokemonSpritePriority
     .macro Func_DarkVoid sprite, maxFrames, bg, spritePrio, battler, windowType
     CallFunc 75, 7, \sprite, \maxFrames, \bg, \spritePrio, \battler, POKEMON_SPRITE_PRIORITY_MODE_DARK_VOID, \windowType
     .endm
 
+    // Applies a wavy scroll effect to the background
+    // frames: The number of frames to apply the effect for
+    // Note: Always acts on the Effect BG, which means that SwitchBg must be called first
     .macro Func_ScrollSwitchedBg frames
     CallFunc 76, 1, \frames
     .endm
 
-    .macro Func_MoveBattlerOnOrOffScreen target, mode, frames, a3, a4
-        CallFunc 77, 5, \target, \mode, \frames, \a3, \a4
+    // Moves a battler sprite on or off the screen (horizontally)
+    // mode: The mode of movement (MOVE_BATTLER_OFF_SCREEN or MOVE_BATTLER_ON_SCREEN)
+    // target: The battler whose sprite to move (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
+    // frames: The number of frames to move over
+    // a3/a4: Unused, can be omitted
+    .macro Func_MoveBattlerOnOrOffScreen mode, target, frames, a3, a4
+    .ifnb \a4
+        CallFunc 77, 5, \mode, \target, \frames, \a3, \a4
+    .else
+        .ifnb \a3
+            CallFunc 77, 4, \mode, \target, \frames, \a3
+        .else
+            CallFunc 77, 3, \mode, \target, \frames
+        .endif
+    .endif
     .endm
 
+    // Explicitly renders all loaded Pokemon sprites for N frames
+    // frames: The number of frames to render for
     .macro Func_RenderPokemonSprites frames
     CallFunc 78, 1, \frames
     .endm
@@ -638,18 +709,37 @@
     .endif
     .endm
 
+    // Note for the following 4 macros:
+    // Depending on which mode is used, specific pokemon sprites must first be loaded using AddPokemonSprite
+    // When using STAT_CHANGE_MODE_ATTACKER, sprites must be loaded as follows:
+    //     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
+    //     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
+    //     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
+    // When using STAT_CHANGE_MODE_DEFENDER, sprites must be loaded as follows:
+    //     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
+    //     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
+    //     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
+
+    // Plays the stat increase animation
+    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
     .macro Func_StatChangeUp mode
     CallFunc 80, 2, 0, \mode
     .endm
 
+    // Plays the stat decrease animation
+    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
     .macro Func_StatChangeDown mode
     CallFunc 81, 2, 1, \mode
     .endm
 
+    // Plays the generic heal animation
+    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE
     .macro Func_StatChangeHeal mode
     CallFunc 82, 2, 2, \mode
     .endm
 
+    // Plays the metal coat animation (used by Iron Defense, Metal Claw, etc.)
+    // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
     .macro Func_StatChangeMetal mode
     CallFunc 83, 2, 3, \mode
     .endm
