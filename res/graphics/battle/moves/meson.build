@@ -1,23 +1,23 @@
 
-wechar_basename = 'wechar'
-wecell_basename = 'wecell'
-wecellanm_basename = 'wecellanm'
-wepltt_basename = 'wepltt'
+anim_ncgr_basename = 'anim_ncgr'
+anim_ncer_basename = 'anim_ncer'
+anim_nanr_basename = 'anim_nanr'
+anim_nclr_basename = 'anim_nclr'
 
-wechar_narc = wechar_basename + '.narc'
-wecell_narc = wecell_basename + '.narc'
-wecellanm_narc = wecellanm_basename + '.narc'
-wepltt_narc = wepltt_basename + '.narc'
+anim_ncgr_narc = anim_ncgr_basename + '.narc'
+anim_ncer_narc = anim_ncer_basename + '.narc'
+anim_nanr_narc = anim_nanr_basename + '.narc'
+anim_nclr_narc = anim_nclr_basename + '.narc'
 
-wechar_order = files(wechar_basename + '.order')
-wecell_order = files(wecell_basename + '.order')
-wecellanm_order = files(wecellanm_basename + '.order')
-wepltt_order = files(wepltt_basename + '.order')
+anim_ncgr_order = files(anim_ncgr_basename + '.order')
+anim_ncer_order = files(anim_ncer_basename + '.order')
+anim_nanr_order = files(anim_nanr_basename + '.order')
+anim_nclr_order = files(anim_nclr_basename + '.order')
 
-wechar_naix = wechar_basename + '.naix.h'
-wecell_naix = wecell_basename + '.naix.h'
-wecellanm_naix = wecellanm_basename + '.naix.h'
-wepltt_naix = wepltt_basename + '.naix.h'
+anim_ncgr_naix = anim_ncgr_basename + '.naix.h'
+anim_ncer_naix = anim_ncer_basename + '.naix.h'
+anim_nanr_naix = anim_nanr_basename + '.naix.h'
+anim_nclr_naix = anim_nclr_basename + '.naix.h'
 
 pngs = files(
     'surf.png',
@@ -252,16 +252,15 @@ nclr_files = nclr_gen.process(pngs_for_pal,
 )
 
 # NCERs
-ncer_lz_files = ncer_lz_gen.process(cell_jsons,
-)
+ncer_lz_files = ncer_lz_gen.process(cell_jsons)
 
 # NANRs
 nanr_lz_files = nanr_lz_gen.process(cellanm_jsons)
 
-wechar_narc_files = custom_target(wechar_narc,
+anim_ncgr_narc_files = custom_target(anim_ncgr_narc,
     output: [
-        wechar_narc,
-        wechar_naix,
+        anim_ncgr_narc,
+        anim_ncgr_naix,
     ],
     input: [
         ncgr_lz_files,
@@ -270,15 +269,15 @@ wechar_narc_files = custom_target(wechar_narc,
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', wechar_order,
+        '--order', anim_ncgr_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
-wecell_narc_files = custom_target(wecell_narc,
+anim_ncer_narc_files = custom_target(anim_ncer_narc,
     output: [
-        wecell_narc,
-        wecell_naix,
+        anim_ncer_narc,
+        anim_ncer_naix,
     ],
     input: [
         ncer_lz_files,
@@ -286,15 +285,15 @@ wecell_narc_files = custom_target(wecell_narc,
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', wecell_order,
+        '--order', anim_ncer_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
-wecellanm_narc_files = custom_target(wecellanm_narc,
+anim_nanr_narc_files = custom_target(anim_nanr_narc,
     output: [
-        wecellanm_narc,
-        wecellanm_naix,
+        anim_nanr_narc,
+        anim_nanr_naix,
     ],
     input: [
         nanr_lz_files,
@@ -302,15 +301,15 @@ wecellanm_narc_files = custom_target(wecellanm_narc,
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', wecellanm_order,
+        '--order', anim_nanr_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
-wepltt_narc_files = custom_target(wepltt_narc,
+anim_nclr_narc_files = custom_target(anim_nclr_narc,
     output: [
-        wepltt_narc,
-        wepltt_naix,
+        anim_nclr_narc,
+        anim_nclr_naix,
     ],
     input: [
         nclr_files,
@@ -322,18 +321,18 @@ wepltt_narc_files = custom_target(wepltt_narc,
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', wepltt_order,
+        '--order', anim_nclr_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
 
-nitrofs_files += wechar_narc_files
-nitrofs_files += wecell_narc_files
-nitrofs_files += wecellanm_narc_files
-nitrofs_files += wepltt_narc_files
+nitrofs_files += anim_ncgr_narc_files
+nitrofs_files += anim_ncer_narc_files
+nitrofs_files += anim_nanr_narc_files
+nitrofs_files += anim_nclr_narc_files
 
-naix_headers += wechar_narc_files[1]
-naix_headers += wecell_narc_files[1]
-naix_headers += wecellanm_narc_files[1]
-naix_headers += wepltt_narc_files[1]
+naix_headers += anim_ncgr_narc_files[1]
+naix_headers += anim_ncer_narc_files[1]
+naix_headers += anim_nanr_narc_files[1]
+naix_headers += anim_nclr_narc_files[1]

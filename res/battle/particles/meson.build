@@ -1,6 +1,6 @@
 subdir('pokeballs')
 
-waza_particle_files = files(
+battle_particle_files = files(
     'hit_1.spa',
     'hit_2.spa',
     'level_up.spa',
@@ -488,27 +488,27 @@ waza_particle_files = files(
     'shadow_force.spa',
 )
 
-waza_particle_basename = 'waza_particle'
-waza_particle_narc_name = waza_particle_basename + '.narc'
-waza_particle_naix_name = waza_particle_basename + '.naix.h'
-waza_particle_order = files('waza_particle.order')
+battle_particles_basename = 'battle_particles'
+battle_particles_narc_name = battle_particles_basename + '.narc'
+battle_particles_naix_name = battle_particles_basename + '.naix.h'
+battle_particles_order = files('battle_particles.order')
 
-waza_particle_narc = custom_target(waza_particle_narc_name,
+battle_particles_narc = custom_target(battle_particles_narc_name,
     output: [
-        waza_particle_narc_name,
-        waza_particle_naix_name
+        battle_particles_narc_name,
+        battle_particles_naix_name
     ],
     input: copy_gen.process(
-        waza_particle_files,
+        battle_particle_files,
     ),
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', waza_particle_order,
+        '--order', battle_particles_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
 
-nitrofs_files += waza_particle_narc
-naix_headers += waza_particle_narc[1]
+nitrofs_files += battle_particles_narc
+naix_headers += battle_particles_narc[1]

@@ -7,7 +7,7 @@ def usage():
     print("Usage: battle_anim_scripts.py <MOVES_FILE> <MOVES_DIR> <OUTFILE>")
     print()
     print("Process an input file containing a list of moves into an")
-    print("output file to order the contents of we.arc.")
+    print("output file to order the contents of anim_scripts.narc.")
 
 if len(sys.argv) < 4:
     usage()

@@ -1,10 +1,10 @@
 #include "generated/sdat.h"
 #include "constants/battle/battle_anim.h"
-#include "res/battle/particles/waza_particle.naix.h"
-#include "res/graphics/battle/moves/wecell.naix.h"
-#include "res/graphics/battle/moves/wecellanm.naix.h"
-#include "res/graphics/battle/moves/wechar.naix.h"
-#include "res/graphics/battle/moves/wepltt.naix.h"
+#include "res/battle/particles/battle_particles.naix.h"
+#include "res/graphics/battle/moves/anim_ncer.naix.h"
+#include "res/graphics/battle/moves/anim_nanr.naix.h"
+#include "res/graphics/battle/moves/anim_ncgr.naix.h"
+#include "res/graphics/battle/moves/anim_nclr.naix.h"
 
 #include "macros/btlanimfunc.inc"
 
@@ -350,7 +350,7 @@
 
     // Creates a particle emitter
     // particleSystem: The particle system to use. (0-15)
-    // resourceID: The resource ID of the particle emitter to create. See waza_particle.naix.h for a list of resource IDs.
+    // resourceID: The resource ID inside the particle resource to use.
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
     .macro CreateEmitter particleSystem, resourceID, callbackID
     .long 46
@@ -362,7 +362,7 @@
     // Creates a particle emitter with an explicit emitter index
     // particleSystem: The particle system to use. (0-15)
     // emitterIndex: The index of the emitter to create. (0-19)
-    // resourceID: The resource ID of the particle emitter to create. See waza_particle.naix.h for a list of resource IDs.
+    // resourceID: The resource ID inside the particle resource to use.
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
     .macro CreateEmitterEx particleSystem, emitterIndex, resourceID, callbackID
     .long 47
@@ -411,9 +411,9 @@
     .long 50
     .endm
 
-    // Loads a particle system from waza_particle.narc
+    // Loads a particle system from battle_particles.narc
     // particleSystem: The particle system to load. (0-15)
-    // narcMemberID: The member ID in waza_particle.narc to load (See waza_particle.naix.h)
+    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
     // Note: Advanced use only, use LoadParticleResource instead.
     .macro LoadParticleSystem particleSystem, narcMemberID
     .long 51
@@ -781,9 +781,9 @@
 
     // Convenience Macros
 
-    // Loads a particle system from waza_particle.narc
+    // Loads a particle system from battle_particles.narc
     // particleSystem: The particle system to load. (0-15)
-    // narcMemberID: The member ID in waza_particle.narc to load (See waza_particle.naix.h)
+    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
     .macro LoadParticleResource particleSystem, narcMemberID
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

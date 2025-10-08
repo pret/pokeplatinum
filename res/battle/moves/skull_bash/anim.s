@@ -10,7 +10,7 @@ L_1:
     PlaySoundEffectL SEQ_SE_DP_W036
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -24, 0, 4
     WaitForAnimTasks
-    Func_RotateMon BATTLE_ANIM_DEGREES(360), BATTLE_ANIM_DEGREES(375), 10, 1, 0, 64
+    Func_RotateMon DEG_TO_IDX(360), DEG_TO_IDX(375), 10, 1, 0, 64
     WaitForAnimTasks
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 24, 0, 4
     WaitForAnimTasks
@@ -25,7 +25,7 @@ L_2:
     PlaySoundEffectL SEQ_SE_DP_W036
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -24, 0, 4
     WaitForAnimTasks
-    Func_RotateMon BATTLE_ANIM_DEGREES(360), BATTLE_ANIM_DEGREES(375), 10, 1
+    Func_RotateMon DEG_TO_IDX(360), DEG_TO_IDX(375), 10, 1
     WaitForAnimTasks
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 38, -8, 4
     WaitForAnimTasks

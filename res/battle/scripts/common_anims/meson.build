@@ -1,5 +1,5 @@
 
-we_sub_files = files(
+anim_subscript_files = files(
     'dummy00.s',
     'sleep.s',
     'poison.s',
@@ -54,30 +54,30 @@ we_sub_files = files(
 
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
-we_sub_basename = 'we_sub'
-we_sub_narc_name = we_sub_basename + '.narc'
-we_sub_naix_name = we_sub_basename + '.naix.h'
-we_sub_order = files('we_sub.order')
+anim_subscripts_basename = 'anim_subscripts'
+anim_subscripts_narc_name = anim_subscripts_basename + '.narc'
+anim_subscripts_naix_name = anim_subscripts_basename + '.naix.h'
+anim_subscripts_order = files('anim_subscripts.order')
 
-we_sub_private_dir = relative_build_dir / we_sub_narc_name + '.p'
+anim_subscripts_private_dir = relative_build_dir / anim_subscripts_narc_name + '.p'
 
-we_sub_narc = custom_target(we_sub_narc_name,
+anim_subscripts_narc = custom_target(anim_subscripts_narc_name,
     output: [
-        we_sub_narc_name,
-        we_sub_naix_name,
+        anim_subscripts_narc_name,
+        anim_subscripts_naix_name,
     ],
     input: script_bin_gen.process(
-        we_sub_files,
-        extra_args: [ '--out-dir', we_sub_private_dir, ]
+        anim_subscript_files,
+        extra_args: [ '--out-dir', anim_subscripts_private_dir, ]
     ),
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', we_sub_order,
+        '--order', anim_subscripts_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
 
-nitrofs_files += we_sub_narc
-naix_headers += we_sub_narc[1]
+nitrofs_files += anim_subscripts_narc
+naix_headers += anim_subscripts_narc[1]

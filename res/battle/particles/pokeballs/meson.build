@@ -119,10 +119,10 @@ ball_particle_files = files(
     'twinkle_seal.spa',
 )
 
-ball_particle_narc = custom_target('ball_particle.narc',
+ball_particles_narc = custom_target('ball_particles.narc',
     output: [
-'ball_particle.narc',
-'ball_particle.naix.h',
+        'ball_particles.narc',
+        'ball_particles.naix.h',
     ],
     input: copy_gen.process(
         ball_particle_files,
@@ -130,11 +130,11 @@ ball_particle_narc = custom_target('ball_particle.narc',
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', files('ball_particle.order'),
+        '--order', files('ball_particles.order'),
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
 
-nitrofs_files += ball_particle_narc
-naix_headers += ball_particle_narc[1]
+nitrofs_files += ball_particles_narc
+naix_headers += ball_particles_narc[1]

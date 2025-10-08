@@ -7,7 +7,7 @@ pl_waza_tbl_subdirs = [
     '0470',
 ]
 
-we_subdirs = [
+anim_script_subdirs = [
     '0000',
     '0468',
     '0469',
@@ -49,7 +49,7 @@ foreach move : move_consts
     if move.startswith('MOVE_') and move != 'MOVE_NONE'
         move_name = move.replace('MOVE_', '').to_lower()
         pl_waza_tbl_subdirs += move_name
-        we_subdirs += move_name
+        anim_script_subdirs += move_name
     endif
 endforeach
 
@@ -90,53 +90,53 @@ battle_anim_script_bin_gen = generator(make_script_bin_sh,
         text_banks,
         c_consts_generators,
         h_headers,
-        waza_particle_narc[1],
-        wecell_narc_files[1],
-        wecellanm_narc_files[1],
-        wechar_narc_files[1],
-        wepltt_narc_files[1],
+        battle_particles_narc[1],
+        anim_ncer_narc_files[1],
+        anim_nanr_narc_files[1],
+        anim_ncgr_narc_files[1],
+        anim_nclr_narc_files[1],
     ],
     output: '@BASENAME@',
     depfile: '@BASENAME@.d',
 )
 
-we_srcs = []
-foreach subdir : we_subdirs
-    we_srcs += subdir / 'anim.s'
+anim_script_srcs = []
+foreach subdir : anim_script_subdirs
+    anim_script_srcs += subdir / 'anim.s'
 endforeach
 
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
-we_root = meson.current_source_dir()
+anim_scripts_root = meson.current_source_dir()
 
-we_basename = 'we'
-we_narc_name = we_basename + '.arc'
-we_narc_order_name = we_basename + '.order'
+anim_scripts_basename = 'anim_scripts'
+anim_scripts_narc_name = anim_scripts_basename + '.narc'
+anim_scripts_order_name = anim_scripts_basename + '.order'
 
-we_private_dir = relative_build_dir / we_narc_name + '.p'
+anim_scripts_private_dir = relative_build_dir / anim_scripts_narc_name + '.p'
 
-we_narc_order = custom_target(we_narc_order_name,
-    output: we_narc_order_name,
+anim_scripts_order = custom_target(anim_scripts_order_name,
+    output: anim_scripts_order_name,
     input: [ moves_txt ],
     command: [ ordergen_battle_anim_scripts_py, '@INPUT@', meson.current_source_dir(), '@OUTPUT@' ],
 )
 
-we_narc = custom_target(we_narc_name,
+anim_scripts_narc = custom_target(anim_scripts_narc_name,
     output: [
-        we_narc_name,
+        anim_scripts_narc_name,
     ],
     input: battle_anim_script_bin_gen.process(
-        we_srcs,
-        extra_args: ['--out-dir', we_private_dir],
-        preserve_path_from: we_root,
+        anim_script_srcs,
+        extra_args: ['--out-dir', anim_scripts_private_dir],
+        preserve_path_from: anim_scripts_root,
     ),
     command: [
         narc_exe, 'create',
-        '--order', we_narc_order,
+        '--order', anim_scripts_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )
 
 nitrofs_files += pl_waza_tbl_narc
-nitrofs_files += we_narc
+nitrofs_files += anim_scripts_narc

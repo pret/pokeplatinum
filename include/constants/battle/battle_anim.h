@@ -157,9 +157,9 @@
 
 #define BASE_SCALE_XY 100
 
-// For use in scripts in place of DEG_TO_IDX because said macro can't be included
-// in script files because the assembler doesn't understand the other code inside that file.
-#define BATTLE_ANIM_DEGREES(degrees) (((degrees) * 0xFFFF) / 360)
+// Defined separately here so it can be used in scripts
+// Converts degrees to an index in the range 0-0xFFFF
+#define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
 
 // Colors commonly used in battle anim scripts
 // Note: Can't use RGB() macro because the assembler can't properly process multi-arg macros
