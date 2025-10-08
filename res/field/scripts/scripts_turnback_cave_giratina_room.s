@@ -14,13 +14,13 @@ _001A:
     End
 
 _001C:
-    GoToIfSet FLAG_UNK_0x008E, _0029
+    GoToIfSet FLAG_MAP_LOCAL, _0029
     End
 
 _0029:
     SetFlag FLAG_UNK_0x0250
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 _0037:
@@ -30,9 +30,9 @@ _0037:
     PlayCry SPECIES_GIRATINA
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _009B
     CheckDidNotCapture VAR_RESULT

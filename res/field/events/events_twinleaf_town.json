@@ -41,7 +41,7 @@
             "y": 1
         },
         {
-            "id": "TWINLEAF_TOWN_BARRY",
+            "id": "TWINLEAF_TOWN_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

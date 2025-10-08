@@ -2,7 +2,7 @@
   "key": 63855,
   "messages": [
     {
-      "id": "pl_msg_00000133_00000",
+      "id": "PastoriaGym_Text_WakeIntro",
       "en_US": [
         "Welcome!\n",
         "I don’t get challenged very often!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00001",
+      "id": "PastoriaGym_Text_BeatWake",
       "en_US": [
         "It seems the undertow pulled me\n",
         "under...\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00002",
+      "id": "PastoriaGym_Text_WakeReveiveFenBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the Fen Badge from Wake!"
       ]
     },
     {
-      "id": "pl_msg_00000133_00003",
+      "id": "PastoriaGym_Text_WakeExplainFenBadge",
       "en_US": [
         "You need that Fen Badge to use the\n",
         "hidden move Surf outside of battle.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00004",
+      "id": "PastoriaGym_Text_WakeExplainTM55",
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains the\n",
         "move {STRVAR_1 6, 1, 0}.\r",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00005",
+      "id": "PastoriaGym_Text_WakeAfterbadge",
       "en_US": [
         "The styles of battling and winning\n",
         "are as widely varied as Trainers are.\r",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00006",
+      "id": "PastoriaGym_Text_GymGuideBeforebadge",
       "en_US": [
         "The Gym Leader Wake... Uh, I mean\n",
         "Crasher Wake, is a master of\f",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00007",
+      "id": "PastoriaGym_Text_GymGuideAfterbadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00008",
+      "id": "PastoriaGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Pastoria City Pokémon Gym\n",
         "Leader: Crasher Wake\r",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000133_00009",
+      "id": "PastoriaGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Pastoria City Pokémon Gym\n",
         "Leader: Crasher Wake\r",
