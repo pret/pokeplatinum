@@ -3,7 +3,7 @@
 #include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry VeilstoneStore2F_Receptionist
+    ScriptEntry VeilstoneStore2F_Attendant
     ScriptEntry VeilstoneStore2F_Lady
     ScriptEntry VeilstoneStore2F_BugCatcher1
     ScriptEntry VeilstoneStore2F_BugCatcher2
@@ -13,63 +13,63 @@
     ScriptEntry VeilstoneStore2F_Directory
     ScriptEntryEnd
 
-VeilstoneStore2F_Receptionist:
+VeilstoneStore2F_Attendant:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, VeilstoneStore2F_ReceptionistPersonalized
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneStore2F_AttendantPersonalized
     Message VeilstoneStore2F_Text_MayIHelpYou
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 1
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 0
     ShowMenu
-    GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_ReceptionistProtein
-    GoTo VeilstoneStore2F_ReceptionistPleaseEnjoyYourself
+    GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_AttendantProtein
+    GoTo VeilstoneStore2F_AttendantPleaseEnjoyYourself
 
-VeilstoneStore2F_ReceptionistPersonalized:
+VeilstoneStore2F_AttendantPersonalized:
     BufferPlayerName 0
     Message VeilstoneStore2F_Text_MayIHelpYouPersonalized
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 0
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 1
     ShowMenu
-    GoToIfNe VAR_RESULT, 0, VeilstoneStore2F_ReceptionistPleaseEnjoyYourself
+    GoToIfNe VAR_RESULT, 0, VeilstoneStore2F_AttendantPleaseEnjoyYourself
     GetRandom VAR_RESULT, 4
-    GoToIfEq VAR_RESULT, 0, VeilstoneStore2F_ReceptionistProtein
-    GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_ReceptionistCarbos
-    GoToIfEq VAR_RESULT, 2, VeilstoneStore2F_ReceptionistDireHit
-    GoTo VeilstoneStore2F_ReceptionistXAccuracy
+    GoToIfEq VAR_RESULT, 0, VeilstoneStore2F_AttendantProtein
+    GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_AttendantCarbos
+    GoToIfEq VAR_RESULT, 2, VeilstoneStore2F_AttendantDireHit
+    GoTo VeilstoneStore2F_AttendantXAccuracy
 
-VeilstoneStore2F_ReceptionistPleaseEnjoyYourself:
+VeilstoneStore2F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore2F_Text_PleaseEnjoyYourself
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneStore2F_ReceptionistProtein:
+VeilstoneStore2F_AttendantProtein:
     Message VeilstoneStore2F_Text_CareForAProtein
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneStore2F_ReceptionistCarbos:
+VeilstoneStore2F_AttendantCarbos:
     Message VeilstoneStore2F_Text_SuggestACarbos
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneStore2F_ReceptionistDireHit:
+VeilstoneStore2F_AttendantDireHit:
     Message VeilstoneStore2F_Text_DireHitIsForYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneStore2F_ReceptionistXAccuracy:
+VeilstoneStore2F_AttendantXAccuracy:
     Message VeilstoneStore2F_Text_TreatItToXAccuracy
     WaitABXPadPress
     CloseMessage

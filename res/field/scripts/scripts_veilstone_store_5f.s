@@ -41,13 +41,13 @@ VeilstoneStore5F_Collector1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_VEILSTONE_STORE_RECEIVED_STICKY_BARB, VeilstoneStore5F_Collector1AfterItemGiven
+    GoToIfSet FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB, VeilstoneStore5F_Collector1AfterItemGiven
     Message VeilstoneStore5F_Text_AGiftOfThisStickyBarb
     SetVar LOCALID_ITEM_ID, ITEM_STICKY_BARB
     SetVar LOCALID_COUNT, 1
     GoToIfCannotFitItem LOCALID_ITEM_ID, LOCALID_COUNT, VAR_RESULT, VeilstoneStore5F_Collector1BagIsFull
     AddItemQuantity
-    SetFlag FLAG_VEILSTONE_STORE_RECEIVED_STICKY_BARB
+    SetFlag FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB
     GoTo VeilstoneStore5F_Collector1AfterItemGiven
     End
 

@@ -2,9 +2,9 @@
 #include "res/text/bank/veilstone_store_1f.h"
 
 #define LOCALID_ACCESSORY_ID VAR_0x8004
-#define LOCALID_QUANTITY     VAR_0x8005
+#define LOCALID_COUNT     VAR_0x8005
 
-    ScriptEntry VeilstoneStore1F_Receptionist
+    ScriptEntry VeilstoneStore1F_Attendant
     ScriptEntry VeilstoneStore1F_MiddleAgedMan
     ScriptEntry VeilstoneStore1F_Lady
     ScriptEntry VeilstoneStore1F_RightVendor
@@ -14,7 +14,7 @@
     ScriptEntry VeilstoneStore1F_Socialite
     ScriptEntryEnd
 
-VeilstoneStore1F_Receptionist:
+VeilstoneStore1F_Attendant:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -86,7 +86,7 @@ VeilstoneStore1F_Socialite:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_VEILSTONE_STORE_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
+    GoToIfSet FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, VeilstoneStore1F_Socialite_Turtwig
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneStore1F_Socialite_Chimchar
@@ -94,9 +94,9 @@ VeilstoneStore1F_Socialite:
     SetVar VAR_VEILSTONE_STORE_MASK, LOCALID_ACCESSORY_ID
     BufferAccessoryNameWithArticle 0, LOCALID_ACCESSORY_ID
     Message VeilstoneStore1F_Text_IMadeAnAccessory
-    SetVar LOCALID_QUANTITY, 1
+    SetVar LOCALID_COUNT, 1
     ObtainAccessoryWaitForConfirm
-    SetFlag FLAG_VEILSTONE_STORE_RECEIVED_MASK
+    SetFlag FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK
     CloseMessage
     ReleaseAll
     End
