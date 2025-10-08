@@ -15,6 +15,13 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
+#define BUTTON_SET_ALARM   0
+#define BUTTON_EDIT_ALARM  1
+#define BUTTON_HOUR_UP     2
+#define BUTTON_HOUR_DOWN   3
+#define BUTTON_MINUTE_UP   4
+#define BUTTON_MINUTE_DOWN 5
+
 typedef struct PoketchAlarmClock {
     u8 state;
     u8 subState;
@@ -89,18 +96,18 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 static BOOL Init(PoketchAlarmClock *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
     static const TouchScreenRect sButtonHitBoxes[] = {
-        { .rect = { .top = 72, .bottom = 104, .left = 176, .right = 208 } },
-        { .rect = { .top = 104, .bottom = 136, .left = 176, .right = 208 } },
-        { .rect = { .top = 112, .bottom = 128, .left = 64, .right = 80 } },
-        { .rect = { .top = 160, .bottom = 176, .left = 64, .right = 80 } },
-        { .rect = { .top = 112, .bottom = 128, .left = 112, .right = 128 } },
-        { .rect = { .top = 160, .bottom = 176, .left = 112, .right = 128 } },
+        [BUTTON_SET_ALARM] = { .rect = { .top = 72, .bottom = 104, .left = 176, .right = 208 } },
+        [BUTTON_EDIT_ALARM] = { .rect = { .top = 104, .bottom = 136, .left = 176, .right = 208 } },
+        [BUTTON_HOUR_UP] = { .rect = { .top = 112, .bottom = 128, .left = 64, .right = 80 } },
+        [BUTTON_HOUR_DOWN] = { .rect = { .top = 160, .bottom = 176, .left = 64, .right = 80 } },
+        [BUTTON_MINUTE_UP] = { .rect = { .top = 112, .bottom = 128, .left = 112, .right = 128 } },
+        [BUTTON_MINUTE_DOWN] = { .rect = { .top = 160, .bottom = 176, .left = 112, .right = 128 } },
     };
-    u32 hour, minute;
 
     appData->poketch = PoketchSystem_GetPoketchData(poketchSys);
     appData->clockData.alarmSet = Poketch_IsAlarmSet(appData->poketch);
 
+    u32 hour, minute;
     Poketch_AlarmTime(appData->poketch, &hour, &minute);
 
     appData->clockData.alarmHour = hour;
@@ -235,7 +242,7 @@ static BOOL State_EditingAlarm(PoketchAlarmClock *appData)
 
     switch (appData->subState) {
     case 0:
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) && (appData->pressedButton == 0)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_SET_ALARM) {
             appData->clockData.alarmSet = TRUE;
             InitCurrentTime(&appData->clockData);
             Poketch_SetAlarm(appData->poketch, TRUE, appData->clockData.alarmHour, appData->clockData.alarmMinute);
@@ -245,30 +252,30 @@ static BOOL State_EditingAlarm(PoketchAlarmClock *appData)
             break;
         }
 
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) && (appData->pressedButton == 1)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_EDIT_ALARM) {
             appData->buttonState = BUTTON_MANAGER_STATE_NULL;
             PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
             break;
         }
 
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) || (appData->buttonState == BUTTON_MANAGER_STATE_REPEAT)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH || appData->buttonState == BUTTON_MANAGER_STATE_REPEAT) {
             switch (appData->pressedButton) {
-            case 2:
+            case BUTTON_HOUR_UP:
                 if (++appData->clockData.alarmHour > 23) {
                     appData->clockData.alarmHour = 0;
                 }
                 break;
-            case 3:
+            case BUTTON_HOUR_DOWN:
                 if (--appData->clockData.alarmHour < 0) {
                     appData->clockData.alarmHour = 23;
                 }
                 break;
-            case 4:
+            case BUTTON_MINUTE_UP:
                 if (++appData->clockData.alarmMinute > 59) {
                     appData->clockData.alarmMinute = 0;
                 }
                 break;
-            case 5:
+            case BUTTON_MINUTE_DOWN:
                 if (--appData->clockData.alarmMinute < 0) {
                     appData->clockData.alarmMinute = 59;
                 }
@@ -304,7 +311,7 @@ static BOOL State_AlarmSet(PoketchAlarmClock *appData)
             return FALSE;
         }
 
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) && (appData->pressedButton == 1)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_EDIT_ALARM) {
             appData->clockData.alarmSet = FALSE;
             PoketchAlarmClockGraphics_StartTask(appData->graphics, ALARM_CLOCK_GRAPHICS_ENTER_EDIT_MODE);
             appData->buttonState = BUTTON_MANAGER_STATE_NULL;
@@ -312,7 +319,7 @@ static BOOL State_AlarmSet(PoketchAlarmClock *appData)
             break;
         }
 
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) && (appData->pressedButton == 0)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_SET_ALARM) {
             PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
             break;
         }
@@ -363,7 +370,7 @@ static BOOL State_AlarmBlaring(PoketchAlarmClock *appData)
             return FALSE;
         }
 
-        if ((appData->buttonState == BUTTON_MANAGER_STATE_TOUCH) && (appData->pressedButton == 1)) {
+        if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_EDIT_ALARM) {
             appData->clockData.alarmSet = FALSE;
             StopSoundingAlarm(appData->graphics);
             PoketchAlarmClockGraphics_StartTask(appData->graphics, ALARM_CLOCK_GRAPHICS_ENTER_EDIT_MODE);
@@ -434,5 +441,5 @@ static BOOL State_UnloadApp(PoketchAlarmClock *appData)
 
 static BOOL ActivateAlarm(AlarmClockData *clockData)
 {
-    return (clockData->currentHour == clockData->alarmHour) && (clockData->currentMinute == clockData->alarmMinute);
+    return clockData->currentHour == clockData->alarmHour && clockData->currentMinute == clockData->alarmMinute;
 }

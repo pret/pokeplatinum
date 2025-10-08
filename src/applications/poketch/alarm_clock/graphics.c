@@ -180,7 +180,7 @@ static void SetupSprites(AlarmClockGraphics *graphics, const AlarmClockData *clo
     PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP);
 
     for (int i = 0; i < NUM_SPRITES; i++) {
-        if ((i >= SPRITE_HOUR_TENS_DIGIT) && (i <= SPRITE_MINUTE_ONES_DIGIT)) {
+        if (i >= SPRITE_HOUR_TENS_DIGIT && i <= SPRITE_MINUTE_ONES_DIGIT) {
             graphics->sprites[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData[i], &graphics->digitSprites);
         } else {
             graphics->sprites[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData[i], &graphics->alarmSprites);
@@ -394,7 +394,7 @@ static void Task_SoundAlarm(SysTask *task, void *taskMan)
             return;
         }
 
-        if (Sound_IsPokemonCryPlaying() == FALSE) {
+        if (!Sound_IsPokemonCryPlaying()) {
             PoketchSystem_PlayCry(SPECIES_LOUDRED, 0);
         }
 
