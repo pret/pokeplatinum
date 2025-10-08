@@ -2472,8 +2472,8 @@ void BattleAnimScriptFunc_Surf(BattleAnimSystem *system)
 
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->sprites[0] = BattleAnimSystem_GetSprite(system, 0);
-    ctx->sprites[1] = BattleAnimSystem_GetSprite(system, 1);
+    ctx->sprites[0] = BattleAnimSystem_GetSprite(system, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->sprites[1] = BattleAnimSystem_GetSprite(system, BATTLE_ANIM_MON_SPRITE_1);
 
     BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 

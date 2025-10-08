@@ -190,7 +190,7 @@ BOOL ValueLerpContext_Update(ValueLerpContext *ctx);
 BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx);
 void AngleLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 r, u32 steps);
 BOOL AngleLerpContext_UpdateCos(ValueLerpContext *ctx);
-void ScaleLerpContext_Init(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, u32 steps);
+void ScaleLerpContext_Init(XYTransformContext *ctx, s16 startScale, s16 refScale, s16 endScale, u32 steps);
 BOOL ScaleLerpContext_Update(XYTransformContext *ctx);
 void ScaleLerpContext_InitXY(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, s16 ref, u32 steps);
 BOOL ScaleLerpContext_UpdateXY(XYTransformContext *ctx);

@@ -1,3 +1,4 @@
+ordergen_battle_anim_scripts_py = find_program('battle_anim_scripts.py', native: true)
 ordergen_forms_py = find_program('forms.py', native: true)
 ordergen_species_py = find_program('species.py', native: true)
 ordergen_text_banks_py = find_program('text_banks.py', native: true)

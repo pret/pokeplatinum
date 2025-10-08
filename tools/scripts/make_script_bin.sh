@@ -11,6 +11,7 @@ help() {
     echo "  -o | --objcopy      path to the objcopy executable for data extraction"
     echo "  -d | --out-dir      directory for output files (default: current directory)"
     echo "  -M | --depfile      output a compiler-generated depfile for the source"
+    echo "  -P | --parent-dir   use the parent directory name of each input script to avoid name collisions"
 }
 
 INCLUDE_ARGS=()
@@ -20,6 +21,7 @@ OBJCOPY="arm-none-eabi-objcopy"
 LD="arm-none-eabi-ld"
 OUTDIR="."
 MD=""
+USE_PARENT_DIR=0
 
 while [[ $# -gt 0 ]] ; do
     case $1 in 
@@ -51,6 +53,10 @@ while [[ $# -gt 0 ]] ; do
             MD="-MD"
             shift
             ;;
+        -P|--parent-dir)
+            USE_PARENT_DIR=1
+            shift
+            ;;
         *)
             SCRIPT_FILES+=("$1")
             shift
@@ -61,6 +67,11 @@ done
 for script_file in "${SCRIPT_FILES[@]}" ; do
     script_fname=${script_file##*/}
     script_noext=${script_fname%.*}
+
+    if [[ $USE_PARENT_DIR -eq 1 ]]; then
+        parent_dir_name=$(basename "$(dirname "$script_file")")
+        script_noext="${parent_dir_name}/${script_noext}"
+    fi
 
     # Target output files
     script_obj="$OUTDIR/$script_noext.o"

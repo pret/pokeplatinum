@@ -42,10 +42,18 @@
 #define BATTLE_BG_SWITCH_STATE_RUNNING  1 //< Switch in progress
 #define BATTLE_BG_SWITCH_STATE_PARTIAL  2 //< Faded to black/white. Note: Use only with BATTLE_BG_SWITCH_MODE_FADE
 
-#define BATTLE_BG_ID_UNUSED             0
-#define BATTLE_BG_ID_WINDOW             1
-#define BATTLE_BG_ID_BASE               2
-#define BATTLE_BG_ID_EFFECT             3
+// Do not use in scripts. Use BATTLE_ANIM_BG_* instead.
+#define BATTLE_BG_INTERNAL_ID_UNUSED    0
+#define BATTLE_BG_INTERNAL_ID_WINDOW    1
+#define BATTLE_BG_INTERNAL_ID_BASE      2
+#define BATTLE_BG_INTERNAL_ID_EFFECT    3
+
+#define BATTLE_ANIM_BG_WINDOW           0 //< BG for windows
+#define BATTLE_ANIM_BG_BASE             1 //< BG for base battle BG
+#define BATTLE_ANIM_BG_EFFECT           2 //< BG for move anim BG switching
+#define BATTLE_ANIM_BG_POKEMON          3 //< BG for Pokemon sprites
+#define BATTLE_ANIM_BG_COUNT            4 //< Total number of battle BGs
+#define BATTLE_ANIM_BG_NONE             0xFF
 
 #define BATTLE_BG_PRIORITY_WINDOW       0
 #define BATTLE_BG_PRIORITY_BASE         1
@@ -149,13 +157,52 @@
 
 #define BASE_SCALE_XY 100
 
+// Defined separately here so it can be used in scripts
+// Converts degrees to an index in the range 0-0xFFFF
+#define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
+
+// Colors commonly used in battle anim scripts
+// Note: Can't use RGB() macro because the assembler can't properly process multi-arg macros
+#define BATTLE_COLOR_BLACK         0x0000 // RGB(0, 0, 0)
+#define BATTLE_COLOR_WHITE         0x7FFF // RGB(31, 31, 31)
+#define BATTLE_COLOR_RED           0x001F // RGB(31, 0, 0)
+#define BATTLE_COLOR_LIGHT_RED     0x5A9F // RGB(31, 20, 22)
+#define BATTLE_COLOR_DARK_RED1     0x044A // RGB(10, 2, 1)
+#define BATTLE_COLOR_DARK_RED2     0x084C // RGB(12, 2, 2)
+#define BATTLE_COLOR_YELLOW        0x031D // RGB(29, 24, 0)
+#define BATTLE_COLOR_LIGHT_YELLOW1 0x33FF // RGB(31, 31, 12)
+#define BATTLE_COLOR_LIGHT_YELLOW2 0x67FF // RGB(31, 31, 25)
+#define BATTLE_COLOR_DARK_YELLOW   0x10E8 // RGB(8, 7, 4)
+#define BATTLE_COLOR_LIME          0x03EB // RGB(11, 31, 0)
+#define BATTLE_COLOR_LIGHT_GREEN   0x2BF4 // RGB(20, 31, 10)
+#define BATTLE_COLOR_TEAL_GREEN    0xC30A // RGB(10, 24, 16)
+#define BATTLE_COLOR_PURPLE        0x7C14 // RGB(20, 0, 31)
+#define BATTLE_COLOR_DARK_PURPLE   0x2068 // RGB(8, 3, 8)
+#define BATTLE_COLOR_LIGHT_CYAN    0x7FD0 // RGB(16, 30, 31)
+#define BATTLE_COLOR_LIGHT_BLUE    0x7F77 // RGB(23, 27, 31)
+#define BATTLE_COLOR_DARK_BLUE     0x2820 // RGB(0, 1, 10)
+#define BATTLE_COLOR_LIGHT_ORANGE  0x3AFF // RGB(31, 23, 14)
+#define BATTLE_COLOR_GRAY          0x35AD // RGB(13, 13, 13)
+#define BATTLE_COLOR_DARK_GRAY     0x18C6 // RGB(6, 6, 6)
+
 // Script function specific constants
+#define ROTATE_MON_MODE_DEFENDER              0
+#define ROTATE_MON_MODE_ATTACKER_CUSTOM_PIVOT 1
+#define ROTATE_MON_MODE_DEFENDER_REVERSED     2
+
 #define FLAIL_MODE_ATTACKER 0
 #define FLAIL_MODE_DEFENDER 1
 
 #define FADE_BG_TYPE_BASE       0
 #define FADE_BG_TYPE_MON_SPRITE 1
 #define FADE_BG_TYPE_EFFECT     2
+
+#define SCALE_F(frames) (((frames) & 0xFFFF) << 16)
+#define RESTORE_F(frames) ((frames) & 0xFFFF)
+#define HOLD_F(frames) (((frames) & 0xFFFF) << 16)
+#define CYCLES(cycles) ((cycles) & 0xFFFF)
+#define SKIP_F(frames) (((frames) & 0xFFFF) << 16)
+#define MAX_F(frames) ((frames) & 0xFFFF)
 
 #define SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames) (((scaleFrames & 0xFFFF) << 16) | (restoreFrames & 0xFFFF))
 #define SCALE_POKEMON_SPRITE_SCALE_FRAMES(frames) ((frames) >> 16)
