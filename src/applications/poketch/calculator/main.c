@@ -31,6 +31,8 @@ typedef struct PoketchCalculator {
     CalculatorData calcData;
 } PoketchCalculator;
 
+typedef BOOL (*StateFunc)(PoketchCalculator *);
+
 enum CalculatorState {
     STATE_LOAD_APP = 0,
     STATE_ENTER_OPERAND_1,
@@ -158,7 +160,7 @@ static void Free(PoketchCalculator *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchCalculator *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_EnterOperand1,
         State_EnterOperator,

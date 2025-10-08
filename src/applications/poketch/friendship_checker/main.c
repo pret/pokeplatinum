@@ -23,6 +23,8 @@ typedef struct PoketchFriendshipChecker {
     PoketchSystem *poketchSys;
 } PoketchFriendshipChecker;
 
+typedef BOOL (*StateFunc)(PoketchFriendshipChecker *);
+
 enum FriendshipCheckerState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE_LOOP,
@@ -155,7 +157,7 @@ static void Free(PoketchFriendshipChecker *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchFriendshipChecker *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp,
