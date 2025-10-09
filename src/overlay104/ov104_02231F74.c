@@ -13,10 +13,8 @@
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/frontier_script_context.h"
 #include "overlay104/ov104_0222E63C.h"
-#include "overlay104/ov104_0222E930.h"
-#include "overlay104/struct_ov104_0222E930_decl.h"
-#include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -99,9 +97,6 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
 static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2);
 static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4);
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
-UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
-void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-void ov104_022322B0(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232454(UnkStruct_ov104_02232B5C *param0);
@@ -109,12 +104,9 @@ static void ov104_022324C8(SysTask *param0, void *param1);
 static void ov104_02232570(UnkStruct_ov104_02232B5C *param0);
 static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2);
-void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
+static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
 static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4);
-static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0);
-UnkStruct_ov104_02232B5C *ov104_022325FC(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
-void ov104_0223261C(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-void ov104_02232624(UnkStruct_ov104_02232B5C *param0);
+static BOOL ov104_02233184(FrontierScriptContext *param0);
 static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232830(UnkStruct_ov104_02232B5C *param0);
@@ -123,11 +115,6 @@ static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2);
 static void ov104_0223296C(SysTask *param0, void *param1);
 static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1);
 static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0);
-void ov104_02232B5C(UnkStruct_ov104_02232B5C *param0);
-void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1);
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2);
-extern void ov104_0223327C(UnkStruct_ov104_02232B5C *param0, int param1);
-extern void ov104_02233298(UnkStruct_ov104_02232B5C *param0, int param1);
 
 void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u16 param2, u8 param3, UnkStruct_ov104_0222FEDC *param4)
 {
@@ -162,9 +149,9 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
 
     if (param0->unk_5A == 0) {
         Window_Add(
-            v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, (((1024 - (18 + 12)) - 9) - (27 * 4)));
+            v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, ((1024 - (18 + 12)) - 9) - (27 * 4));
         Window_FillTilemap(&param0->unk_64, 15);
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_64, 0, 1024 - (18 + 12), 11);
 
         param0->unk_5A = 1;
     } else {
@@ -196,7 +183,7 @@ void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
     param0->unk_5A = 0;
 }
 
-void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6)
+static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6)
 {
     Sentence v0;
 
@@ -266,7 +253,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = String_Init((40 * 2), param0->heapID);
+        param1->unk_1C[v0] = String_Init(40 * 2, param0->heapID);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -331,7 +318,7 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        String *v2 = String_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
 
         MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -513,7 +500,7 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        String *v2 = String_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
 
         MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -687,8 +674,8 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
 {
-    String *v0 = String_Init((40 * 2), param0->unk_00->heapID);
-    String *v1 = String_Init((40 * 2), param0->unk_00->heapID);
+    String *v0 = String_Init(40 * 2, param0->unk_00->heapID);
+    String *v1 = String_Init(40 * 2, param0->unk_00->heapID);
 
     Window_FillTilemap(param0->unk_18, 15);
 
@@ -901,7 +888,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     {
         u32 personality, species;
 
-        v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
+        v4 = Heap_Alloc(heapID, 10 * 10 * ((8 / 2) * 8));
         personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
@@ -916,7 +903,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
 
         v11 = Sprite_GetImageProxy(v5->sprite);
         DC_FlushRange(v4, sizeof(10 * 10 * ((8 / 2) * 8)));
-        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], (10 * 10 * ((8 / 2) * 8)));
+        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], 10 * 10 * ((8 / 2) * 8));
 
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1058,13 +1045,13 @@ void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1)
+void ov104_022330FC(FrontierScriptContext *param0, u16 *param1)
 {
     ov104_0223310C(param0, param1, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
     return;
 }
 
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 bankID)
+void ov104_0223310C(FrontierScriptContext *param0, u16 *param1, u32 bankID)
 {
     u8 v0;
     MessageLoader *v1;
@@ -1080,11 +1067,11 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 bankID)
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 
-    ov104_0222E974(param0, ov104_02233184);
+    FrontierScriptContext_Pause(param0, ov104_02233184);
     return;
 }
 
-static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0)
+static BOOL ov104_02233184(FrontierScriptContext *param0)
 {
     if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
         return 1;
