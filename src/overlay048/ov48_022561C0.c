@@ -193,7 +193,7 @@ static BOOL ov48_0225621C(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketc
     param0->poketchSys = poketchSys;
     param0->unk_04.unk_08 = ov48_02256408(param0);
 
-    inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->poketchSys), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
+    PoketchMap_GetPlayerLocation(PoketchSystem_GetFieldSystem(param0->poketchSys), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
 
     ov48_022564E0(param0, poketchSys);
 
@@ -337,7 +337,7 @@ static BOOL ov48_02256478(UnkStruct_ov48_0225621C *param0)
     if (PoketchSystem_IsPlayerMoving(param0->poketchSys)) {
         int v1, v2;
 
-        inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->poketchSys), &v1, &v2);
+        PoketchMap_GetPlayerLocation(PoketchSystem_GetFieldSystem(param0->poketchSys), &v1, &v2);
 
         if ((v1 != param0->unk_04.unk_00) || (v2 != param0->unk_04.unk_04)) {
             param0->unk_04.unk_00 = v1;
