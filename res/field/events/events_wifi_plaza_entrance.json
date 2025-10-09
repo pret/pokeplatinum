@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "WIFI_PLAZA_ENTRANCE_WIFI_PLAZA_ATTENDANT_0",
-            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
+            "id": "WIFI_PLAZA_ENTRANCEWIFI_PLAZA_ATTENDANT_F_0",
+            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",

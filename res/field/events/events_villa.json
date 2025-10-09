@@ -147,8 +147,8 @@
             "y": 0
         },
         {
-            "id": "VILLA_BRYON_8",
-            "graphics_id": "OBJ_EVENT_GFX_BRYON",
+            "id": "VILLA_BYRON_8",
+            "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "FLAG_UNK_0x02B4",

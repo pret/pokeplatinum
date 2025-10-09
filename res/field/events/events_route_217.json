@@ -313,8 +313,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_UNK_065_14",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "ROUTE_217_SNOWPOINT_NPC_F_14",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",
