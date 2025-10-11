@@ -875,7 +875,7 @@ Overlay overlay25
 	Object main.nef.p/src_applications_poketch_poketch_task.c.o
 	Object main.nef.p/src_applications_poketch_poketch_animation.c.o
 	Object main.nef.p/src_applications_poketch_poketch_button.c.o
-	Object main.nef.p/src_applications_poketch_ov25_02255DBC.c.o
+	Object main.nef.p/src_applications_poketch_poketch_map.c.o
 }
 
 Overlay poketch_digital_watch
@@ -1012,11 +1012,11 @@ Overlay overlay44
 	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
 }
 
-Overlay overlay45
+Overlay poketch_alarm_clock
 {
 	After overlay25
-	Object main.nef.p/src_overlay045_ov45_022561C0.c.o
-	Object main.nef.p/src_overlay045_ov45_022566EC.c.o
+	Object main.nef.p/src_applications_poketch_alarm_clock_main.c.o
+	Object main.nef.p/src_applications_poketch_alarm_clock_graphics.c.o
 }
 
 Overlay overlay46
@@ -1026,11 +1026,11 @@ Overlay overlay46
 	Object main.nef.p/src_overlay046_ov46_02256BCC.c.o
 }
 
-Overlay overlay47
+Overlay poketch_marking_map
 {
 	After overlay25
-	Object main.nef.p/src_overlay047_ov47_022561C0.c.o
-	Object main.nef.p/src_overlay047_ov47_02256634.c.o
+	Object main.nef.p/src_applications_poketch_marking_map_main.c.o
+	Object main.nef.p/src_applications_poketch_marking_map_graphics.c.o
 }
 
 Overlay overlay48

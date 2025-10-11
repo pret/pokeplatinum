@@ -127,25 +127,21 @@ static inline void inline_ov61_0222C3B0_sub(SysTask *param0, void *param1)
     }
 }
 
-static inline void inline_ov47_0225621C_sub(FieldSystem *fieldSystem, int *param1, int *param2)
+static inline void PoketchMap_GetPlayerLocation(FieldSystem *fieldSystem, int *x, int *z)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
-        *param1 = fieldSystem->location->x;
-        *param2 = fieldSystem->location->z;
+        *x = fieldSystem->location->x;
+        *z = fieldSystem->location->z;
     } else {
-        *param1 = location->x;
-        *param2 = location->z;
+        *x = location->x;
+        *z = location->z;
     }
-}
 
-static inline void inline_ov47_0225621C(FieldSystem *fieldSystem, int *param1, int *param2)
-{
-    inline_ov47_0225621C_sub(fieldSystem, param1, param2);
-    *param1 /= 32;
-    *param2 /= 32;
+    *x /= MAP_TILES_COUNT_X;
+    *z /= MAP_TILES_COUNT_Z;
 }
 
 static inline u16 *ScriptContext_GetVarPointer(ScriptContext *ctx)
