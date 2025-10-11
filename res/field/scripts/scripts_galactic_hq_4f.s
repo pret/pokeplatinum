@@ -56,7 +56,7 @@ _0074:
     End
 
 _00DB:
-    AddItemQuantity
+    GiveItemQuantity
     Return
 
 _00E1:

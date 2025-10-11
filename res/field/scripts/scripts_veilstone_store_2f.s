@@ -117,7 +117,7 @@ VeilstoneStore2F_PoketchVendor:
     GoToIfEq VAR_RESULT, MENU_NO, VeilstoneStore2F_PoketchVendorDeclined
     Message VeilstoneStore2F_Text_HereYouGo
     SetVar VAR_0x8004, POKETCH_APPID_COUNTER
-    ObtainPoketchApp
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -83,7 +83,7 @@ _0100:
     GoTo _00CB
 
 _010C:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

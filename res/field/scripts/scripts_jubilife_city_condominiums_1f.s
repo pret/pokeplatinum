@@ -61,7 +61,7 @@ _0063:
     End
 
 _00AD:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

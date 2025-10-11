@@ -30,7 +30,7 @@ _0055:
     End
 
 _0060:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

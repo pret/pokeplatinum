@@ -45,7 +45,7 @@ _007C:
     End
 
 _00AE:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -95,7 +95,7 @@ VeilstoneStore1F_Socialite:
     BufferAccessoryNameWithArticle 0, LOCALID_ACCESSORY_ID
     Message VeilstoneStore1F_Text_IMadeAnAccessory
     SetVar LOCALID_COUNT, 1
-    ObtainAccessoryWaitForConfirm
+    GiveAccessoryWaitForConfirm
     SetFlag FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK
     CloseMessage
     ReleaseAll

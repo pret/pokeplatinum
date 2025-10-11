@@ -28,7 +28,7 @@ _004B:
     End
 
 _0056:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

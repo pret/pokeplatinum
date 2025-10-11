@@ -74,7 +74,7 @@ _00D9:
     Message 4
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
-    ObtainPoketchApp
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

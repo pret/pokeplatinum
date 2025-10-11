@@ -108,7 +108,7 @@ _0102:
     End
 
 _014A:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -50,7 +50,7 @@ _00B0:
     SetVar VAR_0x8004, ITEM_TM72
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00EE
-    AddItemQuantity
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x009E
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -61,7 +61,7 @@ _00B0:
     End
 
 _00EE:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

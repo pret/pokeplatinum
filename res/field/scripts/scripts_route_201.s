@@ -1196,7 +1196,7 @@ _0E8C:
     End
 
 _0E97:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

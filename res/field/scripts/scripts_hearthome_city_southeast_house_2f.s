@@ -31,7 +31,7 @@ _0054:
     End
 
 _0064:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

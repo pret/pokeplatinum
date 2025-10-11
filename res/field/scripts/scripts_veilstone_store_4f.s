@@ -7,7 +7,7 @@
     ScriptEntry VeilstoneStore4F_NinjaBoy
     ScriptEntry VeilstoneStore4F_Pokefan
     ScriptEntry VeilstoneStore4F_SchoolBoy
-    ScriptEntry _VeilstoneStore4F_TopDecorVendor
+    ScriptEntry VeilstoneStore4F_TopDecorVendor
     ScriptEntry VeilstoneStore4F_BottomDecorVendor
     ScriptEntry VeilstoneStore4F_Directory
     ScriptEntryEnd
@@ -105,7 +105,7 @@ VeilstoneStore4F_SchoolBoy:
     ReleaseAll
     End
 
-_VeilstoneStore4F_TopDecorVendor:
+VeilstoneStore4F_TopDecorVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

@@ -2649,19 +2649,19 @@
     .short \destVarID
     .endm
 
-    .macro ObtainPoketchApp
+    .macro GivePoketchApp
     CallCommonScript 0x7D9
     .endm
 
-    .macro ObtainAccessoryWaitForConfirm
+    .macro GiveAccessoryWaitForConfirm
     CallCommonScript 0x7DF
     .endm
 
-    .macro BagIsFull
+    .macro MessageBagIsFull
     CallCommonScript 0x7E1
     .endm
 
-    .macro AddItemQuantity
+    .macro GiveItemQuantity
     CallCommonScript 0x7FC
     .endm
 

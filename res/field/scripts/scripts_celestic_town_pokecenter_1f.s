@@ -49,12 +49,12 @@ _0084:
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B6
-    AddItemQuantity
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x0AA1
     GoTo _00C0
 
 _00B6:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -995,7 +995,7 @@ _0C77:
     SetVar VAR_0x8004, ITEM_TM63
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0CC7
-    AddItemQuantity
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
 
@@ -1007,7 +1007,7 @@ _0CBC:
     End
 
 _0CC7:
-    BagIsFull
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
