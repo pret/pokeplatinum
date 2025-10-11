@@ -1,5 +1,7 @@
 #include "applications/town_map/map_blocks.h"
 
+#include "applications/town_map/defs.h"
+
 #include "heap.h"
 
 TownMapBlockList *TownMap_ReadBlocks(const char *path, enum HeapID heapID)

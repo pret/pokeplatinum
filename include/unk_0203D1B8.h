@@ -18,7 +18,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/town_map/context.h"
+#include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 

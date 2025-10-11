@@ -21,7 +21,7 @@
 #include "applications/party_menu/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/town_map/context.h"
+#include "applications/town_map/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"

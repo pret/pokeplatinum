@@ -6,7 +6,7 @@
 #include "generated/first_arrival_to_zones.h"
 #include "generated/map_headers.h"
 
-#include "applications/town_map/context.h"
+#include "applications/town_map/defs.h"
 #include "applications/town_map/main.h"
 
 #include "heap.h"

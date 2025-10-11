@@ -8,8 +8,7 @@
 #include "generated/map_headers.h"
 #include "generated/signpost_types.h"
 
-#include "applications/town_map/application.h"
-#include "applications/town_map/context.h"
+#include "applications/town_map/defs.h"
 #include "applications/town_map/fly_locations.h"
 #include "applications/town_map/main.h"
 #include "applications/town_map/map_blocks.h"
@@ -37,13 +36,33 @@
 #define TOWN_MAP_DOWN  (1 << 2)
 #define TOWN_MAP_UP    (1 << 3)
 
-typedef struct {
+#define BLOCK_DESCRIPTION_HEIGHT (TEXT_LINES_TILES(3))
+
+#define LOCATION_NAME_WINDOW_WIDTH         29
+#define LOCATION_NAME_WINDOW_HEIGHT        3
+#define SIGNPOST_NAME_1_WINDOW_WIDTH       21
+#define SIGNPOST_NAME_1_WINDOW_HEIGHT      4
+#define SIGNPOST_NAME_2_WINDOW_WIDTH       28
+#define SIGNPOST_NAME_2_WINDOW_HEIGHT      4
+#define LOCATION_DESC_WINDOW_WIDTH         28
+#define LOCATION_DESC_WINDOW_HEIGHT        (2 * BLOCK_DESCRIPTION_HEIGHT + TEXT_LINES_TILES(1))
+#define BOTTOM_SCREEN_HEADER_WINDOW_WIDTH  10
+#define BOTTOM_SCREEN_HEADER_WINDOW_HEIGHT (TEXT_LINES_TILES(1))
+
+#define BASE_TILE_LOCATION_NAME        (1023 - LOCATION_NAME_WINDOW_WIDTH * LOCATION_NAME_WINDOW_HEIGHT)
+#define BASE_TILE_SIGNPOST_NAME_1      (1023 - SIGNPOST_NAME_1_WINDOW_WIDTH * SIGNPOST_NAME_1_WINDOW_HEIGHT)
+#define BASE_TILE_SIGNPOST_NAME_2      (BASE_TILE_SIGNPOST_NAME_1 - SIGNPOST_NAME_2_WINDOW_WIDTH * SIGNPOST_NAME_2_WINDOW_HEIGHT)
+#define BASE_TILE_LOCATION_DESCRIPTION (BASE_TILE_SIGNPOST_NAME_2 - LOCATION_DESC_WINDOW_WIDTH * LOCATION_DESC_WINDOW_HEIGHT)
+#define BASE_TILE_BOTTOM_SCREEN_HEADER (BASE_TILE_LOCATION_DESCRIPTION - BOTTOM_SCREEN_HEADER_WINDOW_WIDTH * BOTTOM_SCREEN_HEADER_WINDOW_HEIGHT)
+#define BASE_TILE_SIGNPOST_GRAPHIC     (BASE_TILE_BOTTOM_SCREEN_HEADER - 100)
+
+typedef struct TownMapCoordsToHeader {
     u16 x;
     u16 z;
     enum MapHeader header;
 } TownMapCoordsToHeader;
 
-typedef struct {
+typedef struct TilemapRectCopyParams {
     u8 srcX;
     u8 srcY;
     u8 destX;
@@ -283,19 +302,19 @@ BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     PrintLocationDescription(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), mapBlock);
     Strbuf_Clear(appData->hoveredMapName);
     LoadMapName(appData, header, graphicsMan->cursorX, graphicsMan->cursorZ);
-    LoadSignpostContentGraphics(appData->bgConfig, BG_LAYER_SUB_0, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), mapBlock->signpostType, mapBlock->signpostNARCMemberIdx, appData->heapID);
+    LoadSignpostContentGraphics(appData->bgConfig, BG_LAYER_SUB_0, BASE_TILE_SIGNPOST_GRAPHIC, PLTT_14, mapBlock->signpostType, mapBlock->signpostNARCMemberIdx, appData->heapID);
 
     Window *signpostWindow;
     if (mapBlock->signpostType == SIGNPOST_TYPE_MAP || mapBlock->signpostType == SIGNPOST_TYPE_ARROW) {
-        signpostWindow = &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_1];
+        signpostWindow = &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1];
     } else {
-        signpostWindow = &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_2];
+        signpostWindow = &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2];
     }
 
     graphicsMan->signpostWindow = signpostWindow;
     graphicsMan->signpostType = mapBlock->signpostType;
 
-    Window_DrawSignpost(signpostWindow, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), mapBlock->signpostType);
+    Window_DrawSignpost(signpostWindow, 1, BASE_TILE_SIGNPOST_GRAPHIC, PLTT_14, mapBlock->signpostType);
     Window_FillTilemap(signpostWindow, 15);
     Text_AddPrinterWithParams(signpostWindow, FONT_MESSAGE, appData->hoveredMapName, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_CopyToVRAM(signpostWindow);
@@ -627,19 +646,19 @@ static void MakeAppWindows(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME], BG_LAYER_MAIN_1, 3, 21, 29, 3, PLTT_15, 1023 - 29 * 3);
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_1], BG_LAYER_SUB_0, 9, 3, 21, 4, PLTT_14, (1023 - (21 * 4)));
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_2], BG_LAYER_SUB_0, 2, 3, 28, 4, PLTT_14, ((1023 - (21 * 4)) - (28 * 4)));
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION], BG_LAYER_SUB_0, 1, 8, 28, 14, PLTT_14, (((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)));
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER], BG_LAYER_SUB_0, 11, 0, 10, 2, PLTT_15, ((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)));
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME], BG_LAYER_MAIN_1, 3, 21, LOCATION_NAME_WINDOW_WIDTH, LOCATION_NAME_WINDOW_HEIGHT, PLTT_15, BASE_TILE_LOCATION_NAME);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1], BG_LAYER_SUB_0, 9, 3, SIGNPOST_NAME_1_WINDOW_WIDTH, SIGNPOST_NAME_1_WINDOW_HEIGHT, PLTT_14, BASE_TILE_SIGNPOST_NAME_1);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2], BG_LAYER_SUB_0, 2, 3, SIGNPOST_NAME_2_WINDOW_WIDTH, SIGNPOST_NAME_2_WINDOW_HEIGHT, PLTT_14, BASE_TILE_SIGNPOST_NAME_2);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION], BG_LAYER_SUB_0, 1, 8, LOCATION_DESC_WINDOW_WIDTH, LOCATION_DESC_WINDOW_HEIGHT, PLTT_14, BASE_TILE_LOCATION_DESCRIPTION);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER], BG_LAYER_SUB_0, 11, 0, BOTTOM_SCREEN_HEADER_WINDOW_WIDTH, BOTTOM_SCREEN_HEADER_WINDOW_HEIGHT, PLTT_15, BASE_TILE_BOTTOM_SCREEN_HEADER);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]), 0);
-    Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_1]), 0);
-    Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_2]), 0);
+    Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1]), 0);
+    Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2]), 0);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), 0);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER]), 0);
     Window_CopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]);
-    Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_1]);
-    Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_LOCATION_NAME_2]);
+    Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1]);
+    Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2]);
     Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]);
     Window_ClearAndCopyToVRAM(&graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER]);
 }

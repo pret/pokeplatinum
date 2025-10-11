@@ -13,8 +13,7 @@
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020711C8.h"
 
-#include "applications/town_map/application.h"
-#include "applications/town_map/context.h"
+#include "applications/town_map/main.h"
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"

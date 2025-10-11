@@ -7,8 +7,6 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/town_map/application.h"
-#include "applications/town_map/context.h"
 #include "applications/town_map/graphics.h"
 #include "applications/town_map/map_blocks.h"
 #include "applications/town_map/sprites.h"
@@ -40,7 +38,7 @@ enum TownMapAppState {
     TOWN_MAP_APP_STATE_CLEANUP,
 };
 
-typedef struct {
+typedef struct TownMapAppFunctionSet {
     TownMapAppFunc initResources;
     TownMapAppFunc displayGraphics;
     TownMapAppFunc fadeScreensAppEnter;

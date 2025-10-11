@@ -3,33 +3,10 @@
 
 #include "generated/map_headers.h"
 
-#include "applications/town_map/application.h"
+#include "applications/town_map/defs.h"
+#include "applications/town_map/main.h"
 
 #include "sprite_system.h"
-
-typedef struct TownMapFlyLocationDescriptor {
-    int mapHeader;
-    int unusedUnlockFirstArrivalFlag;
-    u8 blockShape;
-    u8 palette;
-    u16 specialFlyLocationID;
-    u32 spriteX;
-    u32 spriteY;
-} TownMapFlyLocationDescriptor;
-
-typedef struct TownMapAppFlyLocation {
-    TownMapFlyLocationDescriptor descriptor;
-    BOOL isUnlocked;
-    Sprite *sprite;
-} TownMapAppFlyLocation;
-
-typedef struct TownMapAppFlyLocationsManager {
-    u16 count;
-    u8 blinkTimer;
-    u8 blinkState;
-    TownMapAppFlyLocation *hovered;
-    TownMapAppFlyLocation *flyLocationsList;
-} TownMapAppFlyLocationsManager;
 
 TownMapAppFlyLocationsManager *TownMap_LoadFlyLocations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, enum HeapID heapID);
 void TownMap_FreeFlyLocations(TownMapAppFlyLocationsManager *flyLocations);

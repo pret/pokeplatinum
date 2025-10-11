@@ -1,13 +1,12 @@
-#include "applications/town_map/context.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "generated/first_arrival_to_zones.h"
+#include "generated/town_map_description_flag_types.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 
-#include "applications/town_map/application.h"
+#include "applications/town_map/main.h"
 #include "field/field_system.h"
 
 #include "field_overworld_state.h"
@@ -32,18 +31,12 @@ typedef struct TownMapDescriptionFlags {
     u8 landmarkDescriptionFlag;
 } TownMapDescriptionFlags;
 
-typedef struct TownMapDistWorldMatrixOffset {
+typedef struct TownMapDistWorldMapOffset {
     int mapHeader;
     int x;
     int y;
     int z;
 } TownMapDistWorldMapOffset;
-
-enum TownMapDescriptionFlagType {
-    TOWN_MAP_DESC_FLAG_NONE = 0,
-    TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL,
-    TOWN_MAP_DESC_FLAG_GENERAL,
-};
 
 static void PerformTownMapDescriptionsChecks(FieldSystem *fieldSystem, TownMapContext *ctx, const char *flagsFilePath);
 
@@ -208,6 +201,6 @@ static void PerformTownMapDescriptionsChecks(FieldSystem *fieldSystem, TownMapCo
         }
     }
 
-    (void)FS_CloseFile(&flagsFile);
+    FS_CloseFile(&flagsFile);
     Heap_Free(descFlags);
 }
