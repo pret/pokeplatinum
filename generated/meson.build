@@ -96,6 +96,7 @@ metang_generators = {
     'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },
+    'town_map_description_flag_types': { 'type': 'enum', 'tag': 'TownMapDescriptionFlagType' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
