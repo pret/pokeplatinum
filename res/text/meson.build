@@ -48,11 +48,16 @@ frontier_text_bank_names = [
     'frontier_trainer_names.json'
 ]
 
+town_map_text_bank_name = [
+    'town_map.json'
+]
+
 # This list will be what's used hereafter when referring to any-and-all generated banks.
 generated_text_banks = [
     species_text_bank_names,
     trainer_text_bank_names,
     frontier_text_bank_names,
+    town_map_text_bank_name,
 ]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
@@ -138,6 +143,18 @@ frontier_text_banks = custom_target('frontier_text_banks',
 )
 
 text_bank_files += frontier_text_banks
+
+town_map_text_bank = custom_target('town_map_text_bank',
+    output: town_map_text_bank_name,
+    command: [
+        'cp',
+        '@OUTDIR@/../town_map/town_map.json',
+        '@OUTDIR@'
+    ],
+    depends: [ town_map_data ]
+)
+
+text_bank_files += town_map_text_bank
 
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

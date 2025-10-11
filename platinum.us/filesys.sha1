@@ -91,8 +91,8 @@ aa3240383bc0d0ed15b4848616698a25623a6d22 *res/prebuilt/data/t3_fl_p.nsbtx
 2aead045ba9169c7eaf35d4e82ac8f37f5e615bf *res/prebuilt/data/t3_fl_r.nsbtx
 efcb17fc440548aefb1ec4b830955fa9e7954025 *res/prebuilt/data/t3_fl_y.nsbtx
 b5b6089df980ad54540fad84c76f76bcde0bb464 *res/prebuilt/data/test.atr
-337f8bd7788eaea30946c8632bdbc9ef9b12b51f *res/prebuilt/data/tmap_block.dat
-973dc6f187a2b7469c6a1a11d5c4c0c41b2f221c *res/prebuilt/data/tmap_flags.dat
+337f8bd7788eaea30946c8632bdbc9ef9b12b51f *res/town_map/town_map_blocks.dat
+973dc6f187a2b7469c6a1a11d5c4c0c41b2f221c *res/town_map/town_map_flags.dat
 aba8f43ada2b1919151c50366ec00df4f875350d *res/prebuilt/data/tmapn_canm.resdat
 b350396f553cf8c70888aca59e327310812b1ee9 *res/prebuilt/data/tmapn_celact.cldat
 b2d44b4083a618fa1da3e463e757b7af5e839bb3 *res/prebuilt/data/tmapn_celact.txt
