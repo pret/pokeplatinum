@@ -85,7 +85,7 @@ static BOOL Init(PoketchAnalogWatch *appData, PoketchSystem *poketchSys, BgConfi
         appData->brightnessChangePending = FALSE;
         appData->watchData.isBright = FALSE;
 
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if (appData->watchData.time.hour >= 24) {
             appData->watchData.time.hour %= 24;
@@ -201,7 +201,7 @@ static BOOL State_UpdateApp(PoketchAnalogWatch *appData)
 
     if (PoketchAnalogWatchGraphics_TaskIsNotActive(appData->graphics, ANALOG_WATCH_GRAPHICS_TIME)) {
         appData->lastUpdateMinute = appData->watchData.time.minute;
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if (appData->lastUpdateMinute != appData->watchData.time.minute) {
             PoketchAnalogWatchGraphics_StartTask(appData->graphics, ANALOG_WATCH_GRAPHICS_TIME);
