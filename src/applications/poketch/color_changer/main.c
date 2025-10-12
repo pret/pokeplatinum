@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
-typedef struct {
+typedef struct PoketchColorChanger {
     u8 state;
     u8 subState;
     u8 shouldExit;

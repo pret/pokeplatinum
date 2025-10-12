@@ -13,7 +13,7 @@
 #define COLOR_SLIDER_Y      148
 #define COLOR_SLIDER_WIDTH  16
 
-typedef struct {
+typedef struct ColorChangerData {
     enum PoketchScreenColor color;
 } ColorChangerData;
 
