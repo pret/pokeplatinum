@@ -402,7 +402,7 @@
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000361_00094",
+      "id": "MenuEntries_Text_BattleTower_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -590,15 +590,15 @@
       "en_US": "RECORDS"
     },
     {
-      "id": "pl_msg_00000361_00141",
+      "id": "MenuEntries_Text_BattleTower_Challenge",
       "en_US": "CHALLENGE"
     },
     {
-      "id": "pl_msg_00000361_00142",
+      "id": "MenuEntries_Text_BattleTower_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000361_00143",
+      "id": "MenuEntries_Text_BattleTower_Exit",
       "en_US": "EXIT"
     },
     {

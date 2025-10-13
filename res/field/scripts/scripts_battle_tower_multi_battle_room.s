@@ -15,17 +15,17 @@ _0012:
     SetFlag FLAG_UNK_0x01EB
     ScrCmd_207 VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 1, _0056
-    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_55, 0, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
-    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_55, 1, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
 _0054:
     End
 
 _0056:
-    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_55, 0, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
-    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_55, 1, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
     End
 
@@ -54,7 +54,7 @@ _00BE:
     Return
 
 _00CB:
-    ScrCmd_1DD 43, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 3, _0114
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
@@ -86,7 +86,7 @@ _0156:
     LockAll
     SetVar VAR_UNK_0x40DE, 3
     Call _048D
-    ScrCmd_1DD 43, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 3, _039E
     GoTo _02B0
     End
@@ -100,7 +100,7 @@ _0181:
     End
 
 _019D:
-    ScrCmd_1DD 40, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
     Call _04C5
     Call _0529
     ScrCmd_1FE 0
@@ -111,13 +111,13 @@ _019D:
     WaitABPress
     CloseMessage
     Call _0505
-    ScrCmd_1DD 42, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     Return
 
 _01DF:
-    ScrCmd_1DD 40, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
     Call _04C5
     Call _0529
     ScrCmd_1FE 0
@@ -130,26 +130,26 @@ _01DF:
     Call _0505
     ScrCmd_136
     ScrCmd_135 4
-    ScrCmd_1DD 42, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     Return
 
 _022F:
-    ScrCmd_1DD 37, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_37, 0, 0
     SetVar VAR_MAP_LOCAL_0, 0
     GoTo _00CB
     End
 
 _0245:
-    ScrCmd_1DD 38, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_38, 0, 0
     SetVar VAR_MAP_LOCAL_0, 1
     GoTo _00CB
     End
 
 _025B:
     SetVar VAR_UNK_0x40D8, 2
-    ScrCmd_1DD 39, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
     ScrCmd_1DC
     Message 0
     ShowSavingIcon
@@ -160,7 +160,7 @@ _025B:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_1DD 2, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
     End
 
 _0296:
@@ -168,8 +168,8 @@ _0296:
     End
 
 _029E:
-    ScrCmd_1DD 34, 0, VAR_RESULT
-    ScrCmd_1DD 35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_34, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
     Return
 
 _02B0:
@@ -181,7 +181,7 @@ _02B0:
     Call _0565
     Call _00BE
 _02E8:
-    ScrCmd_1DD 33, 0, VAR_0x8004
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_33, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 3
     InitGlobalTextListMenu 31, 11, 0, VAR_RESULT, NO_EXIT_ON_B
@@ -228,7 +228,7 @@ _039E:
     Call _0565
     Call _00BE
 _03D6:
-    ScrCmd_1DD 33, 0, VAR_0x8004
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_33, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 3
     InitGlobalTextListMenu 31, 13, 0, VAR_RESULT, NO_EXIT_ON_B
@@ -284,9 +284,9 @@ _04A1:
     Return
 
 _04C5:
-    ScrCmd_1DD 41, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_41, 0, VAR_RESULT
     SetVar VAR_OBJ_GFX_ID_2, VAR_RESULT
-    ScrCmd_1DD 41, 1, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_41, 1, VAR_RESULT
     SetVar VAR_OBJ_GFX_ID_3, VAR_RESULT
     ClearFlag FLAG_UNK_0x01EA
     ClearFlag FLAG_UNK_0x01EB

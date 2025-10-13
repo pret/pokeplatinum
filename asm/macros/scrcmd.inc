@@ -1,5 +1,6 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/battle_tower_functions.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
@@ -2698,11 +2699,11 @@
     .short 476
     .endm
 
-    .macro ScrCmd_1DD arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 477
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro ScrCmd_1DE arg0, arg1, arg2, arg3

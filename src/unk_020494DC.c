@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_tower_functions.h"
 #include "generated/game_records.h"
 
 #include "struct_defs/struct_02049A68.h"
@@ -55,148 +56,148 @@ BOOL ScrCmd_1DC(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1DD(ScriptContext *param0)
+BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *param0)
 {
-    u16 v0, v1, v2;
-    u16 *v3, *v4;
+    u16 functionIndex, functionArgument, varID;
+    u16 *destVar, *v4;
     void **v5;
     UnkStruct_0204AFC4 *v6;
 
-    v0 = ScriptContext_ReadHalfWord(param0);
-    v1 = ScriptContext_GetVar(param0);
-    v2 = ScriptContext_ReadHalfWord(param0);
-    v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v2);
+    functionIndex = ScriptContext_ReadHalfWord(param0);
+    functionArgument = ScriptContext_GetVar(param0);
+    varID = ScriptContext_ReadHalfWord(param0);
+    destVar = FieldSystem_GetVarPointer(param0->fieldSystem, varID);
     v6 = param0->fieldSystem->unk_AC;
 
-    switch (v0) {
-    case 1:
-        if (v1 == 0) {
-            *v3 = sub_02049EC4(v6->unk_0E, param0->fieldSystem->saveData, 1);
+    switch (functionIndex) {
+    case BATTLE_TOWER_FUNCTION_UNK_01:
+        if (functionArgument == 0) {
+            *destVar = sub_02049EC4(v6->unk_0E, param0->fieldSystem->saveData, 1);
         } else {
-            *v3 = sub_02049EC4(v1, param0->fieldSystem->saveData, 1);
+            *destVar = sub_02049EC4(functionArgument, param0->fieldSystem->saveData, 1);
         }
         break;
-    case 2:
+    case BATTLE_TOWER_FUNCTION_UNK_02:
         sub_02049F8C();
         break;
-    case 3:
+    case BATTLE_TOWER_FUNCTION_UNK_03:
         sub_02049F98(sub_0202D740(param0->fieldSystem->saveData));
         break;
-    case 4:
-        *v3 = sub_02049FA0(sub_0202D740(param0->fieldSystem->saveData));
+    case BATTLE_TOWER_FUNCTION_UNK_04:
+        *destVar = sub_02049FA0(sub_0202D740(param0->fieldSystem->saveData));
         break;
-    case 5:
-        sub_02049FA8(param0->fieldSystem);
+    case BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE:
+        BattleTower_SetCommunicationClubAccessible(param0->fieldSystem);
         break;
-    case 6:
-        sub_02049FE8(param0->fieldSystem);
+    case BATTLE_TOWER_FUNCTION_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE:
+        BattleTower_ClearCommunicationClubAccessible(param0->fieldSystem);
         break;
-    case 8:
-        *v3 = sub_02049FF8(param0->fieldSystem->saveData, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_08:
+        *destVar = sub_02049FF8(param0->fieldSystem->saveData, functionArgument);
         break;
-    case 9:
-        *v3 = sub_0204AABC(NULL, param0->fieldSystem->saveData, 2);
+    case BATTLE_TOWER_FUNCTION_UNK_09:
+        *destVar = sub_0204AABC(NULL, param0->fieldSystem->saveData, 2);
         break;
-    case 10:
-        *v3 = sub_0204AABC(NULL, param0->fieldSystem->saveData, 0);
+    case BATTLE_TOWER_FUNCTION_UNK_10:
+        *destVar = sub_0204AABC(NULL, param0->fieldSystem->saveData, 0);
         break;
-    case 11:
-        sub_0204A030(param0->fieldSystem->saveData, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_11:
+        sub_0204A030(param0->fieldSystem->saveData, functionArgument);
         break;
-    case 12:
-        *v3 = sub_0204A050(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_12:
+        *destVar = sub_0204A050(param0->fieldSystem->saveData);
         break;
-    case 14:
-        *v3 = sub_0204A064(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_14:
+        *destVar = sub_0204A064(param0->fieldSystem->saveData);
         break;
-    case 15:
-        *v3 = sub_0204A100(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_15:
+        *destVar = sub_0204A100(param0->fieldSystem->saveData);
         break;
-    case 16:
-        sub_0206BCE4(param0->task, v1, v2, *v3);
+    case BATTLE_TOWER_FUNCTION_UNK_16:
+        sub_0206BCE4(param0->task, functionArgument, varID, *destVar);
         return 1;
-    case (30 + 0):
+    case BATTLE_TOWER_FUNCTION_UNK_30:
         v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
         sub_0204A358(v6, param0->task, v5);
         return 1;
-    case (30 + 1):
+    case BATTLE_TOWER_FUNCTION_UNK_31:
         v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-        *v3 = sub_0204A378(v6, v5, param0->fieldSystem->saveData);
+        *destVar = sub_0204A378(v6, v5, param0->fieldSystem->saveData);
         break;
-    case (30 + 2):
-        *v3 = sub_0204A410(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
+        *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 5):
-        *v3 = sub_0204A57C(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_35:
+        *destVar = sub_0204A57C(v6);
         break;
-    case (30 + 7):
+    case BATTLE_TOWER_FUNCTION_UNK_37:
         sub_0204A660(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 8):
+    case BATTLE_TOWER_FUNCTION_UNK_38:
         sub_0204A7A4(v6, param0->fieldSystem->saveData, param0->fieldSystem->journalEntry);
         break;
-    case (30 + 9):
+    case BATTLE_TOWER_FUNCTION_UNK_39:
         sub_0204A8C8(v6);
         break;
-    case (30 + 26):
+    case BATTLE_TOWER_FUNCTION_UNK_56:
         sub_0204A97C(v6);
         break;
-    case (30 + 11):
-        *v3 = sub_0204A9E0(v6, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_41:
+        *destVar = sub_0204A9E0(v6, functionArgument);
         break;
-    case (30 + 13):
-        *v3 = (u16)sub_0204A9F8(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_43:
+        *destVar = (u16)sub_0204A9F8(v6);
         break;
-    case (30 + 15):
-        *v3 = sub_0204A9FC(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_45:
+        *destVar = sub_0204A9FC(v6);
         break;
-    case (30 + 17):
+    case BATTLE_TOWER_FUNCTION_UNK_47:
         sub_0204AA7C(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 18):
-        *v3 = sub_0204AB68(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_48:
+        *destVar = sub_0204AB68(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 19):
-        *v3 = sub_0204ABA0(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_49:
+        *destVar = sub_0204ABA0(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 20):
-        v6->unk_10_5 = v1;
+    case BATTLE_TOWER_FUNCTION_UNK_50:
+        v6->unk_10_5 = functionArgument;
         break;
-    case (30 + 21):
-        *v3 = v6->unk_10_5;
+    case BATTLE_TOWER_FUNCTION_UNK_51:
+        *destVar = v6->unk_10_5;
         break;
-    case (30 + 22):
+    case BATTLE_TOWER_FUNCTION_UNK_52:
         sub_0204A4C8(v6, param0->fieldSystem->saveData);
         break;
-    case (30 + 23):
-        *v3 = v6->unk_2A[v1];
+    case BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX:
+        *destVar = v6->unk_2A[functionArgument];
         break;
-    case (30 + 24):
-        *v3 = sub_0204AABC(v6, param0->fieldSystem->saveData, 1);
+    case BATTLE_TOWER_FUNCTION_UNK_54:
+        *destVar = sub_0204AABC(v6, param0->fieldSystem->saveData, 1);
         break;
-    case (30 + 25):
-        *v3 = sub_02049AE0(v6, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_55:
+        *destVar = sub_02049AE0(v6, functionArgument);
         break;
-    case (30 + 27):
-        *v3 = sub_0204ABF4(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_57:
+        *destVar = sub_0204ABF4(v6, param0->fieldSystem->saveData);
         break;
-    case 100:
+    case BATTLE_TOWER_FUNCTION_UNK_100:
         if (v6 == NULL) {
-            *v3 = 1;
+            *destVar = 1;
         } else {
-            *v3 = 0;
+            *destVar = 0;
         }
         break;
-    case (30 + 28):
+    case BATTLE_TOWER_FUNCTION_UNK_58:
         MI_CpuClear8(v6->unk_884, 70);
         break;
     default:
         GF_ASSERT(FALSE);
-        *v3 = 0;
+        *destVar = 0;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1DE(ScriptContext *param0)

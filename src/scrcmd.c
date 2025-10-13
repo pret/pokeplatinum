@@ -1246,7 +1246,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1DA,
     ScrCmd_1DB,
     ScrCmd_1DC,
-    ScrCmd_1DD,
+    ScrCmd_CallBattleTowerFunction,
     ScrCmd_1DE,
     ScrCmd_1DF,
     ScrCmd_1E0,

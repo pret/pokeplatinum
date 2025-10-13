@@ -38,6 +38,7 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'battle_tower_functions': { 'type': 'enum', 'tag': 'BattleTowerFunction' },
     'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },

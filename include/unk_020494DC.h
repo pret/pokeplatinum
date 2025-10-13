@@ -6,7 +6,7 @@
 BOOL ScrCmd_1DB(ScriptContext *param0);
 BOOL ScrCmd_1DA(ScriptContext *param0);
 BOOL ScrCmd_1DC(ScriptContext *param0);
-BOOL ScrCmd_1DD(ScriptContext *param0);
+BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *param0);
 BOOL ScrCmd_1DE(ScriptContext *param0);
 BOOL ScrCmd_1DF(ScriptContext *param0);
 BOOL ScrCmd_1E0(ScriptContext *param0);

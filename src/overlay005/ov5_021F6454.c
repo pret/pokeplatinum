@@ -433,12 +433,12 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
 }
 
 static const u16 sHighestIVMessageIndices[] = {
-    pl_msg_00000304_00122,
-    pl_msg_00000304_00123,
-    pl_msg_00000304_00124,
-    pl_msg_00000304_00127,
-    pl_msg_00000304_00125,
-    pl_msg_00000304_00126
+    BattleTower_Text_BestPotentialInHP,
+    BattleTower_Text_BestPotentialInAttack,
+    BattleTower_Text_BestPotentialInDefense,
+    BattleTower_Text_BestPotentialInSpeed,
+    BattleTower_Text_BestPotentialInSpAtk,
+    BattleTower_Text_BestPotentialInSpDef
 };
 
 BOOL ScrCmd_JudgeStats(ScriptContext *ctx)

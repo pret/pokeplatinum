@@ -221,7 +221,7 @@ BOOL sub_02049FA0(UnkStruct_0202D060 *param0)
     return sub_0202D214(param0);
 }
 
-void sub_02049FA8(FieldSystem *fieldSystem)
+void BattleTower_SetCommunicationClubAccessible(FieldSystem *fieldSystem)
 {
     Location *v0 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
@@ -231,7 +231,7 @@ void sub_02049FA8(FieldSystem *fieldSystem)
     return;
 }
 
-void sub_02049FE8(FieldSystem *fieldSystem)
+void BattleTower_ClearCommunicationClubAccessible(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
@@ -448,30 +448,28 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
     return 1;
 }
 
-int sub_0204A410(UnkStruct_0204AFC4 *param0, SaveData *saveData)
+int BattleTower_CheckDuplicateSpeciesAndHeldItems(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
-    u16 v0 = 0, v1 = 0;
-    u16 v2[4], v3[4];
-    Party *v4;
-    Pokemon *v5;
+    u16 i = 0, j = 0;
+    u16 species[4], heldItems[4];
+    Party *party = SaveData_GetParty(saveData);
+    Pokemon *mon;
 
-    v4 = SaveData_GetParty(saveData);
+    for (i = 0; i < param0->unk_0E; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, param0->unk_2A[i]);
+        species[i] = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        heldItems[i] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-    for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        v5 = Party_GetPokemonBySlotIndex(v4, param0->unk_2A[v0]);
-        v2[v0] = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
-        v3[v0] = Pokemon_GetValue(v5, MON_DATA_HELD_ITEM, NULL);
-
-        if (v0 == 0) {
+        if (i == 0) {
             continue;
         }
 
-        for (v1 = 0; v1 < v0; v1++) {
-            if (v2[v0] == v2[v1]) {
+        for (j = 0; j < i; j++) {
+            if (species[i] == species[j]) {
                 return 1;
             }
 
-            if ((v3[v0] != 0) && (v3[v0] == v3[v1])) {
+            if (heldItems[i] != 0 && heldItems[i] == heldItems[j]) {
                 return 2;
             }
         }
