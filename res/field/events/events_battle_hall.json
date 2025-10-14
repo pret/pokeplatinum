@@ -101,8 +101,8 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_UNK_065_6",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "BATTLE_HALL_SNOWPOINT_NPC_F_6",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",
