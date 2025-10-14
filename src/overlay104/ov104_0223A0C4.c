@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_tower_modes.h"
 #include "generated/species_data_params.h"
 
 #include "struct_defs/battle_frontier_pokemon_data.h"
@@ -624,31 +625,31 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 void ov104_0223A30C(SaveData *saveData, UnkStruct_ov104_0223A348 *param1, const u8 param2);
-FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE4 *param1);
-void ov104_0223A734(UnkStruct_0204AFC4 *param0, u16 param1);
-u16 ov104_0223A750(UnkStruct_0204AFC4 *param0, const u16 *param1);
+FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
+void ov104_0223A734(BattleTower *battleTower, u16 param1);
+u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int ov104_0223A768(u8 param0);
 int ov104_0223A77C(u8 param0);
 int ov104_0223A790(u8 param0);
-static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8);
+static BOOL ov104_0223A118(BattleTower *battleTower, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8);
 static void ov104_0223A348(UnkStruct_ov104_0223A348 *param0, const u8 param1);
-static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8);
-static u32 ov104_0223A700(u8 param0);
+static u32 ov104_0223A3A8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8);
+static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode);
 static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int param3, int param4);
 static int ov104_0223A7AC(u8 param0);
 
-BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
+BOOL ov104_0223A0C4(BattleTower *battleTower, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
 {
     BOOL v0 = 0;
-    BattleFrontierTrainerData *v1 = ov104_0222DD04(&param1->unk_00, param2, heapID, ov104_0223A77C(param0->unk_0F));
-    v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, heapID);
+    BattleFrontierTrainerData *v1 = ov104_0222DD04(&param1->unk_00, param2, heapID, ov104_0223A77C(battleTower->challengeMode));
+    v0 = ov104_0223A118(battleTower, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, heapID);
 
     Heap_Free(v1);
 
     return v0;
 }
 
-static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
+static BOOL ov104_0223A118(BattleTower *battleTower, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
 {
     int v0;
     u8 v2;
@@ -669,13 +670,13 @@ static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData
     v9 = 0;
 
     while (v8 != param4) {
-        v3 = sub_0204AEC0(param0) % param1->numSets;
+        v3 = sub_0204AEC0(battleTower) % param1->numSets;
         v5 = param1->setIDs[v3];
 
-        ov104_0222DCF4(&v12, v5, ov104_0223A768(param0->unk_0F));
+        ov104_0222DCF4(&v12, v5, ov104_0223A768(battleTower->challengeMode));
 
         for (v0 = 0; v0 < v8; v0++) {
-            ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(param0->unk_0F));
+            ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(battleTower->challengeMode));
 
             if (v11.species == v12.species) {
                 break;
@@ -700,7 +701,7 @@ static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData
 
         if (v9 < 50) {
             for (v0 = 0; v0 < v8; v0++) {
-                ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(param0->unk_0F));
+                ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(battleTower->challengeMode));
 
                 if ((v11.item) && (v11.item == v12.item)) {
                     break;
@@ -731,14 +732,14 @@ static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData
     }
 
     v2 = sub_0204AE84(param2);
-    v4 = (sub_0204AEC0(param0) | (sub_0204AEC0(param0) << 16));
+    v4 = (sub_0204AEC0(battleTower) | (sub_0204AEC0(battleTower) << 16));
 
     if (v9 >= 50) {
         v10 = 1;
     }
 
     for (v0 = 0; v0 < v8; v0++) {
-        v7[v0] = ov104_0223A3A8(param0, &(param3[v0]), v6[v0], v4, 0, v2, v0, v10, param8);
+        v7[v0] = ov104_0223A3A8(battleTower, &(param3[v0]), v6[v0], v4, 0, v2, v0, v10, param8);
     }
 
     if (param7 == NULL) {
@@ -793,7 +794,7 @@ static const u16 Unk_ov104_0223FCAC[] = {
     ITEM_QUICK_CLAW,
 };
 
-static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8)
+static u32 ov104_0223A3A8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8)
 {
     int v0;
     int v1;
@@ -801,7 +802,7 @@ static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *pa
     BattleFrontierPokemonData v4;
 
     MI_CpuClear8(param1, sizeof(FrontierPokemonDataDTO));
-    ov104_0222DCF4(&v4, param2, ov104_0223A768(param0->unk_0F));
+    ov104_0222DCF4(&v4, param2, ov104_0223A768(battleTower->challengeMode));
 
     param1->species = v4.species;
     param1->form = v4.form;
@@ -826,7 +827,7 @@ static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *pa
 
     if (param4 == 0) {
         do {
-            v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
+            v2 = (sub_0204AEC0(battleTower) | sub_0204AEC0(battleTower) << 16);
         } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
 
         param1->personality = v2;
@@ -883,11 +884,11 @@ static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *pa
     return v2;
 }
 
-FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
 
-    FieldBattleDTO *v3 = FieldBattleDTO_New(param0->heapID, ov104_0223A700(param0->unk_0F));
+    FieldBattleDTO *v3 = FieldBattleDTO_New(battleTower->heapID, BattleTower_GetBattleTypeFromChallengeMode(battleTower->challengeMode));
     SaveData *saveData = param1->saveData;
     Party *party = SaveData_GetParty(saveData);
 
@@ -896,13 +897,13 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     v3->background = BACKGROUND_BATTLE_TOWER;
     v3->terrain = TERRAIN_BATTLE_TOWER;
 
-    Pokemon *mon = Pokemon_New(param0->heapID);
+    Pokemon *mon = Pokemon_New(battleTower->heapID);
     u8 level = 50;
 
-    Party_InitWithCapacity(v3->parties[BATTLER_PLAYER_1], param0->unk_0E);
+    Party_InitWithCapacity(v3->parties[BATTLER_PLAYER_1], battleTower->partySize);
 
-    for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, param0->unk_2A[v0]), mon);
+    for (v0 = 0; v0 < battleTower->partySize; v0++) {
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[v0]), mon);
 
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
             u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
@@ -917,19 +918,19 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
 
-    ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, BATTLER_ENEMY_1, param0->heapID);
+    ov104_0223A6AC(v3, &(battleTower->unk_78[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
 
     for (v0 = 0; v0 < MAX_BATTLERS; v0++) {
         v3->trainer[v0].header.aiMask = (0x1 | 0x2 | 0x4);
     }
 
-    switch (param0->unk_0F) {
+    switch (battleTower->challengeMode) {
     case 2:
-        ov104_0223A6AC(v3, &(param0->unk_298[param0->unk_10_5]), param0->unk_0E, BATTLER_PLAYER_2, param0->heapID);
+        ov104_0223A6AC(v3, &(battleTower->unk_298[battleTower->unk_10_5]), battleTower->partySize, BATTLER_PLAYER_2, battleTower->heapID);
         // fall through
     case 3:
     case 6:
-        ov104_0223A6AC(v3, &(param0->unk_78[1]), param0->unk_0E, BATTLER_ENEMY_2, param0->heapID);
+        ov104_0223A6AC(v3, &(battleTower->unk_78[1]), battleTower->partySize, BATTLER_ENEMY_2, battleTower->heapID);
         break;
     default:
         break;
@@ -951,35 +952,35 @@ static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *par
     Heap_Free(mon);
 }
 
-static u32 ov104_0223A700(u8 param0)
+static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode)
 {
-    switch (param0) {
-    case 0:
-    case 4:
+    switch (challengeMode) {
+    case BATTLE_TOWER_MODE_SINGLE:
+    case BATTLE_TOWER_MODE_WIFI:
         return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
-    case 1:
+    case BATTLE_TOWER_MODE_DOUBLE:
         return BATTLE_TYPE_FRONTIER_DOUBLES;
-    case 2:
+    case BATTLE_TOWER_MODE_MULTI:
         return BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER;
-    case 3:
-    case 6:
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+    case BATTLE_TOWER_MODE_6:
         return (BATTLE_TYPE_LINK_DOUBLES | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
     }
 
     return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
 }
 
-void ov104_0223A734(UnkStruct_0204AFC4 *param0, u16 param1)
+void ov104_0223A734(BattleTower *battleTower, u16 param1)
 {
-    param0->unk_10_3 = param1;
-    param0->unk_83E[0] = param1;
+    battleTower->unk_10_3 = param1;
+    battleTower->unk_83E[0] = param1;
 }
 
-u16 ov104_0223A750(UnkStruct_0204AFC4 *param0, const u16 *param1)
+u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1)
 {
     int v0;
 
-    if (param0->unk_10_3 || param1[0]) {
+    if (battleTower->unk_10_3 || param1[0]) {
         return 1;
     }
 

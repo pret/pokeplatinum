@@ -84,7 +84,6 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
     u16 v3, v4, v5;
     u16 *v6, *v7;
     void **v8;
-    UnkStruct_0204AFC4 *v9;
     UnkStruct_02030114 *v10;
     UnkStruct_0203026C *v11;
 

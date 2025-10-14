@@ -176,12 +176,12 @@ void CommList_Refresh(void)
     }
 }
 
-void sub_020365F4(void)
+void CommTool_ClearReceivedTempDataAllPlayers(void)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < MAX_CONNECTED_PLAYERS; v0++) {
-        sCommTool->hasRecievedTempData[v0] = 0;
+    for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
+        sCommTool->hasRecievedTempData[i] = 0;
     }
 }
 

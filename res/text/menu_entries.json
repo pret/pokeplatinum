@@ -22,7 +22,7 @@
       "en_US": "FROZEN"
     },
     {
-      "id": "pl_msg_00000361_00005",
+      "id": "MenuEntries_Text_Exit",
       "en_US": "EXIT"
     },
     {
@@ -54,11 +54,11 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00013",
+      "id": "MenuEntries_Text_BattleTower_JoinGroup",
       "en_US": "JOIN GROUP"
     },
     {
-      "id": "pl_msg_00000361_00014",
+      "id": "MenuEntries_Text_BattleTower_BecomeLeader",
       "en_US": "BECOME LEADER"
     },
     {
@@ -630,11 +630,11 @@
       "en_US": "JOIN GROUP"
     },
     {
-      "id": "pl_msg_00000361_00151",
+      "id": "MenuEntries_Text_BattleTower_CheckLeaders",
       "en_US": "CHECK LEADERS"
     },
     {
-      "id": "pl_msg_00000361_00152",
+      "id": "MenuEntries_Text_BattleTower_ChallengeEarlierRoom",
       "en_US": "CHALLENGE EARLIER ROOM"
     },
     {

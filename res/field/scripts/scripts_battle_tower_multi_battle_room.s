@@ -13,7 +13,7 @@ _0012:
     GoToIfEq VAR_UNK_0x40DE, 0, _0054
     SetFlag FLAG_UNK_0x01EA
     SetFlag FLAG_UNK_0x01EB
-    ScrCmd_207 VAR_MAP_LOCAL_0
+    GetCurNetID VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 1, _0056
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_55, 0, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
@@ -54,8 +54,8 @@ _00BE:
     Return
 
 _00CB:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 3, _0114
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, _0114
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
     FadeScreenOut
@@ -69,13 +69,13 @@ _00CB:
 _0114:
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 6
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 8
-    ScrCmd_150
+    EndCommunication
     Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
     FadeScreenIn
     WaitFadeScreen
@@ -86,8 +86,8 @@ _0156:
     LockAll
     SetVar VAR_UNK_0x40DE, 3
     Call _048D
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 3, _039E
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, _039E
     GoTo _02B0
     End
 
@@ -128,7 +128,7 @@ _01DF:
     WaitTime 30, VAR_RESULT
     CloseMessage
     Call _0505
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 4
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
@@ -150,7 +150,7 @@ _0245:
 _025B:
     SetVar VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
-    ScrCmd_1DC
+    FreeBattleTower
     Message 0
     ShowSavingIcon
     TrySaveGame VAR_RESULT
@@ -241,7 +241,7 @@ _03D6:
     GoToIfEq VAR_RESULT, 1, _0452
 _0418:
     Message 12
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 5
     ScrCmd_1E1 2, VAR_MAP_LOCAL_0, VAR_RESULT
     ScrCmd_1E2 2, VAR_MAP_LOCAL_0
@@ -263,7 +263,7 @@ _0452:
 _0474:
     Message 11
     WaitTime 30, VAR_RESULT
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 7
     CloseMessage
     GoTo _0296

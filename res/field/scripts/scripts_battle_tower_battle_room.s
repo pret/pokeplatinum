@@ -46,10 +46,10 @@ _0070:
 _007D:
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 4, _00D9
-    GoToIfEq VAR_0x8008, 5, _00D9
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _00D9
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, _00D9
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
@@ -70,8 +70,8 @@ _00D9:
 _0101:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_100, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _007D
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _007D
     Call _043C
     GoTo _0201
     End
@@ -79,8 +79,8 @@ _0101:
 _012C:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_100, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _007D
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _007D
     Call _043C
     Call _0448
     GoTo _02F7
@@ -111,7 +111,7 @@ _019C:
 _01AC:
     SetVar VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
-    ScrCmd_1DC
+    FreeBattleTower
     Message 4
     ShowSavingIcon
     TrySaveGame VAR_RESULT
@@ -184,8 +184,8 @@ _02D9:
     End
 
 _02F7:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_43, 0, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _0241
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfNe VAR_RESULT, BATTLE_TOWER_MODE_SINGLE, _0241
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 20, _0336
     GoToIfEq VAR_RESULT, 48, _0336

@@ -1119,12 +1119,12 @@ BOOL ScrCmd_339(ScriptContext *ctx)
     return 0;
 }
 
-BOOL ScrCmd_330(ScriptContext *ctx)
+BOOL ScrCmd_LogConnectedPlayersInfoInWiFiHistory(ScriptContext *ctx)
 {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(ctx->fieldSystem->saveData);
 
-    sub_02038F8C(wiFiHistory);
-    return 1;
+    WiFiHistory_FlagConnectedPlayersInfo(wiFiHistory);
+    return TRUE;
 }
 
 BOOL ScrCmd_333(ScriptContext *ctx)
