@@ -3,6 +3,8 @@
 
 #include "generated/species.h"
 
+#include "struct_defs/radar_chain_records.h"
+
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_task.h"
 
@@ -10,14 +12,15 @@
 
 #define TRAINER_COUNTER_TASK_SLOTS 4
 
-#define NUM_SPRITES    16
-#define NUM_POKE_ICONS 4
+#define NUM_POKE_ICONS   (NUM_RADAR_RECORDS + 1)
+#define DIGITS_PER_CHAIN 3
+#define NUM_SPRITES      (NUM_POKE_ICONS * (1 + DIGITS_PER_CHAIN))
 
 typedef struct TrainerCounterData {
     enum Species activeSpecies;
     int activeChain;
-    enum Species bestChainSpecies[3];
-    int bestChains[3];
+    enum Species bestChainSpecies[NUM_RADAR_RECORDS];
+    int bestChains[NUM_RADAR_RECORDS];
     int bestChainsCount;
     int pressedIcon;
 } TrainerCounterData;

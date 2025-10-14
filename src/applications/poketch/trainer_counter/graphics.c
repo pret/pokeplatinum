@@ -16,8 +16,6 @@
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 
-#define DIGITS_PER_CHAIN 3
-
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
@@ -150,10 +148,9 @@ static void Task_PlayCry(SysTask *task, void *taskMan)
     int cryState = PoketchTask_GetState(taskMan);
 
     switch (cryState) {
-    case 0: {
+    case 0:
         graphics->cryingIcon = graphics->sprites[1 + chainData->pressedIcon];
         PoketchAnimation_GetSpritePosition(graphics->cryingIcon, &graphics->cryingIconX, &graphics->cryingIconY);
-    }
 
         PoketchSystem_PlayCry(chainData->bestChainSpecies[chainData->pressedIcon], 0);
         PoketchAnimation_UpdateAnimationIdx(graphics->cryingIcon, 6);
@@ -353,7 +350,7 @@ static void SetupSprites(TrainerCounterGraphics *graphics, const TrainerCounterD
                 PoketchAnimation_HideSprite(graphics->sprites[index], TRUE);
             }
         } else {
-            PoketchAnimation_SetCParam(graphics->sprites[i], 1 + PokeIconPaletteIndex(chainMons[i], 0, 0));
+            PoketchAnimation_SetCParam(graphics->sprites[i], PLTT_1 + PokeIconPaletteIndex(chainMons[i], 0, FALSE));
             UpdateChainCountDigits(&graphics->sprites[NUM_POKE_ICONS + i * DIGITS_PER_CHAIN], (i == 0) ? chainData->activeChain : chainData->bestChains[i - 1]);
         }
     }
@@ -384,7 +381,7 @@ static void UpdateChainCountDigits(PoketchAnimation_AnimatedSpriteData **sprites
     for (int i = 0, divisor = 100; i < DIGITS_PER_CHAIN; i++, divisor /= 10) {
         digit = chainLength / divisor;
 
-        if ((numberStarted == TRUE) || (digit != 0) || (i == 2)) {
+        if (numberStarted == TRUE || digit != 0 || i == 2) {
             PoketchAnimation_UpdateAnimationIdx(*sprites, digit);
             numberStarted = TRUE;
         } else {

@@ -400,7 +400,7 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     ApplyMovement LOCALID_OAK, _0558
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
-    SetVar VAR_0x8004, POKETCH_APPID_RADARCHAINCOUNTER
+    SetVar VAR_0x8004, POKETCH_APPID_TRAINERCOUNTER
     CallCommonScript 0x7D9
     Message PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime
     CloseMessage
