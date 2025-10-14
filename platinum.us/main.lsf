@@ -963,18 +963,18 @@ Overlay poketch_backlight_toggle
 	Object main.nef.p/src_applications_poketch_backlight_toggle_graphics.c.o
 }
 
-Overlay overlay38
+Overlay poketch_unused_1
 {
 	After overlay25
-	Object main.nef.p/src_overlay038_ov38_022561C0.c.o
-	Object main.nef.p/src_overlay038_ov38_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_1_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_1_graphics.c.o
 }
 
-Overlay overlay39
+Overlay poketch_unused_2
 {
 	After overlay25
-	Object main.nef.p/src_overlay039_ov39_022561C0.c.o
-	Object main.nef.p/src_overlay039_ov39_022563DC.c.o
+	Object main.nef.p/src_applications_poketch_unused_2_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_2_graphics.c.o
 }
 
 Overlay poketch_daycare_checker
@@ -1054,11 +1054,11 @@ Overlay overlay50
 	Object main.nef.p/src_overlay050_ov50_02256510.c.o
 }
 
-Overlay overlay51
+Overlay poketch_unused_3
 {
 	After overlay25
-	Object main.nef.p/src_overlay051_ov51_022561C0.c.o
-	Object main.nef.p/src_overlay051_ov51_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_3_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_3_graphics.c.o
 }
 
 Overlay overlay52
@@ -1082,11 +1082,11 @@ Overlay overlay54
 	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
 }
 
-Overlay overlay55
+Overlay poketch_unused_4
 {
 	After overlay25
-	Object main.nef.p/src_overlay055_ov55_022561C0.c.o
-	Object main.nef.p/src_overlay055_ov55_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_4_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_4_graphics.c.o
 }
 
 Overlay overlay56
