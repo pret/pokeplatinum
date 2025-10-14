@@ -85,12 +85,12 @@ _012F:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar VAR_0x8004, ITEM_VS_SEEKER
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Return
 
 _0145:
     SetVar VAR_0x8004, POKETCH_APPID_DOWSINGMACHINE
-    CallCommonScript 0x7D9
+    GivePoketchApp
     BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return
 

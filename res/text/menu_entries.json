@@ -902,19 +902,19 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00219",
+      "id": "MenuEntries_Text_FreshWater",
       "en_US": "FRESH WATER{CURSOR_X 80}$200"
     },
     {
-      "id": "pl_msg_00000361_00220",
+      "id": "MenuEntries_Text_SodaPop",
       "en_US": "SODA POP{CURSOR_X 80}$300"
     },
     {
-      "id": "pl_msg_00000361_00221",
+      "id": "MenuEntries_Text_Lemonade",
       "en_US": "LEMONADE{CURSOR_X 80}$350"
     },
     {
-      "id": "pl_msg_00000361_00222",
+      "id": "MenuEntries_Text_NoThanks",
       "en_US": "NO THANKS"
     },
     {
@@ -938,11 +938,11 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00228",
+      "id": "MenuEntries_Text_NothingThanks",
       "en_US": "Nothing, thanks."
     },
     {
-      "id": "pl_msg_00000361_00229",
+      "id": "MenuEntries_Text_WhatIsRecommended",
       "en_US": "What’s recommended?"
     },
     {

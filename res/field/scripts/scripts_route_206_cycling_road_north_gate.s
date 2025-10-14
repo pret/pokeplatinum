@@ -108,7 +108,7 @@ _0102:
     End
 
 _014A:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

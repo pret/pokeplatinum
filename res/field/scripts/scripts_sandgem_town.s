@@ -450,7 +450,7 @@ _057C:
     Message 9
     SetVar VAR_0x8004, ITEM_TM27
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 10
     CloseMessage
     ApplyMovement 14, _07A0

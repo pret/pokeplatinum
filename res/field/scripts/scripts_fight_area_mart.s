@@ -30,7 +30,7 @@ _002A:
     SetVar VAR_0x8004, ITEM_SCOPE_LENS
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _007C
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x00D5
     GoTo _0071
     End
@@ -43,7 +43,7 @@ _0071:
     End
 
 _007C:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

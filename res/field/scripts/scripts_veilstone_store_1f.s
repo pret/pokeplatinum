@@ -1,48 +1,50 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_1f.h"
 
+#define LOCALID_ACCESSORY_ID VAR_0x8004
+#define LOCALID_COUNT     VAR_0x8005
 
-    ScriptEntry _0022
-    ScriptEntry _0035
-    ScriptEntry _0048
-    ScriptEntry _005B
-    ScriptEntry _0071
-    ScriptEntry _0087
-    ScriptEntry _0098
-    ScriptEntry _00A9
+    ScriptEntry VeilstoneStore1F_Attendant
+    ScriptEntry VeilstoneStore1F_MiddleAgedMan
+    ScriptEntry VeilstoneStore1F_Lady
+    ScriptEntry VeilstoneStore1F_RightVendor
+    ScriptEntry VeilstoneStore1F_LeftVendor
+    ScriptEntry VeilstoneStore1F_Sign
+    ScriptEntry VeilstoneStore1F_Directory
+    ScriptEntry VeilstoneStore1F_Socialite
     ScriptEntryEnd
 
-_0022:
+VeilstoneStore1F_Attendant:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message VeilstoneStore1F_Text_Welcome
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0035:
+VeilstoneStore1F_MiddleAgedMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message VeilstoneStore1F_Text_EnsureCustomerSatisfaction
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0048:
+VeilstoneStore1F_Lady:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message VeilstoneStore1F_Text_FormalAirOfLuxury
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_005B:
+VeilstoneStore1F_RightVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -52,7 +54,7 @@ _005B:
     ReleaseAll
     End
 
-_0071:
+VeilstoneStore1F_LeftVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -62,61 +64,61 @@ _0071:
     ReleaseAll
     End
 
-_0087:
+VeilstoneStore1F_Sign:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 5
+    Message VeilstoneStore1F_Text_DiscoverANewYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0098:
+VeilstoneStore1F_Directory:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 6
+    Message VeilstoneStore1F_Text_Directory
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A9:
+VeilstoneStore1F_Socialite:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0129, _0109
+    GoToIfSet FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
     GetPlayerStarterSpecies VAR_RESULT
-    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0119
-    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0121
-    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _0129
-    SetVar VAR_UNK_0x4107, VAR_0x8004
-    BufferAccessoryNameWithArticle 0, VAR_0x8004
-    Message 3
-    SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DF
-    SetFlag FLAG_UNK_0x0129
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, VeilstoneStore1F_Socialite_Turtwig
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneStore1F_Socialite_Chimchar
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, VeilstoneStore1F_Socialite_Piplup
+    SetVar VAR_VEILSTONE_STORE_MASK, LOCALID_ACCESSORY_ID
+    BufferAccessoryNameWithArticle 0, LOCALID_ACCESSORY_ID
+    Message VeilstoneStore1F_Text_IMadeAnAccessory
+    SetVar LOCALID_COUNT, 1
+    GiveAccessoryWaitForConfirm
+    SetFlag FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK
     CloseMessage
     ReleaseAll
     End
 
-_0109:
-    BufferAccessoryName 0, VAR_UNK_0x4107
-    Message 4
+VeilstoneStore1F_Socialite_AfterMaskGiven:
+    BufferAccessoryName 0, VAR_VEILSTONE_STORE_MASK
+    Message VeilstoneStore1F_Text_GiveADifferentLookForContests
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0119:
-    SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
+VeilstoneStore1F_Socialite_Turtwig:
+    SetVar LOCALID_ACCESSORY_ID, ACCESSORY_PIPLUP_MASK
     Return
 
-_0121:
-    SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
+VeilstoneStore1F_Socialite_Chimchar:
+    SetVar LOCALID_ACCESSORY_ID, ACCESSORY_TURTWIG_MASK
     Return
 
-_0129:
-    SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
+VeilstoneStore1F_Socialite_Piplup:
+    SetVar LOCALID_ACCESSORY_ID, ACCESSORY_CHIMCHAR_MASK
     Return
 
     .balign 4, 0

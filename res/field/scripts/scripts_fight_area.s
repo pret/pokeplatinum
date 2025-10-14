@@ -472,7 +472,7 @@ _0521:
     Message 43
     SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_SUPER_ROD_OBTAINED
     Message 44
     WaitABXPadPress

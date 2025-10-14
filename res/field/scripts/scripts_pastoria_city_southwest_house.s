@@ -30,7 +30,7 @@ _0055:
     End
 
 _0060:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -291,7 +291,7 @@ _0376:
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD
     End
@@ -304,7 +304,7 @@ _03BD:
     End
 
 _03C8:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

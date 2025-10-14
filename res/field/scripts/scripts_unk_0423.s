@@ -19,7 +19,7 @@ _001A:
     Message 1
     SetVar VAR_0x8004, ITEM_PAL_PAD
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     GoTo _0046
     End
 

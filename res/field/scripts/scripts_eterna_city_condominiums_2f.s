@@ -23,7 +23,7 @@ _000E:
     End
 
 _0053:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

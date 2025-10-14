@@ -61,7 +61,7 @@ _0063:
     End
 
 _00AD:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

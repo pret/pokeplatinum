@@ -342,7 +342,7 @@ _0502:
     Message 12
     SetVar VAR_0x8004, ITEM_SECRETPOTION
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 13
     CloseMessage
     GoTo _0522
