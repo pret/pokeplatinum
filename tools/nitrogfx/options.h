@@ -115,6 +115,7 @@ struct Cell {
 
 struct JsonToCellOptions {
     bool labelEnabled;
+    bool dontPadKbec;
     bool extended;
     bool vramTransferEnabled;
     bool ucatEnabled;

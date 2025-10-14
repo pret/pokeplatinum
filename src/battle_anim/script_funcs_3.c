@@ -4028,7 +4028,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
         }
     }
 
-    int battlerType = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER);
+    int battlerRole = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER);
     int attacker = BattleAnimSystem_GetAttacker(system);
     int defender = BattleAnimSystem_GetDefender(system);
 
@@ -4037,7 +4037,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
         int attackerType = BattleAnimUtil_GetBattlerType(system, attacker);
         int defenderType = BattleAnimUtil_GetBattlerType(system, defender);
 
-        switch (battlerType) {
+        switch (battlerRole) {
         case BATTLER_ROLE_ATTACKER:
             switch (attackerType) {
             case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
