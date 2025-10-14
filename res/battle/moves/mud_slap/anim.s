@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, mud_slap_spa
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     PlayLoopedSoundEffectC SEQ_SE_DP_W028, 4, 6
     Delay 20
     CreateEmitter 0, 0, 4

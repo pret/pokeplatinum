@@ -4,11 +4,11 @@ L_0:
     LoadParticleResource 0, psycho_cut_spa
     PlaySoundEffectL SEQ_SE_DP_020
     CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
     Delay 45
     PlayLoopedSoundEffectC SEQ_SE_DP_HURU, 2, 9
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2

@@ -11,7 +11,7 @@ L_0:
 L_1:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -19,7 +19,7 @@ L_1:
 L_2:
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

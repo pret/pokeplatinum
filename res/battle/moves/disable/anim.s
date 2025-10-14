@@ -5,8 +5,8 @@ L_0:
     JumpIfContest L_1
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 0, -4128, 0, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 0, -4128, 0, 0
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
     Func_SetBgGrayscale TRUE
@@ -34,8 +34,8 @@ L_0:
 
 L_2:
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 4128, 6192, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
     Func_SetBgGrayscale TRUE
@@ -63,8 +63,8 @@ L_2:
 
 L_3:
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -4128, 6192, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
     Func_SetBgGrayscale TRUE
@@ -92,8 +92,8 @@ L_3:
 
 L_1:
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -4128, 6192, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 5
     Func_SetBgGrayscale TRUE

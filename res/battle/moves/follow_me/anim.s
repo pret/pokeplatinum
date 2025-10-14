@@ -7,7 +7,7 @@ L_0:
     LoadCellResObj 0, follow_me_cell_NCER_lz
     LoadAnimResObj 0, follow_me_anim_NANR_lz
     PlayDelayedSoundEffectR SEQ_SE_DP_W213, 2
-    AddSpriteWithFunc 0, 26, follow_me_NCGR_lz, follow_me_NCLR, follow_me_cell_NCER_lz, follow_me_anim_NANR_lz, 0, 0, 3, 0, 24, 0
+    AddSpriteWithFunc 0, 26, follow_me_NCGR_lz, follow_me_NCLR, follow_me_cell_NCER_lz, follow_me_anim_NANR_lz, 0, 0, 0, 24, 0
     Delay 30
     PlayDelayedSoundEffectR SEQ_SE_DP_W039, 14
     PlayDelayedSoundEffectR SEQ_SE_DP_W039, 24

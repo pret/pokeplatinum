@@ -442,33 +442,9 @@
 
     // 54: Nop
 
-    .macro BtlAnimCmd_055 argCount, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
+    .macro BtlAnimCmd_055 arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
     .long 55
-    .long \argCount
-    .if \argCount > 0
-        .long \arg0
-    .endif
-    .if \argCount > 1
-        .long \arg1
-    .endif
-    .if \argCount > 2   
-        .long \arg2
-    .endif
-    .if \argCount > 3
-        .long \arg3
-    .endif
-    .if \argCount > 4
-        .long \arg4
-    .endif
-    .if \argCount > 5
-        .long \arg5
-    .endif
-    .if \argCount > 6
-        .long \arg6
-    .endif
-    .if \argCount > 7
-        .long \arg7
-    .endif
+    UnpackArgsWithCount \arg0, \arg1, \arg2, \arg3, \arg4, \arg5, \arg6, \arg7
     .endm
 
     // Initializes the main Pokemon sprite manager
@@ -677,10 +653,9 @@
     // animRes: Index of the animation resource to use. (Same as for LoadAnimResObj)
     // multiCellRes: Always 0
     // multiAnimRes: Always 0
-    // argCount: Number of additional arguments to pass to the callback (0-10)
     // arg0-arg9: Additional arguments to pass to the callback
     // Note: All resource indices specified here must have been previously loaded into the sprite manager.
-    .macro AddSpriteWithFunc managerID, funcID, charRes, plttRes, cellRes, animRes, multiCellRes, multiAnimRes, argCount, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
+    .macro AddSpriteWithFunc managerID, funcID, charRes, plttRes, cellRes, animRes, multiCellRes, multiAnimRes, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
     .long 78
     .long \managerID
     .long \funcID
@@ -690,37 +665,7 @@
     .long \animRes
     .long \multiCellRes
     .long \multiAnimRes
-    .long \argCount
-    .if \argCount > 0
-        .long \arg0
-    .endif
-    .if \argCount > 1
-        .long \arg1
-    .endif
-    .if \argCount > 2
-        .long \arg2
-    .endif
-    .if \argCount > 3
-        .long \arg3
-    .endif
-    .if \argCount > 4
-        .long \arg4
-    .endif
-    .if \argCount > 5
-        .long \arg5
-    .endif
-    .if \argCount > 6
-        .long \arg6
-    .endif
-    .if \argCount > 7
-        .long \arg7
-    .endif
-    .if \argCount > 8
-        .long \arg8
-    .endif
-    .if \argCount > 9
-        .long \arg9
-    .endif
+    UnpackArgsWithCount \arg0, \arg1, \arg2, \arg3, \arg4, \arg5, \arg6, \arg7, \arg8, \arg9
     .endm
 
     // Adds a sprite to a sprite manager

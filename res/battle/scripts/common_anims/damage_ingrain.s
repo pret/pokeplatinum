@@ -9,7 +9,7 @@ L_0:
     LoadPlttRes 0, 25, 1
     LoadCellResObj 0, 26
     LoadAnimResObj 0, 26
-    AddSpriteWithFunc 0, 23, 26, 25, 26, 26, 0, 0, 1, 4
+    AddSpriteWithFunc 0, 23, 26, 25, 26, 26, 0, 0, 4
     PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 10
     PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 28
     PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 98

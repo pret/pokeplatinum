@@ -6,7 +6,7 @@ L_0:
     LoadPlttRes 0, lock_on_NCLR, 1
     LoadCellResObj 0, lock_on_cell_NCER_lz
     LoadAnimResObj 0, lock_on_anim_NANR_lz
-    AddSpriteWithFunc 0, 9, lock_on_NCGR_lz, lock_on_NCLR, lock_on_cell_NCER_lz, lock_on_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 9, lock_on_NCGR_lz, lock_on_NCLR, lock_on_cell_NCER_lz, lock_on_anim_NANR_lz, 0, 0
     Delay 16
     BeginLoop 4
     PlaySoundEffectR SEQ_SE_DP_GETTING

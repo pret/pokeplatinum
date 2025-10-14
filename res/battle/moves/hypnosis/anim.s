@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, hypnosis_spa
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 16, 10, 0, 0
+    BtlAnimCmd_055 0, 2, 16, 10, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 16, 10, 0, 0
+    BtlAnimCmd_055 0, 2, 16, 10, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W048, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 30
     CreateEmitter 0, 2, 4

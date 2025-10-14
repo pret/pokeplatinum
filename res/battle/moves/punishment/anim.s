@@ -5,11 +5,11 @@ L_0:
     PlaySoundEffectR SEQ_SE_DP_W104
     PlayDelayedSoundEffectR SEQ_SE_DP_MUCHI, 10
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 5
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_030

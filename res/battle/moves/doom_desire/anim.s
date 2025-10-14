@@ -21,13 +21,13 @@ L_2:
     WaitForAnimTasks
     PlaySoundEffectC SEQ_SE_DP_W466
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 0, 0, 0, 0
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 0, 0, 0, 0
     Delay 30
     PlayLoopedSoundEffectR SEQ_SE_DP_W120, 6, 5
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Func_Shake 4, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

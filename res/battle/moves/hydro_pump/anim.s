@@ -9,13 +9,13 @@ L_0:
     SwitchBg 9, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 2, 8, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 8, 1, 0, 0
     Func_ShakeBg 0, 3, 0, 20, 0
     Delay 2
     CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 6, 0, 2, 10, 6, 0, 0
+    BtlAnimCmd_055 0, 2, 10, 6, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 10, 6, 0, 0
+    BtlAnimCmd_055 0, 2, 10, 6, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_SUIRYU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 8
     Func_Shake 2, 0, 1, 14, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

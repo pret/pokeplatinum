@@ -6,7 +6,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W081B
     PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
@@ -14,7 +14,7 @@ L_0:
     LoadPlttRes 0, string_shot_NCLR, 1
     LoadCellResObj 0, string_shot_cell_NCER_lz
     LoadAnimResObj 0, string_shot_anim_NANR_lz
-    AddSpriteWithFunc 0, 1, string_shot_NCGR_lz, string_shot_NCLR, string_shot_cell_NCER_lz, string_shot_anim_NANR_lz, 0, 0, 1, 3
+    AddSpriteWithFunc 0, 1, string_shot_NCGR_lz, string_shot_NCLR, string_shot_cell_NCER_lz, string_shot_anim_NANR_lz, 0, 0, 3
     WaitForAnimTasks
     FreeSpriteManager 0
     WaitForAllEmitters
@@ -27,7 +27,7 @@ L_1:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W081B
     PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
@@ -35,7 +35,7 @@ L_1:
     LoadPlttRes 0, string_shot_NCLR, 1
     LoadCellResObj 0, string_shot_cell_NCER_lz
     LoadAnimResObj 0, string_shot_anim_NANR_lz
-    AddSpriteWithFunc 0, 1, string_shot_NCGR_lz, string_shot_NCLR, string_shot_cell_NCER_lz, string_shot_anim_NANR_lz, 0, 0, 1, 3
+    AddSpriteWithFunc 0, 1, string_shot_NCGR_lz, string_shot_NCLR, string_shot_cell_NCER_lz, string_shot_anim_NANR_lz, 0, 0, 3
     WaitForAnimTasks
     FreeSpriteManager 0
     WaitForAllEmitters

@@ -6,7 +6,7 @@ L_0:
     LoadPlttRes 0, constrict_NCLR, 1
     LoadCellResObj 0, constrict_cell_NCER_lz
     LoadAnimResObj 0, constrict_anim_NANR_lz
-    AddSpriteWithFunc 0, 5, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 5, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0
     BeginLoop 5
     Delay 2
     PlaySoundEffectR SEQ_SE_DP_W020

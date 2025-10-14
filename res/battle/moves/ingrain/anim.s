@@ -7,7 +7,7 @@ L_0:
     LoadPlttRes 0, vines_NCLR, 1
     LoadCellResObj 0, vines_cell_NCER_lz
     LoadAnimResObj 0, vines_anim_NANR_lz
-    AddSpriteWithFunc 0, 23, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 1, 4
+    AddSpriteWithFunc 0, 23, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 4
     PlayDelayedSoundEffectL SEQ_SE_DP_W010, 10
     PlayDelayedSoundEffectL SEQ_SE_DP_W010, 28
     Delay 35

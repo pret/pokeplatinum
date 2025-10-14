@@ -10,7 +10,7 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_W207D
     Delay 30
     WaitForAnimTasks
-    AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     PlaySoundEffectR SEQ_SE_DP_W207B
     Delay 8

@@ -6,7 +6,7 @@ L_0:
     LoadPlttRes 0, assist_NCLR, 1
     LoadCellResObj 0, assist_cell_NCER_lz
     LoadAnimResObj 0, assist_anim_NANR_lz
-    AddSpriteWithFunc 0, 21, assist_NCGR_lz, assist_NCLR, assist_cell_NCER_lz, assist_anim_NANR_lz, 0, 0, 1, 12
+    AddSpriteWithFunc 0, 21, assist_NCGR_lz, assist_NCLR, assist_cell_NCER_lz, assist_anim_NANR_lz, 0, 0, 12
     PlayLoopedSoundEffectC SEQ_SE_DP_W010, 10, 4
     WaitForAnimTasks
     FreeSpriteManager 0

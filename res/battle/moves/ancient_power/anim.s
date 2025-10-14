@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 1, 3
     Delay 10
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
     Delay 20
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_050, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 20
@@ -24,8 +24,8 @@ L_1:
     CreateEmitter 0, 1, 3
     Delay 10
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 3, 2, 0
-    BtlAnimCmd_055 5, 1, 1, -120, -41, 0
+    BtlAnimCmd_055 0, 2, 1, 3, 2, 0
+    BtlAnimCmd_055 1, 1, -120, -41, 0
     Delay 20
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_050, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 20

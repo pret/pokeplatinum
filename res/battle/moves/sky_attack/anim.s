@@ -87,7 +87,7 @@ L_2:
 
 L_7:
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5
@@ -116,7 +116,7 @@ L_7:
 
 L_6:
     CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5
@@ -145,7 +145,7 @@ L_6:
 
 L_8:
     CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     Delay 5

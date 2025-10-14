@@ -7,7 +7,7 @@ L_0:
     LoadPlttRes 0, fake_out_NCLR, 1
     LoadCellResObj 0, fake_out_cell_NCER_lz
     LoadAnimResObj 0, fake_out_anim_NANR_lz
-    AddSpriteWithFunc 0, 18, fake_out_NCGR_lz, fake_out_NCLR, fake_out_cell_NCER_lz, fake_out_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 18, fake_out_NCGR_lz, fake_out_NCLR, fake_out_cell_NCER_lz, fake_out_anim_NANR_lz, 0, 0
     PlayDelayedSoundEffectC SEQ_SE_DP_W260, 20
     Delay 2
     Func_FakeOutCurtain

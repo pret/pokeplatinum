@@ -22,32 +22,32 @@ L_0:
     Delay 20
     PlayLoopedSoundEffectL SEQ_SE_DP_W145, 4, 9
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 6000, -2000, 4000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 6000, -2000, 4000
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 12000, 0, -4000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 12000, 0, -4000
     Delay 3
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -10000, -1000, -4000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -10000, -1000, -4000
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -6000, 1000, 4000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -6000, 1000, 4000
     Delay 5
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 4000, -1000, 3000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 4000, -1000, 3000
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 2000, -1500, 3000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 2000, -1500, 3000
     Delay 4
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -5000, 2000, -4000
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -5000, 2000, -4000
     PlaySoundEffectL SEQ_SE_DP_W145B
     WaitForAllEmitters
     UnloadParticleSystem 0

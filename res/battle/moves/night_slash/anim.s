@@ -3,11 +3,11 @@
 L_0:
     LoadParticleResource 0, night_slash_spa
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     PlaySoundEffectC SEQ_SE_DP_BRADE
     PlayDelayedSoundEffectC SEQ_SE_DP_W233, 10
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 11
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 0, 4
@@ -16,7 +16,7 @@ L_0:
     PlaySoundEffectC SEQ_SE_DP_BRADE
     PlayDelayedSoundEffectC SEQ_SE_DP_W233, 10
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 8
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 4, 4

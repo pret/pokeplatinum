@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, magnet_rise_spa
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 

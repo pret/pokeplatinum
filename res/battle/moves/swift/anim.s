@@ -6,9 +6,9 @@ L_0:
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_165, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     CreateEmitter 0, 0, 20
     Delay 2
     Delay 18

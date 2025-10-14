@@ -5,7 +5,7 @@ L_0:
     PlaySoundEffectR SEQ_SE_DP_BRADE
     PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 6
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 1, 4

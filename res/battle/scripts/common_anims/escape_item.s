@@ -9,6 +9,6 @@ L_0:
     LoadCellResObj 0, 31
     LoadAnimResObj 0, 31
     PlayPannedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT
-    AddSpriteWithFunc 0, 28, 31, 31, 31, 31, 0, 0, 0
+    AddSpriteWithFunc 0, 28, 31, 31, 31, 31, 0, 0
     WaitForAnimTasks
     End

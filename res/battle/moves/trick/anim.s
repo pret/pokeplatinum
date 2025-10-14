@@ -8,7 +8,7 @@ L_0:
     LoadPlttRes 0, cup_NCLR, 1
     LoadCellResObj 0, cup_cell_NCER_lz
     LoadAnimResObj 0, cup_anim_NANR_lz
-    AddSpriteWithFunc 0, 3, cup_NCGR_lz, cup_NCLR, cup_cell_NCER_lz, cup_anim_NANR_lz, 0, 0, 1, 2
+    AddSpriteWithFunc 0, 3, cup_NCGR_lz, cup_NCLR, cup_cell_NCER_lz, cup_anim_NANR_lz, 0, 0, 2
     PlayDelayedSoundEffectC SEQ_SE_DP_W104, 55
     PlayDelayedSoundEffectC SEQ_SE_DP_W104, 70
     PlayDelayedSoundEffectC SEQ_SE_DP_W104, 83

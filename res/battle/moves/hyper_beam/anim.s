@@ -66,11 +66,11 @@ L_2:
     Func_ShakeBg 0, 3, 0, 20, 0
     CreateEmitter 0, 9, 3
     CreateEmitter 0, 6, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 0, 11008, -8256, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 0, 11008, -8256, 0
     CreateEmitter 0, 12, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 0, 11008, -8256, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 0, 11008, -8256, 0
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 4, 0, 1, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

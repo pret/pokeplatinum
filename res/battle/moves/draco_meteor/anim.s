@@ -6,19 +6,19 @@ L_0:
     PlaySoundEffectC SEQ_SE_DP_201
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     Delay 50
     PlaySoundEffectC SEQ_SE_DP_W089
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 0, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W434, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 15
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W434, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

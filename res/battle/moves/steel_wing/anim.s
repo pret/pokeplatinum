@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, steel_wing_spa
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 2, 4
     Delay 15
     PlaySoundEffectL SEQ_SE_DP_W231

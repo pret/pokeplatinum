@@ -9,7 +9,7 @@ L_0:
     PlayLoopedSoundEffectC SEQ_SE_DP_W086, 2, 3
     Func_ShakeBg 8, 8, 0, 20, 0
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 1, 4
     Delay 5
     CreateEmitter 0, 2, 4

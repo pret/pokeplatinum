@@ -14,34 +14,34 @@ L_0:
     Func_MoveEmitterA2BParabolic 2, 20, -2, 0, 13, 64
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 0, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 0, -344, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 0, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 0, -344, 0
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 0, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 0, -344, 0
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -3440, -344, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -3440, -344, 0
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -3440, -344, 0
     Delay 2
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 3440, -344, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 3440, -344, 0
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 3440, -344, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 3440, -344, 0
     PlaySoundEffectR SEQ_SE_DP_080
     WaitForAllEmitters
     UnloadParticleSystem 0

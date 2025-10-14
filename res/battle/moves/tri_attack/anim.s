@@ -11,7 +11,7 @@ L_0:
     CreateEmitter 0, 7, 3
     CreateEmitter 0, 4, 3
     CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 6, 0, 2, 18, 12, 0, 0
+    BtlAnimCmd_055 0, 2, 18, 12, 0, 0
     Delay 40
     PlaySoundEffectR SEQ_SE_DP_W172B
     CreateEmitter 0, 1, 4

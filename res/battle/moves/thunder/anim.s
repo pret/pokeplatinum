@@ -15,8 +15,8 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 5, 4
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 0, -2064, 0
+    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 0, -2064, 0
     Delay 5
     Func_ShakeBg 3, 0, 1, 1, 0, SHAKE_BG_TARGET_BASE
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 15, 0

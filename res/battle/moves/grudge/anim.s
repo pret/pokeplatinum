@@ -10,7 +10,7 @@ L_0:
     LoadCellResObj 0, grudge_cell_NCER_lz
     LoadAnimResObj 0, grudge_anim_NANR_lz
     PlayLoopedSoundEffectL SEQ_SE_DP_W052, 16, 3
-    AddSpriteWithFunc 0, 15, grudge_NCGR_lz, grudge_NCLR, grudge_cell_NCER_lz, grudge_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 15, grudge_NCGR_lz, grudge_NCLR, grudge_cell_NCER_lz, grudge_anim_NANR_lz, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_DARK_PURPLE, 14, 0
     WaitForAnimTasks
     FreeSpriteManager 0

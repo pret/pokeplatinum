@@ -10,9 +10,9 @@ L_0:
     SwitchBg 2, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4

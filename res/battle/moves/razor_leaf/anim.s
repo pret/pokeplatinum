@@ -5,7 +5,7 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_KAZE
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     Delay 15
     StopSoundEffect SEQ_SE_DP_KAZE
     Delay 50

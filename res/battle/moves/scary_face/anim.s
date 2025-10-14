@@ -9,7 +9,7 @@ L_0:
     LoadPlttRes 0, scary_face_NCLR, 1
     LoadCellResObj 0, scary_face_cell_NCER_lz
     LoadAnimResObj 0, scary_face_anim_NANR_lz
-    AddSpriteWithFunc 0, 7, scary_face_NCGR_lz, scary_face_NCLR, scary_face_cell_NCER_lz, scary_face_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 7, scary_face_NCGR_lz, scary_face_NCLR, scary_face_cell_NCER_lz, scary_face_anim_NANR_lz, 0, 0
     Delay 8
     PlaySoundEffectC SEQ_SE_DP_W043D
     WaitForAnimTasks

@@ -6,7 +6,7 @@ L_0:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, 4
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     Delay 5

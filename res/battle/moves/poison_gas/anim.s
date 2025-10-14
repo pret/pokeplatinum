@@ -6,9 +6,9 @@ L_0:
     JumpIfContest L_1
     PlayLoopedSoundEffectR SEQ_SE_DP_W054, 4, 12
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 1, 4112, 1
-    BtlAnimCmd_055 5, 3, 0, 0, 0, 0
-    BtlAnimCmd_055 5, 3, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 1, 4112, 1
+    BtlAnimCmd_055 3, 0, 0, 0, 0
+    BtlAnimCmd_055 3, 0, 0, 0, 0
     CreateEmitter 1, 1, 4
     Delay 20
     PlayLoopedSoundEffectR SEQ_SE_DP_W109, 4, 3
@@ -22,9 +22,9 @@ L_0:
 L_1:
     PlayLoopedSoundEffectR SEQ_SE_DP_W054, 4, 12
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 4112, 4
-    BtlAnimCmd_055 5, 3, 0, 0, 0, 0
-    BtlAnimCmd_055 5, 3, 0, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 4112, 4
+    BtlAnimCmd_055 3, 0, 0, 0, 0
+    BtlAnimCmd_055 3, 0, 0, 0, 0
     CreateEmitter 1, 1, 4
     Delay 20
     PlayLoopedSoundEffectR SEQ_SE_DP_W109, 4, 3

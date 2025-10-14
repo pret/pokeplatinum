@@ -15,7 +15,7 @@ L_0:
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
+    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
     Delay 35
     PlayLoopedSoundEffectC SEQ_SE_DP_HURU, 3, 8
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

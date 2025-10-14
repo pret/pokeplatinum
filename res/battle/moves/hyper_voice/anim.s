@@ -8,7 +8,7 @@ L_0:
     WaitForPokemonCries 0
     PlayPokemonCry 6, -117, 127
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 22, 16, 0, 0
+    BtlAnimCmd_055 0, 2, 22, 16, 0, 0
     CreateEmitter 0, 0, 4
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_LIGHT_YELLOW1
     Func_Shake 0, 2, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

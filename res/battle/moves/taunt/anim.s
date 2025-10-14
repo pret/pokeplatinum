@@ -12,7 +12,7 @@ L_0:
     LoadPlttRes 0, taunt_NCLR, 1
     LoadCellResObj 0, taunt_cell_NCER_lz
     LoadAnimResObj 0, taunt_anim_NANR_lz
-    AddSpriteWithFunc 0, 19, taunt_NCGR_lz, taunt_NCLR, taunt_cell_NCER_lz, taunt_anim_NANR_lz, 0, 0, 1, 1
+    AddSpriteWithFunc 0, 19, taunt_NCGR_lz, taunt_NCLR, taunt_cell_NCER_lz, taunt_anim_NANR_lz, 0, 0, 1
     WaitForAnimTasks
     FreeSpriteManager 0
     InitSpriteManager 0, 7, 2, 2, 2, 2, 0, 0
@@ -20,7 +20,7 @@ L_0:
     LoadPlttRes 0, angry_NCLR, 1
     LoadCellResObj 0, angry_cell_NCER_lz
     LoadAnimResObj 0, angry_anim_NANR_lz
-    AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     Delay 4
     PlayLoopedSoundEffectR SEQ_SE_DP_W207B, 10, 2

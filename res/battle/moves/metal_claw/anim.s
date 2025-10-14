@@ -20,7 +20,7 @@ L_0:
     LoadPlttRes 0, claw_NCLR, 1
     LoadCellResObj 0, claw_cell_NCER_lz
     LoadAnimResObj 0, claw_anim_NANR_lz
-    AddSpriteWithFunc 0, 22, claw_NCGR_lz, claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 1, 4
+    AddSpriteWithFunc 0, 22, claw_NCGR_lz, claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 4
     Delay 1
     BeginLoop 2
     PlaySoundEffectR SEQ_SE_DP_W013

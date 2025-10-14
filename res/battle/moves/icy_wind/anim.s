@@ -5,10 +5,10 @@ L_0:
     WaitForAnimTasks
     LoadParticleResource 0, icy_wind_spa
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     PlayLoopedSoundEffectC SEQ_SE_DP_W016B, 2, 14
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     Delay 20
     CreateEmitter 0, 2, 20
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

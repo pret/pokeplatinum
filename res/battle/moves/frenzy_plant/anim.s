@@ -13,7 +13,7 @@ L_0:
     LoadPlttRes 0, vines_NCLR, 1
     LoadCellResObj 0, vines_cell_NCER_lz
     LoadAnimResObj 0, vines_anim_NANR_lz
-    AddSpriteWithFunc 0, 24, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 1, 8
+    AddSpriteWithFunc 0, 24, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 8
     Delay 96
     PlayLoopedSoundEffectR SEQ_SE_DP_W025B, 3, 6
     CreateEmitter 0, 0, 4

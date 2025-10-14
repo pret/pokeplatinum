@@ -5,7 +5,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     Delay 5
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 14, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_WHITE, 14, 0

@@ -8,7 +8,7 @@ L_0:
     LoadPlttRes 0, mean_look_NCLR, 1
     LoadCellResObj 0, mean_look_cell_NCER_lz
     LoadAnimResObj 0, mean_look_anim_NANR_lz
-    AddSpriteWithFunc 0, 11, mean_look_NCGR_lz, mean_look_NCLR, mean_look_cell_NCER_lz, mean_look_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 11, mean_look_NCGR_lz, mean_look_NCLR, mean_look_cell_NCER_lz, mean_look_anim_NANR_lz, 0, 0
     BeginLoop 8
     PlaySoundEffectR SEQ_SE_DP_W060
     Delay 6

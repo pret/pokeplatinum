@@ -6,7 +6,7 @@ L_0:
     LoadPlttRes 0, foresight_NCLR, 1
     LoadCellResObj 0, foresight_cell_NCER_lz
     LoadAnimResObj 0, foresight_anim_NANR_lz
-    AddSpriteWithFunc 0, 8, foresight_NCGR_lz, foresight_NCLR, foresight_cell_NCER_lz, foresight_anim_NANR_lz, 0, 0, 0
+    AddSpriteWithFunc 0, 8, foresight_NCGR_lz, foresight_NCLR, foresight_cell_NCER_lz, foresight_anim_NANR_lz, 0, 0
     BeginLoop 6
     Delay 2
     PlaySoundEffectR SEQ_SE_DP_100

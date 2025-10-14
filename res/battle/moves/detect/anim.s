@@ -43,11 +43,11 @@ L_3:
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -6880, 0, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -6880, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -6880, 0, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -6880, 0, 0
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -63,11 +63,11 @@ L_1:
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
     CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -8256, 0, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -8256, 0, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, -8256, 0, 0
+    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 1, -8256, 0, 0
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0

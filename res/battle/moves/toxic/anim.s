@@ -15,12 +15,12 @@ L_0:
     Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
     Delay 1
     CreateEmitter 1, 0, 17
-    BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
-    BtlAnimCmd_055 4, 1, 0, -1720, 0
+    BtlAnimCmd_055 0, 2, 5, 0, 0, 0
+    BtlAnimCmd_055 1, 0, -1720, 0
     CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
+    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     PlaySoundEffectR SEQ_SE_DP_161
     Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
     Delay 8
