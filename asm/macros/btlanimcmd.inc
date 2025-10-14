@@ -10,7 +10,7 @@
 
     // Delays the script for a number of frames.
     // frames: Number of frames to delay.
-    .macro Delay frames
+    .macro Delay frames:req
     .long 0
     .long \frames
     .endm
@@ -22,7 +22,7 @@
 
     // Begins a loop that repeats a specified number of times.
     // loops: Number of times to repeat the loop.
-    .macro BeginLoop loops
+    .macro BeginLoop loops:req
     .long 2
     .long \loops
     .endm
@@ -39,7 +39,7 @@
 
     // Plays a sound effect.
     // seqID: The ID of the sound effect to play. See build/generated/sdat.h for a list of sound effect IDs.
-    .macro PlaySoundEffect seqID
+    .macro PlaySoundEffect seqID:req
     .long 5
     .long \seqID
     .endm
@@ -50,7 +50,7 @@
     // Sets the alpha blending for BG0 and BG1
     // ev1: The blend coefficient for BG0 (0-16)
     // ev2: The blend coefficient for BG1 (0-16)
-    .macro SetBg0Bg1AlphaBlending ev1, ev2
+    .macro SetBg0Bg1AlphaBlending ev1:req, ev2:req
     .long 8
     .long \ev1
     .long \ev2
@@ -63,7 +63,7 @@
 
     // Calls a subroutine at the specified address
     // addr: Address of the subroutine to call
-    .macro Call addr
+    .macro Call addr:req
     .long 10
     .long (\addr - .) / 4
     .endm
@@ -76,19 +76,19 @@
     // Sets a script variable to a specified value
     // varID: ID of the variable to set (0-9)
     // value: Value to set the variable to (32-bit signed integer)
-    .macro SetVar varID, value
+    .macro SetVar varID:req, value:req
     .long 12
     .long \varID
     .long \value
     .endm
 
-    .macro BtlAnimCmd_013 arg0, arg1
+    .macro BtlAnimCmd_013 arg0:req, arg1:req
     .long 13
     .long (\arg0 - .) / 4
     .long (\arg1 - .) / 4
     .endm
 
-    .macro BtlAnimCmd_014 arg0, arg1
+    .macro BtlAnimCmd_014 arg0:req, arg1:req
     .long 14
     .long \arg0
     .long \arg1
@@ -96,7 +96,7 @@
 
     // Jumps to the specified address
     // addr: Address to jump to
-    .macro Jump addr
+    .macro Jump addr:req
     .long 15
     .long (\addr - .) / 4
     .endm
@@ -106,7 +106,7 @@
     // param: Additional parameters for the background switch (see BATTLE_BG_SWITCH_MODE_* and BATTLE_BG_SWITCH_FLAG_*)
     // Note: When using BATTLE_BG_SWITCH_MODE_FADE, you must set BATTLE_ANIM_VAR_BG_FADE_TYPE
     // to either BATTLE_BG_FADE_TO_BLACK or BATTLE_BG_FADE_TO_WHITE using the SetVar command.
-    .macro SwitchBg bgID, param
+    .macro SwitchBg bgID:req, param:req
     .long 16
     .long \bgID
     .long \param
@@ -116,7 +116,7 @@
     // var: ID of the variable to set (see BATTLE_ANIM_VAR_BG_MOVE_*)
     // value: Value to set the variable to (16-bit signed integer)
     // Note: This function can only be called AFTER a SwitchBg/RestoreBg command.
-    .macro SetBgSwitchVar var, value
+    .macro SetBgSwitchVar var:req, value:req
     .long 17
     .long \var
     .long \value
@@ -126,7 +126,7 @@
     // bgID: ID of the background to restore to (0-57), not actually used
     // param: Additional parameters for the background switch (see BATTLE_BG_SWITCH_MODE_* and BATTLE_BG_SWITCH_FLAG_*)
     // Note: Same conditions as SwitchBg apply.
-    .macro RestoreBg bgID, param
+    .macro RestoreBg bgID:req, param:req
     .long 18
     .long \bgID
     .long \param
@@ -145,7 +145,7 @@
 
     // Switches the background without any transition
     // bgID: ID of the background to switch to (0-57)
-    .macro SetBg bgID
+    .macro SetBg bgID:req
     .long 21
     .long \bgID
     .endm
@@ -154,28 +154,28 @@
     // seqID: The ID of the sound effect to play. See build/generated/sdat.h
     // pan: The pan of the sound effect. [-117, 117] See BATTLE_SOUND_PAN_*
     // Note: In most cases, using PlaySoundEffectL/C/R is preferred.
-    .macro PlayPannedSoundEffect seqID, pan
+    .macro PlayPannedSoundEffect seqID:req, pan:req
     .long 22
     .long \seqID
     .long \pan
     .endm
 
     // Convenience macros for PlayPannedSoundEffect with preset panning
-    .macro PlaySoundEffectL seqID
+    .macro PlaySoundEffectL seqID:req
     PlayPannedSoundEffect \seqID, BATTLE_SOUND_PAN_LEFT
     .endm
 
-    .macro PlaySoundEffectC seqID
+    .macro PlaySoundEffectC seqID:req
     PlayPannedSoundEffect \seqID, BATTLE_SOUND_PAN_CENTER
     .endm
 
-    .macro PlaySoundEffectR seqID
+    .macro PlaySoundEffectR seqID:req
     PlayPannedSoundEffect \seqID, BATTLE_SOUND_PAN_RIGHT
     .endm
 
     // Pans all currently playing sound effects to the specified pan
     // pan: The pan to set all sound effects to. [-117, 117] See BATTLE_SOUND_PAN_*
-    .macro PanSoundEffects pan
+    .macro PanSoundEffects pan:req
     .long 23
     .long \pan
     .endm
@@ -188,7 +188,7 @@
     // applyInterval: The number of frames between each pan change.
     // Note: Generally you will want to set startPan to BATTLE_SOUND_PAN_LEFT and endPan to BATTLE_SOUND_PAN_RIGHT
     // if you want your sound effect to pan from the attacker to the defender.
-    .macro PlayMovingSoundEffectAtkDef seqID, startPan, endPan, panStep, applyInterval
+    .macro PlayMovingSoundEffectAtkDef seqID:req, startPan:req, endPan:req, panStep:req, applyInterval:req
     .long 24
     .long \seqID
     .long \startPan
@@ -202,7 +202,7 @@
     // pan: The pan of the sound effect.
     // applyInterval: The number of frames between each sound effect play.
     // repeatCount: The number of times to repeat the sound effect.
-    .macro PlayLoopedSoundEffect seqID, pan, applyInterval, repeatCount
+    .macro PlayLoopedSoundEffect seqID:req, pan:req, applyInterval:req, repeatCount:req
     .long 25
     .long \seqID
     .long \pan
@@ -211,15 +211,15 @@
     .endm
 
     // Convenience macros for PlayLoopedSoundEffect with preset panning
-    .macro PlayLoopedSoundEffectL seqID, applyInterval, repeatCount
+    .macro PlayLoopedSoundEffectL seqID:req, applyInterval:req, repeatCount:req
     PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_LEFT, \applyInterval, \repeatCount
     .endm
 
-    .macro PlayLoopedSoundEffectC seqID, applyInterval, repeatCount
+    .macro PlayLoopedSoundEffectC seqID:req, applyInterval:req, repeatCount:req
     PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_CENTER, \applyInterval, \repeatCount
     .endm
 
-    .macro PlayLoopedSoundEffectR seqID, applyInterval, repeatCount
+    .macro PlayLoopedSoundEffectR seqID:req, applyInterval:req, repeatCount:req
     PlayLoopedSoundEffect \seqID, BATTLE_SOUND_PAN_RIGHT, \applyInterval, \repeatCount
     .endm
 
@@ -227,7 +227,7 @@
     // seqID: The ID of the sound effect to play. See build/generated/sdat.h
     // pan: The pan of the sound effect.
     // delay: The number of frames to wait before playing the sound effect.
-    .macro PlayDelayedSoundEffect seqID, pan, delay
+    .macro PlayDelayedSoundEffect seqID:req, pan:req, delay:req
     .long 26
     .long \seqID
     .long \pan
@@ -235,15 +235,15 @@
     .endm
 
     // Convenience macros for PlayDelayedSoundEffect with preset panning
-    .macro PlayDelayedSoundEffectL seqID, delay
+    .macro PlayDelayedSoundEffectL seqID:req, delay:req
     PlayDelayedSoundEffect \seqID, BATTLE_SOUND_PAN_LEFT, \delay
     .endm
 
-    .macro PlayDelayedSoundEffectC seqID, delay
+    .macro PlayDelayedSoundEffectC seqID:req, delay:req
     PlayDelayedSoundEffect \seqID, BATTLE_SOUND_PAN_CENTER, \delay
     .endm
 
-    .macro PlayDelayedSoundEffectR seqID, delay
+    .macro PlayDelayedSoundEffectR seqID:req, delay:req
     PlayDelayedSoundEffect \seqID, BATTLE_SOUND_PAN_RIGHT, \delay
     .endm
 
@@ -259,7 +259,7 @@
     // varID: ID of the variable to check (0-9)
     // value: Value to compare the variable to (32-bit signed integer)
     // addr: Address to jump to if the variable equals the value
-    .macro JumpIfEqual varID, value, addr
+    .macro JumpIfEqual varID:req, value:req, addr:req
     .long 30
     .long \varID
     .long \value
@@ -271,20 +271,22 @@
     // trackBattler: Whether to track the battler's position. (TRUE/FALSE)
     // Note: This is usually used if some advanced scrolling effect should be applied to a battler.
     // The sprite is loaded into BATTLE_BG_BASE (BG2).
-    .macro LoadPokemonSpriteIntoBg battlerRole, trackBattler
+    // Note 2: Only a single sprite can be loaded into the background layer at any given time.
+    .macro LoadPokemonSpriteIntoBg battlerRole:req, trackBattler:req
     .long 31
     .long \battlerRole
     .long \trackBattler
     .endm
 
     // Removes a Pokemon sprite from the background layer
-    // unused: Unused parameter, set to 0
     .macro RemovePokemonSpriteFromBg unused
     .long 32
-    .long \unused
+    .ifnb \unused
+        .long \unused
+    .endif
     .endm
 
-    .macro BtlAnimCmd_033 addr
+    .macro BtlAnimCmd_033 addr:req
     .long 33
     .long \addr
     .endm
@@ -294,7 +296,7 @@
     // bgEnemyAttack: ID of the background to switch to when the enemy is attacking (0-57)
     // bgContest: ID of the background to switch to in contests (0-57)
     // Note: This command will always use BATTLE_BG_SWITCH_MODE_BLEND
-    .macro SwitchBgEx bgPlayerAttack, bgEnemyAttack, bgContest
+    .macro SwitchBgEx bgPlayerAttack:req, bgEnemyAttack:req, bgContest:req
     .long 34
     .long \bgPlayerAttack
     .long \bgEnemyAttack
@@ -307,7 +309,7 @@
     // endPan: The ending pan of the sound effect.
     // panStep: The amount to change the pan by each interval.
     // applyInterval: The number of frames between each pan change.
-    .macro PlayMovingSoundEffectNoCorrection seqID, startPan, endPan, panStep, applyInterval
+    .macro PlayMovingSoundEffectNoCorrection seqID:req, startPan:req, endPan:req, panStep:req, applyInterval:req
     .long 35
     .long \seqID
     .long \startPan
@@ -324,7 +326,7 @@
     // applyInterval: The number of frames between each pan change.
     // Note: Functionally almost identical to PlayMovingSoundEffectAtkDef, but this command
     // performs pan correction on the panStep as well.
-    .macro PlayMovingSoundEffectAtkDef2 seqID, startPan, endPan, panStep, applyInterval
+    .macro PlayMovingSoundEffectAtkDef2 seqID:req, startPan:req, endPan:req, panStep:req, applyInterval:req
     .long 36
     .long \seqID
     .long \startPan
@@ -343,7 +345,7 @@
 
     // Stops a sound effect
     // seqID: The ID of the sound effect to stop. See build/generated/sdat.h
-    .macro StopSoundEffect seqID
+    .macro StopSoundEffect seqID:req
     .long 44
     .long \seqID
     .endm
@@ -352,7 +354,7 @@
     // particleSystem: The particle system to use. (0-15)
     // resourceID: The resource ID inside the particle resource to use.
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
-    .macro CreateEmitter particleSystem, resourceID, callbackID
+    .macro CreateEmitter particleSystem:req, resourceID:req, callbackID:req
     .long 46
     .long \particleSystem
     .long \resourceID
@@ -364,7 +366,7 @@
     // emitterIndex: The index of the emitter to create. (0-19)
     // resourceID: The resource ID inside the particle resource to use.
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
-    .macro CreateEmitterEx particleSystem, emitterIndex, resourceID, callbackID
+    .macro CreateEmitterEx particleSystem:req, emitterIndex:req, resourceID:req, callbackID:req
     .long 47
     .long \particleSystem
     .long \emitterIndex
@@ -377,7 +379,7 @@
     // res*: Resource IDs based on attacker/defender configuration. See enum BattleAnimParticleResource
     // for move information.
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
-    .macro CreateEmitterForMove particleSystem, resPlParallel, resPlDiagonal2, resPlDiagonal1, resEmParallel, resEmDiagonal2, resEmDiagonal1, callbackID
+    .macro CreateEmitterForMove particleSystem:req, resPlParallel:req, resPlDiagonal2:req, resPlDiagonal1:req, resEmParallel:req, resEmDiagonal2:req, resEmDiagonal1:req, callbackID:req
     .long 48
     .long \particleSystem
     .long \resPlParallel
@@ -396,7 +398,7 @@
     // unused0: Unused parameter, set to 0
     // unused1: Unused parameter, set to 0
     // callbackID: The callback ID to use for the particle emitter. (0-22, see src/battle_anim/battle_particle_util.c)
-    .macro CreateEmitterForFriendlyFire particleSystem, resPl, resEm, unused0, unused1, callbackID
+    .macro CreateEmitterForFriendlyFire particleSystem:req, resPl:req, resEm:req, unused0:req, unused1:req, callbackID:req
     .long 49
     .long \particleSystem
     .long \resPl
@@ -415,7 +417,7 @@
     // particleSystem: The particle system to load. (0-15)
     // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
     // Note: Advanced use only, use LoadParticleResource instead.
-    .macro LoadParticleSystem particleSystem, narcMemberID
+    .macro LoadParticleSystem particleSystem:req, narcMemberID:req
     .long 51
     .long \particleSystem
     .long \narcMemberID
@@ -426,7 +428,7 @@
     // narcID: The NARC ID to load from (ignored)
     // narcMemberID: The member ID in the specified NARC to load
     // Note: Will not work, as debug_particle.narc is not present in the final game.
-    .macro LoadDebugParticleSystem particleSystem, narcID, narcMemberID
+    .macro LoadDebugParticleSystem particleSystem:req, narcID:req, narcMemberID:req
     .long 52
     .long \particleSystem
     .long \narcID
@@ -435,7 +437,7 @@
 
     // Unloads a particle system
     // particleSystem: The particle system to unload. (0-15)
-    .macro UnloadParticleSystem particleSystem
+    .macro UnloadParticleSystem particleSystem:req
     .long 53
     .long \particleSystem
     .endm
@@ -454,7 +456,7 @@
 
     // Loads dummy resources for a Pokemon sprite
     // resID: The resource ID to use, can be anything.
-    .macro LoadPokemonSpriteDummyResources resID
+    .macro LoadPokemonSpriteDummyResources resID:req
     .long 57
     .long \resID
     .endm
@@ -465,7 +467,7 @@
     // spriteID: The ID to assign to the sprite. See BATTLE_ANIM_MON_SPRITE_*
     // resID: The resource ID to use, must match the ID used in LoadPokemonSpriteDummyResources
     // Note: This command will fail if LoadPokemonSpriteDummyResources was not called first with the same resID.
-    .macro AddPokemonSprite battlerRole, trackBattler, spriteID, resID
+    .macro AddPokemonSprite battlerRole:req, trackBattler:req, spriteID:req, resID:req
     .long 58
     .long \battlerRole
     .long \trackBattler
@@ -480,14 +482,14 @@
 
     // Removes a Pokemon sprite from the pokemon sprite manager
     // spriteID: The ID of the sprite to remove. See BATTLE_ANIM_MON_SPRITE_*
-    .macro RemovePokemonSprite spriteID
+    .macro RemovePokemonSprite spriteID:req
     .long 60
     .long \spriteID
     .endm
 
     // Cancels a tracking task
     // task: The task to cancel. See enum BattleAnimTrackingTask
-    .macro CancelTrackingTask task
+    .macro CancelTrackingTask task:req
     .long 61
     .long \task
     .endm
@@ -496,7 +498,7 @@
     // particleSystem: The particle system to modify. (0-15)
     // projection: The projection mode to set. 0 for perspective, 1 for orthographic.
     // Note: Default camera projection is orthographic.
-    .macro SetCameraProjection particleSystem, projection
+    .macro SetCameraProjection particleSystem:req, projection:req
     .long 62
     .long \particleSystem
     .long \projection
@@ -506,7 +508,7 @@
     // particleSystem: The particle system to modify. (0-15)
     // flipY: Whether to flip the Y axis. (TRUE/FALSE)
     // Note: Default is FALSE (no flip).
-    .macro SetCameraFlip particleSystem, flipY
+    .macro SetCameraFlip particleSystem:req, flipY:req
     .long 63
     .long \particleSystem
     .long \flipY
@@ -516,7 +518,7 @@
     // battler: The battler to check. Either BATTLER_ROLE_ATTACKER or BATTLER_ROLE_DEFENDER.
     // addrEnemy: Address to jump to if the battler is on the enemy side
     // addrPlayer: Address to jump to if the battler is on the player side
-    .macro JumpIfBattlerSide battler, addrEnemy, addrPlayer
+    .macro JumpIfBattlerSide battler:req, addrEnemy:req, addrPlayer:req
     .long 64
     .long \battler
     .long (\addrEnemy - .) / 4
@@ -527,7 +529,7 @@
     // modulation: The cry modulation to use. See enum PokemonCryMod
     // pan: The pan to play the cry at.
     // volume: The volume to play the cry at. (0-127)
-    .macro PlayPokemonCry modulation, pan, volume
+    .macro PlayPokemonCry modulation:req, pan:req, volume:req
     .long 65
     .long \modulation
     .long \pan
@@ -536,7 +538,7 @@
 
     // Waits for all currently playing Pokemon cries to finish, with an optional fade out
     // fadeOutFrames: The number of frames to fade out over. If 0, no fade out is performed.
-    .macro WaitForPokemonCries fadeOutFrames
+    .macro WaitForPokemonCries fadeOutFrames:req
     .long 66
     .long \fadeOutFrames
     .endm
@@ -546,25 +548,25 @@
     .long 67
     .endm
 
-    .macro BtlAnimCmd_068 arg0
+    .macro BtlAnimCmd_068 arg0:req
     .long 68
     .long \arg0
     .endm
 
-    .macro BtlAnimCmd_069 arg0
+    .macro BtlAnimCmd_069 arg0:req
     .long 69
     .long \arg0
     .endm
 
     // Jumps to one of five addresses based on the current weather
-    // addrNoConditions: Address to jump to if there is no weather condition
+    // addrNoWeather: Address to jump to if there is no weather condition
     // addrRain: Address to jump to if it is raining
     // addrSandstorm: Address to jump to if there is a sandstorm
     // addrSunny: Address to jump to if it is sunny
     // addrHail: Address to jump to if it is hailing
-    .macro JumpIfWeather addrNoConditions, addrRain, addrSandstorm, addrSunny, addrHail
+    .macro JumpIfWeather addrNoWeather:req, addrRain:req, addrSandstorm:req, addrSunny:req, addrHail:req
     .long 70
-    .long (\addrNoConditions - .) / 4
+    .long (\addrNoWeather - .) / 4
     .long (\addrRain - .) / 4
     .long (\addrSandstorm - .) / 4
     .long (\addrSunny - .) / 4
@@ -573,14 +575,14 @@
 
     // Jumps to the specified address if we are in a contest
     // addr: Address to jump to if in a contest
-    .macro JumpIfContest addr
+    .macro JumpIfContest addr:req
     .long 71
     .long (\addr - .) / 4
     .endm
 
     // Jumps to the specified address if the move is hitting an ally
     // addr: Address to jump to if the move is hitting an ally (i.e. attacker side == defender side)
-    .macro JumpIfFriendlyFire addr
+    .macro JumpIfFriendlyFire addr:req
     .long 72
     .long (\addr - .) / 4
     .endm
@@ -594,7 +596,7 @@
     // maxAnimRes: Maximum number of animation resources the manager can hold
     // maxMultiCellRes: Maximum number of multi-cell resources the manager can hold
     // maxMultiAnimRes: Maximum number of multi-animation resources the manager can hold
-    .macro InitSpriteManager managerID, maxSprites, maxCharRes, maxPlttRes, maxCellRes, maxAnimRes, maxMultiCellRes, maxMultiAnimRes
+    .macro InitSpriteManager managerID:req, maxSprites:req, maxCharRes:req, maxPlttRes:req, maxCellRes:req, maxAnimRes:req, maxMultiCellRes:req, maxMultiAnimRes:req
     .long 73
     .long \managerID
     .long \maxSprites
@@ -609,7 +611,7 @@
     // Loads a character resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
     // narcMemberIndex: Index of the character resource (See wechar.naix.h)
-    .macro LoadCharResObj managerID, narcMemberIndex
+    .macro LoadCharResObj managerID:req, narcMemberIndex:req
     .long 74
     .long \managerID
     .long \narcMemberIndex
@@ -619,7 +621,7 @@
     // managerID: ID of the sprite manager to load into (0-3)
     // narcMemberIndex: Index of the palette resource (See wepltt.naix.h)
     // paletteIndex: Index of the palette within the resource to load (0-15)
-    .macro LoadPlttRes managerID, narcMemberIndex, paletteIndex
+    .macro LoadPlttRes managerID:req, narcMemberIndex:req, paletteIndex:req
     .long 75
     .long \managerID
     .long \narcMemberIndex
@@ -629,7 +631,7 @@
     // Loads a cell resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
     // narcMemberIndex: Index of the cell resource (See wecell.naix.h)
-    .macro LoadCellResObj managerID, narcMemberIndex
+    .macro LoadCellResObj managerID:req, narcMemberIndex:req
     .long 76
     .long \managerID
     .long \narcMemberIndex
@@ -638,7 +640,7 @@
     // Loads an animation resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
     // narcMemberIndex: Index of the animation resource (See wecellanm.naix.h)
-    .macro LoadAnimResObj managerID, narcMemberIndex
+    .macro LoadAnimResObj managerID:req, narcMemberIndex:req
     .long 77
     .long \managerID
     .long \narcMemberIndex
@@ -655,7 +657,7 @@
     // multiAnimRes: Always 0
     // arg0-arg9: Additional arguments to pass to the callback
     // Note: All resource indices specified here must have been previously loaded into the sprite manager.
-    .macro AddSpriteWithFunc managerID, funcID, charRes, plttRes, cellRes, animRes, multiCellRes, multiAnimRes, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
+    .macro AddSpriteWithFunc managerID:req, funcID:req, charRes:req, plttRes:req, cellRes:req, animRes:req, multiCellRes:req, multiAnimRes:req, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
     .long 78
     .long \managerID
     .long \funcID
@@ -678,7 +680,7 @@
     // multiCellRes: Always 0
     // multiAnimRes: Always 0
     // Note: All resource indices specified here must have been previously loaded into the sprite manager.
-    .macro AddSprite managerID, spriteID, charRes, plttRes, cellRes, animRes, multiCellRes, multiAnimRes
+    .macro AddSprite managerID:req, spriteID:req, charRes:req, plttRes:req, cellRes:req, animRes:req, multiCellRes:req, multiAnimRes:req
     .long 79
     .long \managerID
     .long \spriteID
@@ -692,7 +694,7 @@
 
     // Frees a sprite manager and all associated resources
     // managerID: ID of the sprite manager to free (0-3)
-    .macro FreeSpriteManager managerID
+    .macro FreeSpriteManager managerID:req
     .long 80
     .long \managerID
     .endm
@@ -701,20 +703,20 @@
     // spriteID: ID of the sprite to modify. See BATTLE_ANIM_MON_SPRITE_*
     // visible: Whether the sprite should be visible. (TRUE/FALSE)
     // Note: This only affects sprite explicitly added with AddPokemonSprite.
-    .macro SetPokemonSpriteVisible spriteID, visible
+    .macro SetPokemonSpriteVisible spriteID:req, visible:req
     .long 81
     .long \spriteID
     .long \visible
     .endm
 
-    .macro BtlAnimCmd_082 arg0, arg1, arg2
+    .macro BtlAnimCmd_082 arg0:req, arg1:req, arg2:req
     .long 82
     .long \arg0
     .long \arg1
     .long \arg2
     .endm
 
-    .macro BtlAnimCmd_083 arg0
+    .macro BtlAnimCmd_083 arg0:req
     .long 83
     .long \arg0
     .endm
@@ -729,7 +731,7 @@
     // Loads a particle system from battle_particles.narc
     // particleSystem: The particle system to load. (0-15)
     // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
-    .macro LoadParticleResource particleSystem, narcMemberID
+    .macro LoadParticleResource particleSystem:req, narcMemberID:req
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

@@ -3,7 +3,7 @@
     .set FALSE, 0
     .set TRUE, 1
 
-    .macro CountArgs count, first, rest:vararg
+    .macro CountArgs count:req, first, rest:vararg
     .ifnb \first
     CountArgs \count+1, \rest
     .else
@@ -57,16 +57,8 @@
     // mode: The rotation mode (optional, see ROTATE_MON_MODE_*)
     // pivotX: The X coordinate of the pivot point (optional, default: center of sprite)
     // pivotY: The Y coordinate of the pivot point (optional, default: center of sprite)
-    .macro Func_RotateMon startAngle, endAngle, frames, mode, pivotX, pivotY
-    .ifnb \pivotX
-        CallFunc 4, \startAngle, \endAngle, \frames, \mode, \pivotX, \pivotY
-    .else
-        .ifnb \mode
-            CallFunc 4, \startAngle, \endAngle, \frames, \mode
-        .else
-            CallFunc 4, \startAngle, \endAngle, \frames
-        .endif
-    .endif
+    .macro Func_RotateMon startAngle:req, endAngle:req, frames:req, mode, pivotX, pivotY
+    CallFunc 4, \startAngle, \endAngle, \frames, \mode, \pivotX, \pivotY
     .endm
 
     // Performs the shrinking/growing part of the Strength animation
@@ -74,24 +66,16 @@
     // growScale: The scale to grow to (percentage, 100 = normal size)
     // shrinkFrames: The number of frames to shrink over
     // growFrames: The number of frames to grow over
-    .macro Func_Strength shrinkScale, growScale, shrinkFrames, growFrames
+    .macro Func_Strength shrinkScale:req, growScale:req, shrinkFrames:req, growFrames:req
     CallFunc 5, \shrinkScale, \growScale, \shrinkFrames, \growFrames
     .endm
 
     .macro Func_BulkUp unused
-    .ifnb \unused
-        CallFunc 6, \unused
-    .else
-        CallFunc 6
-    .endif
+    CallFunc 6, \unused
     .endm
 
     .macro Func_DoubleTeam unused
-    .ifnb \unused
-        CallFunc 7, \unused
-    .else
-        CallFunc 7
-    .endif
+    CallFunc 7, \unused
     .endm
 
     .macro Func_QuickAttack
@@ -106,7 +90,7 @@
     // numRevs: The number of revolutions to perform
     // framesPerRev: The number of frames per revolution
     // battler: The battler whose sprite to animate (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
-    .macro Func_Submission numRevs, framesPerRev, battler
+    .macro Func_Submission numRevs:req, framesPerRev:req, battler:req
     CallFunc 10, \numRevs, \framesPerRev, \battler
     .endm
 
@@ -155,12 +139,7 @@
     .endm
 
     .macro Func_Minimize unused
-    // Accept 0 or 1 arg; some scripts pass a dummy value
-    .ifnb \unused
-        CallFunc 22, \unused
-    .else
-        CallFunc 22
-    .endif
+    CallFunc 22, \unused
     .endm
 
     .macro Func_FaintAttack
@@ -168,26 +147,18 @@
     .endm
 
     .macro Func_Earthquake mode
-    .ifnb \mode
-        CallFunc 24, \mode
-    .else
-        CallFunc 24
-    .endif
+    CallFunc 24, \mode
     .endm
 
     // Performs a little hopping animation as used by e.g. Attract or Charm
     // battlerRole: The role of the battler whose sprite to animate. (optional, See BATTLER_ROLE_*, defaults to BATTLER_ROLE_ATTACKER)
     .macro Func_PlayfulHops battlerRole
-    .ifnb \battlerRole
-        CallFunc 25, \battlerRole
-    .else
-        CallFunc 25
-    .endif
+    CallFunc 25, \battlerRole
     .endm
 
     // Performs the Nightmare animation
     // moveAttacker: Whether to move the attacker offscreen after the animation (TRUE/FALSE)
-    .macro Func_Nightmare moveAttacker
+    .macro Func_Nightmare moveAttacker:req
     CallFunc 26, \moveAttacker
     .endm
 
@@ -198,34 +169,14 @@
     // shakeInterval: The number of frames between shakes
     // shakeAmount: The number of shake cycles
     // Note: Technically all arguments except mode are optional, but they all default to 0
-    .macro Func_Flail mode, shakeExtentX, shakeExtentY, shakeInterval, shakeAmount
-    .ifnb \shakeAmount
-        CallFunc 27, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval, \shakeAmount
-    .else
-        .ifnb \shakeInterval
-            CallFunc 27, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval
-        .else
-            .ifnb \shakeExtentY
-                CallFunc 27, \mode, \shakeExtentX, \shakeExtentY
-            .else
-                .ifnb \shakeExtentX
-                    CallFunc 27, \mode, \shakeExtentX
-                .else
-                    CallFunc 27, \mode
-                .endif
-            .endif
-        .endif
-    .endif
+    .macro Func_Flail mode:req, shakeExtentX, shakeExtentY, shakeInterval, shakeAmount
+    CallFunc 27, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval, \shakeAmount
     .endm
 
     // Performs the Magnitude animation
     // value: Doesn't do anything, can be omitted
     .macro Func_Magnitude value
-    .ifnb \value
-        CallFunc 28, \value
-    .else
-        CallFunc 28
-    .endif
+    CallFunc 28, \value
     .endm
 
     .macro Func_Return
@@ -250,7 +201,7 @@
     // startAlpha: The starting alpha (0-16)
     // endAlpha: The ending alpha (0-16)
     // color: The color to fade to (16-bit BGR555)
-    .macro Func_FadeBg bgType, delay, startAlpha, endAlpha, color
+    .macro Func_FadeBg bgType:req, delay:req, startAlpha:req, endAlpha:req, color:req
     CallFunc 33, \bgType, \delay, \startAlpha, \endAlpha, \color
     .endm
 
@@ -263,12 +214,8 @@
     // color: The color to fade to (16-bit BGR555)
     // alpha: The target alpha to fade to (0-16)
     // holdFrames: The number of frames to hold at the target color and alpha before fading back (optional, defaults to 0)
-    .macro Func_FadeBattlerSprite battler, fadeStepFrames, endDelay, color, alpha, holdFrames
-    .ifnb \holdFrames
-        CallFunc 34, \battler, \fadeStepFrames, \endDelay, \color, \alpha, \holdFrames
-    .else
-        CallFunc 34, \battler, \fadeStepFrames, \endDelay, \color, \alpha
-    .endif
+    .macro Func_FadeBattlerSprite battler:req, fadeStepFrames:req, endDelay:req, color:req, alpha:req, holdFrames
+    CallFunc 34, \battler, \fadeStepFrames, \endDelay, \color, \alpha, \holdFrames
     .endm
 
     // Scales a Pokemon sprite to the specified size and back to normal N times
@@ -283,7 +230,7 @@
     // Example call (scales the attacker to 80% -> 120% -> 80% over total 16 frames, 3 times):
     //   Func_ScalePokemonSprite BATTLER_ROLE_ATTACKER, 16, 80, 120, 100, 3, SCALE_F(8) | RESTORE_F(8), BATTLE_ANIM_MON_SPRITE_0
     // Note: Assumes the the battler specified by battlerRole matches the sprite specified by sprite. (See AddPokemonSprite)
-    .macro Func_ScalePokemonSprite battlerRole, spriteAlpha, startScale, endScale, refScale, cycles, frames, sprite
+    .macro Func_ScalePokemonSprite battlerRole:req, spriteAlpha:req, startScale:req, endScale:req, refScale:req, cycles:req, frames:req, sprite:req
     CallFunc 35, \battlerRole, \spriteAlpha, \startScale, \endScale, \refScale, \cycles, \frames, \sprite
     .endm
 
@@ -295,7 +242,7 @@
     // targets: The targets to shake, valid values:
     //   - A combination of BATTLE_ANIM_BATTLER_SPRITE_*
     //   - A combination of BATTLE_ANIM_POKEMON_SPRITE(N) where N is 0-3
-    .macro Func_Shake extentX, extentY, interval, amount, targets
+    .macro Func_Shake extentX:req, extentY:req, interval:req, amount:req, targets:req
     CallFunc 36, \extentX, \extentY, \interval, \amount, \targets
     .endm
 
@@ -310,7 +257,7 @@
     // bgStartAlpha: The starting alpha of the background (0-16)
     // bgEndAlpha: The ending alpha of the background (0-16)
     // frames: The number of frames to fade over
-    .macro Func_AlphaFadePokemonSprite targets, startAlpha, endAlpha, bgStartAlpha, bgEndAlpha, frames
+    .macro Func_AlphaFadePokemonSprite targets:req, startAlpha:req, endAlpha:req, bgStartAlpha:req, bgEndAlpha:req, frames:req
     CallFunc 38, \targets, \startAlpha, \endAlpha, \bgStartAlpha, \bgEndAlpha, \frames
     .endm
 
@@ -321,7 +268,7 @@
     // Hides or shows a battler sprite
     // target: The battler whose sprite to hide/show (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     // hide: TRUE to hide the sprite, FALSE to show it
-    .macro Func_HideBattler target, hide
+    .macro Func_HideBattler target:req, hide:req
     CallFunc 40, \target, \hide
     .endm
 
@@ -340,7 +287,7 @@
     // reference: The reference scale (the scale at which the sprite is at its original size)
     // cycles: Number of cycles/Hold frames (Combination of CYCLES and HOLD_F macros)
     // frames: The number of frames the scaling should take (combination of SCALE_F and RESTORE_F macros)
-    .macro Func_ScaleBattlerSprite target, startX, endX, startY, endY, reference, cycles, frames
+    .macro Func_ScaleBattlerSprite target:req, startX:req, endX:req, startY:req, endY:req, reference:req, cycles:req, frames:req
     CallFunc 42, \target, \startX, \endX, \startY, \endY, \reference, \cycles, \frames
     .endm
 
@@ -357,13 +304,13 @@
     // reverse: TRUE to reverse direction
     // targetBgAlpha: The target alpha of the background (0-16)
     // slowDownTime: The number of frames to slow down over when stopping the scroll
-    .macro Func_ScrollCustomBg bgID, startX, startY, stepX, stepY, reverse, targetBgAlpha, slowDownTime
+    .macro Func_ScrollCustomBg bgID:req, startX:req, startY:req, stepX:req, stepY:req, reverse:req, targetBgAlpha:req, slowDownTime:req
     CallFunc 44, \bgID, \startX, \startY, \stepX, \stepY, \reverse, \targetBgAlpha, \slowDownTime
     .endm
 
     // Performs the Muddy Water animation
     // See Func_ScrollCustomBg for parameter descriptions
-    .macro Func_MuddyWater bgID, startX, startY, stepX, stepY, reverse, targetBgAlpha, slowDownTime
+    .macro Func_MuddyWater bgID:req, startX:req, startY:req, stepX:req, stepY:req, reverse:req, targetBgAlpha:req, slowDownTime:req
     CallFunc 45, \bgID, \startX, \startY, \stepX, \stepY, \reverse, \targetBgAlpha, \slowDownTime
     .endm
 
@@ -380,19 +327,15 @@
     .endm
 
     // Performs the Surf animation
-    // mode: Doesn't do anything
+    // mode: Doesn't do anything, can be omitted
     .macro Func_Surf mode
-    .ifnb \mode
-        CallFunc 49, \mode
-    .else
-        CallFunc 49
-    .endif
+    CallFunc 49, \mode
     .endm
 
     // Blinks the attackers battler sprite N times
     // count: The number of times to blink
     // interval: The number of frames between each on/off transition
-    .macro Func_BlinkAttacker count, interval
+    .macro Func_BlinkAttacker count:req, interval:req
     CallFunc 50, \count, \interval
     .endm
 
@@ -400,12 +343,12 @@
     // frames: The number of frames to move over
     // offset: The amount to move in the X direction (positive = right, negative = left)
     // target: The battler whose sprite to move (any of BATTLE_ANIM_BATTLER_SPRITE_*)
-    .macro Func_MoveBattlerX frames, offset, target
+    .macro Func_MoveBattlerX frames:req, offset:req, target:req
     CallFunc 51, \frames, \offset, \target
     .endm
 
     // Equivalent to Func_MoveBattlerX
-    .macro Func_MoveBattlerX2 frames, offset, target
+    .macro Func_MoveBattlerX2 frames:req, offset:req, target:req
     CallFunc 52, \frames, \offset, \target
     .endm
 
@@ -416,12 +359,12 @@
     // frames2: The number of frames to scale from scale1 to scale2
     // holdFrames: The number of frames to hold at scale1 before scaling to scale2
     // Note: The sprites scale is set back to normal at the end of the animation instantly
-    .macro Func_ShakeAndScaleAttacker scale1, scale2, frames1, frames2, holdFrames
+    .macro Func_ShakeAndScaleAttacker scale1:req, scale2:req, frames1:req, frames2:req, holdFrames:req
     CallFunc 53, \scale1, \scale2, \frames1, \frames2, \holdFrames
     .endm
 
-    // Same as Func_ShakeAndScaleAttacker but allows specifying separate X and Y scales    
-    .macro Func_ShakeAndScaleAttacker2 scale1X, scale1Y, scale1Frames, scale2X, scale2Y, scale2Frames, holdFrames
+    // Same as Func_ShakeAndScaleAttacker but allows specifying separate X and Y scales
+    .macro Func_ShakeAndScaleAttacker2 scale1X:req, scale1Y:req, scale1Frames:req, scale2X:req, scale2Y:req, scale2Frames:req, holdFrames:req
     CallFunc 54, \scale1X, \scale1Y, \scale1Frames, \scale2X, \scale2Y, \scale2Frames, \holdFrames
     .endm
 
@@ -429,17 +372,9 @@
     CallFunc 55
     .endm
 
-    // a0 and a1 don't do anything
+    // a0 and a1 don't do anything and can be omitted
     .macro Func_Superpower a0, a1
-    .ifnb \a1
-        CallFunc 56, \a0, \a1
-    .else
-        .ifnb \a0
-            CallFunc 56, \a0
-        .else
-            CallFunc 56
-        .endif
-    .endif
+    CallFunc 56, \a0, \a1
     .endm
 
     // Moves a battler sprite by the specified amount
@@ -447,7 +382,7 @@
     // dx: The amount to move in the X direction (positive = right, negative = left)
     // dy: The amount to move in the Y direction (positive = up, negative = down)
     // frames: The number of frames to move over
-    .macro Func_MoveBattler target, dx, dy, frames
+    .macro Func_MoveBattler target:req, dx:req, dy:req, frames:req
     CallFunc 57, \frames, \dx, \dy, \target
     .endm
 
@@ -456,31 +391,27 @@
     .endm
 
     .macro Func_ShadowPunch unused
-    .ifnb \unused
-        CallFunc 59, \unused
-    .else
-        CallFunc 59
-    .endif
+    CallFunc 59, \unused
     .endm
 
     // Revolves a battler sprite N times
     // target: The battler whose sprite to revolve (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     // revs: The number of revolutions to perform
     // framesPerRev: The number of frames per revolution
-    .macro Func_RevolveBattler target, revs, framesPerRev
+    .macro Func_RevolveBattler target:req, revs:req, framesPerRev:req
     CallFunc 60, \target, \revs, \framesPerRev
     .endm
 
     // Moves a battler sprite offscreen (horizontally)
     // target: The battler whose sprite to move (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     // frames: The number of frames to move over
-    .macro Func_MoveBattlerOffScreen target, frames
+    .macro Func_MoveBattlerOffScreen target:req, frames:req
     CallFunc 61, \target, \frames
     .endm
 
     // Moves a battler sprite to its default position (instantly)
     // target: The battler whose sprite to move (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
-    .macro Func_MoveBattlerToDefaultPos target
+    .macro Func_MoveBattlerToDefaultPos target:req
     CallFunc 62, \target
     .endm
 
@@ -491,7 +422,7 @@
     // startFrac: The starting fraction/alpha (0-16)
     // endFrac: The ending fraction/alpha (0-16)
     // color: The color to fade to (16-bit BGR555)
-    .macro Func_FadePokemonSprite target, stepFrames, stepSize, startFrac, endFrac, color
+    .macro Func_FadePokemonSprite target:req, stepFrames:req, stepSize:req, startFrac:req, endFrac:req, color:req
     CallFunc 63, \target, \stepFrames, \stepSize, \startFrac, \endFrac, \color
     .endm
 
@@ -507,20 +438,8 @@
     //   - SKIP_F(n): Skip the first n frames of the movement
     //   - MAX_F(n): Cap the movement to n frames (if the movement would take longer), set to EMITTER_ANIMATION_DEFAULT_FRAMES to disable
     // curve: TRUE/FALSE, whether to use a curved path (optional, default: FALSE)
-    .macro Func_MoveEmitterA2BLinear emitterID, offsetX, offsetY, startDelay, frames, radius, mode, params, curve
-    .ifnb \curve
-        CallFunc 65, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
-    .else
-        .ifnb \params
-            CallFunc 65, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params
-        .else
-            .ifnb \mode
-                CallFunc 65, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
-            .else
-                CallFunc 65, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
-            .endif
-        .endif
-    .endif
+    .macro Func_MoveEmitterA2BLinear emitterID:req, offsetX:req, offsetY:req, startDelay:req, frames:req, radius:req, mode, params, curve
+    CallFunc 65, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
     .endm
 
     // Moves a particle emitter from point A to point B in a parabolic arc
@@ -535,32 +454,16 @@
     //   - SKIP_F(n): Skip the first n frames of the movement
     //   - MAX_F(n): Cap the movement to n frames (if the movement would take longer), set to EMITTER_ANIMATION_DEFAULT_FRAMES to disable
     // curve: Unused
-    .macro Func_MoveEmitterA2BParabolic emitterID, offsetX, offsetY, startDelay, frames, radius, mode, params, curve
-    .ifnb \curve
-        CallFunc 66, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
-    .else
-        .ifnb \params
-            CallFunc 66, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params
-        .else
-            .ifnb \mode
-                CallFunc 66, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
-            .else
-                CallFunc 66, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
-            .endif
-        .endif
-    .endif
+    .macro Func_MoveEmitterA2BParabolic emitterID:req, offsetX:req, offsetY:req, startDelay:req, frames:req, radius:req, mode, params, curve
+    CallFunc 66, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \params, \curve
     .endm
 
     // Makes a battler sprite gradually appear/disappear (think Dig)
     // target: The battler whose sprite to affect (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     // stepSize: The amount to move the battler by each step (values >0 make the sprite disappear, values <0 make it appear)
     // stepInterval: The number of frames between each step
-    .macro Func_BattlerPartialDraw target, stepSize, stepInterval
-    .ifnb \stepInterval
-        CallFunc 67, \target, 0, 0, \stepSize, \stepInterval
-    .else
-        CallFunc 67, \target, 0, 0, \stepSize
-    .endif
+    .macro Func_BattlerPartialDraw target:req, stepSize:req, stepInterval
+    CallFunc 67, \target, 0, 0, \stepSize, \stepInterval
     .endm
 
     // Shakes the background
@@ -570,12 +473,8 @@
     // amount: The number of shakes per cycle
     // cycles: The number of shake cycles
     // target: The target background to shake (optional, see SHAKE_BG_TARGET_*, default: SHAKE_BG_TARGET_EFFECT)
-    .macro Func_ShakeBg extentX, extentY, interval, amount, cycles, target
-    .ifnb \target
-        CallFunc 68, \extentX, \extentY, \interval, \amount, \cycles, \target
-    .else
-        CallFunc 68, \extentX, \extentY, \interval, \amount, \cycles
-    .endif
+    .macro Func_ShakeBg extentX:req, extentY:req, interval:req, amount:req, cycles:req, target
+    CallFunc 68, \extentX, \extentY, \interval, \amount, \cycles, \target
     .endm
 
     // Pixelates a Pokemon sprite
@@ -583,21 +482,17 @@
     // step: The amount to change the pixelation by each step (positive values increase pixelation, negative values decrease it)
     // startX: The starting pixelation value on the X axis (0-15)
     // startY: The starting pixelation value on the Y axis (0-15)
-    .macro Func_PixelatePokemonSprite sprite, step, startX, startY
+    .macro Func_PixelatePokemonSprite sprite:req, step:req, startX:req, startY:req
     CallFunc 69, \sprite, \step, \startX, \startY
     .endm
 
     .macro Func_RolePlay unused
-    .ifnb \unused
-        CallFunc 70, \unused
-    .else
-        CallFunc 70
-    .endif
+    CallFunc 70, \unused
     .endm
 
     // Performs the Snatch animation
     // target: The battler whose sprite to animate (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
-    .macro Func_Snatch target
+    .macro Func_Snatch target:req
     CallFunc 71, \target
     .endm
 
@@ -612,7 +507,7 @@
     // frames: The number of frames to revolve over
     // mode: The revolution mode (see EMITTER_REVOLUTION_MODE_*)
     // particleSystem: The particle system the emitter belongs to (0-15)
-    .macro Func_RevolveEmitter emitterID, sx, ex, sy, ey, rx, ry, frames, mode, particleSystem
+    .macro Func_RevolveEmitter emitterID:req, sx:req, ex:req, sy:req, ey:req, rx:req, ry:req, frames:req, mode:req, particleSystem:req
     CallFunc 72, \emitterID, \sx, \ex, \sy, \ey, \rx, \ry, \frames, \mode, \particleSystem
     .endm
 
@@ -625,17 +520,13 @@
     // params: Combination of
     //   - SKIP_F(n): Skip the first n frames of the movement
     //   - MAX_F(n): Cap the movement to n frames (if the movement would take longer), set to EMITTER_ANIMATION_DEFAULT_FRAMES to disable
-    .macro Func_MoveEmitterViewportTop emitterID, mode, type, frames, startDelay, params
-    .ifnb \params
-        CallFunc 73, \emitterID, \mode, \type, \frames, \startDelay, \params
-    .else
-        CallFunc 73, \emitterID, \mode, \type, \frames, \startDelay
-    .endif
+    .macro Func_MoveEmitterViewportTop emitterID:req, mode:req, type:req, frames:req, startDelay:req, params
+    CallFunc 73, \emitterID, \mode, \type, \frames, \startDelay, \params
     .endm
 
     // Sets whether the background is displayed in grayscale
     // grayscale: TRUE to set the background to grayscale, FALSE to set it to normal color
-    .macro Func_SetBgGrayscale grayscale
+    .macro Func_SetBgGrayscale grayscale:req
     CallFunc 74, \grayscale
     .endm
 
@@ -648,7 +539,7 @@
     // Note: This function has a bug, which results in the priority being set to default values if you pass
     //       anything other than BATTLE_ANIM_DEFAULT_PRIORITY for spritePrio. If you pass BATTLE_ANIM_DEFAULT_PRIORITY
     //       it will not set the priority at all, leaving it at whatever it was before.
-    .macro Func_SetPokemonSpritePriority sprite, maxFrames, bg, spritePrio, battlerRole
+    .macro Func_SetPokemonSpritePriority sprite:req, maxFrames:req, bg:req, spritePrio:req, battlerRole:req
     CallFunc 75, \sprite, \maxFrames, \bg, \spritePrio, \battlerRole
     .endm
 
@@ -656,14 +547,14 @@
     // See Func_SetPokemonSpritePriority for parameter descriptions
     // windowType: 0 or 1, not sure what the difference is
     // Note: This function has the same bug as Func_SetPokemonSpritePriority
-    .macro Func_DarkVoid sprite, maxFrames, bg, spritePrio, battler, windowType
+    .macro Func_DarkVoid sprite:req, maxFrames:req, bg:req, spritePrio:req, battler:req, windowType:req
     CallFunc 75, \sprite, \maxFrames, \bg, \spritePrio, \battler, POKEMON_SPRITE_PRIORITY_MODE_DARK_VOID, \windowType
     .endm
 
     // Applies a wavy scroll effect to the background
     // frames: The number of frames to apply the effect for
     // Note: Always acts on the Effect BG, which means that SwitchBg must be called first
-    .macro Func_ScrollSwitchedBg frames
+    .macro Func_ScrollSwitchedBg frames:req
     CallFunc 76, \frames
     .endm
 
@@ -672,30 +563,18 @@
     // target: The battler whose sprite to move (any of BATTLE_ANIM_ATTACKER, BATTLE_ANIM_DEFENDER, etc.)
     // frames: The number of frames to move over
     // a3/a4: Unused, can be omitted
-    .macro Func_MoveBattlerOnOrOffScreen mode, target, frames, a3, a4
-    .ifnb \a4
-        CallFunc 77, \mode, \target, \frames, \a3, \a4
-    .else
-        .ifnb \a3
-            CallFunc 77, \mode, \target, \frames, \a3
-        .else
-            CallFunc 77, \mode, \target, \frames
-        .endif
-    .endif
+    .macro Func_MoveBattlerOnOrOffScreen mode:req, target:req, frames:req, a3, a4
+    CallFunc 77, \mode, \target, \frames, \a3, \a4
     .endm
 
     // Explicitly renders all loaded Pokemon sprites for N frames
     // frames: The number of frames to render for
-    .macro Func_RenderPokemonSprites frames
+    .macro Func_RenderPokemonSprites frames:req
     CallFunc 78, \frames
     .endm
 
     .macro Func_Sketch unused
-    .ifnb \unused
-        CallFunc 79, \unused
-    .else
-        CallFunc 79
-    .endif
+    CallFunc 79, \unused
     .endm
 
     // Note for the following 4 macros:
@@ -711,24 +590,24 @@
 
     // Plays the stat increase animation
     // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
-    .macro Func_StatChangeUp mode
+    .macro Func_StatChangeUp mode:req
     CallFunc 80, 0, \mode
     .endm
 
     // Plays the stat decrease animation
     // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
-    .macro Func_StatChangeDown mode
+    .macro Func_StatChangeDown mode:req
     CallFunc 81, 1, \mode
     .endm
 
     // Plays the generic heal animation
     // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
-    .macro Func_StatChangeHeal mode
+    .macro Func_StatChangeHeal mode:req
     CallFunc 82, 2, \mode
     .endm
 
     // Plays the metal coat animation (used by Iron Defense, Metal Claw, etc.)
     // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
-    .macro Func_StatChangeMetal mode
+    .macro Func_StatChangeMetal mode:req
     CallFunc 83, 3, \mode
     .endm
