@@ -71,21 +71,21 @@ static const u16 mapPositionsY[] = {
     186
 };
 
-void PoketchMap_GetPlayerCursorPosition(u32 playerX, u32 playerY, u32 *mapX, u32 *mapY)
+void PoketchMap_GetPositionOnMap(u32 x, u32 y, u32 *mapX, u32 *mapY)
 {
-    GF_ASSERT(playerX < NELEMS(mapPositionsX));
-    GF_ASSERT(playerY < NELEMS(mapPositionsY));
+    GF_ASSERT(x < NELEMS(mapPositionsX));
+    GF_ASSERT(y < NELEMS(mapPositionsY));
 
-    if (playerX >= NELEMS(mapPositionsX)) {
-        playerX = 0;
+    if (x >= NELEMS(mapPositionsX)) {
+        x = 0;
     }
 
-    if (playerY >= NELEMS(mapPositionsY)) {
-        playerY = 0;
+    if (y >= NELEMS(mapPositionsY)) {
+        y = 0;
     }
 
-    *mapX = mapPositionsX[playerX];
-    *mapY = mapPositionsY[playerY];
+    *mapX = mapPositionsX[x];
+    *mapY = mapPositionsY[y];
 }
 
 void PoketchMap_GetHiddenLocationPosition(int hiddenLocation, u32 *mapX, u32 *mapY)

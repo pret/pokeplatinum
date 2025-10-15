@@ -48,7 +48,7 @@ FS_EXTERN_OVERLAY(overlay44);
 FS_EXTERN_OVERLAY(poketch_alarm_clock);
 FS_EXTERN_OVERLAY(overlay46);
 FS_EXTERN_OVERLAY(poketch_marking_map);
-FS_EXTERN_OVERLAY(overlay48);
+FS_EXTERN_OVERLAY(poketch_berry_searcher);
 FS_EXTERN_OVERLAY(poketch_color_changer);
 FS_EXTERN_OVERLAY(overlay50);
 FS_EXTERN_OVERLAY(overlay52);
@@ -103,7 +103,7 @@ static const struct {
     { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
     { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(overlay46) },
     { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(poketch_marking_map) },
-    { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
+    { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(poketch_berry_searcher) },
     { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(poketch_color_changer) },
     { POKETCH_APPID_CALENDAR, FS_OVERLAY_ID(overlay50) },
     { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(overlay52) },
