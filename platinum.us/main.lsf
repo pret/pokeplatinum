@@ -1047,11 +1047,11 @@ Overlay poketch_color_changer
 	Object main.nef.p/src_applications_poketch_color_changer_graphics.c.o
 }
 
-Overlay overlay50
+Overlay poketch_calendar
 {
 	After overlay25
-	Object main.nef.p/src_overlay050_ov50_022561C0.c.o
-	Object main.nef.p/src_overlay050_ov50_02256510.c.o
+	Object main.nef.p/src_applications_poketch_calendar_main.c.o
+	Object main.nef.p/src_applications_poketch_calendar_graphics.c.o
 }
 
 Overlay poketch_unused_3
