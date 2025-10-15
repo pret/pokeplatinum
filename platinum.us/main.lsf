@@ -1061,11 +1061,11 @@ Overlay poketch_unused_3
 	Object main.nef.p/src_applications_poketch_unused_3_graphics.c.o
 }
 
-Overlay overlay52
+Overlay poketch_link_searcher
 {
 	After overlay25
-	Object main.nef.p/src_overlay052_ov52_022561C0.c.o
-	Object main.nef.p/src_overlay052_ov52_02256694.c.o
+	Object main.nef.p/src_applications_poketch_link_searcher_main.c.o
+	Object main.nef.p/src_applications_poketch_link_searcher_graphics.c.o
 }
 
 Overlay poketch_trainer_counter

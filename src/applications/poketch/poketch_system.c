@@ -51,7 +51,7 @@ FS_EXTERN_OVERLAY(poketch_marking_map);
 FS_EXTERN_OVERLAY(overlay48);
 FS_EXTERN_OVERLAY(poketch_color_changer);
 FS_EXTERN_OVERLAY(overlay50);
-FS_EXTERN_OVERLAY(overlay52);
+FS_EXTERN_OVERLAY(poketch_link_searcher);
 FS_EXTERN_OVERLAY(poketch_trainer_counter);
 FS_EXTERN_OVERLAY(overlay54);
 FS_EXTERN_OVERLAY(poketch_unused_4);
@@ -106,7 +106,7 @@ static const struct {
     { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
     { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(poketch_color_changer) },
     { POKETCH_APPID_CALENDAR, FS_OVERLAY_ID(overlay50) },
-    { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(overlay52) },
+    { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(poketch_link_searcher) },
     { POKETCH_APPID_TRAINERCOUNTER, FS_OVERLAY_ID(poketch_trainer_counter) },
     { POKETCH_APPID_POKEMONHISTORY, FS_OVERLAY_ID(overlay54) }
 };

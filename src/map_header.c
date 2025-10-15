@@ -174,7 +174,7 @@ BOOL MapHeader_IsOutdoors(u32 headerID)
     return (MapHeader_GetMapType(headerID) == 1) || (MapHeader_GetMapType(headerID) == 2);
 }
 
-BOOL sub_0203A2C8(u32 headerID)
+BOOL MapHeader_IsPokemonCenter2(u32 headerID)
 {
     if (MapHeader_IsPokemonCenter(headerID)) {
         return TRUE;
