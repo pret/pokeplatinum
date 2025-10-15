@@ -79,7 +79,7 @@ static void EndTask(PoketchTaskManager *taskMan)
     PoketchTask_EndTask(graphics->activeTask, taskMan);
 }
 
-static void Task_DrawBackground(SysTask *tak, void *taskMan)
+static void Task_DrawBackground(SysTask *task, void *taskMan)
 {
     static const BgTemplate bgTemplate = {
         .x = 0,
