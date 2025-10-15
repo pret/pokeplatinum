@@ -1068,11 +1068,11 @@ Overlay overlay52
 	Object main.nef.p/src_overlay052_ov52_02256694.c.o
 }
 
-Overlay overlay53
+Overlay poketch_trainer_counter
 {
 	After overlay25
-	Object main.nef.p/src_overlay053_ov53_022561C0.c.o
-	Object main.nef.p/src_overlay053_ov53_02256420.c.o
+	Object main.nef.p/src_applications_poketch_trainer_counter_main.c.o
+	Object main.nef.p/src_applications_poketch_trainer_counter_graphics.c.o
 }
 
 Overlay overlay54
