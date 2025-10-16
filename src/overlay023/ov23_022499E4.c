@@ -11,9 +11,9 @@
 #include "functypes/funcptr_020598EC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
+#include "overlay023/underground_traps.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -270,7 +270,7 @@ static void ov23_02249C34(void)
     CommInfo_SendBattleRegulation();
     CommPlayer_SendPos(0);
 
-    ov23_02243AF0();
+    UndergroundTraps_SendPlacedTraps();
     ov23_0224C21C();
 
     if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
@@ -345,8 +345,8 @@ static void ov23_02249D20(void)
         ov23_0224321C();
         CommPlayer_CopyPersonal(0);
 
-        ov23_0224546C(0, 0, NULL, NULL);
-        ov23_02244858(0, 1);
+        UndergroundTraps_EndCurrentTrapEffectServer(0, 0, NULL, NULL);
+        UndergroundTraps_ForceEndCurrentTrapEffectClient(0, 1);
 
         CommInfo_InitPlayer(0);
         CommPlayer_Destroy(0, 0, 0);
@@ -402,7 +402,7 @@ static void ov23_02249E18(void)
 
         Link_Message(43);
 
-        ov23_02244858(CommSys_CurNetId(), 1);
+        UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
         ov23_0224321C();
 
         sub_02036824();
@@ -463,7 +463,7 @@ static void ov23_02249F14(void)
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (ov23_0224AC3C()) {
-        ov23_02243AF0();
+        UndergroundTraps_SendPlacedTraps();
         ov23_02249C24(ov23_02249F4C, 0);
     } else {
         ov23_0224A09C();
@@ -478,9 +478,9 @@ static void ov23_02249F14(void)
 
 static void ov23_02249F4C(void)
 {
-    if (ov23_0224404C()) {
+    if (UndergroundTraps_GetLinkReceivedPlacedTraps()) {
         ov23_022499E4("\u0090\u0065\u008B\u0040\u00E3\u00A9\u0083\u0066\u0081\u005B\u0083\u005E\u0093\u00CD\u0082\u00A2\u0082\u00BD\u0082\u00E7\u0082\u00B5\u0082\u00A2");
-        ov23_02244068();
+        UndergroundTraps_SetLinkReceivedPlacedTrapsToFalse();
         ov23_0224C21C();
         ov23_02249C24(ov23_02249F7C, 0);
         return;
@@ -554,7 +554,7 @@ static void ov23_0224A02C(void)
         ov23_02242D44(v0->fieldSystem);
         CommInfo_SendBattleRegulation();
         CommPlayer_SendPos(0);
-        ov23_02243AF0();
+        UndergroundTraps_SendPlacedTraps();
         ov23_0224C21C();
         ov23_02249C24(ov23_0224A024, 0);
     }
@@ -562,7 +562,7 @@ static void ov23_0224A02C(void)
 
 static void ov23_0224A064(void)
 {
-    ov23_02244858(CommSys_CurNetId(), 1);
+    UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
     ov23_0224D9AC(CommSys_CurNetId(), 1);
     ov23_0224160C();
     CommPlayerMan_Stop();

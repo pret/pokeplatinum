@@ -53,9 +53,9 @@ void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 p
     param0->unk_10 = NNS_G3dGetTex(param1);
 }
 
-void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *param2, u32 param3, u32 heapID, int param5)
+void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *narc, u32 narcMemberIdx, u32 heapID, BOOL allocAtEnd)
 {
-    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(param2, param3, 0, heapID, param5);
+    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(narc, narcMemberIdx, FALSE, heapID, allocAtEnd);
     sub_02073848(param0, v0, param1);
 }
 

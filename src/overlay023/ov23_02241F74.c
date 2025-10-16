@@ -12,7 +12,6 @@
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0225128C.h"
@@ -24,6 +23,7 @@
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_traps.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -106,7 +106,7 @@ typedef struct {
 } UnkStruct_ov23_022428D8;
 
 typedef struct {
-    u8 unk_00;
+    u8 bits;
     u8 unk_01;
 } UnkStruct_ov23_02242830;
 
@@ -215,47 +215,41 @@ void ov23_022421EC(void)
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->itemNameTextPrinter);
 }
 
-BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3)
+BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, Strbuf *dest)
 {
-    StringTemplate *v0;
-    Strbuf *v1;
+    if (trainerInfo1 && trainerInfo2) {
+        StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
+        Strbuf *fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
 
-    if (param0 && param1) {
-        v0 = StringTemplate_Default(HEAP_ID_FIELD1);
-        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+        StringTemplate_SetPlayerName(template, 0, trainerInfo1);
+        StringTemplate_SetPlayerName(template, 1, trainerInfo2);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
+        StringTemplate_Format(template, dest, fmtString);
+        Strbuf_Free(fmtString);
+        StringTemplate_Free(template);
 
-        StringTemplate_SetPlayerName(v0, 0, param0);
-        StringTemplate_SetPlayerName(v0, 1, param1);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), param2, v1);
-        StringTemplate_Format(v0, param3, v1);
-        Strbuf_Free(v1);
-        StringTemplate_Free(v0);
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
+BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, Strbuf *dest)
 {
-    StringTemplate *v0;
-    Strbuf *v1;
+    if (trainerInfo) {
+        StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
+        Strbuf *fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
 
-    if (param0) {
-        v0 = StringTemplate_Default(HEAP_ID_FIELD1);
-        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+        StringTemplate_SetPlayerName(template, index, trainerInfo);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
+        StringTemplate_Format(template, dest, fmtString);
+        Strbuf_Free(fmtString);
+        StringTemplate_Free(template);
 
-        StringTemplate_SetPlayerName(v0, param1, param0);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), param2, v1);
-        StringTemplate_Format(v0, param3, v1);
-        Strbuf_Free(v1);
-        StringTemplate_Free(v0);
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov23_02242308(Strbuf *param0)
@@ -275,7 +269,7 @@ static BOOL ov23_02242308(Strbuf *param0)
             v3 = CommInfo_TrainerInfo(i);
             CommInfo_SetReceiveEnd(i);
 
-            if (ov23_022422A8(v3, 1, 91, param0)) {
+            if (CommManUnderground_FormatStrbufWithTrainerName(v3, 1, 91, param0)) {
                 return 1;
             }
         }
@@ -286,7 +280,7 @@ static BOOL ov23_02242308(Strbuf *param0)
 
             sCommManUnderground->unk_C2[i] = 0xff;
 
-            if (ov23_0224223C(v3, v4, 111, param0)) {
+            if (CommManUnderground_FormatStrbufWith2TrainerNames(v3, v4, 111, param0)) {
                 return 1;
             }
         }
@@ -295,7 +289,7 @@ static BOOL ov23_02242308(Strbuf *param0)
             v3 = CommInfo_TrainerInfo(i);
             sCommManUnderground->unk_D2[i] = 0xff;
 
-            if (ov23_022422A8(v3, 0, 112, param0)) {
+            if (CommManUnderground_FormatStrbufWithTrainerName(v3, 0, 112, param0)) {
                 return 1;
             }
         }
@@ -315,26 +309,26 @@ static BOOL ov23_02242308(Strbuf *param0)
     return 0;
 }
 
-BOOL ov23_0224240C(int param0, int param1)
+BOOL ov23_0224240C(int x, int z)
 {
-    Coordinates v0;
+    Coordinates coordinates = {
+        .x = x,
+        .z = z
+    };
 
-    v0.x = param0;
-    v0.z = param1;
-
-    if (TerrainCollisionManager_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
-        return 1;
+    if (TerrainCollisionManager_CheckCollision(sCommManUnderground->fieldSystem, x, z)) {
+        return TRUE;
     }
 
-    if (ov23_022442D8(param0, param1)) {
-        return 1;
+    if (UndergroundTraps_IsTrapAtCoordinates(x, z)) {
+        return TRUE;
     }
 
-    if (ov23_022512D4(&v0, -1) != 0xff) {
-        return 1;
+    if (ov23_022512D4(&coordinates, -1) != 0xff) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov23_02242458(void)
@@ -426,7 +420,7 @@ static void ov23_022425B8(int param0, Coordinates *param1)
 
     v0[0] = param0;
 
-    v3 = ov23_02242540(v0, ov23_022442D8, param1);
+    v3 = ov23_02242540(v0, UndergroundTraps_IsTrapAtCoordinates, param1);
     CommSys_SendDataServer(49, v0, v3);
 
     v3 = ov23_02242540(v0, ov23_02241200, param1);
@@ -479,7 +473,7 @@ void ov23_02242654(int param0, int param1, void *param2, void *param3)
     sCommManUnderground->unk_14A -= 1;
 
     MI_CpuCopy8(&v3[1], sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
-    ov23_022489F8(sCommManUnderground->fieldSystem, sCommManUnderground->unk_1C.x, sCommManUnderground->unk_1C.z, sCommManUnderground->unk_18.x, sCommManUnderground->unk_18.z, sCommManUnderground->unk_FC, sCommManUnderground->unk_148, sCommManUnderground->unk_104, sCommManUnderground->unk_149, sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
+    UndergroundTraps_StartTouchRadarTask(sCommManUnderground->fieldSystem, sCommManUnderground->unk_1C.x, sCommManUnderground->unk_1C.z, sCommManUnderground->unk_18.x, sCommManUnderground->unk_18.z, sCommManUnderground->unk_FC, sCommManUnderground->unk_148, sCommManUnderground->unk_104, sCommManUnderground->unk_149, sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
 }
 
 static int Underground_GetOrderedCoordinatesValue(Coordinates *coordinates)
@@ -567,7 +561,7 @@ void ov23_02242814(void)
 
 void ov23_02242830(u8 param0)
 {
-    u8 v0 = param0;
+    u8 bits = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
     Underground *v4 = SaveData_GetUnderground(sCommManUnderground->fieldSystem->saveData);
@@ -576,22 +570,22 @@ void ov23_02242830(u8 param0)
         return;
     }
 
-    if (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
+    if (CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0) {
         return;
     }
 
-    if (40 == Underground_GetTrapCount(v4)) {
-        v0 = v0 | 0x10;
+    if (Underground_GetTrapCount(v4) == MAX_TRAP_SLOTS) {
+        bits |= BIT_TRAPS_FULL;
     }
 
-    v2 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
-    v3 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
+    v2 = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
+    v3 = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
 
     if (UndergroundSpheres_IsBuriedSphereAtCoordinates(v2, v3)) {
-        v0 = v0 | 0x20;
+        bits |= BIT_BURIED_SPHERE_IN_FRONT;
     }
 
-    v1.unk_00 = v0;
+    v1.bits = bits;
     v1.unk_01 = (v2 & 0xf) * 16 + (v3 & 0xf);
 
     CommSys_SendDataFixedSize(28, &v1);
@@ -612,8 +606,8 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     Coordinates v2;
     int v3;
     u8 v4 = param0;
-    v2.x = CommPlayer_AddXServer(param0);
-    v2.z = CommPlayer_AddZServer(param0);
+    v2.x = CommPlayer_GetXInFrontOfPlayerServer(param0);
+    v2.z = CommPlayer_GetZInFrontOfPlayerServer(param0);
 
     if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
         return;
@@ -627,7 +621,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v3 = sub_0205900C(v2.x, v2.z);
+    v3 = CommPlayerMan_GetLinkNetIDAtLocation(v2.x, v2.z);
 
     if (v3 != 0xff) {
         if (ov23_0224C1C8(v3)) {
@@ -642,8 +636,8 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         } else if (ov23_0224A658(param0, v3, 0)) {
             (void)0;
         } else if (ov23_0224ACC0(v3)) {
-            if (!ov23_02244470(v3)) {
-                ov23_02245560(param0, v3);
+            if (!UndergroundTraps_HasPlayerTriggeredTool(v3)) {
+                UndergroundTraps_HelpLink(param0, v3);
             } else {
                 v0.unk_00 = 2;
                 v0.unk_02 = v3;
@@ -678,7 +672,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_02244080(param0, &v2, v1->unk_00)) {
+    if (UndergroundTraps_TryDisengageTrap(param0, &v2, v1->bits)) {
         sub_02059058(param0, 0);
         return;
     }
@@ -709,7 +703,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (v1->unk_00 & 0x20) {
+    if (v1->bits & BIT_BURIED_SPHERE_IN_FRONT) {
         if (ov23_0224A6B8(param0)) {
             return;
         }
@@ -750,11 +744,11 @@ void ov23_02242B14(void)
     }
 
     UndergroundSpheres_AdvanceBuriedSphereSparkleTimer();
-    ov23_02243AE8();
+    UndergroundTraps_SendTrapRadarResults();
     ov23_0223E878();
 
     if (!sCommManUnderground->unk_14B) {
-        ov23_022468A8(sCommManUnderground->fieldSystem->bgConfig);
+        UndergroundTraps_Dummy2(sCommManUnderground->fieldSystem->bgConfig);
     }
 }
 
@@ -769,8 +763,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, fieldSystem, 1);
 
-        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02243858());
-        ov23_022434BC(v0, fieldSystem);
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, TrapsEnv_Size());
+        TrapsEnv_Init(v0, fieldSystem);
 
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0224B5C4());
         ov23_0224B144(v0, fieldSystem);
@@ -793,7 +787,7 @@ void ov23_02242C78(void)
         ov23_022535EC();
         UndergroundSpheres_DisableBuriedSphereSparkles();
         ov23_0224B430();
-        ov23_02243520();
+        UndergroundTraps_DisableTrapGraphics();
         CommPlayerMan_Reset();
         ov23_0223E2F0();
         ov23_022421EC();
@@ -809,7 +803,7 @@ void ov23_02242CB4(void)
         ov23_02253604();
         UndergroundSpheres_EnableBuriedSphereSparkles();
         ov23_0224B460();
-        ov23_022435A8();
+        UndergroundTraps_EnableTrapGraphics();
         ov23_0223E2F4();
         sCommManUnderground->unk_14B = 0;
         LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
@@ -821,7 +815,7 @@ void ov23_02242D08(void)
     if (sCommManUnderground != NULL) {
         sub_020287F8(sCommManUnderground->fieldSystem->saveData);
         ov23_0224B4E4();
-        ov23_022435DC();
+        TrapsEnv_Free();
         CommPlayerMan_Delete(1);
         BuriedSpheresEnv_Free();
         ov23_0223E2F8();
@@ -836,7 +830,7 @@ void ov23_02242D44(FieldSystem *fieldSystem)
     void *v0;
 
     if (sCommManUnderground != NULL) {
-        ov23_02243670(fieldSystem);
+        UndergroundTraps_Reinit(fieldSystem);
         CommPlayerMan_Reinit();
         ov23_0224B518();
     }
@@ -852,10 +846,10 @@ BOOL ov23_02242D60(Strbuf *param0)
     if (ov23_02242308(param0)) {
         sCommManUnderground->unk_14C = 1;
         return 1;
-    } else if (ov23_022446B0(param0)) {
+    } else if (UndergroundTraps_GetQueuedMessage(param0)) {
         sCommManUnderground->unk_14C = 1;
         return 1;
-    } else if (ov23_02244784(param0)) {
+    } else if (UndergroundTraps_GetQueuedMessage2(param0)) {
         sCommManUnderground->unk_14C = 1;
         return 1;
     } else if (ov23_0224D020(param0)) {
@@ -926,7 +920,7 @@ int ov23_02242E78(int param0)
             case 2:
                 return SphereRadar_GetXCoordOfBuriedSphere(v1);
             case 4:
-                return ov23_02245698(v1);
+                return TrapRadar_GetXCoordOfBuriedTrap(v1);
             case 3:
                 return ov23_0224125C(v1);
             }
@@ -957,7 +951,7 @@ int ov23_02242EE0(int param0)
             case 2:
                 return SphereRadar_GetZCoordOfBuriedSphere(v1);
             case 4:
-                return ov23_022456CC(v1);
+                return TrapRadar_GetZCoordOfBuriedTrap(v1);
             case 3:
                 return ov23_02241294(v1);
             }
