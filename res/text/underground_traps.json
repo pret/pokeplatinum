@@ -38,11 +38,11 @@
       "en_US": "Hurl Trap ←"
     },
     {
-      "id": "UndergroundTraps_Text_WarpTrap",
+      "id": "UndergroundTraps_Text_WarpTrap_Unused",
       "en_US": "Warp Trap"
     },
     {
-      "id": "UndergroundTraps_Text_HiWarpTrap",
+      "id": "UndergroundTraps_Text_HiWarpTrap_Unused",
       "en_US": "Hi-Warp Trap"
     },
     {
@@ -62,15 +62,15 @@
       "en_US": "Confuse Trap"
     },
     {
-      "id": "UndergroundTraps_Text_RunTrap",
+      "id": "UndergroundTraps_Text_RunTrap_Unused",
       "en_US": "Run Trap"
     },
     {
-      "id": "UndergroundTraps_Text_FadeTrap",
+      "id": "UndergroundTraps_Text_FadeTrap_Unused",
       "en_US": "Fade Trap"
     },
     {
-      "id": "UndergroundTraps_Text_SlowTrap",
+      "id": "UndergroundTraps_Text_SlowTrap_Unused",
       "en_US": "Slow Trap"
     },
     {
@@ -130,7 +130,7 @@
       "en_US": "Fire Trap"
     },
     {
-      "id": "UndergroundTraps_Text_RadarTrap",
+      "id": "UndergroundTraps_Text_RadarTrap_Unused",
       "en_US": "Radar Trap"
     },
     {
@@ -198,14 +198,14 @@
       ]
     },
     {
-      "id": "UndergroundTraps_Text_WarpTrapDescription",
+      "id": "UndergroundTraps_Text_WarpTrapDescription_Unused",
       "en_US": [
         "Stepping on this Trap warps the\n",
         "victim far away."
       ]
     },
     {
-      "id": "UndergroundTraps_Text_HiWarpTrapDescription",
+      "id": "UndergroundTraps_Text_HiWarpTrapDescription_Unused",
       "en_US": [
         "Stepping on this Trap warps the\n",
         "victim far, far away."
@@ -240,21 +240,21 @@
       ]
     },
     {
-      "id": "UndergroundTraps_Text_RunTrapDescription",
+      "id": "UndergroundTraps_Text_RunTrapDescription_Unused",
       "en_US": [
         "Stepping on this Trap makes the\n",
         "victim run."
       ]
     },
     {
-      "id": "UndergroundTraps_Text_FadeTrapDescription",
+      "id": "UndergroundTraps_Text_FadeTrapDescription_Unused",
       "en_US": [
         "Stepping on this Trap makes the\n",
         "victim invisible."
       ]
     },
     {
-      "id": "UndergroundTraps_Text_SlowTrapDescription",
+      "id": "UndergroundTraps_Text_SlowTrapDescription_Unused",
       "en_US": [
         "Stepping on this Trap slows the\n",
         "victim’s foot speed."
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "UndergroundTraps_Text_RadarTrapDescription",
+      "id": "UndergroundTraps_Text_RadarTrapDescription_Unused",
       "en_US": [
         "Stepping on this renders the Radar\n",
         "useless for a while."

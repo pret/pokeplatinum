@@ -249,8 +249,8 @@ void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src,
     int numberToPrint;
 
     if (buffer[0] == netID) {
-        int x = CommPlayer_GetXInFrontOfPlayerServer(netID);
-        int z = CommPlayer_GetZInFrontOfPlayerServer(netID);
+        int x = CommPlayer_GetXInFrontOfPlayer(netID);
+        int z = CommPlayer_GetZInFrontOfPlayer(netID);
         BuriedSphere *sphere = UndergroundSpheres_GetBuriedSphereAtCoordinates(x, z);
 
         if (sphere) {
@@ -372,7 +372,7 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
 
             success = TRUE;
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_SomethingAlreadyBuried, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingAlreadyBuried, FALSE, NULL);
         }
     } else {
         UndergroundSpheres_AddBuriedSphere(&sphere);

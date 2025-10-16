@@ -16,7 +16,6 @@
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay005/ov5_021F5894.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224A1D0.h"
@@ -25,6 +24,7 @@
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -1202,7 +1202,7 @@ void ov23_0224C104(int param0, int param1, void *param2, void *param3)
         ov23_022535EC();
         ov23_0224F24C();
         ov23_0224321C();
-        ov23_02244858(CommSys_CurNetId(), 0);
+        UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 0);
 
         Link_Message(43);
         Unk_ov23_022577AC->unk_13D6 = 0;
@@ -1211,7 +1211,7 @@ void ov23_0224C104(int param0, int param1, void *param2, void *param3)
         ov23_0224CAF0(Unk_ov23_022577AC->fieldSystem, v0->unk_00, v0->unk_02, v0->unk_05, v0->unk_04, v0->unk_06);
         Unk_ov23_022577AC->unk_A00 = NULL;
     } else {
-        ov23_02248B98(v0->unk_04);
+        UndergroundTraps_StopLinkSpin(v0->unk_04);
         ov23_0224ADE8(v0->unk_04, v0->unk_00, v0->unk_02, v0->unk_05);
     }
 }
@@ -1770,8 +1770,8 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
         break;
     case 2: {
-        v6 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
-        v7 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
+        v6 = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
+        v7 = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
         v8 = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 34, FALSE, NULL);
@@ -1851,8 +1851,8 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         ov23_0224C6AC(16);
 
         {
-            v6 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
-            v7 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
+            v6 = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
+            v7 = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
 
             ov5_021F5634(fieldSystem, v6, 0, v7);
         }
@@ -1879,8 +1879,8 @@ int ov23_0224CD7C(void)
 void ov23_0224CD80(int param0, int param1, void *param2, void *param3)
 {
     u8 *v0 = param2;
-    int v1 = CommPlayer_AddXServer(param0);
-    int v2 = CommPlayer_AddZServer(param0);
+    int v1 = CommPlayer_GetXInFrontOfPlayerServer(param0);
+    int v2 = CommPlayer_GetZInFrontOfPlayerServer(param0);
     int v3, v4, v5, v6;
     int v7 = CommPlayer_DirServer(param0);
     UnkStruct_ov23_0224CF18 v8;
@@ -1999,8 +1999,8 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
         ov23_0224DC24();
     } else if ((v0->unk_01 == 2) || (v0->unk_01 == 3) || (v0->unk_01 == 4)) {
         UnkStruct_ov23_0224B098 v2;
-        int v3 = CommPlayer_GetXInFrontOfPlayerServer(v0->unk_00);
-        int v4 = CommPlayer_GetZInFrontOfPlayerServer(v0->unk_00);
+        int v3 = CommPlayer_GetXInFrontOfPlayer(v0->unk_00);
+        int v4 = CommPlayer_GetZInFrontOfPlayer(v0->unk_00);
         int v5 = CommPlayer_Dir(v0->unk_00);
 
         ov23_0224C1EC(v3, v4, v5, v0->unk_00);
@@ -2038,7 +2038,7 @@ BOOL ov23_0224D020(Strbuf *param0)
                 v2 = CommInfo_TrainerInfo(v0);
                 v3 = CommInfo_TrainerInfo(v1);
 
-                if (ov23_0224223C(v2, v3, 104, param0)) {
+                if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 104, param0)) {
                     return 1;
                 }
             }
@@ -2050,7 +2050,7 @@ BOOL ov23_0224D020(Strbuf *param0)
 
             Unk_ov23_022577AC->unk_133B[v0] = 0xff;
 
-            if (ov23_0224223C(v2, v3, 108, param0)) {
+            if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 108, param0)) {
                 return 1;
             }
         }
@@ -2059,7 +2059,7 @@ BOOL ov23_0224D020(Strbuf *param0)
             v2 = CommInfo_TrainerInfo(v0);
             Unk_ov23_022577AC->unk_134B[v0] = 0xff;
 
-            if (ov23_022422A8(v2, 0, 109, param0)) {
+            if (CommManUnderground_FormatStrbufWithTrainerName(v2, 0, 109, param0)) {
                 return 1;
             }
             break;
@@ -2071,7 +2071,7 @@ BOOL ov23_0224D020(Strbuf *param0)
 
             Unk_ov23_022577AC->unk_1343[v0] = 0xff;
 
-            if (ov23_0224223C(v2, v3, 110, param0)) {
+            if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 110, param0)) {
                 return 1;
             }
         }
@@ -2148,8 +2148,8 @@ static void ov23_0224D238(void)
 {
     UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
-    int v2 = CommPlayer_AddXServer(0);
-    int v3 = CommPlayer_AddZServer(0);
+    int v2 = CommPlayer_GetXInFrontOfPlayerServer(0);
+    int v3 = CommPlayer_GetZInFrontOfPlayerServer(0);
     int v4 = CommPlayer_DirServer(0);
     int v5, v6, v7, v8, v9;
     const int v10 = 10, v11 = 18, v12 = 12, v13 = 5, v14 = 6;
@@ -2524,7 +2524,7 @@ BOOL ov23_0224D7C8(int param0)
 
         if (0 != v0) {
             Unk_ov23_022577AC->unk_1373[param0] = 1;
-            ov23_022443CC(param0, 0xff, v0, v3, v4, v5);
+            UndergroundTraps_HandleTriggeredTool(param0, 0xff, v0, v3, v4, v5);
 
             return 1;
         }
@@ -2533,17 +2533,13 @@ BOOL ov23_0224D7C8(int param0)
     return 0;
 }
 
-BOOL ov23_0224D87C(int param0)
+BOOL ov23_0224D87C(int netID)
 {
-    BOOL v0 = 0;
-
     if (Unk_ov23_022577AC) {
-        BOOL v1 = Unk_ov23_022577AC->unk_1373[param0];
-
-        Unk_ov23_022577AC->unk_1373[param0] = 0;
+        Unk_ov23_022577AC->unk_1373[netID] = FALSE;
     }
 
-    return v0;
+    return FALSE;
 }
 
 void Underground_SecretBaseRemovePlayer(int param0)
@@ -2631,7 +2627,7 @@ BOOL ov23_0224D9AC(int param0, BOOL param1)
     ov23_022535EC();
     ov23_0224F24C();
     ov23_0224321C();
-    ov23_02244858(CommSys_CurNetId(), 0);
+    UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 0);
 
     v2 = Unk_ov23_022577AC->unk_13CC;
     v3 = Unk_ov23_022577AC->unk_13CE;

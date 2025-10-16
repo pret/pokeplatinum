@@ -20,12 +20,12 @@ typedef struct Underground {
     u8 unk_100[5];
     u8 unk_105[5];
     u8 unk_10A;
-    u8 unk_10B[64];
-    u8 unk_14B[64][3];
+    u8 spawnedTrapIDs[MAX_SPAWNED_TRAPS];
+    u8 spawnedTrapCoordinates[MAX_SPAWNED_TRAPS][3];
     u8 unk_20B[255][3];
-    u8 unk_508[16];
-    u8 unk_518[16][3];
-    u8 unk_548[16];
+    u8 placedTrapIDs[MAX_PLACED_TRAPS];
+    u8 placedTrapCoordinates[MAX_PLACED_TRAPS][3];
+    u8 unk_548[MAX_PLACED_TRAPS];
     u8 buriedSphereTypes[MAX_BURIED_SPHERES];
     u8 buriedSphereGrowth[MAX_BURIED_SPHERES];
     u8 buriedSphereInitialSizes[MAX_BURIED_SPHERES];
