@@ -258,10 +258,10 @@ BOOL TownMap_UpdateBottomScreen(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
-    if (graphicsMan->zommedInMapMvtDone & TRUE) {
+    if (graphicsMan->zoomedInMapMvtDone & TRUE) {
         if (graphicsMan->unk_15_0 >= 2) {
             UpdateBottomScreenText(appData);
-            graphicsMan->zommedInMapMvtDone = 0x0;
+            graphicsMan->zoomedInMapMvtDone = 0x0;
             graphicsMan->zoomedInMapMvtFrame = 0;
             graphicsMan->unk_15_0 = 0;
         }
@@ -424,13 +424,13 @@ static void HandleInput(TownMapAppData *appData, int heldKeys)
     graphicsMan->zoomedMapMvtStage = 3;
     graphicsMan->queuedMovement |= 0x80;
 
-    if (graphicsMan->zommedInMapMvtDone != 0) {
+    if (graphicsMan->zoomedInMapMvtDone != 0) {
         graphicsMan->zoomedInMapMvtFrame++;
     } else {
         graphicsMan->zoomedInMapMvtFrame = 0;
     }
 
-    graphicsMan->zommedInMapMvtDone = 0;
+    graphicsMan->zoomedInMapMvtDone = 0;
     graphicsMan->unk_15_0 = 1;
 
     return;
@@ -594,7 +594,7 @@ static void DoZoomedMapMvt(TownMapAppData *appData)
         return;
     }
 
-    graphicsMan->zommedInMapMvtDone = TRUE;
+    graphicsMan->zoomedInMapMvtDone = TRUE;
     graphicsMan->queuedMovement = 0;
 
     if (graphicsMan->prevLocationMapHeader != graphicsMan->hoveredLocationMapHeader) {

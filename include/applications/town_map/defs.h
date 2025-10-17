@@ -102,7 +102,7 @@ typedef struct TownMapGraphicsManager {
     int unused_0C;
     u8 showingZoomedInMap;
     u8 queuedMovement;
-    u8 zommedInMapMvtDone;
+    u8 zoomedInMapMvtDone;
     u8 zoomedMapMvtStage;
     u8 zoomedInMapTransitionStage;
     u8 unk_15_0 : 4;
