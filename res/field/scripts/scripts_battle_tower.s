@@ -850,7 +850,7 @@ _0E58:
     HealParty
     Message 69
     Call _0734
-    ScrCmd_330
+    ClearWiFiHistory
     Message 32
     WaitTime 30, VAR_RESULT
     ScrCmd_136

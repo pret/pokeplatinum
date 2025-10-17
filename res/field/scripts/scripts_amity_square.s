@@ -1172,8 +1172,8 @@ _1305:
     WaitFadeScreen
     LockAll
     WaitTime 1, VAR_RESULT
-    ScrCmd_32D
-    ScrCmd_338
+    ElevateAllMapObjects
+    ElevateMapObjectByPosition
     ApplyMovement 5, _1758
     WaitMovement
     PlayFanfare SEQ_SE_DP_GYURU
@@ -1213,8 +1213,8 @@ _1305:
     ReleaseAll
     ApplyMovement LOCALID_PLAYER, _1770
     WaitMovement
-    ScrCmd_32E
-    ScrCmd_339
+    ResetAllMapObjectElevation
+    ResetMapObjectElevation
     WaitTime 2, VAR_RESULT
     End
 

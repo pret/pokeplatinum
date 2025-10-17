@@ -10,7 +10,7 @@
 #define DIR_NONE  -1
 
 // Status Flags
-#define MAP_OBJ_STATUS_0                           (1 << 0)
+#define MAP_OBJ_STATUS_ACTIVE                      (1 << 0)
 #define MAP_OBJ_STATUS_1                           (1 << 1)
 #define MAP_OBJ_STATUS_START_MOVEMENT              (1 << 2)
 #define MAP_OBJ_STATUS_END_MOVEMENT                (1 << 3)
@@ -22,8 +22,8 @@
 #define MAP_OBJ_STATUS_HIDE                        (1 << 9)
 #define MAP_OBJ_STATUS_10                          (1 << 10)
 #define MAP_OBJ_STATUS_11                          (1 << 11)
-#define MAP_OBJ_STATUS_12                          (1 << 12)
-#define MAP_OBJ_STATUS_13                          (1 << 13)
+#define MAP_OBJ_STATUS_ELEVATION_TARGET            (1 << 12)
+#define MAP_OBJ_STATUS_ELEVATED                    (1 << 13)
 #define MAP_OBJ_STATUS_14                          (1 << 14)
 #define MAP_OBJ_STATUS_SHOW_SHADOW                 (1 << 15)
 #define MAP_OBJ_STATUS_START_JUMP                  (1 << 16)

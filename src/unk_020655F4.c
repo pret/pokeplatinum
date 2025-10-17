@@ -114,7 +114,7 @@ static const fx32 sStepSizes_WalkSlightlyFaster[3];
 
 BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj)
 {
-    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_ACTIVE)) {
         return FALSE;
     }
 

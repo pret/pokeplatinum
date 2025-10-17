@@ -4,7 +4,7 @@
     "altitudes": [],
     "maps": [
         ["MAP_584", "MAP_585", "MAP_591"],
-        ["MAP_586", "MAP_587", "MAP_592"],
-        ["MAP_589", "MAP_590", "MAP_593"]
+        ["MAP_586", "MAP_587", "MAP_UNDERGROUND_SECRET_BASE_AREA_3"],
+        ["MAP_589", "MAP_UNDERGROUND_SECRET_BASE_AREA_2", "MAP_593"]
     ]
 }

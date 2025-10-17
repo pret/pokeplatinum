@@ -20,59 +20,7 @@
 #include "system.h"
 #include "trainer_info.h"
 
-#define NUMSTATFILES 11
-#define BLANKSPACE   (NATIONAL_DEX_COUNT + 1)
-
-enum PokedexDataSortIndex {
-    PDSI_NATIONAL,
-    PDSI_SINNOH,
-    PDSI_ALPHABETICAL,
-    PDSI_HEAVIEST,
-    PDSI_LIGHTEST,
-    PDSI_TALLEST,
-    PDSI_SMALLEST,
-    PDSI_ABC,
-    PDSI_DEF,
-    PDSI_GHI,
-    PDSI_JKL,
-    PDSI_MNO,
-    PDSI_PQR,
-    PDSI_STU,
-    PDSI_VWX,
-    PDSI_YZ,
-    PDSI_NORMAL,
-    PDSI_FIGHTING,
-    PDSI_FLYING,
-    PDSI_POISON,
-    PDSI_GROUND,
-    PDSI_ROCK,
-    PDSI_BUG,
-    PDSI_GHOST,
-    PDSI_STEEL,
-    PDSI_FIRE,
-    PDSI_WATER,
-    PDSI_GRASS,
-    PDSI_ELECTRIC,
-    PDSI_PSYCHIC,
-    PDSI_ICE,
-    PDSI_DRAGON,
-    PDSI_DARK,
-    PDSI_QUADRUPED,
-    PDSI_BIPEDALTAILLESS,
-    PDSI_BIPEDALTAILED,
-    PDSI_SERPENTINE,
-    PDSI_MULTIWINGED,
-    PDSI_WINGED,
-    PDSI_INSECTOID,
-    PDSI_HEADBASE,
-    PDSI_HEADARMS,
-    PDSI_HEADLEGS,
-    PDSI_TENTACLES,
-    PDSI_FINS,
-    PDSI_HEAD,
-    PDSI_MULTIBODY,
-    PDSI_NUMSORTS
-};
+#define BLANKSPACE (NATIONAL_DEX_COUNT + 1)
 
 static void FilterUnencountered(u16 *encounteredDex, int *caughtStatusLength, const Pokedex *pokedex, const u16 *fullDex, int pokedexLength);
 static void IntersectPokedexes(u16 *resultingPokedex, int *numResulting, const u16 *pokedex1, int dexLen1, const u16 *pokedex2, int dexLen2, BOOL keepUncaught, const Pokedex *pokedex);

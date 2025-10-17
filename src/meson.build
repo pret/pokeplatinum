@@ -445,7 +445,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021F5A10.c',
     'overlay005/ov5_021F600C.c',
     'overlay005/ov5_021F61BC.c',
-    'overlay005/ov5_021F6454.c',
+    'overlay005/scrcmd_special_areas.c',
     'overlay005/scrcmd_move_tutor.c',
     'overlay005/ov5_021F8370.c',
     'overlay005/ov5_021F8560.c',
