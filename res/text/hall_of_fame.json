@@ -2,83 +2,83 @@
   "key": 1471,
   "messages": [
     {
-      "id": "pl_msg_00000351_00000",
+      "id": "HallOfFame_Text_Welcome",
       "en_US": [
         "Welcome to the\n",
         "Hall of Fame!"
       ]
     },
     {
-      "id": "pl_msg_00000351_00001",
+      "id": "HallOfFame_Text_PokemonInfoMale",
       "en_US": "{STRVAR_1 0, 0, 0} ♂ Lv.{STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000351_00002",
+      "id": "HallOfFame_Text_PokemonInfoFemale",
       "en_US": "{STRVAR_1 0, 0, 0} ♀ Lv.{STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000351_00003",
+      "id": "HallOfFame_Text_PokemonInfoGenderless",
       "en_US": "{STRVAR_1 0, 0, 0} Lv.{STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000351_00004",
+      "id": "HallOfFame_Text_OT",
       "en_US": "OT/{STRVAR_1 3, 0, 0}"
     },
     {
-      "id": "pl_msg_00000351_00005",
+      "id": "HallOfFame_Text_MetAt",
       "en_US": [
         "Met at\n",
         "{STRVAR_1 4, 0, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000351_00006",
+      "id": "HallOfFame_Text_HatchedAt",
       "en_US": [
         "Hatched at\n",
         "{STRVAR_1 4, 0, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000351_00007",
+      "id": "HallOfFame_Text_ObtainedInLinkTrade",
       "en_US": [
         "Obtained in a link\n",
         "trade."
       ]
     },
     {
-      "id": "pl_msg_00000351_00008",
+      "id": "HallOfFame_Text_ArrivedFromKanto",
       "en_US": [
         "Arrived from the Kanto\n",
         "region."
       ]
     },
     {
-      "id": "pl_msg_00000351_00009",
+      "id": "HallOfFame_Text_ArrivedFromHoenn",
       "en_US": [
         "Arrived from the Hoenn\n",
         "region."
       ]
     },
     {
-      "id": "pl_msg_00000351_00010",
+      "id": "HallOfFame_Text_ArrivedFromDistantLand",
       "en_US": [
         "Arrived from a distant\n",
         "land."
       ]
     },
     {
-      "id": "pl_msg_00000351_00011",
+      "id": "HallOfFame_Text_ObtainedInFatefulEncounter",
       "en_US": [
         "Obtained in a fateful\n",
         "encounter."
       ]
     },
     {
-      "id": "pl_msg_00000351_00012",
+      "id": "HallOfFame_Text_LeagueChampionCongratulations",
       "en_US": "League Champion! Congratulations!"
     },
     {
-      "id": "pl_msg_00000351_00013",
+      "id": "HallOfFame_Text_PlayerInfo",
       "en_US": "{STRVAR_1 3, 0, 0} ID: {STRVAR_1 54, 1, 0} Time: {STRVAR_1 52, 2, 0}:{STRVAR_1 51, 3, 0}"
     }
   ]

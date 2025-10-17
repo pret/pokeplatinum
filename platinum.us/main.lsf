@@ -136,7 +136,7 @@ Static main
 	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_global_trade.c.o
 	Object main.nef.p/src_mystery_gift.c.o
-	Object main.nef.p/src_hall_of_fame.c.o
+	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
 	Object main.nef.p/src_unk_0202E840.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
@@ -272,7 +272,7 @@ Static main
 	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
-	Object main.nef.p/src_boat_cutscene_boat_cutscene.c.o
+	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_unk_0206CCB0.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
@@ -1361,13 +1361,13 @@ Overlay overlay85
 	Object main.nef.p/src_overlay085_ov85_02241440.c.o
 }
 
-Overlay overlay86
+Overlay hall_of_fame
 {
 	After battle_anim
-	Object main.nef.p/src_overlay086_ov86_0223B140.c.o
+	Object main.nef.p/src_cutscenes_hall_of_fame.c.o
 }
 
-Overlay overlay87
+Overlay pc_hall_of_fame
 {
 	After main
 	Object main.nef.p/src_applications_pc_hall_of_fame_manager.c.o
@@ -1405,11 +1405,11 @@ Overlay overlay92
 	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
 }
 
-Overlay boat_cutscene
+Overlay cutscenes
 {
 	After main
-	Object main.nef.p/src_boat_cutscene_canalave_ship.c.o
-	Object main.nef.p/src_boat_cutscene_snowpoint_ship.c.o
+	Object main.nef.p/src_cutscenes_boat_cutscene_canalave_ship.c.o
+	Object main.nef.p/src_cutscenes_boat_cutscene_snowpoint_ship.c.o
 }
 
 Overlay overlay94

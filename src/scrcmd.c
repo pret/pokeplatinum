@@ -51,7 +51,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "boat_cutscene/boat_cutscene.h"
+#include "cutscenes/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
@@ -113,7 +113,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "great_marsh_lookout.h"
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "inlines.h"
 #include "item_use_pokemon.h"
@@ -4192,7 +4192,7 @@ static BOOL ScrCmd_0B1(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E244(ctx->fieldSystem);
+    *v0 = FieldTask_OpenPCHallOfFameScreen(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

@@ -1,4 +1,4 @@
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 
 #include <nitro.h>
 #include <string.h>

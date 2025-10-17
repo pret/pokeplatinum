@@ -1,4 +1,4 @@
-#include "boat_cutscene/boat_cutscene.h"
+#include "cutscenes/boat_cutscene.h"
 
 #include <nitro.h>
 #include <string.h>
