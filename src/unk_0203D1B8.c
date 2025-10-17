@@ -14,7 +14,6 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
@@ -42,6 +41,7 @@
 #include "applications/pc_hall_of_fame/manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/main.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
@@ -59,7 +59,6 @@
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay072/ov72_0223D7A0.h"
-#include "overlay080/ov80_021D0D80.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
@@ -125,7 +124,6 @@
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
@@ -153,7 +151,7 @@ FS_EXTERN_OVERLAY(trainer_card_screen);
 FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
-FS_EXTERN_OVERLAY(overlay80);
+FS_EXTERN_OVERLAY(town_map);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(overlay85);
@@ -706,33 +704,31 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
+void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx)
 {
-    FS_EXTERN_OVERLAY(overlay80);
+    FS_EXTERN_OVERLAY(town_map);
 
-    const ApplicationManagerTemplate v0 = {
-        ov80_021D0D80,
-        ov80_021D0DD8,
-        ov80_021D0E50,
-        FS_OVERLAY_ID(overlay80)
+    const ApplicationManagerTemplate townMapApp = {
+        TownMap_Init,
+        TownMap_Main,
+        TownMap_Exit,
+        FS_OVERLAY_ID(town_map)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &townMapApp, townMapCtx);
 }
 
-void *sub_0203D8AC(FieldSystem *fieldSystem)
+void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203D8AC *v0;
-    TrainerInfo *v1;
-    int v2 = 0, v3 = 0;
+    TownMapContext *townMapCtx;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    townMapCtx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(fieldSystem, v0, 0);
-    sub_0203D884(fieldSystem, v0);
+    TownMapContext_Init(fieldSystem, townMapCtx, TOWN_MAP_MODE_ITEM);
+    FieldSystem_OpenTownMap(fieldSystem, townMapCtx);
 
-    return v0;
+    return townMapCtx;
 }
 
 static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
