@@ -4156,7 +4156,7 @@ static int ov65_022321F4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     } else {
         if (param0->unk_3BC == 0) {
             if (CommTiming_IsSyncState(13)) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 CommTiming_StartSync(14);
 
                 param0->unk_3E4 = 0;

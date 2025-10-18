@@ -245,20 +245,20 @@ _0384:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F2 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03D3
-    GoToIfEq VAR_RESULT, 3, _03DD
-    GoToIfEq VAR_RESULT, 4, _03EA
+    StartBattleClient VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _03D3
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _03DD
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_4, _03EA
     GoTo _046A
     End
 
 _03D3:
-    ScrCmd_150
+    EndCommunication
     GoTo _0305
     End
 
 _03DD:
-    ScrCmd_150
+    EndCommunication
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -266,7 +266,7 @@ _03DD:
     End
 
 _03EA:
-    ScrCmd_150
+    EndCommunication
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -278,20 +278,20 @@ _03F7:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F3 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0446
-    GoToIfEq VAR_RESULT, 3, _0450
-    GoToIfEq VAR_RESULT, 4, _045D
+    StartBattleServer VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0446
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _0450
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_4, _045D
     GoTo _046A
     End
 
 _0446:
-    ScrCmd_150
+    EndCommunication
     GoTo _0305
     End
 
 _0450:
-    ScrCmd_150
+    EndCommunication
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -299,7 +299,7 @@ _0450:
     End
 
 _045D:
-    ScrCmd_150
+    EndCommunication
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -326,13 +326,13 @@ _046A:
     WaitMovement
     Call _0513
     GoToIfEq VAR_0x8004, 4, _04F3
-    ScrCmd_207 VAR_RESULT
+    GetCurNetID VAR_RESULT
     AddVar VAR_RESULT, 7
     ScrCmd_203 0x14C, 0, VAR_RESULT, 11, 0
     End
 
 _04F3:
-    ScrCmd_207 VAR_RESULT
+    GetCurNetID VAR_RESULT
     AddVar VAR_RESULT, 6
     ScrCmd_203 0x14D, 0, VAR_RESULT, 11, 0
     End

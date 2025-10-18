@@ -38,10 +38,13 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'battle_tower_functions': { 'type': 'enum', 'tag': 'BattleTowerFunction' },
+    'battle_tower_modes': { 'type': 'enum', 'tag': 'BattleTowerMode' },
     'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },

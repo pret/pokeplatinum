@@ -116,13 +116,13 @@ _01B8:
 
 _01E5:
     Message 8
-    ScrCmd_1FF 9, 3, 0, 0
+    PrintBattleFrontierBanlist 9, 3, 0, 0
     GoTo _0145
     End
 
 _01F8:
     Message 8
-    ScrCmd_1FF 9, 2, 0, 0
+    PrintBattleFrontierBanlist 9, 2, 0, 0
     GoTo _0145
     End
 
@@ -183,9 +183,9 @@ _0335:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _02F1
     CloseMessage
-    ScrCmd_0F2 32, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0377
-    GoToIfEq VAR_RESULT, 3, _037F
+    StartBattleClient 32, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0377
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _037F
     GoTo _03DD
     End
 
@@ -194,7 +194,7 @@ _0377:
     End
 
 _037F:
-    ScrCmd_150
+    EndCommunication
     GoTo _02F1
     End
 
@@ -203,9 +203,9 @@ _0389:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _02F1
     CloseMessage
-    ScrCmd_0F3 32, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03CB
-    GoToIfEq VAR_RESULT, 3, _03D3
+    StartBattleServer 32, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _03CB
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _03D3
     GoTo _03DD
     End
 
@@ -214,12 +214,12 @@ _03CB:
     End
 
 _03D3:
-    ScrCmd_150
+    EndCommunication
     GoTo _02F1
     End
 
 _03DD:
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 154
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_0x8000
     GetPartyMonSpecies VAR_MAP_LOCAL_5, VAR_0x8001
@@ -228,7 +228,7 @@ _03DD:
     GoToIfEq VAR_0x8008, 1, _0450
     GoToIfEq VAR_0x8008, 2, _0466
     GoToIfEq VAR_0x8008, 3, _047C
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 156
     Message 45
     CallIfEq VAR_UNK_0x40BE, 2, _0448
@@ -267,9 +267,9 @@ _0497:
     End
 
 _049F:
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 157
-    ScrCmd_150
+    EndCommunication
     Return
 
 _04A9:
@@ -298,7 +298,7 @@ _04DC:
     End
 
 _0545:
-    ScrCmd_150
+    EndCommunication
     Return
 
 _0549:
@@ -322,7 +322,7 @@ _0564:
 _057F:
     ScrCmd_02E 32
     WaitTime 10, VAR_RESULT
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 155
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0604
