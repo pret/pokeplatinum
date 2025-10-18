@@ -956,11 +956,11 @@ Overlay poketch_pedometer
 	Object main.nef.p/src_applications_poketch_pedometer_graphics.c.o
 }
 
-Overlay overlay37
+Overlay poketch_backlight_toggle
 {
 	After overlay25
-	Object main.nef.p/src_overlay037_ov37_022561C0.c.o
-	Object main.nef.p/src_overlay037_ov37_022563D4.c.o
+	Object main.nef.p/src_applications_poketch_backlight_toggle_main.c.o
+	Object main.nef.p/src_applications_poketch_backlight_toggle_graphics.c.o
 }
 
 Overlay overlay38
