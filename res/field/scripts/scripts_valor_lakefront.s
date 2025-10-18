@@ -360,7 +360,7 @@ _053A:
     SetFlag FLAG_UNK_0x00B7
     SetFlag FLAG_UNK_0x01A9
     ClearFlag FLAG_UNK_0x020F
-    SetVar VAR_UNK_0x407C, 6
+    SetVar VAR_PASTORIA_STATE, 6
     ReleaseAll
     End
 
