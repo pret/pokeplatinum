@@ -46,7 +46,7 @@ static BOOL (*const Unk_ov12_02239D6C[])(SPLEmitter *, UnkStruct_ov12_02225640 *
 
 static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[])
 {
-    ov12_0222325C(param0->unk_00, param1, 5);
+    BattleAnimSystem_GetExtraParams(param0->unk_00, param1, 5);
 }
 
 static BOOL ov12_02225110(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)

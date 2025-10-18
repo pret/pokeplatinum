@@ -74,7 +74,7 @@ void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2);
 void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2);
 void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos);
 void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3);
-void ov12_02235760(int param0, VecFx32 *param1);
+void BattleAnimUtil_GetUpVectorForBattler(int param0, VecFx32 *param1);
 void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *system, int spriteAlpha, int bgAlpha);
 void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *system, int planes, int spriteAlpha, int otherAlpha);
 void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *system, int alphaBase, int alphaEffect);

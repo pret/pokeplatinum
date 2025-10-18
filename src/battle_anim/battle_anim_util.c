@@ -27,7 +27,7 @@ static const VecFx32 Unk_ov12_0223A218 = {
     -0x1000
 };
 
-static const VecFx32 Unk_ov12_0223A224 = {
+static const VecFx32 sUnitDown = {
     0x0,
     -FX32_ONE,
     0x0
@@ -618,12 +618,15 @@ void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)
     BattleAnimUtil_GetBattlerTypeWorldPos_Normal(param0, param1, param2, param3);
 }
 
-void ov12_02235760(int param0, VecFx32 *param1)
+// Gets the "up" vector for a given battler to apply to a particle system camera.
+// This is so animations can be created only from the perspective of the player side
+// and still look correct when used on the enemy side.
+void BattleAnimUtil_GetUpVectorForBattler(int battler, VecFx32 *up)
 {
-    if (param0 == 0) {
-        ParticleSystem_GetDefaultCameraUp(param1);
+    if (battler == BATTLER_PLAYER_1) {
+        ParticleSystem_GetDefaultCameraUp(up);
     } else {
-        *param1 = Unk_ov12_0223A224;
+        *up = sUnitDown;
     }
 }
 

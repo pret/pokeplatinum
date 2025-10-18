@@ -176,7 +176,7 @@ static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     case 3: {
         int v1[3 + 1];
 
-        ov12_0222325C(param1->unk_00, v1, 3 + 1);
+        BattleAnimSystem_GetExtraParams(param1->unk_00, v1, 3 + 1);
         param1->unk_08 = ov12_02224FC4(param1);
         VEC_Set(&v0, v1[1], v1[2], v1[3]);
 
@@ -675,7 +675,7 @@ void ov12_02224F14(SPLEmitter *param0)
     v1->unk_00 = v0;
     v1->unk_04 = BattleAnimSystem_GetCurrentParticleSystem(v1->unk_00);
 
-    ov12_0222325C(v1->unk_00, v1->unk_0C, 6);
+    BattleAnimSystem_GetExtraParams(v1->unk_00, v1->unk_0C, 6);
 
     {
         switch (v1->unk_0C[1]) {
@@ -744,9 +744,9 @@ static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *
 
     for (v0 = 0; v0 < 6; v0++) {
         if (v0 == BattleAnimUtil_GetBattlerType(param0->unk_00, param1)) {
-            ov12_0222325C(param0->unk_00, v2, 3 + 1);
+            BattleAnimSystem_GetExtraParams(param0->unk_00, v2, 3 + 1);
         } else {
-            ov12_0222325C(param0->unk_00, v3, 3 + 1);
+            BattleAnimSystem_GetExtraParams(param0->unk_00, v3, 3 + 1);
         }
     }
 
@@ -771,7 +771,7 @@ static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1)
     int v0[3 + 1];
     VecFx32 v1 = { 0, 0, 0 };
 
-    ov12_0222325C(param0->unk_00, v0, 3 + 1);
+    BattleAnimSystem_GetExtraParams(param0->unk_00, v0, 3 + 1);
     param0->unk_08 = ov12_02224FC4(param0);
     VEC_Set(&v1, v0[1], v0[2], v0[3]);
 
