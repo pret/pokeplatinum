@@ -42,7 +42,7 @@ FS_EXTERN_OVERLAY(overlay38);
 FS_EXTERN_OVERLAY(overlay39);
 FS_EXTERN_OVERLAY(poketch_daycare_checker);
 FS_EXTERN_OVERLAY(poketch_roulette);
-FS_EXTERN_OVERLAY(overlay42);
+FS_EXTERN_OVERLAY(poketch_coin_toss);
 FS_EXTERN_OVERLAY(poketch_move_tester);
 FS_EXTERN_OVERLAY(overlay44);
 FS_EXTERN_OVERLAY(poketch_alarm_clock);
@@ -97,7 +97,7 @@ static const struct {
     { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(poketch_pedometer) },
     { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(poketch_daycare_checker) },
     { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(poketch_roulette) },
-    { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
+    { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(poketch_coin_toss) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
     { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(overlay44) },
     { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
