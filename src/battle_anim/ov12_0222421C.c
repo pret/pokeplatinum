@@ -1,602 +1,587 @@
 #include "battle_anim/ov12_0222421C.h"
 
+#include "nitro/fx/fx.h"
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
+#include "constants/battle/battle_anim.h"
+
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
+#include "battle_anim/ov12_0222421C.h"
 #include "battle_anim/ov12_02225104.h"
 #include "battle_anim/ov12_02225640.h"
-#include "battle_anim/struct_ov12_02225640.h"
+#include "global/utility.h"
 
+#include "battle_script_battlers.h"
+#include "camera.h"
+#include "fx_util.h"
 #include "heap.h"
 #include "inlines.h"
 #include "particle_system.h"
 #include "spl.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-} UnkStruct_ov12_022396AC;
+static void GenericEmitterCallback_ApplyParams(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_ApplyPosition(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_ApplyAxis(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void ov12_02224E74(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void ov12_02224EA8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void ov12_02224EB8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_OffsetPositionForBattler(GenericEmitterCallbackData *param0, int param1, VecFx32 *param2);
+static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *param0, VecFx32 *param1);
 
-static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2);
-static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1);
-
-static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void GenericEmitterCallback_ApplyParams(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    if (param1->unk_0C[2] != 0) {
-        ov12_022242E0(param0, param1);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_POSITION] != EMITTER_POS_NONE) {
+        GenericEmitterCallback_ApplyPosition(emitter, data);
     }
 
-    if (param1->unk_0C[3] != 0) {
-        ov12_02224614(param0, param1);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_AXIS] != EMITTER_AXIS_NONE) {
+        GenericEmitterCallback_ApplyAxis(emitter, data);
     }
 
-    if (param1->unk_0C[4] != 0x0) {
-        ov12_02224E74(param0, param1);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_4] != 0x0) {
+        ov12_02224E74(emitter, data);
     }
 
-    ov12_02224EA8(param0, param1);
+    ov12_02224EA8(emitter, data);
 
-    if (param1->unk_0C[0] != 0) {
-        ov12_02224EB8(param0, param1);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_PRIORITY] != 0) {
+        ov12_02224EB8(emitter, data);
     }
 }
 
-static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
+static void GenericEmitterCallback_GetDefenderSidePosition(SPLEmitter *emitter, GenericEmitterCallbackData *data, VecFx32 *pos)
 {
-    BattleAnimSystem *v0;
-    ParticleSystem *v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    BattleAnimSystem *system = data->battleAnimSys;
+    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
+    enum CameraProjection proj = ParticleSystem_GetCameraProjection(ps);
+    int attacker = BattleAnimSystem_GetDefender(system);
+    enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, attacker);
 
-    v0 = param1->unk_00;
-
-    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
-    v2 = ParticleSystem_GetCameraProjection(v1);
-    v4 = BattleAnimSystem_GetDefender(v0);
-    v5 = BattleAnimUtil_GetBattlerSide(v0, v4);
-
-    if (v5 == 0x3) {
-        v3 = 0;
+    int battlerType;
+    if (attackerSide == BTLSCR_PLAYER) {
+        battlerType = BATTLER_TYPE_SOLO_PLAYER;
     } else {
-        v3 = 1;
+        battlerType = BATTLER_TYPE_SOLO_ENEMY;
     }
 
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v3, param2, BattleAnimSystem_IsContest(v0), v2);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, BattleAnimSystem_IsContest(system), proj);
 }
 
-static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
+static void GenericEmitterCallback_GetAttackerSidePosition(SPLEmitter *emitter, GenericEmitterCallbackData *data, VecFx32 *pos)
 {
-    BattleAnimSystem *v0;
-    ParticleSystem *v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
+    BattleAnimSystem *system = data->battleAnimSys;
+    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
+    enum CameraProjection proj = ParticleSystem_GetCameraProjection(ps);
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, attacker);
 
-    v0 = param1->unk_00;
-    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
-    v3 = ParticleSystem_GetCameraProjection(v1);
-    v5 = BattleAnimSystem_GetAttacker(v0);
-    v6 = BattleAnimUtil_GetBattlerSide(v0, v5);
-
-    if (v6 == 0x3) {
-        v4 = 0;
+    int battlerType;
+    if (attackerSide == BTLSCR_PLAYER) {
+        battlerType = BATTLER_TYPE_SOLO_PLAYER;
     } else {
-        v4 = 1;
+        battlerType = BATTLER_TYPE_SOLO_ENEMY;
     }
 
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v4, param2, BattleAnimSystem_IsContest(v0), v3);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, BattleAnimSystem_IsContest(system), proj);
 }
 
-static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void GenericEmitterCallback_ApplyPosition(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    VecFx32 v0;
+    VecFx32 pos;
 
-    switch (param1->unk_0C[2]) {
-    case 0:
+    switch (data->params[GENERIC_EMITTER_CALLBACK_PARAM_POSITION]) {
+    case EMITTER_POS_NONE:
         break;
-    case 1:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_NORMAL_START:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 2:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_NORMAL_END:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 6:
-        ov12_02235538(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_BEAM1_START:
+        BattleAnimUtil_GetBattlerWorldPos_Beam1(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 7:
-        ov12_02235538(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_BEAM1_END:
+        BattleAnimUtil_GetBattlerWorldPos_Beam1(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 10:
-        ov12_02235568(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_BEAM2_START:
+        BattleAnimUtil_GetBattlerWorldPos_Beam2(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 11:
-        ov12_02235568(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_BEAM2_END:
+        BattleAnimUtil_GetBattlerWorldPos_Beam2(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 14:
-        ov12_02235598(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_BEAM3_START:
+        BattleAnimUtil_GetBattlerWorldPos_Beam3(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 15:
-        ov12_02235598(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_BEAM3_END:
+        BattleAnimUtil_GetBattlerWorldPos_Beam3(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 16:
-        ov12_022355C8(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_HYPNOSIS_START:
+        BattleAnimUtil_GetBattlerWorldPos_Hypnosis(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 17:
-        ov12_022355C8(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_HYPNOSIS_END:
+        BattleAnimUtil_GetBattlerWorldPos_Hypnosis(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 18:
-        ov12_022355F8(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_TRI_ATTACK_START:
+        BattleAnimUtil_GetBattlerWorldPos_TriAttack(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 19:
-        ov12_022355F8(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_TRI_ATTACK_END:
+        BattleAnimUtil_GetBattlerWorldPos_TriAttack(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 20:
-        ov12_02235628(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_HYDRO_CANNON_START:
+        BattleAnimUtil_GetBattlerWorldPos_HydroCannon(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 21:
-        ov12_02235628(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_HYDRO_CANNON_END:
+        BattleAnimUtil_GetBattlerWorldPos_HydroCannon(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 22:
-        ov12_02235658(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_HYPER_VOICE_START:
+        BattleAnimUtil_GetBattlerWorldPos_HyperVoice(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 23:
-        ov12_02235658(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_HYPER_VOICE_END:
+        BattleAnimUtil_GetBattlerWorldPos_HyperVoice(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 24:
-        ov12_02235688(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_GRASS_WHISTLE_START:
+        BattleAnimUtil_GetBattlerWorldPos_GrassWhistle(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 25:
-        ov12_02235688(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_GRASS_WHISTLE_END:
+        BattleAnimUtil_GetBattlerWorldPos_GrassWhistle(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 26:
-        ov12_022356B8(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_DRAGON_PULSE_START:
+        BattleAnimUtil_GetBattlerWorldPos_DragonPulse(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 27:
-        ov12_022356B8(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_DRAGON_PULSE_END:
+        BattleAnimUtil_GetBattlerWorldPos_DragonPulse(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 8:
-        ov12_02235718(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_HYDRO_PUMP_START:
+        BattleAnimUtil_GetBattlerWorldPos_HydroPump(data->battleAnimSys, data->startBattler, &pos);
         break;
-    case 9:
-        ov12_02235718(param1->unk_00, param1->unk_28, &v0);
+    case EMITTER_POS_HYDRO_PUMP_END:
+        BattleAnimUtil_GetBattlerWorldPos_HydroPump(data->battleAnimSys, data->endBattler, &pos);
         break;
-    case 3: {
-        int v1[3 + 1];
+    case EMITTER_POS_EXPLICIT: {
+        int params[EMITTER_POS_EXPLICIT_PARAM_COUNT];
 
-        BattleAnimSystem_GetExtraParams(param1->unk_00, v1, 3 + 1);
-        param1->unk_08 = ov12_02224FC4(param1);
-        VEC_Set(&v0, v1[1], v1[2], v1[3]);
+        BattleAnimSystem_GetExtraParams(data->battleAnimSys, params, EMITTER_POS_EXPLICIT_PARAM_COUNT);
+        data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
+        VEC_Set(
+            &pos,
+            params[EMITTER_POS_EXPLICIT_PARAM_X],
+            params[EMITTER_POS_EXPLICIT_PARAM_Y],
+            params[EMITTER_POS_EXPLICIT_PARAM_Z]);
 
-        if (v1[0] == 1) {
-            param1->unk_08 = 1;
+        if (params[EMITTER_POS_EXPLICIT_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+            data->dir = 1;
         }
 
-        v0.x *= param1->unk_08;
-        v0.y *= param1->unk_08;
+        pos.x *= data->dir;
+        pos.y *= data->dir;
     } break;
-    case 4:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v0);
-        ov12_02225094(param1, &v0);
+    case EMITTER_POS_NORMAL_OFFSET_START:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &pos);
+        GenericEmitterCallback_OffsetPosition(data, &pos);
         break;
-    case 5:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v0);
-        ov12_02225094(param1, &v0);
+    case EMITTER_POS_NORMAL_OFFSET_END:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &pos);
+        GenericEmitterCallback_OffsetPosition(data, &pos);
         break;
-    case 100:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v0);
-        ov12_02225008(param1, param1->unk_24, &v0);
+    case EMITTER_POS_NORMAL_OFFSET_EX_START:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &pos);
+        GenericEmitterCallback_OffsetPositionForBattler(data, data->startBattler, &pos);
         break;
-    case 101:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v0);
-        ov12_02225008(param1, param1->unk_28, &v0);
+    case EMITTER_POS_NORMAL_OFFSET_EX_END:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &pos);
+        GenericEmitterCallback_OffsetPositionForBattler(data, data->endBattler, &pos);
         break;
-    case 12:
-        ov12_022242A0(param0, param1, &v0);
-        ov12_02225094(param1, &v0);
+    case EMITTER_POS_ATTACKER_SIDE:
+        GenericEmitterCallback_GetAttackerSidePosition(emitter, data, &pos);
+        GenericEmitterCallback_OffsetPosition(data, &pos);
         break;
-    case 13:
-        ov12_02224260(param0, param1, &v0);
-        ov12_02225094(param1, &v0);
+    case EMITTER_POS_DEFENDER_SIDE:
+        GenericEmitterCallback_GetDefenderSidePosition(emitter, data, &pos);
+        GenericEmitterCallback_OffsetPosition(data, &pos);
         break;
-    case 28:
-        VEC_Set(&v0, 11488, 0, 0);
+    case EMITTER_POS_SPECIAL_CONTEST_1:
+        VEC_Set(&pos, FX32_CONST(2.8047), 0, 0);
         break;
-    case 33:
-        VEC_Set(&v0, -5000, -6000, 0);
+    case EMITTER_POS_SPECIAL_CONTEST_2:
+        VEC_Set(&pos, FX32_CONST(-1.2207), FX32_CONST(-1.4648), 0);
         break;
-    case 34:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v0);
+    case EMITTER_POS_SPECIAL_DESTINY_BOND:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &pos);
         break;
 
-    case 31: {
-        int v2;
-        int v3[][2] = {
-            { -5760, -4352 },
-            { 9488, -1984 },
-            { -11760, 3280 },
-            { 13768, -1464 },
-            { -5376, -2808 },
-            { 6984, 2056 }
+    case EMITTER_POS_SPECIAL_BUBBLE: {
+        int xyPos[BATTLER_TYPE_MAX][2] = {
+            [BATTLER_TYPE_SOLO_PLAYER] = { FX32_CONST(-1.4063), FX32_CONST(-1.0625) },
+            [BATTLER_TYPE_SOLO_ENEMY] = { FX32_CONST(2.3164), FX32_CONST(-0.4844) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { FX32_CONST(-2.871), FX32_CONST(0.8008) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { FX32_CONST(3.3613), FX32_CONST(-0.3574) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { FX32_CONST(-1.3125), FX32_CONST(-0.6855) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { FX32_CONST(1.7051), FX32_CONST(0.502) }
         };
 
-        v2 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
-        VEC_Set(&v0, v3[v2][0], v3[v2][1], 0);
+        int battlerType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
+        VEC_Set(&pos, xyPos[battlerType][0], xyPos[battlerType][1], 0);
     } break;
-    case 30: {
-        int v4;
-        int v5[][2] = {
-            { -11020, -3488 },
-            { 10880, 7656 },
-            { -15060, -3160 },
-            { 15000, 7240 },
-            { -8224, -4608 },
-            { 8424, 8896 },
-            { 15000, -2752 },
+    case EMITTER_POS_SPECIAL_BATON_PASS: {
+        int xyPos[BATTLER_TYPE_MAX + 1][2] = {
+            [BATTLER_TYPE_SOLO_PLAYER] = { FX32_CONST(-2.6904), FX32_CONST(-0.8516) },
+            [BATTLER_TYPE_SOLO_ENEMY] = { FX32_CONST(2.6562), FX32_CONST(1.8691) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { FX32_CONST(-3.6768), FX32_CONST(-0.7715) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { FX32_CONST(3.662), FX32_CONST(1.7676) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { FX32_CONST(-2.0078), FX32_CONST(-1.125) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { FX32_CONST(2.0566), FX32_CONST(2.1719) },
+            [BATTLER_TYPE_MAX] = { FX32_CONST(3.662), FX32_CONST(-0.6719) }, // Contest
         };
 
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            v4 = 6;
+        int battlerType;
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            battlerType = BATTLER_TYPE_MAX;
         } else {
-            v4 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
+            battlerType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
         }
 
-        VEC_Set(&v0, v5[v4][0], v5[v4][1], 0);
+        VEC_Set(&pos, xyPos[battlerType][0], xyPos[battlerType][1], 0);
     } break;
-    case 32: {
-        int v6;
-        int v7[][2] = {
-            { -4608, -4480 },
-            { 7624, 2248 },
-            { -9024, -3018 },
-            { 13056, 2816 },
-            { -2432, -4800 },
-            { 6208, 3840 },
-            { 7072, -3648 }
+    case EMITTER_POS_SPECIAL_DRAGON_BREATH: {
+        int xyPos[BATTLER_TYPE_MAX + 1][2] = {
+            [BATTLER_TYPE_SOLO_PLAYER] = { FX32_CONST(-1.125), FX32_CONST(-1.0938) },
+            [BATTLER_TYPE_SOLO_ENEMY] = { FX32_CONST(1.8613), FX32_CONST(0.5488) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { FX32_CONST(-2.2031), FX32_CONST(-0.7368) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { FX32_CONST(3.1875), FX32_CONST(0.6875) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { FX32_CONST(-0.5938), FX32_CONST(-1.1719) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { FX32_CONST(1.5156), FX32_CONST(0.9375) },
+            [BATTLER_TYPE_MAX] = { FX32_CONST(1.7266), FX32_CONST(-0.8906) }
         };
 
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            v6 = 6;
+        int battlerType;
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            battlerType = BATTLER_TYPE_MAX;
         } else {
-            v6 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
+            battlerType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
         }
 
-        VEC_Set(&v0, v7[v6][0], v7[v6][1], 0);
+        VEC_Set(&pos, xyPos[battlerType][0], xyPos[battlerType][1], 0);
     } break;
     }
 
-    param1->unk_2C = v0;
+    data->position = pos;
 
-    SPLEmitter_SetPosX(param0, v0.x);
-    SPLEmitter_SetPosY(param0, v0.y);
-    SPLEmitter_SetPosZ(param0, v0.z);
+    SPLEmitter_SetPosX(emitter, pos.x);
+    SPLEmitter_SetPosY(emitter, pos.y);
+    SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-static const UnkStruct_ov12_022396AC Unk_ov12_022396AC[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_02238FEC[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_0223919C[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_022394FC[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_0223985C[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_0223934C[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_02239A0C[6][6];
-static const UnkStruct_ov12_022396AC Unk_ov12_02239BBC[6][6];
+//                                     [      from      ][       to       ]
+static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs2[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs3[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs4[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs5[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs6[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs7[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
+static const VecFx32 EmitterAxisConfigs8[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
 
-static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void GenericEmitterCallback_ApplyAxis(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0;
-    int v1;
-    VecFx16 v2;
+    VecFx16 axis;
 
-    v0 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
-    v1 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_28);
+    int st = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
+    int et = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->endBattler);
 
-    switch (param1->unk_0C[3]) {
-    case 0:
-        VEC_Fx16Set(&v2, 0, 0, 0);
+    switch (data->params[GENERIC_EMITTER_CALLBACK_PARAM_AXIS]) {
+    case EMITTER_AXIS_NONE:
+        VEC_Fx16Set(&axis, 0, 0, 0);
         break;
-    case 1:
-    case 2:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            if (param1->unk_0C[1] == 2) {
-                VEC_Fx16Set(&v2, -3336, +1840, 736);
+    case EMITTER_AXIS_START_TO_END_1A:
+    case EMITTER_AXIS_START_TO_END_1B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_TARGET_MODE] == EMITTER_TARGET_MODE_DEFENDER) {
+                VEC_Fx16Set(&axis, FX16_CONST(-0.8145), FX16_CONST(0.4492), FX16_CONST(0.1797));
             } else {
-                VEC_Fx16Set(&v2, +2336, -1440, 736);
+                VEC_Fx16Set(&axis, FX16_CONST(0.5703), FX16_CONST(-0.3516), FX16_CONST(0.1797));
             }
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
+            VEC_Fx16Set(
+                &axis,
+                EmitterAxisConfigs1[st][et].x,
+                EmitterAxisConfigs1[st][et].y,
+                EmitterAxisConfigs1[st][et].z / 2);
         }
         break;
-    case 4:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
+    case EMITTER_AXIS_START_TO_END_SIDE_1:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, -EmitterAxisConfigs1[st][et].x, EmitterAxisConfigs1[st][et].y, EmitterAxisConfigs1[st][et].z / 2);
         } else {
-            if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_28)) {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
-            } else if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[0][1].unk_00, Unk_ov12_022396AC[0][1].unk_04, Unk_ov12_022396AC[0][1].unk_08 / 2);
+            if (BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->startBattler) == BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->endBattler)) {
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[st][et].x,
+                    EmitterAxisConfigs1[st][et].y,
+                    EmitterAxisConfigs1[st][et].z / 2);
+            } else if (BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->startBattler) == BTLSCR_PLAYER) {
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].x,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].y,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].z / 2);
             } else {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[1][0].unk_00, Unk_ov12_022396AC[1][0].unk_04, Unk_ov12_022396AC[1][0].unk_08 / 2);
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].x,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].y,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].z / 2);
             }
         }
         break;
-    case 5:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
+    case EMITTER_AXIS_START_TO_END_SIDE_2:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, -EmitterAxisConfigs1[st][et].x, EmitterAxisConfigs1[st][et].y, EmitterAxisConfigs1[st][et].z / 2);
         } else {
-            if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_28)) {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
-            } else if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[0][1].unk_00, Unk_ov12_022396AC[0][1].unk_04, Unk_ov12_022396AC[0][1].unk_08 / 2);
+            if (BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->startBattler) == BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->endBattler)) {
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[st][et].x,
+                    EmitterAxisConfigs1[st][et].y,
+                    EmitterAxisConfigs1[st][et].z / 2);
+            } else if (BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->startBattler) == BTLSCR_PLAYER) {
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].x,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].y,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_PLAYER][BATTLER_TYPE_SOLO_ENEMY].z / 2);
             } else {
-                VEC_Fx16Set(&v2, Unk_ov12_022396AC[1][0].unk_00, Unk_ov12_022396AC[1][0].unk_04, Unk_ov12_022396AC[1][0].unk_08 / 2);
+                VEC_Fx16Set(
+                    &axis,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].x,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].y,
+                    EmitterAxisConfigs1[BATTLER_TYPE_SOLO_ENEMY][BATTLER_TYPE_SOLO_PLAYER].z / 2);
             }
         }
         break;
-    case 8:
-    case 9:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            if (param1->unk_0C[1] == 2) {
-                VEC_Fx16Set(&v2, -2336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_2A:
+    case EMITTER_AXIS_START_TO_END_2B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_TARGET_MODE] == EMITTER_TARGET_MODE_DEFENDER) {
+                VEC_Fx16Set(&axis, FX16_CONST(-0.5703), FX16_CONST(0.3516), FX16_CONST(0.1797));
             } else {
-                VEC_Fx16Set(&v2, +2336, -1440, 736);
+                VEC_Fx16Set(&axis, FX16_CONST(0.5703), FX16_CONST(-0.3516), FX16_CONST(0.1797));
             }
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_02238FEC[v0][v1].unk_00, Unk_ov12_02238FEC[v0][v1].unk_04, Unk_ov12_02238FEC[v0][v1].unk_08 / 2);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs2[st][et].x, EmitterAxisConfigs2[st][et].y, EmitterAxisConfigs2[st][et].z / 2);
         }
         break;
-    case 10:
-    case 11:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -2336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_3A:
+    case EMITTER_AXIS_START_TO_END_3B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-0.5703), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_0223919C[v0][v1].unk_00, Unk_ov12_02238FEC[v0][v1].unk_04, Unk_ov12_02238FEC[v0][v1].unk_08 / 2);
+            // Should probably be EmitterAxisConfigs3 for y and z as well
+            VEC_Fx16Set(&axis, EmitterAxisConfigs3[st][et].x, EmitterAxisConfigs2[st][et].y, EmitterAxisConfigs2[st][et].z / 2);
         }
         break;
-    case 12:
-    case 13:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -2936, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_4A:
+    case EMITTER_AXIS_START_TO_END_4B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-0.7168), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_022394FC[v0][v1].unk_00, Unk_ov12_022394FC[v0][v1].unk_04, Unk_ov12_022394FC[v0][v1].unk_08);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs4[st][et].x, EmitterAxisConfigs4[st][et].y, EmitterAxisConfigs4[st][et].z);
         }
         break;
-    case 14:
-    case 15:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -2336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_5A:
+    case EMITTER_AXIS_START_TO_END_5B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-0.5703), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_0223985C[v0][v1].unk_00, Unk_ov12_0223985C[v0][v1].unk_04, Unk_ov12_0223985C[v0][v1].unk_08);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs5[st][et].x, EmitterAxisConfigs5[st][et].y, EmitterAxisConfigs5[st][et].z);
         }
         break;
-    case 16:
-    case 17:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -2336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_6A:
+    case EMITTER_AXIS_START_TO_END_6B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-0.5703), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_0223934C[v0][v1].unk_00, Unk_ov12_0223934C[v0][v1].unk_04, Unk_ov12_0223934C[v0][v1].unk_08);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs6[st][et].x, EmitterAxisConfigs6[st][et].y, EmitterAxisConfigs6[st][et].z);
         }
         break;
-    case 18:
-    case 19:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -2336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_7A:
+    case EMITTER_AXIS_START_TO_END_7B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-0.5703), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_02239A0C[v0][v1].unk_00, Unk_ov12_02239A0C[v0][v1].unk_04, Unk_ov12_02239A0C[v0][v1].unk_08);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs7[st][et].x, EmitterAxisConfigs7[st][et].y, EmitterAxisConfigs7[st][et].z);
         }
         break;
-    case 20:
-    case 21:
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            VEC_Fx16Set(&v2, -4336, +1440, 736);
+    case EMITTER_AXIS_START_TO_END_8A:
+    case EMITTER_AXIS_START_TO_END_8B:
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            VEC_Fx16Set(&axis, FX16_CONST(-1.0586), FX16_CONST(0.3516), FX16_CONST(0.1797));
         } else {
-            VEC_Fx16Set(&v2, Unk_ov12_02239BBC[v0][v1].unk_00, Unk_ov12_02239BBC[v0][v1].unk_04, Unk_ov12_02239BBC[v0][v1].unk_08);
+            VEC_Fx16Set(&axis, EmitterAxisConfigs8[st][et].x, EmitterAxisConfigs8[st][et].y, EmitterAxisConfigs8[st][et].z);
         }
         break;
-    case 6:
-    case 7: {
-        int v3;
-        int v4[4];
-        int v5[4];
-        int v6[4];
-        int v7[4];
-        int v8[4];
-        int v9[4];
-        int v10[4];
-        int v11[7][4] = {
-            {
-                3176,
-                1960,
-                -296,
-                0,
-            },
-            {
-                3232,
-                1600,
-                1568,
-                0,
-            },
-            {
-                5984,
-                2496,
-                6208,
-                0,
-            },
-            {
-                2688,
-                1408,
-                1536,
-                0,
-            },
-            {
-                -896,
-                384,
-                800,
-                0,
-            },
-            {
-                2336,
-                1440,
-                736,
-                0,
-            },
-            {
-                1888,
-                1856,
-                1760,
-                0,
-            },
-        };
-        int v12[4] = {
-            -2336,
-            1440,
-            736,
-            0,
+    case EMITTER_AXIS_START_TO_END_SP_1:
+    case EMITTER_AXIS_START_TO_END_SP_2: {
+        int i;
+        int p_e[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p1_e1[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p1_p2[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p1_e2[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p2_p1[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p2_e1[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int p2_e2[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+        int axisConfigs[7][EMITTER_POS_EXPLICIT_PARAM_COUNT] = {
+            { FX32_CONST(0.7754), FX32_CONST(0.4785), FX32_CONST(-0.0723), BATTLE_PTCL_FLIP_ENABLE }, // p->e
+            { FX32_CONST(0.789), FX32_CONST(0.3906), FX32_CONST(0.3828), BATTLE_PTCL_FLIP_ENABLE }, // p1->e1
+            { FX32_CONST(1.461), FX32_CONST(0.6094), FX32_CONST(1.5156), BATTLE_PTCL_FLIP_ENABLE }, // p1->p2
+            { FX32_CONST(0.6562), FX32_CONST(0.3438), FX32_CONST(0.375), BATTLE_PTCL_FLIP_ENABLE }, // p1->e2
+            { FX32_CONST(-0.2188), FX32_CONST(0.0938), FX32_CONST(0.1953), BATTLE_PTCL_FLIP_ENABLE }, // p2->p1
+            { FX32_CONST(0.5703), FX32_CONST(0.3516), FX32_CONST(0.1797), BATTLE_PTCL_FLIP_ENABLE }, // p2->e1
+            { FX32_CONST(0.461), FX32_CONST(0.4531), FX32_CONST(0.4297), BATTLE_PTCL_FLIP_ENABLE }, // p2->e2
         };
 
-        for (v3 = 0; v3 < 4; v3++) {
-            v4[v3] = v11[0][v3];
-            v5[v3] = v11[1][v3];
-            v6[v3] = v11[2][v3];
-            v7[v3] = v11[3][v3];
-            v8[v3] = v11[4][v3];
-            v9[v3] = v11[5][v3];
-            v10[v3] = v11[6][v3];
+        int contestConfig[EMITTER_POS_EXPLICIT_PARAM_COUNT] = {
+            FX32_CONST(-0.5703),
+            FX32_CONST(0.3516),
+            FX32_CONST(0.1797),
+            BATTLE_PTCL_FLIP_ENABLE,
+        };
+
+        for (i = 0; i < EMITTER_POS_EXPLICIT_PARAM_COUNT; i++) {
+            p_e[i] = axisConfigs[0][i];
+            p1_e1[i] = axisConfigs[1][i];
+            p1_p2[i] = axisConfigs[2][i];
+            p1_e2[i] = axisConfigs[3][i];
+            p2_p1[i] = axisConfigs[4][i];
+            p2_e1[i] = axisConfigs[5][i];
+            p2_e2[i] = axisConfigs[6][i];
         }
 
-        if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
-            for (v3 = 0; v3 < 4; v3++) {
-                v4[v3] = v12[v3];
-                v5[v3] = v12[v3];
-                v6[v3] = v12[v3];
-                v7[v3] = v12[v3];
-                v8[v3] = v12[v3];
-                v9[v3] = v12[v3];
-                v10[v3] = v12[v3];
+        if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+            for (i = 0; i < EMITTER_POS_EXPLICIT_PARAM_COUNT; i++) {
+                p_e[i] = contestConfig[i];
+                p1_e1[i] = contestConfig[i];
+                p1_p2[i] = contestConfig[i];
+                p1_e2[i] = contestConfig[i];
+                p2_p1[i] = contestConfig[i];
+                p2_e1[i] = contestConfig[i];
+                p2_e2[i] = contestConfig[i];
             }
         }
 
-        switch (v0) {
-        case 0:
+        switch (st) {
+        case BATTLER_TYPE_SOLO_PLAYER:
         default:
-            VEC_Fx16Set(&v2, v4[0], v4[1], v4[2]);
+            VEC_Fx16Set(&axis, p_e[0], p_e[1], p_e[2]);
             break;
-        case 1:
-            if (v4[3] == 1) {
-                VEC_Fx16Set(&v2, v4[0], v4[1], v4[2]);
+        case BATTLER_TYPE_SOLO_ENEMY:
+            if (p_e[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                VEC_Fx16Set(&axis, p_e[0], p_e[1], p_e[2]);
             } else {
-                VEC_Fx16Set(&v2, -v4[0], -v4[1], -v4[2]);
+                VEC_Fx16Set(&axis, -p_e[0], -p_e[1], -p_e[2]);
             }
             break;
-        case 2:
-            if (v1 == 3) {
-                VEC_Fx16Set(&v2, v5[0], v5[1], v5[2]);
-            } else if (v1 == 5) {
-                VEC_Fx16Set(&v2, v7[0], v7[1], v7[2]);
+        case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+            if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                VEC_Fx16Set(&axis, p1_e1[0], p1_e1[1], p1_e1[2]);
+            } else if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                VEC_Fx16Set(&axis, p1_e2[0], p1_e2[1], p1_e2[2]);
             } else {
-                VEC_Fx16Set(&v2, v6[0], v6[1], v6[2]);
+                VEC_Fx16Set(&axis, p1_p2[0], p1_p2[1], p1_p2[2]);
             }
             break;
-        case 3:
-            if (v1 == 2) {
-                if (v5[3] == 1) {
-                    VEC_Fx16Set(&v2, v5[0], v5[1], v5[2]);
+        case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+            if (et == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                if (p1_e1[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, p1_e1[0], p1_e1[1], p1_e1[2]);
                 } else {
-                    VEC_Fx16Set(&v2, -v5[0], -v5[1], -v5[2]);
+                    VEC_Fx16Set(&axis, -p1_e1[0], -p1_e1[1], -p1_e1[2]);
                 }
-            } else if (v1 == 5) {
-                if (v6[3] == 1) {
-                    VEC_Fx16Set(&v2, -v8[0], -v8[1], -v8[2]);
+            } else if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                if (p1_p2[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, -p2_p1[0], -p2_p1[1], -p2_p1[2]);
                 } else {
-                    VEC_Fx16Set(&v2, v8[0], v8[1], v8[2]);
+                    VEC_Fx16Set(&axis, p2_p1[0], p2_p1[1], p2_p1[2]);
                 }
             } else {
-                if (v9[3] == 1) {
-                    VEC_Fx16Set(&v2, v9[0], v9[1], v9[2]);
+                if (p2_e1[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, p2_e1[0], p2_e1[1], p2_e1[2]);
                 } else {
-                    VEC_Fx16Set(&v2, -v9[0], -v9[1], -v9[2]);
+                    VEC_Fx16Set(&axis, -p2_e1[0], -p2_e1[1], -p2_e1[2]);
                 }
             }
             break;
-        case 4:
-            if (v1 == 3) {
-                VEC_Fx16Set(&v2, v9[0], v9[1], v9[2]);
-            } else if (v1 == 5) {
-                VEC_Fx16Set(&v2, v10[0], v10[1], v10[2]);
+        case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+            if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                VEC_Fx16Set(&axis, p2_e1[0], p2_e1[1], p2_e1[2]);
+            } else if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                VEC_Fx16Set(&axis, p2_e2[0], p2_e2[1], p2_e2[2]);
             } else {
-                VEC_Fx16Set(&v2, v8[0], v8[1], v8[2]);
+                VEC_Fx16Set(&axis, p2_p1[0], p2_p1[1], p2_p1[2]);
             }
             break;
-        case 5:
-            if (v1 == 3) {
-                if (v5[3] == 1) {
-                    VEC_Fx16Set(&v2, v8[0], v8[1], v8[2]);
+        case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+            if (et == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                if (p1_e1[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, p2_p1[0], p2_p1[1], p2_p1[2]);
                 } else {
-                    VEC_Fx16Set(&v2, -v8[0], -v8[1], -v8[2]);
+                    VEC_Fx16Set(&axis, -p2_p1[0], -p2_p1[1], -p2_p1[2]);
                 }
-            } else if (v1 == 2) {
-                if (v5[3] == 1) {
-                    VEC_Fx16Set(&v2, v7[0], v7[1], v7[2]);
+            } else if (et == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                if (p1_e1[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, p1_e2[0], p1_e2[1], p1_e2[2]);
                 } else {
-                    VEC_Fx16Set(&v2, -v7[0], -v7[1], -v7[2]);
+                    VEC_Fx16Set(&axis, -p1_e2[0], -p1_e2[1], -p1_e2[2]);
                 }
             } else {
-                if (v5[3] == 1) {
-                    VEC_Fx16Set(&v2, v10[0], v10[1], v10[2]);
+                if (p1_e1[3] == BATTLE_PTCL_FLIP_DISABLE) {
+                    VEC_Fx16Set(&axis, p2_e2[0], p2_e2[1], p2_e2[2]);
                 } else {
-                    VEC_Fx16Set(&v2, -v10[0], -v10[1], -v10[2]);
+                    VEC_Fx16Set(&axis, -p2_e2[0], -p2_e2[1], -p2_e2[2]);
                 }
             }
             break;
         }
     } break;
-    case 3:
-        VEC_Fx16Set(&v2, -800, 1200, 500);
+    case EMITTER_AXIS_FIXED_1:
+        VEC_Fx16Set(&axis, FX32_CONST(-0.1953), FX32_CONST(0.293), FX32_CONST(0.122));
         break;
-    case 22:
-        VEC_Fx16Set(&v2, -3410, -2644, 0);
+    case EMITTER_AXIS_FIXED_2:
+        VEC_Fx16Set(&axis, FX32_CONST(-0.8325), FX32_CONST(-0.6455), FX32_CONST(0.0));
         break;
-    case 25:
-        VEC_Fx16Set(&v2, -3440, 1952, 0);
+    case EMITTER_AXIS_FIXED_3:
+        VEC_Fx16Set(&axis, FX32_CONST(-0.8398), FX32_CONST(0.4766), FX32_CONST(0.0));
         break;
-    case 26:
-        if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
-            VEC_Fx16Set(&v2, 3776, 2112, 0);
+    case EMITTER_AXIS_FIXED_PER_SIDE:
+        if (BattleAnimUtil_GetBattlerSide(data->battleAnimSys, data->startBattler) == BTLSCR_PLAYER) {
+            VEC_Fx16Set(&axis, FX32_CONST(0.9219), FX32_CONST(0.5156), FX32_CONST(0.0));
         } else {
-            VEC_Fx16Set(&v2, -6000, -2200, 0);
+            VEC_Fx16Set(&axis, FX32_CONST(-1.4648), FX32_CONST(-0.537), FX32_CONST(0.0));
         }
         break;
-    case 24: {
-        int v13;
-        int v14[][2] = {
-            { 2864, 3752 },
-            { -2944, 1456 },
-            { 2840, -854 },
-            { -3760, -2536 },
-            { 2288, 2408 },
-            { -3312, -2776 },
+    case EMITTER_AXIS_FIXED_PER_TYPE: {
+        int startType;
+        int axisConfigs[BATTLER_TYPE_MAX][2] = {
+            [BATTLER_TYPE_SOLO_PLAYER] = { FX32_CONST(0.6992), FX32_CONST(0.916) },
+            [BATTLER_TYPE_SOLO_ENEMY] = { FX32_CONST(-0.7188), FX32_CONST(0.3555) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { FX32_CONST(0.6934), FX32_CONST(-0.2085) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { FX32_CONST(-0.918), FX32_CONST(-0.6191) },
+            [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { FX32_CONST(0.5586), FX32_CONST(0.588) },
+            [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { FX32_CONST(-0.8086), FX32_CONST(-0.6777) },
         };
 
-        v13 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
-        VEC_Fx16Set(&v2, v14[v13][0], v14[v13][1], 0);
+        startType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
+        VEC_Fx16Set(&axis, axisConfigs[startType][0], axisConfigs[startType][1], 0);
     } break;
     }
 
-    SPLEmitter_SetAxis(param0, &v2);
+    SPLEmitter_SetAxis(emitter, &axis);
 }
 
-static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224E74(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0;
     int v1;
@@ -607,7 +592,7 @@ static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     for (v1 = 0; v1 < v0; v1++) {
         v2 = ov12_022255EC(v1);
 
-        if (BattleAnimUtil_IsMaskSet(param1->unk_0C[4], v2) == 0) {
+        if (BattleAnimUtil_IsMaskSet(param1->params[4], v2) == 0) {
             continue;
         }
 
@@ -615,20 +600,20 @@ static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     }
 }
 
-static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224EA8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
-    ov12_0222584C(param1->unk_0C[5], param0, param1);
+    ov12_0222584C(param1->params[5], param0, param1);
 }
 
-static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224EB8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     fx32 v0;
     int v1;
     int v2;
     int v3 = 0;
 
-    v1 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
-    v2 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_28);
+    v1 = BattleAnimUtil_GetBattlerType(param1->battleAnimSys, param1->startBattler);
+    v2 = BattleAnimUtil_GetBattlerType(param1->battleAnimSys, param1->endBattler);
 
     switch (v2) {
     case 0:
@@ -643,7 +628,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    switch (param1->unk_0C[0]) {
+    switch (param1->params[0]) {
     case 0:
         break;
     case 1:
@@ -667,531 +652,589 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     SPLEmitter_SetPosZ(param0, v0);
 }
 
-void ov12_02224F14(SPLEmitter *param0)
+void BattleAnimEmitterCb_Generic(SPLEmitter *emitter)
 {
-    BattleAnimSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
-    UnkStruct_ov12_02225640 *v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
+    BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
+    GenericEmitterCallbackData *data = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(GenericEmitterCallbackData));
 
-    v1->unk_00 = v0;
-    v1->unk_04 = BattleAnimSystem_GetCurrentParticleSystem(v1->unk_00);
+    data->battleAnimSys = system;
+    data->particleSys = BattleAnimSystem_GetCurrentParticleSystem(data->battleAnimSys);
 
-    BattleAnimSystem_GetExtraParams(v1->unk_00, v1->unk_0C, 6);
+    BattleAnimSystem_GetExtraParams(data->battleAnimSys, data->params, GENERIC_EMITTER_CALLBACK_PARAM_COUNT);
 
-    {
-        switch (v1->unk_0C[1]) {
-        case 0:
-        default:
-            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
-            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
-            break;
-        case 1:
-            v1->unk_24 = BattleAnimSystem_GetDefender(v1->unk_00);
-            v1->unk_28 = BattleAnimSystem_GetAttacker(v1->unk_00);
-            break;
-        case 2:
-            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
-            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
-            break;
-        case 3:
-            v1->unk_24 = BattleAnimSystem_GetDefender(v1->unk_00);
-            v1->unk_28 = BattleAnimSystem_GetAttacker(v1->unk_00);
-            break;
-        case 4:
-            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
-            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
-            break;
-        }
+    switch (data->params[GENERIC_EMITTER_CALLBACK_PARAM_TARGET_MODE]) {
+    case EMITTER_TARGET_MODE_DEFAULT:
+    default:
+        data->startBattler = BattleAnimSystem_GetAttacker(data->battleAnimSys);
+        data->endBattler = BattleAnimSystem_GetDefender(data->battleAnimSys);
+        break;
+    case EMITTER_TARGET_MODE_ATTACKER:
+        data->startBattler = BattleAnimSystem_GetDefender(data->battleAnimSys);
+        data->endBattler = BattleAnimSystem_GetAttacker(data->battleAnimSys);
+        break;
+    case EMITTER_TARGET_MODE_DEFENDER:
+        data->startBattler = BattleAnimSystem_GetAttacker(data->battleAnimSys);
+        data->endBattler = BattleAnimSystem_GetDefender(data->battleAnimSys);
+        break;
+    case EMITTER_TARGET_MODE_ATTACKER_2:
+        data->startBattler = BattleAnimSystem_GetDefender(data->battleAnimSys);
+        data->endBattler = BattleAnimSystem_GetAttacker(data->battleAnimSys);
+        break;
+    case EMITTER_TARGET_MODE_DEFENDER_2:
+        data->startBattler = BattleAnimSystem_GetAttacker(data->battleAnimSys);
+        data->endBattler = BattleAnimSystem_GetDefender(data->battleAnimSys);
+        break;
     }
 
-    ov12_0222421C(param0, v1);
-    Heap_Free(v1);
+    GenericEmitterCallback_ApplyParams(emitter, data);
+    Heap_Free(data);
 }
 
-s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)
+s8 GenericEmitterCallback_GetDirectionForBattlers(GenericEmitterCallbackData *data)
 {
-    s8 v0 = 1;
-    int v1 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_24);
-    int v2 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_28);
+    s8 dir = 1;
+    int startType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler);
+    UNUSED(BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->endBattler));
 
-    switch (v1) {
-    case 0:
+    switch (startType) {
+    case BATTLER_TYPE_SOLO_PLAYER:
     default:
         break;
-    case 1:
-        v0 = -1;
+    case BATTLER_TYPE_SOLO_ENEMY:
+        dir = -1;
         break;
-    case 2:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
         break;
-    case 3:
-        v0 = -1;
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+        dir = -1;
         break;
-    case 4:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
         break;
-    case 5:
-        v0 = -1;
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+        dir = -1;
         break;
     }
 
-    return v0;
+    return dir;
 }
 
-static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2)
+static void GenericEmitterCallback_OffsetPositionForBattler(GenericEmitterCallbackData *data, int battler, VecFx32 *pos)
 {
-    int v0;
-    VecFx32 v1 = { 0, 0, 0 };
-    int v2[4];
-    int v3[4];
+    VecFx32 offset = { 0, 0, 0 };
+    int params[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+    int paramsUnused[EMITTER_POS_EXPLICIT_PARAM_COUNT];
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v0 == BattleAnimUtil_GetBattlerType(param0->unk_00, param1)) {
-            BattleAnimSystem_GetExtraParams(param0->unk_00, v2, 3 + 1);
+    for (int battlerType = BATTLER_TYPE_SOLO_PLAYER; battlerType < BATTLER_TYPE_MAX; battlerType++) {
+        if (battlerType == BattleAnimUtil_GetBattlerType(data->battleAnimSys, battler)) {
+            BattleAnimSystem_GetExtraParams(data->battleAnimSys, params, EMITTER_POS_EXPLICIT_PARAM_COUNT);
         } else {
-            BattleAnimSystem_GetExtraParams(param0->unk_00, v3, 3 + 1);
+            BattleAnimSystem_GetExtraParams(data->battleAnimSys, paramsUnused, EMITTER_POS_EXPLICIT_PARAM_COUNT);
         }
     }
 
-    param0->unk_08 = ov12_02224FC4(param0);
-    VEC_Set(&v1, v2[1], v2[2], v2[3]);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
+    VEC_Set(
+        &offset,
+        params[EMITTER_POS_EXPLICIT_PARAM_X],
+        params[EMITTER_POS_EXPLICIT_PARAM_Y],
+        params[EMITTER_POS_EXPLICIT_PARAM_Z]);
 
-    if (v2[0] == 1) {
-        param0->unk_08 = 1;
+    if (params[EMITTER_POS_EXPLICIT_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    v1.x *= param0->unk_08;
-    v1.y *= param0->unk_08;
-    v1.z *= param0->unk_08;
+    offset.x *= data->dir;
+    offset.y *= data->dir;
+    offset.z *= data->dir;
 
-    (*param2).x += v1.x;
-    (*param2).y += v1.y;
-    (*param2).z += v1.z;
+    pos->x += offset.x;
+    pos->y += offset.y;
+    pos->z += offset.z;
 }
 
-static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1)
+static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *data, VecFx32 *pos)
 {
-    int v0[3 + 1];
-    VecFx32 v1 = { 0, 0, 0 };
+    int params[EMITTER_POS_EXPLICIT_PARAM_COUNT];
+    VecFx32 offset = { 0, 0, 0 };
 
-    BattleAnimSystem_GetExtraParams(param0->unk_00, v0, 3 + 1);
-    param0->unk_08 = ov12_02224FC4(param0);
-    VEC_Set(&v1, v0[1], v0[2], v0[3]);
+    BattleAnimSystem_GetExtraParams(data->battleAnimSys, params, EMITTER_POS_EXPLICIT_PARAM_COUNT);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
+    VEC_Set(
+        &offset,
+        params[EMITTER_POS_EXPLICIT_PARAM_X],
+        params[EMITTER_POS_EXPLICIT_PARAM_Y],
+        params[EMITTER_POS_EXPLICIT_PARAM_Z]);
 
-    if (v0[0] == 1) {
-        param0->unk_08 = 1;
+    if (params[EMITTER_POS_EXPLICIT_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    v1.x *= param0->unk_08;
-    v1.y *= param0->unk_08;
-    v1.z *= param0->unk_08;
+    offset.x *= data->dir;
+    offset.y *= data->dir;
+    offset.z *= data->dir;
 
-    (*param1).x += v1.x;
-    (*param1).y += v1.y;
-    (*param1).z += v1.z;
+    pos->x += offset.x;
+    pos->y += offset.y;
+    pos->z += offset.z;
 }
 
-static const UnkStruct_ov12_022396AC Unk_ov12_022396AC[][6] = {
+#define _ VEC_FX32(0, 0, 0)
+
+//                                     [      from      ][       to       ]
+static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0xEC0, 0x840, 0xBF8 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.9219, 0.5156, 0.748),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_SOLO_ENEMY] =
     {
-        { -4228, -2728, 0xBF8 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-1.0322, -0.666, 0.748),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x1762, 0x630, 0xBF8 },
-        { 0x410, -600, 0x0 },
-        { 0x10D0, 0x9E8, 0xBF8 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(1.4614, 0.3867, 0.748),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.254, -0.1465, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(1.0508, 0.6191, 0.748),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -6480, -2040, 0xBF8 },
-        { 0x0, 0x0, 0x0 },
-        { -4384, -2968, 0xBF8 },
-        { -832, 0xE0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.582, -0.498, 0.748),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-1.0703, -0.7246, 0.748),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.2031, 0.0547, 0.0),
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2008, 0x178, 0x0 },
-        { 0xFC2, 0xA88, 0xBF8 },
-        { 0x0, 0x0, 0x0 },
-        { 0xC14, 0xBDC, 0xBF8 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4902, 0.0918, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.9849, 0.6582, 0.748),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.755, 0.7412, 0.748),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -4760, -2672, 0xBF8 },
-        { 0x6C0, -400, 0x0 },
-        { -3472, -4648, 0xBF8 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.162, -0.6523, 0.748),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4219, -0.0977, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.8477, -1.1348, 0.748),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
 };
 
-static const UnkStruct_ov12_022396AC Unk_ov12_02238FEC[][6] = {
+static const VecFx32 EmitterAxisConfigs2[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x968, 0x4E0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.588, 0.3047, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_SOLO_ENEMY] =
     {
-        { -1544, -936, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.377, -0.2285, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x798, 0x150, 0x0 },
-        { 0x238, -560, 0x0 },
-        { 0x798, 0x3A0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4746, 0.082, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.1387, -0.1367, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4746, 0.2266, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2424, -816, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2424, -1024, 0x0 },
-        { -872, 0x8, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5918, -0.1992, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.5918, -0.25, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.213, 0.002, 0.0),
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1432, 0x78, 0x0 },
-        { 0x5D8, 0x308, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x5D8, 0x4B8, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.3496, 0.0293, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.3652, 0.1895, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.3652, 0.295, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1920, -824, 0x0 },
-        { 0x2A0, 0x8, 0x0 },
-        { -1920, -1076, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-};
-
-static const UnkStruct_ov12_022396AC Unk_ov12_0223919C[][6] = {
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x580, 0x2E0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { -1208, -784, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x7F8, 0x2A0, 0x0 },
-        { 0x3A0, -616, 0x0 },
-        { 0x6E0, 0x310, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1816, -664, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1440, -928, 0x0 },
-        { -680, 0x8, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1032, 0x8, 0x0 },
-        { 0x500, 0x2A0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x438, 0x408, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1648, -480, 0x0 },
-        { 0x318, 0x8, 0x0 },
-        { -960, -928, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4688, -0.2012, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.164, 0.002, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.4688, -0.2627, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
 };
 
-static const UnkStruct_ov12_022396AC Unk_ov12_022394FC[][6] = {
+static const VecFx32 EmitterAxisConfigs3[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x9E0, 0x634, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3438, 0.1797, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_SOLO_ENEMY] =
     {
-        { -4264, -5056, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.295, -0.1914, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0xF58, 0x458, 0x0 },
-        { 0x2C0, -672, 0x0 },
-        { 0xAE0, 0x460, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.498, 0.164, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.2266, -0.1504, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4297, 0.1914, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -4152, -1560, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -3096, -1976, 0x0 },
-        { -692, -24, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4434, -0.162, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.3516, -0.2266, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.166, 0.002, 0.0),
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -792, 0x68, 0x0 },
-        { 0xB08, 0x650, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x860, 0x790, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.252, 0.002, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.3125, 0.164, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.2637, 0.252, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2904, -1528, 0x0 },
-        { 0x468, -408, 0x0 },
-        { -1912, -2072, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-};
-
-static const UnkStruct_ov12_022396AC Unk_ov12_0223985C[][6] = {
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x7A0, 0x448, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { -2016, -968, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x780, 0x300, 0x0 },
-        { 0x340, -448, 0x0 },
-        { 0x6C0, 0x340, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2096, -744, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2096, -1240, 0x0 },
-        { -752, 0x18, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1008, 0xA8, 0x0 },
-        { 0x6D0, 0x368, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x5D8, 0x4D8, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1980, -712, 0x0 },
-        { 0x278, -200, 0x0 },
-        { -1680, -1656, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4023, -0.1172, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.1934, 0.002, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.2344, -0.2266, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
 };
 
-static const UnkStruct_ov12_022396AC Unk_ov12_0223934C[][6] = {
+static const VecFx32 EmitterAxisConfigs4[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0xC80, 0x6B8, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.6172, 0.3877, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_SOLO_ENEMY] =
     {
-        { -3520, -1976, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-1.041, -1.2344, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0xDE8, 0x3C8, 0x0 },
-        { 0x640, -1472, 0x0 },
-        { 0xCC0, 0x610, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.959, 0.2715, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.1719, -0.164, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.6797, 0.2734, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -4000, -784, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -3232, -2256, 0x0 },
-        { -1248, 0x230, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.0137, -0.3809, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.7559, -0.4824, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.169, -0.0059, 0.0),
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1080, 0x4D8, 0x0 },
-        { 0xC48, 0x798, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x848, 0x920, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.1934, 0.0254, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.6895, 0.3945, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.5234, 0.4727, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2992, -1440, 0x0 },
-        { 0x760, -592, 0x0 },
-        { -2592, -2704, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-};
-
-static const UnkStruct_ov12_022396AC Unk_ov12_02239A0C[][6] = {
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x640, -64, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { -1856, -1608, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x7D0, -192, 0x0 },
-        { 0x2A0, -1328, 0x0 },
-        { 0x7D0, 0xC0, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2184, -1536, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2064, -1880, 0x0 },
-        { -592, -792, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1288, -128, 0x0 },
-        { 0x5F8, -448, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x5F8, 0x128, 0x0 },
-    },
-    {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -1528, -1560, 0x0 },
-        { 0x358, -368, 0x0 },
-        { -1384, -2032, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.709, -0.373, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.2754, -0.0996, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.4668, -0.5059, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
 };
 
-static const UnkStruct_ov12_022396AC Unk_ov12_02239BBC[][6] = {
+static const VecFx32 EmitterAxisConfigs5[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0xE00, 0x800, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.4766, 0.2676, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_SOLO_ENEMY] =
     {
-        { -3392, -1776, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.4922, -0.2363, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0x1380, 0x7F0, 0x0 },
-        { 0x400, -688, 0x0 },
-        { 0xEC0, 0x7B0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4688, 0.1875, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.2031, -0.1094, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4219, 0.2031, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -5544, -1592, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -3752, -2232, 0x0 },
-        { -1704, 0x108, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5117, -0.1816, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.5117, -0.3027, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.1836, 0.0059, 0.0),
     },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -2008, -64, 0x0 },
-        { 0xFF8, 0x930, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { 0xA54, 0x970, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.246, 0.041, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4258, 0.213, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.3652, 0.3027, 0.0),
     },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
     {
-        { 0x0, 0x0, 0x0 },
-        { 0x0, 0x0, 0x0 },
-        { -3784, -1936, 0x0 },
-        { 0x6F8, -16, 0x0 },
-        { -3240, -2744, 0x0 },
-        { 0x0, 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4834, -0.1738, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.1543, -0.0488, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.4102, -0.4043, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
 };
+
+static const VecFx32 EmitterAxisConfigs6[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.7812, 0.42, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_SOLO_ENEMY] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.8594, -0.4824, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.8691, 0.2363, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.3906, -0.3594, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.7969, 0.379, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.9766, -0.1914, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.789, -0.5508, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.3047, 0.1367, 0.0),
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.2637, 0.3027, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.7676, 0.4746, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.5176, 0.5703, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.7305, -0.3516, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.461, -0.1445, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.6328, -0.6602, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+};
+
+static const VecFx32 EmitterAxisConfigs7[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3906, -0.0156, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_SOLO_ENEMY] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.4531, -0.3926, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4883, -0.0469, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.164, -0.3242, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4883, 0.0469, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5332, -0.375, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.504, -0.459, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.1445, -0.1934, 0.0),
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.3145, -0.0312, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.373, -0.1094, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.373, 0.0723, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.373, -0.3809, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.209, -0.0898, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.338, -0.496, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+};
+
+static const VecFx32 EmitterAxisConfigs8[][6] = {
+    [BATTLER_TYPE_SOLO_PLAYER] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.875, 0.5, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_SOLO_ENEMY] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.8281, -0.4336, 0.0),
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(1.2188, 0.496, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.25, -0.168, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.9219, 0.4805, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.3535, -0.3887, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.916, -0.545, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.416, 0.0645, 0.0),
+    },
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4902, -0.0156, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.998, 0.5742, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.6455, 0.5898, 0.0),
+    },
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
+    {
+        [BATTLER_TYPE_SOLO_PLAYER] = _,
+        [BATTLER_TYPE_SOLO_ENEMY] = _,
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.9238, -0.4727, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = VEC_FX32(0.4355, -0.004, 0.0),
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.791, -0.67, 0.0),
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
+    },
+};
+
+#undef _

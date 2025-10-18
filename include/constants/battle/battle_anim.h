@@ -154,6 +154,7 @@
 
 #define CONTESTANT_TYPE_PLAYER (BATTLER_TYPE_MAX + BATTLER_TYPE_SOLO_PLAYER)
 #define CONTESTANT_TYPE_ENEMY  (BATTLER_TYPE_MAX + BATTLER_TYPE_SOLO_ENEMY)
+#define CONTESTANT_TYPE_COUNT  2
 
 #define BASE_SCALE_XY 100
 
@@ -268,6 +269,86 @@
 #define BATTLE_3D_CENTER_X FX32_CONST(0)
 #define BATTLE_3D_CENTER_Y FX32_CONST(1 / 1.28)
 #define BATTLE_3D_CENTER_Z FX32_CONST(0)
+
+#define EMITTER_TARGET_MODE_DEFAULT    0 //< Default target mode (attacker to defender)
+#define EMITTER_TARGET_MODE_ATTACKER   1 //< Defender to attacker
+#define EMITTER_TARGET_MODE_DEFENDER   2 //< Attacker to defender
+#define EMITTER_TARGET_MODE_ATTACKER_2 3 //< Same as EMITTER_TARGET_MODE_ATTACKER
+#define EMITTER_TARGET_MODE_DEFENDER_2 4 //< Same as EMITTER_TARGET_MODE_DEFENDER
+
+#define EMITTER_POS_EXPLICIT_PARAM_FLIP  0 //< Flip param index for EMITTER_POS_EXPLICIT
+#define EMITTER_POS_EXPLICIT_PARAM_X     1 //< X position param index for EMITTER_POS_EXPLICIT
+#define EMITTER_POS_EXPLICIT_PARAM_Y     2 //< Y position param index for EMITTER_POS_EXPLICIT
+#define EMITTER_POS_EXPLICIT_PARAM_Z     3 //< Z position param index for EMITTER_POS_EXPLICIT
+#define EMITTER_POS_EXPLICIT_PARAM_COUNT 4 //< Number of position params for EMITTER_POS_EXPLICIT
+
+#define BATTLE_PTCL_FLIP_DISABLE 1 //< Do not flip position based on battler side
+#define BATTLE_PTCL_FLIP_ENABLE  0 //< Flip position based on battler side
+
+#define EMITTER_POS_NONE                   0 //< No position
+#define EMITTER_POS_NORMAL_START           1 //< Normal start-battler position
+#define EMITTER_POS_NORMAL_END             2 //< Normal end-battler position
+#define EMITTER_POS_EXPLICIT               3 //< Explicit position from params
+#define EMITTER_POS_NORMAL_OFFSET_START    4 //< Normal start-battler position with offset
+#define EMITTER_POS_NORMAL_OFFSET_END      5 //< Normal end-battler position with offset
+#define EMITTER_POS_BEAM1_START            6 //< Beam1 start-battler position
+#define EMITTER_POS_BEAM1_END              7 //< Beam1 end-battler position
+#define EMITTER_POS_HYDRO_PUMP_START       8 //< Hydro Pump start-battler position
+#define EMITTER_POS_HYDRO_PUMP_END         9 //< Hydro Pump end-battler position
+#define EMITTER_POS_BEAM2_START            10 //< Beam2 start-battler position
+#define EMITTER_POS_BEAM2_END              11 //< Beam2 end-battler position
+#define EMITTER_POS_ATTACKER_SIDE          12 //< Attacker side position (with offset)
+#define EMITTER_POS_DEFENDER_SIDE          13 //< Defender side position (with offset)
+#define EMITTER_POS_BEAM3_START            14 //< Beam3 start-battler position
+#define EMITTER_POS_BEAM3_END              15 //< Beam3 end-battler position
+#define EMITTER_POS_HYPNOSIS_START         16 //< Hypnosis start-battler position
+#define EMITTER_POS_HYPNOSIS_END           17 //< Hypnosis end-battler position
+#define EMITTER_POS_TRI_ATTACK_START       18 //< Tri Attack start-battler position
+#define EMITTER_POS_TRI_ATTACK_END         19 //< Tri Attack end-battler position
+#define EMITTER_POS_HYDRO_CANNON_START     20 //< Hydro Cannon start-battler position
+#define EMITTER_POS_HYDRO_CANNON_END       21 //< Hydro Cannon end-battler position
+#define EMITTER_POS_HYPER_VOICE_START      22 //< Hyper Voice start-battler position
+#define EMITTER_POS_HYPER_VOICE_END        23 //< Hyper Voice end-battler position
+#define EMITTER_POS_GRASS_WHISTLE_START    24 //< Grass Whistle start-battler position
+#define EMITTER_POS_GRASS_WHISTLE_END      25 //< Grass Whistle end-battler position
+#define EMITTER_POS_DRAGON_PULSE_START     26 //< Dragon Pulse start-battler position
+#define EMITTER_POS_DRAGON_PULSE_END       27 //< Dragon Pulse end-battler position
+#define EMITTER_POS_SPECIAL_CONTEST_1      28 //< Special Contest position 1
+#define EMITTER_POS_UNUSED_29              29 //< Unused position
+#define EMITTER_POS_SPECIAL_BATON_PASS     30 //< Special Baton Pass position
+#define EMITTER_POS_SPECIAL_BUBBLE         31 //< Special Bubble position
+#define EMITTER_POS_SPECIAL_DRAGON_BREATH  32 //< Special Dragon Breath position
+#define EMITTER_POS_SPECIAL_CONTEST_2      33 //< Special Contest position 2
+#define EMITTER_POS_SPECIAL_DESTINY_BOND   34 //< Special Destiny Bond position
+#define EMITTER_POS_NORMAL_OFFSET_EX_START 100 //< Normal start-battler position with offset per battler
+#define EMITTER_POS_NORMAL_OFFSET_EX_END   101 //< Normal end-battler position with offset per battler
+
+#define EMITTER_AXIS_NONE 0 //< No axis specified
+#define EMITTER_AXIS_START_TO_END_1A 1 //< From start-battler to end-battler (Config 1)
+#define EMITTER_AXIS_START_TO_END_1B 2 //< From start-battler to end-battler (Config 1)
+#define EMITTER_AXIS_FIXED_1 3 //< Fixed axis 1
+#define EMITTER_AXIS_START_TO_END_SIDE_1 4 //< From start-battler side to end-battler side
+#define EMITTER_AXIS_START_TO_END_SIDE_2 5 //< From start-battler side to end-battler side (identical to 4)
+#define EMITTER_AXIS_START_TO_END_SP_1 6 //< From start-battler to end-battler, special config
+#define EMITTER_AXIS_START_TO_END_SP_2 7 //< From start-battler to end-battler, special config
+#define EMITTER_AXIS_START_TO_END_2A 8 //< From start-battler to end-battler (Config 2)
+#define EMITTER_AXIS_START_TO_END_2B 9 //< From start-battler to end-battler (Config 2)
+#define EMITTER_AXIS_START_TO_END_3A 10 //< From start-battler to end-battler (Config 3)
+#define EMITTER_AXIS_START_TO_END_3B 11 //< From start-battler to end-battler (Config 3)
+#define EMITTER_AXIS_START_TO_END_4A 12 //< From start-battler to end-battler (Config 4)
+#define EMITTER_AXIS_START_TO_END_4B 13 //< From start-battler to end-battler (Config 4)
+#define EMITTER_AXIS_START_TO_END_5A 14 //< From start-battler to end-battler (Config 5)
+#define EMITTER_AXIS_START_TO_END_5B 15 //< From start-battler to end-battler (Config 5)
+#define EMITTER_AXIS_START_TO_END_6A 16 //< From start-battler to end-battler (Config 6)
+#define EMITTER_AXIS_START_TO_END_6B 17 //< From start-battler to end-battler (Config 6)
+#define EMITTER_AXIS_START_TO_END_7A 18 //< From start-battler to end-battler (Config 7)
+#define EMITTER_AXIS_START_TO_END_7B 19 //< From start-battler to end-battler (Config 7)
+#define EMITTER_AXIS_START_TO_END_8A 20 //< From start-battler to end-battler (Config 8)
+#define EMITTER_AXIS_START_TO_END_8B 21 //< From start-battler to end-battler (Config 8)
+#define EMITTER_AXIS_FIXED_2 22 //< Fixed axis 2
+#define EMITTER_AXIS_FIXED_PER_TYPE 24 //< Fixed axis per battler type
+#define EMITTER_AXIS_FIXED_3 25 //< Fixed axis 3
+#define EMITTER_AXIS_FIXED_PER_SIDE 26 //< Fixed axis per battler side
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

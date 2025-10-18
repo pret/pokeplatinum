@@ -3,15 +3,15 @@
 
 #include "spl.h"
 
-void ov12_022238DC(SPLEmitter *param0);
+void BattleAnimEmitterCb_Nop2(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetPosToEnemy1(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetPosToPlayer1(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetPosToDefender(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetPosToAttacker(SPLEmitter *param0);
-void ov12_02223A7C(SPLEmitter *param0);
-void ov12_02223AC8(SPLEmitter *param0);
-void ov12_02223B30(SPLEmitter *param0);
-void ov12_02223B98(SPLEmitter *param0);
+void BattleAnimEmitterCb_SetPosToAttacker2(SPLEmitter *param0);
+void BattleAnimEmitterCb_SetPosToAttackerSide(SPLEmitter *param0);
+void BattleAnimEmitterCb_SetPosToDefenderSide(SPLEmitter *param0);
+void BattleAnimEmitterCb_SetPosBasedOnBattlers(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetAxisAndPos(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetAxisAndPos_ConvergeDefault(SPLEmitter *param0);
 void BattleAnimEmitterCb_SetAxisAndPos_ConvergeCenter(SPLEmitter *param0);

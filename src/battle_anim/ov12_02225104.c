@@ -6,28 +6,27 @@
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 #include "battle_anim/ov12_0222421C.h"
-#include "battle_anim/struct_ov12_02225640.h"
 
 #include "particle_system.h"
 #include "spl.h"
 
-static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[]);
-static BOOL ov12_02225110(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022251F8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022251FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225200(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022252C8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_0222534C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022253CC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225434(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225438(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_0222543C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225440(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225444(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_02225104(GenericEmitterCallbackData *param0, int param1[]);
+static BOOL ov12_02225110(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225114(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_022251F8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_022251FC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225200(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_022252C8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_0222534C(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_022253CC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225434(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225438(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_0222543C(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225440(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225444(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL ov12_02225550(SPLEmitter *param0, GenericEmitterCallbackData *param1);
 
-static BOOL (*const Unk_ov12_02239D6C[])(SPLEmitter *, UnkStruct_ov12_02225640 *) = {
+static BOOL (*const Unk_ov12_02239D6C[])(SPLEmitter *, GenericEmitterCallbackData *) = {
     ov12_02225110,
     ov12_02225114,
     ov12_022251F8,
@@ -44,41 +43,41 @@ static BOOL (*const Unk_ov12_02239D6C[])(SPLEmitter *, UnkStruct_ov12_02225640 *
     ov12_02225550
 };
 
-static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[])
+static void ov12_02225104(GenericEmitterCallbackData *param0, int param1[])
 {
-    BattleAnimSystem_GetExtraParams(param0->unk_00, param1, 5);
+    BattleAnimSystem_GetExtraParams(param0->battleAnimSys, param1, 5);
 }
 
-static BOOL ov12_02225110(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225110(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225114(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     VecFx16 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
     } break;
     case 1: {
         VEC_Fx16Set(&v1, v0[2], v0[3], v0[4]);
 
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
 
         ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
 
@@ -90,88 +89,88 @@ static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    v1.x -= param1->unk_2C.x;
-    v1.y -= param1->unk_2C.y;
-    v1.z -= param1->unk_2C.z;
+    v1.x -= param1->position.x;
+    v1.y -= param1->position.y;
+    v1.z -= param1->position.z;
 
     ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
     return 1;
 }
 
-static BOOL ov12_022251F8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022251F8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_022251FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022251FC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225200(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225200(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     VecFx32 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_GetEmitterMagnetTarget(param0, &v1);
 
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
     } break;
     case 1: {
         VEC_Set(&v1, v0[2], v0[3], v0[4]);
 
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
     } break;
     case 2:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->startBattler, &v1);
         break;
     case 3:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
         break;
     case 0xFF:
         break;
     }
 
-    v1.x -= param1->unk_2C.x;
-    v1.y -= param1->unk_2C.y;
+    v1.x -= param1->position.x;
+    v1.y -= param1->position.y;
 
     ParticleSystem_SetEmitterMagnetTarget(param0, &v1);
     return 1;
 }
 
-static BOOL ov12_022252C8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022252C8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     fx16 v1 = 0;
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_GetEmitterMagnetForce(param0, &v1);
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 1: {
         v1 = v0[2];
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 2:
     case 3:
@@ -183,26 +182,26 @@ static BOOL ov12_022252C8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     return 1;
 }
 
-static BOOL ov12_0222534C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_0222534C(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     u16 v1 = 0;
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_GetEmitterSpinAngle(param0, &v1);
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 1: {
         v1 = v0[2];
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 2:
     case 3:
@@ -214,16 +213,16 @@ static BOOL ov12_0222534C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     return 1;
 }
 
-static BOOL ov12_022253CC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022253CC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     u16 v1 = 0;
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
@@ -243,97 +242,97 @@ static BOOL ov12_022253CC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     return 1;
 }
 
-static BOOL ov12_02225434(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225434(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225438(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225438(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_0222543C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_0222543C(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225440(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225440(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225444(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225444(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     VecFx32 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_GetEmitterConvergenceTarget(param0, &v1);
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
     } break;
     case 1: {
         VEC_Set(&v1, v0[2], v0[3], v0[4]);
 
-        v1.x *= param1->unk_08;
-        v1.y *= param1->unk_08;
-        v1.z *= param1->unk_08;
+        v1.x *= param1->dir;
+        v1.y *= param1->dir;
+        v1.z *= param1->dir;
     } break;
     case 4:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
 
         v1.x = (v1.x * v0[2]) / v0[3];
         v1.y = (v1.y * v0[2]) / v0[3];
         v1.z = (v1.z * v0[2]) / v0[3];
         break;
     case 2:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->startBattler, &v1);
         break;
     case 3:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
         break;
     case 0xFF:
         break;
     }
 
-    v1.x -= param1->unk_2C.x;
-    v1.y -= param1->unk_2C.y;
-    v1.z -= param1->unk_2C.z;
+    v1.x -= param1->position.x;
+    v1.y -= param1->position.y;
+    v1.z -= param1->position.z;
 
     ParticleSystem_SetEmitterConvergenceTarget(param0, &v1);
     return 1;
 }
 
-static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225550(SPLEmitter *param0, GenericEmitterCallbackData *param1)
 {
     int v0[5];
     fx16 v1 = 0;
 
     ov12_02225104(param1, v0);
-    param1->unk_08 = ov12_02224FC4(param1);
+    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
 
     if (v0[1] == 1) {
-        param1->unk_08 = 1;
+        param1->dir = 1;
     }
 
     switch (v0[0]) {
     case 0: {
         ParticleSystem_GetEmitterConvergenceForce(param0, &v1);
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 1: {
         v1 = v0[2];
-        v1 *= param1->unk_08;
+        v1 *= param1->dir;
     } break;
     case 2:
     case 3:
@@ -345,7 +344,7 @@ static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     return 1;
 }
 
-void ov12_022255D4(int param0, SPLEmitter *param1, UnkStruct_ov12_02225640 *param2)
+void ov12_022255D4(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2)
 {
     BOOL v0 = Unk_ov12_02239D6C[param0](param1, param2);
 

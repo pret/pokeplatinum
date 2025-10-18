@@ -31,12 +31,12 @@ static const SPLEmitterCallback sEmitterCallbackTable[] = {
     BattleAnimEmitterCb_SetAxisAndPos_MagnetDefender,
     BattleAnimEmitterCb_SetAxisAndPos_MagnetAttacker,
     BattleAnimEmitterCb_SetAxisAndPos_MagnetExplicit,
-    ov12_02224F14,
-    ov12_02223B98,
-    ov12_02223AC8,
-    ov12_02223B30,
-    ov12_02223A7C,
-    ov12_022238DC
+    BattleAnimEmitterCb_Generic,
+    BattleAnimEmitterCb_SetPosBasedOnBattlers,
+    BattleAnimEmitterCb_SetPosToAttackerSide,
+    BattleAnimEmitterCb_SetPosToDefenderSide,
+    BattleAnimEmitterCb_SetPosToAttacker2, // Equivalent to BattleAnimEmitterCb_SetPosToAttacker
+    BattleAnimEmitterCb_Nop2
 };
 
 static void BattleAnimEmitterCb_Nop(SPLEmitter *emitter)

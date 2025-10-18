@@ -3,18 +3,19 @@
 #include "nitro/fx/fx.h"
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
 
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
+#include "global/utility.h"
 
 #include "battle_script_battlers.h"
 #include "camera.h"
 #include "math_util.h"
 #include "particle_system.h"
 #include "spl.h"
-#include "global/utility.h"
 
 static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *param0, int param1, int param2);
 
@@ -61,7 +62,7 @@ static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *system, int st
     return sign;
 }
 
-void ov12_022238DC(SPLEmitter *param0)
+void BattleAnimEmitterCb_Nop2(SPLEmitter *emitter)
 {
     return;
 }
@@ -77,7 +78,7 @@ void BattleAnimEmitterCb_SetPosToEnemy1(SPLEmitter *emitter)
     int attacker = BATTLER_ENEMY_1;
     int defender = BATTLER_PLAYER_1;
     ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
-    
+
     VecFx32 destination, attackerPos;
     if (BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_PLAYER) {
         BattleAnimUtil_GetBattlerWorldPos_Normal(system, attacker, &destination);
@@ -101,7 +102,7 @@ void BattleAnimEmitterCb_SetPosToEnemy1(SPLEmitter *emitter)
 
     Camera *camera = ParticleSystem_GetCamera(ps);
     CameraAngle angle;
-    
+
     switch (attacker) {
     case BATTLER_PLAYER_2:
     default:
@@ -139,7 +140,7 @@ void BattleAnimEmitterCb_SetPosToDefender(SPLEmitter *emitter)
 {
     BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
     int defender = BattleAnimSystem_GetDefender(system);
-    
+
     VecFx32 pos;
     BattleAnimUtil_GetBattlerWorldPos_Normal(system, defender, &pos);
 
@@ -152,7 +153,7 @@ void BattleAnimEmitterCb_SetPosToAttacker(SPLEmitter *emitter)
 {
     BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
     int attacker = BattleAnimSystem_GetAttacker(system);
-    
+
     VecFx32 pos;
     BattleAnimUtil_GetBattlerWorldPos_Normal(system, attacker, &pos);
 
@@ -161,125 +162,97 @@ void BattleAnimEmitterCb_SetPosToAttacker(SPLEmitter *emitter)
     SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-void ov12_02223A7C(SPLEmitter *param0)
+void BattleAnimEmitterCb_SetPosToAttacker2(SPLEmitter *emitter)
 {
-    BattleAnimSystem *v0;
-    int v1;
-    int v2;
-    VecFx32 v3;
+    BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    UNUSED(BattleAnimSystem_GetDefender(system));
 
-    v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = BattleAnimSystem_GetAttacker(v0);
-    v2 = BattleAnimSystem_GetDefender(v0);
+    VecFx32 pos;
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, attacker, &pos);
 
-    BattleAnimUtil_GetBattlerWorldPos_Normal(v0, v1, &v3);
-
-    SPLEmitter_SetPosX(param0, v3.x);
-    SPLEmitter_SetPosY(param0, v3.y);
-    SPLEmitter_SetPosZ(param0, v3.z);
+    SPLEmitter_SetPosX(emitter, pos.x);
+    SPLEmitter_SetPosY(emitter, pos.y);
+    SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-void ov12_02223AC8(SPLEmitter *param0)
+void BattleAnimEmitterCb_SetPosToAttackerSide(SPLEmitter *emitter)
 {
-    BattleAnimSystem *v0;
-    VecFx32 v1;
-    ParticleSystem *v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
+    BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
+    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
+    enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    int attackerSide = BattleAnimUtil_GetBattlerSide(system, attacker);
 
-    v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
-    v3 = ParticleSystem_GetCameraProjection(v2);
-    v5 = BattleAnimSystem_GetAttacker(v0);
-    v6 = BattleAnimUtil_GetBattlerSide(v0, v5);
+    int battler = (attackerSide == BTLSCR_PLAYER) ? BATTLER_PLAYER_1 : BATTLER_ENEMY_1;
 
-    if (v6 == 0x3) {
-        v4 = 0;
-    } else {
-        v4 = 1;
-    }
+    VecFx32 pos;
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battler, &pos, BattleAnimSystem_IsContest(system), projection);
 
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v4, &v1, BattleAnimSystem_IsContest(v0), v3);
-
-    SPLEmitter_SetPosX(param0, v1.x);
-    SPLEmitter_SetPosY(param0, v1.y);
-    SPLEmitter_SetPosZ(param0, v1.z);
+    SPLEmitter_SetPosX(emitter, pos.x);
+    SPLEmitter_SetPosY(emitter, pos.y);
+    SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-void ov12_02223B30(SPLEmitter *param0)
+void BattleAnimEmitterCb_SetPosToDefenderSide(SPLEmitter *emitter)
 {
-    BattleAnimSystem *v0;
-    VecFx32 v1;
-    ParticleSystem *v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
-    int v7;
+    BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
+    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
+    enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);
+    int defender = BattleAnimSystem_GetDefender(system);
+    int defenderSide = BattleAnimUtil_GetBattlerSide(system, defender);
 
-    v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
-    v4 = ParticleSystem_GetCameraProjection(v2);
-    v6 = BattleAnimSystem_GetDefender(v0);
-    v7 = BattleAnimUtil_GetBattlerSide(v0, v6);
+    int battler = (defenderSide == BTLSCR_PLAYER) ? BATTLER_PLAYER_1 : BATTLER_ENEMY_1;
 
-    if (v7 == 0x3) {
-        v5 = 0;
-    } else {
-        v5 = 1;
-    }
+    VecFx32 pos;
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battler, &pos, BattleAnimSystem_IsContest(system), projection);
 
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v5, &v1, BattleAnimSystem_IsContest(v0), v4);
-
-    SPLEmitter_SetPosX(param0, v1.x);
-    SPLEmitter_SetPosY(param0, v1.y);
-    SPLEmitter_SetPosZ(param0, v1.z);
+    SPLEmitter_SetPosX(emitter, pos.x);
+    SPLEmitter_SetPosY(emitter, pos.y);
+    SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-void ov12_02223B98(SPLEmitter *param0)
+#define ___ 0xFF
+
+void BattleAnimEmitterCb_SetPosBasedOnBattlers(SPLEmitter *emitter)
 {
-    BattleAnimSystem *v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
-    VecFx32 v7;
-    s16 v8[6] = { 0x0, 0x0, 0x0, 0x0, 0, 0 };
-    s16 v9[][6] = {
-        { 0x0, 0x0, 0xFF, 0xFF, 0xFF, 0xFF },
-        { 0x0, 0x0, 0xFF, 0xFF, 0xFF, 0xFF },
-        { 0xFF, 0xFF, 0xFF, -16, 0xFF, -16 },
-        { 0xFF, 0xFF, 0x20, 0xFF, 0x20, 0xFF },
-        { 0xFF, 0xFF, 0xFF, 0x10, 0xFF, 0x4 },
-        { 0xFF, 0xFF, -16, 0xFF, 0x0, 0xFF }
+    s16 unused[6] = { 0, 0, 0, 0, 0, 0 };
+    s16 posTableX[6][6] = {
+        /*Akt/Def  Pl   Em   P1   E1   P2   E2 */
+        /* P1 */ { 0, 0, ___, ___, ___, ___ },
+        /* E1 */ { 0, 0, ___, ___, ___, ___ },
+        /* P1 */ { ___, ___, ___, -16, ___, -16 },
+        /* E1 */ { ___, ___, +32, ___, +32, ___ },
+        /* P2 */ { ___, ___, ___, +16, ___, +4 },
+        /* E2 */ { ___, ___, -16, ___, 0, ___ }
     };
-    s16 v10[][6] = {
-        { 0x0, 0x0, 0xFF, 0xFF, 0xFF, 0xFF },
-        { 0x0, 0x0, 0xFF, 0xFF, 0xFF, 0xFF },
-        { 0xFF, 0xFF, 0xFF, 0x10, 0xFF, 0x10 },
-        { 0xFF, 0xFF, 0x0, 0xFF, 0x0, 0xFF },
-        { 0xFF, 0xFF, 0xFF, 0x0, 0xFF, 0x0 },
-        { 0xFF, 0xFF, 0x18, 0xFF, 0x18, 0xFF }
+    s16 posTableY[6][6] = {
+        /*Akt/Def  Pl   Em   P1   E1   P2   E2 */
+        /* P1 */ { 0, 0, ___, ___, ___, ___ },
+        /* E1 */ { 0, 0, ___, ___, ___, ___ },
+        /* P1 */ { ___, ___, ___, +16, ___, +16 },
+        /* E1 */ { ___, ___, 0, ___, 0, ___ },
+        /* P2 */ { ___, ___, ___, 0, ___, 0 },
+        /* E2 */ { ___, ___, +24, ___, +24, ___ }
     };
 
-    v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = BattleAnimSystem_GetAttacker(v0);
-    v2 = BattleAnimSystem_GetDefender(v0);
-    v3 = BattleAnimUtil_GetBattlerType(v0, v1);
-    v4 = BattleAnimUtil_GetBattlerType(v0, v2);
-    v5 = v9[v3][v4] * 172;
-    v6 = v10[v3][v4] * 172;
+    BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    int defender = BattleAnimSystem_GetDefender(system);
+    int attackerType = BattleAnimUtil_GetBattlerType(system, attacker);
+    int defenderType = BattleAnimUtil_GetBattlerType(system, defender);
+    int posX = BATTLE_PARTICLE_SCREEN_TO_WORLD(posTableX[attackerType][defenderType]);
+    int posY = BATTLE_PARTICLE_SCREEN_TO_WORLD(posTableY[attackerType][defenderType]);
 
-    VEC_Set(&v7, v5, v6, 0);
+    VecFx32 pos;
+    VEC_Set(&pos, posX, posY, 0);
 
-    SPLEmitter_SetPosX(param0, v7.x);
-    SPLEmitter_SetPosY(param0, v7.y);
-    SPLEmitter_SetPosZ(param0, v7.z);
+    SPLEmitter_SetPosX(emitter, pos.x);
+    SPLEmitter_SetPosY(emitter, pos.y);
+    SPLEmitter_SetPosZ(emitter, pos.z);
 }
+
+#undef ___
 
 static void BattleParticleUtil_ApplySignToVector(int mode, s8 sign, VecFx32 *vec)
 {
@@ -399,9 +372,9 @@ static void BattleParticleUtil_SetMagnetTarget(BattleAnimSystem *system, SPLEmit
     ParticleSystem_SetEmitterMagnetTarget(emitter, &target);
 }
 
-static inline BOOL BattleParticleUtil_GetExtraParamVec3(BattleAnimSystem *system, VecFx32* out)
+static inline BOOL BattleParticleUtil_GetExtraParamVec3(BattleAnimSystem *system, VecFx32 *out)
 {
-    return BattleAnimSystem_GetExtraParams(system, (int*)&out->x, 3);
+    return BattleAnimSystem_GetExtraParams(system, (int *)&out->x, 3);
 }
 
 static void BattleParticleUtil_SetEmitterAxisPosEx(BattleAnimSystem *system, SPLEmitter *emitter, int attacker, int defender, int behaviorMode, int targetMode)
