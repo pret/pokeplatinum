@@ -50,7 +50,7 @@ static UnkStruct_020711EC *sub_0207142C(int heapID);
 static void sub_02071450(UnkStruct_020711EC *param0);
 static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1);
 static void sub_02071480(UnkStruct_020711EC *param0);
-static void InitUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0);
+static void ClearUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0);
 static int UnkStruct_020711EC_GetNumOfIterations(const UnkStruct_020711EC *param0);
 static UnkStruct_ov101_021D5D90 *UnkStruct_020711EC_GetIterationData(const UnkStruct_020711EC *param0);
 static void UnkStruct_ov101_021D5D90_SetLsb(UnkStruct_ov101_021D5D90 *param0);
@@ -131,7 +131,7 @@ UnkStruct_ov101_021D5D90 *sub_0207122C(UnkStruct_020711EC *param0, const UnkStru
     v3 = sub_02071400(iterationData, param5);
 
     if (v3 == NULL) {
-        InitUnkStruct_ov101_021D5D90(iterationData);
+        ClearUnkStruct_ov101_021D5D90(iterationData);
         return NULL;
     }
 
@@ -139,7 +139,7 @@ UnkStruct_ov101_021D5D90 *sub_0207122C(UnkStruct_020711EC *param0, const UnkStru
 
     if (sub_02071520(iterationData) == 0) {
         SysTask_Done(v3);
-        InitUnkStruct_ov101_021D5D90(iterationData);
+        ClearUnkStruct_ov101_021D5D90(iterationData);
         return NULL;
     }
 
@@ -183,7 +183,7 @@ void sub_0207136C(UnkStruct_ov101_021D5D90 *param0)
         }
     }
 
-    InitUnkStruct_ov101_021D5D90(param0);
+    ClearUnkStruct_ov101_021D5D90(param0);
 }
 
 void sub_020713A4(UnkStruct_020711EC *param0)
@@ -271,7 +271,7 @@ static void sub_02071480(UnkStruct_020711EC *param0)
     Heap_FreeExplicit(param0->heapID, param0->iterationData);
 }
 
-static void InitUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0)
+static void ClearUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0)
 {
     memset(param0, 0, (sizeof(UnkStruct_ov101_021D5D90)));
 

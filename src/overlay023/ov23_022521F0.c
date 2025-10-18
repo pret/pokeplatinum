@@ -910,8 +910,8 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 void ov23_022534A0(FieldSystem *fieldSystem)
 {
     ListMenuTemplate v0;
-    int v1 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
-    int v2 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
+    int v1 = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
+    int v2 = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
     int v3 = CommPlayer_GetOppositeDir(CommPlayer_Dir(CommSys_CurNetId()));
     UndergroundMenu *v4;
     const int v5 = 6;

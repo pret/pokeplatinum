@@ -370,7 +370,7 @@ BOOL FieldInput_Process_Underground(FieldInput *input, FieldSystem *fieldSystem)
     ov23_02242814();
 
     if (input->interact) {
-        ov23_02242830(FALSE);
+        ov23_02242830(0);
         return FALSE;
     }
 

@@ -34,6 +34,12 @@ enum TransmissionType {
     TRANSMISSION_TYPE_SWITCH_TO_PARALLEL
 };
 
+enum MovementState {
+    MOVEMENT_STATE_NORMAL = 0,
+    MOVEMENT_STATE_RANDOM,
+    MOVEMENT_STATE_REVERSE,
+};
+
 typedef struct {
     u8 *unk_00;
     UnkStruct_020322D8 *unk_04;
@@ -77,9 +83,9 @@ typedef struct {
     u16 sendHeldKeys;
     u8 unk_656;
     u8 sendSpeed;
-    u8 unk_658;
-    s8 unk_659;
-    u16 unk_65A;
+    u8 playerMovementState;
+    s8 randomPadKeyTimer;
+    u16 randomPadKey;
     BOOL unk_65C;
     volatile int unk_660;
     volatile int unk_664[8];
@@ -121,7 +127,7 @@ static void sub_020353B0(BOOL param0);
 static void sub_020350A4(u16 param0, u16 *param1, u16 param2);
 static void sub_02035200(u16 param0, u16 *param1, u16 param2);
 static BOOL CommSys_CheckRecvLimit(void);
-static void sub_02035534(void);
+static void CommSys_ApplyMovementModifiers(void);
 static void sub_020353CC(void);
 static void CommSys_RecvData(void);
 static void CommSys_RecvDataServer(void);
@@ -211,8 +217,8 @@ static void CommSys_ClearData(void)
     int netId, size;
     int maxMachines = CommLocal_MaxMachines(sub_0203895C()) + 1;
 
-    sCommunicationSystem->unk_658 = 0;
-    sCommunicationSystem->unk_659 = 0;
+    sCommunicationSystem->playerMovementState = MOVEMENT_STATE_NORMAL;
+    sCommunicationSystem->randomPadKeyTimer = 0;
 
     MI_CpuClear8(sCommunicationSystem->recvBufferRingServer, sCommunicationSystem->allocSize);
     MI_CpuClear8(sCommunicationSystem->sendRingClient, sizeof(CommRing) * (7 + 1));
@@ -510,7 +516,7 @@ BOOL CommSys_Update(void)
             Unk_021C07C5 = 0;
             CommSys_UpdateTransitionType();
             sCommunicationSystem->sendHeldKeys |= (gSystem.heldKeys & 0x7fff);
-            sub_02035534();
+            CommSys_ApplyMovementModifiers();
             sub_02034B50();
             sCommunicationSystem->sendHeldKeys &= 0x8000;
 
@@ -1071,11 +1077,11 @@ static void sub_020353CC(void)
     }
 }
 
-static void sub_02035534(void)
+static void CommSys_ApplyMovementModifiers(void)
 {
-    u16 v0 = 0;
+    u16 newHeldKeys = 0;
 
-    if (sCommunicationSystem->unk_658 == 0) {
+    if (sCommunicationSystem->playerMovementState == MOVEMENT_STATE_NORMAL) {
         return;
     }
 
@@ -1083,68 +1089,68 @@ static void sub_02035534(void)
         return;
     }
 
-    if (sCommunicationSystem->unk_658 == 2) {
+    if (sCommunicationSystem->playerMovementState == MOVEMENT_STATE_REVERSE) {
         if (sCommunicationSystem->sendHeldKeys & PAD_KEY_LEFT) {
-            v0 |= PAD_KEY_RIGHT;
+            newHeldKeys |= PAD_KEY_RIGHT;
         }
 
         if (sCommunicationSystem->sendHeldKeys & PAD_KEY_RIGHT) {
-            v0 |= PAD_KEY_LEFT;
+            newHeldKeys |= PAD_KEY_LEFT;
         }
 
         if (sCommunicationSystem->sendHeldKeys & PAD_KEY_UP) {
-            v0 |= PAD_KEY_DOWN;
+            newHeldKeys |= PAD_KEY_DOWN;
         }
 
         if (sCommunicationSystem->sendHeldKeys & PAD_KEY_DOWN) {
-            v0 |= PAD_KEY_UP;
+            newHeldKeys |= PAD_KEY_UP;
         }
     } else {
-        if (sCommunicationSystem->unk_65A) {
-            v0 = sCommunicationSystem->unk_65A;
-            sCommunicationSystem->unk_659--;
+        if (sCommunicationSystem->randomPadKey) {
+            newHeldKeys = sCommunicationSystem->randomPadKey;
+            sCommunicationSystem->randomPadKeyTimer--;
 
-            if (sCommunicationSystem->unk_659 < 0) {
-                sCommunicationSystem->unk_65A = 0;
+            if (sCommunicationSystem->randomPadKeyTimer < 0) {
+                sCommunicationSystem->randomPadKey = 0;
             }
         } else {
             switch (MATH_Rand32(&sCommunicationSystem->rand, 4)) {
             case 0:
-                v0 = PAD_KEY_LEFT;
+                newHeldKeys = PAD_KEY_LEFT;
                 break;
             case 1:
-                v0 = PAD_KEY_RIGHT;
+                newHeldKeys = PAD_KEY_RIGHT;
                 break;
             case 2:
-                v0 = PAD_KEY_UP;
+                newHeldKeys = PAD_KEY_UP;
                 break;
             case 3:
-                v0 = PAD_KEY_DOWN;
+                newHeldKeys = PAD_KEY_DOWN;
                 break;
             }
 
-            sCommunicationSystem->unk_659 = MATH_Rand32(&sCommunicationSystem->rand, 16);
-            sCommunicationSystem->unk_65A = v0;
+            sCommunicationSystem->randomPadKeyTimer = MATH_Rand32(&sCommunicationSystem->rand, 16);
+            sCommunicationSystem->randomPadKey = newHeldKeys;
         }
     }
 
     sCommunicationSystem->sendHeldKeys &= ~(PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN);
-    sCommunicationSystem->sendHeldKeys += v0;
+    sCommunicationSystem->sendHeldKeys += newHeldKeys;
 }
 
-void sub_02035664(void)
+void CommSys_RandomizePlayerMovement(void)
 {
-    sCommunicationSystem->unk_658 = 1;
+    sCommunicationSystem->playerMovementState = MOVEMENT_STATE_RANDOM;
 }
 
-void sub_02035678(void)
+void CommSys_ReversePlayerMovement(void)
 {
-    sCommunicationSystem->unk_658 = 2;
+    sCommunicationSystem->playerMovementState = MOVEMENT_STATE_REVERSE;
 }
 
-void sub_0203568C(void)
+void CommSys_RevertPlayerMovementToNormal(void)
 {
-    sCommunicationSystem->unk_658 = 0;
+    sCommunicationSystem->playerMovementState = MOVEMENT_STATE_NORMAL;
 }
 
 static BOOL sub_020356A0(u8 *param0, int param1)
@@ -1650,9 +1656,9 @@ BOOL CommSys_WriteToQueueServer(int cmd, const void *data, int param2)
     }
 }
 
-BOOL CommSys_WriteToQueue(int cmd, const void *data, int param2)
+BOOL CommSys_WriteToQueue(int cmd, const void *data, int size)
 {
-    return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, param2, 0, 0);
+    return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, size, 0, 0);
 }
 
 static void CommSys_Transmission(void)
