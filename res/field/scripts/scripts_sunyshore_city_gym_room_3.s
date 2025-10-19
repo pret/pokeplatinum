@@ -14,11 +14,11 @@ SunyshoreGymRoom3_Init:
     End
 
 SunyshoreGymRoom3_TopButtons:
-    SunnyshoreGymButton 0
+    SunyshoreGymButton 0
     End
 
 SunyshoreGymRoom3_BottomButtons:
-    SunnyshoreGymButton 2
+    SunyshoreGymButton 2
     End
 
 SunyshoreGymRoom3_Volkner:

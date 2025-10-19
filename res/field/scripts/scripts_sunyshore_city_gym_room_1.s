@@ -14,7 +14,7 @@ SunyshoreGymRoom1_Init:
     End
 
 SunyshoreGymRoom1_Button:
-    SunnyshoreGymButton 0
+    SunyshoreGymButton 0
     End
 
 SunyshoreGymRoom1_GymGuide:
