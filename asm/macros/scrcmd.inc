@@ -2118,7 +2118,7 @@
     .byte \floorID
     .endm
 
-    .macro SunnyshoreGymButton arg0
+    .macro SunyshoreGymButton arg0
     .short 374
     .byte \arg0
     .endm
@@ -4217,7 +4217,7 @@
     .short 713
     .endm
 
-    .macro EternaGymAdvanceClockState
+    .macro AdvanceEternaGymClock
     .short 714
     .endm
 

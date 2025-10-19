@@ -559,7 +559,6 @@
     ],
     "coord_events": [
         {
-            "_comment": "this is right above the kid at the bottom of the stairs",
             "script": 3, 
             "x": 266,
             "z": 748,

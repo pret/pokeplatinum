@@ -125,14 +125,14 @@ EternaGym_GardeniaGiveTM86:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    EternaGymAdvanceClockState
+    AdvanceEternaGymClock
     End
 
 EternaGym_GardeniaGiveTM86BagFull:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
-    EternaGymAdvanceClockState
+    AdvanceEternaGymClock
     End
 
 EternaGym_LostBattle:
@@ -156,7 +156,7 @@ EternaGym_LassCaroline:
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 1
     CloseMessage
     ReleaseAll
-    EternaGymAdvanceClockState
+    AdvanceEternaGymClock
     End
 
 EternaGym_LassCarolineBeaten:
@@ -184,7 +184,7 @@ EternaGym_AromaLadyJenna:
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 2
     CloseMessage
     ReleaseAll
-    EternaGymAdvanceClockState
+    AdvanceEternaGymClock
     End
 
 EternaGym_AromaLadyJennaBeaten:
@@ -212,7 +212,7 @@ EternaGym_AromaLadyAngela:
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 3
     CloseMessage
     ReleaseAll
-    EternaGymAdvanceClockState
+    AdvanceEternaGymClock
     End
 
 EternaGym_AromaLadyAngelaBeaten:
