@@ -2,7 +2,7 @@
   "key": 14693,
   "messages": [
     {
-      "id": "pl_msg_00000165_00000",
+      "id": "SunyshoreGymRoom3_Text_VolknerIntro",
       "en_US": [
         "...All right, challenger.\r",
         "It’s not often, but some Trainers\n",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000165_00001",
+      "id": "SunyshoreGymRoom3_Text_BeatVolkner",
       "en_US": [
         "...Hehehe.\r",
         "Hahahah!\r",
@@ -34,14 +34,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000165_00002",
+      "id": "SunyshoreGymRoom3_Text_VolknerReceiveBeaconBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the Beacon Badge from Volkner."
       ]
     },
     {
-      "id": "pl_msg_00000165_00003",
+      "id": "SunyshoreGymRoom3_Text_VolknerExplainBeaconBadge",
       "en_US": [
         "That Beacon Badge lets you use\n",
         "the hidden move Waterfall even when\f",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000165_00004",
+      "id": "SunyshoreGymRoom3_Text_VolknerExplainTM57",
       "en_US": [
         "What’s inside that {STRVAR_1 8, 0, 0}\n",
         "is the move {STRVAR_1 6, 1, 0}.\r",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000165_00005",
+      "id": "SunyshoreGymRoom3_Text_Afterbadge",
       "en_US": [
         "Your next step is the Pokémon\n",
         "League challenge.\r",

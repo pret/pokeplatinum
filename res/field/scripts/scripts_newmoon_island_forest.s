@@ -24,13 +24,13 @@ _0058:
     End
 
 _005E:
-    GoToIfSet FLAG_UNK_0x008E, _006B
+    GoToIfSet FLAG_MAP_LOCAL, _006B
     End
 
 _006B:
     SetFlag FLAG_UNK_0x0240
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 _0079:
@@ -39,9 +39,9 @@ _0079:
     WaitFanfare SEQ_SE_CONFIRM
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_DARKRAI, 50
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _014C
     CheckDidNotCapture VAR_RESULT

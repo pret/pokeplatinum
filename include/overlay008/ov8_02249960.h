@@ -7,7 +7,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-void ov8_0224997C(FieldSystem *fieldSystem);
+void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void ov8_02249FB8(FieldSystem *fieldSystem);
