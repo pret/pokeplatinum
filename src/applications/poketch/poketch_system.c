@@ -37,7 +37,7 @@ FS_EXTERN_OVERLAY(poketch_friendship_checker);
 FS_EXTERN_OVERLAY(poketch_dowsing_machine);
 FS_EXTERN_OVERLAY(poketch_counter);
 FS_EXTERN_OVERLAY(poketch_pedometer);
-FS_EXTERN_OVERLAY(overlay37);
+FS_EXTERN_OVERLAY(poketch_backlight_toggle);
 FS_EXTERN_OVERLAY(overlay38);
 FS_EXTERN_OVERLAY(overlay39);
 FS_EXTERN_OVERLAY(poketch_daycare_checker);
