@@ -83,6 +83,8 @@
 #define DISTORTION_WORLD_CAMERA_BASE_FAR_CLIP           (FX32_ONE * 1700)
 #define DISTORTION_WORLD_CAMERA_PERSISTED_ANGLES_FACTOR 0x100
 
+#define DISTORTION_WORLD_MAP_COUNT 10
+
 #define GIRATINA_ROOM_TELEPORT_TILE_X 15
 #define GIRATINA_ROOM_TELEPORT_TILE_Z 25
 #define B7F_TELEPORT_TILE_X           89
@@ -212,26 +214,26 @@ typedef struct DistWorldCameraAngleTemplate {
     s32 transitionSteps;
 } DistWorldCameraAngleTemplate;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    u32 unk_08;
-} UnkStruct_ov9_0224B3F8;
+typedef struct DistWorldGhostPropHeader {
+    int templateCount;
+    int triggerCount;
+    u32 defaultVisiblePropGroups;
+} DistWorldGhostPropHeader;
 
-typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-} UnkStruct_ov9_0224B6CC;
+typedef struct DistWorldGhostPropTemplate {
+    u32 groupID;
+    u16 kind;
+    s16 tileX;
+    s16 tileY;
+    s16 tileZ;
+} DistWorldGhostPropTemplate;
 
-typedef struct {
-    u32 unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    DistWorldBounds unk_08;
-} UnkStruct_ov9_0224B748;
+typedef struct DistWorldGhostPropTrigger {
+    u32 groupID;
+    s16 playerDir;
+    s16 showProp;
+    DistWorldBounds bounds;
+} DistWorldGhostPropTrigger;
 
 typedef struct DistWorldFloatingPlatformManager {
     int currentPlatformIndex;
@@ -251,18 +253,18 @@ typedef struct DistWorldCameraAngleTemplates {
     DistWorldCameraAngleTemplate *templates;
 } DistWorldCameraAngleTemplates;
 
-typedef struct {
-    const UnkStruct_ov9_0224B3F8 *unk_00;
-    const UnkStruct_ov9_0224B6CC *unk_04;
-    const UnkStruct_ov9_0224B748 *unk_08;
-} UnkStruct_ov9_0224C788;
+typedef struct DistWorldGhostPropData {
+    const DistWorldGhostPropHeader *header;
+    const DistWorldGhostPropTemplate *templates;
+    const DistWorldGhostPropTrigger *triggers;
+} DistWorldGhostPropData;
 
 typedef struct DistWorldFileHeader {
-    int unk_00;
+    int dummy00;
     int floatingPlatformSectionSize;
     int floatingPlatformJumpPointSectionSize;
     int cameraAngleSectionSize;
-    int unk_10;
+    int ghostPropSectionSize;
 } DistWorldFileHeader;
 
 typedef struct DistWorldFileFloatingPlatformSection {
@@ -280,7 +282,7 @@ typedef struct DistWorldFile {
     DistWorldFileFloatingPlatformSection *floatingPlatformSection;
     DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPointSection;
     DistWorldFileCameraAngleSection *cameraAngleSection;
-    void *unk_10;
+    void *ghostPropSection;
     DistWorldFileHeader *header;
     void *buffer;
 } DistWorldFile;
@@ -291,9 +293,9 @@ typedef struct {
     DistWorldFloatingPlatformManager floatingPlatformMan;
     DistWorldFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
     DistWorldCameraAngleTemplates cameraAngleTemplates;
-    UnkStruct_ov9_0224C788 unk_4C;
-    DistWorldFile unk_58;
-    UnkStruct_ov9_0224C788 unk_74;
+    DistWorldGhostPropData ghostPropData;
+    DistWorldFile inactiveDistortionWorldFile;
+    DistWorldGhostPropData inactiveGhostPropData;
 } UnkStruct_ov9_02249B04_sub1;
 
 typedef struct DistWorldCameraTransition {
@@ -379,19 +381,19 @@ typedef struct {
 } UnkStruct_ov9_0224D744;
 
 typedef struct {
-    s16 unk_00;
-    s16 unk_02;
+    s16 animManIndex;
+    s16 mapHeaderID;
     u16 unk_04;
     u16 unk_06;
-    UnkStruct_ov9_0224B6CC unk_08;
-    DistWorldSystem *unk_14;
+    DistWorldGhostPropTemplate ghostPropTemplate;
+    DistWorldSystem *system;
 } UnkStruct_ov9_0224B708;
 
-typedef struct {
-    u32 unk_00;
-    s32 unk_04;
-    OverworldAnimManager **unk_08;
-} UnkStruct_ov9_0224B528;
+typedef struct DistWorldGhostPropManager {
+    u32 hiddenGhostPropGroups;
+    s32 templateCount;
+    OverworldAnimManager **animMans;
+} DistWorldGhostPropManager;
 
 typedef struct {
     int unk_00;
@@ -470,11 +472,11 @@ typedef struct {
     SysTask *unk_00;
 } UnkStruct_ov9_02249E94;
 
-typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-} UnkStruct_ov9_022530A4;
+typedef struct DistWorldMapConnections {
+    u32 currID;
+    u32 prevID;
+    u32 nextID;
+} DistWorldMapConnections;
 
 typedef struct {
     u32 unk_00;
@@ -623,8 +625,8 @@ struct DistWorldSystem {
     UnkStruct_ov9_0224B064 unk_1A8;
     UnkStruct_ov9_0224D744 unk_3A4;
     UnkStruct_ov9_02249B04_sub1 unk_169C;
-    UnkStruct_ov9_0224B528 unk_171C;
-    UnkStruct_ov9_0224B528 unk_1728;
+    DistWorldGhostPropManager ghostPropMan;
+    DistWorldGhostPropManager inactiveGhostPropMan;
     UnkStruct_ov9_0224DC34 unk_1734;
     UnkStruct_ov9_0224EB68 unk_1BB4;
     UnkStruct_ov9_0224EE40 unk_1C64;
@@ -904,6 +906,35 @@ enum FloatingPlatformJumpTaskState {
     FLOATING_PLATFORM_JUMP_TASK_STATE_FINISH
 };
 
+enum GhostPropKind {
+    GHOST_PROP_KIND_SMALL_PLATFORM = 0,
+    GHOST_PROP_KIND_FLOATING_BLUE_ROCK,
+    GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1,
+    GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2,
+    GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_SW,
+    GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_NESW_1,
+    GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_NESW_2,
+    GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_3,
+    GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_1,
+    GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4,
+    GHOST_PROP_KIND_HORIZONTAL_PLATFORM_1,
+    GHOST_PROP_KIND_VERTICAL_PLATFORM_1,
+    GHOST_PROP_KIND_VERTICAL_PLATFORM_2,
+    GHOST_PROP_KIND_HORIZONTAL_PLATFORM_2,
+    GHOST_PROP_KIND_ROTATED_PLATFORM_EAST,
+    GHOST_PROP_KIND_ROTATED_PLATFORM_WEST,
+    GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_2,
+    GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_3,
+    GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_4,
+    GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5,
+    GHOST_PROP_KIND_DUMMY20,
+    GHOST_PROP_KIND_DUMMY21,
+    GHOST_PROP_KIND_LAND_VINE_FLOWER,
+    GHOST_PROP_KIND_LAND_ROCK,
+    GHOST_PROP_KIND_DUMMY24,
+    GHOST_PROP_KIND_COUNT,
+};
+
 typedef void (*FloatingPlatformJumpPointHandler)(DistWorldSystem *, const DistWorldFloatingPlatformJumpPointTemplate *);
 
 static void ov9_02249B04(DistWorldSystem *param0);
@@ -914,8 +945,8 @@ static void ov9_02249CC4(DistWorldSystem *param0);
 static void SetPersistedCameraAngles(DistWorldSystem *system, u16 angleX, u16 angleY, u16 angleZ);
 static void GetPersistedCameraAngles(DistWorldSystem *system, u16 *angleX, u16 *angleY, u16 *angleZ);
 static BOOL IsPersistedDataValid(DistWorldSystem *system);
-static void ov9_02249D44(DistWorldSystem *param0, u32 param1);
-static u32 ov9_02249D5C(DistWorldSystem *param0);
+static void SetPersistedHiddenGhostPropGroups(DistWorldSystem *system, u32 hiddenGhostPropGroups);
+static u32 GetPersistedHiddenGhostPropGroups(DistWorldSystem *system);
 static void ov9_02249D68(DistWorldSystem *param0, u32 param1);
 static void ov9_02249D70(DistWorldSystem *param0, u32 param1);
 static void ov9_02249D8C(DistWorldSystem *param0, u32 param1);
@@ -970,30 +1001,30 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
 static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2);
 static void ov9_0224B3A8(DistWorldSystem *param0);
 static void ov9_0224B3F4(DistWorldSystem *param0);
-static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B3F8 *param2, const UnkStruct_ov9_0224B6CC *param3, int param4, u32 param5);
-static void ov9_0224B45C(DistWorldSystem *param0, int param1);
-static void ov9_0224B4CC(DistWorldSystem *param0);
-static void ov9_0224B514(DistWorldSystem *param0);
-static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0);
-static void ov9_0224B560(DistWorldSystem *param0);
-static void ov9_0224B624(DistWorldSystem *param0, u32 param1);
-static void ov9_0224B64C(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224B674(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224B698(DistWorldSystem *param0, u32 param1);
-static void ov9_0224B6BC(DistWorldSystem *param0);
-static void ov9_0224B6CC(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B6CC *param2, int param3);
-static OverworldAnimManager *ov9_0224B708(DistWorldSystem *param0, int param1, int param2, const UnkStruct_ov9_0224B6CC *param3);
-static void ov9_0224B748(DistWorldSystem *param0, int param1, int param2, int param3, int param4);
+static void InitGhostPropManager(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropHeader *header, const DistWorldGhostPropTemplate *ghostPropTemplateList, int mapHeaderID, u32 hiddenGhostPropGroups);
+static void InitActiveGhostPropManager(DistWorldSystem *system, BOOL useDefaultVisibility);
+static void InitInactiveGhostPropManager(DistWorldSystem *system);
+static void InitAllGhostPropManagers(DistWorldSystem *system);
+static void FinishGhostPropManager(DistWorldGhostPropManager *system);
+static void FinishAllGhostPropManagers(DistWorldSystem *system);
+static void HideGhostPropGroup(DistWorldSystem *system, u32 groupID);
+static void ShowGhostPropGroup(DistWorldSystem *system, u32 groupID);
+static BOOL IsActiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID);
+static BOOL IsInactiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID);
+static void PersistActiveHiddenGhostPropGroups(DistWorldSystem *system);
+static void InitAllGhostPropAnimManagers(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropTemplate *iter, int mapHeaderID);
+static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, int animManIndex, int mapHeaderID, const DistWorldGhostPropTemplate *ghostPropTemplate);
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction);
 static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1);
 static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1);
 static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1);
-static void ov9_0224B570(DistWorldSystem *param0);
-static void ov9_0224B580(DistWorldSystem *param0);
-static void ov9_0224B590(DistWorldSystem *param0);
-static void ov9_0224B5A0(DistWorldSystem *param0);
-static void ov9_0224B5B0(DistWorldSystem *param0);
-static void ov9_0224B5EC(DistWorldSystem *param0);
-static u16 ov9_0224B958(OverworldAnimManager *param0);
+static void FinishActiveGhostPropManager(DistWorldSystem *system);
+static void FinishInactiveGhostPropManager(DistWorldSystem *system);
+static void ResetActiveGhostPropManager(DistWorldSystem *system);
+static void ResetInactiveGhostPropManager(DistWorldSystem *system);
+static void MoveActiveGhostPropManagerToInactive(DistWorldSystem *system);
+static void MoveInactiveGhostPropManagerToActive(DistWorldSystem *system);
+static u16 GetAnimManagerGhostPropKind(OverworldAnimManager *system);
 static void ov9_0224BE14(DistWorldSystem *param0);
 static void ov9_0224BE8C(DistWorldSystem *param0);
 static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1);
@@ -1026,11 +1057,11 @@ static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlat
 static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file);
 static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file);
 static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file);
-static int ov9_0224C27C(DistWorldSystem *param0);
-static int ov9_0224C288(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C2A8(DistWorldFile *param0);
-static const UnkStruct_ov9_0224B6CC *ov9_0224C2AC(DistWorldFile *param0);
-static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0);
+static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system);
+static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system);
+static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *system);
+static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *system);
+static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *system);
 static void InitFloatingPlatformManager(DistWorldSystem *system);
 static void ResetFloatingPlatformManager(DistWorldSystem *system);
 static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind);
@@ -1048,20 +1079,20 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 static void InitCameraAngleTemplates(DistWorldSystem *system);
 static void ResetCameraAngleTemplates(DistWorldSystem *system);
 static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
-static void ov9_0224C788(DistWorldFile *param0, UnkStruct_ov9_0224C788 *param1);
-static void ov9_0224C7C8(DistWorldSystem *param0);
-static void ov9_0224C7E8(DistWorldSystem *param0);
-static void ov9_0224C808(DistWorldSystem *param0);
-static void ov9_0224C834(DistWorldSystem *param0);
-static void ov9_0224C854(DistWorldSystem *param0);
-static void ov9_0224C844(DistWorldSystem *param0);
-static void ov9_0224C864(DistWorldSystem *param0);
-static void ov9_0224C888(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8AC(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8B8(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8C4(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8D0(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224B748 *ov9_0224C8DC(DistWorldSystem *param0);
+static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data);
+static void InitActiveGhostPropData(DistWorldSystem *system);
+static void InitInactiveGhostPropData(DistWorldSystem *system);
+static void InitAllGhostPropData(DistWorldSystem *system);
+static void ResetActiveGhostPropData(DistWorldSystem *system);
+static void ResetAllGhostPropData(DistWorldSystem *system);
+static void ResetInactiveGhostPropData(DistWorldSystem *system);
+static void MoveActiveGhostPropDataToInactive(DistWorldSystem *system);
+static void MoveInactiveGhostPropDataToActive(DistWorldSystem *system);
+static const DistWorldGhostPropHeader *GetActiveGhostPropHeader(DistWorldSystem *system);
+static const DistWorldGhostPropHeader *GetInactiveGhostPropHeader(DistWorldSystem *system);
+static const DistWorldGhostPropTemplate *GetActiveGhostPropTemplates(DistWorldSystem *system);
+static const DistWorldGhostPropTemplate *GetInactiveGhostPropTemplates(DistWorldSystem *system);
+static const DistWorldGhostPropTrigger *GetActiveGhostPropTriggers(DistWorldSystem *system);
 static void ov9_0224C8E8(DistWorldSystem *param0);
 static void ov9_0224C9E8(DistWorldSystem *param0);
 static void ov9_0224CA98(DistWorldSystem *param0);
@@ -1075,7 +1106,7 @@ static BOOL ov9_0224CC7C(DistWorldSystem *param0);
 static BOOL ov9_0224D040(DistWorldSystem *param0, int param1, int param2, int param3);
 static void ov9_0224D078(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1);
 static BOOL ov9_0224D098(FieldTask *param0);
-static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0);
+static const DistWorldMapConnections *GetConnectionsForMap(int mapHeaderID);
 static void ov9_0224D744(DistWorldSystem *param0);
 static void ov9_0224D780(DistWorldSystem *param0, u32 param1);
 static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1);
@@ -1197,8 +1228,8 @@ static const u32 Unk_ov9_022514A4[5];
 static const UnkStruct_ov9_022531D0 Unk_ov9_022531D0[25];
 static const VecFx32 Unk_ov9_02253298[25];
 static const VecFx32 Unk_ov9_022533C4[25];
-static const OverworldAnimManagerFuncs *const Unk_ov9_02252F6C[25];
-static const UnkStruct_ov9_022530A4 Unk_ov9_022530A4[10];
+static const OverworldAnimManagerFuncs *const sGhostPropAnimFuncs[GHOST_PROP_KIND_COUNT];
+static const DistWorldMapConnections sDistWorldMapConnectionList[DISTORTION_WORLD_MAP_COUNT];
 static const UnkStruct_ov9_02252C38 Unk_ov9_02252C38[8];
 static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22];
 static const UnkFuncPtr_ov9_02253BE4 *Unk_ov9_02253BE4[18];
@@ -1241,7 +1272,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224A8C0(dwSystem);
     ov9_0224EE40(dwSystem);
     ov9_0224EB68(dwSystem);
-    ov9_0224B514(dwSystem);
+    InitAllGhostPropManagers(dwSystem);
     ov9_0224DC34(dwSystem);
     ov9_0224E33C(dwSystem);
     ov9_02249E94(dwSystem);
@@ -1267,7 +1298,7 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     ov9_02249EC8(v0);
     ov9_0224E34C(v0);
     ov9_0224DC4C(v0);
-    ov9_0224B560(v0);
+    FinishAllGhostPropManagers(v0);
     ov9_0224EB94(v0);
     ov9_0224EE6C(v0);
     ov9_0224A9E8(v0);
@@ -1292,36 +1323,36 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 static void ov9_02249B04(DistWorldSystem *param0)
 {
     u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
-    const UnkStruct_ov9_022530A4 *v1 = ov9_0224D720(v0);
+    const DistWorldMapConnections *v1 = GetConnectionsForMap(v0);
 
-    ov9_0224B570(param0);
-    ov9_02249D44(param0, 0);
-    ov9_0224EC94(param0, v1->unk_04);
-    ov9_0224DC74(param0, v1->unk_04);
-    ov9_0224F0A4(param0, v1->unk_04);
-    ov9_0224BF18(param0, v1->unk_08);
+    FinishActiveGhostPropManager(param0);
+    SetPersistedHiddenGhostPropGroups(param0, 0);
+    ov9_0224EC94(param0, v1->prevID);
+    ov9_0224DC74(param0, v1->prevID);
+    ov9_0224F0A4(param0, v1->prevID);
+    ov9_0224BF18(param0, v1->nextID);
     ov9_0224DB1C(param0);
-    ov9_0224B4CC(param0);
-    ov9_0224EC48(param0, v1->unk_08);
-    ov9_0224DD24(param0, v1->unk_08);
-    ov9_0224F078(param0, v1->unk_08);
+    InitInactiveGhostPropManager(param0);
+    ov9_0224EC48(param0, v1->nextID);
+    ov9_0224DD24(param0, v1->nextID);
+    ov9_0224F078(param0, v1->nextID);
 }
 
 static void ov9_02249B68(DistWorldSystem *param0)
 {
     u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
-    const UnkStruct_ov9_022530A4 *v1 = ov9_0224D720(v0);
+    const DistWorldMapConnections *v1 = GetConnectionsForMap(v0);
 
-    v1 = ov9_0224D720(v1->unk_08);
+    v1 = GetConnectionsForMap(v1->nextID);
 
-    ov9_0224B580(param0);
-    ov9_02249D44(param0, 0);
-    ov9_0224EC94(param0, v1->unk_08);
-    ov9_0224DC74(param0, v1->unk_08);
-    ov9_0224F0A4(param0, v1->unk_08);
+    FinishInactiveGhostPropManager(param0);
+    SetPersistedHiddenGhostPropGroups(param0, 0);
+    ov9_0224EC94(param0, v1->nextID);
+    ov9_0224DC74(param0, v1->nextID);
+    ov9_0224F0A4(param0, v1->nextID);
     ov9_0224BEB4(param0, v0);
     ov9_0224DB1C(param0);
-    ov9_0224B45C(param0, 1);
+    InitActiveGhostPropManager(param0, TRUE);
     ov9_0224EC48(param0, v0);
     ov9_0224DD24(param0, v0);
     ov9_0224F078(param0, v0);
@@ -1329,8 +1360,8 @@ static void ov9_02249B68(DistWorldSystem *param0)
 
 static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
 {
-    ov9_0224B570(param0);
-    ov9_02249D44(param0, 0);
+    FinishActiveGhostPropManager(param0);
+    SetPersistedHiddenGhostPropGroups(param0, 0);
     ov9_0224EC94(param0, param1);
     ov9_0224DC74(param0, param1);
     ov9_0224F0A4(param0, param1);
@@ -1339,7 +1370,7 @@ static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
 
 static void ov9_02249C08(DistWorldSystem *param0, u32 param1)
 {
-    ov9_0224B4CC(param0);
+    InitInactiveGhostPropManager(param0);
     ov9_0224EC48(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
@@ -1347,8 +1378,8 @@ static void ov9_02249C08(DistWorldSystem *param0, u32 param1)
 
 static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
 {
-    ov9_0224B580(param0);
-    ov9_02249D44(param0, 0);
+    FinishInactiveGhostPropManager(param0);
+    SetPersistedHiddenGhostPropGroups(param0, 0);
     ov9_0224EC94(param0, param1);
     ov9_0224DC74(param0, param1);
     ov9_0224F0A4(param0, param1);
@@ -1357,7 +1388,7 @@ static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
 
 static void ov9_02249C60(DistWorldSystem *param0, u32 param1)
 {
-    ov9_0224B45C(param0, 1);
+    InitActiveGhostPropManager(param0, TRUE);
     ov9_0224EC48(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
@@ -1425,16 +1456,14 @@ static BOOL IsPersistedDataValid(DistWorldSystem *system)
     return persistedData->valid;
 }
 
-static void ov9_02249D44(DistWorldSystem *param0, u32 param1)
+static void SetPersistedHiddenGhostPropGroups(DistWorldSystem *system, u32 hiddenGhostPropGroups)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
-    v0->unk_00_1 = param1;
+    system->persistedData->hiddenGhostPropGroups = hiddenGhostPropGroups;
 }
 
-static u32 ov9_02249D5C(DistWorldSystem *param0)
+static u32 GetPersistedHiddenGhostPropGroups(DistWorldSystem *system)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
-    return v0->unk_00_1;
+    return system->persistedData->hiddenGhostPropGroups;
 }
 
 static void ov9_02249D68(DistWorldSystem *param0, u32 param1)
@@ -1517,7 +1546,7 @@ static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system)
 BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
+    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
 
     if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM) {
         if (tileX == GIRATINA_ROOM_TELEPORT_TILE_X && tileZ == GIRATINA_ROOM_TELEPORT_TILE_Z + 1) {
@@ -2083,7 +2112,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
         GetPlayerPos(v5, &v1, &v2, &v3);
 
         if (v4 == 1) {
-            ov9_0224B748(v5, v1, v2, v3, param1);
+            HandleGhostPropTriggerAt(v5, v1, v2, v3, param1);
         }
 
         if (ApplyCameraAngleForPlayerPosition(v5, v1, v2, v3, param1) == 1) {
@@ -2929,283 +2958,248 @@ static void ov9_0224B3F4(DistWorldSystem *param0)
     return;
 }
 
-static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B3F8 *param2, const UnkStruct_ov9_0224B6CC *param3, int param4, u32 param5)
+static void InitGhostPropManager(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropHeader *header, const DistWorldGhostPropTemplate *ghostPropTemplateList, int mapHeaderID, u32 hiddenGhostPropGroups)
 {
-    {
-        GF_ASSERT(param1->unk_08 == NULL);
-    }
+    GF_ASSERT(ghostPropMan->animMans == NULL);
 
-    {
-        int v0;
+    memset(ghostPropMan, 0, sizeof(DistWorldGhostPropManager));
 
-        memset(param1, 0, sizeof(UnkStruct_ov9_0224B528));
+    ghostPropMan->hiddenGhostPropGroups = hiddenGhostPropGroups;
+    ghostPropMan->templateCount = header->templateCount;
 
-        param1->unk_00 = param5;
-        param1->unk_04 = param2->unk_00;
+    GF_ASSERT(ghostPropMan->templateCount);
 
-        GF_ASSERT(param1->unk_04);
+    int animMansSize = ghostPropMan->templateCount * sizeof(OverworldAnimManager *);
+    ghostPropMan->animMans = Heap_AllocAtEnd(HEAP_ID_FIELD1, animMansSize);
 
-        v0 = param1->unk_04 * sizeof(OverworldAnimManager *);
-        param1->unk_08 = Heap_AllocAtEnd(HEAP_ID_FIELD1, v0);
-
-        memset((u8 *)param1->unk_08, 0, v0);
-        ov9_0224B6CC(param0, param1, param3, param4);
-    }
+    memset((u8 *)ghostPropMan->animMans, 0, animMansSize);
+    InitAllGhostPropAnimManagers(system, ghostPropMan, ghostPropTemplateList, mapHeaderID);
 }
 
-static void ov9_0224B45C(DistWorldSystem *param0, int param1)
+static void InitActiveGhostPropManager(DistWorldSystem *system, BOOL useDefaultVisibility)
 {
-    int v0;
-    const UnkStruct_ov9_022530A4 *v1;
+    int mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
 
-    v0 = DistWorldSystem_GetMapHeaderID(param0);
-    v1 = ov9_0224D720(v0);
+    if (GetActiveGhostPropFileSectionSize(system)) {
+        DistWorldGhostPropManager *ghostPropMan = &system->ghostPropMan;
+        const DistWorldGhostPropHeader *header = GetActiveGhostPropHeader(system);
+        const DistWorldGhostPropTemplate *ghostPropTemplateList = GetActiveGhostPropTemplates(system);
 
-    if (ov9_0224C27C(param0)) {
-        UnkStruct_ov9_0224B528 *v2 = &param0->unk_171C;
-        const UnkStruct_ov9_0224B3F8 *v3 = ov9_0224C8AC(param0);
-        const UnkStruct_ov9_0224B6CC *v4 = ov9_0224C8C4(param0);
-
-        if ((param1 == 1) || (IsPersistedDataValid(param0) == 0)) {
-            v2->unk_00 = ~v3->unk_08;
-            ov9_02249D44(param0, v2->unk_00);
+        if (useDefaultVisibility == TRUE || !IsPersistedDataValid(system)) {
+            ghostPropMan->hiddenGhostPropGroups = ~header->defaultVisiblePropGroups;
+            SetPersistedHiddenGhostPropGroups(system, ghostPropMan->hiddenGhostPropGroups);
         } else {
-            v2->unk_00 = ov9_02249D5C(param0);
+            ghostPropMan->hiddenGhostPropGroups = GetPersistedHiddenGhostPropGroups(system);
         }
 
-        ov9_0224B3F8(param0, v2, v3, v4, v0, v2->unk_00);
+        InitGhostPropManager(system, ghostPropMan, header, ghostPropTemplateList, mapHeaderID, ghostPropMan->hiddenGhostPropGroups);
     }
 }
 
-static void ov9_0224B4CC(DistWorldSystem *param0)
+static void InitInactiveGhostPropManager(DistWorldSystem *system)
 {
-    int v0;
-    const UnkStruct_ov9_022530A4 *v1;
+    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
+    mapHeaderID = mapConnections->nextID;
 
-    v0 = DistWorldSystem_GetMapHeaderID(param0);
-    v1 = ov9_0224D720(v0);
-    v0 = v1->unk_08;
+    if (GetInactiveGhostPropFileSectionSize(system)) {
+        DistWorldGhostPropManager *ghostPropMan = &system->inactiveGhostPropMan;
+        const DistWorldGhostPropHeader *header = GetInactiveGhostPropHeader(system);
+        const DistWorldGhostPropTemplate *ghostPropTemplateList = GetInactiveGhostPropTemplates(system);
 
-    if (ov9_0224C288(param0)) {
-        UnkStruct_ov9_0224B528 *v2 = &param0->unk_1728;
-        const UnkStruct_ov9_0224B3F8 *v3 = ov9_0224C8B8(param0);
-        const UnkStruct_ov9_0224B6CC *v4 = ov9_0224C8D0(param0);
-
-        ov9_0224B3F8(param0, v2, v3, v4, v0, ~v3->unk_08);
+        InitGhostPropManager(system, ghostPropMan, header, ghostPropTemplateList, mapHeaderID, ~header->defaultVisiblePropGroups);
     }
 }
 
-static void ov9_0224B514(DistWorldSystem *param0)
+static void InitAllGhostPropManagers(DistWorldSystem *system)
 {
-    ov9_0224B45C(param0, 0);
-    ov9_0224B4CC(param0);
+    InitActiveGhostPropManager(system, FALSE);
+    InitInactiveGhostPropManager(system);
 }
 
-static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0)
+static void FinishGhostPropManager(DistWorldGhostPropManager *ghostPropMan)
 {
-    int v0;
-
-    if (param0->unk_04) {
-        for (v0 = 0; v0 < param0->unk_04; v0++) {
-            if (param0->unk_08[v0] != NULL) {
-                OverworldAnimManager_Finish(param0->unk_08[v0]);
+    if (ghostPropMan->templateCount) {
+        for (int i = 0; i < ghostPropMan->templateCount; i++) {
+            if (ghostPropMan->animMans[i] != NULL) {
+                OverworldAnimManager_Finish(ghostPropMan->animMans[i]);
             }
         }
 
-        Heap_Free(param0->unk_08);
+        Heap_Free(ghostPropMan->animMans);
 
-        param0->unk_08 = NULL;
-        param0->unk_04 = 0;
+        ghostPropMan->animMans = NULL;
+        ghostPropMan->templateCount = 0;
     }
 }
 
-static void ov9_0224B560(DistWorldSystem *param0)
+static void FinishAllGhostPropManagers(DistWorldSystem *system)
 {
-    ov9_0224B570(param0);
-    ov9_0224B580(param0);
+    FinishActiveGhostPropManager(system);
+    FinishInactiveGhostPropManager(system);
 }
 
-static void ov9_0224B570(DistWorldSystem *param0)
+static void FinishActiveGhostPropManager(DistWorldSystem *system)
 {
-    ov9_0224B528(&param0->unk_171C);
+    FinishGhostPropManager(&system->ghostPropMan);
 }
 
-static void ov9_0224B580(DistWorldSystem *param0)
+static void FinishInactiveGhostPropManager(DistWorldSystem *system)
 {
-    ov9_0224B528(&param0->unk_1728);
+    FinishGhostPropManager(&system->inactiveGhostPropMan);
 }
 
-static void ov9_0224B590(DistWorldSystem *param0)
+static void ResetActiveGhostPropManager(DistWorldSystem *system)
 {
-    param0->unk_171C.unk_08 = NULL;
-    param0->unk_171C.unk_04 = 0;
+    system->ghostPropMan.animMans = NULL;
+    system->ghostPropMan.templateCount = 0;
 }
 
-static void ov9_0224B5A0(DistWorldSystem *param0)
+static void ResetInactiveGhostPropManager(DistWorldSystem *system)
 {
-    param0->unk_1728.unk_08 = NULL;
-    param0->unk_1728.unk_04 = 0;
+    system->inactiveGhostPropMan.animMans = NULL;
+    system->inactiveGhostPropMan.templateCount = 0;
 }
 
-static void ov9_0224B5B0(DistWorldSystem *param0)
+static void MoveActiveGhostPropManagerToInactive(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->unk_1728.unk_08 == NULL);
-    GF_ASSERT(param0->unk_1728.unk_04 == 0);
+    GF_ASSERT(system->inactiveGhostPropMan.animMans == NULL);
+    GF_ASSERT(system->inactiveGhostPropMan.templateCount == 0);
 
-    param0->unk_1728 = param0->unk_171C;
+    system->inactiveGhostPropMan = system->ghostPropMan;
 }
 
-static void ov9_0224B5EC(DistWorldSystem *param0)
+static void MoveInactiveGhostPropManagerToActive(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->unk_171C.unk_08 == NULL);
-    GF_ASSERT(param0->unk_171C.unk_04 == 0);
+    GF_ASSERT(system->ghostPropMan.animMans == NULL);
+    GF_ASSERT(system->ghostPropMan.templateCount == 0);
 
-    param0->unk_171C = param0->unk_1728;
+    system->ghostPropMan = system->inactiveGhostPropMan;
 }
 
-static void ov9_0224B624(DistWorldSystem *param0, u32 param1)
+static void HideGhostPropGroup(DistWorldSystem *system, u32 groupID)
 {
-    UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
+    DistWorldGhostPropManager *ghostPropMan = &system->ghostPropMan;
 
-    GF_ASSERT(param1 < 24);
+    GF_ASSERT(groupID < GHOST_PROP_GROUP_MAX_COUNT);
 
-    v0->unk_00 |= 1 << param1;
-    ov9_02249D44(param0, v0->unk_00);
+    ghostPropMan->hiddenGhostPropGroups |= 1 << groupID;
+    SetPersistedHiddenGhostPropGroups(system, ghostPropMan->hiddenGhostPropGroups);
 }
 
-static void ov9_0224B64C(DistWorldSystem *param0, u32 param1)
+static void ShowGhostPropGroup(DistWorldSystem *system, u32 groupID)
 {
-    u32 v0 = ~(1 << param1);
-    UnkStruct_ov9_0224B528 *v1 = &param0->unk_171C;
+    u32 mask = ~(1 << groupID);
+    DistWorldGhostPropManager *ghostPropMan = &system->ghostPropMan;
 
-    GF_ASSERT(param1 < 24);
+    GF_ASSERT(groupID < GHOST_PROP_GROUP_MAX_COUNT);
 
-    v1->unk_00 &= v0;
-    ov9_02249D44(param0, v1->unk_00);
+    ghostPropMan->hiddenGhostPropGroups &= mask;
+    SetPersistedHiddenGhostPropGroups(system, ghostPropMan->hiddenGhostPropGroups);
 }
 
-static BOOL ov9_0224B674(DistWorldSystem *param0, u32 param1)
+static BOOL IsActiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID)
 {
-    UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
+    DistWorldGhostPropManager *ghostPropMan = &system->ghostPropMan;
 
-    GF_ASSERT(param1 < 24);
+    GF_ASSERT(groupID < GHOST_PROP_GROUP_MAX_COUNT);
 
-    if (v0->unk_00 & (1 << param1)) {
-        return 1;
-    }
-
-    return 0;
+    return ghostPropMan->hiddenGhostPropGroups & (1 << groupID) ? TRUE : FALSE;
 }
 
-static BOOL ov9_0224B698(DistWorldSystem *param0, u32 param1)
+static BOOL IsInactiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID)
 {
-    UnkStruct_ov9_0224B528 *v0 = &param0->unk_1728;
+    DistWorldGhostPropManager *ghostPropMan = &system->inactiveGhostPropMan;
 
-    GF_ASSERT(param1 < 24);
+    GF_ASSERT(groupID < GHOST_PROP_GROUP_MAX_COUNT);
 
-    if (v0->unk_00 & (1 << param1)) {
-        return 1;
-    }
-
-    return 0;
+    return ghostPropMan->hiddenGhostPropGroups & (1 << groupID) ? TRUE : FALSE;
 }
 
-static void ov9_0224B6BC(DistWorldSystem *param0)
+static void PersistActiveHiddenGhostPropGroups(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
-    ov9_02249D44(param0, v0->unk_00);
+    SetPersistedHiddenGhostPropGroups(system, system->ghostPropMan.hiddenGhostPropGroups);
 }
 
-static void ov9_0224B6CC(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B6CC *param2, int param3)
+static void InitAllGhostPropAnimManagers(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropTemplate *iter, int mapHeaderID)
 {
-    if (param1->unk_04) {
-        int v0;
-
-        for (v0 = 0; v0 < param1->unk_04; v0++, param2++) {
-            param1->unk_08[v0] = ov9_0224B708(param0, v0, param3, param2);
+    if (ghostPropMan->templateCount) {
+        for (int i = 0; i < ghostPropMan->templateCount; i++, iter++) {
+            ghostPropMan->animMans[i] = InitGhostPropAnimManager(system, i, mapHeaderID, iter);
         }
     }
 }
 
-static OverworldAnimManager *ov9_0224B708(DistWorldSystem *param0, int param1, int param2, const UnkStruct_ov9_0224B6CC *param3)
+static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, int animManIndex, int mapHeaderID, const DistWorldGhostPropTemplate *ghostPropTemplate)
 {
-    OverworldAnimManager *v0;
     UnkStruct_ov9_0224B708 v1;
-    UnkStruct_ov9_0224B528 *v2 = &param0->unk_171C;
-    const OverworldAnimManagerFuncs *v3 = Unk_ov9_02252F6C[param3->unk_04];
+    const OverworldAnimManagerFuncs *animFuncs = sGhostPropAnimFuncs[ghostPropTemplate->kind];
 
-    v1.unk_00 = param1;
-    v1.unk_02 = param2;
-    v1.unk_08 = *param3;
-    v1.unk_14 = param0;
+    v1.animManIndex = animManIndex;
+    v1.mapHeaderID = mapHeaderID;
+    v1.ghostPropTemplate = *ghostPropTemplate;
+    v1.system = system;
 
-    v0 = ov5_021DF72C(param0->fieldSystem->unk_40, v3, NULL, 0, &v1, 2);
-
-    return v0;
+    return ov5_021DF72C(system->fieldSystem->unk_40, animFuncs, NULL, 0, &v1, 2);
 }
 
-static void ov9_0224B748(DistWorldSystem *param0, int param1, int param2, int param3, int param4)
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
 {
-    if (ov9_0224C27C(param0)) {
-        const UnkStruct_ov9_0224B3F8 *v0 = ov9_0224C8AC(param0);
+    if (GetActiveGhostPropFileSectionSize(system)) {
+        const DistWorldGhostPropHeader *header = GetActiveGhostPropHeader(system);
 
-        if (v0->unk_04) {
-            int v1 = v0->unk_04;
-            const UnkStruct_ov9_0224B748 *v2;
-
-            v2 = ov9_0224C8DC(param0);
+        if (header->triggerCount) {
+            int i = header->triggerCount;
+            const DistWorldGhostPropTrigger *iter = GetActiveGhostPropTriggers(system);
 
             do {
-                if (param4 == v2->unk_04) {
-                    if (DistWorldBounds_AreCoordinatesInBounds(param1, param2, param3, &v2->unk_08)) {
-                        if (v2->unk_06 == 0) {
-                            ov9_0224B624(param0, v2->unk_00);
-                        } else {
-                            ov9_0224B64C(param0, v2->unk_00);
-                        }
+                if (direction == iter->playerDir && DistWorldBounds_AreCoordinatesInBounds(tileX, tileY, tileZ, &iter->bounds)) {
+                    if (!iter->showProp) {
+                        HideGhostPropGroup(system, iter->groupID);
+                    } else {
+                        ShowGhostPropGroup(system, iter->groupID);
                     }
                 }
 
-                v2++;
-            } while (--v1);
+                iter++;
+            } while (--i);
         }
     }
 }
 
-static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1)
+static BOOL ov9_0224B7B0(DistWorldSystem *system, u32 param1)
 {
-    int v0;
-    u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
-    UnkStruct_ov9_0224B528 *v3 = &param0->unk_171C;
+    DistWorldGhostPropManager *ghostPropMan = &system->ghostPropMan;
 
     GF_ASSERT(param1 != 25);
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
-            v2 = &Unk_ov9_022531D0[v1];
+    for (int i = 0; i < ghostPropMan->templateCount; i++) {
+        if (OverworldAnimManager_IsActive(ghostPropMan->animMans[i]) == TRUE) {
+            u16 ghostPropKind = GetAnimManagerGhostPropKind(ghostPropMan->animMans[i]);
+            v2 = &Unk_ov9_022531D0[ghostPropKind];
 
             if (param1 == v2->unk_00) {
-                return 1;
+                return TRUE;
             }
         }
     }
 
-    v3 = &param0->unk_1728;
+    ghostPropMan = &system->inactiveGhostPropMan;
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
-            v2 = &Unk_ov9_022531D0[v1];
+    for (int i = 0; i < ghostPropMan->templateCount; i++) {
+        if (OverworldAnimManager_IsActive(ghostPropMan->animMans[i]) == TRUE) {
+            u16 ghostPropKind = GetAnimManagerGhostPropKind(ghostPropMan->animMans[i]);
+            v2 = &Unk_ov9_022531D0[ghostPropKind];
 
             if (param1 == v2->unk_00) {
-                return 1;
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
@@ -3213,13 +3207,13 @@ static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
-    UnkStruct_ov9_0224B528 *v3 = &param0->unk_171C;
+    DistWorldGhostPropManager *v3 = &param0->ghostPropMan;
 
     GF_ASSERT(param1 != 5);
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
+    for (v0 = 0; v0 < v3->templateCount; v0++) {
+        if (OverworldAnimManager_IsActive(v3->animMans[v0]) == 1) {
+            v1 = GetAnimManagerGhostPropKind(v3->animMans[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
             if (param1 == v2->unk_02) {
@@ -3228,11 +3222,11 @@ static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
         }
     }
 
-    v3 = &param0->unk_1728;
+    v3 = &param0->inactiveGhostPropMan;
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
+    for (v0 = 0; v0 < v3->templateCount; v0++) {
+        if (OverworldAnimManager_IsActive(v3->animMans[v0]) == 1) {
+            v1 = GetAnimManagerGhostPropKind(v3->animMans[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
             if (param1 == v2->unk_02) {
@@ -3249,11 +3243,11 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
-    UnkStruct_ov9_0224B528 *v3 = &param0->unk_171C;
+    DistWorldGhostPropManager *v3 = &param0->ghostPropMan;
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
+    for (v0 = 0; v0 < v3->templateCount; v0++) {
+        if (OverworldAnimManager_IsActive(v3->animMans[v0]) == 1) {
+            v1 = GetAnimManagerGhostPropKind(v3->animMans[v0]);
 
             if (v1 == param1) {
                 return 1;
@@ -3261,11 +3255,11 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
         }
     }
 
-    v3 = &param0->unk_1728;
+    v3 = &param0->inactiveGhostPropMan;
 
-    for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (OverworldAnimManager_IsActive(v3->unk_08[v0]) == 1) {
-            v1 = ov9_0224B958(v3->unk_08[v0]);
+    for (v0 = 0; v0 < v3->templateCount; v0++) {
+        if (OverworldAnimManager_IsActive(v3->animMans[v0]) == 1) {
+            v1 = GetAnimManagerGhostPropKind(v3->animMans[v0]);
 
             if (v1 == param1) {
                 return 1;
@@ -3276,36 +3270,36 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
     return 0;
 }
 
-static u16 ov9_0224B958(OverworldAnimManager *param0)
+static u16 GetAnimManagerGhostPropKind(OverworldAnimManager *animMan)
 {
-    return (u16)sub_020715C4(param0);
+    return (u16)OverworldAnimManager_GetDistWorldGhostPropKind(animMan);
 }
 
 static int ov9_0224B964(OverworldAnimManager *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov9_0224B6CC *v1;
+    DistWorldGhostPropTemplate *ghostPropTemplate;
     UnkStruct_ov9_0224BA48 *v2 = param1;
     const UnkStruct_ov9_0224B708 *v3 = OverworldAnimManager_GetUserData(param0);
 
     v2->unk_28 = *v3;
-    v1 = &v2->unk_28.unk_08;
+    ghostPropTemplate = &v2->unk_28.ghostPropTemplate;
 
-    sub_020715C0(param0, v1->unk_04);
+    OverworldAnimManager_SetDistWorldGhostPropKind(param0, ghostPropTemplate->kind);
 
-    v2->unk_40 = ov9_0224D8A4(v3->unk_14, v1->unk_04, &v0);
+    v2->unk_40 = ov9_0224D8A4(v3->system, ghostPropTemplate->kind, &v0);
 
     if (v0 == 0) {
-        ov9_0224DA48(v2->unk_28.unk_14, v1->unk_04, &v2->unk_40->unk_04, &v2->unk_40->unk_58);
+        ov9_0224DA48(v2->unk_28.system, ghostPropTemplate->kind, &v2->unk_40->unk_04, &v2->unk_40->unk_58);
     }
 
     {
         BOOL v4;
 
-        if (DistWorldSystem_GetMapHeaderID(v3->unk_14) == v3->unk_02) {
-            v4 = ov9_0224B674(v3->unk_14, v1->unk_00);
+        if (DistWorldSystem_GetMapHeaderID(v3->system) == v3->mapHeaderID) {
+            v4 = IsActiveGhostPropGroupHidden(v3->system, ghostPropTemplate->groupID);
         } else {
-            v4 = ov9_0224B698(v3->unk_14, v1->unk_00);
+            v4 = IsInactiveGhostPropGroupHidden(v3->system, ghostPropTemplate->groupID);
         }
 
         if (v4 == 1) {
@@ -3315,12 +3309,12 @@ static int ov9_0224B964(OverworldAnimManager *param0, void *param1)
         }
     }
 
-    sub_02064450(v1->unk_06, v1->unk_0A, &v2->unk_10);
-    v2->unk_10.y = (((v1->unk_08) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    sub_02064450(ghostPropTemplate->tileX, ghostPropTemplate->tileZ, &v2->unk_10);
+    v2->unk_10.y = (((ghostPropTemplate->tileY) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
 
     {
         VecFx32 v5;
-        const VecFx32 *v6 = &Unk_ov9_02253298[v1->unk_04];
+        const VecFx32 *v6 = &Unk_ov9_02253298[ghostPropTemplate->kind];
 
         v2->unk_10.x += v6->x;
         v2->unk_10.y += v6->y;
@@ -3342,11 +3336,11 @@ static void ov9_0224BA48(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224BA48 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_28;
 
-    if (ov9_0224DAEC(v1->unk_08.unk_04) == 1) {
+    if (ov9_0224DAEC(v1->ghostPropTemplate.kind) == 1) {
         Simple3D_FreeAnimation(&v0->unk_40->unk_58);
     }
 
-    ov9_0224D938(v1->unk_14, v0->unk_40);
+    ov9_0224D938(v1->system, v0->unk_40);
 }
 
 static const fx32 Unk_ov9_022521E4[8] = {
@@ -3365,21 +3359,21 @@ static void ov9_0224BA6C(OverworldAnimManager *param0, void *param1)
     const fx32 *v0;
     UnkStruct_ov9_0224BA48 *v1 = param1;
     UnkStruct_ov9_0224B708 *v2 = &v1->unk_28;
-    UnkStruct_ov9_0224B6CC *v3 = &v2->unk_08;
-    u32 v4 = 0, v5 = DistWorldSystem_GetMapHeaderID(v2->unk_14);
+    DistWorldGhostPropTemplate *v3 = &v2->ghostPropTemplate;
+    u32 v4 = 0, v5 = DistWorldSystem_GetMapHeaderID(v2->system);
 
-    if ((v2->unk_08.unk_04 == 0) && (v5 == v2->unk_02)) {
+    if ((v2->ghostPropTemplate.kind == 0) && (v5 == v2->mapHeaderID)) {
         int v6 = 0;
-        int v7 = ((v2->unk_08.unk_08) * 2);
-        const MapObjectManager *v8 = v2->unk_14->fieldSystem->mapObjMan;
+        int v7 = ((v2->ghostPropTemplate.tileY) * 2);
+        const MapObjectManager *v8 = v2->system->fieldSystem->mapObjMan;
         MapObject *v9;
 
         while (sub_020625B0(
                    v8, &v9, &v6, (1 << 0))
             == 1) {
             if (MapObject_GetY(v9) == v7) {
-                if (MapObject_GetZ(v9) == v2->unk_08.unk_0A) {
-                    if (MapObject_GetX(v9) == v2->unk_08.unk_06) {
+                if (MapObject_GetZ(v9) == v2->ghostPropTemplate.tileZ) {
+                    if (MapObject_GetX(v9) == v2->ghostPropTemplate.tileX) {
                         v4 = 1;
                         break;
                     }
@@ -3408,10 +3402,10 @@ static void ov9_0224BA6C(OverworldAnimManager *param0, void *param1)
     {
         BOOL v10;
 
-        if (DistWorldSystem_GetMapHeaderID(v2->unk_14) == v2->unk_02) {
-            v10 = ov9_0224B674(v2->unk_14, v3->unk_00);
+        if (DistWorldSystem_GetMapHeaderID(v2->system) == v2->mapHeaderID) {
+            v10 = IsActiveGhostPropGroupHidden(v2->system, v3->groupID);
         } else {
-            v10 = ov9_0224B698(v2->unk_14, v3->unk_00);
+            v10 = IsInactiveGhostPropGroupHidden(v2->system, v3->groupID);
         }
 
         if (v10 == 1) {
@@ -3436,7 +3430,7 @@ static void ov9_0224BA6C(OverworldAnimManager *param0, void *param1)
     {
         v1->unk_1C = v1->unk_10;
         v1->unk_1C.y += v1->unk_0C;
-        v1->unk_02 = ov9_0224DBE4(v2->unk_14, v2->unk_08.unk_04, &v1->unk_1C);
+        v1->unk_02 = ov9_0224DBE4(v2->system, v2->ghostPropTemplate.kind, &v1->unk_1C);
     }
 }
 
@@ -3451,7 +3445,7 @@ static void ov9_0224BBDC(OverworldAnimManager *param0, void *param1)
     if (v0->unk_00 > 0) {
         UnkStruct_ov9_0224B708 *v1 = &v0->unk_28;
 
-        ov9_0224DAAC(v1->unk_14, v1->unk_08.unk_04, v0->unk_00);
+        ov9_0224DAAC(v1->system, v1->ghostPropTemplate.kind, v0->unk_00);
         Simple3D_DrawRenderObjWithPos(&v0->unk_40->unk_04, &v0->unk_1C);
     }
 }
@@ -3459,22 +3453,22 @@ static void ov9_0224BBDC(OverworldAnimManager *param0, void *param1)
 static int ov9_0224BC08(OverworldAnimManager *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov9_0224B6CC *v1;
+    DistWorldGhostPropTemplate *ghostPropTemplate;
     UnkStruct_ov9_0224BC08 *v2 = param1;
     const UnkStruct_ov9_0224B708 *v3 = OverworldAnimManager_GetUserData(param0);
 
     v2->unk_20 = *v3;
-    v1 = &v2->unk_20.unk_08;
+    ghostPropTemplate = &v2->unk_20.ghostPropTemplate;
 
-    sub_020715C0(param0, v1->unk_04);
+    OverworldAnimManager_SetDistWorldGhostPropKind(param0, ghostPropTemplate->kind);
 
-    v2->unk_38 = ov9_0224D8A4(v3->unk_14, v1->unk_04, &v0);
+    v2->unk_38 = ov9_0224D8A4(v3->system, ghostPropTemplate->kind, &v0);
 
     if (v0 == 0) {
-        ov9_0224DA48(v2->unk_20.unk_14, v1->unk_04, &v2->unk_38->unk_04, &v2->unk_38->unk_58);
+        ov9_0224DA48(v2->unk_20.system, ghostPropTemplate->kind, &v2->unk_38->unk_04, &v2->unk_38->unk_58);
     }
 
-    if (v1->unk_04 == 23) {
+    if (ghostPropTemplate->kind == 23) {
         v2->unk_04 = 1483;
         v2->unk_06 = 1483;
     } else {
@@ -3485,10 +3479,10 @@ static int ov9_0224BC08(OverworldAnimManager *param0, void *param1)
     {
         BOOL v4;
 
-        if (DistWorldSystem_GetMapHeaderID(v3->unk_14) == v3->unk_02) {
-            v4 = ov9_0224B674(v3->unk_14, v1->unk_00);
+        if (DistWorldSystem_GetMapHeaderID(v3->system) == v3->mapHeaderID) {
+            v4 = IsActiveGhostPropGroupHidden(v3->system, ghostPropTemplate->groupID);
         } else {
-            v4 = ov9_0224B698(v3->unk_14, v1->unk_00);
+            v4 = IsInactiveGhostPropGroupHidden(v3->system, ghostPropTemplate->groupID);
         }
 
         if (v4 == 1) {
@@ -3499,12 +3493,12 @@ static int ov9_0224BC08(OverworldAnimManager *param0, void *param1)
         }
     }
 
-    sub_02064450(v1->unk_06, v1->unk_0A, &v2->unk_08);
-    v2->unk_08.y = (((v1->unk_08) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    sub_02064450(ghostPropTemplate->tileX, ghostPropTemplate->tileZ, &v2->unk_08);
+    v2->unk_08.y = (((ghostPropTemplate->tileY) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
 
     {
         VecFx32 v5;
-        const VecFx32 *v6 = &Unk_ov9_02253298[v1->unk_04];
+        const VecFx32 *v6 = &Unk_ov9_02253298[ghostPropTemplate->kind];
 
         v2->unk_08.x += v6->x;
         v2->unk_08.y += v6->y;
@@ -3519,26 +3513,26 @@ static void ov9_0224BCF4(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224BC08 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
 
-    if (ov9_0224DAEC(v1->unk_08.unk_04) == 1) {
+    if (ov9_0224DAEC(v1->ghostPropTemplate.kind) == 1) {
         Simple3D_FreeAnimation(&v0->unk_38->unk_58);
     }
 
-    ov9_0224D938(v1->unk_14, v0->unk_38);
+    ov9_0224D938(v1->system, v0->unk_38);
 }
 
 static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov9_0224BC08 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
-    UnkStruct_ov9_0224B6CC *v2 = &v1->unk_08;
+    DistWorldGhostPropTemplate *ghostPropTemplate = &v1->ghostPropTemplate;
 
     {
         BOOL v3;
 
-        if (DistWorldSystem_GetMapHeaderID(v1->unk_14) == v1->unk_02) {
-            v3 = ov9_0224B674(v1->unk_14, v2->unk_00);
+        if (DistWorldSystem_GetMapHeaderID(v1->system) == v1->mapHeaderID) {
+            v3 = IsActiveGhostPropGroupHidden(v1->system, ghostPropTemplate->groupID);
         } else {
-            v3 = ov9_0224B698(v1->unk_14, v2->unk_00);
+            v3 = IsInactiveGhostPropGroupHidden(v1->system, ghostPropTemplate->groupID);
         }
 
         if (v3 == 1) {
@@ -3585,7 +3579,7 @@ static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
 
     {
         v0->unk_02 = ov9_0224DBE4(
-            v1->unk_14, v1->unk_08.unk_04, &v0->unk_08);
+            v1->system, v1->ghostPropTemplate.kind, &v0->unk_08);
     }
 }
 
@@ -3600,7 +3594,7 @@ static void ov9_0224BDE8(OverworldAnimManager *param0, void *param1)
     if (v0->unk_00 > 0) {
         UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
 
-        ov9_0224DAAC(v1->unk_14, v1->unk_08.unk_04, v0->unk_00);
+        ov9_0224DAAC(v1->system, v1->ghostPropTemplate.kind, v0->unk_00);
         Simple3D_DrawRenderObjWithPos(&v0->unk_38->unk_04, &v0->unk_08);
     }
 }
@@ -3608,18 +3602,18 @@ static void ov9_0224BDE8(OverworldAnimManager *param0, void *param1)
 static void ov9_0224BE14(DistWorldSystem *param0)
 {
     enum MapHeader mapHeaderID;
-    const UnkStruct_ov9_022530A4 *v1;
+    const DistWorldMapConnections *v1;
 
     mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
-    v1 = ov9_0224D720(mapHeaderID);
+    v1 = GetConnectionsForMap(mapHeaderID);
 
     ov9_0224BFBC(param0);
-    ov9_0224C0F8(param0, mapHeaderID, v1->unk_08);
+    ov9_0224C0F8(param0, mapHeaderID, v1->nextID);
 
     InitFloatingPlatformManager(param0);
     InitFloatingPlatformJumpPoint(param0);
     InitCameraAngleTemplates(param0);
-    ov9_0224C808(param0);
+    InitAllGhostPropData(param0);
 
     if (IsPersistedDataValid(param0) == 0) {
         int v2, v3, v4;
@@ -3637,28 +3631,28 @@ static void ov9_0224BE8C(DistWorldSystem *param0)
     ResetCameraAngleTemplates(param0);
     ResetFloatingPlatformJumpPoint(param0);
     ResetFloatingPlatformManager(param0);
-    ov9_0224C854(param0);
+    ResetAllGhostPropData(param0);
     ov9_0224C164(param0);
     ov9_0224BFFC(param0);
 }
 
 static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
 {
-    ov9_0224C844(param0);
+    ResetInactiveGhostPropData(param0);
     ov9_0224C184(param0);
     ResetCameraAngleTemplates(param0);
     ResetFloatingPlatformJumpPoint(param0);
     ResetFloatingPlatformManager(param0);
     ov9_0224C194(param0);
-    ov9_0224C864(param0);
-    ov9_0224B5B0(param0);
-    ov9_0224B590(param0);
+    MoveActiveGhostPropDataToInactive(param0);
+    MoveActiveGhostPropManagerToInactive(param0);
+    ResetActiveGhostPropManager(param0);
     ov9_0224C10C(param0, param1);
     InitFloatingPlatformManager(param0);
     FreeFloatingPlatformManagerTerrainAttrs(param0);
     InitFloatingPlatformJumpPoint(param0);
     InitCameraAngleTemplates(param0);
-    ov9_0224C7C8(param0);
+    InitActiveGhostPropData(param0);
 }
 
 static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
@@ -3666,13 +3660,13 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
     ResetCameraAngleTemplates(param0);
     ResetFloatingPlatformJumpPoint(param0);
     ResetFloatingPlatformManager(param0);
-    ov9_0224C834(param0);
+    ResetActiveGhostPropData(param0);
     ov9_0224C174(param0);
     ov9_0224C1E4(param0);
-    ov9_0224C888(param0);
-    ov9_0224B5EC(param0);
-    ov9_0224B6BC(param0);
-    ov9_0224B5A0(param0);
+    MoveInactiveGhostPropDataToActive(param0);
+    MoveInactiveGhostPropManagerToActive(param0);
+    PersistActiveHiddenGhostPropGroups(param0);
+    ResetInactiveGhostPropManager(param0);
     InitFloatingPlatformManager(param0);
     FreeFloatingPlatformManagerTerrainAttrs(param0);
     InitFloatingPlatformJumpPoint(param0);
@@ -3680,7 +3674,7 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
 
     if (param1 != 593) {
         ov9_0224C120(param0, param1);
-        ov9_0224C7E8(param0);
+        InitInactiveGhostPropData(param0);
     }
 }
 
@@ -3787,7 +3781,7 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         file->floatingPlatformSection = (DistWorldFileFloatingPlatformSection *)data;
         file->floatingPlatformJumpPointSection = (DistWorldFileFloatingPlatformJumpPointSection *)((u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize);
         file->cameraAngleSection = (DistWorldFileCameraAngleSection *)((u8 *)file->floatingPlatformJumpPointSection + header->floatingPlatformJumpPointSectionSize);
-        file->unk_10 = (u8 *)file->cameraAngleSection + header->cameraAngleSectionSize;
+        file->ghostPropSection = (u8 *)file->cameraAngleSection + header->cameraAngleSectionSize;
     }
 }
 
@@ -3804,7 +3798,7 @@ static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->unk_169C.unk_58, mapHeaderID);
+    DistWorldFile_Load(param0, &param0->unk_169C.inactiveDistortionWorldFile, mapHeaderID);
 }
 
 static void DistWorldFile_Invalidate(DistWorldFile *file)
@@ -3835,15 +3829,15 @@ static void ov9_0224C174(DistWorldSystem *param0)
 
 static void ov9_0224C184(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->unk_169C.unk_58);
+    DistWorldFile_Free(&param0->unk_169C.inactiveDistortionWorldFile);
 }
 
 static void ov9_0224C194(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->unk_169C.unk_58.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->unk_169C.unk_58.buffer == NULL);
+    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.buffer == NULL);
 
-    param0->unk_169C.unk_58 = param0->unk_169C.distortionWorldFile;
+    param0->unk_169C.inactiveDistortionWorldFile = param0->unk_169C.distortionWorldFile;
 
     DistWorldFile_Invalidate(&param0->unk_169C.distortionWorldFile);
 }
@@ -3853,8 +3847,8 @@ static void ov9_0224C1E4(DistWorldSystem *param0)
     GF_ASSERT(param0->unk_169C.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
     GF_ASSERT(param0->unk_169C.distortionWorldFile.buffer == NULL);
 
-    param0->unk_169C.distortionWorldFile = param0->unk_169C.unk_58;
-    DistWorldFile_Invalidate(&param0->unk_169C.unk_58);
+    param0->unk_169C.distortionWorldFile = param0->unk_169C.inactiveDistortionWorldFile;
+    DistWorldFile_Invalidate(&param0->unk_169C.inactiveDistortionWorldFile);
 }
 
 static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file)
@@ -3911,48 +3905,43 @@ static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistW
     return (DistWorldCameraAngleTemplate *)templates;
 }
 
-static int ov9_0224C27C(DistWorldSystem *param0)
+static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
-    DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
-    DistWorldFileHeader *v1 = v0->header;
-
-    return v1->unk_10;
+    return system->unk_169C.distortionWorldFile.header->ghostPropSectionSize;
 }
 
-static int ov9_0224C288(DistWorldSystem *param0)
+static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
-    int v0 = 0;
-    DistWorldFile *v1 = &param0->unk_169C.unk_58;
+    int ghostPropSectionSize = 0;
+    DistWorldFile *inactiveFile = &system->unk_169C.inactiveDistortionWorldFile;
 
-    if (v1->mapHeaderID != MAP_HEADER_COUNT) {
-        DistWorldFileHeader *v2 = v1->header;
-        v0 = v2->unk_10;
+    if (inactiveFile->mapHeaderID != MAP_HEADER_INVALID) {
+        ghostPropSectionSize = inactiveFile->header->ghostPropSectionSize;
     }
 
-    return v0;
+    return ghostPropSectionSize;
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C2A8(DistWorldFile *param0)
+static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *file)
 {
-    UnkStruct_ov9_0224B3F8 *v0 = param0->unk_10;
-    return v0;
+    return file->ghostPropSection;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C2AC(DistWorldFile *param0)
+static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *file)
 {
-    const u8 *v0 = param0->unk_10;
-    v0 += sizeof(UnkStruct_ov9_0224B3F8);
+    const u8 *templates = file->ghostPropSection;
+    templates += sizeof(DistWorldGhostPropHeader);
 
-    return (UnkStruct_ov9_0224B6CC *)v0;
+    return (DistWorldGhostPropTemplate *)templates;
 }
 
-static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0)
+static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *file)
 {
-    const UnkStruct_ov9_0224B3F8 *v0 = param0->unk_10;
-    const u8 *v1 = param0->unk_10;
+    const DistWorldGhostPropHeader *header = file->ghostPropSection;
+    const u8 *triggers = file->ghostPropSection;
 
-    v1 += sizeof(UnkStruct_ov9_0224B3F8) + (sizeof(UnkStruct_ov9_0224B6CC) * v0->unk_00);
-    return (UnkStruct_ov9_0224B748 *)v1;
+    triggers += sizeof(DistWorldGhostPropHeader) + (sizeof(DistWorldGhostPropTemplate) * header->templateCount);
+    return (DistWorldGhostPropTrigger *)triggers;
 }
 
 static void InitFloatingPlatformManager(DistWorldSystem *system)
@@ -4267,106 +4256,99 @@ static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(Dist
     return NULL;
 }
 
-static void ov9_0224C788(DistWorldFile *param0, UnkStruct_ov9_0224C788 *param1)
+static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data)
 {
-    GF_ASSERT(param1->unk_00 == NULL);
-    GF_ASSERT(param1->unk_04 == NULL);
-    GF_ASSERT(param1->unk_08 == NULL);
+    GF_ASSERT(data->header == NULL);
+    GF_ASSERT(data->templates == NULL);
+    GF_ASSERT(data->triggers == NULL);
 
-    param1->unk_00 = ov9_0224C2A8(param0);
-    param1->unk_04 = ov9_0224C2AC(param0);
-    param1->unk_08 = ov9_0224C2B4(param0);
+    data->header = DistWorldFile_GetGhostPropHeader(file);
+    data->templates = DistWorldFile_GetGhostPropTemplates(file);
+    data->triggers = DistWorldFile_GetGhostPropTriggers(file);
 }
 
-static void ov9_0224C7C8(DistWorldSystem *param0)
+static void InitActiveGhostPropData(DistWorldSystem *system)
 {
-    if (ov9_0224C27C(param0)) {
-        DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
-        UnkStruct_ov9_0224C788 *v1 = &param0->unk_169C.unk_4C;
+    if (GetActiveGhostPropFileSectionSize(system)) {
+        DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+        DistWorldGhostPropData *ghostPropData = &system->unk_169C.ghostPropData;
 
-        ov9_0224C788(v0, v1);
+        DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
 }
 
-static void ov9_0224C7E8(DistWorldSystem *param0)
+static void InitInactiveGhostPropData(DistWorldSystem *system)
 {
-    if (ov9_0224C288(param0)) {
-        DistWorldFile *v0 = &param0->unk_169C.unk_58;
-        UnkStruct_ov9_0224C788 *v1 = &param0->unk_169C.unk_74;
+    if (GetInactiveGhostPropFileSectionSize(system)) {
+        DistWorldFile *file = &system->unk_169C.inactiveDistortionWorldFile;
+        DistWorldGhostPropData *ghostPropData = &system->unk_169C.inactiveGhostPropData;
 
-        ov9_0224C788(v0, v1);
+        DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
 }
 
-static void ov9_0224C808(DistWorldSystem *param0)
+static void InitAllGhostPropData(DistWorldSystem *system)
 {
-    ov9_0224C7C8(param0);
-    ov9_0224C7E8(param0);
+    InitActiveGhostPropData(system);
+    InitInactiveGhostPropData(system);
 }
 
-static void ov9_0224C818(UnkStruct_ov9_0224C788 *param0)
+static void DistWorldGhostPropData_Reset(DistWorldGhostPropData *data)
 {
-    memset(param0, 0, sizeof(UnkStruct_ov9_0224C788));
+    memset(data, 0, sizeof(DistWorldGhostPropData));
 }
 
-static void ov9_0224C834(DistWorldSystem *param0)
+static void ResetActiveGhostPropData(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
-    ov9_0224C818(v0);
+    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
 }
 
-static void ov9_0224C844(DistWorldSystem *param0)
+static void ResetInactiveGhostPropData(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
-    ov9_0224C818(v0);
+    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
 }
 
-static void ov9_0224C854(DistWorldSystem *param0)
+static void ResetAllGhostPropData(DistWorldSystem *system)
 {
-    ov9_0224C834(param0);
-    ov9_0224C844(param0);
+    ResetActiveGhostPropData(system);
+    ResetInactiveGhostPropData(system);
 }
 
-static void ov9_0224C864(DistWorldSystem *param0)
+static void MoveActiveGhostPropDataToInactive(DistWorldSystem *system)
 {
-    param0->unk_169C.unk_74 = param0->unk_169C.unk_4C;
-    ov9_0224C818(&param0->unk_169C.unk_4C);
+    system->unk_169C.inactiveGhostPropData = system->unk_169C.ghostPropData;
+    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
 }
 
-static void ov9_0224C888(DistWorldSystem *param0)
+static void MoveInactiveGhostPropDataToActive(DistWorldSystem *system)
 {
-    param0->unk_169C.unk_4C = param0->unk_169C.unk_74;
-    ov9_0224C818(&param0->unk_169C.unk_74);
+    system->unk_169C.ghostPropData = system->unk_169C.inactiveGhostPropData;
+    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8AC(DistWorldSystem *param0)
+static const DistWorldGhostPropHeader *GetActiveGhostPropHeader(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
-    return v0->unk_00;
+    return system->unk_169C.ghostPropData.header;
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8B8(DistWorldSystem *param0)
+static const DistWorldGhostPropHeader *GetInactiveGhostPropHeader(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
-    return v0->unk_00;
+    return system->unk_169C.inactiveGhostPropData.header;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8C4(DistWorldSystem *param0)
+static const DistWorldGhostPropTemplate *GetActiveGhostPropTemplates(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
-    return v0->unk_04;
+    return system->unk_169C.ghostPropData.templates;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8D0(DistWorldSystem *param0)
+static const DistWorldGhostPropTemplate *GetInactiveGhostPropTemplates(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
-    return v0->unk_04;
+    return system->unk_169C.inactiveGhostPropData.templates;
 }
 
-static const UnkStruct_ov9_0224B748 *ov9_0224C8DC(DistWorldSystem *param0)
+static const DistWorldGhostPropTrigger *GetActiveGhostPropTriggers(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
-    return v0->unk_08;
+    return system->unk_169C.ghostPropData.triggers;
 }
 
 static void ov9_0224C8E8(DistWorldSystem *param0)
@@ -4374,17 +4356,17 @@ static void ov9_0224C8E8(DistWorldSystem *param0)
     enum MapHeader mapHeaderID, v1;
     UnkStruct_ov9_0224C8E8 *v2 = &param0->unk_1E88;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    const UnkStruct_ov9_022530A4 *v4, *v5;
+    const DistWorldMapConnections *v4, *v5;
 
     mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
-    v4 = ov9_0224D720(mapHeaderID);
-    v1 = v4->unk_08;
+    v4 = GetConnectionsForMap(mapHeaderID);
+    v1 = v4->nextID;
 
-    if (v1 == 593) {
+    if (v1 == MAP_HEADER_INVALID) {
         return;
     }
 
-    v5 = ov9_0224D720(v1);
+    v5 = GetConnectionsForMap(v1);
     v2->unk_00 = v1;
 
     {
@@ -4678,14 +4660,14 @@ static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
-    const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(DistWorldSystem_GetMapHeaderID(param0));
-    GF_ASSERT(v2->unk_08 != 593);
+    const DistWorldMapConnections *v2 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
+    GF_ASSERT(v2->nextID != MAP_HEADER_INVALID);
 
-    v2 = ov9_0224D720(v2->unk_08);
-    param1->unk_0C = v2->unk_00;
+    v2 = GetConnectionsForMap(v2->nextID);
+    param1->unk_0C = v2->currID;
 
     ov5_021D12D0(param0->fieldSystem, param1->unk_0C);
-    ov9_0224BF18(param0, v2->unk_08);
+    ov9_0224BF18(param0, v2->nextID);
     LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
     param1->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
@@ -4699,12 +4681,12 @@ static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     v1->unk_10 = NULL;
 
     ov9_0224CBBC(param0->fieldSystem->landDataMan, 1);
-    v1->unk_00 = v2->unk_08;
+    v1->unk_00 = v2->nextID;
 
     if (v1->unk_00 != 593) {
-        v2 = ov9_0224D720(v2->unk_08);
+        v2 = GetConnectionsForMap(v2->nextID);
         v1->unk_10 = MapMatrix_NewWithHeapID(4);
-        MapMatrix_Load(v2->unk_00, v1->unk_10);
+        MapMatrix_Load(v2->currID, v1->unk_10);
         param1->unk_04 = 2;
     } else {
         param1->unk_04 = 4;
@@ -4753,7 +4735,7 @@ static int ov9_0224CE00(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 
 static int ov9_0224CE2C(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 {
-    const UnkStruct_ov9_022530A4 *v0;
+    const DistWorldMapConnections *v0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
 
     if (v1->unk_00 != 593) {
@@ -4762,8 +4744,8 @@ static int ov9_0224CE2C(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
         LandDataManager_DistortionWorldUpdateTrackedTargetValues(v1->unk_18, param1->unk_08, param1->unk_0A);
     }
 
-    v0 = ov9_0224D720(param1->unk_0C);
-    ov9_02249C08(param0, v0->unk_08);
+    v0 = GetConnectionsForMap(param1->unk_0C);
+    ov9_02249C08(param0, v0->nextID);
 
     if (param1->unk_28 != NULL) {
         ov9_0224E0DC(param1->unk_28, 0);
@@ -4782,7 +4764,7 @@ static int (*const Unk_ov9_022514E0[5])(DistWorldSystem *, UnkStruct_ov9_0224CBD
 
 static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 {
-    const UnkStruct_ov9_022530A4 *v0;
+    const DistWorldMapConnections *v0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
 
     v1->unk_08 = 0;
@@ -4791,8 +4773,8 @@ static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
         ov9_0224CBBC(v1->unk_18, 0);
     }
 
-    v0 = ov9_0224D720(DistWorldSystem_GetMapHeaderID(param0));
-    ov9_02249C2C(param0, v0->unk_08);
+    v0 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
+    ov9_02249C2C(param0, v0->nextID);
 
     param1->unk_04 = 1;
     return 0;
@@ -4802,11 +4784,11 @@ static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
-    const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(DistWorldSystem_GetMapHeaderID(param0));
-    GF_ASSERT(v2->unk_04 != 593);
-    v2 = ov9_0224D720(v2->unk_04);
+    const DistWorldMapConnections *v2 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
+    GF_ASSERT(v2->prevID != MAP_HEADER_INVALID);
+    v2 = GetConnectionsForMap(v2->prevID);
 
-    param1->unk_0C = v2->unk_00;
+    param1->unk_0C = v2->currID;
 
     ov5_021D12D0(param0->fieldSystem, param1->unk_0C);
     ov9_0224BEB4(param0, param1->unk_0C);
@@ -4839,13 +4821,13 @@ static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 
     ov9_0224CBBC(v1->unk_18, 1);
     ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
-    MapMatrix_Load(v2->unk_00, fieldSystem->mapMatrix);
+    MapMatrix_Load(v2->currID, fieldSystem->mapMatrix);
 
     {
         int v4 = 0, v5 = 0, v6 = 0;
 
         LandDataManager_DistortionWorldInitWithoutNARC(fieldSystem->landDataMan, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
-        ov9_02251094(v2->unk_00, &v4, &v5, &v6);
+        ov9_02251094(v2->currID, &v4, &v5, &v6);
         LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, v4, v5, v6);
         LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, 1);
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, 1);
@@ -4945,17 +4927,17 @@ static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
 {
     u32 v0;
     MapObject *v1;
-    const UnkStruct_ov9_022530A4 *v2;
+    const DistWorldMapConnections *v2;
     const UnkStruct_ov9_02253830 *v3;
 
     param1->unk_00 = param1->unk_64->unk_04.unk_0A;
     param1->unk_02 = param1->unk_64->unk_04.unk_08;
 
     v0 = DistWorldSystem_GetMapHeaderID(param0);
-    v2 = ov9_0224D720(v0);
+    v2 = GetConnectionsForMap(v0);
 
     if (param1->unk_00 == 1) {
-        param1->unk_06 = v2->unk_08;
+        param1->unk_06 = v2->nextID;
 
         {
             VarsFlags *v4 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
@@ -4970,7 +4952,7 @@ static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
             }
         }
     } else {
-        param1->unk_06 = v2->unk_04;
+        param1->unk_06 = v2->prevID;
 
         switch (param0, param1->unk_02) {
         case 13:
@@ -5364,18 +5346,18 @@ static int (*const Unk_ov9_02252224[8])(DistWorldSystem *, UnkStruct_ov9_0224D07
     ov9_0224D6E0
 };
 
-static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0)
+static const DistWorldMapConnections *GetConnectionsForMap(int mapHeaderID)
 {
-    int v0 = 0;
-    const UnkStruct_ov9_022530A4 *v1 = Unk_ov9_022530A4;
+    int i = 0;
+    const DistWorldMapConnections *iter = sDistWorldMapConnectionList;
 
-    while (v0 < 10) {
-        if (v1->unk_00 == param0) {
-            return v1;
+    while (i < DISTORTION_WORLD_MAP_COUNT) {
+        if (iter->currID == mapHeaderID) {
+            return iter;
         }
 
-        v0++;
-        v1++;
+        i++;
+        iter++;
     }
 
     GF_ASSERT(0);
@@ -5715,10 +5697,10 @@ static void ov9_0224DCA8(DistWorldSystem *param0)
         }
     } else {
         u32 v4 = DistWorldSystem_GetMapHeaderID(param0);
-        const UnkStruct_ov9_022530A4 *v5 = ov9_0224D720(v4);
+        const DistWorldMapConnections *v5 = GetConnectionsForMap(v4);
 
         ov9_0224DD24(param0, v4);
-        ov9_0224DD24(param0, v5->unk_08);
+        ov9_0224DD24(param0, v5->nextID);
     }
 }
 
@@ -6815,12 +6797,12 @@ static void ov9_0224EB68(DistWorldSystem *param0)
 {
     UnkStruct_ov9_0224EB68 *v0 = &param0->unk_1BB4;
     u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
-    const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(v1);
+    const DistWorldMapConnections *v2 = GetConnectionsForMap(v1);
 
     ov9_0224EC48(param0, v1);
 
-    if (v2->unk_08 != 593) {
-        ov9_0224EC48(param0, v2->unk_08);
+    if (v2->nextID != MAP_HEADER_INVALID) {
+        ov9_0224EC48(param0, v2->nextID);
     }
 }
 
@@ -6860,7 +6842,7 @@ static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1
 
         v0.unk_00 = param0;
         v0.unk_04 = param1;
-        v1 = Unk_ov9_02252F6C[param2->unk_04];
+        v1 = sGhostPropAnimFuncs[param2->unk_04];
 
         param1->unk_04 = ov5_021DF72C(param0->fieldSystem->unk_40, v1, NULL, 0, &v0, 2);
     }
@@ -7076,12 +7058,12 @@ static void ov9_0224EE40(DistWorldSystem *param0)
 {
     UnkStruct_ov9_0224EE40 *v0 = &param0->unk_1C64;
     u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
-    const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(v1);
+    const DistWorldMapConnections *v2 = GetConnectionsForMap(v1);
 
     ov9_0224F078(param0, v1);
 
-    if (v2->unk_08 != 593) {
-        ov9_0224F078(param0, v2->unk_08);
+    if (v2->nextID != MAP_HEADER_INVALID) {
+        ov9_0224F078(param0, v2->nextID);
     }
 }
 
@@ -9302,7 +9284,7 @@ static int ov9_02250DA0(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     if (v0->unk_02 <= 0) {
         v0->unk_02 = 48;
         Sound_StopEffect(1484, 0);
-        ov9_0224B64C(param0, v0->unk_00);
+        ShowGhostPropGroup(param0, v0->unk_00);
         v0->unk_00++;
 
         if (v0->unk_00 >= 4) {
@@ -9338,7 +9320,7 @@ static int ov9_02250E00(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         if (v0->unk_00 >= 1) {
             v0->unk_02 = 48;
             Sound_StopEffect(1484, 0);
-            ov9_0224B624(param0, v0->unk_00);
+            HideGhostPropGroup(param0, v0->unk_00);
             v0->unk_00--;
         } else {
             v0->unk_02 = 8;
@@ -9946,46 +9928,88 @@ static const OverworldAnimManagerFuncs Unk_ov9_0225147C = {
     ov9_0224BDE8
 };
 
-static const OverworldAnimManagerFuncs *const Unk_ov9_02252F6C[25] = {
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514F4,
-    &Unk_ov9_022514B8,
-    &Unk_ov9_02251530,
-    &Unk_ov9_0225147C,
-    &Unk_ov9_0225147C,
-    &Unk_ov9_02251530
+static const OverworldAnimManagerFuncs *const sGhostPropAnimFuncs[GHOST_PROP_KIND_COUNT] = {
+    [GHOST_PROP_KIND_SMALL_PLATFORM] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_FLOATING_BLUE_ROCK] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_SW] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_NESW_1] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_FLOATING_PLATFORM_NESW_2] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_3] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_1] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_HORIZONTAL_PLATFORM_1] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_VERTICAL_PLATFORM_1] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_VERTICAL_PLATFORM_2] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_HORIZONTAL_PLATFORM_2] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_ROTATED_PLATFORM_EAST] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_ROTATED_PLATFORM_WEST] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_2] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = &Unk_ov9_022514F4,
+    [GHOST_PROP_KIND_DUMMY20] = &Unk_ov9_022514B8,
+    [GHOST_PROP_KIND_DUMMY21] = &Unk_ov9_02251530,
+    [GHOST_PROP_KIND_LAND_VINE_FLOWER] = &Unk_ov9_0225147C,
+    [GHOST_PROP_KIND_LAND_ROCK] = &Unk_ov9_0225147C,
+    [GHOST_PROP_KIND_DUMMY24] = &Unk_ov9_02251530
 };
 
-static const UnkStruct_ov9_022530A4 Unk_ov9_022530A4[10] = {
-    { 0x23D, 0x251, 0x23E },
-    { 0x23E, 0x23D, 0x23F },
-    { 0x23F, 0x23E, 0x240 },
-    { 0x240, 0x23F, 0x241 },
-    { 0x241, 0x240, 0x243 },
-    { 0x243, 0x241, 0x244 },
-    { 0x244, 0x243, 0x245 },
-    { 0x245, 0x244, 0x251 },
-    { 0x247, 0x251, 0x251 },
-    { 0x246, 0x251, 0x251 }
+// clang-format off
+static const DistWorldMapConnections sDistWorldMapConnectionList[DISTORTION_WORLD_MAP_COUNT] = {
+    {
+        .prevID = MAP_HEADER_INVALID,
+        .currID = MAP_HEADER_DISTORTION_WORLD_1F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B1F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_1F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B1F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B2F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B1F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B2F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B3F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B2F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B3F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B4F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B3F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B4F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B5F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B4F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B5F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B6F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B5F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .nextID = MAP_HEADER_DISTORTION_WORLD_B7F
+    },
+    {
+        .prevID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .currID = MAP_HEADER_DISTORTION_WORLD_B7F,
+        .nextID = MAP_HEADER_INVALID
+    },
+    {
+        .prevID = MAP_HEADER_INVALID,
+        .currID = MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM,
+        .nextID = MAP_HEADER_INVALID
+    },
+    {
+        .prevID = MAP_HEADER_INVALID,
+        .currID = MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM,
+        .nextID = MAP_HEADER_INVALID
+     }
 };
+// clang-format on
 
 static const UnkStruct_ov9_0224DF10 Unk_ov9_02251558 = {
     0x0,
