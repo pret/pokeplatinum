@@ -226,7 +226,7 @@ BattleTower_InitSingleBattleRoomChallenge:
 _0360:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
-    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 3, 0, 0
+    MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 3
     GoTo BattleTower_WaitABXPadPress
     End
 
@@ -234,7 +234,7 @@ BattleTower_InitDoubleBattleRoomChallenge:
     InitBattleTower 0, BATTLE_TOWER_MODE_DOUBLE
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
-    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 4, 0, 0
+    MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 4
     GoTo BattleTower_WaitABXPadPress
     End
 
@@ -679,7 +679,7 @@ BattleTower_ExplainMultiBattleRoom:
 BattleTower_StartMultiBattleRoomChallenge:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_AskCommunicateWithFriend
-    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 2, 0, 0
+    MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 2
     GoTo BattleTower_WaitABXPadPress
     End
 

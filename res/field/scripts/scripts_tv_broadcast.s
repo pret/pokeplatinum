@@ -21,14 +21,14 @@ TVBroadcast_Interact:
 
 TVBroadcast_PlayCommercial:
     LoadTVCommercial VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     WaitABXPadPress
     GoTo TVBroadcast_End
     End
 
 TVBroadcast_FinishProgram:
     LoadTVFarewell VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     WaitABXPadPress
     FinishTVProgram
     GoTo TVBroadcast_End
@@ -36,7 +36,7 @@ TVBroadcast_FinishProgram:
 
 TVBroadcast_BeginProgram:
     LoadTVGreeting VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     GoTo TVBroadcast_ContinueProgram
     End
 
@@ -49,7 +49,7 @@ TVBroadcast_ContinueProgram:
 TVBroadcast_FinishProgram_Early:
     LoadTVFarewellExtended VAR_0x8004, VAR_0x8005
     TVBroadcastDummy VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     FinishTVProgram
     WaitABXPadPress
     GoTo TVBroadcast_End
@@ -58,10 +58,10 @@ TVBroadcast_FinishProgram_Early:
 TVBroadcast_PlaySegment:
     LoadTVSegmentIntro VAR_0x8004, VAR_0x8005
     TVBroadcastDummy VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     LoadTVSegment VAR_0x8006, VAR_0x8004, VAR_0x8005
     TVBroadcastDummy VAR_0x8006, VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     WaitABXPadPress
     GoTo TVBroadcast_End
     End

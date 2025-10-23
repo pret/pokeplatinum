@@ -10,7 +10,7 @@
 #include "savedata.h"
 #include "string_template.h"
 
-StringTemplate *BattleFrontier_GetStringWithSeenBannedSpecies(SaveData *saveData, u16 param1, u16 param2, u8 param3, u8 *param4);
+StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16 numPokemonRequired, u16 unused2, u8 unused3, u8 *outNumBannedSeen);
 u16 sub_0204AF9C(u8 param0);
 u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1);
 u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1);

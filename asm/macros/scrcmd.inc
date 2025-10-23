@@ -298,14 +298,19 @@
     .short \messageVar
     .endm
 
-    .macro ScrCmd_02E arg0
+    .macro MessageNoSkip messageID
     .short 46
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro ScrCmd_02F arg0
+    /*
+     * Used in multi-player contexts to show a message such that it takes
+     * a predictable amount of time, to keep connected games in sync.
+     * In single-player, this behaves like the Message script command.
+     */
+    .macro MessageSynchronized messageID
     .short 47
-    .byte \arg0
+    .byte \messageID
     .endm
 
     .macro WaitABPress
@@ -2886,32 +2891,32 @@
     .short \dummy
     .endm
 
-    .macro ScrCmd_Unused_1FA arg0, arg1
+    .macro MessageFromBankInstant bankID, messageID
     .short 506
-    .short \arg0
-    .short \arg1
+    .short \bankID
+    .short \messageID
     .endm
 
-    .macro ExternalMessage bankID, messageID
+    .macro MessageFromBank bankID, messageID
     .short 507
     .short \bankID
     .short \messageID
     .endm
 
-    .macro ScrCmd_Unused_1FC arg0, arg1, arg2, arg3
+    .macro SentenceInstant sentenceType, sentenceID, word1, word2
     .short 508
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \sentenceType
+    .short \sentenceID
+    .short \word1
+    .short \word2
     .endm
 
-    .macro ScrCmd_Unused_1FD arg0, arg1, arg2, arg3
+    .macro Sentence sentenceType, sentenceID, word1, word2
     .short 509
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \sentenceType
+    .short \sentenceID
+    .short \word1
+    .short \word2
     .endm
 
     .macro ScrCmd_1FE arg0
@@ -2919,12 +2924,12 @@
     .byte \arg0
     .endm
 
-    .macro PrintBattleFrontierBanlist messageID, numRequiredEligiblePokemon, unused2, unused3
+    .macro MessageSeenBanlistSpecies banlistMsgStartIdx, numPokemonRequired
     .short 511
-    .byte \messageID
-    .short \numRequiredEligiblePokemon
-    .short \unused2
-    .byte \unused3
+    .byte \banlistMsgStartIdx
+    .short \numPokemonRequired
+    .short 0
+    .byte 0
     .endm
 
     .macro GetPreviousMapID destVarID
@@ -2995,7 +3000,7 @@
     .short 523
     .endm
 
-    .macro ScrCmd_20C
+    .macro MessageFromTrainerType
     .short 524
     .endm
 
@@ -3685,9 +3690,9 @@
     .short \destAccessoryID
     .endm
 
-    .macro ScrCmd_26D arg0
+    .macro MessageUnown messageID
     .short 621
-    .short \arg0
+    .short \messageID
     .endm
 
     .macro GetGBACartridgeVersion destVarID
@@ -4163,9 +4168,9 @@
     .short 703
     .endm
 
-    .macro ScrCmd_2C0 arg0
+    .macro MessageAutoScroll messageID
     .short 704
-    .short \arg0
+    .short \messageID
     .endm
 
     .macro OpenSaveInfo

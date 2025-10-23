@@ -1358,7 +1358,7 @@ _12A8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_20C
+    MessageFromTrainerType
     WaitABXPadPress
     CloseMessage
     ReleaseAll

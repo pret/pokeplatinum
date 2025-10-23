@@ -269,7 +269,7 @@ _0449:
     Return
 
 _0464:
-    ScrCmd_02E 9
+    MessageNoSkip 9
     WaitTime 15, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 169

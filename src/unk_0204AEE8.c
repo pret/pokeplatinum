@@ -28,6 +28,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_padding_mode.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"
@@ -103,34 +104,39 @@ static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-StringTemplate *BattleFrontier_GetStringWithSeenBannedSpecies(SaveData *saveData, u16 numRequiredEligiblePokemon, u16 unused2, u8 unused3, u8 *numBannedSpeciesSeen)
+StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16 numPokemonRequired, u16 unused2, u8 unused3, u8 *outNumBannedSeen)
 {
+    // Forward declarations required to match
     u8 i;
-    u16 species;
-    Strbuf *strbufSpeciesName = Strbuf_Init(12 + 2, HEAP_ID_FIELD1);
-    Strbuf *strbufUnused = Strbuf_Init(2, HEAP_ID_FIELD1);
-    Pokedex *pokedex = SaveData_GetPokedex(saveData);
-    StringTemplate *strTemplate;
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
-    strTemplate = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 12 + 2, HEAP_ID_FIELD1);
+    u16 bannedSpecies;
+    Strbuf *speciesName, *unused;
+    Pokedex *pokedex;
+    StringTemplate *bannedSpeciesList;
+    MessageLoader *speciesNameLoader;
 
-    StringTemplate_SetNumber(strTemplate, 0, numRequiredEligiblePokemon, 1, 0, 1);
+    speciesName = Strbuf_Init(14, HEAP_ID_FIELD1);
+    unused = Strbuf_Init(2, HEAP_ID_FIELD1);
+    pokedex = SaveData_GetPokedex(saveData);
+    speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
+    bannedSpeciesList = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
+
+    StringTemplate_SetNumber(bannedSpeciesList, 0, numPokemonRequired, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
     for (i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
-        species = Pokemon_GetBattleFrontierBanlistEntry(i);
+        bannedSpecies = Pokemon_GetBattleFrontierBanlistEntry(i);
 
-        if (Pokedex_HasSeenSpecies(pokedex, species)) {
-            MessageLoader_GetStrbuf(msgLoader, species, strbufSpeciesName);
-            StringTemplate_SetStrbuf(strTemplate, (*numBannedSpeciesSeen) + 1, strbufSpeciesName, unused2, unused3, GAME_LANGUAGE);
-            (*numBannedSpeciesSeen)++;
+        if (Pokedex_HasSeenSpecies(pokedex, bannedSpecies)) {
+            MessageLoader_GetStrbuf(speciesNameLoader, bannedSpecies, speciesName);
+            StringTemplate_SetStrbuf(bannedSpeciesList, (*outNumBannedSeen) + 1, speciesName, unused2, unused3, GAME_LANGUAGE);
+            (*outNumBannedSeen)++;
         }
     }
 
-    MessageLoader_Free(msgLoader);
-    Strbuf_Free(strbufUnused);
-    Strbuf_Free(strbufSpeciesName);
+    MessageLoader_Free(speciesNameLoader);
+    Strbuf_Free(unused);
+    Strbuf_Free(speciesName);
 
-    return strTemplate;
+    return bannedSpeciesList;
 }
 
 u16 sub_0204AF9C(u8 trainerClass)

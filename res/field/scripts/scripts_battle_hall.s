@@ -239,13 +239,13 @@ _03AC:
 
 _03CF:
     Message 35
-    PrintBattleFrontierBanlist 37, 1, 0, 0
+    MessageSeenBanlistSpecies 37, 1
     GoTo _034D
     End
 
 _03E2:
     Message 36
-    PrintBattleFrontierBanlist 37, 2, 0, 0
+    MessageSeenBanlistSpecies 37, 2
     GoTo _034D
     End
 
@@ -436,7 +436,7 @@ _074B:
     Return
 
 _0766:
-    ScrCmd_02E 9
+    MessageNoSkip 9
     WaitTime 10, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 109

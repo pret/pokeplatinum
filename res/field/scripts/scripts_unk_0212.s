@@ -505,11 +505,11 @@ _070D:
     ScrCmd_109 VAR_RESULT
     AddVar VAR_RESULT, 1
     ScrCmd_0FF VAR_RESULT, 0
-    ScrCmd_02F 22
+    MessageSynchronized 22
     ScrCmd_109 VAR_RESULT
     ScrCmd_0FD VAR_RESULT, 0
     ScrCmd_0FE VAR_RESULT, 1
-    ScrCmd_02F 64
+    MessageSynchronized 64
     ScrCmd_0F8 25
     ScrCmd_0F9 25
     CloseMessage
@@ -570,7 +570,7 @@ _0830:
     WaitMovement
     Call _0115
     WaitMovement
-    ScrCmd_02F 211
+    MessageSynchronized 211
     CloseMessage
     GoTo _086A
     End
@@ -585,20 +585,20 @@ _086A:
 
 _0892:
     BufferPlayerName 0
-    ScrCmd_02F 66
+    MessageSynchronized 66
     GoTo _08AE
     End
 
 _08A0:
     BufferPlayerName 0
-    ScrCmd_02F 67
+    MessageSynchronized 67
     GoTo _08AE
     End
 
 _08AE:
     ApplyMovement LOCALID_PLAYER, _0E00
     WaitMovement
-    ScrCmd_02F 68
+    MessageSynchronized 68
     ScrCmd_0F8 26
     ScrCmd_0F9 26
     CloseMessage
@@ -655,13 +655,13 @@ _0947:
     WaitMovement
     ScrCmd_102 0
     ScrCmd_103 1
-    ScrCmd_02F 69
+    MessageSynchronized 69
     ScrCmd_0F8 19
     ScrCmd_0F9 19
     ApplyMovement 0, _0E54
     WaitMovement
     ScrCmd_0FD 0, 0
-    ScrCmd_02F 70
+    MessageSynchronized 70
     ScrCmd_10B 0, VAR_RESULT
     ScrCmd_111 0
     Call _0C47
@@ -671,7 +671,7 @@ _0947:
     ApplyMovement 0, _0E5C
     WaitMovement
     ScrCmd_0FD 1, 0
-    ScrCmd_02F 71
+    MessageSynchronized 71
     ScrCmd_10B 1, VAR_RESULT
     ScrCmd_111 1
     Call _0C47
@@ -680,7 +680,7 @@ _0947:
     ScrCmd_0F9 21
     WaitTime 8, VAR_RESULT
     ScrCmd_0FD 2, 0
-    ScrCmd_02F 72
+    MessageSynchronized 72
     ScrCmd_10B 2, VAR_RESULT
     ScrCmd_111 2
     Call _0C47
@@ -690,7 +690,7 @@ _0947:
     ApplyMovement 0, _0E64
     WaitMovement
     ScrCmd_0FD 3, 0
-    ScrCmd_02F 73
+    MessageSynchronized 73
     ScrCmd_10B 3, VAR_RESULT
     ScrCmd_111 3
     Call _0C47
@@ -699,7 +699,7 @@ _0947:
     ScrCmd_0F9 23
     ApplyMovement 0, _0E6C
     WaitMovement
-    ScrCmd_02F 74
+    MessageSynchronized 74
     CloseMessage
     ScrCmd_0F8 4
     ScrCmd_0F9 4
@@ -723,7 +723,7 @@ _0947:
     ScrCmd_10B VAR_RESULT, VAR_RESULT
     Call _0C47
     ScrCmd_112
-    ScrCmd_02F 76
+    MessageSynchronized 76
     ScrCmd_115 VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0B50
     ScrCmd_104 0
@@ -731,11 +731,11 @@ _0947:
     ScrCmd_10E 2
     ScrCmd_10D VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0B1B
-    ScrCmd_02F 79
+    MessageSynchronized 79
     GoTo _0B50
 
 _0B1B:
-    ScrCmd_02F 77
+    MessageSynchronized 77
     CloseMessage
     ApplyMovement 0, _0E64
     ApplyMovement 5, _0E54
@@ -747,7 +747,7 @@ _0B1B:
     ApplyMovement 5, _0E6C
     WaitMovement
 _0B50:
-    ScrCmd_02F 78
+    MessageSynchronized 78
     CloseMessage
     PlayFanfare SEQ_SE_DP_CON_F007
     ScrCmd_108 VAR_RESULT

@@ -47,7 +47,7 @@ _002A:
 _00BA:
     ScrCmd_135 100
     ScrCmd_13F 2, VAR_RESULT
-    ScrCmd_2C0 VAR_RESULT
+    MessageAutoScroll VAR_RESULT
     GoTo _00EA
     End
 
@@ -477,7 +477,7 @@ _07BA:
     LockAll
     PlayFanfare SEQ_SE_DP_BUTTON9
     ScrCmd_13C 1
-    ScrCmd_2C0 7
+    MessageAutoScroll 7
     WaitABPressTime 30
     GoTo _07D4
     End
