@@ -265,7 +265,7 @@ pokeplatinum_c = files(
     'unk_0207064C.c',
     'field_move_tasks.c',
     'unk_020711C8.c',
-    'unk_020711EC.c',
+    'overworld_anim_manager.c',
     'platform_lift.c',
     'persisted_map_features_init.c',
     'map_header_util.c',

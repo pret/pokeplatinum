@@ -12,7 +12,6 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay006/wild_encounters.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "encounter.h"
@@ -24,6 +23,7 @@
 #include "map_object.h"
 #include "math_util.h"
 #include "message.h"
+#include "overworld_anim_manager.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -37,7 +37,6 @@
 #include "system.h"
 #include "tv_episode_segment.h"
 #include "unk_020655F4.h"
-#include "unk_020711EC.h"
 
 #include "res/text/bank/common_strings.h"
 
@@ -81,7 +80,7 @@ typedef struct {
     int fishHookedCounter;
     enum EncounterFishingRodType rodType;
     FieldSystem *fieldSystem;
-    UnkStruct_ov101_021D5D90 *unk_24;
+    OverworldAnimManager *unk_24;
     u8 printerID;
     Strbuf *formattedFishingMessage;
     Strbuf *fishingMessage;
@@ -315,7 +314,7 @@ static BOOL FishingTask_ReelFishIn(FishingTask *fishingTask, PlayerAvatar *playe
     fishingTask->counter++;
 
     if (fishingTask->unk_24 != NULL) {
-        sub_0207136C(fishingTask->unk_24);
+        OverworldAnimManager_Finish(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 
@@ -455,7 +454,7 @@ static BOOL FishingTask_DelayBeforeFishFishing(FishingTask *fishingTask, PlayerA
 static BOOL FishingTask_FinishFishing(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (fishingTask->unk_24 != NULL) {
-        sub_0207136C(fishingTask->unk_24);
+        OverworldAnimManager_Finish(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 

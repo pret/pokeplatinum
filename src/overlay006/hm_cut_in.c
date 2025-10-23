@@ -7,12 +7,9 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_020711EC_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -23,6 +20,7 @@
 #include "map_object.h"
 #include "math_util.h"
 #include "narc.h"
+#include "overworld_anim_manager.h"
 #include "palette.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -34,7 +32,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020711EC.h"
 
 typedef struct HMCutIn {
     int state;
@@ -76,11 +73,11 @@ typedef struct HMCutIn {
     SpriteResource *paletteSource[3];
     SpriteResource *cellSource[4];
     SpriteResource *animSource[2];
-    UnkStruct_020711EC *unk_244;
+    OverworldAnimManagerList *unk_244;
     Sprite *playerSprite;
     Sprite *pokemonSprite;
-    UnkStruct_ov101_021D5D90 *unk_250;
-    UnkStruct_ov101_021D5D90 *unk_254;
+    OverworldAnimManager *unk_250;
+    OverworldAnimManager *unk_254;
     PokemonSpriteTemplate pokemonSpriteTemplate;
     BOOL resourcesLoaded;
     BOOL resourceSourcesFreed;
@@ -119,7 +116,7 @@ typedef struct FlyTaskEnv {
     fx32 playerOffsetY;
     Sprite *birdSprite;
     HMCutInContainer cutInContainer;
-    UnkStruct_ov101_021D5D90 *unk_60;
+    OverworldAnimManager *unk_60;
     SysTask *task;
 } FlyTaskEnv;
 
@@ -174,13 +171,13 @@ typedef struct FlyLandingEnv {
     FieldSystem *fieldSystem;
     FlyResources unk_18;
     Sprite *playerSprite;
-    UnkStruct_020711EC *unk_1D4;
-    UnkStruct_ov101_021D5D90 *unk_1D8;
+    OverworldAnimManagerList *unk_1D4;
+    OverworldAnimManager *unk_1D8;
     SysTask *_2; // unused
 } FlyLandingEnv;
 
 typedef struct FlyResourcesWithPlayer {
-    UnkStruct_020711EC *unk_00;
+    OverworldAnimManagerList *unk_00;
     FieldSystem *fieldSystem;
     Sprite *playerSprite;
     FlyResources *resources;
@@ -206,7 +203,7 @@ typedef struct FlyLandingEnvExtended {
     fx32 playerOffsetY;
     FlyResourcesWithPlayer resourcesWithPlayer;
     Sprite *birdSprite;
-    UnkStruct_ov101_021D5D90 *unk_6C;
+    OverworldAnimManager *unk_6C;
     SysTask *task;
 } FlyLandingEnvExtended;
 
@@ -317,14 +314,14 @@ static Sprite *Fly_CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int
 static void Fly_InitBirdSpritePos(HMCutIn *cutIn);
 static void Fly_PrepareBirdForDescent(HMCutIn *cutIn);
 static int Fly_GetTaskEnvSubState(HMCutIn *cutIn);
-static void FlyPickUpPlayer_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
-static void FlyPickUpPlayer_TransferPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
+static void FlyPickUpPlayer_SetUpPlayerAnimEnv(OverworldAnimManager *param0);
+static void FlyPickUpPlayer_TransferPlayerAnimEnv(OverworldAnimManager *param0);
 static void FlyAway_SetTasksDone(HMCutIn *cutIn);
 static void SysTask_FlyLanding(SysTask *task, void *taskEnv);
-static void FlyLanding_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
+static void FlyLanding_SetUpPlayerAnimEnv(OverworldAnimManager *param0);
 
 // Utils for Fly
-static UnkStruct_ov101_021D5D90 *PushPlayerUp(UnkStruct_020711EC *param0, Sprite *sprite);
+static OverworldAnimManager *PushPlayerUp(OverworldAnimManagerList *param0, Sprite *sprite);
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden);
 static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden);
 
@@ -338,15 +335,15 @@ static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size);
 typedef int (*CutInTaskFunc)(HMCutIn *);
 static const CutInTaskFunc sCutInTaskFuncs[];
 static const CutInTaskFunc sCutInTaskFuncsFly[];
-static const UnkStruct_ov101_021D86B0 sWindParticleAnimFuncs;
+static const OverworldAnimManagerFuncs sWindParticleAnimFuncs;
 static const ResourceLocation sCutInWindParticleChar[1];
 static const ResourceLocation sCutInWindParticlePalette[1];
 static const ResourceLocation sCutInWindParticleCell[1];
 static const ResourceLocation sCutInWindParticleAnim[1];
 
 typedef int (*FlyAwayTaskFunc)(FlyTaskEnv *);
-static const UnkStruct_ov101_021D86B0 sPushPlayerFuncs;
-static const UnkStruct_ov101_021D86B0 sFlyAwayFuncs;
+static const OverworldAnimManagerFuncs sPushPlayerFuncs;
+static const OverworldAnimManagerFuncs sFlyAwayFuncs;
 static const FlyAwayTaskFunc *const sFlyAwayAnimFuncsComplex[];
 static const FlyAwayTaskFunc sFlyTaskFuncsUnused[];
 static const FlyAwayTaskFunc sFlyAwayAscendFromPokeballFuncs[];
@@ -354,7 +351,7 @@ static const FlyAwayTaskFunc sFlyPickUpPlayerFuncs[];
 typedef int (*FlyLandingTaskFunc)(FlyLandingEnv *);
 static const FlyLandingTaskFunc sFlyLandingFuncs[];
 int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended *);
-static const UnkStruct_ov101_021D86B0 sFlyLandingAnimWrapperFuncs;
+static const OverworldAnimManagerFuncs sFlyLandingAnimWrapperFuncs;
 
 static void FlyLanding_InitResourceData(FlyResources *flyResources, int maxSpriteListElements, int resource1Count, int resource2Count, int resource3Count, int resource4Count, int resource1ID, int resource2ID, int resource3ID, int resource4ID)
 {
@@ -615,9 +612,9 @@ static Sprite *FlyLanding_InitPlayerSprite(FlyResources *flyResources, int playe
     return playerSprite;
 }
 
-static UnkStruct_ov101_021D5D90 *CreateFlyLandingAnimTasks(FieldSystem *fieldSystem, UnkStruct_020711EC *param1, FlyResources *resources, Sprite *playerSprite)
+static OverworldAnimManager *CreateFlyLandingAnimTasks(FieldSystem *fieldSystem, OverworldAnimManagerList *param1, FlyResources *resources, Sprite *playerSprite)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { 0, 0, 0 };
     FlyResourcesWithPlayer v2;
 
@@ -626,7 +623,7 @@ static UnkStruct_ov101_021D5D90 *CreateFlyLandingAnimTasks(FieldSystem *fieldSys
     v2.resources = resources;
     v2.playerSprite = playerSprite;
 
-    v0 = sub_02071330(param1, &sFlyLandingAnimWrapperFuncs, &v1, 0, &v2, 130);
+    v0 = OverworldAnimManagerList_InitManager(param1, &sFlyLandingAnimWrapperFuncs, &v1, 0, &v2, 130);
 
     return v0;
 }
@@ -634,16 +631,16 @@ static UnkStruct_ov101_021D5D90 *CreateFlyLandingAnimTasks(FieldSystem *fieldSys
 /**
  * Returns 2 if the fly landing animation has ended, 0 otherwise
  */
-static int FlyLanding_HasAnimationEnded(UnkStruct_ov101_021D5D90 *param0)
+static int FlyLanding_HasAnimationEnded(OverworldAnimManager *param0)
 {
-    FlyLandingEnvExtended *v0 = sub_02071598(param0);
+    FlyLandingEnvExtended *v0 = OverworldAnimManager_GetFuncsContext(param0);
     return v0->hasEndedIfTwo;
 }
 
-static int FlyLandingAnimWrapper_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
+static int FlyLandingAnimWrapper_InitBirdSprite(OverworldAnimManager *param0, void *flyLandingEnvExtended)
 {
     FlyLandingEnvExtended *env = flyLandingEnvExtended;
-    const FlyResourcesWithPlayer *resourcesWithPlayer = sub_020715BC(param0);
+    const FlyResourcesWithPlayer *resourcesWithPlayer = OverworldAnimManager_GetUserData(param0);
 
     env->resourcesWithPlayer = *resourcesWithPlayer;
     env->birdSprite = FlyLanding_InitBirdSprite(env->resourcesWithPlayer.resources);
@@ -651,28 +648,28 @@ static int FlyLandingAnimWrapper_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0
     return 1;
 }
 
-static void FlyLanding_SetTasksDone(UnkStruct_ov101_021D5D90 *param0)
+static void FlyLanding_SetTasksDone(OverworldAnimManager *param0)
 {
-    FlyLandingEnvExtended *v0 = sub_02071598(param0);
+    FlyLandingEnvExtended *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     if (v0->unk_6C) {
-        sub_0207136C(v0->unk_6C);
+        OverworldAnimManager_Finish(v0->unk_6C);
     }
 
     if (v0->task) {
         ov5_021F0EFC(v0->task);
     }
 
-    sub_0207136C(param0);
+    OverworldAnimManager_Finish(param0);
 }
 
-static void FlyLandingAnimWrapper_DeleteBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
+static void FlyLandingAnimWrapper_DeleteBirdSprite(OverworldAnimManager *param0, void *flyLandingEnvExtended)
 {
     FlyLandingEnvExtended *env = flyLandingEnvExtended;
     Sprite_Delete(env->birdSprite);
 }
 
-static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
+static void FlyLandingAnimWrapper_RunFlyLandingAnim(OverworldAnimManager *param0, void *flyLandingEnvExtended)
 {
     FlyLandingEnvExtended *env = flyLandingEnvExtended;
     int (*const *funcs)(FlyLandingEnvExtended *);
@@ -682,12 +679,12 @@ static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *pa
     while (funcs[env->state](env) == 1) {}
 }
 
-static const UnkStruct_ov101_021D86B0 sFlyLandingAnimWrapperFuncs = {
+static const OverworldAnimManagerFuncs sFlyLandingAnimWrapperFuncs = {
     (sizeof(FlyLandingEnvExtended)),
     FlyLandingAnimWrapper_InitBirdSprite,
     FlyLandingAnimWrapper_DeleteBirdSprite,
     FlyLandingAnimWrapper_RunFlyLandingAnim,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
 static int HideBirdSprite(FlyLandingEnvExtended *env)
@@ -701,11 +698,11 @@ static int (*const HideBirdSpriteFuncCollection[])(FlyLandingEnvExtended *) = {
     HideBirdSprite,
 };
 
-static void FlyLanding_InitEnv(UnkStruct_ov101_021D5D90 *param0)
+static void FlyLanding_InitEnv(OverworldAnimManager *param0)
 {
     VecFx32 initialPosition = { FX32_ONE * 128, FX32_ONE * 111, 0 };
     VecFx32 scale = { 0x2000, 0x2000, 0 };
-    FlyLandingEnvExtended *env = sub_02071598(param0);
+    FlyLandingEnvExtended *env = OverworldAnimManager_GetFuncsContext(param0);
 
     env->stage = 1;
     env->hasEndedIfTwo = 0;
@@ -1096,7 +1093,7 @@ static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
 
     if (cutIn->updateSprites == TRUE) {
         if (cutIn->unk_244 != NULL) {
-            sub_020713D0(cutIn->unk_244);
+            OverworldAnimManagerList_Render(cutIn->unk_244);
         }
 
         CutIn_UpdateSpriteList(cutIn);
@@ -1366,7 +1363,7 @@ static void SysTask_CutInFly(SysTask *sysTask, void *cutInRef)
 
     if (cutIn->updateSprites == TRUE) {
         if (cutIn->unk_244 != NULL) {
-            sub_020713D0(cutIn->unk_244);
+            OverworldAnimManagerList_Render(cutIn->unk_244);
         }
 
         CutIn_UpdateSpriteList(cutIn);
@@ -1701,14 +1698,14 @@ static void CutIn_InitSpriteResources(HMCutIn *cutIn)
     CutIn_LoadSpriteResources(cutIn, narc);
 
     NARC_dtor(narc);
-    cutIn->unk_244 = sub_020711EC(HEAP_ID_FIELD1, 32);
+    cutIn->unk_244 = OverworldAnimManagerList_New(HEAP_ID_FIELD1, 32);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
 static void CutIn_DeleteSprites(HMCutIn *cutIn)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_0207121C(cutIn->unk_244);
+    OverworldAnimManagerList_FinishAndFree(cutIn->unk_244);
 
     CutIn_ClearTileMapBG3(cutIn->fieldSystem->bgConfig);
     CutIn_DeleteSpriteResources(cutIn);
@@ -2241,7 +2238,7 @@ static void CreateWindParticleAnims(HMCutIn *cutIn, int allowWindParticles)
 
 static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *initialPos, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     WindParticleAnimData animData;
 
     animData.spriteListPriority = spriteListPriority;
@@ -2249,19 +2246,19 @@ static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *initialPos,
     animData.cutIn = cutIn;
     animData.movementDelta = *movementDelta;
 
-    v0 = sub_02071330(cutIn->unk_244, &sWindParticleAnimFuncs, initialPos, param4, &animData, 132);
+    v0 = OverworldAnimManagerList_InitManager(cutIn->unk_244, &sWindParticleAnimFuncs, initialPos, param4, &animData, 132);
 }
 
-static int WindParticleAnim_SetUpSprite(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
+static int WindParticleAnim_SetUpSprite(OverworldAnimManager *param0, void *windParticleAnimEnv)
 {
     VecFx32 position;
     WindParticleAnimEnv *env = windParticleAnimEnv;
-    const WindParticleAnimData *animData = sub_020715BC(param0);
+    const WindParticleAnimData *animData = OverworldAnimManager_GetUserData(param0);
 
     env->data = *animData;
-    env->animID = sub_020715B4(param0);
+    env->animID = OverworldAnimManager_GetID(param0);
 
-    sub_020715E4(param0, &position);
+    OverworldAnimManager_GetPosition(param0, &position);
 
     env->sprite = WindParticle_CreateSprite(env->data.cutIn, &position, env->data.spriteListPriority, env->animID);
     Sprite_SetDrawFlag(env->sprite, FALSE);
@@ -2269,23 +2266,23 @@ static int WindParticleAnim_SetUpSprite(UnkStruct_ov101_021D5D90 *param0, void *
     return 1;
 }
 
-static void WindParticleAnim_DeleteSprite(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_DeleteSprite(OverworldAnimManager *param0, void *windParticleAnimEnv)
 {
     WindParticleAnimEnv *env = windParticleAnimEnv;
     Sprite_Delete(env->sprite);
 }
 
-static void WindParticleAnim_AnimateParticle(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_AnimateParticle(OverworldAnimManager *param0, void *windParticleAnimEnv)
 {
     VecFx32 newPos;
     WindParticleAnimEnv *env = windParticleAnimEnv;
 
-    sub_020715E4(param0, &newPos);
+    OverworldAnimManager_GetPosition(param0, &newPos);
 
     newPos.x += env->data.movementDelta.x;
     newPos.x %= (FX32_ONE * 512);
 
-    sub_020715D4(param0, &newPos);
+    OverworldAnimManager_SetPosition(param0, &newPos);
     Sprite_SetPosition(env->sprite, &newPos);
 
     if (env->data.allowWindParticles == TRUE) {
@@ -2309,12 +2306,12 @@ static void WindParticleAnim_AnimateParticle(UnkStruct_ov101_021D5D90 *param0, v
     }
 }
 
-static void WindParticleAnim_DoNothing(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_DoNothing(OverworldAnimManager *param0, void *windParticleAnimEnv)
 {
     WindParticleAnimEnv *env = windParticleAnimEnv;
 }
 
-static const UnkStruct_ov101_021D86B0 sWindParticleAnimFuncs = {
+static const OverworldAnimManagerFuncs sWindParticleAnimFuncs = {
     (sizeof(WindParticleAnimEnv)),
     WindParticleAnim_SetUpSprite,
     WindParticleAnim_DeleteSprite,
@@ -2327,50 +2324,50 @@ static void Fly_CreateTasks(HMCutIn *cutIn)
     VecFx32 position = { 0, 0, 0 };
     HMCutIn *CutIn = cutIn;
 
-    cutIn->unk_250 = sub_02071330(cutIn->unk_244, &sFlyAwayFuncs, &position, 0, &CutIn, 130);
+    cutIn->unk_250 = OverworldAnimManagerList_InitManager(cutIn->unk_244, &sFlyAwayFuncs, &position, 0, &CutIn, 130);
 }
 
 static int Fly_GetTaskEnvSubState(HMCutIn *cutIn)
 {
-    FlyTaskEnv *taskEnv = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *taskEnv = OverworldAnimManager_GetFuncsContext(cutIn->unk_250);
     return taskEnv->subState;
 }
 
 static void FlyAway_SetTasksDone(HMCutIn *cutIn)
 {
-    FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *env = OverworldAnimManager_GetFuncsContext(cutIn->unk_250);
 
     if (env->unk_60) {
-        sub_0207136C(env->unk_60);
+        OverworldAnimManager_Finish(env->unk_60);
     }
 
     if (env->task) {
         ov5_021F0EFC(env->task);
     }
 
-    sub_0207136C(cutIn->unk_250);
+    OverworldAnimManager_Finish(cutIn->unk_250);
 }
 
-static BOOL FlyAway_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
+static BOOL FlyAway_InitBirdSprite(OverworldAnimManager *param0, void *taskEnv)
 {
     VecFx32 position;
     FlyTaskEnv *flyTaskEnv = taskEnv;
-    const HMCutInContainer *cutInContainer = sub_020715BC(param0);
+    const HMCutInContainer *cutInContainer = OverworldAnimManager_GetUserData(param0);
 
     flyTaskEnv->cutInContainer = *cutInContainer;
-    sub_020715E4(param0, &position);
+    OverworldAnimManager_GetPosition(param0, &position);
     flyTaskEnv->birdSprite = Fly_CreateBirdSprite(flyTaskEnv->cutInContainer.cutIn, &position, 0, 0);
 
     return 1;
 }
 
-static void FlyAway_DeleteBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
+static void FlyAway_DeleteBirdSprite(OverworldAnimManager *param0, void *taskEnv)
 {
     FlyTaskEnv *flyTaskEnv = taskEnv;
     Sprite_Delete(flyTaskEnv->birdSprite);
 }
 
-static void FlyAway_Main(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
+static void FlyAway_Main(OverworldAnimManager *param0, void *taskEnv)
 {
     FlyTaskEnv *flyTaskEnv = taskEnv;
     const FlyAwayTaskFunc *taskFuncs;
@@ -2379,12 +2376,12 @@ static void FlyAway_Main(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
     while (taskFuncs[flyTaskEnv->state](flyTaskEnv) == 1) {}
 }
 
-static void FlyAway_DoNothing(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
+static void FlyAway_DoNothing(OverworldAnimManager *param0, void *taskEnv)
 {
     FlyTaskEnv *flyTaskEnv = taskEnv;
 }
 
-static const UnkStruct_ov101_021D86B0 sFlyAwayFuncs = {
+static const OverworldAnimManagerFuncs sFlyAwayFuncs = {
     (sizeof(FlyTaskEnv)),
     FlyAway_InitBirdSprite,
     FlyAway_DeleteBirdSprite,
@@ -2413,7 +2410,7 @@ static void Fly_InitBirdSpritePos(HMCutIn *cutIn)
 {
     VecFx32 birdPosition = { FX32_ONE * (128 + 8), FX32_ONE * (96 - 8), 0 };
     VecFx32 birdScale = { 0x400, 0x400, 0 };
-    FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *env = OverworldAnimManager_GetFuncsContext(cutIn->unk_250);
 
     env->stage = 1;
     env->state = 0;
@@ -2502,7 +2499,7 @@ static void Fly_PrepareBirdForDescent(HMCutIn *cutIn)
 {
     VecFx32 birdPosition = VEC_FX32(128, 104, 0);
     VecFx32 birdScale = VEC_FX32(1.25, 1.25, 0);
-    FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *env = OverworldAnimManager_GetFuncsContext(cutIn->unk_250);
 
     env->stage = 2;
     env->state = 0;
@@ -2740,29 +2737,29 @@ static const FlyAwayTaskFunc sFlyPickUpPlayerFuncs[] = {
     FlyPickUpPlayer_DoNothing
 };
 
-static UnkStruct_ov101_021D5D90 *PushPlayerUp(UnkStruct_020711EC *param0, Sprite *sprite)
+static OverworldAnimManager *PushPlayerUp(OverworldAnimManagerList *param0, Sprite *sprite)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     HMCutInWithPlayer1 cutInWithPlayer;
     VecFx32 initialPos = { 0, 0, 0 };
 
     cutInWithPlayer.playerSprite = sprite;
-    v0 = sub_02071330(param0, &sPushPlayerFuncs, &initialPos, 0, &cutInWithPlayer, 129);
+    v0 = OverworldAnimManagerList_InitManager(param0, &sPushPlayerFuncs, &initialPos, 0, &cutInWithPlayer, 129);
 
     return v0;
 }
 
-static void FlyPickUpPlayer_TransferPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
+static void FlyPickUpPlayer_TransferPlayerAnimEnv(OverworldAnimManager *param0)
 {
-    PlayerAnimEnv *v0 = sub_02071598(param0);
+    PlayerAnimEnv *v0 = OverworldAnimManager_GetFuncsContext(param0);
     v0->state = 0;
 }
 
-static void FlyPickUpPlayer_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
+static void FlyPickUpPlayer_SetUpPlayerAnimEnv(OverworldAnimManager *param0)
 {
     VecFx32 playerSpritePosPtr;
     const VecFx32 *playerSpritePos;
-    PlayerAnimEnv *env = sub_02071598(param0);
+    PlayerAnimEnv *env = OverworldAnimManager_GetFuncsContext(param0);
 
     env->state = 1;
     env->animationPartFinished = FALSE;
@@ -2774,14 +2771,14 @@ static void FlyPickUpPlayer_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
     playerSpritePos = Sprite_GetPosition(env->playerSprite);
     playerSpritePosPtr = *playerSpritePos;
 
-    sub_020715D4(param0, &playerSpritePosPtr);
+    OverworldAnimManager_SetPosition(param0, &playerSpritePosPtr);
     Sprite_SetAnim(env->playerSprite, 5);
 }
 
-static void FlyLanding_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
+static void FlyLanding_SetUpPlayerAnimEnv(OverworldAnimManager *param0)
 {
     VecFx32 spritePosition;
-    PlayerAnimEnv *env = sub_02071598(param0);
+    PlayerAnimEnv *env = OverworldAnimManager_GetFuncsContext(param0);
 
     env->state = 2;
     env->animationPartFinished = FALSE;
@@ -2793,14 +2790,14 @@ static void FlyLanding_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
 
     FlyLanding_SetVectorToSpritePosition(env->playerSprite, &spritePosition);
 
-    sub_020715D4(param0, &spritePosition);
+    OverworldAnimManager_SetPosition(param0, &spritePosition);
     Sprite_SetAnim(env->playerSprite, 4);
 }
 
-static int PushPlayer_LoadPlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0, void *playerAnimEnv)
+static int PushPlayer_LoadPlayerAnimationEnv(OverworldAnimManager *param0, void *playerAnimEnv)
 {
     PlayerAnimEnv *env = playerAnimEnv;
-    const HMCutInWithPlayer1 *data = sub_020715BC(param0);
+    const HMCutInWithPlayer1 *data = OverworldAnimManager_GetUserData(param0);
 
     env->cutIn = data->cutIn;
     env->playerSprite = data->playerSprite;
@@ -2828,13 +2825,13 @@ static const fx32 PushPlayer_MoveUpSlightlyYDeltas[4] = {
     FX32_ONE * -7,
     FX32_ONE * -8 };
 
-static void PushPlayer_MoveUpSignificantly(UnkStruct_ov101_021D5D90 *param0, PlayerAnimEnv *env)
+static void PushPlayer_MoveUpSignificantly(OverworldAnimManager *param0, PlayerAnimEnv *env)
 {
     VecFx32 newPos;
 
     if (env->animationPartFinished == FALSE) {
         env->position.y = PushPlayer_MoveUpSignificantlyYDeltas[env->positionDeltaIdx];
-        sub_020715E4(param0, &newPos);
+        OverworldAnimManager_GetPosition(param0, &newPos);
         newPos.y += env->position.y;
         Sprite_SetPosition(env->playerSprite, &newPos);
         env->positionDeltaIdx++;
@@ -2847,13 +2844,13 @@ static void PushPlayer_MoveUpSignificantly(UnkStruct_ov101_021D5D90 *param0, Pla
     }
 }
 
-static void PushPlayer_MoveUpSlightly(UnkStruct_ov101_021D5D90 *param0, PlayerAnimEnv *env)
+static void PushPlayer_MoveUpSlightly(OverworldAnimManager *param0, PlayerAnimEnv *env)
 {
     VecFx32 newPos;
 
     if (env->animationPartFinished == FALSE) {
         env->position.y = PushPlayer_MoveUpSlightlyYDeltas[env->positionDeltaIdx];
-        sub_020715E4(param0, &newPos);
+        OverworldAnimManager_GetPosition(param0, &newPos);
         newPos.y += env->position.y;
         Sprite_SetPosition(env->playerSprite, &newPos);
         env->positionDeltaIdx++;
@@ -2866,7 +2863,7 @@ static void PushPlayer_MoveUpSlightly(UnkStruct_ov101_021D5D90 *param0, PlayerAn
     }
 }
 
-static void PushPlayer_MoveSpriteUp(UnkStruct_ov101_021D5D90 *param0, void *playerAnimEnv)
+static void PushPlayer_MoveSpriteUp(OverworldAnimManager *param0, void *playerAnimEnv)
 {
     PlayerAnimEnv *env = playerAnimEnv;
 
@@ -2880,21 +2877,21 @@ static void PushPlayer_MoveSpriteUp(UnkStruct_ov101_021D5D90 *param0, void *play
     }
 }
 
-static const UnkStruct_ov101_021D86B0 sPushPlayerFuncs = {
+static const OverworldAnimManagerFuncs sPushPlayerFuncs = {
     sizeof(PlayerAnimEnv),
     PushPlayer_LoadPlayerAnimationEnv,
-    UnkStruct_ov101_021D5D90_DoNothing3,
+    OverworldAnimManager_DummyExitFunc,
     PushPlayer_MoveSpriteUp,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
 // unused
-static const UnkStruct_ov101_021D86B0 s_ = {
+static const OverworldAnimManagerFuncs s_ = {
     sizeof(_Unused),
     NULL,
-    UnkStruct_ov101_021D5D90_DoNothing3,
+    OverworldAnimManager_DummyExitFunc,
     NULL,
-    UnkStruct_ov101_021D5D90_DoNothing2,
+    OverworldAnimManager_DummyRenderFunc,
 };
 
 SysTask *FieldTask_FlyLanding_InitTask(FieldSystem *fieldSystem, int playerGender)
@@ -2929,7 +2926,7 @@ static void SysTask_FlyLanding(SysTask *task, void *taskEnv)
 
     if (flyLandingTaskEnv->animationInProgress) {
         if (flyLandingTaskEnv->unk_1D4 != NULL) {
-            sub_020713D0(flyLandingTaskEnv->unk_1D4);
+            OverworldAnimManagerList_Render(flyLandingTaskEnv->unk_1D4);
         }
 
         if (flyLandingTaskEnv->unk_18.spriteList != NULL) {
@@ -2947,7 +2944,7 @@ static BOOL FlyLanding_HidePlayerMapObj(FlyLandingEnv *taskEnv)
 
 static BOOL FlyLanding_LoadResources(FlyLandingEnv *taskEnv)
 {
-    taskEnv->unk_1D4 = sub_020711EC(HEAP_ID_FIELD1, 32);
+    taskEnv->unk_1D4 = OverworldAnimManagerList_New(HEAP_ID_FIELD1, 32);
     FlyLanding_InitResourceData(&taskEnv->unk_18, 32, 2, 2, 2, 1, 4, 3, 4, 2);
 
     {
@@ -3016,7 +3013,7 @@ static BOOL FlyLanding_EndTaskIfAnimationEnded(FlyLandingEnv *env)
 
 static BOOL FlyLanding_CleanupResources(FlyLandingEnv *env)
 {
-    sub_0207121C(env->unk_1D4);
+    OverworldAnimManagerList_FinishAndFree(env->unk_1D4);
     FlyLanding_ReleaseResources(&env->unk_18);
 
     env->animationInProgress = FALSE;
@@ -3058,16 +3055,16 @@ static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
     MapObject_SetHidden(playObj, hidden);
 }
 
-static int ShowHidePlayerSprite_GetCutInFromContext(UnkStruct_ov101_021D5D90 *param0, void *hmCutInWithPlayer2)
+static int ShowHidePlayerSprite_GetCutInFromContext(OverworldAnimManager *param0, void *hmCutInWithPlayer2)
 {
-    const HMCutInWithPlayer2 *wrapper = sub_020715BC(param0);
+    const HMCutInWithPlayer2 *wrapper = OverworldAnimManager_GetUserData(param0);
     HMCutInWithPlayer2 *destWrapper = hmCutInWithPlayer2;
 
     *destWrapper = *wrapper;
     return 1;
 }
 
-static void ShowHidePlayerSprite_ShowOrHide(UnkStruct_ov101_021D5D90 *param0, void *hmCutInWithPlayer2)
+static void ShowHidePlayerSprite_ShowOrHide(OverworldAnimManager *param0, void *hmCutInWithPlayer2)
 {
     fx32 playerSpriteY, windowMinY, windowMaxY;
     const VecFx32 *playerSpritePosition;
@@ -3089,12 +3086,12 @@ static void ShowHidePlayerSprite_ShowOrHide(UnkStruct_ov101_021D5D90 *param0, vo
     }
 }
 
-static const UnkStruct_ov101_021D86B0 sShowHidePlayerSpriteFuncs = {
+static const OverworldAnimManagerFuncs sShowHidePlayerSpriteFuncs = {
     sizeof(HMCutInWithPlayer2),
     ShowHidePlayerSprite_GetCutInFromContext,
-    UnkStruct_ov101_021D5D90_DoNothing3,
+    OverworldAnimManager_DummyExitFunc,
     ShowHidePlayerSprite_ShowOrHide,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
 static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn)
@@ -3105,13 +3102,13 @@ static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn)
     wrapper.playerSprite = cutIn->playerSprite;
     wrapper.cutIn = cutIn;
 
-    cutIn->unk_254 = sub_02071330(cutIn->unk_244, &sShowHidePlayerSpriteFuncs, &initialPosition, 0, &wrapper, 134);
+    cutIn->unk_254 = OverworldAnimManagerList_InitManager(cutIn->unk_244, &sShowHidePlayerSpriteFuncs, &initialPosition, 0, &wrapper, 134);
 }
 
 static void CutIn_SetTaskUnk_254Done(HMCutIn *cutIn)
 {
     if (cutIn->unk_254 != NULL) {
-        sub_0207136C(cutIn->unk_254);
+        OverworldAnimManager_Finish(cutIn->unk_254);
         cutIn->unk_254 = NULL;
     }
 }

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV101_021D4764_H
 
 #include "overlay101/struct_ov101_021D13C8_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "enums.h"
+#include "overworld_anim_manager.h"
 #include "sys_task_manager.h"
 
 typedef struct {
@@ -18,14 +18,14 @@ typedef struct {
     UnkEnum_ov101_021D6764 unk_1C;
     UnkStruct_ov101_021D13C8 *unk_20;
     SysTask *unk_24;
-    UnkStruct_ov101_021D5D90 *unk_28;
-    UnkStruct_ov101_021D5D90 *unk_2C;
-    UnkStruct_ov101_021D5D90 *unk_30;
-    UnkStruct_ov101_021D5D90 *unk_34;
-    UnkStruct_ov101_021D5D90 *unk_38;
-    UnkStruct_ov101_021D5D90 *unk_3C;
-    UnkStruct_ov101_021D5D90 *unk_40;
-    UnkStruct_ov101_021D5D90 *unk_44;
+    OverworldAnimManager *unk_28;
+    OverworldAnimManager *unk_2C;
+    OverworldAnimManager *unk_30;
+    OverworldAnimManager *unk_34;
+    OverworldAnimManager *unk_38;
+    OverworldAnimManager *unk_3C;
+    OverworldAnimManager *unk_40;
+    OverworldAnimManager *unk_44;
 } UnkStruct_ov101_021D4764;
 
 #endif // POKEPLATINUM_STRUCT_OV101_021D4764_H

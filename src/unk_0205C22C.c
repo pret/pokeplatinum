@@ -23,6 +23,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "overworld_anim_manager.h"
 #include "pal_pad.h"
 #include "player_avatar.h"
 #include "savedata.h"
@@ -35,7 +36,6 @@
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
-#include "unk_020711EC.h"
 
 #include "constdata/const_020ED570.h"
 
@@ -328,8 +328,8 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
 static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
 {
     if (param0->unk_10 != NULL) {
-        if (UnkStruct_ov101_021D5D90_IsLsbSet(param0->unk_10)) {
-            sub_0207136C(param0->unk_10);
+        if (OverworldAnimManager_IsActive(param0->unk_10)) {
+            OverworldAnimManager_Finish(param0->unk_10);
         }
 
         param0->unk_10 = NULL;
@@ -337,8 +337,8 @@ static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
 
     if (param1) {
         if (param0->unk_14 != NULL) {
-            if (UnkStruct_ov101_021D5D90_IsLsbSet(param0->unk_14)) {
-                sub_0207136C(param0->unk_14);
+            if (OverworldAnimManager_IsActive(param0->unk_14)) {
+                OverworldAnimManager_Finish(param0->unk_14);
             }
 
             param0->unk_14 = NULL;

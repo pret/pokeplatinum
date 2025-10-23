@@ -18,7 +18,6 @@
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -36,6 +35,7 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "narc.h"
+#include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
 #include "sound.h"
@@ -54,7 +54,6 @@
 #include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
-#include "unk_020711EC.h"
 #include "vars_flags.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix.h"
@@ -130,7 +129,7 @@ typedef struct {
     void *unk_300;
     UnkFuncPtr_ov23_02257764 unk_304;
     UnkStruct_ov23_02243DA8 unk_308[16];
-    UnkStruct_ov101_021D5D90 *unk_368[16];
+    OverworldAnimManager *unk_368[16];
     UnkStruct_ov23_02243DA8 unk_3A8[192];
     UnkStruct_ov23_02243DA8 *unk_828[192];
     UnkStruct_ov23_02244140 unk_B28[8];
@@ -174,7 +173,7 @@ typedef struct {
     int unk_80[15];
     int unk_BC[15];
     SpriteResource *unk_F8[7];
-    UnkStruct_ov101_021D5D90 *unk_114;
+    OverworldAnimManager *unk_114;
     int unk_118;
     int unk_11C;
     int unk_120;
@@ -251,7 +250,7 @@ typedef struct {
     u8 unk_0C;
     u8 unk_0D;
     int unk_10;
-    UnkStruct_ov101_021D5D90 *unk_14;
+    OverworldAnimManager *unk_14;
     int unk_18;
     int unk_1C;
     int unk_20;
@@ -298,7 +297,7 @@ static int ov23_0224426C(UnkStruct_ov23_02243DA8 *param0);
 static UnkStruct_ov23_02243DA8 *ov23_02243A80(int param0, int param1, UnkStruct_ov23_02243DA8 *param2, int param3);
 static void ov23_02243970(int param0);
 static UnkStruct_ov23_02243DA8 *ov23_0224429C(int param0, int param1);
-static UnkStruct_ov101_021D5D90 *ov23_02244E68(int param0, int param1, int param2, int param3);
+static OverworldAnimManager *ov23_02244E68(int param0, int param1, int param2, int param3);
 static void ov23_02243754(void);
 static void ov23_0224382C(void);
 static void ov23_02243E20(UnkStruct_ov23_02243DA8 *param0);
@@ -704,7 +703,7 @@ void ov23_022435DC(void)
 
     for (v0 = 0; v0 < 16; v0++) {
         if (Unk_ov23_02257764->unk_368[v0]) {
-            sub_0207136C(Unk_ov23_02257764->unk_368[v0]);
+            OverworldAnimManager_Finish(Unk_ov23_02257764->unk_368[v0]);
             Unk_ov23_02257764->unk_368[v0] = NULL;
         }
     }
@@ -737,7 +736,7 @@ void ov23_02243670(FieldSystem *fieldSystem)
 
     for (v0 = 0; v0 < 16; v0++) {
         if (Unk_ov23_02257764->unk_368[v0]) {
-            sub_0207136C(Unk_ov23_02257764->unk_368[v0]);
+            OverworldAnimManager_Finish(Unk_ov23_02257764->unk_368[v0]);
             Unk_ov23_02257764->unk_368[v0] = NULL;
         }
     }
@@ -1200,7 +1199,7 @@ static void ov23_02243E20(UnkStruct_ov23_02243DA8 *param0)
     Unk_ov23_02257764->unk_308[16 - 1].unk_04 = 0;
 
     if (Unk_ov23_02257764->unk_368[v1] != NULL) {
-        sub_0207136C(Unk_ov23_02257764->unk_368[v1]);
+        OverworldAnimManager_Finish(Unk_ov23_02257764->unk_368[v1]);
     }
 
     for (v2 = v1; v2 < (16 - 1); v2++) {
@@ -2128,9 +2127,9 @@ static void ov23_02244E64(int param0, BOOL param1, int param2)
     return;
 }
 
-static UnkStruct_ov101_021D5D90 *ov23_02244E68(int param0, int param1, int param2, int param3)
+static OverworldAnimManager *ov23_02244E68(int param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
 
     if (!Unk_ov23_02257764->unk_BAA) {
         v0 = ov5_021F4EAC(Unk_ov23_02257764->fieldSystem, param0, param1, param2, param3 - 1);
@@ -2836,7 +2835,7 @@ static void ov23_02245AF4(int param0, BOOL param1)
         UnkStruct_ov23_02245AA4 *v0 = Unk_ov23_02257764->unk_300;
 
         if (v0->unk_14) {
-            sub_0207136C(v0->unk_14);
+            OverworldAnimManager_Finish(v0->unk_14);
             v0->unk_14 = NULL;
         }
 
@@ -2985,7 +2984,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
 
             if (v0->unk_10 == 5) {
                 if (v0->unk_14) {
-                    sub_0207136C(v0->unk_14);
+                    OverworldAnimManager_Finish(v0->unk_14);
                     v0->unk_14 = NULL;
                 }
 
@@ -3959,7 +3958,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
             }
 
             if (param1->unk_114) {
-                sub_0207136C(param1->unk_114);
+                OverworldAnimManager_Finish(param1->unk_114);
                 param1->unk_114 = NULL;
             }
         } else {
@@ -4081,7 +4080,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
         break;
     case 6:
         if (param1->unk_114) {
-            sub_0207136C(param1->unk_114);
+            OverworldAnimManager_Finish(param1->unk_114);
             param1->unk_114 = NULL;
         }
 
@@ -4264,7 +4263,7 @@ static void ov23_02247DB0(int param0, BOOL param1)
         UnkStruct_ov23_022471D8 *v0 = Unk_ov23_02257764->unk_300;
 
         if (v0->unk_114) {
-            sub_0207136C(v0->unk_114);
+            OverworldAnimManager_Finish(v0->unk_114);
             v0->unk_114 = NULL;
         }
 

@@ -13,11 +13,11 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F61BC.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "overworld_anim_manager.h"
 
 typedef struct PlayerAvatar {
     u32 unk_00;
@@ -33,7 +33,7 @@ typedef struct PlayerAvatar {
     int unk_28;
     int unk_2C;
     MapObject *mapObject;
-    UnkStruct_ov101_021D5D90 *unk_34;
+    OverworldAnimManager *unk_34;
     PlayerData *player;
     const PlayerData *playerConst;
 } PlayerAvatar;
@@ -106,7 +106,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
             int x = Player_GetXPos(playerAvatar);
             int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);
-            UnkStruct_ov101_021D5D90 *v7 = ov5_021F261C(mapObj, x, z, dir, 1);
+            OverworldAnimManager *v7 = ov5_021F261C(mapObj, x, z, dir, 1);
 
             sub_0205EC00(playerAvatar, v7);
         }
@@ -406,12 +406,12 @@ void sub_0205EBEC(PlayerAvatar *playerAvatar, int param1, int param2)
     sub_0205EBE4(playerAvatar, param2);
 }
 
-void sub_0205EC00(PlayerAvatar *playerAvatar, UnkStruct_ov101_021D5D90 *param1)
+void sub_0205EC00(PlayerAvatar *playerAvatar, OverworldAnimManager *param1)
 {
     playerAvatar->unk_34 = param1;
 }
 
-UnkStruct_ov101_021D5D90 *sub_0205EC04(PlayerAvatar *playerAvatar)
+OverworldAnimManager *sub_0205EC04(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->unk_34;
 }

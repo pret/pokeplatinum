@@ -11,17 +11,16 @@
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021F3E74.h"
 #include "overlay005/ov5_021F5A10.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "overworld_anim_manager.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02069BE0.h"
-#include "unk_020711EC.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MoveAnimData {
@@ -66,7 +65,7 @@ typedef struct WarpMovementData {
 
 typedef struct EmoteMovementData {
     int unk_00;
-    UnkStruct_ov101_021D5D90 *unk_04;
+    OverworldAnimManager *unk_04;
 } EmoteMovementData;
 
 typedef struct WalkUnevenMovementData {
@@ -1211,7 +1210,7 @@ static BOOL MovementAction_Emote_Step1(MapObject *mapObj)
     EmoteMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (ov5_021F5C4C(data->unk_04) == 1) {
-        sub_0207136C(data->unk_04);
+        OverworldAnimManager_Finish(data->unk_04);
         MapObject_AdvanceMovementStep(mapObj);
         return TRUE;
     }
@@ -1386,10 +1385,10 @@ static BOOL MovementAction_RevealTrainer_Step0(MapObject *mapObj)
 {
     RevealTrainerMovementData *data = MapObject_InitMovementData(mapObj, sizeof(RevealTrainerMovementData));
 
-    UnkStruct_ov101_021D5D90 *v1 = sub_0206A224(mapObj);
+    OverworldAnimManager *v1 = sub_0206A224(mapObj);
 
     if (v1 != NULL) {
-        sub_0207136C(v1);
+        OverworldAnimManager_Finish(v1);
     }
 
     VecFx32 v2 = { 0, 0, 0 };

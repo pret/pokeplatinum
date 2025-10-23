@@ -27,7 +27,6 @@
 #include "overlay006/wild_encounters.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
@@ -37,6 +36,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "overworld_anim_manager.h"
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
@@ -64,7 +64,7 @@ typedef struct SurfTaskEnv {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
     MapObject *surfBlob;
-    UnkStruct_ov101_021D5D90 *unk_28;
+    OverworldAnimManager *unk_28;
 } SurfTaskEnv;
 
 typedef struct RockClimbTaskEnv {
@@ -74,7 +74,7 @@ typedef struct RockClimbTaskEnv {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
     MapObject *surfBlob;
-    UnkStruct_ov101_021D5D90 *unk_18;
+    OverworldAnimManager *unk_18;
     MonRideTask monRideTask;
     UnkStruct_ov5_021D1BEC *unk_2C;
 } RockClimbTaskEnv;
@@ -111,7 +111,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
     MapObject *unk_10;
-    UnkStruct_ov101_021D5D90 *unk_14;
+    OverworldAnimManager *unk_14;
 } UnkStruct_ov5_021E0390;
 
 typedef struct {
@@ -266,7 +266,7 @@ static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     {
-        UnkStruct_ov101_021D5D90 *v4 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v4 = sub_0205EC04(playerAvatar);
 
         if (v4 != NULL) {
             ov5_021DF74C(v4);
@@ -285,7 +285,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     {
-        UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v1 = sub_0205EC04(playerAvatar);
 
         if (v1 != NULL) {
             ov5_021DF74C(v1);
@@ -303,7 +303,7 @@ static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
     MapObject *mapObj = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
-    UnkStruct_ov101_021D5D90 *v5 = sub_0205EC04(playerAvatar);
+    OverworldAnimManager *v5 = sub_0205EC04(playerAvatar);
 
     if (v5 != NULL) {
         ov5_021DF74C(v5);

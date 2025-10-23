@@ -38,7 +38,6 @@
 #include "overlay005/struct_ov5_021EE134.h"
 #include "overlay005/struct_ov5_021EE294.h"
 #include "overlay005/struct_ov5_021F06D8_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "berry_patch_graphics.h"
 #include "enums.h"
@@ -47,12 +46,12 @@
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "narc.h"
+#include "overworld_anim_manager.h"
 #include "resource_collection.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
-#include "unk_020711EC.h"
 
 typedef enum {
     UnkEnum_ov5_021ED334_00 = 0,
@@ -70,7 +69,7 @@ typedef struct {
     UnkStruct_020216E0 *unk_24;
     UnkStruct_ov5_021DF84C unk_28;
     MapObject *unk_50;
-    UnkStruct_ov101_021D5D90 *unk_54;
+    OverworldAnimManager *unk_54;
     void *unk_58;
     UnkFuncPtr_ov5_021EE454 unk_5C;
 } UnkStruct_ov5_021EE698;
@@ -2023,7 +2022,7 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             if (v0->unk_54 != NULL) {
-                sub_0207136C(v0->unk_54);
+                OverworldAnimManager_Finish(v0->unk_54);
             }
 
             sub_020211FC(v0->unk_24);
@@ -2047,7 +2046,7 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             if (v0->unk_54 != NULL) {
-                sub_0207136C(v0->unk_54);
+                OverworldAnimManager_Finish(v0->unk_54);
             }
 
             sub_020211FC(v0->unk_24);

@@ -33,7 +33,6 @@
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay008/struct_ov8_02249FB8.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -47,6 +46,7 @@
 #include "map_tile_behavior.h"
 #include "math_util.h"
 #include "message.h"
+#include "overworld_anim_manager.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "render_window.h"
@@ -64,7 +64,6 @@
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
-#include "unk_020711EC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -196,7 +195,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     MapObject *unk_08;
-    UnkStruct_ov101_021D5D90 *unk_0C;
+    OverworldAnimManager *unk_0C;
 } UnkStruct_ov8_0224B80C;
 
 typedef struct {
@@ -285,7 +284,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     SysTask *unk_0C;
-    UnkStruct_ov101_021D5D90 *unk_10;
+    OverworldAnimManager *unk_10;
     MapObject *unk_14;
     UnkStruct_ov8_0224C444 *unk_18;
 } UnkStruct_ov8_0224C4F8;
@@ -3026,7 +3025,7 @@ static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0)
     GF_ASSERT(param0->unk_08.unk_0C);
     GF_ASSERT(param0->unk_08.unk_08);
 
-    sub_0207136C(param0->unk_08.unk_0C);
+    OverworldAnimManager_Finish(param0->unk_08.unk_0C);
     MapObject_Delete(param0->unk_08.unk_08);
 
     param0->unk_00 = 0;
@@ -3215,7 +3214,7 @@ static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
     int v3 = v1->unk_04;
 
     ov8_0224BAA0(param0->unk_3C, v2, v3, param0->unk_08, &param0->unk_1C);
-    sub_020715E4(v1->unk_0C, &param0->unk_20);
+    OverworldAnimManager_GetPosition(v1->unk_0C, &param0->unk_20);
 
     param0->unk_2C = ((FX32_ONE / 2) / 30);
     param0->unk_00 = 1;
@@ -3235,7 +3234,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
 
     {
         UnkStruct_ov8_0224BCA8 *v1 = param0->unk_34;
-        UnkStruct_ov101_021D5D90 *v2 = v1->unk_08.unk_0C;
+        OverworldAnimManager *v2 = v1->unk_08.unk_0C;
 
         ov5_021F4698(v2, param0->unk_08, 1);
 
@@ -3255,7 +3254,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
 static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
 {
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
-    sub_020715D4(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
+    OverworldAnimManager_SetPosition(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_2C += ((FX32_ONE / 2) / 30);
     param0->unk_30 += param0->unk_2C;
@@ -3278,7 +3277,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
     UnkStruct_ov8_0224BCA8 *v0 = param0->unk_34;
 
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
-    sub_020715D4(v0->unk_08.unk_0C, &param0->unk_20);
+    OverworldAnimManager_SetPosition(v0->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_30 += param0->unk_2C;
     param0->unk_04++;

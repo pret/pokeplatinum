@@ -8,9 +8,9 @@
 #include "overlay023/struct_ov23_0224991C_decl.h"
 #include "overlay023/struct_ov23_0224A294_sub1.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "communication_system.h"
+#include "overworld_anim_manager.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
@@ -18,7 +18,7 @@ typedef struct CommPlayerManager {
     u32 unk_00;
     UnkStruct_ov23_0224991C *unk_04;
     PlayerAvatar *playerAvatar[MAX_CONNECTED_PLAYERS];
-    UnkStruct_ov101_021D5D90 *unk_28[MAX_CONNECTED_PLAYERS];
+    OverworldAnimManager *unk_28[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask *task;
     FieldSystem *fieldSystem;
