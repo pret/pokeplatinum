@@ -43,6 +43,7 @@
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "player_avatar_movement.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "screen_fade.h"
@@ -60,7 +61,6 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_020573FC.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 

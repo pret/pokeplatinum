@@ -21,12 +21,6 @@
 #define INVALID_TILE_ATTRIBUTES 0xFF
 #define INVALID_TILE_BEHAVIOR   0xFF
 
-enum VerticalDirection {
-    VERTICAL_DIRECTION_DOWN = -1,
-    VERTICAL_DIRECTION_NONE,
-    VERTICAL_DIRECTION_UP
-};
-
 static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
 static const fx32 GetSimpleHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
 static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes);

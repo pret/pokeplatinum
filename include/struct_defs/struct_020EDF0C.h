@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_020EDF0C_H
-#define POKEPLATINUM_STRUCT_020EDF0C_H
+#ifndef POKEPLATINUM_MOVEMENT_ACTION_DESCRIPTOR_H
+#define POKEPLATINUM_MOVEMENT_ACTION_DESCRIPTOR_H
 
 #include "functypes/funcptr_020EDF0C.h"
 #include "functypes/funcptr_020EDF0C_1.h"
@@ -7,11 +7,11 @@
 #include "functypes/funcptr_020EDF0C_3.h"
 
 typedef struct {
-    int unk_00;
-    UnkFuncPtr_020EDF0C unk_04;
-    UnkFuncPtr_020EDF0C_1 unk_08;
-    UnkFuncPtr_020EDF0C_2 unk_0C;
-    UnkFuncPtr_020EDF0C_3 unk_10;
-} UnkStruct_020EDF0C;
+    int movementType;
+    UnkFuncPtr_020EDF0C initFunc;
+    UnkFuncPtr_020EDF0C_1 updateFunc;
+    UnkFuncPtr_020EDF0C_2 completeFunc;
+    UnkFuncPtr_020EDF0C_3 cleanupFunc;
+} MovementActionDescriptor;
 
-#endif // POKEPLATINUM_STRUCT_020EDF0C_H
+#endif // POKEPLATINUM_MOVEMENT_ACTION_DESCRIPTOR_H

@@ -58,6 +58,7 @@
 #include "narc.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
+#include "player_avatar_movement.h"
 #include "resource_collection.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -71,7 +72,6 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "unk_02020AEC.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
@@ -2085,7 +2085,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
         int v1, v2, v3, v4;
         DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-        v4 = sub_02061434(fieldSystem->playerAvatar, param1);
+        v4 = PlayerAvatar_State_GetMovementState(fieldSystem->playerAvatar, param1);
         GetPlayerPos(v5, &v1, &v2, &v3);
 
         if (v4 == 1) {
