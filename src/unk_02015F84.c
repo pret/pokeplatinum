@@ -69,10 +69,10 @@ typedef struct UnkStruct_02016E64_t {
 } UnkStruct_02016E64;
 
 typedef struct PokemonAnimManager {
-    UnkStruct_02016E64 *pokeAnimation;
+    UnkStruct_02016E64 *anims;
     int heapID;
     u8 reverse;
-    u8 animation;
+    u8 animCount;
 } PokemonAnimManager;
 
 typedef struct {
@@ -176,18 +176,18 @@ PokemonAnimManager *sub_02015F84(const int heapID, const int param1, const u8 pa
 {
     PokemonAnimManager *v0 = Heap_Alloc(heapID, sizeof(PokemonAnimManager));
     v0->reverse = param2;
-    v0->animation = param1;
+    v0->animCount = param1;
     v0->heapID = heapID;
-    v0->pokeAnimation = Heap_Alloc(heapID, sizeof(UnkStruct_02016E64) * param1);
+    v0->anims = Heap_Alloc(heapID, sizeof(UnkStruct_02016E64) * param1);
 
-    MI_CpuClear8(v0->pokeAnimation, sizeof(UnkStruct_02016E64) * param1);
+    MI_CpuClear8(v0->anims, sizeof(UnkStruct_02016E64) * param1);
 
     return v0;
 }
 
 void sub_02015FB8(PokemonAnimManager *param0)
 {
-    Heap_Free(param0->pokeAnimation);
+    Heap_Free(param0->anims);
     Heap_Free(param0);
 }
 
@@ -197,63 +197,63 @@ void PokeAnimation_Init(PokemonAnimManager *param0, PokemonSprite *param1, const
     int v1 = param2->animation;
     int v2 = param2->startDelay;
 
-    GF_ASSERT(v0 < param0->animation);
-    GF_ASSERT(param0->pokeAnimation[v0].unk_10 == 0);
+    GF_ASSERT(v0 < param0->animCount);
+    GF_ASSERT(param0->anims[v0].unk_10 == 0);
 
-    MI_CpuClear8(&param0->pokeAnimation[v0], sizeof(UnkStruct_02016E64));
+    MI_CpuClear8(&param0->anims[v0], sizeof(UnkStruct_02016E64));
 
-    param0->pokeAnimation[v0].unk_10 = 1;
-    param0->pokeAnimation[v0].unk_00 = param1;
+    param0->anims[v0].unk_10 = 1;
+    param0->anims[v0].unk_00 = param1;
 
     if (v1 >= (50 + 84 + 9)) {
         v1 = 0;
         v2 = 0;
     }
 
-    param0->pokeAnimation[v0].unk_14 = v1;
+    param0->anims[v0].unk_14 = v1;
 
     if (param0->reverse) {
-        param0->pokeAnimation[v0].unk_1C4 = param2->reverse;
+        param0->anims[v0].unk_1C4 = param2->reverse;
     } else {
-        param0->pokeAnimation[v0].unk_1C4 = 0;
+        param0->anims[v0].unk_1C4 = 0;
     }
 
-    param0->pokeAnimation[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_POKEANIME__PL_POKE_ANM, param0->pokeAnimation[v0].unk_14, param0->heapID);
-    param0->pokeAnimation[v0].unk_0C = (u32 *)param0->pokeAnimation[v0].unk_08;
-    param0->pokeAnimation[v0].unk_1C = 0;
-    param0->pokeAnimation[v0].unk_20 = 0;
-    param0->pokeAnimation[v0].unk_1C5 = 0;
-    param0->pokeAnimation[v0].unk_1C6 = 28;
-    param0->pokeAnimation[v0].unk_1C7 = 0;
-    param0->pokeAnimation[v0].unk_04 = SysTask_Start(sub_02016150, &param0->pokeAnimation[v0], 0);
-    param0->pokeAnimation[v0].unk_54 = v2;
-    param0->pokeAnimation[v0].unk_58 = PokemonSprite_GetAttribute(param1, MON_SPRITE_X_CENTER);
-    param0->pokeAnimation[v0].unk_5C = PokemonSprite_GetAttribute(param1, MON_SPRITE_Y_CENTER);
-    param0->pokeAnimation[v0].unk_60 = 0;
-    param0->pokeAnimation[v0].unk_64 = 0;
-    param0->pokeAnimation[v0].unk_68 = 0;
-    param0->pokeAnimation[v0].unk_6C = 0;
-    param0->pokeAnimation[v0].unk_70 = 0;
-    param0->pokeAnimation[v0].unk_74 = 0;
-    param0->pokeAnimation[v0].unk_78 = 0;
+    param0->anims[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_POKEANIME__PL_POKE_ANM, param0->anims[v0].unk_14, param0->heapID);
+    param0->anims[v0].unk_0C = (u32 *)param0->anims[v0].unk_08;
+    param0->anims[v0].unk_1C = 0;
+    param0->anims[v0].unk_20 = 0;
+    param0->anims[v0].unk_1C5 = 0;
+    param0->anims[v0].unk_1C6 = 28;
+    param0->anims[v0].unk_1C7 = 0;
+    param0->anims[v0].unk_04 = SysTask_Start(sub_02016150, &param0->anims[v0], 0);
+    param0->anims[v0].unk_54 = v2;
+    param0->anims[v0].unk_58 = PokemonSprite_GetAttribute(param1, MON_SPRITE_X_CENTER);
+    param0->anims[v0].unk_5C = PokemonSprite_GetAttribute(param1, MON_SPRITE_Y_CENTER);
+    param0->anims[v0].unk_60 = 0;
+    param0->anims[v0].unk_64 = 0;
+    param0->anims[v0].unk_68 = 0;
+    param0->anims[v0].unk_6C = 0;
+    param0->anims[v0].unk_70 = 0;
+    param0->anims[v0].unk_74 = 0;
+    param0->anims[v0].unk_78 = 0;
 }
 
 BOOL sub_020160F4(PokemonAnimManager *param0, const u8 param1)
 {
-    GF_ASSERT(param1 < param0->animation);
-    return param0->pokeAnimation[param1].unk_20;
+    GF_ASSERT(param1 < param0->animCount);
+    return param0->anims[param1].unk_20;
 }
 
 void sub_02016114(PokemonAnimManager *param0, const u8 param1)
 {
-    if (param0->pokeAnimation[param1].unk_04 != NULL) {
-        SysTask_Done(param0->pokeAnimation[param1].unk_04);
+    if (param0->anims[param1].unk_04 != NULL) {
+        SysTask_Done(param0->anims[param1].unk_04);
 
-        param0->pokeAnimation[param1].unk_04 = NULL;
-        param0->pokeAnimation[param1].unk_20 = 1;
-        param0->pokeAnimation[param1].unk_10 = 0;
+        param0->anims[param1].unk_04 = NULL;
+        param0->anims[param1].unk_20 = 1;
+        param0->anims[param1].unk_10 = 0;
 
-        Heap_Free(param0->pokeAnimation[param1].unk_08);
+        Heap_Free(param0->anims[param1].unk_08);
     }
 }
 
