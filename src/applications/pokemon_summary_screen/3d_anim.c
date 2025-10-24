@@ -181,8 +181,8 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen)
 {
     Camera_Delete(summaryScreen->monSprite.camera);
-    sub_02016114(summaryScreen->monSprite.animationSys, 0);
-    sub_02015FB8(summaryScreen->monSprite.animationSys);
+    sub_02016114(summaryScreen->monSprite.monAnimMan, 0);
+    sub_02015FB8(summaryScreen->monSprite.monAnimMan);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
 }
 
@@ -364,16 +364,16 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->monData.isEgg != FALSE) {
-        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
+        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.monAnimMan, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
     } else {
         PokemonSprite_InitAnim(summaryScreen->monSprite.sprite, 1);
-        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, summaryScreen->monData.species, 2, summaryScreen->monSprite.flip, 0);
+        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.monAnimMan, summaryScreen->monSprite.sprite, summaryScreen->monData.species, 2, summaryScreen->monSprite.flip, 0);
     }
 }
 
 void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen)
 {
-    sub_02016114(summaryScreen->monSprite.animationSys, 0);
+    sub_02016114(summaryScreen->monSprite.monAnimMan, 0);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
     PokemonSummaryScreen_LoadMonSprite(summaryScreen);
     PokemonSummaryScreen_LoadMonAnimation(summaryScreen);

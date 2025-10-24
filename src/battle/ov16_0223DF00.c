@@ -16,7 +16,7 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
+#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
@@ -131,7 +131,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem *battleSystem);
 u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
 int BattleSystem_Ruleset(BattleSystem *battleSystem);
-PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSystem);
+PokemonAnimManager *BattleSystem_GetPokemonAnimManager(BattleSystem *battleSystem);
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1);
 void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2);
 void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1);
@@ -1038,9 +1038,9 @@ int BattleSystem_Ruleset(BattleSystem *battleSystem)
     return Options_BattleStyle(battleSystem->options);
 }
 
-PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSystem)
+PokemonAnimManager *BattleSystem_GetPokemonAnimManager(BattleSystem *battleSystem)
 {
-    return battleSystem->pokemonAnimationSys;
+    return battleSystem->monAnimMan;
 }
 
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1)

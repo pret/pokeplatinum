@@ -11,7 +11,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct PokemonAnimationSys PokemonAnimationSys;
+typedef struct PokemonAnimManager PokemonAnimManager;
 typedef struct UnkStruct_02016DAC_t UnkStruct_02016DAC;
 typedef struct UnkStruct_02016E64_t UnkStruct_02016E64;
 
@@ -68,12 +68,12 @@ typedef struct UnkStruct_02016E64_t {
     u8 unk_1C7;
 } UnkStruct_02016E64;
 
-typedef struct PokemonAnimationSys {
+typedef struct PokemonAnimManager {
     UnkStruct_02016E64 *pokeAnimation;
     int heapID;
     u8 reverse;
     u8 animation;
-} PokemonAnimationSys;
+} PokemonAnimManager;
 
 typedef struct {
     UnkFuncPtr_02016DAC unk_00;
@@ -172,9 +172,9 @@ static const UnkStruct_020E5598 Unk_020E5598[] = {
     { sub_02016F9C, 0x4, 0x0 }
 };
 
-PokemonAnimationSys *sub_02015F84(const int heapID, const int param1, const u8 param2)
+PokemonAnimManager *sub_02015F84(const int heapID, const int param1, const u8 param2)
 {
-    PokemonAnimationSys *v0 = Heap_Alloc(heapID, sizeof(PokemonAnimationSys));
+    PokemonAnimManager *v0 = Heap_Alloc(heapID, sizeof(PokemonAnimManager));
     v0->reverse = param2;
     v0->animation = param1;
     v0->heapID = heapID;
@@ -185,13 +185,13 @@ PokemonAnimationSys *sub_02015F84(const int heapID, const int param1, const u8 p
     return v0;
 }
 
-void sub_02015FB8(PokemonAnimationSys *param0)
+void sub_02015FB8(PokemonAnimManager *param0)
 {
     Heap_Free(param0->pokeAnimation);
     Heap_Free(param0);
 }
 
-void PokeAnimation_Init(PokemonAnimationSys *param0, PokemonSprite *param1, const PokeAnimationSettings *param2, const u8 param3)
+void PokeAnimation_Init(PokemonAnimManager *param0, PokemonSprite *param1, const PokeAnimationSettings *param2, const u8 param3)
 {
     u8 v0 = param3;
     int v1 = param2->animation;
@@ -238,13 +238,13 @@ void PokeAnimation_Init(PokemonAnimationSys *param0, PokemonSprite *param1, cons
     param0->pokeAnimation[v0].unk_78 = 0;
 }
 
-BOOL sub_020160F4(PokemonAnimationSys *param0, const u8 param1)
+BOOL sub_020160F4(PokemonAnimManager *param0, const u8 param1)
 {
     GF_ASSERT(param1 < param0->animation);
     return param0->pokeAnimation[param1].unk_20;
 }
 
-void sub_02016114(PokemonAnimationSys *param0, const u8 param1)
+void sub_02016114(PokemonAnimManager *param0, const u8 param1)
 {
     if (param0->pokeAnimation[param1].unk_04 != NULL) {
         SysTask_Done(param0->pokeAnimation[param1].unk_04);

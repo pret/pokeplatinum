@@ -1502,7 +1502,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 0);
                 PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SHADOW_IS_AFFINE, 0);
                 PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_X_CENTER, v0->unk_14);
-                PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+                PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
                 {
                     u8 v4;
@@ -1544,7 +1544,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
 
             if (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER) <= v0->unk_14) {
                 PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_X_CENTER, v0->unk_14);
-                PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+                PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
                 {
                     u8 v5;
@@ -1562,7 +1562,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v6;
@@ -1628,7 +1628,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
             PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 0);
             PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SHADOW_IS_AFFINE, 0);
             PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER, v0->unk_14);
-            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
             {
                 u8 v4;
@@ -1644,7 +1644,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v5;
@@ -1807,7 +1807,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 }
             }
 
-            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             PokemonSprite_StartFade(v0->unk_04->unk_20, 16, 0, 0, Unk_ov16_0226F1AE[v0->unk_8E]);
 
             v0->unk_83 = 5;
@@ -1836,7 +1836,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 }
             }
 
-            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             PokemonSprite_StartFade(v0->unk_04->unk_20, 16, 0, 1, Unk_ov16_0226F1AE[v0->unk_8E]);
 
             v0->unk_83 = 5;
@@ -1852,7 +1852,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_04->unk_84);
             v0->unk_04->unk_84 = NULL;
             ov12_02236428(v0->unk_08);
@@ -2001,7 +2001,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                 }
             }
 
-            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             PokemonSprite_StartFade(v0->unk_04->unk_20, 16, 0, 0, Unk_ov16_0226F1AE[v0->unk_8E]);
             v0->unk_83 = 5;
         } else if (PokemonSprite_GetAttribute(v0->unk_04->unk_20, MON_SPRITE_SCALE_X) >= 0x100) {
@@ -2029,7 +2029,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                 }
             }
 
-            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokemonSprite_LoadAnim(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             PokemonSprite_StartFade(v0->unk_04->unk_20, 16, 0, 1, Unk_ov16_0226F1AE[v0->unk_8E]);
             v0->unk_83 = 5;
         } else {
@@ -2044,7 +2044,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_0C);
             ov12_02236428(v0->unk_08);
 

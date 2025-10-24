@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV119_021D17B8_H
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
-#include "struct_decls/pokemon_animation_sys_decl.h"
+#include "struct_decls/pokemon_anim_manager_decl.h"
 
 #include "overlay119/struct_ov119_021D14DC.h"
 
@@ -29,7 +29,7 @@ typedef struct {
     Menu *unk_48;
     SpriteManager *unk_4C;
     SpriteSystem *unk_50;
-    PokemonAnimationSys *unk_54;
+    PokemonAnimManager *unk_54;
 } UnkStruct_ov119_021D17B8;
 
 #endif // POKEPLATINUM_STRUCT_OV119_021D17B8_H

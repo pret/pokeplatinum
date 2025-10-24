@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV76_0223C398_H
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
+#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 
@@ -45,7 +45,7 @@ typedef struct {
     FontOAM *unk_164[2];
     CharTransferAllocation unk_16C[2];
     BOOL unk_184;
-    PokemonAnimationSys *unk_188;
+    PokemonAnimManager *unk_188;
     BOOL unk_18C;
 } UnkStruct_ov76_0223C398;
 

@@ -8,8 +8,7 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_defs/chatot_cry.h"
+#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -83,7 +82,7 @@ struct BattleSystem {
     WaitDial *waitDial;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
-    PokemonAnimationSys *pokemonAnimationSys;
+    PokemonAnimManager *monAnimMan;
     NNSG2dCellTransferState *cellTransferState;
     PokemonSpriteData pokemonSpriteDataArray[4];
     BattleRecords unusedBattleRecords;
