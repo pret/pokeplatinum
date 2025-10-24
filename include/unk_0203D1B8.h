@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
@@ -19,6 +18,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
@@ -58,8 +58,8 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary);
 void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
 void sub_0203D80C(FieldTask *param0, u16 *param1, u16 *param2, u16 *param3);
 void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
-void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1);
-void *sub_0203D8AC(FieldSystem *fieldSystem);
+void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx);
+void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID);
 UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID);

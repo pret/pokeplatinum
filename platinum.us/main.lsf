@@ -266,7 +266,7 @@ Static main
 	Object main.nef.p/src_scroll_prompts.c.o
 	Object main.nef.p/src_system_flags.c.o
 	Object main.nef.p/src_system_vars.c.o
-	Object main.nef.p/src_unk_0206B70C.c.o
+	Object main.nef.p/src_applications_town_map_context.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
 	Object main.nef.p/src_trainer_card_badge_dirt.c.o
@@ -1312,13 +1312,14 @@ Overlay overlay79
 	Object main.nef.p/src_overlay079_ov79_021D3768.c.o
 }
 
-Overlay overlay80
+Overlay town_map
 {
 	After main
-	Object main.nef.p/src_overlay080_ov80_021D0D80.c.o
-	Object main.nef.p/src_overlay080_ov80_021D1458.c.o
-	Object main.nef.p/src_overlay080_ov80_021D2A08.c.o
-	Object main.nef.p/src_overlay080_ov80_021D2AF4.c.o
+	Object main.nef.p/src_applications_town_map_main.c.o
+	Object main.nef.p/src_applications_town_map_graphics.c.o
+	Object main.nef.p/src_applications_town_map_sprites.c.o
+	Object main.nef.p/src_applications_town_map_fly_locations.c.o
+	Object main.nef.p/src_applications_town_map_map_blocks.c.o
 }
 
 Overlay journal_display

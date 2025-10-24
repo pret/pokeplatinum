@@ -14,7 +14,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 
@@ -22,6 +21,7 @@
 #include "applications/party_menu/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -1653,7 +1653,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
-    UnkStruct_0203D8AC *v2;
+    TownMapContext *v2;
     u32 v3;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -1662,9 +1662,9 @@ BOOL sub_0203C434(FieldTask *taskMan)
 
     Heap_FreeExplicit(HEAP_ID_FIELD2, menu->unk_260);
 
-    v2 = (UnkStruct_0203D8AC *)menu->taskData;
+    v2 = (TownMapContext *)menu->taskData;
 
-    if (!(v2->unk_10)) {
+    if (!(v2->flyLocationSelected)) {
         Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);
         menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v3);
         sub_0203B674(menu, sub_0203B7C0);
@@ -1674,8 +1674,8 @@ BOOL sub_0203C434(FieldTask *taskMan)
         void *journalEntryLocationEvent;
 
         mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
-        v5 = sub_0207064C(HEAP_ID_FIELD2, fieldSystem, mon, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
-        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELD2);
+        v5 = sub_0207064C(HEAP_ID_FIELD2, fieldSystem, mon, v2->flyLocationMapHeader, v2->flyLocationX * 32 + 16, v2->flyLocationZ * 32 + 16);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->flyLocationMapHeader, HEAP_ID_FIELD2);
 
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
         Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);

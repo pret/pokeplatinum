@@ -72,7 +72,7 @@ typedef struct ItemUseFuncDat {
     ItemCheckUseFunc canUseItemFunc;
 } ItemUseFuncDat;
 
-void *sub_0203D8AC(FieldSystem *fieldSystem);
+void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem);
 static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *usageContext);
 static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
 static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
@@ -327,7 +327,7 @@ static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
 
-    menu->taskData = sub_0203D8AC(fieldSystem);
+    menu->taskData = FieldSystem_OpenTownMapItem(fieldSystem);
     sub_0203B674(menu, sub_0203C3F4);
 }
 
@@ -337,9 +337,9 @@ static BOOL UseTownMapInField(ItemFieldUseContext *usageContext)
     return TRUE;
 }
 
-static void *sub_02068708(void *some_param)
+static void *sub_02068708(void *fieldSystem)
 {
-    return sub_0203D8AC(some_param);
+    return FieldSystem_OpenTownMapItem(fieldSystem);
 }
 
 static void UseExplorerKitFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)

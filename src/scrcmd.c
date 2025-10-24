@@ -40,7 +40,6 @@
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -51,6 +50,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/town_map/main.h"
 #include "cutscenes/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -211,7 +211,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
-#include "unk_0206B70C.h"
 #include "unk_0206C660.h"
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
@@ -386,7 +385,7 @@ static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_130(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
-static BOOL ScrCmd_0AA(ScriptContext *ctx);
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
@@ -939,7 +938,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A7,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
-    ScrCmd_0AA,
+    ScrCmd_OpenRegionMap,
     ScrCmd_OpenPokemonStorage,
     ScrCmd_0AC,
     ScrCmd_0AD,
@@ -4072,14 +4071,14 @@ static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AA(ScriptContext *ctx)
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **townMapCtx = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    *townMapCtx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(ctx->fieldSystem, *v1, 2);
-    sub_0203D884(ctx->fieldSystem, *v1);
+    TownMapContext_Init(ctx->fieldSystem, *townMapCtx, TOWN_MAP_MODE_WALL_MAP);
+    FieldSystem_OpenTownMap(ctx->fieldSystem, *townMapCtx);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;
