@@ -838,7 +838,7 @@ void BoxPokemon_RestorePP(BoxPokemon *boxMon);
  * @param species       Species to be loaded
  * @param clientType    Client-type of who made the load request
  */
-void PokemonSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType);
+void PokemonSprite_LoadAnimationFrames(NARC *narc, SpriteAnimFrame *frames, u16 species, u16 clientType);
 
 /**
  * @brief Load the animation data for a given species and a client type.

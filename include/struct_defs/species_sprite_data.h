@@ -9,7 +9,7 @@ typedef struct SpeciesSpriteAnim {
     u8 cryDelay; ///< How long to wait before playing the cry.
     u8 animation; ///< Which pre-programmed animation sequence to use.
     u8 startDelay; ///< How long to wait before starting the animation sequence.
-    SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES]; ///< Frame-data for each frame of the animation sequence.
+    SpriteAnimFrame frames[MAX_ANIMATION_FRAMES]; ///< Frame-data for each frame of the animation sequence.
 } SpeciesSpriteAnim;
 
 typedef struct SpeciesSpriteData {

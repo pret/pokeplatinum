@@ -488,9 +488,9 @@ static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderR
     narc_pack_file(vfs, frontMale, maleSize);
 }
 
-static SpriteAnimationFrame ParseSpriteAnimationFrame(const rapidjson::Value &frame)
+static SpriteAnimFrame ParseSpriteAnimationFrame(const rapidjson::Value &frame)
 {
-    SpriteAnimationFrame data = { 0 };
+    SpriteAnimFrame data = { 0 };
     data.spriteFrame = frame["sprite_frame"].GetInt();
     data.frameDelay = frame["frame_delay"].GetUint();
     data.xOffset = frame["x_shift"].GetInt();

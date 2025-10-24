@@ -410,7 +410,7 @@ typedef struct PokemonSummaryMonData {
 typedef struct PokemonSummaryMonSpriteData {
     Camera *camera;
     void *spriteManager;
-    SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
+    SpriteAnimFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
     PokemonSprite *sprite;
     BOOL flip;

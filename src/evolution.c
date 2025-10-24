@@ -275,7 +275,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 4:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             {
-                SpriteAnimationFrame v0[10];
+                SpriteAnimFrame v0[10];
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v0[0], param0->unk_60, 1);
@@ -379,7 +379,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 10:
         if ((PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) && (sub_0207C8E0(param0->unk_30) == 0)) {
             {
-                SpriteAnimationFrame v2[10];
+                SpriteAnimFrame v2[10];
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v2[0], param0->unk_62, 1);
@@ -641,7 +641,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 42:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             {
-                SpriteAnimationFrame v4[10];
+                SpriteAnimFrame v4[10];
 
                 PokemonSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 PokemonSprite_LoadAnimationFrames(param0->unk_80, &v4[0], param0->unk_60, 1);

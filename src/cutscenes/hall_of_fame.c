@@ -78,7 +78,7 @@ typedef struct HallOfFameMan {
     Sprite *sprite;
     void *unk_1D0;
     void *unk_1D4;
-    SpriteAnimationFrame animFrames[MAX_PARTY_SIZE][MAX_ANIMATION_FRAMES];
+    SpriteAnimFrame animFrames[MAX_PARTY_SIZE][MAX_ANIMATION_FRAMES];
     int slotIndexes[MAX_PARTY_SIZE];
     int species[MAX_PARTY_SIZE];
     u32 forms[MAX_PARTY_SIZE];
@@ -169,7 +169,7 @@ typedef struct HallOfFameSliderToBlack {
 typedef struct HallOfFamePokemonAnimation {
     HallOfFameTask hallOfFameTask;
     Sprite *sprite;
-    const SpriteAnimationFrame *animFrame;
+    const SpriteAnimFrame *animFrame;
     PokemonSpriteTaskAnim anim;
     NNSG2dImageProxy imageProxies[2];
     BOOL playCry;

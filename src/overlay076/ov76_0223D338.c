@@ -689,7 +689,7 @@ void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0)
 void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
 {
     PokemonSpriteTemplate v0;
-    SpriteAnimationFrame v1[10];
+    SpriteAnimFrame v1[10];
     int v2;
     int v3;
 
