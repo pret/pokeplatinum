@@ -14,6 +14,10 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#define ANIM_INDEX_SPINNING 0
+#define ANIM_INDEX_HEADS    1
+#define ANIM_INDEX_TAILS    2
+
 static fx32 sInitalSpeed = 0;
 static fx32 sAcceleration = 0;
 
@@ -50,7 +54,7 @@ static void SetupSprites(CoinTossGraphics *graphics)
 {
     static const PoketchAnimation_AnimationData animationData = {
         .translation = { FX32_CONST(COIN_REST_POSITION_X), FX32_CONST(COIN_REST_POSITION_Y) },
-        .animIdx = 1,
+        .animIdx = ANIM_INDEX_HEADS,
         .flip = NNS_G2D_RENDERERFLIP_NONE,
         .oamPriority = 2,
         .priority = 0,
@@ -62,8 +66,8 @@ static void SetupSprites(CoinTossGraphics *graphics)
 
     graphics->sprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData, &graphics->animData);
 
-    if (graphics->coin->isHeads == FALSE) {
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprite, 2);
+    if (!graphics->coin->isHeads) {
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprite, ANIM_INDEX_TAILS);
     }
 }
 
@@ -165,7 +169,7 @@ static void Task_TossCoin(SysTask *task, void *taskMan)
     switch (PoketchTask_GetState(taskMan)) {
     case 0:
         PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI09);
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprite, 0);
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprite, ANIM_INDEX_SPINNING);
         graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
         graphics->coinSpeed = sInitalSpeed;
         graphics->killCoinTask = FALSE;
@@ -187,7 +191,7 @@ static void Task_TossCoin(SysTask *task, void *taskMan)
                 graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
             } else {
                 PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI10);
-                PoketchAnimation_UpdateAnimationIdx(graphics->sprite, coin->isHeads ? 1 : 2);
+                PoketchAnimation_UpdateAnimationIdx(graphics->sprite, coin->isHeads ? ANIM_INDEX_HEADS : ANIM_INDEX_TAILS);
                 graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
                 PoketchTask_IncrementState(taskMan);
             }

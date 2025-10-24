@@ -71,7 +71,7 @@ static BOOL Init(PoketchCoinToss *appData, PoketchSystem *poketchSys, BgConfig *
 {
     appData->appID = appID;
 
-    if (PoketchMemory_Read32(appID, &appData->coin, sizeof(appData->coin)) == FALSE) {
+    if (!PoketchMemory_Read32(appID, &appData->coin, sizeof(appData->coin))) {
         appData->coin.isHeads = TRUE;
     }
 
@@ -119,7 +119,7 @@ static void Exit(void *appData)
 
 static void ChangeState(PoketchCoinToss *appData, enum CoinTossState newState)
 {
-    if (appData->shouldExit == FALSE) {
+    if (!appData->shouldExit) {
         appData->state = newState;
     } else {
         appData->state = STATE_SHUTDOWN;
@@ -154,7 +154,6 @@ static BOOL State_UpdateApp(PoketchCoinToss *appData)
 
     switch (appData->subState) {
     case 0:
-
         if (CheckCoinTapped()) {
             appData->coin.isHeads = MTRNG_Next() % 2;
             PoketchCoinTossGraphics_StartTask(appData->graphics, COIN_TOSS_GRAPHICS_TOSS_COIN);
