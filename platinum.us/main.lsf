@@ -991,11 +991,11 @@ Overlay poketch_roulette
 	Object main.nef.p/src_applications_poketch_roulette_graphics.c.o
 }
 
-Overlay overlay42
+Overlay poketch_coin_toss
 {
 	After overlay25
-	Object main.nef.p/src_overlay042_ov42_022561C0.c.o
-	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
+	Object main.nef.p/src_applications_poketch_coin_toss_main.c.o
+	Object main.nef.p/src_applications_poketch_coin_toss_graphics.c.o
 }
 
 Overlay poketch_move_tester
