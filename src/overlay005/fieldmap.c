@@ -32,7 +32,6 @@
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5BC0.h"
-#include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EA714.h"
@@ -45,6 +44,7 @@
 #include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
+#include "overlay005/texture_resource_manager.h"
 #include "overlay009/ov9_02249960.h"
 
 #include "berry_patch_manager.h"
@@ -290,8 +290,8 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
         MapPropAnimationManager_UnloadAllAnimations(fieldSystem->mapPropAnimMan);
         MapPropAnimationManager_Free(fieldSystem->mapPropAnimMan);
         MapPropOneShotAnimationManager_Free(&fieldSystem->mapPropOneShotAnimMan);
-        ov5_021D5E8C(fieldSystem->unk_04->unk_10);
-        ov5_021D5EAC(fieldSystem->unk_04->unk_10);
+        TextureResourceManager_FreeAllSlots(fieldSystem->unk_04->unk_10);
+        TextureResourceManager_Destroy(fieldSystem->unk_04->unk_10);
 
         fieldSystem->unk_04->unk_10 = NULL;
 
@@ -494,7 +494,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
     Signpost_DoCurrentCommand(fieldSystem);
 
     if ((param1 & 1) != 0) {
-        ov5_021D5DEC(fieldSystem->unk_04->unk_10);
+        TextureResourceManager_Free(fieldSystem->unk_04->unk_10);
     }
 
     if ((param1 & 8) != 0) {
@@ -905,9 +905,9 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 
     fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
     fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD1);
-    fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
+    fieldSystem->unk_04->unk_10 = TextureResourceManager_Create();
 
-    ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
+    TextureResourceManager_LoadTexture(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
     DynamicMapFeatures_Init(fieldSystem);
     ov5_021EE7C0(fieldSystem);
     SetVBlankCallback(fieldmap, fieldSystem);

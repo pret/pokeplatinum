@@ -11,7 +11,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
-#include "overlay005/ov5_021D2F14.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -352,7 +352,7 @@ BOOL FieldTask_InitShop(FieldTask *task)
     if ((shopMenu->state >= SHOP_STATE_SELECT_BUY_MENU) && (shopMenu->state <= SHOP_STATE_FINISH_FREE_PREMIER)) {
         Sprite_UpdateAnim(shopMenu->sprites[SHOP_SPRITE_SCROLL_ARROW_UP], FX32_ONE);
         Sprite_UpdateAnim(shopMenu->sprites[SHOP_SPRITE_SCROLL_ARROW_DOWN], FX32_ONE);
-        SpriteList_Update(shopMenu->unk_94.unk_00);
+        SpriteList_Update(shopMenu->spriteManager.spriteList);
     }
 
     return FALSE;
@@ -1542,10 +1542,10 @@ static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
 
 static void Shop_DrawSprites(ShopMenu *shopMenu)
 {
-    ov5_021D2F14(&shopMenu->unk_94, &sShop_SpriteResourcePaths, 4, HEAP_ID_FIELD2);
+    SpriteResourceManager_Init(&shopMenu->spriteManager, &sShop_SpriteResourcePaths, 4, HEAP_ID_FIELD2);
 
     for (u32 i = 0; i < SHOP_SPRITE_MAX; i++) {
-        shopMenu->sprites[i] = ov5_021D3104(&shopMenu->unk_94, &sShop_SpriteTemplates[i]);
+        shopMenu->sprites[i] = SpriteResourceManager_CreateSprite(&shopMenu->spriteManager, &sShop_SpriteTemplates[i]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -1557,7 +1557,7 @@ static void Shop_DestroySprites(ShopMenu *shopMenu)
         Sprite_Delete(shopMenu->sprites[i]);
     }
 
-    ov5_021D30A8(&shopMenu->unk_94);
+    SpriteResourceManager_Free(&shopMenu->spriteManager);
 }
 
 static void Shop_SetScrollSpritesPositionXY(ShopMenu *shopMenu, u8 isBuyingItem)
@@ -1580,14 +1580,14 @@ static void Shop_ChangeItemIconGfx(ShopMenu *shopMenu, u16 itemId)
         return;
     }
 
-    spriteRes = SpriteResourceCollection_Find(shopMenu->unk_94.unk_194[0], 2);
+    spriteRes = SpriteResourceCollection_Find(shopMenu->spriteManager.resourceCollections[0], 2);
 
-    SpriteResourceCollection_ModifyTiles(shopMenu->unk_94.unk_194[0], spriteRes, 16, Item_FileID(itemId, ITEM_FILE_TYPE_ICON), FALSE, HEAP_ID_FIELD2);
+    SpriteResourceCollection_ModifyTiles(shopMenu->spriteManager.resourceCollections[0], spriteRes, 16, Item_FileID(itemId, ITEM_FILE_TYPE_ICON), FALSE, HEAP_ID_FIELD2);
     SpriteTransfer_RetransferCharData(spriteRes);
 
-    spriteRes = SpriteResourceCollection_Find(shopMenu->unk_94.unk_194[1], 1);
+    spriteRes = SpriteResourceCollection_Find(shopMenu->spriteManager.resourceCollections[1], 1);
 
-    SpriteResourceCollection_ModifyPalette(shopMenu->unk_94.unk_194[1], spriteRes, 16, Item_FileID(itemId, ITEM_FILE_TYPE_PALETTE), FALSE, HEAP_ID_FIELD2);
+    SpriteResourceCollection_ModifyPalette(shopMenu->spriteManager.resourceCollections[1], spriteRes, 16, Item_FileID(itemId, ITEM_FILE_TYPE_PALETTE), FALSE, HEAP_ID_FIELD2);
     SpriteTransfer_ReplacePlttData(spriteRes);
 }
 
