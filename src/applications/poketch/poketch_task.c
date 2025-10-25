@@ -1,7 +1,6 @@
 #include "applications/poketch/poketch_task.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "applications/poketch/poketch_graphics.h"
 
@@ -12,18 +11,17 @@
 #include "palette.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
-#include "sys_task_manager.h"
 
-#define RGB_TO_GREYSCALE(r, g, b) ((((r) * 299) + ((g) * 587) + ((b) * 114)) / 1000)
+#define RGB_TO_GREYSCALE(r, g, b) (((r * 299) + (g * 587) + (b * 114)) / 1000)
 
-#define PLACE_DIGIT(__value, __offset)                                            \
-    {                                                                             \
-        u32 v2 = (((__value) / 4) * 16) + (((__value) & 3) * 2);                  \
-        (bgSrc)[0] = v2;                                                          \
-        (bgSrc)[1] = v2 + 1;                                                      \
-        (bgSrc)[2] = v2 + 8;                                                      \
-        (bgSrc)[3] = v2 + 9;                                                      \
-        Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + (__offset), 11, 2, 2); \
+#define PLACE_DIGIT(__value, __offset)                                          \
+    {                                                                           \
+        u32 v2 = ((__value / 4) * 16) + ((__value & 3) * 2);                    \
+        bgSrc[0] = v2;                                                          \
+        bgSrc[1] = v2 + 1;                                                      \
+        bgSrc[2] = v2 + 8;                                                      \
+        bgSrc[3] = v2 + 9;                                                      \
+        Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + __offset, 11, 2, 2); \
     }
 
 static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId);
@@ -272,8 +270,7 @@ void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIco
     }
 }
 
-// Only ever used by unused poketch apps OV38, OV51, OV55
-void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer)
+void Poketch_ShowUnusedDummyText(BgConfig *bgConfig, u32 number, u32 bgLayer)
 {
     u16 bgSrc[4];
     u32 tensDigit;
@@ -282,11 +279,11 @@ void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer)
     PLACE_DIGIT(2, 2);
     PLACE_DIGIT(3, 4);
 
-    tensDigit = digit / 10;
-    digit -= (tensDigit * 10);
+    tensDigit = number / 10;
+    number -= tensDigit * 10;
     tensDigit += 4;
-    digit += 4;
+    number += 4;
 
     PLACE_DIGIT(tensDigit, 6);
-    PLACE_DIGIT(digit, 8);
+    PLACE_DIGIT(number, 8);
 }
