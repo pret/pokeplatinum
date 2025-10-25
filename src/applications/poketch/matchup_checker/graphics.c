@@ -16,13 +16,6 @@
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 
-#define SPRITE_BUTTON         0
-#define SPRITE_HEART_METER    1
-#define SPRITE_LUVDISC_LEFT   2
-#define SPRITE_LUVDISC_RIGHT  3
-#define SPRITE_MON_ICON_LEFT  4
-#define SPRITE_MON_ICON_RIGHT 5
-
 #define ANIM_COMMAND_END           -1
 #define ANIM_COMMAND_MOVE_FORWARD  -2
 #define ANIM_COMMAND_MOVE_BACKWARD -3
@@ -349,77 +342,57 @@ static void Task_RunMatchupAnimation(SysTask *task, void *taskMan)
     }
 }
 
+// clang-format off
 static const int sCommandsIncompatible[] = {
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
-    ANIM_COMMAND_WAIT,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
+    ANIM_COMMAND_WAIT, 16,
     ANIM_COMMAND_FLIP_LUVDISCS,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_013,
-    ANIM_COMMAND_MOVE_BACKWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_BACKWARD, 16, 16,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsLowCompatibility[] = {
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsMedCompatibility[] = {
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsMaxCompatibility[] = {
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
-    ANIM_COMMAND_MOVE_FORWARD,
-    16,
-    16,
+    ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_012,
-    ANIM_COMMAND_WAIT,
-    16,
+    ANIM_COMMAND_WAIT, 16,
     ANIM_COMMAND_PLAY_SOUND,
     SEQ_SE_DP_POKETCH_014,
     ANIM_COMMAND_UPDATE_SPRITE,
-    SPRITE_LUVDISC_LEFT,
-    7,
+    SPRITE_LUVDISC_LEFT, 7,
     ANIM_COMMAND_UPDATE_SPRITE,
-    SPRITE_LUVDISC_RIGHT,
-    8,
+    SPRITE_LUVDISC_RIGHT, 8,
     ANIM_COMMAND_UPDATE_SPRITE,
-    SPRITE_HEART_METER,
-    4,
-    ANIM_COMMAND_WAIT,
-    16,
+    SPRITE_HEART_METER, 4,
+    ANIM_COMMAND_WAIT, 16,
     ANIM_COMMAND_END
 };
+// clang-format on
 
 static void InitAnimationSequence(MatchupCheckerGraphics *graphics, const MatchupCheckerData *matchupData)
 {
@@ -486,11 +459,11 @@ func_start:
                 PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_LUVDISC_LEFT], 6);
                 PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_LUVDISC_RIGHT], 5);
                 break;
-            case ANIM_COMMAND_UPDATE_SPRITE: {
+            case ANIM_COMMAND_UPDATE_SPRITE:
                 u32 sprite = graphics->animationCommands[graphics->commandIdx++];
                 u32 animIdx = graphics->animationCommands[graphics->commandIdx++];
                 PoketchAnimation_UpdateAnimationIdx(graphics->sprites[sprite], animIdx);
-            } break;
+                break;
             }
         }
         break;

@@ -10,7 +10,13 @@
 
 #define MATCHUP_CHECKER_TASK_SLOTS 4
 
-#define NUM_SPRITES 6
+#define NUM_SPRITES           6
+#define SPRITE_BUTTON         0
+#define SPRITE_HEART_METER    1
+#define SPRITE_LUVDISC_LEFT   2
+#define SPRITE_LUVDISC_RIGHT  3
+#define SPRITE_MON_ICON_LEFT  4
+#define SPRITE_MON_ICON_RIGHT 5
 
 typedef struct MatchupCheckerData {
     u32 spriteIndices[MAX_PARTY_SIZE];
@@ -32,7 +38,6 @@ typedef struct MatchupCheckerGraphics {
     PoketchAnimation_SpriteData monIconData;
     u32 monIconTileOffset;
     BOOL killIndicatorTask;
-
     const int *animationCommands;
     u32 commandState;
     u32 commandIdx;
