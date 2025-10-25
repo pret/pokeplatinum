@@ -77,9 +77,9 @@ typedef struct MapObject {
     int y;
     int z;
     VecFx32 pos;
-    VecFx32 unk_7C;
+    VecFx32 spriteJumpOffset;
     VecFx32 unk_88;
-    VecFx32 unk_94;
+    VecFx32 spriteTerrainOffset;
     u32 unk_A0;
     enum MovementAction movementAction;
     int movementStep;
@@ -1896,18 +1896,18 @@ int sub_02062EC8(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062EE0(MapObject *mapObj, int param1)
+void MapObject_SetFlagDoNotSinkIntoTerrain(MapObject *mapObj, BOOL flag)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_27);
+    if (flag == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_27);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     }
 }
 
-int sub_02062EFC(const MapObject *mapObj)
+int MapObject_CheckFlagDoNotSinkIntoTerrain(const MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_27)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN)) {
         return TRUE;
     }
 
@@ -2120,19 +2120,19 @@ fx32 MapObject_GetPosY(const MapObject *mapObj)
     return mapObj->pos.y;
 }
 
-void sub_02063078(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteJumpOffset(const MapObject *mapObj, VecFx32 *vec)
 {
-    *vec = mapObj->unk_7C;
+    *vec = mapObj->spriteJumpOffset;
 }
 
-void sub_02063088(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteJumpOffset(MapObject *mapObj, const VecFx32 *vec)
 {
-    mapObj->unk_7C = *vec;
+    mapObj->spriteJumpOffset = *vec;
 }
 
-VecFx32 *sub_02063098(MapObject *mapObj)
+VecFx32 *MapObject_GetSpriteJumpOffset1(MapObject *mapObj)
 {
-    return &mapObj->unk_7C;
+    return &mapObj->spriteJumpOffset;
 }
 
 void sub_0206309C(const MapObject *mapObj, VecFx32 *vec)
@@ -2145,14 +2145,14 @@ void sub_020630AC(MapObject *mapObj, const VecFx32 *vec)
     mapObj->unk_88 = *vec;
 }
 
-void sub_020630BC(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteTerrainOffset(const MapObject *mapObj, VecFx32 *spriteOffset)
 {
-    *vec = mapObj->unk_94;
+    *spriteOffset = mapObj->spriteTerrainOffset;
 }
 
-void sub_020630CC(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteTerrainOffset(MapObject *mapObj, const VecFx32 *spriteOffset)
 {
-    mapObj->unk_94 = *vec;
+    mapObj->spriteTerrainOffset = *spriteOffset;
 }
 
 int sub_020630DC(const MapObject *mapObj)

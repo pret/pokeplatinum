@@ -6,11 +6,12 @@
 #include "field/field_system_decl.h"
 
 #include "field_task.h"
+#include "location.h"
 #include "sys_task_manager.h"
 
 void PlayerAvatar_SetTransitionState(PlayerAvatar *playerAvatar, u32 param1);
 void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar);
-int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *param1, int param2, int param3);
+int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, enum FaceDirection dir, int param3);
 void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot);
 int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior);
 void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot);

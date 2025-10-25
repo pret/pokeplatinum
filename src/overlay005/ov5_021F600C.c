@@ -145,7 +145,7 @@ static void ov5_021F615C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 
     MapObject_GetPosPtr(v3, &v0);
-    sub_02063078(v3, &v1);
+    MapObject_GetSpriteJumpOffset(v3, &v1);
 
     v0.x += v1.x;
     v0.y += v1.y;
