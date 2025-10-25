@@ -5001,7 +5001,7 @@ int LowestBit(u32 flag)
     return i;
 }
 
-static const u16 sBattleFrontierBanlist[] = {
+static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
     SPECIES_MEWTWO,
     SPECIES_MEW,
     SPECIES_LUGIA,

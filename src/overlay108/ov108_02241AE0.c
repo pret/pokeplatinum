@@ -421,7 +421,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
     switch (param0->unk_08) {
     case 0:
         if (ov104_0223C000(param0->unk_09) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(199);
             param0->unk_08++;
         } else {
@@ -431,7 +431,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
     case 1:
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(199) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
             }
         } else {
@@ -452,7 +452,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         break;
     case 5:
         if (ov104_0223C000(param0->unk_09) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(201);
             param0->unk_08++;
         } else {
@@ -462,7 +462,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
     case 6:
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(201) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
             }
         } else {
@@ -654,13 +654,13 @@ static BOOL ov108_02242104(UnkStruct_ov108_02241DB0 *param0)
         param0->unk_08++;
         break;
     case 3:
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(151);
         param0->unk_08++;
         break;
     case 4:
         if (CommTiming_IsSyncState(151) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTool_Init(103);
             param0->unk_0E = 0xff;
             return 1;
@@ -684,14 +684,14 @@ static BOOL ov108_02242198(UnkStruct_ov108_02241DB0 *param0)
         }
 
         if (param0->unk_0B == 0) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(152);
             param0->unk_08++;
         }
         break;
     case 2:
         if (CommTiming_IsSyncState(152) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             return 1;
         }
         break;

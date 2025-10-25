@@ -594,7 +594,7 @@ static BOOL ov107_02241D6C(UnkStruct_ov107_02241D6C *param0)
     switch (param0->unk_08) {
     case 0:
         if (ov104_0223BA14(param0->unk_09) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(215);
         }
 
@@ -603,7 +603,7 @@ static BOOL ov107_02241D6C(UnkStruct_ov107_02241D6C *param0)
     case 1:
         if (ov104_0223BA14(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(215) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
             }
         } else {
@@ -1277,7 +1277,7 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
         param0->unk_0B--;
 
         if (param0->unk_0B == 0) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(130);
             param0->unk_08++;
             break;
@@ -1285,7 +1285,7 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
         break;
     case 4:
         if (CommTiming_IsSyncState(130) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTool_Init(100);
 
             param0->unk_12 = 0xff;
@@ -1322,14 +1322,14 @@ static BOOL ov107_02242D60(UnkStruct_ov107_02241D6C *param0)
         }
 
         if (param0->unk_0B == 0) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(131);
             param0->unk_08++;
         }
         break;
     case 2:
         if (CommTiming_IsSyncState(131) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             ov107_02245288(&param0->unk_50[6]);
             return 1;
         }

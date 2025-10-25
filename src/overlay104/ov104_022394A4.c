@@ -9,67 +9,67 @@
 #include "savedata.h"
 #include "unk_0206B9D8.h"
 
-u16 ov104_02239588(UnkStruct_0204AFC4 *param0, u16 param1);
-void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1);
-u16 ov104_022395B4(UnkStruct_0204AFC4 *param0);
-u16 ov104_022395D8(UnkStruct_0204AFC4 *param0);
+u16 ov104_02239588(BattleTower *battleTower, u16 param1);
+void ov104_022395A0(BattleTower *battleTower, u16 param1);
+u16 ov104_022395B4(BattleTower *battleTower);
+u16 ov104_022395D8(BattleTower *battleTower);
 
-void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *saveData)
+void ov104_022394A4(BattleTower *battleTower, SaveData *saveData)
 {
-    switch (param0->unk_0F) {
+    switch (battleTower->challengeMode) {
     case 4:
     case 5:
-        ov104_0223A30C(saveData, param0->unk_78, param0->unk_0C - 1);
+        ov104_0223A30C(saveData, battleTower->unk_78, battleTower->unk_0C - 1);
         break;
     case 2:
     case 3:
     case 6:
-        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 0], param0->unk_0E, NULL, NULL, NULL, param0->heapID);
+        ov104_0223A0C4(battleTower, &(battleTower->unk_78[0]), battleTower->unk_3E[(battleTower->unk_0C - 1) * 2 + 0], battleTower->partySize, NULL, NULL, NULL, battleTower->heapID);
 
         u16 v1[2];
         u16 v2[2];
 
-        for (int v0 = 0; v0 < param0->unk_0E; v0++) {
-            v1[v0] = param0->unk_78[0].unk_30[v0].species;
-            v2[v0] = param0->unk_78[0].unk_30[v0].item;
+        for (int v0 = 0; v0 < battleTower->partySize; v0++) {
+            v1[v0] = battleTower->unk_78[0].unk_30[v0].species;
+            v2[v0] = battleTower->unk_78[0].unk_30[v0].item;
         }
 
-        ov104_0223A0C4(param0, &(param0->unk_78[1]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 1], param0->unk_0E, v1, v2, NULL, param0->heapID);
+        ov104_0223A0C4(battleTower, &(battleTower->unk_78[1]), battleTower->unk_3E[(battleTower->unk_0C - 1) * 2 + 1], battleTower->partySize, v1, v2, NULL, battleTower->heapID);
         break;
     case 1:
     case 0:
     default:
-        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[param0->unk_0C - 1], param0->unk_0E, NULL, NULL, NULL, param0->heapID);
+        ov104_0223A0C4(battleTower, &(battleTower->unk_78[0]), battleTower->unk_3E[battleTower->unk_0C - 1], battleTower->partySize, NULL, NULL, NULL, battleTower->heapID);
         break;
     }
 }
 
-u16 ov104_02239588(UnkStruct_0204AFC4 *param0, u16 param1)
+u16 ov104_02239588(BattleTower *battleTower, u16 param1)
 {
-    return ov104_0222E10C(param0->unk_78[param1].unk_00.trainerType);
+    return ov104_0222E10C(battleTower->unk_78[param1].unk_00.trainerType);
 }
 
-void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1)
+void ov104_022395A0(BattleTower *battleTower, u16 param1)
 {
-    param0->unk_10_1 = param1;
+    battleTower->unk_10_1 = param1;
 }
 
-u16 ov104_022395B4(UnkStruct_0204AFC4 *param0)
+u16 ov104_022395B4(BattleTower *battleTower)
 {
-    ++param0->unk_0D;
+    ++battleTower->unk_0D;
 
-    if (param0->unk_0F != 6) {
-        param0->unk_08 = sub_0206BFF0(param0->unk_08);
+    if (battleTower->challengeMode != 6) {
+        battleTower->unk_08 = sub_0206BFF0(battleTower->unk_08);
     }
 
-    return ++param0->unk_0C;
+    return ++battleTower->unk_0C;
 }
 
-u16 ov104_022395D8(UnkStruct_0204AFC4 *param0)
+u16 ov104_022395D8(BattleTower *battleTower)
 {
-    if ((u32)param0->unk_1A + param0->unk_0D > 0xFFFF) {
+    if ((u32)battleTower->unk_1A + battleTower->unk_0D > 0xFFFF) {
         return 0xFFFF;
     } else {
-        return param0->unk_1A + param0->unk_0D;
+        return battleTower->unk_1A + battleTower->unk_0D;
     }
 }
