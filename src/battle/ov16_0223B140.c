@@ -22,7 +22,7 @@
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
-#include "battle/ov16_0226871C.h"
+#include "battle/battle_cursor.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
