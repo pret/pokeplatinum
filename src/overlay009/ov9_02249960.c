@@ -2563,7 +2563,7 @@ static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatfor
 
     int v3;
     fx32 *v4;
-    VecFx32 *v5 = sub_02063098(playerMapObj);
+    VecFx32 *v5 = MapObject_GetSpriteJumpOffset1(playerMapObj);
     const fx32 *v6 = Unk_ov9_02252CF8;
 
     ctx->unk_14 += ctx->positionIncrement;
@@ -8168,7 +8168,7 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         VecFx32 v5 = v4->unk_40;
 
         v5.x += v3->unk_38;
-        sub_02063088(v2, &v5);
+        MapObject_SetSpriteJumpOffset(v2, &v5);
     }
 
     ov9_0224FA94(param0, v3);
@@ -8240,7 +8240,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     v0 = ov9_0224F970(param0, v4);
 
     MapObject_SetPos(v2, &v4->unk_34);
-    sub_02063088(v2, &v4->unk_40);
+    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
 
     ov9_0224FA94(param0, v3);
 
@@ -8284,7 +8284,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_UpdateCoords(v2);
         MapObject_TryFace(v2, 2);
         MapObject_Turn(v2, 2);
-        sub_02063088(v2, &v13);
+        MapObject_SetSpriteJumpOffset(v2, &v13);
         sub_020630AC(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
@@ -8503,7 +8503,7 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     v0 = ov9_0224F970(param0, v4);
 
     MapObject_SetPos(v2, &v4->unk_34);
-    sub_02063088(v2, &v4->unk_40);
+    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
     ov9_02250138(param0, v3);
 
     {
@@ -8556,7 +8556,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     v0 = ov9_0224F970(param0, v4);
 
     MapObject_SetPos(v2, &v4->unk_34);
-    sub_02063088(v2, &v4->unk_40);
+    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
 
     ov9_02250138(param0, v3);
 
@@ -8600,7 +8600,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_UpdateCoords(v2);
         MapObject_TryFace(v2, 3);
         MapObject_Turn(v2, 3);
-        sub_02063088(v2, &v13);
+        MapObject_SetSpriteJumpOffset(v2, &v13);
         sub_020630AC(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);

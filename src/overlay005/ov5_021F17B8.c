@@ -258,7 +258,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
         FX32_ONE * 16, (FX32_ONE * 12)
     };
 
-    sub_02063078(param1, param2);
+    MapObject_GetSpriteJumpOffset(param1, param2);
 
     v1 = param2->x;
     v2 = -param2->z;

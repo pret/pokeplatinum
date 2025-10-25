@@ -114,12 +114,12 @@ typedef struct {
     OverworldAnimManager *unk_14;
 } UnkStruct_ov5_021E0390;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
+typedef struct StuckInDeepMudTaskEnv {
+    int state;
+    int stepCounter;
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
-} UnkStruct_ov5_021E0534;
+} StuckInDeepMudTaskEnv;
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -148,9 +148,9 @@ static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 static void ov5_021E0390(int param0, FieldSystem *param1, PlayerAvatar *playerAvatar);
 static BOOL ov5_021E03C8(FieldTask *param0);
 static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3);
-static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3);
-static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar);
-static BOOL ov5_021E0560(FieldTask *param0);
+static BOOL FieldSystem_TryGetStuckInDeepMud(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3);
+static void FieldSystem_CreateTaskStuckInDeepMud(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar);
+static BOOL FieldTask_StuckInDeepMud(FieldTask *param0);
 static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2);
 static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar);
 static void RockClimbTask_Start(FieldSystem *fieldSystem, int param1, const MonRideTask *param2);
@@ -416,7 +416,7 @@ static void (*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *) = {
     ov5_021DFDC4
 };
 
-int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, int param3)
+int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, enum FaceDirection dir, int param3)
 {
     {
         MapObject *v0;
@@ -479,7 +479,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
         return 1;
     }
 
-    if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
+    if (FieldSystem_TryGetStuckInDeepMud(fieldSystem, playerAvatar, param2, v0) == TRUE) {
         return 1;
     }
 
@@ -490,7 +490,7 @@ static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 {
     int v0 = sub_02061434(playerAvatar, param2);
 
-    if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
+    if (FieldSystem_TryGetStuckInDeepMud(fieldSystem, playerAvatar, param2, v0) == TRUE) {
         return 1;
     }
 
@@ -565,20 +565,18 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         }
 
         if (LocalMapObj_IsAnimationSet(v1) == 0) {
-            if (sub_020613AC(v0->playerAvatar) == 0) {
+            if (!PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(v0->playerAvatar)) {
                 break;
             }
         }
 
-        {
-            int v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_SLOW_NORTH);
+        int v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_SLOW_NORTH);
 
-            LocalMapObj_SetAnimationCode(v2, v3);
+        LocalMapObj_SetAnimationCode(v2, v3);
 
-            v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH);
-            LocalMapObj_SetAnimationCode(v1, v3);
-            Sound_PlayEffect(SEQ_SE_DP_UG_023);
-        }
+        v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH);
+        LocalMapObj_SetAnimationCode(v1, v3);
+        Sound_PlayEffect(SEQ_SE_DP_UG_023);
 
         v0->unk_00++;
         break;
@@ -861,101 +859,99 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 1;
 }
 
-static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
+static BOOL FieldSystem_TryGetStuckInDeepMud(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    if (PlayerAvatar_IsNotInDeepSwamp(playerAvatar) == 1) {
-        return 0;
+    if (PlayerAvatar_CheckEscapedFromDeepMud(playerAvatar) == TRUE) {
+        return FALSE;
     }
 
-    {
-        MapObject *v0 = Player_MapObject(playerAvatar);
-        u8 v1 = MapObject_GetCurrTileBehavior(v0);
+    MapObject *playerMapObject = Player_MapObject(playerAvatar);
+    u8 tileBehavior = MapObject_GetCurrTileBehavior(playerMapObject);
 
-        if ((TileBehavior_IsDeepMud(v1) != 1) && (TileBehavior_IsDeepMudWithGrass(v1) != 1)) {
-            return 0;
-        }
+    if (TileBehavior_IsDeepMud(tileBehavior) != TRUE && TileBehavior_IsDeepMudWithGrass(tileBehavior) != TRUE) {
+        return FALSE;
     }
 
-    ov5_021E0534(fieldSystem, playerAvatar);
-    return 1;
+    FieldSystem_CreateTaskStuckInDeepMud(fieldSystem, playerAvatar);
+    return TRUE;
 }
 
-static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
+static void FieldSystem_CreateTaskStuckInDeepMud(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
 {
-    UnkStruct_ov5_021E0534 *v0 = MonRideTaskEnv_New(sizeof(UnkStruct_ov5_021E0534));
+    StuckInDeepMudTaskEnv *stuckInDeepMudTaskEnv = MonRideTaskEnv_New(sizeof(StuckInDeepMudTaskEnv));
 
-    v0->fieldSystem = fieldSystem;
-    v0->playerAvatar = playerAvatar;
+    stuckInDeepMudTaskEnv->fieldSystem = fieldSystem;
+    stuckInDeepMudTaskEnv->playerAvatar = playerAvatar;
 
-    FieldSystem_CreateTask(fieldSystem, ov5_021E0560, v0);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_UNK_056);
+    FieldSystem_CreateTask(fieldSystem, FieldTask_StuckInDeepMud, stuckInDeepMudTaskEnv);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_TIMES_STUCK_IN_DEEP_MUD);
 }
 
-static BOOL ov5_021E0560(FieldTask *param0)
+static BOOL FieldTask_StuckInDeepMud(FieldTask *fieldTaskEnv)
 {
-    UnkStruct_ov5_021E0534 *v0 = FieldTask_GetEnv(param0);
-    MapObject *v1 = Player_MapObject(v0->playerAvatar);
+    StuckInDeepMudTaskEnv *stuckInDeepMudTaskEnv = FieldTask_GetEnv(fieldTaskEnv);
+    MapObject *playerMapObject = Player_MapObject(stuckInDeepMudTaskEnv->playerAvatar);
 
-    switch (v0->unk_00) {
+    switch (stuckInDeepMudTaskEnv->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_ZUPO);
-        v0->unk_00++;
+        stuckInDeepMudTaskEnv->state++;
     case 1:
-        if (LocalMapObj_IsAnimationSet(v1) == 0) {
-            if (sub_020613AC(v0->playerAvatar) == 0) {
+        if (!LocalMapObj_IsAnimationSet(playerMapObject)) {
+            if (!PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(stuckInDeepMudTaskEnv->playerAvatar)) {
                 break;
             }
         }
 
-        if (v0->unk_04 >= 5) {
+        if (stuckInDeepMudTaskEnv->stepCounter >= 5) {
             Sound_PlayEffect(SEQ_SE_DP_ZUPO2);
-            PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
-            MonRideTaskEnv_Free(v0);
-            return 1;
+            PlayerAvatar_SetEscapedFromDeepMud(stuckInDeepMudTaskEnv->playerAvatar, TRUE);
+            MonRideTaskEnv_Free(stuckInDeepMudTaskEnv);
+            return TRUE;
         }
 
-        v0->unk_00++;
+        stuckInDeepMudTaskEnv->state++;
     case 2: {
-        int v2 = PlayerAvatar_GetDir(v0->playerAvatar);
-        u32 v3, v4 = gSystem.pressedKeys, v5 = gSystem.heldKeys;
-        int v6 = sub_02061308(v0->playerAvatar, v4, v5);
+        enum FaceDirection playerInitialDirection = PlayerAvatar_GetDir(stuckInDeepMudTaskEnv->playerAvatar);
+        u32 movementAction;
+        u32 pressedKeys = gSystem.pressedKeys;
+        u32 heldKeys = gSystem.heldKeys;
+        enum FaceDirection playerNewDirection = PlayerAvatar_CalcFaceDirection(stuckInDeepMudTaskEnv->playerAvatar, pressedKeys, heldKeys);
 
-        if ((v6 == -1) || (v6 == v2)) {
+        if (playerNewDirection == -1 || playerNewDirection == playerInitialDirection) {
             break;
         }
 
-        v0->unk_00 = 1;
-        v0->unk_04++;
+        stuckInDeepMudTaskEnv->state = 1;
+        stuckInDeepMudTaskEnv->stepCounter++;
 
-        {
-            u8 v7 = MapObject_GetCurrTileBehavior(v1);
+        u8 tileBehavior = MapObject_GetCurrTileBehavior(playerMapObject);
 
-            if (TileBehavior_IsDeepMudWithGrass(v7) == 1) {
-                FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-                FieldBattleDTO *v9;
+        if (TileBehavior_IsDeepMudWithGrass(tileBehavior) == TRUE) {
+            FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTaskEnv);
+            FieldBattleDTO *fieldBattle;
 
-                if (WildEncounters_TryMudEncounter(fieldSystem, &v9) == 1) {
-                    PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
-                    MonRideTaskEnv_Free(v0);
-                    Encounter_StartVsWild(fieldSystem, param0, v9);
-                    return 0;
-                }
+            if (WildEncounters_TryMudEncounter(fieldSystem, &fieldBattle) == TRUE) {
+                PlayerAvatar_SetEscapedFromDeepMud(stuckInDeepMudTaskEnv->playerAvatar, TRUE);
+                MonRideTaskEnv_Free(stuckInDeepMudTaskEnv);
+                Encounter_StartVsWild(fieldSystem, fieldTaskEnv, fieldBattle);
+                return FALSE;
             }
         }
 
-        if (v0->unk_04 < 5) {
-            v3 = 0x28;
+        if (stuckInDeepMudTaskEnv->stepCounter < 5) {
+            movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH;
         } else {
-            v3 = 0x30;
-            sub_02062EE0(v1, 1);
+            movementAction = MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_NORTH;
+            MapObject_SetFlagDoNotSinkIntoTerrain(playerMapObject, TRUE);
         }
 
-        v3 = MovementAction_TurnActionTowardsDir(v6, v3);
-        PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
+        movementAction = MovementAction_TurnActionTowardsDir(playerNewDirection, movementAction);
+        PlayerAvatar_SetAnimationCode(stuckInDeepMudTaskEnv->playerAvatar, movementAction, 1);
     } break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)

@@ -850,14 +850,14 @@ static BOOL MovementAction_Jump_Step1(MapObject *mapObj)
     v2.y = jumpHeightsTable[jumpHeightIndex];
     v2.z = 0;
 
-    sub_02063088(mapObj, &v2);
+    MapObject_SetSpriteJumpOffset(mapObj, &v2);
 
     if (--(data->duration) > 0) {
         return FALSE;
     }
 
     VecFx32 v5 = { 0, 0, 0 };
-    sub_02063088(mapObj, &v5);
+    MapObject_SetSpriteJumpOffset(mapObj, &v5);
 
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     MapObject_UpdateCoords(mapObj);
@@ -1102,7 +1102,7 @@ static BOOL MovementAction_WarpOut_Step1(MapObject *mapObj)
     VecFx32 v2 = { 0, 0, 0 };
 
     v2.y = data->y;
-    sub_02063088(mapObj, &v2);
+    MapObject_SetSpriteJumpOffset(mapObj, &v2);
 
     if (data->y / FX32_CONST(8) < 40) {
         return FALSE;
@@ -1137,7 +1137,7 @@ static BOOL MovementAction_WarpIn_Step1(MapObject *mapObj)
     VecFx32 v1 = { 0, 0, 0 };
 
     v1.y = data->y;
-    sub_02063088(mapObj, &v1);
+    MapObject_SetSpriteJumpOffset(mapObj, &v1);
 
     if (data->y > 0) {
         return FALSE;
@@ -1392,7 +1392,7 @@ static BOOL MovementAction_RevealTrainer_Step0(MapObject *mapObj)
     }
 
     VecFx32 v2 = { 0, 0, 0 };
-    sub_02063088(mapObj, &v2);
+    MapObject_SetSpriteJumpOffset(mapObj, &v2);
 
     ov5_021F3F10(mapObj);
 
@@ -1410,7 +1410,7 @@ static BOOL MovementAction_RevealTrainer_Step1(MapObject *mapObj)
     VecFx32 v2 = { 0, 0, 0 };
 
     v2.y = jumpHeightsTable[data->jumpHeightIndex];
-    sub_02063088(mapObj, &v2);
+    MapObject_SetSpriteJumpOffset(mapObj, &v2);
 
     data->jumpHeightIndex += 2;
 
@@ -1420,7 +1420,7 @@ static BOOL MovementAction_RevealTrainer_Step1(MapObject *mapObj)
 
     v2.y = 0;
 
-    sub_02063088(mapObj, &v2);
+    MapObject_SetSpriteJumpOffset(mapObj, &v2);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     sub_0206A230(mapObj);
     MapObject_AdvanceMovementStep(mapObj);
@@ -1878,7 +1878,7 @@ static BOOL sub_02067068(MapObject *mapObj)
         break;
     }
 
-    sub_02063088(mapObj, &v3);
+    MapObject_SetSpriteJumpOffset(mapObj, &v3);
 
     v2->unk_00--;
 
@@ -1922,7 +1922,7 @@ static BOOL sub_02067068(MapObject *mapObj)
     }
 
     VecFx32 v7 = { 0, 0, 0 };
-    sub_02063088(mapObj, &v7);
+    MapObject_SetSpriteJumpOffset(mapObj, &v7);
 
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     MapObject_UpdateCoords(mapObj);

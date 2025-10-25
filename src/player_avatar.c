@@ -30,8 +30,8 @@ typedef struct PlayerAvatar {
     int unk_1C;
     int gender;
     int speed;
-    int unk_28;
-    int unk_2C;
+    enum FaceDirection faceLeftOrRight;
+    enum FaceDirection faceUpOrDown;
     MapObject *mapObject;
     OverworldAnimManager *unk_34;
     PlayerData *player;
@@ -42,9 +42,9 @@ static PlayerAvatar *PlayerAvatar_Alloc(void);
 static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int param2, PlayerData *param3);
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *param1, int param2, int param3, int param4, int param5);
 static MapObject *sub_0205EA64(const MapObjectManager *mapObjMan);
-static void sub_0205EB9C(PlayerAvatar *playerAvatar, u32 param1);
-static void sub_0205EBA4(PlayerAvatar *playerAvatar, u32 param1);
-static u32 sub_0205EBB0(PlayerAvatar *playerAvatar, u32 param1);
+static void PlayerAvatar_SetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
+static void PlayerAvatar_ClearFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
+static u32 PlayerAvatar_GetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *param1);
 static u32 GetPlayerForm(PlayerData *player);
 static void SetPlayerForm(PlayerData *player, u32 form);
@@ -145,12 +145,12 @@ static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int gender, Pla
     PlayerAvatar_SetGender(playerAvatar, gender);
     PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
-    sub_0205EBDC(playerAvatar, -1);
-    sub_0205EBE4(playerAvatar, -1);
+    PlayerAvatar_SetFaceLeftOrRight(playerAvatar, -1);
+    PlayerAvatar_SetFaceUpOrDown(playerAvatar, -1);
     sub_0205EC20(playerAvatar, 0xff, 0);
 
     sub_0205EF6C(playerAvatar, 1);
-    PlayerAvatar_SetInDeepSwamp(playerAvatar, 1);
+    PlayerAvatar_SetEscapedFromDeepMud(playerAvatar, TRUE);
 }
 
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *mapObjMan, int param2, int dir, int x, int z)
@@ -338,19 +338,19 @@ int PlayerAvatar_Gender(PlayerAvatar *playerAvatar)
     return playerAvatar->gender;
 }
 
-static void sub_0205EB9C(PlayerAvatar *playerAvatar, u32 param1)
+static void PlayerAvatar_SetFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
 {
-    playerAvatar->unk_00 |= param1;
+    playerAvatar->unk_00 |= flag;
 }
 
-static void sub_0205EBA4(PlayerAvatar *playerAvatar, u32 param1)
+static void PlayerAvatar_ClearFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
 {
-    playerAvatar->unk_00 &= ~param1;
+    playerAvatar->unk_00 &= ~flag;
 }
 
-static u32 sub_0205EBB0(PlayerAvatar *playerAvatar, u32 param1)
+static u32 PlayerAvatar_GetFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
 {
-    return playerAvatar->unk_00 & param1;
+    return playerAvatar->unk_00 & flag;
 }
 
 int PlayerAvatar_Speed(PlayerAvatar *playerAvatar)
@@ -380,30 +380,30 @@ int PlayerAvatar_AddMoveSpeed(PlayerAvatar *playerAvatar, int dSpeed, int maxSpe
     return playerAvatar->speed;
 }
 
-void sub_0205EBDC(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetFaceLeftOrRight(PlayerAvatar *playerAvatar, enum FaceDirection leftOrRight)
 {
-    playerAvatar->unk_28 = param1;
+    playerAvatar->faceLeftOrRight = leftOrRight;
 }
 
-int sub_0205EBE0(PlayerAvatar *playerAvatar)
+enum FaceDirection PlayerAvatar_GetFaceLeftOrRight(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_28;
+    return playerAvatar->faceLeftOrRight;
 }
 
-void sub_0205EBE4(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetFaceUpOrDown(PlayerAvatar *playerAvatar, enum FaceDirection faceUpOrDown)
 {
-    playerAvatar->unk_2C = param1;
+    playerAvatar->faceUpOrDown = faceUpOrDown;
 }
 
-int sub_0205EBE8(PlayerAvatar *playerAvatar)
+enum FaceDirection PlayerAvatar_GetFaceUpOrDown(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_2C;
+    return playerAvatar->faceUpOrDown;
 }
 
-void sub_0205EBEC(PlayerAvatar *playerAvatar, int param1, int param2)
+void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirection faceLeftOrRight, enum FaceDirection faceUpOrDown)
 {
-    sub_0205EBDC(playerAvatar, param1);
-    sub_0205EBE4(playerAvatar, param2);
+    PlayerAvatar_SetFaceLeftOrRight(playerAvatar, faceLeftOrRight);
+    PlayerAvatar_SetFaceUpOrDown(playerAvatar, faceUpOrDown);
 }
 
 void sub_0205EC00(PlayerAvatar *playerAvatar, OverworldAnimManager *param1)
@@ -692,59 +692,59 @@ u32 Player_ConvertStateToTransition(int param0)
     return PLAYER_TRANSITION_WALKING;
 }
 
-PlayerAvatar *sub_0205EF3C(FieldSystem *fieldSystem)
+PlayerAvatar *FieldSystem_GetPlayerAvatar(FieldSystem *fieldSystem)
 {
     return fieldSystem->playerAvatar;
 }
 
 void sub_0205EF40(PlayerAvatar *playerAvatar, int param1)
 {
-    if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, 1 << 0);
+    if (param1 == TRUE) {
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_0);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 0);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_0);
     }
 }
 
-int sub_0205EF58(PlayerAvatar *playerAvatar)
+BOOL sub_0205EF58(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 0)) {
-        return 1;
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_0)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0205EF6C(PlayerAvatar *playerAvatar, int param1)
 {
     if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, 1 << 1);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_1);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 1);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_1);
     }
 }
 
-int sub_0205EF84(PlayerAvatar *playerAvatar)
+BOOL sub_0205EF84(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 1)) {
-        return 1;
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_1)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0205EF98(PlayerAvatar *playerAvatar, int param1)
 {
     if (param1 == 1) {
-        sub_0205EB9C(playerAvatar, 1 << 2);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_2);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 2);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_2);
     }
 }
 
 BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 2)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_2)) {
         return TRUE;
     }
 
@@ -754,33 +754,33 @@ BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
 void sub_0205EFC4(PlayerAvatar *playerAvatar, int flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, 1 << 3);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_3);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 3);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_3);
     }
 }
 
 BOOL sub_0205EFDC(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 3)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_3)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void PlayerAvatar_SetInDeepSwamp(PlayerAvatar *playerAvatar, BOOL flag)
+void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, 1 << 4);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 4);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD);
     }
 }
 
-BOOL PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar *playerAvatar)
+BOOL PlayerAvatar_CheckEscapedFromDeepMud(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 4)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD)) {
         return TRUE;
     }
 
@@ -790,15 +790,15 @@ BOOL PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar *playerAvatar)
 void sub_0205F01C(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, 1 << 5);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_5);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 5);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_5);
     }
 }
 
 BOOL sub_0205F034(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 5)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_5)) {
         return TRUE;
     }
 
@@ -807,17 +807,17 @@ BOOL sub_0205F034(PlayerAvatar *playerAvatar)
 
 void sub_0205F048(PlayerAvatar *playerAvatar)
 {
-    sub_0205EB9C(playerAvatar, 1 << 6);
+    PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_6);
 }
 
 void sub_0205F054(PlayerAvatar *playerAvatar)
 {
-    sub_0205EBA4(playerAvatar, 1 << 6);
+    PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_6);
 }
 
 BOOL sub_0205F060(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205EBB0(playerAvatar, 1 << 6)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_6)) {
         return TRUE;
     }
 
@@ -827,38 +827,38 @@ BOOL sub_0205F060(PlayerAvatar *playerAvatar)
 void sub_0205F074(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        sub_0205EB9C(playerAvatar, 1 << 7);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_7);
     } else {
-        sub_0205EBA4(playerAvatar, 1 << 7);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_7);
     }
 }
 
 int sub_0205F08C(PlayerAvatar *playerAvatar)
 {
-    return sub_0205EBB0(playerAvatar, 1 << 7);
+    return PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_7);
 }
 
 void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDistortionState state)
 {
-    sub_0205EBA4(playerAvatar, (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12));
+    PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_8 | UNK_00_9 | UNK_00_10 | UNK_00_11 | UNK_00_12);
 
     switch (state) {
     case AVATAR_DISTORTION_STATE_NONE:
         return;
     case AVATAR_DISTORTION_STATE_ACTIVE:
-        sub_0205EB9C(playerAvatar, 1 << 8);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_8);
         return;
     case AVATAR_DISTORTION_STATE_FLOOR:
-        sub_0205EB9C(playerAvatar, 1 << 9);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_9);
         return;
     case AVATAR_DISTORTION_STATE_WEST_WALL:
-        sub_0205EB9C(playerAvatar, 1 << 10);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_10);
         return;
     case AVATAR_DISTORTION_STATE_EAST_WALL:
-        sub_0205EB9C(playerAvatar, 1 << 11);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_11);
         return;
     case AVATAR_DISTORTION_STATE_CEILING:
-        sub_0205EB9C(playerAvatar, 1 << 12);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_12);
         return;
     }
 
@@ -868,22 +868,22 @@ void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDist
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar)
 {
     enum AvatarDistortionState state = AVATAR_DISTORTION_STATE_NONE;
-    u32 v1 = sub_0205EBB0(playerAvatar, (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12));
+    u32 v1 = PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_8 | UNK_00_9 | UNK_00_10 | UNK_00_11 | UNK_00_12);
 
     switch (v1) {
-    case (1 << 8):
+    case UNK_00_8:
         state = AVATAR_DISTORTION_STATE_ACTIVE;
         break;
-    case (1 << 9):
+    case UNK_00_9:
         state = AVATAR_DISTORTION_STATE_FLOOR;
         break;
-    case (1 << 10):
+    case UNK_00_10:
         state = AVATAR_DISTORTION_STATE_WEST_WALL;
         break;
-    case (1 << 11):
+    case UNK_00_11:
         state = AVATAR_DISTORTION_STATE_EAST_WALL;
         break;
-    case (1 << 12):
+    case UNK_00_12:
         state = AVATAR_DISTORTION_STATE_CEILING;
         break;
     }

@@ -6,6 +6,8 @@
 
 #include "overlay005/land_data_manager_decl.h"
 
+#include "location.h"
+
 void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4, BOOL param5);
 int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int param1);
 void sub_0205F490(PlayerAvatar *playerAvatar);
@@ -14,8 +16,8 @@ int sub_0205F588(PlayerAvatar *playerAvatar);
 void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1);
 u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
 u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
-int sub_02061308(PlayerAvatar *playerAvatar, u16 param1, u16 param2);
-int sub_020613AC(PlayerAvatar *playerAvatar);
+enum FaceDirection PlayerAvatar_CalcFaceDirection(PlayerAvatar *playerAvatar, u16 pressedKeys, u16 heldKeys);
+BOOL PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(PlayerAvatar *playerAvatar);
 int sub_020613FC(PlayerAvatar *playerAvatar, u16 param1);
 int sub_0206140C(PlayerAvatar *playerAvatar);
 int sub_02061434(PlayerAvatar *playerAvatar, int param1);

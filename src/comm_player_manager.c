@@ -1084,7 +1084,7 @@ static void CommPlayer_MoveClient(int netId)
         }
 
         if (sub_02061544(playerAvatar) == 0) {
-            if (sub_020613AC(playerAvatar) == 0) {
+            if (!PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(playerAvatar)) {
                 return;
             }
         }

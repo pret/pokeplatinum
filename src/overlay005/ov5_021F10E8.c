@@ -235,7 +235,7 @@ static void ov5_021F12AC(OverworldAnimManager *param0, void *param1)
         VecFx32 v2, v3;
 
         MapObject_GetPosPtr(v1, &v2);
-        sub_02063078(v1, &v3);
+        MapObject_GetSpriteJumpOffset(v1, &v3);
 
         v2.x += v3.x + v0->unk_0C.x;
         v2.y += v3.y + v0->unk_0C.y;
