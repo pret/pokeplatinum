@@ -45,7 +45,7 @@ void ov5_021DFA14(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2);
 void ov5_021DFA30(UnkStruct_ov5_021DF47C *param0, u32 param1);
 void ov5_021DFA3C(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2, u32 param3);
 void ov5_021DFA7C(UnkStruct_ov5_021DF47C *param0, u32 param1);
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 param3, int param4);
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd);
 void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, u32 param2, u32 param3, u32 param4);
 void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, const UnkStruct_02073838 *param2, UnkStruct_02073974 *param3, u32 param4);
 

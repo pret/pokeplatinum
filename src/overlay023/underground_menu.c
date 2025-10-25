@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/traps.h"
 
 #include "struct_defs/underground.h"
 
@@ -12,7 +13,6 @@
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0225128C.h"
@@ -21,6 +21,7 @@
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_traps.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -923,7 +924,7 @@ static BOOL UndergroundMenu_HandleTrapsMenu(SysTask *sysTask, void *data)
         ctx->selectedSlot = input;
         ctx->selectedID = UndergroundMenu_GetTrapAtSlot(input, menu);
 
-        if (ctx->selectedID == 33) {
+        if (ctx->selectedID == TRAP_DIGGER_DRILL) {
             ov23_0224CD68();
             menu->state = UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED;
         } else {
@@ -1145,8 +1146,8 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
 
         if (input == UNDERGROUND_MENU_OPTION_BURY) {
             int netId = CommSys_CurNetId();
-            int x = CommPlayer_GetXInFrontOfPlayerServer(netId);
-            int z = CommPlayer_GetZInFrontOfPlayerServer(netId);
+            int x = CommPlayer_GetXInFrontOfPlayer(netId);
+            int z = CommPlayer_GetZInFrontOfPlayer(netId);
 
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             UndergroundSpheres_TryBurySphere(ctx->selectedID, UndergroundMenu_GetSphereSizeAtSlot(ctx->selectedSlot, menu), x, z);
@@ -1723,7 +1724,7 @@ void ov23_02251044(void *param0, u32 param1)
     UndergroundMenu_EraseCurrentMenu(v0);
     ov23_02242FBC();
     ov23_022535EC();
-    ov23_02245784();
+    TrapRadar_Exit();
     ov23_02241364();
     SphereRadar_Exit();
 

@@ -153,7 +153,7 @@ static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1,
     return 1;
 }
 
-BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL param4, BOOL param5)
+BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *data, int size, BOOL param4, BOOL param5)
 {
     UnkStruct_020322D8 *v0;
     UnkStruct_020322D8 *v1 = sub_020322D8(param0);
@@ -166,11 +166,11 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL
         return 0;
     }
 
-    GF_ASSERT(param3 < 65534);
+    GF_ASSERT(size < 65534);
     v3 = CommCmd_PacketSizeOf(cmd);
 
     if (0xffff == v3) {
-        v3 = param3;
+        v3 = size;
     }
 
     if (param5) {
@@ -180,7 +180,7 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL
             return 0;
         }
 
-        CommRring_Write(param0->unk_14, param2, v3, 265);
+        CommRring_Write(param0->unk_14, data, v3, 265);
         CommRing_UpdateEndPos(param0->unk_14);
 
         v1->unk_0F_1 = 1;
@@ -188,7 +188,7 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL
 
     v1->unk_0C = v3;
     v1->unk_0E = cmd;
-    v1->unk_00 = param2;
+    v1->unk_00 = data;
 
     if (param4 == 1) {
         v2 = &param0->unk_00;

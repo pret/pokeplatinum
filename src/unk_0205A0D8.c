@@ -1074,8 +1074,8 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
 {
     int v0;
     int v1 = CommSys_CurNetId();
-    int v2 = CommPlayer_GetXInFrontOfPlayerServer(v1);
-    int v3 = CommPlayer_GetZInFrontOfPlayerServer(v1);
+    int v2 = CommPlayer_GetXInFrontOfPlayer(v1);
+    int v3 = CommPlayer_GetZInFrontOfPlayer(v1);
 
     for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 == v1) {
