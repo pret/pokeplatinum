@@ -56,7 +56,7 @@ typedef struct {
     BOOL unk_0C;
     PokemonSpriteManager *unk_10;
     PokemonSprite *unk_14;
-    SpriteAnimationFrame unk_18[10];
+    SpriteAnimFrame unk_18[10];
     Sprite *unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
     BgConfig *unk_58;
@@ -360,7 +360,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 delay;
 
-                PokeSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
+                PokemonSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
                 Sound_PlayDelayedPokemonCry(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
                 PokemonSprite_InitAnim(param0->unk_14, 1);
             }
@@ -499,7 +499,7 @@ static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
     v1 = (BoxPokemon *)TradeSequence_GetReceivingPokemon(param0->unk_00);
 
     BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
-    PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
+    PokemonSprite_LoadAnimFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
 
     v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
     return PokemonSpriteManager_CreateSprite(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);

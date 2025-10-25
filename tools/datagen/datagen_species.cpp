@@ -61,8 +61,8 @@
 #include "generated/shadow_sizes.h"
 #include "generated/species.h"
 
-#include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/species.h"
+#include "struct_defs/species_sprite_data.h"
 
 #define NUM_TMS 92 // TODO: Move this to a more accessible location, maybe?
 
@@ -488,9 +488,9 @@ static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderR
     narc_pack_file(vfs, frontMale, maleSize);
 }
 
-static SpriteAnimationFrame ParseSpriteAnimationFrame(const rapidjson::Value &frame)
+static SpriteAnimFrame ParseSpriteAnimationFrame(const rapidjson::Value &frame)
 {
-    SpriteAnimationFrame data = { 0 };
+    SpriteAnimFrame data = { 0 };
     data.spriteFrame = frame["sprite_frame"].GetInt();
     data.frameDelay = frame["frame_delay"].GetUint();
     data.xOffset = frame["x_shift"].GetInt();
@@ -499,9 +499,9 @@ static SpriteAnimationFrame ParseSpriteAnimationFrame(const rapidjson::Value &fr
     return data;
 }
 
-static PokeSpriteFaceData ParsePokeSpriteFace(const rapidjson::Value &face)
+static SpeciesSpriteAnim ParseSpeciesSpriteAnim(const rapidjson::Value &face)
 {
-    PokeSpriteFaceData data = { 0 };
+    SpeciesSpriteAnim data = { 0 };
     data.animation = face["animation"].GetUint();
     data.cryDelay = face["cry_delay"].GetUint();
     data.startDelay = face["start_delay"].GetUint();
@@ -539,16 +539,16 @@ static void TryEmitFootprint(const rapidjson::Document &root, std::string specie
              << " },\n";
 }
 
-static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
+static SpeciesSpriteData ParseSpeciesSpriteData(const rapidjson::Document &root)
 {
-    ArchivedPokeSpriteData data = { 0 };
+    SpeciesSpriteData data = { 0 };
 
     const rapidjson::Value &front = root["front"];
     const rapidjson::Value &back = root["back"];
     const rapidjson::Value &shadow = root["shadow"];
 
-    data.faces[0] = ParsePokeSpriteFace(front);
-    data.faces[1] = ParsePokeSpriteFace(back);
+    data.faceAnims[0] = ParseSpeciesSpriteAnim(front);
+    data.faceAnims[1] = ParseSpeciesSpriteAnim(back);
     data.yOffset = front["addl_y_offset"].GetInt();
     data.xOffsetShadow = shadow["x_offset"].GetInt();
     data.shadowSize = LookupConst(shadow["size"].GetString(), ShadowSize);
@@ -702,7 +702,7 @@ int main(int argc, char **argv)
     vfs_pack_ctx *heightVFS = narc_pack_start();
     std::vector<SpeciesPalPark> palParkData;
     std::vector<u16> offspringData;
-    std::vector<ArchivedPokeSpriteData> pokeSpriteData;
+    std::vector<SpeciesSpriteData> speciesSpriteData;
 
     u16 personalValue = 0;
     rapidjson::Document doc;
@@ -750,8 +750,8 @@ int main(int argc, char **argv)
                 u8 genderRatio = species != "none" ? data.genderRatio : GENDER_RATIO_FEMALE_50; // treat SPECIES_NONE as if it has two genders.
                 PackHeights(heightVFS, doc, genderRatio);
 
-                ArchivedPokeSpriteData pokeSprite = ParsePokeSprite(doc);
-                pokeSpriteData.emplace_back(pokeSprite);
+                SpeciesSpriteData speciesSprite = ParseSpeciesSpriteData(doc);
+                speciesSpriteData.emplace_back(speciesSprite);
             }
         } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
@@ -791,7 +791,7 @@ int main(int argc, char **argv)
     PackNarc(wotblVFS, outputRoot / "wotbl.narc");
     PackNarc(heightVFS, outputRoot / "height.narc");
     PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
-    PackSingleFileNarc(pokeSpriteData, outputRoot / "pl_poke_data.narc");
+    PackSingleFileNarc(speciesSpriteData, outputRoot / "pl_poke_data.narc");
     PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

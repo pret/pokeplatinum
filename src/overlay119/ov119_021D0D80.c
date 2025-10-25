@@ -719,7 +719,7 @@ void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0)
 void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
 {
     PokemonSpriteTemplate v0;
-    SpriteAnimationFrame v1[10];
+    SpriteAnimFrame v1[10];
     Pokemon *v2;
     int v3;
     int v4;
@@ -735,7 +735,7 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
     }
 
     Pokemon_BuildSpriteTemplate(&v0, v2, 2);
-    PokeSprite_LoadAnimationFrames(param0->unk_04.unk_3C, &v1[0], v3, 1);
+    PokemonSprite_LoadAnimFrames(param0->unk_04.unk_3C, &v1[0], v3, 1);
 
     param0->unk_70 = PokemonSpriteManager_CreateSprite(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);
 }
@@ -749,7 +749,7 @@ void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
     v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
 
     PokemonSprite_InitAnim(param0->unk_70, 1);
-    PokeSprite_LoadAnimation(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);
+    PokemonSprite_LoadAnim(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);
 }
 
 void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0)

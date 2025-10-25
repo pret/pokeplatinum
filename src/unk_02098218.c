@@ -117,7 +117,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
 
             v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
-            PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
+            PokemonSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
             if (v1 == SPECIES_MANAPHY) {
                 v0->unk_5C = 1;

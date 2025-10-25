@@ -109,9 +109,9 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     if (v4 == 2) {
         NARC *v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
 
-        PokeSprite_LoadYOffset(v13, &v9, v2);
-        PokeSprite_LoadXOffsetShadow(v13, &v10, v2);
-        PokeSprite_LoadShadowSize(v13, &v12, v2);
+        PokemonSprite_LoadYOffset(v13, &v9, v2);
+        PokemonSprite_LoadXOffsetShadow(v13, &v10, v2);
+        PokemonSprite_LoadShadowSize(v13, &v12, v2);
         NARC_dtor(v13);
 
         PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_SIZE, v12);

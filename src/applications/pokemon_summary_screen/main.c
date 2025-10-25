@@ -1179,7 +1179,7 @@ static void PlayMonCry(PokemonSummaryScreen *summaryScreen)
     }
 
     u8 cryDelay;
-    PokeSprite_LoadCryDelay(summaryScreen->narcPlPokeData, &cryDelay, summaryScreen->monData.species, 1);
+    PokemonSprite_LoadCryDelay(summaryScreen->narcPlPokeData, &cryDelay, summaryScreen->monData.species, 1);
 
     if (summaryScreen->monData.species == SPECIES_CHATOT) {
         Sound_PlayDelayedChatotCry(summaryScreen->data->chatotCry, 0, 100, 0, cryDelay);

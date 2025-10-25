@@ -353,7 +353,7 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
         Pokemon_BuildSpriteTemplate(&spriteTemplate, monData, 2);
     }
 
-    PokeSprite_LoadAnimationFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);
+    PokemonSprite_LoadAnimFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);
 
     summaryScreen->monSprite.flip = SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, SPECIES_DATA_FLIP_SPRITE) ^ 1;
     summaryScreen->monSprite.sprite = PokemonSpriteManager_CreateSprite(summaryScreen->monSprite.spriteManager, &spriteTemplate, 52, 104, 0, 0, summaryScreen->monSprite.frames, NULL);
@@ -364,10 +364,10 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->monData.isEgg != FALSE) {
-        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
+        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
     } else {
         PokemonSprite_InitAnim(summaryScreen->monSprite.sprite, 1);
-        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, summaryScreen->monData.species, 2, summaryScreen->monSprite.flip, 0);
+        PokemonSprite_LoadAnim(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, summaryScreen->monData.species, 2, summaryScreen->monSprite.flip, 0);
     }
 }
 

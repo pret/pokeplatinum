@@ -78,7 +78,7 @@ typedef struct HallOfFameMan {
     Sprite *sprite;
     void *unk_1D0;
     void *unk_1D4;
-    SpriteAnimationFrame animFrames[MAX_PARTY_SIZE][MAX_ANIMATION_FRAMES];
+    SpriteAnimFrame animFrames[MAX_PARTY_SIZE][MAX_ANIMATION_FRAMES];
     int slotIndexes[MAX_PARTY_SIZE];
     int species[MAX_PARTY_SIZE];
     u32 forms[MAX_PARTY_SIZE];
@@ -169,7 +169,7 @@ typedef struct HallOfFameSliderToBlack {
 typedef struct HallOfFamePokemonAnimation {
     HallOfFameTask hallOfFameTask;
     Sprite *sprite;
-    const SpriteAnimationFrame *animFrame;
+    const SpriteAnimFrame *animFrame;
     PokemonSpriteTaskAnim anim;
     NNSG2dImageProxy imageProxies[2];
     BOOL playCry;
@@ -875,7 +875,7 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
         GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * 3200 + 3200, 3200);
 
         Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, 1, i * 0x20, 0x20, HEAP_ID_HALL_OF_FAME);
-        PokeSprite_LoadAnimationFrames(hallOfFameMan->narc, &hallOfFameMan->animFrames[i][0], hallOfFameMan->species[i], 1);
+        PokemonSprite_LoadAnimFrames(hallOfFameMan->narc, &hallOfFameMan->animFrames[i][0], hallOfFameMan->species[i], 1);
     }
 
     NNS_G2dInitImageProxy(&imageProxy);

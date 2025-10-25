@@ -152,7 +152,7 @@ struct PokemonSprite {
     PokemonSpriteCallback *callback;
     PokemonSpriteShadow shadow;
     PokemonSpriteShadow shadowBackup;
-    SpriteAnimationFrame animFrames[MAX_ANIMATION_FRAMES];
+    SpriteAnimFrame animFrames[MAX_ANIMATION_FRAMES];
 };
 
 typedef struct PokemonSpriteManager {
@@ -185,17 +185,17 @@ typedef struct {
     u8 frameDelay;
     u8 loopTimers[MAX_ANIMATION_FRAMES];
     u8 padding_0E[2];
-    const SpriteAnimationFrame *animFrames;
+    const SpriteAnimFrame *animFrames;
 } PokemonSpriteTaskAnim;
 
 void *PokemonSpriteManager_New(enum HeapID heapID);
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy);
-void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames);
+void PokemonSprite_SetAnimFrames(PokemonSprite *monSprite, SpriteAnimFrame *animFrames);
 BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite);
-PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
-PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
+PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback);
+PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback);
 void PokemonSprite_Delete(PokemonSprite *monSprite);
 void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value);
@@ -207,7 +207,7 @@ void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int i
 void PokemonSprite_ClearFade(PokemonSprite *monSprite);
 BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite);
 void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height);
-void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames);
+void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimFrame *animFrames);
 int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim);
 void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite);
 void PokemonSprite_Push(PokemonSprite *monSprite);
