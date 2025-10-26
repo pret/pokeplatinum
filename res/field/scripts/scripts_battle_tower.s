@@ -851,7 +851,7 @@ _0E58:
     HealParty
     Message BattleTower_Text_RecordWillBeSaved
     Call BattleTower_TrySaveGame
-    LogConnectedPlayersInfoInWiFiHistory
+    LogLinkInfoInWiFiHistory
     Message BattleTower_Text_DirectToMultiBattleRoom
     WaitTime 30, VAR_RESULT
     ClearReceivedTempDataAllPlayers

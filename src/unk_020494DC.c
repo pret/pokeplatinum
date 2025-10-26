@@ -56,16 +56,13 @@ BOOL ScrCmd_FreeBattleTower(ScriptContext *ctx)
 
 BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
 {
-    u16 functionIndex, functionArgument, varID;
-    u16 *destVar, *v4;
-    void **v5;
-    BattleTower *battleTower;
+    void **partyMenu;
 
-    functionIndex = ScriptContext_ReadHalfWord(ctx);
-    functionArgument = ScriptContext_GetVar(ctx);
-    varID = ScriptContext_ReadHalfWord(ctx);
-    destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, varID);
-    battleTower = ctx->fieldSystem->battleTower;
+    u16 functionIndex = ScriptContext_ReadHalfWord(ctx);
+    u16 functionArgument = ScriptContext_GetVar(ctx);
+    u16 varID = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, varID);
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
     switch (functionIndex) {
     case BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON: // enough pokemon?
@@ -113,14 +110,14 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
         break;
     case BATTLE_TOWER_FUNCTION_UNK_16:
         sub_0206BCE4(ctx->task, functionArgument, varID, *destVar);
-        return 1;
+        return TRUE;
     case BATTLE_TOWER_FUNCTION_UNK_30:
-        v5 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
-        sub_0204A358(battleTower, ctx->task, v5);
-        return 1;
+        partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+        sub_0204A358(battleTower, ctx->task, partyMenu);
+        return TRUE;
     case BATTLE_TOWER_FUNCTION_UNK_31:
-        v5 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
-        *destVar = sub_0204A378(battleTower, v5, ctx->fieldSystem->saveData);
+        partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+        *destVar = sub_0204A378(battleTower, partyMenu, ctx->fieldSystem->saveData);
         break;
     case BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
         *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(battleTower, ctx->fieldSystem->saveData);

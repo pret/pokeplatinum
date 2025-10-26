@@ -612,6 +612,6 @@ void ov104_0222E630(SaveData *saveData)
 {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
 
-    WiFiHistory_FlagConnectedPlayersInfo(wiFiHistory);
+    WiFiHistory_FlagGeonetLinkInfo(wiFiHistory);
     return;
 }

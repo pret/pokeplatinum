@@ -178,9 +178,7 @@ void CommList_Refresh(void)
 
 void CommTool_ClearReceivedTempDataAllPlayers(void)
 {
-    int i;
-
-    for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
+    for (int i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
         sCommTool->hasRecievedTempData[i] = 0;
     }
 }

@@ -1444,20 +1444,20 @@
     .long \offset-.-4
     .endm
 
-    .macro StartBattleClient arg0, arg1, arg2, arg3
+    .macro StartBattleClient commType, arg1, arg2, destVarID
     .short 242
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
-    .macro StartBattleServer arg0, arg1, arg2, arg3
+    .macro StartBattleServer commType, arg1, arg2, destVarID
     .short 243
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
     .macro ScrCmd_Unused_0F4 arg0
@@ -2946,9 +2946,9 @@
     .short 518
     .endm
 
-    .macro GetCurNetID arg0
+    .macro GetCurNetID destVarID
     .short 519
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro DrawPokemonPreview species, gender
@@ -4714,7 +4714,7 @@
     .short \destVar
     .endm
 
-    .macro LogConnectedPlayersInfoInWiFiHistory
+    .macro LogLinkInfoInWiFiHistory
     .short 816
     .endm
 

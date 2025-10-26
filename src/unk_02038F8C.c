@@ -10,23 +10,20 @@
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 
-void WiFiHistory_FlagConnectedPlayersInfo(WiFiHistory *wiFiHistory)
+void WiFiHistory_FlagGeonetLinkInfo(WiFiHistory *wiFiHistory)
 {
-    int i;
-    int country, region, regionCode;
-    TrainerInfo *trainerInfo;
     int connectedCnt = CommSys_ConnectedCount();
 
     if (CommInfo_TrainerInfo(0) == NULL) {
         return;
     }
 
-    for (i = 0; i < connectedCnt; i++) {
+    for (int i = 0; i < connectedCnt; i++) {
         if (CommSys_CurNetId() != i) {
-            country = CommInfo_PlayerCountry(i);
-            region = CommInfo_PlayerRegion(i);
-            trainerInfo = CommInfo_TrainerInfo(i);
-            regionCode = TrainerInfo_RegionCode(trainerInfo);
+            int country = CommInfo_PlayerCountry(i);
+            int region = CommInfo_PlayerRegion(i);
+            TrainerInfo *trainerInfo = CommInfo_TrainerInfo(i);
+            int regionCode = TrainerInfo_RegionCode(trainerInfo);
 
             WiFiHistory_FlagGeonetCommunicatedWith(wiFiHistory, country, region, regionCode);
         }

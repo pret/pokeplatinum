@@ -1586,7 +1586,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_32D,
     ScrCmd_32E,
     ScrCmd_CheckPartyHasHeldItem,
-    ScrCmd_LogConnectedPlayersInfoInWiFiHistory,
+    ScrCmd_LogLinkInfoInWiFiHistory,
     ScrCmd_331,
     ScrCmd_332,
     ScrCmd_333,

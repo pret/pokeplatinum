@@ -451,10 +451,9 @@ int BattleTower_CheckDuplicateSpeciesAndHeldItems(BattleTower *battleTower, Save
     u16 i = 0, j = 0;
     u16 species[4], heldItems[4];
     Party *party = SaveData_GetParty(saveData);
-    Pokemon *mon;
 
     for (i = 0; i < battleTower->partySize; i++) {
-        mon = Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[i]);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[i]);
         species[i] = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
         heldItems[i] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
