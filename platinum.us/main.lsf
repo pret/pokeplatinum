@@ -1005,11 +1005,11 @@ Overlay poketch_move_tester
 	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
-Overlay overlay44
+Overlay poketch_matchup_checker
 {
 	After overlay25
-	Object main.nef.p/src_overlay044_ov44_022561C0.c.o
-	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
+	Object main.nef.p/src_applications_poketch_matchup_checker_main.c.o
+	Object main.nef.p/src_applications_poketch_matchup_checker_graphics.c.o
 }
 
 Overlay poketch_alarm_clock
