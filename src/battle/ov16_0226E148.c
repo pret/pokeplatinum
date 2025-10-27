@@ -5,8 +5,8 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/ov16_0223DF00.h"
 #include "battle/battle_cursor.h"
+#include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
 #include "heap.h"
