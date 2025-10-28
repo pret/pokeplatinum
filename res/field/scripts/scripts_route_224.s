@@ -100,7 +100,7 @@ _0124:
     FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
-    ScrCmd_333 0
+    SetPlayerVolume 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
     WaitTime 15, VAR_RESULT
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
@@ -110,7 +110,7 @@ _0124:
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _01F5
     WaitABXPadPress
     CloseMessage
-    ScrCmd_333 127
+    SetPlayerVolume 127
     FadeInBGM 10
     SetFlag FLAG_UNK_0x012D
     SetFlag FLAG_UNK_0x0252
