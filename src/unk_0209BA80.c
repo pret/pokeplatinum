@@ -23,7 +23,7 @@
 #include "unk_0205DFC4.h"
 
 static void sub_0209BA94(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0);
+BOOL sub_0209BB08(BattleTower *battleTower);
 static void sub_0209BB34(int param0, int param1, void *param2, void *param3);
 static void sub_0209BB68(int param0, int param1, void *param2, void *param3);
 BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0);
@@ -102,44 +102,44 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
 {
     u16 v0;
     int v1;
-    UnkStruct_0204AFC4 *v2 = param3;
+    BattleTower *battleTower = param3;
     const u16 *v3 = param2;
 
     v0 = 0;
     v1 = 0;
-    v2->unk_8D4++;
+    battleTower->unk_8D4++;
 
     if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    v2->unk_12 = (u8)v3[0];
-    v2->unk_16[0] = v3[1];
-    v2->unk_16[1] = v3[2];
-    v2->unk_14 = v3[3];
-    v2->unk_10_5 = 5 + v2->unk_12;
+    battleTower->unk_12 = (u8)v3[0];
+    battleTower->unk_16[0] = v3[1];
+    battleTower->unk_16[1] = v3[2];
+    battleTower->unk_14 = v3[3];
+    battleTower->unk_10_5 = 5 + battleTower->unk_12;
 
-    if ((v2->unk_2E[0] == v2->unk_16[0]) || (v2->unk_2E[0] == v2->unk_16[1])) {
+    if ((battleTower->unk_2E[0] == battleTower->unk_16[0]) || (battleTower->unk_2E[0] == battleTower->unk_16[1])) {
         v0 += 1;
     }
 
-    if ((v2->unk_2E[1] == v2->unk_16[0]) || (v2->unk_2E[1] == v2->unk_16[1])) {
+    if ((battleTower->unk_2E[1] == battleTower->unk_16[0]) || (battleTower->unk_2E[1] == battleTower->unk_16[1])) {
         v0 += 2;
     }
 
-    v2->unk_8D8 = v0;
+    battleTower->unk_8D8 = v0;
     return;
 }
 
-BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0)
+BOOL sub_0209BB08(BattleTower *battleTower)
 {
     int v0, v1;
 
     v1 = (14 * 2);
 
-    MI_CpuCopy8(param0->unk_3E, param0->unk_83E, v1);
+    MI_CpuCopy8(battleTower->unk_3E, battleTower->unk_83E, v1);
 
-    if (CommSys_SendData(63, param0->unk_83E, v1) == 1) {
+    if (CommSys_SendData(63, battleTower->unk_83E, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -151,11 +151,11 @@ BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0)
 static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0204AFC4 *v1 = param3;
+    BattleTower *battleTower = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
-    v1->unk_8D4++;
+    battleTower->unk_8D4++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -165,27 +165,27 @@ static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    MI_CpuCopy8(v2, v1->unk_3E, 14 * 2);
+    MI_CpuCopy8(v2, battleTower->unk_3E, 14 * 2);
     return;
 }
 
 static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0204AFC4 *v1 = param3;
+    BattleTower *battleTower = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
 
-    v1->unk_8D8 = 0;
-    v1->unk_8D4++;
+    battleTower->unk_8D8 = 0;
+    battleTower->unk_8D4++;
 
     if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (v1->unk_10_3 || v2[0]) {
-        v1->unk_8D8 = 1;
+    if (battleTower->unk_10_3 || v2[0]) {
+        battleTower->unk_8D8 = 1;
     }
 
     return;

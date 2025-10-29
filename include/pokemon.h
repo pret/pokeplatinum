@@ -34,6 +34,8 @@
 
 #define INIT_IVS_RANDOM 32
 
+#define BATTLE_FRONTIER_BANLIST_SIZE 18
+
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
     EVO_CLASS_BY_TRADE,

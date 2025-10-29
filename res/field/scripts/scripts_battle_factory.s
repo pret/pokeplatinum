@@ -159,17 +159,17 @@ _0270:
     CloseMessage
     CallIfEq VAR_UNK_0x40B9, 0, _02C2
     CallIfEq VAR_UNK_0x40B9, 1, _02CE
-    GoToIfEq VAR_RESULT, 1, _02DA
-    GoToIfEq VAR_RESULT, 3, _02E2
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _02DA
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _02E2
     GoTo _0368
     End
 
 _02C2:
-    ScrCmd_0F2 27, 0, 0, VAR_RESULT
+    StartBattleClient 27, 0, 0, VAR_RESULT
     Return
 
 _02CE:
-    ScrCmd_0F2 28, 0, 0, VAR_RESULT
+    StartBattleClient 28, 0, 0, VAR_RESULT
     Return
 
 _02DA:
@@ -177,7 +177,7 @@ _02DA:
     End
 
 _02E2:
-    ScrCmd_150
+    EndCommunication
     GoTo _022C
     End
 
@@ -188,17 +188,17 @@ _02EC:
     CloseMessage
     CallIfEq VAR_UNK_0x40B9, 0, _033E
     CallIfEq VAR_UNK_0x40B9, 1, _034A
-    GoToIfEq VAR_RESULT, 1, _0356
-    GoToIfEq VAR_RESULT, 3, _035E
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0356
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _035E
     GoTo _0368
     End
 
 _033E:
-    ScrCmd_0F3 27, 0, 0, VAR_RESULT
+    StartBattleServer 27, 0, 0, VAR_RESULT
     Return
 
 _034A:
-    ScrCmd_0F3 28, 0, 0, VAR_RESULT
+    StartBattleServer 28, 0, 0, VAR_RESULT
     Return
 
 _0356:
@@ -206,7 +206,7 @@ _0356:
     End
 
 _035E:
-    ScrCmd_150
+    EndCommunication
     GoTo _022C
     End
 
@@ -247,7 +247,7 @@ _03C1:
     End
 
 _042A:
-    ScrCmd_150
+    EndCommunication
     Return
 
 _042E:
@@ -271,7 +271,7 @@ _0449:
 _0464:
     ScrCmd_02E 9
     WaitTime 15, VAR_RESULT
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 169
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _04DC

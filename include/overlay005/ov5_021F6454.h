@@ -23,7 +23,7 @@ BOOL ScrCmd_331(ScriptContext *param0);
 BOOL ScrCmd_332(ScriptContext *param0);
 BOOL ScrCmd_338(ScriptContext *param0);
 BOOL ScrCmd_339(ScriptContext *param0);
-BOOL ScrCmd_330(ScriptContext *param0);
+BOOL ScrCmd_LogLinkInfoInWiFiHistory(ScriptContext *ctx);
 BOOL ScrCmd_333(ScriptContext *param0);
 
 #endif // POKEPLATINUM_OV5_021F6454_H

@@ -213,7 +213,7 @@ _0253:
     End
 
 _0291:
-    ScrCmd_150
+    EndCommunication
     SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 11
@@ -463,9 +463,9 @@ _0669:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0625
     CloseMessage
-    ScrCmd_0F2 8, VAR_0x8005, VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _06AB
-    GoToIfEq VAR_RESULT, 3, _06B3
+    StartBattleClient 8, VAR_0x8005, VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _06AB
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _06B3
     GoTo _070D
     End
 
@@ -482,9 +482,9 @@ _06BB:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0625
     CloseMessage
-    ScrCmd_0F3 8, VAR_0x8005, VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _06FD
-    GoToIfEq VAR_RESULT, 3, _0705
+    StartBattleServer 8, VAR_0x8005, VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _06FD
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _0705
     GoTo _070D
     End
 
@@ -493,7 +493,7 @@ _06FD:
     End
 
 _0705:
-    ScrCmd_150
+    EndCommunication
     CloseMessage
     ReleaseAll
     End

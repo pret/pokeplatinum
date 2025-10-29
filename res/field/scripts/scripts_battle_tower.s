@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _028A
-    ScriptEntry _0ACF
-    ScriptEntry _07E5
+    ScriptEntry BattleTower_SingleDoubleBattleRoomGuide
+    ScriptEntry BattleTower_MultiBattleRoomGuide
+    ScriptEntry BattleTower_WiFiBattleRoomGuide
     ScriptEntry _0EBF
     ScriptEntry _04EC
     ScriptEntry _0597
@@ -15,23 +16,23 @@
     ScriptEntry _129A
     ScriptEntry _12B4
     ScriptEntry _12CE
-    ScriptEntry _1328
-    ScriptEntry _133B
-    ScriptEntry _134E
-    ScriptEntry _1361
-    ScriptEntry _1374
-    ScriptEntry _1387
-    ScriptEntry _139A
-    ScriptEntry _13AF
+    ScriptEntry BattleTower_ParasolLady
+    ScriptEntry BattleTower_Jogger
+    ScriptEntry BattleTower_Idol
+    ScriptEntry BattleTower_RichBoy
+    ScriptEntry BattleTower_Pikachu1
+    ScriptEntry BattleTower_Artist
+    ScriptEntry BattleTower_SchoolKid
+    ScriptEntry BattleTower_Pikachu2
     ScriptEntry _0062
     ScriptEntry _00F5
-    ScriptEntry _13E0
+    ScriptEntry BattleTower_StatsJudge
     ScriptEntryEnd
 
 _0062:
-    CallIfEq VAR_UNK_0x40D8, 1, _00F1
-    CallIfEq VAR_UNK_0x40D8, 3, _00F1
-    CallIfEq VAR_UNK_0x40D8, 0xFF, _00F1
+    CallIfEq VAR_UNK_0x40D8, 1, BattleTower_ShowPoketch
+    CallIfEq VAR_UNK_0x40D8, 3, BattleTower_ShowPoketch
+    CallIfEq VAR_UNK_0x40D8, 0xFF, BattleTower_ShowPoketch
     ScrCmd_238 19, VAR_MAP_LOCAL_0
     CallIfEq VAR_MAP_LOCAL_0, 0, _0144
     CallIfNe VAR_MAP_LOCAL_0, 0, _014A
@@ -56,7 +57,7 @@ _00EB:
     ClearFlag FLAG_UNK_0x020E
     End
 
-_00F1:
+BattleTower_ShowPoketch:
     ShowPoketch
     Return
 
@@ -83,7 +84,7 @@ _014A:
     Return
 
 BattleTower_Unused:
-    ScrCmd_1DB 0, 1
+    InitBattleTower 0, BATTLE_TOWER_MODE_DOUBLE
     Return
 
 _0158:
@@ -123,7 +124,7 @@ _01C6:
     GoToIfEq VAR_0x8008, 2, _024C
     GoToIfEq VAR_0x8008, 3, _025F
     GoToIfEq VAR_0x8008, 4, _022E
-    Message 15
+    Message BattleTower_Text_WeHopeToSeeYouAgain2
     GoTo _020B
     End
 
@@ -135,12 +136,12 @@ _020B:
     End
 
 _0220:
-    Call _079B
-    GoTo _0789
+    Call BattleTower_ClearCommunication
+    GoTo BattleTower_Close
     End
 
 _022E:
-    Message 89
+    Message BattleTower_Text_RunOutOfRoomForDecorationGoods
     GoTo _020B
     End
 
@@ -163,137 +164,137 @@ _025F:
     End
 
 _0272:
-    Message 88
+    Message BattleTower_Text_CongratulationsOnAchievingWinStreak
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
-    Message 15
+    Message BattleTower_Text_WeHopeToSeeYouAgain2
     GoTo _020B
     End
 
-_028A:
+BattleTower_SingleDoubleBattleRoomGuide:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    ScrCmd_1DA
-    Message 0
-    GoTo _029D
+    SetBattleTowerNull
+    Message BattleTower_Text_GuideToSingleDoubleBattleRooms
+    GoTo BattleTower_AskTakeBattleRoomChallenge
     End
 
-_029D:
-    Message 1
-    Call _02E6
+BattleTower_AskTakeBattleRoomChallenge:
+    Message BattleTower_Text_AskTakeBattleRoomChallenge
+    Call BattleTower_InitChoiceMenuBattleRoomChallenge
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0301
-    GoToIfEq VAR_0x8008, 1, _02DB
-    GoToIfEq VAR_0x8008, 2, _0784
-    GoTo _0784
+    GoToIfEq VAR_0x8008, 0, BattleTower_TakeBattleRoomChallenge
+    GoToIfEq VAR_0x8008, 1, BattleTower_ExplainSingleDoubleBattleRoom
+    GoToIfEq VAR_0x8008, 2, BattleTower_WeHopeToSeeYouAgain
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_02DB:
-    Message 3
-    GoTo _029D
+BattleTower_ExplainSingleDoubleBattleRoom:
+    Message BattleTower_Text_ExplainSingleDoubleBattleRoom
+    GoTo BattleTower_AskTakeBattleRoomChallenge
     End
 
-_02E6:
+BattleTower_InitChoiceMenuBattleRoomChallenge:
     InitGlobalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 141, 0
-    AddMenuEntryImm 142, 1
-    AddMenuEntryImm 143, 2
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Challenge, 0
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Info, 1
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Exit, 2
     ShowMenu
     Return
 
-_0301:
-    Message 4
+BattleTower_TakeBattleRoomChallenge:
+    Message BattleTower_Text_AskSingleOrDoubleBattleRoom
     InitGlobalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 6, 0
-    AddMenuEntryImm 7, 1
-    AddMenuEntryImm 94, 2
+    AddMenuEntryImm MenuEntries_Text_SingleBattle, 0
+    AddMenuEntryImm MenuEntries_Text_DoubleBattle, 1
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0352
-    GoToIfEq VAR_0x8008, 1, _0385
-    GoToIfEq VAR_0x8008, 2, _0784
-    GoTo _0784
+    GoToIfEq VAR_0x8008, 0, BattleTower_InitSingleBattleRoomChallenge
+    GoToIfEq VAR_0x8008, 1, BattleTower_InitDoubleBattleRoomChallenge
+    GoToIfEq VAR_0x8008, 2, BattleTower_WeHopeToSeeYouAgain
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_0352:
-    ScrCmd_1DB 0, 0
+BattleTower_InitSingleBattleRoomChallenge:
+    InitBattleTower 0, BATTLE_TOWER_MODE_SINGLE
     GoTo _0360
     End
 
 _0360:
-    ScrCmd_1DD 1, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03B0
-    ScrCmd_1FF 91, 3, 0, 0
-    GoTo _0787
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
+    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 3, 0, 0
+    GoTo BattleTower_WaitABXPadPress
     End
 
-_0385:
-    ScrCmd_1DB 0, 1
-    ScrCmd_1DD 1, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03B0
-    ScrCmd_1FF 91, 4, 0, 0
-    GoTo _0787
+BattleTower_InitDoubleBattleRoomChallenge:
+    InitBattleTower 0, BATTLE_TOWER_MODE_DOUBLE
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
+    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 4, 0, 0
+    GoTo BattleTower_WaitABXPadPress
     End
 
-_03B0:
-    Message 8
-    Call _04BE
-    GoToIfEq VAR_RESULT, 0, _0784
-    ScrCmd_1DD 32, 0, VAR_RESULT
+BattleTower_SelectAndValidatePokemon:
+    Message BattleTower_Text_SelectPokemonToEnter
+    Call BattleTower_SelectPokemon
+    GoToIfEq VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, _04A8
-    GoToIfEq VAR_0x8008, 2, _04B3
-    ScrCmd_1DD 53, 0, VAR_RESULT
+    GoToIfEq VAR_0x8008, 1, BattleTower_SelectedTwoIdenticalSpecies
+    GoToIfEq VAR_0x8008, 2, BattleTower_SelectedTwoIdenticalHeldItems
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 0, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
-    ScrCmd_1DD 53, 1, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 1, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
-    ScrCmd_1DD 53, 2, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 2, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
-    ScrCmd_1DD 43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 4, _09B3
-    GoTo _045C
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, _09B3
+    GoTo BattleTower_HealAndSaveBeforeEnteringBattleRoom
     End
 
-_045C:
+BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     Call _0158
-    ScrCmd_1DD 5, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _077E
-    ScrCmd_1DD 57, 0, VAR_RESULT
-    ScrCmd_1DD 52, 0, 0
-    Message 11
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_57, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_52, 0, 0
+    Message BattleTower_Text_ShowYouToBattleRoom
     WaitABPress
-    GoTo _05EC
+    GoTo BattleTower_EnterRespectiveBattleRoom
     End
 
-_049C:
-    CallCommonScript 0x7D6
+BattleTower_SaveGame:
+    CallCommonScript 0x7D6 @ CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 
-_04A8:
-    Message 9
-    GoTo _0784
+BattleTower_SelectedTwoIdenticalSpecies:
+    Message BattleTower_Text_PokemonMustAllBeDifferent
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_04B3:
-    Message 10
-    GoTo _0784
+BattleTower_SelectedTwoIdenticalHeldItems:
+    Message BattleTower_Text_ItemsMustAllBeDifferent
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_04BE:
+BattleTower_SelectPokemon:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_1DD 30, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_30, 0, 0
     ReturnToField
-    ScrCmd_1DD 31, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_31, 0, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
     Return
@@ -301,29 +302,29 @@ _04BE:
 _04EC:
     LockAll
     SetVar VAR_UNK_0x40D8, 0
-    ScrCmd_1DD 4, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_04, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0597
-    Message 16
-    ScrCmd_1DB 1, 0xFFFF
-    ScrCmd_1DD 43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0548
+    Message BattleTower_Text_SaveBeforeEntering
+    InitBattleTower 1, 0xFFFF
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_MULTI, BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom
     Call _0192
-    ScrCmd_1DD 5, 0, 0
-    Call _0734
-    Message 11
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
+    Call BattleTower_TrySaveGame
+    Message BattleTower_Text_ShowYouToBattleRoom
     WaitABPress
-    GoTo _05EC
+    GoTo BattleTower_EnterRespectiveBattleRoom
     End
 
-_0548:
+BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     Call _0577
-    ScrCmd_1DD 5, 0, 0
-    Call _0734
-    ScrCmd_1DD 51, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
+    Call BattleTower_TrySaveGame
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_51, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_9, VAR_RESULT
-    Message 32
+    Message BattleTower_Text_DirectToMultiBattleRoom
     WaitABPress
-    GoTo _05EC
+    GoTo BattleTower_EnterRespectiveBattleRoom
     End
 
 _0577:
@@ -336,67 +337,67 @@ _0577:
 
 _0597:
     LockAll
-    Message 19
-    ScrCmd_1DD 14, 0, VAR_RESULT
+    Message BattleTower_Text_DidntSaveBeforeQuitting
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_14, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 4, _05B9
-    GoTo _077E
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
 _05B9:
-    ScrCmd_1DD 9, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _077E
-    ScrCmd_1DD 10, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_09, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_10, 0, VAR_RESULT
     SetVar VAR_0x8000, VAR_RESULT
     BufferNumber 0, VAR_0x8000
-    Message 65
-    GoTo _077E
+    Message BattleTower_Text_DemotedToRank
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
-_05EC:
+BattleTower_EnterRespectiveBattleRoom:
     CloseMessage
-    ScrCmd_1DD 43, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 4, _0652
-    GoToIfEq VAR_0x8008, 5, _0652
-    GoToIfEq VAR_0x8008, 2, _066C
-    GoToIfEq VAR_0x8008, 3, _0686
-    GoTo _0638
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, BattleTower_EnterWiFiBattleRoom
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, BattleTower_EnterWiFiBattleRoom
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_MULTI, BattleTower_EnterMultiBattleRoom
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, BattleTower_EnterLinkMultiBattleRoom
+    GoTo BattleTower_EnterSingleDoubleBattleRoom
     End
 
-_0638:
+BattleTower_EnterSingleDoubleBattleRoom:
     SetVar VAR_MAP_LOCAL_2, 0
     SetVar VAR_MAP_LOCAL_3, 15
-    Call _06AE
-    GoTo _0746
+    Call BattleTower_DoBattleRoomEntranceAnimation
+    GoTo BattleTower_WarpToElevator
     End
 
-_0652:
+BattleTower_EnterWiFiBattleRoom:
     SetVar VAR_MAP_LOCAL_2, 2
     SetVar VAR_MAP_LOCAL_3, 19
-    Call _06AE
-    GoTo _0746
+    Call BattleTower_DoBattleRoomEntranceAnimation
+    GoTo BattleTower_WarpToElevator
     End
 
-_066C:
+BattleTower_EnterMultiBattleRoom:
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_MAP_LOCAL_3, 11
-    Call _06AE
-    GoTo _06EE
+    Call BattleTower_DoBattleRoomEntranceAnimation
+    GoTo BattleTower_GoToWarpToElevator
     End
 
-_0686:
+BattleTower_EnterLinkMultiBattleRoom:
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_MAP_LOCAL_3, 11
-    Call _06AE
+    Call BattleTower_DoBattleRoomEntranceAnimation
     GoTo _06A0
     End
 
 _06A0:
     SetVar VAR_UNK_0x40DB, 2
-    GoTo _0746
+    GoTo BattleTower_WarpToElevator
     End
 
-_06AE:
+BattleTower_DoBattleRoomEntranceAnimation:
     ApplyMovement VAR_MAP_LOCAL_2, _1248
     ApplyMovement LOCALID_PLAYER, _1260
     WaitMovement
@@ -411,26 +412,26 @@ _06AE:
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
-_06EE:
-    GoTo _0746
+BattleTower_GoToWarpToElevator:
+    GoTo BattleTower_WarpToElevator
     End
 
 _06F6:
     LockAll
     Call _0724
-    ScrCmd_1DD 100, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0784
-    Message 56
-    Call _0734
-    GoTo _077E
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, BattleTower_WeHopeToSeeYouAgain
+    Message BattleTower_Text_SavingDontTurnOffPower2
+    Call BattleTower_TrySaveGame
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
 _0724:
     Call _07B9
-    ScrCmd_1DD 6, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Return
 
-_0734:
+BattleTower_TrySaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
@@ -438,7 +439,7 @@ _0734:
     WaitFanfare SEQ_SE_DP_SAVE
     Return
 
-_0746:
+BattleTower_WarpToElevator:
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
     FadeScreenOut
@@ -449,30 +450,30 @@ _0746:
     ReleaseAll
     End
 
-_077E:
-    Call _079B
-_0784:
-    Message 2
-_0787:
+BattleTower_ClearCommunicationAndClose:
+    Call BattleTower_ClearCommunication
+BattleTower_WeHopeToSeeYouAgain:
+    Message BattleTower_Text_WeHopeToSeeYouAgain
+BattleTower_WaitABXPadPress:
     WaitABXPadPress
-_0789:
+BattleTower_Close:
     CloseMessage
     Call _07B5
     Call _07B9
     ReleaseAll
     End
 
-_079B:
-    ScrCmd_1DD 6, 0, 0
+BattleTower_ClearCommunication:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call _07AB
     Return
 
 _07AB:
-    ScrCmd_1DD 3, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_03, 0, 0
     Return
 
 _07B5:
-    ScrCmd_1DC
+    FreeBattleTower
     Return
 
 _07B9:
@@ -485,89 +486,89 @@ _07B9:
     SetVar VAR_UNK_0x40DF, 0
     Return
 
-_07E5:
+BattleTower_WiFiBattleRoomGuide:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    ScrCmd_1DA
-    ScrCmd_1DD 12, 0, VAR_RESULT
+    SetBattleTowerNull
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_12, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0922
-    Message 36
-    GoTo _080D
+    Message BattleTower_Text_GuideToWiFiBattleRooms
+    GoTo BattleTower_GoToWiFiChoiceMenu
     End
 
-_080D:
-    GoTo _0815
+BattleTower_GoToWiFiChoiceMenu:
+    GoTo BattleTower_GoToRegularOrExpandedWiFiChoiceMenu
     End
 
-_0815:
-    ScrCmd_1DD 15, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _08A7
-    GoTo _0832
+BattleTower_GoToRegularOrExpandedWiFiChoiceMenu:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_15, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, BattleTower_AskTakeWiFiBattleRoomOrEarlierChallenge
+    GoTo BattleTower_AskTakeWiFiBattleRoomChallenge
     End
 
-_0832:
-    Message 37
-    Call _087D
+BattleTower_AskTakeWiFiBattleRoomChallenge:
+    Message BattleTower_Text_AskTakeWifiBattleRoomChallenge
+    Call BattleTower_InitChoiceMenuWiFiBattleRoomChallenge
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0AA7
-    GoToIfEq VAR_0x8008, 1, _0A5A
-    GoToIfEq VAR_0x8008, 2, _089C
-    GoToIfEq VAR_0x8008, 3, _0784
-    GoTo _0784
+    GoToIfEq VAR_0x8008, 0, BattleTower_InitWiFiChallengeMode
+    GoToIfEq VAR_0x8008, 1, BattleTower_CheckLeaders
+    GoToIfEq VAR_0x8008, 2, BattleTower_ExplainWiFiBattleRoom
+    GoToIfEq VAR_0x8008, 3, BattleTower_WeHopeToSeeYouAgain
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_087D:
+BattleTower_InitChoiceMenuWiFiBattleRoomChallenge:
     InitGlobalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 141, 0
-    AddMenuEntryImm 151, 1
-    AddMenuEntryImm 142, 2
-    AddMenuEntryImm 143, 3
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Challenge, 0
+    AddMenuEntryImm MenuEntries_Text_BattleTower_CheckLeaders, 1
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Info, 2
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Exit, 3
     ShowMenu
     Return
 
-_089C:
-    Message 38
-    GoTo _0815
+BattleTower_ExplainWiFiBattleRoom:
+    Message BattleTower_Text_ExplainWiFiBattleRoom
+    GoTo BattleTower_GoToRegularOrExpandedWiFiChoiceMenu
     End
 
-_08A7:
-    Message 37
-    Call _08FF
+BattleTower_AskTakeWiFiBattleRoomOrEarlierChallenge:
+    Message BattleTower_Text_AskTakeWifiBattleRoomChallenge
+    Call BattleTower_InitChoiceMenuWiFiBattleRoomOrEarlierChallenge
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0AA7
-    GoToIfEq VAR_0x8008, 1, _0A5A
-    GoToIfEq VAR_0x8008, 2, _0AB5
-    GoToIfEq VAR_0x8008, 3, _089C
-    GoToIfEq VAR_0x8008, 4, _0784
-    GoTo _0784
+    GoToIfEq VAR_0x8008, 0, BattleTower_InitWiFiChallengeMode
+    GoToIfEq VAR_0x8008, 1, BattleTower_CheckLeaders
+    GoToIfEq VAR_0x8008, 2, BattleTower_ChallengeEarlierRoom
+    GoToIfEq VAR_0x8008, 3, BattleTower_ExplainWiFiBattleRoom
+    GoToIfEq VAR_0x8008, 4, BattleTower_WeHopeToSeeYouAgain
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_08FF:
+BattleTower_InitChoiceMenuWiFiBattleRoomOrEarlierChallenge:
     InitGlobalTextMenu 31, 7, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 141, 0
-    AddMenuEntryImm 151, 1
-    AddMenuEntryImm 152, 2
-    AddMenuEntryImm 142, 3
-    AddMenuEntryImm 143, 4
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Challenge, 0
+    AddMenuEntryImm MenuEntries_Text_BattleTower_CheckLeaders, 1
+    AddMenuEntryImm MenuEntries_Text_BattleTower_ChallengeEarlierRoom, 2
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Info, 3
+    AddMenuEntryImm MenuEntries_Text_BattleTower_Exit, 4
     ShowMenu
     Return
 
 _0922:
-    Message 61
+    Message BattleTower_Text_AskSendPreviousResults
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0967
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _0784
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
     Call _096F
-    GoToIfNe VAR_RESULT, 0, _0784
-    Message 60
-    GoTo _0784
+    GoToIfNe VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
+    Message BattleTower_Text_ResultsWereSent
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
 _0967:
-    GoTo _080D
+    GoTo BattleTower_GoToWiFiChoiceMenu
     End
 
 _096F:
@@ -580,7 +581,7 @@ _097F:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0B3 VAR_MAP_LOCAL_0
-    ScrCmd_1DD 16, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_16, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     ReturnToField
     FadeScreenIn
@@ -590,60 +591,60 @@ _097F:
 
 _09B3:
     HealParty
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _077E
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
     Call _0158
-    ScrCmd_1DD 5, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     CloseMessage
     SetVar VAR_MAP_LOCAL_1, 0
     Call _097F
-    GoToIfNe VAR_RESULT, 0, _077E
+    GoToIfNe VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
     GoTo _09FB
     End
 
 _09FB:
-    Message 47
+    Message BattleTower_Text_DirectYouToBattleRoom
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _05EC
-    Message 48
+    GoToIfEq VAR_RESULT, MENU_YES, BattleTower_EnterRespectiveBattleRoom
+    Message BattleTower_Text_AskSaveAndInterruptChallenge
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _09FB
     SetVar VAR_UNK_0x40D8, 2
-    ScrCmd_1DD 39, 0, 0
-    ScrCmd_1DC
-    Message 56
-    Call _0734
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
+    FreeBattleTower
+    Message BattleTower_Text_SavingDontTurnOffPower2
+    Call BattleTower_TrySaveGame
     WaitABPressTime 30
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_1DD 2, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
     ReleaseAll
     End
 
-_0A5A:
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _0784
+BattleTower_CheckLeaders:
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
     CloseMessage
     SetVar VAR_MAP_LOCAL_1, 2
     Call _097F
-    GoToIfNe VAR_RESULT, 0, _0784
+    GoToIfNe VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
     ScrCmd_1E3 VAR_0x8004, VAR_0x8005
     BufferNumber 0, VAR_0x8004
     BufferVarPaddingDigits 1, VAR_0x8005, PADDING_MODE_ZEROES, 3
-    Message 52
+    Message BattleTower_Text_PleaseConfirmPastLeaderHistory
     WaitABPress
-    GoTo _0789
+    GoTo BattleTower_Close
     End
 
-_0AA7:
-    ScrCmd_1DB 0, 4
+BattleTower_InitWiFiChallengeMode:
+    InitBattleTower 0, BATTLE_TOWER_MODE_WIFI
     GoTo _0360
     End
 
-_0AB5:
-    ScrCmd_1DB 0, 5
+BattleTower_ChallengeEarlierRoom:
+    InitBattleTower 0, BATTLE_TOWER_MODE_5
     GoTo _0360
     End
 
@@ -652,146 +653,146 @@ _0AC3:
     WaitMovement
     Return
 
-_0ACF:
+BattleTower_MultiBattleRoomGuide:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    ScrCmd_1DA
-    Message 20
-    GoTo _0AE2
+    SetBattleTowerNull
+    Message BattleTower_Text_GuideToMultiBattleRooms
+    GoTo BattleTower_AskTakeMultiBattleRoomChallenge
     End
 
-_0AE2:
-    Message 21
-    Call _02E6
+BattleTower_AskTakeMultiBattleRoomChallenge:
+    Message BattleTower_Text_AskTakeMultiBattleRoomChallenge
+    Call BattleTower_InitChoiceMenuBattleRoomChallenge
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0B2B
-    GoToIfEq VAR_0x8008, 1, _0B20
-    GoToIfEq VAR_0x8008, 2, _0784
-    GoTo _0784
+    GoToIfEq VAR_0x8008, 0, BattleTower_StartMultiBattleRoomChallenge
+    GoToIfEq VAR_0x8008, 1, BattleTower_ExplainMultiBattleRoom
+    GoToIfEq VAR_0x8008, 2, BattleTower_WeHopeToSeeYouAgain
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
 
-_0B20:
-    Message 23
-    GoTo _0AE2
+BattleTower_ExplainMultiBattleRoom:
+    Message BattleTower_Text_ExplainMultiBattleRoom
+    GoTo BattleTower_AskTakeMultiBattleRoomChallenge
     End
 
-_0B2B:
-    ScrCmd_1DD 1, 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0B50
-    ScrCmd_1FF 91, 2, 0, 0
-    GoTo _0787
+BattleTower_StartMultiBattleRoomChallenge:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, BattleTower_AskCommunicateWithFriend
+    PrintBattleFrontierBanlist BattleTower_Text_NotEnoughEligiblePokemon, 2, 0, 0
+    GoTo BattleTower_WaitABXPadPress
     End
 
-_0B50:
-    Message 26
+BattleTower_AskCommunicateWithFriend:
+    Message BattleTower_Text_AskCommunicateWithFriend
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0B80
-    GoTo _0B6C
+    GoToIfEq VAR_RESULT, MENU_YES, BattleTower_InitLinkMultiChallengeMode
+    GoTo BattleTower_InitMultiChallengeMode
     End
 
-_0B6C:
-    ScrCmd_1DB 0, 2
+BattleTower_InitMultiChallengeMode:
+    InitBattleTower 0, BATTLE_TOWER_MODE_MULTI
     SetVar VAR_MAP_LOCAL_1, 0
-    GoTo _0B94
+    GoTo BattleTower_SelectAndValidatePokemonForMultiBattleRoom
     End
 
-_0B80:
-    ScrCmd_1DB 0, 3
+BattleTower_InitLinkMultiChallengeMode:
+    InitBattleTower 0, BATTLE_TOWER_MODE_LINK_MULTI
     SetVar VAR_MAP_LOCAL_1, 1
-    GoTo _0B94
+    GoTo BattleTower_SelectAndValidatePokemonForMultiBattleRoom
     End
 
-_0B94:
-    Message 8
-    Call _04BE
-    GoToIfEq VAR_RESULT, 0, _0784
-    ScrCmd_1DD 32, 0, VAR_RESULT
+BattleTower_SelectAndValidatePokemonForMultiBattleRoom:
+    Message BattleTower_Text_SelectPokemonToEnter
+    Call BattleTower_SelectPokemon
+    GoToIfEq VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, _04A8
-    GoToIfEq VAR_0x8008, 2, _04B3
-    ScrCmd_1DD 53, 0, VAR_RESULT
+    GoToIfEq VAR_0x8008, 1, BattleTower_SelectedTwoIdenticalSpecies
+    GoToIfEq VAR_0x8008, 2, BattleTower_SelectedTwoIdenticalHeldItems
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 0, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
-    ScrCmd_1DD 53, 1, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 1, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0C53
+    GoToIfEq VAR_MAP_LOCAL_1, 1, BattleTower_HealAndSaveBeforeCommunicating
     Call _0172
-    ScrCmd_1DD 5, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _077E
-    ScrCmd_1DD 57, 0, VAR_RESULT
-    ScrCmd_1DD 52, 0, 0
-    Message 35
-    GoTo _05EC
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_57, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_52, 0, 0
+    Message BattleTower_Text_ShowYouToBattleSalon
+    GoTo BattleTower_EnterRespectiveBattleRoom
     End
 
-_0C53:
+BattleTower_HealAndSaveBeforeCommunicating:
     HealParty
-    Call _049C
-    GoToIfEq VAR_RESULT, 0, _077E
-    GoTo _0C70
+    Call BattleTower_SaveGame
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    GoTo BattleTower_AskJoinGroupOrBecomeLeader
     End
 
-_0C70:
-    Message 27
+BattleTower_AskJoinGroupOrBecomeLeader:
+    Message BattleTower_Text_OneBecomeLeaderOtherJoinGroup
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 13, 0
-    AddMenuEntryImm 14, 1
-    AddMenuEntryImm 5, 2
+    AddMenuEntryImm MenuEntries_Text_BattleTower_JoinGroup, 0
+    AddMenuEntryImm MenuEntries_Text_BattleTower_BecomeLeader, 1
+    AddMenuEntryImm MenuEntries_Text_Exit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0CB4
-    GoToIfEq VAR_0x8008, 1, _0D08
-    GoTo _077E
+    GoToIfEq VAR_0x8008, 0, BattleTower_JoinGroup
+    GoToIfEq VAR_0x8008, 1, BattleTower_BecomeLeader
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
-_0CB4:
-    Message 112
+BattleTower_JoinGroup:
+    Message BattleTower_Text_DSWirelessCommunicationWillBeLaunched
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0C70
+    GoToIfEq VAR_RESULT, MENU_NO, BattleTower_AskJoinGroupOrBecomeLeader
     CloseMessage
-    ScrCmd_0F2 16, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0CF6
-    GoToIfEq VAR_RESULT, 3, _0CFE
+    StartBattleClient 16, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleTower_CancelJoiningGroup
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleTower_EndCommunicationAfterErrorJoiningGroup
     GoTo _0D5C
     End
 
-_0CF6:
-    GoTo _0C70
+BattleTower_CancelJoiningGroup:
+    GoTo BattleTower_AskJoinGroupOrBecomeLeader
     End
 
-_0CFE:
-    ScrCmd_150
-    GoTo _0C70
+BattleTower_EndCommunicationAfterErrorJoiningGroup:
+    EndCommunication
+    GoTo BattleTower_AskJoinGroupOrBecomeLeader
     End
 
-_0D08:
-    Message 112
+BattleTower_BecomeLeader:
+    Message BattleTower_Text_DSWirelessCommunicationWillBeLaunched
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0C70
+    GoToIfEq VAR_RESULT, MENU_NO, BattleTower_AskJoinGroupOrBecomeLeader
     CloseMessage
-    ScrCmd_0F3 16, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0D4A
-    GoToIfEq VAR_RESULT, 3, _0D52
+    StartBattleServer 16, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleTower_CancelBecomingLeader
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleTower_EndCommunicationAfterErrorBecomingLeader
     GoTo _0D5C
     End
 
-_0D4A:
-    GoTo _0C70
+BattleTower_CancelBecomingLeader:
+    GoTo BattleTower_AskJoinGroupOrBecomeLeader
     End
 
-_0D52:
-    ScrCmd_150
-    GoTo _0C70
+BattleTower_EndCommunicationAfterErrorBecomingLeader:
+    EndCommunication
+    GoTo BattleTower_AskJoinGroupOrBecomeLeader
     End
 
 _0D5C:
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 1
-    ScrCmd_1DD 58, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_58, 0, 0
     GoTo _0D72
     End
 
@@ -800,67 +801,67 @@ _0D72:
     GoToIfEq VAR_RESULT, 0, _0D72
     ScrCmd_1E2 0, VAR_MAP_LOCAL_0
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_0x8008, 1, _0DE7
-    GoToIfEq VAR_0x8008, 2, _0E05
-    GoToIfEq VAR_0x8008, 3, _0E23
-    ScrCmd_136
+    GoToIfEq VAR_0x8008, 1, BattleTower_OtherPlayerAlsoChosePokemon1
+    GoToIfEq VAR_0x8008, 2, BattleTower_OtherPlayerAlsoChosePokemon2
+    GoToIfEq VAR_0x8008, 3, BattleTower_OtherPlayerChoseTheSame2Pokemon
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 2
-    ScrCmd_1DD 57, 0, VAR_0x8004
-    ScrCmd_207 VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_57, 0, VAR_0x8004
+    GetCurNetID VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0E8A
     ScrCmd_1E2 1, VAR_MAP_LOCAL_0
     GoTo _0E58
     End
 
-_0DE7:
+BattleTower_OtherPlayerAlsoChosePokemon1:
     Call _0E4E
-    ScrCmd_1DD 53, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 0, VAR_RESULT
     BufferPartyMonSpecies 0, VAR_RESULT
-    Message 33
-    GoTo _077E
+    Message BattleTower_Text_BothTrainersChoseThisPokemon
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
-_0E05:
+BattleTower_OtherPlayerAlsoChosePokemon2:
     Call _0E4E
-    ScrCmd_1DD 53, 1, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 1, VAR_RESULT
     BufferPartyMonSpecies 0, VAR_RESULT
-    Message 33
-    GoTo _077E
+    Message BattleTower_Text_BothTrainersChoseThisPokemon
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
-_0E23:
+BattleTower_OtherPlayerChoseTheSame2Pokemon:
     Call _0E4E
-    ScrCmd_1DD 53, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 0, VAR_RESULT
     BufferPartyMonSpecies 0, VAR_RESULT
-    ScrCmd_1DD 53, 1, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX, 1, VAR_RESULT
     BufferPartyMonSpecies 1, VAR_RESULT
-    Message 34
-    GoTo _077E
+    Message BattleTower_Text_BothTrainersChoseThesePokemon
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
 _0E4E:
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 8
-    ScrCmd_150
+    EndCommunication
     Return
 
 _0E58:
     Call _0172
-    ScrCmd_1DD 5, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
-    Message 69
-    Call _0734
-    ScrCmd_330
-    Message 32
+    Message BattleTower_Text_RecordWillBeSaved
+    Call BattleTower_TrySaveGame
+    LogLinkInfoInWiFiHistory
+    Message BattleTower_Text_DirectToMultiBattleRoom
     WaitTime 30, VAR_RESULT
-    ScrCmd_136
+    ClearReceivedTempDataAllPlayers
     ScrCmd_135 3
-    GoTo _05EC
+    GoTo BattleTower_EnterRespectiveBattleRoom
     End
 
 _0E8A:
-    ScrCmd_1DD 52, 0, 0
-    ScrCmd_1DD 58, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_52, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_58, 0, 0
     GoTo _0EA2
     End
 
@@ -875,105 +876,105 @@ _0EBF:
     FadeScreenIn
     WaitFadeScreen
     Call _0724
-    ScrCmd_1DD 100, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0784
-    ScrCmd_1DD 35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, BattleTower_WeHopeToSeeYouAgain
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0F7E
     GoTo _0F05
     End
 
 _0F05:
-    Message 53
-    ScrCmd_1DD 43, 0, VAR_RESULT
+    Message BattleTower_Text_ThankYouForPlaying
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_0x8008, 5, _0F53
-    GoToIfEq VAR_0x8008, 4, _11BA
-    ScrCmd_1DD 49, 0, VAR_RESULT
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, _0F53
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _11BA
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_49, 0, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0F73
     GoTo _0F53
     End
 
 _0F53:
-    Message 56
-    Call _0734
+    Message BattleTower_Text_SavingDontTurnOffPower2
+    Call BattleTower_TrySaveGame
     CloseMessage
     GoToIfEq VAR_MAP_LOCAL_0, 0, _118A
-    GoTo _077E
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
 _0F73:
-    Message 73
+    Message BattleTower_Text_CongratulationsOnAchievingYour50WinStreak
     PlaySound SEQ_FANFA1
     WaitSound
     Return
 
 _0F7E:
-    ScrCmd_1DD 43, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
-    GoToIfEq VAR_MAP_LOCAL_0, 5, _116C
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _1091
-    GoToIfEq VAR_MAP_LOCAL_0, 4, _0FEA
-    ScrCmd_1DD 49, 0, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_5, _116C
+    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_SINGLE, _1091
+    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_WIFI, _0FEA
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_49, 0, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _0FD6
     Call _1167
     GoTo _1177
     End
 
 _0FD6:
-    Message 12
-    Message 73
+    Message BattleTower_Text_BeatenAllSevenTrainers
+    Message BattleTower_Text_CongratulationsOnAchievingYour50WinStreak
     PlaySound SEQ_FANFA1
     WaitSound
     GoTo _1177
     End
 
 _0FEA:
-    Message 12
-    ScrCmd_1DD 54, 0, VAR_RESULT
+    Message BattleTower_Text_BeatenAllSevenTrainers
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_54, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _105E
     GoTo _100A
     End
 
 _100A:
-    ScrCmd_1DD 10, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_10, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
     BufferPlayerName 0
     BufferNumber 1, VAR_MAP_LOCAL_0
-    Message 55
+    Message BattleTower_Text_PromotedToRank
     GoTo _102B
     End
 
 _102B:
-    ScrCmd_1DD 49, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_49, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _11F5
     GoTo _1048
     End
 
 _1048:
     BufferNumber 0, VAR_MAP_LOCAL_0
-    Message 70
+    Message BattleTower_Text_CongratulationsOnAchievingRank
     PlaySound SEQ_FANFA1
     WaitSound
     GoTo _11F5
     End
 
 _105E:
-    ScrCmd_1DD 49, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_49, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _11F5
     GoTo _107B
     End
 
 _107B:
     BufferNumber 0, VAR_MAP_LOCAL_0
-    Message 132
+    Message BattleTower_Text_AwardRibbonToParticipatingPokemon
     PlaySound SEQ_FANFA1
     WaitSound
     GoTo _11F5
     End
 
 _1091:
-    ScrCmd_1DD 45, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_45, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10AE
     GoTo _10F5
     End
@@ -984,11 +985,11 @@ _10AE:
     End
 
 _10BC:
-    Message 14
-    Call _0734
+    Message BattleTower_Text_SavingDontTurnOffPower
+    Call BattleTower_TrySaveGame
     ScrCmd_1DF VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _077E
-    Message 113
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    Message BattleTower_Text_WeLookForwardToYourNextVisit
     CloseMessage
     SetVar VAR_MAP_LOCAL_2, VAR_RESULT
     SetVar VAR_MAP_LOCAL_1, 1
@@ -999,27 +1000,27 @@ _10BC:
 _10F5:
     CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 1, _1135
     CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 3, _114C
-    ScrCmd_1DD 48, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_48, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10BC
-    Message 84
+    Message BattleTower_Text_CongratulationsOnDefeatingTowerTycoon
     PlaySound SEQ_FANFA1
     WaitSound
     GoTo _10BC
     End
 
 _1135:
-    Message 85
+    Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
-    Message 87
+    Message BattleTower_Text_SilverPrintWasAddedToVsRecorder
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 2
     Return
 
 _114C:
-    Message 85
+    Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
-    Message 86
+    Message BattleTower_Text_GoldPrintWasAddedToVsRecorder
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
@@ -1027,25 +1028,25 @@ _114C:
     Return
 
 _1167:
-    Message 12
+    Message BattleTower_Text_BeatenAllSevenTrainers
     Return
 
 _116C:
-    Message 54
+    Message BattleTower_Text_BeatenAllSevenTrainers2
     GoTo _1177
     End
 
 _1177:
-    Message 14
-    Call _0734
+    Message BattleTower_Text_SavingDontTurnOffPower
+    Call BattleTower_TrySaveGame
     CloseMessage
-    GoTo _077E
+    GoTo BattleTower_ClearCommunicationAndClose
     End
 
 _118A:
     ScrCmd_1DF VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _077E
-    Message 113
+    GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndClose
+    Message BattleTower_Text_WeLookForwardToYourNextVisit
     CloseMessage
     SetVar VAR_MAP_LOCAL_2, VAR_RESULT
     SetVar VAR_MAP_LOCAL_1, 1
@@ -1054,35 +1055,35 @@ _118A:
     End
 
 _11BA:
-    ScrCmd_1DD 9, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_09, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _11D7
     GoTo _11F5
     End
 
 _11D7:
-    ScrCmd_1DD 10, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_10, 0, VAR_RESULT
     SetVar VAR_0x8000, VAR_RESULT
     BufferNumber 0, VAR_0x8000
-    Message 65
+    Message BattleTower_Text_DemotedToRank
     GoTo _11F5
     End
 
 _11F5:
-    ScrCmd_1DD 11, 1, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_11, 1, 0
     GoTo _1205
     End
 
 _1205:
-    Call _079B
-    Message 56
-    Call _0734
-    Message 57
+    Call BattleTower_ClearCommunication
+    Message BattleTower_Text_SavingDontTurnOffPower2
+    Call BattleTower_TrySaveGame
+    Message BattleTower_Text_AskSendResults
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0784
+    GoToIfEq VAR_RESULT, MENU_NO, BattleTower_WeHopeToSeeYouAgain
     Call _096F
-    GoToIfNe VAR_RESULT, 0, _0784
-    Message 60
-    GoTo _0784
+    GoToIfNe VAR_RESULT, 0, BattleTower_WeHopeToSeeYouAgain
+    Message BattleTower_Text_ResultsWereSent
+    GoTo BattleTower_WeHopeToSeeYouAgain
     End
     
     .balign 4, 0
@@ -1149,7 +1150,7 @@ _12CE:
     End
 
 _12F9:
-    Message 111
+    Message BattleTower_Text_NoDataYet
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1165,71 +1166,71 @@ _1304:
     ReleaseAll
     Return
 
-_1328:
+BattleTower_ParasolLady:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 74
+    Message BattleTower_Text_UsedToLiveInHoenn
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_133B:
+BattleTower_Jogger:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 75
+    Message BattleTower_Text_WiFiBattleRoomsAreFullOfSurprises
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_134E:
+BattleTower_Idol:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 76
+    Message BattleTower_Text_TheyProfileYouOnTV
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1361:
+BattleTower_RichBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 77
+    Message BattleTower_Text_ITrainedMyLittleGuy
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1374:
+BattleTower_Pikachu1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 78
+    Message BattleTower_Text_PikachuDotDotDot
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1387:
+BattleTower_Artist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 79
+    Message BattleTower_Text_YouLookPowerful
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_139A:
+BattleTower_SchoolKid:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 80
+    Message BattleTower_Text_ThereAreManyToughTrainers
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1238,13 +1239,13 @@ _139A:
 _13AD:
     End
 
-_13AF:
+BattleTower_Pikachu2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
-    Message 81
+    Message BattleTower_Text_PikachuPichuu
     WaitCry
     WaitABXPadPress
     CloseMessage
@@ -1257,17 +1258,17 @@ _13CE:
     CallCommonScript 0x809
     End
 
-_13E0:
+BattleTower_StatsJudge:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfUnset FLAG_UNK_0x00FF, _1492
-    CallIfSet FLAG_UNK_0x00FF, _1497
-    SetFlag FLAG_UNK_0x00FF
-    GoTo _140A
+    CallIfUnset FLAG_TALKED_TO_STATS_JUDGE, BattleTower_JudgeExplanation
+    CallIfSet FLAG_TALKED_TO_STATS_JUDGE, BattleTower_ICouldJudgeYourPokemon
+    SetFlag FLAG_TALKED_TO_STATS_JUDGE
+    GoTo BattleTower_ChoosePokemonToJudge
     End
 
-_140A:
+BattleTower_ChoosePokemonToJudge:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
@@ -1277,89 +1278,89 @@ _140A:
     SetVar VAR_0x8000, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, _1549
+    GoToIfEq VAR_0x8000, 0xFF, BattleTower_CancelJudge
     GetPartyMonSpecies VAR_0x8000, VAR_0x8004
-    GoToIfEq VAR_0x8004, 0, _149C
+    GoToIfEq VAR_0x8004, 0, BattleTower_CantJudgeAnEgg
     JudgeStats VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003
-    GoToIfLe VAR_0x8001, 90, _14E9
-    GoToIfLe VAR_0x8001, 120, _14F4
-    GoToIfLe VAR_0x8001, 150, _14FF
-    GoToIfGe VAR_0x8001, 151, _150A
+    GoToIfLe VAR_0x8001, 90, BattleTower_DecentTotalIVs
+    GoToIfLe VAR_0x8001, 120, BattleTower_AboveAverageTotalIVs
+    GoToIfLe VAR_0x8001, 150, BattleTower_RelativelySuperiorTotalIVs
+    GoToIfGe VAR_0x8001, 151, BattleTower_OutstandingTotalIVs
     End
 
-_1492:
-    Message 114
+BattleTower_JudgeExplanation:
+    Message BattleTower_Text_JudgeExplanation
     Return
 
-_1497:
-    Message 115
+BattleTower_ICouldJudgeYourPokemon:
+    Message BattleTower_Text_ICouldJudgeYourPokemon
     Return
 
-_149C:
-    Message 117
-    GoTo _140A
+BattleTower_CantJudgeAnEgg:
+    Message BattleTower_Text_CantJudgeAnEgg
+    GoTo BattleTower_ChoosePokemonToJudge
     End
 
-_14A7:
+BattleTower_HighestTotalIVStat:
     MessageVar VAR_0x8002
-    GoTo _14B3
+    GoTo BattleTower_HighestIVValue
     End
 
-_14B3:
-    GoToIfLe VAR_0x8003, 15, _1515
-    GoToIfLe VAR_0x8003, 25, _1520
-    GoToIfLe VAR_0x8003, 30, _152B
-    GoToIfGe VAR_0x8003, 31, _1536
+BattleTower_HighestIVValue:
+    GoToIfLe VAR_0x8003, 15, BattleTower_RatherDecentHighestIVValue
+    GoToIfLe VAR_0x8003, 25, BattleTower_VeryGoodHighestIVValue
+    GoToIfLe VAR_0x8003, 30, BattleTower_FantasticHighestIVValue
+    GoToIfGe VAR_0x8003, 31, BattleTower_PerfectHighestIVValue
     End
 
-_14E9:
-    Message 118
-    GoTo _14A7
+BattleTower_DecentTotalIVs:
+    Message BattleTower_Text_DecentPotential
+    GoTo BattleTower_HighestTotalIVStat
     End
 
-_14F4:
-    Message 119
-    GoTo _14A7
+BattleTower_AboveAverageTotalIVs:
+    Message BattleTower_Text_AboveAveragePotential
+    GoTo BattleTower_HighestTotalIVStat
     End
 
-_14FF:
-    Message 120
-    GoTo _14A7
+BattleTower_RelativelySuperiorTotalIVs:
+    Message BattleTower_Text_RelativelySuperiorPotential
+    GoTo BattleTower_HighestTotalIVStat
     End
 
-_150A:
-    Message 121
-    GoTo _14A7
+BattleTower_OutstandingTotalIVs:
+    Message BattleTower_Text_OutstandingPotential
+    GoTo BattleTower_HighestTotalIVStat
     End
 
-_1515:
-    Message 128
-    GoTo _1541
+BattleTower_RatherDecentHighestIVValue:
+    Message BattleTower_Text_ItsRatherDecent
+    GoTo BattleTower_JudgeEnd
     End
 
-_1520:
-    Message 129
-    GoTo _1541
+BattleTower_VeryGoodHighestIVValue:
+    Message BattleTower_Text_ItsVeryGood
+    GoTo BattleTower_JudgeEnd
     End
 
-_152B:
-    Message 130
-    GoTo _1541
+BattleTower_FantasticHighestIVValue:
+    Message BattleTower_Text_ItsFantastic
+    GoTo BattleTower_JudgeEnd
     End
 
-_1536:
-    Message 131
-    GoTo _1541
+BattleTower_PerfectHighestIVValue:
+    Message BattleTower_Text_ItCantBeBetter
+    GoTo BattleTower_JudgeEnd
     End
 
-_1541:
+BattleTower_JudgeEnd:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1549:
-    Message 116
+BattleTower_CancelJudge:
+    Message BattleTower_Text_OhYouDontNeedMeToJudge
     WaitABXPadPress
     CloseMessage
     ReleaseAll

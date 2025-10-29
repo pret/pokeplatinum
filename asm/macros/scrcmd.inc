@@ -1,7 +1,10 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/battle_tower_modes.h"
+#include "generated/battle_tower_functions.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
@@ -1441,20 +1444,20 @@
     .long \offset-.-4
     .endm
 
-    .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
+    .macro StartBattleClient commType, arg1, arg2, destVarID
     .short 242
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0F3 arg0, arg1, arg2, arg3
+    .macro StartBattleServer commType, arg1, arg2, destVarID
     .short 243
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
     .macro ScrCmd_Unused_0F4 arg0
@@ -1795,12 +1798,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_135 arg0
+    .macro ScrCmd_135 syncNo
     .short 309
-    .short \arg0
+    .short \syncNo
     .endm
 
-    .macro ScrCmd_136
+    .macro ClearReceivedTempDataAllPlayers
     .short 310
     .endm
 
@@ -1924,7 +1927,7 @@
     .short 335
     .endm
 
-    .macro ScrCmd_150
+    .macro EndCommunication
     .short 336
     .endm
 
@@ -2684,25 +2687,25 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1DA
+    .macro SetBattleTowerNull
     .short 474
     .endm
 
-    .macro ScrCmd_1DB arg0, arg1
+    .macro InitBattleTower arg0, challengeMode
     .short 475
     .short \arg0
-    .short \arg1
+    .short \challengeMode
     .endm
 
-    .macro ScrCmd_1DC
+    .macro FreeBattleTower
     .short 476
     .endm
 
-    .macro ScrCmd_1DD arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 477
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro ScrCmd_1DE arg0, arg1, arg2, arg3
@@ -2891,12 +2894,12 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_1FF arg0, arg1, arg2, arg3
+    .macro PrintBattleFrontierBanlist messageID, numRequiredEligiblePokemon, unused2, unused3
     .short 511
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \messageID
+    .short \numRequiredEligiblePokemon
+    .short \unused2
+    .byte \unused3
     .endm
 
     .macro GetPreviousMapID destVarID
@@ -2943,9 +2946,9 @@
     .short 518
     .endm
 
-    .macro ScrCmd_207 arg0
+    .macro GetCurNetID destVarID
     .short 519
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro DrawPokemonPreview species, gender
@@ -4711,7 +4714,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_330
+    .macro LogLinkInfoInWiFiHistory
     .short 816
     .endm
 
