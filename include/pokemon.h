@@ -838,7 +838,7 @@ void BoxPokemon_RestorePP(BoxPokemon *boxMon);
  * @param species       Species to be loaded
  * @param clientType    Client-type of who made the load request
  */
-void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType);
+void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 species, u16 clientType);
 
 /**
  * @brief Load the animation data for a given species and a client type.
@@ -851,7 +851,7 @@ void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u1
  * @param reverse       If TRUE, reverse the sprite + animation
  * @param frame         Which frame of the animation to initialize
  */
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame);
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame);
 
 /**
  * @brief Load the cry delay for a given species and a client type.
@@ -861,7 +861,7 @@ void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Pok
  * @param species       Species to be loaded
  * @param clientType    Client-type of who made the load request
  */
-void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType);
+void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType);
 
 /**
  * @brief Load the vertical offset for a given species and a client type.
@@ -871,7 +871,7 @@ void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientTy
  * @param species       Species to be loaded
  * @param clientType    Client-type of who made the load request
  */
-void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species);
+void PokemonSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species);
 
 /**
  * @brief Load the shadow's horizontal offset for a given species and a client type.
@@ -881,7 +881,7 @@ void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species);
  * @param species               Species to be loaded
  * @param clientType            Client-type of who made the load request
  */
-void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species);
+void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species);
 
 /**
  * @brief Load the shadow size for a given species and a client type.
@@ -891,7 +891,7 @@ void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species);
  * @param species           Species to be loaded
  * @param clientType        Client-type of who made the load request
  */
-void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species);
+void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species);
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID);
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);

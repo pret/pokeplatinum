@@ -22,11 +22,11 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/seal_case.h"
+#include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02078B40.h"
 
@@ -5135,61 +5135,61 @@ static inline int Pokemon_Face(int clientType)
     return (clientType & 1) ? 0 : 1;
 }
 
-void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
+void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData data;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
-    MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
+    SpeciesSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
+    MI_CpuCopy8(data.faceAnims[face].frames, frames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 
-    ArchivedPokeSpriteData spriteData;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &spriteData);
+    SpeciesSpriteData spriteData;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &spriteData);
 
     PokeAnimationSettings settings;
-    settings.animation = spriteData.faces[faceType].animation;
-    settings.startDelay = spriteData.faces[faceType].startDelay;
+    settings.animation = spriteData.faceAnims[faceType].animation;
+    settings.startDelay = spriteData.faceAnims[faceType].startDelay;
     settings.reverse = reverse;
 
     PokeAnimation_Init(animationSys, sprite, &settings, frame);
 }
 
-void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
+void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData data;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    SpeciesSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
 
-    *cryDelay = data.faces[face].cryDelay;
+    *cryDelay = data.faceAnims[face].cryDelay;
 }
 
-void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
+void PokemonSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *yOffset = data.yOffset;
 }
 
-void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
+void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *xOffsetShadow = data.xOffsetShadow;
 }
 
-void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
+void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *shadowSize = data.shadowSize;
 }
 
