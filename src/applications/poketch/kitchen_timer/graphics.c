@@ -14,6 +14,18 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#define ANIM_HAND_RIGHT_UP     0
+#define ANIM_HAND_RIGHT_DOWN   1
+#define ANIM_HAND_LEFT_UP      2
+#define ANIM_HAND_LEFT_DOWN    3
+#define ANIM_ARROW_BUTTON      4
+#define ANIM_START_BUTTON_UP   5
+#define ANIM_START_BUTTON_DOWN 6
+#define ANIM_STOP_BUTTON_UP    7
+#define ANIM_STOP_BUTTON_DOWN  8
+#define ANIM_RESET_BUTTON_UP   9
+#define ANIM_RESET_BUTTON_DOWN 10
+
 static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDisplay *timerData);
 static void UnloadSprites(KitchenTimerGraphics *graphics);
 
@@ -66,7 +78,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
     static const PoketchAnimation_AnimationData animData[] = {
         [SPRITE_HAND_LEFT] = {
             .translation = { FX32_CONST(48), FX32_CONST(56) },
-            .animIdx = 2,
+            .animIdx = ANIM_HAND_LEFT_UP,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 1,
@@ -74,7 +86,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_HAND_RIGHT] = {
             .translation = { FX32_CONST(176), FX32_CONST(56) },
-            .animIdx = 0,
+            .animIdx = ANIM_HAND_RIGHT_UP,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 1,
@@ -82,7 +94,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_START_BUTTON] = {
             .translation = { FX32_CONST(48), FX32_CONST(160) },
-            .animIdx = 5,
+            .animIdx = ANIM_START_BUTTON_UP,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -90,7 +102,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_STOP_BUTTON] = {
             .translation = { FX32_CONST(112), FX32_CONST(160) },
-            .animIdx = 7,
+            .animIdx = ANIM_STOP_BUTTON_UP,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -98,7 +110,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_RESET_BUTTON] = {
             .translation = { FX32_CONST(176), FX32_CONST(160) },
-            .animIdx = 9,
+            .animIdx = ANIM_RESET_BUTTON_UP,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -106,7 +118,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_MINUTES_TENS_UP] = {
             .translation = { FX32_CONST(80), FX32_CONST(88) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -114,7 +126,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_MINUTES_ONES_UP] = {
             .translation = { FX32_CONST(96), FX32_CONST(88) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -122,7 +134,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_SECONDS_TENS_UP] = {
             .translation = { FX32_CONST(128), FX32_CONST(88) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -130,7 +142,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_SECONDS_ONES_UP] = {
             .translation = { FX32_CONST(144), FX32_CONST(88) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 2,
             .priority = 0,
@@ -138,7 +150,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_MINUTES_TENS_DOWN] = {
             .translation = { FX32_CONST(80), FX32_CONST(136) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_V,
             .oamPriority = 2,
             .priority = 0,
@@ -146,7 +158,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_MINUTES_ONES_DOWN] = {
             .translation = { FX32_CONST(96), FX32_CONST(136) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_V,
             .oamPriority = 2,
             .priority = 0,
@@ -154,7 +166,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_SECONDS_TENS_DOWN] = {
             .translation = { FX32_CONST(128), FX32_CONST(136) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_V,
             .oamPriority = 2,
             .priority = 0,
@@ -162,7 +174,7 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
         [SPRITE_SECONDS_ONES_DOWN] = {
             .translation = { FX32_CONST(144), FX32_CONST(136) },
-            .animIdx = 4,
+            .animIdx = ANIM_ARROW_BUTTON,
             .flip = NNS_G2D_RENDERERFLIP_V,
             .oamPriority = 2,
             .priority = 0,
@@ -302,16 +314,16 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
         PoketchKitchenTimerGraphics_StartTask(graphics, KITCHEN_TIMER_GRAPHICS_BEAT_HANDS);
         break;
     case 1:
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 3);
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 1);
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_DOWN);
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_DOWN);
         break;
     case 3:
         if (graphics->timerData->beatingHandPosition) {
-            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 2);
-            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 1);
+            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_UP);
+            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_DOWN);
         } else {
-            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 3);
-            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 0);
+            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_DOWN);
+            PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_UP);
         }
 
         break;
@@ -343,8 +355,8 @@ static void Task_ResetTimer(SysTask *task, void *taskMan)
     const KitchenTimerDisplay *timerData = PoketchTask_GetConstTaskData(taskMan);
 
     HideTimeAdjustmentButtons(graphics, FALSE);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 2);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 0);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_UP);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_UP);
     EndTask(taskMan);
 }
 
@@ -354,8 +366,8 @@ static void Task_StartTimer(SysTask *task, void *taskMan)
     const KitchenTimerDisplay *timerData = PoketchTask_GetConstTaskData(taskMan);
 
     HideTimeAdjustmentButtons(graphics, TRUE);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 3);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 1);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_DOWN);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_DOWN);
     EndTask(taskMan);
 }
 
@@ -384,8 +396,8 @@ static void Task_BeatSnorlaxHands(SysTask *task, void *taskMan)
 
     switch (PoketchTask_GetState(taskMan)) {
     case 0:
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 2);
-        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 0);
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_UP);
+        PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_UP);
         graphics->beatingHandTimer = 0;
         graphics->stopBeatingHands = FALSE;
         PoketchTask_IncrementState(taskMan);
@@ -399,11 +411,11 @@ static void Task_BeatSnorlaxHands(SysTask *task, void *taskMan)
             graphics->beatingHandPositions ^= 1;
 
             if (graphics->beatingHandPositions) {
-                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 2);
-                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 1);
+                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_UP);
+                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_DOWN);
             } else {
-                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], 3);
-                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], 0);
+                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_LEFT], ANIM_HAND_LEFT_DOWN);
+                PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_UP);
             }
 
             PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI11);
@@ -433,9 +445,9 @@ static void Task_StopBeatingHands(SysTask *task, void *taskMan)
 
 static void UpdateStateButtonSprites(KitchenTimerGraphics *graphics, const KitchenTimerDisplay *timerData)
 {
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_START_BUTTON], timerData->buttonPressed[0] ? 6 : 5);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_STOP_BUTTON], timerData->buttonPressed[1] ? 8 : 7);
-    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_RESET_BUTTON], timerData->buttonPressed[2] ? 10 : 9);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_START_BUTTON], timerData->buttonPressed[0] ? ANIM_START_BUTTON_DOWN : ANIM_START_BUTTON_UP);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_STOP_BUTTON], timerData->buttonPressed[1] ? ANIM_STOP_BUTTON_DOWN : ANIM_STOP_BUTTON_UP);
+    PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_RESET_BUTTON], timerData->buttonPressed[2] ? ANIM_RESET_BUTTON_DOWN : ANIM_RESET_BUTTON_UP);
 }
 
 static void UpdateDigitSprites(KitchenTimerGraphics *graphics, const KitchenTimerDisplay *timerData)

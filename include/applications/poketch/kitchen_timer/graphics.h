@@ -8,6 +8,8 @@
 
 #define KITCHEN_TIMER_TASK_SLOTS 8
 
+#define NUM_STATE_BUTTONS 3
+
 #define NUM_SPRITES               17
 #define SPRITE_HAND_LEFT          0
 #define SPRITE_HAND_RIGHT         1
@@ -32,7 +34,7 @@ typedef struct KitchenTimerDisplay {
     s8 minutesOnesDigit;
     s8 secondsTensDigit;
     s8 secondsOnesDigit;
-    u8 buttonPressed[3];
+    u8 buttonPressed[NUM_STATE_BUTTONS];
     BOOL editingActive;
     u32 handPositions;
     u32 beatingHandPosition;

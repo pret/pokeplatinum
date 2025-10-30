@@ -29,7 +29,7 @@
 
 typedef struct KitchenTimerData {
     KitchenTimerDisplay display;
-    BOOL buttonUnpressed[3];
+    BOOL buttonUnpressed[NUM_STATE_BUTTONS];
     u64 startTimestamp;
     u64 pauseTimestamp;
     u64 elapsedTime;
@@ -124,7 +124,7 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
 
 static void ResetButtonPositions(PoketchKitchenTimer *appData)
 {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < NUM_STATE_BUTTONS; i++) {
         appData->timer.buttonUnpressed[i] = TRUE;
         appData->timer.display.buttonPressed[i] = BUTTON_UP;
     }
@@ -679,12 +679,10 @@ static void ResetTimer(PoketchKitchenTimer *appData)
 
 static void UpdateDisplayDigits(PoketchKitchenTimer *appData, u64 totalSeconds)
 {
-    u32 minutes, remainingSeconds;
-
     CP_SetDiv64_32(totalSeconds, 60);
 
-    minutes = CP_GetDivResult64();
-    remainingSeconds = CP_GetDivRemainder64();
+    u32 minutes = CP_GetDivResult64();
+    u32 remainingSeconds = CP_GetDivRemainder64();
 
     CP_SetDiv32_32(minutes, 10);
 
