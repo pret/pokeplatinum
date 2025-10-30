@@ -1,3 +1,4 @@
+subdir('common_anims')
 subdir('effects')
 subdir('moves')
 subdir('subscripts')

@@ -15,6 +15,7 @@
 #include "constants/species.h"
 #include "constants/string.h"
 #include "generated/accessories.h"
+#include "generated/comm_club_ret_codes.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/movement_actions.h"
@@ -40,7 +41,6 @@
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -51,7 +51,8 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "boat_cutscene/boat_cutscene.h"
+#include "applications/town_map/main.h"
+#include "cutscenes/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
@@ -113,7 +114,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "great_marsh_lookout.h"
-#include "hall_of_fame.h"
+#include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "inlines.h"
 #include "item_use_pokemon.h"
@@ -211,7 +212,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
-#include "unk_0206B70C.h"
 #include "unk_0206C660.h"
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
@@ -291,7 +291,7 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx);
 static BOOL ScrCmd_1FE(ScriptContext *ctx);
-static BOOL ScrCmd_1FF(ScriptContext *ctx);
+static BOOL ScrCmd_PrintBattleFrontierBanlist(ScriptContext *ctx);
 static BOOL ScrCmd_26D(ScriptContext *ctx);
 static BOOL ScrCmd_Message(ScriptContext *ctx);
 static BOOL ScrCmd_MessageVar(ScriptContext *ctx);
@@ -371,7 +371,7 @@ static BOOL ScrCmd_1F8(ScriptContext *ctx);
 static BOOL ScrCmd_0A2(ScriptContext *ctx);
 static BOOL ScrCmd_0A3(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx);
-static BOOL ScrCmd_207(ScriptContext *ctx);
+static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
 static BOOL ScrCmd_209(ScriptContext *ctx);
@@ -386,7 +386,7 @@ static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_130(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
-static BOOL ScrCmd_0AA(ScriptContext *ctx);
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
@@ -427,9 +427,9 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx);
-static BOOL ScrCmd_0F2(ScriptContext *ctx);
+static BOOL ScrCmd_StartBattleClient(ScriptContext *ctx);
 static BOOL sub_02042F74(ScriptContext *ctx);
-static BOOL ScrCmd_0F3(ScriptContext *ctx);
+static BOOL ScrCmd_StartBattleServer(ScriptContext *ctx);
 static BOOL sub_0204300C(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0F4(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx);
@@ -462,7 +462,7 @@ static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
-static BOOL ScrCmd_136(ScriptContext *ctx);
+static BOOL ScrCmd_ClearReceivedTempDataAllPlayers(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_137(ScriptContext *ctx);
 static BOOL ScrCmd_138(ScriptContext *ctx);
 static BOOL ScrCmd_139(ScriptContext *ctx);
@@ -494,8 +494,8 @@ static BOOL ScrCmd_14C(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
 static BOOL ScrCmd_HealParty(ScriptContext *ctx);
 static BOOL ScrCmd_14F(ScriptContext *ctx);
-static BOOL ScrCmd_150(ScriptContext *ctx);
-static BOOL sub_02043C70(ScriptContext *ctx);
+static BOOL ScrCmd_EndCommunication(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx);
 static BOOL ScrCmd_151(ScriptContext *ctx);
 static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
@@ -939,7 +939,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A7,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
-    ScrCmd_0AA,
+    ScrCmd_OpenRegionMap,
     ScrCmd_OpenPokemonStorage,
     ScrCmd_0AC,
     ScrCmd_0AD,
@@ -1011,8 +1011,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartDummyTrainerBattle,
     ScrCmd_SetTargetTrainerDefeated,
     ScrCmd_GoToIfTargetTrainerDefeated,
-    ScrCmd_0F2,
-    ScrCmd_0F3,
+    ScrCmd_StartBattleClient,
+    ScrCmd_StartBattleServer,
     ScrCmd_Unused_0F4,
     ScrCmd_Unused_0F5,
     ScrCmd_StartLinkBattle,
@@ -1079,7 +1079,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_RegisterPoketchApp,
     ScrCmd_CheckPoketchAppRegistered,
     ScrCmd_135,
-    ScrCmd_136,
+    ScrCmd_ClearReceivedTempDataAllPlayers,
     ScrCmd_Unused_137,
     ScrCmd_138,
     ScrCmd_139,
@@ -1105,7 +1105,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPlayerGender,
     ScrCmd_HealParty,
     ScrCmd_14F,
-    ScrCmd_150,
+    ScrCmd_EndCommunication,
     ScrCmd_151,
     ScrCmd_152,
     ScrCmd_153,
@@ -1243,10 +1243,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1D7,
     ScrCmd_1D8,
     ScrCmd_1D9,
-    ScrCmd_1DA,
-    ScrCmd_1DB,
-    ScrCmd_1DC,
-    ScrCmd_1DD,
+    ScrCmd_SetBattleTowerNull,
+    ScrCmd_InitBattleTower,
+    ScrCmd_FreeBattleTower,
+    ScrCmd_CallBattleTowerFunction,
     ScrCmd_1DE,
     ScrCmd_1DF,
     ScrCmd_1E0,
@@ -1280,7 +1280,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_1FC,
     ScrCmd_Unused_1FD,
     ScrCmd_1FE,
-    ScrCmd_1FF,
+    ScrCmd_PrintBattleFrontierBanlist,
     ScrCmd_GetPreviousMapID,
     ScrCmd_GetCurrentMapID,
     ScrCmd_StartEndSafariGame,
@@ -1288,7 +1288,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_204,
     ScrCmd_205,
     ScrCmd_StartGreatMarshLookout,
-    ScrCmd_207,
+    ScrCmd_GetCurNetID,
     ScrCmd_DrawPokemonPreview,
     ScrCmd_209,
     ScrCmd_20A,
@@ -1585,7 +1585,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_32D,
     ScrCmd_32E,
     ScrCmd_CheckPartyHasHeldItem,
-    ScrCmd_330,
+    ScrCmd_LogLinkInfoInWiFiHistory,
     ScrCmd_331,
     ScrCmd_332,
     ScrCmd_333,
@@ -2094,13 +2094,13 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
 {
     u16 v3 = ScriptContext_ReadByte(ctx);
 
-    UnkStruct_0204AFC4 *v1 = ctx->fieldSystem->unk_AC;
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    if (v1 == NULL) {
+    if (battleTower == NULL) {
         return FALSE;
     }
 
-    u16 *v0 = v1->unk_78[v3].unk_00.unk_18;
+    u16 *v0 = battleTower->unk_78[v3].unk_00.unk_18;
 
     if (v0[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
@@ -2114,19 +2114,19 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1FF(ScriptContext *ctx)
+static BOOL ScrCmd_PrintBattleFrontierBanlist(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_ReadHalfWord(ctx);
-    u8 v4 = ScriptContext_ReadByte(ctx);
-    u8 v5 = 0;
+    u8 messageID = ScriptContext_ReadByte(ctx);
+    u16 numRequiredEligiblePokemon = ScriptContext_GetVar(ctx);
+    u16 unused3 = ScriptContext_ReadHalfWord(ctx);
+    u8 unused4 = ScriptContext_ReadByte(ctx);
+    u8 numBannedSpeciesSeen = 0;
 
-    StringTemplate *v6 = sub_0204AEE8(fieldSystem->saveData, v2, v3, v4, &v5);
+    StringTemplate *strTemplate = BattleFrontier_GetStringWithSeenBannedSpecies(fieldSystem->saveData, numRequiredEligiblePokemon, unused3, unused4, &numBannedSpeciesSeen);
 
-    ScriptMessage_ShowTemplate(ctx, v6, v1 + v5, TRUE);
-    StringTemplate_Free(v6);
+    ScriptMessage_ShowTemplate(ctx, strTemplate, messageID + numBannedSpeciesSeen, TRUE);
+    StringTemplate_Free(strTemplate);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
@@ -3837,11 +3837,11 @@ static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_207(ScriptContext *ctx)
+static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarID = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = CommSys_CurNetId();
+    *destVarID = CommSys_CurNetId();
     return TRUE;
 }
 
@@ -4072,14 +4072,14 @@ static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AA(ScriptContext *ctx)
+static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **townMapCtx = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203D8AC));
+    *townMapCtx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
-    sub_0206B70C(ctx->fieldSystem, *v1, 2);
-    sub_0203D884(ctx->fieldSystem, *v1);
+    TownMapContext_Init(ctx->fieldSystem, *townMapCtx, TOWN_MAP_MODE_WALL_MAP);
+    FieldSystem_OpenTownMap(ctx->fieldSystem, *townMapCtx);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;
@@ -4192,7 +4192,7 @@ static BOOL ScrCmd_0B1(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E244(ctx->fieldSystem);
+    *v0 = FieldTask_OpenPCHallOfFameScreen(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;
@@ -4651,16 +4651,16 @@ static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0F2(ScriptContext *ctx)
+static BOOL ScrCmd_StartBattleClient(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 commType = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    ov7_0224B414(fieldSystem, commType, v2, v3);
-    ctx->data[0] = v4;
+    CommClub_StartBattleClient(fieldSystem, commType, v2, v3);
+    ctx->data[0] = destVarID;
     ScriptContext_Pause(ctx, sub_02042F74);
 
     return TRUE;
@@ -4669,28 +4669,28 @@ static BOOL ScrCmd_0F2(ScriptContext *ctx)
 static BOOL sub_02042F74(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    u32 v0 = ov7_0224B460();
+    u32 retCode = CommClub_CheckWindowOpenClient();
 
-    if (v0 == 0) {
+    if (retCode == COMM_CLUB_RET_0) {
         return FALSE;
     }
 
-    *v2 = v0;
+    *destVar = retCode;
     return TRUE;
 }
 
-static BOOL ScrCmd_0F3(ScriptContext *ctx)
+static BOOL ScrCmd_StartBattleServer(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 commType = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    ov7_0224B47C(fieldSystem, commType, v2, v3);
-    ctx->data[0] = v4;
+    CommClub_StartBattleServer(fieldSystem, commType, v2, v3);
+    ctx->data[0] = destVarID;
     ScriptContext_Pause(ctx, sub_0204300C);
 
     return TRUE;
@@ -4699,15 +4699,15 @@ static BOOL ScrCmd_0F3(ScriptContext *ctx)
 static BOOL sub_0204300C(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    u32 v0 = CommClub_CheckWindowOpenClient();
+    u32 retCode = CommClub_CheckWindowOpenServer();
 
-    if (v0 == 0) {
+    if (retCode == COMM_CLUB_RET_0) {
         return FALSE;
     }
 
-    *v2 = v0;
+    *destVar = retCode;
     return TRUE;
 }
 
@@ -5018,11 +5018,11 @@ static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx)
 
 static BOOL ScrCmd_135(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 syncNo = ScriptContext_GetVar(ctx);
 
-    ctx->data[0] = v0;
+    ctx->data[0] = syncNo;
 
-    CommTiming_StartSync(v0);
+    CommTiming_StartSync(syncNo);
     ScriptContext_Pause(ctx, sub_02043678);
 
     return TRUE;
@@ -5033,7 +5033,7 @@ static BOOL sub_02043678(ScriptContext *ctx)
     int v0;
 
     if (CommSys_ConnectedCount() < 2) {
-        v0 = 1;
+        v0 = TRUE;
     } else {
         v0 = CommTiming_IsSyncState(ctx->data[0]);
     }
@@ -5041,9 +5041,9 @@ static BOOL sub_02043678(ScriptContext *ctx)
     return v0;
 }
 
-static BOOL ScrCmd_136(ScriptContext *ctx)
+static BOOL ScrCmd_ClearReceivedTempDataAllPlayers(ScriptContext *ctx)
 {
-    sub_020365F4();
+    CommTool_ClearReceivedTempDataAllPlayers();
     return FALSE;
 }
 
@@ -5367,14 +5367,14 @@ static BOOL ScrCmd_14F(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_150(ScriptContext *ctx)
+static BOOL ScrCmd_EndCommunication(ScriptContext *ctx)
 {
     FieldCommMan_EndBattle();
-    ScriptContext_Pause(ctx, sub_02043C70);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
 
-static BOOL sub_02043C70(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx)
 {
     if (CommMan_IsInitialized() != TRUE) {
         if (CommServerClient_IsInitialized() != TRUE) {
@@ -5388,7 +5388,7 @@ static BOOL sub_02043C70(ScriptContext *ctx)
 static BOOL ScrCmd_2BB(ScriptContext *ctx)
 {
     sub_020598A0();
-    ScriptContext_Pause(ctx, sub_02043C70);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
 
@@ -7429,7 +7429,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     *v0 = v2;
 
     if (v1 == 5 || v1 == 6) {
-        v2->unk_00 = ctx->fieldSystem->unk_AC;
+        v2->unk_00 = ctx->fieldSystem->battleTower;
     } else {
         v2->unk_00 = NULL;
     }

@@ -1398,7 +1398,7 @@ void WriteGbaPalette(char *path, struct Palette *palette)
     fclose(fp);
 }
 
-void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, bool inverted, bool convertTo4Bpp)
+void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp)
 {
     FILE *fp = fopen(path, "wb");
 
@@ -1508,8 +1508,9 @@ void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, in
             FATAL_ERROR("failed to alloc pcmp_data\n");
         }
         for (int i = 0; i < pcmpColorNum; ++i) {
-            pcmp_data[i * 2] = i & 0xFF;
-            pcmp_data[i * 2 + 1] = (i >> 8) & 0xFF;
+            int index = i + pcmpStartIndex;
+            pcmp_data[i * 2] = index & 0xFF;
+            pcmp_data[i * 2 + 1] = (index >> 8) & 0xFF;
         }
         fwrite(pcmp_data, 1, pcmpColorNum * 2, fp);
         free(pcmp_data);
@@ -1692,11 +1693,13 @@ void ReadNtrCell(char *path, struct JsonToCellOptions *options)
     }
 
     options->labelEnabled = false;
+    options->dontPadKbec = false;
 
     unsigned int blockSize;
     offset = FindNitroDataBlock(data, "KBEC", fileSize, &blockSize);
     if (offset != -1u)
     {
+        options->dontPadKbec = blockSize % 4 != 0;
         ReadNtrCell_CEBK(data, offset, blockSize, options);
     }
     else {
@@ -1741,8 +1744,11 @@ void WriteNtrCell(char *path, struct JsonToCellOptions *options)
         kbecSize += options->cells[idx / iterNum]->oamCount * 0x06;
     }
 
-    // KBEC size is padded to be 4-byte aligned
-    kbecSize += kbecSize % 4;
+    if (!options->dontPadKbec)
+    {
+        // KBEC size is padded to be 4-byte aligned
+        kbecSize = (kbecSize + 3) & ~3;
+    }
 
     unsigned int totalSize = (options->labelEnabled > 0 ? 0x34 : 0x20) + kbecSize;
 

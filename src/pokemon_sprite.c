@@ -591,9 +591,9 @@ void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy)
     }
 }
 
-void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames)
+void PokemonSprite_SetAnimFrames(PokemonSprite *monSprite, SpriteAnimFrame *animFrames)
 {
-    MI_CpuCopy8(animFrames, &monSprite->animFrames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
+    MI_CpuCopy8(animFrames, &monSprite->animFrames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
 }
 
 BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
@@ -602,7 +602,7 @@ BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
     return monSprite->animActive != FALSE;
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
+PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
     int i;
     for (i = 0; i < MAX_MON_SPRITES; i++) {
@@ -616,7 +616,7 @@ PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSprite
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
+PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
     GF_ASSERT(monSpriteMan->sprites[index].active == FALSE);
 
@@ -648,7 +648,7 @@ PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *mo
     monSpriteMan->sprites[index].shadow.isAffine = TRUE;
 
     if (animFrames != NULL) {
-        MI_CpuCopy8(animFrames, &monSpriteMan->sprites[index].animFrames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
+        MI_CpuCopy8(animFrames, &monSpriteMan->sprites[index].animFrames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
     }
 
     return &monSpriteMan->sprites[index];
@@ -1131,7 +1131,7 @@ void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height)
     monSprite->transforms.yOffset = ((MON_SPRITE_HEIGHT / 2) - height) - ((((MON_SPRITE_HEIGHT / 2) - height) * monSprite->transforms.scaleY) >> 8);
 }
 
-static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
+static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimFrame *animFrames)
 {
     if (*active) {
         if (*frameDelay == 0) {
@@ -1202,7 +1202,7 @@ static void PokemonSprite_TickAnim(PokemonSprite *monSprite)
     TickPokemonSpriteAnim(monSprite);
 }
 
-void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames)
+void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimFrame *animFrames)
 {
     anim->active = TRUE;
     anim->currAnimFrame = 0;

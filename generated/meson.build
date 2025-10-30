@@ -38,10 +38,13 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'battle_tower_functions': { 'type': 'enum', 'tag': 'BattleTowerFunction' },
+    'battle_tower_modes': { 'type': 'enum', 'tag': 'BattleTowerMode' },
     'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
@@ -96,6 +99,7 @@ metang_generators = {
     'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },
+    'town_map_description_flag_types': { 'type': 'enum', 'tag': 'TownMapDescriptionFlagType' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
@@ -149,6 +153,7 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
+moves_txt = files('moves.txt')
 npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')

@@ -1905,7 +1905,7 @@ static BOOL ov65_02237DF8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 {
     if (CommTiming_IsSyncState(13)) {
         ov65_02237498(param0, param1);
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(14);
 
         param0->unk_00.unk_05 = 15;
@@ -2375,7 +2375,7 @@ static BOOL ov65_022383D0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     if (ov65_02237A10(param0) == 1) {
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(14);
 
         ov65_022378C4(param0, param1, param2);

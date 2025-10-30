@@ -488,7 +488,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02266CCC(&v0->unk_3C, 0);
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
 
         ov66_0222E238(v2);
         ov70_02266B18(v0, param0, 13, 14);

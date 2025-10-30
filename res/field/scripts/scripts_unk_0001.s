@@ -90,7 +90,7 @@ _00AE:
     LockAll
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0AA
+    OpenRegionMap
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

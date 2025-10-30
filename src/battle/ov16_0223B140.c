@@ -176,7 +176,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         break;
     case 1:
         ov16_0223D10C(appMan, v0);
-        sub_02038F8C(v0->wiFiHistory);
+        WiFiHistory_FlagGeonetLinkInfo(v0->wiFiHistory);
 
         if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_020);

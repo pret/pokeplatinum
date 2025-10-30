@@ -324,7 +324,7 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
     switch (param0->unk_08) {
     case 0:
         if ((param0->unk_12 == 0) && (ov104_0223B5B0(param0->unk_09) == 1)) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(112);
         }
 
@@ -333,7 +333,7 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
     case 1:
         if ((param0->unk_12 == 0) && (ov104_0223B5B0(param0->unk_09) == 1)) {
             if (CommTiming_IsSyncState(112) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_12 = 1;
                 param0->unk_08++;
             }
@@ -639,13 +639,13 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 8:
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(104);
         param0->unk_08 = 9;
         break;
     case 9:
         if (CommTiming_IsSyncState(104) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTool_Init(98);
             param0->unk_18 = 0xff;
             return 1;
@@ -662,13 +662,13 @@ static BOOL ov106_0224230C(UnkStruct_ov106_02243118 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(104);
         param0->unk_08++;
         break;
     case 1:
         if (CommTiming_IsSyncState(104) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             return 1;
         }
         break;

@@ -47,6 +47,7 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
     }
 
     cJSON *labelBool = cJSON_GetObjectItemCaseSensitive(json, "labelEnabled");
+    cJSON *dontPadKbecBool = cJSON_GetObjectItemCaseSensitive(json, "dontPadKbec");
     cJSON *vramTransferBool = cJSON_GetObjectItemCaseSensitive(json, "vramTransferEnabled");
     cJSON *ucatBool = cJSON_GetObjectItemCaseSensitive(json, "ucatEnabled");
     cJSON *extended = cJSON_GetObjectItemCaseSensitive(json, "extended");
@@ -54,6 +55,7 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
     cJSON *mappingType = cJSON_GetObjectItemCaseSensitive(json, "mappingType");
 
     options->labelEnabled = GetBool(labelBool);
+    options->dontPadKbec = GetBool(dontPadKbecBool);
     options->vramTransferEnabled = GetBool(vramTransferBool);
     options->ucatEnabled = GetBool(ucatBool);
     options->extended = GetBool(extended);
@@ -244,6 +246,7 @@ char *GetNCERJson(struct JsonToCellOptions *options)
     cJSON *ncer = cJSON_CreateObject();
 
     cJSON_AddBoolToObject(ncer, "labelEnabled", options->labelEnabled);
+    cJSON_AddBoolToObject(ncer, "dontPadKbec", options->dontPadKbec);
     cJSON_AddBoolToObject(ncer, "extended", options->extended);
     cJSON_AddBoolToObject(ncer, "vramTransferEnabled", options->vramTransferEnabled);
     cJSON_AddBoolToObject(ncer, "ucatEnabled", options->ucatEnabled);

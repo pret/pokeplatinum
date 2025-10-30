@@ -9,15 +9,15 @@
 
 BattleTowerElevator_Init:
     CallIfNe VAR_UNK_0x40DB, 0, _008A
-    ScrCmd_1DD 43, 0, VAR_MAP_LOCAL_A
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
     Call _008E
-    CallIfEq VAR_MAP_LOCAL_A, 2, _009E
-    CallIfEq VAR_MAP_LOCAL_A, 3, _009E
-    CallIfEq VAR_MAP_LOCAL_A, 0, _008E
-    CallIfEq VAR_MAP_LOCAL_A, 1, _008E
-    CallIfEq VAR_MAP_LOCAL_A, 4, _0096
-    CallIfEq VAR_MAP_LOCAL_A, 5, _0096
-    CallIfEq VAR_MAP_LOCAL_A, 6, _0096
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, _009E
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_LINK_MULTI, _009E
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_SINGLE, _008E
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_DOUBLE, _008E
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_WIFI, _0096
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_5, _0096
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_6, _0096
     End
 
 _008A:
@@ -39,9 +39,9 @@ _009E:
 BattleTowerElevator_BattleRoomCheckWiFi:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1DD 43, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 4, BattleTowerElevator_WiFiBattleRoom
-    GoToIfEq VAR_RESULT, 5, BattleTowerElevator_WiFiBattleRoom
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
     ScrCmd_1F8
     ScrCmd_2C4 5
     ReturnToField
