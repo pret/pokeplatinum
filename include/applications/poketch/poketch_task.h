@@ -43,6 +43,6 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
 void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset);
 void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset);
 void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge);
-void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer);
+void Poketch_ShowUnusedDummyText(BgConfig *bgConfig, u32 number, u32 bgLayer);
 
 #endif // POKEPLATINUM_POKETCH_TASK_H
