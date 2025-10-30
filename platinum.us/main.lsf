@@ -1019,11 +1019,11 @@ Overlay poketch_alarm_clock
 	Object main.nef.p/src_applications_poketch_alarm_clock_graphics.c.o
 }
 
-Overlay overlay46
+Overlay poketch_kitchen_timer
 {
 	After overlay25
-	Object main.nef.p/src_overlay046_ov46_022561C0.c.o
-	Object main.nef.p/src_overlay046_ov46_02256BCC.c.o
+	Object main.nef.p/src_applications_poketch_kitchen_timer_main.c.o
+	Object main.nef.p/src_applications_poketch_kitchen_timer_graphics.c.o
 }
 
 Overlay poketch_marking_map
