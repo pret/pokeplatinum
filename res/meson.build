@@ -111,7 +111,6 @@ script_bin_gen = generator(make_script_bin_sh,
     depfile: '@BASENAME@.d',
 )
 
-subdir('graphics')
 subdir('battle')
 subdir('field')
 subdir('fonts')
