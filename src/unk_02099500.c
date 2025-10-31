@@ -62,7 +62,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundTraps_LoadLinkPlacedTraps, CommPacketSizeOf_AllTrapsPlacedPlayer, NULL },
     { UndergroundTraps_ReceiveLoadTrapsResult, CommPacketSizeOf_LoadTrapsResult, NULL },
     { UndergroundTraps_HandleTriggeredTrap, CommPacketSizeOf_TriggeredTrap2, NULL },
-    { UndergroundTraps_CallSecondTrapEffectServerFn, CommPacketSizeOf_NetId, NULL },
+    { UndergroundTraps_CallSecondTrapEffectServerFunc, CommPacketSizeOf_NetId, NULL },
     { UndergroundTraps_StartLinkSlideAnimation_Unused, CommPacketSizeOf_3Bytes_Unused, NULL }, // corresponding cmd never sent
     { UndergroundTraps_EscapeHole, CommPacketSizeOf_NetId, NULL },
     { UndergroundTraps_EscapeTrapServer, sub_0203294C, NULL },

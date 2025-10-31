@@ -83,10 +83,10 @@ enum TrapSpriteResourceType {
     RESOURCE_TYPE_COUNT,
 };
 
-typedef void (*UnusedFn)(BgConfig *bgConfig);
-typedef void (*EndTrapEffectClientFn)(int netID, BOOL allowToolStepBack);
-typedef void (*TrapEffectClientFn)(int netID, BOOL isTool, int toolInitialDir);
-typedef void (*TrapServerFn)(int netID);
+typedef void (*UnusedFunc)(BgConfig *bgConfig);
+typedef void (*EndTrapEffectClientFunc)(int netID, BOOL allowToolStepBack);
+typedef void (*TrapEffectClientFunc)(int netID, BOOL isTool, int toolInitialDir);
+typedef void (*TrapServerFunc)(int netID);
 
 typedef struct BuriedTrap {
     u16 x;
@@ -152,7 +152,7 @@ typedef struct TrapsEnv {
     SysTask *baseRadarTask;
     TrapRadarContext *trapRadarContext;
     void *currentTrapContext;
-    UnusedFn unused4; // never anything other than null
+    UnusedFunc unused4; // never anything other than null
     BuriedTrap playerPlacedTraps[MAX_PLACED_TRAPS];
     OverworldAnimManager *unk_368[MAX_PLACED_TRAPS];
     BuriedTrap buriedTraps[MAX_BURIED_TRAPS];
@@ -576,7 +576,7 @@ static void UndergroundTraps_StopAllLinkSpin(void);
 static TrapsEnv *trapsEnv = NULL;
 static s8 sMicSample ATTRIBUTE_ALIGN(32);
 
-static const EndTrapEffectClientFn sEndTrapEffectClientFns[] = {
+static const EndTrapEffectClientFunc sEndTrapEffectClientFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_EndMoveTrapEffectClient,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_EndMoveTrapEffectClient,
@@ -614,7 +614,7 @@ static const EndTrapEffectClientFn sEndTrapEffectClientFns[] = {
     NULL
 };
 
-static const EndTrapEffectClientFn sForceEndTrapEffectClientFns[] = {
+static const EndTrapEffectClientFunc sForceEndTrapEffectClientFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_ForceEndMoveTrapEffectClient,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_ForceEndMoveTrapEffectClient,
@@ -652,7 +652,7 @@ static const EndTrapEffectClientFn sForceEndTrapEffectClientFns[] = {
     NULL
 };
 
-static const TrapEffectClientFn sTrapEffectClientFns[] = {
+static const TrapEffectClientFunc sTrapEffectClientFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_MoveTrapUpEffectClient,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_MoveTrapRightEffectClient,
@@ -690,7 +690,7 @@ static const TrapEffectClientFn sTrapEffectClientFns[] = {
     NULL
 };
 
-static const TrapServerFn sTrapEffectServerFns[] = {
+static const TrapServerFunc sTrapEffectServerFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_MoveTrapEffectServer,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_MoveTrapEffectServer,
@@ -728,7 +728,7 @@ static const TrapServerFn sTrapEffectServerFns[] = {
     NULL
 };
 
-static const TrapServerFn sTrapEffectServerSecondFns[] = {
+static const TrapServerFunc sTrapEffectServerSecondFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_MoveTrapUpEffectServer,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_MoveTrapRightEffectServer,
@@ -766,7 +766,7 @@ static const TrapServerFn sTrapEffectServerSecondFns[] = {
     NULL
 };
 
-static const TrapServerFn sEndTrapEffectServerFns[] = {
+static const TrapServerFunc sEndTrapEffectServerFuncs[] = {
     [TRAP_NONE] = NULL,
     [TRAP_MOVE_UP] = UndergroundTraps_EndMoveTrapEffectServer,
     [TRAP_MOVE_RIGHT] = UndergroundTraps_EndMoveTrapEffectServer,
@@ -1728,18 +1728,18 @@ void UndergroundTraps_HandleTriggeredTrap(int unused0, int unused1, void *data, 
     }
 }
 
-void UndergroundTraps_CallSecondTrapEffectServerFn(int netID, int unused1, void *data, void *unused3)
+void UndergroundTraps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3)
 {
     u8 *trapID = data;
-    TrapServerFn trapEffectFn = sTrapEffectServerSecondFns[*trapID];
+    TrapServerFunc trapEffectFunc = sTrapEffectServerSecondFuncs[*trapID];
 
     if (*trapID != trapsEnv->triggeredTrapIDs[netID]) {
         sub_020389C4(1);
         return;
     }
 
-    if (trapEffectFn) {
-        trapEffectFn(netID);
+    if (trapEffectFunc) {
+        trapEffectFunc(netID);
     }
 }
 
@@ -1866,29 +1866,29 @@ BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest)
 
 static void UndergroundTraps_StartTrapEffectServer(int netID, int trapID)
 {
-    TrapServerFn trapEffectFn = sTrapEffectServerFns[trapID];
+    TrapServerFunc trapEffectFunc = sTrapEffectServerFuncs[trapID];
 
-    if (trapEffectFn) {
-        trapEffectFn(netID);
+    if (trapEffectFunc) {
+        trapEffectFunc(netID);
     }
 }
 
 static void UndergroundTraps_EndTrapEffectServer(int netID, int trapID)
 {
-    TrapServerFn endTrapEffectFn = sEndTrapEffectServerFns[trapID];
+    TrapServerFunc endTrapEffectFunc = sEndTrapEffectServerFuncs[trapID];
 
-    if (endTrapEffectFn) {
-        endTrapEffectFn(netID);
+    if (endTrapEffectFunc) {
+        endTrapEffectFunc(netID);
     }
 }
 
 void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolStepBack)
 {
     if (trapsEnv->triggeredTrapIDClient != TRAP_NONE) {
-        EndTrapEffectClientFn endTrapEffectFn = sForceEndTrapEffectClientFns[trapsEnv->triggeredTrapIDClient];
+        EndTrapEffectClientFunc endTrapEffectFunc = sForceEndTrapEffectClientFuncs[trapsEnv->triggeredTrapIDClient];
 
-        if (endTrapEffectFn) {
-            endTrapEffectFn(netID, allowToolStepBack);
+        if (endTrapEffectFunc) {
+            endTrapEffectFunc(netID, allowToolStepBack);
         }
 
         if (CommSys_CurNetId() != 0) {
@@ -1912,10 +1912,10 @@ static void UndergroundTraps_StartTrapEffectClient(int netID, int trapID, BOOL i
     UndergroundTraps_ForceEndCurrentTrapEffectClient(netID, TRUE);
 
     trapsEnv->triggeredTrapIDClient = trapID;
-    TrapEffectClientFn trapEffectFn = sTrapEffectClientFns[trapID];
+    TrapEffectClientFunc trapEffectFunc = sTrapEffectClientFuncs[trapID];
 
-    if (trapEffectFn) {
-        trapEffectFn(netID, isTool, toolInitialDir);
+    if (trapEffectFunc) {
+        trapEffectFunc(netID, isTool, toolInitialDir);
     }
 }
 
@@ -2588,10 +2588,10 @@ void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, v
     UndergroundTraps_StopLinkSpin(escapedTrap->netID);
 
     if (escapedTrap->netID == CommSys_CurNetId()) {
-        EndTrapEffectClientFn endTrapEffectFn = sEndTrapEffectClientFns[trapID];
+        EndTrapEffectClientFunc endTrapEffectFunc = sEndTrapEffectClientFuncs[trapID];
 
-        if (endTrapEffectFn) {
-            endTrapEffectFn(escapedTrap->netID, escapedTrap->allowToolStepBack);
+        if (endTrapEffectFunc) {
+            endTrapEffectFunc(escapedTrap->netID, escapedTrap->allowToolStepBack);
         }
 
         trapsEnv->triggeredTrapIDClient = TRAP_NONE;
@@ -2658,10 +2658,10 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
 
     if (helpdata->helpeeNetID == CommSys_CurNetId() && trapsEnv->triggeredTrapIDClient != TRAP_NONE) {
         int trapID = trapsEnv->triggeredTrapIDClient;
-        EndTrapEffectClientFn endTrapEffectFn = sForceEndTrapEffectClientFns[trapID];
+        EndTrapEffectClientFunc endTrapEffectFunc = sForceEndTrapEffectClientFuncs[trapID];
 
-        if (endTrapEffectFn) {
-            endTrapEffectFn(helpdata->helpeeNetID, FALSE);
+        if (endTrapEffectFunc) {
+            endTrapEffectFunc(helpdata->helpeeNetID, FALSE);
         }
 
         trapsEnv->unused4 = NULL;

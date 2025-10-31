@@ -42,7 +42,7 @@ void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, int 
 BOOL UndergroundTraps_CheckPlayerSteppedOnTrap(int netID);
 BOOL UndergroundTraps_HasPlayerTriggeredTool(int netID);
 void UndergroundTraps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unused3);
-void UndergroundTraps_CallSecondTrapEffectServerFn(int netID, int unused1, void *data, void *unused3);
+void UndergroundTraps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3);
 void UndergroundTraps_StartLinkSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3);
 void UndergroundTraps_SendTriggeredTrapBits(void);
 void UndergroundTraps_ProcessTriggeredTrapBits(int unused0, int unused1, void *data, void *unused3);
