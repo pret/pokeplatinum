@@ -106,7 +106,7 @@ static void FreeTouchScreen(FormSubPageData *formSubPageData);
 static void ButtonTouchActions(u32 button, enum TouchScreenButtonState touchScreenButtonState, void *data);
 static void UpdateButtonText(Sprite *sprite, PokedexTextData *textData, int y, int textPaletteOffsetUnpressed, int textPaletteOffsetPressed);
 static void UpdateButtonDisplay(PokedexGraphicData **graphicData, FormSubGraphics *formSubGraphics, const FormSubPageData *formSubPageData, enum HeapID heapID);
-static void advanceMainScreen(const FormSubData *formSubData);
+static void AdvanceMainScreen(const FormSubData *formSubData);
 static void CheckButtonKeyHeld(FormSubPageData *formSubPageData, FormSubData *formSubData);
 static void CursorToButton(PokedexGraphicData **graphicdata, const FormSubData *formSubData);
 static void TransformCursor(PokedexGraphicData **graphicdata, int x, int y, int width, int height);
@@ -242,7 +242,7 @@ static BOOL FormSubDataUpdate(PokedexDataManager *dataMan, void *data)
         RunButtonAction(formSubPageData, formSubData);
 
         if (formSubPageData->buttonPressed) {
-            advanceMainScreen(formSubData);
+            AdvanceMainScreen(formSubData);
             formSubPageData->buttonPressed = FALSE;
         }
     }
@@ -583,9 +583,7 @@ static void UpdateButtonGraphics(PokedexGraphicData **graphicData, Sprite *sprit
     ov21_021D144C(sprite, buttonState);
     UpdateButtonText(sprite, textData, y, textPaletteOffsetUnpressed, textPaletteOffsetPressed);
 
-    int frame = Sprite_GetAnimFrame(sprite);
-
-    switch (frame) {
+    switch (Sprite_GetAnimFrame(sprite)) {
     case 0:
     case 1:
         if (*backgroundState != 0) {
@@ -624,9 +622,8 @@ static void UpdateButtonGraphics(PokedexGraphicData **graphicData, Sprite *sprit
 static void UpdateButtonText(Sprite *sprite, PokedexTextData *textData, int y, int textPaletteOffsetUnpressed, int textPaletteOffsetPressed)
 {
     PokedexMain_SetButtonY(sprite, textData, y);
-    int frame = Sprite_GetAnimFrame(sprite);
 
-    if (frame < 2) {
+    if ((int)Sprite_GetAnimFrame(sprite) < 2) {
         sub_02012AC0(textData->fontOAM, textPaletteOffsetUnpressed);
     } else {
         sub_02012AC0(textData->fontOAM, textPaletteOffsetPressed);
@@ -657,7 +654,7 @@ static void TransformCursor(PokedexGraphicData **graphicdata, int x, int y, int 
     PokedexGraphics_TransformCursor(*graphicdata, x, y, width, height);
 }
 
-static void advanceMainScreen(const FormSubData *formSubData)
+static void AdvanceMainScreen(const FormSubData *formSubData)
 {
     ov21_021DF7A0(formSubData->mainScreen, 1);
 }
