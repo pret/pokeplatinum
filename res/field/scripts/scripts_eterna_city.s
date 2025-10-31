@@ -191,7 +191,7 @@ _0286:
     Message 7
     SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 8
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

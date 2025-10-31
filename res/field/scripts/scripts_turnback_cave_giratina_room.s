@@ -83,7 +83,7 @@ _0100:
     GoTo _00CB
 
 _010C:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

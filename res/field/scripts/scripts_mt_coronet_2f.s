@@ -52,7 +52,7 @@ _0036:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F2
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Call _00E5
     CallCommonScript 0x808
     ReleaseAll
@@ -154,7 +154,7 @@ _01BE:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01F0
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Call _00E5
     ReleaseAll
     End

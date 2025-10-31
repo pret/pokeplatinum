@@ -1,185 +1,193 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_5f.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry _002D
-    ScriptEntry _0040
-    ScriptEntry _009C
-    ScriptEntry _00AF
-    ScriptEntry _00C0
+#define LOCALID_DRINK_CHOICE      VAR_0x8000
+#define LOCALID_DRINK_ID          VAR_0x8001
+#define LOCALID_ITEM_ID           VAR_0x8004
+#define LOCALID_COUNT             VAR_0x8005
+#define LOCALID_DRINK_CHOICE_COPY VAR_0x8008
+
+    ScriptEntry VeilstoneStore5F_BugCatcher
+    ScriptEntry VeilstoneStore5F_MiddleAgedWoman
+    ScriptEntry VeilstoneStore5F_Collector1
+    ScriptEntry VeilstoneStore5F_Collector2
+    ScriptEntry VeilstoneStore5F_Directory
+    ScriptEntry VeilstoneStore5F_VendingMachine
     ScriptEntryEnd
 
-_001A:
+VeilstoneStore5F_BugCatcher:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message VeilstoneStore5F_Text_GrabADrinkAndUnwind
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_002D:
+VeilstoneStore5F_MiddleAgedWoman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message VeilstoneStore5F_Text_TheyConsiderMeARegular
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0040:
+VeilstoneStore5F_Collector1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0105, _0087
-    Message 2
-    SetVar VAR_0x8004, ITEM_STICKY_BARB
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0092
-    CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0105
-    GoTo _0087
+    GoToIfSet FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB, VeilstoneStore5F_Collector1AfterItemGiven
+    Message VeilstoneStore5F_Text_AGiftOfThisStickyBarb
+    SetVar LOCALID_ITEM_ID, ITEM_STICKY_BARB
+    SetVar LOCALID_COUNT, 1
+    GoToIfCannotFitItem LOCALID_ITEM_ID, LOCALID_COUNT, VAR_RESULT, VeilstoneStore5F_Collector1BagIsFull
+    GiveItemQuantity
+    SetFlag FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB
+    GoTo VeilstoneStore5F_Collector1AfterItemGiven
     End
 
-_0087:
-    Message 3
+VeilstoneStore5F_Collector1AfterItemGiven:
+    Message VeilstoneStore5F_Text_SticksToTheFoeAndInflictsDamage
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0092:
-    CallCommonScript 0x7E1
+VeilstoneStore5F_Collector1BagIsFull:
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_009C:
+VeilstoneStore5F_Collector2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 4
+    Message VeilstoneStore5F_Text_TwoBuffGuysSideBySide
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00AF:
+VeilstoneStore5F_Directory:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 5
+    Message VeilstoneStore5F_Text_Directory
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00C0:
+VeilstoneStore5F_VendingMachine:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 6
+    Message VeilstoneStore5F_Text_WhichDrinkWouldYouLike
     ShowMoney 20, 2
-    GoTo _00D5
+    GoTo VeilstoneStore5F_VendingMachineMenu
 
-_00D5:
-    InitGlobalTextMenu 1, 1, 0, VAR_0x8000
-    AddMenuEntryImm 219, 0
-    AddMenuEntryImm 220, 1
-    AddMenuEntryImm 221, 2
-    AddMenuEntryImm 222, 3
+VeilstoneStore5F_VendingMachineMenu:
+    InitGlobalTextMenu 1, 1, 0, LOCALID_DRINK_CHOICE
+    AddMenuEntryImm MenuEntries_Text_FreshWater, 0
+    AddMenuEntryImm MenuEntries_Text_SodaPop, 1
+    AddMenuEntryImm MenuEntries_Text_Lemonade, 2
+    AddMenuEntryImm MenuEntries_Text_NoThanks, 3
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x8000
-    GoToIfEq VAR_0x8008, 0, _0125
-    GoToIfEq VAR_0x8008, 1, _0131
-    GoToIfEq VAR_0x8008, 2, _013D
-    Message 10
-    GoTo _028C
+    SetVar LOCALID_DRINK_CHOICE_COPY, LOCALID_DRINK_CHOICE
+    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 0, VeilstoneStore5F_VendingMachineChooseFreshWater
+    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 1, VeilstoneStore5F_VendingMachineChooseSodaPop
+    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 2, VeilstoneStore5F_VendingMachineChooseLemonade
+    Message VeilstoneStore5F_Text_DecidedNotToBuyADrink
+    GoTo VeilstoneStore5F_VendingMachineClose
 
-_0125:
-    SetVar VAR_0x8001, ITEM_FRESH_WATER
-    GoTo _0191
+VeilstoneStore5F_VendingMachineChooseFreshWater:
+    SetVar LOCALID_DRINK_ID, ITEM_FRESH_WATER
+    GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
-_0131:
-    SetVar VAR_0x8001, ITEM_SODA_POP
-    GoTo _0191
+VeilstoneStore5F_VendingMachineChooseSodaPop:
+    SetVar LOCALID_DRINK_ID, ITEM_SODA_POP
+    GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
-_013D:
-    SetVar VAR_0x8001, ITEM_LEMONADE
-    GoTo _0191
+VeilstoneStore5F_VendingMachineChooseLemonade:
+    SetVar LOCALID_DRINK_ID, ITEM_LEMONADE
+    GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
-_0149:
+VeilstoneStore5F_VendingMachineCheckFreshWaterMoney:
     CheckMoney VAR_RESULT, 200
     Return
 
-_0153:
+VeilstoneStore5F_VendingMachineCheckSodaPopMoney:
     CheckMoney VAR_RESULT, 300
     Return
 
-_015D:
+VeilstoneStore5F_VendingMachineCheckLemonadeMoney:
     CheckMoney VAR_RESULT, 350
     Return
 
-_0167:
+VeilstoneStore5F_VendingMachineBuyFreshWater:
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
 
-_0175:
+VeilstoneStore5F_VendingMachineBuySodaPop:
     AddToGameRecord RECORD_MONEY_SPENT, 300
     RemoveMoney 300
     Return
 
-_0183:
+VeilstoneStore5F_VendingMachineBuyLemonade:
     AddToGameRecord RECORD_MONEY_SPENT, 350
     RemoveMoney 350
     Return
 
-_0191:
-    CallIfEq VAR_0x8000, 0, _0149
-    CallIfEq VAR_0x8000, 1, _0153
-    CallIfEq VAR_0x8000, 2, _015D
-    GoToIfEq VAR_RESULT, 0, _0277
-    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
-    CallIfEq VAR_0x8000, 0, _0167
-    CallIfEq VAR_0x8000, 1, _0175
-    CallIfEq VAR_0x8000, 2, _0183
+VeilstoneStore5F_VendingMachineDispenseDrink:
+    CallIfEq LOCALID_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineCheckFreshWaterMoney
+    CallIfEq LOCALID_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineCheckSodaPopMoney
+    CallIfEq LOCALID_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineCheckLemonadeMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStore5F_VendingMachineNotEnoughMoney
+    GoToIfCannotFitItem LOCALID_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
+    CallIfEq LOCALID_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineBuyFreshWater
+    CallIfEq LOCALID_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineBuySodaPop
+    CallIfEq LOCALID_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineBuyLemonade
     UpdateMoneyDisplay
-    BufferItemName 0, VAR_0x8001
+    BufferItemName 0, LOCALID_DRINK_ID
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, VAR_0x8001
-    Message 7
-    SetVar VAR_0x8004, VAR_0x8001
-    SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    BufferItemName 0, LOCALID_DRINK_ID
+    Message VeilstoneStore5F_Text_ACanDroppedDown
+    SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
+    SetVar LOCALID_COUNT, 1
+    GiveItemQuantity
+    // 1 in 64 chance for a bonus can
     GetRandom VAR_RESULT, 64
-    GoToIfNe VAR_RESULT, 0, _026E
-    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
+    GoToIfNe VAR_RESULT, 0, VeilstoneStore5F_VendingMachineBuyAnotherDrink
+    GoToIfCannotFitItem LOCALID_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, VAR_0x8001
-    Message 8
-    SetVar VAR_0x8004, VAR_0x8001
-    SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
-    GoTo _026E
+    BufferItemName 0, LOCALID_DRINK_ID
+    Message VeilstoneStore5F_Text_ABonusCanDroppedDown
+    SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
+    SetVar LOCALID_COUNT, 1
+    GiveItemQuantity
+    GoTo VeilstoneStore5F_VendingMachineBuyAnotherDrink
 
-_026E:
-    Message 6
-    GoTo _00D5
+VeilstoneStore5F_VendingMachineBuyAnotherDrink:
+    Message VeilstoneStore5F_Text_WhichDrinkWouldYouLike
+    GoTo VeilstoneStore5F_VendingMachineMenu
 
-_0277:
-    Message 9
-    GoTo _028C
+VeilstoneStore5F_VendingMachineNotEnoughMoney:
+    Message VeilstoneStore5F_Text_NotEnoughMoney
+    GoTo VeilstoneStore5F_VendingMachineClose
 
-_0280:
-    CallCommonScript 0x7E1
+VeilstoneStore5F_VendingMachineBagIsFull:
+    MessageBagIsFull
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_028C:
+VeilstoneStore5F_VendingMachineClose:
     WaitABXPadPress
     CloseMessage
     HideMoney

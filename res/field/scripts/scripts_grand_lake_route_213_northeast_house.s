@@ -14,7 +14,7 @@ _000A:
     GoToIfNe VAR_RESULT, 0, _003A
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_COINTOSS
-    CallCommonScript 0x7D9
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

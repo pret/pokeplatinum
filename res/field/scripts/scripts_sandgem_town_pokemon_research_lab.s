@@ -595,7 +595,7 @@ _0677:
     Message 43
     SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 44
     WaitABXPadPress
     CloseMessage

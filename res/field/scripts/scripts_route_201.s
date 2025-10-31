@@ -1196,7 +1196,7 @@ _0E8C:
     End
 
 _0E97:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

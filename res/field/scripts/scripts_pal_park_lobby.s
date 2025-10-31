@@ -401,7 +401,7 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
     SetVar VAR_0x8004, POKETCH_APPID_TRAINERCOUNTER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     Message PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime
     CloseMessage
     WaitTime 15, VAR_RESULT
@@ -458,7 +458,7 @@ PalParkLobby_PoketchAppLady:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat
     SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 1
     CloseMessage
@@ -471,7 +471,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhAKecleonHowColorful
     SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 2
     CloseMessage
@@ -579,7 +579,7 @@ PalParkLobby_GBASlotGiftLady_Emerald:
     End
 
 PalParkLobby_GBASlotGiftLady_GiveAccessory:
-    CallCommonScript 0x7DF
+    GiveAccessoryWaitForConfirm
     SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll
@@ -656,7 +656,7 @@ PalParkLobby_Receptionist_GivePrize:
     Message PalParkLobby_Text_ItsTimeForYourPrize
     SetVar VAR_0x8004, VAR_0x8006
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Return
 
 PalParkLobby_SetPrize_CheriBerry:

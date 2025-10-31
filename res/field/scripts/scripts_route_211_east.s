@@ -21,7 +21,7 @@ _0012:
     SetVar VAR_0x8004, ITEM_TM77
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0073
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x00C6
     GoTo _0066
 
@@ -34,7 +34,7 @@ _0066:
     End
 
 _0073:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
