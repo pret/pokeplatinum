@@ -2,7 +2,7 @@
   "key": 39276,
   "messages": [
     {
-      "id": "pl_msg_00000178_00000",
+      "id": "SnowpointGym_Text_CandiceIntro",
       "en_US": [
         "You want to challenge Candice?\r",
         "Sure thing!\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00001",
+      "id": "SnowpointGym_Text_BeatCandice",
       "en_US": [
         "Wow! You’re great!\n",
         "You’ve earned my respect!\r",
@@ -27,14 +27,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00002",
+      "id": "SnowpointGym_Text_CandiceReceiveIciclebadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the Icicle Badge from Candice."
       ]
     },
     {
-      "id": "pl_msg_00000178_00003",
+      "id": "SnowpointGym_Text_CandiceExplainIcicleBadge",
       "en_US": [
         "That Icicle Badge I just gave you?\r",
         "Because you have it, you can use the\n",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00004",
+      "id": "SnowpointGym_Text_CandiceExplainTM72",
       "en_US": [
         "{STRVAR_1 8, 0, 0} contains the move\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00005",
+      "id": "SnowpointGym_Text_CandiceAfterBadge",
       "en_US": [
         "Do you think I should try to act\n",
         "more like an Ice-type Gym Leader?\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00006",
+      "id": "SnowpointGym_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00007",
+      "id": "SnowpointGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00008",
+      "id": "SnowpointGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Snowpoint City Pokémon Gym\n",
         "Leader: Candice\r",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000178_00009",
+      "id": "SnowpointGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Snowpoint City Pokémon Gym\n",
         "Leader: Candice\r",

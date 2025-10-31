@@ -2,7 +2,7 @@
   "key": 39291,
   "messages": [
     {
-      "id": "pl_msg_00000109_00000",
+      "id": "HearthomeGym_Text_FantinaIntro",
       "en_US": [
         "{SIZE 200}Ohohoho!!{SIZE 100}\r",
         "Finally, you have arrived!\r",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000109_00001",
+      "id": "HearthomeGym_Text_BeatFantina",
       "en_US": [
         "I am dumbfounded!\r",
         "So very, very strong!\n",
@@ -31,14 +31,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000109_00002",
+      "id": "HearthomeGym_Text_FantinaReceiveRelicBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the Relic Badge from Fantina!"
       ]
     },
     {
-      "id": "pl_msg_00000109_00003",
+      "id": "HearthomeGym_Text_FantinaExplainRelicBadge",
       "en_US": [
         "That Badge will let you use the\n",
         "hidden move Defog outside of battle.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000109_00004",
+      "id": "HearthomeGym_FantinaExplainTM65",
       "en_US": [
         "That {STRVAR_1 8, 0, 0}...\n",
         "It contains {STRVAR_1 6, 1, 0}.\r",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000109_00005",
+      "id": "HearthomeGym_Text_FantinaAfterBadge",
       "en_US": [
         "Three Gym Badges...\r",
         "But you must not forget this.\n",

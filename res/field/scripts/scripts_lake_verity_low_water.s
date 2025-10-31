@@ -26,14 +26,14 @@ _0046:
     End
 
 _004E:
-    GoToIfSet FLAG_UNK_0x008E, _005B
+    GoToIfSet FLAG_MAP_LOCAL, _005B
     End
 
 _005B:
     SetFlag FLAG_UNK_0x018F
     RemoveObject 3
     RemoveObject 2
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
     End
 

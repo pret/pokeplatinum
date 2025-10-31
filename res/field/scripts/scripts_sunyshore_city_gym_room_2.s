@@ -1,26 +1,26 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001D
-    ScriptEntry _0022
-    ScriptEntry _0027
+    ScriptEntry SunyshoreGymRoom2_Init
+    ScriptEntry SunyshoreGymRoom2_BottomButton
+    ScriptEntry SunyshoreGymRoom2_TopButtons
+    ScriptEntry SunyshoreGymRoom2_Empty
     ScriptEntryEnd
 
-_0012:
+SunyshoreGymRoom2_Init:
     SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForSunyshoreGym 1
     End
 
-_001D:
-    ScrCmd_176 0
+SunyshoreGymRoom2_BottomButton:
+    SunyshoreGymButton 0
     End
 
-_0022:
-    ScrCmd_176 1
+SunyshoreGymRoom2_TopButtons:
+    SunyshoreGymButton 1
     End
 
-_0027:
+SunyshoreGymRoom2_Empty:
     End
 
     .balign 4, 0

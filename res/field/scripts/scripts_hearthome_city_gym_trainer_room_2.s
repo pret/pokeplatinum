@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry HearthomeGym_TrainerRoom2_Init
     ScriptEntryEnd
 
-_0006:
+HearthomeGym_TrainerRoom2_Init:
     SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForHearthomeGym
     End

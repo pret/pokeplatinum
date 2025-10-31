@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00011",
+      "id": "VeilstoneCity_Text_ThisIsGalacticWarehouse",
       "en_US": [
         "Grunt 1: Hey, you!\n",
         "Yeah, you!\r",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00012",
+      "id": "VeilstoneCity_Text_ThisIsGalacticWarehouse1",
       "en_US": [
         "Grunt 1: Hey, you!\n",
         "Yeah, you!\r",
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00019",
+      "id": "VeilstoneCity_Text_DawnAskForHelp",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "Please, can you help me?\r",
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00020",
+      "id": "VeilstoneCity_Text_DawnTeamUp",
       "en_US": [
         "Dawn: You and your Pokémon together\n",
         "with me and my Pokémon...\r",
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00021",
+      "id": "VeilstoneCity_Text_DawnIllBeWaiting",
       "en_US": [
         "Dawn: I’ll be waiting.\n",
         "Please get ready and come quickly."
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00024",
+      "id": "VeilstoneCity_Text_LucasAskForHelp",
       "en_US": [
         "Lucas: Hey! {STRVAR_1 3, 0, 0}!\n",
         "Listen, I need your help...\r",
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00025",
+      "id": "VeilstoneCity_Text_LucasTeamUp",
       "en_US": [
         "Lucas: You and your Pokémon together\n",
         "with me and my Pokémon...\r",
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00026",
+      "id": "VeilstoneCity_Text_LucasIllBeWaiting",
       "en_US": [
         "Lucas: I’ll be waiting!\n",
         "Get ready and come quick!"
