@@ -92,8 +92,8 @@ res/prebuilt/data/t3_fl_p.nsbtx,/data/t3_fl_p.nsbtx
 res/prebuilt/data/t3_fl_r.nsbtx,/data/t3_fl_r.nsbtx
 res/prebuilt/data/t3_fl_y.nsbtx,/data/t3_fl_y.nsbtx
 res/prebuilt/data/test.atr,/data/test.atr
-res/prebuilt/data/tmap_block.dat,/data/tmap_block.dat
-res/prebuilt/data/tmap_flags.dat,/data/tmap_flags.dat
+res/town_map/town_map_blocks.dat,/data/tmap_block.dat
+res/town_map/town_map_flags.dat,/data/tmap_flags.dat
 res/prebuilt/data/tmapn_canm.resdat,/data/tmapn_canm.resdat
 res/prebuilt/data/tmapn_celact.cldat,/data/tmapn_celact.cldat
 res/prebuilt/data/tmapn_celact.txt,/data/tmapn_celact.txt

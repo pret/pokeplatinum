@@ -76,6 +76,8 @@ copy_gen = generator(find_program('cp'),
 # is a dependency of some later build-rule.
 subdir('pokemon')
 subdir('trainers')
+subdir('graphics')
+subdir('town_map')
 subdir('text')
 
 # Common generator for "scripting" files, i.e. field and battle scripts
@@ -109,7 +111,6 @@ script_bin_gen = generator(make_script_bin_sh,
     depfile: '@BASENAME@.d',
 )
 
-subdir('graphics')
 subdir('battle')
 subdir('field')
 subdir('fonts')

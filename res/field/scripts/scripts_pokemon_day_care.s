@@ -23,7 +23,7 @@ _0021:
     GoToIfEq VAR_RESULT, 1, _0051
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_DAYCARECHECKER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

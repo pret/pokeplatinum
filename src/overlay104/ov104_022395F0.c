@@ -313,7 +313,7 @@ BOOL ov104_022397B0(UnkStruct_ov104_0222E930 *param0)
 BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
 {
     int v0;
-    UnkStruct_0204AFC4 *v1;
+    BattleTower *battleTower;
     UnkStruct_ov104_02230BE4 *v2;
     UnkStruct_0209BBA4 *v3;
     UnkStruct_0209BBA4 v4;
@@ -324,43 +324,43 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
     v4 = *v3;
     ov104_02239C7C(v3);
 
-    v1 = sub_0204A124(v2->saveData, 0, 6);
-    sub_0209B980(param0->unk_00->unk_00, v1);
+    battleTower = BattleTower_Init(v2->saveData, 0, 6);
+    sub_0209B980(param0->unk_00->unk_00, battleTower);
 
-    if (v1->unk_0F == 6) {
+    if (battleTower->challengeMode == 6) {
         ov104_0222E630(v2->saveData);
     }
 
-    for (v0 = 0; v0 < v1->unk_0E; v0++) {
-        v1->unk_2A[v0] = v4.unk_6A[v0];
-        v1->unk_2E[v0] = v4.unk_76[v0];
-        v1->unk_36[v0] = v4.unk_7E[v0];
+    for (v0 = 0; v0 < battleTower->partySize; v0++) {
+        battleTower->unk_2A[v0] = v4.unk_6A[v0];
+        battleTower->unk_2E[v0] = v4.unk_76[v0];
+        battleTower->unk_36[v0] = v4.unk_7E[v0];
     }
 
-    v1->unk_16[0] = v4.unk_86[0];
-    v1->unk_16[1] = v4.unk_86[1];
-    v1->unk_12 = v4.unk_58;
-    v1->unk_10_5 = 5 + v1->unk_12;
+    battleTower->unk_16[0] = v4.unk_86[0];
+    battleTower->unk_16[1] = v4.unk_86[1];
+    battleTower->unk_12 = v4.unk_58;
+    battleTower->unk_10_5 = 5 + battleTower->unk_12;
 
     if (CommSys_CurNetId() == 0) {
-        sub_0204A4C8(v1, v2->saveData);
+        sub_0204A4C8(battleTower, v2->saveData);
     }
 
     Party_HealAllMembers(SaveData_GetParty(v2->saveData));
-    sub_0209BA80(v1);
+    sub_0209BA80(battleTower);
 
-    v1->unk_8D4 = 0;
+    battleTower->unk_8D4 = 0;
 
     return 0;
 }
 
 BOOL ov104_02239BF4(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0;
+    BattleTower *battleTower;
     u16 *v1 = ov104_0222FBE4(param0);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
-    *v1 = sub_0209BB08(v0);
+    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    *v1 = sub_0209BB08(battleTower);
 
     return 1;
 }
@@ -373,21 +373,21 @@ BOOL ov104_02239C10(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02239C20(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0 = sub_0209B978(param0->unk_00->unk_00);
+    BattleTower *battleTower = sub_0209B978(param0->unk_00->unk_00);
 
-    if (v0->unk_8D4 < 2) {
+    if (battleTower->unk_8D4 < 2) {
         return 0;
     }
 
-    v0->unk_8D4 = 0;
+    battleTower->unk_8D4 = 0;
     return 1;
 }
 
 BOOL ov104_02239C44(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0 = sub_0209B978(param0->unk_00->unk_00);
-    sub_0204A32C(v0);
-    v0 = NULL;
+    BattleTower *battleTower = sub_0209B978(param0->unk_00->unk_00);
+    BattleTower_Free(battleTower);
+    battleTower = NULL;
 
     return 0;
 }

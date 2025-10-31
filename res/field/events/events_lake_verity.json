@@ -100,8 +100,8 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_UNK_101_6",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_101",
+            "id": "LAKE_VERITY_COUNTERPART_6",
+            "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "FLAG_UNK_0x028D",

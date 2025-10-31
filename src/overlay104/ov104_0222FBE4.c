@@ -1912,7 +1912,7 @@ static BOOL ov104_02230FCC(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230FEC(UnkStruct_ov104_0222E930 *param0)
 {
-    sub_020365F4();
+    CommTool_ClearReceivedTempDataAllPlayers();
     return 0;
 }
 

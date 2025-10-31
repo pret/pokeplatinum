@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "IRON_ISLAND_HOUSE_BRYON_0",
-            "graphics_id": "OBJ_EVENT_GFX_BRYON",
+            "id": "IRON_ISLAND_HOUSE_BYRON_0",
+            "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "FLAG_UNK_0x024D",

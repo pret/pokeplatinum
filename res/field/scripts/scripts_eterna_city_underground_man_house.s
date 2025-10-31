@@ -20,7 +20,7 @@ _001A:
     Message 0
     SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_EXPLORER_KIT_RECEIVED
     ClearFlag FLAG_UNK_0x0111
     Message 1

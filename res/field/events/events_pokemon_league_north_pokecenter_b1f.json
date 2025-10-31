@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_B1F_WIFI_PLAZA_ATTENDANT_0",
-            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
+            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_B1FWIFI_PLAZA_ATTENDANT_F_0",
+            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",

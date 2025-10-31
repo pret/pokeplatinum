@@ -2,25 +2,25 @@
   "key": 9235,
   "messages": [
     {
-      "id": "pl_msg_00000150_00000",
+      "id": "VeilstoneStore3F_Text_MayIHelpYou",
       "en_US": [
         "Hello.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000150_00001",
+      "id": "VeilstoneStore3F_Text_MayIHelpYouPersonalized",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000150_00002",
+      "id": "VeilstoneStore3F_Text_PleaseEnjoyYourself",
       "en_US": "Please enjoy yourself."
     },
     {
-      "id": "pl_msg_00000150_00003",
+      "id": "VeilstoneStore3F_Text_FalseSwipeMakesPokemonEasierToCatch",
       "en_US": [
         "False Swipe makes wild Pokémon easier\n",
         "to catch.\r",
@@ -29,14 +29,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00004",
+      "id": "VeilstoneStore3F_Text_ForFireTypesSuggestFireBlast",
       "en_US": [
         "For Fire-type Pokémon, may I suggest\n",
         "Fire Blast?"
       ]
     },
     {
-      "id": "pl_msg_00000150_00005",
+      "id": "VeilstoneStore3F_Text_ProtectIsForDodgingAttacks",
       "en_US": [
         "The move Protect is the perfect\n",
         "solution for dodging attacks.\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00006",
+      "id": "VeilstoneStore3F_Text_ThunderIsPreciseInRain",
       "en_US": [
         "When it is raining, the accuracy\n",
         "of Thunder becomes precise.\r",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00007",
+      "id": "VeilstoneStore3F_Text_FriendTradedMeMachoke",
       "en_US": [
         "A friend traded me a MACHOKE using\n",
         "DS Wireless Communications.\r",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00008",
+      "id": "VeilstoneStore3F_Text_WroteSecretsInMyMail",
       "en_US": [
         "I wrote some secrets in my Mail\n",
         "as a reminder...\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00009",
+      "id": "VeilstoneStore3F_Text_WouldLoveToBuyAllTheMerchandise",
       "en_US": [
         "I would love to buy up all the\n",
         "merchandise here.\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000150_00010",
+      "id": "VeilstoneStore3F_Text_Directory",
       "en_US": [
         "B1F: Food & Produce\r",
         "1F: Trainers’ Zone\r",

@@ -57,8 +57,8 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_WIFI_PLAZA_ATTENDANT_2",
-            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
+            "id": "BATTLE_TOWERWIFI_PLAZA_ATTENDANT_F_2",
+            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "0",

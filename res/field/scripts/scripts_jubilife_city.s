@@ -256,7 +256,7 @@ _03C0:
     Message 20
     SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 21
     CloseMessage
     ApplyMovement 31, _055C
@@ -986,7 +986,7 @@ _0C7C:
 _0CF0:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x00F2
     Call _0D58
     Call _0D58

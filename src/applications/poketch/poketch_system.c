@@ -38,15 +38,15 @@ FS_EXTERN_OVERLAY(poketch_dowsing_machine);
 FS_EXTERN_OVERLAY(poketch_counter);
 FS_EXTERN_OVERLAY(poketch_pedometer);
 FS_EXTERN_OVERLAY(poketch_backlight_toggle);
-FS_EXTERN_OVERLAY(overlay38);
-FS_EXTERN_OVERLAY(overlay39);
+FS_EXTERN_OVERLAY(poketch_unused_1);
+FS_EXTERN_OVERLAY(poketch_unused_2);
 FS_EXTERN_OVERLAY(poketch_daycare_checker);
 FS_EXTERN_OVERLAY(poketch_roulette);
 FS_EXTERN_OVERLAY(poketch_coin_toss);
 FS_EXTERN_OVERLAY(poketch_move_tester);
-FS_EXTERN_OVERLAY(overlay44);
+FS_EXTERN_OVERLAY(poketch_matchup_checker);
 FS_EXTERN_OVERLAY(poketch_alarm_clock);
-FS_EXTERN_OVERLAY(overlay46);
+FS_EXTERN_OVERLAY(poketch_kitchen_timer);
 FS_EXTERN_OVERLAY(poketch_marking_map);
 FS_EXTERN_OVERLAY(overlay48);
 FS_EXTERN_OVERLAY(poketch_color_changer);
@@ -54,7 +54,7 @@ FS_EXTERN_OVERLAY(overlay50);
 FS_EXTERN_OVERLAY(overlay52);
 FS_EXTERN_OVERLAY(poketch_trainer_counter);
 FS_EXTERN_OVERLAY(overlay54);
-FS_EXTERN_OVERLAY(overlay55);
+FS_EXTERN_OVERLAY(poketch_unused_4);
 
 static PoketchSystem *PoketchSystem_GetFromFieldSystem(void);
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys);
@@ -99,9 +99,9 @@ static const struct {
     { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(poketch_roulette) },
     { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(poketch_coin_toss) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
-    { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(overlay44) },
+    { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(poketch_matchup_checker) },
     { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
-    { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(overlay46) },
+    { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(poketch_kitchen_timer) },
     { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(poketch_marking_map) },
     { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
     { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(poketch_color_changer) },

@@ -176,32 +176,32 @@
       "garbage": 19
     },
     {
-      "id": "pl_msg_00000213_00024",
+      "id": "CommonStrings_Text_ObtainedPoketchApp",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained the Pokétch\n",
         "app {STRVAR_1 24, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000213_00025",
+      "id": "CommonStrings_Text_ObtainedItem",
       "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000213_00026",
+      "id": "CommonStrings_Text_InstalledPoketchApp",
       "en_US": [
         "{STRVAR_1 3, 0, 0} installed the app on\n",
         "the Pokétch.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00027",
+      "id": "CommonStrings_Text_BagIsFull",
       "en_US": [
         "Too bad!\n",
         "The Bag is full..."
       ]
     },
     {
-      "id": "pl_msg_00000213_00028",
+      "id": "CommonStrings_Text_ObtainedKeyItem",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!"
@@ -215,14 +215,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00030",
+      "id": "CommonStrings_Text_PutItemInThePocketNoLineFeed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."
       ]
     },
     {
-      "id": "pl_msg_00000213_00031",
+      "id": "CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case."
@@ -584,7 +584,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00093",
+      "id": "CommonStrings_Text_ObtainedPoketchCounter",
       "en_US": [
         "The {COLOR 2}Counter{COLOR 0} app can be used\n",
         "to count up to 9,999."
@@ -831,14 +831,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00126",
+      "id": "CommonStrings_Text_PutItemInThePocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00127",
+      "id": "CommonStrings_Text_PutAwayItemInTheFashionCase",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case.\r"

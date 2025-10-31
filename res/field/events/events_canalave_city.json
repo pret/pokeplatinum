@@ -201,8 +201,8 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_UNK_101_12",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_101",
+            "id": "CANALAVE_CITY_COUNTERPART_12",
+            "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "flag": "FLAG_UNK_0x01B5",

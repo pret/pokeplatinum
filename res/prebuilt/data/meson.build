@@ -93,8 +93,6 @@ prebuilt_files = [
     't3_fl_r.nsbtx',
     't3_fl_y.nsbtx',
     'test.atr',
-    'tmap_block.dat',
-    'tmap_flags.dat',
     'tmapn_canm.resdat',
     'tmapn_celact.cldat',
     'tmapn_celact.txt',
