@@ -528,8 +528,8 @@ BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
 
 BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
 u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
-u16 sub_02076F84(const u16 monSpecies);
-u16 sub_02076FD4(const u16 monSpecies);
+u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species);
+u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);
 
 /**
  * @brief Adds a move to the moveset of a Pokemon
@@ -825,7 +825,7 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality);
 
 BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
 u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
-BOOL sub_02078838(Pokemon *mon);
+BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
