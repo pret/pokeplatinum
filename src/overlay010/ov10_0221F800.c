@@ -1590,7 +1590,7 @@ static void ov10_022213B8(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02221440(UnkStruct_ov10_0221FB28 *param0, u32 param1, s16 param2, s16 param3)
 {
-    sub_020128C4(param0->unk_B3C[param1], param0->unk_B60[param1] + param2, param0->unk_B64[param1] + param3);
+    FontOAM_SetXY(param0->unk_B3C[param1], param0->unk_B60[param1] + param2, param0->unk_B64[param1] + param3);
 }
 
 static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)

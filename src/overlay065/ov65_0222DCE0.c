@@ -6042,7 +6042,7 @@ static void ov65_02234E50(UnkStruct_ov65_02234E50 *param0, u32 param1)
     Sprite_SetAnimFrame(param0->unk_21C[param1], 5 - 1);
 
     if (param1 == 1) {
-        sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[0]);
+        FontOAM_SetXY(param0->unk_234, -18, Unk_ov65_0223893C[0]);
     }
 }
 
@@ -6065,7 +6065,7 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
                 v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
-                    sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
+                    FontOAM_SetXY(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
                 }
 
                 if (v1 >= 3) {

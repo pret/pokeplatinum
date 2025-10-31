@@ -79,7 +79,7 @@ static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
         ManagedSprite_SetPositionXY(v0->unk_9C[1].unk_08, 80, 232);
     }
 
-    sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_9C[1].unk_0C, 36, -8);
 }
 
 static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
@@ -107,7 +107,7 @@ static void ov62_02236D48(UnkStruct_0208C06C *param0)
     ov62_0223124C(&v0->unk_9C[1], &param0->unk_14, 3);
 
     ManagedSprite_SetPositionXY(v0->unk_9C[1].unk_08, 128, 232);
-    sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_9C[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_9C[1].unk_0C, 1);
 
     v0->unk_94[1] = ov62_022313E0(param0, NNS_G2D_VRAM_TYPE_2DSUB);

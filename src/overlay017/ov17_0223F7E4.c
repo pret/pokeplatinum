@@ -1039,7 +1039,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v4 = sub_020127E8(&v0);
 
     sub_02012AC0(v4, param5);
-    sub_020128C4(v4, param7, param8);
+    FontOAM_SetXY(v4, param7, param8);
 
     if (param10 == NULL) {
         Window_Remove(&v1);
@@ -1212,8 +1212,8 @@ static void ov17_0224051C(SysTask *param0, void *param1)
     switch (v0->unk_2CC.unk_00) {
     case 0:
         ov17_022403B0(v0, v0->unk_2CC.unk_04_val1.unk_0C, v0->unk_2CC.unk_04_val1.unk_10, v0->unk_2CC.unk_04_val1.unk_18, 2);
-        sub_020129A4(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, &v2, &v3);
-        sub_020128C4(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, v2, v3 + -2);
+        FontOAM_GetXY(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, &v2, &v3);
+        FontOAM_SetXY(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, v2, v3 + -2);
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
@@ -1235,8 +1235,8 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
     case 2:
         ov17_022403B0(v0, v0->unk_2CC.unk_04_val1.unk_0C, v0->unk_2CC.unk_04_val1.unk_10, v0->unk_2CC.unk_04_val1.unk_18, 1);
-        sub_020129A4(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, &v2, &v3);
-        sub_020128C4(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, v2, v3 + 1);
+        FontOAM_GetXY(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, &v2, &v3);
+        FontOAM_SetXY(v0->unk_40[v0->unk_2CC.unk_04_val1.unk_19].unk_00, v2, v3 + 1);
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
@@ -1321,12 +1321,12 @@ static void ov17_02240658(SysTask *param0, void *param1)
         ov17_022403B0(v0, v0->unk_2CC.unk_04_val1.unk_0C, v0->unk_2CC.unk_04_val1.unk_10, v0->unk_2CC.unk_04_val1.unk_18, 2);
 
         if (1) {
-            sub_020129A4(v0->unk_40[v4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v4].unk_00, v2, v3 + -2);
-            sub_020129A4(v0->unk_40[v5].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v5].unk_00, v2, v3 + -2);
-            sub_020129A4(v0->unk_40[v6].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_40[v4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v4].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_40[v5].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v5].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_40[v6].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v6].unk_00, v2, v3 + -2);
 
             if (v8 != 0) {
                 Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, -2);
@@ -1356,12 +1356,12 @@ static void ov17_02240658(SysTask *param0, void *param1)
         ov17_022403B0(v0, v0->unk_2CC.unk_04_val1.unk_0C, v0->unk_2CC.unk_04_val1.unk_10, v0->unk_2CC.unk_04_val1.unk_18, 1);
 
         if (1) {
-            sub_020129A4(v0->unk_40[v4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v4].unk_00, v2, v3 + 1);
-            sub_020129A4(v0->unk_40[v5].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v5].unk_00, v2, v3 + 1);
-            sub_020129A4(v0->unk_40[v6].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_40[v4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v4].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_40[v5].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v5].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_40[v6].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_40[v6].unk_00, v2, v3 + 1);
 
             if (v8 != 0) {
                 Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, 1);

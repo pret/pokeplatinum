@@ -465,7 +465,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     v4 = sub_020127E8(&v0);
 
     sub_02012AC0(v4, param5);
-    sub_020128C4(v4, param7, param8);
+    FontOAM_SetXY(v4, param7, param8);
 
     if (param10 == NULL) {
         Window_Remove(&v1);

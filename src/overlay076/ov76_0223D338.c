@@ -467,8 +467,8 @@ static void ov76_0223D984(FontOAM *param0, int param1, int param2)
     int v1;
 
     if (param0 != NULL) {
-        sub_020129A4(param0, &v0, &v1);
-        sub_020128C4(param0, v0 + param1, v1 + param2);
+        FontOAM_GetXY(param0, &v0, &v1);
+        FontOAM_SetXY(param0, v0 + param1, v1 + param2);
     }
 }
 

@@ -810,7 +810,7 @@ Overlay pokedex
 	Object main.nef.p/src_applications_pokedex_pokedex_height_check.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E68F4.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E737C.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021E8484.c.o
+	Object main.nef.p/src_applications_pokedex_formsub.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E8D48.c.o
 }
 

@@ -1526,7 +1526,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v4 = sub_020127E8(&v0);
 
     sub_02012AC0(v4, param5);
-    sub_020128C4(v4, param7, param8);
+    FontOAM_SetXY(v4, param7, param8);
     Window_Remove(&v1);
 
     param1->unk_00 = v4;

@@ -374,7 +374,7 @@ static void sub_0208AC80(FontOAM *param0, int param1, int param2)
     int v1;
 
     if (param0 != NULL) {
-        sub_020128C4(param0, param1, param2);
+        FontOAM_SetXY(param0, param1, param2);
     }
 }
 

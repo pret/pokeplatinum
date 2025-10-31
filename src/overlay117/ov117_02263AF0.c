@@ -2051,7 +2051,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 
         sub_02012A90(v4, param7);
     }
 
-    sub_020128C4(v4, param9, param10);
+    FontOAM_SetXY(v4, param9, param10);
     Window_Remove(&v1);
 
     param3->unk_00 = v4;
@@ -2086,9 +2086,9 @@ void ov117_02265EC8(UnkStruct_ov117_02265EC8 *param0)
             v6 = v5 - v2;
         }
 
-        sub_020129A4(param0->unk_04[v0][0].unk_00, &v3, &v4);
-        sub_020128C4(param0->unk_04[v0][0].unk_00, v3, 168 - v5);
-        sub_020128C4(param0->unk_04[v0][1].unk_00, v3, 168 - v6);
+        FontOAM_GetXY(param0->unk_04[v0][0].unk_00, &v3, &v4);
+        FontOAM_SetXY(param0->unk_04[v0][0].unk_00, v3, 168 - v5);
+        FontOAM_SetXY(param0->unk_04[v0][1].unk_00, v3, 168 - v6);
     }
 }
 
@@ -2232,7 +2232,7 @@ void ov117_02266150(UnkStruct_ov117_02261280 *param0)
         GF_ASSERT(param0->unk_15A8.unk_108[v1].unk_00 == NULL);
         v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 4 + (v4 % 10));
         v4 /= 10;
-        sub_020129A4(param0->unk_15A8.unk_04[v1][0].unk_00, &v2, &v3);
+        FontOAM_GetXY(param0->unk_15A8.unk_04[v1][0].unk_00, &v2, &v3);
         ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_108[v1], v0, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v2, 168, 0, 1, 12, 2 * 1);
         Strbuf_Free(v0);
     }
