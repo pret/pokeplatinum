@@ -341,7 +341,6 @@ static void PrintUnusableError(LinkSearcherGraphics *graphics)
 
 static void PrintDontMoveError(LinkSearcherGraphics *graphics)
 {
-
     Window_FillTilemap(&graphics->window, 4);
 
     MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Error, graphics->strbuf);
@@ -361,7 +360,7 @@ static void PrintSearchResults(LinkSearcherGraphics *graphics, const LinkResults
         LinkSearcher_Text_UnionRoom,
         LinkSearcher_Text_Underground,
         LinkSearcher_Text_Colosseum,
-        LinkSearcher_Text_OtherRooms,
+        LinkSearcher_Text_OtherLinks,
     };
 
     Window_FillTilemap(&graphics->window, 4);

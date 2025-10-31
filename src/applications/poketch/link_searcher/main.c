@@ -180,24 +180,20 @@ static BOOL State_OnIntroScreen(PoketchLinkSearcher *appData)
         return FALSE;
     }
 
-    switch (appData->subState) {
-    case 0:
-        if (ScreenIsPressed(appData)) {
-            if (CommStateIdle(appData)) {
-                FieldSystem *fieldSystem = PoketchSystem_GetFieldSystem(appData->poketchSys);
+    if (appData->subState == 0 && ScreenIsPressed(appData)) {
+        if (CommStateIdle(appData)) {
+            FieldSystem *fieldSystem = PoketchSystem_GetFieldSystem(appData->poketchSys);
 
-                PoketchLinkSearcherGraphics_StartTask(appData->graphics, LINK_SEARCHER_GRAPHICS_SEARCHING);
+            PoketchLinkSearcherGraphics_StartTask(appData->graphics, LINK_SEARCHER_GRAPHICS_SEARCHING);
 
-                if (MapHeader_IsPokemonCenter2(fieldSystem->location->mapId)) {
-                    ChangeState(appData, STATE_UNUSABLE_ERROR);
-                } else {
-                    ChangeState(appData, STATE_SHOW_RESULTS);
-                }
+            if (MapHeader_IsPokemonCenter2(fieldSystem->location->mapId)) {
+                ChangeState(appData, STATE_UNUSABLE_ERROR);
             } else {
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+                ChangeState(appData, STATE_SHOW_RESULTS);
             }
+        } else {
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
         }
-        break;
     }
 
     return FALSE;
@@ -358,26 +354,26 @@ static BOOL ScreenIsPressed(PoketchLinkSearcher *appData)
 
 static BOOL UpdateLinkSearchResults(PoketchLinkSearcher *appData)
 {
-    static const u8 sUnionRoom[] = {
+    static const u8 sUnionRoomLinkIDs[] = {
         9, 13, 7, 18, 26
     };
-    static const u8 sUnderground[] = {
+    static const u8 sUndergroundIDs[] = {
         10
     };
-    static const u8 sColosseum[] = {
+    static const u8 sColosseumIDs[] = {
         1, 2, 3, 4, 5
     };
-    static const u8 sOtherLinks[] = {
+    static const u8 sOtherLinksLinkIDs[] = {
         0, 6, 8, 11, 12, 14, 16, 27, 28, 30, 31, 32
     };
     static const struct {
         const u8 *linkIDs;
         u32 numElems;
     } linkTypes[] = {
-        { sUnionRoom, NELEMS(sUnionRoom) },
-        { sUnderground, NELEMS(sUnderground) },
-        { sColosseum, NELEMS(sColosseum) },
-        { sOtherLinks, NELEMS(sOtherLinks) }
+        { sUnionRoomLinkIDs, NELEMS(sUnionRoomLinkIDs) },
+        { sUndergroundIDs, NELEMS(sUndergroundIDs) },
+        { sColosseumIDs, NELEMS(sColosseumIDs) },
+        { sOtherLinksLinkIDs, NELEMS(sOtherLinksLinkIDs) }
     };
     int i;
     BOOL updated = FALSE;
