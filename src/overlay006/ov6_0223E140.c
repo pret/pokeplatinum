@@ -1073,7 +1073,7 @@ static void ov6_0223EB4C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v0->fieldSystem = fieldSystem;
     v0->unk_108 = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 1);
     v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 0);
-    v0->unk_110 = Player_MapObject(sub_0205EF3C(v0->fieldSystem));
+    v0->unk_110 = Player_MapObject(FieldSystem_GetPlayerAvatar(v0->fieldSystem));
 
     HeapExp_FndInitAllocator(&v0->unk_C0, HEAP_ID_FIELD1, 32);
     ov6_0223EA98(v0);
