@@ -164,10 +164,10 @@ static FormSubData *LoadAppData(enum HeapID heapID, PokedexApp *pokedexApp)
 
 static PokedexGraphicData **LoadAppGraphics(enum HeapID heapID, PokedexApp *pokedexApp)
 {
-    PokedexGraphicData **graphicData = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
+    PokedexGraphicData **graphicData = Heap_Alloc(heapID, sizeof(PokedexGraphicData *));
 
     GF_ASSERT(graphicData);
-    memset(graphicData, 0, sizeof(PokedexGraphicData **));
+    memset(graphicData, 0, sizeof(PokedexGraphicData *));
 
     *graphicData = PokedexMain_GetGraphicData(pokedexApp);
 
@@ -204,9 +204,8 @@ static int NumStates(void)
 static BOOL FormSubDataEnter(PokedexDataManager *dataMan, void *data)
 {
     FormSubData *formSubData = data;
-    FormSubPageData *formSubPageData = dataMan->pageData;
 
-    formSubPageData = Heap_Alloc(dataMan->heapID, sizeof(FormSubPageData));
+    FormSubPageData *formSubPageData = Heap_Alloc(dataMan->heapID, sizeof(FormSubPageData));
     memset(formSubPageData, 0, sizeof(FormSubPageData));
 
     formSubPageData->buttonState[FORMSUB_ANOTHER] = TOUCH_BUTTON_HELD_OUT_OF_BOUNDS + 1;
