@@ -92,7 +92,7 @@ void ov16_0226DCA8(UnkStruct_ov16_0226DC24 *param0)
     Heap_Free(param0);
 }
 
-void ov16_0226DCCC(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
+void BattleSystem_DrawCursorSprites(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
 {
     int v0;
 
@@ -113,7 +113,7 @@ void ov16_0226DCCC(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 
 void ov16_0226DD54(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
-    ov16_0226DCCC(param0, param1, param2, param3, param4, param5, param6, param7, param8, (192 << FX32_SHIFT));
+    BattleSystem_DrawCursorSprites(param0, param1, param2, param3, param4, param5, param6, param7, param8, (192 << FX32_SHIFT));
 }
 
 void ov16_0226DD7C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4)
@@ -121,9 +121,9 @@ void ov16_0226DD7C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
     ov16_0226DD54(param0, param1, param3, param2, param3, param1, param4, param2, param4);
 }
 
-void ov16_0226DD9C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, fx32 param5)
+void BattleSystem_DrawCursor(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, fx32 param5)
 {
-    ov16_0226DCCC(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
+    BattleSystem_DrawCursorSprites(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
 }
 
 void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4)

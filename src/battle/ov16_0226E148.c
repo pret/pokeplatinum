@@ -5,8 +5,8 @@
 
 #include "struct_decls/battle_system.h"
 
+#include "battle/battle_cursor.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
 #include "heap.h"
@@ -73,7 +73,7 @@ static void ov16_0226E188(SysTask *param0, void *param1)
         break;
     case 2:
         if (ov16_0223F7A4(v0->unk_00) == 1) {
-            if (ov16_0226925C(v1) == 1) {
+            if (BattleSystem_MenuInput(v1) == 1) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v0->unk_04++;
             }

@@ -14,6 +14,7 @@
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
+#include "battle/battle_cursor.h"
 #include "battle/battle_io.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
@@ -22,7 +23,6 @@
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02264798.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -2986,7 +2986,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
             }
         }
 
-        v0->unk_0C = ov16_0226925C(v2);
+        v0->unk_0C = BattleSystem_MenuInput(v2);
 
         if (v0->unk_0C != 0xffffffff) {
             v0->unk_0B = 10;
@@ -2997,12 +2997,12 @@ static void ov16_022604C8(SysTask *param0, void *param1)
     case 6:
         if ((ov16_02269348(v2) == 1) || (v0->unk_0C == 1)) {
             switch (v0->unk_0C) {
-            case 1:
+            case 1: // Fight
                 if (BattleSystem_BattleType(v0->unk_00) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
                     v0->unk_0A = 7;
                 }
                 break;
-            case 2: {
+            case 2: { // Bag
                 NARC *v16 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
                 NARC *v17 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
@@ -3014,7 +3014,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC_dtor(v16);
                 NARC_dtor(v17);
             } break;
-            case 3: {
+            case 3: { // Pokemon
                 NARC *v18 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
                 NARC *v19 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
@@ -3026,7 +3026,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC_dtor(v18);
                 NARC_dtor(v19);
             } break;
-            case 4: {
+            case 4: { // Run
                 NARC *v20 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
                 NARC *v21 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
@@ -3227,7 +3227,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
         v0->unk_20++;
         break;
     case 1:
-        v0->unk_08 = ov16_0226925C(v2);
+        v0->unk_08 = BattleSystem_MenuInput(v2);
 
         if (v0->unk_08 != 0xffffffff) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
@@ -3392,7 +3392,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
         v0->unk_0F++;
         break;
     case 1:
-        v0->unk_08 = ov16_0226925C(v2);
+        v0->unk_08 = BattleSystem_MenuInput(v2);
 
         if (v0->unk_08 != 0xffffffff) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
@@ -4440,7 +4440,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        v0->unk_08 = ov16_0226925C(v2);
+        v0->unk_08 = BattleSystem_MenuInput(v2);
 
         if (v0->unk_08 != 0xffffffff) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
