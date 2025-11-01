@@ -68,7 +68,7 @@ static void SetupSprites(MarkingMapGraphics *graphics, const MarkingMapData *map
     animData.hasAffineTransform = FALSE;
 
     u32 x, y;
-    PoketchMap_GetPlayerCursorPosition(mapData->playerX, mapData->playerY, &x, &y);
+    PoketchMap_GetPositionOnMap(mapData->playerX, mapData->playerY, &x, &y);
 
     animData.translation.x = x << FX32_SHIFT;
     animData.translation.y = y << FX32_SHIFT;
@@ -237,7 +237,7 @@ static void Task_UpdateMap(SysTask *task, void *taskData)
     if (mapData->positionsUpdated) {
         u32 x, y;
 
-        PoketchMap_GetPlayerCursorPosition(mapData->playerX, mapData->playerY, &x, &y);
+        PoketchMap_GetPositionOnMap(mapData->playerX, mapData->playerY, &x, &y);
         PoketchAnimation_SetSpritePosition(graphics->playerCursorSprite, x << FX32_SHIFT, y << FX32_SHIFT);
 
         for (u32 i = 0; i < ROAMING_SLOT_MAX; i++) {

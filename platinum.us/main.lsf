@@ -1033,11 +1033,11 @@ Overlay poketch_marking_map
 	Object main.nef.p/src_applications_poketch_marking_map_graphics.c.o
 }
 
-Overlay overlay48
+Overlay poketch_berry_searcher
 {
 	After overlay25
-	Object main.nef.p/src_overlay048_ov48_022561C0.c.o
-	Object main.nef.p/src_overlay048_ov48_0225650C.c.o
+	Object main.nef.p/src_applications_poketch_berry_searcher_main.c.o
+	Object main.nef.p/src_applications_poketch_berry_searcher_graphics.c.o
 }
 
 Overlay poketch_color_changer
