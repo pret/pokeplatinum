@@ -30,6 +30,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "map_object_move.h"
+#include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -41,7 +42,6 @@
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
 #include "unk_0202854C.h"
-#include "unk_020711EC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -821,8 +821,8 @@ void ov23_0224AF4C(int param0)
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (v0->unk_28[param0] != NULL) {
-        if (UnkStruct_ov101_021D5D90_IsLsbSet(v0->unk_28[param0])) {
-            sub_0207136C(v0->unk_28[param0]);
+        if (OverworldAnimManager_IsActive(v0->unk_28[param0])) {
+            OverworldAnimManager_Finish(v0->unk_28[param0]);
         } else {
             GF_ASSERT(0);
         }

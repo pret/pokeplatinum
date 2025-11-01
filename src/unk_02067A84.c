@@ -15,18 +15,17 @@
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay008/ov8_02249960.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "overworld_anim_manager.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020711EC.h"
 
 typedef struct {
     int unk_00;
@@ -46,7 +45,7 @@ typedef struct {
     int unk_14;
     int approachNum;
     int unk_1C;
-    UnkStruct_ov101_021D5D90 *unk_20;
+    OverworldAnimManager *unk_20;
     MapObject *mapObj;
     PlayerAvatar *playerAvatar;
     FieldSystem *fieldSystem;
@@ -547,7 +546,7 @@ static int sub_0206816C(UnkStruct_020EF6D0 *param0)
 static int sub_02068188(UnkStruct_020EF6D0 *param0)
 {
     if (ov5_021F5C4C(param0->unk_20) == 1) {
-        sub_0207136C(param0->unk_20);
+        OverworldAnimManager_Finish(param0->unk_20);
         param0->unk_00 = 9;
     }
 

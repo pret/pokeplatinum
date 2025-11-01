@@ -11,7 +11,8 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "overworld_anim_manager.h"
 
 enum PlayerAvatarForm {
     PLAYER_AVATAR_WALKING = 0,
@@ -59,8 +60,8 @@ int sub_0205EBE0(PlayerAvatar *playerAvatar);
 void sub_0205EBE4(PlayerAvatar *playerAvatar, int param1);
 int sub_0205EBE8(PlayerAvatar *playerAvatar);
 void sub_0205EBEC(PlayerAvatar *playerAvatar, int param1, int param2);
-void sub_0205EC00(PlayerAvatar *playerAvatar, UnkStruct_ov101_021D5D90 *param1);
-UnkStruct_ov101_021D5D90 *sub_0205EC04(PlayerAvatar *playerAvatar);
+void sub_0205EC00(PlayerAvatar *playerAvatar, OverworldAnimManager *param1);
+OverworldAnimManager *sub_0205EC04(PlayerAvatar *playerAvatar);
 PlayerData *PlayerAvatar_PlayerData(PlayerAvatar *playerAvatar);
 void sub_0205EC10(PlayerAvatar *playerAvatar, u32 param1);
 u32 sub_0205EC14(PlayerAvatar *playerAvatar);

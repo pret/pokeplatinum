@@ -279,7 +279,7 @@ Static main
 	Object main.nef.p/src_unk_0207064C.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
-	Object main.nef.p/src_unk_020711EC.c.o
+	Object main.nef.p/src_overworld_anim_manager.c.o
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o

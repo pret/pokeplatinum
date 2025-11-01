@@ -9,12 +9,10 @@
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "map_object.h"
 #include "map_object_move.h"
-#include "unk_020711EC.h"
+#include "overworld_anim_manager.h"
 #include "unk_02073838.h"
 
 typedef struct {
@@ -45,12 +43,12 @@ static void ov5_021F1CF8(UnkStruct_021F1CF8 *param0);
 static void ov5_021F1D80(UnkStruct_021F1CF8 *param0);
 static UnkStruct_02073B50 *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
 static UnkStruct_02073838 *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
-static UnkStruct_ov101_021D5D90 *ov5_021F1ECC(const MapObject *param0, int param1);
+static OverworldAnimManager *ov5_021F1ECC(const MapObject *param0, int param1);
 
 static const u32 Unk_ov5_0220039C[10];
 static const u32 Unk_ov5_02200374[10];
 static const int Unk_ov5_022003C4[4][4];
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200360;
+static const OverworldAnimManagerFuncs Unk_ov5_02200360;
 
 void *ov5_021F1CC8(UnkStruct_ov5_021DF47C *param0)
 {
@@ -152,40 +150,40 @@ static UnkStruct_02073838 *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, 
     return v1;
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1E8C(const MapObject *param0)
+OverworldAnimManager *ov5_021F1E8C(const MapObject *param0)
 {
     return ov5_021F1ECC(param0, 0);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1E98(const MapObject *param0)
+OverworldAnimManager *ov5_021F1E98(const MapObject *param0)
 {
     return ov5_021F1ECC(param0, 1);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1EA4(const MapObject *param0)
+OverworldAnimManager *ov5_021F1EA4(const MapObject *param0)
 {
     return ov5_021F1ECC(param0, 2);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1EB0(const MapObject *param0)
+OverworldAnimManager *ov5_021F1EB0(const MapObject *param0)
 {
     return ov5_021F1ECC(param0, 3);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1EBC(const MapObject *param0)
+OverworldAnimManager *ov5_021F1EBC(const MapObject *param0)
 {
     return ov5_021F1ECC(param0, 4);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F1EC8(const MapObject *param0)
+OverworldAnimManager *ov5_021F1EC8(const MapObject *param0)
 {
     return NULL;
 }
 
-static UnkStruct_ov101_021D5D90 *ov5_021F1ECC(const MapObject *param0, int param1)
+static OverworldAnimManager *ov5_021F1ECC(const MapObject *param0, int param1)
 {
     VecFx32 v0;
-    UnkStruct_ov101_021D5D90 *v1;
+    OverworldAnimManager *v1;
     UnkStruct_021F1FB8 v2;
     int v3 = MapObject_GetXPrev(param0);
     int v4 = MapObject_GetZPrev(param0);
@@ -232,16 +230,16 @@ static UnkStruct_ov101_021D5D90 *ov5_021F1ECC(const MapObject *param0, int param
     return v1;
 }
 
-static int ov5_021F1FB8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov5_021F1FB8(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_021F1FE4 *v1;
     const UnkStruct_021F1FB8 *v2;
 
     v1 = param1;
-    v1->unk_10 = sub_020715B4(param0);
+    v1->unk_10 = OverworldAnimManager_GetID(param0);
 
-    v2 = sub_020715BC(param0);
+    v2 = OverworldAnimManager_GetUserData(param0);
     v1->unk_18 = v2->unk_08;
     v1->unk_14 = v2->unk_04;
     v1->unk_0C = 31;
@@ -250,12 +248,12 @@ static int ov5_021F1FB8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov5_021F1FE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F1FE0(OverworldAnimManager *param0, void *param1)
 {
     return;
 }
 
-static void ov5_021F1FE4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F1FE4(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F1FE4 *v0 = param1;
 
@@ -277,14 +275,14 @@ static void ov5_021F1FE4(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov5_021F2014(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F2014(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F1FE4 *v0 = param1;
 
     if (v0->unk_08 == 0) {
         VecFx32 v1;
 
-        sub_020715E4(param0, &v1);
+        OverworldAnimManager_GetPosition(param0, &v1);
 
         NNS_G3dMdlUseMdlAlpha(v0->unk_14->unk_0C);
         NNS_G3dMdlSetMdlAlphaAll(v0->unk_14->unk_0C, v0->unk_0C);
@@ -326,7 +324,7 @@ static const int Unk_ov5_022003C4[4][4] = {
     { 0x9, 0x7, 0x5, 0x5 }
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200360 = {
+static const OverworldAnimManagerFuncs Unk_ov5_02200360 = {
     (sizeof(UnkStruct_021F1FE4)),
     ov5_021F1FB8,
     ov5_021F1FE0,

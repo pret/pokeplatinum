@@ -11,13 +11,11 @@
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "berry_patch_manager.h"
 #include "map_object.h"
+#include "overworld_anim_manager.h"
 #include "unk_02020AEC.h"
-#include "unk_020711EC.h"
 #include "unk_02073838.h"
 
 // Berry patch moisture effect resource IDs
@@ -75,8 +73,8 @@ static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *coun
 static void BerryPatchEffectCounter_CheckEnable(BerryPatchEffectCounter *counter);
 static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counter);
 
-static const UnkStruct_ov101_021D86B0 sBerryPatchMoistureEffectDefinition;
-static const UnkStruct_ov101_021D86B0 sBerryPatchSparkleEffectDefinition;
+static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition;
+static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition;
 static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[];
 
@@ -137,10 +135,10 @@ void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
     ov5_021DF72C(renderManager, &sBerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
 
-static BOOL BerryPatchMoistureEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
+static BOOL BerryPatchMoistureEffect_Init(OverworldAnimManager *effect, void *context)
 {
     BerryPatchMoistureEffect *moistureEffect = context;
-    const BerryPatchMoistureEffectContext *effectContext = sub_020715BC(effect);
+    const BerryPatchMoistureEffectContext *effectContext = OverworldAnimManager_GetUserData(effect);
 
     moistureEffect->context = *effectContext;
     moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
@@ -149,12 +147,12 @@ static BOOL BerryPatchMoistureEffect_Init(UnkStruct_ov101_021D5D90 *effect, void
     return TRUE;
 }
 
-static void BerryPatchMoistureEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
+static void BerryPatchMoistureEffect_Free(OverworldAnimManager *effect, void *context)
 {
     return;
 }
 
-static void BerryPatchMoistureEffect_Update(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
+static void BerryPatchMoistureEffect_Update(OverworldAnimManager *effectTask, void *effectData)
 {
     BerryPatchMoistureEffect *berryPatchEffect = effectData;
     MapObject *mapObject = berryPatchEffect->context.mapObject;
@@ -176,22 +174,22 @@ static void BerryPatchMoistureEffect_Update(UnkStruct_ov101_021D5D90 *effectTask
     VecFx32 mapObjectPosition;
 
     MapObject_GetPosPtr(mapObject, &mapObjectPosition);
-    sub_020715D4(effectTask, &mapObjectPosition);
+    OverworldAnimManager_SetPosition(effectTask, &mapObjectPosition);
 }
 
-static void BerryPatchMoistureEffect_Render(UnkStruct_ov101_021D5D90 *effectTask, void *effectData)
+static void BerryPatchMoistureEffect_Render(OverworldAnimManager *effectTask, void *effectData)
 {
     BerryPatchMoistureEffect *berryPatchEffect = effectData;
 
     if (berryPatchEffect->isHidden != TRUE) {
         VecFx32 effectPosition;
 
-        sub_020715E4(effectTask, &effectPosition);
+        OverworldAnimManager_GetPosition(effectTask, &effectPosition);
         sub_02073BB4(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 sBerryPatchMoistureEffectDefinition = {
+static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition = {
     sizeof(BerryPatchMoistureEffect),
     BerryPatchMoistureEffect_Init,
     BerryPatchMoistureEffect_Free,
@@ -264,12 +262,12 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
     }
 }
 
-UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObject)
+OverworldAnimManager *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObject)
 {
     VecFx32 position;
     UnkStruct_ov5_021DF47C *renderManager;
     BerryPatchSparkleEffectContext effectContext;
-    UnkStruct_ov101_021D5D90 *effectTask;
+    OverworldAnimManager *effectTask;
 
     renderManager = ov5_021DF578(mapObject);
     ov5_021ECDA0(mapObject, &position);
@@ -282,16 +280,16 @@ UnkStruct_ov101_021D5D90 *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObje
     return effectTask;
 }
 
-static BOOL BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void *context)
+static BOOL BerryPatchSparkleEffect_Init(OverworldAnimManager *effect, void *context)
 {
     VecFx32 position;
     BerryPatchSparkleEffect *sparkleEffect = context;
-    const BerryPatchSparkleEffectContext *effectContext = sub_020715BC(effect);
+    const BerryPatchSparkleEffectContext *effectContext = OverworldAnimManager_GetUserData(effect);
 
     sparkleEffect->context = *effectContext;
 
     BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
-    sub_020715E4(effect, &position);
+    OverworldAnimManager_GetPosition(effect, &position);
 
     sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);
     BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
@@ -299,7 +297,7 @@ static BOOL BerryPatchSparkleEffect_Init(UnkStruct_ov101_021D5D90 *effect, void 
     return TRUE;
 }
 
-static void BerryPatchSparkleEffect_Free(UnkStruct_ov101_021D5D90 *effect, void *context)
+static void BerryPatchSparkleEffect_Free(OverworldAnimManager *effect, void *context)
 {
     BerryPatchSparkleEffect *sparkleEffect = context;
 
@@ -308,7 +306,7 @@ static void BerryPatchSparkleEffect_Free(UnkStruct_ov101_021D5D90 *effect, void 
     BerryPatchEffectCounter_CheckDisable(sparkleEffect->context.effectCounter);
 }
 
-static void BerryPatchSparkleEffect_Update(UnkStruct_ov101_021D5D90 *effect, void *context)
+static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *context)
 {
     // Animation speed multipliers for different sparkle effect frames
     fx32 animationSpeeds[5] = { 4096, 4096, 8192, 8192, 4096 };
@@ -333,16 +331,16 @@ static void BerryPatchSparkleEffect_Update(UnkStruct_ov101_021D5D90 *effect, voi
     sparkleEffect->isAnimating = TRUE;
 }
 
-static void BerryPatchSparkleEffect_Render(UnkStruct_ov101_021D5D90 *effect, void *context)
+static void BerryPatchSparkleEffect_Render(OverworldAnimManager *effect, void *context)
 {
     VecFx32 position;
     BerryPatchSparkleEffect *sparkleEffect = context;
 
-    sub_020715E4(effect, &position);
+    OverworldAnimManager_GetPosition(effect, &position);
     sub_020212A8(sparkleEffect->graphicsObject, &position);
 }
 
-static const UnkStruct_ov101_021D86B0 sBerryPatchSparkleEffectDefinition = {
+static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition = {
     sizeof(BerryPatchSparkleEffect),
     BerryPatchSparkleEffect_Init,
     BerryPatchSparkleEffect_Free,

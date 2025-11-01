@@ -16,10 +16,10 @@
 #include "overlay005/struct_ov5_021EC700.h"
 #include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED01C.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "map_object.h"
 #include "math_util.h"
+#include "overworld_anim_manager.h"
 #include "unk_02020AEC.h"
 
 typedef struct {
@@ -50,7 +50,7 @@ typedef struct {
 } UnkStruct_ov5_021EBA0C;
 
 typedef struct {
-    UnkStruct_ov101_021D5D90 *unk_00;
+    OverworldAnimManager *unk_00;
 } UnkStruct_ov5_021EC760;
 
 typedef struct {

@@ -12,11 +12,11 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021F3D00.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
@@ -44,7 +44,7 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    UnkStruct_ov101_021D5D90 *unk_04;
+    OverworldAnimManager *unk_04;
 } UnkStruct_0206A0BC;
 
 typedef struct {
@@ -464,7 +464,7 @@ void sub_0206A134(MapObject *mapObj)
 
 void sub_0206A158(MapObject *mapObj)
 {
-    UnkStruct_ov101_021D5D90 *v0 = sub_0206A224(mapObj);
+    OverworldAnimManager *v0 = sub_0206A224(mapObj);
 
     if (v0 != NULL) {
         ov5_021DF74C(v0);
@@ -489,7 +489,7 @@ void sub_0206A168(MapObject *mapObj)
 static int sub_0206A1AC(MapObject *mapObj, UnkStruct_0206A0BC *param1)
 {
     if (param1->unk_02 == 0) {
-        UnkStruct_ov101_021D5D90 *v0 = ov5_021F3D90(mapObj, param1->unk_01);
+        OverworldAnimManager *v0 = ov5_021F3D90(mapObj, param1->unk_01);
 
         sub_0206A218(mapObj, v0);
     }
@@ -504,7 +504,7 @@ static int sub_0206A1AC(MapObject *mapObj, UnkStruct_0206A0BC *param1)
 static int sub_0206A1DC(MapObject *mapObj, UnkStruct_0206A0BC *param1)
 {
     if (param1->unk_02 == 0) {
-        UnkStruct_ov101_021D5D90 *v0 = sub_0206A224(mapObj);
+        OverworldAnimManager *v0 = sub_0206A224(mapObj);
 
         if (v0 == NULL) {
             if (sub_02062DFC(mapObj) == 1) {
@@ -524,13 +524,13 @@ static int (*const Unk_020EF8DC[])(MapObject *, UnkStruct_0206A0BC *) = {
     sub_0206A1DC
 };
 
-void sub_0206A218(MapObject *mapObj, UnkStruct_ov101_021D5D90 *param1)
+void sub_0206A218(MapObject *mapObj, OverworldAnimManager *param1)
 {
     UnkStruct_0206A0BC *v0 = sub_02062A78(mapObj);
     v0->unk_04 = param1;
 }
 
-UnkStruct_ov101_021D5D90 *sub_0206A224(MapObject *mapObj)
+OverworldAnimManager *sub_0206A224(MapObject *mapObj)
 {
     UnkStruct_0206A0BC *v0 = sub_02062A78(mapObj);
     return v0->unk_04;
