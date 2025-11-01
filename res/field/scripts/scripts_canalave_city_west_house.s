@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_238 10, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0023
     ClearFlag FLAG_UNK_0x0216
     End

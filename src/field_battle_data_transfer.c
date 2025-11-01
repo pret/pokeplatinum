@@ -50,6 +50,7 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202602C.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
@@ -57,7 +58,6 @@
 #include "unk_020366A0.h"
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/location_names.h"

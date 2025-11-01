@@ -161,6 +161,7 @@
 #include "scrcmd_sound.h"
 #include "scrcmd_strings.h"
 #include "scrcmd_system_flags.h"
+#include "scrcmd_tv_broadcast.h"
 #include "scrcmd_underground_inventory.h"
 #include "screen_fade.h"
 #include "script_manager.h"
@@ -178,6 +179,7 @@
 #include "trainer_card.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_02014D38.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
@@ -192,7 +194,6 @@
 #include "unk_02046C7C.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
-#include "unk_02048DD8.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204EDA4.h"
@@ -213,7 +214,6 @@
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
 #include "unk_0206C660.h"
-#include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
 #include "unk_020722AC.h"
@@ -287,7 +287,7 @@ static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_02A(ScriptContext *ctx);
 static BOOL ScrCmd_MessageInstant(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx);
-static BOOL ScrCmd_1FB(ScriptContext *ctx);
+static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx);
 static BOOL ScrCmd_1FE(ScriptContext *ctx);
@@ -1276,7 +1276,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1F8,
     ScrCmd_Dummy1F9,
     ScrCmd_Unused_1FA,
-    ScrCmd_1FB,
+    ScrCmd_ExternalMessage,
     ScrCmd_Unused_1FC,
     ScrCmd_Unused_1FD,
     ScrCmd_1FE,
@@ -1334,10 +1334,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferRibbonName,
     ScrCmd_GetPartyMonEVTotal,
     ScrCmd_GetDayOfWeek,
-    ScrCmd_235,
+    ScrCmd_CallTVBroadcast,
     ScrCmd_236,
-    ScrCmd_237,
-    ScrCmd_238,
+    ScrCmd_CallTVInterview,
+    ScrCmd_CheckTVInterviewEligible,
     ScrCmd_239,
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_PlayPokecenterHealingAnimation,
@@ -2052,13 +2052,13 @@ static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1FB(ScriptContext *ctx)
+static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 bankID = ScriptContext_GetVar(ctx);
+    u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD3);
-    ScriptMessage_Show(ctx, msgLoader, v2, TRUE, NULL);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    ScriptMessage_Show(ctx, msgLoader, messageID, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);

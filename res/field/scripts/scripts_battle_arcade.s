@@ -22,7 +22,7 @@
     ScriptEntryEnd
 
 _0046:
-    ScrCmd_238 19, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _005F
     ClearFlag FLAG_UNK_0x02C3
     End

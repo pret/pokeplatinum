@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/tv_broadcast.h"
+
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202E4D4.h"
 #include "struct_defs/struct_0202E768.h"
@@ -21,7 +23,7 @@
 #include "rtc.h"
 #include "savedata.h"
 
-static void sub_0202E3AC(TVBroadcast *broadcast);
+static void TVBroadcast_ClearPlayedSegments(TVBroadcast *broadcast);
 static UnkStruct_0202E768 *sub_0202E4DC(TVBroadcast *broadcast, int param1);
 
 int TVBroadcast_SaveSize(void)
@@ -41,103 +43,103 @@ void sub_0202E2EC(TVBroadcast *broadcast)
     MI_CpuClearFast(broadcast->unk_C4, sizeof(UnkStruct_0202E768) * 4);
     MI_CpuClearFast(broadcast->unk_17C, sizeof(UnkStruct_0202E768) * 4);
 
-    sub_0202E35C(broadcast);
+    TVBroadcast_ClearWatchProgress(broadcast);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0202E324(TVBroadcast *broadcast, int param1, int param2)
+void TVBroadcast_UpdateProgramTimeSlot(TVBroadcast *broadcast, int deltaMinutes, int currentMinute)
 {
     int i;
 
-    if (broadcast->unk_04 > param1) {
-        broadcast->unk_04 -= param1;
+    if (broadcast->timeSlotMinutesRemaining > deltaMinutes) {
+        broadcast->timeSlotMinutesRemaining -= deltaMinutes;
     } else {
-        broadcast->unk_04 = 15 - param2 % 15;
+        broadcast->timeSlotMinutesRemaining = 15 - currentMinute % 15;
 
-        if (broadcast->unk_04 == 0) {
-            broadcast->unk_04 = 15;
+        if (broadcast->timeSlotMinutesRemaining == 0) {
+            broadcast->timeSlotMinutesRemaining = 15;
         }
 
-        broadcast->unk_08 = 0;
+        broadcast->programFinished = FALSE;
 
-        for (i = 0; i < 4; i++) {
-            broadcast->unk_00[i] = 0;
+        for (i = 0; i < TV_BROADCAST_MAX_PLAYED_SEGMENTS; i++) {
+            broadcast->playedSegments[i] = 0;
         }
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0202E35C(TVBroadcast *broadcast)
+void TVBroadcast_ClearWatchProgress(TVBroadcast *broadcast)
 {
-    sub_0202E374(broadcast, 0);
-    sub_0202E3AC(broadcast);
+    TVBroadcast_SetProgramFinished(broadcast, FALSE);
+    TVBroadcast_ClearPlayedSegments(broadcast);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0202E374(TVBroadcast *broadcast, BOOL param1)
+void TVBroadcast_SetProgramFinished(TVBroadcast *broadcast, BOOL finished)
 {
-    broadcast->unk_08 = param1;
+    broadcast->programFinished = finished;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-BOOL sub_0202E380(const TVBroadcast *broadcast)
+BOOL TVBroadcast_IsProgramFinished(const TVBroadcast *broadcast)
 {
-    return broadcast->unk_08;
+    return broadcast->programFinished;
 }
 
-void sub_0202E384(TVBroadcast *broadcast, int param1)
+void TVBroadcast_SetPlayedSegment(TVBroadcast *broadcast, int segmentID)
 {
     int i;
 
-    for (i = 0; i < 4; i++) {
-        if (broadcast->unk_00[i] == 0) {
-            broadcast->unk_00[i] = param1;
+    for (i = 0; i < TV_BROADCAST_MAX_PLAYED_SEGMENTS; i++) {
+        if (broadcast->playedSegments[i] == NULL) {
+            broadcast->playedSegments[i] = segmentID;
             SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
             return;
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-static void sub_0202E3AC(TVBroadcast *broadcast)
+static void TVBroadcast_ClearPlayedSegments(TVBroadcast *broadcast)
 {
     int i;
 
-    for (i = 0; i < 4; i++) {
-        broadcast->unk_00[i] = 0;
+    for (i = 0; i < TV_BROADCAST_MAX_PLAYED_SEGMENTS; i++) {
+        broadcast->playedSegments[i] = 0;
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-BOOL sub_0202E3C4(const TVBroadcast *broadcast, int param1)
+BOOL TVBroadcast_IsPlayedSegment(const TVBroadcast *broadcast, int segmentID)
 {
     int i;
 
-    for (i = 0; i < 4; i++) {
-        if (broadcast->unk_00[i] == param1) {
-            return 1;
+    for (i = 0; i < TV_BROADCAST_MAX_PLAYED_SEGMENTS; i++) {
+        if (broadcast->playedSegments[i] == segmentID) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-int sub_0202E3DC(const TVBroadcast *broadcast)
+int TVBroadcast_CountPlayedSegments(const TVBroadcast *broadcast)
 {
-    int i, v1;
+    int i, playedCount;
 
-    for (i = 0, v1 = 0; i < 4; i++) {
-        if (broadcast->unk_00[i] != 0) {
-            v1++;
+    for (i = 0, playedCount = 0; i < TV_BROADCAST_MAX_PLAYED_SEGMENTS; i++) {
+        if (broadcast->playedSegments[i] != 0) {
+            playedCount++;
         }
     }
 
-    return v1;
+    return playedCount;
 }
 
 static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param2)
@@ -154,7 +156,7 @@ static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-BOOL sub_0202E43C(TVBroadcast *broadcast, int param1, int param2, const u8 *param3)
+BOOL TVBroadcast_SaveSegmentData(TVBroadcast *broadcast, int param1, int param2, const u8 *param3)
 {
     int i;
     UnkStruct_0202E768 *v1 = sub_0202E4DC(broadcast, param1);

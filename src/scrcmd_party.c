@@ -24,11 +24,10 @@
 #include "pokemon.h"
 #include "ribbon.h"
 #include "save_player.h"
-#include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_02017038.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206CCB0.h"
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {

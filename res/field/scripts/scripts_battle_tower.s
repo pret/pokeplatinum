@@ -33,7 +33,7 @@ _0062:
     CallIfEq VAR_UNK_0x40D8, 1, BattleTower_ShowPoketch
     CallIfEq VAR_UNK_0x40D8, 3, BattleTower_ShowPoketch
     CallIfEq VAR_UNK_0x40D8, 0xFF, BattleTower_ShowPoketch
-    ScrCmd_238 19, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
     CallIfEq VAR_MAP_LOCAL_0, 0, _0144
     CallIfNe VAR_MAP_LOCAL_0, 0, _014A
     ScrCmd_1E0 VAR_MAP_LOCAL_0
@@ -43,7 +43,7 @@ _0062:
     End
 
 _00C6:
-    ScrCmd_238 2, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER, VAR_MAP_LOCAL_0
     GoToIfNe VAR_MAP_LOCAL_0, 0, _00EB
     SetFlag FLAG_UNK_0x020E
     End

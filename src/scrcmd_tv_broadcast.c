@@ -1,8 +1,9 @@
-#include "unk_02048DD8.h"
+#include "scrcmd_tv_broadcast.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/tv_broadcast.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
@@ -32,72 +33,70 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "tv_episode_segment.h"
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"
-#include "unk_0206CCB0.h"
 
-typedef void (*UnkFuncPtr_020EBB48)(FieldSystem *, u16);
-typedef void (*UnkFuncPtr_020EBB48_1)(FieldSystem *, StringTemplate *);
-typedef BOOL (*UnkFuncPtr_020EBB48_2)(FieldSystem *);
+typedef void (*TVInterview_SaveResponseFunction)(FieldSystem *, u16);
+typedef void (*TVInterview_LoadMessageFunction)(FieldSystem *, StringTemplate *);
+typedef BOOL (*TVInterview_IsEligibleFunction)(FieldSystem *);
 
-typedef struct {
-    UnkFuncPtr_020EBB48 unk_00;
-    UnkFuncPtr_020EBB48_1 unk_04;
-    UnkFuncPtr_020EBB48_2 unk_08;
-    u32 unk_0C;
-} UnkStruct_020EBB48;
+typedef struct TVInterview {
+    TVInterview_SaveResponseFunction saveResponseFn;
+    TVInterview_LoadMessageFunction loadMessageFn;
+    TVInterview_IsEligibleFunction isEligibleFn;
+    u32 messageID;
+} TVInterview;
 
-static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *param2);
-static void sub_020491B8(FieldSystem *fieldSystem, int param1, u16 param2, u16 param3);
-static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1);
-BOOL ScrCmd_31B(ScriptContext *param0);
-BOOL ScrCmd_329(ScriptContext *param0);
+static int TVInterview_LoadMessage(int param0, FieldSystem *fieldSystem, StringTemplate *template);
+static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused);
+static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int param1);
 
-BOOL ScrCmd_235(ScriptContext *param0)
+BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
-    case 0: {
-        u16 *v0 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_CHECK_STATUS: {
+        u16 *statusDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v0 = ov6_0224660C(param0->fieldSystem);
+        *statusDestVar = TVBroadcast_GetPendingBroadcastType(param0->fieldSystem);
     } break;
-    case 1: {
-        u16 v1 = ScriptContext_ReadHalfWord(param0);
-        u16 *v2 = ScriptContext_GetVarPointer(param0);
-        u16 *v3 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE: {
+        u16 framingMessageType = ScriptContext_ReadHalfWord(param0);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v2 = 622;
-        *v3 = ov6_02246978(param0->fieldSystem, v1);
+        *bankDestVar = TEXT_BANK_TV_PROGRAMS;
+        *messageDestVar = TVBroadcast_GetProgramFramingMessage(param0->fieldSystem, framingMessageType);
     } break;
-    case 3: {
-        StringTemplate **v4 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-        u16 v5 = ScriptContext_GetVar(param0);
-        u16 *v6 = ScriptContext_GetVarPointer(param0);
-        u16 *v7 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_LOAD_SEGMENT: {
+        StringTemplate **template = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+        u16 segmentID = ScriptContext_GetVar(param0);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        ov6_022469E0(param0->fieldSystem, *v4, v5, v6, v7);
+        TVBroadcast_LoadSegmentMessage(param0->fieldSystem, *template, segmentID, bankDestVar, messageDestVar);
     } break;
-    case 2:
-        ov6_022465FC(param0->fieldSystem);
+    case TV_BROADCAST_CALL_FINISH_PROGRAM:
+        FieldSystem_SetTVProgramFinished(param0->fieldSystem);
         break;
-    case 4: {
-        u16 *v8 = ScriptContext_GetVarPointer(param0);
-        u16 *v9 = ScriptContext_GetVarPointer(param0);
+    case TV_BROADCAST_CALL_LOAD_COMMERCIAL: {
+        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
 
-        *v8 = 623;
-        *v9 = ov6_02246B40(param0->fieldSystem);
+        *bankDestVar = TEXT_BANK_TV_COMMERCIALS;
+        *messageDestVar = ov6_02246B40(param0->fieldSystem);
     } break;
-    case 5: {
+    case TV_BROADCAST_CALL_UNUSED: {
         u16 v10 = ScriptContext_GetVar(param0);
         u16 v11 = ScriptContext_GetVar(param0);
         u16 *v12 = ScriptContext_GetVarPointer(param0);
 
         *v12 = ov6_022468B0(param0->fieldSystem, v10, v11);
     } break;
-    case 6: {
-        u16 *v13 = ScriptContext_GetVarPointer(param0);
-        *v13 = ov6_02246920(param0->fieldSystem);
+    case TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID: {
+        u16 *segmentDestVar = ScriptContext_GetVarPointer(param0);
+        *segmentDestVar = ov6_02246920(param0->fieldSystem);
     } break;
     }
 
@@ -139,53 +138,53 @@ BOOL ScrCmd_30D(ScriptContext *param0)
     return 0;
 }
 
-static const UnkStruct_020EBB48 Unk_020EBB48[19];
+static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
 
-BOOL ScrCmd_237(ScriptContext *param0)
+BOOL ScrCmd_CallTVInterview(ScriptContext *ctx)
 {
-    StringTemplate **v0;
+    StringTemplate **template;
 
-    v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    switch (ScriptContext_ReadHalfWord(param0)) {
-    case 0: {
-        int v1;
-        u16 *v2;
-        u16 *v3;
+    switch (ScriptContext_ReadHalfWord(ctx)) {
+    case TV_INTERVIEW_CALL_LOAD_MESSAGE: {
+        int segmentID;
+        u16 *bankIDVar;
+        u16 *messageIDVar;
 
-        v1 = ScriptContext_GetVar(param0);
-        v2 = ScriptContext_GetVarPointer(param0);
-        v3 = ScriptContext_GetVarPointer(param0);
-        *v2 = 621;
-        *v3 = sub_020491D0(v1, param0->fieldSystem, *v0);
+        segmentID = ScriptContext_GetVar(ctx);
+        bankIDVar = ScriptContext_GetVarPointer(ctx);
+        messageIDVar = ScriptContext_GetVarPointer(ctx);
+        *bankIDVar = TEXT_BANK_TV_REPORTER_INTERVIEWS;
+        *messageIDVar = TVInterview_LoadMessage(segmentID, ctx->fieldSystem, *template);
     } break;
-    case 1: {
-        u16 v4;
-        u16 v5, v6;
-        GameRecords *v7 = SaveData_GetGameRecords(param0->fieldSystem->saveData);
+    case TV_INTERVIEW_CALL_SAVE_RESPONSE: {
+        u16 segmentID;
+        u16 customMessageWord, unused;
+        GameRecords *records = SaveData_GetGameRecords(ctx->fieldSystem->saveData);
 
-        v4 = ScriptContext_GetVar(param0);
-        v5 = ScriptContext_GetVar(param0);
-        v6 = ScriptContext_GetVar(param0);
+        segmentID = ScriptContext_GetVar(ctx);
+        customMessageWord = ScriptContext_GetVar(ctx);
+        unused = ScriptContext_GetVar(ctx);
 
-        sub_020491B8(param0->fieldSystem, v4, v5, v6);
-        GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_03);
+        TVInterview_SaveResponse(ctx->fieldSystem, segmentID, customMessageWord, unused);
+        GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_TV_INTERVIEW_GIVEN);
     } break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_238(ScriptContext *param0)
+BOOL ScrCmd_CheckTVInterviewEligible(ScriptContext *ctx)
 {
-    u16 v0;
-    u16 *v1;
+    u16 segmentID;
+    u16 *destVar;
 
-    v0 = ScriptContext_GetVar(param0);
-    v1 = ScriptContext_GetVarPointer(param0);
-    *v1 = sub_020491F4(param0->fieldSystem, v0);
+    segmentID = ScriptContext_GetVar(ctx);
+    destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = TVInterview_IsEligible(ctx->fieldSystem, segmentID);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_27C(ScriptContext *param0)
@@ -210,46 +209,46 @@ BOOL ScrCmd_27C(ScriptContext *param0)
     return 0;
 }
 
-static void sub_020491B8(FieldSystem *fieldSystem, int param1, u16 param2, u16 param3)
+static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused)
 {
-    UnkFuncPtr_020EBB48 v0;
+    TVInterview_SaveResponseFunction saveResponseFn;
 
-    v0 = Unk_020EBB48[param1 - 1].unk_00;
+    saveResponseFn = sInterviews[segmentID - 1].saveResponseFn;
 
-    if (v0 != NULL) {
-        v0(fieldSystem, param2);
+    if (saveResponseFn != NULL) {
+        saveResponseFn(fieldSystem, customMessageWord);
     }
 }
 
-static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *param2)
+static int TVInterview_LoadMessage(int segmentID, FieldSystem *fieldSystem, StringTemplate *template)
 {
-    UnkFuncPtr_020EBB48_1 v0;
+    TVInterview_LoadMessageFunction loadMessageFn;
 
-    v0 = Unk_020EBB48[param0 - 1].unk_04;
+    loadMessageFn = sInterviews[segmentID - 1].loadMessageFn;
 
-    if (v0 != NULL) {
-        v0(fieldSystem, param2);
+    if (loadMessageFn != NULL) {
+        loadMessageFn(fieldSystem, template);
     }
 
-    return Unk_020EBB48[param0 - 1].unk_0C;
+    return sInterviews[segmentID - 1].messageID;
 }
 
-static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1)
+static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
 {
-    UnkFuncPtr_020EBB48_2 v0;
+    TVInterview_IsEligibleFunction isEligibleFn;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    if (sub_0202E6B0(broadcast, 1, param1) == 0) {
-        return 0;
+    if (sub_0202E6B0(broadcast, 1, segmentID) == 0) {
+        return FALSE;
     }
 
-    v0 = Unk_020EBB48[param1 - 1].unk_08;
+    isEligibleFn = sInterviews[segmentID - 1].isEligibleFn;
 
-    if (v0 == NULL) {
-        return 1;
+    if (isEligibleFn == NULL) {
+        return TRUE;
     }
 
-    return v0(fieldSystem);
+    return isEligibleFn(fieldSystem);
 }
 
 static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
@@ -356,26 +355,26 @@ static BOOL sub_020493B8(FieldSystem *fieldSystem)
     return v0->unk_00;
 }
 
-static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
+static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
     { NULL, NULL, NULL, 0x3 },
-    { sub_0206E0E0, NULL, sub_02049348, 0x4 },
+    { FieldSystem_SaveTVEpisodeSegment_BattleTowerCorner, NULL, sub_02049348, 0x4 },
     { NULL, NULL, NULL, 0x5 },
-    { sub_0206E174, sub_02049268, NULL, 0x6 },
+    { FieldSystem_SaveTVEpisodeSegment_YourPokemonCorner, sub_02049268, NULL, 0x6 },
     { NULL, NULL, NULL, 0x7 },
-    { sub_0206E264, sub_02049288, sub_02049358, 0x8 },
-    { sub_0206E2BC, NULL, sub_02049368, 0x9 },
+    { FieldSystem_SaveTVEpisodeSegment_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
+    { FieldSystem_SaveTVEpisodeSegment_ContestHall, NULL, sub_02049368, 0x9 },
     { NULL, NULL, NULL, 0xA },
-    { sub_0206E398, NULL, sub_02049378, 0xB },
-    { sub_0206E414, NULL, NULL, 0xC },
-    { sub_0206E448, NULL, sub_02049388, 0xD },
+    { FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
+    { FieldSystem_SaveTVEpisodeSegment_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
+    { FieldSystem_SaveTVEpisodeSegment_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
     { NULL, NULL, NULL, 0xE },
-    { sub_0206E4DC, sub_020492A0, sub_02049398, 0xF },
-    { sub_0206E5A0, sub_020492D4, sub_020493A8, 0x10 },
-    { sub_0206E668, NULL, NULL, 0x11 },
-    { sub_0206E6A8, NULL, NULL, 0x12 },
-    { sub_0206E6E8, NULL, NULL, 0x13 },
-    { sub_0206E728, NULL, NULL, 0x14 },
-    { sub_0206E768, sub_02049308, sub_020493B8, 0x15 }
+    { FieldSystem_SaveTVEpisodeSegment_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
+    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
+    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
+    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
 };
 
 BOOL ScrCmd_31B(ScriptContext *param0)

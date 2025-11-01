@@ -34,12 +34,12 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -394,7 +394,7 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        battleTower->unk_1C = sub_0202D3FC(battleTower->unk_74, 6, (battleTower->unk_1A / 7));
+        battleTower->unk_1C = sub_0202D3FC(battleTower->unk_74, 6, battleTower->unk_1A / 7);
     }
 
     return battleTower;
@@ -615,7 +615,7 @@ void sub_0204A660(BattleTower *battleTower, SaveData *saveData)
         v4 = sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 0);
     }
 
-    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (battleTower->unk_1A + battleTower->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), battleTower->unk_1A + battleTower->unk_0D);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
@@ -669,7 +669,7 @@ void sub_0204A7A4(BattleTower *battleTower, SaveData *saveData, JournalEntry *jo
         v5 = sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 0);
     }
 
-    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (battleTower->unk_1A + battleTower->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), battleTower->unk_1A + battleTower->unk_0D);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 1);

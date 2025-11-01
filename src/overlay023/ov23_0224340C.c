@@ -51,9 +51,9 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
-#include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
 
@@ -841,7 +841,7 @@ static void ov23_02243898(UnkStruct_ov23_02243DA8 *param0)
     v4.x = param0->unk_00;
     v4.z = param0->unk_02;
 
-    Underground_InitCoordinatesOrderingState((16 * (7 + 1) + (16 * 4)), ov23_02243864);
+    Underground_InitCoordinatesOrderingState(16 * (7 + 1) + (16 * 4), ov23_02243864);
 
     v0 = Underground_CalculateCoordinatesIndexInsert(&v4);
 
@@ -1436,7 +1436,7 @@ static UnkStruct_ov23_02243DA8 *ov23_0224429C(int param0, int param1)
     v0.x = param0;
     v0.z = param1;
 
-    Underground_InitCoordinatesOrderingState((16 * (7 + 1) + (16 * 4)), ov23_02243864);
+    Underground_InitCoordinatesOrderingState(16 * (7 + 1) + (16 * 4), ov23_02243864);
     v1 = Underground_CalculateCoordinatesIndexGet(&v0);
 
     if (-1 == v1) {
@@ -3417,7 +3417,7 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
         v8 = FX_Sqrt(v8);
 
         if (v1 == 0) {
-            v6 = FX_Mul(FX_Div(v8, (160 * FX32_ONE)), (40 - 2) * FX32_ONE);
+            v6 = FX_Mul(FX_Div(v8, 160 * FX32_ONE ), (40 - 2) * FX32_ONE);
             param1->unk_F0[v0] = FX_Whole(v6);
         } else {
             fx32 v9 = param1->unk_48[v0].x - 128;
@@ -3665,7 +3665,7 @@ static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
             Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             Sprite_SetAffineOverwriteMode(Unk_ov23_02257764->unk_25C[v1], 1);
-            Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], (param0->unk_08[v1] * 2));
+            Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], param0->unk_08[v1] * 2);
             Sprite_SetAnimateFlag(Unk_ov23_02257764->unk_25C[v1], 1);
             Sprite_SetAnimFrame(Unk_ov23_02257764->unk_25C[v1], v1 * 4);
             Sprite_SetExplicitOAMMode(Unk_ov23_02257764->unk_25C[v1], GX_OAM_MODE_XLU);
@@ -3694,7 +3694,7 @@ static void ov23_02246E90(int param0, UnkStruct_ov23_022468DC *param1)
         param1->unk_134[param0] += 0x250 + param0 * 100;
 
         v5 = FX_SinIdx(param1->unk_134[param0]) + FX32_ONE;
-        v4 = FX_Div(v5, (20 * FX32_ONE));
+        v4 = FX_Div(v5, 20 * FX32_ONE );
         v3.x = FX32_ONE - v4;
         v3.y = FX32_ONE - v4;
         v3.z = FX32_ONE - v4;
