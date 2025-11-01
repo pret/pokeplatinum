@@ -2,11 +2,11 @@
   "key": 3928,
   "messages": [
     {
-      "id": "pl_msg_00000461_00000",
+      "id": "LinkSearcher_Text_Title",
       "en_US": "LINK SEARCHER"
     },
     {
-      "id": "pl_msg_00000461_00001",
+      "id": "LinkSearcher_Text_Searching",
       "en_US": [
         "Searching for wireless\n",
         "communications activity\n",
@@ -14,42 +14,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000461_00002",
+      "id": "LinkSearcher_Text_Error",
       "en_US": "Error!"
     },
     {
-      "id": "pl_msg_00000461_00003",
+      "id": "LinkSearcher_Text_Unusable",
       "en_US": "Search is unusable here."
     },
     {
-      "id": "pl_msg_00000461_00004",
+      "id": "LinkSearcher_Text_DontMove",
       "en_US": [
         "Please don’t move\n",
         "while searching."
       ]
     },
     {
-      "id": "pl_msg_00000461_00005",
+      "id": "LinkSearcher_Text_Status",
       "en_US": "LINK STATUS"
     },
     {
-      "id": "pl_msg_00000461_00006",
+      "id": "LinkSearcher_Text_UnionRoom",
       "en_US": "Union Room"
     },
     {
-      "id": "pl_msg_00000461_00007",
+      "id": "LinkSearcher_Text_Underground",
       "en_US": "Underground"
     },
     {
-      "id": "pl_msg_00000461_00008",
+      "id": "LinkSearcher_Text_Colosseum",
       "en_US": "Colosseum"
     },
     {
-      "id": "pl_msg_00000461_00009",
+      "id": "LinkSearcher_Text_OtherLinks",
       "en_US": "Other Links"
     },
     {
-      "id": "pl_msg_00000461_00010",
+      "id": "LinkSearcher_Text_TouchToBegin",
       "en_US": "Touch to begin communication!"
     }
   ]
