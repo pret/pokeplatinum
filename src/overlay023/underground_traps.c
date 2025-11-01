@@ -154,7 +154,7 @@ typedef struct TrapsEnv {
     void *currentTrapContext;
     UnusedFunc unused4; // never anything other than null
     BuriedTrap playerPlacedTraps[MAX_PLACED_TRAPS];
-    OverworldAnimManager *unk_368[MAX_PLACED_TRAPS];
+    OverworldAnimManager *trapTextureManager[MAX_PLACED_TRAPS];
     BuriedTrap buriedTraps[MAX_BURIED_TRAPS];
     BuriedTrap *buriedTrapsByCoordinates[MAX_BURIED_TRAPS];
     TriggeredTrap triggeredTraps[MAX_CONNECTED_PLAYERS];
@@ -198,7 +198,7 @@ typedef struct RockTrapContext {
     int debrisXSpeed[MAX_DEBRIS + 1];
     int debrisYSpeed[MAX_DEBRIS + 1];
     SpriteResource *boulderSpriteResources[BOULDER_STAGES];
-    OverworldAnimManager *unk_114;
+    OverworldAnimManager *shadowManager;
     int boulderDamage;
     int boulderFallSpeed;
     int boulderYPos;
@@ -274,7 +274,7 @@ typedef struct HoleTrapContext {
     u8 toolInitialDir;
     u8 isTool;
     int jumpOutOfHoleProgress;
-    OverworldAnimManager *unk_14;
+    OverworldAnimManager *holeTextureManager;
     int lastDir;
     int timer;
     int unused;
@@ -816,7 +816,7 @@ static void UndergroundTraps_LoadCurrentPlayerPlacedTraps(void)
 
         if (!trapsEnv->graphicsDisabled) {
             if (trapsEnv->playerPlacedTraps[i].trapID != TRAP_NONE) {
-                trapsEnv->unk_368[i] = UndergroundTraps_DrawPlacedTrap(trapsEnv->playerPlacedTraps[i].x, trapsEnv->playerPlacedTraps[i].z, 1, trapsEnv->playerPlacedTraps[i].trapID);
+                trapsEnv->trapTextureManager[i] = UndergroundTraps_DrawPlacedTrap(trapsEnv->playerPlacedTraps[i].x, trapsEnv->playerPlacedTraps[i].z, 1, trapsEnv->playerPlacedTraps[i].trapID);
             }
         }
     }
@@ -854,8 +854,8 @@ void UndergroundTraps_DisableTrapGraphics(void)
     UndergroundTraps_StopAllLinkSpin();
 
     for (int i = 0; i < MAX_PLACED_TRAPS; i++) {
-        if (trapsEnv->unk_368[i]) {
-            trapsEnv->unk_368[i] = NULL;
+        if (trapsEnv->trapTextureManager[i]) {
+            trapsEnv->trapTextureManager[i] = NULL;
         }
     }
 
@@ -884,9 +884,9 @@ void UndergroundTraps_EnableTrapGraphics(void)
 void TrapsEnv_Free(void)
 {
     for (int i = 0; i < MAX_PLACED_TRAPS; i++) {
-        if (trapsEnv->unk_368[i]) {
-            OverworldAnimManager_Finish(trapsEnv->unk_368[i]);
-            trapsEnv->unk_368[i] = NULL;
+        if (trapsEnv->trapTextureManager[i]) {
+            OverworldAnimManager_Finish(trapsEnv->trapTextureManager[i]);
+            trapsEnv->trapTextureManager[i] = NULL;
         }
     }
 
@@ -914,9 +914,9 @@ void TrapsEnv_Free(void)
 void UndergroundTraps_Reinit(FieldSystem *fieldSystem)
 {
     for (int i = 0; i < MAX_PLACED_TRAPS; i++) {
-        if (trapsEnv->unk_368[i]) {
-            OverworldAnimManager_Finish(trapsEnv->unk_368[i]);
-            trapsEnv->unk_368[i] = NULL;
+        if (trapsEnv->trapTextureManager[i]) {
+            OverworldAnimManager_Finish(trapsEnv->trapTextureManager[i]);
+            trapsEnv->trapTextureManager[i] = NULL;
         }
     }
 
@@ -1317,7 +1317,7 @@ static void UndergroundTraps_AddPlacedTrapCurrentPlayer(BuriedTrap *trap)
     MI_CpuCopy8(trap, emptySlot, sizeof(BuriedTrap));
 
     UndergroundTraps_SavePlacedTrapsCurrentPlayer();
-    trapsEnv->unk_368[index] = UndergroundTraps_DrawPlacedTrap(emptySlot->x, emptySlot->z, 1, emptySlot->trapID);
+    trapsEnv->trapTextureManager[index] = UndergroundTraps_DrawPlacedTrap(emptySlot->x, emptySlot->z, 1, emptySlot->trapID);
 }
 
 static void UndergroundTraps_RemovePlacedTrapCurrentPlayer(BuriedTrap *trap)
@@ -1343,15 +1343,15 @@ static void UndergroundTraps_RemovePlacedTrapCurrentPlayer(BuriedTrap *trap)
 
     trapsEnv->playerPlacedTraps[MAX_PLACED_TRAPS - 1].trapID = TRAP_NONE;
 
-    if (trapsEnv->unk_368[index] != NULL) {
-        OverworldAnimManager_Finish(trapsEnv->unk_368[index]);
+    if (trapsEnv->trapTextureManager[index] != NULL) {
+        OverworldAnimManager_Finish(trapsEnv->trapTextureManager[index]);
     }
 
     for (i = index; i < MAX_PLACED_TRAPS - 1; i++) {
-        trapsEnv->unk_368[i] = trapsEnv->unk_368[i + 1];
+        trapsEnv->trapTextureManager[i] = trapsEnv->trapTextureManager[i + 1];
     }
 
-    trapsEnv->unk_368[MAX_PLACED_TRAPS - 1] = NULL;
+    trapsEnv->trapTextureManager[MAX_PLACED_TRAPS - 1] = NULL;
 }
 
 void UndergroundTraps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *unused3)
@@ -2241,8 +2241,8 @@ static void UndergroundTraps_DummyClient(int netID, BOOL isTool, int toolInitial
 static OverworldAnimManager *UndergroundTraps_DrawPlacedTrap(int x, int z, int size, int trapID)
 {
     if (!trapsEnv->graphicsDisabled) {
-        OverworldAnimManager *v0 = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, size, trapID - 1);
-        return v0;
+        OverworldAnimManager *trapTextureManager = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, size, trapID - 1);
+        return trapTextureManager;
     }
 
     return NULL;
@@ -2929,9 +2929,9 @@ static void UndergroundTraps_ForceEndHoleTrapEffectClient(int netID, BOOL allowT
     if (trapsEnv->currentTrapContext) {
         HoleTrapContext *ctx = trapsEnv->currentTrapContext;
 
-        if (ctx->unk_14) {
-            OverworldAnimManager_Finish(ctx->unk_14);
-            ctx->unk_14 = NULL;
+        if (ctx->holeTextureManager) {
+            OverworldAnimManager_Finish(ctx->holeTextureManager);
+            ctx->holeTextureManager = NULL;
         }
 
         if (ctx->isTool && allowToolStepBack) {
@@ -3026,10 +3026,10 @@ static void UndergroundTraps_HoleTrapClientTask(SysTask *sysTask, void *data)
             int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
 
             if (!ctx->isPitTrap) {
-                ctx->unk_14 = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, 2, FLOOR_TEXTURE_BLACK_CIRCLE);
+                ctx->holeTextureManager = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, 2, FLOOR_TEXTURE_BLACK_CIRCLE);
                 Player_SetYPos(trapsEnv->fieldSystem->playerAvatar, -2 * FX32_ONE);
             } else {
-                ctx->unk_14 = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, 3, FLOOR_TEXTURE_BLACK_CIRCLE);
+                ctx->holeTextureManager = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, 3, FLOOR_TEXTURE_BLACK_CIRCLE);
                 Player_SetYPos(trapsEnv->fieldSystem->playerAvatar, -3 * FX32_ONE);
             }
         }
@@ -3077,9 +3077,9 @@ static void UndergroundTraps_HoleTrapClientTask(SysTask *sysTask, void *data)
             ctx->jumpOutOfHoleProgress++;
 
             if (ctx->jumpOutOfHoleProgress == 5) {
-                if (ctx->unk_14) {
-                    OverworldAnimManager_Finish(ctx->unk_14);
-                    ctx->unk_14 = NULL;
+                if (ctx->holeTextureManager) {
+                    OverworldAnimManager_Finish(ctx->holeTextureManager);
+                    ctx->holeTextureManager = NULL;
                 }
 
                 if (ctx->isTool) {
@@ -3978,7 +3978,7 @@ static BOOL UndergroundTraps_ProcessBoulder(BgConfig *unused, RockTrapContext *c
         ctx->timer = 0;
         int x = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
         int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
-        ctx->unk_114 = ov5_DrawGrowingFloorTexture(trapsEnv->fieldSystem, x, z, 5, FLOOR_TEXTURE_BLACK_CIRCLE);
+        ctx->shadowManager = ov5_DrawGrowingFloorTexture(trapsEnv->fieldSystem, x, z, 5, FLOOR_TEXTURE_BLACK_CIRCLE);
         ctx->subState = ROCK_TRAP_SUBSTATE_INIT_BOULDER_FALL;
         Sound_PlayEffect(SEQ_SE_DP_FW466);
         break;
@@ -4009,9 +4009,9 @@ static BOOL UndergroundTraps_ProcessBoulder(BgConfig *unused, RockTrapContext *c
                 ctx->boulderDamage = 5;
             }
 
-            if (ctx->unk_114) {
-                OverworldAnimManager_Finish(ctx->unk_114);
-                ctx->unk_114 = NULL;
+            if (ctx->shadowManager) {
+                OverworldAnimManager_Finish(ctx->shadowManager);
+                ctx->shadowManager = NULL;
             }
         } else {
             ctx->boulderYPos += ctx->boulderFallSpeed;
@@ -4131,9 +4131,9 @@ static BOOL UndergroundTraps_ProcessBoulder(BgConfig *unused, RockTrapContext *c
         }
         break;
     case ROCK_TRAP_SUBSTATE_END:
-        if (ctx->unk_114) {
-            OverworldAnimManager_Finish(ctx->unk_114);
-            ctx->unk_114 = NULL;
+        if (ctx->shadowManager) {
+            OverworldAnimManager_Finish(ctx->shadowManager);
+            ctx->shadowManager = NULL;
         }
 
         Sprite_SetDrawFlag(trapsEnv->sprites[0], FALSE);
@@ -4302,9 +4302,9 @@ static void UndergroundTraps_EndRockTrapEffectClient(int netID, BOOL allowToolSt
     if (trapsEnv->currentTrapContext) {
         RockTrapContext *ctx = trapsEnv->currentTrapContext;
 
-        if (ctx->unk_114) {
-            OverworldAnimManager_Finish(ctx->unk_114);
-            ctx->unk_114 = NULL;
+        if (ctx->shadowManager) {
+            OverworldAnimManager_Finish(ctx->shadowManager);
+            ctx->shadowManager = NULL;
         }
 
         if (ctx->isTool && allowToolStepBack) {
