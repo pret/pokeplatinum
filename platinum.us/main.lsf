@@ -1075,11 +1075,11 @@ Overlay poketch_trainer_counter
 	Object main.nef.p/src_applications_poketch_trainer_counter_graphics.c.o
 }
 
-Overlay overlay54
+Overlay poketch_pokemon_history
 {
 	After overlay25
-	Object main.nef.p/src_overlay054_ov54_022561C0.c.o
-	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
+	Object main.nef.p/src_applications_poketch_pokemon_history_main.c.o
+	Object main.nef.p/src_applications_poketch_pokemon_history_graphics.c.o
 }
 
 Overlay poketch_unused_4
