@@ -5024,7 +5024,7 @@ static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
 
 BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)
 {
-    for (u32 i = 0; i < NELEMS(sBattleFrontierBanlist); i++) {
+    for (u32 i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
         if (species == sBattleFrontierBanlist[i]) {
             return TRUE;
         }
@@ -5035,7 +5035,7 @@ BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)
 
 u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
 {
-    if (index >= NELEMS(sBattleFrontierBanlist)) {
+    if (index >= BATTLE_FRONTIER_BANLIST_SIZE) {
         index = 0;
     }
 

@@ -116,7 +116,7 @@ _0159:
 
 _0190:
     LoadTVInterviewMessage VAR_0x8000, VAR_0x8004, VAR_0x8005
-    ExternalMessage VAR_0x8004, VAR_0x8005
+    MessageFromBank VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8000, 10, _01F0
     FadeScreenOut
     WaitFadeScreen

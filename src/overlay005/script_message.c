@@ -85,7 +85,7 @@ void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 senten
     OpenMessageBox(ctx->fieldSystem, &msgData);
     GetStrBufFromSentence(&msgData, sentenceType, sentenceID, word1, word2);
 
-    if (canSkipDelay != 0xFF) {
+    if (canSkipDelay != FIELD_MESSAGE_SENTENCE_INSTANT) {
         PrintFieldMessage(&msgData, FONT_MESSAGE, GetTextFrameDelay(ctx), canSkipDelay, FALSE);
     } else {
         PrintTextMessage(&msgData, FONT_MESSAGE);

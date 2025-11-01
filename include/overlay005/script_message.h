@@ -5,6 +5,8 @@
 #include "message.h"
 #include "string_template.h"
 
+#define FIELD_MESSAGE_SENTENCE_INSTANT 0xFF
+
 typedef struct ScriptMessageOptions {
     u8 renderDelay;
     u8 autoScroll;

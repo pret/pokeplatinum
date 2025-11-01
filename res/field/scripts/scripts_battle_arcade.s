@@ -116,13 +116,13 @@ _01B8:
 
 _01E5:
     Message 8
-    PrintBattleFrontierBanlist 9, 3, 0, 0
+    MessageSeenBanlistSpecies 9, 3
     GoTo _0145
     End
 
 _01F8:
     Message 8
-    PrintBattleFrontierBanlist 9, 2, 0, 0
+    MessageSeenBanlistSpecies 9, 2
     GoTo _0145
     End
 
@@ -320,7 +320,7 @@ _0564:
     Return
 
 _057F:
-    ScrCmd_02E 32
+    MessageNoSkip 32
     WaitTime 10, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 155

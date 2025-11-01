@@ -52,7 +52,7 @@ _00A2:
     GoToIfEq VAR_RESULT, 0, _00D8
     PlaySound SEQ_FANFA4
     PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
-    ExternalMessage VAR_0x8005, VAR_0x8006
+    MessageFromBank VAR_0x8005, VAR_0x8006
     WaitSound
     Message 18
     WaitABXPadPress
@@ -61,7 +61,7 @@ _00A2:
 
 _00D8:
     PrepareMysterGiftCantReceiveMsg VAR_0x8005, VAR_0x8006
-    ExternalMessage VAR_0x8005, VAR_0x8006
+    MessageFromBank VAR_0x8005, VAR_0x8006
     WaitABXPadPress
     GoTo _00F9
 

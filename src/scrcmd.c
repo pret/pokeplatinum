@@ -286,18 +286,18 @@ static BOOL ScrCmd_SetVarFromValue(ScriptContext *ctx);
 static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_02A(ScriptContext *ctx);
 static BOOL ScrCmd_MessageInstant(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx);
-static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx);
+static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx);
+static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx);
+static BOOL ScrCmd_SentenceInstant(ScriptContext *ctx);
+static BOOL ScrCmd_Sentence(ScriptContext *ctx);
 static BOOL ScrCmd_1FE(ScriptContext *ctx);
-static BOOL ScrCmd_PrintBattleFrontierBanlist(ScriptContext *ctx);
-static BOOL ScrCmd_26D(ScriptContext *ctx);
+static BOOL ScrCmd_MessageSeenBanlistSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_MessageUnown(ScriptContext *ctx);
 static BOOL ScrCmd_Message(ScriptContext *ctx);
 static BOOL ScrCmd_MessageVar(ScriptContext *ctx);
-static BOOL ScrCmd_2C0(ScriptContext *ctx);
-static BOOL ScrCmd_02E(ScriptContext *ctx);
-static BOOL ScrCmd_02F(ScriptContext *ctx);
+static BOOL ScrCmd_MessageAutoScroll(ScriptContext *ctx);
+static BOOL ScrCmd_MessageNoSkip(ScriptContext *ctx);
+static BOOL ScrCmd_MessageSynchronized(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx);
@@ -594,7 +594,7 @@ static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
 static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
-static BOOL ScrCmd_20C(ScriptContext *ctx);
+static BOOL ScrCmd_MessageFromTrainerType(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_InitGreatMarshTram(ScriptContext *ctx);
 static BOOL ScrCmd_MoveGreatMarshTram(ScriptContext *ctx);
@@ -815,8 +815,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_MessageInstant,
     ScrCmd_Message,
     ScrCmd_MessageVar,
-    ScrCmd_02E,
-    ScrCmd_02F,
+    ScrCmd_MessageNoSkip,
+    ScrCmd_MessageSynchronized,
     ScrCmd_WaitABPress,
     ScrCmd_WaitABXPadPress,
     ScrCmd_WaitABPadPress,
@@ -1275,12 +1275,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SurvivePoison,
     ScrCmd_1F8,
     ScrCmd_Dummy1F9,
-    ScrCmd_Unused_1FA,
-    ScrCmd_ExternalMessage,
-    ScrCmd_Unused_1FC,
-    ScrCmd_Unused_1FD,
+    ScrCmd_MessageFromBankInstant,
+    ScrCmd_MessageFromBank,
+    ScrCmd_SentenceInstant,
+    ScrCmd_Sentence,
     ScrCmd_1FE,
-    ScrCmd_PrintBattleFrontierBanlist,
+    ScrCmd_MessageSeenBanlistSpecies,
     ScrCmd_GetPreviousMapID,
     ScrCmd_GetCurrentMapID,
     ScrCmd_StartEndSafariGame,
@@ -1293,7 +1293,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_209,
     ScrCmd_20A,
     ScrCmd_20B,
-    ScrCmd_20C,
+    ScrCmd_MessageFromTrainerType,
     ScrCmd_20D,
     ScrCmd_InitGreatMarshTram,
     ScrCmd_MoveGreatMarshTram,
@@ -1390,7 +1390,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_26A,
     ScrCmd_CheckHasAllLegendaryTitansInParty,
     ScrCmd_TryGetRandomMassageGirlAccessory,
-    ScrCmd_26D,
+    ScrCmd_MessageUnown,
     ScrCmd_GetGBACartridgeVersion,
     ScrCmd_ClearSpiritombCounter,
     ScrCmd_SetHiddenLocation,
@@ -1473,7 +1473,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartLegendaryBattle,
     ScrCmd_GetTrainerCardLevel,
     ScrCmd_2BF,
-    ScrCmd_2C0,
+    ScrCmd_MessageAutoScroll,
     ScrCmd_OpenSaveInfo,
     ScrCmd_CloseSaveInfo,
     ScrCmd_Unused_2C3,
@@ -2039,20 +2039,20 @@ static BOOL ScrCmd_MessageInstant(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx)
+static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 bankID = ScriptContext_GetVar(ctx);
+    u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
-    ScriptMessage_ShowInstant(ctx, msgLoader, v2);
+    ScriptMessage_ShowInstant(ctx, msgLoader, messageID);
     MessageLoader_Free(msgLoader);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx)
+static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx)
 {
     u16 bankID = ScriptContext_GetVar(ctx);
     u16 messageID = ScriptContext_GetVar(ctx);
@@ -2066,25 +2066,25 @@ static BOOL ScrCmd_ExternalMessage(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx)
+static BOOL ScrCmd_SentenceInstant(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 v2 = ScriptContext_ReadHalfWord(ctx);
-    u16 v3 = ScriptContext_ReadHalfWord(ctx);
+    u16 sentenceType = ScriptContext_ReadHalfWord(ctx);
+    u16 sentenceID = ScriptContext_ReadHalfWord(ctx);
+    u16 word1 = ScriptContext_ReadHalfWord(ctx);
+    u16 word2 = ScriptContext_ReadHalfWord(ctx);
 
-    ScriptMessage_ShowSentence(ctx, v0, v1, v2, v3, 0xFF);
+    ScriptMessage_ShowSentence(ctx, sentenceType, sentenceID, word1, word2, FIELD_MESSAGE_SENTENCE_INSTANT);
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx)
+static BOOL ScrCmd_Sentence(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 v2 = ScriptContext_ReadHalfWord(ctx);
-    u16 v3 = ScriptContext_ReadHalfWord(ctx);
+    u16 sentenceType = ScriptContext_ReadHalfWord(ctx);
+    u16 sentenceID = ScriptContext_ReadHalfWord(ctx);
+    u16 word1 = ScriptContext_ReadHalfWord(ctx);
+    u16 word2 = ScriptContext_ReadHalfWord(ctx);
 
-    ScriptMessage_ShowSentence(ctx, v0, v1, v2, v3, 1);
+    ScriptMessage_ShowSentence(ctx, sentenceType, sentenceID, word1, word2, TRUE);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
@@ -2114,33 +2114,33 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_PrintBattleFrontierBanlist(ScriptContext *ctx)
+static BOOL ScrCmd_MessageSeenBanlistSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 messageID = ScriptContext_ReadByte(ctx);
-    u16 numRequiredEligiblePokemon = ScriptContext_GetVar(ctx);
+    u8 banlistMsgStartIdx = ScriptContext_ReadByte(ctx);
+    u16 numPokemonRequired = ScriptContext_GetVar(ctx);
     u16 unused3 = ScriptContext_ReadHalfWord(ctx);
     u8 unused4 = ScriptContext_ReadByte(ctx);
     u8 numBannedSpeciesSeen = 0;
 
-    StringTemplate *strTemplate = BattleFrontier_GetStringWithSeenBannedSpecies(fieldSystem->saveData, numRequiredEligiblePokemon, unused3, unused4, &numBannedSpeciesSeen);
+    StringTemplate *seenBannedSpeciesList = BattleFrontier_MakeSeenBanlistSpeciesMsg(fieldSystem->saveData, numPokemonRequired, unused3, unused4, &numBannedSpeciesSeen);
 
-    ScriptMessage_ShowTemplate(ctx, strTemplate, messageID + numBannedSpeciesSeen, TRUE);
-    StringTemplate_Free(strTemplate);
+    ScriptMessage_ShowTemplate(ctx, seenBannedSpeciesList, banlistMsgStartIdx + numBannedSpeciesSeen, TRUE);
+    StringTemplate_Free(seenBannedSpeciesList);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_26D(ScriptContext *ctx)
+static BOOL ScrCmd_MessageUnown(ScriptContext *ctx)
 {
-    ScriptMessageOptions v0;
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
+    u16 messageID = ScriptContext_ReadHalfWord(ctx);
 
-    ScriptMessageOptions_Init(&v0, ctx);
-    v0.fontID = 3;
+    ScriptMessageOptions msgOptions;
+    ScriptMessageOptions_Init(&msgOptions, ctx);
+    msgOptions.fontID = FONT_UNOWN;
 
-    ScriptMessage_Show(ctx, ctx->loader, v1, FALSE, &v0);
+    ScriptMessage_Show(ctx, ctx->loader, messageID, FALSE, &msgOptions);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
@@ -2174,43 +2174,43 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2C0(ScriptContext *ctx)
+static BOOL ScrCmd_MessageAutoScroll(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    ScriptMessageOptions v1;
+    u16 messageID = ScriptContext_GetVar(ctx);
+    ScriptMessageOptions msgOptions;
 
-    ScriptMessageOptions_Init(&v1, ctx);
+    ScriptMessageOptions_Init(&msgOptions, ctx);
 
-    v1.autoScroll = 1;
+    msgOptions.autoScroll = TRUE;
 
-    ScriptMessage_Show(ctx, ctx->loader, (u8)v0, TRUE, &v1);
+    ScriptMessage_Show(ctx, ctx->loader, (u8)messageID, TRUE, &msgOptions);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_02E(ScriptContext *ctx)
+static BOOL ScrCmd_MessageNoSkip(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 messageID = ScriptContext_GetVar(ctx);
 
-    ScriptMessage_Show(ctx, ctx->loader, (u8)v0, FALSE, NULL);
+    ScriptMessage_Show(ctx, ctx->loader, (u8)messageID, FALSE, NULL);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_20C(ScriptContext *ctx)
+static BOOL ScrCmd_MessageFromTrainerType(ScriptContext *ctx)
 {
     MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u8 v1 = MapObject_GetTrainerType(*mapObj);
+    u8 trainerType = MapObject_GetTrainerType(*mapObj);
 
-    ScriptMessage_Show(ctx, ctx->loader, v1, TRUE, NULL);
+    ScriptMessage_Show(ctx, ctx->loader, trainerType, TRUE, NULL);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_02F(ScriptContext *ctx)
+static BOOL ScrCmd_MessageSynchronized(ScriptContext *ctx)
 {
     u8 messageID = ScriptContext_ReadByte(ctx);
 

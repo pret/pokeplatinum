@@ -309,7 +309,7 @@ _045D:
 _046A:
     SetVar VAR_UNK_0x40D5, 1
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    ScrCmd_02E 52
+    MessageNoSkip 52
     WaitABPressTime 45
     ScrCmd_135 96
     CloseMessage
