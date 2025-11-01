@@ -185,7 +185,7 @@ _0184:
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x01B3
     ClearFlag FLAG_UNK_0x01B5
-    ClearFlag FLAG_CANALAVE_RIVAL
+    ClearFlag FLAG_HIDE_CANALAVE_RIVAL
     ReleaseAll
     End
 

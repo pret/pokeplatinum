@@ -146,7 +146,7 @@ _027C:
 
 _028A:
     SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_RIGHT
-    ClearFlag FLAG_CANALAVE_RIVAL
+    ClearFlag FLAG_HIDE_CANALAVE_RIVAL
     AddObject CANALAVE_CITY_RIVAL_BRIDGE
     ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0340
     WaitMovement
@@ -188,7 +188,7 @@ _0303:
     End
 
 _0334:
-    SetFlag FLAG_CANALAVE_RIVAL
+    SetFlag FLAG_HIDE_CANALAVE_RIVAL
     BlackOutFromBattle
     ReleaseAll
     End

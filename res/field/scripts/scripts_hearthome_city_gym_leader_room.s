@@ -16,7 +16,7 @@ HearthomeGym_TryRemoveBollards:
     End
 
 HearthomeGym_RemoveBollards:
-    SetFlag FLAG_HEARTHOME_GYM_BOLLARDS
+    SetFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
     RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_2
     RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_1
     ClearFlag FLAG_MAP_LOCAL
@@ -80,8 +80,8 @@ HearthomeGym_FantinaMain:
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
     SetVar VAR_HEARTHOME_STATE, 1
-    SetFlag FLAG_HEARTHOME_ROUTE_209_ROADBLOCK
-    ClearFlag FLAG_HEARTHOME_ROUTE_209_GATE_RIVAL
+    SetFlag FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK
+    ClearFlag FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL
     Message HearthomeGym_Text_FantinaExplainRelicBadge
     GoTo HearthomeGym_FantinaTryGiveTM65
 
@@ -162,7 +162,7 @@ HearthomeGym_FantinaSpinFaceWest:
     EndMovement
 
 HearthomeGym_LostBattle:
-    ClearFlag FLAG_HEARTHOME_GYM_BOLLARDS
+    ClearFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
     BlackOutFromBattle
     ReleaseAll
     End

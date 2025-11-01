@@ -85,7 +85,7 @@ JubilifeCity_Counterpart_Right:
     End
 
 JubilifeCity_Counterpart_Init:
-    ClearFlag FLAG_JUBILIFE_COUNTERPART
+    ClearFlag FLAG_HIDE_JUBILIFE_COUNTERPART
     AddObject JUBILIFE_CITY_COUNTERPART
     LockObject JUBILIFE_CITY_COUNTERPART
     ApplyMovement JUBILIFE_CITY_COUNTERPART, _043C
@@ -890,7 +890,7 @@ _0AFE:
     WaitMovement
     RemoveObject 17
     RemoveObject 18
-    SetFlag FLAG_JUBILIFE_GALACTIC_GRUNTS
+    SetFlag FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
     WaitMovement
