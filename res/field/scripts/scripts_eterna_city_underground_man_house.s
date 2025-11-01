@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
+#include "constants/traps.h"
 
 
     ScriptEntry _001A
@@ -168,13 +169,13 @@ _01DF:
     SetVar VAR_UNK_0x40B6, 1
     ClearFlag FLAG_UNK_0x0111
     Message 6
-    SetVar VAR_0x8004, 1
+    SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
-    SetVar VAR_0x8004, 23
+    SetVar VAR_0x8004, TRAP_BUBBLE
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
-    SetVar VAR_0x8004, 28
+    SetVar VAR_0x8004, TRAP_LEAF
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
     Message 7
@@ -210,7 +211,7 @@ _029B:
     SetVar VAR_UNK_0x40B6, 3
     ClearFlag FLAG_UNK_0x0111
     Message 14
-    SetVar VAR_0x8004, 33
+    SetVar VAR_0x8004, TRAP_DIGGER_DRILL
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
     Message 15

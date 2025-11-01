@@ -67,22 +67,19 @@ static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F5634(FieldSystem *fieldSystem, int param1, int param2, int param3)
+void ov5_021F5634(FieldSystem *fieldSystem, int x, int unused, int z)
 {
-    int v0, v1;
     UnkStruct_ov5_021F5634 v2;
     VecFx32 v3;
 
     v2.unk_00 = fieldSystem->unk_40;
     v2.unk_04 = ov5_021DF55C(v2.unk_00, 8);
 
-    v3.x = (((param1) << 4) * FX32_ONE) + (FX32_ONE * 8);
+    v3.x = ((x << 4) * FX32_ONE) + (FX32_ONE * 8);
     v3.y = (FX32_ONE * 10);
-    v3.z = (((param3) << 4) * FX32_ONE);
+    v3.z = ((z << 4) * FX32_ONE);
 
-    v1 = 0;
-
-    ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B1C, &v3, v1, &v2, 0xff);
+    ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B1C, &v3, 0, &v2, 0xff);
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 }
 

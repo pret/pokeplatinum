@@ -8,7 +8,6 @@
 #include "field/field_system.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
@@ -18,6 +17,7 @@
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -104,11 +104,13 @@ void UndergroundMenu_UpdateScrollPrompts(UndergroundMenu *menu, int listPos, int
     ScrollPrompts_UpdateAnim(menu->scrollPrompts);
 }
 
-int ov23_022512D4(Coordinates *param0, int param1)
+// possibly check for secret base pc?
+// coordinates it's checking for are in the secret base range
+int ov23_022512D4(Coordinates *coordinates, int param1)
 {
     int v0;
-    int v1 = param0->x;
-    int v2 = param0->z;
+    int x = coordinates->x;
+    int z = coordinates->z;
     int v3 = 0;
 
     if (param1 != -1) {
@@ -117,24 +119,24 @@ int ov23_022512D4(Coordinates *param0, int param1)
         }
     }
 
-    if (v2 == 12) {
+    if (z == 12) {
         v3 = 0;
-    } else if (v2 == (12 + 32)) {
+    } else if (z == 12 + 32) {
         v3 = 8;
     } else {
         return 0xff;
     }
 
-    if ((v1 == 15) || (v1 == (15 + 1))) {
+    if (x == 15 || x == 15 + 1) {
         return 0;
     }
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if ((v1 == (15 + 32)) || (v1 == ((15 + 32) + 1))) {
+    for (v0 = 0; v0 < MAX_CONNECTED_PLAYERS; v0++) {
+        if (x == 15 + 32 || x == 15 + 32 + 1) {
             return v0 + v3;
         }
 
-        v1 -= 32;
+        x -= 32;
     }
 
     return 0xff;
@@ -182,7 +184,7 @@ BOOL ov23_02251324(int param0, Coordinates *param1)
 
 static void ov23_022513A4(int param0)
 {
-    sub_0205948C(0x40);
+    CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_6);
 }
 
 void ov23_022513B0(int param0, int param1, void *param2, void *param3)
@@ -200,7 +202,7 @@ void ov23_022513B0(int param0, int param1, void *param2, void *param3)
             CommPlayerMan_PauseFieldSystem();
             ov23_02251F94(fieldSystem);
         } else {
-            sub_02059464(0x40);
+            CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_6);
 
             if (v0->unk_02) {
                 ov23_022520E8(fieldSystem, v0);
@@ -744,7 +746,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 14:
         UndergroundMenu_EraseCurrentMenu(v0);
         ov23_02242FE4();
-        ov23_02245728();
+        TrapRadar_Start();
         BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), 50, FALSE, NULL);
         v0->state = 16;
@@ -768,7 +770,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
                     ov23_02242FBC();
                 }
 
-                ov23_02245784();
+                TrapRadar_Exit();
                 ov23_02241364();
                 SphereRadar_Exit();
 
@@ -874,7 +876,7 @@ static void ov23_02252038(SysTask *param0, void *param1)
         } else if (v1 == 0) {
             CommSys_SendDataFixedSize(89, &v0->unk_0C);
         } else {
-            sub_0205948C(0x40);
+            CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_6);
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         }
 

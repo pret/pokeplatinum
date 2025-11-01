@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/traps.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_defs/struct_02099F80.h"
@@ -13,13 +14,13 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -171,7 +172,7 @@ typedef struct {
     s8 unk_A2D;
     s8 unk_A2E;
     u8 unk_A2F;
-    u8 unk_A30;
+    u8 spawnedTrapIndex;
 } UnkStruct_ov23_02257740;
 
 static void Mining_DrawWallCrack(BgConfig *bgConfig);
@@ -642,7 +643,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
         }
 
         for (v0 = 0; v0 < (16 * 4); v0++) {
-            sub_02028EF8(underground, 0, v0, 0, 0);
+            Underground_SaveSpawnedTrap(underground, 0, v0, 0, 0);
         }
 
         v1 = ov23_02241DF8(&v3);
@@ -655,7 +656,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
         sub_02029240(underground);
     } else {
         ov23_0223E834();
-        ov23_02243CE8();
+        UndergroundTraps_LoadSpawnedTraps();
     }
 }
 
@@ -800,10 +801,10 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
             v8 = MATH_Rand16(param0, 20) + v7 - 10;
 
             if (!TerrainCollisionManager_CheckCollision(Unk_ov23_02257740->fieldSystem, v5, v8)) {
-                int v12 = ov23_02243C3C(v5, v8, param0, Unk_ov23_02257740->unk_A30);
+                int trapID = UndergroundTraps_SpawnRandomTrap(v5, v8, param0, Unk_ov23_02257740->spawnedTrapIndex);
 
-                if (0 != v12) {
-                    Unk_ov23_02257740->unk_A30++;
+                if (trapID != TRAP_NONE) {
+                    Unk_ov23_02257740->spawnedTrapIndex++;
                     break;
                 }
             }
@@ -3073,7 +3074,7 @@ BOOL ov23_022415B8(Strbuf *param0)
             v1 = CommInfo_TrainerInfo(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
-            if (ov23_022422A8(v1, 0, 105, param0)) {
+            if (CommManUnderground_FormatStrbufWithTrainerName(v1, 0, 105, param0)) {
                 return 1;
             }
         }
@@ -3089,10 +3090,10 @@ void ov23_0224160C(void)
     }
 }
 
-BOOL ov23_0224162C(int param0)
+BOOL ov23_0224162C(int netID)
 {
     if (Unk_ov23_02257740) {
-        return Unk_ov23_02257740->unk_86C[param0];
+        return Unk_ov23_02257740->unk_86C[netID];
     }
 
     return 0;

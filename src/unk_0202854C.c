@@ -5,6 +5,7 @@
 
 #include "constants/charcode.h"
 #include "constants/items.h"
+#include "constants/traps.h"
 
 #include "struct_defs/struct_02029894.h"
 #include "struct_defs/struct_02029894_sub1.h"
@@ -756,132 +757,128 @@ void Underground_MoveTrapInInventory(Underground *underground, int origSlot, int
     }
 }
 
-void sub_02028EF8(Underground *underground, int param1, int param2, int param3, int param4)
+void Underground_SaveSpawnedTrap(Underground *underground, int trapID, int index, int x, int z)
 {
-    GF_ASSERT(param2 < (16 * 4));
+    GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
-    underground->unk_10B[param2] = param1;
-    underground->unk_14B[param2][0] = param3;
-    underground->unk_14B[param2][1] = ((param3 & 0xf00) >> 8) + ((param4 & 0xf00) >> 4);
-    underground->unk_14B[param2][2] = param4;
+    underground->spawnedTrapIDs[index] = trapID;
+    underground->spawnedTrapCoordinates[index][0] = x;
+    underground->spawnedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+    underground->spawnedTrapCoordinates[index][2] = z;
 }
 
-int sub_02028F40(Underground *underground, int param1)
+int Underground_GetSpawnedTrapIDAtIndex(Underground *underground, int index)
 {
-    GF_ASSERT(param1 < (16 * 4));
-    return underground->unk_10B[param1];
+    GF_ASSERT(index < MAX_SPAWNED_TRAPS);
+    return underground->spawnedTrapIDs[index];
 }
 
-int sub_02028F5C(Underground *underground, int param1)
+int Underground_GetSpawnedTrapXCoordAtIndex(Underground *underground, int index)
 {
-    int v0;
+    GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
-    GF_ASSERT(param1 < (16 * 4));
+    int x = underground->spawnedTrapCoordinates[index][0];
+    x += (underground->spawnedTrapCoordinates[index][1] << 8) & 0xF00;
 
-    v0 = underground->unk_14B[param1][0];
-    v0 += (underground->unk_14B[param1][1] << 8) & 0xf00;
-
-    return v0;
-}
-
-int sub_02028F88(Underground *underground, int param1)
-{
-    int v0;
-
-    GF_ASSERT(param1 < (16 * 4));
-
-    v0 = underground->unk_14B[param1][2];
-    v0 += (underground->unk_14B[param1][1] << 4) & 0xf00;
-
-    return v0;
-}
-
-void sub_02028FB4(Underground *underground, int param1)
-{
-    GF_ASSERT(param1 < (16 * 4));
-
-    underground->unk_10B[param1] = 0;
-    MI_CpuClear8(underground->unk_14B[param1], 3);
-}
-
-void sub_02028FE0(Underground *underground, int param1, int param2, int param3, int param4, int param5)
-{
-    GF_ASSERT(param2 < 16);
-
-    underground->unk_508[param2] = param1;
-    underground->unk_518[param2][0] = param3;
-    underground->unk_518[param2][1] = ((param3 & 0xf00) >> 8) + ((param4 & 0xf00) >> 4);
-    underground->unk_518[param2][2] = param4;
-    underground->unk_548[param2] = param5;
-}
-
-int sub_02029030(Underground *underground, int param1)
-{
-    return underground->unk_508[param1];
-}
-
-int sub_0202903C(Underground *underground, int param1)
-{
-    int v0 = underground->unk_518[param1][0];
-
-    v0 += (underground->unk_518[param1][1] << 8) & 0xf00;
-    return v0;
-}
-
-int sub_0202905C(Underground *underground, int param1)
-{
-    int v0 = underground->unk_518[param1][2];
-
-    v0 += (underground->unk_518[param1][1] << 4) & 0xf00;
-    return v0;
-}
-
-int sub_0202907C(Underground *underground, int param1)
-{
-    return underground->unk_548[param1];
-}
-
-void Underground_SaveBuriedSphere(Underground *underground, int type, int idx, int x, int z, int initialSize, int growth)
-{
-    GF_ASSERT(idx < MAX_BURIED_SPHERES);
-
-    underground->buriedSphereTypes[idx] = type;
-    underground->buriedSphereCoordinates[idx][0] = x;
-    underground->buriedSphereCoordinates[idx][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
-    underground->buriedSphereCoordinates[idx][2] = z;
-    underground->buriedSphereInitialSizes[idx] = initialSize;
-    underground->buriedSphereGrowth[idx] = growth;
-}
-
-int Underground_GetBuriedSphereTypeAtIndex(Underground *underground, int idx)
-{
-    return underground->buriedSphereTypes[idx];
-}
-
-int Underground_GetBuriedSphereXCoordAtIndex(Underground *underground, int idx)
-{
-    int x = underground->buriedSphereCoordinates[idx][0];
-
-    x += (underground->buriedSphereCoordinates[idx][1] << 8) & 0xF00;
     return x;
 }
 
-int Underground_GetBuriedSphereZCoordAtIndex(Underground *underground, int idx)
+int Underground_GetSpawnedTrapZCoordAtIndex(Underground *underground, int index)
 {
-    int z = underground->buriedSphereCoordinates[idx][2];
+    GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
-    z += (underground->buriedSphereCoordinates[idx][1] << 4) & 0xF00;
+    int z = underground->spawnedTrapCoordinates[index][2];
+    z += (underground->spawnedTrapCoordinates[index][1] << 4) & 0xF00;
+
     return z;
 }
 
-int Underground_GetBuriedSphereInitialSizeAtIndex(Underground *underground, int idx)
+void Underground_RemoveSpawnedTrapAtIndex(Underground *underground, int index)
 {
-    return underground->buriedSphereInitialSizes[idx];
+    GF_ASSERT(index < MAX_SPAWNED_TRAPS);
+
+    underground->spawnedTrapIDs[index] = TRAP_NONE;
+    MI_CpuClear8(underground->spawnedTrapCoordinates[index], 3);
 }
 
-int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int idx)
+void Underground_SavePlacedTrap(Underground *underground, int trapID, int index, int x, int z, int param5)
 {
-    return underground->buriedSphereGrowth[idx];
+    GF_ASSERT(index < MAX_PLACED_TRAPS);
+
+    underground->placedTrapIDs[index] = trapID;
+    underground->placedTrapCoordinates[index][0] = x;
+    underground->placedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+    underground->placedTrapCoordinates[index][2] = z;
+    underground->unk_548[index] = param5;
+}
+
+int Underground_GetPlacedTrapIDAtIndex(Underground *underground, int index)
+{
+    return underground->placedTrapIDs[index];
+}
+
+int Underground_GetPlacedTrapXCoordAtIndex(Underground *underground, int index)
+{
+    int x = underground->placedTrapCoordinates[index][0];
+
+    x += (underground->placedTrapCoordinates[index][1] << 8) & 0xF00;
+    return x;
+}
+
+int Underground_GetPlacedTrapZCoordAtIndex(Underground *underground, int index)
+{
+    int z = underground->placedTrapCoordinates[index][2];
+
+    z += (underground->placedTrapCoordinates[index][1] << 4) & 0xF00;
+    return z;
+}
+
+int sub_0202907C(Underground *underground, int index)
+{
+    return underground->unk_548[index];
+}
+
+void Underground_SaveBuriedSphere(Underground *underground, int type, int index, int x, int z, int initialSize, int growth)
+{
+    GF_ASSERT(index < MAX_BURIED_SPHERES);
+
+    underground->buriedSphereTypes[index] = type;
+    underground->buriedSphereCoordinates[index][0] = x;
+    underground->buriedSphereCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+    underground->buriedSphereCoordinates[index][2] = z;
+    underground->buriedSphereInitialSizes[index] = initialSize;
+    underground->buriedSphereGrowth[index] = growth;
+}
+
+int Underground_GetBuriedSphereTypeAtIndex(Underground *underground, int index)
+{
+    return underground->buriedSphereTypes[index];
+}
+
+int Underground_GetBuriedSphereXCoordAtIndex(Underground *underground, int index)
+{
+    int x = underground->buriedSphereCoordinates[index][0];
+
+    x += (underground->buriedSphereCoordinates[index][1] << 8) & 0xF00;
+    return x;
+}
+
+int Underground_GetBuriedSphereZCoordAtIndex(Underground *underground, int index)
+{
+    int z = underground->buriedSphereCoordinates[index][2];
+
+    z += (underground->buriedSphereCoordinates[index][1] << 4) & 0xF00;
+    return z;
+}
+
+int Underground_GetBuriedSphereInitialSizeAtIndex(Underground *underground, int index)
+{
+    return underground->buriedSphereInitialSizes[index];
+}
+
+int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int index)
+{
+    return underground->buriedSphereGrowth[index];
 }
 
 int sub_02029140(Underground *underground, int param1, int param2)
@@ -1229,39 +1226,39 @@ void sub_02029688(UndergroundRecord *param0, int param1)
     }
 }
 
-int UndergroundRecord_GetNumTrapsHit(const UndergroundRecord *undergroundRecord)
+int UndergroundRecord_GetNumTrapHits(const UndergroundRecord *undergroundRecord)
 {
-    return undergroundRecord->numTrapsHit;
+    return undergroundRecord->numTrapHits;
 }
 
-void UndergroundRecord_IncrementNumTrapsHit(UndergroundRecord *undergroundRecord)
+void UndergroundRecord_IncrementNumTrapHits(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numTrapsHit < 999999) {
-        undergroundRecord->numTrapsHit++;
+    if (undergroundRecord->numTrapHits < 999999) {
+        undergroundRecord->numTrapHits++;
     }
 }
 
-int sub_02029704(const UndergroundRecord *param0)
+int UndergroundRecord_GetNumTrapsTriggered(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_20_0;
+    return undergroundRecord->numTrapsTriggered;
 }
 
-void sub_0202970C(UndergroundRecord *param0)
+void UndergroundRecord_IncrementNumTrapsTriggered(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_20_0 < 999999) {
-        param0->unk_20_0++;
+    if (undergroundRecord->numTrapsTriggered < 999999) {
+        undergroundRecord->numTrapsTriggered++;
     }
 }
 
-int sub_0202973C(const UndergroundRecord *param0)
+int UndergroundRecord_GetNumPlayersHelped(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_24_0;
+    return undergroundRecord->numPlayersHelped;
 }
 
-void sub_02029744(UndergroundRecord *param0)
+void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_24_0 < 999999) {
-        param0->unk_24_0++;
+    if (undergroundRecord->numPlayersHelped < 999999) {
+        undergroundRecord->numPlayersHelped++;
     }
 }
 

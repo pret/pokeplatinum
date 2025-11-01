@@ -9,9 +9,9 @@ typedef struct UndergroundRecord {
     u32 numSpheresDug : 20;
     u32 numFossilsDug : 20;
     u32 unk_18_0 : 20;
-    u32 numTrapsHit : 20;
-    u32 unk_20_0 : 20;
-    u32 unk_24_0 : 20;
+    u32 numTrapHits : 20;
+    u32 numTrapsTriggered : 20;
+    u32 numPlayersHelped : 20;
     u32 unk_28_0 : 20;
     u32 unk_2C_0 : 20;
     u32 unk_30_0 : 20;

@@ -705,9 +705,9 @@ static void ov5_021DFADC(SysTask *param0, void *param1)
     }
 }
 
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 param3, int param4)
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
 {
-    sub_0207389C(param1, param2, param0->unk_18, param3, param0->heapID, param4);
+    sub_0207389C(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
     sub_020738EC(param1);
 }
 

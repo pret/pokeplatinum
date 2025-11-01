@@ -39,6 +39,9 @@ enum UndergroundMenuKeys {
     UNDERGROUND_MENU_KEY_23
 };
 
+#define BIT_TRAPS_FULL             1 << 4
+#define BIT_BURIED_SPHERE_IN_FRONT 1 << 5
+
 typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
 
 UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void);
@@ -47,9 +50,9 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
-BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3);
-BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3);
-BOOL ov23_0224240C(int param0, int param1);
+BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, Strbuf *dest);
+BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, Strbuf *dest);
+BOOL ov23_0224240C(int x, int z);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void *param2, void *param3);
 void ov23_02242624(int param0, int param1, void *param2, void *param3);
