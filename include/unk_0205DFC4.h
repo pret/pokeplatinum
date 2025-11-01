@@ -8,8 +8,8 @@
 
 u16 GetNumberDigitCount(u32 number);
 u16 Item_IsTMHM(u16 item);
-u16 sub_0205E078(u16 param0, u16 param1);
-u16 sub_0205E0E4(u16 param0, u16 param1);
+u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity);
+u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
 u16 SaveData_GetFirstNonEggInParty(SaveData *saveData);
 BOOL HasAllLegendaryTitansInParty(SaveData *saveData);
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5);

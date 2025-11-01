@@ -1710,10 +1710,18 @@
     .short 290
     .endm
 
-    .macro ScrCmd_123 arg0, arg1
+    .macro LoadPokedexRating hasNationalDex, destVar
     .short 291
-    .byte \arg0
-    .short \arg1
+    .byte \hasNationalDex
+    .short \destVar
+    .endm
+
+    .macro LoadLocalDexRating destVar
+    LoadPokedexRating FALSE, \destVar
+    .endm
+
+    .macro LoadNationalDexRating destVar
+    LoadPokedexRating TRUE, \destVar
     .endm
 
     .macro StartWildBattle species, level
