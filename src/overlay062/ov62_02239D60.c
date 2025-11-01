@@ -580,8 +580,8 @@ static void ov62_0223A4C8(UnkStruct_0208C06C *param0, int param1)
         ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 80, 232);
     }
 
-    sub_020128C4(v0->unk_348[0].unk_0C, 36, -8);
-    sub_020128C4(v0->unk_348[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_348[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_348[1].unk_0C, 36, -8);
 }
 
 static BOOL ov62_0223A544(UnkStruct_0208C06C *param0)

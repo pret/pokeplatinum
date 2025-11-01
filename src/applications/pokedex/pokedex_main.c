@@ -7,6 +7,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokedex/crysub.h"
+#include "applications/pokedex/formsub.h"
 #include "applications/pokedex/funcptr_ov21_021E9B74.h"
 #include "applications/pokedex/funcptr_ov21_021E9B9C.h"
 #include "applications/pokedex/ov21_021D423C.h"
@@ -24,7 +25,6 @@
 #include "applications/pokedex/ov21_021E3FFC.h"
 #include "applications/pokedex/ov21_021E68F4.h"
 #include "applications/pokedex/ov21_021E737C.h"
-#include "applications/pokedex/ov21_021E8484.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_height_check.h"
@@ -222,7 +222,7 @@ const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B34[8] = {
     ov21_021DDD2C,
     CrySub_Init,
     ov21_021E68F4,
-    ov21_021E8484
+    FormSub_Init
 };
 
 const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B9C[10] = {
@@ -246,7 +246,7 @@ const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B54[8] = {
     ov21_021DDD8C,
     CrySub_Free,
     ov21_021E6954,
-    ov21_021E84E4
+    FormSub_Free
 };
 
 PokedexApp *PokedexMain_NewPokedexApp(enum HeapID heapID, const PokedexOverlayArgs *pokedexOverlayArgs)
@@ -509,31 +509,31 @@ void ov21_021D144C(Sprite *param0, int param1)
     }
 }
 
-void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2)
+void PokedexMain_SetButtonY(Sprite *sprite, PokedexTextData *textData, int setY)
 {
-    int v0 = Sprite_GetAnimFrame(param0);
-    int v1, v2;
+    int frame = Sprite_GetAnimFrame(sprite);
+    int x, y;
 
-    switch (v0) {
+    switch (frame) {
     case 0:
-        sub_020129A4(textData->fontOAM, &v1, &v2);
-        v2 = param2;
-        sub_020128C4(textData->fontOAM, v1, v2);
+        FontOAM_GetXY(textData->fontOAM, &x, &y);
+        y = setY;
+        FontOAM_SetXY(textData->fontOAM, x, y);
         break;
     case 1:
-        sub_020129A4(textData->fontOAM, &v1, &v2);
-        v2 = param2 + -2;
-        sub_020128C4(textData->fontOAM, v1, v2);
+        FontOAM_GetXY(textData->fontOAM, &x, &y);
+        y = setY + -2;
+        FontOAM_SetXY(textData->fontOAM, x, y);
         break;
     case 2:
-        sub_020129A4(textData->fontOAM, &v1, &v2);
-        v2 = param2 + -4;
-        sub_020128C4(textData->fontOAM, v1, v2);
+        FontOAM_GetXY(textData->fontOAM, &x, &y);
+        y = setY + -4;
+        FontOAM_SetXY(textData->fontOAM, x, y);
         break;
     case 3:
-        sub_020129A4(textData->fontOAM, &v1, &v2);
-        v2 = param2 + -2;
-        sub_020128C4(textData->fontOAM, v1, v2);
+        FontOAM_GetXY(textData->fontOAM, &x, &y);
+        y = setY + -2;
+        FontOAM_SetXY(textData->fontOAM, x, y);
         break;
     }
 }
@@ -542,7 +542,7 @@ void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int pa
 {
     int v0;
 
-    ov21_021D1498(param0, textData, param2);
+    PokedexMain_SetButtonY(param0, textData, param2);
     v0 = Sprite_GetAnimFrame(param0);
 
     if (v0 < 2) {

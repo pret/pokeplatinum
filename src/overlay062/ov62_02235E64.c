@@ -739,7 +739,7 @@ static void ov62_02236C20(UnkStruct_0208C06C *param0)
 
     ManagedSprite_SetAnim(v0->unk_158[0].unk_08, 0);
     ManagedSprite_SetPositionXY(v0->unk_158[0].unk_08, 80, 232);
-    sub_020128C4(v0->unk_158[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_158[0].unk_0C, 36, -8);
     sub_020129D0(v0->unk_158[0].unk_0C, 1);
 }
 

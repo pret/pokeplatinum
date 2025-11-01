@@ -1163,7 +1163,7 @@ static void ov21_021D6C44(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     for (v0 = 0; v0 < 9; v0++) {
         if (param0->unk_28[v4]) {
             ov21_021D6CA4(param0->unk_00[v4], &v1, &v2);
-            sub_020128C4(param0->unk_28[v4]->fontOAM, v1, v2);
+            FontOAM_SetXY(param0->unk_28[v4]->fontOAM, v1, v2);
 
             v5 = Sprite_GetPriority(param0->unk_00[v4]);
             v5--;

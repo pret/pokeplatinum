@@ -620,7 +620,7 @@ pokeplatinum_c = files(
     'applications/pokedex/pokedex_height_check.c',
     'applications/pokedex/ov21_021E68F4.c',
     'applications/pokedex/ov21_021E737C.c',
-    'applications/pokedex/ov21_021E8484.c',
+    'applications/pokedex/formsub.c',
     'applications/pokedex/ov21_021E8D48.c',
     'overlay022/ov22_02254DE0.c',
     'overlay022/ov22_02255094.c',

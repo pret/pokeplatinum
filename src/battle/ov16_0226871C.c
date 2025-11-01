@@ -1835,7 +1835,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
         ov16_0226A698(param0);
         v8 = ov16_0226A7A4(param0, v7, v5, v6->unk_04, v6->unk_06, v6->unk_03);
 
-        sub_020129A4(param0->unk_4CC[0].unk_00, &v9, &v10);
+        FontOAM_GetXY(param0->unk_4CC[0].unk_00, &v9, &v10);
 
         if (v5 == 4) {
             v9 += param0->unk_4CC[0].unk_10 + 32 / 2;
@@ -2678,7 +2678,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     v4 = sub_020127E8(&v0);
 
     sub_02012AC0(v4, param5);
-    sub_020128C4(v4, param7, param8);
+    FontOAM_SetXY(v4, param7, param8);
 
     if (param10 == NULL) {
         Window_Remove(&v1);
@@ -3236,8 +3236,8 @@ static void ov16_0226B390(SysTask *param0, void *param1)
     switch (v0->unk_67C.unk_00) {
     case 0:
         ov16_0226B31C(v0, v0->unk_67C.unk_04_val3.unk_00, v0->unk_67C.unk_04_val3.unk_04, v0->unk_67C.unk_04_val3.unk_0C, 2);
-        sub_020129A4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, &v2, &v3);
-        sub_020128C4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + -2);
+        FontOAM_GetXY(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, &v2, &v3);
+        FontOAM_SetXY(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + -2);
 
         if ((v0->unk_67C.unk_04_val3.unk_0E != 0xff) && (v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E] != NULL)) {
             ManagedSprite_OffsetPositionXY(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, -2);
@@ -3256,8 +3256,8 @@ static void ov16_0226B390(SysTask *param0, void *param1)
         v0->unk_67C.unk_00++;
     case 2:
         ov16_0226B31C(v0, v0->unk_67C.unk_04_val3.unk_00, v0->unk_67C.unk_04_val3.unk_04, v0->unk_67C.unk_04_val3.unk_0C, 1);
-        sub_020129A4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, &v2, &v3);
-        sub_020128C4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + 1);
+        FontOAM_GetXY(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, &v2, &v3);
+        FontOAM_SetXY(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + 1);
 
         if ((v0->unk_67C.unk_04_val3.unk_0E != 0xff) && (v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E] != NULL)) {
             ManagedSprite_OffsetPositionXY(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, 1);
@@ -3338,12 +3338,12 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
         ov16_0226B31C(v0, v0->unk_67C.unk_04_val3.unk_00, v0->unk_67C.unk_04_val3.unk_04, v0->unk_67C.unk_04_val3.unk_0C, 2);
 
         if (v0->unk_67C.unk_04_val3.unk_08 != 0xff) {
-            sub_020129A4(v0->unk_4CC[v4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v4].unk_00, v2, v3 + -2);
-            sub_020129A4(v0->unk_4CC[v5].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v5].unk_00, v2, v3 + -2);
-            sub_020129A4(v0->unk_4CC[v6].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v6].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_4CC[v4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v4].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_4CC[v5].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v5].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_4CC[v6].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v6].unk_00, v2, v3 + -2);
 
             if (v9 != 0) {
                 Sprite_OffsetPositionXY(v0->moveSelectSprites[v7]->sprite, 0, -2);
@@ -3353,8 +3353,8 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
                 }
             }
         } else {
-            sub_020129A4(v0->unk_4CC[4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[4].unk_00, v2, v3 + -2);
+            FontOAM_GetXY(v0->unk_4CC[4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[4].unk_00, v2, v3 + -2);
         }
 
         v0->unk_67C.unk_00++;
@@ -3372,12 +3372,12 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
         ov16_0226B31C(v0, v0->unk_67C.unk_04_val3.unk_00, v0->unk_67C.unk_04_val3.unk_04, v0->unk_67C.unk_04_val3.unk_0C, 1);
 
         if (v0->unk_67C.unk_04_val3.unk_08 != 0xff) {
-            sub_020129A4(v0->unk_4CC[v4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v4].unk_00, v2, v3 + 1);
-            sub_020129A4(v0->unk_4CC[v5].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v5].unk_00, v2, v3 + 1);
-            sub_020129A4(v0->unk_4CC[v6].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[v6].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_4CC[v4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v4].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_4CC[v5].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v5].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_4CC[v6].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[v6].unk_00, v2, v3 + 1);
 
             if (v9 != 0) {
                 Sprite_OffsetPositionXY(v0->moveSelectSprites[v7]->sprite, 0, 1);
@@ -3387,8 +3387,8 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
                 }
             }
         } else {
-            sub_020129A4(v0->unk_4CC[4].unk_00, &v2, &v3);
-            sub_020128C4(v0->unk_4CC[4].unk_00, v2, v3 + 1);
+            FontOAM_GetXY(v0->unk_4CC[4].unk_00, &v2, &v3);
+            FontOAM_SetXY(v0->unk_4CC[4].unk_00, v2, v3 + 1);
         }
 
         v0->unk_67C.unk_00++;
@@ -3423,8 +3423,8 @@ static void ov16_0226B780(SysTask *param0, void *param1)
                 ov16_0226B31C(v0, Unk_ov16_022703D4[i], &Unk_ov16_0227033C[i], 4, 2);
 
                 if (v0->unk_4CC[0 + i].unk_00 != NULL) {
-                    sub_020129A4(v0->unk_4CC[0 + i].unk_00, &v2, &v3);
-                    sub_020128C4(v0->unk_4CC[0 + i].unk_00, v2, v3 + -2);
+                    FontOAM_GetXY(v0->unk_4CC[0 + i].unk_00, &v2, &v3);
+                    FontOAM_SetXY(v0->unk_4CC[0 + i].unk_00, v2, v3 + -2);
                 }
 
                 if (v0->unk_60C[i] != NULL) {
@@ -3452,8 +3452,8 @@ static void ov16_0226B780(SysTask *param0, void *param1)
                 ov16_0226B31C(v0, Unk_ov16_022703D4[i], &Unk_ov16_0227033C[i], 4, 1);
 
                 if (v0->unk_4CC[0 + i].unk_00 != NULL) {
-                    sub_020129A4(v0->unk_4CC[0 + i].unk_00, &v2, &v3);
-                    sub_020128C4(v0->unk_4CC[0 + i].unk_00, v2, v3 + 1);
+                    FontOAM_GetXY(v0->unk_4CC[0 + i].unk_00, &v2, &v3);
+                    FontOAM_SetXY(v0->unk_4CC[0 + i].unk_00, v2, v3 + 1);
                 }
 
                 if (v0->unk_60C[i] != NULL) {
