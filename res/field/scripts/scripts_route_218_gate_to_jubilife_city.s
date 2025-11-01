@@ -62,7 +62,7 @@ AcceptOldRod:
     BufferItemName 0, VAR_0x8004
     Message 2
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_OLD_ROD_OBTAINED
     GoTo _005E
 

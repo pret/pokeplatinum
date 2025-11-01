@@ -9,14 +9,14 @@
 
 #include "location.h"
 
-typedef struct UnkStruct_0204AFC4_t {
+typedef struct BattleTower {
     int unk_00;
     int heapID;
     u32 unk_08;
     u8 unk_0C;
     u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F;
+    u8 partySize;
+    u8 challengeMode;
     u8 unk_10_0 : 1;
     u8 unk_10_1 : 2;
     u8 unk_10_3 : 1;
@@ -53,6 +53,6 @@ typedef struct UnkStruct_0204AFC4_t {
     u8 unk_8D7;
     u16 unk_8D8;
     u16 unk_8DA;
-} UnkStruct_0204AFC4;
+} BattleTower;
 
 #endif // POKEPLATINUM_STRUCT_0204AFC4_H

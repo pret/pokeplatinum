@@ -110,7 +110,7 @@ typedef struct FieldSystem_t {
     DynamicTerrainHeightManager *dynamicTerrainHeightMan;
     MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
-    UnkStruct_0204AFC4 *unk_AC;
+    BattleTower *battleTower;
     const BattleRegulation *unk_B0;
     PokedexMemory *pokedexMemory;
     BOOL unk_B8;

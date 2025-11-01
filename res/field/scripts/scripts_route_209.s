@@ -185,7 +185,7 @@ AcceptGoodRod:
     BufferItemName 0, VAR_0x8004
     Message 11
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_GOOD_ROD_OBTAINED
     GoTo _020B
 

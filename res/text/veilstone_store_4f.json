@@ -2,53 +2,53 @@
   "key": 9231,
   "messages": [
     {
-      "id": "pl_msg_00000151_00000",
+      "id": "VeilstoneStore4F_Text_MayIHelpYou",
       "en_US": [
         "Hello.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000151_00001",
+      "id": "VeilstoneStore4F_Text_MayIHelpYouPersonalized",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000151_00002",
+      "id": "VeilstoneStore4F_Text_PleaseEnjoyYourself",
       "en_US": "Please enjoy yourself."
     },
     {
-      "id": "pl_msg_00000151_00003",
+      "id": "VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm",
       "en_US": [
         "The Yellow Cushion is popular for its\n",
         "perfect balance of soft and firm."
       ]
     },
     {
-      "id": "pl_msg_00000151_00004",
+      "id": "VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards",
       "en_US": [
         "You would be surprised at how many\n",
         "customers buy Cupboards."
       ]
     },
     {
-      "id": "pl_msg_00000151_00005",
+      "id": "VeilstoneStore4F_Text_BuizelDollIsVeryPopular",
       "en_US": [
         "The BUIZEL Doll is very popular due\n",
         "to its nautical image."
       ]
     },
     {
-      "id": "pl_msg_00000151_00006",
+      "id": "VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller",
       "en_US": [
         "Let me think... The MANTYKE Doll has\n",
         "been a hot seller recently."
       ]
     },
     {
-      "id": "pl_msg_00000151_00007",
+      "id": "VeilstoneStore4F_Text_ChuckAQuickBallOrTimerBall",
       "en_US": [
         "If you encounter a wild Pokémon,\n",
         "chuck a Quick Ball right off the bat!\r",
@@ -57,21 +57,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000151_00008",
+      "id": "VeilstoneStore4F_Text_ThatBoySaysHeIsTrainingHisImage",
       "en_US": [
         "That boy doesn’t have any Pokémon,\n",
         "but he says he’s training his image!"
       ]
     },
     {
-      "id": "pl_msg_00000151_00009",
+      "id": "VeilstoneStore4F_Text_NeedAnotherCopyOfGameToChallengePapa",
       "en_US": [
         "We need another copy of the game so I\n",
         "can challenge my papa!"
       ]
     },
     {
-      "id": "pl_msg_00000151_00010",
+      "id": "VeilstoneStore4F_Text_Directory",
       "en_US": [
         "B1F: Food & Produce\r",
         "1F: Trainers’ Zone\r",

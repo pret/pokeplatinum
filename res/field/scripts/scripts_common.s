@@ -532,9 +532,9 @@ CommonScript_InternalObtainPoketchApp:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
     PlaySound SEQ_POCKETCH
-    Message pl_msg_00000213_00024
+    Message CommonStrings_Text_ObtainedPoketchApp
     WaitSound
-    Message pl_msg_00000213_00026
+    Message CommonStrings_Text_InstalledPoketchApp
     RegisterPoketchApp VAR_0x8004
     CallIfEq VAR_0x8004, POKETCH_APPID_DIGITALWATCH, CommonScript_ObtainedPoketchDigitalWatch
     CallIfEq VAR_0x8004, POKETCH_APPID_CALCULATOR, CommonScript_ObtainedPoketchCalculator
@@ -604,7 +604,7 @@ CommonScript_ObtainedPoketchPokemonHistory:
     Return
 
 CommonScript_ObtainedPoketchCounter:
-    Message pl_msg_00000213_00093
+    Message CommonStrings_Text_ObtainedPoketchCounter
     Return
 
 CommonScript_ObtainedPoketchAnalogWatch:
@@ -717,14 +717,14 @@ CommonScript_InternalObtainUndergroundSphere:
 
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
-    Message pl_msg_00000213_00031
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
 CommonScript_ObtainAccessory:
     Call CommonScript_InternalObtainAccessory
-    Message pl_msg_00000213_00127
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
@@ -732,7 +732,7 @@ CommonScript_InternalObtainAccessory:
     PlaySound SEQ_ACCE
     AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
@@ -740,14 +740,14 @@ CommonScript_InternalObtainAccessory:
 
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
-    Message pl_msg_00000213_00031
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
 CommonScript_ObtainContestBackdrop:
     Call CommonScript_InternalObtainContestBackdrop
-    Message pl_msg_00000213_00127
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
@@ -755,7 +755,7 @@ CommonScript_InternalObtainContestBackdrop:
     PlaySound SEQ_FANFA4
     AddContestBackdrop VAR_0x8004
     BufferContestBackdropName 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
     BufferContestBackdropName 1, VAR_0x8004
@@ -772,7 +772,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message pl_msg_00000213_00030
+    Message CommonStrings_Text_PutItemInThePocketNoLineFeed
     WaitABXPadPress
     Return
 
@@ -787,13 +787,13 @@ CommonScript_InternalAddItemQuantity:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message pl_msg_00000213_00126
+    Message CommonStrings_Text_PutItemInThePocket
     Return
 
 CommonScript_PrintMessageObtainedKeyItem:
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
-    Message pl_msg_00000213_00028
+    Message CommonStrings_Text_ObtainedKeyItem
     GoTo CommonScript_AfterObtainedItem
 
 CommonScript_PrepareMessageObtainedItem:
@@ -804,7 +804,7 @@ CommonScript_PrepareMessageObtainedItem:
 CommonScript_PrintMessageObtainedItemsPlural:
     BufferItemNamePlural 0, VAR_0x8004
 CommonScript_PrintMessageObtainedItem:
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     GoTo CommonScript_AfterObtainedItem
 
 CommonScript_AfterObtainedItem:
@@ -880,7 +880,7 @@ CommonScript_BagIsFull:
     End
 
 CommonScript_InternalBagIsFull:
-    Message pl_msg_00000213_00027
+    Message CommonStrings_Text_BagIsFull
     WaitABXPadPress
     Return
 

@@ -21,7 +21,7 @@ _0006:
     End
 
 _004B:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

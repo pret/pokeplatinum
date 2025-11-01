@@ -2,60 +2,60 @@
   "key": 9239,
   "messages": [
     {
-      "id": "pl_msg_00000149_00000",
+      "id": "VeilstoneStore2F_Text_MayIHelpYou",
       "en_US": [
         "Hello.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000149_00001",
+      "id": "VeilstoneStore2F_Text_MayIHelpYouPersonalized",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
       ]
     },
     {
-      "id": "pl_msg_00000149_00002",
+      "id": "VeilstoneStore2F_Text_PleaseEnjoyYourself",
       "en_US": "Please enjoy yourself."
     },
     {
-      "id": "pl_msg_00000149_00003",
+      "id": "VeilstoneStore2F_Text_CareForAProtein",
       "en_US": [
         "Would you care for a Protein?\n",
         "It’s a drink that boosts Attack."
       ]
     },
     {
-      "id": "pl_msg_00000149_00004",
+      "id": "VeilstoneStore2F_Text_SuggestACarbos",
       "en_US": [
         "May I suggest a Carbos? It’s a drink\n",
         "that boosts the base Speed stat."
       ]
     },
     {
-      "id": "pl_msg_00000149_00005",
+      "id": "VeilstoneStore2F_Text_DireHitIsForYou",
       "en_US": [
         "When you need to make sure attacks hit\n",
         "the target hard... Dire Hit is for you."
       ]
     },
     {
-      "id": "pl_msg_00000149_00006",
+      "id": "VeilstoneStore2F_Text_TreatItToXAccuracy",
       "en_US": [
         "If your Pokémon has trouble with aim,\n",
         "try treating it to an X Accuracy."
       ]
     },
     {
-      "id": "pl_msg_00000149_00007",
+      "id": "VeilstoneStore2F_Text_MatchingDressesForMeAndMyPokemon",
       "en_US": [
         "Where can I find matching dresses for\n",
         "myself and my dear Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000149_00008",
+      "id": "VeilstoneStore2F_Text_GivingHPUpToKricketot",
       "en_US": [
         "I’m going to give an HP Up to\n",
         "my KRICKETOT.\r",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000149_00009",
+      "id": "VeilstoneStore2F_Text_GettingTheCarbos",
       "en_US": [
         "I’m getting the Carbos!\n",
         "I should get a Protein instead, maybe.\f",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000149_00010",
+      "id": "VeilstoneStore2F_Text_GivingCounterAppAsPromotion",
       "en_US": [
         "We’re giving away a Pokétch app for\n",
         "free as a promotion.\r",
@@ -80,28 +80,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000149_00011",
+      "id": "VeilstoneStore2F_Text_HereYouGo",
       "en_US": [
         "OK, here you go.\n",
         "Go forth and count!\r"
       ]
     },
     {
-      "id": "pl_msg_00000149_00012",
+      "id": "VeilstoneStore2F_Text_IHopeCounterAppIsUseful",
       "en_US": [
         "I hope that Counter app I gave you\n",
         "is useful."
       ]
     },
     {
-      "id": "pl_msg_00000149_00013",
+      "id": "VeilstoneStore2F_Text_WaitingIfYouChangeYourMind",
       "en_US": [
         "You’re not interested? I’ll be here\n",
         "if you change your mind."
       ]
     },
     {
-      "id": "pl_msg_00000149_00014",
+      "id": "VeilstoneStore2F_Text_Directory",
       "en_US": [
         "B1F: Food & Produce\r",
         "1F: Trainers’ Zone\r",

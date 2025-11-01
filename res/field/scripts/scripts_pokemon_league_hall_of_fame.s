@@ -136,7 +136,7 @@ _0174:
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, 2, _02B5
     CallIfEq VAR_UNK_0x410F, 0, _0234
     ClearFlag FLAG_UNK_0x0177
-    CallIfUnset FLAG_UNK_0x00B9, _02BD
+    CallIfUnset FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, _02BD
     ClearFlag FLAG_UNK_0x0186
     ClearFlag FLAG_UNK_0x0124
     SetFlag FLAG_UNK_0x02A0
@@ -203,7 +203,7 @@ _02B5:
     Return
 
 _02BD:
-    ClearFlag FLAG_UNK_0x0185
+    ClearFlag FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN
     Return
 
     .balign 4, 0

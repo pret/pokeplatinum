@@ -97,7 +97,7 @@ _00CC:
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
-    CallCommonScript 0x7D9
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

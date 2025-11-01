@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_tower_functions.h"
 #include "generated/game_records.h"
 
 #include "struct_defs/struct_02049A68.h"
@@ -28,301 +29,296 @@
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
 
-static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1);
+static u16 sub_02049AE0(BattleTower *battleTower, u8 param1);
 
-BOOL ScrCmd_1DB(ScriptContext *param0)
+BOOL ScrCmd_InitBattleTower(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(param0);
-    u16 v1 = ScriptContext_ReadHalfWord(param0);
+    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 challengeMode = ScriptContext_ReadHalfWord(ctx);
 
-    param0->fieldSystem->unk_AC = sub_0204A124(FieldSystem_GetSaveData(param0->fieldSystem), v0, v1);
+    ctx->fieldSystem->battleTower = BattleTower_Init(FieldSystem_GetSaveData(ctx->fieldSystem), v0, challengeMode);
+    return FALSE;
+}
+
+BOOL ScrCmd_SetBattleTowerNull(ScriptContext *ctx)
+{
+    BattleTower_SetNull(&(ctx->fieldSystem->battleTower));
     return 0;
 }
 
-BOOL ScrCmd_1DA(ScriptContext *param0)
+BOOL ScrCmd_FreeBattleTower(ScriptContext *ctx)
 {
-    sub_0204A110(&(param0->fieldSystem->unk_AC));
-    return 0;
+    BattleTower_Free(ctx->fieldSystem->battleTower);
+    ctx->fieldSystem->battleTower = NULL;
+
+    return FALSE;
 }
 
-BOOL ScrCmd_1DC(ScriptContext *param0)
+BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
 {
-    UnkStruct_0204AFC4 *v0;
+    void **partyMenu;
 
-    sub_0204A32C(param0->fieldSystem->unk_AC);
-    param0->fieldSystem->unk_AC = NULL;
+    u16 functionIndex = ScriptContext_ReadHalfWord(ctx);
+    u16 functionArgument = ScriptContext_GetVar(ctx);
+    u16 varID = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, varID);
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    return 0;
-}
-
-BOOL ScrCmd_1DD(ScriptContext *param0)
-{
-    u16 v0, v1, v2;
-    u16 *v3, *v4;
-    void **v5;
-    UnkStruct_0204AFC4 *v6;
-
-    v0 = ScriptContext_ReadHalfWord(param0);
-    v1 = ScriptContext_GetVar(param0);
-    v2 = ScriptContext_ReadHalfWord(param0);
-    v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v2);
-    v6 = param0->fieldSystem->unk_AC;
-
-    switch (v0) {
-    case 1:
-        if (v1 == 0) {
-            *v3 = sub_02049EC4(v6->unk_0E, param0->fieldSystem->saveData, 1);
+    switch (functionIndex) {
+    case BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON: // enough pokemon?
+        if (functionArgument == 0) {
+            *destVar = sub_02049EC4(battleTower->partySize, ctx->fieldSystem->saveData, 1);
         } else {
-            *v3 = sub_02049EC4(v1, param0->fieldSystem->saveData, 1);
+            *destVar = sub_02049EC4(functionArgument, ctx->fieldSystem->saveData, 1);
         }
         break;
-    case 2:
+    case BATTLE_TOWER_FUNCTION_UNK_02:
         sub_02049F8C();
         break;
-    case 3:
-        sub_02049F98(sub_0202D740(param0->fieldSystem->saveData));
+    case BATTLE_TOWER_FUNCTION_UNK_03:
+        sub_02049F98(sub_0202D740(ctx->fieldSystem->saveData));
         break;
-    case 4:
-        *v3 = sub_02049FA0(sub_0202D740(param0->fieldSystem->saveData));
+    case BATTLE_TOWER_FUNCTION_UNK_04:
+        *destVar = sub_02049FA0(sub_0202D740(ctx->fieldSystem->saveData));
         break;
-    case 5:
-        sub_02049FA8(param0->fieldSystem);
+    case BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE:
+        BattleTower_SetCommunicationClubAccessible(ctx->fieldSystem);
         break;
-    case 6:
-        sub_02049FE8(param0->fieldSystem);
+    case BATTLE_TOWER_FUNCTION_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE:
+        BattleTower_ClearCommunicationClubAccessible(ctx->fieldSystem);
         break;
-    case 8:
-        *v3 = sub_02049FF8(param0->fieldSystem->saveData, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_08:
+        *destVar = sub_02049FF8(ctx->fieldSystem->saveData, functionArgument);
         break;
-    case 9:
-        *v3 = sub_0204AABC(NULL, param0->fieldSystem->saveData, 2);
+    case BATTLE_TOWER_FUNCTION_UNK_09:
+        *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 2);
         break;
-    case 10:
-        *v3 = sub_0204AABC(NULL, param0->fieldSystem->saveData, 0);
+    case BATTLE_TOWER_FUNCTION_UNK_10:
+        *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 0);
         break;
-    case 11:
-        sub_0204A030(param0->fieldSystem->saveData, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_11:
+        sub_0204A030(ctx->fieldSystem->saveData, functionArgument);
         break;
-    case 12:
-        *v3 = sub_0204A050(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_12:
+        *destVar = sub_0204A050(ctx->fieldSystem->saveData);
         break;
-    case 14:
-        *v3 = sub_0204A064(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_14:
+        *destVar = sub_0204A064(ctx->fieldSystem->saveData);
         break;
-    case 15:
-        *v3 = sub_0204A100(param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_15:
+        *destVar = sub_0204A100(ctx->fieldSystem->saveData);
         break;
-    case 16:
-        sub_0206BCE4(param0->task, v1, v2, *v3);
-        return 1;
-    case (30 + 0):
-        v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-        sub_0204A358(v6, param0->task, v5);
-        return 1;
-    case (30 + 1):
-        v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-        *v3 = sub_0204A378(v6, v5, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_16:
+        sub_0206BCE4(ctx->task, functionArgument, varID, *destVar);
+        return TRUE;
+    case BATTLE_TOWER_FUNCTION_UNK_30:
+        partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+        sub_0204A358(battleTower, ctx->task, partyMenu);
+        return TRUE;
+    case BATTLE_TOWER_FUNCTION_UNK_31:
+        partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+        *destVar = sub_0204A378(battleTower, partyMenu, ctx->fieldSystem->saveData);
         break;
-    case (30 + 2):
-        *v3 = sub_0204A410(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
+        *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 5):
-        *v3 = sub_0204A57C(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_35:
+        *destVar = sub_0204A57C(battleTower);
         break;
-    case (30 + 7):
-        sub_0204A660(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_37:
+        sub_0204A660(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 8):
-        sub_0204A7A4(v6, param0->fieldSystem->saveData, param0->fieldSystem->journalEntry);
+    case BATTLE_TOWER_FUNCTION_UNK_38:
+        sub_0204A7A4(battleTower, ctx->fieldSystem->saveData, ctx->fieldSystem->journalEntry);
         break;
-    case (30 + 9):
-        sub_0204A8C8(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_39:
+        sub_0204A8C8(battleTower);
         break;
-    case (30 + 26):
-        sub_0204A97C(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_56:
+        sub_0204A97C(battleTower);
         break;
-    case (30 + 11):
-        *v3 = sub_0204A9E0(v6, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_41:
+        *destVar = sub_0204A9E0(battleTower, functionArgument);
         break;
-    case (30 + 13):
-        *v3 = (u16)sub_0204A9F8(v6);
+    case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
+        *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
-    case (30 + 15):
-        *v3 = sub_0204A9FC(v6);
+    case BATTLE_TOWER_FUNCTION_UNK_45:
+        *destVar = sub_0204A9FC(battleTower);
         break;
-    case (30 + 17):
-        sub_0204AA7C(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_47:
+        sub_0204AA7C(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 18):
-        *v3 = sub_0204AB68(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_48:
+        *destVar = sub_0204AB68(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 19):
-        *v3 = sub_0204ABA0(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_49:
+        *destVar = sub_0204ABA0(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 20):
-        v6->unk_10_5 = v1;
+    case BATTLE_TOWER_FUNCTION_UNK_50:
+        battleTower->unk_10_5 = functionArgument;
         break;
-    case (30 + 21):
-        *v3 = v6->unk_10_5;
+    case BATTLE_TOWER_FUNCTION_UNK_51:
+        *destVar = battleTower->unk_10_5;
         break;
-    case (30 + 22):
-        sub_0204A4C8(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_52:
+        sub_0204A4C8(battleTower, ctx->fieldSystem->saveData);
         break;
-    case (30 + 23):
-        *v3 = v6->unk_2A[v1];
+    case BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX:
+        *destVar = battleTower->unk_2A[functionArgument];
         break;
-    case (30 + 24):
-        *v3 = sub_0204AABC(v6, param0->fieldSystem->saveData, 1);
+    case BATTLE_TOWER_FUNCTION_UNK_54:
+        *destVar = sub_0204AABC(battleTower, ctx->fieldSystem->saveData, 1);
         break;
-    case (30 + 25):
-        *v3 = sub_02049AE0(v6, v1);
+    case BATTLE_TOWER_FUNCTION_UNK_55:
+        *destVar = sub_02049AE0(battleTower, functionArgument);
         break;
-    case (30 + 27):
-        *v3 = sub_0204ABF4(v6, param0->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UNK_57:
+        *destVar = sub_0204ABF4(battleTower, ctx->fieldSystem->saveData);
         break;
-    case 100:
-        if (v6 == NULL) {
-            *v3 = 1;
+    case BATTLE_TOWER_FUNCTION_CHECK_IS_NULL:
+        if (battleTower == NULL) {
+            *destVar = TRUE;
         } else {
-            *v3 = 0;
+            *destVar = FALSE;
         }
         break;
-    case (30 + 28):
-        MI_CpuClear8(v6->unk_884, 70);
+    case BATTLE_TOWER_FUNCTION_UNK_58:
+        MI_CpuClear8(battleTower->unk_884, 70);
         break;
     default:
         GF_ASSERT(FALSE);
-        *v3 = 0;
+        *destVar = 0;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1DE(ScriptContext *param0)
+BOOL ScrCmd_1DE(ScriptContext *ctx)
 {
     u16 v0, v1;
     u16 *v2, *v3;
-    UnkStruct_0204AFC4 *v4 = param0->fieldSystem->unk_AC;
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    v0 = ScriptContext_GetVar(param0);
-    v1 = ScriptContext_GetVar(param0);
-    v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    v3 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    v0 = ScriptContext_GetVar(ctx);
+    v1 = ScriptContext_GetVar(ctx);
+    v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v2 = v4->unk_298[v0].unk_30[v1].species;
-    *v3 = v4->unk_298[v0].unk_30[v1].moves[0];
+    *v2 = battleTower->unk_298[v0].unk_30[v1].species;
+    *v3 = battleTower->unk_298[v0].unk_30[v1].moves[0];
 
     return 0;
 }
 
-BOOL ScrCmd_1DF(ScriptContext *param0)
+BOOL ScrCmd_1DF(ScriptContext *ctx)
 {
     u16 v0, v1, v2;
     u16 *v3;
 
-    v0 = ScriptContext_ReadHalfWord(param0);
-    v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v0);
-    *v3 = sub_0206BDBC(param0->fieldSystem->saveData);
+    v0 = ScriptContext_ReadHalfWord(ctx);
+    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
+    *v3 = sub_0206BDBC(ctx->fieldSystem->saveData);
 
     return 0;
 }
 
-BOOL ScrCmd_1E0(ScriptContext *param0)
+BOOL ScrCmd_1E0(ScriptContext *ctx)
 {
     u16 v0, v1, v2;
     u16 *v3;
 
-    v0 = ScriptContext_ReadHalfWord(param0);
-    v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v0);
-    *v3 = sub_0206BF04(param0->fieldSystem->saveData);
+    v0 = ScriptContext_ReadHalfWord(ctx);
+    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
+    *v3 = sub_0206BF04(ctx->fieldSystem->saveData);
 
     return 0;
 }
 
-BOOL ScrCmd_1E1(ScriptContext *param0)
+BOOL ScrCmd_1E1(ScriptContext *ctx)
 {
-    int v0, v1;
+    int cmd, v1;
     const TrainerInfo *v2;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
-    UnkStruct_0204AFC4 *v6 = param0->fieldSystem->unk_AC;
+    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 v4 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    *v5 = 0;
+    *destVar = 0;
 
     switch (v3) {
     case 0:
-        v0 = 62;
-        sub_0204B060(param0->fieldSystem->unk_AC, param0->fieldSystem->saveData);
+        cmd = 62;
+        sub_0204B060(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
         break;
     case 1:
-        v0 = 63;
-        sub_0204B0BC(param0->fieldSystem->unk_AC);
+        cmd = 63;
+        sub_0204B0BC(ctx->fieldSystem->battleTower);
         break;
     case 2:
-        v0 = 64;
-        sub_0204B0D4(param0->fieldSystem->unk_AC, v4);
+        cmd = 64;
+        sub_0204B0D4(ctx->fieldSystem->battleTower, v4);
         break;
     }
 
-    if (sub_0205E6D8(param0->fieldSystem->saveData) == 1) {
-        if (sub_02036614(CommSys_CurNetId(), v6->unk_83E) == 1) {
-            *v5 = 1;
+    if (sub_0205E6D8(ctx->fieldSystem->saveData) == 1) {
+        if (sub_02036614(CommSys_CurNetId(), battleTower->unk_83E) == 1) {
+            *destVar = 1;
         } else {
-            return 1;
+            return TRUE;
         }
     } else {
-        sub_0209BA80(v6);
+        sub_0209BA80(battleTower);
 
         v1 = 70;
 
-        if (CommSys_SendData(v0, v6->unk_83E, v1) == 1) {
-            *v5 = 1;
+        if (CommSys_SendData(cmd, battleTower->unk_83E, v1) == 1) {
+            *destVar = 1;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL sub_02049A20(ScriptContext *param0);
+static BOOL sub_02049A20(ScriptContext *ctx);
 
-BOOL ScrCmd_1E2(ScriptContext *param0)
+BOOL ScrCmd_1E2(ScriptContext *ctx)
 {
     u16 v0;
-    u16 v1;
-    UnkStruct_0204AFC4 *v2 = param0->fieldSystem->unk_AC;
+    u16 destVarID;
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    v1 = ScriptContext_GetVar(param0);
-    v0 = ScriptContext_ReadHalfWord(param0);
+    destVarID = ScriptContext_GetVar(ctx);
+    v0 = ScriptContext_ReadHalfWord(ctx);
 
-    if (sub_0205E6D8(param0->fieldSystem->saveData) == 1) {
-        sub_0206BD88(param0->fieldSystem->task, v1, v0);
+    if (sub_0205E6D8(ctx->fieldSystem->saveData) == 1) {
+        sub_0206BD88(ctx->fieldSystem->task, destVarID, v0);
     } else {
-        v2->unk_8DA = v0;
-        v2->unk_8D5 = v1;
+        battleTower->unk_8DA = v0;
+        battleTower->unk_8D5 = destVarID;
 
-        ScriptContext_Pause(param0, sub_02049A20);
+        ScriptContext_Pause(ctx, sub_02049A20);
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02049A20(ScriptContext *param0)
+static BOOL sub_02049A20(ScriptContext *ctx)
 {
     u8 v0;
-    UnkStruct_0204AFC4 *v1 = param0->fieldSystem->unk_AC;
-    u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, v1->unk_8DA);
+    BattleTower *battleTower = ctx->fieldSystem->battleTower;
+    u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, battleTower->unk_8DA);
 
-    if (v1->unk_8D5 == 1) {
+    if (battleTower->unk_8D5 == 1) {
         v0 = 1;
     } else {
         v0 = 2;
     }
 
-    if (v1->unk_8D4 == v0) {
-        v1->unk_8D4 = 0;
-        *v2 = v1->unk_8D8;
+    if (battleTower->unk_8D4 == v0) {
+        battleTower->unk_8D4 = 0;
+        *v2 = battleTower->unk_8D8;
 
         return 1;
     }
@@ -330,13 +326,13 @@ static BOOL sub_02049A20(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E3(ScriptContext *param0)
+BOOL ScrCmd_1E3(ScriptContext *ctx)
 {
     UnkStruct_02049A68 v0;
-    u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    sub_0202D708(sub_0202D764(param0->fieldSystem->saveData), &v0);
+    sub_0202D708(sub_0202D764(ctx->fieldSystem->saveData), &v0);
 
     *v1 = v0.unk_00;
     *v2 = v0.unk_04;
@@ -344,15 +340,15 @@ BOOL ScrCmd_1E3(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E4(ScriptContext *param0)
+BOOL ScrCmd_1E4(ScriptContext *ctx)
 {
-    u16 *v0 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v0 = sub_0202D5F0(sub_0202D764(param0->fieldSystem->saveData));
-    return 0;
+    *destVar = sub_0202D5F0(sub_0202D764(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
+static u16 sub_02049AE0(BattleTower *battleTower, u8 param1)
 {
     static const u16 v0[] = {
         0x8d,
@@ -363,14 +359,14 @@ static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
     };
 
     if (param1 == 2) {
-        return param0->unk_10_5;
+        return battleTower->unk_10_5;
     }
 
     if (param1 == 1) {
-        if (param0->unk_0F == 2) {
-            return v0[param0->unk_10_5];
+        if (battleTower->challengeMode == 2) {
+            return v0[battleTower->unk_10_5];
         } else {
-            if (param0->unk_12) {
+            if (battleTower->unk_12) {
                 return 0x61;
             } else {
                 return 0x0;
@@ -378,83 +374,83 @@ static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
         }
     }
 
-    if (param0->unk_11) {
+    if (battleTower->unk_11) {
         return 0x61;
     } else {
         return 0x0;
     }
 }
 
-BOOL ScrCmd_ShowBattlePoints(ScriptContext *param0)
+BOOL ScrCmd_ShowBattlePoints(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u8 tilemapLeft = ScriptContext_ReadByte(param0);
-    u8 tilemapTop = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 tilemapLeft = ScriptContext_ReadByte(ctx);
+    u8 tilemapTop = ScriptContext_ReadByte(ctx);
     Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
-    *bpWindow = FieldMenu_DrawBPWindow(param0->fieldSystem, tilemapLeft, tilemapTop);
+    *bpWindow = FieldMenu_DrawBPWindow(ctx->fieldSystem, tilemapLeft, tilemapTop);
 
     return FALSE;
 }
 
-BOOL ScrCmd_HideBattlePoints(ScriptContext *param0)
+BOOL ScrCmd_HideBattlePoints(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
     FieldMenu_DeleteSpecialCurrencyWindow(*bpWindow);
     return FALSE;
 }
 
-BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0)
+BOOL ScrCmd_UpdateBPDisplay(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
-    FieldMenu_PrintBPToWindow(param0->fieldSystem, *bpWindow);
+    FieldMenu_PrintBPToWindow(ctx->fieldSystem, *bpWindow);
     return FALSE;
 }
 
-BOOL ScrCmd_297(ScriptContext *param0)
+BOOL ScrCmd_297(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
     *v2 = sub_0202D230(sub_0202D750(saveData), 0, 0);
     return 0;
 }
 
-BOOL ScrCmd_298(ScriptContext *param0)
+BOOL ScrCmd_298(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v2 = ScriptContext_GetVar(param0);
+    u16 v2 = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_068, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(saveData), v2, 5);
 
     return 0;
 }
 
-BOOL ScrCmd_299(ScriptContext *param0)
+BOOL ScrCmd_299(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v2 = ScriptContext_GetVar(param0);
+    u16 v2 = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_069, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_069, v2);
     sub_0202D230(sub_0202D750(saveData), v2, 6);
 
     return 0;
 }
 
-BOOL ScrCmd_29A(ScriptContext *param0)
+BOOL ScrCmd_29A(ScriptContext *ctx)
 {
     u16 v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202D230(
         sub_0202D750(saveData), 0, 0);
@@ -468,13 +464,13 @@ BOOL ScrCmd_29A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_29B(ScriptContext *param0)
+BOOL ScrCmd_29B(ScriptContext *ctx)
 {
     u8 v0 = 0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    u16 *v4 = ScriptContext_GetVarPointer(ctx);
     static const u16 v5[][2] = {
         { 0x2E, 0x1 },
         { 0x31, 0x1 },
