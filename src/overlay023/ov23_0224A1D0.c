@@ -17,10 +17,10 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02249918.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0224DC40.h"
 #include "overlay023/struct_ov23_0224A5CC.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player_talk.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
@@ -219,7 +219,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {
-        ov23_0224DCB8(v1->unk_02, ov23_0224A334, commPlayerMan->fieldSystem);
+        UndergroundTalk_Start(v1->unk_02, ov23_0224A334, commPlayerMan->fieldSystem);
 
         commPlayerMan->unk_58.unk_00_0 = v1->unk_01;
         commPlayerMan->unk_58.unk_00_4 = v1->unk_02;
@@ -236,7 +236,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_02 == CommSys_CurNetId())) {
-        ov23_0224F07C(v1->unk_02, v1->unk_01, commPlayerMan->fieldSystem);
+        UndergroundTalkResponse_Start(v1->unk_02, v1->unk_01, commPlayerMan->fieldSystem);
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
