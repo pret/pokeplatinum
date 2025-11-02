@@ -169,7 +169,7 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
         input->transitionDir = DIR_NONE;
     }
 
-    input->playerDir = sub_02061308(fieldSystem->playerAvatar, pressedKeys, heldKeys);
+    input->playerDir = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
@@ -206,7 +206,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->dummy5 == FALSE) {
         int playerEvent = PLAYER_EVENT_NONE;
-        int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
+        enum FaceDirection direction = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
         if (SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK)) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;

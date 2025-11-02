@@ -1098,7 +1098,7 @@ static int sub_02065124(MapObject *mapObj, UnkStruct_0206502C *param1)
 {
     if (MapObject_GetTrainerType(mapObj) == 0xa) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
+        PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
         int v2 = MapObject_GetFacingDir(mapObj);
         int v3 = MapObject_GetDataAt(mapObj, 0);
         int v4 = sub_02067D58(mapObj, playerAvatar, v2, v3);
@@ -1279,7 +1279,7 @@ static int sub_0206537C(MapObject *mapObj)
 
     {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
+        PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
 
         if (sub_0206140C(playerAvatar) == 0) {
             return -1;
@@ -1369,7 +1369,7 @@ static int sub_02065448(MapObject *mapObj, int param1, int param2)
                 int v6 = MapObject_GetX(mapObj);
                 int v7 = MapObject_GetZ(mapObj);
                 FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-                PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
+                PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
                 int v10 = Player_GetXPos(playerAvatar);
                 int v11 = Player_GetZPos(playerAvatar);
 

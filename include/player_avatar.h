@@ -12,12 +12,29 @@
 
 #include "field/field_system_decl.h"
 
+#include "location.h"
 #include "overworld_anim_manager.h"
 
 enum PlayerAvatarForm {
     PLAYER_AVATAR_WALKING = 0,
     PLAYER_AVATAR_BIKING,
     PLAYER_AVATAR_SURFING,
+};
+
+enum PlayerAvatarFlagUnk00 {
+    UNK_00_0 = (1 << 0),
+    UNK_00_1 = (1 << 1),
+    UNK_00_2 = (1 << 2),
+    UNK_00_3 = (1 << 3),
+    UNK_00_ESCAPED_FROM_DEEP_MUD = (1 << 4),
+    UNK_00_5 = (1 << 5),
+    UNK_00_6 = (1 << 6),
+    UNK_00_7 = (1 << 7),
+    UNK_00_8 = (1 << 8),
+    UNK_00_9 = (1 << 9),
+    UNK_00_10 = (1 << 10),
+    UNK_00_11 = (1 << 11),
+    UNK_00_12 = (1 << 12)
 };
 
 PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
@@ -55,11 +72,11 @@ int PlayerAvatar_Speed(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetSpeed(PlayerAvatar *playerAvatar, int param1);
 void PlayerAvatar_ClearSpeed(PlayerAvatar *playerAvatar);
 int PlayerAvatar_AddMoveSpeed(PlayerAvatar *playerAvatar, int param1, int param2);
-void sub_0205EBDC(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EBE0(PlayerAvatar *playerAvatar);
-void sub_0205EBE4(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EBE8(PlayerAvatar *playerAvatar);
-void sub_0205EBEC(PlayerAvatar *playerAvatar, int param1, int param2);
+void PlayerAvatar_SetFaceLeftOrRight(PlayerAvatar *playerAvatar, enum FaceDirection leftOrRight);
+enum FaceDirection PlayerAvatar_GetFaceLeftOrRight(PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetFaceUpOrDown(PlayerAvatar *playerAvatar, enum FaceDirection faceUpOrDown);
+enum FaceDirection PlayerAvatar_GetFaceUpOrDown(PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirection faceLeftOrRight, enum FaceDirection faceUpOrDown);
 void sub_0205EC00(PlayerAvatar *playerAvatar, OverworldAnimManager *param1);
 OverworldAnimManager *sub_0205EC04(PlayerAvatar *playerAvatar);
 PlayerData *PlayerAvatar_PlayerData(PlayerAvatar *playerAvatar);
@@ -82,23 +99,23 @@ void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL h
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
 int Player_MoveStateFromGender(int param0, int param1);
 u32 Player_ConvertStateToTransition(int param0);
-PlayerAvatar *sub_0205EF3C(FieldSystem *fieldSystem);
+PlayerAvatar *FieldSystem_GetPlayerAvatar(FieldSystem *fieldSystem);
 void sub_0205EF40(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EF58(PlayerAvatar *playerAvatar);
+BOOL sub_0205EF58(PlayerAvatar *playerAvatar);
 void sub_0205EF6C(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EF84(PlayerAvatar *playerAvatar);
+BOOL sub_0205EF84(PlayerAvatar *playerAvatar);
 void sub_0205EF98(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EFB0(PlayerAvatar *playerAvatar);
+BOOL sub_0205EFB0(PlayerAvatar *playerAvatar);
 void sub_0205EFC4(PlayerAvatar *playerAvatar, int param1);
-int sub_0205EFDC(PlayerAvatar *playerAvatar);
-void PlayerAvatar_SetInDeepSwamp(PlayerAvatar *playerAvatar, int param1);
-int PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar *playerAvatar);
-void sub_0205F01C(PlayerAvatar *playerAvatar, int param1);
-int sub_0205F034(PlayerAvatar *playerAvatar);
+BOOL sub_0205EFDC(PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag);
+BOOL PlayerAvatar_CheckEscapedFromDeepMud(PlayerAvatar *playerAvatar);
+void sub_0205F01C(PlayerAvatar *playerAvatar, BOOL param1);
+BOOL sub_0205F034(PlayerAvatar *playerAvatar);
 void sub_0205F048(PlayerAvatar *playerAvatar);
 void sub_0205F054(PlayerAvatar *playerAvatar);
-int sub_0205F060(PlayerAvatar *playerAvatar);
-void sub_0205F074(PlayerAvatar *playerAvatar, int param1);
+BOOL sub_0205F060(PlayerAvatar *playerAvatar);
+void sub_0205F074(PlayerAvatar *playerAvatar, BOOL param1);
 int sub_0205F08C(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDistortionState state);
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar);
