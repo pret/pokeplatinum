@@ -10,6 +10,9 @@
 
 #define MAX_HISTORY_SIZE 12
 
+#define HISTORY_ICON_STEP_X 40
+#define HISTORY_ICON_STEP_Y 48
+
 typedef struct HistoryData {
     struct {
         int species;

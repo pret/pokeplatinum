@@ -15,6 +15,17 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#define MON_ANIM_DATA(r, c)                                        \
+    {                                                              \
+        .translation = { FX32_CONST(48 + HISTORY_ICON_STEP_X * c), \
+            FX32_CONST(48 + HISTORY_ICON_STEP_Y * r) },            \
+        .animIdx = 4,                                              \
+        .flip = NNS_G2D_RENDERERFLIP_NONE,                         \
+        .oamPriority = 2,                                          \
+        .priority = MAX_HISTORY_SIZE - (4 * r) - c,                \
+        .hasAffineTransform = TRUE,                                \
+    }
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
@@ -133,102 +144,18 @@ static void Task_FreeBackground(SysTask *task, void *taskMan)
 static void SetupSprites(PokemonHistoryGraphics *graphics, const HistoryData *history)
 {
     static const PoketchAnimation_AnimationData animData[] = {
-        {
-            .translation = { FX32_CONST(48 + 40 * 0), FX32_CONST(48 + 48 * 0) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 12,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 1), FX32_CONST(48 + 48 * 0) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 11,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 2), FX32_CONST(48 + 48 * 0) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 10,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 3), FX32_CONST(48 + 48 * 0) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 9,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 0), FX32_CONST(48 + 48 * 1) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 8,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 1), FX32_CONST(48 + 48 * 1) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 7,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 2), FX32_CONST(48 + 48 * 1) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 6,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 3), FX32_CONST(48 + 48 * 1) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 5,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 0), FX32_CONST(48 + 48 * 2) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 4,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 1), FX32_CONST(48 + 48 * 2) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 3,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 2), FX32_CONST(48 + 48 * 2) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 2,
-            .hasAffineTransform = TRUE,
-        },
-        {
-            .translation = { FX32_CONST(48 + 40 * 3), FX32_CONST(48 + 48 * 2) },
-            .animIdx = 4,
-            .flip = NNS_G2D_RENDERERFLIP_NONE,
-            .oamPriority = 2,
-            .priority = 1,
-            .hasAffineTransform = TRUE,
-        },
+        MON_ANIM_DATA(0, 0),
+        MON_ANIM_DATA(0, 1),
+        MON_ANIM_DATA(0, 2),
+        MON_ANIM_DATA(0, 3),
+        MON_ANIM_DATA(1, 0),
+        MON_ANIM_DATA(1, 1),
+        MON_ANIM_DATA(1, 2),
+        MON_ANIM_DATA(1, 3),
+        MON_ANIM_DATA(2, 0),
+        MON_ANIM_DATA(2, 1),
+        MON_ANIM_DATA(2, 2),
+        MON_ANIM_DATA(2, 3),
     };
 
     PoketchTask_LoadPokemonIconLuminancePalette(0);

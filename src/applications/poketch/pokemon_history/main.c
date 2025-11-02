@@ -12,14 +12,14 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
-#define MON_HITBOX(r, c)                              \
-    {                                                 \
-        .rect = {                                     \
-            .top = (48 + 48 * (2 - r)) - (36 / 2),    \
-            .bottom = (48 + 48 * (2 - r)) + (36 / 2), \
-            .left = (48 + 40 * (3 - c)) - (48 / 2),   \
-            .right = (48 + 40 * (3 - c)) + (48 / 2)   \
-        }                                             \
+#define MON_HITBOX(r, c)                                               \
+    {                                                                  \
+        .rect = {                                                      \
+            .top = (48 + HISTORY_ICON_STEP_Y * (2 - r)) - (36 / 2),    \
+            .bottom = (48 + HISTORY_ICON_STEP_Y * (2 - r)) + (36 / 2), \
+            .left = (48 + HISTORY_ICON_STEP_X * (3 - c)) - (48 / 2),   \
+            .right = (48 + HISTORY_ICON_STEP_X * (3 - c)) + (48 / 2)   \
+        }                                                              \
     }
 
 typedef struct PoketchPokemonHistory {
