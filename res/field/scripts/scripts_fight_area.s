@@ -112,7 +112,7 @@ _0198:
     WaitMovement
     Message 11
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 25
     RemoveObject 24
@@ -121,7 +121,7 @@ _0198:
     RemoveObject 27
     RemoveObject 30
     RemoveObject 31
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ApplyMovement 7, _0378
     ApplyMovement LOCALID_PLAYER, _0400
@@ -464,16 +464,16 @@ _0521:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferItemName 0, 0x1BF
-    GoToIfSet FLAG_UNK_0x006B, _057A
+    BufferItemName 0, ITEM_SUPER_ROD
+    GoToIfSet FLAG_SUPER_ROD_OBTAINED, _057A
     Message 42
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _056F
     Message 43
-    SetVar VAR_0x8004, 0x1BF
+    SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x006B
+    GiveItemQuantity
+    SetFlag FLAG_SUPER_ROD_OBTAINED
     Message 44
     WaitABXPadPress
     CloseMessage

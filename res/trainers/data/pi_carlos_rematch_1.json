@@ -23,15 +23,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I wasn’t lucky the other day.\n",
-				"Things will be different today.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I wasn’t lucky the other day.\n",
+                "Things will be different today.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I guessed wrong too often.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I guessed wrong too often.\n"
+        }
     ]
 }

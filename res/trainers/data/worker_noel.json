@@ -28,23 +28,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "The working-class hero says hi!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "The working-class hero says hi!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "The working-class hero waves bye...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "The working-class hero waves bye...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I used to work here a long time\n",
-				"ago, before it shut down.\r",
-				"I worked at the ironworks near\n",
-				"Floaroma Town, too.\r",
-				"You might say I’m drawn by iron\n",
-				"as if by magnet!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I used to work here a long time\n",
+                "ago, before it shut down.\r",
+                "I worked at the ironworks near\n",
+                "Floaroma Town, too.\r",
+                "You might say I’m drawn by iron\n",
+                "as if by magnet!\n"
+            ]
+        }
     ]
 }

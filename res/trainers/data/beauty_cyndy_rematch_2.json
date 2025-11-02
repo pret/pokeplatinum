@@ -37,18 +37,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Give this grown-up another chance to\n",
-				"demonstrate her technique.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Give this grown-up another chance to\n",
+                "demonstrate her technique.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That’s how you attack?\n",
-				"So harshly?\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s how you attack?\n",
+                "So harshly?\n"
+            ]
+        }
     ]
 }

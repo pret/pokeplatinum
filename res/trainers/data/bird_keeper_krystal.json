@@ -37,22 +37,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"With one mighty flap, my birds blow\n",
-				"away the embers of aggression!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "With one mighty flap, my birds blow\n",
+                "away the embers of aggression!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "We failed to get off the ground...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We failed to get off the ground...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The HM Fly isn’t useful inside caves.\n",
-				"It’s such a shame.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The HM Fly isn’t useful inside caves.\n",
+                "It’s such a shame.\n"
+            ]
+        }
     ]
 }

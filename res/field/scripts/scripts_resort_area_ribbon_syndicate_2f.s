@@ -82,19 +82,19 @@ _00ED:
     GoTo _0135
 
 _0113:
-    ScrCmd_1BA 30, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 30, VAR_MAP_LOCAL_0
     Call _0146
     Message 8
     Return
 
 _0124:
-    ScrCmd_1BA 10, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 10, VAR_MAP_LOCAL_0
     Call _0146
     Message 10
     Return
 
 _0135:
-    ScrCmd_1BA 5, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 5, VAR_MAP_LOCAL_0
     Call _0146
     Message 11
     Return

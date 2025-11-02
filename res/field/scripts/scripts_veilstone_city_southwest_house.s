@@ -17,28 +17,28 @@ _000E:
     GoToIfEq VAR_RESULT, MENU_NO, _00EB
     Message 1
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_MAP_LOCAL_0
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_0, 0xFF, _00EB
     GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     PlayFanfare SEQ_SE_DP_FW367
     WaitFanfare SEQ_SE_DP_FW367
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0
     Message 4
     SetFlag FLAG_UNK_0x0AAC
-    ScrCmd_1BA 3, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0
     TryGetRandomMassageGirlAccessory VAR_0x8004
     GoToIfEq VAR_0x8004, -1, _00F6
     Message 7

@@ -1,0 +1,31 @@
+{
+  "key": 15060,
+  "messages": [
+    {
+      "id": "Diploma_Text_Player",
+      "en_US": "PLAYER: {STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "Diploma_Text_Sinnoh",
+      "en_US": [
+        "This document certifies that\n",
+        "you have made the great\n",
+        "achievement of meeting all\n",
+        "the Pokémon in Sinnoh."
+      ]
+    },
+    {
+      "id": "Diploma_Text_NationalDex",
+      "en_US": [
+        "This document certifies\n",
+        "that you have successfully\n",
+        "completed your\n",
+        "National Pokédex."
+      ]
+    },
+    {
+      "id": "Diploma_Text_GameFreak",
+      "en_US": "GAME FREAK"
+    }
+  ]
+}

@@ -40,26 +40,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"...It’s t-too cold.\n",
-				"I can’t even feel my t-tongue.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "...It’s t-too cold.\n",
+                "I can’t even feel my t-tongue.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"This result...\n",
-				"...It’s cold. Bitter cold.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This result...\n",
+                "...It’s cold. Bitter cold.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The higher up you slide from, the\n",
-				"more speed you’ll have to smash\f",
-				"those big snowballs.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The higher up you slide from, the\n",
+                "more speed you’ll have to smash\f",
+                "those big snowballs.\n"
+            ]
+        }
     ]
 }

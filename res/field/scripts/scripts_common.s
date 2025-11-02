@@ -1,288 +1,291 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
+#include "generated/player_transitions.h"
+#include "generated/time_of_day.h"
+#include "constants/trainer_card_levels.h"
 #include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
 
-    ScriptEntry Common_HandleSignpostInput
-    ScriptEntry _034C
-    ScriptEntry _00EE
-    ScriptEntry _03E8
-    ScriptEntry _043B
-    ScriptEntry _0479
-    ScriptEntry CommonScript_SaveGame @ 0x7D6
-    ScriptEntry _00EC
-    ScriptEntry _05EA
-    ScriptEntry _0719
-    ScriptEntry _00EA
-    ScriptEntry _08FF
-    ScriptEntry _0901
-    ScriptEntry _093A
-    ScriptEntry _095C
-    ScriptEntry _0983
-    ScriptEntry _09F5
-    ScriptEntry _0BDD
-    ScriptEntry _0BEE
-    ScriptEntry _0FC3
-    ScriptEntry _0FCA
-    ScriptEntry _103A
-    ScriptEntry _0FA5
-    ScriptEntry _0FA7
-    ScriptEntry _1280
-    ScriptEntry _1282
-    ScriptEntry _12A8
-    ScriptEntry _12BA
-    ScriptEntry _12CD
-    ScriptEntry _12E0
-    ScriptEntry _12F3
-    ScriptEntry _1361
-    ScriptEntry _138C
-    ScriptEntry _139D
-    ScriptEntry _048B
-    ScriptEntry _13AB
-    ScriptEntry _09BD
-    ScriptEntry _1475
-    ScriptEntry _13BE
-    ScriptEntry _1477
-    ScriptEntry _1581
-    ScriptEntry _15D7
-    ScriptEntry _15B3
-    ScriptEntry _15D7
-    ScriptEntry _0A34
-    ScriptEntry _09CC
-    ScriptEntry _0910
-    ScriptEntry _0992
-    ScriptEntry _15BF
-    ScriptEntry _15D7
-    ScriptEntry _15E7
-    ScriptEntry _1636
-    ScriptEntry _164A
-    ScriptEntry _165E
-    ScriptEntry _16AA
-    ScriptEntry _15CB
-    ScriptEntry _15D7
-    ScriptEntry _170A
+    ScriptEntry CommonScript_HandleSignpostInput @ 0x7D0
+    ScriptEntry CommonScript_CheckBagPocketForItem @ 0x7D1
+    ScriptEntry CommonScript_PokecenterNurse @ 0x7D2
+    ScriptEntry _03E8 @ 0x7D3
+    ScriptEntry _043B @ 0x7D4
+    ScriptEntry _0479 @ 0x7D5
+    ScriptEntry CommonScript_SaveGame  @ 0x7D6
+    ScriptEntry CommonScript_EmptyScript2 @ 0x7D7
+    ScriptEntry _05EA @ 0x7D8
+    ScriptEntry CommonScript_ObtainPoketchApp @ 0x7D9
+    ScriptEntry CommonScript_EmptyScript1 @ 0x7DA
+    ScriptEntry CommonScript_EmptyScript3 @ 0x7DB
+    ScriptEntry CommonScript_SendToUndergroundPC @ 0x7DC
+    ScriptEntry CommonScript_ObtainUndergroundTrap @ 0x7DD
+    ScriptEntry CommonScript_ObtainUndergroundSphere @ 0x7DE
+    ScriptEntry CommonScript_ObtainAccessoryWaitForConfirm @ 0x7DF
+    ScriptEntry CommonScript_AddItemQuantityNoLineFeed @ 0x7E0
+    ScriptEntry CommonScript_BagIsFull @ 0x7E1
+    ScriptEntry _0BEE @ 0x7E2
+    ScriptEntry CommonScript_VendorGreetingGeneric @ 0x7E3
+    ScriptEntry CommonScript_PlayerHouseBlackOutRecover @ 0x7E4
+    ScriptEntry CommonScript_PokecenterBlackOutRecover @ 0x7E5
+    ScriptEntry CommonScript_EmptyScript4 @ 0x7E6
+    ScriptEntry _0FA7 @ 0x7E7
+    ScriptEntry CommonScript_EmptyScript5 @ 0x7E8
+    ScriptEntry _1282 @ 0x7E9
+    ScriptEntry _12A8 @ 0x7EA
+    ScriptEntry _12BA @ 0x7EB
+    ScriptEntry _12CD @ 0x7EC
+    ScriptEntry _12E0 @ 0x7ED
+    ScriptEntry _12F3 @ 0x7EE
+    ScriptEntry _1361 @ 0x7EF
+    ScriptEntry _138C @ 0x7F0
+    ScriptEntry _139D @ 0x7F1
+    ScriptEntry _048B @ 0x7F2
+    ScriptEntry _13AB @ 0x7F3
+    ScriptEntry CommonScript_ObtainContestBackdropWaitForConfirm @ 0x7F4
+    ScriptEntry CommonScript_EmptyScript6 @ 0x7F5
+    ScriptEntry CommonScript_PrintPlateObtainedMessage @ 0x7F6
+    ScriptEntry _1477 @ 0x7F7
+    ScriptEntry CommonScript_SetCounterpartBGM @ 0x7F8
+    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x7F9
+    ScriptEntry CommonScript_SetRivalBGM @ 0x7FA
+    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x7FB
+    ScriptEntry CommonScript_AddItemQuantity @ 0x7FC
+    ScriptEntry CommonScript_ObtainContestBackdrop @ 0x7FD
+    ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed @ 0x7FE
+    ScriptEntry CommonScript_ObtainAccessory @ 0x7FF
+    ScriptEntry _15BF @ 0x800
+    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x801
+    ScriptEntry _15E7 @ 0x802
+    ScriptEntry _1636 @ 0x803
+    ScriptEntry _164A @ 0x804
+    ScriptEntry _165E @ 0x805
+    ScriptEntry CommonScript_Frontier_CheckAllFrontierGoldPrintsObtained @ 0x806
+    ScriptEntry CommonScript_SetLookerBGM @ 0x807
+    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
+    ScriptEntry _170A @ 0x809
     ScriptEntryEnd
 
-_00EA:
+CommonScript_EmptyScript1:
     End
 
-_00EC:
+CommonScript_EmptyScript2:
     End
 
-_00EE:
+CommonScript_PokecenterNurse:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2BE VAR_RESULT
-    GoToIfGe VAR_RESULT, 4, _027A
-    SetVar VAR_0x8004, 0
+    GetTrainerCardLevel VAR_RESULT
+    GoToIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterNurse_GoldCard
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterGreeting_Day
     GetTimeOfDay VAR_RESULT
     Dummy1F9 VAR_RESULT
-    SetVar VAR_0x8004, 120
-    GoToIfEq VAR_RESULT, 0, _0141
-    SetVar VAR_0x8004, 121
-    GoToIfEq VAR_RESULT, 1, _0141
-    SetVar VAR_0x8004, 0
-_0141:
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterGreeting_Morning
+    GoToIfEq VAR_RESULT, TIMEOFDAY_MORNING, CommonScript_PokecenterNurse_Greeting
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterGreeting_Night
+    GoToIfEq VAR_RESULT, TIMEOFDAY_DAY, CommonScript_PokecenterNurse_Greeting
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterGreeting_Day
+CommonScript_PokecenterNurse_Greeting:
     MessageVar VAR_0x8004
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0172
-    GoToIfEq VAR_RESULT, MENU_NO, _0165
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_PokecenterNurse_DeclineHealPokemon
     End
 
-_0165:
-    Message pl_msg_00000213_00003
+CommonScript_PokecenterNurse_DeclineHealPokemon:
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0172:
-    SetPlayerState 0x100
+CommonScript_PokecenterNurse_AcceptHealPokemon:
+    SetPlayerState PLAYER_TRANSITION_HEALING
     ChangePlayerState
-    ApplyMovement LOCALID_PLAYER, _02EC
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerGivePokemonMovement
     WaitMovement
-    ScrCmd_2BE VAR_RESULT
-    CallIfGe VAR_RESULT, 4, _01BC
-    CallIfLt VAR_RESULT, 4, _01B7
-    Call _01C1
-    GoToIfUnset FLAG_UNK_0x006A, _0242
-    GoTo _01E1
+    GetTrainerCardLevel VAR_RESULT
+    CallIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterNurse_TakePokemonMessage_GoldCard
+    CallIfLt VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterNurse_TakePokemonMessage
+    Call CommonScript_PokecenterNurse_HealPokemon
+    GoToIfUnset FLAG_POKECENTER_IDENTIFIED_POKERUS, CommonScript_PokecenterNurse_CheckPokerus
+    GoTo CommonScript_PokecenterNurse_FarewellAfterHeal
 
-_01B7:
-    Message pl_msg_00000213_00001
+CommonScript_PokecenterNurse_TakePokemonMessage:
+    Message CommonStrings_Text_PokecenterTakeYourPokemon
     Return
 
-_01BC:
-    Message pl_msg_00000213_00007
+CommonScript_PokecenterNurse_TakePokemonMessage_GoldCard:
+    Message CommonStrings_Text_PokecenterTakeYourPokemon_GoldCard
     Return
 
-_01C1:
-    ApplyMovement VAR_0x8007, _1260
+CommonScript_PokecenterNurse_HealPokemon:
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_TurnToMachineMovement
     WaitMovement
-    GetPartyCountHatched VAR_0x8006
-    ScrCmd_23B VAR_0x8006
-    ApplyMovement VAR_0x8007, _1278
+    CountPartyNonEggs VAR_0x8006
+    PlayPokecenterHealingAnimation VAR_0x8006
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_TurnToPlayerMovement
     WaitMovement
     HealParty
     Return
 
-_01E1:
-    GoToIfEq VAR_0x8004, 1, _0218
-    Message pl_msg_00000213_00002
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterNurse_FarewellAfterHeal:
+    GoToIfEq VAR_0x8004, TRUE, CommonScript_PokecenterNurse_FarewellAfterHeal_GoldCard
+    Message CommonStrings_Text_PokecenterRestoredYourPokemon
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
-    Message pl_msg_00000213_00003
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0218:
-    Message pl_msg_00000213_00008
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterNurse_FarewellAfterHeal_GoldCard:
+    Message CommonStrings_Text_PokecenterThankYouForWaiting
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
-    Message pl_msg_00000213_00009
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0242:
+CommonScript_PokecenterNurse_CheckPokerus:
     CheckPartyPokerus VAR_0x8006
-    GoToIfEq VAR_0x8006, 1, _0259
-    GoTo _01E1
+    GoToIfEq VAR_0x8006, TRUE, CommonScript_PokecenterNurse_IdentifiedPokerus
+    GoTo CommonScript_PokecenterNurse_FarewellAfterHeal
 
-_0259:
-    SetFlag FLAG_UNK_0x006A
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterNurse_IdentifiedPokerus:
+    SetFlag FLAG_POKECENTER_IDENTIFIED_POKERUS
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    Message pl_msg_00000213_00010
+    Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_027A:
-    GoToIfSet FLAG_UNK_0x0069, _02B0
-    SetFlag FLAG_UNK_0x0069
-    Message pl_msg_00000213_00004
+CommonScript_PokecenterNurse_GoldCard:
+    GoToIfSet FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN, CommonScript_PokecenterNurse_GoldCard_PreviouslySeen
+    SetFlag FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN
+    Message CommonStrings_Text_PokecenterGreeting_Interrupted
     BufferPlayerName 0
-    Message pl_msg_00000213_00005
+    Message CommonStrings_Text_PokecenterThatTrainerCard
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message pl_msg_00000213_00009
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_02B0:
+CommonScript_PokecenterNurse_GoldCard_PreviouslySeen:
     BufferPlayerName 0
-    Message pl_msg_00000213_00006
+    Message CommonStrings_Text_PokecenterGreatToSeeYou
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message pl_msg_00000213_00009
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_02D4:
-    SetVar VAR_0x8004, 1
-    GoTo _0172
+CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard:
+    SetVar VAR_0x8004, TRUE
+    GoTo CommonScript_PokecenterNurse_AcceptHealPokemon
 
     .balign 4, 0
-_02E0:
-    NurseJoyBow
+CommonScript_PokecenterNurse_NurseBowMovement:
+    PokecenterNurseBow
     Delay4
     EndMovement
 
     .balign 4, 0
-_02EC:
+CommonScript_PokecenterNurse_PlayerGivePokemonMovement:
     PlayerGive
     EndMovement
 
     .balign 4, 0
-_02F4:
+CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement:
     PlayerReceive
     EndMovement
 
-Common_HandleSignpostInput:
+CommonScript_HandleSignpostInput:
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, Common_ScrollOutSignpost
-    GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
+    GoToIfEq VAR_0x8008, 0, CommonScript_ScrollOutSignpost
+    GoToIfEq VAR_0x8008, 1, CommonScript_RemoveSignpostOpenStartMenu
     GetSignpostInput
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
+    GoToIfEq VAR_0x8008, 1, CommonScript_RemoveSignpostOpenStartMenu
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-Common_ScrollOutSignpost:
+CommonScript_ScrollOutSignpost:
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-Common_RemoveSignpostOpenStartMenu:
+CommonScript_RemoveSignpostOpenStartMenu:
     SetSignpostCommand SIGNPOST_CMD_REMOVE
     WaitForSignpostDone
     ShowStartMenu
     ReturnCommonScript
     End
 
-_034C:
-    Call _0356
+CommonScript_CheckBagPocketForItem:
+    Call CommonScript_GetBagPocketForItem
     ReturnCommonScript
     End
 
-_0356:
+CommonScript_GetBagPocketForItem:
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _03D8
-    GoToIfEq VAR_0x8008, POCKET_ITEMS, _03CC
-    GoToIfEq VAR_0x8008, POCKET_BERRIES, _03CC
-    GoToIfEq VAR_0x8008, POCKET_MEDICINE, _03CC
-    GoToIfEq VAR_0x8008, POCKET_BALLS, _03CC
-    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, _03CC
-    GoToIfEq VAR_0x8008, POCKET_MAIL, _03DE
-    GoToIfEq VAR_0x8008, POCKET_TMHMS, _03D2
+    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, CommonScript_PlaySound_SEQ_FANFA3
+    GoToIfEq VAR_0x8008, POCKET_ITEMS, CommonScript_PlaySound_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BERRIES, CommonScript_PlaySound_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_MEDICINE, CommonScript_PlaySound_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BALLS, CommonScript_PlaySound_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, CommonScript_PlaySound_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_MAIL, CommonScript_PlaySound_SEQ_FANFA2
+    GoToIfEq VAR_0x8008, POCKET_TMHMS, CommonScript_PlaySound_SEQ_WAZA
     End
 
-_03CC:
+CommonScript_PlaySound_SEQ_FANFA4:
     PlaySound SEQ_FANFA4
     Return
 
-_03D2:
+CommonScript_PlaySound_SEQ_WAZA:
     PlaySound SEQ_WAZA
     Return
 
-_03D8:
+CommonScript_PlaySound_SEQ_FANFA3:
     PlaySound SEQ_FANFA3
     Return
 
-_03DE:
+CommonScript_PlaySound_SEQ_FANFA2:
     PlaySound SEQ_FANFA2
     Return
 
-Common_Unused:
+CommonScript_Unused:
     ReturnCommonScript
     End
 
@@ -305,10 +308,10 @@ _040F:
     End
 
 _043B:
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     WaitABPress
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     End
 
@@ -318,10 +321,10 @@ _0457:
     WaitABPress
     CloseMessage
     FadeOutBGM 0, 10
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_1F8
-    ScrCmd_14B
+    BlackOutFromBattle2
     End
 
 _0479:
@@ -475,7 +478,7 @@ _067E:
     Message pl_msg_00000213_00049
     GoTo _06BB
 
-Common_Unused2:
+CommonScript_Unused2:
     CheckItem ITEM_HONEY, 1, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _06BB
     CloseMessage
@@ -520,177 +523,177 @@ _0713:
     ReleaseAll
     End
 
-_0719:
-    Call _0723
+CommonScript_ObtainPoketchApp:
+    Call CommonScript_InternalObtainPoketchApp
     ReturnCommonScript
     End
 
-_0723:
+CommonScript_InternalObtainPoketchApp:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
     PlaySound SEQ_POCKETCH
-    Message pl_msg_00000213_00024
+    Message CommonStrings_Text_ObtainedPoketchApp
     WaitSound
-    Message pl_msg_00000213_00026
+    Message CommonStrings_Text_InstalledPoketchApp
     RegisterPoketchApp VAR_0x8004
-    CallIfEq VAR_0x8004, 0, _0882
-    CallIfEq VAR_0x8004, 1, _0887
-    CallIfEq VAR_0x8004, 2, _088C
-    CallIfEq VAR_0x8004, 3, _0891
-    CallIfEq VAR_0x8004, 4, _0896
-    CallIfEq VAR_0x8004, 5, _089B
-    CallIfEq VAR_0x8004, 6, _08A0
-    CallIfEq VAR_0x8004, 7, _08A5
-    CallIfEq VAR_0x8004, 8, _08AA
-    CallIfEq VAR_0x8004, 9, _08AF
-    CallIfEq VAR_0x8004, 10, _08B4
-    CallIfEq VAR_0x8004, 11, _08B9
-    CallIfEq VAR_0x8004, 12, _08BE
-    CallIfEq VAR_0x8004, 13, _08C3
-    CallIfEq VAR_0x8004, 14, _08C8
-    CallIfEq VAR_0x8004, 15, _08CD
-    CallIfEq VAR_0x8004, 16, _08D2
-    CallIfEq VAR_0x8004, 17, _08D7
-    CallIfEq VAR_0x8004, 18, _08DC
-    CallIfEq VAR_0x8004, 19, _08E1
-    CallIfEq VAR_0x8004, 20, _08E6
-    CallIfEq VAR_0x8004, 21, _08EB
-    CallIfEq VAR_0x8004, 22, _08F0
-    CallIfEq VAR_0x8004, 23, _08F5
-    CallIfEq VAR_0x8004, 24, _08FA
+    CallIfEq VAR_0x8004, POKETCH_APPID_DIGITALWATCH, CommonScript_ObtainedPoketchDigitalWatch
+    CallIfEq VAR_0x8004, POKETCH_APPID_CALCULATOR, CommonScript_ObtainedPoketchCalculator
+    CallIfEq VAR_0x8004, POKETCH_APPID_MEMOPAD, CommonScript_ObtainedPoketchMemopad
+    CallIfEq VAR_0x8004, POKETCH_APPID_PEDOMETER, CommonScript_ObtainedPoketchPedometer
+    CallIfEq VAR_0x8004, POKETCH_APPID_PARTYSTATUS, CommonScript_ObtainedPoketchPartyStatus
+    CallIfEq VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER, CommonScript_ObtainedPoketchFriendshipChecker
+    CallIfEq VAR_0x8004, POKETCH_APPID_DOWSINGMACHINE, CommonScript_ObtainedPoketchDowsingMachine
+    CallIfEq VAR_0x8004, POKETCH_APPID_BERRYSEARCHER, CommonScript_ObtainedPoketchBerrySearcher
+    CallIfEq VAR_0x8004, POKETCH_APPID_DAYCARECHECKER, CommonScript_ObtainedPoketchDayCareChecker
+    CallIfEq VAR_0x8004, POKETCH_APPID_POKEMONHISTORY, CommonScript_ObtainedPoketchPokemonHistory
+    CallIfEq VAR_0x8004, POKETCH_APPID_COUNTER, CommonScript_ObtainedPoketchCounter
+    CallIfEq VAR_0x8004, POKETCH_APPID_ANALOGWATCH, CommonScript_ObtainedPoketchAnalogWatch
+    CallIfEq VAR_0x8004, POKETCH_APPID_MARKINGMAP, CommonScript_ObtainedPoketchMarkingMap
+    CallIfEq VAR_0x8004, POKETCH_APPID_LINKSEARCHER, CommonScript_ObtainedPoketchLinkSearcher
+    CallIfEq VAR_0x8004, POKETCH_APPID_COINTOSS, CommonScript_ObtainedPoketchCoinToss
+    CallIfEq VAR_0x8004, POKETCH_APPID_MOVETESTER, CommonScript_ObtainedPoketchMoveTester
+    CallIfEq VAR_0x8004, POKETCH_APPID_CALENDAR, CommonScript_ObtainedPoketchCalendar
+    CallIfEq VAR_0x8004, POKETCH_APPID_DOTART, CommonScript_ObtainedPoketchDotArt
+    CallIfEq VAR_0x8004, POKETCH_APPID_ROULETTE, CommonScript_ObtainedPoketchRoulette
+    CallIfEq VAR_0x8004, POKETCH_APPID_TRAINERCOUNTER, CommonScript_ObtainedPoketchRadarChainCounter
+    CallIfEq VAR_0x8004, POKETCH_APPID_KITCHENTIMER, CommonScript_ObtainedPoketchKitchenTimer
+    CallIfEq VAR_0x8004, POKETCH_APPID_COLORCHANGER, CommonScript_ObtainedPoketchColorChanger
+    CallIfEq VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER, CommonScript_ObtainedPoketchMatchupChecker
+    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_STOPWATCH, CommonScript_ObtainedPoketchStopwatch
+    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_ALARMCLOCK, CommonScript_ObtainedPoketchAlarmClock
     Return
 
-_0882:
+CommonScript_ObtainedPoketchDigitalWatch:
     Message pl_msg_00000213_00083
     Return
 
-_0887:
+CommonScript_ObtainedPoketchCalculator:
     Message pl_msg_00000213_00084
     Return
 
-_088C:
+CommonScript_ObtainedPoketchMemopad:
     Message pl_msg_00000213_00085
     Return
 
-_0891:
+CommonScript_ObtainedPoketchPedometer:
     Message pl_msg_00000213_00086
     Return
 
-_0896:
+CommonScript_ObtainedPoketchPartyStatus:
     Message pl_msg_00000213_00087
     Return
 
-_089B:
+CommonScript_ObtainedPoketchFriendshipChecker:
     Message pl_msg_00000213_00088
     Return
 
-_08A0:
+CommonScript_ObtainedPoketchDowsingMachine:
     Message pl_msg_00000213_00089
     Return
 
-_08A5:
+CommonScript_ObtainedPoketchBerrySearcher:
     Message pl_msg_00000213_00090
     Return
 
-_08AA:
+CommonScript_ObtainedPoketchDayCareChecker:
     Message pl_msg_00000213_00091
     Return
 
-_08AF:
+CommonScript_ObtainedPoketchPokemonHistory:
     Message pl_msg_00000213_00092
     Return
 
-_08B4:
-    Message pl_msg_00000213_00093
+CommonScript_ObtainedPoketchCounter:
+    Message CommonStrings_Text_ObtainedPoketchCounter
     Return
 
-_08B9:
+CommonScript_ObtainedPoketchAnalogWatch:
     Message pl_msg_00000213_00094
     Return
 
-_08BE:
+CommonScript_ObtainedPoketchMarkingMap:
     Message pl_msg_00000213_00095
     Return
 
-_08C3:
+CommonScript_ObtainedPoketchLinkSearcher:
     Message pl_msg_00000213_00096
     Return
 
-_08C8:
+CommonScript_ObtainedPoketchCoinToss:
     Message pl_msg_00000213_00097
     Return
 
-_08CD:
+CommonScript_ObtainedPoketchMoveTester:
     Message pl_msg_00000213_00098
     Return
 
-_08D2:
+CommonScript_ObtainedPoketchCalendar:
     Message pl_msg_00000213_00099
     Return
 
-_08D7:
+CommonScript_ObtainedPoketchDotArt:
     Message pl_msg_00000213_00100
     Return
 
-_08DC:
+CommonScript_ObtainedPoketchRoulette:
     Message pl_msg_00000213_00101
     Return
 
-_08E1:
+CommonScript_ObtainedPoketchRadarChainCounter:
     Message pl_msg_00000213_00102
     Return
 
-_08E6:
+CommonScript_ObtainedPoketchKitchenTimer:
     Message pl_msg_00000213_00103
     Return
 
-_08EB:
+CommonScript_ObtainedPoketchColorChanger:
     Message pl_msg_00000213_00104
     Return
 
-_08F0:
+CommonScript_ObtainedPoketchMatchupChecker:
     Message pl_msg_00000213_00105
     Return
 
-_08F5:
+CommonScript_ObtainedPoketchStopwatch:
     Message pl_msg_00000213_00106
     Return
 
-_08FA:
+CommonScript_ObtainedPoketchAlarmClock:
     Message pl_msg_00000213_00107
     Return
 
-_08FF:
+CommonScript_EmptyScript3:
     End
 
-_0901:
-    Call _091D
+CommonScript_SendToUndergroundPC:
+    Call CommonScript_ObtainUndergroundItem
     Message pl_msg_00000213_00109
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_0910:
-    Call _091D
+CommonScript_SendToUndergroundPCWithLinefeed:
+    Call CommonScript_ObtainUndergroundItem
     Message pl_msg_00000213_00128
     ReturnCommonScript
     End
 
-_091D:
+CommonScript_ObtainUndergroundItem:
     PlaySound SEQ_FANFA4
     SendGoodToPC VAR_0x8004, VAR_0x8005, VAR_RESULT
-    ScrCmd_33E 0, VAR_0x8004
+    BufferUndergroundGoodsNameWithArticle 0, VAR_0x8004
     Message pl_msg_00000213_00108
     BufferUndergroundGoodsName 0, VAR_0x8004
     WaitSound
     Return
 
-_093A:
-    Call _0944
+CommonScript_ObtainUndergroundTrap:
+    Call CommonScript_InternalObtainUndergroundTrap
     ReturnCommonScript
     End
 
-_0944:
+CommonScript_InternalObtainUndergroundTrap:
     PlaySound SEQ_FANFA4
     GiveTrap VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
@@ -698,12 +701,12 @@ _0944:
     WaitSound
     Return
 
-_095C:
-    Call _0966
+CommonScript_ObtainUndergroundSphere:
+    Call CommonScript_InternalObtainUndergroundSphere
     ReturnCommonScript
     End
 
-_0966:
+CommonScript_InternalObtainUndergroundSphere:
     PlaySound SEQ_FANFA4
     GiveSphere VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
@@ -712,172 +715,172 @@ _0966:
     WaitSound
     Return
 
-_0983:
-    Call _099F
-    Message pl_msg_00000213_00031
+CommonScript_ObtainAccessoryWaitForConfirm:
+    Call CommonScript_InternalObtainAccessory
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_0992:
-    Call _099F
-    Message pl_msg_00000213_00127
+CommonScript_ObtainAccessory:
+    Call CommonScript_InternalObtainAccessory
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
-_099F:
+CommonScript_InternalObtainAccessory:
     PlaySound SEQ_ACCE
-    ScrCmd_1D2 VAR_0x8004, VAR_0x8005
+    AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
     Return
 
-_09BD:
-    Call _09D9
-    Message pl_msg_00000213_00031
+CommonScript_ObtainContestBackdropWaitForConfirm:
+    Call CommonScript_InternalObtainContestBackdrop
+    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_09CC:
-    Call _09D9
-    Message pl_msg_00000213_00127
+CommonScript_ObtainContestBackdrop:
+    Call CommonScript_InternalObtainContestBackdrop
+    Message CommonStrings_Text_PutAwayItemInTheFashionCase
     ReturnCommonScript
     End
 
-_09D9:
+CommonScript_InternalObtainContestBackdrop:
     PlaySound SEQ_FANFA4
-    ScrCmd_1D5 VAR_0x8004
-    ScrCmd_273 0, VAR_0x8004
-    Message pl_msg_00000213_00025
+    AddContestBackdrop VAR_0x8004
+    BufferContestBackdropName 0, VAR_0x8004
+    Message CommonStrings_Text_ObtainedItem
     WaitSound
     BufferPlayerName 0
-    ScrCmd_273 1, VAR_0x8004
+    BufferContestBackdropName 1, VAR_0x8004
     Return
 
-_09F5:
-    Call _09FF
+CommonScript_AddItemQuantityNoLineFeed:
+    Call CommonScript_InternalAddItemQuantityNoLineFeed
     ReturnCommonScript
     End
 
-_09FF:
-    Call _0356
+CommonScript_InternalAddItemQuantityNoLineFeed:
+    Call CommonScript_GetBagPocketForItem
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     GetItemPocket VAR_0x8004, VAR_RESULT
-    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
-    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
-    Message pl_msg_00000213_00030
+    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
+    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
+    Message CommonStrings_Text_PutItemInThePocketNoLineFeed
     WaitABXPadPress
     Return
 
-_0A34:
-    Call _0A3E
+CommonScript_AddItemQuantity:
+    Call CommonScript_InternalAddItemQuantity
     ReturnCommonScript
     End
 
-_0A3E:
-    Call _0356
+CommonScript_InternalAddItemQuantity:
+    Call CommonScript_GetBagPocketForItem
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     GetItemPocket VAR_0x8004, VAR_RESULT
-    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
-    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
-    Message pl_msg_00000213_00126
+    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
+    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
+    Message CommonStrings_Text_PutItemInThePocket
     Return
 
-_0A71:
+CommonScript_PrintMessageObtainedKeyItem:
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
-    Message pl_msg_00000213_00028
-    GoTo _0AA8
+    Message CommonStrings_Text_ObtainedKeyItem
+    GoTo CommonScript_AfterObtainedItem
 
-_0A82:
-    GoToIfGt VAR_0x8005, 1, _0A9A
+CommonScript_PrepareMessageObtainedItem:
+    GoToIfGt VAR_0x8005, 1, CommonScript_PrintMessageObtainedItemsPlural
     BufferItemName 0, VAR_0x8004
-    GoTo _0A9F
+    GoTo CommonScript_PrintMessageObtainedItem
 
-_0A9A:
+CommonScript_PrintMessageObtainedItemsPlural:
     BufferItemNamePlural 0, VAR_0x8004
-_0A9F:
-    Message pl_msg_00000213_00025
-    GoTo _0AA8
+CommonScript_PrintMessageObtainedItem:
+    Message CommonStrings_Text_ObtainedItem
+    GoTo CommonScript_AfterObtainedItem
 
-_0AA8:
+CommonScript_AfterObtainedItem:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
-    CallIfEq VAR_RESULT, 1, _13C8
+    CheckItemIsPlate VAR_0x8004, VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, CommonScript_DeterminePlateMessage
     BufferPlayerName 0
-    GoToIfGt VAR_0x8005, 1, _0AD8
+    GoToIfGt VAR_0x8005, 1, CommonScript_BufferPocketNameItemsPlural
     BufferItemName 1, VAR_0x8004
-    GoTo _0ADD
+    GoTo CommonScript_BufferPocketName
 
-_0AD8:
+CommonScript_BufferPocketNameItemsPlural:
     BufferItemNamePlural 1, VAR_0x8004
-_0ADD:
+CommonScript_BufferPocketName:
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _0B64
-    GoToIfEq VAR_0x8008, POCKET_ITEMS, _0B53
-    GoToIfEq VAR_0x8008, POCKET_BERRIES, _0BA8
-    GoToIfEq VAR_0x8008, POCKET_MEDICINE, _0B97
-    GoToIfEq VAR_0x8008, POCKET_BALLS, _0BB9
-    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, _0B75
-    GoToIfEq VAR_0x8008, POCKET_MAIL, _0B86
-    GoToIfEq VAR_0x8008, POCKET_TMHMS, _0BCA
+    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, CommonScript_BufferPocketNameKeyItems
+    GoToIfEq VAR_0x8008, POCKET_ITEMS, CommonScript_BufferPocketNameItems
+    GoToIfEq VAR_0x8008, POCKET_BERRIES, CommonScript_BufferPocketNameBerries
+    GoToIfEq VAR_0x8008, POCKET_MEDICINE, CommonScript_BufferPocketNameMedicine
+    GoToIfEq VAR_0x8008, POCKET_BALLS, CommonScript_BufferPocketNameBalls
+    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, CommonScript_BufferPocketNameBattleItems
+    GoToIfEq VAR_0x8008, POCKET_MAIL, CommonScript_BufferPocketNameMail
+    GoToIfEq VAR_0x8008, POCKET_TMHMS, CommonScript_BufferPocketNameTMHMs
     End
 
-_0B53:
+CommonScript_BufferPocketNameItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0B64:
+CommonScript_BufferPocketNameKeyItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0B75:
+CommonScript_BufferPocketNameBattleItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0B86:
+CommonScript_BufferPocketNameMail:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0B97:
+CommonScript_BufferPocketNameMedicine:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0BA8:
+CommonScript_BufferPocketNameBerries:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0BB9:
+CommonScript_BufferPocketNameBalls:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0BCA:
+CommonScript_BufferPocketNameTMHMs:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _0BDB
+    GoTo CommonScript_BufferPocketNameReturn
 
-_0BDB:
+CommonScript_BufferPocketNameReturn:
     Return
 
-_0BDD:
-    Call _0BE7
+CommonScript_BagIsFull:
+    Call CommonScript_InternalBagIsFull
     ReturnCommonScript
     End
 
-_0BE7:
-    Message pl_msg_00000213_00027
+CommonScript_InternalBagIsFull:
+    Message CommonStrings_Text_BagIsFull
     WaitABXPadPress
     Return
 
@@ -890,15 +893,15 @@ _0BEE:
     GoTo _0C1C
 
 _0C06:
-    ScrCmd_24B 90
-    ScrCmd_24C 90
-    ScrCmd_169 90
+    LoadPCAnimation ANIMATION_TAG_PC
+    PlayPCBootUpAnimation ANIMATION_TAG_PC
+    WaitForAnimation ANIMATION_TAG_PC
     Return
 
 _0C11:
-    ScrCmd_24D 90
-    ScrCmd_169 90
-    ScrCmd_16A 90
+    PlayPCShutDownAnimation ANIMATION_TAG_PC
+    WaitForAnimation ANIMATION_TAG_PC
+    UnloadAnimation ANIMATION_TAG_PC
     Return
 
 _0C1C:
@@ -1023,7 +1026,7 @@ _0E21:
     MessageInstant 33
     Call _0D2C
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0D73
 
 _0E45:
@@ -1084,7 +1087,7 @@ _0F0A:
     MessageInstant 33
     Call _0E61
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0E83
 
 _0F2C:
@@ -1116,237 +1119,237 @@ _0F70:
 
 _0F80:
     Call _0C06
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 
 _0F94:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
-    ScrCmd_16A 90
+    UnloadAnimation ANIMATION_TAG_PC
     Return
 
-_0FA5:
+CommonScript_EmptyScript4:
     End
 
 _0FA7:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     OpenSealCapsuleEditor
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
-_0FC3:
-    Message pl_msg_00000213_00037
+CommonScript_VendorGreetingGeneric:
+    Message CommonStrings_Text_VendorGreetingGeneric
     ReturnCommonScript
     End
 
-_0FCA:
+CommonScript_PlayerHouseBlackOutRecover:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _1250
-    ApplyMovement 0, _1258
+    ApplyMovement LOCALID_PLAYER, CommonScript_PlayerHouseBlackOutRecover_PlayerTurnToMomMovement
+    ApplyMovement 0, CommonScript_PlayerHouseBlackOutRecover_MomTurnToPlayerMovement
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     BufferPlayerName 0
-    Message pl_msg_00000213_00040
-    FadeScreen 6, 1, 0, 0
+    Message CommonStrings_Text_YouHadQuiteTheExperienceOutThere
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
-    CallIfSet FLAG_UNK_0x0090, _1030
-    CallIfUnset FLAG_UNK_0x0090, _1035
+    CallIfSet FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_BeforePokedexMessage
+    CallIfUnset FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_AfterPokedexMessage
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1030:
-    Message pl_msg_00000213_00041
+CommonScript_PlayerHouseBlackOutRecover_BeforePokedexMessage:
+    Message CommonStrings_Text_YourPokemonAreLookingGreat_BeforePokedex
     Return
 
-_1035:
-    Message pl_msg_00000213_00042
+CommonScript_PlayerHouseBlackOutRecover_AfterPokedexMessage:
+    Message CommonStrings_Text_YourPokemonAreLookingGreat_AfterPokedex
     Return
 
-_103A:
+CommonScript_PokecenterBlackOutRecover:
     LockAll
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
-    SetPlayerState 0x100
+    SetPlayerState PLAYER_TRANSITION_HEALING
     ChangePlayerState
-    ApplyMovement LOCALID_PLAYER, _02EC
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerGivePokemonMovement
     WaitMovement
-    Message pl_msg_00000213_00043
-    Call _10C7
-    Call _01C1
+    Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
+    Call CommonScript_PokecenterNurse_FindNurseObject
+    Call CommonScript_PokecenterNurse_HealPokemon
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _10A2
-    Message pl_msg_00000213_00044
-    ApplyMovement LOCALID_PLAYER, _02F4
+    GoToIfEq VAR_RESULT, TRUE, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
+    Message CommonStrings_Text_PokecenterHealedToPerfectHealth
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
-    Message pl_msg_00000213_00045
+    Message CommonStrings_Text_PokecenterGoodLuckTrainer
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_10A2:
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterBlackOutRecover_HasCoalBadge:
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
-    Message pl_msg_00000213_00039
+    Message CommonStrings_Text_PokecenterAllHappyAndHealthy
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_10C7:
+CommonScript_PokecenterNurse_FindNurseObject:
     GetCurrentMapID VAR_0x8004
-    GoToIfEq VAR_0x8004, 6, _11BD
-    GoToIfEq VAR_0x8004, 36, _11C5
-    GoToIfEq VAR_0x8004, 48, _11CD
-    GoToIfEq VAR_0x8004, 69, _11D5
-    GoToIfEq VAR_0x8004, 101, _11DD
-    GoToIfEq VAR_0x8004, 123, _11E5
-    GoToIfEq VAR_0x8004, 134, _11ED
-    GoToIfEq VAR_0x8004, 151, _11F5
-    GoToIfEq VAR_0x8004, 168, _11FD
-    GoToIfEq VAR_0x8004, 173, _1205
-    GoToIfEq VAR_0x8004, 189, _120D
-    GoToIfEq VAR_0x8004, 0x1A4, _1215
-    GoToIfEq VAR_0x8004, 0x1AC, _121D
-    GoToIfEq VAR_0x8004, 0x1B3, _1225
-    GoToIfEq VAR_0x8004, 0x1BB, _122D
-    GoToIfEq VAR_0x8004, 0x1C4, _1235
-    GoToIfEq VAR_0x8004, 0x1CB, _123D
-    GoToIfEq VAR_0x8004, 175, _1245
+    GoToIfEq VAR_0x8004, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Jubilife
+    GoToIfEq VAR_0x8004, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Canalave
+    GoToIfEq VAR_0x8004, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Oreburgh
+    GoToIfEq VAR_0x8004, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Eterna
+    GoToIfEq VAR_0x8004, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Hearthome
+    GoToIfEq VAR_0x8004, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Pastoria
+    GoToIfEq VAR_0x8004, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Veilstone
+    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore
+    GoToIfEq VAR_0x8004, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Snowpoint
+    GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueSouth
+    GoToIfEq VAR_0x8004, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_FightArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sandgem
+    GoToIfEq VAR_0x8004, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Floaroma
+    GoToIfEq VAR_0x8004, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Solaceon
+    GoToIfEq VAR_0x8004, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Celestic
+    GoToIfEq VAR_0x8004, MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_SurvivalArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_RESORT_AREA_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_ResortArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueNorth
     SetVar VAR_0x8007, 0
     Return
 
-_11BD:
+CommonScript_PokecenterNurse_FindNurseObject_Jubilife:
     SetVar VAR_0x8007, 3
     Return
 
-_11C5:
+CommonScript_PokecenterNurse_FindNurseObject_Canalave:
     SetVar VAR_0x8007, 1
     Return
 
-_11CD:
+CommonScript_PokecenterNurse_FindNurseObject_Oreburgh:
     SetVar VAR_0x8007, 3
     Return
 
-_11D5:
+CommonScript_PokecenterNurse_FindNurseObject_Eterna:
     SetVar VAR_0x8007, 3
     Return
 
-_11DD:
+CommonScript_PokecenterNurse_FindNurseObject_Hearthome:
     SetVar VAR_0x8007, 0
     Return
 
-_11E5:
+CommonScript_PokecenterNurse_FindNurseObject_Pastoria:
     SetVar VAR_0x8007, 0
     Return
 
-_11ED:
+CommonScript_PokecenterNurse_FindNurseObject_Veilstone:
     SetVar VAR_0x8007, 0
     Return
 
-_11F5:
+CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore:
     SetVar VAR_0x8007, 0
     Return
 
-_11FD:
+CommonScript_PokecenterNurse_FindNurseObject_Snowpoint:
     SetVar VAR_0x8007, 0
     Return
 
-_1205:
+CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueSouth:
     SetVar VAR_0x8007, 0
     Return
 
-_120D:
+CommonScript_PokecenterNurse_FindNurseObject_FightArea:
     SetVar VAR_0x8007, 0
     Return
 
-_1215:
+CommonScript_PokecenterNurse_FindNurseObject_Sandgem:
     SetVar VAR_0x8007, 3
     Return
 
-_121D:
+CommonScript_PokecenterNurse_FindNurseObject_Floaroma:
     SetVar VAR_0x8007, 2
     Return
 
-_1225:
+CommonScript_PokecenterNurse_FindNurseObject_Solaceon:
     SetVar VAR_0x8007, 0
     Return
 
-_122D:
+CommonScript_PokecenterNurse_FindNurseObject_Celestic:
     SetVar VAR_0x8007, 0
     Return
 
-_1235:
+CommonScript_PokecenterNurse_FindNurseObject_SurvivalArea:
     SetVar VAR_0x8007, 0
     Return
 
-_123D:
+CommonScript_PokecenterNurse_FindNurseObject_ResortArea:
     SetVar VAR_0x8007, 0
     Return
 
-_1245:
+CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueNorth:
     SetVar VAR_0x8007, 3
     Return
 
     .balign 4, 0
-_1250:
+CommonScript_PlayerHouseBlackOutRecover_PlayerTurnToMomMovement:
     FaceWest
     EndMovement
 
     .balign 4, 0
-_1258:
+CommonScript_PlayerHouseBlackOutRecover_MomTurnToPlayerMovement:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_1260:
+CommonScript_PokecenterNurse_TurnToMachineMovement:
     FaceWest
     EndMovement
 
-Common_UnusedMovement:
+CommonScript_UnusedMovement:
     FaceNorth
     EndMovement
 
-Common_UnusedMovement2:
+CommonScript_UnusedMovement2:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_1278:
+CommonScript_PokecenterNurse_TurnToPlayerMovement:
     FaceSouth
     EndMovement
 
-_1280:
+CommonScript_EmptyScript5:
     End
 
 _1282:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_205
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -1355,7 +1358,7 @@ _12A8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_20C
+    MessageFromTrainerType
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1393,7 +1396,7 @@ _12E0:
 
 _12F3:
     CheckItem ITEM_BICYCLE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _135F
+    GoToIfEq VAR_RESULT, 0, CommonScript_End
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     CheckPlayerOnBike VAR_RESULT
@@ -1420,7 +1423,7 @@ _1359:
     ReleaseAll
     End
 
-_135F:
+CommonScript_End:
     End
 
 _1361:
@@ -1428,11 +1431,11 @@ _1361:
     LockAll
     Message pl_msg_00000213_00076
     WaitABPress
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_1AC
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -1464,61 +1467,61 @@ _13AB:
     ReleaseAll
     End
 
-_13BE:
-    Call _13C8
+CommonScript_PrintPlateObtainedMessage:
+    Call CommonScript_DeterminePlateMessage
     ReturnCommonScript
     End
 
-_13C8:
-    AddVar VAR_UNK_0x4115, 1
-    CallIfGe VAR_UNK_0x4115, 9, _1445
-    CallIfEq VAR_UNK_0x4115, 1, _144D
-    CallIfEq VAR_UNK_0x4115, 2, _1452
-    CallIfEq VAR_UNK_0x4115, 3, _1457
-    CallIfEq VAR_UNK_0x4115, 4, _145C
-    CallIfEq VAR_UNK_0x4115, 5, _1461
-    CallIfEq VAR_UNK_0x4115, 6, _1466
-    CallIfEq VAR_UNK_0x4115, 7, _146B
-    CallIfEq VAR_UNK_0x4115, 8, _1470
+CommonScript_DeterminePlateMessage:
+    AddVar VAR_NUM_PLATES_OBTAINED, 1
+    CallIfGe VAR_NUM_PLATES_OBTAINED, 9, CommonScript_ResetPlateCount
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 1, CommonScript_Print1PlateObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 2, CommonScript_Print2PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 3, CommonScript_Print3PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 4, CommonScript_Print4PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 5, CommonScript_Print5PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 6, CommonScript_Print6PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 7, CommonScript_Print7PlatesObtainedMessage
+    CallIfEq VAR_NUM_PLATES_OBTAINED, 8, CommonScript_Print8PlatesObtainedMessage
     Return
 
-_1445:
-    SetVar VAR_UNK_0x4115, 1
+CommonScript_ResetPlateCount:
+    SetVar VAR_NUM_PLATES_OBTAINED, 1
     Return
 
-_144D:
+CommonScript_Print1PlateObtainedMessage:
     Message pl_msg_00000213_00110
     Return
 
-_1452:
+CommonScript_Print2PlatesObtainedMessage:
     Message pl_msg_00000213_00111
     Return
 
-_1457:
+CommonScript_Print3PlatesObtainedMessage:
     Message pl_msg_00000213_00112
     Return
 
-_145C:
+CommonScript_Print4PlatesObtainedMessage:
     Message pl_msg_00000213_00113
     Return
 
-_1461:
+CommonScript_Print5PlatesObtainedMessage:
     Message pl_msg_00000213_00114
     Return
 
-_1466:
+CommonScript_Print6PlatesObtainedMessage:
     Message pl_msg_00000213_00115
     Return
 
-_146B:
+CommonScript_Print7PlatesObtainedMessage:
     Message pl_msg_00000213_00116
     Return
 
-_1470:
+CommonScript_Print8PlatesObtainedMessage:
     Message pl_msg_00000213_00117
     Return
 
-_1475:
+CommonScript_EmptyScript6:
     End
 
 _1477:
@@ -1552,10 +1555,10 @@ _14AC:
     PlayMusic SEQ_FUE
     WaitTime 0x21C, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    FadeScreen 6, 6, 0, 0x7FFF
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Warp MAP_HEADER_HALL_OF_ORIGIN, 0, VAR_0x8004, VAR_0x8005, 0
-    FadeScreen 6, 6, 1, 0x7FFF
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message pl_msg_00000213_00124
     WaitABXPadPress
@@ -1575,41 +1578,41 @@ _157B:
     ReleaseAll
     End
 
-_1581:
+CommonScript_SetCounterpartBGM:
     StopMusic 0
     GetPlayerGender VAR_RESULT
-    CallIfEq VAR_RESULT, GENDER_MALE, _15A7
-    CallIfEq VAR_RESULT, GENDER_FEMALE, _15AD
+    CallIfEq VAR_RESULT, GENDER_MALE, CommonScript_SetTheGirlBGM
+    CallIfEq VAR_RESULT, GENDER_FEMALE, CommonScript_SetTheBoyBGM
     ReturnCommonScript
     End
 
-_15A7:
-    ScrCmd_057 SEQ_THE_GIRL
+CommonScript_SetTheGirlBGM:
+    SetBGM SEQ_THE_GIRL
     Return
 
-_15AD:
-    ScrCmd_057 SEQ_THE_BOY
+CommonScript_SetTheBoyBGM:
+    SetBGM SEQ_THE_BOY
     Return
 
-_15B3:
+CommonScript_SetRivalBGM:
     StopMusic 0
-    ScrCmd_057 SEQ_THE_RIV
+    SetBGM SEQ_THE_RIV
     ReturnCommonScript
     End
 
 _15BF:
     StopMusic 0
-    ScrCmd_057 SEQ_TSURETEKE
+    SetBGM SEQ_TSURETEKE
     ReturnCommonScript
     End
 
-_15CB:
+CommonScript_SetLookerBGM:
     StopMusic 0
-    ScrCmd_057 SEQ_PL_HANDSOME
+    SetBGM SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
-_15D7:
+CommonScript_FadeToDefaultMusic:
     FadeOutBGM 0, 30
     StopMusic 0
     PlayDefaultMusic
@@ -1617,21 +1620,21 @@ _15D7:
     End
 
 _15E7:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F6 VAR_0x8005, VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1624
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReturnCommonScript
     End
 
 _1624:
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReturnCommonScript
     End
@@ -1673,19 +1676,19 @@ _16A4:
     ReleaseAll
     End
 
-_16AA:
-    GoToIfSet FLAG_UNK_0x0089, _1706
-    GoToIfNe VAR_BATTLE_FACTORY_PRINT_STATE, 4, _1706
-    GoToIfNe VAR_BATTLE_HALL_PRINT_STATE, 4, _1706
-    GoToIfNe VAR_BATTLE_CASTLE_PRINT_STATE, 4, _1706
-    GoToIfNe VAR_BATTLE_ARCADE_PRINT_STATE, 4, _1706
-    GoToIfNe VAR_BATTLE_TOWER_PRINT_STATE, 4, _1706
-    SetFlag FLAG_UNK_0x0089
-    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_42
-    GoTo _1706
+CommonScript_Frontier_CheckAllFrontierGoldPrintsObtained:
+    GoToIfSet FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS, CommonScript_Frontier_End
+    GoToIfNe VAR_BATTLE_FACTORY_PRINT_STATE, 4, CommonScript_Frontier_End
+    GoToIfNe VAR_BATTLE_HALL_PRINT_STATE, 4, CommonScript_Frontier_End
+    GoToIfNe VAR_BATTLE_CASTLE_PRINT_STATE, 4, CommonScript_Frontier_End
+    GoToIfNe VAR_BATTLE_ARCADE_PRINT_STATE, 4, CommonScript_Frontier_End
+    GoToIfNe VAR_BATTLE_TOWER_PRINT_STATE, 4, CommonScript_Frontier_End
+    SetFlag FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS
+    IncrementTrainerScore TRAINER_SCORE_EVENT_ALL_BATTLE_FRONTIER_GOLD_PRINTS
+    GoTo CommonScript_Frontier_End
     End
 
-_1706:
+CommonScript_Frontier_End:
     ReturnCommonScript
     End
 

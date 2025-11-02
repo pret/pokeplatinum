@@ -10,12 +10,10 @@
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "map_object.h"
 #include "map_object_move.h"
-#include "unk_020711EC.h"
+#include "overworld_anim_manager.h"
 #include "unk_02073838.h"
 
 typedef struct {
@@ -38,7 +36,7 @@ typedef struct {
 static void ov5_021F2BFC(UnkStruct_ov5_021F2BFC *param0);
 static void ov5_021F2C24(UnkStruct_ov5_021F2BFC *param0);
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_022004D8;
+static const OverworldAnimManagerFuncs Unk_ov5_022004D8;
 
 void *ov5_021F2BD0(UnkStruct_ov5_021DF47C *param0)
 {
@@ -89,10 +87,10 @@ void ov5_021F2C38(MapObject *param0, int param1, int param2, int param3)
     ov5_021DF72C(v2.unk_00, &Unk_ov5_022004D8, &v3, v1, &v2, v0);
 }
 
-static int ov5_021F2C98(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov5_021F2C98(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F2C98 *v0 = param1;
-    const UnkStruct_ov5_021F2C38 *v1 = sub_020715BC(param0);
+    const UnkStruct_ov5_021F2C38 *v1 = OverworldAnimManager_GetUserData(param0);
 
     v0->unk_78 = *v1;
 
@@ -102,13 +100,13 @@ static int ov5_021F2C98(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov5_021F2CD0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F2CD0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F2C98 *v0 = param1;
     sub_02073AA8(&v0->unk_00);
 }
 
-static void ov5_021F2CDC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F2CDC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F2C98 *v0 = param1;
 
@@ -120,16 +118,16 @@ static void ov5_021F2CDC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     sub_02073AC0(&v0->unk_00, FX32_ONE, 0);
 }
 
-static void ov5_021F2D04(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F2D04(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F2C98 *v1 = param1;
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     sub_02073BB4(&v1->unk_24, &v0);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_022004D8 = {
+static const OverworldAnimManagerFuncs Unk_ov5_022004D8 = {
     sizeof(UnkStruct_ov5_021F2C98),
     ov5_021F2C98,
     ov5_021F2CD0,

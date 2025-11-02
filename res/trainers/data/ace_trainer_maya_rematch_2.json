@@ -54,16 +54,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, it’s you again!\r",
-				"I’ve regained my confidence.\n",
-				"Let’s have another battle!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, it’s you again!\r",
+                "I’ve regained my confidence.\n",
+                "Let’s have another battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You made me lose my confidence...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You made me lose my confidence...\n"
+        }
     ]
 }

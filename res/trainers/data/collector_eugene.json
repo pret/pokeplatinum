@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I don’t care if I lose.\n",
-				"I’m still a happy guy.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I don’t care if I lose.\n",
+                "I’m still a happy guy.\n"
+            ]
+        }
     ]
 }

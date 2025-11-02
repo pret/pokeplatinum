@@ -170,7 +170,7 @@ _0214:
     GoToIfSet FLAG_UNK_0x0002, _02AF
     GoToIfGe VAR_UNK_0x40A4, 7, _0792
     GoToIfEq VAR_UNK_0x40A4, 6, _035E
-    GoToIfSet FLAG_UNK_0x0090, _036C
+    GoToIfSet FLAG_HAS_POKEDEX, _036C
     GoToIfGe VAR_UNK_0x40A4, 5, _0788
     GoToIfGe VAR_UNK_0x40A4, 4, _0711
     GoToIfSet FLAG_UNK_0x00F8, _075A
@@ -257,9 +257,9 @@ _036C:
     Call _0688
     BufferPlayerName 0
     Message 15
-    SetVar VAR_0x8004, 0x1B1
+    SetVar VAR_0x8004, ITEM_JOURNAL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     GiveJournal
     Message 16
     GetPlayerDir VAR_0x8007
@@ -399,9 +399,9 @@ _05A6:
     End
 
 _05B1:
-    SetVar VAR_0x8004, 0x1CB
+    SetVar VAR_0x8004, ITEM_PARCEL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
@@ -458,12 +458,12 @@ _0688:
     CallIfEq VAR_RESULT, 3, _0707
     CallIfEq VAR_RESULT, 4, _070C
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_UNK_0x0002
     Return

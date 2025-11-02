@@ -2,7 +2,7 @@
   "key": 53200,
   "messages": [
     {
-      "id": "pl_msg_00000576_00000",
+      "id": "SolaceonTownMart_Text_NeedPCToSealPokeBalls",
       "en_US": [
         "Someone gave me a Seal Case.\n",
         "Now, I’m off to a Pokémon Center.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000576_00001",
+      "id": "SolaceonTownMart_Text_ConsiderSuperRepels",
       "en_US": [
         "If you’re not totally happy with Repel,\n",
         "consider moving up to a Super Repel."

@@ -115,7 +115,7 @@ extern BOOL (*const gMovementActionFuncs_UnlockDir[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_PauseAnimation[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_ResumeAnimation[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_EmoteExclamationMark[])(MapObject *);
-extern BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_EmoteDoubleExclamationMark[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastNorth[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastSouth[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastWest[])(MapObject *);
@@ -128,7 +128,7 @@ extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastNorth[])(MapObjec
 extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastSouth[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastWest[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastEast[])(MapObject *);
-extern BOOL (*const gMovementActionFuncs_NurseJoyBow[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_PokecenterNurseBow[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_RevealTrainer[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_PlayerGive[])(MapObject *);
 extern BOOL (*const gMovementActionFuncs_PlayerReceive[])(MapObject *);

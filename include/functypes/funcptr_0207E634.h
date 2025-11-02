@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_FUNCPTR_0207E634_H
 #define POKEPLATINUM_FUNCPTR_0207E634_H
 
-#include "struct_defs/struct_0207F248.h"
+#include "applications/party_menu/defs.h"
 
-typedef void (*UnkFuncPtr_0207E634)(GameWindowLayout *, int *);
+typedef void (*UnkFuncPtr_0207E634)(PartyMenuApplication *, int *);
 
 #endif // POKEPLATINUM_FUNCPTR_0207E634_H

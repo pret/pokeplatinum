@@ -345,9 +345,9 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
 
     GXLayers_SwapDisplay();
     SetAutorepeat(4, 8);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     ov92_021D1530(v0);
 

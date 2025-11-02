@@ -28,39 +28,39 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Who’s there?!\n",
-				"What do you think you’re doing?!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Who’s there?!\n",
+                "What do you think you’re doing?!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I happen to be rather jumpy, so\n",
-				"everyone looks suspicious to me.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I happen to be rather jumpy, so\n",
+                "everyone looks suspicious to me.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m easy to scare, and yet here I am\n",
-				"on patrol. Funny how things go.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m easy to scare, and yet here I am\n",
+                "on patrol. Funny how things go.\n"
+            ]
+        },
         {
-			"type": "TRMSG_NOT_NIGHT_UNUSED",
-			"en_US": [
-				"At night, I get tense and nervous.\n",
-				"I don’t know why.\n"
-			]
-		},
+            "type": "TRMSG_NOT_NIGHT_UNUSED",
+            "en_US": [
+                "At night, I get tense and nervous.\n",
+                "I don’t know why.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’ll repeat myself! Who’s there?!\n",
-				"What do you think you’re doing?!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’ll repeat myself! Who’s there?!\n",
+                "What do you think you’re doing?!\r"
+            ]
+        }
     ]
 }

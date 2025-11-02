@@ -54,20 +54,20 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I am indeed a Veteran, but I don’t\n",
-				"use that as an excuse to slack off.\r",
-				"I take pride in challenging those\n",
-				"who have bested me before!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I am indeed a Veteran, but I don’t\n",
+                "use that as an excuse to slack off.\r",
+                "I take pride in challenging those\n",
+                "who have bested me before!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I see...\n",
-				"Simply outstanding."
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I see...\n",
+                "Simply outstanding."
+            ]
+        }
     ]
 }

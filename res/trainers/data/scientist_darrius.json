@@ -27,26 +27,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I won’t let you disrupt our research!\n",
-				"This is for Team Galactic!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I won’t let you disrupt our research!\n",
+                "This is for Team Galactic!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I got whipped...\n",
-				"I look pathetic...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I got whipped...\n",
+                "I look pathetic...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Our boss is a scientific genius!\r",
-				"He will make the power of mythical\n",
-				"Pokémon his own!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Our boss is a scientific genius!\r",
+                "He will make the power of mythical\n",
+                "Pokémon his own!\n"
+            ]
+        }
     ]
 }

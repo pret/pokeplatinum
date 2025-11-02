@@ -76,12 +76,12 @@ _0115:
 _0121:
     Message 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_MAP_LOCAL_2
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _02B3
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_RESULT
@@ -120,13 +120,13 @@ _01D2:
 
 _01EC:
     SetFlag FLAG_UNK_0x0088
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A6 VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
     ReturnToField
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8006, 0, _0245
     GoToIfEq VAR_0x8006, 2, _025F
@@ -174,11 +174,11 @@ _02BE:
     GoTo _0121
 
 _02C7:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8004
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _0328
     ScrCmd_130 VAR_0x8004
@@ -288,11 +288,11 @@ _03CC:
     LockAll
     ScrCmd_12E 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 0, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -302,11 +302,11 @@ _0409:
     LockAll
     ScrCmd_12E 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 1, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -316,11 +316,11 @@ _0446:
     LockAll
     ScrCmd_12E 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 2, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -330,11 +330,11 @@ _0483:
     LockAll
     ScrCmd_12E 3, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 3, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -344,11 +344,11 @@ _04C0:
     LockAll
     ScrCmd_12E 4, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 4, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -358,11 +358,11 @@ _04FD:
     LockAll
     ScrCmd_12E 5, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 5, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -372,11 +372,11 @@ _053A:
     LockAll
     ScrCmd_12E 6, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 6, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -386,11 +386,11 @@ _0577:
     LockAll
     ScrCmd_12E 7, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 7, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -400,11 +400,11 @@ _05B4:
     LockAll
     ScrCmd_12E 8, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 8, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -414,11 +414,11 @@ _05F1:
     LockAll
     ScrCmd_12E 9, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 9, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -428,11 +428,11 @@ _062E:
     LockAll
     ScrCmd_12E 10, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _066B
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A7 10, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

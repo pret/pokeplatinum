@@ -54,27 +54,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I want my Pokémon to get a taste of\n",
-				"the sweetness that is victory.\r",
-				"I can’t afford to lose this one!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I want my Pokémon to get a taste of\n",
+                "the sweetness that is victory.\r",
+                "I can’t afford to lose this one!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"This defeat has the tang of my bitter\n",
-				"tears..."
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This defeat has the tang of my bitter\n",
+                "tears..."
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m sorry, my Pokémon team...\r",
-				"I promise, I’ll get better at this so\n",
-				"you can get a taste of victory!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m sorry, my Pokémon team...\r",
+                "I promise, I’ll get better at this so\n",
+                "you can get a taste of victory!\n"
+            ]
+        }
     ]
 }

@@ -11,6 +11,7 @@
 #include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
+#include "character_sprite.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math_util.h"
@@ -20,7 +21,6 @@
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "strbuf.h"
-#include "unk_020131EC.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 
@@ -628,7 +628,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, heapID);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
@@ -671,7 +671,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     if (pokemonSpriteData != NULL) {
         GF_ASSERT(pokemonSpriteData->tiles != NULL);
-        sub_02013610(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
+        CharacterSprite_LoadSpriteFrame0(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
         pokemonSpriteData->palette = v0.palette;
         pokemonSpriteData->narcID = v0.narcID;
     }
@@ -998,21 +998,21 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
 void sub_020959F4(int param0)
 {
     if (param0 == 0) {
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        RenderControlFlags_SetAutoScrollFlags(3);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
     } else {
-        RenderControlFlags_SetAutoScrollFlags(1);
-        RenderControlFlags_SetCanABSpeedUpPrint(0);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
+        RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     }
 }
 
 void sub_02095A24(void)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
 u32 sub_02095A3C(int param0, int param1)

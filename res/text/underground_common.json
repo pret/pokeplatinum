@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00018",
+      "id": "UndergroundCommon_Text_TrapFoundPlayerDisengaged",
       "en_US": [
         "{STRVAR_1 25, 3, 0} was\n",
         "found in the ground!\r",
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00052",
+      "id": "UndergroundCommon_Text_WouldYouLikeToReturnToSurface",
       "en_US": [
         "Would you like to return to the\n",
         "surface from where you entered?"
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "UndergroundCommon_SomethingAlreadyBuried",
+      "id": "UndergroundCommon_Text_SomethingAlreadyBuried",
       "en_US": [
         "Something was already buried in\n",
         "the ground."
@@ -384,7 +384,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00066",
+      "id": "UndergroundCommon_Text_CantReturnFromSecretBase",
       "en_US": [
         "You can’t return to the surface\n",
         "from a Secret Base."
@@ -410,14 +410,14 @@
       "en_US": "You obtained {STRVAR_1 25, 2, 0}, size {STRVAR_1 51, 1, 0}!"
     },
     {
-      "id": "pl_msg_00000634_00070",
+      "id": "UndergroundCommon_Text_TriggeredTrap",
       "en_US": [
         "Oops!\n",
         "{STRVAR_1 25, 0, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000634_00071",
+      "id": "UndergroundCommon_Text_HelpedOutPlayer",
       "en_US": "Helped out {STRVAR_1 3, 0, 0}!"
     },
     {
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00073",
+      "id": "UndergroundCommon_Text_CantPutTrapInSecretBase",
       "en_US": [
         "You can’t put down a Trap inside\n",
         "a Secret Base."
@@ -451,36 +451,36 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00076",
+      "id": "UndergroundCommon_Text_BlowTrapAway",
       "en_US": "Blow the Trap away!"
     },
     {
-      "id": "pl_msg_00000634_00077",
+      "id": "UndergroundCommon_Text_RemoveTrapByTouch",
       "en_US": "Remove the Trap by touch!"
     },
     {
-      "id": "pl_msg_00000634_00078",
+      "id": "UndergroundCommon_Text_NoRoomForTrap",
       "en_US": [
         "A Trap was found, but your Bag is\n",
         "full. The Trap was left as is."
       ]
     },
     {
-      "id": "pl_msg_00000634_00079",
+      "id": "UndergroundCommon_Text_PlacedInItemsPocket",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was placed in\n",
         "the Bag’s {COLOR 2}♈{COLOR 0}ITEMS Pocket."
       ]
     },
     {
-      "id": "pl_msg_00000634_00080",
+      "id": "UndergroundCommon_Text_BagIsFullCouldntPutAway",
       "en_US": [
         "Your Bag is full. The {STRVAR_1 25, 0, 0}\n",
         "couldn’t be put away."
       ]
     },
     {
-      "id": "pl_msg_00000634_00081",
+      "id": "UndergroundCommon_Text_PlacedInMedicinePocket",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was placed in the\n",
         "Bag’s {COLOR 2}♌{COLOR 0}MEDICINE Pocket."
@@ -548,7 +548,7 @@
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000634_00090",
+      "id": "UndergroundCommon_Text_PlayerDisengagedTrap",
       "en_US": "{STRVAR_1 3, 0, 0} disengaged the Trap!"
     },
     {
@@ -583,15 +583,15 @@
       "garbage": 20
     },
     {
-      "id": "pl_msg_00000634_00098",
+      "id": "UndergroundCommon_Text_PlayerEscapedFromTrap",
       "en_US": "{STRVAR_1 3, 0, 0} escaped from the Trap."
     },
     {
-      "id": "pl_msg_00000634_00099",
+      "id": "UndergroundCommon_Text_PlayerTriggeredTrap",
       "en_US": "{STRVAR_1 3, 0, 0} triggered a Trap!"
     },
     {
-      "id": "pl_msg_00000634_00100",
+      "id": "UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap",
       "en_US": [
         "{STRVAR_1 3, 0, 0} triggered\n",
         "{STRVAR_1 3, 1, 0}’s Trap!"
@@ -676,101 +676,101 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00116",
+      "id": "UndergroundCommon_Text_PlayerHelpedOtherPlayer",
       "en_US": "{STRVAR_1 3, 0, 0} helped {STRVAR_1 3, 1, 0}!"
     },
     {
-      "id": "pl_msg_00000634_00117",
+      "id": "UndergroundCommon_Text_AlertHello",
       "en_US": [
         "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
         "“Hello! Nice to meet you!”"
       ]
     },
     {
-      "id": "pl_msg_00000634_00118",
+      "id": "UndergroundCommon_Text_AlertGoodbye",
       "en_US": [
         "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
         "“Good-bye! I’m going back up!”"
       ]
     },
     {
-      "id": "pl_msg_00000634_00119",
+      "id": "UndergroundCommon_Text_AlertLetsGoToUnionRoom",
       "en_US": [
         "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
         "“Let’s go to the Union Room!”"
       ]
     },
     {
-      "id": "pl_msg_00000634_00120",
+      "id": "UndergroundCommon_Text_AlertComeHere",
       "en_US": [
         "It’s an alert from {STRVAR_1 3, 0, 0}!\n",
         "“Please come here!”"
       ]
     },
     {
-      "id": "pl_msg_00000634_00121",
+      "id": "UndergroundCommon_Text_Traps",
       "en_US": "TRAPS"
     },
     {
-      "id": "pl_msg_00000634_00122",
+      "id": "UndergroundCommon_Text_Spheres",
       "en_US": "SPHERES"
     },
     {
-      "id": "pl_msg_00000634_00123",
+      "id": "UndergroundCommon_Text_Goods",
       "en_US": "GOODS"
     },
     {
-      "id": "pl_msg_00000634_00124",
+      "id": "UndergroundCommon_Text_Treasures",
       "en_US": "TREASURES"
     },
     {
-      "id": "pl_msg_00000634_00125",
+      "id": "UndergroundCommon_Text_TrainerNameTemplate",
       "en_US": "{STRVAR_1 1, 1, 0}"
     },
     {
-      "id": "pl_msg_00000634_00126",
+      "id": "UndergroundCommon_Text_GoUp",
       "en_US": "GO UP"
     },
     {
-      "id": "pl_msg_00000634_00127",
+      "id": "UndergroundCommon_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000634_00128",
+      "id": "UndergroundCommon_Text_SphereTemplate",
       "en_US": "{STRVAR_1 8, 2, 0} {STRVAR_1 51, 6, 0}"
     },
     {
-      "id": "pl_msg_00000634_00129",
+      "id": "UndergroundCommon_Text_WhatWouldYouLikeToDo",
       "en_US": [
         "What would you like to do with\n",
         "this {STRVAR_1 25, 2, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00130",
+      "id": "UndergroundCommon_Text_ThrewAwayTheItem",
       "en_US": "Threw away the {STRVAR_1 25, 2, 0}."
     },
     {
-      "id": "pl_msg_00000634_00131",
+      "id": "UndergroundCommon_Text_TrapWasSetInGround",
       "en_US": [
         "The {STRVAR_1 25, 3, 0} was set in\n",
         "the ground."
       ]
     },
     {
-      "id": "pl_msg_00000634_00132",
+      "id": "UndergroundCommon_Text_Trash",
       "en_US": "TRASH"
     },
     {
-      "id": "pl_msg_00000634_00133",
+      "id": "UndergroundCommon_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000634_00134",
+      "id": "UndergroundCommon_Text_Bury",
       "en_US": "BURY"
     },
     {
-      "id": "pl_msg_00000634_00135",
+      "id": "UndergroundCommon_Text_PutInBag",
       "en_US": "PUT IN BAG"
     },
     {

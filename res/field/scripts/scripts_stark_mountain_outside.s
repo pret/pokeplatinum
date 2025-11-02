@@ -134,10 +134,10 @@ _0118:
     BufferPlayerName 0
     Message 8
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 4
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetVar VAR_UNK_0x40A0, 3
     ReleaseAll

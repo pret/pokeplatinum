@@ -54,22 +54,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": [
-				"Oh!\n",
-				"But this isn’t the end, my friend!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "Oh!\n",
+                "But this isn’t the end, my friend!\n"
+            ]
+        },
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": "I’m in a bit of a bind, aren’t I?\n"
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": "I’m in a bit of a bind, aren’t I?\n"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I shall admit defeat...\n",
-				"You are much too strong.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I shall admit defeat...\n",
+                "You are much too strong.\n"
+            ]
+        }
     ]
 }

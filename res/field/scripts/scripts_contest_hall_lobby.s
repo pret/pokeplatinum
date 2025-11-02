@@ -179,11 +179,11 @@ _01EC:
     LockAll
     ScrCmd_12F 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _031D
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 0, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -193,11 +193,11 @@ _0229:
     LockAll
     ScrCmd_12F 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _031D
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 1, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -207,11 +207,11 @@ _0266:
     LockAll
     ScrCmd_12F 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _031D
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 2, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -221,11 +221,11 @@ _02A3:
     LockAll
     ScrCmd_12F 3, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _031D
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 3, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -235,11 +235,11 @@ _02E0:
     LockAll
     ScrCmd_12F 4, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _031D
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 4, VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

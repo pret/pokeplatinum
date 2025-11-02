@@ -39,30 +39,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I have meditated under a waterfall\n",
-				"to temper my spirit.\r",
-				"Allow me to demonstrate its strength!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I have meditated under a waterfall\n",
+                "to temper my spirit.\r",
+                "Allow me to demonstrate its strength!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Ha-choo! Sniffle...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Ha-choo! Sniffle...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"All that time under the waterfall...\n",
-				"Seems I’ve caught a cold.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "All that time under the waterfall...\n",
+                "Seems I’ve caught a cold.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Since the day I lost to you, I’ve\n",
-				"meditated under a waterfall!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Since the day I lost to you, I’ve\n",
+                "meditated under a waterfall!\r"
+            ]
+        }
     ]
 }

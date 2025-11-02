@@ -3,12 +3,13 @@
 
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_02098C44.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D431C.h"
-#include "overlay006/ov6_02247078.h"
+#include "overlay006/pc_animation.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -40,8 +41,6 @@
 #include "text.h"
 #include "unk_0203D1B8.h"
 #include "unk_02097624.h"
-
-#include "constdata/const_020F1E88.h"
 
 typedef struct {
     u8 unk_00;
@@ -105,7 +104,7 @@ typedef struct {
     UnkStruct_02097728 *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
-    PartyManagementData *unk_1B4;
+    PartyMenu *unk_1B4;
 } UnkStruct_02072334;
 
 typedef struct {
@@ -499,7 +498,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -579,7 +578,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -673,8 +672,8 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     ScrollPrompts_SetDrawFlag(param0->unk_1A4, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v3[0]);
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_194), &v3[1]);
-    Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
-    Window_FillTilemap(&param0->unk_194, ((15 << 4) | 15));
+    Window_FillTilemap(&param0->unk_174, (15 << 4) | 15);
+    Window_FillTilemap(&param0->unk_194, (15 << 4) | 15);
 
     param0->unk_164 = StringList_New(param0->unk_1B + 1, param0->heapID);
 
@@ -718,9 +717,9 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->heapID);
 
-    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, 1024 - (18 + 12) - 9, 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_194, 0, 1024 - (18 + 12) - 9, 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 0;
@@ -783,7 +782,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_164 = StringList_New(v1, param0->heapID);
 
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v2);
-    Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
+    Window_FillTilemap(&param0->unk_174, (15 << 4) | 15);
 
     for (v0 = 0; v0 < v1; v0++) {
         StringList_AddFromMessageBank(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
@@ -800,7 +799,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_140.cursorCallback = sub_02072DA4;
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->heapID);
 
-    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, 1024 - (18 + 12) - 9, 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 1;
@@ -1038,13 +1037,13 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
 {
     param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
-    LoadMessageBoxGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_170, BG_LAYER_MAIN_3, 1024 - (18 + 12), 10, param0->unk_14, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_170, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, param0->heapID);
 
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
 
-    Window_Add(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
+    Window_Add(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, (1024 - (18 + 12) - 9) - 27 * 4);
     Window_FillTilemap(&param0->unk_184, 0);
 }
 
@@ -1062,12 +1061,12 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     Strbuf *v0;
 
     if (param4) {
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_184, 1, 1024 - (18 + 12), 10);
     }
 
-    Window_FillRectWithColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    Window_FillRectWithColor(&param0->unk_184, (15 << 4) | 15, 0, 0, 27 * 8, 4 * 8);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);
@@ -1115,7 +1114,7 @@ static void sub_020733E0(UnkStruct_02072334 *param0)
         0x355
     };
 
-    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->heapID);
+    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, 1024 - (18 + 12) - 9, 11, param0->heapID);
 }
 
 static int sub_0207340C(UnkStruct_02072334 *param0)
@@ -1161,8 +1160,8 @@ static int sub_02073480(UnkStruct_02072334 *param0)
             break;
         }
 
-        ov6_02247078(param0->fieldSystem, 90);
-        ov6_022470E8(param0->fieldSystem, 90);
+        FieldSystem_LoadPCAnimation(param0->fieldSystem, 90);
+        FieldSystem_PlayPCBootUpAnimation(param0->fieldSystem, 90);
         param0->unk_12++;
         break;
     case 2:
@@ -1179,7 +1178,7 @@ static int sub_02073480(UnkStruct_02072334 *param0)
 
 static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 {
-    ov5_021D4D68(param0->fieldSystem, 90);
+    FieldSystem_UnloadAnimation(param0->fieldSystem, 90);
 
     if (param1 == 0) {
         sub_02072DB8(param0);
@@ -1191,29 +1190,29 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
     return 1;
 }
 
-static int sub_02073524(UnkStruct_02072334 *param0, int param1)
+static int sub_02073524(UnkStruct_02072334 *param0, int mode)
 {
-    PartyManagementData *partyMan;
+    PartyMenu *partyMenu;
 
     switch (param0->unk_12) {
     case 0:
-        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
+        partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
+        MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
-        partyMan->unk_21 = 0;
-        partyMan->unk_20 = param1;
-        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
+        partyMenu->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
+        partyMenu->type = PARTY_MENU_TYPE_BASIC;
+        partyMenu->mode = mode;
+        partyMenu->usedItemID = param0->unk_1C[param0->unk_18].item;
 
-        if (param1 == 11) {
-            partyMan->selectedMonSlot = param0->unk_17;
+        if (mode == PARTY_MENU_MODE_GIVE_MAIL) {
+            partyMenu->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
-        param0->unk_1B4 = partyMan;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
+        param0->unk_1B4 = partyMenu;
         param0->unk_12++;
         break;
     case 1:

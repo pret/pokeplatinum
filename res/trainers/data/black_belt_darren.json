@@ -47,25 +47,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"We’re the Karate Quads!\r",
-				"I will strike a blow for courage with\n",
-				"my fist! Hiyah, couraaaaaaaaaaage!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We’re the Karate Quads!\r",
+                "I will strike a blow for courage with\n",
+                "my fist! Hiyah, couraaaaaaaaaaage!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I couldn’t force my way to victory...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I couldn’t force my way to victory...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"To overwhelm by force...\n",
-				"That is my ideal beat-down style.\r",
-				"It doesn’t seem to work that way\n",
-				"with Pokémon, however.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "To overwhelm by force...\n",
+                "That is my ideal beat-down style.\r",
+                "It doesn’t seem to work that way\n",
+                "with Pokémon, however.\n"
+            ]
+        }
     ]
 }

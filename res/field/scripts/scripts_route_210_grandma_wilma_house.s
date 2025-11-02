@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_grandma_wilma_house.h"
+#include "generated/pokemon_types.h"
 
 
     ScriptEntry _000A
@@ -76,9 +77,9 @@ _00A6:
     SubVar VAR_MAP_LOCAL_0, 1
     GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00FC
-    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_0x8004, 16, _00E7
-    GoToIfEq VAR_0x8005, 16, _00E7
+    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_0x8004, TYPE_DRAGON, _00E7
+    GoToIfEq VAR_0x8005, TYPE_DRAGON, _00E7
     GoTo _00FC
 
 _00E7:
@@ -91,12 +92,12 @@ _00FC:
 _010F:
     Message 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _005B
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
@@ -111,12 +112,12 @@ _010F:
     GoTo _019B
 
 _019B:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_224 VAR_0x8000, 0x1B2
     ScrCmd_225 VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _005B
     Message 16
@@ -126,9 +127,9 @@ _019B:
     End
 
 _01D7:
-    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x8000
-    GoToIfEq VAR_0x8004, 16, _0201
-    GoToIfEq VAR_0x8005, 16, _0201
+    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_0x8000
+    GoToIfEq VAR_0x8004, TYPE_DRAGON, _0201
+    GoToIfEq VAR_0x8005, TYPE_DRAGON, _0201
     SetVar VAR_RESULT, 0
     Return
 

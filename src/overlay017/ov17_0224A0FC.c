@@ -708,9 +708,9 @@ static void ov17_0224A8D4(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_020129A4(v0->unk_04->unk_00, &v1, &v2);
+        FontOAM_GetXY(v0->unk_04->unk_00, &v1, &v2);
         v2 += -4;
-        sub_020128C4(v0->unk_04->unk_00, v1, v2);
+        FontOAM_SetXY(v0->unk_04->unk_00, v1, v2);
         ManagedSprite_OffsetPositionXY(v0->unk_00, 0, -4);
 
         v0->unk_0C++;

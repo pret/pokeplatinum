@@ -37,11 +37,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I want to cry...\n",
-				"My heart is shattered...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I want to cry...\n",
+                "My heart is shattered...\n"
+            ]
+        }
     ]
 }

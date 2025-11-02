@@ -1,7 +1,8 @@
 npc_trades_bin_gen = generator(
     npc_trades_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@'
+    output: '@BASENAME@',
+    depends: [ py_consts_generators ],
 )
 
 npc_trades_consts = fs.read(npc_trades_txt).splitlines()

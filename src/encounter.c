@@ -46,11 +46,11 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_data.h"
+#include "tv_episode_segment.h"
 #include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 typedef struct Encounter {
@@ -394,7 +394,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);
             RadarChain_Clear(fieldSystem->chain);
-            FieldTask_InitJump(task, sub_02052B2C, NULL);
+            FieldTask_InitJump(task, FieldTask_BlackOutFromBattle, NULL);
             return FALSE;
         }
 
@@ -617,7 +617,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
+        FieldSystem_UpdateCatchingShowResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;
@@ -636,7 +636,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 6:
         FreeEncounter(encounter);
 
-        if (CatchingShow_GetParkBallCount(fieldSystem) == 0) {
+        if (FieldSystem_GetParkBallCount(fieldSystem) == 0) {
             ScriptManager_Change(task, 3, NULL);
             return FALSE;
         } else {

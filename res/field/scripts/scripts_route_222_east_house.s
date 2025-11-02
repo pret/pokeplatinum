@@ -19,12 +19,12 @@ Route222EastHouse_Fisherman:
     GoToIfEq VAR_RESULT, 0, Route222EastHouse_NoRemoraid
     Message Route222EastHouse_Text_DreamtLargeRemoraidWasNoDream
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8002
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 0xFF, Route222EastHouse_ShowNoPokemon
     GetPartyMonSpecies VAR_0x8002, VAR_0x8001
@@ -37,7 +37,7 @@ Route222EastHouse_Fisherman:
     SetVar VAR_0x8004, ITEM_NET_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route222EastHouse_BagFull
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     UpdateSizeContestRecord VAR_0x8002
     Message Route222EastHouse_Text_WillDreamOfBiggerRemoraid
     WaitABXPadPress

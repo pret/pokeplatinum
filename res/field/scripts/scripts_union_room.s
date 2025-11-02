@@ -47,7 +47,7 @@ _002A:
 _00BA:
     ScrCmd_135 100
     ScrCmd_13F 2, VAR_RESULT
-    ScrCmd_2C0 VAR_RESULT
+    MessageAutoScroll VAR_RESULT
     GoTo _00EA
     End
 
@@ -96,7 +96,7 @@ _019F:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 1
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AD
     ReturnToField
@@ -106,7 +106,7 @@ _019F:
     End
 
 _01EB:
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _0262
     ScrCmd_143 0, 3
     ScrCmd_13F 9, VAR_RESULT
@@ -121,7 +121,7 @@ _0219:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 3
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AE
     ReturnToField
@@ -136,7 +136,7 @@ _0262:
     End
 
 _0274:
-    ScrCmd_1F6 VAR_RESULT, 30
+    CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
     GoToIfLt VAR_RESULT, 2, _0322
     ScrCmd_143 0, 2
     ScrCmd_13F 9, VAR_RESULT
@@ -151,11 +151,10 @@ _02A4:
     WaitTime 30, VAR_RESULT
     ScrCmd_135 2
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
-    ScrCmd_192
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
+    SelectPokemonForUnionRoomBattle
+    FadeScreenIn
     WaitFadeScreen
     Message 202
     ScrCmd_135 102
@@ -187,7 +186,7 @@ _0351:
     WaitABPressTime 30
     ScrCmd_135 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
@@ -208,7 +207,7 @@ _03B1:
     WaitABPressTime 30
     ScrCmd_135 5
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
@@ -217,7 +216,7 @@ _03B1:
     End
 
 _03F4:
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0741
     ScrCmd_2C7 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0753
@@ -233,7 +232,7 @@ _0433:
     WaitABPressTime 30
     ScrCmd_135 6
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
@@ -283,11 +282,11 @@ _04AD:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -314,11 +313,11 @@ _053A:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -328,7 +327,7 @@ _05AF:
     MessageVar VAR_RESULT
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _065E
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _068A
     CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0674
@@ -340,11 +339,11 @@ _05AF:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     GoTo _0476
     End
 
@@ -478,7 +477,7 @@ _07BA:
     LockAll
     PlayFanfare SEQ_SE_DP_BUTTON9
     ScrCmd_13C 1
-    ScrCmd_2C0 7
+    MessageAutoScroll 7
     WaitABPressTime 30
     GoTo _07D4
     End
@@ -513,7 +512,7 @@ _0853:
     ScrCmd_135 1
     CloseMessage
     ScrCmd_139 5
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AD
     ReturnToField
@@ -531,7 +530,7 @@ _08C7:
     Message 26
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _093A
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _094B
     ScrCmd_143 1, 0
     CloseMessage
@@ -542,7 +541,7 @@ _08C7:
     ScrCmd_135 3
     CloseMessage
     ScrCmd_139 7
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AE
     ReturnToField
@@ -567,7 +566,7 @@ _095C:
     Message 21
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0A06
-    ScrCmd_1F6 VAR_RESULT, 30
+    CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
     GoToIfLt VAR_RESULT, 2, _0A17
     ScrCmd_143 1, 0
     CloseMessage
@@ -578,11 +577,10 @@ _095C:
     ScrCmd_135 2
     CloseMessage
     ScrCmd_139 6
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
-    ScrCmd_192
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
+    SelectPokemonForUnionRoomBattle
+    FadeScreenIn
     WaitFadeScreen
     Message 202
     ScrCmd_135 102
@@ -621,7 +619,7 @@ _0A28:
     ScrCmd_135 5
     CloseMessage
     ScrCmd_139 2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
@@ -635,7 +633,7 @@ _0A82:
     GoToIfEq VAR_RESULT, MENU_NO, _0A06
     ScrCmd_143 1, 0
     CloseMessage
-    ScrCmd_19D VAR_RESULT
+    CountPartyEggs VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0730
     ScrCmd_144 VAR_RESULT
     GoToIfEq VAR_RESULT, 7, _0B78
@@ -644,7 +642,7 @@ _0A82:
     ScrCmd_135 6
     CloseMessage
     ScrCmd_139 13
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
@@ -665,7 +663,7 @@ _0AED:
     ScrCmd_135 4
     CloseMessage
     ScrCmd_139 1
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
@@ -718,7 +716,7 @@ UnionRoom_Unused3:
 
 _0BB2:
     ScrCmd_13D
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     Return
 
 _0BC0:

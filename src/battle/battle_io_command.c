@@ -66,6 +66,7 @@
 #include "battle_anim/struct_ov12_02237728.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "flags.h"
 #include "heap.h"
 #include "narc.h"
@@ -74,7 +75,6 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 
@@ -738,7 +738,7 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    sub_02013750(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->spindaSpots);
 
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);

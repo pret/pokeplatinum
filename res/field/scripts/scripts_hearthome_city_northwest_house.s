@@ -47,17 +47,17 @@ _00A8:
     CloseMessage
     GetPartyCount VAR_MAP_LOCAL_0
     SubVar VAR_MAP_LOCAL_0, 1
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, _00E3
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
 _00E3:
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
 _00E9:

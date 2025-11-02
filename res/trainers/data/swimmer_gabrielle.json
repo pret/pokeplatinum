@@ -19,31 +19,31 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My favorite kind of guy is someone\n",
-				"that looks good out on the open sea!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My favorite kind of guy is someone\n",
+                "that looks good out on the open sea!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "The tide is going out...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "The tide is going out...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Don’t get me wrong, it’s not as if I\n",
-				"don’t like mountain men.\r",
-				"But, you know, my most favorite kind of\n",
-				"guy looks great with Pokémon!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Don’t get me wrong, it’s not as if I\n",
+                "don’t like mountain men.\r",
+                "But, you know, my most favorite kind of\n",
+                "guy looks great with Pokémon!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hello again! You’re that Trainer who\n",
-				"looks keen with your Pokémon!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hello again! You’re that Trainer who\n",
+                "looks keen with your Pokémon!\r"
+            ]
+        }
     ]
 }

@@ -98,11 +98,11 @@ _01CF:
 _01F8:
     Message 6
     WaitABPress
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_21D 4, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _03E5
     GoToIfEq VAR_RESULT, 2, _0256

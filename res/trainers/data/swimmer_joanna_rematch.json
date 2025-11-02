@@ -37,15 +37,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"People still keep coming to us for\n",
-				"battles! Why?!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "People still keep coming to us for\n",
+                "battles! Why?!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "OK, we lost.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "OK, we lost.\n"
+        }
     ]
 }

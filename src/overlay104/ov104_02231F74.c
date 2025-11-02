@@ -7,6 +7,7 @@
 
 #include "struct_defs/sentence.h"
 
+#include "applications/party_menu/main.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/ov63_0222D77C.h"
@@ -26,6 +27,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -51,9 +53,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 #include "unk_02014A84.h"
-#include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
 
 typedef struct UnkStruct_ov104_02232B5C_t {
@@ -182,7 +182,7 @@ static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, i
 {
     RenderControlFlags_SetCanABSpeedUpPrint(param3);
     RenderControlFlags_SetAutoScrollFlags(param4);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     param0->unk_50 = Text_AddPrinterWithParams(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 
@@ -899,14 +899,14 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     }
 
     {
-        u32 v9, v10;
+        u32 personality, species;
 
         v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
-        v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+        species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
-        sub_020136A4(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        CharacterSprite_LoadPokemonSpriteRect(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, personality, FALSE, 2, species);
     }
 
     {
@@ -1060,18 +1060,18 @@ void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
 
 void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1)
 {
-    ov104_0223310C(param0, param1, 614);
+    ov104_0223310C(param0, param1, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
     return;
 }
 
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
+void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 bankID)
 {
     u8 v0;
     MessageLoader *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD3);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

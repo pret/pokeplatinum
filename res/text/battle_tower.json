@@ -2,7 +2,7 @@
   "key": 9338,
   "messages": [
     {
-      "id": "pl_msg_00000304_00000",
+      "id": "BattleTower_Text_GuideToSingleDoubleBattleRooms",
       "en_US": [
         "Welcome to the Battle Tower!\r",
         "I am your guide to the Single\n",
@@ -10,18 +10,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00001",
+      "id": "BattleTower_Text_AskTakeBattleRoomChallenge",
       "en_US": [
         "Would you like to take the\n",
         "Battle Room challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00002",
+      "id": "BattleTower_Text_WeHopeToSeeYouAgain",
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "pl_msg_00000304_00003",
+      "id": "BattleTower_Text_ExplainSingleDoubleBattleRoom",
       "en_US": [
         "The Battle Tower is a facility for Single\n",
         "or Double Battle challenges.\r",
@@ -45,52 +45,52 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00004",
+      "id": "BattleTower_Text_AskSingleOrDoubleBattleRoom",
       "en_US": [
         "Which Battle Room would you like?\n",
         "Single or Double?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00005",
+      "id": "BattleTower_Text_00005",
       "garbage": 192
     },
     {
-      "id": "pl_msg_00000304_00006",
+      "id": "BattleTower_Text_00006",
       "garbage": 258
     },
     {
-      "id": "pl_msg_00000304_00007",
+      "id": "BattleTower_Text_00007",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000304_00008",
+      "id": "BattleTower_Text_SelectPokemonToEnter",
       "en_US": [
         "Please select the Pokémon you wish\n",
         "to enter.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00009",
+      "id": "BattleTower_Text_PokemonMustAllBeDifferent",
       "en_US": "Your Pokémon must all be different.\r"
     },
     {
-      "id": "pl_msg_00000304_00010",
+      "id": "BattleTower_Text_ItemsMustAllBeDifferent",
       "en_US": "Hold items must all be different.\r"
     },
     {
-      "id": "pl_msg_00000304_00011",
+      "id": "BattleTower_Text_ShowYouToBattleRoom",
       "en_US": "I will now show you to the Battle Room."
     },
     {
-      "id": "pl_msg_00000304_00012",
+      "id": "BattleTower_Text_BeatenAllSevenTrainers",
       "en_US": [
         "Congratulations!\n",
         "You’ve beaten all seven Trainers!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00013",
+      "id": "BattleTower_Text_BeatenTowerTycoonReceivedBP",
       "en_US": [
         "Congratulations!\n",
         "You’ve beaten the Tower Tycoon!\r",
@@ -101,18 +101,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00014",
+      "id": "BattleTower_Text_SavingDontTurnOffPower",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000304_00015",
+      "id": "BattleTower_Text_WeHopeToSeeYouAgain2",
       "en_US": "We hope to see you again."
     },
     {
-      "id": "pl_msg_00000304_00016",
+      "id": "BattleTower_Text_SaveBeforeEntering",
       "en_US": [
         "We’ve been waiting for you!\r",
         "Before entering a Battle Room, your\n",
@@ -120,15 +120,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00017",
+      "id": "BattleTower_Text_00017",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000304_00018",
+      "id": "BattleTower_Text_00018",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000304_00019",
+      "id": "BattleTower_Text_DidntSaveBeforeQuitting",
       "en_US": [
         "Excuse me!\r",
         "You didn’t save before you quit your\n",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00020",
+      "id": "BattleTower_Text_GuideToMultiBattleRooms",
       "en_US": [
         "Welcome to the Battle Tower!\r",
         "I am your guide to the Multi\n",
@@ -146,18 +146,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00021",
+      "id": "BattleTower_Text_AskTakeMultiBattleRoomChallenge",
       "en_US": [
         "Would you like to take the Multi\n",
         "Battle Room challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00022",
+      "id": "BattleTower_Text_00022",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00023",
+      "id": "BattleTower_Text_ExplainMultiBattleRoom",
       "en_US": [
         "The Battle Tower’s Multi Battle Rooms\n",
         "are for Multi Battles with a partner.\r",
@@ -186,22 +186,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00024",
+      "id": "BattleTower_Text_00024",
       "garbage": 259
     },
     {
-      "id": "pl_msg_00000304_00025",
+      "id": "BattleTower_Text_00025",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000304_00026",
+      "id": "BattleTower_Text_AskCommunicateWithFriend",
       "en_US": [
         "Would you like to communicate with\n",
         "a friend and form a tag team?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00027",
+      "id": "BattleTower_Text_OneBecomeLeaderOtherJoinGroup",
       "en_US": [
         "One Trainer should select\n",
         "“BECOME LEADER.”\r",
@@ -210,30 +210,30 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00028",
+      "id": "BattleTower_Text_00028",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00029",
+      "id": "BattleTower_Text_00029",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000304_00030",
+      "id": "BattleTower_Text_00030",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000304_00031",
+      "id": "BattleTower_Text_00031",
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000304_00032",
+      "id": "BattleTower_Text_DirectToMultiBattleRoom",
       "en_US": [
         "I’ll direct you to your Multi Battle\n",
         "Room now."
       ]
     },
     {
-      "id": "pl_msg_00000304_00033",
+      "id": "BattleTower_Text_BothTrainersChoseThisPokemon",
       "en_US": [
         "Both Trainers have chosen the\n",
         "Pokémon {STRVAR_1 0, 0, 0}.\r",
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00034",
+      "id": "BattleTower_Text_BothTrainersChoseThesePokemon",
       "en_US": [
         "Both Trainers have chosen the Pokémon\n",
         "{STRVAR_1 0, 0, 0} and {STRVAR_1 0, 1, 0}.\r",
@@ -251,11 +251,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00035",
+      "id": "BattleTower_Text_ShowYouToBattleSalon",
       "en_US": "I will now show you to the Battle Salon.\r"
     },
     {
-      "id": "pl_msg_00000304_00036",
+      "id": "BattleTower_Text_GuideToWiFiBattleRooms",
       "en_US": [
         "Welcome to the Battle Tower!\r",
         "I am your guide to the Wi-Fi Battle\n",
@@ -263,14 +263,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00037",
+      "id": "BattleTower_Text_AskTakeWifiBattleRoomChallenge",
       "en_US": [
         "Would you like to take the Wi-Fi\n",
         "Battle Room challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00038",
+      "id": "BattleTower_Text_ExplainWiFiBattleRoom",
       "en_US": [
         "The Battle Tower’s Wi-Fi Battle Rooms\n",
         "are places to conduct battles over\f",
@@ -300,39 +300,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00039",
+      "id": "BattleTower_Text_WeHopeToSeeYouAgain3",
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "pl_msg_00000304_00040",
+      "id": "BattleTower_Text_00040",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000304_00041",
+      "id": "BattleTower_Text_00041",
       "garbage": 262
     },
     {
-      "id": "pl_msg_00000304_00042",
+      "id": "BattleTower_Text_00042",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00043",
+      "id": "BattleTower_Text_00043",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000304_00044",
+      "id": "BattleTower_Text_00044",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000304_00045",
+      "id": "BattleTower_Text_00045",
       "garbage": 55
     },
     {
-      "id": "pl_msg_00000304_00046",
+      "id": "BattleTower_Text_00046",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000304_00047",
+      "id": "BattleTower_Text_DirectYouToBattleRoom",
       "en_US": [
         "OK. I’ll direct you to your Battle Room\n",
         "now.\r",
@@ -340,26 +340,26 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00048",
+      "id": "BattleTower_Text_AskSaveAndInterruptChallenge",
       "en_US": [
         "Would you like to save and interrupt\n",
         "your challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00049",
+      "id": "BattleTower_Text_00049",
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000304_00050",
+      "id": "BattleTower_Text_00050",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000304_00051",
+      "id": "BattleTower_Text_00051",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000304_00052",
+      "id": "BattleTower_Text_PleaseConfirmPastLeaderHistory",
       "en_US": [
         "I’ve downloaded the Rank {STRVAR_1 51, 0, 0} Battle\n",
         "Room {STRVAR_1 52, 1, 0}’s past leader history.\r",
@@ -368,39 +368,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00053",
+      "id": "BattleTower_Text_ThankYouForPlaying",
       "en_US": "Thank you for playing!\r"
     },
     {
-      "id": "pl_msg_00000304_00054",
+      "id": "BattleTower_Text_BeatenAllSevenTrainers2",
       "en_US": [
         "Congratulations!\n",
         "You’ve beaten all seven Trainers!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00055",
+      "id": "BattleTower_Text_PromotedToRank",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, you have also been\n",
         "promoted to Rank {STRVAR_1 51, 1, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00056",
+      "id": "BattleTower_Text_SavingDontTurnOffPower2",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000304_00057",
+      "id": "BattleTower_Text_AskSendResults",
       "en_US": [
         "Would you like to send these results\n",
         "using Nintendo WFC?"
       ]
     },
     {
-      "id": "pl_msg_00000304_00058",
+      "id": "BattleTower_Text_EarnedAndReceivedBP",
       "en_US": [
         "For your 7-win streak, we present\n",
         "you with the BP you have earned!\r",
@@ -409,18 +409,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00059",
+      "id": "BattleTower_Text_00059",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00060",
+      "id": "BattleTower_Text_ResultsWereSent",
       "en_US": [
         "Your results were sent out using\n",
         "Nintendo WFC!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00061",
+      "id": "BattleTower_Text_AskSendPreviousResults",
       "en_US": [
         "It’s good to see you back.\r",
         "Your previous results were not sent\n",
@@ -429,45 +429,45 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00062",
+      "id": "BattleTower_Text_00062",
       "garbage": 42
     },
     {
-      "id": "pl_msg_00000304_00063",
+      "id": "BattleTower_Text_00063",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00064",
+      "id": "BattleTower_Text_00064",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000304_00065",
+      "id": "BattleTower_Text_DemotedToRank",
       "en_US": [
         "Unfortunately, you have been\n",
         "demoted to Rank {STRVAR_1 51, 0, 0}...\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00066",
+      "id": "BattleTower_Text_00066",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000304_00067",
+      "id": "BattleTower_Text_00067",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000304_00068",
+      "id": "BattleTower_Text_00068",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000304_00069",
+      "id": "BattleTower_Text_RecordWillBeSaved",
       "en_US": [
         "Your record will be saved.\n",
         "Please wait."
       ]
     },
     {
-      "id": "pl_msg_00000304_00070",
+      "id": "BattleTower_Text_CongratulationsOnAchievingRank",
       "en_US": [
         "Congratulations on achieving Rank {STRVAR_1 51, 0, 0}.\r",
         "Your winning Pokémon team has won\n",
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00071",
+      "id": "BattleTower_Text_CongratulationsOnAchievingConsecutiveWins",
       "en_US": [
         "Congratulations on achieving {STRVAR_1 52, 0, 0}\n",
         "consecutive wins!\r",
@@ -484,11 +484,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00072",
+      "id": "BattleTower_Text_00072",
       "en_US": "{STRVAR_1 3, 0, 0} obtained {STRVAR_1 8, 1, 0}!"
     },
     {
-      "id": "pl_msg_00000304_00073",
+      "id": "BattleTower_Text_CongratulationsOnAchievingYour50WinStreak",
       "en_US": [
         "Congratulations on achieving your\n",
         "50-win streak.\r",
@@ -497,7 +497,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00074",
+      "id": "BattleTower_Text_UsedToLiveInHoenn",
       "en_US": [
         "Yeah, I used to live in a place\n",
         "called Hoenn.\r",
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00075",
+      "id": "BattleTower_Text_WiFiBattleRoomsAreFullOfSurprises",
       "en_US": [
         "The Wi-Fi Battle Rooms are full of\n",
         "surprises.\r",
@@ -517,7 +517,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00076",
+      "id": "BattleTower_Text_TheyProfileYouOnTV",
       "en_US": [
         "They profile you on TV if you set\n",
         "a good record here.\r",
@@ -526,7 +526,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00077",
+      "id": "BattleTower_Text_ITrainedMyLittleGuy",
       "en_US": [
         "I trained my little guy till we\n",
         "couldn’t take any more.\r",
@@ -536,11 +536,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00078",
+      "id": "BattleTower_Text_PikachuDotDotDot",
       "en_US": "PIKACHU: ..."
     },
     {
-      "id": "pl_msg_00000304_00079",
+      "id": "BattleTower_Text_YouLookPowerful",
       "en_US": [
         "Ooh-la-la!\n",
         "You look tremendously powerful!\r",
@@ -549,7 +549,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00080",
+      "id": "BattleTower_Text_ThereAreManyToughTrainers",
       "en_US": [
         "There are so many tough Trainers\n",
         "around...\r",
@@ -558,11 +558,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00081",
+      "id": "BattleTower_Text_PikachuPichuu",
       "en_US": "PIKACHU: Pichuu! Pichuu!"
     },
     {
-      "id": "pl_msg_00000304_00082",
+      "id": "BattleTower_Text_CongratulationsOnAchievingA50WinStreak",
       "en_US": [
         "Congratulations on achieving\n",
         "a 50-win streak!\r",
@@ -571,7 +571,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00083",
+      "id": "BattleTower_Text_CongratulationsOnAdvancingToRank",
       "en_US": [
         "Congratulations on advancing to\n",
         "Rank {STRVAR_1 50, 0, 0}!\r",
@@ -580,7 +580,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00084",
+      "id": "BattleTower_Text_CongratulationsOnDefeatingTowerTycoon",
       "en_US": [
         "Congratulations on defeating\n",
         "the Tower Tycoon!\r",
@@ -589,7 +589,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00085",
+      "id": "BattleTower_Text_CommemorativePrint",
       "en_US": [
         "Congratulations!\r",
         "In honor of your victory, we present\n",
@@ -597,21 +597,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00086",
+      "id": "BattleTower_Text_GoldPrintWasAddedToVsRecorder",
       "en_US": [
         "The Gold Print was added to\n",
         "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00087",
+      "id": "BattleTower_Text_SilverPrintWasAddedToVsRecorder",
       "en_US": [
         "The Silver Print was added to\n",
         "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00088",
+      "id": "BattleTower_Text_CongratulationsOnAchievingWinStreak",
       "en_US": [
         "Congratulations on achieving your\n",
         "{STRVAR_1 52, 0, 0}-win streak!\r",
@@ -620,7 +620,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00089",
+      "id": "BattleTower_Text_RunOutOfRoomForDecorationGoods",
       "en_US": [
         "...Uh-oh... You’ve run out of room\n",
         "for decoration goods.\r",
@@ -629,11 +629,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00090",
+      "id": "BattleTower_Text_00090",
       "garbage": 61
     },
     {
-      "id": "pl_msg_00000304_00091",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -646,7 +646,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00092",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon2",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -660,7 +660,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00093",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon3",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -674,7 +674,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00094",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon4",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -688,7 +688,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00095",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon5",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -703,7 +703,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00096",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon6",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -718,7 +718,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00097",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon7",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -734,7 +734,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00098",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon8",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -750,7 +750,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00099",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon9",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -767,7 +767,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00100",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon10",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -784,7 +784,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00101",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon11",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -802,7 +802,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00102",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon12",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -820,7 +820,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00103",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon13",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -839,7 +839,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00104",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon14",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -858,7 +858,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00105",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon15",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -878,7 +878,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00106",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon16",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -898,7 +898,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00107",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon17",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -919,7 +919,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00108",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon18",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -940,7 +940,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00109",
+      "id": "BattleTower_Text_NotEnoughEligiblePokemon19",
       "en_US": [
         "Excuse me!\r",
         "You don’t have {STRVAR_1 50, 0, 0} eligible Pokémon.\r",
@@ -962,32 +962,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00110",
+      "id": "BattleTower_Text_ThankYouForParticipating",
       "en_US": [
         "Thank you so much for participating!\n",
         "Please come again!"
       ]
     },
     {
-      "id": "pl_msg_00000304_00111",
+      "id": "BattleTower_Text_NoDataYet",
       "en_US": [
         "There doesn’t appear to be any\n",
         "data yet..."
       ]
     },
     {
-      "id": "pl_msg_00000304_00112",
+      "id": "BattleTower_Text_DSWirelessCommunicationWillBeLaunched",
       "en_US": [
         "DS Wireless Communications will\n",
         "be launched."
       ]
     },
     {
-      "id": "pl_msg_00000304_00113",
+      "id": "BattleTower_Text_WeLookForwardToYourNextVisit",
       "en_US": "We look forward to your next visit.\r"
     },
     {
-      "id": "pl_msg_00000304_00114",
+      "id": "BattleTower_Text_JudgeExplanation",
       "en_US": [
         "You can call me the Judge.\r",
         "Heheh, it’s actually not my real name,\n",
@@ -1001,28 +1001,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00115",
+      "id": "BattleTower_Text_ICouldJudgeYourPokemon",
       "en_US": [
         "If you’d like, I could judge the\n",
         "intriguing potential of your Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00116",
+      "id": "BattleTower_Text_OhYouDontNeedMeToJudge",
       "en_US": [
         "...Oh.\n",
         "You don’t need me to judge. I get it."
       ]
     },
     {
-      "id": "pl_msg_00000304_00117",
+      "id": "BattleTower_Text_CantJudgeAnEgg",
       "en_US": [
         "Judge an Egg?!\n",
         "That’s a tall order even for me.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00118",
+      "id": "BattleTower_Text_DecentPotential",
       "en_US": [
         "I see, I see...\r",
         "This Pokémon’s potential is decent all\n",
@@ -1031,7 +1031,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00119",
+      "id": "BattleTower_Text_AboveAveragePotential",
       "en_US": [
         "I see, I see...\r",
         "This Pokémon’s potential is above\n",
@@ -1040,7 +1040,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00120",
+      "id": "BattleTower_Text_RelativelySuperiorPotential",
       "en_US": [
         "I see, I see...\r",
         "This Pokémon has relatively superior\n",
@@ -1049,7 +1049,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00121",
+      "id": "BattleTower_Text_OutstandingPotential",
       "en_US": [
         "I see, I see...\r",
         "This Pokémon has outstanding potential\n",
@@ -1058,77 +1058,77 @@
       ]
     },
     {
-      "id": "pl_msg_00000304_00122",
+      "id": "BattleTower_Text_BestPotentialInHP",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its HP.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00123",
+      "id": "BattleTower_Text_BestPotentialInAttack",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its Attack stat.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00124",
+      "id": "BattleTower_Text_BestPotentialInDefense",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its Defense stat.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00125",
+      "id": "BattleTower_Text_BestPotentialInSpAtk",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its Sp. Atk stat.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00126",
+      "id": "BattleTower_Text_BestPotentialInSpDef",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its Sp. Def stat.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00127",
+      "id": "BattleTower_Text_BestPotentialInSpeed",
       "en_US": [
         "Incidentally, I would say the best\n",
         "potential lies in its Speed stat.\r"
       ]
     },
     {
-      "id": "pl_msg_00000304_00128",
+      "id": "BattleTower_Text_ItsRatherDecent",
       "en_US": [
         "It’s rather decent in that regard.\n",
         "That’s how I judged it."
       ]
     },
     {
-      "id": "pl_msg_00000304_00129",
+      "id": "BattleTower_Text_ItsVeryGood",
       "en_US": [
         "It’s very good in that regard.\n",
         "That’s how I judged it."
       ]
     },
     {
-      "id": "pl_msg_00000304_00130",
+      "id": "BattleTower_Text_ItsFantastic",
       "en_US": [
         "It’s fantastic in that regard.\n",
         "That’s how I judged it."
       ]
     },
     {
-      "id": "pl_msg_00000304_00131",
+      "id": "BattleTower_Text_ItCantBeBetter",
       "en_US": [
         "It can’t be better in that regard.\n",
         "That’s how I judged it."
       ]
     },
     {
-      "id": "pl_msg_00000304_00132",
+      "id": "BattleTower_Text_AwardRibbonToParticipatingPokemon",
       "en_US": [
         "A Ribbon will be awarded to the\n",
         "participating Pokémon!"

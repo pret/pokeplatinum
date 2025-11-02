@@ -139,7 +139,7 @@ _0184:
     ApplyMovement 4, _03AC
     ApplyMovement LOCALID_PLAYER, _0330
     WaitMovement
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RestoreCamera
     ScrCmd_310
@@ -148,7 +148,7 @@ _0184:
     AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyFreeCameraMovement _0340
     WaitMovement
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 22
     CloseMessage

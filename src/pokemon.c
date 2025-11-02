@@ -22,11 +22,11 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/seal_case.h"
+#include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02078B40.h"
 
@@ -4459,7 +4459,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
     u32 fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     RTCTime rtcTime;
-    GetCurrentTime(&rtcTime);
+    RTC_GetCurrentTime(&rtcTime);
 
     return species == SPECIES_SHAYMIN
         && monForm == SHAYMIN_FORM_LAND
@@ -5001,7 +5001,7 @@ int LowestBit(u32 flag)
     return i;
 }
 
-static const u16 Unk_020F05BE[18] = {
+static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
     SPECIES_MEWTWO,
     SPECIES_MEW,
     SPECIES_LUGIA,
@@ -5022,30 +5022,30 @@ static const u16 Unk_020F05BE[18] = {
     SPECIES_ARCEUS
 };
 
-BOOL sub_02078804(u16 param0)
+BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)
 {
-    for (u32 i = 0; i < NELEMS(Unk_020F05BE); i++) {
-        if (param0 == Unk_020F05BE[i]) {
-            return 1;
+    for (u32 i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
+        if (species == sBattleFrontierBanlist[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-u16 sub_02078824(u8 index)
+u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
 {
-    if (index >= NELEMS(Unk_020F05BE)) {
+    if (index >= BATTLE_FRONTIER_BANLIST_SIZE) {
         index = 0;
     }
 
-    return Unk_020F05BE[index];
+    return sBattleFrontierBanlist[index];
 }
 
 BOOL sub_02078838(Pokemon *mon)
 {
     u16 monSpecies = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    return sub_02078804(monSpecies);
+    return Pokemon_IsOnBattleFrontierBanlist(monSpecies);
 }
 
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
@@ -5135,61 +5135,61 @@ static inline int Pokemon_Face(int clientType)
     return (clientType & 1) ? 0 : 1;
 }
 
-void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
+void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData data;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
-    MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
+    SpeciesSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
+    MI_CpuCopy8(data.faceAnims[face].frames, frames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 
-    ArchivedPokeSpriteData spriteData;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &spriteData);
+    SpeciesSpriteData spriteData;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &spriteData);
 
     PokeAnimationSettings settings;
-    settings.animation = spriteData.faces[faceType].animation;
-    settings.startDelay = spriteData.faces[faceType].startDelay;
+    settings.animation = spriteData.faceAnims[faceType].animation;
+    settings.startDelay = spriteData.faceAnims[faceType].startDelay;
     settings.reverse = reverse;
 
     PokeAnimation_Init(animationSys, sprite, &settings, frame);
 }
 
-void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
+void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
 {
     int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData data;
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    SpeciesSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
 
-    *cryDelay = data.faces[face].cryDelay;
+    *cryDelay = data.faceAnims[face].cryDelay;
 }
 
-void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
+void PokemonSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *yOffset = data.yOffset;
 }
 
-void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
+void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *xOffsetShadow = data.xOffsetShadow;
 }
 
-void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
+void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
 {
-    ArchivedPokeSpriteData data;
+    SpeciesSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &data);
     *shadowSize = data.shadowSize;
 }
 

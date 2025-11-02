@@ -40,32 +40,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"You’re willing to battle?\n",
-				"Let me see what you have?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’re willing to battle?\n",
+                "Let me see what you have?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Your love of Pokémon really shows!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Your love of Pokémon really shows!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I grew up together with Felix and\n",
-				"my team, right from my childhood.\r",
-				"All our memories, we’ve always shared\n",
-				"them.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I grew up together with Felix and\n",
+                "my team, right from my childhood.\r",
+                "All our memories, we’ve always shared\n",
+                "them.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, hi, we meet again.\r",
-				"May I see what you’ve done with your\n",
-				"Pokémon?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, hi, we meet again.\r",
+                "May I see what you’ve done with your\n",
+                "Pokémon?\r"
+            ]
+        }
     ]
 }

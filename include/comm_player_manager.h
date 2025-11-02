@@ -8,17 +8,35 @@
 #include "overlay023/struct_ov23_0224991C_decl.h"
 #include "overlay023/struct_ov23_0224A294_sub1.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "communication_system.h"
+#include "overworld_anim_manager.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+enum PauseBit {
+    PAUSE_BIT_0 = 1,
+    PAUSE_BIT_1 = 1 << 1,
+    PAUSE_BIT_2 = 1 << 2,
+    PAUSE_BIT_3 = 1 << 3,
+    PAUSE_BIT_TRAPS = 1 << 4,
+    PAUSE_BIT_5 = 1 << 5,
+    PAUSE_BIT_6 = 1 << 6,
+    PAUSE_BIT_RADAR = 1 << 7,
+};
+
+enum Emote {
+    EMOTE_NONE = 0,
+    EMOTE_FLAG,
+    EMOTE_EXCLAMATION,
+    EMOTE_OK,
+};
+
 typedef struct CommPlayerManager {
-    u32 unk_00;
+    u32 pauseBits;
     UnkStruct_ov23_0224991C *unk_04;
     PlayerAvatar *playerAvatar[MAX_CONNECTED_PLAYERS];
-    UnkStruct_ov101_021D5D90 *unk_28[MAX_CONNECTED_PLAYERS];
+    OverworldAnimManager *unk_28[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask *task;
     FieldSystem *fieldSystem;
@@ -29,13 +47,13 @@ typedef struct CommPlayerManager {
     u8 unk_E2[MAX_CONNECTED_PLAYERS];
     u8 unk_EA[MAX_CONNECTED_PLAYERS];
     u8 unk_F2[MAX_CONNECTED_PLAYERS];
-    u8 unk_FA[MAX_CONNECTED_PLAYERS];
-    s8 blowDir[MAX_CONNECTED_PLAYERS];
-    u8 unk_10A[MAX_CONNECTED_PLAYERS];
-    u8 unk_112[MAX_CONNECTED_PLAYERS];
-    u8 unk_11A[MAX_CONNECTED_PLAYERS];
-    u8 unk_122[MAX_CONNECTED_PLAYERS];
-    u8 unk_12A[MAX_CONNECTED_PLAYERS];
+    u8 emote[MAX_CONNECTED_PLAYERS];
+    s8 slideAnimationDir[MAX_CONNECTED_PLAYERS];
+    u8 slideTilesLeft[MAX_CONNECTED_PLAYERS];
+    u8 slideDir[MAX_CONNECTED_PLAYERS];
+    u8 alteredMovementStepsLeft[MAX_CONNECTED_PLAYERS];
+    u8 holeMovementsLeft[MAX_CONNECTED_PLAYERS];
+    u8 hurlTrapTriggered[MAX_CONNECTED_PLAYERS];
     u8 movementChanged[MAX_CONNECTED_PLAYERS];
     u8 moveTimerServer[MAX_CONNECTED_PLAYERS];
     u8 moveTimer[MAX_CONNECTED_PLAYERS];
@@ -49,7 +67,7 @@ typedef struct CommPlayerManager {
     u8 unk_2B9;
     u8 unk_2BA;
     u8 sendAllPos;
-    u8 unk_2BC;
+    u8 isFieldSystemActive;
     u8 isResetting;
     u8 isUnderground;
     u8 unk_2BF;
@@ -82,11 +100,11 @@ void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1);
 void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2);
 int CommPacketSizeOf_RecvLocation(void);
 void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused);
-void sub_02058B0C(int netId, int param1, BOOL param2);
-void sub_02058B7C(int netId);
-void sub_02058B94(int netId);
-void CommPlayer_StartBlowAnimation(int netId, int param1, BOOL unused);
-void CommPlayer_StopBlowAnimation(int netId);
+void CommPlayer_StartSlide(int netId, int dir, BOOL isHurlTrap);
+void CommPlayer_StopSlide(int netId);
+void CommPlayer_EndCurrentSlide(int netId);
+void CommPlayer_StartSlideAnimation(int netId, int dir, BOOL unused);
+void CommPlayer_StopSlideAnimation(int netId);
 int CommPacketSizeOf_RecvLocationAndInit(void);
 BOOL sub_02058C40(void);
 BOOL CommPlayer_IsActive(int netId);
@@ -94,19 +112,19 @@ int CommPlayer_XPos(int netId);
 int CommPlayer_ZPos(int netId);
 int sub_02058D48(int netId);
 int sub_02058D68(int netId);
-int CommPlayer_GetXInFrontOfPlayerServer(int netId);
-int CommPlayer_GetZInFrontOfPlayerServer(int netId);
+int CommPlayer_GetXInFrontOfPlayer(int netId);
+int CommPlayer_GetZInFrontOfPlayer(int netId);
 int CommPlayer_GetXServer(int netId);
 int CommPlayer_GetZServer(int netId);
 int sub_02058EA0(int netId);
 int sub_02058EC0(int netId);
-int CommPlayer_AddXServer(int netId);
-int CommPlayer_AddZServer(int netId);
+int CommPlayer_GetXInFrontOfPlayerServer(int netId);
+int CommPlayer_GetZInFrontOfPlayerServer(int netId);
 int CommPlayer_Dir(int netId);
 int CommPlayer_DirServer(int netId);
 void CommPlayer_LookTowardsServer(int netIdTarget, int netIdSet);
 void CommPlayer_LookTowards(int netIdTarget, int netIdSet);
-int sub_0205900C(int xPos, int yPos);
+int CommPlayerMan_GetLinkNetIDAtLocation(int xPos, int zPos);
 void sub_02059058(int netId, BOOL param1);
 BOOL sub_02059094(int netId);
 BOOL sub_020590C4(void);
@@ -114,17 +132,17 @@ void sub_02059180(int netId, int unused0, void *src, void *unused3);
 void CommPlayer_SetBattleDir(void);
 BOOL sub_0205928C(void);
 int CommPlayer_GetOppositeDir(int dir);
-void sub_02059354(int netId, int param1);
-void sub_02059378(int netId);
-void sub_02059390(int netId, int param1);
-void sub_020593B4(int netId);
+void CommPlayerMan_SetPlayerAlteredMovement(int netId, int duration);
+void CommPlayerMan_EndPlayerAlteredMovement(int netId);
+void CommPlayerMan_PutPlayerInHole(int netId, int movementsToEscape);
+void CommPlayerMan_RemovePlayerFromHole(int netId);
 int CommPlayer_GetMovementTimer(int netId);
 int CommPlayer_GetMovementTimerServer(int netId);
 void CommPlayer_SetDir(int dir);
 void CommPlayer_SetDirClient(int netId, int dir);
 int CommPlayer_DirClient(int netId);
-void sub_02059464(int param0);
-void sub_0205948C(int param0);
+void CommPlayerMan_PauseFieldSystemWithContextBit(int contextBit);
+void CommPlayerMan_ResumeFieldSystemWithContextBit(int contextBit);
 void sub_020594EC(void);
 void CommPlayerMan_PauseFieldSystem(void);
 void CommPlayerMan_ResumeFieldSystem(void);

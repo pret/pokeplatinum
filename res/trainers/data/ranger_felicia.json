@@ -30,35 +30,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"We’ve grown strong together in\n",
-				"nature and in the concrete jungle.\r",
-				"We make everywhere we go our\n",
-				"playground!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We’ve grown strong together in\n",
+                "nature and in the concrete jungle.\r",
+                "We make everywhere we go our\n",
+                "playground!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re really tough, aren’t you?!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re really tough, aren’t you?!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Look around you at this wildly\n",
-				"contorted terrain.\r",
-				"It’s no wonder that Pokémon would\n",
-				"grow tough in a place like this.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Look around you at this wildly\n",
+                "contorted terrain.\r",
+                "It’s no wonder that Pokémon would\n",
+                "grow tough in a place like this.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"We’re tough, but we know you’re just\n",
-				"as tough!\r",
-				"Let’s battle it out to see which one of\n",
-				"us is tougher!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "We’re tough, but we know you’re just\n",
+                "as tough!\r",
+                "Let’s battle it out to see which one of\n",
+                "us is tougher!\r"
+            ]
+        }
     ]
 }

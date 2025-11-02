@@ -20,36 +20,36 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"If I beat you, will you share some\n",
-				"food with me?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "If I beat you, will you share some\n",
+                "food with me?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"We were starved for food, and now\n",
-				"we’re starved for a win...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "We were starved for food, and now\n",
+                "we’re starved for a win...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Sigh... I feel even hungrier...\n",
-				"Maybe I’ll chow down some Berries...\r",
-				"But that’s kind of gross.\n",
-				"What am I, a Pokémon?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Sigh... I feel even hungrier...\n",
+                "Maybe I’ll chow down some Berries...\r",
+                "But that’s kind of gross.\n",
+                "What am I, a Pokémon?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I, uh, chowed down my packed lunch\n",
-				"before we started climbing.\r",
-				"If I beat you this time, share some\n",
-				"food with me!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I, uh, chowed down my packed lunch\n",
+                "before we started climbing.\r",
+                "If I beat you this time, share some\n",
+                "food with me!\r"
+            ]
+        }
     ]
 }

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_GRAPHICS_H
 #define POKEPLATINUM_CONSTANTS_GRAPHICS_H
 
+#include "constants/colors.h"
+
 enum DSScreen {
     DS_SCREEN_MAIN = 0,
     DS_SCREEN_SUB,
@@ -15,6 +17,9 @@ enum DSScreen {
 
 #define TILE_SIZE_4BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_4BPP)
 #define TILE_SIZE_8BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_PIXELS)
+
+#define BG_TILE_FLIP_H (1 << 10)
+#define BG_TILE_FLIP_V (1 << 11)
 
 #define SLOTS_PER_PALETTE      16
 #define PALETTE_SIZE           (SLOTS_PER_PALETTE)
@@ -56,15 +61,9 @@ enum DSScreen {
 
 #define G3X_DEPTH_MAX 0x7FFF
 
-#define COLOR_BLACK       GX_RGB(0, 0, 0)
-#define COLOR_DARK_GRAY   GX_RGB(4, 4, 4)
-#define COLOR_WHITE       GX_RGB(31, 31, 31)
-#define COLOR_RED         GX_RGB(31, 0, 0)
-#define COLOR_TRANSPARENT GX_RGB(31, 31, 16)
-#define COLOR_SAVED       0xFFFF
-
 #define RGBA_BLACK GX_RGBA(0, 0, 0, 0)
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
 
 #define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
+
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H

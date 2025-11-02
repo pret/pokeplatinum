@@ -19,26 +19,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Welcome!\n",
-				"This place is my pride and joy!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Welcome!\n",
+                "This place is my pride and joy!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I take losses with an unusually big\n",
-				"smile! Do you find that odd at all?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I take losses with an unusually big\n",
+                "smile! Do you find that odd at all?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"After a match, you should have some\n",
-				"Moomoo Milk to quench your thirst!\r",
-				"Just chug it right down! Glug glug!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "After a match, you should have some\n",
+                "Moomoo Milk to quench your thirst!\r",
+                "Just chug it right down! Glug glug!\n"
+            ]
+        }
     ]
 }

@@ -29,33 +29,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Oh, you want to have a battle?\r",
-				"I was meaning to enter a Contest,\n",
-				"but beating you won’t take long...\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oh, you want to have a battle?\r",
+                "I was meaning to enter a Contest,\n",
+                "but beating you won’t take long...\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Oh, you have us beaten.\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Oh, you have us beaten.\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You and your Pokémon have so much\n",
-				"energy.\r",
-				"I think you would do well in\n",
-				"Contests, too.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You and your Pokémon have so much\n",
+                "energy.\r",
+                "I think you would do well in\n",
+                "Contests, too.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, didn’t we meet before?\r",
-				"I was meaning to enter a Contest,\n",
-				"but let’s have a quick battle first.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, didn’t we meet before?\r",
+                "I was meaning to enter a Contest,\n",
+                "but let’s have a quick battle first.\r"
+            ]
+        }
     ]
 }

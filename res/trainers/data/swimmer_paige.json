@@ -37,32 +37,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Deep breathing before battle!\n",
-				"Breathe in...and out!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Deep breathing before battle!\n",
+                "Breathe in...and out!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Breathe in...and out.\n",
-				"Breathe in...and out!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Breathe in...and out.\n",
+                "Breathe in...and out!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Deep breathing after battle, too!\n",
-				"Breathe in...and out!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Deep breathing after battle, too!\n",
+                "Breathe in...and out!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Deep breathing always!\n",
-				"Breathe in...and out!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Deep breathing always!\n",
+                "Breathe in...and out!\r"
+            ]
+        }
     ]
 }

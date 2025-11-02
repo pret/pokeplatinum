@@ -28,33 +28,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Let it rock!\n",
-				"It’s the rhythm of battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Let it rock!\n",
+                "It’s the rhythm of battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Can you hear it?\n",
-				"That’s my guitar weeping...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Can you hear it?\n",
+                "That’s my guitar weeping...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m too torn up to sing anymore...\n",
-				"I am so cool that way...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m too torn up to sing anymore...\n",
+                "I am so cool that way...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Rock ’n’ roll!\n",
-				"We’ll beat it out again!\f",
-				"Our rhythm of battle!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Rock ’n’ roll!\n",
+                "We’ll beat it out again!\f",
+                "Our rhythm of battle!\r"
+            ]
+        }
     ]
 }

@@ -27,8 +27,6 @@
 #include "overlay101/struct_ov101_021D4714.h"
 #include "overlay101/struct_ov101_021D4764.h"
 #include "overlay101/struct_ov101_021D4F58.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 #include "overlay101/struct_ov101_021D95C8.h"
 #include "overlay101/struct_ov101_021D9784.h"
 #include "overlay101/struct_ov101_021D9934.h"
@@ -38,11 +36,11 @@
 #include "enums.h"
 #include "heap.h"
 #include "math_util.h"
+#include "overworld_anim_manager.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020711EC.h"
 
 typedef struct {
     u16 unk_00_0 : 5;
@@ -169,8 +167,8 @@ static void ov101_021D4F78(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4
 static void ov101_021D4FB8(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4F58 param1);
 static void ov101_021D4FF8(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D5010(UnkStruct_ov101_021D13C8 *param0);
-static UnkStruct_ov101_021D5D90 *ov101_021D5028(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4F58 param1, u32 param2);
-static int ov101_021D505C(UnkStruct_ov101_021D5D90 *param0);
+static OverworldAnimManager *ov101_021D5028(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4F58 param1, u32 param2);
+static int ov101_021D505C(OverworldAnimManager *param0);
 static void ov101_021D5200(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D5244(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D53B0(UnkStruct_ov101_021D13C8 *param0);
@@ -997,7 +995,7 @@ static int ov101_021D254C(UnkStruct_ov101_021D13C8 *param0)
 static int ov101_021D2598(UnkStruct_ov101_021D13C8 *param0)
 {
     if (ov101_021D460C(param0) == 1) {
-        sub_0207136C(param0->unk_454);
+        OverworldAnimManager_Finish(param0->unk_454);
         ov101_021D4798(param0, 7);
         param0->unk_00 = 41;
         return 1;
@@ -3127,12 +3125,12 @@ static void ov101_021D4614(SysTask *param0, void *param1)
             v2->unk_64 = 0;
 
             if (v1->unk_14 != NULL) {
-                sub_0207136C(v1->unk_14);
+                OverworldAnimManager_Finish(v1->unk_14);
                 v1->unk_14 = NULL;
             }
 
             if (v1->unk_18 != NULL) {
-                sub_0207136C(v1->unk_18);
+                OverworldAnimManager_Finish(v1->unk_18);
                 v1->unk_18 = NULL;
             }
 
@@ -3233,10 +3231,10 @@ static void ov101_021D47F0(UnkStruct_ov101_021D13C8 *param0)
 {
     param0->unk_13C.unk_0C = 1;
 
-    sub_0207136C(param0->unk_13C.unk_38);
-    sub_0207136C(param0->unk_13C.unk_3C);
-    sub_0207136C(param0->unk_13C.unk_40);
-    sub_0207136C(param0->unk_13C.unk_44);
+    OverworldAnimManager_Finish(param0->unk_13C.unk_38);
+    OverworldAnimManager_Finish(param0->unk_13C.unk_3C);
+    OverworldAnimManager_Finish(param0->unk_13C.unk_40);
+    OverworldAnimManager_Finish(param0->unk_13C.unk_44);
 }
 
 static void ov101_021D4824(SysTask *param0, void *param1)
@@ -3311,7 +3309,7 @@ static int ov101_021D48AC(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D48C4(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D5DC4(param0->unk_28) == 1) {
-        sub_0207136C(param0->unk_28);
+        OverworldAnimManager_Finish(param0->unk_28);
         param0->unk_08 = 1;
         param0->unk_04++;
     }
@@ -3357,7 +3355,7 @@ static int ov101_021D492C(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4954(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D67B0(param0->unk_30) == 1) {
-        sub_0207136C(param0->unk_2C);
+        OverworldAnimManager_Finish(param0->unk_2C);
         param0->unk_08 = 1;
         param0->unk_04++;
     }
@@ -3384,8 +3382,8 @@ static int ov101_021D4978(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4998(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D67B0(param0->unk_30) == 1) {
-        sub_0207136C(param0->unk_30);
-        sub_0207136C(param0->unk_2C);
+        OverworldAnimManager_Finish(param0->unk_30);
+        OverworldAnimManager_Finish(param0->unk_2C);
         ov101_021D5DA4(param0->unk_28, 0);
         ov101_021D5D90(param0->unk_28, UnkEnum_ov101_021D5D90_03);
         param0->unk_04++;
@@ -3407,7 +3405,7 @@ static int ov101_021D49CC(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D49EC(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D5DC4(param0->unk_28) == 1) {
-        sub_0207136C(param0->unk_28);
+        OverworldAnimManager_Finish(param0->unk_28);
         param0->unk_08 = 1;
         param0->unk_04++;
     }
@@ -3450,7 +3448,7 @@ static int ov101_021D4A5C(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D6E1C(param0->unk_34) == 1) {
         ov101_021D679C(param0->unk_30, UnkEnum_ov101_021D679C_03);
-        sub_0207136C(param0->unk_34);
+        OverworldAnimManager_Finish(param0->unk_34);
         param0->unk_04++;
         param0->unk_10 = 0;
         param0->unk_08 = 1;
@@ -3528,8 +3526,8 @@ static int ov101_021D4B14(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4B38(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D67B0(param0->unk_30) == 1) {
-        sub_0207136C(param0->unk_30);
-        sub_0207136C(param0->unk_2C);
+        OverworldAnimManager_Finish(param0->unk_30);
+        OverworldAnimManager_Finish(param0->unk_2C);
         ov101_021D5DA4(param0->unk_28, 0);
         ov101_021D5D90(param0->unk_28, UnkEnum_ov101_021D5D90_03);
         param0->unk_04++;
@@ -3567,7 +3565,7 @@ static int ov101_021D4BA0(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4BC4(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D5DC4(param0->unk_28) == 1) {
-        sub_0207136C(param0->unk_28);
+        OverworldAnimManager_Finish(param0->unk_28);
         param0->unk_08 = 1;
         param0->unk_04++;
     }
@@ -3635,8 +3633,8 @@ static int ov101_021D4C3C(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4C60(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D67B0(param0->unk_30) == 1) {
-        sub_0207136C(param0->unk_2C);
-        sub_0207136C(param0->unk_30);
+        OverworldAnimManager_Finish(param0->unk_2C);
+        OverworldAnimManager_Finish(param0->unk_30);
         ov101_021D5DA4(param0->unk_28, 0);
         ov101_021D5D90(param0->unk_28, UnkEnum_ov101_021D5D90_03);
         param0->unk_10 = 0;
@@ -3685,7 +3683,7 @@ static int ov101_021D4CEC(UnkStruct_ov101_021D4764 *param0)
 static int ov101_021D4D14(UnkStruct_ov101_021D4764 *param0)
 {
     if (ov101_021D67B0(param0->unk_30) == 1) {
-        sub_0207136C(param0->unk_2C);
+        OverworldAnimManager_Finish(param0->unk_2C);
         param0->unk_08 = 1;
         param0->unk_04++;
     }
@@ -3876,11 +3874,11 @@ static void ov101_021D5010(UnkStruct_ov101_021D13C8 *param0)
     } while (v0 < UnkEnum_ov101_021D4F58_05);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D86B0;
+static const OverworldAnimManagerFuncs Unk_ov101_021D86B0;
 
-static UnkStruct_ov101_021D5D90 *ov101_021D5028(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4F58 param1, u32 param2)
+static OverworldAnimManager *ov101_021D5028(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D4F58 param1, u32 param2)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { 0, 0, 0 };
     UnkStruct_ov101_021D5068 v2;
 
@@ -3888,23 +3886,23 @@ static UnkStruct_ov101_021D5D90 *ov101_021D5028(UnkStruct_ov101_021D13C8 *param0
     v2.unk_04 = param2;
     v2.unk_08 = param0;
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D86B0, &v1, 0, &v2, 143);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D86B0, &v1, 0, &v2, 143);
 
     return v0;
 }
 
-static int ov101_021D505C(UnkStruct_ov101_021D5D90 *param0)
+static int ov101_021D505C(OverworldAnimManager *param0)
 {
-    UnkStruct_ov101_021D505C *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D505C *v0 = OverworldAnimManager_GetFuncsContext(param0);
     return v0->unk_0C;
 }
 
-static int ov101_021D5068(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5068(OverworldAnimManager *param0, void *param1)
 {
     const UnkStruct_ov101_021D5068 *v0;
     UnkStruct_ov101_021D505C *v1 = param1;
 
-    v0 = (const UnkStruct_ov101_021D5068 *)sub_020715BC(param0);
+    v0 = (const UnkStruct_ov101_021D5068 *)OverworldAnimManager_GetUserData(param0);
     v1->unk_1C = v0->unk_08;
     v1->unk_10 = v0->unk_00;
     v1->unk_14 = v0->unk_04;
@@ -3913,13 +3911,13 @@ static int ov101_021D5068(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D508C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D508C(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D505C *v0 = param1;
     ov101_021D4F58(v0->unk_1C, v0->unk_10);
 }
 
-static void ov101_021D5098(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5098(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D505C *v1 = param1;
@@ -4010,28 +4008,28 @@ static void ov101_021D5098(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D86B0 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D86B0 = {
     sizeof(UnkStruct_ov101_021D505C),
     ov101_021D5068,
     ov101_021D508C,
     ov101_021D5098,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700;
+static const OverworldAnimManagerFuncs Unk_ov101_021D8700;
 
 static void ov101_021D5200(UnkStruct_ov101_021D13C8 *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
     GF_ASSERT(param0->unk_120.unk_14 == NULL);
-    param0->unk_120.unk_14 = sub_02071330(param0->unk_44C, &Unk_ov101_021D8700, &v0, 0, param0, 143);
+    param0->unk_120.unk_14 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D8700, &v0, 0, param0, 143);
 }
 
 static void ov101_021D5244(UnkStruct_ov101_021D13C8 *param0)
 {
     if (param0->unk_120.unk_14 != NULL) {
-        sub_0207136C(param0->unk_120.unk_14);
+        OverworldAnimManager_Finish(param0->unk_120.unk_14);
         param0->unk_120.unk_14 = NULL;
     }
 
@@ -4194,33 +4192,33 @@ static void ov101_021D5268(UnkStruct_ov101_021D5388 *param0)
     }
 }
 
-static int ov101_021D5388(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5388(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5388 *v0 = param1;
 
-    v0->unk_28 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v0->unk_28 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
     v0->unk_2C = &v0->unk_28->unk_184;
 
     return 1;
 }
 
-static void ov101_021D53A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D53A0(OverworldAnimManager *param0, void *param1)
 {
     return;
 }
 
-static void ov101_021D53A4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D53A4(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5388 *v0 = param1;
     ov101_021D5268(v0);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D8700 = {
     sizeof(UnkStruct_ov101_021D5388),
     ov101_021D5388,
     ov101_021D53A0,
     ov101_021D53A4,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
 static void ov101_021D53B0(UnkStruct_ov101_021D13C8 *param0)

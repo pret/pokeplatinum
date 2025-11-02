@@ -42,7 +42,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16388,
+            "var": "VAR_MAP_LOCAL_4",
             "value": 0
         },
         {
@@ -52,7 +52,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16390,
+            "var": "VAR_MAP_LOCAL_6",
             "value": 0
         },
         {
@@ -62,7 +62,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16391,
+            "var": "VAR_MAP_LOCAL_7",
             "value": 0
         },
         {
@@ -72,7 +72,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16385,
+            "var": "VAR_MAP_LOCAL_1",
             "value": 0
         },
         {
@@ -82,7 +82,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16386,
+            "var": "VAR_MAP_LOCAL_2",
             "value": 0
         },
         {
@@ -92,7 +92,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16387,
+            "var": "VAR_MAP_LOCAL_3",
             "value": 0
         },
         {
@@ -102,7 +102,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16389,
+            "var": "VAR_MAP_LOCAL_5",
             "value": 0
         }
     ]

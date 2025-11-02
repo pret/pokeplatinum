@@ -28,8 +28,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "That’s quite the demonstration.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "That’s quite the demonstration.\n"
+        }
     ]
 }

@@ -4,7 +4,7 @@
 #include "applications/pokedex/pokedex_updater.h"
 #include "applications/pokedex/struct_ov21_021D4660.h"
 
-typedef struct {
+typedef struct PokedexScreenManager {
     void *pageData;
     void *pageGraphics;
     PokedexDataFunction dataFunc[3];

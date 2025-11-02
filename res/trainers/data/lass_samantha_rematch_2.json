@@ -28,19 +28,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, thank you for the last battle.\r",
-				"May I please trouble you for\n",
-				"another one?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, thank you for the last battle.\r",
+                "May I please trouble you for\n",
+                "another one?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh...\n",
-				"You’re so strong...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh...\n",
+                "You’re so strong...\n"
+            ]
+        }
     ]
 }

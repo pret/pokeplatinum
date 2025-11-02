@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 #include "struct_defs/struct_02073838.h"
@@ -21,18 +20,16 @@
 #include "overlay005/struct_ov5_021EDDAC.h"
 #include "overlay005/struct_ov5_021F06D8_decl.h"
 #include "overlay005/struct_ov5_021FF85C.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "heap.h"
 #include "map_object.h"
 #include "narc.h"
+#include "overworld_anim_manager.h"
 #include "resource_collection.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
-#include "unk_020711EC.h"
 #include "unk_02073838.h"
 
 typedef struct UnkStruct_ov5_021DF6AC_t UnkStruct_ov5_021DF6AC;
@@ -47,7 +44,7 @@ typedef struct UnkStruct_ov5_021DF47C_t {
     FieldSystem *fieldSystem;
     UnkStruct_ov5_021DF6AC *unk_14;
     NARC *unk_18;
-    UnkStruct_020711EC *unk_1C;
+    OverworldAnimManagerList *unk_1C;
     UnkStruct_ov5_021DF8FC *unk_20;
 } UnkStruct_ov5_021DF47C;
 
@@ -81,30 +78,30 @@ typedef struct {
     TextureResourceManager *unk_08;
 } UnkStruct_ov5_021DFA88;
 
-static u32 ov5_021DF584(const UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF588(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF59C(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF5E8(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF600(UnkStruct_ov5_021DF47C *param0, u32 param1);
-static void ov5_021DF628(UnkStruct_ov5_021DF47C *param0, UnkStruct_ov5_021DF6AC *param1);
-static void ov5_021DF644(UnkStruct_ov5_021DF47C *param0);
-static UnkStruct_ov5_021DF6AC *ov5_021DF66C(UnkStruct_ov5_021DF47C *param0);
-static UnkStruct_ov5_021DF6AC *ov5_021DF694(UnkStruct_ov5_021DF47C *param0, u32 param1);
+static u32 ov5_021DF584(const UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF588(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF59C(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF5E8(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF600(UnkStruct_ov5_021DF47C *renderManager, u32 objectID);
+static void ov5_021DF628(UnkStruct_ov5_021DF47C *renderManager, UnkStruct_ov5_021DF6AC *param1);
+static void ov5_021DF644(UnkStruct_ov5_021DF47C *renderManager);
+static UnkStruct_ov5_021DF6AC *ov5_021DF66C(UnkStruct_ov5_021DF47C *renderManager);
+static UnkStruct_ov5_021DF6AC *ov5_021DF694(UnkStruct_ov5_021DF47C *renderManager, u32 objectID);
 static void ov5_021DF6AC(UnkStruct_ov5_021DF6AC *param0);
 static void ov5_021DF6B8(UnkStruct_ov5_021DF6AC *param0, u32 param1, void *param2);
 static int ov5_021DF6C0(const UnkStruct_ov5_021DF6AC *param0);
 static const UnkStruct_ov5_021FF85C *ov5_021DF6D0(u32 param0);
-static void ov5_021DF6F8(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF708(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF71C(UnkStruct_ov5_021DF47C *param0);
+static void ov5_021DF6F8(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF708(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF71C(UnkStruct_ov5_021DF47C *renderManager);
 static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-static void ov5_021DF7C4(UnkStruct_ov5_021DF47C *param0);
-static void ov5_021DF8C8(UnkStruct_ov5_021DF47C *param0, UnkStruct_ov5_021DF8FC *param1, u32 param2);
-static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *param0);
-static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 param1);
-static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1);
-static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6);
-static void ov5_021DFA88(UnkStruct_ov5_021DF47C *param0, u32 param1, TextureResourceManager *param2);
+static void ov5_021DF7C4(UnkStruct_ov5_021DF47C *renderManager);
+static void ov5_021DF8C8(UnkStruct_ov5_021DF47C *renderManager, UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectCount);
+static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
+static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectID);
+static void ov5_021DF910(UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectID);
+static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectID, void *modelData, UnkStruct_02024184 *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
+static void ov5_021DFA88(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, TextureResourceManager *textureManager);
 static void ov5_021DFAC0(SysTask *param0, void *param1);
 static void ov5_021DFADC(SysTask *param0, void *param1);
 
@@ -135,27 +132,27 @@ void ov5_021DF488(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 pa
     ov5_021DF754(param0, heapID, param2, param3, param4, param5, param6, param7, param8);
 }
 
-void ov5_021DF4A8(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void ov5_021DF4A8(UnkStruct_ov5_021DF47C *renderManager, u32 objectID)
 {
-    if (ov5_021DF694(param0, param1) != NULL) {
+    if (ov5_021DF694(renderManager, objectID) != NULL) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    ov5_021DF600(param0, param1);
+    ov5_021DF600(renderManager, objectID);
 }
 
-void ov5_021DF4C8(UnkStruct_ov5_021DF47C *param0, const u32 *param1)
+void ov5_021DF4C8(UnkStruct_ov5_021DF47C *renderManager, const u32 *param1)
 {
     while ((*param1) != 34) {
-        ov5_021DF4A8(param0, (*param1));
+        ov5_021DF4A8(renderManager, (*param1));
         param1++;
     }
 }
 
-int ov5_021DF4E4(UnkStruct_ov5_021DF47C *param0, u32 param1)
+int ov5_021DF4E4(UnkStruct_ov5_021DF47C *renderManager, u32 objectID)
 {
-    if (ov5_021DF694(param0, param1) == NULL) {
+    if (ov5_021DF694(renderManager, objectID) == NULL) {
         return 0;
     }
 
@@ -203,9 +200,9 @@ void ov5_021DF554(void *param0)
     Heap_Free(param0);
 }
 
-void *ov5_021DF55C(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void *ov5_021DF55C(UnkStruct_ov5_021DF47C *renderManager, u32 objectID)
 {
-    UnkStruct_ov5_021DF6AC *v0 = ov5_021DF694(param0, param1);
+    UnkStruct_ov5_021DF6AC *v0 = ov5_021DF694(renderManager, objectID);
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -220,9 +217,9 @@ FieldSystem *ov5_021DF574(const UnkStruct_ov5_021DF47C *param0)
     return param0->fieldSystem;
 }
 
-UnkStruct_ov5_021DF47C *ov5_021DF578(const MapObject *param0)
+UnkStruct_ov5_021DF47C *ov5_021DF578(const MapObject *mapObject)
 {
-    FieldSystem *fieldSystem = MapObject_FieldSystem(param0);
+    FieldSystem *fieldSystem = MapObject_FieldSystem(mapObject);
     return (UnkStruct_ov5_021DF47C *)fieldSystem->unk_40;
 }
 
@@ -274,13 +271,13 @@ static void ov5_021DF5E8(UnkStruct_ov5_021DF47C *param0)
     }
 }
 
-static void ov5_021DF600(UnkStruct_ov5_021DF47C *param0, u32 param1)
+static void ov5_021DF600(UnkStruct_ov5_021DF47C *renderManager, u32 objectID)
 {
-    const UnkStruct_ov5_021FF85C *v0 = ov5_021DF6D0(param1);
-    void *v1 = v0->unk_04(param0);
-    UnkStruct_ov5_021DF6AC *v2 = ov5_021DF66C(param0);
+    const UnkStruct_ov5_021FF85C *v0 = ov5_021DF6D0(objectID);
+    void *v1 = v0->unk_04(renderManager);
+    UnkStruct_ov5_021DF6AC *v2 = ov5_021DF66C(renderManager);
 
-    ov5_021DF6B8(v2, param1, v1);
+    ov5_021DF6B8(v2, objectID, v1);
 }
 
 static void ov5_021DF628(UnkStruct_ov5_021DF47C *param0, UnkStruct_ov5_021DF6AC *param1)
@@ -324,13 +321,13 @@ static UnkStruct_ov5_021DF6AC *ov5_021DF66C(UnkStruct_ov5_021DF47C *param0)
     return NULL;
 }
 
-static UnkStruct_ov5_021DF6AC *ov5_021DF694(UnkStruct_ov5_021DF47C *param0, u32 param1)
+static UnkStruct_ov5_021DF6AC *ov5_021DF694(UnkStruct_ov5_021DF47C *renderManager, u32 objectID)
 {
-    u32 v0 = param0->unk_04;
-    UnkStruct_ov5_021DF6AC *v1 = param0->unk_14;
+    u32 v0 = renderManager->unk_04;
+    UnkStruct_ov5_021DF6AC *v1 = renderManager->unk_14;
 
     while (v0) {
-        if (v1->unk_00 == param1) {
+        if (v1->unk_00 == objectID) {
             return v1;
         }
 
@@ -380,13 +377,13 @@ static const UnkStruct_ov5_021FF85C *ov5_021DF6D0(u32 param0)
 
 static void ov5_021DF6F8(UnkStruct_ov5_021DF47C *param0)
 {
-    param0->unk_1C = sub_020711EC(param0->heapID, param0->unk_08);
+    param0->unk_1C = OverworldAnimManagerList_New(param0->heapID, param0->unk_08);
 }
 
 static void ov5_021DF708(UnkStruct_ov5_021DF47C *param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_0207121C(param0->unk_1C);
+        OverworldAnimManagerList_FinishAndFree(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
@@ -394,23 +391,23 @@ static void ov5_021DF708(UnkStruct_ov5_021DF47C *param0)
 static void ov5_021DF71C(UnkStruct_ov5_021DF47C *param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_020713D0(param0->unk_1C);
+        OverworldAnimManagerList_Render(param0->unk_1C);
     }
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021DF72C(const UnkStruct_ov5_021DF47C *param0, const UnkStruct_ov101_021D86B0 *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
+OverworldAnimManager *ov5_021DF72C(const UnkStruct_ov5_021DF47C *param0, const OverworldAnimManagerFuncs *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
 {
-    UnkStruct_020711EC *v1 = param0->unk_1C;
-    UnkStruct_ov101_021D5D90 *v0 = sub_02071330(v1, param1, param2, param3, param4, param5);
+    OverworldAnimManagerList *v1 = param0->unk_1C;
+    OverworldAnimManager *v0 = OverworldAnimManagerList_InitManager(v1, param1, param2, param3, param4, param5);
 
     GF_ASSERT(v0 != NULL);
 
     return v0;
 }
 
-void ov5_021DF74C(UnkStruct_ov101_021D5D90 *param0)
+void ov5_021DF74C(OverworldAnimManager *param0)
 {
-    sub_0207136C(param0);
+    OverworldAnimManager_Finish(param0);
 }
 
 static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
@@ -621,59 +618,59 @@ static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 
     return NULL;
 }
 
-void ov5_021DF9D4(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void ov5_021DF9D4(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    ov5_021DF910(v0, param1);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    ov5_021DF910(v0, slotID);
 }
 
-void ov5_021DF9E0(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2)
+void ov5_021DF9E0(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 resourceID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
 
-    ov5_021F0784(v0->unk_10, param1, param0->unk_18, param2, 0);
+    ov5_021F0784(v0->unk_10, slotID, renderManager->unk_18, resourceID, 0);
 }
 
-void *ov5_021DF9FC(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void *ov5_021DF9FC(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    void *v1 = ov5_021F075C(v0->unk_10, param1);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    void *v1 = ov5_021F075C(v0->unk_10, slotID);
 
     return v1;
 }
 
-void ov5_021DFA08(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void ov5_021DFA08(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    ov5_021F0740(v0->unk_10, param1);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    ov5_021F0740(v0->unk_10, slotID);
 }
 
-void ov5_021DFA14(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2)
+void ov5_021DFA14(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 resourceID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    ov5_021F0784(v0->unk_14, param1, param0->unk_18, param2, 0);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    ov5_021F0784(v0->unk_14, slotID, renderManager->unk_18, resourceID, 0);
 }
 
-void ov5_021DFA30(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void ov5_021DFA30(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    ov5_021F0740(v0->unk_14, param1);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    ov5_021F0740(v0->unk_14, slotID);
 }
 
-void ov5_021DFA3C(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2, u32 param3)
+void ov5_021DFA3C(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 param2, u32 param3)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    void *v1 = ov5_021DF5C0(param0, param2, 1);
-    TextureResource *v2 = TextureResourceManager_AddTextureAndAllocVRam(v0->unk_18, v1, param1, param3, ov5_021DF584(param0));
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    void *v1 = ov5_021DF5C0(renderManager, param2, 1);
+    TextureResource *v2 = TextureResourceManager_AddTextureAndAllocVRam(v0->unk_18, v1, slotID, param3, ov5_021DF584(renderManager));
 
     GF_ASSERT(v2 != NULL);
-    ov5_021DFA88(param0, param1, v0->unk_18);
+    ov5_021DFA88(renderManager, slotID, v0->unk_18);
 }
 
-void ov5_021DFA7C(UnkStruct_ov5_021DF47C *param0, u32 param1)
+void ov5_021DFA7C(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
-    UnkStruct_ov5_021DF8FC *v0 = param0->unk_20;
-    TextureResourceManager_RemoveTextureWithID(v0->unk_18, param1);
+    UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
+    TextureResourceManager_RemoveTextureWithID(v0->unk_18, slotID);
 }
 
 static void ov5_021DFA88(UnkStruct_ov5_021DF47C *param0, u32 param1, TextureResourceManager *param2)
@@ -708,9 +705,9 @@ static void ov5_021DFADC(SysTask *param0, void *param1)
     }
 }
 
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 param3, int param4)
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
 {
-    sub_0207389C(param1, param2, param0->unk_18, param3, param0->heapID, param4);
+    sub_0207389C(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
     sub_020738EC(param1);
 }
 

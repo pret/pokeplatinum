@@ -19,18 +19,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Did you get better since we met?\n",
-				"I... Well, here, just look!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Did you get better since we met?\n",
+                "I... Well, here, just look!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Too strong!\n",
-				"Too strong!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Too strong!\n",
+                "Too strong!\n"
+            ]
+        }
     ]
 }

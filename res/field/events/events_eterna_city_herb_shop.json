@@ -1,0 +1,59 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "ETERNA_CITY_HERB_SHOP_EXPERT_F_0",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "flag": "0",
+            "script": 2,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 6,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "ETERNA_CITY_HERB_SHOP_CASHIER_F_1",
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "flag": "0",
+            "script": 1,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "ETERNA_CITY_HERB_SHOP_EXPERT_M_2",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "flag": "0",
+            "script": 3,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 4,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
+            "dest_warp_id": 7
+        }
+    ],
+    "coord_events": []
+}

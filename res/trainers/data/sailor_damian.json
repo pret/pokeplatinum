@@ -36,28 +36,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ve been around the world, going from\n",
-				"place to place training Pokémon.\r",
-				"It’s this Gym I’ve chosen to make my\n",
-				"home!\r",
-				"You can bet it’s tough!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been around the world, going from\n",
+                "place to place training Pokémon.\r",
+                "It’s this Gym I’ve chosen to make my\n",
+                "home!\r",
+                "You can bet it’s tough!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You!\n",
-				"You’re truly top-class tough!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You!\n",
+                "You’re truly top-class tough!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If you were to go around the world,\n",
-				"I’m sure you’d meet tougher Pokémon.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If you were to go around the world,\n",
+                "I’m sure you’d meet tougher Pokémon.\n"
+            ]
+        }
     ]
 }

@@ -152,12 +152,12 @@ void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType c
         SetFlag(varsFlags, FLAG_CONTEST_MASTER_COOL);
         break;
 
-    case CONTEST_TYPE_CUTE:
-        SetFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
-        break;
-
     case CONTEST_TYPE_BEAUTY:
         SetFlag(varsFlags, FLAG_CONTEST_MASTER_BEAUTY);
+        break;
+
+    case CONTEST_TYPE_CUTE:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
         break;
 
     case CONTEST_TYPE_SMART:
@@ -178,12 +178,12 @@ BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType
         result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_COOL);
         break;
 
-    case CONTEST_TYPE_CUTE:
-        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
-        break;
-
     case CONTEST_TYPE_BEAUTY:
         result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_BEAUTY);
+        break;
+
+    case CONTEST_TYPE_CUTE:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
         break;
 
     case CONTEST_TYPE_SMART:

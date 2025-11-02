@@ -38,18 +38,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_FIRST_DAMAGE",
-			"en_US": [
-				"What do you think you’re doing to my\n",
-				"Pokémon?!"
-			]
-		},
+            "type": "TRMSG_FIRST_DAMAGE",
+            "en_US": [
+                "What do you think you’re doing to my\n",
+                "Pokémon?!"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"This can’t be?! I lost?!\n",
-				"You...you uppity brat!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "This can’t be?! I lost?!\n",
+                "You...you uppity brat!\n"
+            ]
+        }
     ]
 }

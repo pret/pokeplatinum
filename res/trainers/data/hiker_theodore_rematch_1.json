@@ -29,15 +29,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Whoa! You startled me!\n",
-				"We may as well have a rematch!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Whoa! You startled me!\n",
+                "We may as well have a rematch!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Your power startles me!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Your power startles me!\n"
+        }
     ]
 }

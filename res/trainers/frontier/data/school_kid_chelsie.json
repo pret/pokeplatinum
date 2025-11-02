@@ -1,4 +1,5 @@
 {
+    "name": "Chelsie",
     "class": "TRAINER_CLASS_SCHOOL_KID_FEMALE",
     "availableSets": [
         "alakazam_2",
@@ -51,5 +52,25 @@
         "gallade_2",
         "exeggutor_2",
         "starmie_2"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ve been taught every opponent has\n",
+                "a weakness. If I can find yours..."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "Eheheh.\n",
+                "I figured out your weakness.\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Did you figure out my weakness?\r"
+        }
     ]
 }

@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
 
+#include "applications/party_menu/defs.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "overlay109/ov109_021D0D80.h"
@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 *unk_28;
     FieldSystem *fieldSystem;
-    PartyManagementData *unk_30;
+    PartyMenu *unk_30;
     PokemonSummary *unk_34;
 } UnkStruct_0209C1EC;
 
@@ -106,7 +106,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
         } else {
             CommMan_SetErrorHandling(1, 1);
 
-            param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
+            param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;
             param0->unk_00 = 2;
         }
@@ -143,7 +143,7 @@ static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         Heap_Free(param0->unk_34);
-        param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
+        param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }
 

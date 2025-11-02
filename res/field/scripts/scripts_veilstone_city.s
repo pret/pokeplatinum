@@ -79,16 +79,16 @@ _00F6:
     CallIfEq VAR_0x8004, GENDER_FEMALE, _029F
     CloseMessage
     CallCommonScript 0x7F9
-    ScrCmd_168 21, 19, 12, 3, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 21, 19, 12, 3, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x0191
     AddObject 25
     ApplyMovement 25, _0564
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 6, _0484
     WaitMovement
     Message 4
@@ -611,10 +611,10 @@ _08DD:
     ClearFlag FLAG_UNK_0x020D
     SetVar VAR_UNK_0x411F, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -995,7 +995,7 @@ _0C77:
     SetVar VAR_0x8004, ITEM_TM63
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0CC7
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
 
@@ -1007,7 +1007,7 @@ _0CBC:
     End
 
 _0CC7:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

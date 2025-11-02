@@ -100,7 +100,7 @@ _0128:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -110,7 +110,7 @@ _013E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
@@ -271,8 +271,7 @@ _0323:
     End
 
 _0336:
-    SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallPokecenterNurse 3
     End
 
     .balign 4, 0

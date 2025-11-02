@@ -101,19 +101,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"No way! I won’t give up!\n",
-				"There’s never any giving up!"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "No way! I won’t give up!\n",
+                "There’s never any giving up!"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What was that about?!\r",
-				"I’m going to get tougher, though!\n",
-				"Tougher with these guys!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What was that about?!\r",
+                "I’m going to get tougher, though!\n",
+                "Tougher with these guys!\n"
+            ]
+        }
     ]
 }

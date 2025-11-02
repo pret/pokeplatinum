@@ -30,33 +30,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"In the embrace of Mother Nature,\n",
-				"people and Pokémon grow strong!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "In the embrace of Mother Nature,\n",
+                "people and Pokémon grow strong!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your Pokémon are so muscular.\n",
-				"It makes me sigh seeing them...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon are so muscular.\n",
+                "It makes me sigh seeing them...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"It doesn’t matter where they grow.\r",
-				"Pokémon can be made tougher\n",
-				"anywhere if you set your mind to it.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "It doesn’t matter where they grow.\r",
+                "Pokémon can be made tougher\n",
+                "anywhere if you set your mind to it.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"By battling tough opponents, both\n",
-				"Trainers and Pokémon grow tough!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "By battling tough opponents, both\n",
+                "Trainers and Pokémon grow tough!\r"
+            ]
+        }
     ]
 }

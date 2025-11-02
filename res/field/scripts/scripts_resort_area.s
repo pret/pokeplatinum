@@ -144,22 +144,22 @@ _0184:
     CloseMessage
     ApplyMovement 13, _0388
     WaitMovement
-    ScrCmd_168 25, 14, 22, 21, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 25, 14, 22, 21, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 13, _0390
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 13
     SetVar VAR_UNK_0x40C8, 1
     SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, 2
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -318,10 +318,10 @@ _03D4:
     SetFlag FLAG_UNK_0x02AA
     SetVar VAR_RESORT_VILLA_VISITOR, 2
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -348,10 +348,10 @@ _043C:
     SetFlag FLAG_UNK_0x02AD
     SetVar VAR_RESORT_VILLA_VISITOR, 4
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -372,10 +372,10 @@ _049C:
     SetFlag FLAG_UNK_0x02AF
     SetVar VAR_RESORT_VILLA_VISITOR, 5
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -396,10 +396,10 @@ _04FC:
     SetFlag FLAG_UNK_0x02B2
     SetVar VAR_RESORT_VILLA_VISITOR, 7
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -420,10 +420,10 @@ _055C:
     SetFlag FLAG_UNK_0x02B5
     SetVar VAR_RESORT_VILLA_VISITOR, 9
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

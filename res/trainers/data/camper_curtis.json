@@ -30,25 +30,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"We Trainers will accept challenges\n",
-				"anywhere! It’s what we do.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We Trainers will accept challenges\n",
+                "anywhere! It’s what we do.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hmm...\n",
-				"Insufficiently raised?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hmm...\n",
+                "Insufficiently raised?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Pokémon can appear anywhere in a cave.\n",
-				"It’s not like the tall grass by roads.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Pokémon can appear anywhere in a cave.\n",
+                "It’s not like the tall grass by roads.\n"
+            ]
+        }
     ]
 }

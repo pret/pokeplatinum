@@ -3,7 +3,17 @@ import json
 import pathlib
 import sys
 
-from convert import from_bg_event_dir, from_movement_type, from_object_event_gfx, from_map_header, from_trainer_type, from_var_flag, pad, u16, u32
+from convert import (
+    from_bg_event_dir,
+    from_movement_type,
+    from_object_event_gfx,
+    from_map_header,
+    from_trainer_type,
+    from_var_flag,
+    pad,
+    u16,
+    u32,
+)
 
 ANSI_BOLD_WHITE = "\033[1;37m"
 ANSI_BOLD_RED = "\033[1;31m"
@@ -42,7 +52,7 @@ def parse_object_event(obj: dict, i: int) -> bytes:
 
     return b"".join(
         [
-            u16(obj.get("local_id", i)),
+            u16(obj.get("clone_id", i)),
             u16(from_object_event_gfx(obj["graphics_id"])),
             u16(from_movement_type(obj["movement_type"])),
             u16(from_trainer_type(obj["trainer_type"])),
@@ -103,7 +113,7 @@ def parse_coord_events(coord_events: list[dict]) -> bytes:
                 u16(coord["length"]),
                 u16(coord["y"]),
                 u16(coord["value"]),
-                u16(coord["var"]),
+                u16(from_var_flag(coord["var"])),
             ]
         )
         for coord in coord_events

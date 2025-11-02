@@ -7,13 +7,13 @@
 
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_spheres.h"
+#include "overlay023/underground_traps.h"
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
@@ -30,7 +30,7 @@ static int CommPacketSizeOf_TrainerCard(void);
 static int sub_02099548(void);
 static int sub_0209954C(void);
 
-static int sub_02099500(void)
+static int CommPacketSizeOf_3Bytes_Unused(void)
 {
     return 3;
 }
@@ -56,26 +56,26 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0224A3A8, sub_02032944, NULL },
     { ov23_0224A410, sub_02032944, NULL },
     { ov23_022433BC, sub_0203294C, NULL },
-    { ov23_02243B0C, CommPacketSizeOf_NetId, NULL },
-    { ov23_02243F78, ov23_02243F98, NULL },
-    { ov23_02243ED4, ov23_02243C38, NULL },
-    { ov23_02243F9C, ov23_02243860, NULL },
-    { ov23_0224401C, ov23_02244048, NULL },
-    { ov23_0224448C, ov23_022442EC, NULL },
-    { ov23_022445E8, CommPacketSizeOf_NetId, NULL },
-    { ov23_0224461C, sub_02099500, NULL },
-    { ov23_02245540, CommPacketSizeOf_NetId, NULL },
-    { ov23_0224540C, sub_0203294C, NULL },
-    { ov23_022454B4, ov23_02245408, NULL },
-    { ov23_0224546C, sub_0203294C, NULL },
-    { ov23_022455B4, ov23_02245694, NULL },
-    { ov23_0224467C, CommPacketSizeOf_NetId, NULL },
-    { ov23_022457E4, sub_0203294C, NULL },
-    { ov23_0224589C, ov23_02245908, NULL },
-    { ov23_022425F8, ov23_0224407C, NULL },
+    { UndergroundTraps_TryPlaceTrap, CommPacketSizeOf_NetId, NULL },
+    { UndergroundTraps_RemoveBuriedTrapAtIndex_Unused, CommPacketSizeOf_2Bytes_Unused, NULL }, // corresponding cmd never sent
+    { UndergroundTraps_ProcessPlaceTrapResult, CommPacketSizeOf_PlaceTrapResult, NULL },
+    { UndergroundTraps_LoadLinkPlacedTraps, CommPacketSizeOf_AllTrapsPlacedPlayer, NULL },
+    { UndergroundTraps_ReceiveLoadTrapsResult, CommPacketSizeOf_LoadTrapsResult, NULL },
+    { UndergroundTraps_HandleTriggeredTrap, CommPacketSizeOf_TriggeredTrap2, NULL },
+    { UndergroundTraps_CallSecondTrapEffectServerFunc, CommPacketSizeOf_NetId, NULL },
+    { UndergroundTraps_StartLinkSlideAnimation_Unused, CommPacketSizeOf_3Bytes_Unused, NULL }, // corresponding cmd never sent
+    { UndergroundTraps_EscapeHole, CommPacketSizeOf_NetId, NULL },
+    { UndergroundTraps_EscapeTrapServer, sub_0203294C, NULL },
+    { UndergroundTraps_ProcessEscapedTrap, CommPacketSizeOf_EscapedTrap, NULL },
+    { UndergroundTraps_EndCurrentTrapEffectServer, sub_0203294C, NULL },
+    { UndergroundTraps_ProcessTrapHelp, CommPacketSizeOf_TrapHelpData, NULL },
+    { UndergroundTraps_ProcessTriggeredTrapBits, CommPacketSizeOf_NetId, NULL },
+    { UndergroundTraps_QueueSendTrapRadarResults, sub_0203294C, NULL },
+    { UndergroundTraps_ReceiveTrapRadarResults, CommPacketSizeOf_TrapRadarResult, NULL },
+    { ov23_022425F8, CommPacketSizeOf_Coordinates, NULL },
     { ov23_02242624, sub_02032944, NULL },
     { ov23_02242654, sub_02032944, NULL },
-    { ov23_02244140, ov23_0224413C, NULL },
+    { UndergroundTraps_ProcessDisengagedTrap, CommPacketSizeOf_TriggeredTrap, NULL },
     { CommPlayer_RecvDelete, CommPacketSizeOf_NetId, NULL },
     { ov23_0224C384, ov23_0224C41C, NULL },
     { ov23_0224C25C, ov23_0224C41C, NULL },

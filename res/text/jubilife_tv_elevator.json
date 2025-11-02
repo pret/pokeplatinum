@@ -2,7 +2,7 @@
   "key": 17471,
   "messages": [
     {
-      "id": "pl_msg_00000037_00000",
+      "id": "JubilifeTVElevator_Text_Hello",
       "en_US": [
         "Hello, thank you for taking the time\n",
         "out of your busy day to visit us.\r",
@@ -10,29 +10,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000037_00001",
+      "id": "JubilifeTVElevator_Text_LookForward",
       "en_US": "I look forward to serving you again."
     },
     {
-      "id": "pl_msg_00000037_00002",
+      "id": "JubilifeTVElevator_Text_GoingUp",
       "en_US": [
         "Certainly.\n",
         "Elevator going up.\r"
       ]
     },
     {
-      "id": "pl_msg_00000037_00003",
+      "id": "JubilifeTVElevator_Text_GoingDown",
       "en_US": [
         "Certainly.\n",
         "Elevator going down.\r"
       ]
     },
     {
-      "id": "pl_msg_00000037_00004",
+      "id": "JubilifeTVElevator_Text_SameFloor",
       "en_US": "Sorry, we are already on that floor."
     },
     {
-      "id": "pl_msg_00000037_00005",
+      "id": "JubilifeTVElevator_Text_HereWeAre",
       "en_US": "Here we are!"
     }
   ]

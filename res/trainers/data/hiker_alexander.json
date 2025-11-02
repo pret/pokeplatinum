@@ -29,35 +29,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"They call me the Echo Man!\n",
-				"Battle with me! Yahoo!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "They call me the Echo Man!\n",
+                "Battle with me! Yahoo!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Ohh... Yo...\n",
-				"Yodelay...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ohh... Yo...\n",
+                "Yodelay...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Here’s good advice from the Echo Man!\r",
-				"If you’re at a loss as to where you\n",
-				"should be going, check the Town Map!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Here’s good advice from the Echo Man!\r",
+                "If you’re at a loss as to where you\n",
+                "should be going, check the Town Map!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, hi there! Remember us?\n",
-				"I’m the Echo Man!\r",
-				"Let’s have another battle!\n",
-				"Yahoo!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, hi there! Remember us?\n",
+                "I’m the Echo Man!\r",
+                "Let’s have another battle!\n",
+                "Yahoo!\r"
+            ]
+        }
     ]
 }

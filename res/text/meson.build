@@ -39,11 +39,26 @@ species_text_bank_names = [
 ]
 
 trainer_text_bank_names = [
-    'npc_trainer_messages.json'
+    'npc_trainer_messages.json',
+    'npc_trainer_names.json'
+]
+
+frontier_text_bank_names = [
+    'frontier_trainer_messages.json',
+    'frontier_trainer_names.json'
+]
+
+town_map_text_bank_name = [
+    'town_map.json'
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = species_text_bank_names + trainer_text_bank_names
+generated_text_banks = [
+    species_text_bank_names,
+    trainer_text_bank_names,
+    frontier_text_bank_names,
+    town_map_text_bank_name,
+]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
@@ -65,7 +80,7 @@ text_banks_order = custom_target('text_banks.order',
 )
 
 # 4. Generate individual text bank binaries from JSON files.
-bank_header_target = meson.current_build_dir() / 'bank'
+bank_header_target = fs.relative_to(meson.current_build_dir() / 'bank', meson.project_build_root())
 bank_header_dir = custom_target('bank_header_dir',
     capture: true,
     output: 'bank_header_dir',
@@ -104,15 +119,42 @@ text_bank_files += species_text_banks
 trainer_text_banks = custom_target('trainer_text_banks',
     output: trainer_text_bank_names,
     command: [
-        'mv',
+        'cp',
         '@OUTDIR@/../trainers/npc_trainer_messages.json',
-        '@OUTDIR@/npc_trainer_messages.json',
+        '@OUTDIR@/../trainers/npc_trainer_names.json',
+        '@OUTDIR@',
     ],
     env: trainer_env,
     depends: [ datagen_trainer_out ],
 )
 
 text_bank_files += trainer_text_banks
+
+frontier_text_banks = custom_target('frontier_text_banks',
+    output: frontier_text_bank_names,
+    command: [
+        'cp',
+        '@OUTDIR@/../trainers/frontier/frontier_trainer_messages.json',
+        '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
+        '@OUTDIR@',
+    ],
+    env: trainer_env,
+    depends: [ datagen_frontier_out ],
+)
+
+text_bank_files += frontier_text_banks
+
+town_map_text_bank = custom_target('town_map_text_bank',
+    output: town_map_text_bank_name,
+    command: [
+        'cp',
+        '@OUTDIR@/../town_map/town_map.json',
+        '@OUTDIR@'
+    ],
+    depends: [ town_map_data ]
+)
+
+text_bank_files += town_map_text_bank
 
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

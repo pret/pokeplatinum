@@ -43,7 +43,7 @@ _0078:
     End
 
 _0085:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ReleaseAll
@@ -54,7 +54,7 @@ _0097:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Return
 
@@ -119,19 +119,19 @@ _01B7:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0173
     CloseMessage
-    ScrCmd_0F2 6, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _01F9
-    GoToIfEq VAR_RESULT, 3, _0203
+    StartBattleClient 6, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _01F9
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _0203
     GoTo _0263
     End
 
 _01F9:
-    ScrCmd_150
+    EndCommunication
     GoTo _0173
     End
 
 _0203:
-    ScrCmd_150
+    EndCommunication
     GoTo _0173
     End
 
@@ -140,28 +140,28 @@ _020D:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0173
     CloseMessage
-    ScrCmd_0F3 6, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _024F
-    GoToIfEq VAR_RESULT, 3, _0259
+    StartBattleServer 6, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _024F
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _0259
     GoTo _0263
     End
 
 _024F:
-    ScrCmd_150
+    EndCommunication
     GoTo _0173
     End
 
 _0259:
-    ScrCmd_150
+    EndCommunication
     GoTo _0173
     End
 
 _0263:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ReleaseAll
     ScrCmd_1D7 1
-    ScrCmd_150
+    EndCommunication
     Call _0097
     GoTo _006D
     End

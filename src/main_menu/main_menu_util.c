@@ -15,6 +15,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "character_sprite.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -40,7 +41,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020131EC.h"
 #include "unk_02033200.h"
 #include "versions.h"
 #include "vram_transfer.h"
@@ -576,7 +576,7 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     BuildPokemonSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
 
     u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-    sub_020136A4(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, 0, 2, species);
+    CharacterSprite_LoadPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);
 
     DC_FlushRange(buffer, MON_SPRITE_FRAME_MAX_SIZE_BYTES);
 

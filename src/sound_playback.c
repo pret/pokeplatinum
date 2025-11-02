@@ -112,7 +112,7 @@ static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType
         seqID);
 }
 
-BOOL sub_02005588(u8 scene, u16 seqID)
+BOOL Sound_SetBGM(u8 scene, u16 seqID)
 {
     if (scene != SOUND_SCENE_FIELD) {
         GF_ASSERT(FALSE);

@@ -68,18 +68,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER",
-			"en_US": [
-				"Yeah, I can tell you raised your\n",
-				"Pokémon to be tough!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "Yeah, I can tell you raised your\n",
+                "Pokémon to be tough!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What just happened?!\n",
-				"You’re telling me I lost?!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What just happened?!\n",
+                "You’re telling me I lost?!\n"
+            ]
+        }
     ]
 }

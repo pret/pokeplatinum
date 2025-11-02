@@ -105,7 +105,7 @@ void StringTemplate_SetDEGreeting(StringTemplate *template, u32 idx, u32 greetin
 void StringTemplate_SetESGreeting(StringTemplate *template, u32 idx, u32 greeting);
 void StringTemplate_SetFurniture(StringTemplate *template, u32 idx, u32 furniture);
 void StringTemplate_SetMonthName(StringTemplate *template, u32 idx, u32 month);
-void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u32 floor);
+void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor);
 void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx);
 void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const Strbuf *fmtString);
 void StringTemplate_ClearArgs(StringTemplate *template);

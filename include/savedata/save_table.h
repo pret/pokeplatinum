@@ -7,9 +7,9 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0202440C.h"
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202F264.h"
 
+#include "hall_of_fame_entries.h"
 #include "mystery_gift.h"
 #include "savedata.h"
 
@@ -59,14 +59,14 @@ PCBoxes *SaveData_GetPCBoxes(SaveData *saveData);
 MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 
 /**
- * @brief Loads the PalParkTransfer sector of the save data.
+ * @brief Loads the MigratedPokemon sector of the save data.
  *
  * This routine does NOT perform any CRC on the sectors before loading them.
  *
  * @param saveData
- * @return Address of the PalParkTransfer sector of the save data.
+ * @return Address of the MigratedPokemon sector of the save data.
  */
-PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *saveData);
+MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData);
 
 /**
  * @brief Loads the HallOfFame sector from the extended save data.

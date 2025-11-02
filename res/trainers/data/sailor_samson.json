@@ -49,26 +49,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Like the raging sea, I crash down\n",
-				"and wash away everything before me!\r",
-				"That’s just how I roll!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Like the raging sea, I crash down\n",
+                "and wash away everything before me!\r",
+                "That’s just how I roll!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That wave didn’t even wash\n",
-				"my hands...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That wave didn’t even wash\n",
+                "my hands...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m now becalmed like a waveless\n",
-				"sea...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m now becalmed like a waveless\n",
+                "sea...\n"
+            ]
+        }
     ]
 }

@@ -28,11 +28,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Done in by two kids?!\n",
-				"This isn’t right!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Done in by two kids?!\n",
+                "This isn’t right!\n"
+            ]
+        }
     ]
 }

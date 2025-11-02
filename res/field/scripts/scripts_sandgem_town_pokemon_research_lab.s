@@ -51,7 +51,7 @@ _00AF:
 _00B7:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
-    GoToIfUnset FLAG_UNK_0x09BA, _00E5
+    GoToIfUnset FLAG_FIRST_ARRIVAL_ETERNA_CITY, _00E5
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
@@ -170,11 +170,11 @@ _022B:
 _0261:
     SetVar VAR_RESULT, 0
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB 0, VAR_RESULT
     SetVar VAR_0x8002, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Message 5
     ShowYesNoMenu VAR_RESULT
@@ -184,7 +184,7 @@ _0261:
     End
 
 _02B6:
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
 _02BC:
@@ -246,7 +246,7 @@ _0375:
 _0394:
     Message 12
     GivePokedex
-    SetFlag FLAG_UNK_0x0090
+    SetFlag FLAG_HAS_POKEDEX
     BufferPlayerName 0
     Message 13
     PlaySound SEQ_FANFA4
@@ -508,7 +508,7 @@ _05FD:
     End
 
 _060E:
-    GoToIfSet FLAG_UNK_0x0110, _0621
+    GoToIfSet FLAG_SHOWN_COMPLETE_LOCAL_DEX, _0621
     GoTo _0631
     End
 
@@ -593,9 +593,9 @@ _0677:
     WaitMovement
     BufferPlayerName 0
     Message 43
-    SetVar VAR_0x8004, 0x1AF
+    SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 44
     WaitABXPadPress
     CloseMessage

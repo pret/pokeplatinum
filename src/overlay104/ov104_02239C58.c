@@ -4,9 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/party_menu/defs.h"
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
@@ -21,7 +22,6 @@
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
-#include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
 void ov104_02239C7C(UnkStruct_0209BBA4 *param0);
@@ -108,23 +108,23 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
-    MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
+    param1->unk_A8 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    MI_CpuClearFast(param1->unk_A8, sizeof(PartyMenu));
 
     param1->unk_A8->party = SaveData_GetParty(param1->saveData);
     param1->unk_A8->bag = SaveData_GetBag(param1->saveData);
     param1->unk_A8->mailbox = SaveData_GetMailbox(param1->saveData);
     param1->unk_A8->options = SaveData_GetOptions(param1->saveData);
-    param1->unk_A8->unk_21 = 0;
+    param1->unk_A8->type = PARTY_MENU_TYPE_BASIC;
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->unk_20 = 17;
+        param1->unk_A8->mode = 17;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->unk_20 = 22;
+        param1->unk_A8->mode = 22;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->unk_20 = 23;
+        param1->unk_A8->mode = 23;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->unk_20 = 23;
+        param1->unk_A8->mode = 23;
     } else {
         GF_ASSERT(0);
     }
@@ -133,25 +133,25 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_A8->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param1->unk_A8->unk_2C[v0] = param1->unk_A1[v0];
+        param1->unk_A8->selectionOrder[v0] = param1->unk_A1[v0];
     }
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->minSelectionSlots = 2;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->unk_32_0 = 1;
-        param1->unk_A8->unk_32_4 = 1;
-        param1->unk_A8->unk_33 = 30;
+        param1->unk_A8->minSelectionSlots = 1;
+        param1->unk_A8->maxSelectionSlots = 1;
+        param1->unk_A8->reqLevel = 30;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->minSelectionSlots = 2;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->unk_32_0 = 2;
-        param1->unk_A8->unk_32_4 = 2;
-        param1->unk_A8->unk_33 = 100;
+        param1->unk_A8->minSelectionSlots = 2;
+        param1->unk_A8->maxSelectionSlots = 2;
+        param1->unk_A8->reqLevel = 100;
     } else {
         GF_ASSERT(0);
     }
@@ -177,7 +177,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         break;
     }
 
-    MI_CpuCopy8(param1->unk_A8->unk_2C, param1->unk_A1, 2);
+    MI_CpuCopy8(param1->unk_A8->selectionOrder, param1->unk_A1, 2);
     param1->unk_9F = param1->unk_A8->selectedMonSlot;
     Heap_Free(param1->unk_A8);
 

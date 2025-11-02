@@ -2,17 +2,9 @@
 #define POKEPLATINUM_BERRY_PATCHES_H
 
 #include "constants/heap.h"
+#include "generated/berry_growth_stages.h"
 
 #define MAX_BERRY_PATCHES 128
-
-enum BerryGrowthStage {
-    BERRY_GROWTH_STAGE_NONE = 0,
-    BERRY_GROWTH_STAGE_PLANTED,
-    BERRY_GROWTH_STAGE_SPROUTED,
-    BERRY_GROWTH_STAGE_GROWING,
-    BERRY_GROWTH_STAGE_BLOOMING,
-    BERRY_GROWTH_STAGE_FRUIT,
-};
 
 enum MulchType {
     MULCH_TYPE_NONE = 0,

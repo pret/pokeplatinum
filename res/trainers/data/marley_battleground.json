@@ -85,15 +85,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"...My time with you is drawing to a\n",
-				"close...\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "...My time with you is drawing to a\n",
+                "close...\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "...Awww.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "...Awww.\n"
+        }
     ]
 }

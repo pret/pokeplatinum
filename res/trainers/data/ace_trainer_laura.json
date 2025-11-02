@@ -26,29 +26,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m fully kitted up and equipped!\n",
-				"Anytime will be fine!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m fully kitted up and equipped!\n",
+                "Anytime will be fine!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Hunh?!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Hunh?!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Perhaps I should maybe change into\n",
-				"a more comfy outfit...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Perhaps I should maybe change into\n",
+                "a more comfy outfit...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m fully equipped again today!\n",
-				"Anytime you’re ready will be fine!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m fully equipped again today!\n",
+                "Anytime you’re ready will be fine!\r"
+            ]
+        }
     ]
 }

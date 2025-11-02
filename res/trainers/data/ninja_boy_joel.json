@@ -46,35 +46,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I just startled you!\r",
-				"While you’re still struggling to\n",
-				"recover, I’ll already be the winner!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I just startled you!\r",
+                "While you’re still struggling to\n",
+                "recover, I’ll already be the winner!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, what’s that?\n",
-				"You’re supposed to be fumbling more.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, what’s that?\n",
+                "You’re supposed to be fumbling more.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I wanted a better reaction from you.\n",
-				"Now I feel silly for hiding!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I wanted a better reaction from you.\n",
+                "Now I feel silly for hiding!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You just saw me, and I bet you\n",
-				"thought, “Long time no see.”\r",
-				"While you’re still thinking that, I’ll\n",
-				"already be the winner!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You just saw me, and I bet you\n",
+                "thought, “Long time no see.”\r",
+                "While you’re still thinking that, I’ll\n",
+                "already be the winner!\r"
+            ]
+        }
     ]
 }

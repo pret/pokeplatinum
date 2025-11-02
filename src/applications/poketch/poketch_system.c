@@ -27,34 +27,34 @@
 #include "trainer_info.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
-FS_EXTERN_OVERLAY(overlay27);
-FS_EXTERN_OVERLAY(overlay28);
-FS_EXTERN_OVERLAY(overlay29);
-FS_EXTERN_OVERLAY(overlay30);
-FS_EXTERN_OVERLAY(overlay31);
-FS_EXTERN_OVERLAY(overlay32);
-FS_EXTERN_OVERLAY(overlay33);
-FS_EXTERN_OVERLAY(overlay34);
-FS_EXTERN_OVERLAY(overlay35);
-FS_EXTERN_OVERLAY(overlay36);
-FS_EXTERN_OVERLAY(overlay37);
-FS_EXTERN_OVERLAY(overlay38);
-FS_EXTERN_OVERLAY(overlay39);
-FS_EXTERN_OVERLAY(overlay40);
-FS_EXTERN_OVERLAY(overlay41);
-FS_EXTERN_OVERLAY(overlay42);
+FS_EXTERN_OVERLAY(poketch_stopwatch);
+FS_EXTERN_OVERLAY(poketch_calculator);
+FS_EXTERN_OVERLAY(poketch_memo_pad);
+FS_EXTERN_OVERLAY(poketch_analog_watch);
+FS_EXTERN_OVERLAY(poketch_dot_artist);
+FS_EXTERN_OVERLAY(poketch_party_status);
+FS_EXTERN_OVERLAY(poketch_friendship_checker);
+FS_EXTERN_OVERLAY(poketch_dowsing_machine);
+FS_EXTERN_OVERLAY(poketch_counter);
+FS_EXTERN_OVERLAY(poketch_pedometer);
+FS_EXTERN_OVERLAY(poketch_backlight_toggle);
+FS_EXTERN_OVERLAY(poketch_unused_1);
+FS_EXTERN_OVERLAY(poketch_unused_2);
+FS_EXTERN_OVERLAY(poketch_daycare_checker);
+FS_EXTERN_OVERLAY(poketch_roulette);
+FS_EXTERN_OVERLAY(poketch_coin_toss);
 FS_EXTERN_OVERLAY(poketch_move_tester);
-FS_EXTERN_OVERLAY(overlay44);
-FS_EXTERN_OVERLAY(overlay45);
-FS_EXTERN_OVERLAY(overlay46);
-FS_EXTERN_OVERLAY(overlay47);
-FS_EXTERN_OVERLAY(overlay48);
-FS_EXTERN_OVERLAY(overlay49);
+FS_EXTERN_OVERLAY(poketch_matchup_checker);
+FS_EXTERN_OVERLAY(poketch_alarm_clock);
+FS_EXTERN_OVERLAY(poketch_kitchen_timer);
+FS_EXTERN_OVERLAY(poketch_marking_map);
+FS_EXTERN_OVERLAY(poketch_berry_searcher);
+FS_EXTERN_OVERLAY(poketch_color_changer);
 FS_EXTERN_OVERLAY(overlay50);
-FS_EXTERN_OVERLAY(overlay52);
-FS_EXTERN_OVERLAY(overlay53);
+FS_EXTERN_OVERLAY(poketch_link_searcher);
+FS_EXTERN_OVERLAY(poketch_trainer_counter);
 FS_EXTERN_OVERLAY(overlay54);
-FS_EXTERN_OVERLAY(overlay55);
+FS_EXTERN_OVERLAY(poketch_unused_4);
 
 static PoketchSystem *PoketchSystem_GetFromFieldSystem(void);
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys);
@@ -85,29 +85,29 @@ static const struct {
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
     { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
-    { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(overlay27) },
-    { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
-    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },
-    { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
-    { POKETCH_APPID_DOTART, FS_OVERLAY_ID(overlay31) },
-    { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(overlay32) },
-    { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(overlay33) },
-    { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(overlay34) },
-    { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(overlay35) },
-    { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(overlay36) },
-    { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(overlay40) },
-    { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(overlay41) },
-    { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
+    { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
+    { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(poketch_calculator) },
+    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
+    { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(poketch_analog_watch) },
+    { POKETCH_APPID_DOTART, FS_OVERLAY_ID(poketch_dot_artist) },
+    { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(poketch_party_status) },
+    { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(poketch_friendship_checker) },
+    { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(poketch_dowsing_machine) },
+    { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(poketch_counter) },
+    { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(poketch_pedometer) },
+    { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(poketch_daycare_checker) },
+    { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(poketch_roulette) },
+    { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(poketch_coin_toss) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
-    { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(overlay44) },
-    { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(overlay45) },
-    { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(overlay46) },
-    { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(overlay47) },
-    { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
-    { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(overlay49) },
+    { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(poketch_matchup_checker) },
+    { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
+    { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(poketch_kitchen_timer) },
+    { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(poketch_marking_map) },
+    { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(poketch_berry_searcher) },
+    { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(poketch_color_changer) },
     { POKETCH_APPID_CALENDAR, FS_OVERLAY_ID(overlay50) },
-    { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(overlay52) },
-    { POKETCH_APPID_RADARCHAINCOUNTER, FS_OVERLAY_ID(overlay53) },
+    { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(poketch_link_searcher) },
+    { POKETCH_APPID_TRAINERCOUNTER, FS_OVERLAY_ID(poketch_trainer_counter) },
     { POKETCH_APPID_POKEMONHISTORY, FS_OVERLAY_ID(overlay54) }
 };
 
@@ -572,10 +572,10 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 
     if (PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
         switch (touchEvent) {
-        case BUTTON_TOUCH_RELEASED:
+        case BUTTON_TOUCH_PRESSED:
             poketchSys->touchingScreen = TRUE;
             break;
-        case BUTTON_TOUCH_PRESSED:
+        case BUTTON_TOUCH_RELEASED:
             poketchSys->touchingScreen = FALSE;
             break;
         }
@@ -584,17 +584,17 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 
     if (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_SCREEN) {
-        if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
+        if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_PRESSED) {
             Sound_PlayEffect(SEQ_SE_DP_BEEP);
         }
     } else {
         u32 taskId = POKETCH_EMPTY_TASK;
 
         switch (touchEvent) {
-        case BUTTON_TOUCH_PRESSED:
+        case BUTTON_TOUCH_RELEASED:
             taskId = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? TASK_UP_PRESSED : TASK_DOWN_PRESSED;
             break;
-        case BUTTON_TOUCH_RELEASED:
+        case BUTTON_TOUCH_PRESSED:
             if (PoketechSystem_IsRunningTask(poketchSys) || poketchSys->appStarting) {
                 taskId = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? TASK_UP_HALF_PRESSED : TASK_DOWN_HALF_PRESSED;
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;

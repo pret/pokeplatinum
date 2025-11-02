@@ -26,25 +26,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My willpower was shaped and tempered\n",
-				"by howling blizzards.\r",
-				"I’ll bring it to bear on you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My willpower was shaped and tempered\n",
+                "by howling blizzards.\r",
+                "I’ll bring it to bear on you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You weren’t even fazed...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You weren’t even fazed...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ve battled countless Trainers\n",
-				"and many more Pokémon still.\r",
-				"My spirit has been hardened from all\n",
-				"the battles I have fought."
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ve battled countless Trainers\n",
+                "and many more Pokémon still.\r",
+                "My spirit has been hardened from all\n",
+                "the battles I have fought."
+            ]
+        }
     ]
 }

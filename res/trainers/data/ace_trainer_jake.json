@@ -38,35 +38,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"They call me an Ace Trainer.\r",
-				"Allow me to demonstrate the talent\n",
-				"that makes me so!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "They call me an Ace Trainer.\r",
+                "Allow me to demonstrate the talent\n",
+                "that makes me so!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m burning with jealousy over your\n",
-				"raw talent!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m burning with jealousy over your\n",
+                "raw talent!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I think keeping up the effort to\n",
-				"better yourself is a talent in itself.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I think keeping up the effort to\n",
+                "better yourself is a talent in itself.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Last time, I stumbled before I could\n",
-				"showcase my talent.\r",
-				"This time, I’ll conclusively demonstrate\n",
-				"the might of an Ace Trainer!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Last time, I stumbled before I could\n",
+                "showcase my talent.\r",
+                "This time, I’ll conclusively demonstrate\n",
+                "the might of an Ace Trainer!\r"
+            ]
+        }
     ]
 }

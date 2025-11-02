@@ -45,7 +45,7 @@ _0034:
     End
 
 _008C:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

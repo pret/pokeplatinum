@@ -1,5 +1,4 @@
 subdir('egg')
 subdir('intro')
 subdir('shinka')
-subdir('syoujyou')
 subdir('title')

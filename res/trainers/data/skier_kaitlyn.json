@@ -28,29 +28,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"The fun things about winter!\n",
-				"One, skiing! Two, Pokémon!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "The fun things about winter!\n",
+                "One, skiing! Two, Pokémon!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Snivel..."
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Snivel..."
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If it was skiing, I wouldn’t lose.\n",
-				"I should go ski with my Pokémon...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If it was skiing, I wouldn’t lose.\n",
+                "I should go ski with my Pokémon...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You’re a better Trainer than a skier.\n",
-				"But I’ll challenge you again anyway!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You’re a better Trainer than a skier.\n",
+                "But I’ll challenge you again anyway!\r"
+            ]
+        }
     ]
 }

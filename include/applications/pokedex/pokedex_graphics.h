@@ -5,8 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_02015064_decl.h"
-
 #include "applications/pokedex/pokedex_panel.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 
@@ -14,6 +12,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
+#include "software_sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
@@ -82,7 +81,7 @@ typedef struct PokedexGraphicData {
     PokedexTextManager *textMan;
     PokemonSpriteManager *spriteMan;
     PokemonSprite *pokemonSprite[MAX_SPRITE_RESOURCE_GEN4];
-    UnkStruct_02015064 *unk_164;
+    SoftwareSpriteManager *unk_164;
     PokedexBlendTransition blendMain;
     PokedexBlendTransition blendSub;
     PokedexSpeciesLabel pokedexSpeciesLabel;
@@ -132,7 +131,7 @@ BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransfo
 NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData);
 u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapID heapID);
 void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapID heapID);
-void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapID heapID);
+void *PokedexGraphics_GetGraphicNarcTilemapData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapID heapID);
 void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapID heapID);
 void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapID heapID);
 void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection, enum HeapID heapID, NARC *narc);

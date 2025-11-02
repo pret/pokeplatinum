@@ -18,9 +18,9 @@
 #include "overlay023/ov23_02249918.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224DC40.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/struct_ov23_0224A5CC.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
@@ -30,6 +30,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "map_object_move.h"
+#include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -39,9 +40,8 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202854C.h"
-#include "unk_0206CCB0.h"
-#include "unk_020711EC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -69,7 +69,7 @@ void ov23_0224A1D0(void)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         CommPlayer_Destroy(v0, 0, 0);
-        sub_020593B4(v0);
+        CommPlayerMan_RemovePlayerFromHole(v0);
     }
 
     v1->isResetting = 1;
@@ -110,8 +110,8 @@ static BOOL ov23_0224A294(int param0, int param1)
     if ((v0->unk_290[param0] == NULL) && (v0->unk_290[param1] != NULL)) {
         v0->unk_290[param0] = v0->unk_290[param1];
         v0->unk_290[param1] = NULL;
-        v0->unk_FA[param0] = 1;
-        v0->unk_FA[param1] = 0;
+        v0->emote[param0] = EMOTE_FLAG;
+        v0->emote[param1] = EMOTE_NONE;
         v0->unk_14A[param0].unk_20 = param0;
         v0->unk_14A[param1].unk_20 = 0xff;
         TrainerInfo_Copy(v0->unk_290[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
@@ -133,17 +133,17 @@ static void ov23_0224A308(int param0)
 
 static void ov23_0224A310(int param0)
 {
-    sub_0205948C(0x2);
+    CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_1);
 }
 
 static void ov23_0224A31C(int param0)
 {
-    sub_0205948C(0x20);
+    CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_5);
 }
 
 static void ov23_0224A328(int param0)
 {
-    sub_0205948C(0x1);
+    CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_0);
 }
 
 static void ov23_0224A334(int param0)
@@ -191,12 +191,12 @@ void ov23_0224A3A8(int param0, int param1, void *param2, void *param3)
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
 
-            ov23_0224F758(ov23_0224A334, commPlayerMan->fieldSystem);
+            UndergroundMenu_Start(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     } else if ((v1->unk_00 == 3) && (v1->unk_01 == CommSys_CurNetId())) {
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
-            ov23_02250A50(ov23_0224A334, commPlayerMan->fieldSystem);
+            UndergroundMenu_StartHoldingFlag(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     }
 }
@@ -276,10 +276,10 @@ void ov23_0224A570(int param0, int param1, void *param2, void *param3)
 
 static void ov23_0224A5B0(int param0)
 {
-    ov23_0224B040(CommSys_CurNetId());
+    ov23_ClearEmote(CommSys_CurNetId());
     UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
 
-    sub_0205948C(0x4);
+    CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_2);
 }
 
 static void ov23_0224A5CC(SysTask *param0, void *param1)
@@ -372,14 +372,14 @@ static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, Undergro
     ov23_0224321C();
 
     sub_02057FC4(0);
-    sub_02059464(0x4);
+    CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_2);
 
     UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(param0->unk_01));
 
     if (param1) {
-        commPlayerMan->unk_FA[CommSys_CurNetId()] = 0;
-        ov23_0224B040(CommSys_CurNetId());
-        ov23_0224B00C(CommSys_CurNetId());
+        commPlayerMan->emote[CommSys_CurNetId()] = EMOTE_NONE;
+        ov23_ClearEmote(CommSys_CurNetId());
+        ov23_ShowExclamationEmote(CommSys_CurNetId());
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 10, TRUE, ov23_0224A5B0);
     } else {
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 11, TRUE, ov23_0224A5B0);
@@ -401,7 +401,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
     case 0:
         if (commPlayerMan->unk_290[v1->unk_01]) {
             ov23_0224AE60(v1->unk_01);
-            ov23_0224B040(v1->unk_01);
+            ov23_ClearEmote(v1->unk_01);
 
             if (v1->unk_01 == CommSys_CurNetId()) {
                 CommPlayerMan_PauseFieldSystem();
@@ -440,7 +440,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
         } else if (ov23_0224A294(v1->unk_01, v1->unk_02)) {
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_0202955C(v4);
-                sub_02059464(0x1);
+                CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_0);
                 UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(v1->unk_02));
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 12, TRUE, ov23_0224A328);
                 Sound_PlayBGM(SEQ_HATANIGE);
@@ -454,19 +454,19 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
         break;
     case 11:
         if (v1->unk_01 == CommSys_CurNetId()) {
-            sub_02059464(0x2);
+            CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_1);
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 6, TRUE, ov23_0224A310);
         }
         break;
     case 12:
         if (v1->unk_01 == CommSys_CurNetId()) {
-            sub_02059464(0x20);
+            CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_5);
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 5, TRUE, ov23_0224A31C);
         }
         break;
     case 3:
-        commPlayerMan->unk_FA[v1->unk_01] = 0;
-        ov23_0224B040(v1->unk_01);
+        commPlayerMan->emote[v1->unk_01] = EMOTE_NONE;
+        ov23_ClearEmote(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
             UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
@@ -597,7 +597,7 @@ void ov23_0224ABC4(int param0, int param1, void *param2, void *param3)
 
         commPlayerMan->unk_290[v3] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
         TrainerInfo_Copy((TrainerInfo *)v1->unk_00, commPlayerMan->unk_290[v3]);
-        commPlayerMan->unk_FA[v3] = 1;
+        commPlayerMan->emote[v3] = EMOTE_FLAG;
     }
 }
 
@@ -634,7 +634,7 @@ void ov23_0224AC4C(void)
     if (commPlayerMan->unk_290[v3]) {
         v0 = commPlayerMan->unk_290[v3];
         commPlayerMan->unk_290[v3] = NULL;
-        commPlayerMan->unk_FA[v3] = 0;
+        commPlayerMan->emote[v3] = EMOTE_NONE;
         commPlayerMan->unk_14A[v3].unk_20 = 0xff;
     }
 
@@ -644,7 +644,7 @@ void ov23_0224AC4C(void)
 
     if (v0) {
         commPlayerMan->unk_290[0] = v0;
-        commPlayerMan->unk_FA[0] = 1;
+        commPlayerMan->emote[0] = EMOTE_FLAG;
 
         TrainerInfo_Copy(v0, (TrainerInfo *)&commPlayerMan->unk_14A[0].unk_00);
 
@@ -706,16 +706,16 @@ int Underground_GetLinkZPos(int netID)
     return v0->playerLocation[netID].z;
 }
 
-void ov23_0224AD7C(int param0, int param1)
+void ov23_UpdatePlayerStatus(int netID, int status)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
-    ov23_02249994(ov23_0224993C(v0->unk_04, param0), param1);
+    ov23_02249994(ov23_0224993C(v0->unk_04, netID), status);
 }
 
-void ov23_0224AD98(int param0)
+void ov23_RevertPlayerStatusToNormal(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
-    ov23_02249994(ov23_0224993C(v0->unk_04, param0), 0);
+    ov23_02249994(ov23_0224993C(v0->unk_04, netID), PLAYER_STATUS_NORMAL);
 }
 
 void ov23_0224ADB0(int param0, int param1, int param2, int param3)
@@ -756,7 +756,7 @@ void ov23_0224ADE8(int param0, int param1, int param2, int param3)
     }
 
     if (!v0->isResetting) {
-        ov23_0224B040(param0);
+        ov23_ClearEmote(param0);
     }
 }
 
@@ -768,7 +768,7 @@ BOOL ov23_0224AE60(int param0)
         Heap_Free(v0->unk_290[param0]);
 
         v0->unk_290[param0] = NULL;
-        v0->unk_FA[param0] = 0;
+        v0->emote[param0] = EMOTE_NONE;
         v0->unk_14A[param0].unk_20 = 0xff;
 
         return 1;
@@ -799,7 +799,7 @@ BOOL ov23_0224AEC4(int param0, int param1)
             v0->unk_290[param0] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
             TrainerInfo_Copy(v1, v0->unk_290[param0]);
 
-            v0->unk_FA[param0] = 1;
+            v0->emote[param0] = EMOTE_FLAG;
             v0->unk_14A[param0].unk_20 = param0;
 
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
@@ -816,18 +816,18 @@ BOOL ov23_0224AEC4(int param0, int param1)
     return 0;
 }
 
-void ov23_0224AF4C(int param0)
+void ov23_0224AF4C(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
-    if (v0->unk_28[param0] != NULL) {
-        if (UnkStruct_ov101_021D5D90_IsLsbSet(v0->unk_28[param0])) {
-            sub_0207136C(v0->unk_28[param0]);
+    if (v0->unk_28[netID] != NULL) {
+        if (OverworldAnimManager_IsActive(v0->unk_28[netID])) {
+            OverworldAnimManager_Finish(v0->unk_28[netID]);
         } else {
             GF_ASSERT(0);
         }
 
-        v0->unk_28[param0] = NULL;
+        v0->unk_28[netID] = NULL;
     }
 }
 
@@ -837,25 +837,25 @@ void ov23_0224AF7C(int param0)
 
     if (!v0->isResetting) {
         if (v0->playerAvatar[param0]) {
-            switch (v0->unk_FA[param0]) {
-            case 3:
+            switch (v0->emote[param0]) {
+            case EMOTE_OK:
                 if (v0->unk_28[param0] == NULL) {
                     v0->unk_28[param0] = ov5_021F5488(Player_MapObject(v0->playerAvatar[param0]));
                 }
 
-                v0->unk_FA[param0] = 0;
+                v0->emote[param0] = 0;
                 break;
-            case 2:
+            case EMOTE_EXCLAMATION:
                 if (v0->unk_28[param0] == NULL) {
                     v0->unk_28[param0] = ov5_021F52E4(Player_MapObject(v0->playerAvatar[param0]));
                 }
                 break;
-            case 1:
+            case EMOTE_FLAG:
                 if (v0->unk_28[param0] == NULL) {
                     v0->unk_28[param0] = ov5_021F511C(Player_MapObject(v0->playerAvatar[param0]));
                 }
                 break;
-            case 0:
+            case EMOTE_NONE:
                 ov23_0224AF4C(param0);
                 break;
             }
@@ -863,33 +863,33 @@ void ov23_0224AF7C(int param0)
     }
 }
 
-void ov23_0224B00C(int param0)
+void ov23_ShowExclamationEmote(int netID)
 {
-    CommPlayerManager *v0 = CommPlayerMan_Get();
+    CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (v0->unk_FA[param0] != 1) {
-        v0->unk_FA[param0] = 2;
+    if (commPlayerMan->emote[netID] != EMOTE_FLAG) {
+        commPlayerMan->emote[netID] = EMOTE_EXCLAMATION;
     }
 }
 
-void ov23_0224B024(int param0)
+void ov23_ShowOKEmote(int netID)
 {
-    CommPlayerManager *v0 = CommPlayerMan_Get();
+    CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (v0->unk_FA[param0] != 1) {
-        v0->unk_FA[param0] = 3;
+    if (commPlayerMan->emote[netID] != EMOTE_FLAG) {
+        commPlayerMan->emote[netID] = EMOTE_OK;
     }
 
-    ov23_0224AF4C(param0);
+    ov23_0224AF4C(netID);
 }
 
-void ov23_0224B040(int param0)
+void ov23_ClearEmote(int netID)
 {
-    CommPlayerManager *v0 = CommPlayerMan_Get();
+    CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (v0->unk_FA[param0] != 1) {
-        v0->unk_FA[param0] = 0;
+    if (commPlayerMan->emote[netID] != EMOTE_FLAG) {
+        commPlayerMan->emote[netID] = EMOTE_NONE;
     }
 
-    ov23_0224AF4C(param0);
+    ov23_0224AF4C(netID);
 }

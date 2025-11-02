@@ -19,32 +19,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Poof!\r",
-				"You’ve got a good eye spotting me!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Poof!\r",
+                "You’ve got a good eye spotting me!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You also saw through my weak\n",
-				"spots...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You also saw through my weak\n",
+                "spots...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ll play with my Pokémon--even in a\n",
-				"blizzard!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ll play with my Pokémon--even in a\n",
+                "blizzard!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Poof!\r",
-				"You saw through my camouflage again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Poof!\r",
+                "You saw through my camouflage again!\r"
+            ]
+        }
     ]
 }

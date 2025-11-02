@@ -19,27 +19,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ll let you join my fan club if you can\n",
-				"beat me!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll let you join my fan club if you can\n",
+                "beat me!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Ouch! Are you one of those loyal\n",
-				"fans? You sure are rowdy!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ouch! Are you one of those loyal\n",
+                "fans? You sure are rowdy!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Well, that’s me and my Pokémon!\n",
-				"Thank you for being such a fan!\r",
-				"Just so you know, our latest single\n",
-				"is “Jigglin’ Pokémon Wub”!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Well, that’s me and my Pokémon!\n",
+                "Thank you for being such a fan!\r",
+                "Just so you know, our latest single\n",
+                "is “Jigglin’ Pokémon Wub”!\n"
+            ]
+        }
     ]
 }

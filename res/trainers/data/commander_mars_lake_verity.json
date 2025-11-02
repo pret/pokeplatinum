@@ -54,11 +54,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"...!\n",
-				"Again and again...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...!\n",
+                "Again and again...\n"
+            ]
+        }
     ]
 }

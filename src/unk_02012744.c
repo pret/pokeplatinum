@@ -21,8 +21,8 @@ typedef struct FontOAM {
     UnkStruct_02012CE0_sub1 *unk_00;
     int unk_04;
     const Sprite *unk_08;
-    int unk_0C;
-    int unk_10;
+    int x;
+    int y;
 } FontOAM;
 
 typedef struct UnkStruct_02012744_t {
@@ -140,8 +140,8 @@ FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
     GF_ASSERT(v0);
 
     v0->unk_08 = param0->unk_10;
-    v0->unk_0C = param0->unk_18;
-    v0->unk_10 = param0->unk_1C;
+    v0->x = param0->unk_18;
+    v0->y = param0->unk_1C;
 
     v1.unk_0C = &v1;
     v1.unk_10 = &v1;
@@ -185,34 +185,31 @@ int sub_02012898(const Window *param0, int param1, int heapID)
     return v1;
 }
 
-void sub_020128C4(FontOAM *param0, int param1, int param2)
+void FontOAM_SetXY(FontOAM *fontOAM, int x, int y)
 {
-    int v0;
-    VecFx32 v1;
-    const VecFx32 *v2;
+    GF_ASSERT(fontOAM);
 
-    GF_ASSERT(param0);
+    fontOAM->x = x;
+    fontOAM->y = y;
 
-    param0->unk_0C = param1;
-    param0->unk_10 = param2;
+    x *= FX32_ONE;
+    y *= FX32_ONE;
 
-    param1 *= FX32_ONE;
-    param2 *= FX32_ONE;
+    if (fontOAM->unk_08) {
+        const VecFx32 *fontPos = Sprite_GetPosition(fontOAM->unk_08);
 
-    if (param0->unk_08) {
-        v2 = Sprite_GetPosition(param0->unk_08);
-
-        param1 += v2->x;
-        param2 += v2->y;
+        x += fontPos->x;
+        y += fontPos->y;
     }
 
-    v1.z = 0;
+    VecFx32 spritePos;
+    spritePos.z = 0;
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        v1.x = param1 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
-        v1.y = param2 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
+    for (int v0 = 0; v0 < fontOAM->unk_04; v0++) {
+        spritePos.x = x + (fontOAM->unk_00[v0].unk_04 << FX32_SHIFT);
+        spritePos.y = y + (fontOAM->unk_00[v0].unk_08 << FX32_SHIFT);
 
-        Sprite_SetPosition(param0->unk_00[v0].unk_00, &v1);
+        Sprite_SetPosition(fontOAM->unk_00[v0].unk_00, &spritePos);
     }
 }
 
@@ -226,8 +223,8 @@ void sub_02012938(FontOAM *param0)
     GF_ASSERT(param0);
 
     if (param0->unk_08) {
-        v3 = param0->unk_0C << FX32_SHIFT;
-        v4 = param0->unk_10 << FX32_SHIFT;
+        v3 = param0->x << FX32_SHIFT;
+        v4 = param0->y << FX32_SHIFT;
         v2 = Sprite_GetPosition(param0->unk_08);
 
         v3 += v2->x;
@@ -244,14 +241,14 @@ void sub_02012938(FontOAM *param0)
     }
 }
 
-void sub_020129A4(const FontOAM *param0, int *param1, int *param2)
+void FontOAM_GetXY(const FontOAM *fontOAM, int *x, int *y)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
-    GF_ASSERT(param2);
+    GF_ASSERT(fontOAM);
+    GF_ASSERT(x);
+    GF_ASSERT(y);
 
-    *param1 = param0->unk_0C;
-    *param2 = param0->unk_10;
+    *x = fontOAM->x;
+    *y = fontOAM->y;
 }
 
 void sub_020129D0(FontOAM *param0, BOOL param1)
@@ -364,8 +361,8 @@ FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20
     GF_ASSERT(v0);
 
     v0->unk_08 = param0->unk_10;
-    v0->unk_0C = param0->unk_18;
-    v0->unk_10 = param0->unk_1C;
+    v0->x = param0->unk_18;
+    v0->y = param0->unk_1C;
 
     v1 = Heap_AllocAtEnd(param0->heapID, sizeof(NNSG2dImageProxy) * param1->unk_14);
 

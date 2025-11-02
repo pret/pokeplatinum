@@ -19,32 +19,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Look, look! Look at my Pokémon!\n",
-				"It’s really cool!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Look, look! Look at my Pokémon!\n",
+                "It’s really cool!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Wowee! I had to hold on tight to\n",
-				"my inflatable tube!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wowee! I had to hold on tight to\n",
+                "my inflatable tube!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Pools are OK, but I like the sea\n",
-				"because Pokémon live there.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Pools are OK, but I like the sea\n",
+                "because Pokémon live there.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Yay! You came to see my Pokémon\n",
-				"again, right? Look, look!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Yay! You came to see my Pokémon\n",
+                "again, right? Look, look!\r"
+            ]
+        }
     ]
 }

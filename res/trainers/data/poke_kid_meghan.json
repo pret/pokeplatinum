@@ -46,26 +46,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Look at the way I’m dressed.\n",
-				"Can’t you see that I’m hardcore?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Look at the way I’m dressed.\n",
+                "Can’t you see that I’m hardcore?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I was being serious!\n",
-				"Don’t laugh at me! I mean it!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I was being serious!\n",
+                "Don’t laugh at me! I mean it!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I dress this way so I can get a feel for\n",
-				"how electric Pokémon think.\r",
-				"Would you like to try, too?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I dress this way so I can get a feel for\n",
+                "how electric Pokémon think.\r",
+                "Would you like to try, too?\n"
+            ]
+        }
     ]
 }

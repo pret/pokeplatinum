@@ -27,6 +27,7 @@
     ],
     "object_events": [
         {
+            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,6 +42,7 @@
             "y": 0
         },
         {
+            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -55,6 +57,7 @@
             "y": 0
         },
         {
+            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -69,6 +72,7 @@
             "y": 0
         },
         {
+            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

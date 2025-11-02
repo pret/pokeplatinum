@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_east_house.h"
+#include "generated/natures.h"
 
 
     ScriptEntry _0006
@@ -27,7 +28,7 @@ _002C:
     GoTo _006B
 
 _006B:
-    ScrCmd_213 VAR_0x8000, 12
+    FindPartySlotWithNature VAR_0x8000, NATURE_SERIOUS
     GoToIfNe VAR_0x8000, 0xFF, _00C5
     Message 1
     WaitABXPadPress
@@ -36,7 +37,7 @@ _006B:
     End
 
 _0089:
-    ScrCmd_213 VAR_0x8000, 14
+    FindPartySlotWithNature VAR_0x8000, NATURE_NAIVE
     GoToIfNe VAR_0x8000, 0xFF, _00E5
     Message 2
     WaitABXPadPress
@@ -45,7 +46,7 @@ _0089:
     End
 
 _00A7:
-    ScrCmd_213 VAR_0x8000, 24
+    FindPartySlotWithNature VAR_0x8000, NATURE_QUIRKY
     GoToIfNe VAR_0x8000, 0xFF, _0105
     Message 3
     WaitABXPadPress
@@ -57,8 +58,8 @@ _00C5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 4
-    SetVar VAR_0x8004, 16
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -68,8 +69,8 @@ _00E5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 5
-    SetVar VAR_0x8004, 17
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_DOTART
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -79,8 +80,8 @@ _0105:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    SetVar VAR_0x8004, 18
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

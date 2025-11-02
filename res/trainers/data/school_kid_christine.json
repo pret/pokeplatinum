@@ -22,11 +22,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I like to study a lot...\n",
-				"I thought I could win...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I like to study a lot...\n",
+                "I thought I could win...\n"
+            ]
+        }
     ]
 }

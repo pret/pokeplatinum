@@ -20,8 +20,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Waaah! You’re too much!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Waaah! You’re too much!\n"
+        }
     ]
 }

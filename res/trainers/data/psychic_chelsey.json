@@ -29,27 +29,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ll use my mystifying psychic power\n",
-				"to pulverize you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll use my mystifying psychic power\n",
+                "to pulverize you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That’s what I get for making idle\n",
-				"claims...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s what I get for making idle\n",
+                "claims...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Psychic power is a mystery that\n",
-				"defies explanation.\r",
-				"But if everything could be explained,\n",
-				"it would be a boring world."
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Psychic power is a mystery that\n",
+                "defies explanation.\r",
+                "But if everything could be explained,\n",
+                "it would be a boring world."
+            ]
+        }
     ]
 }

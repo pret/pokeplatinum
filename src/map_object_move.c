@@ -28,6 +28,12 @@
 #include "unk_020655F4.h"
 #include "unk_020673B8.h"
 
+#define sinkInDeepSnowDistance    -12
+#define sinkInDeeperSnowDistance  -14
+#define sinkInDeepestSnowDistance -16
+#define sinkInMudDistance         -12
+#define sinkInDeepMudDistance     -14
+
 static int sub_02063478(const MapObject *mapObj);
 static void sub_020634DC(MapObject *mapObj);
 static void sub_020634F4(MapObject *mapObj);
@@ -39,7 +45,7 @@ static void sub_0206363C(MapObject *mapObj);
 static void sub_020636F0(MapObject *mapObj);
 static void sub_0206375C(MapObject *mapObj);
 static void sub_020637D4(MapObject *mapObj);
-static void sub_02063864(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
@@ -60,7 +66,7 @@ static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
 static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063E14(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 
 static BOOL (*const Unk_020EE76C[4])(u8);
 static BOOL (*const Unk_020EE77C[4])(u8);
@@ -174,7 +180,7 @@ static void sub_020635AC(MapObject *mapObj)
         sub_02063964(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A70(mapObj, currTileBehavior, prevTileBehavior, v2);
-        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_SinkIntoTerrain(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C00(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C30(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -201,7 +207,7 @@ static void sub_0206363C(MapObject *mapObj)
         sub_02063CC8(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
 
-        sub_02063E14(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_EmptyFunction(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
@@ -218,7 +224,7 @@ static void sub_020636F0(MapObject *mapObj)
         sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A64(mapObj, currTileBehavior, prevTileBehavior, v2);
-        sub_02063E14(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_EmptyFunction(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
@@ -231,7 +237,7 @@ static void sub_0206375C(MapObject *mapObj)
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_SinkIntoTerrain(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063CFC(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -249,7 +255,7 @@ static void sub_020637D4(MapObject *mapObj)
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_SinkIntoTerrain(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063CFC(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -260,47 +266,47 @@ static void sub_020637D4(MapObject *mapObj)
     }
 }
 
-static void sub_02063864(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (sub_02062EFC(mapObj) == FALSE) {
+    if (MapObject_CheckFlagDoNotSinkIntoTerrain(mapObj) == FALSE) {
         if (TileBehavior_IsDeepMud(currTileBehavior) == TRUE || TileBehavior_IsDeepMudWithGrass(currTileBehavior) == TRUE) {
-            VecFx32 v0 = { 0, (FX32_ONE * -14), 0 };
+            VecFx32 spriteOffset = { 0, FX32_ONE * sinkInDeepMudDistance, 0 };
 
-            sub_020630CC(mapObj, &v0);
+            MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
             return;
         }
 
         if (TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
-            VecFx32 v1 = { 0, (FX32_ONE * -12), 0 };
+            VecFx32 spriteOffset = { 0, FX32_ONE * sinkInMudDistance, 0 };
 
-            sub_020630CC(mapObj, &v1);
+            MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
             return;
         }
 
         if (TileBehavior_IsDeepestSnow(currTileBehavior) == TRUE) {
-            VecFx32 v2 = { 0, (FX32_ONE * -16), 0 };
+            VecFx32 spriteOffset = { 0, FX32_ONE * sinkInDeepestSnowDistance, 0 };
 
-            sub_020630CC(mapObj, &v2);
+            MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
             return;
         }
 
         if (TileBehavior_IsDeeperSnow(currTileBehavior) == TRUE) {
-            VecFx32 v3 = { 0, (FX32_ONE * -14), 0 };
+            VecFx32 spriteOffset = { 0, FX32_ONE * sinkInDeeperSnowDistance, 0 };
 
-            sub_020630CC(mapObj, &v3);
+            MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
             return;
         }
 
         if (TileBehavior_IsDeepSnow(currTileBehavior) == TRUE) {
-            VecFx32 v4 = { 0, (FX32_ONE * -12), 0 };
+            VecFx32 spriteOffset = { 0, FX32_ONE * sinkInDeepSnowDistance, 0 };
 
-            sub_020630CC(mapObj, &v4);
+            MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
             return;
         }
     }
 
-    VecFx32 v5 = { 0, 0, 0 };
-    sub_020630CC(mapObj, &v5);
+    VecFx32 spriteOffset = { 0, 0, 0 };
+    MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
 }
 
 static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
@@ -561,7 +567,7 @@ static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063E14(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     return;
 }

@@ -24,25 +24,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"A strange presence has been felt...\n",
-				"It is emanating from...you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "A strange presence has been felt...\n",
+                "It is emanating from...you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, no!\n",
-				"My MEDITITE!"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, no!\n",
+                "My MEDITITE!"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The Old Chateau... I sense...\n",
-				"a particularly strong presence there."
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The Old Chateau... I sense...\n",
+                "a particularly strong presence there."
+            ]
+        }
     ]
 }

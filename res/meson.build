@@ -1,6 +1,7 @@
 nitrofs_files = []
 naix_headers = []
 h_headers = []
+embed_headers = []
 
 ### PREBUILT FILES ###
 subdir('prebuilt')
@@ -10,8 +11,28 @@ ncgr_gen = generator(nitrogfx_exe,
     output: '@BASENAME@.NCGR',
 )
 
+ncgr_cell_gen = generator(nitrogfx_exe,
+    arguments: [
+        '@INPUT@',
+        '@OUTPUT@',
+        '-cell', '-preservepath',
+        '@EXTRA_ARGS@',
+    ],
+    output: '@BASENAME@.NCGR',
+)
+
 ncgr_lz_gen = generator(nitrogfx_exe,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCGR.lz',
+)
+
+ncgr_cell_lz_gen = generator(nitrogfx_exe,
+    arguments: [
+        '@INPUT@',
+        '@OUTPUT@',
+        '-cell', '@CURRENT_SOURCE_DIR@/@BASENAME@_cell.json',
+        '@EXTRA_ARGS@',
+    ],
     output: '@BASENAME@.NCGR.lz',
 )
 
@@ -45,20 +66,22 @@ lz_gen = generator(nitrogfx_exe,
     output: '@PLAINNAME@.lz',
 )
 
+copy_gen = generator(find_program('cp'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@PLAINNAME@'
+)
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.
 subdir('pokemon')
 subdir('trainers')
+subdir('graphics')
+subdir('town_map')
 subdir('text')
 
 # Common generator for "scripting" files, i.e. field and battle scripts
 relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
-
-copy_gen = generator(find_program('cp'),
-    arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@PLAINNAME@'
-)
 
 # NOTE: The members of the `depends` clause below will always be modified by the
 # postconf script to be order-only dependencies. This means that this generator
@@ -91,6 +114,5 @@ script_bin_gen = generator(make_script_bin_sh,
 subdir('battle')
 subdir('field')
 subdir('fonts')
-subdir('graphics')
 subdir('items')
 subdir('sound')

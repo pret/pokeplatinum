@@ -406,15 +406,15 @@ static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1)
 static void ov22_0225A2F4(UnkStruct_ov22_0225A154 *param0, int param1)
 {
     if (param1 == 0) {
-        sub_020128C4(param0->unk_10, 0, 15);
+        FontOAM_SetXY(param0->unk_10, 0, 15);
         sub_02012A60(param0->unk_10, 4);
     } else {
         if (param1 == 1) {
-            sub_020128C4(param0->unk_10, 0, 19);
+            FontOAM_SetXY(param0->unk_10, 0, 19);
         }
 
         if (param1 == 3) {
-            sub_020128C4(param0->unk_10, 0, 19);
+            FontOAM_SetXY(param0->unk_10, 0, 19);
             sub_02012A60(param0->unk_10, 3);
         }
     }

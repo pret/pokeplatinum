@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "overlay101/struct_ov101_021D5D90_decl.h"
+#include "overworld_anim_manager.h"
 
 void sub_02069BE0(MapObject *param0);
 void sub_02069C0C(MapObject *param0);
@@ -20,8 +20,8 @@ void sub_0206A128(MapObject *param0);
 void sub_0206A134(MapObject *param0);
 void sub_0206A158(MapObject *param0);
 void sub_0206A168(MapObject *param0);
-void sub_0206A218(MapObject *param0, UnkStruct_ov101_021D5D90 *param1);
-UnkStruct_ov101_021D5D90 *sub_0206A224(MapObject *param0);
+void sub_0206A218(MapObject *param0, OverworldAnimManager *param1);
+OverworldAnimManager *sub_0206A224(MapObject *param0);
 void sub_0206A230(MapObject *param0);
 void sub_0206A25C(MapObject *param0);
 void sub_0206A268(MapObject *param0);

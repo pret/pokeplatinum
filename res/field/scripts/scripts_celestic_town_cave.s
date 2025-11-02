@@ -114,10 +114,10 @@ _01C3:
     Message 11
     CloseMessage
     WaitTime 15, VAR_RESULT
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 8, _029D
@@ -125,9 +125,9 @@ _01C3:
     CallIfEq VAR_0x8004, 10, _02FA
     CallIfEq VAR_0x8004, 11, _0343
     Message 13
-    SetVar VAR_0x8004, 0x1A6
+    SetVar VAR_0x8004, ITEM_HM03
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x01AC
     ClearFlag FLAG_UNK_0x01C3
     SetFlag FLAG_DUMMY_2445

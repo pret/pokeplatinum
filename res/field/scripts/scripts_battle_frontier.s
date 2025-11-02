@@ -44,7 +44,7 @@
 
 _009A:
     SetFlag FLAG_UNK_0x02CB
-    ScrCmd_238 19, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _00D5
     ScrCmd_329 VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
     SetObjectEventPos 29, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2
@@ -281,11 +281,11 @@ _027E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_2E2
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -352,10 +352,10 @@ _0360:
     ApplyMovement LOCALID_PLAYER, _0398
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, 2
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -369,10 +369,10 @@ _03A0:
     ApplyMovement LOCALID_PLAYER, _03D8
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, 2
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -386,10 +386,10 @@ _03E0:
     ApplyMovement LOCALID_PLAYER, _0418
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, 3
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -403,10 +403,10 @@ _0420:
     ApplyMovement LOCALID_PLAYER, _0458
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, 3
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

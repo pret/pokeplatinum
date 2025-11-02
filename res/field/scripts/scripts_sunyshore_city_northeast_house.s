@@ -114,126 +114,126 @@ _019E:
     Message 20
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 21
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SMILE
-    ScrCmd_232 3, 65
+    BufferRibbonName 3, RIBBON_SMILE
     GoTo _010E
 
 _01F2:
     Message 2
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 3
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_ALERT
-    ScrCmd_232 3, 59
+    BufferRibbonName 3, RIBBON_ALERT
     GoTo _010E
 
 _0246:
     Message 10
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 11
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SHOCK
-    ScrCmd_232 3, 60
+    BufferRibbonName 3, RIBBON_SHOCK
     GoTo _010E
 
 _029A:
     Message 12
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 13
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_DOWNCAST
-    ScrCmd_232 3, 61
+    BufferRibbonName 3, RIBBON_DOWNCAST
     GoTo _010E
 
 _02EE:
     Message 14
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 15
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_CARELESS
-    ScrCmd_232 3, 62
+    BufferRibbonName 3, RIBBON_CARELESS
     GoTo _010E
 
 _0342:
     Message 16
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 17
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_RELAX
-    ScrCmd_232 3, 63
+    BufferRibbonName 3, RIBBON_RELAX
     GoTo _010E
 
 _0396:
     Message 18
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 19
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SNOOZE
-    ScrCmd_232 3, 64
+    BufferRibbonName 3, RIBBON_SNOOZE
     GoTo _010E
 
 _03EA:

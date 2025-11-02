@@ -6,12 +6,11 @@
 #include "constants/narc.h"
 #include "generated/signpost_types.h"
 
-#include "struct_defs/struct_02013610.h"
-
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -27,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_020131EC.h"
 
 #include "res/graphics/signposts/field_board.naix.h"
 #include "res/graphics/windows/pl_winframe.naix.h"
@@ -889,12 +887,12 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     buf = Heap_Alloc(param0->heapID, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
     // frame 0
-    UnkStruct_02013610 v6 = { 0, 0, 10, 10 };
-    sub_020135F0(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &v6, buf);
+    TileRegion frame0Region = FRAME_0_REGION;
+    CharacterSprite_LoadSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame0Region, buf);
 
     // frame 1
-    UnkStruct_02013610 v7 = { 10, 0, 10, 10 };
-    sub_020135F0(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &v7, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
+    TileRegion frame1Region = FRAME_1_REGION;
+    CharacterSprite_LoadSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame1Region, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
     charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_CHAR], POKEMON_PREVIEW_RESOURCE_ID);
     imageProxy = SpriteTransfer_GetImageProxy(charResource);
@@ -905,7 +903,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
 
     Heap_Free(buf);
 
-    buf = sub_02013660(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
+    buf = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
     plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
     paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
     offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);

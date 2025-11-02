@@ -11,6 +11,7 @@
     ],
     "object_events": [
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -25,6 +26,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_F_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -39,6 +41,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -53,6 +56,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_3",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -67,6 +71,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -83,6 +88,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_F_5",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -99,6 +105,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_GRUNT_M_6",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -115,6 +122,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_7",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -129,6 +137,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_8",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -143,6 +152,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_9",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,6 +167,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_10",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,6 +182,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_11",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -185,6 +197,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_12",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -199,6 +212,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_13",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -213,6 +227,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_14",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -227,6 +242,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_15",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -241,6 +257,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_16",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -255,6 +272,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_17",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -269,6 +287,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_18",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -283,6 +302,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_19",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -297,6 +317,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_20",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,6 +332,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_21",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -325,6 +347,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_22",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -339,6 +362,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_23",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -353,6 +377,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_24",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -367,6 +392,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_25",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -381,6 +407,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_26",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -395,6 +422,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_27",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -409,6 +437,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_MAGIKARP_28",
             "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -423,6 +452,7 @@
             "y": 0
         },
         {
+            "id": "LAKE_VALOR_DRAINED_POKEBALL_29",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -459,3 +489,4 @@
     ],
     "coord_events": []
 }
+

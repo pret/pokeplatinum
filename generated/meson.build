@@ -38,15 +38,20 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'battle_tower_functions': { 'type': 'enum', 'tag': 'BattleTowerFunction' },
+    'battle_tower_modes': { 'type': 'enum', 'tag': 'BattleTowerMode' },
+    'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
+    'fade_types': { 'type': 'enum', 'tag': 'FadeType' },
     'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
@@ -73,6 +78,7 @@ metang_generators = {
     'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
+    'player_transitions': { 'type': 'mask', 'tag': 'PlayerTransition' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
     'pokemon_colors': { 'type': 'enum', 'tag': 'PokemonColor' },
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
@@ -92,6 +98,8 @@ metang_generators = {
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
+    'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },
+    'town_map_description_flag_types': { 'type': 'enum', 'tag': 'TownMapDescriptionFlagType' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
@@ -145,9 +153,11 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
+moves_txt = files('moves.txt')
 npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
+trainer_classes_txt = files('trainer_classes.txt')
 trainers_txt = files('trainers.txt')
 
 py_consts_env = environment()

@@ -84,12 +84,12 @@ ValorCavern_CommanderSaturn:
     GoToIfEq VAR_RESULT, FALSE, ValorCavern_LostBattleCommanderSaturn
     Message ValorCavern_Text_SaturnPostBattle
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject LOCALID_SATURN
     SetFlag FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN
     SetFlag FLAG_ALT_MUSIC_LAKE_VALOR
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

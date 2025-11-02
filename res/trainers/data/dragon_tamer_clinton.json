@@ -39,26 +39,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"This is a place where tough Trainers\n",
-				"naturally congregate.\r",
-				"It’s ideal for training!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "This is a place where tough Trainers\n",
+                "naturally congregate.\r",
+                "It’s ideal for training!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That’s why I like it here; I get to\n",
-				"battle tough characters like you.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That’s why I like it here; I get to\n",
+                "battle tough characters like you.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"When two roads diverge, you must\n",
-				"choose the path less traveled...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "When two roads diverge, you must\n",
+                "choose the path less traveled...\n"
+            ]
+        }
     ]
 }

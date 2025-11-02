@@ -1,4 +1,5 @@
 {
+    "name": "Leda",
     "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
     "availableSets": [
         "jynx_1",
@@ -49,5 +50,28 @@
         "regice_3",
         "articuno_4",
         "regice_4"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I wish you’d leave.\n",
+                "I don’t want to see you lose."
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": [
+                "I told you so...\n",
+                "Can you leave, please?\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Listen...is being tough not always a\n",
+                "good thing?\r"
+            ]
+        }
     ]
 }

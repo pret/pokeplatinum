@@ -58,7 +58,7 @@ static int MapSpawnIdToIndex(int spawnDestination)
     return spawnDestination;
 }
 
-int sub_0203A7EC(void)
+int FieldOverworldState_GetDefaultWarpID(void)
 {
     return 1;
 }

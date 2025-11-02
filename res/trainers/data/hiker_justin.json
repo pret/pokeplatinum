@@ -29,33 +29,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I just got through Mt. Coronet, but\n",
-				"I’ve still got energy to burn!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I just got through Mt. Coronet, but\n",
+                "I’ve still got energy to burn!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Whoops!\n",
-				"Taken down easily!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Whoops!\n",
+                "Taken down easily!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"We need to rest up in Oreburgh City\n",
-				"before heading to Mt. Coronet again.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "We need to rest up in Oreburgh City\n",
+                "before heading to Mt. Coronet again.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I just got through Mt. Coronet,\n",
-				"and who do I see?\r",
-				"A Trainer who we’ve battled before!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I just got through Mt. Coronet,\n",
+                "and who do I see?\r",
+                "A Trainer who we’ve battled before!\r"
+            ]
+        }
     ]
 }

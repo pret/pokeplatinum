@@ -31,10 +31,10 @@ _0022:
     GoToIfEq VAR_RESULT, FALSE, _0135
     Message 1
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     WaitTime 15, VAR_RESULT
     GetPlayerDir VAR_0x8004
@@ -65,7 +65,7 @@ _00D0:
 _00E2:
     Message 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetFlag FLAG_UNK_0x01FD
     SetFlag FLAG_UNK_0x01BB
@@ -78,7 +78,7 @@ _00E2:
     RemoveObject 1
     RemoveObject 3
     SetVar VAR_UNK_0x407A, 3
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING
     ReleaseAll

@@ -1526,7 +1526,7 @@ void BattlePartyText_DisplayMessage(BattleParty *battleParty)
 
 void ov13_02224108(BattleParty *param0)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     param0->textPrinterID = Text_AddPrinterWithParams(&param0->messageBoxWindows[1], FONT_MESSAGE, param0->strbuf, 0, 0, BattleSystem_TextSpeed(param0->context->battleSystem), NULL);
 }
 

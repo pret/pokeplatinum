@@ -39,24 +39,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"What it means to win battles...\n",
-				"That is what I seek.\f",
-				"Teach me if you will!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "What it means to win battles...\n",
+                "That is what I seek.\f",
+                "Teach me if you will!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I grow less certain still...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I grow less certain still...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Perhaps there is no meaning to\n",
-				"victory, but still I will battle!\r",
-				"That is what makes me a Trainer!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Perhaps there is no meaning to\n",
+                "victory, but still I will battle!\r",
+                "That is what makes me a Trainer!\n"
+            ]
+        }
     ]
 }

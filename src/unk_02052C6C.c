@@ -5,7 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02099F80.h"
@@ -20,6 +19,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
+#include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "location.h"
@@ -37,7 +37,6 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
@@ -45,7 +44,7 @@
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_0203E234 unk_04;
+    HallOfFameDisplayData displayData;
     UnkStruct_0203E274 unk_10;
     Window unk_1C;
     Strbuf *unk_2C;
@@ -77,7 +76,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     v1 = SaveData_GetParty(fieldSystem->saveData);
 
     GetCurrentDate(&v2);
-    sub_0202DFA8(v0, v1, &v2);
+    HallOfFame_AddEntry(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
     Heap_Free(v0);
 }
@@ -89,16 +88,16 @@ static BOOL sub_02052CBC(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205300C *v3 = FieldTask_GetEnv(param0);
     int *v4 = FieldTask_GetState(param0);
-    UnkStruct_0203E234 *v5 = &v3->unk_04;
+    HallOfFameDisplayData *displayData = &v3->displayData;
 
     switch (*v4) {
     case 0:
-        sub_0203E234(fieldSystem, v5);
+        FieldTask_StartHallOfFame(fieldSystem, displayData);
         (*v4)++;
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, 0x20000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, HEAP_SIZE_FIELD1);
             sub_02052F28(fieldSystem, v3);
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD3);
             (*v4)++;
@@ -186,9 +185,9 @@ void sub_02052E58(FieldTask *param0)
     v2 = FieldOverworldState_GetExitLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v5->unk_00 = SystemFlag_CheckGameCompleted(v3);
-    v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v5->unk_04.unk_04 = SaveData_GetParty(fieldSystem->saveData);
-    v5->unk_04.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
+    v5->displayData.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    v5->displayData.party = SaveData_GetParty(fieldSystem->saveData);
+    v5->displayData.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
     v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v5->unk_10.unk_04 = SystemFlag_CheckGameCompleted(v3);
     v5->unk_10.unk_08 = SaveData_GetPokedex(fieldSystem->saveData);

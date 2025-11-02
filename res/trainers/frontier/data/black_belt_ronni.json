@@ -1,4 +1,5 @@
 {
+    "name": "Ronni",
     "class": "TRAINER_CLASS_BLACK_BELT",
     "availableSets": [
         "primeape_2",
@@ -75,5 +76,25 @@
         "entei_4",
         "heatran_4",
         "none_1"
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hi-yah! Hah! Hah!\n",
+                "One more! Hah! Hah!"
+            ]
+        },
+        {
+            "type": "TRMSG_WIN",
+            "en_US": "Boo-yah!\r"
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hi-yah! ...No, wait!\n",
+                "No!\r"
+            ]
+        }
     ]
 }

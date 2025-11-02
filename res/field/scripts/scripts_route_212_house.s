@@ -56,12 +56,12 @@ _0053:
 _007E:
     Message 2
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0264
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
@@ -87,13 +87,13 @@ _012F:
     Message 9
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _01E9
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     OpenSummaryScreenTeachMove VAR_0x8000, VAR_0x8003
     GetSummarySelectedMoveSlot VAR_0x8002
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 4, _01E9
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002

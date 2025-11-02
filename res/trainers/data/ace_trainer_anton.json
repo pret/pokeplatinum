@@ -24,24 +24,24 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"We spend all our time battling in the\n",
-				"blizzards of Snowpoint City.\r",
-				"We’ll show you how it’s toughened\n",
-				"us up!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "We spend all our time battling in the\n",
+                "blizzards of Snowpoint City.\r",
+                "We’ll show you how it’s toughened\n",
+                "us up!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "What’s with your toughness?!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "What’s with your toughness?!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You’ve battled all over, you say?\n",
-				"That makes you tough, perhaps.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You’ve battled all over, you say?\n",
+                "That makes you tough, perhaps.\n"
+            ]
+        }
     ]
 }

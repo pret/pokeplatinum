@@ -19,27 +19,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Are we all ready to have some fun?\n",
-				"I sure am! Aren’t you having fun?!\f",
-				"Let’s make it fun! OK?! Mwahahah!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Are we all ready to have some fun?\n",
+                "I sure am! Aren’t you having fun?!\f",
+                "Let’s make it fun! OK?! Mwahahah!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, no, no, no!\n",
-				"Mwahahah?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, no, no, no!\n",
+                "Mwahahah?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"A clown’s makeup is a face that’s\n",
-				"crying while laughing. Mwahahah!\r",
-				"It defines what we do!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "A clown’s makeup is a face that’s\n",
+                "crying while laughing. Mwahahah!\r",
+                "It defines what we do!\n"
+            ]
+        }
     ]
 }

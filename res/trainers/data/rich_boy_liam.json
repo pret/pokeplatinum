@@ -21,8 +21,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Too much for me!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Too much for me!\n"
+        }
     ]
 }

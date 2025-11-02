@@ -1,6 +1,10 @@
 #ifndef POKEPLATINUM_GLOBAL_H
 #define POKEPLATINUM_GLOBAL_H
 
+#ifdef EXPLICIT_WCHAR_TYPEDEF
+typedef unsigned short wchar_t;
+#endif
+
 #include <nitro.h>
 #pragma thumb on
 #include <nnsys.h>

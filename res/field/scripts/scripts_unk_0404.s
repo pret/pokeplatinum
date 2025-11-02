@@ -2324,7 +2324,7 @@ _1EF0:
 
 _1F33:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
+    CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _20C6
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
@@ -2398,7 +2398,7 @@ _205E:
 
 _207D:
     BufferPlayerName 0
-    ScrCmd_33C 1, VAR_0x8004
+    BufferItemNameWithArticle 1, VAR_0x8004
     BufferTMHMMoveName 2, VAR_0x8004
     Message 6
     GoTo _1F33
@@ -2406,7 +2406,7 @@ _207D:
 
 _2095:
     BufferPlayerName 0
-    ScrCmd_33C 1, VAR_0x8004
+    BufferItemNameWithArticle 1, VAR_0x8004
     Message 3
     GoTo _1F33
     End

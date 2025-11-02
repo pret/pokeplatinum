@@ -25,6 +25,7 @@
 #include "overlay005/struct_ov5_021FB0F0.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
+#include "berry_patch_graphics.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object_move.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {
@@ -77,9 +77,9 @@ typedef struct MapObject {
     int y;
     int z;
     VecFx32 pos;
-    VecFx32 unk_7C;
+    VecFx32 spriteJumpOffset;
     VecFx32 unk_88;
-    VecFx32 unk_94;
+    VecFx32 spriteTerrainOffset;
     u32 unk_A0;
     enum MovementAction movementAction;
     int movementStep;
@@ -1017,7 +1017,7 @@ int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
         return 0;
     }
 
-    int v0 = sub_02062924(mapObj);
+    int v0 = MapObject_GetEffectiveGraphicsID(mapObj);
 
     if (v0 != param1) {
         return 0;
@@ -1236,12 +1236,12 @@ u32 MapObject_GetGraphicsID(const MapObject *mapObj)
     return mapObj->graphicsID;
 }
 
-u32 sub_02062924(const MapObject *mapObj)
+u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj)
 {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
-    if (sub_020677F4(graphicsID) == TRUE) {
-        graphicsID = sub_02067800(mapObj);
+    if (BerryPatchGraphics_IsBerryPatch(graphicsID) == TRUE) {
+        graphicsID = BerryPatchGraphics_GetCurrentGraphicsResourceID(mapObj);
     }
 
     return graphicsID;
@@ -1896,18 +1896,18 @@ int sub_02062EC8(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062EE0(MapObject *mapObj, int param1)
+void MapObject_SetFlagDoNotSinkIntoTerrain(MapObject *mapObj, BOOL flag)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_27);
+    if (flag == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_27);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     }
 }
 
-int sub_02062EFC(const MapObject *mapObj)
+int MapObject_CheckFlagDoNotSinkIntoTerrain(const MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_27)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN)) {
         return TRUE;
     }
 
@@ -1980,15 +1980,15 @@ int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj)
 void sub_02062FC4(MapObject *mapObj, int param1)
 {
     if (param1 == TRUE) {
-        sub_020628F0(mapObj, (1 << 2));
+        sub_020628F0(mapObj, 1 << 2);
     } else {
-        sub_020628F8(mapObj, (1 << 2));
+        sub_020628F8(mapObj, 1 << 2);
     }
 }
 
 int sub_02062FDC(const MapObject *mapObj)
 {
-    if (sub_02062904(mapObj, (1 << 2))) {
+    if (sub_02062904(mapObj, 1 << 2)) {
         return TRUE;
     }
 
@@ -2120,19 +2120,19 @@ fx32 MapObject_GetPosY(const MapObject *mapObj)
     return mapObj->pos.y;
 }
 
-void sub_02063078(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteJumpOffset(const MapObject *mapObj, VecFx32 *vec)
 {
-    *vec = mapObj->unk_7C;
+    *vec = mapObj->spriteJumpOffset;
 }
 
-void sub_02063088(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteJumpOffset(MapObject *mapObj, const VecFx32 *vec)
 {
-    mapObj->unk_7C = *vec;
+    mapObj->spriteJumpOffset = *vec;
 }
 
-VecFx32 *sub_02063098(MapObject *mapObj)
+VecFx32 *MapObject_GetSpriteJumpOffset1(MapObject *mapObj)
 {
-    return &mapObj->unk_7C;
+    return &mapObj->spriteJumpOffset;
 }
 
 void sub_0206309C(const MapObject *mapObj, VecFx32 *vec)
@@ -2145,14 +2145,14 @@ void sub_020630AC(MapObject *mapObj, const VecFx32 *vec)
     mapObj->unk_88 = *vec;
 }
 
-void sub_020630BC(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteTerrainOffset(const MapObject *mapObj, VecFx32 *spriteOffset)
 {
-    *vec = mapObj->unk_94;
+    *spriteOffset = mapObj->spriteTerrainOffset;
 }
 
-void sub_020630CC(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteTerrainOffset(MapObject *mapObj, const VecFx32 *spriteOffset)
 {
-    mapObj->unk_94 = *vec;
+    mapObj->spriteTerrainOffset = *spriteOffset;
 }
 
 int sub_020630DC(const MapObject *mapObj)

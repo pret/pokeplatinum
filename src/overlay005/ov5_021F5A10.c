@@ -11,13 +11,11 @@
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 
 #include "map_object.h"
+#include "overworld_anim_manager.h"
 #include "sound_playback.h"
 #include "unk_02020AEC.h"
-#include "unk_020711EC.h"
 
 void include_unk_ov5_02200B98(void);
 
@@ -69,9 +67,9 @@ static void ov5_021F5BF0(UnkStruct_ov5_021F5A34 *param0, int param1);
 static void ov5_021F5C04(UnkStruct_ov5_021F5A34 *param0, int param1);
 static UnkStruct_020216E0 *ov5_021F5C18(UnkStruct_ov5_021DF47C *param0, int param1, VecFx32 *param2, u32 param3);
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B98;
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B84;
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200BAC;
+static const OverworldAnimManagerFuncs Unk_ov5_02200B98;
+static const OverworldAnimManagerFuncs Unk_ov5_02200B84;
+static const OverworldAnimManagerFuncs Unk_ov5_02200BAC;
 const UnkStruct_020217F4 Unk_ov5_02200BC0[];
 
 void *ov5_021F5A10(UnkStruct_ov5_021DF47C *param0)
@@ -242,15 +240,15 @@ static UnkStruct_020216E0 *ov5_021F5C18(UnkStruct_ov5_021DF47C *param0, int para
     return v1;
 }
 
-int ov5_021F5C4C(UnkStruct_ov101_021D5D90 *param0)
+int ov5_021F5C4C(OverworldAnimManager *param0)
 {
-    UnkStruct_ov5_021F5C4C *v0 = sub_02071598(param0);
+    UnkStruct_ov5_021F5C4C *v0 = OverworldAnimManager_GetFuncsContext(param0);
     return v0->unk_14;
 }
 
-void ov5_021F5C58(UnkStruct_ov101_021D5D90 *param0)
+void ov5_021F5C58(OverworldAnimManager *param0)
 {
-    UnkStruct_ov5_021F5C4C *v0 = sub_02071598(param0);
+    UnkStruct_ov5_021F5C4C *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     v0->unk_10 = 1;
 
@@ -259,37 +257,37 @@ void ov5_021F5C58(UnkStruct_ov101_021D5D90 *param0)
     }
 }
 
-static int ov5_021F5C70(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov5_021F5C70(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F5C4C *v1;
     const UnkStruct_ov5_021F5D8C *v2;
 
     v1 = param1;
-    v2 = sub_020715BC(param0);
+    v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_30 = *v2;
     v1->unk_24.y = (FX32_ONE * 6);
 
     ov5_021F5BF0(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     v1->unk_40 = ov5_021F5C18(v1->unk_30.unk_04, v1->unk_30.unk_00, &v0, v1->unk_30.unk_08->unk_06);
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    if (sub_020715B4(param0) == 1) {
+    if (OverworldAnimManager_GetID(param0) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
     return 1;
 }
 
-static void ov5_021F5CD4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F5CD4(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F5C4C *v1 = param1;
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
 
     switch (v1->unk_00) {
     case 0:
@@ -315,10 +313,10 @@ static void ov5_021F5CD4(UnkStruct_ov101_021D5D90 *param0, void *param1)
         break;
     }
 
-    sub_020715D4(param0, &v0);
+    OverworldAnimManager_SetPosition(param0, &v0);
 }
 
-static void ov5_021F5D38(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F5D38(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5C4C *v0 = param1;
 
@@ -328,7 +326,7 @@ static void ov5_021F5D38(UnkStruct_ov101_021D5D90 *param0, void *param1)
     ov5_021F5C04(v0->unk_30.unk_08, v0->unk_30.unk_00);
 }
 
-static void ov5_021F5D54(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F5D54(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F5C4C *v1 = param1;
@@ -337,7 +335,7 @@ static void ov5_021F5D54(UnkStruct_ov101_021D5D90 *param0, void *param1)
         return;
     }
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
 
     v0.x += v1->unk_18.x;
     v0.y += v1->unk_18.y;
@@ -346,14 +344,14 @@ static void ov5_021F5D54(UnkStruct_ov101_021D5D90 *param0, void *param1)
     sub_020212A8(v1->unk_40, &v0);
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F5D8C(MapObject *param0, int param1, int param2, int param3)
+OverworldAnimManager *ov5_021F5D8C(MapObject *param0, int param1, int param2, int param3)
 {
     int v0;
     UnkStruct_ov5_021F5D8C v1;
     UnkStruct_ov5_021DF47C *v2;
     VecFx32 v3;
-    UnkStruct_ov101_021D5D90 *v4;
-    const UnkStruct_ov101_021D86B0 *v5;
+    OverworldAnimManager *v4;
+    const OverworldAnimManagerFuncs *v5;
 
     v2 = ov5_021DF578(param0);
 
@@ -375,14 +373,14 @@ UnkStruct_ov101_021D5D90 *ov5_021F5D8C(MapObject *param0, int param1, int param2
     return v4;
 }
 
-static int ov5_021F5DE4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F5C4C *v1;
     const UnkStruct_ov5_021F5D8C *v2;
 
     v1 = param1;
-    v2 = sub_020715BC(param0);
+    v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
@@ -391,18 +389,18 @@ static int ov5_021F5DE4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     ov5_021F5BF0(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     v1->unk_40 = ov5_021F5C18(v1->unk_30.unk_04, v1->unk_30.unk_00, &v0, v1->unk_30.unk_08->unk_06);
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    if (sub_020715B4(param0) == 1) {
+    if (OverworldAnimManager_GetID(param0) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
     return 1;
 }
 
-static void ov5_021F5E58(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F5E58(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5C4C *v0;
     MapObject *v1;
@@ -441,17 +439,17 @@ static void ov5_021F5E58(UnkStruct_ov101_021D5D90 *param0, void *param1)
         break;
     }
 
-    sub_020715D4(param0, &v2);
+    OverworldAnimManager_SetPosition(param0, &v2);
 }
 
-static int ov5_021F5EE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov5_021F5EE0(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F5C4C *v1;
     const UnkStruct_ov5_021F5D8C *v2;
 
     v1 = param1;
-    v2 = sub_020715BC(param0);
+    v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
@@ -465,7 +463,7 @@ static int ov5_021F5EE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov5_021F5F24(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5C4C *v0;
     MapObject *v1;
@@ -494,7 +492,7 @@ static void ov5_021F5F24(UnkStruct_ov101_021D5D90 *param0, void *param1)
         sub_02021320(v0->unk_40, 1);
         v0->unk_10 = 0;
 
-        if (sub_020715B4(param0) == 1) {
+        if (OverworldAnimManager_GetID(param0) == 1) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
 
@@ -522,10 +520,10 @@ static void ov5_021F5F24(UnkStruct_ov101_021D5D90 *param0, void *param1)
         break;
     }
 
-    sub_020715D4(param0, &v2);
+    OverworldAnimManager_SetPosition(param0, &v2);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B98 = {
+static const OverworldAnimManagerFuncs Unk_ov5_02200B98 = {
     (sizeof(UnkStruct_ov5_021F5C4C)),
     ov5_021F5C70,
     ov5_021F5D38,
@@ -533,7 +531,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B98 = {
     ov5_021F5D54
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B84 = {
+static const OverworldAnimManagerFuncs Unk_ov5_02200B84 = {
     (sizeof(UnkStruct_ov5_021F5C4C)),
     ov5_021F5DE4,
     ov5_021F5D38,
@@ -541,7 +539,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B84 = {
     ov5_021F5D54
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov5_02200BAC = {
+static const OverworldAnimManagerFuncs Unk_ov5_02200BAC = {
     (sizeof(UnkStruct_ov5_021F5C4C)),
     ov5_021F5EE0,
     ov5_021F5D38,
@@ -556,5 +554,5 @@ static const UnkStruct_020217F4 Unk_ov5_02200BC0[] = {
 
 void include_unk_ov5_02200B98(void)
 {
-    int dummy = Unk_ov5_02200B98.unk_00;
+    int dummy = Unk_ov5_02200B98.ctxSize;
 }

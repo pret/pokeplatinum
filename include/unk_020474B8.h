@@ -39,7 +39,7 @@ BOOL ScrCmd_2B3(ScriptContext *param0);
 BOOL ScrCmd_2F3(ScriptContext *param0);
 BOOL ScrCmd_33C(ScriptContext *param0);
 BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx);
-BOOL ScrCmd_33E(ScriptContext *param0);
+BOOL ScrCmd_BufferUndergroundGoodName(ScriptContext *ctx);
 BOOL ScrCmd_33F(ScriptContext *param0);
 BOOL ScrCmd_340(ScriptContext *param0);
 BOOL ScrCmd_341(ScriptContext *param0);
@@ -48,6 +48,6 @@ BOOL ScrCmd_343(ScriptContext *param0);
 BOOL ScrCmd_344(ScriptContext *param0);
 BOOL ScrCmd_345(ScriptContext *param0);
 BOOL ScrCmd_346(ScriptContext *param0);
-BOOL ScrCmd_347(ScriptContext *param0);
+BOOL ScrCmd_BufferFloorNumber(ScriptContext *param0);
 
 #endif // POKEPLATINUM_UNK_020474B8_H

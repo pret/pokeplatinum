@@ -37,16 +37,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"How much stronger did your Pokémon\n",
-				"become?\r",
-				"Let me check for you, OK?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "How much stronger did your Pokémon\n",
+                "become?\r",
+                "Let me check for you, OK?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I’ve had my fill...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I’ve had my fill...\n"
+        }
     ]
 }

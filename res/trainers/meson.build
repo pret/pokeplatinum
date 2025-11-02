@@ -47,4 +47,5 @@ datagen_trainer_out = custom_target('datagen_trainer_out',
 nitrofs_files += datagen_trainer_out
 
 
+subdir('classes')
 subdir('frontier')

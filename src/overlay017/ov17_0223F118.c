@@ -155,7 +155,7 @@ void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruc
         sub_02012A90(v4, param8);
     }
 
-    sub_020128C4(v4, param10, param11);
+    FontOAM_SetXY(v4, param10, param11);
     Window_Remove(&v1);
 
     param4->unk_00 = v4;
@@ -176,7 +176,7 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     }
 
     param2 += 0 - 8;
-    sub_020128C4(param0->unk_00, param1, param2);
+    FontOAM_SetXY(param0->unk_00, param1, param2);
 }
 
 Strbuf *ov17_0223F310(u32 param0, u32 heapID)

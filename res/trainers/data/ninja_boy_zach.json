@@ -37,34 +37,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"ZUBAT! Doesn’t that sound like a\n",
-				"ninja bursting from cover?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "ZUBAT! Doesn’t that sound like a\n",
+                "ninja bursting from cover?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh!\n",
-				"My ZUBAT tristars...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh!\n",
+                "My ZUBAT tristars...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Sowing confusion among the foe is\n",
-				"one way a ninja battles.\r",
-				"A Pokémon can’t overcome its\n",
-				"confusion unless it switches out.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Sowing confusion among the foe is\n",
+                "one way a ninja battles.\r",
+                "A Pokémon can’t overcome its\n",
+                "confusion unless it switches out.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"The shinobi live by speed!\n",
-				"I’ll get in my attacks before you do!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "The shinobi live by speed!\n",
+                "I’ll get in my attacks before you do!\r"
+            ]
+        }
     ]
 }

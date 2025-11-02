@@ -2,7 +2,7 @@
   "key": 19025,
   "messages": [
     {
-      "id": "pl_msg_00000132_00000",
+      "id": "PastoriaCityMart_Text_CroagunkIsOfficialCityMascot",
       "en_US": [
         "The Pokémon CROAGUNK is the city’s\n",
         "official mascot.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000132_00001",
+      "id": "PastoriaCityMart_Text_AreYouUsingBallCapsules",
       "en_US": [
         "Put Seals on the Capsule, then put\n",
         "it on a Poké Ball...\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000132_00002",
+      "id": "PastoriaCityMart_Text_LooksLikeItsSeepingPoison",
       "en_US": [
         "It’s a wood carving of the Pokémon\n",
         "CROAGUNK.\r",

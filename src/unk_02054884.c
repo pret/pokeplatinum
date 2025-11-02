@@ -76,9 +76,9 @@ BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int par
     return result;
 }
 
-void sub_02054988(Party *party, int param1, int param2, u16 param3)
+void Party_ResetMonMoveSlot(Party *party, int partySlot, int moveSlot, u16 moveID)
 {
-    Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(party, param1), param3, param2);
+    Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(party, partySlot), moveID, moveSlot);
 }
 
 // In many of the functions below, C99-style iterator declaration doesn't match

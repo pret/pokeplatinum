@@ -10,7 +10,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0090, _0028
+    GoToIfSet FLAG_HAS_POKEDEX, _0028
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -29,7 +29,7 @@ _0033:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    GoToIfSet FLAG_UNK_0x0090, _0054
+    GoToIfSet FLAG_HAS_POKEDEX, _0054
     Message 2
     WaitABXPadPress
     CloseMessage

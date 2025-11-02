@@ -209,7 +209,7 @@ void ov62_022354A4(SysTask *param0, void *param1)
         }
 
         ov62_02230E68(v0->unk_20, v1, v2);
-        sub_020128C4(v0->unk_24, 36, -8);
+        FontOAM_SetXY(v0->unk_24, 36, -8);
 
         *(v0->unk_2C) = 1;
     } break;

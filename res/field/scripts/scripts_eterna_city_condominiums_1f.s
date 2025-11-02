@@ -21,19 +21,19 @@ _0032:
     Message 1
     WaitABPress
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _00B3
     SetVar VAR_0x8005, VAR_RESULT
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00BE
-    ScrCmd_199 VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00C9
+    CheckIsPartyMonOutsider VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C9
     BufferPartyMonNickname 0, VAR_0x8005
     Message 2
     ShowYesNoMenu VAR_RESULT
@@ -68,14 +68,14 @@ _00D9:
     WaitABPress
     CloseMessage
     SetVar VAR_RESULT, 0
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0BB VAR_0x8005, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0129
     ScrCmd_2B8 VAR_0x8005
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     BufferPartyMonNickname 0, VAR_0x8005
     Message 4
     WaitABXPadPress
@@ -104,12 +104,10 @@ _0139:
 
 _0168:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2A5
-    GetSelectedPartySlot VAR_RESULT
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
+    SelectPokemonToTrade
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _01D9
     StartNpcTrade NPC_TRADE_CHARAP_CHATOT

@@ -48,7 +48,7 @@ void FieldMessage_ClearWindow(Window *window)
 u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
-    RenderControlFlags_SetAutoScrollFlags(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     return Text_AddPrinterWithParams(window, FONT_MESSAGE, strBuf, 0, 0, Options_TextFrameDelay(options), NULL);

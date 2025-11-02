@@ -21,8 +21,8 @@ enum ButtonManagerState {
 
 /** Button states similar to a game input */
 enum ButtonTouchState {
-    BUTTON_TOUCH_PRESSED = 0, //!< up last frame, down this frame
-    BUTTON_TOUCH_RELEASED, //!< down last frame, up this frame
+    BUTTON_TOUCH_RELEASED = 0, //!< down last frame, up this frame
+    BUTTON_TOUCH_PRESSED, //!< up last frame, down this frame
     BUTTON_TOUCH_DOWN, //!< down last frame, down this frame
 };
 

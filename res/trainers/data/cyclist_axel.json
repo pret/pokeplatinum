@@ -19,30 +19,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Yo! Cycling and Pokémon!\n",
-				"Which do you prefer?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Yo! Cycling and Pokémon!\n",
+                "Which do you prefer?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Hey, not bad, you!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Hey, not bad, you!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"This Cycling Road is one fine place--\n",
-				"great bikes, superb Pokémon,\f",
-				"and awesome Trainers all around!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "This Cycling Road is one fine place--\n",
+                "great bikes, superb Pokémon,\f",
+                "and awesome Trainers all around!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’m sure I’ve seen your face before.\n",
-				"Did we maybe battle?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’m sure I’ve seen your face before.\n",
+                "Did we maybe battle?\r"
+            ]
+        }
     ]
 }

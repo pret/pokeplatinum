@@ -24,11 +24,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Ugh...\n",
-				"I didn’t use items effectively.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ugh...\n",
+                "I didn’t use items effectively.\n"
+            ]
+        }
     ]
 }

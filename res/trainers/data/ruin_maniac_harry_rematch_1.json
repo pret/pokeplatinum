@@ -39,18 +39,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Whilst exploring the ruins, I spotted\n",
-				"you again! I will investigate!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Whilst exploring the ruins, I spotted\n",
+                "you again! I will investigate!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"My investigation revealed the Trainer\n",
-				"to be tough!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My investigation revealed the Trainer\n",
+                "to be tough!\n"
+            ]
+        }
     ]
 }

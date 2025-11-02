@@ -83,7 +83,7 @@ _0100:
     GoTo _00CB
 
 _010C:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -112,10 +112,10 @@ _0149:
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

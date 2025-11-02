@@ -1,0 +1,12 @@
+background.NCLR
+sprites.NCLR
+main_tiles.NCGR
+sub_tiles.NCGR
+main_sprites.NCGR
+sub_sprites.NCGR
+main_sprites_cell.NCER
+main_sprites_anim.NANR
+sub_sprites_cell.NCER
+sub_sprites_anim.NANR
+main_tilemap.NSCR
+sub_tilemap.NSCR

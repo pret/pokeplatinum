@@ -28,8 +28,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "No one’s hurt?\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "No one’s hurt?\n"
+        }
     ]
 }

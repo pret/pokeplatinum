@@ -22,27 +22,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I wield the stupendous power of water!\n",
-				"Don’t think you can win!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I wield the stupendous power of water!\n",
+                "Don’t think you can win!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"But the kid wins anyway!\n",
-				"I’m just bowled over!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "But the kid wins anyway!\n",
+                "I’m just bowled over!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The water rising and falling is tricky,\n",
-				"but don’t let it annoy you.\r",
-				"If you lose sight of yourself, that’s\n",
-				"when you’re set to lose.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The water rising and falling is tricky,\n",
+                "but don’t let it annoy you.\r",
+                "If you lose sight of yourself, that’s\n",
+                "when you’re set to lose.\n"
+            ]
+        }
     ]
 }

@@ -19,38 +19,38 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Oh, we’ll ride upon the sea,\n",
-				"in a boat, just you and me!\r",
-				"That’s the way of the Sailor!\n",
-				"Way of the Sailor. Sing it!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Oh, we’ll ride upon the sea,\n",
+                "in a boat, just you and me!\r",
+                "That’s the way of the Sailor!\n",
+                "Way of the Sailor. Sing it!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your Pokémon...\n",
-				"They’re looking good!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon...\n",
+                "They’re looking good!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You ought to think about becoming\n",
-				"a Sailor yourself.\r",
-				"It’s been great to be able to visit\n",
-				"different places around the world.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You ought to think about becoming\n",
+                "a Sailor yourself.\r",
+                "It’s been great to be able to visit\n",
+                "different places around the world.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Oh, we’ll ride upon the sea,\n",
-				"in a boat, just you and me!\r",
-				"That’s the way of the Sailor!\n",
-				"Way of the Sailor. You sing, too!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Oh, we’ll ride upon the sea,\n",
+                "in a boat, just you and me!\r",
+                "That’s the way of the Sailor!\n",
+                "Way of the Sailor. You sing, too!\r"
+            ]
+        }
     ]
 }

@@ -2,6 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "FIGHT_AREA_MAP_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -18,6 +19,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ARROW_SIGNPOST_1",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,6 +36,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ARROW_SIGNPOST_2",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -50,6 +53,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,6 +68,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_VENT_4",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -78,6 +83,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_SAILOR_5",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,6 +98,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_FISHERMAN_6",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -106,6 +113,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BARRY_7",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -120,6 +128,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BUCK_8",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -134,6 +143,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -150,6 +160,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -166,6 +177,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_UNK_100_11",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,6 +194,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_UNK_100_12",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -198,6 +211,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_POKEMON_BREEDER_M_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,6 +226,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ACE_TRAINER_M_14",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -226,6 +241,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ACE_TRAINER_F_15",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -240,6 +256,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_TWIN_16",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -254,6 +271,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BATTLE_GIRL_17",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -268,6 +286,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_SAILOR_18",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -282,6 +301,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BLACK_BELT_19",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -296,6 +316,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BOLLARD_20",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -310,6 +331,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BOLLARD_21",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -324,6 +346,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ACE_TRAINER_M_22",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -338,6 +361,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BLACK_BELT_23",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -352,6 +376,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_VOLKNER_24",
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -366,6 +391,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_FLINT_25",
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -380,6 +406,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_PALMER_26",
             "graphics_id": "OBJ_EVENT_GFX_PALMER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -394,6 +421,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BLACK_BELT_27",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -408,6 +436,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ACE_TRAINER_F_28",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -422,6 +451,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_ACE_TRAINER_M_29",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -436,6 +466,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_BATTLE_GIRL_30",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -450,6 +481,7 @@
             "y": 0
         },
         {
+            "id": "FIGHT_AREA_SAILOR_31",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -516,3 +548,4 @@
     ],
     "coord_events": []
 }
+
