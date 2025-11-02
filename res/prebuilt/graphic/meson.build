@@ -38,7 +38,6 @@ prebuilt_files = [
     'trainer_case.narc',
     'unionobj2d_onlyfront.narc',
     'unionroom.narc',
-    'waza_oshie_gra.narc',
     'wifi_lobby_other.narc',
     'wifi_lobby.narc',
     'wifi_unionobj.narc',
