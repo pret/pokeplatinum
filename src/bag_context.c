@@ -143,7 +143,7 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 it
     StringTemplate *template;
     Strbuf *templateString;
 
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
+    msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
     template = StringTemplate_Default(heapID);
 
     if (item == ITEM_NONE) {
@@ -182,25 +182,25 @@ void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u
 
     switch (error) {
     case ITEM_USE_CANNOT_DISMOUNT:
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotDismount, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     case ITEM_USE_CANNOT_USE_WITH_PARTNER:
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseWithPartner, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     case ITEM_USE_CANNOT_FISH_HERE:
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
         MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseNoFishing, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     default:
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, heapID);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, heapID);
         template = StringTemplate_Default(heapID);
         templateString = MessageLoader_GetNewStrbuf(msgLoader, CommonStrings_Text_CantDoThatRightNow);
         StringTemplate_SetPlayerName(template, 0, playerInfo);

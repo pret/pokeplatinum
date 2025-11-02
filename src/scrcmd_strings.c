@@ -271,7 +271,7 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
 
 static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID)
 {
-    MessageLoader *speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
+    MessageLoader *speciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     Strbuf *buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
 
     MessageLoader_Free(speciesNames);

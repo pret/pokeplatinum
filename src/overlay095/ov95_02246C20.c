@@ -119,7 +119,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
             tradeData->unk_04 = 0;
             tradeData->unk_08 = BgConfig_New(HEAP_ID_57);
             tradeData->unk_14 = Strbuf_Init(400, HEAP_ID_57);
-            tradeData->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRADE, HEAP_ID_57);
+            tradeData->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRADE, HEAP_ID_57);
             tradeData->unk_0C = StringTemplate_Default(HEAP_ID_57);
 
             switch (tradeData->animationConfig->tradeType) {

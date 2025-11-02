@@ -227,7 +227,7 @@ static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
 
         if (window->textEntryID != -1) {
             StringTemplate *strTemplate;
-            MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, window->textBank, utilMan->heapID);
+            MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, window->textBank, utilMan->heapID);
 
             if (window->strTemplate == NULL) {
                 strTemplate = StringTemplate_Default(utilMan->heapID);

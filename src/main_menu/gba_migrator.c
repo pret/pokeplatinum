@@ -484,7 +484,7 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
     }
 
     if (param1->messageEntryID != -1) {
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MIGRATE_FROM_GBA, HEAP_ID_MIGRATE_FROM_GBA);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MIGRATE_FROM_GBA, HEAP_ID_MIGRATE_FROM_GBA);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
@@ -1265,7 +1265,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
     strBuf = Strbuf_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
+    msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
     species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
 
     MessageLoader_GetStrbuf(msgLoader, species, strBuf);

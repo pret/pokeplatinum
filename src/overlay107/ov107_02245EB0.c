@@ -1112,7 +1112,7 @@ static void ov107_02246EE4(UnkStruct_ov107_02246170 *param0)
     ov107_02247220(param0);
     ov107_02247280(param0);
 
-    param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0201, HEAP_ID_100);
+    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0201, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);

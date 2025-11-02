@@ -1497,7 +1497,7 @@ static void ov62_022427D0(UnkStruct_0208C06C *param0, int param1)
         }
     }
 
-    v4->unk_4C8.unk_0C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
+    v4->unk_4C8.unk_0C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
     v4->unk_4C8.unk_10 = 1;
 }
 

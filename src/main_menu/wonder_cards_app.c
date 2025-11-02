@@ -689,7 +689,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
     }
 
     appData->strList = StringList_New(numEntries, HEAP_ID_WONDER_CARDS_APP);
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
 
     for (int i = 0; i < numEntries; i++) {
         StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, entries[i].stateChange.asU32);
@@ -708,7 +708,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
 
 static void PrintTextEntryToWindow(Window *window, int textEntryID)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -959,7 +959,7 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
 
     WonderCardsAppWindowTemplate *windowTemplates = sWonderCardsAppWindows;
 
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
     appData->strTemplate = StringTemplate_Default(appData->heapID);
     appData->currentScreen = screen;
 
@@ -1023,7 +1023,7 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     Window_FillTilemap(window, windowTemplate->bgColor.colorIndex);
 
     if (windowTemplate->entryID) {
-        appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+        appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
         appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
     }
 
@@ -1737,7 +1737,7 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
     connectedPlayersNetIds[3] = PopEarliestReturnNetId(orderNumbers);
 
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     int trainerInfoYOffset = 0;
 
     Window_FillTilemap(window, 0);
@@ -1782,7 +1782,7 @@ static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *win
     Strbuf *strBuf;
 
     appData->connectedPlayersCount = newCount;
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, 0);

@@ -825,7 +825,7 @@ static void MoveReminder_FreeWindows(MoveReminderController *controller)
 
 static void MoveReminder_InitText(MoveReminderController *controller)
 {
-    controller->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_REMINDER, HEAP_ID_MOVE_REMINDER);
+    controller->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_REMINDER, HEAP_ID_MOVE_REMINDER);
     controller->stringTemplate = StringTemplate_Default(HEAP_ID_MOVE_REMINDER);
     controller->strbuf = Strbuf_Init(256, HEAP_ID_MOVE_REMINDER);
 }
@@ -1088,7 +1088,7 @@ static void MoveReminder_InitListMenu(MoveReminderController *controller)
     controller->numMoves = (u8)MoveReminder_GetNumMoves(controller) + 1;
     controller->stringList = StringList_New(controller->numMoves, HEAP_ID_MOVE_REMINDER);
 
-    MessageLoader *moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_MOVE_REMINDER);
+    MessageLoader *moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_MOVE_REMINDER);
 
     for (u32 i = 0; i < controller->numMoves; i++) {
         if (controller->data->moves[i] != LEVEL_UP_MOVESET_TERMINATOR) {
@@ -1167,7 +1167,7 @@ static void MoveReminder_DrawBattleMovesText(MoveReminderController *controller,
         MoveReminder_FormatNumber(controller, MoveReminder_Text_PpValue, pp, 2, PADDING_MODE_NONE);
         MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_PP, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_CENTER);
 
-        MessageLoader *moveDescLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_MOVE_REMINDER);
+        MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_MOVE_REMINDER);
         MessageLoader_GetStrbuf(moveDescLoader, move, controller->strbuf);
         MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_BATTLE_DESCRIPTION, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_LEFT);
 
@@ -1197,7 +1197,7 @@ static void MoveReminder_DrawContestMovesText(MoveReminderController *controller
 
     if (move != LIST_CANCEL) {
         u32 entryID = sub_0209577C(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
-        MessageLoader *moveDescLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_MOVE_REMINDER);
+        MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_MOVE_REMINDER);
 
         MessageLoader_GetStrbuf(moveDescLoader, entryID, controller->strbuf);
         Text_AddPrinterWithParamsAndColor(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION], FONT_SYSTEM, controller->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

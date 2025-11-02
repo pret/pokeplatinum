@@ -362,7 +362,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        v0->unk_B860 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0356, v0->heapID);
+        v0->unk_B860 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0356, v0->heapID);
         v2 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, v0->heapID);
 
         ov92_021D2150(v0, v2);
@@ -1040,7 +1040,7 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     int v2;
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param4, param0->heapID);
+    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param4, param0->heapID);
     param0->unk_B858 = StringList_New(param6, param0->heapID);
 
     for (v2 = 0; v2 < param6; v2++) {
@@ -1481,7 +1481,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int h
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, heapID);
 
     MessageLoader_GetStrbuf(v0, param0, param2);
     MessageLoader_Free(v0);
@@ -1494,7 +1494,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int h
         v2 = 1;
     }
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), heapID);
 
     MessageLoader_GetStrbuf(v0, param1, param3);
     MessageLoader_Free(v0);

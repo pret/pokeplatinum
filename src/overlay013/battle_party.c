@@ -1282,7 +1282,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
 
 static void InitializeMessageLoader(BattleParty *battleParty)
 {
-    battleParty->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
+    battleParty->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
     battleParty->unk_1FA0 = FontSpecialChars_Init(15, 14, 0, battleParty->context->heapID);
     battleParty->stringTemplate = StringTemplate_Default(battleParty->context->heapID);
     battleParty->strbuf = Strbuf_Init(512, battleParty->context->heapID);

@@ -152,7 +152,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 

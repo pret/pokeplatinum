@@ -127,7 +127,7 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, HEAP_ID_39);
         v0->unk_10 = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_14 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
+        v0->unk_14 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
         ov72_0223DA70();

@@ -217,7 +217,7 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     param0->unk_10 = PaletteData_New(HEAP_ID_111);
     param0->unk_14 = G3DPipeline_Init(HEAP_ID_111, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     param0->camera = Camera_Alloc(HEAP_ID_111);
-    param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPEAR_PILLAR, HEAP_ID_111);
+    param0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPEAR_PILLAR, HEAP_ID_111);
 
     PaletteData_SetAutoTransparent(param0->unk_10, 1);
     PaletteData_AllocBuffer(param0->unk_10, 0, 0x200, HEAP_ID_111);

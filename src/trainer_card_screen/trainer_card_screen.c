@@ -447,7 +447,7 @@ static void TrainerCard_InitStrBufs(TrainerCardScreen *trainerCardScreen)
     trainerCardScreen->unusedStrbuf = Strbuf_Init(4, HEAP_ID_TRAINER_CARD_SCREEN);
     trainerCardScreen->colonStrbuf = Strbuf_Init(5, HEAP_ID_TRAINER_CARD_SCREEN);
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
 
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Colon, trainerCardScreen->colonStrbuf);
     MessageLoader_Free(messageLoader);

@@ -300,14 +300,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)

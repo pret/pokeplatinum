@@ -98,9 +98,9 @@ PCHallOfFameApp *PCHallOfFame_InitApp(PCHallOfFameMan *pcHallOfFameMan, const PC
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
         pcHallOfFameApp->spriteList = SpriteList_InitRendering(64, &pcHallOfFameApp->g2dRenderer, HEAP_ID_PC_HALL_OF_FAME);
-        pcHallOfFameApp->msgLoaderHallOfFame = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PC_HALL_OF_FAME, HEAP_ID_PC_HALL_OF_FAME);
-        pcHallOfFameApp->msgLoaderSpeciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_PC_HALL_OF_FAME);
-        pcHallOfFameApp->msgLoaderMoveNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PC_HALL_OF_FAME, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderSpeciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->msgLoaderMoveNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->strTemplate = StringTemplate_Default(HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->unk_1F4 = Strbuf_Init(256, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->unk_1F8 = Strbuf_Init(256, HEAP_ID_PC_HALL_OF_FAME);

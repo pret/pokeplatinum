@@ -292,7 +292,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
+    v0->unk_184 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
     v0->appMan = NULL;
 
     ov88_0223C370(v0, appMan);
@@ -2025,7 +2025,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
+    param0->unk_36D0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
     param0->unk_36EC = SaveData_GetWiFiList(param0->saveData);
     param0->unk_226C = ov88_0223D854;
 

@@ -138,7 +138,7 @@ static inline BOOL ValidLanguage(int species, int languageIndex)
 
 static Strbuf *LoadMessage(int bankID, int entryID, enum HeapID heapID)
 {
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
     if (messageLoader) {
         Strbuf *strbuf = Strbuf_Init(256, heapID);

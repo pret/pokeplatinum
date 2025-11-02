@@ -108,7 +108,7 @@ static inline Strbuf *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID)
 
 static Strbuf *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRADE_NAMES, heapID);
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRADE_NAMES, heapID);
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(loader, npcTradeID);
     MessageLoader_Free(loader);
     return strbuf;

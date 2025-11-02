@@ -184,7 +184,7 @@ int ov59_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_08 = (UnkStruct_0203DE34 *)ApplicationManager_Args(appMan);
         v0->saveData = v0->unk_08->saveData;
         v0->unk_24 = StringTemplate_Default(HEAP_ID_51);
-        v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0533, HEAP_ID_51);
+        v0->unk_28 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0533, HEAP_ID_51);
 
         SetAutorepeat(4, 8);
 

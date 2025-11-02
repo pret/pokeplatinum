@@ -250,7 +250,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
 
 static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(msgLoader);
 
     Strbuf *v1 = MessageLoader_GetNewStrbuf(msgLoader, param3);
@@ -266,7 +266,7 @@ static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int par
 {
     GF_ASSERT(*param8 == NULL);
 
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
+    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     *param8 = MessageLoader_GetNewStrbuf(v0, param3);
     s32 v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);

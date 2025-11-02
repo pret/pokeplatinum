@@ -19,7 +19,7 @@ typedef struct MessageBank {
 } MessageBank;
 
 typedef struct MessageLoader {
-    u16 type;
+    u16 mode;
     u16 heapID;
     u16 narcID;
     u16 bankID;
@@ -30,9 +30,9 @@ typedef struct MessageLoader {
     };
 } MessageLoader;
 
-enum MessageLoaderType {
-    MESSAGE_LOADER_BANK_HANDLE,
-    MESSAGE_LOADER_NARC_HANDLE,
+enum MessageLoaderMode {
+    MSG_LOADER_PRELOAD_ENTIRE_BANK,
+    MSG_LOADER_LOAD_ON_DEMAND,
 };
 
 /**
@@ -164,13 +164,13 @@ u32 MessageBank_NARCEntryCount(enum NarcID narcID, u32 bankID);
  * @brief Initialize a new MessageLoader struct targeting a given archive and
  * message bank.
  *
- * @param type      The load-type; controls if we use a bank or NARC handle.
+ * @param mode      The load-mode; controls whether to load the entire bank at init or retrieve each message as needed.
  * @param narcID    Archive from which to load any banks.
  * @param bankID    Index of the bank we are targeting.
  * @param heapID    Heap on which to allocate the loaded archive.
  * @return Initialized MessageLoader struct.
  */
-MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcID, u32 bankID, u32 heapID);
+MessageLoader *MessageLoader_Init(enum MessageLoaderMode mode, enum NarcID narcID, u32 bankID, u32 heapID);
 
 /**
  * @brief Free a MessageLoader struct back to its owning heap.

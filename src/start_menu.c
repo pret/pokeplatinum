@@ -541,7 +541,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 1, HEAP_ID_FIELD2);
     Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
+    v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
 
     menu->unk_24 = StringList_New(optionCount, HEAP_ID_FIELD2);
     menu->unk_28 = 0;
@@ -683,7 +683,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&menu->unk_10, 15);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
+    v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
 
     if (v6 == 0) {
         v5 = MessageLoader_GetNewStrbuf(v2, 9);

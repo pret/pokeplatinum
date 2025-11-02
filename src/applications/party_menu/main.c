@@ -1013,7 +1013,7 @@ static PartyMenuApplication *NewPartyMenuApplication(ApplicationManager *appMan)
         application->heightWeight = NULL;
     }
 
-    application->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, HEAP_ID_PARTY_MENU);
+    application->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, HEAP_ID_PARTY_MENU);
     application->specialChars = FontSpecialChars_Init(15, 14, 0, HEAP_ID_PARTY_MENU);
     application->template = StringTemplate_Default(HEAP_ID_PARTY_MENU);
 

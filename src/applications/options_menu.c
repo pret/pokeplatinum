@@ -365,7 +365,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
 
     case 1:
         LoadBgTiles(menuData);
-        menuData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE,
+        menuData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_OPTIONS_MENU,
             menuData->heapID);

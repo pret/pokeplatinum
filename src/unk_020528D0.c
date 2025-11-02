@@ -118,7 +118,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BLACK_OUT_SCENE, HEAP_ID_FIELD2);
+    v0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BLACK_OUT_SCENE, HEAP_ID_FIELD2);
     v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELD2);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);

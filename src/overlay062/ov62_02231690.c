@@ -2921,7 +2921,7 @@ static void ov62_022349E4(Strbuf *param0, int heapID)
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);

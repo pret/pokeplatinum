@@ -125,8 +125,8 @@ BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **dest, const MoveT
         graphics->moveTesterData = moveTesterData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
-        graphics->msgLoaderTypes = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
-        graphics->msgLoaderEffectiveness = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
+        graphics->msgLoaderTypes = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
+        graphics->msgLoaderEffectiveness = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
         graphics->strBuf = Strbuf_Init(128, HEAP_ID_POKETCH_APP); // Possibly TRAINER_NAME_LEN + 1
         SetupSprites(graphics);
         *dest = graphics;

@@ -776,7 +776,7 @@ static void ov13_02222AF4(BattleParty *param0, u32 param1)
 
     v0 = &param0->partyPokemon[param1];
     v3 = 22 * param0->unk_2071;
-    v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, param0->context->heapID);
+    v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, param0->context->heapID);
     v2 = MessageLoader_GetNewStrbuf(v1, v0->ability);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_206C[2 + v3], FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -882,7 +882,7 @@ static void ov13_02222DCC(BattleParty *param0, u32 param1, u32 param2)
     Strbuf *v2;
 
     v1 = &param0->unk_206C[param1];
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, param0->context->heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, param0->context->heapID);
     v2 = MessageLoader_GetNewStrbuf(v0, param2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -902,7 +902,7 @@ static void ov13_02222E2C(BattleParty *param0, u32 param1, u32 param2)
     v1 = &param0->unk_206C[param1];
     v3 = MoveTable_LoadParam(param2, MOVEATTRIBUTE_CONTEST_EFFECT);
     v4 = sub_0209577C(v3);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, param0->context->heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, param0->context->heapID);
     v2 = MessageLoader_GetNewStrbuf(v0, v4);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

@@ -308,7 +308,7 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
     hallOfFameMan = ApplicationManager_NewData(appMan, sizeof(HallOfFameMan), HEAP_ID_HALL_OF_FAME);
 
     hallOfFameMan->displayData = ApplicationManager_Args(appMan);
-    hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strbuf_1C30 = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strbuf_1C4C = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strTemplate = StringTemplate_Default(HEAP_ID_HALL_OF_FAME);

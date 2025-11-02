@@ -181,7 +181,7 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
 
 Strbuf *ov17_0223F310(u32 param0, u32 heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
+    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
     Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);

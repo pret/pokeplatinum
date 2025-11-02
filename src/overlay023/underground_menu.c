@@ -862,7 +862,7 @@ static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallbac
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MESSAGE_LOADER_BANK_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     menu->menuOptions = StringList_New(trapCount + 1, HEAP_ID_FIELD1);
 
@@ -1044,7 +1044,7 @@ static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallb
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MESSAGE_LOADER_BANK_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     menu->menuOptions = StringList_New(sphereCount + 1, HEAP_ID_FIELD1);
 
@@ -1212,7 +1212,7 @@ static void UndergroundMenu_InitTreasuresMenu(UndergroundMenu *menu, MoveItemCal
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MESSAGE_LOADER_BANK_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     menu->menuOptions = StringList_New(treasureCount + 1, HEAP_ID_FIELD1);
 
@@ -1598,7 +1598,7 @@ static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallbac
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     menu->menuOptions = StringList_New(goodsCount + 1, HEAP_ID_FIELD1);
 
