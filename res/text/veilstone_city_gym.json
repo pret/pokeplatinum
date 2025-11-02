@@ -2,7 +2,7 @@
   "key": 22894,
   "messages": [
     {
-      "id": "pl_msg_00000144_00000",
+      "id": "VeilstoneGym_Text_MayleneIntro",
       "en_US": [
         "Hello.\n",
         "I’m pleased to meet you.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00001",
+      "id": "VeilstoneGym_Text_BeatMaylene",
       "en_US": [
         "...OK.\n",
         "You win.\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00002",
+      "id": "VeilstoneGym_Text_MayleneReceiveBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the Cobble Badge from Maylene."
       ]
     },
     {
-      "id": "pl_msg_00000144_00003",
+      "id": "VeilstoneGym_Text_MayleneExplainBadge",
       "en_US": [
         "Um... I should explain about that\n",
         "official Pokémon League Gym Badge.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00004",
+      "id": "VeilstoneGym_Text_MayleneExplainTM60",
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains the move\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00005",
+      "id": "VeilstoneGym_Text_MayleneAfterBadge",
       "en_US": [
         "Gee, I’m hungry...\r",
         "Oh, sorry, it’s nothing.\n",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00006",
+      "id": "VeilstoneGym_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00007",
+      "id": "VeilstoneGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00008",
+      "id": "VeilstoneGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Veilstone City Pokémon Gym\n",
         "Leader: Maylene\r",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00009",
+      "id": "VeilstoneGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Veilstone City Pokémon Gym\n",
         "Leader: Maylene\r",
@@ -117,18 +117,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000144_00010",
+      "id": "VeilstoneGym_Text_GoodDeedEveryDay",
       "en_US": "A good deed for every day."
     },
     {
-      "id": "pl_msg_00000144_00011",
+      "id": "VeilstoneGym_Text_TreasureEveryEncounter",
       "en_US": [
         "Treasure every encounter,\n",
         "for it is unique."
       ]
     },
     {
-      "id": "pl_msg_00000144_00012",
+      "id": "VeilstoneGym_Text_OneDayAtATime",
       "en_US": "One day at a time."
     }
   ]

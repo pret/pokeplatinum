@@ -1,78 +1,76 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_gym.h"
+#include "res/field/events/events_eterna_city_gym.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _0022
-    ScriptEntry _0056
-    ScriptEntry _0094
-    ScriptEntry _01C9
-    ScriptEntry _021C
-    ScriptEntry _027B
+    ScriptEntry EternaGym_InitFeatures
+    ScriptEntry EternaGym_GymGuide
+    ScriptEntry EternaGym_GymStatue
+    ScriptEntry EternaGym_Gardenia
+    ScriptEntry EternaGym_LassCaroline
+    ScriptEntry EternaGym_AromaLadyJenna
+    ScriptEntry EternaGym_AromaLadyAngela
     ScriptEntryEnd
 
-_001E:
+EternaGym_InitFeatures:
     InitPersistedMapFeaturesForEternaGym
     End
 
-_0022:
+EternaGym_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0048
-    Message 13
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymGuideAfterBadge
+    Message EternaGym_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0048:
+EternaGym_GymGuideAfterBadge:
     BufferPlayerName 0
-    Message 14
+    Message EternaGym_Text_GymGuideAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0056:
+EternaGym_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0080
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
-    Message 15
+    Message EternaGym_Text_GymStatueBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0080:
+EternaGym_GymStatueAfterBadge:
     BufferRivalName 0
     BufferPlayerName 1
     BufferRivalName 2
-    Message 16
+    Message EternaGym_Text_GymStatueAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0094:
+EternaGym_Gardenia:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0161
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_Gardenia_AlreadyHaveForestbadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
-    Message 0
+    Message EternaGym_Text_GardeniaIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_GARDENIA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01C3
-    Message 1
+    GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
+    Message EternaGym_Text_BeatGardenia
     BufferPlayerName 0
-    Message 2
+    Message EternaGym_Text_GardeniaReceiveForestBadge
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_FOREST
@@ -83,171 +81,171 @@ _0094:
     SetTrainerFlag TRAINER_BEAUTY_LINDSAY
     ClearFlag FLAG_UNK_0x01FC
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 67, TRAINER_LEADER_GARDENIA, 0, 0
-    Message 3
-    GoTo _0177
+    Message EternaGym_Text_GardeniaExplainForestBadge
+    GoTo EternaGym_GardeniaGiveTM86
     End
 
-_0119:
+EternaGym_GardeniaTryGiveTM86Again:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0157
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaGym_GardeniaGiveTM86BagFullAgain
     GiveItemQuantity
-    SetFlag FLAG_UNK_0x0074
+    SetFlag FLAG_OBTAINED_GARDENIA_TM86
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
-    Message 4
+    Message EternaGym_Text_GardeniaExplainGrassKnot
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0157:
+EternaGym_GardeniaGiveTM86BagFullAgain:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0161:
-    GoToIfUnset FLAG_UNK_0x0074, _0119
-    Message 5
+EternaGym_Gardenia_AlreadyHaveForestbadge:
+    GoToIfUnset FLAG_OBTAINED_GARDENIA_TM86, EternaGym_GardeniaTryGiveTM86Again
+    Message EternaGym_Text_GardeniaGymBeaten
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0177:
+EternaGym_GardeniaGiveTM86:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01B7
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaGym_GardeniaGiveTM86BagFull
     GiveItemQuantity
-    SetFlag FLAG_UNK_0x0074
+    SetFlag FLAG_OBTAINED_GARDENIA_TM86
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
-    Message 4
+    Message EternaGym_Text_GardeniaExplainGrassKnot
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_2CA
+    AdvanceEternaGymClock
     End
 
-_01B7:
+EternaGym_GardeniaGiveTM86BagFull:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
-    ScrCmd_2CA
+    AdvanceEternaGymClock
     End
 
-_01C3:
+EternaGym_LostBattle:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_01C9:
+EternaGym_LassCaroline:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40AE, 1, _0211
+    GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 1, EternaGym_LassCarolineBeaten
     PlayTrainerEncounterBGM TRAINER_LASS_CAROLINE
-    Message 6
+    Message EternaGym_Text_LassCarolineBeforeBattle
     CloseMessage
     StartTrainerBattle TRAINER_LASS_CAROLINE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01C3
-    Message 7
+    GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
+    Message EternaGym_Text_LassCarolineAfterBattle
     WaitABXPadPress
-    SetVar VAR_UNK_0x40AE, 1
+    SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 1
     CloseMessage
     ReleaseAll
-    ScrCmd_2CA
+    AdvanceEternaGymClock
     End
 
-_0211:
-    Message 7
+EternaGym_LassCarolineBeaten:
+    Message EternaGym_Text_LassCarolineAfterBattle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_021C:
+EternaGym_AromaLadyJenna:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40AE, 2, _0270
+    GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 2, EternaGym_AromaLadyJennaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
-    SetVar VAR_0x8007, 3
-    Call _02DA
-    Message 8
+    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_JENNA
+    Call EternaGym_LookTowardsPlayer
+    Message EternaGym_Text_AromaLadyJennaBeforeBattle
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_JENNA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01C3
-    Message 9
+    GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
+    Message EternaGym_Text_AromaLadyJennaAfterBattle
     WaitABXPadPress
-    SetVar VAR_UNK_0x40AE, 2
+    SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 2
     CloseMessage
     ReleaseAll
-    ScrCmd_2CA
+    AdvanceEternaGymClock
     End
 
-_0270:
-    Message 9
+EternaGym_AromaLadyJennaBeaten:
+    Message EternaGym_Text_AromaLadyJennaAfterBattle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_027B:
+EternaGym_AromaLadyAngela:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40AE, 3, _02CF
+    GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 3, EternaGym_AromaLadyAngelaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
-    SetVar VAR_0x8007, 4
-    Call _02DA
-    Message 10
+    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_ANGELA
+    Call EternaGym_LookTowardsPlayer
+    Message EternaGym_Text_AromaLadyAngelaBeforeBattle
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_ANGELA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01C3
-    Message 11
+    GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
+    Message EternaGym_Text_AromaLadyAngelaAfterBattle
     WaitABXPadPress
-    SetVar VAR_UNK_0x40AE, 3
+    SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 3
     CloseMessage
     ReleaseAll
-    ScrCmd_2CA
+    AdvanceEternaGymClock
     End
 
-_02CF:
-    Message 11
+EternaGym_AromaLadyAngelaBeaten:
+    Message EternaGym_Text_AromaLadyAngelaAfterBattle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02DA:
+EternaGym_LookTowardsPlayer:
     GetPlayerDir VAR_RESULT
-    CallIfEq VAR_RESULT, 0, _0314
-    CallIfEq VAR_RESULT, 1, _0322
-    CallIfEq VAR_RESULT, 2, _0330
-    CallIfEq VAR_RESULT, 3, _033E
+    CallIfEq VAR_RESULT, DIR_NORTH, EternaGym_FaceSouth
+    CallIfEq VAR_RESULT, DIR_SOUTH, EternaGym_FaceNorth
+    CallIfEq VAR_RESULT, DIR_WEST, EternaGym_FaceEast
+    CallIfEq VAR_RESULT, DIR_EAST, EternaGym_FaceWest
     Return
 
-_0314:
+EternaGym_FaceSouth:
     SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir VAR_0x8007, DIR_SOUTH
     Return
 
-_0322:
+EternaGym_FaceNorth:
     SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir VAR_0x8007, DIR_NORTH
     Return
 
-_0330:
+EternaGym_FaceEast:
     SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir VAR_0x8007, DIR_EAST
     Return
 
-_033E:
+EternaGym_FaceWest:
     SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir VAR_0x8007, DIR_WEST
     Return

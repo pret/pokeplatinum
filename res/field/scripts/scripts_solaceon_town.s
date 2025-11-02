@@ -42,8 +42,7 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0088
+    GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
     Message 4
     WaitABXPadPress
     CloseMessage

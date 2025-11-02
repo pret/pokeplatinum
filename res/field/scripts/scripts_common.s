@@ -1188,8 +1188,7 @@ CommonScript_PokecenterBlackOutRecover:
     Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
     Call CommonScript_PokecenterNurse_FindNurseObject
     Call CommonScript_PokecenterNurse_HealPokemon
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
+    GoToIfBadgeAcquired BADGE_ID_COAL, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
     Message CommonStrings_Text_PokecenterHealedToPerfectHealth
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
@@ -1225,7 +1224,7 @@ CommonScript_PokecenterNurse_FindNurseObject:
     GoToIfEq VAR_0x8004, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Hearthome
     GoToIfEq VAR_0x8004, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Pastoria
     GoToIfEq VAR_0x8004, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Veilstone
-    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore
+    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sunyshore
     GoToIfEq VAR_0x8004, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Snowpoint
     GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueSouth
     GoToIfEq VAR_0x8004, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_FightArea
@@ -1267,7 +1266,7 @@ CommonScript_PokecenterNurse_FindNurseObject_Veilstone:
     SetVar VAR_0x8007, 0
     Return
 
-CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore:
+CommonScript_PokecenterNurse_FindNurseObject_Sunyshore:
     SetVar VAR_0x8007, 0
     Return
 

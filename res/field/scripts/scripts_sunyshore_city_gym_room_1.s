@@ -2,66 +2,64 @@
 #include "res/text/bank/sunyshore_city_gym_room_1.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001D
-    ScriptEntry _0022
-    ScriptEntry _0056
+    ScriptEntry SunyshoreGymRoom1_Init
+    ScriptEntry SunyshoreGymRoom1_Button
+    ScriptEntry SunyshoreGymRoom1_GymGuide
+    ScriptEntry SunyshoreGymRoom1_GymStatue
     ScriptEntryEnd
 
-_0012:
+SunyshoreGymRoom1_Init:
     SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForSunyshoreGym 0
     End
 
-_001D:
-    ScrCmd_176 0
+SunyshoreGymRoom1_Button:
+    SunyshoreGymButton 0
     End
 
-_0022:
+SunyshoreGymRoom1_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0048
-    Message 0
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymGuideAfterbadge
+    Message SunyshoreGymRoom1_Text_GymGuideBeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0048:
+SunyshoreGymRoom1_GymGuideAfterbadge:
     BufferPlayerName 0
-    Message 1
+    Message SunyshoreGymRoom1_Text_GymGuideAfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0056:
+SunyshoreGymRoom1_GymStatue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _007A
-    Message 2
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymStatue_AfterBadge
+    Message SunyshoreGymRoom1_Text_GymStatue_BeforeBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_007A:
-    GoToIfGe VAR_UNK_0x40EF, 1, _0098
+SunyshoreGymRoom1_GymStatue_AfterBadge:
+    GoToIfGe VAR_RIVAL_BEAT_SUNYSHORE_GYM, TRUE, SunyshoreGymRoom1_GymStatue_AfterRivalBadge
     BufferPlayerName 0
     BufferRivalName 1
-    Message 3
+    Message SunyshoreGymRoom1_Text_GymStatue_AfterBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0098:
+SunyshoreGymRoom1_GymStatue_AfterRivalBadge:
     BufferPlayerName 0
     BufferRivalName 1
-    Message 4
+    Message SunyshoreGymRoom1_Text_GymStatue_AfterRivalBadge
     WaitABXPadPress
     CloseMessage
     ReleaseAll

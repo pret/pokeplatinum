@@ -339,7 +339,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GRUNT_M_21",
+            "id": "PASTORIA_CITY_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -415,7 +415,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BARRY_26",
+            "id": "PASTORIA_CITY_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -430,7 +430,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_CRASHER_WAKE_27",
+            "id": "PASTORIA_CITY_CRASHER_WAKE",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -542,7 +542,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x407C",
+            "var": "VAR_PASTORIA_STATE",
             "value": 5
         },
         {
@@ -552,7 +552,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x407C",
+            "var": "VAR_PASTORIA_STATE",
             "value": 1
         },
         {
@@ -562,7 +562,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x407C",
+            "var": "VAR_PASTORIA_STATE",
             "value": 4
         },
         {

@@ -559,13 +559,13 @@
     ],
     "coord_events": [
         {
-            "script": 3,
+            "script": 3, 
             "x": 266,
             "z": 748,
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_UNK_0x4079",
+            "var": "VAR_OREBURGH_STATE",
             "value": 0
         },
         {
@@ -575,7 +575,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_UNK_0x4079",
+            "var": "VAR_OREBURGH_STATE",
             "value": 2
         }
     ]

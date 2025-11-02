@@ -2012,6 +2012,11 @@
     .short \destVarID
     .endm
 
+    .macro GoToIfBadgeAcquired badge label
+    CheckBadgeAcquired \badge, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, \label
+    .endm
+
     .macro GiveBag
     .short 351
     .endm
@@ -2093,7 +2098,7 @@
     .short 367
     .endm
 
-    .macro ScrCmd_170
+    .macro PressPastoriaGymButton
     .short 368
     .endm
 
@@ -2118,7 +2123,7 @@
     .byte \floorID
     .endm
 
-    .macro ScrCmd_176 arg0
+    .macro SunyshoreGymButton arg0
     .short 374
     .byte \arg0
     .endm
@@ -4217,7 +4222,7 @@
     .short 713
     .endm
 
-    .macro ScrCmd_2CA
+    .macro AdvanceEternaGymClock
     .short 714
     .endm
 

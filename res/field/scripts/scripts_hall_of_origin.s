@@ -21,13 +21,13 @@ _0035:
     End
 
 _003B:
-    GoToIfSet FLAG_UNK_0x008E, _0048
+    GoToIfSet FLAG_MAP_LOCAL, _0048
     End
 
 _0048:
     SetFlag FLAG_UNK_0x024E
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 _0056:
@@ -41,9 +41,9 @@ _0056:
     PlayCry SPECIES_ARCEUS
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_ARCEUS, 80
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _00DF
     CheckDidNotCapture VAR_RESULT

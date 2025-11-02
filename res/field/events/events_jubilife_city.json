@@ -116,11 +116,11 @@
             "y": 1
         },
         {
-            "id": "JUBILIFE_CITY_COUNTERPART_7",
+            "id": "JUBILIFE_CITY_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017A",
+            "flag": "FLAG_HIDE_JUBILIFE_COUNTERPART",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -263,7 +263,7 @@
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019D",
+            "flag": "FLAG_HIDE_JUBILIFE_ROWAN",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -278,7 +278,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019C",
+            "flag": "FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -293,7 +293,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019C",
+            "flag": "FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -614,7 +614,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_UNK_0x4077",
+            "var": "VAR_JUBILIFE_STATE",
             "value": 0
         },
         {
@@ -624,7 +624,7 @@
             "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_UNK_0x4077",
+            "var": "VAR_JUBILIFE_STATE",
             "value": 3
         },
         {
@@ -634,7 +634,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_UNK_0x4077",
+            "var": "VAR_JUBILIFE_STATE",
             "value": 1
         },
         {
@@ -644,8 +644,8 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_UNK_0x40F0",
-            "value": 0
+            "var": "VAR_GTS_HAS_BADGES_CHECK_TEST",
+            "value": false
         },
         {
             "script": 17,
@@ -664,7 +664,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_UNK_0x4076",
+            "var": "VAR_JUBILIFE_LOOKER_PALPAD",
             "value": 1
         }
     ]

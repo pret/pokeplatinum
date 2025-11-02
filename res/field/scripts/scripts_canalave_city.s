@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
+#include "res/field/events/events_canalave_city.h"
 
 
     ScriptEntry _0066
@@ -37,10 +38,10 @@ _0066:
     Call _0168
     CallIfEq VAR_MAP_LOCAL_0, 0, _01E7
     CallIfEq VAR_MAP_LOCAL_0, 1, _0116
-    CallIfEq VAR_UNK_0x4078, 1, _0132
-    CallIfEq VAR_UNK_0x4078, 2, _0132
-    CallIfEq VAR_UNK_0x4078, 4, _011C
-    CallIfEq VAR_UNK_0x4078, 5, _0158
+    CallIfEq VAR_CANALAVE_STATE, 1, _0132
+    CallIfEq VAR_CANALAVE_STATE, 2, _0132
+    CallIfEq VAR_CANALAVE_STATE, 4, _011C
+    CallIfEq VAR_CANALAVE_STATE, 5, _0158
     GetPlayerGender VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0148
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0150
@@ -61,15 +62,15 @@ _0116:
     Return
 
 _011C:
-    SetObjectEventPos 11, 37, 0x2D1
-    SetObjectEventDir 11, DIR_SOUTH
-    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 37, 0x2D1
+    SetObjectEventDir CANALAVE_CITY_RIVAL_BRIDGE, DIR_SOUTH
+    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0132:
-    SetObjectEventPos 11, 39, 0x2DD
-    SetObjectEventDir 11, DIR_NORTH
-    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 39, 0x2DD
+    SetObjectEventDir CANALAVE_CITY_RIVAL_BRIDGE, DIR_NORTH
+    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0148:
@@ -83,7 +84,7 @@ _0150:
 _0158:
     SetFlag FLAG_UNK_0x01B3
     SetFlag FLAG_UNK_0x01B5
-    SetVar VAR_UNK_0x4078, 6
+    SetVar VAR_CANALAVE_STATE, 6
     Return
 
 _0168:
@@ -124,33 +125,33 @@ _01F9:
     End
 
 _0244:
-    SetObjectEventPos 11, 38, 0x2D3
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D3
     GoTo _028A
 
 _0252:
-    SetObjectEventPos 11, 38, 0x2D4
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D4
     GoTo _028A
 
 _0260:
-    SetObjectEventPos 11, 38, 0x2D5
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D5
     GoTo _028A
 
 _026E:
-    SetObjectEventPos 11, 38, 0x2D6
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D6
     GoTo _028A
 
 _027C:
-    SetObjectEventPos 11, 38, 0x2D7
+    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D7
     GoTo _028A
 
 _028A:
-    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_RIGHT
-    ClearFlag FLAG_UNK_0x01B2
-    AddObject 11
-    ApplyMovement 11, _0340
+    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_RIGHT
+    ClearFlag FLAG_HIDE_CANALAVE_RIVAL
+    AddObject CANALAVE_CITY_RIVAL_BRIDGE
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0340
     WaitMovement
     CallCommonScript 0x7FA
-    ApplyMovement 11, _0354
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0354
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
@@ -179,15 +180,15 @@ _0303:
     BufferRivalName 0
     Message 1
     CloseMessage
-    ApplyMovement 11, _035C
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _035C
     WaitMovement
-    RemoveObject 11
-    SetVar VAR_UNK_0x4078, 1
+    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
+    SetVar VAR_CANALAVE_STATE, 1
     ReleaseAll
     End
 
 _0334:
-    SetFlag FLAG_UNK_0x01B2
+    SetFlag FLAG_HIDE_CANALAVE_RIVAL
     BlackOutFromBattle
     ReleaseAll
     End
@@ -226,11 +227,11 @@ _0377:
     BufferPlayerName 1
     Message 2
     CloseMessage
-    ApplyMovement 11, _03AC
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _03AC
     ApplyMovement LOCALID_PLAYER, _03BC
     WaitMovement
-    RemoveObject 11
-    SetVar VAR_UNK_0x4078, 3
+    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
+    SetVar VAR_CANALAVE_STATE, 3
     SetVar VAR_UNK_0x40B2, 1
     ReleaseAll
     End
@@ -264,14 +265,14 @@ _03C8:
     ApplyMovement 14, _04B8
     WaitMovement
     RemoveObject 14
-    ApplyMovement 11, _04C0
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _04C0
     WaitMovement
     BufferRivalName 0
     Message 7
     CloseMessage
-    ApplyMovement 11, _04C8
+    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _04C8
     WaitMovement
-    RemoveObject 11
+    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
     ApplyMovement 13, _04A0
     WaitMovement
     BufferRivalName 0
@@ -297,7 +298,7 @@ _046A:
 _0473:
     WaitABXPadPress
     CloseMessage
-    SetVar VAR_UNK_0x4078, 5
+    SetVar VAR_CANALAVE_STATE, 5
     ClearFlag FLAG_UNK_0x0194
     ClearFlag FLAG_UNK_0x0175
     ClearFlag FLAG_UNK_0x0293
@@ -397,8 +398,7 @@ _054D:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0586
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0591
+    GoToIfBadgeAcquired BADGE_ID_MINE, _0591
     GoTo _057B
     End
 
@@ -413,7 +413,7 @@ _0586:
     End
 
 _0591:
-    GoToIfGe VAR_UNK_0x4078, 5, _057B
+    GoToIfGe VAR_CANALAVE_STATE, 5, _057B
     Message 18
     GoTo _0545
     End
@@ -699,9 +699,9 @@ _09BC:
     LockAll
     FacePlayer
     CheckItem ITEM_HM04, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _09FA
+    GoToIfEq VAR_RESULT, 1, CanalaveCity_RIVAL_EnterLibrary
     FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
-    GoToIfNe VAR_RESULT, 6, _09FA
+    GoToIfNe VAR_RESULT, 6, CanalaveCity_RIVAL_EnterLibrary
     BufferRivalName 0
     Message 3
     WaitABXPadPress
@@ -709,31 +709,31 @@ _09BC:
     ReleaseAll
     End
 
-_09FA:
+CanalaveCity_RIVAL_EnterLibrary:
     BufferRivalName 0
-    Message 4
+    Message CanalaveCity_Text_RivalTooSlowMoveIt
     CloseMessage
-    ApplyMovement 18, _0A38
+    ApplyMovement CANALAVE_CITY_RIVAL_LIBRARY, CanalaveCity_RIVAL_FaceNorth
     WaitMovement
     LoadDoorAnimation 1, 22, 5, 14, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 18, _0A40
+    ApplyMovement CANALAVE_CITY_RIVAL_LIBRARY, CanalaveCity_RIVAL_EnterDoor
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject 18
+    RemoveObject CANALAVE_CITY_RIVAL_LIBRARY
     ReleaseAll
     End
 
     .balign 4, 0
-_0A38:
+CanalaveCity_RIVAL_FaceNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0A40:
+CanalaveCity_RIVAL_EnterDoor:
     WalkNormalNorth
     SetInvisible
     EndMovement
