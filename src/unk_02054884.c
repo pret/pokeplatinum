@@ -22,7 +22,7 @@
 BOOL Pokemon_CanBattle(Pokemon *mon)
 {
     // this can be simplified further, but it won't match
-    if (Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) == 0) {
+    if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
         return FALSE;
     }
 
@@ -186,13 +186,13 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
 
         if (Pokemon_CanBattle(mon)
             && (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON))) {
-            u32 hp = Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL);
+            u32 hp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
             if (hp > 1) {
                 hp--;
             }
 
-            Pokemon_SetValue(mon, MON_DATA_CUR_HP, &hp);
+            Pokemon_SetValue(mon, MON_DATA_HP, &hp);
 
             if (hp == 1) {
                 numFainted++;
@@ -215,7 +215,7 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
 BOOL Pokemon_TrySurvivePoison(Pokemon *mon)
 {
     if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)
-        && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) == 1) {
+        && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 1) {
         u32 condition = MON_CONDITION_NONE;
 
         Pokemon_SetValue(mon, MON_DATA_STATUS, &condition);

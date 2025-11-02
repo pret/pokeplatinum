@@ -562,7 +562,7 @@ static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party
             continue;
         }
 
-        v0 = Pokemon_GetValue(v5, MON_DATA_CUR_HP, NULL);
+        v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
 
         if (v0 == 0) {
             v1++;
@@ -581,7 +581,7 @@ static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party
                 continue;
             }
 
-            v0 = Pokemon_GetValue(v5, MON_DATA_CUR_HP, NULL);
+            v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
 
             if (v0 == 0) {
                 v1++;
@@ -1079,7 +1079,7 @@ static void ov104_02238BBC(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v2 -= v1;
         v2 = (v1 - v2);
 
-        Pokemon_SetValue(v3, MON_DATA_CUR_HP, &v2);
+        Pokemon_SetValue(v3, MON_DATA_HP, &v2);
     }
 
     return;

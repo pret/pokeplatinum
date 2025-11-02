@@ -568,7 +568,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     int monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
     monMaxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    monCurrentHp = Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL);
+    monCurrentHp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
     monHpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
     monHpEV = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
@@ -636,7 +636,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     }
 
     if (monCurrentHp) {
-        Pokemon_SetValue(mon, MON_DATA_CUR_HP, &monCurrentHp);
+        Pokemon_SetValue(mon, MON_DATA_HP, &monCurrentHp);
     }
 
     Pokemon_ExitDecryptionContext(mon, reencrypt);
@@ -683,7 +683,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         result = mon->party.ballCapsuleID;
         break;
 
-    case MON_DATA_CUR_HP:
+    case MON_DATA_HP:
         result = mon->party.hp;
         break;
 
@@ -939,11 +939,11 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->moves[param - MON_DATA_MOVE1];
         break;
 
-    case MON_DATA_MOVE1_CUR_PP:
-    case MON_DATA_MOVE2_CUR_PP:
-    case MON_DATA_MOVE3_CUR_PP:
-    case MON_DATA_MOVE4_CUR_PP:
-        result = monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP];
+    case MON_DATA_MOVE1_PP:
+    case MON_DATA_MOVE2_PP:
+    case MON_DATA_MOVE3_PP:
+    case MON_DATA_MOVE4_PP:
+        result = monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP];
         break;
 
     case MON_DATA_MOVE1_PP_UPS:
@@ -1271,7 +1271,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         mon->party.ballCapsuleID = *u8Value;
         break;
 
-    case MON_DATA_CUR_HP:
+    case MON_DATA_HP:
         mon->party.hp = *u16Value;
         break;
 
@@ -1497,11 +1497,11 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->moves[param - MON_DATA_MOVE1] = *u16Value;
         break;
 
-    case MON_DATA_MOVE1_CUR_PP:
-    case MON_DATA_MOVE2_CUR_PP:
-    case MON_DATA_MOVE3_CUR_PP:
-    case MON_DATA_MOVE4_CUR_PP:
-        monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] = *u8Value;
+    case MON_DATA_MOVE1_PP:
+    case MON_DATA_MOVE2_PP:
+    case MON_DATA_MOVE3_PP:
+    case MON_DATA_MOVE4_PP:
+        monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = *u8Value;
         break;
 
     case MON_DATA_MOVE1_PP_UPS:
@@ -1811,7 +1811,7 @@ void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value)
 {
     switch (param) {
-    case MON_DATA_CUR_HP:
+    case MON_DATA_HP:
         if (mon->party.hp + value > mon->party.maxHP) {
             mon->party.hp = mon->party.maxHP;
         } else {
@@ -1928,14 +1928,14 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
             monDataBlockA->sheen += value;
         }
         break;
-    case MON_DATA_MOVE1_CUR_PP:
-    case MON_DATA_MOVE2_CUR_PP:
-    case MON_DATA_MOVE3_CUR_PP:
-    case MON_DATA_MOVE4_CUR_PP:
-        if (monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] + value > MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_CUR_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_CUR_PP])) {
-            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] = MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_CUR_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_CUR_PP]);
+    case MON_DATA_MOVE1_PP:
+    case MON_DATA_MOVE2_PP:
+    case MON_DATA_MOVE3_PP:
+    case MON_DATA_MOVE4_PP:
+        if (monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] + value > MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP])) {
+            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP]);
         } else {
-            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] += value;
+            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] += value;
         }
         break;
     case MON_DATA_MOVE1_PP_UPS:
@@ -3887,7 +3887,7 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
     // Bubble move slots 2 through 4 upwards
     for (int i = 0; i < LEARNED_MOVES_MAX - 1; i++) {
         moveIDs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2 + i, NULL);
-        movePPs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2_CUR_PP + i, NULL);
+        movePPs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2_PP + i, NULL);
         movePPUps[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2_PP_UPS + i, NULL);
     }
 
@@ -3897,7 +3897,7 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, &moveIDs[i]);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, &movePPs[i]);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + i, &movePPs[i]);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, &movePPUps[i]);
     }
 
@@ -3912,7 +3912,7 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot)
     Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &movePPUps);
 
     moveMaxPP = MoveTable_CalcMaxPP(moveID, 0);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &moveMaxPP);
+    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &moveMaxPP);
 }
 
 void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot)
@@ -3927,7 +3927,7 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
     u8 movePPUps = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
     u8 moveMaxPP = MoveTable_CalcMaxPP(moveID, movePPUps);
 
-    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot, &moveMaxPP);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + moveSlot, &moveMaxPP);
 }
 
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
@@ -3975,17 +3975,17 @@ void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int moveSlot1, int moveSlot2)
     u8 movePPUps[2];
 
     moveIDs[0] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + moveSlot1, NULL);
-    movePPs[0] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot1, NULL);
+    movePPs[0] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_PP + moveSlot1, NULL);
     movePPUps[0] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_PP_UPS + moveSlot1, NULL);
     moveIDs[1] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + moveSlot2, NULL);
-    movePPs[1] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot2, NULL);
+    movePPs[1] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_PP + moveSlot2, NULL);
     movePPUps[1] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_PP_UPS + moveSlot2, NULL);
 
     BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + moveSlot1, &moveIDs[1]);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot1, &movePPs[1]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + moveSlot1, &movePPs[1]);
     BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + moveSlot1, &movePPUps[1]);
     BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + moveSlot2, &moveIDs[0]);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot2, &movePPs[0]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + moveSlot2, &movePPs[0]);
     BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + moveSlot2, &movePPUps[0]);
 }
 
@@ -3997,11 +3997,11 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot)
 
     for (u32 i = moveSlot; i < 3; i++) {
         moveID = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i + 1, NULL);
-        movePP = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i + 1, NULL);
+        movePP = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i + 1, NULL);
         movePPUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i + 1, NULL);
 
         Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &moveID);
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + i, &movePP);
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + i, &movePP);
         Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + i, &movePPUps);
     }
 
@@ -4010,7 +4010,7 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot)
     movePPUps = 0;
 
     Pokemon_SetValue(mon, MON_DATA_MOVE4, &moveID);
-    Pokemon_SetValue(mon, MON_DATA_MOVE4_CUR_PP, &movePP);
+    Pokemon_SetValue(mon, MON_DATA_MOVE4_PP, &movePP);
     Pokemon_SetValue(mon, MON_DATA_MOVE4_PP_UPS, &movePPUps);
 }
 
@@ -4036,7 +4036,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     }
 
     Pokemon_SetValue(mon, MON_DATA_STATUS, &zero);
-    Pokemon_SetValue(mon, MON_DATA_CUR_HP, &zero);
+    Pokemon_SetValue(mon, MON_DATA_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
@@ -4455,7 +4455,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
     u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u32 monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     u32 condition = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
-    u32 currentHP = Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL);
+    u32 currentHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     u32 fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     RTCTime rtcTime;
@@ -4651,7 +4651,7 @@ void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokebal
 
     if (monPokeball == ITEM_HEAL_BALL) {
         int monMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-        Pokemon_SetValue(mon, MON_DATA_CUR_HP, &monMaxHP);
+        Pokemon_SetValue(mon, MON_DATA_HP, &monMaxHP);
 
         monMaxHP = 0;
         Pokemon_SetValue(mon, MON_DATA_STATUS, &monMaxHP);
@@ -5123,7 +5123,7 @@ void BoxPokemon_RestorePP(BoxPokemon *boxMon)
         if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) {
             u8 moveMaxPP = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
 
-            BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, &moveMaxPP);
+            BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + i, &moveMaxPP);
         }
     }
 

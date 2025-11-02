@@ -4098,7 +4098,7 @@ static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleConte
                     Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
                     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
                         && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
-                        && (curHP = Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL))) {
+                        && (curHP = Pokemon_GetValue(pokemon, MON_DATA_HP, NULL))) {
                         monsAlive++;
                         if (battleCtx->selectedPartySlot[i ^ 2] != j) {
                             totalHP += curHP;
@@ -4126,7 +4126,7 @@ static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleConte
 
                 if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
                     && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                    curHP += Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL);
+                    curHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
                 }
             }
 
@@ -4200,7 +4200,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
                     Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
                     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                         && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL);
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
                     }
                 }
 
@@ -4219,7 +4219,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
                     Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
                     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                         && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL);
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
                     }
                 }
 
@@ -4227,7 +4227,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
                     Pokemon *pokemon = Party_GetPokemonBySlotIndex(partnerParty, j);
                     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                         && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL);
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
                     }
                 }
 
@@ -4248,7 +4248,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
                 Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
                 if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                     && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                    totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CUR_HP, NULL);
+                    totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
                 }
             }
 

@@ -270,7 +270,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
         Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
         v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
-        Pokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + v0, &v3);
+        Pokemon_SetValue(param1, MON_DATA_MOVE1_PP + v0, &v3);
     }
 
     v6 = param0->otID;

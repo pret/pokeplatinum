@@ -757,8 +757,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     if (Item_LoadParam(item, ITEM_PARAM_PP_RESTORE, HEAP_ID_BATTLE)) {
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
-        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, param);
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
             // Don't permit restoring PP on copied moves
             if ((selectedSlot == partySlot || targetSlot == partySlot)
@@ -775,8 +775,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
         for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
-            if (Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, param);
+            if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
                 if ((selectedSlot == partySlot || targetSlot == partySlot)
                     && (BattleMon_Get(battleCtx, battler, BATTLEMON_VOLATILE_STATUS, NULL) & VOLATILE_CONDITION_TRANSFORM) == FALSE
@@ -793,14 +793,14 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = 0;
 
         if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE)) {
-            if (Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
                 param = 1;
             }
         } else {
-            param = Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL);
+            param = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
         }
 
-        if (param && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
+        if (param && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
             param = Item_LoadParam(item, ITEM_PARAM_HP_RESTORED, HEAP_ID_BATTLE);
 
             switch (param) {
@@ -828,7 +828,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 break;
             }
 
-            Pokemon_IncreaseValue(mon, MON_DATA_CUR_HP, param);
+            Pokemon_IncreaseValue(mon, MON_DATA_HP, param);
 
             if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE) == FALSE) {
                 if (Battler_Side(battleSys, battler)) {

@@ -409,7 +409,7 @@ BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
-            && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) != 0) {
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0) {
             aliveCount++;
         }
     }
@@ -431,7 +431,7 @@ BOOL ScrCmd_CountAliveMonsAndBoxMons(ScriptContext *ctx)
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
-            && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL) != 0) {
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0) {
             count++;
         }
     }

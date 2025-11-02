@@ -1104,7 +1104,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         moves[i] = Pokemon_GetValue(egg, MON_DATA_MOVE1 + i, NULL);
-        movesPP[i] = Pokemon_GetValue(egg, MON_DATA_MOVE1_CUR_PP + i, NULL);
+        movesPP[i] = Pokemon_GetValue(egg, MON_DATA_MOVE1_PP + i, NULL);
     }
 
     personality = Pokemon_GetValue(egg, MON_DATA_PERSONALITY, NULL);
@@ -1137,7 +1137,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &(moves[i]));
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + i, &(movesPP[i]));
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + i, &(movesPP[i]));
     }
 
     for (i = 0; i < STAT_MAX; i++) {

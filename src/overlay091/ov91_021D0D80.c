@@ -734,7 +734,7 @@ static int ov91_021D13E4(UnkStruct_ov91_021D0ED8 *param0)
     Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_PP_UPS + param0->unk_00->unk_17, &v0);
 
     v0 = MoveTable_CalcMaxPP(ov91_021D1DD0(param0), 0);
-    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_CUR_PP + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_PP + param0->unk_00->unk_17, &v0);
 
     param0->unk_00->unk_16 = 0;
 

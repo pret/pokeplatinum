@@ -877,7 +877,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
 
         value = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, (u8 *)&value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP + i, (u8 *)&value);
     }
 
     value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_HP_IV, NULL);

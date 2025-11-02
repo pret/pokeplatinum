@@ -1105,7 +1105,7 @@ u8 PartyMenu_LoadMember(PartyMenuApplication *application, u8 slot)
     PartyMenu_SetMemberName(application, mon, slot);
 
     application->partyMembers[slot].species = species;
-    application->partyMembers[slot].curHP = Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL);
+    application->partyMembers[slot].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     application->partyMembers[slot].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     application->partyMembers[slot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     application->partyMembers[slot].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
@@ -1428,7 +1428,7 @@ void PartyMenu_UpdateSlotPalette(PartyMenuApplication *application, u8 slot)
             palette = 0;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_CUR_HP, 0) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_HP, 0) == 0) {
             palette += 2;
         } else if (sub_0207F984(application, slot) == 1) {
             palette += 1;
@@ -2575,7 +2575,7 @@ static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 slot, s8 p
 
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
         v1 = application->partyMembers[slot].curHP;
-        Pokemon_SetValue(mon, MON_DATA_CUR_HP, &v1);
+        Pokemon_SetValue(mon, MON_DATA_HP, &v1);
         return 1;
     }
 

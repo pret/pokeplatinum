@@ -536,7 +536,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
         v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if ((v5) && (v5 != SPECIES_EGG)) {
-            if (Pokemon_GetValue(v8, MON_DATA_CUR_HP, NULL)) {
+            if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
                 if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                     v0.unk_08[0][v6] = 3;
                 } else {
@@ -574,7 +574,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CUR_HP, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
@@ -602,7 +602,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CUR_HP, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
@@ -625,7 +625,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CUR_HP, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
@@ -1634,7 +1634,7 @@ static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData 
         int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species && species != SPECIES_EGG) {
-            if (Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL)) {
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
                 if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL)) {
                     partyGauge->status[slot] = BALL_STATUS_HAS_STATUS_CONDITION;
                 } else {

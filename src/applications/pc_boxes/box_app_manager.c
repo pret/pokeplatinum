@@ -1837,7 +1837,7 @@ static BOOL BoxAppMan_CheckLastAliveMonReason(BoxApplicationManager *boxAppMan, 
         }
 
         if (BoxApp_GetCursorMonIsPartyMon(&boxAppMan->boxApp)) {
-            if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_CUR_HP, NULL) == 0) {
+            if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_HP, NULL) == 0) {
                 *destMessageID = BoxText_LastMon;
                 return TRUE;
             }
@@ -2106,7 +2106,7 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
         mon = Party_GetPokemonBySlotIndex(boxAppMan->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL)) {
+        if (Pokemon_GetValue(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
             count++;
         }
 
@@ -2121,7 +2121,7 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
         return FALSE;
     }
 
-    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_CUR_HP, NULL) == 0) {
+    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_HP, NULL) == 0) {
         return FALSE;
     }
 
