@@ -24,7 +24,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/pokemon_summary_screen.h"
@@ -1098,24 +1098,24 @@ static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches)
 {
     PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    if (infoDisplay->unk_14.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_14.unk_04, 0, (infoDisplay->unk_14.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->nature.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->nature.string, 0, (infoDisplay->nature.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->unk_1C.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_1C.unk_04, 0, (infoDisplay->unk_1C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->metDateAndLocation.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->metDateAndLocation.string, 0, (infoDisplay->metDateAndLocation.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->unk_24.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_24.unk_04, 0, (infoDisplay->unk_24.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->characteristic.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->characteristic.string, 0, (infoDisplay->characteristic.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->unk_2C.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_2C.unk_04, 0, (infoDisplay->unk_2C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->flavorPreference.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->flavorPreference.string, 0, (infoDisplay->flavorPreference.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->unk_34.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_34.unk_04, 0, (infoDisplay->unk_34.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->eggWatch.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->eggWatch.string, 0, (infoDisplay->eggWatch.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
     sub_0209282C(infoDisplay);
