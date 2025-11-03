@@ -1,7 +1,8 @@
-move_tutor_tiles = ncgr_gen.process(files(
-    'select_box.png',
-    'view_change_arrows.png',
-    'scroll_arrows.png',
+move_tutor_tiles = ncgr_gen.process(
+    files(
+        'select_box.png',
+        'view_change_arrows.png',
+        'scroll_arrows.png',
     ),
     extra_args: [
         '-version101',
@@ -9,14 +10,15 @@ move_tutor_tiles = ncgr_gen.process(files(
     ]
 )
 
-move_tutor_bg_tiles = ncgr_gen.process(files(
-    'move_tutor_bg_tiles.png',
+move_tutor_bg_tiles = ncgr_gen.process(
+    files(
+        'move_tutor_bg_tiles.png',
     ),
     extra_args: [
         '-version101',
         '-sopc',
-        ]
-    )
+    ]
+)
 
 move_tutor_cells = ncer_gen.process(files(
     'select_box_cell.json',
@@ -30,9 +32,10 @@ move_tutor_anims = nanr_gen.process(files(
     'scroll_arrows_anim.json',
 ))
 
-move_tutor_pals = nclr_gen.process(files(
-    'sprites.pal',
-    'move_tutor_background.pal',
+move_tutor_pals = nclr_gen.process(
+    files(
+        'sprites.pal',
+        'move_tutor_background.pal',
     ),
     extra_args: [
         '-bitdepth', '4',
