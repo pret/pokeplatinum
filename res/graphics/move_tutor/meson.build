@@ -17,6 +17,7 @@ move_tutor_bg_tiles = ncgr_gen.process(
     extra_args: [
         '-version101',
         '-sopc',
+        '-convertTo4Bpp',
     ]
 )
 
@@ -35,7 +36,7 @@ move_tutor_anims = nanr_gen.process(files(
 move_tutor_pals = nclr_gen.process(
     files(
         'sprites.pal',
-        'move_tutor_background.pal',
+        'move_tutor_bg_tiles.png',
     ),
     extra_args: [
         '-bitdepth', '4',
