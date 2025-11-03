@@ -23,7 +23,7 @@ VeilstoneStore4F_Attendant:
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 1
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 0
     ShowMenu
-    GoToIfEq VAR_RESULT, 1, _00C2
+    GoToIfEq VAR_RESULT, 1, VeilstoneStore4F_AttendantYellowCushion
     GoTo VeilstoneStore4F_AttendantPleaseEnjoyYourself
 
 VeilstoneStore4F_AttendantPersonalized:
@@ -35,10 +35,10 @@ VeilstoneStore4F_AttendantPersonalized:
     ShowMenu
     GoToIfNe VAR_RESULT, 0, VeilstoneStore4F_AttendantPleaseEnjoyYourself
     GetRandom VAR_RESULT, 4
-    GoToIfEq VAR_RESULT, 0, _00C2
-    GoToIfEq VAR_RESULT, 1, _00CD
-    GoToIfEq VAR_RESULT, 2, _00D8
-    GoTo _00E3
+    GoToIfEq VAR_RESULT, 0, VeilstoneStore4F_AttendantYellowCushion
+    GoToIfEq VAR_RESULT, 1, VeilstoneStore4F_AttendantCupboards
+    GoToIfEq VAR_RESULT, 2, VeilstoneStore4F_AttendantBuizelDoll
+    GoTo VeilstoneStore4F_AttendantMantykeDoll
 
 VeilstoneStore4F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore4F_Text_PleaseEnjoyYourself
@@ -47,28 +47,28 @@ VeilstoneStore4F_AttendantPleaseEnjoyYourself:
     ReleaseAll
     End
 
-_00C2:
+VeilstoneStore4F_AttendantYellowCushion:
     Message VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00CD:
+VeilstoneStore4F_AttendantCupboards:
     Message VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00D8:
+VeilstoneStore4F_AttendantBuizelDoll:
     Message VeilstoneStore4F_Text_BuizelDollIsVeryPopular
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00E3:
+VeilstoneStore4F_AttendantMantykeDoll:
     Message VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller
     WaitABXPadPress
     CloseMessage
