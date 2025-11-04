@@ -94,6 +94,7 @@ poketch_bg_tiles = ncgr_lz_gen.process(
     files(
         'generic_bg_tiles.png',
         'unavailable_bg_tiles.png',
+        'poketch_border.png',
         'calculator_bg_tiles.png',
         'stopwatch_bg_tiles.png',
         'watch_bg_tiles.png',
@@ -128,17 +129,27 @@ poketch_palettes = nclr_gen.process(
     files(
         'unavailable_bg_tiles.png',
         'unused_apps.png',
-    ), extra_args: [
+    ), 
+    extra_args: [
         '-bitdepth', '4',
         '-nopad',
         '-pcmp',
     ]
 )
 
+poketch_border_palette = nclr_gen.process(
+    files('poketch_border.pal'),
+    extra_args: [
+        '-bitdepth', '4',
+        '-nopad',
+        '-pcmp',
+        '-start', '14',
+    ]
+)
+
 poketch_nclrs = copy_gen.process(files(
     'screen_themes.NCLR',
     'screen_themes_dupe.NCLR',
-    'poketch_border.NCLR',
 ))
 
 poketch_graphics = ncgr_cell_lz_gen.process(
@@ -181,7 +192,6 @@ poketch_unused_ncgr = ncgr_gen.process(
 )
 
 poketch_ncgrs = copy_gen.process(files(
-    'poketch_border_tiles.NCGR.lz',
     'stopwatch.NCGR.lz',
     'friendship_checker.NCGR.lz',
 ))
@@ -203,6 +213,7 @@ poketch_narc = custom_target('poketch_narc',
         poketch_nscrs,
         poketch_nclrs,
         poketch_palettes,
+        poketch_border_palette,
     ],
     command: [
         narc_exe, 'create',
