@@ -1,28 +1,33 @@
-poketch_cells = copy_gen.process(files(
-    'digits_cell.NCER.lz',
-    'poke_icon_cell.NCER.lz',
-    'stopwatch_cell.NCER.lz',
-    'analog_watch_cell.NCER.lz',
-    'memo_pad_cell.NCER.lz',
-    'friendship_checker_cell.NCER.lz',
-    'dowsing_machine_cell.NCER.lz',
-    'counter_cell.NCER.lz',
-    'pedomether_cell.NCER.lz',
-    'coin_toss_cell.NCER.lz',
-    'move_tester_cell.NCER.lz',
-    'color_changer_cell.NCER.lz',
-    'matchup_checker_cell.NCER.lz',
-    'alarm_clock_cell.NCER.lz',
-    'daycare_checker_cell.NCER.lz',
-    'roulette_cell.NCER.lz',
-    'kitchen_timer_cell.NCER.lz',
-    'link_searcher_cell.NCER.lz',
-    'backlight_toggle_cell.NCER.lz',
-    'party_status_cell.NCER.lz',
-    'calendar_cell.NCER.lz',
-    'map_cell.NCER.lz',
-    'trainer_counter_cell.NCER.lz',
-))
+poketch_cells = ncer_lz_gen.process(
+    files(
+        'digits_cell.json',
+        'poke_icon_cell.json',
+        'stopwatch_cell.json',
+        'analog_watch_cell.json',
+        'memo_pad_cell.json',
+        'friendship_checker_cell.json',
+        'dowsing_machine_cell.json',
+        'counter_cell.json',
+        'pedomether_cell.json',
+        'coin_toss_cell.json',
+        'move_tester_cell.json',
+        'color_changer_cell.json',
+        'matchup_checker_cell.json',
+        'alarm_clock_cell.json',
+        'daycare_checker_cell.json',
+        'roulette_cell.json',
+        'kitchen_timer_cell.json',
+        'link_searcher_cell.json',
+        'backlight_toggle_cell.json',
+        'party_status_cell.json',
+        'calendar_cell.json',
+        'map_cell.json',
+        'trainer_counter_cell.json',
+    ),
+    extra_args: [
+        '-nopad',
+    ]
+)
 
 poketch_anims = nanr_lz_gen.process(
     files(
