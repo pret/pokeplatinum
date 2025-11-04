@@ -124,32 +124,51 @@ poketch_palettes = copy_gen.process(files(
     'poketch_border.NCLR',
 ))
 
-poketch_sprites = copy_gen.process(files(
-    'digits.NCGR.lz',
+poketch_graphics = ncgr_cell_lz_gen.process(
+    files(
+        'digits.png',
+        'analog_watch.png',
+        'memo_pad.png',
+        'dowsing_machine.png',
+        'counter.png',
+        'pedomether.png',
+        'coin_toss.png',
+        'move_tester.png',
+        'color_changer.png',
+        'matchup_checker.png',
+        'alarm_clock.png',
+        'daycare_checker.png',
+        'roulette.png',
+        'kitchen_timer.png',
+        'link_searcher.png',
+        'backlight_toggle.png',
+        'party_status.png',
+        'calendar.png',
+        'map.png',
+        'trainer_counter.png',
+    ),
+    extra_args: [
+        '-clobbersize',
+        '-version101',
+        '-nopad',
+    ]
+)
+
+poketch_unused_menu_ncgr = ncgr_lz_gen.process(files(
+        'unused_menu.png',
+    ),
+    extra_args: [
+        '-sopc',
+        '-version101',
+        '-nopad',
+    ]
+)
+
+poketch_ncgrs = copy_gen.process(files(
     'unused_apps.NCGR',
     'poketch_border_tiles.NCGR.lz',
     'stopwatch.NCGR.lz',
-    'analog_watch.NCGR.lz',
-    'memo_pad.NCGR.lz',
     'friendship_checker.NCGR.lz',
-    'dowsing_machine.NCGR.lz',
-    'counter.NCGR.lz',
-    'pedomether.NCGR.lz',
-    'coin_toss.NCGR.lz',
-    'unused_menu.NCGR.lz',
-    'move_tester.NCGR.lz',
-    'color_changer.NCGR.lz',
-    'matchup_checker.NCGR.lz',
-    'alarm_clock.NCGR.lz',
-    'daycare_checker.NCGR.lz',
-    'roulette.NCGR.lz',
-    'kitchen_timer.NCGR.lz',
-    'link_searcher.NCGR.lz',
-    'backlight_toggle.NCGR.lz',
-    'party_status.NCGR.lz',
-    'calendar.NCGR.lz',
-    'map.NCGR.lz',
-    'trainer_counter.NCGR.lz',
 ))
 
 poketch_order = files('poketch.order')
@@ -160,7 +179,9 @@ poketch_narc = custom_target('poketch_narc',
         'poketch.naix.h',
     ],
     input: [
-        poketch_sprites,
+        poketch_graphics,
+        poketch_unused_menu_ncgr,
+        poketch_ncgrs,
         poketch_cells,
         poketch_anims,
         poketch_nscrs,
