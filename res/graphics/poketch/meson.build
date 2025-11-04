@@ -24,31 +24,36 @@ poketch_cells = copy_gen.process(files(
     'trainer_counter_cell.NCER.lz',
 ))
 
-poketch_anims = copy_gen.process(files(
-    'digits_anim.NANR.lz',
-    'poke_icon_anim.NANR.lz',
-    'stopwatch_anim.NANR.lz',
-    'analog_watch_anim.NANR.lz',
-    'memo_pad_anim.NANR.lz',
-    'friendship_checker_anim.NANR.lz',
-    'dowsing_machine_anim.NANR.lz',
-    'counter_anim.NANR.lz',
-    'pedomether_anim.NANR.lz',
-    'coin_toss_anim.NANR.lz',
-    'move_tester_anim.NANR.lz',
-    'color_changer_anim.NANR.lz',
-    'matchup_checker_anim.NANR.lz',
-    'alarm_clock_anim.NANR.lz',
-    'daycare_checker_anim.NANR.lz',
-    'roulette_anim.NANR.lz',
-    'kitchen_timer_anim.NANR.lz',
-    'link_searcher_anim.NANR.lz',
-    'backlight_toggle_anim.NANR.lz',
-    'party_status_anim.NANR.lz',
-    'calendar_anim.NANR.lz',
-    'map_anim.NANR.lz',
-    'trainer_counter_anim.NANR.lz',
-))
+poketch_anims = nanr_lz_gen.process(
+    files(
+        'digits_anim.json',
+        'poke_icon_anim.json',
+        'stopwatch_anim.json',
+        'analog_watch_anim.json',
+        'memo_pad_anim.json',
+        'friendship_checker_anim.json',
+        'dowsing_machine_anim.json',
+        'counter_anim.json',
+        'pedomether_anim.json',
+        'coin_toss_anim.json',
+        'move_tester_anim.json',
+        'color_changer_anim.json',
+        'matchup_checker_anim.json',
+        'alarm_clock_anim.json',
+        'daycare_checker_anim.json',
+        'roulette_anim.json',
+        'kitchen_timer_anim.json',
+        'link_searcher_anim.json',
+        'backlight_toggle_anim.json',
+        'party_status_anim.json',
+        'calendar_anim.json',
+        'map_anim.json',
+        'trainer_counter_anim.json',
+    ),
+    extra_args: [
+        '-nopad',
+    ]
+)
 
 poketch_nscrs = copy_gen.process(files(
     'unavailable.NSCR.lz',
