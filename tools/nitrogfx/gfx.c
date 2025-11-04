@@ -1675,7 +1675,7 @@ void ReadNtrCell_LABL(unsigned char * restrict data, unsigned int blockOffset, u
         {
             FATAL_ERROR("corrupted LABL block\n");
         }
-        unsigned long slen = strnlen((char *)data + offset, blockSize - offset);
+        unsigned long slen = strnlen((char *)data + offset, (blockOffset + blockSize) - offset);
         options->labels[i] = malloc(slen + 1);
         strncpy(options->labels[i], (char *)data + offset, slen + 1);
     }
