@@ -29,9 +29,9 @@ enum UndergroundStartMenuOptions {
 };
 
 typedef void (*ExitCallback)(int selectedID);
-typedef int (*ItemCountGetter)(void *menu);
-typedef int (*ItemGetter)(int slot, void *menu);
-typedef int (*SphereSizeGetter)(int slot, void *menu);
+typedef int (*GetItemCountFunc)(void *menu);
+typedef int (*GetItemFunc)(int slot, void *menu);
+typedef int (*GetSphereSizeFunc)(int slot, void *menu);
 
 typedef struct UndergroundMenu {
     void *openMenuFn;
@@ -58,9 +58,9 @@ typedef struct UndergroundMenu {
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];
     u32 spriteCount;
     ExitCallback exitCallback;
-    ItemCountGetter itemCountGetter;
-    ItemGetter itemGetter;
-    SphereSizeGetter sphereSizeGetter;
+    GetItemCountFunc getItemCount;
+    GetItemFunc getItem;
+    GetSphereSizeFunc getSphereSize;
     void *unk_270;
     u8 unk_274[5];
     u8 unk_279[5];

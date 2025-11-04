@@ -818,7 +818,7 @@ void UndergroundMenu_RemoveSelectedTrap(int trapID)
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getTrap = menu->itemGetter;
+    GetItemFunc getTrap = menu->getItem;
     int bankEntry;
     int trapID = getTrap(index, menu);
 
@@ -833,8 +833,8 @@ void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onIn
 
 void ov23_0224FDBC(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetTrapCount;
-    menu->itemGetter = UndergroundMenu_GetTrapAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTrapCount;
+    menu->getItem = UndergroundMenu_GetTrapAtSlot;
     menu->printCallback = NULL;
 
     UndergroundMenu_InitTrapsMenu(menu, NULL);
@@ -844,8 +844,8 @@ void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_TRAPS);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_TRAPS);
-    menu->itemCountGetter = UndergroundMenu_GetTrapCount;
-    menu->itemGetter = UndergroundMenu_GetTrapAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTrapCount;
+    menu->getItem = UndergroundMenu_GetTrapAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintTrapDescription;
     menu->printCallback = NULL;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
@@ -855,8 +855,8 @@ void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getTrapCount = menu->itemCountGetter;
-    ItemGetter getTrap = menu->itemGetter;
+    GetItemCountFunc getTrapCount = menu->getItemCount;
+    GetItemFunc getTrap = menu->getItem;
     int trapCount = getTrapCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -998,7 +998,7 @@ void UndergroundMenu_RemoveSelectedSphere(int sphereType)
 static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getSphereType = menu->itemGetter;
+    GetItemFunc getSphereType = menu->getItem;
     int bankEntry;
     int sphereType = getSphereType(index, menu);
 
@@ -1013,9 +1013,9 @@ static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index
 
 void ov23_02250184(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetSphereCount;
-    menu->itemGetter = UndergroundMenu_GetSphereTypeAtSlot;
-    menu->sphereSizeGetter = UndergroundMenu_GetSphereSizeAtSlot;
+    menu->getItemCount = UndergroundMenu_GetSphereCount;
+    menu->getItem = UndergroundMenu_GetSphereTypeAtSlot;
+    menu->getSphereSize = UndergroundMenu_GetSphereSizeAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintSphereDescription;
 
     UndergroundMenu_InitSpheresMenu(menu, Underground_MoveSphereInInventory);
@@ -1025,9 +1025,9 @@ static void UndergroundMenu_OpenSpheresMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_SPHERES);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_SPHERES);
-    menu->itemCountGetter = UndergroundMenu_GetSphereCount;
-    menu->itemGetter = UndergroundMenu_GetSphereTypeAtSlot;
-    menu->sphereSizeGetter = UndergroundMenu_GetSphereSizeAtSlot;
+    menu->getItemCount = UndergroundMenu_GetSphereCount;
+    menu->getItem = UndergroundMenu_GetSphereTypeAtSlot;
+    menu->getSphereSize = UndergroundMenu_GetSphereSizeAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintSphereDescription;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
 
@@ -1036,9 +1036,9 @@ static void UndergroundMenu_OpenSpheresMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getSphereCount = menu->itemCountGetter;
-    ItemGetter getSphereType = menu->itemGetter;
-    SphereSizeGetter getSphereSize = menu->sphereSizeGetter;
+    GetItemCountFunc getSphereCount = menu->getItemCount;
+    GetItemFunc getSphereType = menu->getItem;
+    GetSphereSizeFunc getSphereSize = menu->getSphereSize;
     int sphereCount = getSphereCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -1170,7 +1170,7 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getTreasure = menu->itemGetter;
+    GetItemFunc getTreasure = menu->getItem;
     int bankEntry = index;
     int treasureID = getTreasure(index, menu);
 
@@ -1185,8 +1185,8 @@ void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 
 
 void ov23_02250578(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetTreasureCount;
-    menu->itemGetter = UndergroundMenu_GetTreasureAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTreasureCount;
+    menu->getItem = UndergroundMenu_GetTreasureAtSlot;
 
     UndergroundMenu_InitTreasuresMenu(menu, NULL);
 }
@@ -1195,8 +1195,8 @@ void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_TREASURES);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_TREASURES);
-    menu->itemCountGetter = UndergroundMenu_GetTreasureCount;
-    menu->itemGetter = UndergroundMenu_GetTreasureAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTreasureCount;
+    menu->getItem = UndergroundMenu_GetTreasureAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintTreasureDescription;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
 
@@ -1205,8 +1205,8 @@ void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitTreasuresMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getTreasureCount = menu->itemCountGetter;
-    ItemGetter getTreasure = menu->itemGetter;
+    GetItemCountFunc getTreasureCount = menu->getItemCount;
+    GetItemFunc getTreasure = menu->getItem;
     int treasureCount = getTreasureCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -1522,7 +1522,7 @@ static void ov23_02250B9C(SysTask *sysTask, void *data)
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getGood = menu->itemGetter;
+    GetItemFunc getGood = menu->getItem;
     int bankEntry;
     int goodID = getGood(index, menu);
 
@@ -1549,8 +1549,8 @@ static void UndergroundMenu_ColorPlacedGoods(ListMenu *listMenu, u32 index, u8 y
 
 void ov23_02250CB0(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->printCallback = NULL;
 
     UndergroundMenu_InitGoodsMenu(menu, NULL);
@@ -1560,8 +1560,8 @@ void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_GOODS);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_GOODS);
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = NULL;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
@@ -1571,8 +1571,8 @@ void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu)
 
 void ov23_02250D2C(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = NULL;
 
@@ -1581,8 +1581,8 @@ void ov23_02250D2C(UndergroundMenu *menu)
 
 void ov23_02250D5C(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountPC;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotPC;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountPC;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotPC;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = UndergroundMenu_ColorPlacedGoods;
 
@@ -1591,8 +1591,8 @@ void ov23_02250D5C(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getGoodsCount = menu->itemCountGetter;
-    ItemGetter getGood = menu->itemGetter;
+    GetItemCountFunc getGoodsCount = menu->getItemCount;
+    GetItemFunc getGood = menu->getItem;
     int goodsCount = getGoodsCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 

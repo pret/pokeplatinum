@@ -325,8 +325,8 @@ static void UndergroundTalk_InitTalkMenu(TalkMenu *menu)
 {
     menu->menuOptions = StringList_New(NELEMS(sTalkOptions), HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 10, NELEMS(sTalkOptions) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(sTalkOptions) * 2));
-    Window_DrawStandardFrame(&menu->window, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 10, NELEMS(sTalkOptions) * 2, 13, BASE_TILE_MESSAGE_WINDOW - 10 * NELEMS(sTalkOptions) * 2);
+    Window_DrawStandardFrame(&menu->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_FIELD1);
 
@@ -380,8 +380,8 @@ static void UndergroundTalk_InitQuestionsMenu(TalkMenu *menu)
 {
     menu->menuOptions = StringList_New(NUM_QUESTION_OPTIONS, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, NUM_QUESTION_OPTIONS * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
-    Window_DrawStandardFrame(&menu->window, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, NUM_QUESTION_OPTIONS * 2, 13, BASE_TILE_MESSAGE_WINDOW - 16 * NUM_QUESTION_OPTIONS * 2);
+    Window_DrawStandardFrame(&menu->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD1);
 
@@ -458,8 +458,8 @@ static void UndergroundTalk_InitAnswersMenu(TalkMenu *menu)
 {
     menu->menuOptions = StringList_New(ANSWERS_PER_QUESTION, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
-    Window_DrawStandardFrame(&menu->window, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, ANSWERS_PER_QUESTION * 2, 13, BASE_TILE_MESSAGE_WINDOW - 16 * ANSWERS_PER_QUESTION * 2);
+    Window_DrawStandardFrame(&menu->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
@@ -752,7 +752,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         break;
     case TALK_MENU_STATE_OPEN_CONFIRM_GIFT_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
-            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
+            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             menu->state = TALK_MENU_STATE_CONFIRM_GIFT;
 
             if (menu->linkRequestedState != TALK_MENU_STATE_LINK_EXITED) {
@@ -1030,8 +1030,8 @@ static void UndergroundTalkResponse_InitAnswersMenu(ResponseMenu *menu)
 
     menu->menuOptions = StringList_New(optionCount, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, optionCount * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * optionCount * 2));
-    Window_DrawStandardFrame(&menu->window, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->window, BG_LAYER_MAIN_3, 1, 1, 16, optionCount * 2, 13, BASE_TILE_MESSAGE_WINDOW - 16 * optionCount * 2);
+    Window_DrawStandardFrame(&menu->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
@@ -1148,7 +1148,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
     case RESPONSE_MENU_STATE_OPEN_CONFIRM_EXCHANGE_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_CONFIRM_EXCHANGE;
-            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
+            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         }
         break;
     case RESPONSE_MENU_STATE_CONFIRM_EXCHANGE:
@@ -1203,7 +1203,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
     case RESPONSE_MENU_STATE_RECEIVE_GIFT_OFFER:
         if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_GIFT_OFFERED;
-            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
+            menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         }
         break;
     case RESPONSE_MENU_STATE_GIFT_OFFERED:
