@@ -90,37 +90,54 @@ poketch_nscrs = copy_gen.process(files(
     'trainer_counter.NSCR.lz',
 ))
 
-poketch_bg_tiles = copy_gen.process(files(
-    'generic_bg_tiles.NCGR.lz',
-    'unavailable_bg_tiles.NCGR.lz',
-    'calculator_bg_tiles.NCGR.lz',
-    'stopwatch_bg_tiles.NCGR.lz',
-    'watch_bg_tiles.NCGR.lz',
-    'memo_pad_bg_tiles.NCGR.lz',
-    'dowsing_machine_bg_tiles.NCGR.lz',
-    'counter_bg_tiles.NCGR.lz',
-    'pedomether_bg_tiles.NCGR.lz',
-    'coin_toss_bg_tiles.NCGR.lz',
-    'move_tester_bg_tiles.NCGR.lz',
-    'color_changer_bg_tiles.NCGR.lz',
-    'matchup_checker_bg_tiles.NCGR.lz',
-    'alarm_clock_bg_tiles.NCGR.lz',
-    'daycare_checker_bg_tiles.NCGR.lz',
-    'roulette_bg_tiles.NCGR.lz',
-    'kitchen_timer_bg_tiles.NCGR.lz',
-    'link_searcher_bg_tiles.NCGR.lz',
-    'backlight_toggle_bg_tiles.NCGR.lz',
-    'party_status_bg_tiles.NCGR.lz',
-    'calendar_bg_tiles.NCGR.lz',
-    'map_bg_tiles.NCGR.lz',
-    'trainer_counter_bg_tiles.NCGR.lz',
-))
+poketch_bg_tiles = ncgr_lz_gen.process(
+    files(
+        'generic_bg_tiles.png',
+        'unavailable_bg_tiles.png',
+        'calculator_bg_tiles.png',
+        'stopwatch_bg_tiles.png',
+        'watch_bg_tiles.png',
+        'memo_pad_bg_tiles.png',
+        'dowsing_machine_bg_tiles.png',
+        'counter_bg_tiles.png',
+        'pedomether_bg_tiles.png',
+        'coin_toss_bg_tiles.png',
+        'unused_menu_bg_tiles.png',
+        'move_tester_bg_tiles.png',
+        'color_changer_bg_tiles.png',
+        'matchup_checker_bg_tiles.png',
+        'alarm_clock_bg_tiles.png',
+        'daycare_checker_bg_tiles.png',
+        'roulette_bg_tiles.png',
+        'kitchen_timer_bg_tiles.png',
+        'link_searcher_bg_tiles.png',
+        'backlight_toggle_bg_tiles.png',
+        'party_status_bg_tiles.png',
+        'calendar_bg_tiles.png',
+        'map_bg_tiles.png',
+        'trainer_counter_bg_tiles.png',
+    ),
+    extra_args: [
+        '-sopc',
+        '-version101',
+        '-nopad',
+    ]
+)
 
-poketch_palettes = copy_gen.process(files(
+poketch_palettes = nclr_gen.process(
+    files(
+        'unavailable_bg_tiles.png',
+        'unused_apps.png',
+    ), extra_args: [
+        '-bitdepth', '4',
+        '-nopad',
+        '-pcmp',
+    ]
+)
+
+poketch_nclrs = copy_gen.process(files(
     'screen_themes.NCLR',
     'screen_themes_dupe.NCLR',
-    'unused_apps.NCLR',
-    'unavailable.NCLR',
     'poketch_border.NCLR',
 ))
 
@@ -154,18 +171,16 @@ poketch_graphics = ncgr_cell_lz_gen.process(
     ]
 )
 
-poketch_unused_menu_ncgr = ncgr_lz_gen.process(files(
-        'unused_menu.png',
-    ),
+poketch_unused_ncgr = ncgr_gen.process(
+    files('unused_apps.png'),
     extra_args: [
-        '-sopc',
+        '-convertTo4Bpp',
         '-version101',
-        '-nopad',
-    ]
+        '-sopc',
+    ],
 )
 
 poketch_ncgrs = copy_gen.process(files(
-    'unused_apps.NCGR',
     'poketch_border_tiles.NCGR.lz',
     'stopwatch.NCGR.lz',
     'friendship_checker.NCGR.lz',
@@ -180,12 +195,13 @@ poketch_narc = custom_target('poketch_narc',
     ],
     input: [
         poketch_graphics,
-        poketch_unused_menu_ncgr,
         poketch_ncgrs,
+        poketch_unused_ncgr,
+        poketch_bg_tiles,
         poketch_cells,
         poketch_anims,
         poketch_nscrs,
-        poketch_bg_tiles,
+        poketch_nclrs,
         poketch_palettes,
     ],
     command: [

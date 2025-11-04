@@ -10,7 +10,7 @@ unused_apps.NCGR
 unused_apps.NCLR
 unavailable_bg_tiles.NCGR.lz
 unavailable.NSCR.lz
-unavailable.NCLR
+unavailable_bg_tiles.NCLR
 poketch_border.NCLR
 poketch_border_tiles.NCGR.lz
 poketch_border.NSCR.lz
@@ -57,7 +57,7 @@ coin_toss_cell.NCER.lz
 coin_toss_anim.NANR.lz
 coin_toss.NCGR.lz
 unused_menu.NSCR.lz
-unused_menu.NCGR.lz
+unused_menu_bg_tiles.NCGR.lz
 move_tester.NSCR.lz
 move_tester_bg_tiles.NCGR.lz
 move_tester_cell.NCER.lz
