@@ -1,4 +1,4 @@
-move_tutor_tiles = ncgr_gen.process(
+move_tutor_tiles = ncgr_cell_gen.process(
     files(
         'select_box.png',
         'view_change_arrows.png',
