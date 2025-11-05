@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A0C4.h"
@@ -30,8 +30,8 @@ void ov104_022394A4(BattleTower *battleTower, SaveData *saveData)
         u16 v2[2];
 
         for (int v0 = 0; v0 < battleTower->partySize; v0++) {
-            v1[v0] = battleTower->unk_78[0].unk_30[v0].species;
-            v2[v0] = battleTower->unk_78[0].unk_30[v0].item;
+            v1[v0] = battleTower->unk_78[0].monDataDTO[v0].species;
+            v2[v0] = battleTower->unk_78[0].monDataDTO[v0].item;
         }
 
         ov104_0223A0C4(battleTower, &(battleTower->unk_78[1]), battleTower->unk_3E[(battleTower->unk_0C - 1) * 2 + 1], battleTower->partySize, v1, v2, NULL, battleTower->heapID);
@@ -46,7 +46,7 @@ void ov104_022394A4(BattleTower *battleTower, SaveData *saveData)
 
 u16 ov104_02239588(BattleTower *battleTower, u16 param1)
 {
-    return ov104_0222E10C(battleTower->unk_78[param1].unk_00.trainerType);
+    return ov104_0222E10C(battleTower->unk_78[param1].trDataDTO.trainerType);
 }
 
 void ov104_022395A0(BattleTower *battleTower, u16 param1)

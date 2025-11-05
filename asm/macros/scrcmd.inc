@@ -31,6 +31,7 @@
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/animation_tags.h"
+#include "constants/battle_tower.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
 #include "constants/elevator_dirs.h"
@@ -690,11 +691,11 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_06B arg0, arg1, arg2
+    .macro MoveCamera x, y, z
     .short 107
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \x
+    .short \y
+    .short \z
     .endm
 
     .macro ScrCmd_06C arg0, arg1
@@ -2743,12 +2744,12 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1DE arg0, arg1, arg2, arg3
+    .macro GetBattleTowerPartnerSpeciesAndMove partnerID, monID, destVar1, destVar2
     .short 478
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \partnerID
+    .short \monID
+    .short \destVar1
+    .short \destVar2
     .endm
 
     .macro ScrCmd_1DF arg0
@@ -2886,7 +2887,7 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1F8
+    .macro WaitForTransition
     .short 504
     .endm
 

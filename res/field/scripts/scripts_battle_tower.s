@@ -320,7 +320,7 @@ BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     Call _0577
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_51, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_ID, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_9, VAR_RESULT
     Message BattleTower_Text_DirectToMultiBattleRoom
     WaitABPress

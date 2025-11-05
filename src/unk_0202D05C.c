@@ -485,10 +485,10 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
     param1->unk_04 = param0->unk_100;
 }
 
-void sub_0202D63C(UnkStruct_0202D764 *param0, UnkStruct_ov104_0223A348 *param1, const u8 param2)
+void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2)
 {
-    FrontierTrainerDataDTO *v0 = &(param1->unk_00);
-    FrontierPokemonDataDTO *v1 = param1->unk_30;
+    FrontierTrainerDataDTO *v0 = &(param1->trDataDTO);
+    FrontierPokemonDataDTO *v1 = param1->monDataDTO;
     UnkStruct_0202D63C *v2 = &(param0->unk_104[param2]);
 
     v0->trainerID = 10000;

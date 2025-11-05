@@ -461,7 +461,7 @@ _069E:
     End
 
 _06A0:
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_0A3
     ReturnToField
     FadeScreenIn

@@ -3,11 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
 #include "generated/battle_tower_functions.h"
+#include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
+#include "generated/object_events.h"
 
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_02049A68.h"
-#include "struct_defs/struct_0204AFC4.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
@@ -29,7 +32,7 @@
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
 
-static u16 sub_02049AE0(BattleTower *battleTower, u8 param1);
+static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 
 BOOL ScrCmd_InitBattleTower(ScriptContext *ctx)
 {
@@ -43,7 +46,7 @@ BOOL ScrCmd_InitBattleTower(ScriptContext *ctx)
 BOOL ScrCmd_SetBattleTowerNull(ScriptContext *ctx)
 {
     BattleTower_SetNull(&(ctx->fieldSystem->battleTower));
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_FreeBattleTower(ScriptContext *ctx)
@@ -137,8 +140,8 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BATTLE_TOWER_FUNCTION_UNK_56:
         sub_0204A97C(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_41:
-        *destVar = sub_0204A9E0(battleTower, functionArgument);
+    case BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID:
+        *destVar = BattleTower_GetObjectIDFromOpponentID(battleTower, functionArgument);
         break;
     case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
         *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
@@ -155,11 +158,11 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BATTLE_TOWER_FUNCTION_UNK_49:
         *destVar = sub_0204ABA0(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_50:
-        battleTower->unk_10_5 = functionArgument;
+    case BATTLE_TOWER_FUNCTION_SET_PARTNER_ID:
+        battleTower->partnerID = functionArgument;
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_51:
-        *destVar = battleTower->unk_10_5;
+    case BATTLE_TOWER_FUNCTION_GET_PARTNER_ID:
+        *destVar = battleTower->partnerID;
         break;
     case BATTLE_TOWER_FUNCTION_UNK_52:
         sub_0204A4C8(battleTower, ctx->fieldSystem->saveData);
@@ -170,8 +173,8 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BATTLE_TOWER_FUNCTION_UNK_54:
         *destVar = sub_0204AABC(battleTower, ctx->fieldSystem->saveData, 1);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_55:
-        *destVar = sub_02049AE0(battleTower, functionArgument);
+    case BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM:
+        *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
         break;
     case BATTLE_TOWER_FUNCTION_UNK_57:
         *destVar = sub_0204ABF4(battleTower, ctx->fieldSystem->saveData);
@@ -195,21 +198,21 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1DE(ScriptContext *ctx)
+BOOL ScrCmd_GetBattleTowerPartnerSpeciesAndMove(ScriptContext *ctx)
 {
-    u16 v0, v1;
-    u16 *v2, *v3;
+    u16 partnerID, monID;
+    u16 *destVar1, *destVar2;
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    v0 = ScriptContext_GetVar(ctx);
-    v1 = ScriptContext_GetVar(ctx);
-    v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
-    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    partnerID = ScriptContext_GetVar(ctx);
+    monID = ScriptContext_GetVar(ctx);
+    destVar1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    destVar2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v2 = battleTower->unk_298[v0].unk_30[v1].species;
-    *v3 = battleTower->unk_298[v0].unk_30[v1].moves[0];
+    *destVar1 = battleTower->partnersDataDTO[partnerID].monDataDTO[monID].species;
+    *destVar2 = battleTower->partnersDataDTO[partnerID].monDataDTO[monID].moves[0];
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1DF(ScriptContext *ctx)
@@ -348,36 +351,36 @@ BOOL ScrCmd_1E4(ScriptContext *ctx)
     return FALSE;
 }
 
-static u16 sub_02049AE0(BattleTower *battleTower, u8 param1)
+static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param)
 {
-    static const u16 v0[] = {
-        0x8d,
-        0x91,
-        0x8e,
-        0x8f,
-        0x90
+    static const u16 partnerGraphics[] = {
+        OBJ_EVENT_GFX_CHERYL,
+        OBJ_EVENT_GFX_MIRA,
+        OBJ_EVENT_GFX_RILEY,
+        OBJ_EVENT_GFX_MARLEY,
+        OBJ_EVENT_GFX_BUCK
     };
 
-    if (param1 == 2) {
-        return battleTower->unk_10_5;
+    if (param == BT_PARAM_PARTNER_ID) {
+        return battleTower->partnerID;
     }
 
-    if (param1 == 1) {
-        if (battleTower->challengeMode == 2) {
-            return v0[battleTower->unk_10_5];
+    if (param == BT_PARAM_PARTNER_GRAPHICS_ID) {
+        if (battleTower->challengeMode == BATTLE_TOWER_MODE_MULTI) {
+            return partnerGraphics[battleTower->partnerID];
         } else {
-            if (battleTower->unk_12) {
-                return 0x61;
+            if (battleTower->partnerGender) {
+                return OBJ_EVENT_GFX_PLAYER_F;
             } else {
-                return 0x0;
+                return OBJ_EVENT_GFX_PLAYER_M;
             }
         }
     }
 
-    if (battleTower->unk_11) {
-        return 0x61;
+    if (battleTower->playerGender) {
+        return OBJ_EVENT_GFX_PLAYER_F;
     } else {
-        return 0x0;
+        return OBJ_EVENT_GFX_PLAYER_M;
     }
 }
 
