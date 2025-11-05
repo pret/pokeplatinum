@@ -162,6 +162,7 @@ poketch_graphics = ncgr_cell_lz_gen.process(
         'digits.png',
         'analog_watch.png',
         'memo_pad.png',
+        'friendship_checker.png',
         'dowsing_machine.png',
         'counter.png',
         'pedomether.png',
@@ -198,7 +199,6 @@ poketch_unused_ncgr = ncgr_gen.process(
 
 poketch_ncgrs = copy_gen.process(files(
     'stopwatch.NCGR.lz',
-    'friendship_checker.NCGR.lz',
 ))
 
 poketch_order = files('poketch.order')
