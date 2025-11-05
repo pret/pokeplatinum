@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
 #include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
