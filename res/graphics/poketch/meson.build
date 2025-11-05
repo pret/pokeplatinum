@@ -147,10 +147,15 @@ poketch_border_palette = nclr_gen.process(
     ]
 )
 
-poketch_nclrs = copy_gen.process(files(
-    'screen_themes.NCLR',
-    'screen_themes_dupe.NCLR',
-))
+poketch_screen_palette = nclr_gen.process(
+    files('screen_themes.pal'),
+    extra_args: ['-bitdepth', '4'],
+)
+
+poketch_screen_palette_dupe = generator(nitrogfx_exe,
+    arguments: ['@INPUT@', '@OUTPUT@', '-bitdepth', '4'],
+    output: '@BASENAME@_dupe.NCLR',
+).process(files('screen_themes.pal'))
 
 poketch_graphics = ncgr_cell_lz_gen.process(
     files(
@@ -211,9 +216,10 @@ poketch_narc = custom_target('poketch_narc',
         poketch_cells,
         poketch_anims,
         poketch_nscrs,
-        poketch_nclrs,
         poketch_palettes,
         poketch_border_palette,
+        poketch_screen_palette,
+        poketch_screen_palette_dupe,
     ],
     command: [
         narc_exe, 'create',
