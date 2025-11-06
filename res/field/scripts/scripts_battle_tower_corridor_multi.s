@@ -1,10 +1,7 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_battle_tower_corridor_multi.h"
 #include "constants/map_object.h"
 
-#define LOCALID_LEFT_GUIDE    0
-#define LOCALID_RIGHT_GUIDE   1
-#define LOCALID_PLAYER_LEADER 2
-#define LOCALID_PLAYER_FRIEND 3
 
     ScriptEntry BattleTowerCorridorMulti_SetPlayerGraphics
     ScriptEntry _0068
@@ -60,13 +57,13 @@ BattleTowerCorridorMulti_PlayEnterCorridorAnimation:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_2
     WaitForAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_2
-    ApplyMovement LOCALID_LEFT_GUIDE, BattleTowerCorridorMulti_GuideEnterCorridorMovement
-    ApplyMovement LOCALID_RIGHT_GUIDE, BattleTowerCorridorMulti_GuideEnterCorridorMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_LEFT_ATTENDANT, BattleTowerCorridorMulti_AttendantEnterCorridorMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_RIGHT_ATTENDANT, BattleTowerCorridorMulti_AttendantEnterCorridorMovement
     WaitMovement
-    ShowObject LOCALID_PLAYER_LEADER
-    ShowObject LOCALID_PLAYER_FRIEND
-    ApplyMovement LOCALID_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerEnterCorridorMovement
-    ApplyMovement LOCALID_PLAYER_FRIEND, BattleTowerCorridorMulti_PlayerEnterCorridorMovement
+    ShowObject BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_LEADER
+    ShowObject BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_PARTNER
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerEnterCorridorMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_PARTNER, BattleTowerCorridorMulti_PlayerEnterCorridorMovement
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_2
@@ -77,23 +74,23 @@ BattleTowerCorridorMulti_PlayEnterCorridorAnimation:
     Return
 
 BattleTowerCorridorMulti_ApplyWalkToBattleRoomMovement:
-    ApplyMovement LOCALID_LEFT_GUIDE, BattleTowerCorridorMulti_LeftGuideWalkToBattleRoomMovement
-    ApplyMovement LOCALID_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerLeaderWalkToBattleRoomMovement
-    ApplyMovement LOCALID_RIGHT_GUIDE, BattleTowerCorridorMulti_RightGuideWalkToBattleRoomMovement
-    ApplyMovement LOCALID_PLAYER_FRIEND, BattleTowerCorridorMulti_PlayerFriendWalkToBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_LEFT_ATTENDANT, BattleTowerCorridorMulti_LeftAttendantWalkToBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerLeaderWalkToBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_RIGHT_ATTENDANT, BattleTowerCorridorMulti_RightAttendantWalkToBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_PARTNER, BattleTowerCorridorMulti_PlayerFriendWalkToBattleRoomMovement
     WaitMovement
     Return
 
 BattleTowerCorridorMulti_ApplyEnterBattleRoomMovement:
-    ApplyMovement LOCALID_LEFT_GUIDE, BattleTowerCorridorMulti_GuideEnterBattleRoomMovement
-    ApplyMovement LOCALID_RIGHT_GUIDE, BattleTowerCorridorMulti_GuideEnterBattleRoomMovement
-    ApplyMovement LOCALID_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerEnterBattleRoomMovement
-    ApplyMovement LOCALID_PLAYER_FRIEND, BattleTowerCorridorMulti_PlayerEnterBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_LEFT_ATTENDANT, BattleTowerCorridorMulti_AttendantEnterBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_RIGHT_ATTENDANT, BattleTowerCorridorMulti_AttendantEnterBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_LEADER, BattleTowerCorridorMulti_PlayerEnterBattleRoomMovement
+    ApplyMovement BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_PARTNER, BattleTowerCorridorMulti_PlayerEnterBattleRoomMovement
     WaitMovement
     Return
 
     .balign 4, 0
-BattleTowerCorridorMulti_GuideEnterCorridorMovement:
+BattleTowerCorridorMulti_AttendantEnterCorridorMovement:
     WalkNormalSouth 3
     FaceNorth
     EndMovement
@@ -122,7 +119,7 @@ BattleTowerCorridorMulti_PlayerEnterBattleRoomMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerCorridorMulti_LeftGuideWalkToBattleRoomMovement:
+BattleTowerCorridorMulti_LeftAttendantWalkToBattleRoomMovement:
     WalkNormalEast 5
     WalkNormalNorth
     Delay8
@@ -133,7 +130,7 @@ BattleTowerCorridorMulti_LeftGuideWalkToBattleRoomMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerCorridorMulti_RightGuideWalkToBattleRoomMovement:
+BattleTowerCorridorMulti_RightAttendantWalkToBattleRoomMovement:
     WalkNormalWest 5
     WalkNormalNorth
     Delay8
@@ -144,7 +141,7 @@ BattleTowerCorridorMulti_RightGuideWalkToBattleRoomMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerCorridorMulti_GuideEnterBattleRoomMovement:
+BattleTowerCorridorMulti_AttendantEnterBattleRoomMovement:
     WalkNormalNorth
     SetInvisible
     EndMovement
