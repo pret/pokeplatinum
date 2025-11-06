@@ -11,8 +11,8 @@ typedef struct SpriteResourceManager {
     SpriteList *spriteList;
     G2dRenderer renderer;
     SpriteResourcesHeaderList *resourceHeaderList;
-    SpriteResourceCollection *resourceCollections[6];
-    SpriteResourceList *resourceLists[6];
+    SpriteResourceCollection *resourceCollections[SPRITE_RESOURCE_MAX];
+    SpriteResourceList *resourceLists[SPRITE_RESOURCE_MAX];
     u16 resourceTypeCount;
     u16 heapID;
 } SpriteResourceManager;
