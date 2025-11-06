@@ -304,16 +304,16 @@ VeilstoneStoreB1F_PoffinVendorChooseBitterSour:
 VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull:
     GetEmptyPoffinCaseSlotCount VAR_RESULT
     GoToIfLt VAR_RESULT, VAR_0x8005, VeilstoneStoreB1F_PoffinVendorCaseIsFull
-    GoTo VeilstoneStoreB1F_PoffinVendorReceivePoffin
+    GoTo VeilstoneStoreB1F_PoffinVendorGivePoffin
     End
 
-VeilstoneStoreB1F_PoffinVendorReceivePoffin:
+VeilstoneStoreB1F_PoffinVendorGivePoffin:
     GoToIfEq VAR_0x8005, 0, VeilstoneStoreB1F_PoffinVendorThankYou
     GivePoffin VAR_RESULT, LOCALID_SPICINESS, LOCALID_DRYNESS, LOCALID_SWEETNESS, LOCALID_BITTERNESS, LOCALID_SOURNESS, LOCALID_SMOOTHNESS
     AddToGameRecord RECORD_MONEY_SPENT, 6400
     RemoveMoney2 6400
     SubVar VAR_0x8005, 1
-    GoTo VeilstoneStoreB1F_PoffinVendorReceivePoffin
+    GoTo VeilstoneStoreB1F_PoffinVendorGivePoffin
     End
 
 VeilstoneStoreB1F_PoffinVendorThankYou:
