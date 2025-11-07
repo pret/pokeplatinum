@@ -600,7 +600,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A0C[NELEMS(Unk_ov16_02
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 sBattleMonMenuButtonLayout[3][2] = {
+__attribute__((aligned(4))) static const u8 sSelectTargetMenuButtonLayout[3][2] = {
     { 0x3, 0x1 },
     { 0x0, 0x2 },
     { 0x4, 0x4 }
@@ -4046,7 +4046,7 @@ static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cur
     cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
 
-    MI_CpuCopy8(sBattleMonMenuButtonLayout, v8, 3 * 2);
+    MI_CpuCopy8(sSelectTargetMenuButtonLayout, v8, 3 * 2);
 
     ov16_0226B20C(param0, v6, 1);
     ov16_0226B20C(param0, v7, 0);
@@ -4199,7 +4199,7 @@ static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cur
                 cursor->y = 1;
             }
 
-            v4 = sBattleMonMenuButtonLayout[cursor->y][cursor->x];
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
             BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
             cursor->x = 0;
@@ -4233,7 +4233,7 @@ static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cur
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         if (v5 == 0) {
-            v4 = sBattleMonMenuButtonLayout[cursor->y][cursor->x];
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
             BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
             if (cursor->y == 0) {
@@ -4268,7 +4268,7 @@ static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cur
                 }
             }
         } else {
-            v4 = sBattleMonMenuButtonLayout[cursor->y][cursor->x];
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
 
             if ((v4 == 4) || (v6[v4 - 0] == 1)) {
                 return v4;
@@ -4298,7 +4298,7 @@ static void ov16_0226C9B8(UnkStruct_ov16_02268A14 *param0, int param1)
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            if (param1 == sBattleMonMenuButtonLayout[i][j]) {
+            if (param1 == sSelectTargetMenuButtonLayout[i][j]) {
                 v0->unk_04 = j;
                 v0->unk_05 = i;
 
