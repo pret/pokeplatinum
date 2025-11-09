@@ -8,15 +8,15 @@
 #include "heap.h"
 #include "pokemon.h"
 
-UnkStruct_020997B8 *sub_020997B8(u32 heapID)
+MoveReminderData *sub_020997B8(u32 heapID)
 {
-    UnkStruct_020997B8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_020997B8));
+    MoveReminderData *v0 = Heap_Alloc(heapID, sizeof(MoveReminderData));
 
-    memset(v0, 0, sizeof(UnkStruct_020997B8));
+    memset(v0, 0, sizeof(MoveReminderData));
     return v0;
 }
 
-void sub_020997D0(UnkStruct_020997B8 *param0)
+void sub_020997D0(MoveReminderData *param0)
 {
     Heap_Free(param0);
 }

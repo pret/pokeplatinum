@@ -19,8 +19,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020997B8.h"
 
-static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3);
-
 BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
@@ -71,14 +69,14 @@ BOOL ScrCmd_21F(ScriptContext *param0)
 static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    UnkStruct_020997B8 *v1 = sub_020997B8(HEAP_ID_FIELD3);
+    MoveReminderData *v1 = sub_020997B8(HEAP_ID_FIELD3);
     *v0 = v1;
 
-    v1->unk_00 = param2;
-    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
+    v1->mon = param2;
+    v1->trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     v1->options = SaveData_GetOptions(param0->fieldSystem->saveData);
-    v1->unk_0C = param3;
-    v1->unk_15 = param1;
+    v1->moves = param3;
+    v1->isMoveTutor = param1;
 
     sub_0203E284(param0->fieldSystem, v1);
     ScriptContext_Pause(param0, ScriptContext_WaitForApplicationExit);
@@ -129,7 +127,7 @@ BOOL ScrCmd_222(ScriptContext *param0)
 
 BOOL ScrCmd_223(ScriptContext *param0)
 {
-    UnkStruct_020997B8 *v0;
+    MoveReminderData *v0;
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
@@ -137,7 +135,7 @@ BOOL ScrCmd_223(ScriptContext *param0)
 
     GF_ASSERT(*v2 != 0);
 
-    if ((v0->unk_16) == 0) {
+    if ((v0->keepOldMove) == 0) {
         *v1 = 0;
     } else {
         *v1 = 0xff;
@@ -150,7 +148,7 @@ BOOL ScrCmd_223(ScriptContext *param0)
 
 BOOL ScrCmd_225(ScriptContext *param0)
 {
-    UnkStruct_020997B8 *v0;
+    MoveReminderData *v0;
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
@@ -158,7 +156,7 @@ BOOL ScrCmd_225(ScriptContext *param0)
 
     GF_ASSERT(*v2 != 0);
 
-    if ((v0->unk_16) == 0) {
+    if ((v0->keepOldMove) == 0) {
         *v1 = 0;
     } else {
         *v1 = 0xff;

@@ -3,8 +3,10 @@
 
 #include "overlay_manager.h"
 
-int ov91_021D0D80(ApplicationManager *appMan, int *param1);
-int ov91_021D0E08(ApplicationManager *appMan, int *param1);
-int ov91_021D0EBC(ApplicationManager *appMan, int *param1);
+#define MOVE_REMINDER_TERMINATOR 0xffff
+
+BOOL MoveReminder_Init(ApplicationManager *appMan, int *state);
+BOOL MoveReminder_Main(ApplicationManager *appMan, int *state);
+BOOL MoveReminder_Exit(ApplicationManager *appMan, int *state);
 
 #endif // POKEPLATINUM_OV91_021D0D80_H
