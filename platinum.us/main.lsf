@@ -1394,10 +1394,10 @@ Overlay overlay90
 	Object main.nef.p/src_overlay090_ov90_021D0D80.c.o
 }
 
-Overlay overlay91
+Overlay move_reminder
 {
 	After main
-	Object main.nef.p/src_overlay091_ov91_021D0D80.c.o
+	Object main.nef.p/src_applications_move_reminder.c.o
 }
 
 Overlay overlay92

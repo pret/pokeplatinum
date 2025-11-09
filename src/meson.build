@@ -847,7 +847,7 @@ pokeplatinum_c = files(
     'overlay088/ov88_0223E9C4.c',
     'overlay089/ov89_dummy.c',
     'overlay090/ov90_021D0D80.c',
-    'overlay091/ov91_021D0D80.c',
+    'applications/move_reminder.c',
     'overlay092/ov92_021D0D80.c',
     'cutscenes/boat_cutscene/canalave_ship.c',
     'cutscenes/boat_cutscene/snowpoint_ship.c',
