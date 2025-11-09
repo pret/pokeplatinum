@@ -1,4 +1,4 @@
-#include "unk_0204EDA4.h"
+#include "scrcmd_party_mon_moves.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -51,7 +51,7 @@ BOOL ScrCmd_Dummy21E(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_21F(ScriptContext *ctx)
+BOOL ScrCmd_CheckHasLearnableReminderMoves(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
@@ -64,11 +64,11 @@ BOOL ScrCmd_21F(ScriptContext *ctx)
     return FALSE;
 }
 
-static void sub_0204EE90(ScriptContext *ctx, u16 isMoveTutor, Pokemon *mon, u16 *moves)
+static void OpenMenu(ScriptContext *ctx, u16 isMoveTutor, Pokemon *mon, u16 *moves)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **partyManagementData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     MoveReminderData *data = MoveReminderData_Alloc(HEAP_ID_FIELD3);
-    *v0 = data;
+    *partyManagementData = data;
 
     data->mon = mon;
     data->trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
@@ -76,7 +76,7 @@ static void sub_0204EE90(ScriptContext *ctx, u16 isMoveTutor, Pokemon *mon, u16 
     data->moves = moves;
     data->isMoveTutor = isMoveTutor;
 
-    sub_0203E284(ctx->fieldSystem, data);
+    FieldSystem_OpenMoveReminderMenu(ctx->fieldSystem, data);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     Heap_Free(moves);
 }
@@ -86,19 +86,19 @@ BOOL ScrCmd_220(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_221(ScriptContext *ctx)
+BOOL ScrCmd_OpenMoveReminderMenu(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
     u16 *moves = MoveReminderData_GetMoves(mon, HEAP_ID_FIELD3);
 
-    sub_0204EE90(ctx, TRUE, mon, moves);
+    OpenMenu(ctx, TRUE, mon, moves);
 
     return TRUE;
 }
 
-BOOL ScrCmd_224(ScriptContext *ctx)
+BOOL ScrCmd_OpenMoveTutorMenu(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 move = ScriptContext_GetVar(ctx);
@@ -109,7 +109,7 @@ BOOL ScrCmd_224(ScriptContext *ctx)
     moves[0] = move;
     moves[1] = LEVEL_UP_MOVESET_TERMINATOR;
 
-    sub_0204EE90(ctx, FALSE, mon, moves);
+    OpenMenu(ctx, FALSE, mon, moves);
 
     return TRUE;
 }
@@ -119,13 +119,13 @@ BOOL ScrCmd_222(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_223(ScriptContext *ctx)
+BOOL ScrCmd_CheckLearnedReminderMove(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    MoveReminderData *data = *v2;
-    GF_ASSERT(*v2 != NULL);
+    void **partyManagementData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    MoveReminderData *data = *partyManagementData;
+    GF_ASSERT(*partyManagementData != NULL);
 
     *destVar = data->keepOldMove == FALSE ? 0 : 0xff;
 
@@ -134,19 +134,15 @@ BOOL ScrCmd_223(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_225(ScriptContext *ctx)
+BOOL ScrCmd_CheckLearnedTutorMove(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    MoveReminderData *data = *v2;
-    GF_ASSERT(*v2 != NULL);
+    void **partyManagementData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    MoveReminderData *data = *partyManagementData;
+    GF_ASSERT(*partyManagementData != NULL);
 
-    if (data->keepOldMove == FALSE) {
-        *destVar = 0;
-    } else {
-        *destVar = 0xff;
-    }
+    *destVar = data->keepOldMove == FALSE ? 0 : 0xff;
 
     MoveReminderData_Free(data);
 
