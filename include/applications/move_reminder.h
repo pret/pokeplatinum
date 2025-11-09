@@ -3,8 +3,6 @@
 
 #include "overlay_manager.h"
 
-#define MOVE_REMINDER_TERMINATOR 0xffff
-
 BOOL MoveReminder_Init(ApplicationManager *appMan, int *state);
 BOOL MoveReminder_Main(ApplicationManager *appMan, int *state);
 BOOL MoveReminder_Exit(ApplicationManager *appMan, int *state);

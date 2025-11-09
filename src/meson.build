@@ -332,7 +332,7 @@ pokeplatinum_c = files(
     'unk_02099550.c',
     'unk_02099604.c',
     'unk_020996D0.c',
-    'unk_020997B8.c',
+    'move_reminder_data.c',
     'unk_020998EC.c',
     'poketch_memory.c',
     'unk_02099DFC.c',

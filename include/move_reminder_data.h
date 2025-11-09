@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_020997B8_H
-#define POKEPLATINUM_STRUCT_020997B8_H
+#ifndef POKEPLATINUM_MOVE_REMINDER_DATA_H
+#define POKEPLATINUM_MOVE_REMINDER_DATA_H
 
 #include "game_options.h"
 #include "pokemon.h"
@@ -18,4 +18,9 @@ typedef struct MoveReminderData {
     u8 moveSlot;
 } MoveReminderData;
 
-#endif // POKEPLATINUM_STRUCT_020997B8_H
+MoveReminderData *MoveReminderData_Alloc(u32 heapID);
+void MoveReminderData_Free(MoveReminderData *data);
+u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID);
+BOOL MoveReminderData_HasMoves(u16 *moves);
+
+#endif // POKEPLATINUM_MOVE_REMINDER_DATA_H

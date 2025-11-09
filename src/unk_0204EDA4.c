@@ -5,23 +5,22 @@
 
 #include "constants/moves.h"
 
-#include "struct_defs/struct_020997B8.h"
-
 #include "field_script_context.h"
 #include "field_system.h"
 #include "heap.h"
 #include "inlines.h"
+#include "move_reminder_data.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "scrcmd.h"
 #include "script_manager.h"
 #include "unk_0203D1B8.h"
-#include "unk_020997B8.h"
 
 BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
+
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     *partyData = FieldSystem_OpenSummaryScreenSelectMove(HEAP_ID_FIELD3, ctx->fieldSystem, partySlot);
 
@@ -32,8 +31,9 @@ BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
 BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    GF_ASSERT(*partyData != 0);
+    GF_ASSERT(*partyData != NULL);
     *destVar = PokemonSummary_GetSelectedMoveSlot(*partyData);
 
     if (*destVar == LEARNED_MOVES_MAX) {
@@ -51,118 +51,104 @@ BOOL ScrCmd_Dummy21E(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_21F(ScriptContext *param0)
+BOOL ScrCmd_21F(ScriptContext *ctx)
 {
-    Pokemon *mon;
-    u16 *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v3);
-    v1 = sub_020997D8(mon, HEAP_ID_FIELD3);
-    *v2 = sub_020998D8(v1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+    u16 *moves = MoveReminderData_GetMoves(mon, HEAP_ID_FIELD3);
+    *destVar = MoveReminderData_HasMoves(moves);
 
-    Heap_Free(v1);
-    return 0;
+    Heap_Free(moves);
+    return FALSE;
 }
 
-static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3)
+static void sub_0204EE90(ScriptContext *ctx, u16 isMoveTutor, Pokemon *mon, u16 *moves)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    MoveReminderData *v1 = sub_020997B8(HEAP_ID_FIELD3);
-    *v0 = v1;
+    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    MoveReminderData *data = MoveReminderData_Alloc(HEAP_ID_FIELD3);
+    *v0 = data;
 
-    v1->mon = param2;
-    v1->trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-    v1->options = SaveData_GetOptions(param0->fieldSystem->saveData);
-    v1->moves = param3;
-    v1->isMoveTutor = param1;
+    data->mon = mon;
+    data->trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    data->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
+    data->moves = moves;
+    data->isMoveTutor = isMoveTutor;
 
-    sub_0203E284(param0->fieldSystem, v1);
-    ScriptContext_Pause(param0, ScriptContext_WaitForApplicationExit);
-    Heap_Free(param3);
+    sub_0203E284(ctx->fieldSystem, data);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
+    Heap_Free(moves);
 }
 
-BOOL ScrCmd_220(ScriptContext *param0)
+BOOL ScrCmd_220(ScriptContext *ctx)
 {
-    return 1;
+    return TRUE;
 }
 
-BOOL ScrCmd_221(ScriptContext *param0)
+BOOL ScrCmd_221(ScriptContext *ctx)
 {
-    Pokemon *mon;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 *v2;
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    v2 = sub_020997D8(mon, HEAP_ID_FIELD3);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+    u16 *moves = MoveReminderData_GetMoves(mon, HEAP_ID_FIELD3);
 
-    sub_0204EE90(param0, 1, mon, v2);
+    sub_0204EE90(ctx, TRUE, mon, moves);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ScrCmd_224(ScriptContext *param0)
+BOOL ScrCmd_224(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 *v3;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 move = ScriptContext_GetVar(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    v3 = Heap_Alloc(HEAP_ID_FIELD3, (1 + 1) * 2);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+    u16 *moves = Heap_Alloc(HEAP_ID_FIELD3, 2 * sizeof(u16));
 
-    *(v3 + 0) = v2;
-    *(v3 + 1) = 0xffff;
+    moves[0] = move;
+    moves[1] = LEVEL_UP_MOVESET_TERMINATOR;
 
-    sub_0204EE90(param0, 0, v0, v3);
+    sub_0204EE90(ctx, FALSE, mon, moves);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ScrCmd_222(ScriptContext *param0)
+BOOL ScrCmd_222(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_223(ScriptContext *param0)
+BOOL ScrCmd_223(ScriptContext *ctx)
 {
-    MoveReminderData *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = *v2;
+    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    MoveReminderData *data = *v2;
+    GF_ASSERT(*v2 != NULL);
 
-    GF_ASSERT(*v2 != 0);
+    *destVar = data->keepOldMove == FALSE ? 0 : 0xff;
 
-    if ((v0->keepOldMove) == 0) {
-        *v1 = 0;
+    MoveReminderData_Free(data);
+
+    return FALSE;
+}
+
+BOOL ScrCmd_225(ScriptContext *ctx)
+{
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    MoveReminderData *data = *v2;
+    GF_ASSERT(*v2 != NULL);
+
+    if (data->keepOldMove == FALSE) {
+        *destVar = 0;
     } else {
-        *v1 = 0xff;
+        *destVar = 0xff;
     }
 
-    sub_020997D0(v0);
+    MoveReminderData_Free(data);
 
-    return 0;
-}
-
-BOOL ScrCmd_225(ScriptContext *param0)
-{
-    MoveReminderData *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-
-    v0 = *v2;
-
-    GF_ASSERT(*v2 != 0);
-
-    if ((v0->keepOldMove) == 0) {
-        *v1 = 0;
-    } else {
-        *v1 = 0xff;
-    }
-
-    sub_020997D0(v0);
-
-    return 0;
+    return FALSE;
 }

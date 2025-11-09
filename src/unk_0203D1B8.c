@@ -27,7 +27,6 @@
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
@@ -95,6 +94,7 @@
 #include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
+#include "move_reminder_data.h"
 #include "overlay_manager.h"
 #include "overworld_map_history.h"
 #include "party.h"

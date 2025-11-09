@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
 #include "generated/pokemon_types.h"
 
-#include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -19,6 +19,7 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "move_reminder_data.h"
 #include "move_table.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -981,7 +982,7 @@ static void MoveReminder_DrawMovesInfo(MoveReminderController *controller)
         Window_ClearAndScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION]);
         Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_LABEL_BATTLE_MOVES]);
 
-        if (move != MOVE_REMINDER_TERMINATOR) {
+        if (move != LEVEL_UP_MOVESET_TERMINATOR) {
             MoveReminder_DrawBattleMovesText(controller, move);
         } else {
             MoveReminder_DrawBattleMovesText(controller, LIST_CANCEL);
@@ -999,7 +1000,7 @@ static void MoveReminder_DrawMovesInfo(MoveReminderController *controller)
         Window_ClearAndScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_MOVE_PP]);
         Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_LABEL_CONTEST_MOVES]);
 
-        if (move != MOVE_REMINDER_TERMINATOR) {
+        if (move != LEVEL_UP_MOVESET_TERMINATOR) {
             MoveReminder_DrawContestMovesText(controller, move);
         } else {
             MoveReminder_DrawContestMovesText(controller, LIST_CANCEL);
@@ -1074,7 +1075,7 @@ static u32 MoveReminder_GetNumMoves(MoveReminderController *controller)
     u32 i;
 
     for (i = 0; i < 256; i++) {
-        if (controller->data->moves[i] == MOVE_REMINDER_TERMINATOR) {
+        if (controller->data->moves[i] == LEVEL_UP_MOVESET_TERMINATOR) {
             break;
         }
     }
@@ -1090,7 +1091,7 @@ static void MoveReminder_InitListMenu(MoveReminderController *controller)
     MessageLoader *moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_MOVE_REMINDER);
 
     for (u32 i = 0; i < controller->numMoves; i++) {
-        if (controller->data->moves[i] != MOVE_REMINDER_TERMINATOR) {
+        if (controller->data->moves[i] != LEVEL_UP_MOVESET_TERMINATOR) {
             StringList_AddFromMessageBank(controller->stringList, moveNamesLoader, controller->data->moves[i], controller->data->moves[i]);
         } else {
             StringList_AddFromMessageBank(controller->stringList, controller->messageLoader, MoveReminder_Text_Cancel, LIST_CANCEL);
@@ -1204,7 +1205,7 @@ static void MoveReminder_DrawContestMovesText(MoveReminderController *controller
         MoveReminder_DrawAppealPointHearts(controller, (u16)move);
         Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_LABEL_APPEAL_PTS]);
     } else {
-        MoveReminder_DrawAppealPointHearts(controller, MOVE_REMINDER_TERMINATOR);
+        MoveReminder_DrawAppealPointHearts(controller, LEVEL_UP_MOVESET_TERMINATOR);
         Window_ClearAndScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_LABEL_APPEAL_PTS]);
     }
 
@@ -1232,7 +1233,7 @@ static void MoveReminder_DrawAppealPointHearts(MoveReminderController *controlle
 {
     MoveReminder_DrawEmptyHearts(controller);
 
-    if (move != MOVE_REMINDER_TERMINATOR) {
+    if (move != LEVEL_UP_MOVESET_TERMINATOR) {
         s8 appealPoints = sub_02095734(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT)) / 10;
 
         for (u16 i = 0; i < appealPoints; i++) {
@@ -1564,7 +1565,7 @@ static void MoveReminder_Scroll(MoveReminderController *controller, u16 prevList
             if (y == 32) {
                 y = 128;
 
-                if (controller->data->moves[listPos + 6] != MOVE_REMINDER_TERMINATOR) {
+                if (controller->data->moves[listPos + 6] != LEVEL_UP_MOVESET_TERMINATOR) {
                     MoveReminder_DrawTypeIcon(controller, controller->data->moves[listPos + 6], i);
                 }
             } else {
@@ -1581,7 +1582,7 @@ static void MoveReminder_Scroll(MoveReminderController *controller, u16 prevList
             if (y == 128) {
                 y = 32;
 
-                if (controller->data->moves[listPos] != MOVE_REMINDER_TERMINATOR) {
+                if (controller->data->moves[listPos] != LEVEL_UP_MOVESET_TERMINATOR) {
                     MoveReminder_DrawTypeIcon(controller, controller->data->moves[listPos], i);
                 }
             } else {

@@ -12,7 +12,6 @@
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
@@ -26,6 +25,7 @@
 #include "field_move_tasks.h"
 #include "field_task.h"
 #include "item_use_functions.h"
+#include "move_reminder_data.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
