@@ -5,6 +5,6 @@
 
 #include "spl.h"
 
-void ov12_0222584C(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2);
+void GenericEmitterCallback_ApplyCameraFunc(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2);
 
 #endif // POKEPLATINUM_OV12_02225640_H

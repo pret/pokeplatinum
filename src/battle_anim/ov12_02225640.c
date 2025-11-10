@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
+
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 #include "battle_anim/ov12_0222421C.h"
@@ -11,160 +13,145 @@
 #include "particle_system.h"
 #include "spl.h"
 
-static void ov12_02225640(GenericEmitterCallbackData *param0, int param1[]);
-static BOOL ov12_0222564C(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225670(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022256AC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022256E8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225724(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225784(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022257C0(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022257FC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225824(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_GetCameraParams(GenericEmitterCallbackData *param0, int param1[]);
+static BOOL GenericEmitterCallback_ApplyFixedAngle0(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyFixedAngle1(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyExplicitAngle(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyFixedAngle3(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyFixedAngle4(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyFixedAngle5(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyFixedAngle6(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyStartBattlerTarget(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static BOOL GenericEmitterCallback_ApplyEndBattlerTarget(SPLEmitter *param0, GenericEmitterCallbackData *param1);
 
-static BOOL (*const Unk_ov12_02239E10[])(SPLEmitter *, GenericEmitterCallbackData *) = {
-    ov12_0222564C,
-    ov12_02225670,
-    ov12_022256AC,
-    ov12_022256E8,
-    ov12_02225724,
-    ov12_02225784,
-    ov12_022257C0,
-    ov12_022257FC,
-    ov12_02225824
+static BOOL (*const sCameraFuncs[])(SPLEmitter *, GenericEmitterCallbackData *) = {
+    GenericEmitterCallback_ApplyFixedAngle0,
+    GenericEmitterCallback_ApplyFixedAngle1,
+    GenericEmitterCallback_ApplyExplicitAngle,
+    GenericEmitterCallback_ApplyFixedAngle3,
+    GenericEmitterCallback_ApplyFixedAngle4,
+    GenericEmitterCallback_ApplyFixedAngle5,
+    GenericEmitterCallback_ApplyFixedAngle6,
+    GenericEmitterCallback_ApplyStartBattlerTarget,
+    GenericEmitterCallback_ApplyEndBattlerTarget
 };
 
-static void ov12_02225640(GenericEmitterCallbackData *param0, int param1[])
+static void GenericEmitterCallback_GetCameraParams(GenericEmitterCallbackData *data, int params[EMITTER_CAMERA_PARAM_COUNT])
 {
-    BattleAnimSystem_GetExtraParams(param0->battleAnimSys, param1, 4);
+    BattleAnimSystem_GetExtraParams(data->battleAnimSys, params, EMITTER_CAMERA_PARAM_COUNT);
 }
 
-static BOOL ov12_0222564C(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle0(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { 0, 0, 0 };
+    CameraAngle angle = { 0, 0, 0 };
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
-    Camera_SetAngleAroundTarget(&v1, camera);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225670(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle1(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { (0x1000 * 2), 0x1000 * 2, 0 };
+    // 45°, 45°, 0°
+    CameraAngle angle = { DEG_TO_IDX_U16(45) + 1, DEG_TO_IDX_U16(45) + 1, 0 };
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
+    ParticleSystem_SetCameraProjection(data->particleSys, CAMERA_PROJECTION_ORTHOGRAPHIC);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    ParticleSystem_SetCameraProjection(param1->particleSys, 1);
-    Camera_SetAngleAroundTarget(&v1, camera);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_022256AC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyExplicitAngle(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[4];
-    CameraAngle v1 = { 0, 0, 0, 0 };
-    Camera *camera;
+    int params[EMITTER_CAMERA_PARAM_COUNT];
+    CameraAngle angle = { 0, 0, 0, 0 };
 
-    ov12_02225640(param1, v0);
+    GenericEmitterCallback_GetCameraParams(data, params);
 
-    v1.x = v0[1];
-    v1.y = v0[2];
-    v1.z = v0[3];
+    angle.x = params[EMITTER_CAMERA_PARAM_X];
+    angle.y = params[EMITTER_CAMERA_PARAM_Y];
+    angle.z = params[EMITTER_CAMERA_PARAM_Z];
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    Camera_SetAngleAroundTarget(&v1, camera);
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_022256E8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle3(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { -(0x1000 * 3), 0x1000 * 2, 0x1000 };
+    CameraAngle angle = { -DEG_TO_IDX_U16(67.502), DEG_TO_IDX_U16(45) + 1, DEG_TO_IDX_U16(22.5) + 1 };
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
+    ParticleSystem_SetCameraProjection(data->particleSys, CAMERA_PROJECTION_ORTHOGRAPHIC);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    ParticleSystem_SetCameraProjection(param1->particleSys, 1);
-    Camera_SetAngleAroundTarget(&v1, camera);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225724(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle4(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { 49664, 5952, 4096 };
-    CameraAngle v2 = { 9248, 3744, 0 };
+    CameraAngle angleContest = { DEG_TO_IDX_U16(272.817), DEG_TO_IDX_U16(32.696), DEG_TO_IDX_U16(22.5) + 1 };
+    CameraAngle angleBattle = { DEG_TO_IDX_U16(50.8) + 1, DEG_TO_IDX_U16(20.567), 0 };
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
-    ParticleSystem_SetCameraProjection(param1->particleSys, 1);
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
+    ParticleSystem_SetCameraProjection(data->particleSys, CAMERA_PROJECTION_ORTHOGRAPHIC);
 
-    if (BattleAnimSystem_IsContest(param1->battleAnimSys) == 1) {
-        Camera_SetAngleAroundTarget(&v1, camera);
+    if (BattleAnimSystem_IsContest(data->battleAnimSys) == TRUE) {
+        Camera_SetAngleAroundTarget(&angleContest, camera);
     } else {
-        Camera_SetAngleAroundTarget(&v2, camera);
+        Camera_SetAngleAroundTarget(&angleBattle, camera);
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225784(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle5(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { 49664, 5952, 4096 };
+    CameraAngle angle = { DEG_TO_IDX_U16(272.817), DEG_TO_IDX_U16(32.696), DEG_TO_IDX_U16(22.5) + 1 };
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
+    ParticleSystem_SetCameraProjection(data->particleSys, CAMERA_PROJECTION_ORTHOGRAPHIC);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    ParticleSystem_SetCameraProjection(param1->particleSys, 1);
-    Camera_SetAngleAroundTarget(&v1, camera);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_022257C0(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyFixedAngle6(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    Camera *camera;
-    CameraAngle v1 = { 0, 0, -6000 };
+    CameraAngle angle = { 0, 0, -DEG_TO_IDX_U16(32.96) };
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    camera = ParticleSystem_GetCamera(param1->particleSys);
+    ParticleSystem_SetCameraProjection(data->particleSys, CAMERA_PROJECTION_ORTHOGRAPHIC);
+    Camera_SetAngleAroundTarget(&angle, camera);
 
-    ParticleSystem_SetCameraProjection(param1->particleSys, 1);
-    Camera_SetAngleAroundTarget(&v1, camera);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_022257FC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyStartBattlerTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    VecFx32 v0;
-    Camera *camera = ParticleSystem_GetCamera(param1->particleSys);
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(param1->battleAnimSys, param1->startBattler, &v0);
-    Camera_SetTarget(&v0, camera);
+    VecFx32 target;
+    BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(data->battleAnimSys, data->startBattler, &target);
+    Camera_SetTarget(&target, camera);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225824(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyEndBattlerTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    VecFx32 v0;
-    Camera *camera = ParticleSystem_GetCamera(param1->particleSys);
+    Camera *camera = ParticleSystem_GetCamera(data->particleSys);
 
-    BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(param1->battleAnimSys, param1->endBattler, &v0);
-    Camera_SetTarget(&v0, camera);
+    VecFx32 target;
+    BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(data->battleAnimSys, data->endBattler, &target);
+    Camera_SetTarget(&target, camera);
 
-    return 1;
+    return TRUE;
 }
 
-void ov12_0222584C(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2)
+void GenericEmitterCallback_ApplyCameraFunc(int funcID, SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    BOOL v0 = Unk_ov12_02239E10[param0](param1, param2);
-
-    if (v0 == 0) {
-        (void)0;
-    }
+    sCameraFuncs[funcID](emitter, data);
 }

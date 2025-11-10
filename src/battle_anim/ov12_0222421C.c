@@ -22,14 +22,14 @@
 #include "particle_system.h"
 #include "spl.h"
 
-static void GenericEmitterCallback_ApplyParams(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void GenericEmitterCallback_ApplyPosition(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void GenericEmitterCallback_ApplyAxis(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void ov12_02224E74(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void ov12_02224EA8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void ov12_02224EB8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static void GenericEmitterCallback_OffsetPositionForBattler(GenericEmitterCallbackData *param0, int param1, VecFx32 *param2);
-static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *param0, VecFx32 *param1);
+static void GenericEmitterCallback_ApplyParams(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_ApplyPosition(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_ApplyAxis(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_ApplyBehavior(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_ApplyCamera(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_ApplyPriority(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static void GenericEmitterCallback_OffsetPositionForBattler(GenericEmitterCallbackData *data, int battler, VecFx32 *pos);
+static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *data, VecFx32 *pos);
 
 static void GenericEmitterCallback_ApplyParams(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
@@ -41,14 +41,14 @@ static void GenericEmitterCallback_ApplyParams(SPLEmitter *emitter, GenericEmitt
         GenericEmitterCallback_ApplyAxis(emitter, data);
     }
 
-    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_4] != 0x0) {
-        ov12_02224E74(emitter, data);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_BEHAVIOR] != EMITTER_BHV_NONE) {
+        GenericEmitterCallback_ApplyBehavior(emitter, data);
     }
 
-    ov12_02224EA8(emitter, data);
+    GenericEmitterCallback_ApplyCamera(emitter, data);
 
-    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_PRIORITY] != 0) {
-        ov12_02224EB8(emitter, data);
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_PRIORITY] != EMITTER_PRIORITY_MODE_NONE) {
+        GenericEmitterCallback_ApplyPriority(emitter, data);
     }
 }
 
@@ -581,75 +581,55 @@ static void GenericEmitterCallback_ApplyAxis(SPLEmitter *emitter, GenericEmitter
     SPLEmitter_SetAxis(emitter, &axis);
 }
 
-static void ov12_02224E74(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static void GenericEmitterCallback_ApplyBehavior(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0;
-    int v1;
-    int v2;
+    int valueCount = GenericEmitterCallback_GetBehaviorValueCount();
 
-    v0 = ov12_02225614();
+    for (int value = EMITTER_BHV_VALUE_NONE; value < valueCount; value++) {
+        int flag = GenericEmitterCallback_GetBehaviorFlag(value);
 
-    for (v1 = 0; v1 < v0; v1++) {
-        v2 = ov12_022255EC(v1);
-
-        if (BattleAnimUtil_IsMaskSet(param1->params[4], v2) == 0) {
+        if (BattleAnimUtil_IsMaskSet(data->params[GENERIC_EMITTER_CALLBACK_PARAM_BEHAVIOR], flag) == FALSE) {
             continue;
         }
 
-        ov12_022255D4(v1, param0, param1);
+        GenericEmitterCallback_CallBehaviorFunction(value, emitter, data);
     }
 }
 
-static void ov12_02224EA8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static void GenericEmitterCallback_ApplyCamera(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    ov12_0222584C(param1->params[5], param0, param1);
+    GenericEmitterCallback_ApplyCameraFunc(data->params[GENERIC_EMITTER_CALLBACK_PARAM_CAMERA], emitter, data);
 }
 
-static void ov12_02224EB8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static void GenericEmitterCallback_ApplyPriority(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    fx32 v0;
-    int v1;
-    int v2;
-    int v3 = 0;
+    fx32 z;
 
-    v1 = BattleAnimUtil_GetBattlerType(param1->battleAnimSys, param1->startBattler);
-    v2 = BattleAnimUtil_GetBattlerType(param1->battleAnimSys, param1->endBattler);
+    UNUSED(BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->startBattler));
+    int endBattlerType = BattleAnimUtil_GetBattlerType(data->battleAnimSys, data->endBattler);
 
-    switch (v2) {
-    case 0:
-    case 2:
-    case 4:
-        v3 = 0;
+    switch (data->params[GENERIC_EMITTER_CALLBACK_PARAM_PRIORITY]) {
+    case EMITTER_PRIORITY_MODE_NONE:
         break;
-    case 1:
-    case 3:
-    case 5:
-        v3 = 1;
+    case EMITTER_PRIORITY_MODE_FRONT:
+        if (endBattlerType == BATTLER_TYPE_SOLO_PLAYER) {
+            z = FX32_CONST(0.0625);
+        } else {
+            z = FX32_CONST(-1.25);
+        }
+        break;
+    case EMITTER_PRIORITY_MODE_BACK:
+        if (endBattlerType == BATTLER_TYPE_SOLO_PLAYER) {
+            z = FX32_CONST(0);
+        } else {
+            z = FX32_CONST(-1.3125);
+        }
+        break;
+    case EMITTER_PRIORITY_MODE_UB:
         break;
     }
 
-    switch (param1->params[0]) {
-    case 0:
-        break;
-    case 1:
-        if (v2 == 0) {
-            v0 = 256;
-        } else {
-            v0 = -5120;
-        }
-        break;
-    case 2:
-        if (v2 == 0) {
-            v0 = 0;
-        } else {
-            v0 = -5376;
-        }
-        break;
-    case 3:
-        break;
-    }
-
-    SPLEmitter_SetPosZ(param0, v0);
+    SPLEmitter_SetPosZ(emitter, z);
 }
 
 void BattleAnimEmitterCb_Generic(SPLEmitter *emitter)
@@ -782,8 +762,7 @@ static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *da
 
 //                                     [      from      ][       to       ]
 static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.9219, 0.5156, 0.748),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -791,8 +770,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-1.0322, -0.666, 0.748),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -800,8 +778,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -809,8 +786,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.254, -0.1465, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(1.0508, 0.6191, 0.748),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.582, -0.498, 0.748),
@@ -818,8 +794,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-1.0703, -0.7246, 0.748),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.2031, 0.0547, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4902, 0.0918, 0.0),
@@ -827,8 +802,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.755, 0.7412, 0.748),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.162, -0.6523, 0.748),
@@ -839,8 +813,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
 };
 
 static const VecFx32 EmitterAxisConfigs2[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.588, 0.3047, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -848,8 +821,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.377, -0.2285, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -857,8 +829,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -866,8 +837,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.1387, -0.1367, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4746, 0.2266, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5918, -0.1992, 0.0),
@@ -875,8 +845,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.5918, -0.25, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.213, 0.002, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.3496, 0.0293, 0.0),
@@ -884,8 +853,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.3652, 0.295, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4688, -0.2012, 0.0),
@@ -896,8 +864,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs3[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3438, 0.1797, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -905,8 +872,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.295, -0.1914, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -914,8 +880,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -923,8 +888,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.2266, -0.1504, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4297, 0.1914, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4434, -0.162, 0.0),
@@ -932,8 +896,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.3516, -0.2266, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.166, 0.002, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.252, 0.002, 0.0),
@@ -941,8 +904,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.2637, 0.252, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4023, -0.1172, 0.0),
@@ -953,8 +915,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs4[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.6172, 0.3877, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -962,8 +923,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-1.041, -1.2344, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -971,8 +931,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -980,8 +939,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.1719, -0.164, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.6797, 0.2734, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.0137, -0.3809, 0.0),
@@ -989,8 +947,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.7559, -0.4824, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.169, -0.0059, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.1934, 0.0254, 0.0),
@@ -998,8 +955,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.5234, 0.4727, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.709, -0.373, 0.0),
@@ -1010,8 +966,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs5[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.4766, 0.2676, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1019,8 +974,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.4922, -0.2363, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1028,8 +982,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1037,8 +990,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.2031, -0.1094, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4219, 0.2031, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5117, -0.1816, 0.0),
@@ -1046,8 +998,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.5117, -0.3027, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.1836, 0.0059, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.246, 0.041, 0.0),
@@ -1055,8 +1006,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.3652, 0.3027, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4834, -0.1738, 0.0),
@@ -1067,8 +1017,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs6[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.7812, 0.42, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1076,8 +1025,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.8594, -0.4824, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1085,8 +1033,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1094,8 +1041,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.3906, -0.3594, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.7969, 0.379, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.9766, -0.1914, 0.0),
@@ -1103,8 +1049,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.789, -0.5508, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.3047, 0.1367, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.2637, 0.3027, 0.0),
@@ -1112,8 +1057,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.5176, 0.5703, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.7305, -0.3516, 0.0),
@@ -1124,8 +1068,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs7[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3906, -0.0156, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1133,8 +1076,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.4531, -0.3926, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1142,8 +1084,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1151,8 +1092,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.164, -0.3242, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.4883, 0.0469, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.5332, -0.375, 0.0),
@@ -1160,8 +1100,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.504, -0.459, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.1445, -0.1934, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.3145, -0.0312, 0.0),
@@ -1169,8 +1108,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.373, 0.0723, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.373, -0.3809, 0.0),
@@ -1181,8 +1119,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
 };
 
 static const VecFx32 EmitterAxisConfigs8[][6] = {
-    [BATTLER_TYPE_SOLO_PLAYER] =
-    {
+    [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.875, 0.5, 0.0),
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1190,8 +1127,7 @@ static const VecFx32 EmitterAxisConfigs8[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_SOLO_ENEMY] =
-    {
+    [BATTLER_TYPE_SOLO_ENEMY] = {
         [BATTLER_TYPE_SOLO_PLAYER] = VEC_FX32(-0.8281, -0.4336, 0.0),
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1199,8 +1135,7 @@ static const VecFx32 EmitterAxisConfigs8[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = _,
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = _,
@@ -1208,8 +1143,7 @@ static const VecFx32 EmitterAxisConfigs8[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(0.25, -0.168, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.9219, 0.4805, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-1.3535, -0.3887, 0.0),
@@ -1217,8 +1151,7 @@ static const VecFx32 EmitterAxisConfigs8[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = VEC_FX32(-0.916, -0.545, 0.0),
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(-0.416, 0.0645, 0.0),
     },
-    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.4902, -0.0156, 0.0),
@@ -1226,8 +1159,7 @@ static const VecFx32 EmitterAxisConfigs8[][6] = {
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = _,
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = VEC_FX32(0.6455, 0.5898, 0.0),
     },
-    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] =
-    {
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = _,
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = VEC_FX32(-0.9238, -0.4727, 0.0),

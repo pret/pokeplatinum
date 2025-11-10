@@ -161,6 +161,7 @@
 // Defined separately here so it can be used in scripts
 // Converts degrees to an index in the range 0-0xFFFF
 #define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
+#define DEG_TO_IDX_U16(degrees) ((u16)DEG_TO_IDX(degrees))
 
 // Colors commonly used in battle anim scripts
 // Note: Can't use RGB() macro because the assembler can't properly process multi-arg macros
@@ -323,32 +324,104 @@
 #define EMITTER_POS_NORMAL_OFFSET_EX_START 100 //< Normal start-battler position with offset per battler
 #define EMITTER_POS_NORMAL_OFFSET_EX_END   101 //< Normal end-battler position with offset per battler
 
-#define EMITTER_AXIS_NONE 0 //< No axis specified
-#define EMITTER_AXIS_START_TO_END_1A 1 //< From start-battler to end-battler (Config 1)
-#define EMITTER_AXIS_START_TO_END_1B 2 //< From start-battler to end-battler (Config 1)
-#define EMITTER_AXIS_FIXED_1 3 //< Fixed axis 1
+#define EMITTER_AXIS_NONE                0 //< No axis specified
+#define EMITTER_AXIS_START_TO_END_1A     1 //< From start-battler to end-battler (Config 1)
+#define EMITTER_AXIS_START_TO_END_1B     2 //< From start-battler to end-battler (Config 1)
+#define EMITTER_AXIS_FIXED_1             3 //< Fixed axis 1
 #define EMITTER_AXIS_START_TO_END_SIDE_1 4 //< From start-battler side to end-battler side
 #define EMITTER_AXIS_START_TO_END_SIDE_2 5 //< From start-battler side to end-battler side (identical to 4)
-#define EMITTER_AXIS_START_TO_END_SP_1 6 //< From start-battler to end-battler, special config
-#define EMITTER_AXIS_START_TO_END_SP_2 7 //< From start-battler to end-battler, special config
-#define EMITTER_AXIS_START_TO_END_2A 8 //< From start-battler to end-battler (Config 2)
-#define EMITTER_AXIS_START_TO_END_2B 9 //< From start-battler to end-battler (Config 2)
-#define EMITTER_AXIS_START_TO_END_3A 10 //< From start-battler to end-battler (Config 3)
-#define EMITTER_AXIS_START_TO_END_3B 11 //< From start-battler to end-battler (Config 3)
-#define EMITTER_AXIS_START_TO_END_4A 12 //< From start-battler to end-battler (Config 4)
-#define EMITTER_AXIS_START_TO_END_4B 13 //< From start-battler to end-battler (Config 4)
-#define EMITTER_AXIS_START_TO_END_5A 14 //< From start-battler to end-battler (Config 5)
-#define EMITTER_AXIS_START_TO_END_5B 15 //< From start-battler to end-battler (Config 5)
-#define EMITTER_AXIS_START_TO_END_6A 16 //< From start-battler to end-battler (Config 6)
-#define EMITTER_AXIS_START_TO_END_6B 17 //< From start-battler to end-battler (Config 6)
-#define EMITTER_AXIS_START_TO_END_7A 18 //< From start-battler to end-battler (Config 7)
-#define EMITTER_AXIS_START_TO_END_7B 19 //< From start-battler to end-battler (Config 7)
-#define EMITTER_AXIS_START_TO_END_8A 20 //< From start-battler to end-battler (Config 8)
-#define EMITTER_AXIS_START_TO_END_8B 21 //< From start-battler to end-battler (Config 8)
-#define EMITTER_AXIS_FIXED_2 22 //< Fixed axis 2
-#define EMITTER_AXIS_FIXED_PER_TYPE 24 //< Fixed axis per battler type
-#define EMITTER_AXIS_FIXED_3 25 //< Fixed axis 3
-#define EMITTER_AXIS_FIXED_PER_SIDE 26 //< Fixed axis per battler side
+#define EMITTER_AXIS_START_TO_END_SP_1   6 //< From start-battler to end-battler, special config
+#define EMITTER_AXIS_START_TO_END_SP_2   7 //< From start-battler to end-battler, special config
+#define EMITTER_AXIS_START_TO_END_2A     8 //< From start-battler to end-battler (Config 2)
+#define EMITTER_AXIS_START_TO_END_2B     9 //< From start-battler to end-battler (Config 2)
+#define EMITTER_AXIS_START_TO_END_3A     10 //< From start-battler to end-battler (Config 3)
+#define EMITTER_AXIS_START_TO_END_3B     11 //< From start-battler to end-battler (Config 3)
+#define EMITTER_AXIS_START_TO_END_4A     12 //< From start-battler to end-battler (Config 4)
+#define EMITTER_AXIS_START_TO_END_4B     13 //< From start-battler to end-battler (Config 4)
+#define EMITTER_AXIS_START_TO_END_5A     14 //< From start-battler to end-battler (Config 5)
+#define EMITTER_AXIS_START_TO_END_5B     15 //< From start-battler to end-battler (Config 5)
+#define EMITTER_AXIS_START_TO_END_6A     16 //< From start-battler to end-battler (Config 6)
+#define EMITTER_AXIS_START_TO_END_6B     17 //< From start-battler to end-battler (Config 6)
+#define EMITTER_AXIS_START_TO_END_7A     18 //< From start-battler to end-battler (Config 7)
+#define EMITTER_AXIS_START_TO_END_7B     19 //< From start-battler to end-battler (Config 7)
+#define EMITTER_AXIS_START_TO_END_8A     20 //< From start-battler to end-battler (Config 8)
+#define EMITTER_AXIS_START_TO_END_8B     21 //< From start-battler to end-battler (Config 8)
+#define EMITTER_AXIS_FIXED_2             22 //< Fixed axis 2
+#define EMITTER_AXIS_FIXED_PER_TYPE      24 //< Fixed axis per battler type
+#define EMITTER_AXIS_FIXED_3             25 //< Fixed axis 3
+#define EMITTER_AXIS_FIXED_PER_SIDE      26 //< Fixed axis per battler side
+
+#define EMITTER_BHV_VALUE_NONE            0
+#define EMITTER_BHV_VALUE_GRAVITY_MAG     1
+#define EMITTER_BHV_VALUE_RANDOM_MAG      2
+#define EMITTER_BHV_VALUE_RANDOM_INTERVAL 3
+#define EMITTER_BHV_VALUE_MAGNET_POS      4
+#define EMITTER_BHV_VALUE_MAGNET_MAG      5
+#define EMITTER_BHV_VALUE_SPIN_ANGLE      6
+#define EMITTER_BHV_VALUE_SPIN_AXIS       7
+#define EMITTER_BHV_VALUE_UNUSED_8        8
+#define EMITTER_BHV_VALUE_UNUSED_9        9
+#define EMITTER_BHV_VALUE_UNUSED_10       10
+#define EMITTER_BHV_VALUE_UNUSED_11       11
+#define EMITTER_BHV_VALUE_CONVERGENCE_POS 12
+#define EMITTER_BHV_VALUE_CONVERGENCE_MAG 13
+
+#define EMITTER_BHV_NONE            (0 << EMITTER_BHV_VALUE_NONE)
+#define EMITTER_BHV_GRAVITY_MAG     (1 << EMITTER_BHV_VALUE_GRAVITY_MAG)
+#define EMITTER_BHV_RANDOM_MAG      (1 << EMITTER_BHV_VALUE_RANDOM_MAG)
+#define EMITTER_BHV_RANDOM_INTERVAL (1 << EMITTER_BHV_VALUE_RANDOM_INTERVAL)
+#define EMITTER_BHV_MAGNET_POS      (1 << EMITTER_BHV_VALUE_MAGNET_POS)
+#define EMITTER_BHV_MAGNET_MAG      (1 << EMITTER_BHV_VALUE_MAGNET_MAG)
+#define EMITTER_BHV_SPIN_ANGLE      (1 << EMITTER_BHV_VALUE_SPIN_ANGLE)
+#define EMITTER_BHV_SPIN_AXIS       (1 << EMITTER_BHV_VALUE_SPIN_AXIS)
+#define EMITTER_BHV_UNUSED_8        (1 << EMITTER_BHV_VALUE_UNUSED_8)
+#define EMITTER_BHV_UNUSED_9        (1 << EMITTER_BHV_VALUE_UNUSED_9)
+#define EMITTER_BHV_UNUSED_10       (1 << EMITTER_BHV_VALUE_UNUSED_10)
+#define EMITTER_BHV_UNUSED_11       (1 << EMITTER_BHV_VALUE_UNUSED_11)
+#define EMITTER_BHV_CONVERGENCE_POS (1 << EMITTER_BHV_VALUE_CONVERGENCE_POS)
+#define EMITTER_BHV_CONVERGENCE_MAG (1 << EMITTER_BHV_VALUE_CONVERGENCE_MAG)
+#define EMITTER_BHV_ALL             0xFEFE
+
+#define EMITTER_BHV_PARAM_MODE  0 //< Behavior mode param index
+#define EMITTER_BHV_PARAM_FLIP  1 //< Behavior flip param index
+#define EMITTER_BHV_PARAM_X     2 //< Behavior X param index
+#define EMITTER_BHV_PARAM_Y     3 //< Behavior Y param index
+#define EMITTER_BHV_PARAM_Z     4 //< Behavior Z param index
+#define EMITTER_BHV_PARAM_NUMER 2 //< Numerator param index
+#define EMITTER_BHV_PARAM_DENOM 3 //< Denominator param index
+#define EMITTER_BHV_PARAM_COUNT 5 //< Number of behavior params
+
+#define EMITTER_BHV_MODE_DEFAULT     0 //< Set parameters based on context
+#define EMITTER_BHV_MODE_EXPLICIT    1 //< Set parameters explicitly
+#define EMITTER_BHV_MODE_START       2 //< Set parameters based on start battler
+#define EMITTER_BHV_MODE_END         3 //< Set parameters based on end battler
+#define EMITTER_BHV_MODE_END_PARTIAL 4 //< Set parameters based on end battler, subsequent params represent a fraction applied to the values
+#define EMITTER_BHV_MODE_NONE        0xFF //< No behavior mode
+
+#define EMITTER_SPIN_AXIS_X 0 //< Spin around X axis
+#define EMITTER_SPIN_AXIS_Y 1 //< Spin around Y axis
+#define EMITTER_SPIN_AXIS_Z 2 //< Spin around Z axis
+
+#define EMITTER_CAMERA_PARAM_NONE  0 //< None
+#define EMITTER_CAMERA_PARAM_X     1 //< X param index for EMITTER_CAMERA
+#define EMITTER_CAMERA_PARAM_Y     2 //< Y param index for EMITTER_CAMERA
+#define EMITTER_CAMERA_PARAM_Z     3 //< Z param index for EMITTER_CAMERA
+#define EMITTER_CAMERA_PARAM_COUNT 4 //< Number of camera params for EMITTER_CAMERA
+
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_0 0 //< Fixed angle mode 0 (0, 0, 0)
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_1 1 //< Fixed angle mode 1 (45, 45, 0)
+#define EMITTER_CAMERA_MODE_EXPLICIT      2 //< Explicit angles from params
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_3 3 //< Fixed angle mode 3 (67.5, 45, 22.5)
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_4 4 //< Fixed angle mode 4 Battle=(50.8, 20.6, 0), Contest=(272.8, 32.7, 22.5)
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_5 5 //< Fixed angle mode 5 (272.8, 32.7, 22.5)
+#define EMITTER_CAMERA_MODE_FIXED_ANGLE_6 6 //< Fixed angle mode 6 (0, 0, -33)
+#define EMITTER_CAMERA_MODE_TARGET_START  7 //< Camera target start-battler
+#define EMITTER_CAMERA_MODE_TARGET_END    8 //< Camera target end-battler
+
+#define EMITTER_PRIORITY_MODE_NONE  0 //< No priority change
+#define EMITTER_PRIORITY_MODE_FRONT 1 //< Bring to front
+#define EMITTER_PRIORITY_MODE_BACK  2 //< Send to back
+#define EMITTER_PRIORITY_MODE_UB    3 //< Invokes undefined behavior 😀
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

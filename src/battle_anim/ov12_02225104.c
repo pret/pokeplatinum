@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
+
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 #include "battle_anim/ov12_0222421C.h"
@@ -10,393 +12,385 @@
 #include "particle_system.h"
 #include "spl.h"
 
-static void ov12_02225104(GenericEmitterCallbackData *param0, int param1[]);
-static BOOL ov12_02225110(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225114(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022251F8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022251FC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225200(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022252C8(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_0222534C(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_022253CC(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225434(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225438(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_0222543C(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225440(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225444(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL ov12_02225550(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_GetBehaviorParams(GenericEmitterCallbackData *data, int params[]);
+static BOOL GenericEmitterCallback_ApplyBehaviorNone(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyGravityMag(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyRandomMag(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyRandomInterval(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyMagnetPos(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyMagnetForce(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplySpinAngle(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplySpinAxis(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_UnusedApply8(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_UnusedApply9(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_UnusedApply10(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_UnusedApply11(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyConvergenceTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyConvergenceForce(SPLEmitter *emitter, GenericEmitterCallbackData *data);
 
-static BOOL (*const Unk_ov12_02239D6C[])(SPLEmitter *, GenericEmitterCallbackData *) = {
-    ov12_02225110,
-    ov12_02225114,
-    ov12_022251F8,
-    ov12_022251FC,
-    ov12_02225200,
-    ov12_022252C8,
-    ov12_0222534C,
-    ov12_022253CC,
-    ov12_02225434,
-    ov12_02225438,
-    ov12_0222543C,
-    ov12_02225440,
-    ov12_02225444,
-    ov12_02225550
+static BOOL (*const sBehaviorFunctions[])(SPLEmitter *, GenericEmitterCallbackData *) = {
+    GenericEmitterCallback_ApplyBehaviorNone,
+    GenericEmitterCallback_ApplyGravityMag,
+    GenericEmitterCallback_ApplyRandomMag,
+    GenericEmitterCallback_ApplyRandomInterval,
+    GenericEmitterCallback_ApplyMagnetPos,
+    GenericEmitterCallback_ApplyMagnetForce,
+    GenericEmitterCallback_ApplySpinAngle,
+    GenericEmitterCallback_ApplySpinAxis,
+    GenericEmitterCallback_UnusedApply8,
+    GenericEmitterCallback_UnusedApply9,
+    GenericEmitterCallback_UnusedApply10,
+    GenericEmitterCallback_UnusedApply11,
+    GenericEmitterCallback_ApplyConvergenceTarget,
+    GenericEmitterCallback_ApplyConvergenceForce
 };
 
-static void ov12_02225104(GenericEmitterCallbackData *param0, int param1[])
+static void GenericEmitterCallback_GetBehaviorParams(GenericEmitterCallbackData *data, int params[EMITTER_BHV_PARAM_COUNT])
 {
-    BattleAnimSystem_GetExtraParams(param0->battleAnimSys, param1, 5);
+    BattleAnimSystem_GetExtraParams(data->battleAnimSys, params, EMITTER_BHV_PARAM_COUNT);
 }
 
-static BOOL ov12_02225110(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyBehaviorNone(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225114(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyGravityMag(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    VecFx16 v1 = { 0, 0, 0 };
+    int params[EMITTER_BHV_PARAM_COUNT];
+    VecFx16 mag = { 0, 0, 0 };
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
-    } break;
-    case 1: {
-        VEC_Fx16Set(&v1, v0[2], v0[3], v0[4]);
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_SetEmitterGravityMagnitude(emitter, &mag);
+        mag.x *= data->dir;
+        mag.y *= data->dir;
+        mag.z *= data->dir;
+        break;
+    case EMITTER_BHV_MODE_EXPLICIT:
+        VEC_Fx16Set(&mag, params[EMITTER_BHV_PARAM_X], params[EMITTER_BHV_PARAM_Y], params[EMITTER_BHV_PARAM_Z]);
 
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
+        mag.x *= data->dir;
+        mag.y *= data->dir;
+        mag.z *= data->dir;
 
-        ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
-
-        return 1;
-    } break;
-    case 2:
-    case 3:
-    case 0xFF:
+        ParticleSystem_SetEmitterGravityMagnitude(emitter, &mag);
+        return TRUE;
+    case EMITTER_BHV_MODE_START:
+    case EMITTER_BHV_MODE_END:
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    v1.x -= param1->position.x;
-    v1.y -= param1->position.y;
-    v1.z -= param1->position.z;
+    mag.x -= data->position.x;
+    mag.y -= data->position.y;
+    mag.z -= data->position.z;
 
-    ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
-    return 1;
+    ParticleSystem_SetEmitterGravityMagnitude(emitter, &mag);
+    return TRUE;
 }
 
-static BOOL ov12_022251F8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyRandomMag(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_022251FC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyRandomInterval(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225200(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyMagnetPos(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    VecFx32 v1 = { 0, 0, 0 };
+    int params[EMITTER_BHV_PARAM_COUNT];
+    VecFx32 pos = { 0, 0, 0 };
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterMagnetTarget(param0, &v1);
-
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
-    } break;
-    case 1: {
-        VEC_Set(&v1, v0[2], v0[3], v0[4]);
-
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
-    } break;
-    case 2:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->startBattler, &v1);
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_GetEmitterMagnetTarget(emitter, &pos);
+        pos.x *= data->dir;
+        pos.y *= data->dir;
+        pos.z *= data->dir;
         break;
-    case 3:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
+    case EMITTER_BHV_MODE_EXPLICIT:
+        VEC_Set(&pos, params[EMITTER_BHV_PARAM_X], params[EMITTER_BHV_PARAM_Y], params[EMITTER_BHV_PARAM_Z]);
+        pos.x *= data->dir;
+        pos.y *= data->dir;
+        pos.z *= data->dir;
         break;
-    case 0xFF:
+    case EMITTER_BHV_MODE_START:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &pos);
+        break;
+    case EMITTER_BHV_MODE_END:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &pos);
+        break;
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    v1.x -= param1->position.x;
-    v1.y -= param1->position.y;
+    pos.x -= data->position.x;
+    pos.y -= data->position.y;
 
-    ParticleSystem_SetEmitterMagnetTarget(param0, &v1);
-    return 1;
+    ParticleSystem_SetEmitterMagnetTarget(emitter, &pos);
+    return TRUE;
 }
 
-static BOOL ov12_022252C8(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyMagnetForce(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    fx16 v1 = 0;
+    int params[EMITTER_BHV_PARAM_COUNT];
+    fx16 force = 0;
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterMagnetForce(param0, &v1);
-        v1 *= param1->dir;
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT: {
+        ParticleSystem_GetEmitterMagnetForce(emitter, &force);
+        force *= data->dir;
     } break;
-    case 1: {
-        v1 = v0[2];
-        v1 *= param1->dir;
+    case EMITTER_BHV_MODE_EXPLICIT: {
+        force = params[EMITTER_BHV_PARAM_X];
+        force *= data->dir;
     } break;
-    case 2:
-    case 3:
-    case 0xFF:
+    case EMITTER_BHV_MODE_START:
+    case EMITTER_BHV_MODE_END:
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    ParticleSystem_SetEmitterMagnetForce(param0, &v1);
-    return 1;
+    ParticleSystem_SetEmitterMagnetForce(emitter, &force);
+    return TRUE;
 }
 
-static BOOL ov12_0222534C(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplySpinAngle(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    u16 v1 = 0;
+    int params[EMITTER_BHV_PARAM_COUNT];
+    u16 angle = 0;
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterSpinAngle(param0, &v1);
-        v1 *= param1->dir;
-    } break;
-    case 1: {
-        v1 = v0[2];
-        v1 *= param1->dir;
-    } break;
-    case 2:
-    case 3:
-    case 0xFF:
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_GetEmitterSpinAngle(emitter, &angle);
+        angle *= data->dir;
+        break;
+    case EMITTER_BHV_MODE_EXPLICIT:
+        angle = params[EMITTER_BHV_PARAM_X];
+        angle *= data->dir;
+        break;
+    case EMITTER_BHV_MODE_START:
+    case EMITTER_BHV_MODE_END:
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    ParticleSystem_SetEmitterSpinAngle(param0, &v1);
-    return 1;
+    ParticleSystem_SetEmitterSpinAngle(emitter, &angle);
+    return TRUE;
 }
 
-static BOOL ov12_022253CC(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplySpinAxis(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    u16 v1 = 0;
+    int params[EMITTER_BHV_PARAM_COUNT];
+    u16 axis = EMITTER_SPIN_AXIS_X;
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterSpinAxis(param0, &v1);
-    } break;
-    case 1: {
-        v1 = v0[2];
-    } break;
-    case 2:
-    case 3:
-    case 0xFF:
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_GetEmitterSpinAxis(emitter, &axis);
+        break;
+    case EMITTER_BHV_MODE_EXPLICIT:
+        axis = params[EMITTER_BHV_PARAM_X];
+        break;
+    case EMITTER_BHV_MODE_START:
+    case EMITTER_BHV_MODE_END:
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    ParticleSystem_SetEmitterSpinAxis(param0, &v1);
-    return 1;
+    ParticleSystem_SetEmitterSpinAxis(emitter, &axis);
+    return TRUE;
 }
 
-static BOOL ov12_02225434(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_UnusedApply8(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225438(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_UnusedApply9(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_0222543C(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_UnusedApply10(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225440(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_UnusedApply11(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02225444(SPLEmitter *param0, GenericEmitterCallbackData *param1)
+static BOOL GenericEmitterCallback_ApplyConvergenceTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    int v0[5];
-    VecFx32 v1 = { 0, 0, 0 };
+    int params[EMITTER_BHV_PARAM_COUNT];
+    VecFx32 target = { 0, 0, 0 };
 
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
 
-    if (v0[1] == 1) {
-        param1->dir = 1;
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
 
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterConvergenceTarget(param0, &v1);
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
-    } break;
-    case 1: {
-        VEC_Set(&v1, v0[2], v0[3], v0[4]);
-
-        v1.x *= param1->dir;
-        v1.y *= param1->dir;
-        v1.z *= param1->dir;
-    } break;
-    case 4:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
-
-        v1.x = (v1.x * v0[2]) / v0[3];
-        v1.y = (v1.y * v0[2]) / v0[3];
-        v1.z = (v1.z * v0[2]) / v0[3];
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_GetEmitterConvergenceTarget(emitter, &target);
+        target.x *= data->dir;
+        target.y *= data->dir;
+        target.z *= data->dir;
         break;
-    case 2:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->startBattler, &v1);
+    case EMITTER_BHV_MODE_EXPLICIT:
+        VEC_Set(
+            &target,
+            params[EMITTER_BHV_PARAM_X],
+            params[EMITTER_BHV_PARAM_Y],
+            params[EMITTER_BHV_PARAM_Z]);
+        target.x *= data->dir;
+        target.y *= data->dir;
+        target.z *= data->dir;
         break;
-    case 3:
-        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->battleAnimSys, param1->endBattler, &v1);
+    case EMITTER_BHV_MODE_END_PARTIAL:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &target);
+        target.x = (target.x * params[EMITTER_BHV_PARAM_NUMER]) / params[EMITTER_BHV_PARAM_DENOM];
+        target.y = (target.y * params[EMITTER_BHV_PARAM_NUMER]) / params[EMITTER_BHV_PARAM_DENOM];
+        target.z = (target.z * params[EMITTER_BHV_PARAM_NUMER]) / params[EMITTER_BHV_PARAM_DENOM];
         break;
-    case 0xFF:
+    case EMITTER_BHV_MODE_START:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->startBattler, &target);
         break;
-    }
-
-    v1.x -= param1->position.x;
-    v1.y -= param1->position.y;
-    v1.z -= param1->position.z;
-
-    ParticleSystem_SetEmitterConvergenceTarget(param0, &v1);
-    return 1;
-}
-
-static BOOL ov12_02225550(SPLEmitter *param0, GenericEmitterCallbackData *param1)
-{
-    int v0[5];
-    fx16 v1 = 0;
-
-    ov12_02225104(param1, v0);
-    param1->dir = GenericEmitterCallback_GetDirectionForBattlers(param1);
-
-    if (v0[1] == 1) {
-        param1->dir = 1;
-    }
-
-    switch (v0[0]) {
-    case 0: {
-        ParticleSystem_GetEmitterConvergenceForce(param0, &v1);
-        v1 *= param1->dir;
-    } break;
-    case 1: {
-        v1 = v0[2];
-        v1 *= param1->dir;
-    } break;
-    case 2:
-    case 3:
-    case 0xFF:
+    case EMITTER_BHV_MODE_END:
+        BattleAnimUtil_GetBattlerWorldPos_Normal(data->battleAnimSys, data->endBattler, &target);
+        break;
+    case EMITTER_BHV_MODE_NONE:
         break;
     }
 
-    ParticleSystem_SetEmitterConvergenceForce(param0, &v1);
-    return 1;
+    target.x -= data->position.x;
+    target.y -= data->position.y;
+    target.z -= data->position.z;
+
+    ParticleSystem_SetEmitterConvergenceTarget(emitter, &target);
+    return TRUE;
 }
 
-void ov12_022255D4(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2)
+static BOOL GenericEmitterCallback_ApplyConvergenceForce(SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    BOOL v0 = Unk_ov12_02239D6C[param0](param1, param2);
+    int params[EMITTER_BHV_PARAM_COUNT];
+    fx16 force = 0;
 
-    if (v0 == 0) {
-        (void)0;
+    GenericEmitterCallback_GetBehaviorParams(data, params);
+    data->dir = GenericEmitterCallback_GetDirectionForBattlers(data);
+
+    if (params[EMITTER_BHV_PARAM_FLIP] == BATTLE_PTCL_FLIP_DISABLE) {
+        data->dir = 1;
     }
+
+    switch (params[EMITTER_BHV_PARAM_MODE]) {
+    case EMITTER_BHV_MODE_DEFAULT:
+        ParticleSystem_GetEmitterConvergenceForce(emitter, &force);
+        force *= data->dir;
+        break;
+    case EMITTER_BHV_MODE_EXPLICIT:
+        force = params[EMITTER_BHV_PARAM_X];
+        force *= data->dir;
+        break;
+    case EMITTER_BHV_MODE_START:
+    case EMITTER_BHV_MODE_END:
+    case EMITTER_BHV_MODE_NONE:
+        break;
+    }
+
+    ParticleSystem_SetEmitterConvergenceForce(emitter, &force);
+    return TRUE;
 }
 
-int ov12_022255EC(int param0)
+void GenericEmitterCallback_CallBehaviorFunction(int behaviorValue, SPLEmitter *emitter, GenericEmitterCallbackData *data)
 {
-    const int v0[] = {
-        0x0,
-        0x2,
-        0x4,
-        0x8,
-        0x10,
-        0x20,
-        0x40,
-        0x80,
-        0x100,
-        0x200,
-        0x400,
-        0x800,
-        0x1000,
-        0x2000,
-        0xFEFE
+    sBehaviorFunctions[behaviorValue](emitter, data);
+}
+
+int GenericEmitterCallback_GetBehaviorFlag(int behaviorValue)
+{
+    const int flagTable[] = {
+        EMITTER_BHV_NONE,
+        EMITTER_BHV_GRAVITY_MAG,
+        EMITTER_BHV_RANDOM_MAG,
+        EMITTER_BHV_RANDOM_INTERVAL,
+        EMITTER_BHV_MAGNET_POS,
+        EMITTER_BHV_MAGNET_MAG,
+        EMITTER_BHV_SPIN_ANGLE,
+        EMITTER_BHV_SPIN_AXIS,
+        EMITTER_BHV_UNUSED_8,
+        EMITTER_BHV_UNUSED_9,
+        EMITTER_BHV_UNUSED_10,
+        EMITTER_BHV_UNUSED_11,
+        EMITTER_BHV_CONVERGENCE_POS,
+        EMITTER_BHV_CONVERGENCE_MAG,
+        EMITTER_BHV_ALL
     };
 
-    return v0[param0];
+    return flagTable[behaviorValue];
 }
 
-int ov12_02225614(void)
+int GenericEmitterCallback_GetBehaviorValueCount(void)
 {
-    int v0 = 0;
-    int v1 = 0;
+    int i = 0;
+    int count = 0;
 
     do {
-        int v2;
+        int flag = GenericEmitterCallback_GetBehaviorFlag(i);
+        i++;
 
-        v2 = ov12_022255EC(v0);
-        v0++;
-
-        if (v2 == 0xFEFE) {
+        if (flag == EMITTER_BHV_ALL) {
             break;
         }
 
-        v1++;
-    } while (v1 < 0xFF);
+        count++;
+    } while (count < 0xFF);
 
-    if (v1 >= 0xFF) {
-        return 0;
+    if (count >= 0xFF) {
+        return EMITTER_BHV_NONE;
     }
 
-    return v0;
+    return i;
 }

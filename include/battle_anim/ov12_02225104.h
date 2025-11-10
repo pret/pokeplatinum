@@ -5,8 +5,8 @@
 
 #include "spl.h"
 
-void ov12_022255D4(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2);
-int ov12_022255EC(int param0);
-int ov12_02225614(void);
+void GenericEmitterCallback_CallBehaviorFunction(int param0, SPLEmitter *param1, GenericEmitterCallbackData *param2);
+int GenericEmitterCallback_GetBehaviorFlag(int param0);
+int GenericEmitterCallback_GetBehaviorValueCount(void);
 
 #endif // POKEPLATINUM_OV12_02225104_H
