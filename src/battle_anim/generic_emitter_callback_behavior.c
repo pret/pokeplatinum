@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_02225104.h"
+#include "battle_anim/generic_emitter_callback_behavior.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,7 +7,7 @@
 
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
-#include "battle_anim/ov12_0222421C.h"
+#include "battle_anim/generic_emitter_callback.h"
 
 #include "particle_system.h"
 #include "spl.h"

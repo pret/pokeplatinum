@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_02225640.h"
+#include "battle_anim/generic_emitter_callback_camera.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,22 +7,22 @@
 
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
-#include "battle_anim/ov12_0222421C.h"
+#include "battle_anim/generic_emitter_callback.h"
 
 #include "camera.h"
 #include "particle_system.h"
 #include "spl.h"
 
-static void GenericEmitterCallback_GetCameraParams(GenericEmitterCallbackData *param0, int param1[]);
-static BOOL GenericEmitterCallback_ApplyFixedAngle0(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyFixedAngle1(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyExplicitAngle(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyFixedAngle3(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyFixedAngle4(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyFixedAngle5(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyFixedAngle6(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyStartBattlerTarget(SPLEmitter *param0, GenericEmitterCallbackData *param1);
-static BOOL GenericEmitterCallback_ApplyEndBattlerTarget(SPLEmitter *param0, GenericEmitterCallbackData *param1);
+static void GenericEmitterCallback_GetCameraParams(GenericEmitterCallbackData *data, int params[EMITTER_CAMERA_PARAM_COUNT]);
+static BOOL GenericEmitterCallback_ApplyFixedAngle0(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyFixedAngle1(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyExplicitAngle(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyFixedAngle3(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyFixedAngle4(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyFixedAngle5(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyFixedAngle6(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyStartBattlerTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data);
+static BOOL GenericEmitterCallback_ApplyEndBattlerTarget(SPLEmitter *emitter, GenericEmitterCallbackData *data);
 
 static BOOL (*const sCameraFuncs[])(SPLEmitter *, GenericEmitterCallbackData *) = {
     GenericEmitterCallback_ApplyFixedAngle0,

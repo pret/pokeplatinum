@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "battle_anim/ov12_0222389C.h"
-#include "battle_anim/ov12_0222421C.h"
+#include "battle_anim/emitter_callbacks.h"
+#include "battle_anim/generic_emitter_callback.h"
 #include "overlay011/particle_helper.h"
 
 #include "narc.h"

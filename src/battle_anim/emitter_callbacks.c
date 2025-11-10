@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_0222389C.h"
+#include "battle_anim/emitter_callbacks.h"
 
 #include "nitro/fx/fx.h"
 #include <nitro.h>

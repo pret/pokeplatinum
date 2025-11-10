@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_0222421C_H
-#define POKEPLATINUM_OV12_0222421C_H
+#ifndef POKEPLATINUM_BATTLE_ANIM_GENERIC_EMITTER_CALLBACK_H
+#define POKEPLATINUM_BATTLE_ANIM_GENERIC_EMITTER_CALLBACK_H
 
 #include "battle_anim/battle_anim_system.h"
 
@@ -24,7 +24,7 @@ typedef struct GenericEmitterCallbackData {
     VecFx32 position;
 } GenericEmitterCallbackData;
 
-void BattleAnimEmitterCb_Generic(SPLEmitter *param0);
-s8 GenericEmitterCallback_GetDirectionForBattlers(GenericEmitterCallbackData *param0);
+void BattleAnimEmitterCb_Generic(SPLEmitter *emitter);
+s8 GenericEmitterCallback_GetDirectionForBattlers(GenericEmitterCallbackData *data);
 
-#endif // POKEPLATINUM_OV12_0222421C_H
+#endif // POKEPLATINUM_BATTLE_ANIM_GENERIC_EMITTER_CALLBACK_H
