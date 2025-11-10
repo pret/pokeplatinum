@@ -4,9 +4,9 @@
 
 L_0:
     LoadParticleResource 0, 345
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W028, BATTLE_SOUND_PAN_LEFT, 2, 18
     Delay 10

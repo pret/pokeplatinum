@@ -6,11 +6,11 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SwitchBg 36, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffectR SEQ_SE_DP_003, 4, 5
     PlayLoopedSoundEffectR SEQ_SE_DP_030, 5, 5

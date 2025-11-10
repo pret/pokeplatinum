@@ -12,8 +12,8 @@ L_1:
     End
 
 L_3:
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 4, 4
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 45
     PlaySoundEffectR SEQ_SE_DP_W233
     Delay 10
@@ -22,10 +22,10 @@ L_3:
     End
 
 L_4:
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 4, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 45
     PlaySoundEffectR SEQ_SE_DP_W233
     Delay 10
@@ -39,8 +39,8 @@ L_2:
     End
 
 L_5:
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 5, 4
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 45
     PlaySoundEffectR SEQ_SE_DP_W233
     Delay 10
@@ -49,10 +49,10 @@ L_5:
     End
 
 L_6:
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 5, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 45
     PlaySoundEffectR SEQ_SE_DP_W233
     Delay 10

@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, smog_spa
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     PlayLoopedSoundEffectR SEQ_SE_DP_W109, 4, 3
     Delay 10
     Delay 10

@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, bullet_punch_spa
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffectR SEQ_SE_DP_W025C, 3, 5
     PlayDelayedSoundEffectR SEQ_SE_DP_W025C, 20

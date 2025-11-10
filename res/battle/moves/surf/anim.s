@@ -16,9 +16,9 @@ L_0:
     Func_ScrollCustomBg 48, 0, 256, -6, 6, TRUE, 20, 45
     PlaySoundEffectC SEQ_SE_DP_W057B
     Delay 15
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 20
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     JumpIfFriendlyFire L_1
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_TEAL_GREEN, 10, 10
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_TEAL_GREEN, 10, 10

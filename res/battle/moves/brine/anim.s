@@ -2,11 +2,11 @@
 
 L_0:
     LoadParticleResource 0, brine_spa
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W362
     Delay 10

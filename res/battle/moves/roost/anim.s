@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, roost_spa
     PlaySoundEffectL SEQ_SE_DP_210
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
     Delay 50
     PlaySoundEffectL SEQ_SE_DP_W234

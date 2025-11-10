@@ -10,7 +10,7 @@ L_0:
     PlaySoundEffectR SEQ_SE_DP_W291
     PlayDelayedSoundEffectR SEQ_SE_DP_W092D, 12
     PlayDelayedSoundEffectR SEQ_SE_DP_W092D, 15
-    CreateEmitter 1, 0, 4
+    CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters

@@ -12,7 +12,7 @@ L_0:
     PlayDelayedSoundEffectL SEQ_SE_DP_W010, 28
     Delay 35
     PlayLoopedSoundEffectL SEQ_SE_DP_W145C, 2, 12
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
     FreeSpriteManager 0
     End

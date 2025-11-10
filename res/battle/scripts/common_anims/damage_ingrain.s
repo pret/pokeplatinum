@@ -16,7 +16,7 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 108
     Delay 35
     PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_LEFT, 2, 12
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
     FreeSpriteManager 0
     End

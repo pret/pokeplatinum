@@ -28,65 +28,65 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, 5504, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, 5504, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 11008, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 11008, 0, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 22016, 5504, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 22016, 5504, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -11008, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -11008, 0, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -27520, 5504, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -27520, 5504, 0
     Delay 1
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, -11008, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, -11008, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 11008, -11008, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 11008, -11008, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 22016, -11008, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, 22016, -11008, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -11008, -11008, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -11008, -11008, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -27520, -11008, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 1, -27520, -11008, 0
     Delay 1

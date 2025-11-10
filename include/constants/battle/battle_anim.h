@@ -247,6 +247,30 @@
 #define STAT_CHANGE_MODE_DEFENDER 1
 
 // Parameters related to emitter callbacks
+#define EMITTER_CB_NONE                           0 //< No emitter callback
+#define EMITTER_CB_SET_POS_TO_ENEMY_1             1 //< Set emitter position to enemy battler 1
+#define EMITTER_CB_SET_POS_TO_PLAYER_1            2 //< Set emitter position to player battler 1
+#define EMITTER_CB_SET_POS_TO_ATTACKER            3 //< Set emitter position to attacker
+#define EMITTER_CB_SET_POS_TO_DEFENDER            4 //< Set emitter position to defender
+#define EMITTER_CB_SET_AXIS_POS                   5 //< Set emitter axis and position to point from attacker to defender
+#define EMITTER_CB_SET_AXIS_POS_REVERSED          6 //< Set emitter axis and position to point from defender to attacker
+#define EMITTER_CB_SET_AXIS_POS_CONVERGE_DEFAULT  7 //< Same as EMITTER_CB_SET_AXIS_POS but adjusts convergence target sign
+#define EMITTER_CB_SET_AXIS_POS_CONVERGE_CENTER   8 //< Same as EMITTER_CB_SET_AXIS_POS but sets convergence target to 3D center (BATTLE_3D_CENTER_*)
+#define EMITTER_CB_SET_AXIS_POS_CONVERGE_ATTACKER 9 //< Same as EMITTER_CB_SET_AXIS_POS but sets convergence target to attacker
+#define EMITTER_CB_SET_AXIS_POS_CONVERGE_DEFENDER 10 //< Same as EMITTER_CB_SET_AXIS_POS but sets convergence target to defender
+#define EMITTER_CB_SET_AXIS_POS_CONVERGE_EXPLICIT 11 // Same as EMITTER_CB_SET_AXIS_POS but sets convergence target from params
+#define EMITTER_CB_SET_AXIS_POS_MAGNET_DEFAULT    12 //< Same as EMITTER_CB_SET_AXIS_POS but adjusts magnet target sign
+#define EMITTER_CB_SET_AXIS_POS_MAGNET_CENTER     13 //< Same as EMITTER_CB_SET_AXIS_POS but sets magnet target to 3D center (BATTLE_3D_CENTER_*)
+#define EMITTER_CB_SET_AXIS_POS_MAGNET_ATTACKER   14 //< Same as EMITTER_CB_SET_AXIS_POS but sets magnet target to attacker
+#define EMITTER_CB_SET_AXIS_POS_MAGNET_DEFENDER   15 //< Same as EMITTER_CB_SET_AXIS_POS but sets magnet target to defender
+#define EMITTER_CB_SET_AXIS_POS_MAGNET_EXPLICIT   16 //< Same as EMITTER_CB_SET_AXIS_POS but sets magnet target from params
+#define EMITTER_CB_GENERIC                        17 //< Generic emitter callback handler
+#define EMITTER_CB_SET_POS_BASED_ON_BATTLERS      18 //< Set emitter position based on attacker and defender positions using a hardcoded table
+#define EMITTER_CB_SET_POS_TO_ATTACKER_SIDE       19 //< Set emitter position to attacker side
+#define EMITTER_CB_SET_POS_TO_DEFENDER_SIDE       20 //< Set emitter position to defender side
+#define EMITTER_CB_SET_POS_TO_ATTACKER_2          21 //< Set emitter position to attacker (same as EMITTER_CB_SET_POS_TO_ATTACKER)
+#define EMITTER_CB_NONE_2                         22 //< No emitter callback (same as EMITTER_CB_NONE)
+
 #define BATTLE_PTCL_SIGN_MODE_NONE 0
 #define BATTLE_PTCL_SIGN_MODE_X    1
 #define BATTLE_PTCL_SIGN_MODE_Y    2

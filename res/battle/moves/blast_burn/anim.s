@@ -115,7 +115,7 @@ L_1:
     Func_RevolveEmitter 14, 90, 90, 90, 90, 92, 24, 7, REV_MODE, 0
     Delay 8
     PlaySoundEffectR SEQ_SE_DP_W379
-    CreateEmitter 1, 0, 4
+    CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
@@ -231,7 +231,7 @@ L_2:
     Func_RevolveEmitter 14, 270, 270, 270, 270, 92, 24, 7, REV_MODE, 0
     Delay 8
     PlaySoundEffectR SEQ_SE_DP_W379
-    CreateEmitter 1, 0, 4
+    CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

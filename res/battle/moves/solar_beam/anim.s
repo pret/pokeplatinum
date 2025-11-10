@@ -8,7 +8,7 @@ L_0:
 L_1:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 19, 3
+    CreateEmitter 0, 19, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 10
     PlaySoundEffectL SEQ_SE_DP_SHUSHU
     Delay 20
@@ -23,15 +23,15 @@ L_1:
 L_2:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 8, 3
-    CreateEmitter 0, 9, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 8, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W076B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 15
-    CreateEmitter 0, 10, 4
-    CreateEmitter 0, 11, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 10, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 5
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 14, 0
     Func_Shake 4, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

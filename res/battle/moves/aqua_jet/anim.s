@@ -31,9 +31,9 @@ L_0:
     Func_MoveEmitterA2BLinear 7, 0, 0, 0, 8, 64, EMITTER_ANIMATION_MODE_ATK_TO_DEF, SKIP_F(7) | MAX_F(8)
     CreateEmitterEx 0, 8, 5, 3
     Func_MoveEmitterA2BLinear 8, 0, 0, 0, 8, 64, EMITTER_ANIMATION_MODE_ATK_TO_DEF, SKIP_F(7) | MAX_F(8)
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks

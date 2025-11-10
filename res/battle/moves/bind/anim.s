@@ -2,8 +2,8 @@
 
 L_0:
     LoadParticleResource 0, bind_spa
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     BeginLoop 2
     Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks

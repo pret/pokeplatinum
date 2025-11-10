@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, destiny_bond_spa
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 34, 26, 0, 0
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End

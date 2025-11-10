@@ -5,7 +5,7 @@ L_0:
     JumpIfContest L_1
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W081B
     PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
@@ -26,7 +26,7 @@ L_0:
 L_1:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 6, 5, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W081B
     PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50

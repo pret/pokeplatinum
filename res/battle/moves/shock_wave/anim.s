@@ -4,20 +4,20 @@ L_0:
     LoadParticleResource 0, shock_wave_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 3, 3
-    CreateEmitter 0, 4, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlayLoopedSoundEffectL SEQ_SE_DP_W082, 8, 2
     Delay 40
-    CreateEmitter 0, 4, 4
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 13
     PlaySoundEffectL SEQ_SE_DP_W085B
     Delay 24
     PlaySoundEffectL SEQ_SE_DP_W085B
     Delay 8
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 10, 10
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W172B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

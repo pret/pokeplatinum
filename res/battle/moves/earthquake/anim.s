@@ -5,7 +5,7 @@ L_0:
     Func_Earthquake 0
     Delay 2
     PlaySoundEffectC SEQ_SE_DP_W089
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

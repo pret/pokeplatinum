@@ -12,8 +12,8 @@ L_0:
     Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_0, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER
     Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER_PARTNER
     Delay 1
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_SetBgGrayscale TRUE
     Delay 25
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE

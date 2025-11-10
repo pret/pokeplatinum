@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, haze_spa
-    CreateEmitter 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_NONE
     PlaySoundEffectC SEQ_SE_DP_W114
     WaitForAllEmitters
     UnloadParticleSystem 0

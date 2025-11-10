@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, disable_spa
     JumpIfContest L_1
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 0, -4128, 0, 0
     PlaySoundEffectL SEQ_SE_DP_081
@@ -33,7 +33,7 @@ L_0:
     End
 
 L_2:
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 1, 4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081
@@ -62,7 +62,7 @@ L_2:
     End
 
 L_3:
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 1, -4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081
@@ -91,7 +91,7 @@ L_3:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 1, -4128, 6192, 0
     PlaySoundEffectL SEQ_SE_DP_081

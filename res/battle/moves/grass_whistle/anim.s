@@ -8,7 +8,7 @@ L_1:
     LoadParticleResource 0, grass_whistle_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_LIGHT_GREEN
     WaitForAnimTasks
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 24, 18, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W320, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     WaitForAllEmitters
@@ -21,7 +21,7 @@ L_2:
     LoadParticleResource 0, grass_whistle_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_LIGHT_GREEN
     WaitForAnimTasks
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 24, 18, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W320, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     WaitForAllEmitters

@@ -15,8 +15,8 @@ L_0:
     Delay 32
     BtlAnimCmd_083 0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_030
     Func_Shake 4, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15

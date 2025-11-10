@@ -4,9 +4,9 @@ L_0:
     LoadParticleResource 0, sing_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 6, 1, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W047, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 5

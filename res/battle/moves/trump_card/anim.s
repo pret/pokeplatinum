@@ -3,13 +3,13 @@
 L_0:
     LoadParticleResource 0, trump_card_spa
     PlaySoundEffectR SEQ_SE_DP_W376
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 3, 17
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 43
     PlaySoundEffectR SEQ_SE_DP_W013

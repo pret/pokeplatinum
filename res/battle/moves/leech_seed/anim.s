@@ -13,33 +13,33 @@ L_0:
     CreateEmitterEx 1, 2, 0, 3
     Func_MoveEmitterA2BParabolic 2, 20, -2, 0, 13, 64
     Delay 2
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, -344, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, -344, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 0, -344, 0
     Delay 2
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, -3440, -344, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, -3440, -344, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, -3440, -344, 0
     Delay 2
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 3440, -344, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 3440, -344, 0
-    CreateEmitter 0, 2, 17
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 1, 3440, -344, 0
     PlaySoundEffectR SEQ_SE_DP_080

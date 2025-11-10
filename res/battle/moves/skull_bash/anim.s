@@ -30,8 +30,8 @@ L_2:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 38, -8, 4
     WaitForAnimTasks
     PlaySoundEffectR SEQ_SE_DP_W025B
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 6, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks

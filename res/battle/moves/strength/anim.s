@@ -7,6 +7,6 @@ L_0:
     WaitForAnimTasks
     PlaySoundEffectR SEQ_SE_DP_W025B
     Func_Submission 3, 10, BATTLE_ANIM_DEFENDER
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAnimTasks
     End

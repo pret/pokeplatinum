@@ -7,9 +7,9 @@ L_0:
     WaitForBgSwitch
     Func_ShakeBg 8, 8, 0, 20, 0
     PlayLoopedSoundEffectL SEQ_SE_DP_W120, 2, 10
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 2, 3
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 20
     PlaySoundEffectL SEQ_SE_DP_W120
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_NOT_ATTACKER

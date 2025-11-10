@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, poison_jab_spa
     PlayLoopedSoundEffectR SEQ_SE_DP_030, 4, 6
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 10
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0

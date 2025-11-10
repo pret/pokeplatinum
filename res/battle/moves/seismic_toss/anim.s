@@ -25,9 +25,9 @@ L_0:
     Delay 5
     SetBgSwitchVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -34
     PlaySoundEffectR SEQ_SE_DP_W070
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 0, 5, 1, 3, 0
     Delay 10

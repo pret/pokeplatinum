@@ -5,9 +5,9 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayLoopedSoundEffectL SEQ_SE_DP_BRADE, 4, 8
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 1, 2, 0, 0, 0
     PlayDelayedSoundEffectL SEQ_SE_DP_W234, 35
     WaitForAllEmitters

@@ -11,7 +11,7 @@ L_0:
     Delay 5
     CreateEmitterEx 0, 2, 1, 3
     Func_MoveEmitterA2BParabolic 2, 0, -6, 0, 12, 64
-    CreateEmitter 0, 2, 20
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 5
     CreateEmitterEx 0, 3, 1, 3
     Func_MoveEmitterA2BParabolic 3, -8, -6, 0, 12, 64
@@ -19,7 +19,7 @@ L_0:
     CreateEmitterEx 0, 4, 1, 3
     Func_MoveEmitterA2BParabolic 4, -8, -6, 0, 12, 64
     Delay 5
-    CreateEmitter 0, 0, 20
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 10
     PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 4, 3
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 0

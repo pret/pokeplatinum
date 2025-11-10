@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, present_spa
-    CreateEmitter 0, 2, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 20
@@ -10,8 +10,8 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayLoopedSoundEffectR SEQ_SE_DP_140, 3, 3
     WaitForAllEmitters
@@ -20,7 +20,7 @@ L_1:
 
 L_2:
     LoadParticleResource 1, status_effect_spa
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -30,7 +30,7 @@ L_2:
     Func_StatChangeHeal STAT_CHANGE_MODE_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_W071B
     Delay 5
-    CreateEmitter 1, 4, 4
+    CreateEmitter 1, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1

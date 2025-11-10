@@ -15,9 +15,9 @@ L_1:
     WaitForAnimTasks
     PlaySoundEffectR SEQ_SE_DP_W030
     PlayDelayedSoundEffectR SEQ_SE_DP_145, 5
-    CreateEmitter 0, 5, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 8, 4
+    CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 8, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -26,9 +26,9 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 6, 4
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -37,9 +37,9 @@ L_2:
     End
 
 L_3:
-    CreateEmitter 0, 4, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 7, 4
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 7, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 12, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

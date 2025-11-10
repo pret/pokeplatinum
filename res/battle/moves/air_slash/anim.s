@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, air_slash_spa
     PlaySoundEffectR SEQ_SE_DP_BRADE
-    CreateEmitter 0, 1, 17
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 0, 17
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
     BtlAnimCmd_055 0, 2, 2, 0, 0, 0
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_208

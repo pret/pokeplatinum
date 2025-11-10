@@ -16,9 +16,9 @@ L_0:
     Func_MuddyWater 49, 0, 256, -6, 6, TRUE, 16, 45
     PlaySoundEffectC SEQ_SE_DP_W057B
     Delay 15
-    CreateEmitter 0, 0, 20
-    CreateEmitter 0, 1, 20
-    CreateEmitter 0, 2, 20
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     JumpIfFriendlyFire L_1
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_DARK_RED2, 10, 10
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_DARK_RED2, 10, 10

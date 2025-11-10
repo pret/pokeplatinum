@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
@@ -20,7 +20,7 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     Func_MoveBattlerX2 4, -20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
