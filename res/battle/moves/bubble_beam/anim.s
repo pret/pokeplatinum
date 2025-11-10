@@ -3,8 +3,8 @@
 L_0:
     LoadParticleResource 0, bubble_beam_spa
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 4096, 0
-    BtlAnimCmd_055 4, 0, 2, 5, 0
+    SetExtraParams 0, 2, 6, 1, 4096, 0
+    SetExtraParams 4, 0, 2, 5, 0
     PlayLoopedSoundEffectC SEQ_SE_DP_AWA, 4, 8
     BeginLoop 2
     PlayLoopedSoundEffectR SEQ_SE_DP_W145, 2, 2

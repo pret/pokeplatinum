@@ -6,17 +6,17 @@ L_0:
     WaitForAnimTasks
     PlaySoundEffectL SEQ_SE_DP_W373
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 26, 0, 0, 0
+    SetExtraParams 0, 2, 26, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 26, 0, 0, 0
+    SetExtraParams 0, 2, 26, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 26, 0, 0, 0
+    SetExtraParams 0, 2, 26, 0, 0, 0
     Delay 15
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W379, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 26, 20, 0, 0
+    SetExtraParams 0, 2, 26, 20, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 26, 20, 0, 0
+    SetExtraParams 0, 2, 26, 20, 0, 0
     Delay 10
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

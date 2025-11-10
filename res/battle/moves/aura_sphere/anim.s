@@ -13,13 +13,13 @@ L_0:
     WaitForAnimTasks
     PlaySoundEffectL SEQ_SE_DP_131
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    SetExtraParams 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    SetExtraParams 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_140, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

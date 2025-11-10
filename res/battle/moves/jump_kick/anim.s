@@ -4,8 +4,8 @@ L_0:
     LoadParticleResource 0, jump_kick_spa
     Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 4096, 0
-    BtlAnimCmd_055 3, 0, 0, 0, 0
+    SetExtraParams 0, 2, 6, 1, 4096, 0
+    SetExtraParams 3, 0, 0, 0, 0
     WaitForAnimTasks
     Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     PlaySoundEffectR SEQ_SE_DP_131

@@ -6,9 +6,9 @@ L_0:
     JumpIfContest L_1
     PlayLoopedSoundEffectR SEQ_SE_DP_W054, 4, 12
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 4112, 1
-    BtlAnimCmd_055 3, 0, 0, 0, 0
-    BtlAnimCmd_055 3, 0, 0, 0, 0
+    SetExtraParams 0, 2, 6, 1, 4112, 1
+    SetExtraParams 3, 0, 0, 0, 0
+    SetExtraParams 3, 0, 0, 0, 0
     CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 20
     PlayLoopedSoundEffectR SEQ_SE_DP_W109, 4, 3
@@ -22,9 +22,9 @@ L_0:
 L_1:
     PlayLoopedSoundEffectR SEQ_SE_DP_W054, 4, 12
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 4112, 4
-    BtlAnimCmd_055 3, 0, 0, 0, 0
-    BtlAnimCmd_055 3, 0, 0, 0, 0
+    SetExtraParams 0, 2, 1, 1, 4112, 4
+    SetExtraParams 3, 0, 0, 0, 0
+    SetExtraParams 3, 0, 0, 0, 0
     CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 20
     PlayLoopedSoundEffectR SEQ_SE_DP_W109, 4, 3

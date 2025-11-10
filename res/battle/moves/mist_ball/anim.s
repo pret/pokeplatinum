@@ -11,7 +11,7 @@ L_0:
     WaitForBgSwitch
     PlayLoopedSoundEffectC SEQ_SE_DP_W081, 2, 4
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     Delay 15
     PlayLoopedSoundEffectR SEQ_SE_DP_W028, 2, 4
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_WHITE

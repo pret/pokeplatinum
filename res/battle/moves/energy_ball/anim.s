@@ -5,7 +5,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     PlaySoundEffectL SEQ_SE_DP_211
     Delay 30
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W145, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

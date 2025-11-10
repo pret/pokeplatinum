@@ -14,11 +14,11 @@ L_0:
     Delay 10
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W056, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 20, 14, 0, 0
+    SetExtraParams 0, 2, 20, 14, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 20, 14, 0, 0
+    SetExtraParams 0, 2, 20, 14, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 20, 14, 0, 0
+    SetExtraParams 0, 2, 20, 14, 0, 0
     Delay 5
     Func_Shake 5, 0, 1, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

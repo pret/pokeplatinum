@@ -27,8 +27,8 @@ L_1:
 L_2:
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 10, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 0, 11008, -8256, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 0, 11008, -8256, 0
     Delay 10
     CreateEmitter 0, 14, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

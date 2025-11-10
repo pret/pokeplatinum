@@ -6,8 +6,8 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 1, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 1, 16, 0
-    BtlAnimCmd_055 2, 0, 0, 0, 0
+    SetExtraParams 0, 2, 2, 1, 16, 0
+    SetExtraParams 2, 0, 0, 0, 0
     Delay 10
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_153, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2

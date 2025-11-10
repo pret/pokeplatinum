@@ -6,9 +6,9 @@ L_0:
     WaitForAnimTasks
     PlayLoopedSoundEffectL SEQ_SE_DP_BRADE, 4, 8
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     PlayDelayedSoundEffectL SEQ_SE_DP_W234, 35
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -11,9 +11,9 @@ L_0:
     WaitForBgSwitch
     PlaySoundEffectL SEQ_SE_DP_W062
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     Delay 80
     PlayLoopedSoundEffectC SEQ_SE_DP_W360, 4, 4
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -21,7 +21,7 @@ L_0:
     Delay 19
     PlaySoundEffectR SEQ_SE_DP_186
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_ORANGE, 10, 0
     PlaySoundEffectR SEQ_SE_DP_W029
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

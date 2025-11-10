@@ -6,7 +6,7 @@ L_0:
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W020, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    SetExtraParams 0, 2, 1, 0, 0, 0
     LoadPokemonSpriteIntoBg BATTLER_ROLE_DEFENDER, FALSE
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

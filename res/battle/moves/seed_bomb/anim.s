@@ -15,7 +15,7 @@ L_0:
     Func_MoveEmitterA2BParabolic 2, 0, 0, 0, 18, 64
     Delay 2
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     PlaySoundEffectC SEQ_SE_DP_HURU2
     CreateEmitterEx 0, 3, 1, 3
     Func_MoveEmitterA2BParabolic 3, 0, 0, 0, 18, 64

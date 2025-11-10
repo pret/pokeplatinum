@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, wring_out_spa
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffectR SEQ_SE_DP_021, 10, 5
     BeginLoop 3
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 100, 80, 100, 140, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)

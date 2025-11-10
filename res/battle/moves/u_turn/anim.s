@@ -13,15 +13,15 @@ L_1:
     Delay 10
     PlaySoundEffectC SEQ_SE_DP_007
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     Delay 8
     PlaySoundEffectR SEQ_SE_DP_030
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     PlaySoundEffectL SEQ_SE_DP_080
@@ -62,15 +62,15 @@ L_3:
     Delay 10
     PlaySoundEffectC SEQ_SE_DP_007
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     Delay 8
     PlaySoundEffectR SEQ_SE_DP_030
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     PlaySoundEffectL SEQ_SE_DP_080

@@ -6,8 +6,8 @@ L_0:
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 4096, 0
-    BtlAnimCmd_055 3, 0, 0, 0, 0
+    SetExtraParams 0, 2, 6, 1, 4096, 0
+    SetExtraParams 3, 0, 0, 0, 0
     Delay 10
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

@@ -444,7 +444,7 @@
 
     // 54: Nop
 
-    .macro BtlAnimCmd_055 arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
+    .macro SetExtraParams arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
     .long 55
     UnpackArgsWithCount \arg0, \arg1, \arg2, \arg3, \arg4, \arg5, \arg6, \arg7
     .endm

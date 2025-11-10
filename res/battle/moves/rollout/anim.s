@@ -9,7 +9,7 @@ L_1:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     PlayLoopedSoundEffectC SEQ_SE_DP_W025B, 2, 6
@@ -25,7 +25,7 @@ L_2:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     PlayLoopedSoundEffectC SEQ_SE_DP_W025B, 2, 6

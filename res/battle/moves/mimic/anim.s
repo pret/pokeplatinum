@@ -13,12 +13,12 @@ L_0:
     PlaySoundEffectR SEQ_SE_DP_W107
     Func_Mimic
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
     PlaySoundEffectL SEQ_SE_DP_061
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -39,12 +39,12 @@ L_1:
     PlaySoundEffectR SEQ_SE_DP_W107
     Func_Mimic
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12
     PlaySoundEffectL SEQ_SE_DP_061
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

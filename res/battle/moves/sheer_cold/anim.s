@@ -7,7 +7,7 @@ L_0:
     PlayLoopedSoundEffectC SEQ_SE_DP_W258, 4, 12
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 0, 0, 0, 0
+    SetExtraParams 0, 2, 0, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 15
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 10, 10

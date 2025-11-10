@@ -29,8 +29,8 @@ L_1:
 
 L_2:
     CreateEmitter 0, 8, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 0, 9976, -7568, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 0, 9976, -7568, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W055, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 10
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER

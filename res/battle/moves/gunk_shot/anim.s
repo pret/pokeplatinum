@@ -12,7 +12,7 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_290
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 45
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_293, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2

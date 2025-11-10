@@ -6,17 +6,17 @@ L_0:
     WaitForAnimTasks
     PlayLoopedSoundEffectL SEQ_SE_DP_W082, 3, 10
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 6, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 7, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    SetExtraParams 0, 1, 2, 0, 0, 0
     Delay 90
     PlayLoopedSoundEffectR SEQ_SE_DP_161, 2, 2
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER

@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, roar_spa
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     PlayPokemonCry 7, -117, 100
     WaitForPokemonCries 0
     PlayPokemonCry 8, -117, 127

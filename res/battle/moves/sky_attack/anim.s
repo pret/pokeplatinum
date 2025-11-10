@@ -87,7 +87,7 @@ L_2:
 
 L_7:
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
@@ -116,7 +116,7 @@ L_7:
 
 L_6:
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
@@ -145,7 +145,7 @@ L_6:
 
 L_8:
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
+    SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5

@@ -5,7 +5,7 @@ L_0:
     LoadParticleResource 1, bubble_spa
     JumpIfContest L_1
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 31, 24, 0, 4
+    SetExtraParams 0, 2, 31, 24, 0, 4
     PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
     CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
@@ -21,7 +21,7 @@ L_0:
 
 L_1:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 0, 28, 22, 0, 4
+    SetExtraParams 0, 0, 28, 22, 0, 4
     PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
     CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE

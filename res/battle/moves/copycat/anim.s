@@ -6,9 +6,9 @@ L_0:
     JumpIfContest L_1
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 35
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W383, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
@@ -21,9 +21,9 @@ L_0:
 L_1:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 1, 1, 0, 0
+    SetExtraParams 0, 1, 1, 1, 0, 0
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 35
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W383, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2

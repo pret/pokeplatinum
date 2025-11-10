@@ -15,7 +15,7 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     Delay 35
     PlayLoopedSoundEffectC SEQ_SE_DP_HURU, 3, 8
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

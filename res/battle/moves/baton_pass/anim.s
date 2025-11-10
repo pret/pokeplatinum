@@ -13,9 +13,9 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_BOWA2
     PlayDelayedSoundEffectL SEQ_SE_DP_W100, 40
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 0, 30, 0, 0, 0
+    SetExtraParams 0, 0, 30, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 0, 30, 0, 0, 0
+    SetExtraParams 0, 0, 30, 0, 0, 0
     WaitForAnimTasks
     FreeSpriteManager 0
     End

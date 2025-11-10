@@ -9,27 +9,27 @@ L_0:
 L_1:
     Func_BattlerPartialDraw BATTLE_ANIM_ATTACKER, 8, 10
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlayLoopedSoundEffectL SEQ_SE_DP_W091, 2, 2
     Delay 10
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlayLoopedSoundEffectL SEQ_SE_DP_W091, 2, 2
     Delay 10
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlayLoopedSoundEffectL SEQ_SE_DP_W091, 2, 3
     Delay 45
     Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
@@ -42,27 +42,27 @@ L_2:
     Func_BattlerPartialDraw BATTLE_ANIM_ATTACKER, -8, 2
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlaySoundEffectL SEQ_SE_DP_W091
     Delay 2
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlaySoundEffectL SEQ_SE_DP_W091
     Delay 2
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -688, 0
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -688, 0
     PlaySoundEffectL SEQ_SE_DP_W091
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_030

@@ -15,8 +15,8 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -2064, 0
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 0, -2064, 0
     Delay 5
     Func_ShakeBg 3, 0, 1, 1, 0, SHAKE_BG_TARGET_BASE
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 15, 0

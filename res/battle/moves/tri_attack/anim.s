@@ -11,7 +11,7 @@ L_0:
     CreateEmitter 0, 7, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 18, 12, 0, 0
+    SetExtraParams 0, 2, 18, 12, 0, 0
     Delay 40
     PlaySoundEffectR SEQ_SE_DP_W172B
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER

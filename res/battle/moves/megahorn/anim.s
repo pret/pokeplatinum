@@ -10,9 +10,9 @@ L_0:
     SwitchBg 2, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
+    SetExtraParams 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
