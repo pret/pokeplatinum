@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, sludge_bomb_spa
-    CreateEmitterEx 0, 1, 2, 3
+    CreateEmitterEx 0, 1, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 14, 64
     PlayLoopedSoundEffectC SEQ_SE_DP_W145B, 2, 4
     Delay 10

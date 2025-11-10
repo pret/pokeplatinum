@@ -12,7 +12,7 @@ L_0:
     Call L_1
     PlayLoopedSoundEffectC SEQ_SE_DP_W145C, 4, 6
     Delay 5
-    CreateEmitterEx 1, 0, 2, 3
+    CreateEmitterEx 1, 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 12, 64
     Delay 10
     PlayLoopedSoundEffectR SEQ_SE_DP_W202, 2, 3

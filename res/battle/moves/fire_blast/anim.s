@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_W172, 4, 10
     Delay 20
-    CreateEmitterEx 0, 1, 6, 3
+    CreateEmitterEx 0, 1, 6, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 19, 64
     Delay 25
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
