@@ -208,7 +208,7 @@ Static main
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_scrcmd_item.c.o
 	Object main.nef.p/src_scrcmd_underground_inventory.c.o
-	Object main.nef.p/src_unk_0204EDA4.c.o
+	Object main.nef.p/src_scrcmd_party_mon_moves.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_unk_0204F13C.c.o
@@ -350,7 +350,7 @@ Static main
 	Object main.nef.p/src_unk_02099550.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
-	Object main.nef.p/src_unk_020997B8.c.o
+	Object main.nef.p/src_move_reminder_data.c.o
 	Object main.nef.p/src_unk_020998EC.c.o
 	Object main.nef.p/src_poketch_memory.c.o
 	Object main.nef.p/src_unk_02099DFC.c.o
@@ -1394,10 +1394,10 @@ Overlay overlay90
 	Object main.nef.p/src_overlay090_ov90_021D0D80.c.o
 }
 
-Overlay overlay91
+Overlay move_reminder
 {
 	After main
-	Object main.nef.p/src_overlay091_ov91_021D0D80.c.o
+	Object main.nef.p/src_applications_move_reminder.c.o
 }
 
 Overlay overlay92
