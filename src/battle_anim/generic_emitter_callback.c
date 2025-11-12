@@ -41,7 +41,7 @@ static void GenericEmitterCallback_ApplyParams(SPLEmitter *emitter, GenericEmitt
         GenericEmitterCallback_ApplyAxis(emitter, data);
     }
 
-    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_BEHAVIOR] != EMITTER_BHV_NONE) {
+    if (data->params[GENERIC_EMITTER_CALLBACK_PARAM_BEHAVIOR] != EMITTER_BHV_FLAG_NONE) {
         GenericEmitterCallback_ApplyBehavior(emitter, data);
     }
 
@@ -275,7 +275,7 @@ static void GenericEmitterCallback_ApplyPosition(SPLEmitter *emitter, GenericEmi
     SPLEmitter_SetPosZ(emitter, pos.z);
 }
 
-//                                     [      from      ][       to       ]
+//                                      [      from      ][       to       ]
 static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
 static const VecFx32 EmitterAxisConfigs2[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
 static const VecFx32 EmitterAxisConfigs3[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX];
@@ -760,7 +760,7 @@ static void GenericEmitterCallback_OffsetPosition(GenericEmitterCallbackData *da
 
 #define _ VEC_FX32(0, 0, 0)
 
-//                                     [      from      ][       to       ]
+//                                      [      from      ][       to       ]
 static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
@@ -812,7 +812,7 @@ static const VecFx32 EmitterAxisConfigs1[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs2[][6] = {
+static const VecFx32 EmitterAxisConfigs2[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.588, 0.3047, 0.0),
@@ -863,7 +863,7 @@ static const VecFx32 EmitterAxisConfigs2[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs3[][6] = {
+static const VecFx32 EmitterAxisConfigs3[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3438, 0.1797, 0.0),
@@ -914,7 +914,7 @@ static const VecFx32 EmitterAxisConfigs3[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs4[][6] = {
+static const VecFx32 EmitterAxisConfigs4[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.6172, 0.3877, 0.0),
@@ -965,7 +965,7 @@ static const VecFx32 EmitterAxisConfigs4[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs5[][6] = {
+static const VecFx32 EmitterAxisConfigs5[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.4766, 0.2676, 0.0),
@@ -1016,7 +1016,7 @@ static const VecFx32 EmitterAxisConfigs5[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs6[][6] = {
+static const VecFx32 EmitterAxisConfigs6[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.7812, 0.42, 0.0),
@@ -1067,7 +1067,7 @@ static const VecFx32 EmitterAxisConfigs6[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs7[][6] = {
+static const VecFx32 EmitterAxisConfigs7[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.3906, -0.0156, 0.0),
@@ -1118,7 +1118,7 @@ static const VecFx32 EmitterAxisConfigs7[][6] = {
     },
 };
 
-static const VecFx32 EmitterAxisConfigs8[][6] = {
+static const VecFx32 EmitterAxisConfigs8[BATTLER_TYPE_MAX][BATTLER_TYPE_MAX] = {
     [BATTLER_TYPE_SOLO_PLAYER] = {
         [BATTLER_TYPE_SOLO_PLAYER] = _,
         [BATTLER_TYPE_SOLO_ENEMY] = VEC_FX32(0.875, 0.5, 0.0),

@@ -217,24 +217,27 @@ void BattleAnimEmitterCb_SetPosToDefenderSide(SPLEmitter *emitter)
 void BattleAnimEmitterCb_SetPosBasedOnBattlers(SPLEmitter *emitter)
 {
     s16 unused[6] = { 0, 0, 0, 0, 0, 0 };
+
+    // clang-format off
     s16 posTableX[6][6] = {
         /*Akt/Def  Pl   Em   P1   E1   P2   E2 */
-        /* P1 */ { 0, 0, ___, ___, ___, ___ },
-        /* E1 */ { 0, 0, ___, ___, ___, ___ },
+        /* P1 */ {   0,   0, ___, ___, ___, ___ },
+        /* E1 */ {   0,   0, ___, ___, ___, ___ },
         /* P1 */ { ___, ___, ___, -16, ___, -16 },
         /* E1 */ { ___, ___, +32, ___, +32, ___ },
-        /* P2 */ { ___, ___, ___, +16, ___, +4 },
-        /* E2 */ { ___, ___, -16, ___, 0, ___ }
+        /* P2 */ { ___, ___, ___, +16, ___,  +4 },
+        /* E2 */ { ___, ___, -16, ___,   0, ___ }
     };
     s16 posTableY[6][6] = {
         /*Akt/Def  Pl   Em   P1   E1   P2   E2 */
-        /* P1 */ { 0, 0, ___, ___, ___, ___ },
-        /* E1 */ { 0, 0, ___, ___, ___, ___ },
+        /* P1 */ {   0,   0, ___, ___, ___, ___ },
+        /* E1 */ {   0,   0, ___, ___, ___, ___ },
         /* P1 */ { ___, ___, ___, +16, ___, +16 },
-        /* E1 */ { ___, ___, 0, ___, 0, ___ },
-        /* P2 */ { ___, ___, ___, 0, ___, 0 },
+        /* E1 */ { ___, ___,   0, ___,   0, ___ },
+        /* P2 */ { ___, ___, ___,   0, ___,   0 },
         /* E2 */ { ___, ___, +24, ___, +24, ___ }
     };
+    // clang-format on
 
     BattleAnimSystem *system = ParticleSystem_GetEmitterCallbackParam();
     int attacker = BattleAnimSystem_GetAttacker(system);
@@ -374,7 +377,7 @@ static void BattleParticleUtil_SetMagnetTarget(BattleAnimSystem *system, SPLEmit
 
 static inline BOOL BattleParticleUtil_GetExtraParamVec3(BattleAnimSystem *system, VecFx32 *out)
 {
-    return BattleAnimSystem_GetExtraParams(system, (int *)&out->x, 3);
+    return BattleAnimSystem_GetExtraParams(system, (int *)out, 3);
 }
 
 static void BattleParticleUtil_SetEmitterAxisPosEx(BattleAnimSystem *system, SPLEmitter *emitter, int attacker, int defender, int behaviorMode, int targetMode)
@@ -403,7 +406,6 @@ static void BattleParticleUtil_SetEmitterAxisPosEx(BattleAnimSystem *system, SPL
         VEC_Fx16Set(&dir, dirPlToEm.x, dirPlToEm.y, dirPlToEm.z);
         break;
     case BATTLER_TYPE_SOLO_ENEMY:
-        sign = -1;
         VEC_Fx16Set(&dir, -dirPlToEm.x, -dirPlToEm.y, -dirPlToEm.z);
         break;
     case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
@@ -416,8 +418,6 @@ static void BattleParticleUtil_SetEmitterAxisPosEx(BattleAnimSystem *system, SPL
         }
         break;
     case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
-        sign = -1;
-
         if (defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
             VEC_Fx16Set(&dir, -dirP1ToE1.x, -dirP1ToE1.y, -dirP1ToE1.z);
         } else if (defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
@@ -436,8 +436,6 @@ static void BattleParticleUtil_SetEmitterAxisPosEx(BattleAnimSystem *system, SPL
         }
         break;
     case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
-        sign = -1;
-
         if (defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
             VEC_Fx16Set(&dir, -dirP2ToP1.x, -dirP2ToP1.y, -dirP2ToP1.z);
         } else if (defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {

@@ -352,21 +352,21 @@ void GenericEmitterCallback_CallBehaviorFunction(int behaviorValue, SPLEmitter *
 int GenericEmitterCallback_GetBehaviorFlag(int behaviorValue)
 {
     const int flagTable[] = {
-        EMITTER_BHV_NONE,
-        EMITTER_BHV_GRAVITY_MAG,
-        EMITTER_BHV_RANDOM_MAG,
-        EMITTER_BHV_RANDOM_INTERVAL,
-        EMITTER_BHV_MAGNET_POS,
-        EMITTER_BHV_MAGNET_MAG,
-        EMITTER_BHV_SPIN_ANGLE,
-        EMITTER_BHV_SPIN_AXIS,
-        EMITTER_BHV_UNUSED_8,
-        EMITTER_BHV_UNUSED_9,
-        EMITTER_BHV_UNUSED_10,
-        EMITTER_BHV_UNUSED_11,
-        EMITTER_BHV_CONVERGENCE_POS,
-        EMITTER_BHV_CONVERGENCE_MAG,
-        EMITTER_BHV_ALL
+        EMITTER_BHV_FLAG_NONE,
+        EMITTER_BHV_FLAG_GRAVITY_MAG,
+        EMITTER_BHV_FLAG_UNUSED_2,
+        EMITTER_BHV_FLAG_UNUSED_3,
+        EMITTER_BHV_FLAG_MAGNET_POS,
+        EMITTER_BHV_FLAG_MAGNET_MAG,
+        EMITTER_BHV_FLAG_SPIN_ANGLE,
+        EMITTER_BHV_FLAG_SPIN_AXIS,
+        EMITTER_BHV_FLAG_UNUSED_8,
+        EMITTER_BHV_FLAG_UNUSED_9,
+        EMITTER_BHV_FLAG_UNUSED_10,
+        EMITTER_BHV_FLAG_UNUSED_11,
+        EMITTER_BHV_FLAG_CONVERGENCE_POS,
+        EMITTER_BHV_FLAG_CONVERGENCE_MAG,
+        EMITTER_BHV_FLAG_ALL
     };
 
     return flagTable[behaviorValue];
@@ -381,7 +381,7 @@ int GenericEmitterCallback_GetBehaviorValueCount(void)
         int flag = GenericEmitterCallback_GetBehaviorFlag(i);
         i++;
 
-        if (flag == EMITTER_BHV_ALL) {
+        if (flag == EMITTER_BHV_FLAG_ALL) {
             break;
         }
 
@@ -389,7 +389,7 @@ int GenericEmitterCallback_GetBehaviorValueCount(void)
     } while (count < 0xFF);
 
     if (count >= 0xFF) {
-        return EMITTER_BHV_NONE;
+        return EMITTER_BHV_FLAG_NONE;
     }
 
     return i;
