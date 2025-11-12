@@ -430,13 +430,14 @@ static void BattleAnimUtil_GetBattlerTypeWorldPosInternal(int battlerType, VecFx
 #define CALL_INTERNAL_GETTER(TYPE) \
     BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, TYPE)
 
-#define CALL_TYPE_GETTER(NAME) do {                                            \
-    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);    \
-    enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps); \
-    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);          \
-    BOOL isContest = BattleAnimSystem_IsContest(system);                       \
-    BattleAnimUtil_GetBattlerTypeWorldPos_##NAME(battlerType, pos, isContest, projection); \
-} while (FALSE)
+#define CALL_TYPE_GETTER(NAME)                                                                 \
+    do {                                                                                       \
+        ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);                \
+        enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);             \
+        int battlerType = BattleAnimUtil_GetBattlerType(system, battler);                      \
+        BOOL isContest = BattleAnimSystem_IsContest(system);                                   \
+        BattleAnimUtil_GetBattlerTypeWorldPos_##NAME(battlerType, pos, isContest, projection); \
+    } while (FALSE)
 
 void BattleAnimUtil_GetBattlerTypeWorldPos_Normal(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
