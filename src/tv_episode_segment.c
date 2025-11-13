@@ -497,7 +497,7 @@ static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
 {
     Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, strBuf);
     Strbuf_ToChars(strBuf, param1, 10 + 1);
     Strbuf_Free(strBuf);
 }
@@ -533,7 +533,7 @@ static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
     if (*param2) {
         Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-        Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+        Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, strBuf);
         Strbuf_ToChars(strBuf, param3, 10 + 1);
         Strbuf_Free(strBuf);
     }

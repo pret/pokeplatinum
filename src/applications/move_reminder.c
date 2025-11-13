@@ -935,7 +935,7 @@ static int MoveReminder_State_ReplaceOldMove(MoveReminderController *controller)
     Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP_UPS + controller->data->moveSlot, &value);
 
     value = MoveTable_CalcMaxPP(MoveReminder_GetSelectedMove(controller), 0);
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_CUR_PP + controller->data->moveSlot, &value);
+    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP + controller->data->moveSlot, &value);
 
     controller->data->keepOldMove = FALSE;
 

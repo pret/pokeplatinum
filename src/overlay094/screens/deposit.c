@@ -939,7 +939,7 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
     Strbuf *nicknameStrbuf = Strbuf_Init(10 + 1, HEAP_ID_62);
     Strbuf *genderStrbuf = Strbuf_Init(10 + 1, HEAP_ID_62);
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, nicknameStrbuf);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameStrbuf);
 
     int gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
     int level = BoxPokemon_GetLevel(boxMon);

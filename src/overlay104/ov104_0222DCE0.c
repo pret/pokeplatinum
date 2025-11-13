@@ -270,7 +270,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
         Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
         v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
-        Pokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + v0, &v3);
+        Pokemon_SetValue(param1, MON_DATA_MOVE1_PP + v0, &v3);
     }
 
     v6 = param0->otID;
@@ -301,7 +301,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
         MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
         Strbuf *v8 = MessageLoader_GetNewStrbuf(v7, param0->species);
 
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v8);
+        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v8);
         Strbuf_Free(v8);
         MessageLoader_Free(v7);
     } else {
@@ -341,7 +341,7 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELD2);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
-    Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v1);
+    Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v1);
     Pokemon_SetValue(param1, MON_DATA_OT_ID, &v0);
 
     Strbuf_Free(v1);

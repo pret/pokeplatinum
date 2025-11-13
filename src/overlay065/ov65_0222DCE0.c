@@ -648,7 +648,7 @@ static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
     for (v3 = 0; v3 < v2; v3++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v3);
 
-        if (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
+        if (Pokemon_GetValue(v1, MON_DATA_HP, NULL) == 0) {
             continue;
         }
 

@@ -297,7 +297,7 @@ BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx)
             value++;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == location) {
+        if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == location) {
             value++;
         }
     }
@@ -409,7 +409,7 @@ BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
-            && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0) {
             aliveCount++;
         }
     }
@@ -431,7 +431,7 @@ BOOL ScrCmd_CountAliveMonsAndBoxMons(ScriptContext *ctx)
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
-            && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0) {
             count++;
         }
     }
@@ -759,7 +759,7 @@ BOOL ScrCmd_CheckPartyHasBadEgg(ScriptContext *ctx)
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
             if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
-                if (Pokemon_GetValue(mon, MON_DATA_IS_DATA_INVALID, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_CHECKSUM_FAILED, NULL)) {
                     *destVar = TRUE;
                     return FALSE;
                 }

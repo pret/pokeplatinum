@@ -908,7 +908,7 @@ FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
             u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
 
-            Pokemon_SetValue(mon, MON_DATA_EXP, &v2);
+            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &v2);
             Pokemon_CalcLevelAndStats(mon);
         }
 

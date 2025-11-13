@@ -1612,7 +1612,7 @@ static void ov107_02247B78(UnkStruct_ov107_02246170 *param0, Window *param1)
 
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
 
-        FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v0 + (64 * v2), 1);
+        FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_HP, NULL), 3, 1, param1, v0 + (64 * v2), 1);
         FontSpecialChars_DrawPartyScreenLevelText(param0->unk_144, 0, param1, 24 + v0 + (64 * v2), 1);
         FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
     }
@@ -2891,15 +2891,15 @@ static void ov107_022490E8(UnkStruct_ov107_02246170 *param0, u8 param1, u8 param
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 50);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 55);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 45);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     }
 
@@ -2947,7 +2947,7 @@ static void ov107_022492A8(UnkStruct_ov107_02246170 *param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
+        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
 
         if (param0->unk_368[v0] != NULL) {
             ov107_02249C1C(param0->unk_368[v0], v2);

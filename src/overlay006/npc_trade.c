@@ -119,7 +119,7 @@ static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 
     Strbuf *strbuf = NpcTrade_GetNickname(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRBUF, strbuf);
+    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, strbuf);
     Strbuf_Free(strbuf);
 
     u8 hasNickname = TRUE;
@@ -138,7 +138,7 @@ static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &npcTradeMon->heldItem);
 
     strbuf = NpcTrade_GetOtName(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_OTNAME_STRBUF, strbuf);
+    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, strbuf);
     Strbuf_Free(strbuf);
 
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &npcTradeMon->otGender);

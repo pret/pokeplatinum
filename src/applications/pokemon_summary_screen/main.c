@@ -1079,7 +1079,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     monData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE && monData->isEgg == FALSE) {
+    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE && monData->isEgg == FALSE) {
         monData->hideGender = FALSE;
     } else {
         monData->hideGender = TRUE;
@@ -1090,7 +1090,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     monData->type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     monData->OTID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
-    monData->curExp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
+    monData->curExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
     monData->OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
     monData->curLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level);
 
@@ -1100,7 +1100,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
         monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
     }
 
-    monData->curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    monData->curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     monData->maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     monData->attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
     monData->defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
@@ -1114,7 +1114,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     u8 maxPP;
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         monData->moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
-        monData->curPP[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
+        monData->curPP[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i, NULL);
         maxPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
         monData->maxPP[i] = MoveTable_CalcMaxPP(monData->moves[i], maxPP);
     }
@@ -1134,7 +1134,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
         }
     }
 
-    monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKS, NULL);
+    monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKINGS, NULL);
     monData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     monData->status = PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
@@ -2207,9 +2207,9 @@ u32 PokemonSummaryScreen_StatusIconAnim(void)
 
 u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
 {
-    u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
         return SUMMARY_CONDITION_FAINTED;
     } else if ((statusCondition & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != MON_CONDITION_NONE) {
         return SUMMARY_CONDITION_POISON;

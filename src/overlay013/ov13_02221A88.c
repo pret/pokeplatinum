@@ -1543,7 +1543,7 @@ void ov13_02224144(BattleParty *param0)
     v1 = param0->context;
     v2 = Item_Load(v1->selectedBattleBagItem, 0, v1->heapID);
     v0 = BattleSystem_PartyPokemon(v1->battleSystem, v1->battler, v1->pokemonPartySlots[v1->selectedPartyIndex]);
-    v4 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
+    v4 = Pokemon_GetValue(v0, MON_DATA_HP, NULL);
     v5 = 0;
 
     if (Item_Get(v2, 15) != 0) {

@@ -507,7 +507,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, item, v9, species;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, v4);
 
     species = param5->species;
     gender = param5->gender;
@@ -558,7 +558,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     Strbuf_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00172);
-    Pokemon_GetValue(param3, MON_DATA_OTNAME_STRBUF, v3);
+    Pokemon_GetValue(param3, MON_DATA_OT_NAME_STRING, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param1[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));

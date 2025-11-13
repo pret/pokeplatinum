@@ -879,9 +879,9 @@ u16 sub_0204AB68(BattleTower *battleTower, SaveData *saveData)
 
     switch (battleTower->unk_10_1) {
     case 1:
-        return sub_0204AC54(saveData, MON_DATA_SINNOH_ABILITY_RIBBON, battleTower);
+        return sub_0204AC54(saveData, MON_DATA_ABILITY_RIBBON, battleTower);
     case 2:
-        return sub_0204AC54(saveData, MON_DATA_SINNOH_GREAT_ABILITY_RIBBON, battleTower);
+        return sub_0204AC54(saveData, MON_DATA_GREAT_ABILITY_RIBBON, battleTower);
     }
 
     return 0;
@@ -905,16 +905,16 @@ u16 sub_0204ABA0(BattleTower *battleTower, SaveData *saveData)
 
     switch (battleTower->challengeMode) {
     case BATTLE_TOWER_MODE_DOUBLE:
-        param = MON_DATA_SINNOH_DOUBLE_ABILITY_RIBBON;
+        param = MON_DATA_DOUBLE_ABILITY_RIBBON;
         break;
     case BATTLE_TOWER_MODE_MULTI:
-        param = MON_DATA_SINNOH_MULTI_ABILITY_RIBBON;
+        param = MON_DATA_MULTI_ABILITY_RIBBON;
         break;
     case BATTLE_TOWER_MODE_LINK_MULTI:
-        param = MON_DATA_SINNOH_PAIR_ABILITY_RIBBON;
+        param = MON_DATA_PAIR_ABILITY_RIBBON;
         break;
     case BATTLE_TOWER_MODE_WIFI:
-        param = MON_DATA_SINNOH_WORLD_ABILITY_RIBBON;
+        param = MON_DATA_WORLD_ABILITY_RIBBON;
         break;
     }
 
