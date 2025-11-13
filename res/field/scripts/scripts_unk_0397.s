@@ -41,8 +41,8 @@ _005C:
     End
 
 _0078:
-    SetFlag FLAG_UNK_0x023F
-    SetVar VAR_UNK_0x40F0, 1
+    SetFlag FLAG_HIDE_BLOCK_POKECENTER_BASEMENT
+    SetVar VAR_GTS_HAS_BADGES_CHECK_TEST, 1
     SetVar VAR_UNK_0x40D4, 1
     End
 

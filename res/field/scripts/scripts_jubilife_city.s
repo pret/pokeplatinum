@@ -1,9 +1,10 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city.h"
+#include "res/field/events/events_jubilife_city.h"
 
 
     ScriptEntry _0072
-    ScriptEntry _00E8
+    ScriptEntry JubilifeCity_Counterpart
     ScriptEntry _0700
     ScriptEntry _09DC
     ScriptEntry _0954
@@ -20,7 +21,7 @@
     ScriptEntry _140E
     ScriptEntry _10C4
     ScriptEntry _11CC
-    ScriptEntry _05D0
+    ScriptEntry JubilifeCity_GTSGreeter_HasNoBadges
     ScriptEntry _14A9
     ScriptEntry _14BC
     ScriptEntry _103A
@@ -29,12 +30,12 @@
     ScriptEntry _107F
     ScriptEntry _1096
     ScriptEntry _10AD
-    ScriptEntry _14CF
+    ScriptEntry JubilifeCity_Looker_AfterOneBadgeObtained
     ScriptEntryEnd
 
 _0072:
-    CallIfEq VAR_UNK_0x4077, 0, _00AC
-    CallIfGe VAR_UNK_0x4077, 3, _00C2
+    CallIfEq VAR_JUBILIFE_STATE, 0, _00AC
+    CallIfGe VAR_JUBILIFE_STATE, 3, _00C2
     GetPlayerGender VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D8
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00E0
@@ -60,51 +61,51 @@ _00E0:
     SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
-_00E8:
+JubilifeCity_Counterpart:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 173, _0119
-    GoToIfEq VAR_0x8004, 174, _0129
-    GoToIfEq VAR_0x8004, 175, _0139
+    GoToIfEq VAR_0x8004, 173, JubilifeCity_Counterpart_Left
+    GoToIfEq VAR_0x8004, 174, JubilifeCity_Counterpart_Middle
+    GoToIfEq VAR_0x8004, 175, JubilifeCity_Counterpart_Right
     End
 
-_0119:
-    SetObjectEventPos 7, 173, 0x314
-    GoTo _0149
+JubilifeCity_Counterpart_Left:
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 173, 0x314
+    GoTo JubilifeCity_Counterpart_Init
     End
 
-_0129:
-    SetObjectEventPos 7, 174, 0x314
-    GoTo _0149
+JubilifeCity_Counterpart_Middle:
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 174, 0x314
+    GoTo JubilifeCity_Counterpart_Init
     End
 
-_0139:
-    SetObjectEventPos 7, 175, 0x314
-    GoTo _0149
+JubilifeCity_Counterpart_Right:
+    SetObjectEventPos JUBILIFE_CITY_COUNTERPART, 175, 0x314
+    GoTo JubilifeCity_Counterpart_Init
     End
 
-_0149:
-    ClearFlag FLAG_UNK_0x017A
-    AddObject 7
-    LockObject 7
-    ApplyMovement 7, _043C
+JubilifeCity_Counterpart_Init:
+    ClearFlag FLAG_HIDE_JUBILIFE_COUNTERPART
+    AddObject JUBILIFE_CITY_COUNTERPART
+    LockObject JUBILIFE_CITY_COUNTERPART
+    ApplyMovement JUBILIFE_CITY_COUNTERPART, _043C
     WaitMovement
-    ApplyMovement 7, _044C
+    ApplyMovement JUBILIFE_CITY_COUNTERPART, _044C
     WaitMovement
     CallCommonScript 0x7F8
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _018D
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0224
+    GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_Dawn
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_Lucas
     End
 
-_018D:
+JubilifeCity_Dawn:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 0
     GetPartyCount VAR_RESULT
     BufferNumber 0, VAR_RESULT
-    CallIfGe VAR_RESULT, 4, _021A
-    CallIfLe VAR_RESULT, 3, _021F
+    CallIfGe VAR_RESULT, 4, JubilifeCity_Dawn_AtLeast4Mon
+    CallIfLe VAR_RESULT, 3, JubilifeCity_Dawn_LessThan4Mon
     BufferPlayerName 0
     BufferRivalName 1
     Message 3
@@ -131,22 +132,22 @@ _018D:
     GoTo _02BB
     End
 
-_021A:
+JubilifeCity_Dawn_AtLeast4Mon:
     Message 1
     Return
 
-_021F:
+JubilifeCity_Dawn_LessThan4Mon:
     Message 2
     Return
 
-_0224:
+JubilifeCity_Lucas:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 4
     GetPartyCount VAR_RESULT
     BufferNumber 0, VAR_RESULT
-    CallIfGe VAR_RESULT, 4, _02B1
-    CallIfLe VAR_RESULT, 3, _02B6
+    CallIfGe VAR_RESULT, 4, JubilifeCity_Lucas_AtLeast4Mon
+    CallIfLe VAR_RESULT, 3, JubilifeCity_Lucas_LessThan4Mon
     BufferPlayerName 0
     BufferRivalName 1
     Message 7
@@ -173,11 +174,11 @@ _0224:
     GoTo _02BB
     End
 
-_02B1:
+JubilifeCity_Lucas_AtLeast4Mon:
     Message 5
     Return
 
-_02B6:
+JubilifeCity_Lucas_LessThan4Mon:
     Message 6
     Return
 
@@ -186,7 +187,7 @@ _02BB:
     ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     RemoveObject 7
-    SetVar VAR_UNK_0x4077, 1
+    SetVar VAR_JUBILIFE_STATE, 1
     ReleaseAll
     End
 
@@ -440,8 +441,7 @@ _058C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _05B2
+    GoToIfBadgeAcquired BADGE_ID_COAL, _05B2
     Message 29
     WaitABXPadPress
     CloseMessage
@@ -465,12 +465,12 @@ _05BD:
     ReleaseAll
     End
 
-_05D0:
+JubilifeCity_GTSGreeter_HasNoBadges:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x30B, _0601
-    GoToIfEq VAR_0x8005, 0x30C, _062A
-    GoToIfEq VAR_0x8005, 0x30D, _0653
+    GoToIfEq VAR_0x8005, 779, _0601
+    GoToIfEq VAR_0x8005, 780, _062A
+    GoToIfEq VAR_0x8005, 781, _0653
     End
 
 _0601:
@@ -775,7 +775,7 @@ _097F:
     ReleaseAll
     End
 
-_0994:
+JubilifeCity_Looker_PalPadCheck:
     CheckItem ITEM_PAL_PAD, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _09BD
     Message 36
@@ -890,7 +890,7 @@ _0AFE:
     WaitMovement
     RemoveObject 17
     RemoveObject 18
-    SetFlag FLAG_UNK_0x019C
+    SetFlag FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
     WaitMovement
@@ -959,9 +959,9 @@ _0C7C:
     RemoveObject 7
     RemoveObject 16
     ClearFlag FLAG_UNK_0x0198
-    SetVar VAR_UNK_0x4077, 4
-    SetVar VAR_UNK_0x4076, 2
-    SetVar VAR_UNK_0x4079, 3
+    SetVar VAR_JUBILIFE_STATE, 4
+    SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
+    SetVar VAR_OREBURGH_STATE, 3
     RemoveObject 24
     RemoveObject 25
     RemoveObject 27
@@ -1457,7 +1457,7 @@ _1223:
     RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
     ScrCmd_131
-    SetVar VAR_UNK_0x4077, 2
+    SetVar VAR_JUBILIFE_STATE, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
     RegisterPoketchApp POKETCH_APPID_PEDOMETER
@@ -1668,7 +1668,7 @@ _14BC:
     ReleaseAll
     End
 
-_14CF:
+JubilifeCity_Looker_AfterOneBadgeObtained:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 31, 179, VAR_0x8005
@@ -1682,13 +1682,13 @@ _14CF:
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
-    Call _0994
+    Call JubilifeCity_Looker_PalPadCheck
     CloseMessage
     ApplyMovement 31, _154C
     WaitMovement
     RemoveObject 31
     CallCommonScript 0x808
-    SetVar VAR_UNK_0x4076, 2
+    SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     ReleaseAll
     End
 

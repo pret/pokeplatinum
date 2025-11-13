@@ -2012,6 +2012,11 @@
     .short \destVarID
     .endm
 
+    .macro GoToIfBadgeAcquired badge label
+    CheckBadgeAcquired \badge, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, \label
+    .endm
+
     .macro GiveBag
     .short 351
     .endm
@@ -2093,7 +2098,7 @@
     .short 367
     .endm
 
-    .macro ScrCmd_170
+    .macro PressPastoriaGymButton
     .short 368
     .endm
 
@@ -2118,7 +2123,7 @@
     .byte \floorID
     .endm
 
-    .macro ScrCmd_176 arg0
+    .macro SunyshoreGymButton arg0
     .short 374
     .byte \arg0
     .endm
@@ -3104,39 +3109,39 @@
     .short 542
     .endm
 
-    .macro ScrCmd_21F arg0, arg1
+    .macro CheckHasLearnableReminderMoves destVar, partySlot
     .short 543
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_220
     .short 544
     .endm
 
-    .macro ScrCmd_221 arg0
+    .macro OpenMoveReminderMenu partySlot
     .short 545
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_222
     .short 546
     .endm
 
-    .macro ScrCmd_223 arg0
+    .macro CheckLearnedReminderMove destVar
     .short 547
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_224 arg0, arg1
+    .macro OpenMoveTutorMenu partySlot, move
     .short 548
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \move
     .endm
 
-    .macro ScrCmd_225 arg0
+    .macro CheckLearnedTutorMove destVar
     .short 549
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro StartNpcTrade npcTradeID
@@ -4217,7 +4222,7 @@
     .short 713
     .endm
 
-    .macro ScrCmd_2CA
+    .macro AdvanceEternaGymClock
     .short 714
     .endm
 

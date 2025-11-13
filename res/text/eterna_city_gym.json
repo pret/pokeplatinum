@@ -2,7 +2,7 @@
   "key": 14702,
   "messages": [
     {
-      "id": "pl_msg_00000087_00000",
+      "id": "EternaGym_Text_GardeniaIntro",
       "en_US": [
         "You kept me waiting!\r",
         "I’m Eterna’s Gym Leader, Gardenia,\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00001",
+      "id": "EternaGym_Text_BeatGardenia",
       "en_US": [
         "I might’ve said it before, but you’re\n",
         "really tough!\r",
@@ -29,14 +29,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00002",
+      "id": "EternaGym_Text_GardeniaReceiveForestBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received the\n",
         "Forest Badge from Gardenia!"
       ]
     },
     {
-      "id": "pl_msg_00000087_00003",
+      "id": "EternaGym_Text_GardeniaExplainForestBadge",
       "en_US": [
         "With the Forest Badge, your Pokémon\n",
         "can use the hidden move Cut outside\f",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00004",
+      "id": "EternaGym_Text_GardeniaExplainGrassKnot",
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains\n",
         "the move {STRVAR_1 6, 1, 0}.\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00005",
+      "id": "EternaGym_Text_GardeniaGymBeaten",
       "en_US": [
         "Yup! If there’s one thing I can tell\n",
         "about you, it’s this!\r",
@@ -68,14 +68,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00006",
+      "id": "EternaGym_Text_LassCarolineBeforeBattle",
       "en_US": [
         "Welcome!\n",
         "Without further ado, let’s go!\r"
       ]
     },
     {
-      "id": "pl_msg_00000087_00007",
+      "id": "EternaGym_Text_LassCarolineAfterBattle",
       "en_US": [
         "This gym’s floral clock...\n",
         "You can walk on its hands.\f",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00008",
+      "id": "EternaGym_Text_AromaLadyJennaBeforeBattle",
       "en_US": [
         "My Grass-type Pokémon can dole out\n",
         "some serious special attacks...\r",
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00009",
+      "id": "EternaGym_Text_AromaLadyJennaAfterBattle",
       "en_US": [
         "Every time you beat a Trainer, the\n",
         "floral clock moves.\r",
@@ -101,14 +101,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00010",
+      "id": "EternaGym_Text_AromaLadyAngelaBeforeBattle",
       "en_US": [
         "You can’t win when you’re distracted by\n",
         "the lovely aromas of Pokémon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000087_00011",
+      "id": "EternaGym_Text_AromaLadyAngelaAfterBattle",
       "en_US": [
         "The floral clock moves, and time\n",
         "flows...\r",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00012",
+      "id": "EternaGym_Text_FountainWaterLevelDropped",
       "en_US": [
         "The fountain’s water level dropped!\r",
         "It’s possible to walk across the\n",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00013",
+      "id": "EternaGym_Text_GymGuideBeforeBadge",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Champ-to-be?\r",
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00014",
+      "id": "EternaGym_Text_GymGuideAfterBadge",
       "en_US": [
         "Oh! {STRVAR_1 3, 0, 0}!\n",
         "You’ve beaten the Gym Leader!\r",
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00015",
+      "id": "EternaGym_Text_GymStatueBeforeBadge",
       "en_US": [
         "Eterna City Pokémon Gym\n",
         "Leader: Gardenia\r",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000087_00016",
+      "id": "EternaGym_Text_GymStatueAfterBadge",
       "en_US": [
         "Eterna City Pokémon Gym\n",
         "Leader: Gardenia\r",

@@ -44,14 +44,14 @@ _006A:
     GoToIfEq VAR_0x8005, 0xFF, _005F
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _011A
-    ScrCmd_21F VAR_RESULT, VAR_0x8005
-    GoToIfEq VAR_RESULT, 0, _010F
+    CheckHasLearnableReminderMoves VAR_RESULT, VAR_0x8005
+    GoToIfEq VAR_RESULT, FALSE, _010F
     Message 4
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_221 VAR_0x8005
-    ScrCmd_223 VAR_RESULT
+    OpenMoveReminderMenu VAR_0x8005
+    CheckLearnedReminderMove VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

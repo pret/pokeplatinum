@@ -157,6 +157,7 @@
 #include "scrcmd_money.h"
 #include "scrcmd_mystery_gift.h"
 #include "scrcmd_party.h"
+#include "scrcmd_party_mon_moves.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_sound.h"
 #include "scrcmd_strings.h"
@@ -196,7 +197,6 @@
 #include "unk_02048BD0.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
-#include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -512,13 +512,13 @@ static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayDoorOpenAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayDoorCloseAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
-static BOOL ScrCmd_170(ScriptContext *ctx);
+static BOOL ScrCmd_PressPastoriaGymButton(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
 static BOOL ScrCmd_172(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
-static BOOL ScrCmd_176(ScriptContext *ctx);
+static BOOL ScrCmd_SunyshoreGymButton(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
@@ -712,7 +712,7 @@ static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_2C4(ScriptContext *ctx);
 static BOOL ScrCmd_2C6(ScriptContext *ctx);
 static BOOL ScrCmd_2C7(ScriptContext *ctx);
-static BOOL ScrCmd_2CA(ScriptContext *ctx);
+static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
@@ -1137,13 +1137,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferDaycareMonNicknames,
     ScrCmd_GetDaycareState,
     ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
-    ScrCmd_170,
+    ScrCmd_PressPastoriaGymButton,
     ScrCmd_InitPersistedMapFeaturesForHearthomeGym,
     ScrCmd_172,
     ScrCmd_InitPersistedMapFeaturesForCanalaveGym,
     ScrCmd_InitPersistedMapFeaturesForVeilstoneGym,
     ScrCmd_InitPersistedMapFeaturesForSunyshoreGym,
-    ScrCmd_176,
+    ScrCmd_SunyshoreGymButton,
     ScrCmd_GetPartyCount,
     ScrCmd_OpenBag,
     ScrCmd_GetSelectedItem,
@@ -1312,13 +1312,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ActivateRoamingPokemon,
     ScrCmd_21D,
     ScrCmd_Dummy21E,
-    ScrCmd_21F,
+    ScrCmd_CheckHasLearnableReminderMoves,
     ScrCmd_220,
-    ScrCmd_221,
+    ScrCmd_OpenMoveReminderMenu,
     ScrCmd_222,
-    ScrCmd_223,
-    ScrCmd_224,
-    ScrCmd_225,
+    ScrCmd_CheckLearnedReminderMove,
+    ScrCmd_OpenMoveTutorMenu,
+    ScrCmd_CheckLearnedTutorMove,
     ScrCmd_StartNpcTrade,
     ScrCmd_GetNpcTradeSpecies,
     ScrCmd_GetNpcTradeRequestedSpecies,
@@ -1483,7 +1483,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C7,
     ScrCmd_2C8,
     ScrCmd_InitPersistedMapFeaturesForEternaGym,
-    ScrCmd_2CA,
+    ScrCmd_AdvanceEternaGymClock,
     ScrCmd_CountRepeatedSpeciesInParty,
     ScrCmd_2CC,
     ScrCmd_2CD,
@@ -5563,11 +5563,11 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_170(ScriptContext *ctx)
+static BOOL ScrCmd_PressPastoriaGymButton(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov8_0224997C(fieldSystem);
+    PastoriaGym_PressButton(fieldSystem);
     return TRUE;
 }
 
@@ -5606,7 +5606,7 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_176(ScriptContext *ctx)
+static BOOL ScrCmd_SunyshoreGymButton(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -7448,13 +7448,13 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2CA(ScriptContext *ctx)
+static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    Window *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
 
-    ov8_0224B67C(fieldSystem, v2, ctx->loader, *v1);
+    ov8_0224B67C(fieldSystem, window, ctx->loader, *msgBuf);
     return TRUE;
 }
 

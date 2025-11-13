@@ -7,13 +7,13 @@
     ScriptEntryEnd
 
 _000A:
-    GoToIfSet FLAG_UNK_0x008E, _0017
+    GoToIfSet FLAG_MAP_LOCAL, _0017
     End
 
 _0017:
     SetFlag FLAG_UNK_0x0243
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 _0025:
@@ -46,9 +46,9 @@ _0081:
     CloseMessage
     PlayCry SPECIES_REGIGIGAS
     WaitCry
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _00D1
     CheckDidNotCapture VAR_RESULT

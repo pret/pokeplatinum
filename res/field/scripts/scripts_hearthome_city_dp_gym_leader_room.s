@@ -40,8 +40,7 @@ _0086:
     GoTo _0096
 
 _0096:
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0173
+    GoToIfBadgeAcquired BADGE_ID_RELIC, _0173
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 100, 0, 0, 0
     Message 0
     CloseMessage
@@ -64,9 +63,9 @@ _0096:
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, TRAINER_LEADER_FANTINA, 0, 0
-    SetVar VAR_UNK_0x407B, 1
-    SetFlag FLAG_UNK_0x0206
-    ClearFlag FLAG_UNK_0x0207
+    SetVar VAR_HEARTHOME_STATE, 1
+    SetFlag FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK
+    ClearFlag FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL
     Message 3
     GoTo _012B
 
@@ -75,7 +74,7 @@ _012B:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0169
     GiveItemQuantity
-    SetFlag FLAG_UNK_0x007D
+    SetFlag FLAG_OBTAINED_FANTINA_TM65
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message 4
@@ -91,7 +90,7 @@ _0169:
     End
 
 _0173:
-    GoToIfUnset FLAG_UNK_0x007D, _012B
+    GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, _012B
     Message 5
     WaitABXPadPress
     CloseMessage

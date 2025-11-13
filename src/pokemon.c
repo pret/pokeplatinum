@@ -4583,14 +4583,6 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
     return TRUE;
 }
 
-/* TODO:
-    This function is annoying.
-    It's used in exactly one other file (`unk_020997B8.c`), so it has to be public.
-    The data structure of the NARC uses bitmasks that should probably be a struct,
-    and calling code uses sentinel values that should probably be consts,
-    but then we'd be polluting namespace for the sake of two .c files.
-    Could define in each .c file, but then there's risk of these becoming desynced (This is the worse option imo).
-*/
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves)
 {
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);

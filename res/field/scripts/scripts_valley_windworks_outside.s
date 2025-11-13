@@ -40,13 +40,13 @@ _0082:
 _008A:
     CallIfSet FLAG_UNK_0x010F, _00BB
     CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfSet FLAG_UNK_0x008E, _00AD
+    GoToIfSet FLAG_MAP_LOCAL, _00AD
     End
 
 _00AD:
     SetFlag FLAG_UNK_0x020B
     RemoveObject 4
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 _00BB:
@@ -141,9 +141,9 @@ _01BF:
     Message 8
     CloseMessage
     WaitCry
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_DRIFLOON, 15
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _01FB
     SetFlag FLAG_UNK_0x0AA8

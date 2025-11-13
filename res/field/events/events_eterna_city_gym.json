@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "ETERNA_CITY_GYM_GYM_GUIDE_0",
+            "id": "ETERNA_CITY_GYM_GYM_GUIDE",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,7 +34,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GYM_GARDENIA_1",
+            "id": "ETERNA_CITY_GYM_GARDENIA",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,7 +49,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GYM_LASS_2",
+            "id": "ETERNA_CITY_GYM_LASS_CAROLINE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,7 +64,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GYM_POKEMON_BREEDER_F_3",
+            "id": "ETERNA_CITY_GYM_AROMA_LADY_JENNA",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GYM_POKEMON_BREEDER_F_4",
+            "id": "ETERNA_CITY_GYM_AROMA_LADY_ANGELA",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

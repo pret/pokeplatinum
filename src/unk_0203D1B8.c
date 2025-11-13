@@ -27,11 +27,11 @@
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
 #include "applications/journal_display/journal_controller.h"
+#include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
 #include "applications/party_menu/defs.h"
@@ -64,7 +64,6 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D0D80.h"
-#include "overlay091/ov91_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
@@ -95,6 +94,7 @@
 #include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
+#include "move_reminder_data.h"
 #include "overlay_manager.h"
 #include "overworld_map_history.h"
 #include "party.h"
@@ -159,7 +159,6 @@ FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(overlay90);
-FS_EXTERN_OVERLAY(overlay91);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
@@ -1446,18 +1445,18 @@ void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
+void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData)
 {
-    FS_EXTERN_OVERLAY(overlay91);
+    FS_EXTERN_OVERLAY(move_reminder);
 
-    const ApplicationManagerTemplate v0 = {
-        ov91_021D0D80,
-        ov91_021D0E08,
-        ov91_021D0EBC,
-        FS_OVERLAY_ID(overlay91)
+    const ApplicationManagerTemplate template = {
+        MoveReminder_Init,
+        MoveReminder_Main,
+        MoveReminder_Exit,
+        FS_OVERLAY_ID(move_reminder)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, moveReminderData);
 }
 
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv)

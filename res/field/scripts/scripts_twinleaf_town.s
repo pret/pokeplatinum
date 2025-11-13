@@ -392,33 +392,33 @@ _04D0:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_UNK_0x0174
-    AddObject TWINLEAF_TOWN_BARRY
-    ApplyMovement TWINLEAF_TOWN_BARRY, _05A4
+    AddObject TWINLEAF_TOWN_RIVAL
+    ApplyMovement TWINLEAF_TOWN_RIVAL, _05A4
     ApplyMovement LOCALID_PLAYER, _0588
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
     CallCommonScript 0x7FA
-    ApplyMovement TWINLEAF_TOWN_BARRY, _059C
+    ApplyMovement TWINLEAF_TOWN_RIVAL, _059C
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message TwinleafTown_Text_GoingToSeeProfRowan
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0570
-    ApplyMovement TWINLEAF_TOWN_BARRY, _05B0
+    ApplyMovement TWINLEAF_TOWN_RIVAL, _05B0
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
     Message TwinleafTown_Text_OhJeezForgotSomething
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_BARRY, _05C8
+    ApplyMovement TWINLEAF_TOWN_RIVAL, _05C8
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject TWINLEAF_TOWN_BARRY
+    RemoveObject TWINLEAF_TOWN_RIVAL
     CallCommonScript 0x7FB
     SetVar VAR_UNK_0x4070, 1
     SetVar VAR_UNK_0x40E6, 1

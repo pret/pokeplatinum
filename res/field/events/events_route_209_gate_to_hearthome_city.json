@@ -21,7 +21,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0207",
+            "flag": "FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -54,7 +54,7 @@
             "y": 0,
             "width": 1,
             "length": 5,
-            "var": "VAR_UNK_0x407B",
+            "var": "VAR_HEARTHOME_STATE",
             "value": 1
         }
     ]
