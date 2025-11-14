@@ -31,12 +31,22 @@ sprite_ncgr_cells = ncgr_cell_gen.process(
         'cursor.png',
         'player_icons.png',
         'location_history_dot.png',
-        'fly_destination_blocks.png',
     ),
     extra_args: [
         '-version101',
         '-clobbersize',
         '-bitdepth', '4',
+    ]
+)
+
+fly_destination_blocks_ncgr = ncgr_gen.process(
+    files(
+        'fly_destination_blocks.png',
+    ),
+    extra_args: [
+        '-version101',
+        '-clobbersize',
+        '-convertTo4Bpp',
     ]
 )
 
@@ -81,7 +91,7 @@ top_screen_sprites_0_4_nclr = nclr_gen.process(
 )
 
 fly_destination_blocks_nclr = nclr_gen.process(
-    files('fly_destination_blocks.pal'),
+    files('fly_destination_blocks.png'),
     extra_args: [
         '-bitdepth', '4',
         '-pcmp', '-start', '11',
@@ -133,6 +143,7 @@ town_map_graphics_narc = custom_target('town_map_graphics.narc',
         sprite_anims_nanr,
         sprite_cells_ncer,
         sprite_ncgr_cells,
+        fly_destination_blocks_ncgr,
         tilesets_ncgr,
         palettes_nclr,
         copy_gen.process(top_screen_sprites_nclr),
