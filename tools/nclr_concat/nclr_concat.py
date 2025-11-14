@@ -16,7 +16,7 @@ argparser = argparse.ArgumentParser(
 
 argparser.add_argument('-i', '--input', nargs='+',
                        required=True,
-                       help='Path to an input NCLR.')
+                       help='Paths to input NCLRs.')
 argparser.add_argument('-o', '--output',
                        required=True,
                        help='Path to the output NCLR.')
