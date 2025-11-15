@@ -4,7 +4,7 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/underground_item_list_menu.h"
 
@@ -54,7 +54,7 @@ typedef struct UndergroundMenu {
     Strbuf *strbuf;
     Strbuf *fmtString;
     StringTemplate *template;
-    UnkStruct_ov5_021D30A8 unk_74;
+    SpriteResourceManager spriteManager;
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];
     u32 spriteCount;
     UnkFuncPtr_ov23_0224F758 unk_260;

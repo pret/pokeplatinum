@@ -6,8 +6,7 @@
 #include "constants/narc.h"
 #include "generated/signpost_types.h"
 
-#include "overlay005/ov5_021D2F14.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -76,7 +75,7 @@ struct WaitDial {
 };
 
 typedef struct PokemonPreview {
-    UnkStruct_ov5_021D30A8 unk_00;
+    SpriteResourceManager spriteManager;
     ManagedSprite *managedSprite;
     BgConfig *bgConfig;
     u8 bgLayer;
@@ -99,9 +98,9 @@ static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, 
 static void sub_0200ED50(PokemonPreview *preview, u32 heapID);
 static void LoadPokemonPreviewResources(PokemonPreview *preview);
 static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y);
-static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender);
-static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon);
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate);
+static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 species, u8 gender);
+static void LoadAndDrawPokemonPreviewSpriteFromStruct(SpriteResourceManager *param0, Pokemon *mon);
+static void DrawPokemonPreviewSprite(SpriteResourceManager *param0, PokemonSpriteTemplate *spriteTemplate);
 static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile);
 static void ErasePokemonPreviewWindow(PokemonPreview *preview);
 
@@ -743,7 +742,7 @@ u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u
     sub_0200ED50(preview, heapID);
     LoadPokemonPreviewResources(preview);
     CreatePokemonPreviewSprite(preview, x, y);
-    LoadAndDrawPokemonPreviewSprite(&preview->unk_00, species, gender);
+    LoadAndDrawPokemonPreviewSprite(&preview->spriteManager, species, gender);
     DrawPokemonPreviewWindow(preview, palette, baseTile);
     Bg_CopyTilemapBufferToVRAM(bgConfig, bgLayer);
 
@@ -757,7 +756,7 @@ u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 
     sub_0200ED50(preview, heapID);
     LoadPokemonPreviewResources(preview);
     CreatePokemonPreviewSprite(preview, x, y);
-    LoadAndDrawPokemonPreviewSpriteFromStruct(&preview->unk_00, mon);
+    LoadAndDrawPokemonPreviewSpriteFromStruct(&preview->spriteManager, mon);
     DrawPokemonPreviewWindow(preview, palette, baseTile);
     Bg_CopyTilemapBufferToVRAM(bgConfig, bgLayer);
 
@@ -772,7 +771,7 @@ static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
     case 1:
         ErasePokemonPreviewWindow(preview);
         Sprite_DeleteAndFreeResources(preview->managedSprite);
-        ov5_021D375C(&preview->unk_00);
+        SpriteResourceManager_Cleanup(&preview->spriteManager);
         SysTask_FinishAndFreeParam(task);
         return;
 
@@ -789,7 +788,7 @@ static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
     }
 
     Sprite_UpdateAnim(preview->managedSprite->sprite, FX32_ONE);
-    SpriteList_Update(preview->unk_00.unk_00);
+    SpriteList_Update(preview->spriteManager.spriteList);
 }
 
 static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u32 heapID)
@@ -808,29 +807,29 @@ static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, 
 static void sub_0200ED50(PokemonPreview *preview, u32 heapID)
 {
     SpriteResourceCapacities v0 = { 1, 1, 1, 1, 0, 0 };
-    ov5_021D3190(&preview->unk_00, &v0, 1, heapID);
+    SpriteResourceManager_SetCapacities(&preview->spriteManager, &v0, 1, heapID);
 }
 
 static void LoadPokemonPreviewResources(PokemonPreview *preview)
 {
-    ov5_021D3270(&preview->unk_00,
+    SpriteResourceManager_AddPalette(&preview->spriteManager,
         NARC_INDEX_GRAPHIC__PL_WINFRAME,
         pokemon_preview_NCLR,
         FALSE,
         1,
         NNS_G2D_VRAM_TYPE_2DMAIN,
         POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D3360(&preview->unk_00,
+    SpriteResourceManager_AddCell(&preview->spriteManager,
         NARC_INDEX_GRAPHIC__PL_WINFRAME,
         pokemon_preview_cell_NCER,
         FALSE,
         POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D3388(&preview->unk_00,
+    SpriteResourceManager_AddAnimation(&preview->spriteManager,
         NARC_INDEX_GRAPHIC__PL_WINFRAME,
         pokemon_preview_anim_NANR,
         FALSE,
         POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D33B0(&preview->unk_00,
+    SpriteResourceManager_AddTiles(&preview->spriteManager,
         NARC_INDEX_GRAPHIC__PL_WINFRAME,
         pokemon_preview_NCGR,
         FALSE,
@@ -844,13 +843,13 @@ static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
     template.x = (x + 5) * 8;
     template.y = (y + 5) * 8;
 
-    preview->managedSprite = ov5_021D3584(&preview->unk_00, &template);
+    preview->managedSprite = SpriteResourceManager_CreateManagedSprite(&preview->spriteManager, &template);
 
-    SpriteList_Update(preview->unk_00.unk_00);
+    SpriteList_Update(preview->spriteManager.spriteList);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender)
+static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 species, u8 gender)
 {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
@@ -860,7 +859,7 @@ static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 
     PokemonSpriteManager_Free(buf);
 }
 
-static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon)
+static void LoadAndDrawPokemonPreviewSpriteFromStruct(SpriteResourceManager *param0, Pokemon *mon)
 {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
@@ -876,7 +875,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 #define POKEMON_SPRITE_FRAME_SIZE_BYTES   (TILE_SIZE_4BPP * POKEMON_SPRITE_FRAME_SIZE_TILES)
 #define POKEMON_SPRITE_WHOLE_SIZE_BYTES   (POKEMON_SPRITE_FRAME_SIZE_BYTES * 2)
 
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate)
+static void DrawPokemonPreviewSprite(SpriteResourceManager *param0, PokemonSpriteTemplate *spriteTemplate)
 {
     u8 *buf;
     u32 offset;
@@ -894,7 +893,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     TileRegion frame1Region = FRAME_1_REGION;
     CharacterSprite_LoadSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame1Region, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
-    charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_CHAR], POKEMON_PREVIEW_RESOURCE_ID);
+    charResource = SpriteResourceCollection_Find(param0->resourceCollections[SPRITE_RESOURCE_CHAR], POKEMON_PREVIEW_RESOURCE_ID);
     imageProxy = SpriteTransfer_GetImageProxy(charResource);
     offset = NNS_G2dGetImageLocation(imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -904,7 +903,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     Heap_Free(buf);
 
     buf = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
-    plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
+    plttResource = SpriteResourceCollection_Find(param0->resourceCollections[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
     paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
     offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
