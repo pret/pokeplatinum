@@ -1765,7 +1765,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum Traine
                     bankID = TEXT_BANK_UNK_0613;
                 }
 
-                MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_BATTLE);
+                MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_BATTLE);
                 v4 = MessageLoader_GetNewStrbuf(loader, entryID);
 
                 Window_FillTilemap(v0, 0xff);

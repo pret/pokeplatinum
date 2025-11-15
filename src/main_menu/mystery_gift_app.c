@@ -881,7 +881,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(ApplicationManager *appMan
     }
 
     appData->listMenuOptions = StringList_New(numEntries, HEAP_ID_MYSTERY_GIFT_APP);
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
 
     for (int i = 0; i < numEntries; i++) {
         StringList_AddFromMessageBank(appData->listMenuOptions, appData->msgLoader, entries[i].textEntryId, (u32)entries[i].stateTransitionFuncPtr);
@@ -934,7 +934,7 @@ static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entry
 {
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
     appData->strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -1114,7 +1114,7 @@ static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window 
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     if (window && textEntryId) {
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
         strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
         appData->strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryId, HEAP_ID_MYSTERY_GIFT_APP);
         appData->msgBoxPrinterDelay = TEXT_SPEED_FAST;

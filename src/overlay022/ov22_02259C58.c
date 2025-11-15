@@ -433,7 +433,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

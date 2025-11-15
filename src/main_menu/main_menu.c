@@ -719,7 +719,7 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
 {
     StringTemplate *strTemplate; // Forward-declaration required to match.
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
     strTemplate = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
     TextColor textColor;

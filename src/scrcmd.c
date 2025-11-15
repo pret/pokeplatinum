@@ -2044,7 +2044,7 @@ static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx)
     u16 bankID = ScriptContext_GetVar(ctx);
     u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
     ScriptMessage_ShowInstant(ctx, msgLoader, messageID);
     MessageLoader_Free(msgLoader);
@@ -2057,7 +2057,7 @@ static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx)
     u16 bankID = ScriptContext_GetVar(ctx);
     u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
     ScriptMessage_Show(ctx, msgLoader, messageID, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
@@ -2103,7 +2103,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     u16 *v0 = battleTower->unk_78[v3].unk_00.unk_18;
 
     if (v0[0] == 0xFFFF) {
-        MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
         ScriptMessage_Show(ctx, msgLoader, v0[1], TRUE, NULL);
         MessageLoader_Free(msgLoader);
     } else {
@@ -7289,7 +7289,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     StringTemplate *v6 = StringTemplate_Default(HEAP_ID_FIELD3);
-    MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD3);
+    MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD3);
 
     StringTemplate_SetCustomMessageWord(v6, 0, v2);
     StringTemplate_SetCustomMessageWord(v6, 1, v3);

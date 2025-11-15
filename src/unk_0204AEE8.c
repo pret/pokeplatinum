@@ -117,7 +117,7 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
     speciesName = Strbuf_Init(14, HEAP_ID_FIELD1);
     unused = Strbuf_Init(2, HEAP_ID_FIELD1);
     pokedex = SaveData_GetPokedex(saveData);
-    speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
+    speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
     bannedSpeciesList = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
 
     StringTemplate_SetNumber(bannedSpeciesList, 0, numPokemonRequired, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -279,7 +279,7 @@ u16 sub_0204B0F0(BattleTower *battleTower, u8 param1, u8 param2, int challengeMo
 
 static BattleFrontierTrainerData *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID)
 {
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
+    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
 

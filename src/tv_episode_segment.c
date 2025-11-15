@@ -2801,7 +2801,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static Strbuf *sub_0206F0D8(u16 param0, u32 heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
+    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);

@@ -358,7 +358,7 @@ static void ov23_022515D8(UndergroundMenu *param0, int param1, int param2, Curso
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
+        v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -404,7 +404,7 @@ static void ov23_022516E8(UndergroundMenu *param0, int param1, int param2, Curso
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
+        v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
@@ -839,7 +839,7 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
     MI_CpuFill8(v1, 0, sizeof(UndergroundMenu));
     v1->fieldSystem = fieldSystem;
 
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_BASE_PC, MESSAGE_LOADER_NARC_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_BASE_PC, MSG_LOADER_LOAD_ON_DEMAND);
 
     v1->state = 0;
     v1->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);

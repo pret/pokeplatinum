@@ -1088,17 +1088,17 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
 
         namingScreen->strTemplate = StringTemplate_Default(HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->namingScreenMsgLoader = MessageLoader_Init(
-            MESSAGE_LOADER_BANK_HANDLE,
+            MSG_LOADER_PRELOAD_ENTIRE_BANK,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_NAMING_SCREEN,
             HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->genericNamesMsgLoader = MessageLoader_Init(
-            MESSAGE_LOADER_NARC_HANDLE,
+            MSG_LOADER_LOAD_ON_DEMAND,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_GENERIC_NAMES,
             HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->battleStringsMsgLoader = MessageLoader_Init(
-            MESSAGE_LOADER_NARC_HANDLE,
+            MSG_LOADER_LOAD_ON_DEMAND,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_BATTLE_STRINGS,
             HEAP_ID_NAMING_SCREEN_APP);

@@ -133,7 +133,7 @@ static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf
 
 static inline MessageLoader *InitMessageLoader(u32 bankID, u32 heapID)
 {
-    return MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    return MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 }
 
 void StringTemplate_SetStrbuf(StringTemplate *template, u32 idx, const Strbuf *argVal, u32 unused3, BOOL unused4, u32 unused5)

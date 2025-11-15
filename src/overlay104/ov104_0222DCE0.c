@@ -112,7 +112,7 @@ void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID n
 
 BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3)
 {
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
+    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
     MI_CpuClear8(param0, sizeof(FrontierTrainerDataDTO));
 
@@ -298,7 +298,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
     Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &param0->friendship);
 
     if (param0->unk_14_val1_30) {
-        MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
+        MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
         Strbuf *v8 = MessageLoader_GetNewStrbuf(v7, param0->species);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v8);
@@ -338,7 +338,7 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     v3 = MapHeader_GetMapLabelTextID(562);
     UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELD2);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELD2);
+    v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELD2);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
     Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v1);

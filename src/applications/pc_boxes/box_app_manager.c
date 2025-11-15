@@ -3302,10 +3302,10 @@ static void BoxAppMan_Load(BoxApplicationManager *boxAppMan, PokemonStorageSessi
     boxAppMan->options = SaveData_GetOptions(pokemonStorageSession->saveData);
     boxAppMan->pokemonStorageSession = pokemonStorageSession;
     pokemonStorageSession->recordBoxUseInJournal = FALSE;
-    boxAppMan->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
-    boxAppMan->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
-    boxAppMan->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
-    boxAppMan->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
+    boxAppMan->boxMessagesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
+    boxAppMan->speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
+    boxAppMan->natureNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
+    boxAppMan->abilityNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
     boxAppMan->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 

@@ -84,7 +84,7 @@ static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *me
     int i;
 
     if (messageLoader == NULL) {
-        menuManager->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
+        menuManager->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
         menuManager->freeMsgLoaderOnDelete = TRUE;
     } else {
         menuManager->messageLoader = messageLoader;
@@ -689,7 +689,7 @@ Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 
     Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
     Window_FillTilemap(window, 15);
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000543_00018);
 
     Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -711,7 +711,7 @@ void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window)
 {
     Window_FillRectWithColor(window, 15, 0, GLYPH_ROW_HEIGHT, MONEY_WINDOW_WIDTH * TILE_SIDELENGTH, MONEY_WINDOW_HEIGHT * TILE_SIDELENGTH - GLYPH_ROW_HEIGHT);
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
     Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000543_00019);
@@ -753,7 +753,7 @@ void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window)
 {
     Window_FillTilemap(window, 15);
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
     Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000361_00197);
@@ -789,7 +789,7 @@ void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window)
 {
     Window_FillTilemap(window, 15);
 
-    MessageLoader *messageLaoder = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
+    MessageLoader *messageLaoder = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
     Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLaoder, pl_msg_00000361_00230);

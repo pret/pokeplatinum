@@ -113,7 +113,7 @@ void PokedexTextManager_FreeWindow(Window *window)
 
 u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
 {
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);
@@ -128,7 +128,7 @@ u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *windo
 
 void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID)
 {
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);

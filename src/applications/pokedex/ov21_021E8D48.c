@@ -731,7 +731,7 @@ static void ov21_021E9968(Window *param0, int param1, int param2)
 static void ov21_021E998C(Window *param0, enum HeapID heapID)
 {
     Strbuf *v0 = Strbuf_Init(64, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_registered, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);

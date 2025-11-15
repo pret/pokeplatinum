@@ -892,7 +892,7 @@ u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const
 
 Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
 {
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     Strbuf *pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
     MessageLoader_Free(pokedexMessageBank);

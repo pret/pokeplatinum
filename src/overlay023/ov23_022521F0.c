@@ -405,14 +405,14 @@ static void ov23_02252A18(UndergroundMenu *param0)
         int v3;
 
         if (param0->unk_2AC == 1) {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_FIELD1);
-            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MESSAGE_LOADER_BANK_HANDLE);
+            v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_FIELD1);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
         } else if (param0->unk_2AC == 0) {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
-            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
+            v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
         } else {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEMS, HEAP_ID_FIELD1);
-            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MESSAGE_LOADER_BANK_HANDLE);
+            v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEMS, HEAP_ID_FIELD1);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
         }
 
         for (v3 = 0; v3 < v1 - 1; v3++) {
@@ -516,7 +516,7 @@ void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2)
 
 int ov23_02252C9C(int param0)
 {
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_NPCS, MESSAGE_LOADER_NARC_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_NPCS, MSG_LOADER_LOAD_ON_DEMAND);
     UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetMiscTextPrinter(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
     return UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), param0, FALSE, NULL);

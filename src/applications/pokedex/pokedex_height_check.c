@@ -416,7 +416,7 @@ static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
 static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapID heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_heightcheck_topscreen, strbuf);
 
@@ -440,7 +440,7 @@ static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov2
     Strbuf *speciesName = MessageUtil_SpeciesName(species, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
-    MessageLoader *messageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
+    MessageLoader *messageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, speciesName, 26, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     MessageLoader_GetStrbuf(messageBank, species, strbuf);
@@ -453,7 +453,7 @@ static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov2
     Strbuf_Free(speciesName);
     MessageLoader_Free(messageBank);
 
-    messageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    messageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_04), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 

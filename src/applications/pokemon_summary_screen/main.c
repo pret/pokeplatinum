@@ -532,15 +532,15 @@ static void SetAlphaBlending(void)
 
 static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
-    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->ribbonLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.speciesName = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.nickname = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strbuf = Strbuf_Init(SUMMARY_STRBUF_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->moveNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->moveNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->playerName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (summaryScreen->data->OTName != NULL) {

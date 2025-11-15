@@ -366,7 +366,7 @@ static void Shop_ShowContextMenu(ShopMenu *shopMenu)
 
 static void Shop_InitStringUtil(ShopMenu *shopMenu)
 {
-    shopMenu->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD2);
+    shopMenu->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD2);
     shopMenu->strTemplate = StringTemplate_Default(HEAP_ID_FIELD2);
 }
 
@@ -640,12 +640,12 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     BOOL isTMShop = FALSE;
 
     if ((shopMenu->martType == MART_TYPE_NORMAL) || (shopMenu->martType == MART_TYPE_FRONTIER)) {
-        itemNames = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_FIELD2);
-        moveNames = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD2);
+        itemNames = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_FIELD2);
+        moveNames = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        itemNames = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
+        itemNames = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
     } else {
-        itemNames = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BALL_SEAL_NAMES, HEAP_ID_FIELD2);
+        itemNames = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BALL_SEAL_NAMES, HEAP_ID_FIELD2);
     }
 
     shopMenu->itemsList = StringList_New(shopMenu->itemsCount + 1, HEAP_ID_FIELD2);
@@ -716,13 +716,13 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
         } else if (shopMenu->martType == MART_TYPE_DECOR) {
             MessageLoader *loader;
 
-            loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
+            loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
             strbuf = MessageLoader_GetNewStrbuf(loader, UNDERGROUND_GOOD_DESCRIPTIONS_START + index - 1);
             MessageLoader_Free(loader);
         } else {
             MessageLoader *loader;
 
-            loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELD2);
+            loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELD2);
             strbuf = MessageLoader_GetNewStrbuf(loader, sub_020981F4(index));
 
             MessageLoader_Free(loader);

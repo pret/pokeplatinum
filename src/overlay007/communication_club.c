@@ -212,7 +212,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     sCommClubMan->retCode = COMM_CLUB_RET_0;
     sCommClubMan->fieldSystem = fieldSystem;
     sCommClubMan->unk_97 = 0;
-    sCommClubMan->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
+    sCommClubMan->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
     sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(sCommClubMan->fieldSystem));
     sCommClubMan->unk_7C = TrainerInfo_New(HEAP_ID_FIELD1);
 

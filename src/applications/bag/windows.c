@@ -110,7 +110,7 @@ void BagUI_DeleteWindows(Window windows[NUM_BAG_UI_WINDOWS])
 
 void BagUI_LoadPocketNames(BagController *controller)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_BAG);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_BAG);
 
     for (u16 i = 0; i < POCKET_MAX; i++) {
         controller->pocketNames[i] = MessageLoader_GetNewStrbuf(msgLoader, i);

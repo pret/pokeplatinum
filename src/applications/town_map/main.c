@@ -225,8 +225,8 @@ static BOOL InitDefaultAppResources(TownMapAppData *appData)
 
         appData->initialCursorX = appData->playerX;
         appData->initialCursorZ = appData->playerZ;
-        appData->locationNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, appData->heapID);
-        appData->townMapStrings = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TOWN_MAP, appData->heapID);
+        appData->locationNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, appData->heapID);
+        appData->townMapStrings = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TOWN_MAP, appData->heapID);
         appData->hoveredMapName = Strbuf_Init(22, appData->heapID);
         appData->mainMapMatrixData = MainMapMatrixData_Load(appData->heapID);
         appData->mapBlockList = TownMap_ReadBlocks("data/tmap_block.dat", appData->heapID);

@@ -783,7 +783,7 @@ static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1)
 static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 heapID)
 {
     param0->unk_04 = StringTemplate_Default(heapID);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
+    param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
     param0->unk_0C = Strbuf_Init(256, heapID);
     param0->unk_10 = Strbuf_Init(256, heapID);
     param0->unk_14 = 0xff;

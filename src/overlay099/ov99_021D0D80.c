@@ -124,7 +124,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     EnableTouchPad();
     InitializeTouchPad(4);
 
-    v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
+    v0->unk_20 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, HEAP_ID_75);
 
     ov99_021D1918(v0);
