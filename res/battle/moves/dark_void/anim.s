@@ -12,23 +12,23 @@ L_0:
     End
 
 L_2:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -860, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -860, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
     PlaySoundEffectR SEQ_SE_DP_W464
     SetCameraProjection 1, 0
-    CreateEmitter 1, 1, 17
-    BtlAnimCmd_055 2, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, -600, -4500, -600
-    CreateEmitter 1, 2, 17
-    BtlAnimCmd_055 2, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, -600, -4500, -600
+    CreateEmitter 1, 1, EMITTER_CB_GENERIC
+    SetExtraParams 2, 2, 13, 0, 0, 0
+    SetExtraParams 1, -600, -4500, -600
+    CreateEmitter 1, 2, EMITTER_CB_GENERIC
+    SetExtraParams 2, 2, 13, 0, 0, 0
+    SetExtraParams 1, -600, -4500, -600
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 4, 1
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 4, 1
     Delay 2
@@ -73,21 +73,21 @@ L_1:
     Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
     Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
     PlaySoundEffectR SEQ_SE_DP_W464
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -860, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 1, 1, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 1, 2, 17
-    BtlAnimCmd_055 0, 2, 13, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -860, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 1, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 1, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 13, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
     PlayDelayedSoundEffectR SEQ_SE_DP_290, 35
     WaitForAllEmitters
     UnloadParticleSystem 0

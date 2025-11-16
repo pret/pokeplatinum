@@ -5,8 +5,8 @@ L_0:
     PlayLoopedSoundEffectL SEQ_SE_DP_W253, 29, 3
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 120, 100, 80, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 100, 80, 100, 140, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
     BeginLoop 2

@@ -5,7 +5,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlaySoundEffectL SEQ_SE_DP_W060B
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

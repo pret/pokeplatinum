@@ -13,15 +13,15 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
     SwitchBg 56, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 4, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 4, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -47,15 +47,15 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
     SwitchBg 56, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 4, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 4, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -77,15 +77,15 @@ L_3:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
     SwitchBg 56, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 4, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 4, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

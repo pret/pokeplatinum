@@ -9,14 +9,14 @@ L_0:
     SwitchBg 23, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     PlayLoopedSoundEffectL SEQ_SE_DP_W152, 2, 4
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     PlaySoundEffectL SEQ_SE_DP_W291
     Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
     Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 31
     PlaySoundEffectR SEQ_SE_DP_W127
     Delay 4

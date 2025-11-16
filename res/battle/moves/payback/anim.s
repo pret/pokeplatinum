@@ -2,14 +2,14 @@
 
 L_0:
     LoadParticleResource 0, payback_spa
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
     PlayLoopedSoundEffectL SEQ_SE_DP_W185, 4, 6
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
-    CreateEmitter 0, 3, 4
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 35
     PlaySoundEffectL SEQ_SE_DP_182
     Delay 40

@@ -10,8 +10,8 @@ L_0:
     Delay 2
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -26,8 +26,8 @@ L_2:
     Delay 2
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -42,12 +42,12 @@ L_3:
     Delay 2
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -6880, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -6880, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, -6880, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, -6880, 0, 0
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -62,12 +62,12 @@ L_1:
     Delay 2
     PlaySoundEffectL SEQ_SE_DP_081
     Delay 8
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -8256, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -8256, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, -8256, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, -8256, 0, 0
     PlaySoundEffectL SEQ_SE_DP_W197
     WaitForAllEmitters
     UnloadParticleSystem 0

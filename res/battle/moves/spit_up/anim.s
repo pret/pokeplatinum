@@ -6,9 +6,9 @@ L_0:
     Func_ShakeAndScaleAttacker 70, 120, 10, 5, 15
     Delay 25
     PlayLoopedSoundEffectL SEQ_SE_DP_W255E, 5, 2
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 15
     PlayLoopedSoundEffectR SEQ_SE_DP_W025B, 2, 3
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

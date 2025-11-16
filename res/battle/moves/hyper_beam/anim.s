@@ -12,7 +12,7 @@ L_0:
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     Func_ShakeBg 0, 3, 0, 20, 0
-    CreateEmitter 0, 9, 3
+    CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitterForMove 0, 0, 1, 2, 3, 4, 5, 18
     CreateEmitterForMove 0, 10, 10, 10, 11, 11, 11, 18
     Delay 5
@@ -38,7 +38,7 @@ L_1:
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     Func_ShakeBg 0, 3, 0, 20, 0
-    CreateEmitter 0, 9, 3
+    CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitterForFriendlyFire 0, 7, 8, 7, 8, 3
     CreateEmitterForFriendlyFire 0, 13, 13, 13, 13, 3
     Delay 5
@@ -64,13 +64,13 @@ L_2:
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     Func_ShakeBg 0, 3, 0, 20, 0
-    CreateEmitter 0, 9, 3
-    CreateEmitter 0, 6, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 0, 11008, -8256, 0
-    CreateEmitter 0, 12, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 0, 11008, -8256, 0
+    CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 6, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 0, 11008, -8256, 0
+    CreateEmitter 0, 12, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 0, 11008, -8256, 0
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 4, 0, 1, 20, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

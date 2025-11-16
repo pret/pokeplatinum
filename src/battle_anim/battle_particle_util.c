@@ -3,43 +3,43 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "battle_anim/ov12_0222389C.h"
-#include "battle_anim/ov12_0222421C.h"
+#include "battle_anim/emitter_callbacks.h"
+#include "battle_anim/generic_emitter_callback.h"
 #include "overlay011/particle_helper.h"
 
 #include "narc.h"
 #include "particle_system.h"
 #include "spl.h"
 
-static void ov12_022237EC(SPLEmitter *param0);
+static void BattleAnimEmitterCb_Nop(SPLEmitter *emitter);
 
 static const SPLEmitterCallback sEmitterCallbackTable[] = {
-    ov12_022237EC,
-    ov12_022238E0,
-    ov12_02223998,
-    ov12_02223A38,
-    ov12_022239F4,
-    ov12_02224168,
-    ov12_022241EC,
-    ov12_02224174,
-    ov12_02224180,
-    ov12_0222418C,
-    ov12_02224198,
-    ov12_022241A4,
-    ov12_022241B0,
-    ov12_022241BC,
-    ov12_022241C8,
-    ov12_022241D4,
-    ov12_022241E0,
-    ov12_02224F14,
-    ov12_02223B98,
-    ov12_02223AC8,
-    ov12_02223B30,
-    ov12_02223A7C,
-    ov12_022238DC
+    BattleAnimEmitterCb_Nop,
+    BattleAnimEmitterCb_SetPosToEnemy1, // Unused
+    BattleAnimEmitterCb_SetPosToPlayer1, // Unused
+    BattleAnimEmitterCb_SetPosToAttacker,
+    BattleAnimEmitterCb_SetPosToDefender,
+    BattleAnimEmitterCb_SetAxisAndPos, // Attacker -> Defender
+    BattleAnimEmitterCb_SetAxisAndPosReverse, // Defender -> Attacker
+    BattleAnimEmitterCb_SetAxisAndPos_ConvergeDefault,
+    BattleAnimEmitterCb_SetAxisAndPos_ConvergeCenter,
+    BattleAnimEmitterCb_SetAxisAndPos_ConvergeDefender,
+    BattleAnimEmitterCb_SetAxisAndPos_ConvergeAttacker,
+    BattleAnimEmitterCb_SetAxisAndPos_ConvergeExplicit,
+    BattleAnimEmitterCb_SetAxisAndPos_MagnetDefault,
+    BattleAnimEmitterCb_SetAxisAndPos_MagnetCenter,
+    BattleAnimEmitterCb_SetAxisAndPos_MagnetDefender,
+    BattleAnimEmitterCb_SetAxisAndPos_MagnetAttacker,
+    BattleAnimEmitterCb_SetAxisAndPos_MagnetExplicit,
+    BattleAnimEmitterCb_Generic,
+    BattleAnimEmitterCb_SetPosBasedOnBattlers,
+    BattleAnimEmitterCb_SetPosToAttackerSide,
+    BattleAnimEmitterCb_SetPosToDefenderSide,
+    BattleAnimEmitterCb_SetPosToAttacker2, // Equivalent to BattleAnimEmitterCb_SetPosToAttacker
+    BattleAnimEmitterCb_Nop2
 };
 
-static void ov12_022237EC(SPLEmitter *param0)
+static void BattleAnimEmitterCb_Nop(SPLEmitter *emitter)
 {
     return;
 }

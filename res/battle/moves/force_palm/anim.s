@@ -6,12 +6,12 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Delay 20
     PlaySoundEffectR SEQ_SE_DP_208
     PlaySoundEffectR SEQ_SE_DP_W013
@@ -21,12 +21,12 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Delay 20
     PlaySoundEffectR SEQ_SE_DP_208
     PlaySoundEffectR SEQ_SE_DP_W013

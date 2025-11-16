@@ -9,13 +9,13 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 2, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 1, 0, 0
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_W011
     Func_MegahornDefender
     Delay 5

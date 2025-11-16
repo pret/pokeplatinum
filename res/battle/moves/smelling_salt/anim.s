@@ -10,10 +10,10 @@ L_0:
     AddSpriteWithFunc 0, 25, smelling_salts_NCGR_lz, smelling_salts_NCLR, smelling_salts_cell_NCER_lz, smelling_salts_anim_NANR_lz, 0, 0, 0, 24, 0
     Delay 30
     PlayLoopedSoundEffectR SEQ_SE_DP_030C, 4, 2
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters

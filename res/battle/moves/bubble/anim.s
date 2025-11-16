@@ -4,11 +4,11 @@ L_0:
     LoadParticleResource 0, bubble_spa
     LoadParticleResource 1, bubble_spa
     JumpIfContest L_1
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 31, 24, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 31, 24, 0, 4
     PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
-    CreateEmitter 1, 1, 20
+    CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 10
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
@@ -20,11 +20,11 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 28, 22, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 28, 22, 0, 4
     PlayLoopedSoundEffectC SEQ_SE_DP_W145, 2, 5
     Delay 10
-    CreateEmitter 1, 1, 20
+    CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 10
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER

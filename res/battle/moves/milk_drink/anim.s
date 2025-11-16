@@ -2,10 +2,10 @@
 
 L_0:
     LoadParticleResource 0, milk_drink_spa
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 3, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_W152
     Delay 25

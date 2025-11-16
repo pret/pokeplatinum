@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, seed_flare_spa
     PlaySoundEffectL SEQ_SE_DP_SHUSHU
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 13, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     Delay 40

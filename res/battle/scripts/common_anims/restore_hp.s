@@ -13,7 +13,7 @@ L_0:
     Func_StatChangeHeal STAT_CHANGE_MODE_ATTACKER
     PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT
     Delay 5
-    CreateEmitter 0, 4, 3
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1

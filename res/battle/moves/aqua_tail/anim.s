@@ -17,13 +17,13 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_0, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER
     Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 30, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER_PARTNER
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 25
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_1, FALSE
     PlaySoundEffectR SEQ_SE_DP_W291
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

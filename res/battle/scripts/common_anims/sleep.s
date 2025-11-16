@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, 27
     PlayLoopedSoundEffect SEQ_SE_DP_W173B, BATTLE_SOUND_PAN_LEFT, 20, 1
-    CreateEmitter 0, 9, 3
+    CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -19,8 +19,8 @@ L_0:
     FreePokemonSpriteManager
     BtlAnimCmd_083 0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters

@@ -7,7 +7,7 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_NONE
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W257, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     WaitForAnimTasks
     Delay 35
@@ -16,7 +16,7 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_NONE
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W257, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
@@ -33,7 +33,7 @@ L_2:
     End
 
 L_3:
-    CreateEmitter 0, 1, 0
+    CreateEmitter 0, 1, EMITTER_CB_NONE
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W257, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 3, 0, 1, 3, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER

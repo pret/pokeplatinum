@@ -444,7 +444,7 @@
 
     // 54: Nop
 
-    .macro BtlAnimCmd_055 arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
+    .macro SetExtraParams arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7
     .long 55
     UnpackArgsWithCount \arg0, \arg1, \arg2, \arg3, \arg4, \arg5, \arg6, \arg7
     .endm
@@ -749,6 +749,79 @@
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
+    .endm
+
+    // Sets initial parameters for EMITTER_CB_GENERIC
+    // prioMode: Priority mode. Any of EMITTER_PRIORITY_MODE_*
+    // targetMode: Target mode. Any of EMITTER_TARGET_MODE_*
+    // posMode: Position mode. Any of EMITTER_POS_* (NOTE: EMITTER_POS_EXPLICIT_PARAM_* are not valid here)
+    // axisMode: Axis mode. Any of EMITTER_AXIS_*
+    // bhvMode: Behavior mode. Any combination of EMITTER_BHV_FLAG_*
+    // cameraMode: Camera mode. Any of EMITTER_CAMERA_MODE_*
+    // Note: Depending on the modes chosen, additional parameters may need to be set following this command.
+    .macro GenericEmitterCbParams prioMode:req, targetMode:req, posMode:req, axisMode:req, bhvMode:req, cameraMode:req
+    SetExtraParams \prioMode, \targetMode, \posMode, \axisMode, \bhvMode, \cameraMode
+    .endm
+
+    // NOTE: When using additional parameter macros below, they MUST be used
+    // immediately after calling GenericEmitterCbParams in the following order (IF NEEDED):
+    // 1. EmitterExplicitPosParams or EmitterOffsetPosParams
+    // 2. EmitterBhvParams (once for each behavior that isn't NONE/UNUSED)
+    // 3. EmitterCameraParams
+
+    // Sets explicit position parameters for posMode=EMITTER_POS_EXPLICIT
+    // flip: BATTLE_PTCL_FLIP_DISABLE or BATTLE_PTCL_FLIP_ENABLE
+    // x: X coordinate (FX32)
+    // y: Y coordinate (FX32)
+    // z: Z coordinate (FX32)
+    .macro EmitterExplicitPosParams flip:req, x:req, y:req, z:req
+    SetExtraParams \flip, \x, \y, \z
+    .endm
+
+    // Sets offset position parameters for posMode in (EMITTER_POS_NORMAL_OFFSET_*, EMITTER_POS_ATTACKER_SIDE, EMITTER_POS_DEFENDER_SIDE)
+    // flip: BATTLE_PTCL_FLIP_DISABLE or BATTLE_PTCL_FLIP_ENABLE
+    // x: X offset (FX32)
+    // y: Y offset (FX32)
+    // z: Z offset (FX32)
+    .macro EmitterOffsetPosParams flip:req, x:req, y:req, z:req
+    SetExtraParams \flip, \x, \y, \z
+    .endm
+
+    // Sets behavior parameters for any bhvMode that isn't EMITTER_BHV_FLAG_NONE or EMITTER_BHV_FLAG_UNUSED_*
+    // mode: Any of EMITTER_BHV_MODE_*
+    // flip: BATTLE_PTCL_FLIP_DISABLE or BATTLE_PTCL_FLIP_ENABLE
+    // argN parameters are only relevant for EMITTER_BHV_MODE_EXPLICIT and depend on the behavior:
+    // arg0: When mode is:
+    //   - EMITTER_BHV_FLAG_MAGNET_MAG: Magnitude (FX32)
+    //   - EMITTER_BHV_FLAG_SPIN_ANGLE: Spin angle (as index)
+    //   - EMITTER_BHV_FLAG_SPIN_AXIS: Any of EMITTER_SPIN_AXIS_*
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_POS: Fraction numerator (See GenericEmitterCallback_ApplyConvergenceTarget)
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_MAG: Magnitude (FX32)
+    //   - Otherwise: X coordinate (FX32)
+    // arg1: When mode is:
+    //   - EMITTER_BHV_FLAG_MAGNET_MAG: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_SPIN_ANGLE: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_SPIN_AXIS: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_POS: Fraction denominator (See GenericEmitterCallback_ApplyConvergenceTarget)
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_MAG: Unused, set to 0
+    //   - Otherwise: Y coordinate (FX32)
+    // arg2: When mode is:
+    //   - EMITTER_BHV_FLAG_MAGNET_MAG: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_SPIN_ANGLE: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_SPIN_AXIS: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_POS: Unused, set to 0
+    //   - EMITTER_BHV_FLAG_CONVERGENCE_MAG: Unused, set to 0
+    //   - Otherwise: Z coordinate (FX32)
+    .macro EmitterBhvParams mode:req, flip:req, arg0:req, arg1:req, arg2:req
+    SetExtraParams \mode, \flip, \arg0, \arg1, \arg2
+    .endm
+
+    // Sets camera euler angles for cameraMode=EMITTER_CAMERA_MODE_EXPLICIT
+    // x: X axis angle (as index)
+    // y: Y axis angle (as index)
+    // z: Z axis angle (as index)
+    .macro EmitterCameraParams x:req, y:req, z:req
+    SetExtraParams 0, \x, \y, \z
     .endm
 
     .text

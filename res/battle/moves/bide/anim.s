@@ -7,7 +7,7 @@ L_0:
 L_1:
     LoadParticleResource 0, bide_spa
     PlayLoopedSoundEffectL SEQ_SE_DP_W036, 3, 4
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 0
     WaitForAnimTasks
@@ -17,8 +17,8 @@ L_1:
 
 L_2:
     LoadParticleResource 0, slam_spa
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, 4, 2
     Delay 1
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, -14, -4, 2
