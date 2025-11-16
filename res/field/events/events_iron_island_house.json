@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x024D",
+            "hidden_flag": "FLAG_UNK_0x024D",
             "script": 2,
             "initial_dir": 1,
             "data": [],
