@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_CAMPER_DREW",
             "initial_dir": 1,
             "data": [

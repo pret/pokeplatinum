@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_UXIE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UXIE_DISAPPEARED",
+            "hidden_flag": "FLAG_UXIE_DISAPPEARED",
             "script": 3,
             "initial_dir": 1,
             "data": [],

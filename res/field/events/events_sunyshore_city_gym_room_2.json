@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_SCHOOL_KID_FORREST",
             "initial_dir": 0,
             "data": [
@@ -23,7 +23,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_GUITARIST_JERRY",
             "initial_dir": 1,
             "data": [
@@ -40,7 +40,7 @@
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_POKE_KID_MEGHAN",
             "initial_dir": 1,
             "data": [

@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_ALLEN",
             "initial_dir": 1,
             "data": [

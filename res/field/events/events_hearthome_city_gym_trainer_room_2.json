@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_SCHOOL_KID_MACKENZIE",
             "initial_dir": 3,
             "data": [
@@ -23,7 +23,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_ALLEN",
             "initial_dir": 3,
             "data": [
@@ -40,7 +40,7 @@
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_SCHOOL_KID_CHANCE",
             "initial_dir": 2,
             "data": [
@@ -57,7 +57,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_CATHERINE",
             "initial_dir": 1,
             "data": [

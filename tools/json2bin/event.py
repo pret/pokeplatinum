@@ -57,7 +57,7 @@ def parse_object_event(obj: dict, i: int) -> bytes:
             u16(from_object_event_gfx(obj["graphics_id"])),
             u16(from_movement_type(obj["movement_type"])),
             u16(from_trainer_type(obj["trainer_type"])),
-            u16(from_var_flag(obj["flag"])),
+            u16(from_var_flag(obj["hidden_flag"])),
             u16(from_script(str(obj["script"]), obj.get("double_battle_id", 1))),
             u16(obj["initial_dir"]),
             u16(obj_data[0]),
