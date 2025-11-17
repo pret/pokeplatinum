@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02049D08_H
 
 #include "struct_decls/struct_0202D060_decl.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 
 #include "field/field_system_decl.h"
 
@@ -35,7 +35,7 @@ void sub_0204A660(BattleTower *battleTower, SaveData *saveData);
 void sub_0204A7A4(BattleTower *battleTower, SaveData *saveData, JournalEntry *param2);
 void sub_0204A8C8(BattleTower *battleTower);
 void sub_0204A97C(BattleTower *battleTower);
-u16 sub_0204A9E0(BattleTower *battleTower, u16 param1);
+u16 BattleTower_GetObjectIDFromOpponentID(BattleTower *battleTower, u16 param1);
 u16 BattleTower_GetChallengeMode(BattleTower *battleTower);
 u16 sub_0204A9FC(BattleTower *battleTower);
 u16 sub_0204AA04(BattleTower *battleTower);
@@ -44,7 +44,7 @@ u16 sub_0204AABC(BattleTower *battleTower, SaveData *saveData, u8 param2);
 u16 sub_0204AB68(BattleTower *battleTower, SaveData *saveData);
 u16 sub_0204ABA0(BattleTower *battleTower, SaveData *saveData);
 u16 sub_0204ABF4(BattleTower *battleTower, SaveData *saveData);
-u8 sub_0204AE84(u16 param0);
+u8 BattleTower_GetIVsFromTrainerID(u16 param0);
 u16 sub_0204AEC0(BattleTower *battleTower);
 
 #endif // POKEPLATINUM_UNK_02049D08_H

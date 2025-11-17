@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_022394A4_H
 #define POKEPLATINUM_OV104_022394A4_H
 
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 
 #include "savedata.h"
 

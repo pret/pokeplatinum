@@ -376,7 +376,7 @@ BOOL ov104_02234D18(UnkStruct_ov104_0222E930 *param0)
         return 0;
     }
 
-    v0 = v1->unk_40[v3].unk_00.unk_18;
+    v0 = v1->unk_40[v3].trDataDTO.unk_18;
 
     ov104_022330FC(param0, v0);
     return 1;

@@ -2,14 +2,14 @@
   "key": 9314,
   "messages": [
     {
-      "id": "pl_msg_00000307_00000",
+      "id": "BattleTowerBattleSalon_Text_PleaseFindAPartner",
       "en_US": [
         "Please find a partner from the Trainers\n",
         "that are gathered here.\r"
       ]
     },
     {
-      "id": "pl_msg_00000307_00001",
+      "id": "BattleTowerBattleSalon_Text_WouldYouLikeToQuit",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, you have not found\n",
         "a partner for your tag team.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00002",
+      "id": "BattleTowerBattleSalon_Text_ShowYouToMultiBattleRoom",
       "en_US": [
         "Thank you for choosing a partner.\r",
         "I will now show you to your\n",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00003",
+      "id": "BattleTowerBattleSalon_Text_RileyWouldYouLikeToTeamUp",
       "en_US": [
         "Riley: The partners I have now?\r",
         "Well, my {STRVAR_1 0, 0, 0}’s nasty with its\n",
@@ -37,21 +37,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00004",
+      "id": "BattleTowerBattleSalon_Text_RileyDontTeamUp",
       "en_US": [
         "Riley: ...Oh, is that so?\n",
         "That’s too bad."
       ]
     },
     {
-      "id": "pl_msg_00000307_00005",
+      "id": "BattleTowerBattleSalon_Text_RileyTeamUp",
       "en_US": [
         "Riley: Ahaha, thanks.\n",
         "I’ll be waiting for you.\r"
       ]
     },
     {
-      "id": "pl_msg_00000307_00006",
+      "id": "BattleTowerBattleSalon_Text_CherylWouldYouLikeToTeamUp",
       "en_US": [
         "Cheryl: I have {STRVAR_1 0, 0, 0} that\n",
         "is very good with {STRVAR_1 6, 1, 0},\r",
@@ -61,18 +61,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00007",
+      "id": "BattleTowerBattleSalon_Text_CherylDontTeamUp",
       "en_US": [
         "Cheryl: Oh...\n",
         "Too bad..."
       ]
     },
     {
-      "id": "pl_msg_00000307_00008",
+      "id": "BattleTowerBattleSalon_Text_CherylTeamUp",
       "en_US": "Cheryl: I’ll go on ahead, then.\r"
     },
     {
-      "id": "pl_msg_00000307_00009",
+      "id": "BattleTowerBattleSalon_Text_BuckWouldYouLikeToTeamUp",
       "en_US": [
         "Buck: Yo, are you looking to team\n",
         "up? Let me tell you what I’ve got.\r",
@@ -84,21 +84,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00010",
+      "id": "BattleTowerBattleSalon_Text_BuckDontTeamUp",
       "en_US": [
         "Buck: Huh? What?\n",
         "That’s pretty cold of you!"
       ]
     },
     {
-      "id": "pl_msg_00000307_00011",
+      "id": "BattleTowerBattleSalon_Text_BuckTeamUp",
       "en_US": [
         "Buck: Hehehe! Good choice!\n",
         "There’s no problem when I’m around!\r"
       ]
     },
     {
-      "id": "pl_msg_00000307_00012",
+      "id": "BattleTowerBattleSalon_Text_MarleyWouldYouLikeToTeamUp",
       "en_US": [
         "Marley: ...My {STRVAR_1 0, 0, 0} uses\n",
         "{STRVAR_1 6, 1, 0} well...\r",
@@ -109,15 +109,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00013",
+      "id": "BattleTowerBattleSalon_Text_MarleyDontTeamUp",
       "en_US": "Marley: ...Whatever..."
     },
     {
-      "id": "pl_msg_00000307_00014",
+      "id": "BattleTowerBattleSalon_Text_MarleyTeamUp",
       "en_US": "Marley: ...I’ll go ahead...\r"
     },
     {
-      "id": "pl_msg_00000307_00015",
+      "id": "BattleTowerBattleSalon_Text_MiraWouldYouLikeToTeamUp",
       "en_US": [
         "Mira: Hi, hi!\n",
         "I’m with my {STRVAR_1 0, 0, 0}!\f",
@@ -129,14 +129,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000307_00016",
+      "id": "BattleTowerBattleSalon_Text_MiraDontTeamUp",
       "en_US": [
         "Mira: Oh, OK.\n",
         "Let’s go another time!"
       ]
     },
     {
-      "id": "pl_msg_00000307_00017",
+      "id": "BattleTowerBattleSalon_Text_MiraTeamUp",
       "en_US": [
         "Mira: OK! I’ll wait for you!\n",
         "{STRVAR_1 3, 0, 0}, don’t be long!\r"

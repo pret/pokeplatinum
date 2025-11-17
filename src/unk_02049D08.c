@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/battle_tower_modes.h"
+#include "generated/frontier_trainers.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -11,7 +12,7 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/underground.h"
 
 #include "applications/party_menu/defs.h"
@@ -359,14 +360,14 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
         battleTower->unk_08 = sub_0202D0BC(battleTower->unk_70, 10, NULL);
 
         if (battleTower->challengeMode == BATTLE_TOWER_MODE_MULTI) {
-            battleTower->unk_10_5 = (u8)sub_0202D0BC(battleTower->unk_70, 9, NULL);
+            battleTower->partnerID = (u8)sub_0202D0BC(battleTower->unk_70, 9, NULL);
 
-            sub_0202D0BC(battleTower->unk_70, 6, &(battleTower->unk_7E8[battleTower->unk_10_5]));
-            sub_0204B404(battleTower, &battleTower->unk_298[battleTower->unk_10_5], 300 + battleTower->unk_10_5, sub_0202D0BC(battleTower->unk_70, 7, NULL), &(battleTower->unk_7E8[battleTower->unk_10_5]), battleTower->heapID);
+            sub_0202D0BC(battleTower->unk_70, 6, &(battleTower->unk_7E8[battleTower->partnerID]));
+            sub_0204B404(battleTower, &battleTower->partnersDataDTO[battleTower->partnerID], FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + battleTower->partnerID, sub_0202D0BC(battleTower->unk_70, 7, NULL), &(battleTower->unk_7E8[battleTower->partnerID]), battleTower->heapID);
         }
     }
 
-    battleTower->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(saveData));
+    battleTower->playerGender = TrainerInfo_Gender(SaveData_GetTrainerInfo(saveData));
 
     if (battleTower->challengeMode != BATTLE_TOWER_MODE_5) {
         frontier = SaveData_GetBattleFrontier(saveData);
@@ -718,25 +719,23 @@ void sub_0204A8C8(BattleTower *battleTower)
         return;
     }
 
-    v1[0] = battleTower->unk_10_5;
+    v1[0] = battleTower->partnerID;
     sub_0202D140(battleTower->unk_70, 9, v1);
 
-    sub_0202D140(battleTower->unk_70, 6, &(battleTower->unk_7E8[battleTower->unk_10_5]));
-    sub_0202D140(battleTower->unk_70, 7, &(battleTower->unk_838[battleTower->unk_10_5]));
+    sub_0202D140(battleTower->unk_70, 6, &(battleTower->unk_7E8[battleTower->partnerID]));
+    sub_0202D140(battleTower->unk_70, 7, &(battleTower->unk_838[battleTower->partnerID]));
 }
 
 void sub_0204A97C(BattleTower *battleTower)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        battleTower->unk_838[v0] = (u8)sub_0204B3B8(battleTower, &(battleTower->unk_298[v0]), 300 + v0, battleTower->partySize, battleTower->unk_2E, battleTower->unk_36, &(battleTower->unk_7E8[v0]), battleTower->heapID);
+    for (int partnerID = 0; partnerID < BT_PARTNERS_COUNT; partnerID++) {
+        battleTower->unk_838[partnerID] = (u8)sub_0204B3B8(battleTower, &(battleTower->partnersDataDTO[partnerID]), FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + partnerID, battleTower->partySize, battleTower->unk_2E, battleTower->unk_36, &(battleTower->unk_7E8[partnerID]), battleTower->heapID);
     }
 }
 
-u16 sub_0204A9E0(BattleTower *battleTower, u16 param1)
+u16 BattleTower_GetObjectIDFromOpponentID(BattleTower *battleTower, u16 opponentID)
 {
-    return sub_0204AF9C(battleTower->unk_78[param1].unk_00.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(battleTower->unk_78[opponentID].trDataDTO.trainerType);
 }
 
 u16 BattleTower_GetChallengeMode(BattleTower *battleTower)
@@ -1031,29 +1030,29 @@ static void sub_0204AE20(BattleTower *battleTower, SaveData *saveData, int param
     Heap_Free(v1);
 }
 
-u8 sub_0204AE84(u16 param0)
+u8 BattleTower_GetIVsFromTrainerID(u16 battleTowerID)
 {
-    u8 v0;
+    u8 ivs;
 
-    if (param0 < 100) {
-        v0 = (0x1f / 8) * 1;
-    } else if (param0 < 120) {
-        v0 = (0x1f / 8) * 2;
-    } else if (param0 < 140) {
-        v0 = (0x1f / 8) * 3;
-    } else if (param0 < 160) {
-        v0 = (0x1f / 8) * 4;
-    } else if (param0 < 180) {
-        v0 = (0x1f / 8) * 5;
-    } else if (param0 < 200) {
-        v0 = (0x1f / 8) * 6;
-    } else if (param0 < 220) {
-        v0 = (0x1f / 8) * 7;
+    if (battleTowerID < 100) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 1;
+    } else if (battleTowerID < 120) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 2;
+    } else if (battleTowerID < 140) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 3;
+    } else if (battleTowerID < 160) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 4;
+    } else if (battleTowerID < 180) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 5;
+    } else if (battleTowerID < 200) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 6;
+    } else if (battleTowerID < 220) {
+        ivs = MAX_IVS_SINGLE_STAT / 8 * 7;
     } else {
-        v0 = 0x1f;
+        ivs = MAX_IVS_SINGLE_STAT;
     }
 
-    return v0;
+    return ivs;
 }
 
 u16 sub_0204AEC0(BattleTower *battleTower)

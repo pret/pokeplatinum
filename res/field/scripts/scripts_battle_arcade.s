@@ -288,7 +288,7 @@ _04DC:
     CallIfEq VAR_UNK_0x40BE, 2, _05CD
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE, 0, 0, 0, 0
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2C4 15
     CallIfEq VAR_UNK_0x40BE, 2, _0545
     ReturnToField

@@ -21,7 +21,7 @@ typedef struct {
     u32 unk_10;
     int unk_14;
     u16 unk_18[20];
-    UnkStruct_ov104_0223A348 unk_40[2];
+    FrontierDataDTO unk_40[2];
     u8 unk_260[2];
     Party *unk_264;
     u16 unk_268[20];

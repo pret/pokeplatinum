@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_0204FCF8.h"
 
 #include "applications/party_menu/defs.h"

@@ -405,9 +405,9 @@ u8 ov104_0222E240(u16 param0, u16 param1)
     return 1;
 }
 
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3)
+void ov104_0222E278(FrontierDataDTO *param0, u16 param1, int heapID, int param3)
 {
-    Heap_Free(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
+    Heap_Free(ov104_0222DD04(&param0->trDataDTO, param1, heapID, param3));
 
     return;
 }

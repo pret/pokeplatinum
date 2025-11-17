@@ -28,7 +28,7 @@ typedef struct {
     Party *unk_28;
     Party *unk_2C;
     u16 unk_30[14];
-    UnkStruct_ov104_0223A348 unk_4C[2];
+    FrontierDataDTO unk_4C[2];
     u16 unk_26C[4];
     u8 unk_274[4];
     u32 unk_278[4];

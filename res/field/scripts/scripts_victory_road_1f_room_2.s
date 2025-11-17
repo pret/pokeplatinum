@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfUnset FLAG_UNK_0x00E6, _001F
+    GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, _001F
     End
 
 _001F:
@@ -277,7 +277,7 @@ _0389:
 
 _03A1:
     RemoveObject 28
-    SetFlag FLAG_UNK_0x00E6
+    SetFlag FLAG_TRAVELED_WITH_MARLEY
     SetVar VAR_UNK_0x4090, 2
     ReleaseAll
     End

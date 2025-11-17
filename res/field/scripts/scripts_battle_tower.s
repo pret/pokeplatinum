@@ -3,9 +3,9 @@
 #include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry BattleTower_SingleDoubleBattleRoomGuide
-    ScriptEntry BattleTower_MultiBattleRoomGuide
-    ScriptEntry BattleTower_WiFiBattleRoomGuide
+    ScriptEntry BattleTower_SingleDoubleBattleRoomAttendant
+    ScriptEntry BattleTower_MultiBattleRoomAttendant
+    ScriptEntry BattleTower_WiFiBattleRoomAttendant
     ScriptEntry _0EBF
     ScriptEntry _04EC
     ScriptEntry _0597
@@ -171,7 +171,7 @@ _0272:
     GoTo _020B
     End
 
-BattleTower_SingleDoubleBattleRoomGuide:
+BattleTower_SingleDoubleBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull
@@ -320,7 +320,7 @@ BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     Call _0577
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_51, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_ID, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_9, VAR_RESULT
     Message BattleTower_Text_DirectToMultiBattleRoom
     WaitABPress
@@ -486,7 +486,7 @@ _07B9:
     SetVar VAR_UNK_0x40DF, 0
     Return
 
-BattleTower_WiFiBattleRoomGuide:
+BattleTower_WiFiBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull
@@ -653,7 +653,7 @@ _0AC3:
     WaitMovement
     Return
 
-BattleTower_MultiBattleRoomGuide:
+BattleTower_MultiBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull

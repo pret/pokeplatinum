@@ -2,10 +2,13 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
+#include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
+#include "generated/object_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 
 #include "overlay104/ov104_0222E930.h"
 #include "overlay104/ov104_0222FBE4.h"
@@ -124,36 +127,36 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-static u16 ov104_0223927C(BattleTower *battleTower, u8 param1)
+static u16 ov104_0223927C(BattleTower *battleTower, u8 param)
 {
-    static const u16 v0[] = {
-        0x8d,
-        0x91,
-        0x8e,
-        0x8f,
-        0x90
+    static const u16 partnerGraphics[] = {
+        OBJ_EVENT_GFX_CHERYL,
+        OBJ_EVENT_GFX_MIRA,
+        OBJ_EVENT_GFX_RILEY,
+        OBJ_EVENT_GFX_MARLEY,
+        OBJ_EVENT_GFX_BUCK
     };
 
-    if (param1 == 2) {
-        return battleTower->unk_10_5;
+    if (param == BT_PARAM_PARTNER_ID) {
+        return battleTower->partnerID;
     }
 
-    if (param1 == 1) {
-        if (battleTower->challengeMode == 2) {
-            return v0[battleTower->unk_10_5];
+    if (param == BT_PARAM_PARTNER_GRAPHICS_ID) {
+        if (battleTower->challengeMode == BATTLE_TOWER_MODE_MULTI) {
+            return partnerGraphics[battleTower->partnerID];
         } else {
-            if (battleTower->unk_12) {
-                return 0x61;
+            if (battleTower->partnerGender) {
+                return OBJ_EVENT_GFX_PLAYER_F;
             } else {
-                return 0x0;
+                return OBJ_EVENT_GFX_PLAYER_M;
             }
         }
     }
 
-    if (battleTower->unk_11) {
-        return 0x61;
+    if (battleTower->playerGender) {
+        return OBJ_EVENT_GFX_PLAYER_F;
     } else {
-        return 0x0;
+        return OBJ_EVENT_GFX_PLAYER_M;
     }
 }
 
@@ -171,7 +174,7 @@ BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0)
         return 0;
     }
 
-    v1 = battleTower->unk_78[v4].unk_00.unk_18;
+    v1 = battleTower->unk_78[v4].trDataDTO.unk_18;
 
     ov104_0223310C(param0, v1, ov104_0223A790(battleTower->challengeMode));
     return 1;

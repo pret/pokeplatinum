@@ -16,7 +16,7 @@
 
 _0026:
     InitPersistedMapFeaturesForPlatformLift
-    GoToIfUnset FLAG_UNK_0x00E5, _0035
+    GoToIfUnset FLAG_TRAVELED_WITH_RILEY, _0035
     End
 
 _0035:
@@ -264,7 +264,7 @@ _0366:
     End
 
 _0371:
-    SetFlag FLAG_UNK_0x00E5
+    SetFlag FLAG_TRAVELED_WITH_RILEY
     SetVar VAR_UNK_0x4092, 2
     Return
 

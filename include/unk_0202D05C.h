@@ -50,7 +50,7 @@ BOOL sub_0202D5E8(UnkStruct_0202D764 *param0);
 BOOL sub_0202D5F0(UnkStruct_0202D764 *param0);
 void sub_0202D5F8(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub1 *param1, u8 param2, u8 param3);
 void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
-void sub_0202D63C(UnkStruct_0202D764 *param0, UnkStruct_ov104_0223A348 *param1, const u8 param2);
+void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2);
 void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3);
 void sub_0202D708(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
 UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *, int heapID);

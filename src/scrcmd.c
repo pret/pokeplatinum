@@ -36,6 +36,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
 #include "struct_defs/mail.h"
@@ -43,7 +44,6 @@
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -352,7 +352,7 @@ static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
-static BOOL ScrCmd_06B(ScriptContext *ctx);
+static BOOL ScrCmd_MoveCamera(ScriptContext *ctx);
 static BOOL ScrCmd_06C(ScriptContext *ctx);
 static BOOL ScrCmd_06D(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
@@ -367,7 +367,7 @@ static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09E(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09F(ScriptContext *ctx);
 static BOOL ScrCmd_ReturnToField(ScriptContext *ctx);
-static BOOL ScrCmd_1F8(ScriptContext *ctx);
+static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx);
 static BOOL ScrCmd_0A2(ScriptContext *ctx);
 static BOOL ScrCmd_0A3(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx);
@@ -876,7 +876,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
     ScrCmd_Unused_06A,
-    ScrCmd_06B,
+    ScrCmd_MoveCamera,
     ScrCmd_06C,
     ScrCmd_06D,
     ScrCmd_Unused_06E,
@@ -1247,7 +1247,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitBattleTower,
     ScrCmd_FreeBattleTower,
     ScrCmd_CallBattleTowerFunction,
-    ScrCmd_1DE,
+    ScrCmd_GetBattleTowerPartnerSpeciesAndMove,
     ScrCmd_1DF,
     ScrCmd_1E0,
     ScrCmd_1E1,
@@ -1273,7 +1273,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindFossilAtThreshold,
     ScrCmd_CountPartyMonsBelowLevelThreshold,
     ScrCmd_SurvivePoison,
-    ScrCmd_1F8,
+    ScrCmd_WaitForTransition,
     ScrCmd_Dummy1F9,
     ScrCmd_MessageFromBankInstant,
     ScrCmd_MessageFromBank,
@@ -2100,7 +2100,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *v0 = battleTower->unk_78[v3].unk_00.unk_18;
+    u16 *v0 = battleTower->unk_78[v3].trDataDTO.unk_18;
 
     if (v0[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
@@ -3326,21 +3326,21 @@ static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_06B(ScriptContext *ctx)
+static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 y = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
 
-    VecFx32 v3;
-    v3.x = FX32_CONST(v0);
-    v3.y = FX32_CONST(v1);
-    v3.z = FX32_CONST(v2);
+    VecFx32 pos;
+    pos.x = FX32_CONST(x);
+    pos.y = FX32_CONST(y);
+    pos.z = FX32_CONST(z);
 
-    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &v3);
-    Camera_Move(&v3, ctx->fieldSystem->camera);
+    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
 }
@@ -3772,7 +3772,7 @@ static BOOL ScrCmd_ReturnToField(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1F8(ScriptContext *ctx)
+static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
 {
     FieldTransition_FinishMap(ctx->fieldSystem->task);
     return TRUE;
