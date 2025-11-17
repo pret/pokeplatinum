@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_GATE_1F_PICNICKER_0",
+            "id": "OREBURGH_GATE_1F_PICNICKER_DIANA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3328,
+            "script": "TRAINER_PICNICKER_DIANA",
             "initial_dir": 1,
             "data": [
                 3
@@ -19,12 +19,12 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_GATE_1F_CAMPER_1",
+            "id": "OREBURGH_GATE_1F_CAMPER_CURTIS",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3264,
+            "script": "TRAINER_CAMPER_CURTIS",
             "initial_dir": 0,
             "data": [
                 3
@@ -204,4 +204,3 @@
         }
     ]
 }
-

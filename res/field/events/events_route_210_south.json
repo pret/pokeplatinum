@@ -43,12 +43,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_0",
+            "id": "ROUTE_210_SOUTH_NINJA_BOY_FABIAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3487,
+            "script": "TRAINER_NINJA_BOY_FABIAN",
             "initial_dir": 1,
             "data": [
                 1
@@ -60,12 +60,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_1",
+            "id": "ROUTE_210_SOUTH_NINJA_BOY_BRENNAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3488,
+            "script": "TRAINER_NINJA_BOY_BRENNAN",
             "initial_dir": 1,
             "data": [
                 1
@@ -77,12 +77,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_TWIN_2",
+            "id": "ROUTE_210_SOUTH_TWIN_TIA",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5064,
+            "script": "TRAINER_TWINS_TERI_AND_TIA",
+            "double_battle_id": 2,
             "initial_dir": 1,
             "data": [
                 3
@@ -94,12 +95,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_TWIN_3",
+            "id": "ROUTE_210_SOUTH_TWIN_TERI",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3064,
+            "script": "TRAINER_TWINS_TERI_AND_TIA",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 3
@@ -111,12 +113,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_4",
+            "id": "ROUTE_210_SOUTH_NINJA_BOY_BRUCE",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3489,
+            "script": "TRAINER_NINJA_BOY_BRUCE",
             "initial_dir": 1,
             "data": [
                 1
@@ -128,12 +130,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_JOGGER_5",
+            "id": "ROUTE_210_SOUTH_JOGGER_WYATT",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0271",
-            "script": 3305,
+            "script": "TRAINER_JOGGER_WYATT",
             "initial_dir": 2,
             "data": [
                 2
@@ -145,12 +147,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEMON_BREEDER_M_6",
+            "id": "ROUTE_210_SOUTH_BREEDER_KAHLIL",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3055,
+            "script": "TRAINER_BREEDER_KAHLIL",
             "initial_dir": 2,
             "data": [
                 2
@@ -162,12 +164,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEMON_BREEDER_F_7",
+            "id": "ROUTE_210_SOUTH_BREEDER_AMBER",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3056,
+            "script": "TRAINER_BREEDER_AMBER",
             "initial_dir": 1,
             "data": [
                 3
@@ -179,12 +181,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_COWGIRL_8",
+            "id": "ROUTE_210_SOUTH_BELLE_AVA",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5289,
+            "script": "TRAINER_BELLE_AND_PA_AVA_AND_MATT",
+            "double_battle_id": 2,
             "initial_dir": 2,
             "data": [
                 1
@@ -196,12 +199,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_RANCHER_9",
+            "id": "ROUTE_210_SOUTH_PA_MATT",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3289,
+            "script": "TRAINER_BELLE_AND_PA_AVA_AND_MATT",
+            "double_battle_id": 1,
             "initial_dir": 2,
             "data": [
                 1
@@ -438,12 +442,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_RANCHER_24",
+            "id": "ROUTE_210_SOUTH_RANCHER_MARCO",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3291,
+            "script": "TRAINER_RANCHER_MARCO",
             "initial_dir": 3,
             "data": [
                 3
@@ -567,4 +571,3 @@
     ],
     "coord_events": []
 }
-

@@ -64,12 +64,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_1F_GRUNT_F_3",
+            "id": "GALACTIC_HQ_1F_GALACTIC_GRUNT",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3427,
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F",
             "initial_dir": 1,
             "data": [
                 2
@@ -81,12 +81,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_1F_SCIENTIST_M_4",
+            "id": "GALACTIC_HQ_1F_SCIENTIST_FREDRICK",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3829,
+            "script": "TRAINER_SCIENTIST_FREDRICK",
             "initial_dir": 3,
             "data": [
                 6
@@ -282,4 +282,3 @@
     ],
     "coord_events": []
 }
-

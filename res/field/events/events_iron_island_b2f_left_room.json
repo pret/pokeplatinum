@@ -132,12 +132,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_7",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_DAMON",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3451,
+            "script": "TRAINER_HIKER_DAMON",
             "initial_dir": 1,
             "data": [
                 2
@@ -149,12 +149,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_8",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_HIKER_MAURICE",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3452,
+            "script": "TRAINER_HIKER_MAURICE",
             "initial_dir": 3,
             "data": [
                 5
@@ -166,12 +166,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BLACK_BELT_9",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BLACK_BELT_KENDAL",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3444,
+            "script": "TRAINER_BLACK_BELT_KENDAL",
             "initial_dir": 1,
             "data": [
                 2
@@ -183,12 +183,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BATTLE_GIRL_10",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_BATTLE_GIRL_TYLER",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3371,
+            "script": "TRAINER_BATTLE_GIRL_TYLER",
             "initial_dir": 0,
             "data": [
                 2
@@ -200,12 +200,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_11",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_BRENDON",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3504,
+            "script": "TRAINER_WORKER_BRENDON",
             "initial_dir": 2,
             "data": [
                 1
@@ -217,12 +217,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_12",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_WORKER_QUENTIN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3505,
+            "script": "TRAINER_WORKER_QUENTIN",
             "initial_dir": 0,
             "data": [
                 3
@@ -234,12 +234,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_M_13",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_JONAH",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3387,
+            "script": "TRAINER_ACE_TRAINER_JONAH",
             "initial_dir": 3,
             "data": [
                 3
@@ -251,12 +251,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_F_14",
+            "id": "IRON_ISLAND_B2F_LEFT_ROOM_ACE_TRAINER_BRENDA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3391,
+            "script": "TRAINER_ACE_TRAINER_BRENDA",
             "initial_dir": 2,
             "data": [
                 3
@@ -355,4 +355,3 @@
         }
     ]
 }
-

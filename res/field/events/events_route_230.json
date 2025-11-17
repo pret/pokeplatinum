@@ -162,12 +162,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_M_9",
+            "id": "ROUTE_230_SWIMMER_GLENN",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_NORTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3596,
+            "script": "TRAINER_SWIMMER_GLENN",
             "initial_dir": 1,
             "data": [
                 3
@@ -179,12 +179,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_F_10",
+            "id": "ROUTE_230_SWIMMER_JOANNA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3600,
+            "script": "TRAINER_SWIMMER_JOANNA",
             "initial_dir": 3,
             "data": [
                 3
@@ -196,12 +196,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_M_11",
+            "id": "ROUTE_230_SWIMMER_KURT",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3597,
+            "script": "TRAINER_SWIMMER_KURT",
             "initial_dir": 3,
             "data": [
                 4
@@ -213,12 +213,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_F_12",
+            "id": "ROUTE_230_SWIMMER_SOPHIA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3601,
+            "script": "TRAINER_SWIMMER_SOPHIA",
             "initial_dir": 0,
             "data": [
                 4
@@ -230,12 +230,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_M_13",
+            "id": "ROUTE_230_SWIMMER_SAM",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3598,
+            "script": "TRAINER_SWIMMER_SAM",
             "initial_dir": 1,
             "data": [
                 4
@@ -247,12 +247,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_230_SWIMMER_F_14",
+            "id": "ROUTE_230_SWIMMER_MALLORY",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_CLOCKWISE",
             "flag": "0",
-            "script": 3602,
+            "script": "TRAINER_SWIMMER_MALLORY",
             "initial_dir": 3,
             "data": [
                 3,
@@ -330,4 +330,3 @@
     "warp_events": [],
     "coord_events": []
 }
-

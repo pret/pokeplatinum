@@ -11,12 +11,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_202_YOUNGSTER_0",
+            "id": "ROUTE_202_YOUNGSTER_TRISTAN",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3000,
+            "script": "TRAINER_YOUNGSTER_TRISTAN",
             "initial_dir": 1,
             "data": [
                 5
@@ -28,12 +28,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_202_LASS_1",
+            "id": "ROUTE_202_LASS_NATALIE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3002,
+            "script": "TRAINER_LASS_NATALIE",
             "initial_dir": 1,
             "data": [
                 4
@@ -45,12 +45,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_202_YOUNGSTER_2",
+            "id": "ROUTE_202_YOUNGSTER_LOGAN",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3001,
+            "script": "TRAINER_YOUNGSTER_LOGAN",
             "initial_dir": 1,
             "data": [
                 5

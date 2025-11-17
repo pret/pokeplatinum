@@ -11,12 +11,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_0",
+            "id": "ROUTE_205_NORTH_FISHERMAN_ANDREW",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3021,
+            "script": "TRAINER_FISHERMAN_ANDREW",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -26,12 +26,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_1",
+            "id": "ROUTE_205_NORTH_FISHERMAN_JOSEPH",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3022,
+            "script": "TRAINER_FISHERMAN_JOSEPH",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -41,12 +41,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_2",
+            "id": "ROUTE_205_NORTH_FISHERMAN_ZACHARY",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3023,
+            "script": "TRAINER_FISHERMAN_ZACHARY",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -222,4 +222,3 @@
     ],
     "coord_events": []
 }
-

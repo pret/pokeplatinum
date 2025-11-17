@@ -77,12 +77,12 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B2F_WORKER_5",
+            "id": "OREBURGH_MINE_B2F_WORKER_COLIN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3194,
+            "script": "TRAINER_WORKER_COLIN",
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
@@ -92,12 +92,12 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_MINE_B2F_WORKER_6",
+            "id": "OREBURGH_MINE_B2F_WORKER_MASON",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3195,
+            "script": "TRAINER_WORKER_MASON",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -177,4 +177,3 @@
     ],
     "coord_events": []
 }
-

@@ -41,12 +41,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_2",
+            "id": "ETERNA_FOREST_BUG_CATCHER_JACK",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3200,
+            "script": "TRAINER_BUG_CATCHER_JACK",
             "initial_dir": 3,
             "data": [
                 2
@@ -58,12 +58,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_3",
+            "id": "ETERNA_FOREST_BUG_CATCHER_PHILLIP",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3201,
+            "script": "TRAINER_BUG_CATCHER_PHILLIP",
             "initial_dir": 0,
             "data": [
                 3
@@ -75,12 +75,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_4",
+            "id": "ETERNA_FOREST_PSYCHIC_KODY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3394,
+            "script": "TRAINER_PSYCHIC_KODY",
             "initial_dir": 3,
             "data": [
                 2
@@ -92,12 +92,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_5",
+            "id": "ETERNA_FOREST_PSYCHIC_LINDSEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3205,
+            "script": "TRAINER_PSYCHIC_LINDSEY",
             "initial_dir": 3,
             "data": [
                 4
@@ -109,12 +109,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_LASS_6",
+            "id": "ETERNA_FOREST_LASS_BRIANA",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3203,
+            "script": "TRAINER_LASS_BRIANA",
             "initial_dir": 2,
             "data": [
                 2
@@ -126,12 +126,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_7",
+            "id": "ETERNA_FOREST_BUG_CATCHER_DONALD",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3202,
+            "script": "TRAINER_BUG_CATCHER_DONALD",
             "initial_dir": 1,
             "data": [
                 3
@@ -233,12 +233,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_14",
+            "id": "ETERNA_FOREST_PSYCHIC_ELIJAH",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3204,
+            "script": "TRAINER_PSYCHIC_ELIJAH",
             "initial_dir": 2,
             "data": [
                 4
@@ -250,12 +250,12 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_15",
+            "id": "ETERNA_FOREST_PSYCHIC_RACHAEL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3397,
+            "script": "TRAINER_PSYCHIC_RACHAEL",
             "initial_dir": 2,
             "data": [
                 2
@@ -467,4 +467,3 @@
         }
     ]
 }
-

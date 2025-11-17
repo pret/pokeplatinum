@@ -94,12 +94,12 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_5",
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_DILLAN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3843,
+            "script": "TRAINER_WORKER_DILLAN",
             "initial_dir": 1,
             "data": [
                 4
@@ -111,12 +111,12 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_6",
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_HOLDEN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3844,
+            "script": "TRAINER_WORKER_HOLDEN",
             "initial_dir": 1,
             "data": [
                 4
@@ -128,12 +128,12 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_7",
+            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_CONRAD",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3845,
+            "script": "TRAINER_WORKER_CONRAD",
             "initial_dir": 3,
             "data": [
                 3
@@ -215,4 +215,3 @@
     ],
     "coord_events": []
 }
-

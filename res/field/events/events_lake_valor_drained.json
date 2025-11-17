@@ -71,12 +71,12 @@
             "y": 0
         },
         {
-            "id": "LAKE_VALOR_DRAINED_GRUNT_M_4",
+            "id": "LAKE_VALOR_DRAINED_GALACTIC_GRUNT_LAKE_VALOR_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3416,
+            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VALOR_1",
             "initial_dir": 0,
             "data": [
                 4
@@ -88,12 +88,12 @@
             "y": 0
         },
         {
-            "id": "LAKE_VALOR_DRAINED_GRUNT_F_5",
+            "id": "LAKE_VALOR_DRAINED_GALACTIC_GRUNT_LAKE_VALOR_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3424,
+            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3",
             "initial_dir": 1,
             "data": [
                 1
@@ -105,12 +105,12 @@
             "y": 0
         },
         {
-            "id": "LAKE_VALOR_DRAINED_GRUNT_M_6",
+            "id": "LAKE_VALOR_DRAINED_GALACTIC_GRUNT_LAKE_VALOR_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3417,
+            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VALOR_2",
             "initial_dir": 0,
             "data": [
                 3
@@ -489,4 +489,3 @@
     ],
     "coord_events": []
 }
-

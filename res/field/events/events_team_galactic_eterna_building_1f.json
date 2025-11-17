@@ -41,12 +41,12 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_2",
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x01FD",
-            "script": 3409,
+            "script": "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_1",
             "initial_dir": 2,
             "data": [
                 3
@@ -58,12 +58,12 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_F_3",
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_1F_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x01FD",
-            "script": 3420,
+            "script": "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_2",
             "initial_dir": 3,
             "data": [
                 3
