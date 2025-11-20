@@ -77,8 +77,8 @@ palettes_nclr = nclr_gen.process(
 
 top_screen_sprites_0_4_nclr = nclr_gen.process(
     files(
-        'cursor_player_male.pal',
-        'player_female.pal',
+        'cursor_player_female.pal',
+        'player_male.pal',
         'location_history_dot.png',
         'unknown.pal',
     ),
