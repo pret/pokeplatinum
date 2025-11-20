@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/genders.h"
 #include "generated/hidden_locations.h"
 #include "generated/map_headers.h"
 #include "generated/signpost_types.h"
@@ -856,7 +857,7 @@ static void CreateSprites(TownMapAppData *appData)
     Sprite_SetAnimateFlag(graphicsMan->cursorSprite, TRUE);
     Sprite_SetPositionXY(graphicsMan->cursorSprite, TOWN_MAP_GRID_X(graphicsMan->cursorX), TOWN_MAP_GRID_Y(graphicsMan->cursorZ));
 
-    if (appData->context->trainerGender == 0) {
+    if (appData->context->trainerGender == GENDER_MALE) {
         spriteTemplate.plttIdx = PLTT_1;
     } else {
         spriteTemplate.plttIdx = PLTT_0;

@@ -26,6 +26,8 @@
 #include "touch_pad.h"
 #include "unk_0208C098.h"
 
+#include "res/graphics/town_map/town_map_graphics.naix.h"
+
 enum TownMapAppState {
     TOWN_MAP_APP_STATE_INIT_RESOURCES,
     TOWN_MAP_APP_STATE_DISPLAY_GRAPHICS,
@@ -427,21 +429,21 @@ static void LoadBGGraphics(TownMapAppData *appData)
 {
     NARC *townMapGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, appData->heapID);
 
-    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 19, BG_LAYER_MAIN_1, GRAPHICSMEMBER_TILES, 0, 0);
-    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 20, BG_LAYER_SUB_2, GRAPHICSMEMBER_TILES, 0, 0);
-    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 21, BG_LAYER_SUB_1, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, top_screen_map_tiles_NCGR, BG_LAYER_MAIN_1, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_map_tiles_NCGR, BG_LAYER_SUB_2, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_button_tiles_NCGR, BG_LAYER_SUB_1, GRAPHICSMEMBER_TILES, 0, 0);
 
-    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 0, BG_LAYER_MAIN_0, GRAPHICSMEMBER_PALETTE, 0, 0);
-    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 1, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, 0, 0);
+    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, top_screen_map_NCLR, BG_LAYER_MAIN_0, GRAPHICSMEMBER_PALETTE, 0, 0);
+    App_LoadGraphicMember(appData->bgConfig, appData->heapID, townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_bg_NCLR, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, 0, 0);
 
-    appData->topScreenMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 24, &appData->fullScreenMap, appData->heapID);
-    appData->topScreenBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 22, &appData->fullScreenBG, appData->heapID);
-    appData->hiddenLocationsBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 23, &appData->hiddenLocationsFullScreenMapGraphics, appData->heapID);
-    appData->zoomedInBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 25, &appData->zoomedInBG, appData->heapID);
-    appData->zoomedInMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 26, &appData->zoomedInMap, appData->heapID);
-    appData->zoomButtonStatesFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 27, &appData->zoomButtonStates, appData->heapID);
-    appData->zoomButtonScreenFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 28, &appData->zoomButtonScreen, appData->heapID);
-    appData->hiddenLocationsMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, 29, &appData->hiddenLocationsZoomedInMapGraphics, appData->heapID);
+    appData->topScreenMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, top_screen_region_map_tilemap_NSCR, &appData->fullScreenMap, appData->heapID);
+    appData->topScreenBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, top_screen_region_bg_tilemap_NSCR, &appData->fullScreenBG, appData->heapID);
+    appData->hiddenLocationsBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, hidden_locations_top_screen_NSCR, &appData->hiddenLocationsFullScreenMapGraphics, appData->heapID);
+    appData->zoomedInBGFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_region_bg_tilemap_NSCR, &appData->zoomedInBG, appData->heapID);
+    appData->zoomedInMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_region_map_tilemap_NSCR, &appData->zoomedInMap, appData->heapID);
+    appData->zoomButtonStatesFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, zoom_button_states_NSCR, &appData->zoomButtonStates, appData->heapID);
+    appData->zoomButtonScreenFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, bottom_screen_zoom_button_screen_NSCR, &appData->zoomButtonScreen, appData->heapID);
+    appData->hiddenLocationsMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, hidden_location_bottom_screen_NSCR, &appData->hiddenLocationsZoomedInMapGraphics, appData->heapID);
 
     NARC_dtor(townMapGraphicsNarc);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), appData->heapID);
