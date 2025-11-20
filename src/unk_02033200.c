@@ -5,7 +5,6 @@
 #include "constants/heap.h"
 #include "constants/net.h"
 
-#include "struct_defs/battle_regulation.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_02034168.h"

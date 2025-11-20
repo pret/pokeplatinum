@@ -100,7 +100,6 @@ pokeplatinum_c = files(
     'save_player.c',
     'trainer_info.c',
     'battle_regulation.c',
-    'battle_regulation_data.c',
     'daycare_save.c',
     'pokedex.c',
     'savedata_misc.c',

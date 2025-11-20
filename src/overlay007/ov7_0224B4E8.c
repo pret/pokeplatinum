@@ -6,12 +6,10 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02098700_decl.h"
-#include "struct_defs/battle_regulation.h"
 
 #include "field/field_system.h"
 
 #include "battle_regulation.h"
-#include "battle_regulation_data.h"
 #include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "field_message.h"
