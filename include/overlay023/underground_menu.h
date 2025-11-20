@@ -5,7 +5,6 @@
 
 #include "field/field_system_decl.h"
 #include "overlay005/sprite_resource_manager.h"
-#include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/underground_item_list_menu.h"
 
 #include "bg_window.h"
@@ -29,9 +28,10 @@ enum UndergroundStartMenuOptions {
     UNDERGROUND_START_MENU_OPTION_COUNT,
 };
 
-typedef int (*ItemCountGetter)(void *);
-typedef int (*ItemGetter)(int, void *);
-typedef int (*SphereSizeGetter)(int, void *);
+typedef void (*ExitCallback)(int selectedID);
+typedef int (*GetItemCountFunc)(void *menu);
+typedef int (*GetItemFunc)(int slot, void *menu);
+typedef int (*GetSphereSizeFunc)(int slot, void *menu);
 
 typedef struct UndergroundMenu {
     void *openMenuFn;
@@ -57,10 +57,10 @@ typedef struct UndergroundMenu {
     SpriteResourceManager spriteManager;
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];
     u32 spriteCount;
-    UnkFuncPtr_ov23_0224F758 unk_260;
-    ItemCountGetter itemCountGetter;
-    ItemGetter itemGetter;
-    SphereSizeGetter sphereSizeGetter;
+    ExitCallback exitCallback;
+    GetItemCountFunc getItemCount;
+    GetItemFunc getItem;
+    GetSphereSizeFunc getSphereSize;
     void *unk_270;
     u8 unk_274[5];
     u8 unk_279[5];
@@ -87,37 +87,37 @@ typedef struct UndergroundMenu {
 
 void UndergroundMenuContext_Init(Underground *underground);
 void UndergroundMenuContext_Free(void);
-int UndergroundMenu_GetGoodAtSlotPC(int slot, void *param1);
-int UndergroundMenu_GetGoodAtSlotBag(int slot, void *param1);
+int UndergroundMenu_GetGoodAtSlotPC(int slot, void *menu);
+int UndergroundMenu_GetGoodAtSlotBag(int slot, void *menu);
 void UndergroundMenu_RemoveSelectedGoodBag(int goodID);
-int UndergroundMenu_GetTrapAtSlot(int slot, void *param1);
-int UndergroundMenu_GetSphereTypeAtSlot(int slot, void *param1);
-int UndergroundMenu_GetSphereSizeAtSlot(int slot, void *param1);
-int UndergroundMenu_GetTreasureAtSlot(int slot, void *param1);
+int UndergroundMenu_GetTrapAtSlot(int slot, void *menu);
+int UndergroundMenu_GetSphereTypeAtSlot(int slot, void *menu);
+int UndergroundMenu_GetSphereSizeAtSlot(int slot, void *menu);
+int UndergroundMenu_GetTreasureAtSlot(int slot, void *menu);
 BOOL UndergroundInventory_TryAddSphere(int sphereType, int sphereSize);
 BOOL UndergroundInventory_TryAddTreasure(int treasureID);
 BOOL UndergroundInventory_TryAddTrap(int trapID);
 BOOL UndergroundInventory_TryAddGoodBag(int goodID);
-void UndergroundMenu_Start(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);
-void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *param0);
+void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem);
+void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu);
 void UndergroundMenu_RemoveSelectedTrap(int trapID);
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit);
-void ov23_0224FDBC(UndergroundMenu *param0);
-void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *param0);
+void ov23_0224FDBC(UndergroundMenu *menu);
+void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu);
 void UndergroundMenu_RemoveSelectedSphere(int sphereType);
-void ov23_02250184(UndergroundMenu *param0);
+void ov23_02250184(UndergroundMenu *menu);
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit);
-void ov23_02250578(UndergroundMenu *param0);
-void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *param0);
-void UndergroundMenu_StartHoldingFlag(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);
+void ov23_02250578(UndergroundMenu *menu);
+void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu);
+void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fieldSystem);
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit);
-void ov23_02250CB0(UndergroundMenu *param0);
-void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *param0);
-void ov23_02250D2C(UndergroundMenu *param0);
-void ov23_02250D5C(UndergroundMenu *param0);
-void ov23_02251044(void *param0, u32 param1);
-void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);
-void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *param0, int param1, int param2);
+void ov23_02250CB0(UndergroundMenu *menu);
+void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu);
+void ov23_02250D2C(UndergroundMenu *menu);
+void ov23_02250D5C(UndergroundMenu *menu);
+void UndergroundMenu_ExitGiftMenu(void *data, u32 input);
+void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fieldSystem);
+void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDisplay, int count);
 void ov23_02251270(SysTask *sysTask, void *param1);
 
 #endif // POKEPLATINUM_OV23_0224F294_H

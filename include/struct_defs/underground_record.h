@@ -12,7 +12,7 @@ typedef struct UndergroundRecord {
     u32 numTrapHits : 20;
     u32 numTrapsTriggered : 20;
     u32 numPlayersHelped : 20;
-    u32 unk_28_0 : 20;
+    u32 numGiftsReceived : 20;
     u32 unk_2C_0 : 20;
     u32 unk_30_0 : 20;
     u32 unk_34_0 : 20;

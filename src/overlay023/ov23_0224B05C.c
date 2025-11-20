@@ -19,9 +19,9 @@
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224A1D0.h"
-#include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player_talk.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -1200,7 +1200,7 @@ void ov23_0224C104(int param0, int param1, void *param2, void *param3)
 
     if (CommSys_CurNetId() == v0->unk_04) {
         ov23_022535EC();
-        ov23_0224F24C();
+        UndergroundTalk_ExitConversation();
         ov23_0224321C();
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 0);
 
@@ -2625,7 +2625,7 @@ BOOL ov23_0224D9AC(int param0, BOOL param1)
     }
 
     ov23_022535EC();
-    ov23_0224F24C();
+    UndergroundTalk_ExitConversation();
     ov23_0224321C();
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 0);
 

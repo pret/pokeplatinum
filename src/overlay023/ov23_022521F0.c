@@ -432,7 +432,7 @@ static void ov23_02252A18(UndergroundMenu *param0)
     v0.cursorCallback = ov23_0225265C;
     v0.parent = param0;
 
-    param0->itemGetter = ov23_02252A04;
+    param0->getItem = ov23_02252A04;
     param0->listMenuListPos = CommManUnderground_GetStoredListPos(13 + param0->unk_2AC);
     param0->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(13 + param0->unk_2AC);
     param0->unk_2AE = param0->listMenuCursorPos;

@@ -52,21 +52,21 @@
 #define POFFIN_COUNT_WINDOW_WIDTH      11
 #define POFFIN_COUNT_WINDOW_HEIGHT     TEXT_LINES_TILES(2)
 
-#define BASE_TILE_ITEM_LIST             1
-#define BASE_TILE_ITEM_DESCRIPTION      (BASE_TILE_ITEM_LIST + (ITEM_LIST_WINDOW_WIDTH * ITEM_LIST_WINDOW_HEIGHT))
-#define BASE_TILE_POCKET_NAMES          (BASE_TILE_ITEM_DESCRIPTION + ITEM_DESCRIPTION_WINDOW_WIDTH * ITEM_DESCRIPTION_WINDOW_HEIGHT)
-#define BASE_TILE_MSG_BOX               (BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH * POCKET_NAMES_WINDOW_HEIGHT)
-#define BASE_TILE_MSG_BOX_NARROW        BASE_TILE_MSG_BOX
-#define BASE_TILE_POCKET_SELECTOR       (BASE_TILE_MSG_BOX + MSG_BOX_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
-#define BASE_TILE_MSG_BOX_WIDE          (BASE_TILE_POCKET_SELECTOR + POCKET_SELECTOR_WINDOW_WIDTH * POCKET_SELECTOR_WINDOW_HEIGHT)
-#define BASE_TILE_YES_NO                (BASE_TILE_MSG_BOX_WIDE + MSG_BOX_WIDE_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
-#define BASE_TILE_SELL_COUNT_VALUE      (BASE_TILE_YES_NO + YES_NO_WINDOW_WIDTH * YES_NO_WINDOW_HEIGHT)
-#define BASE_TILE_ITEM_ACTIONS_MENU     BASE_TILE_SELL_COUNT_VALUE
-#define BASE_TILE_MONEY                 (BASE_TILE_SELL_COUNT_VALUE + SELL_WINDOW_WIDTH * SELL_WINDOW_HEIGHT)
-#define BASE_TILE_POFFIN_COUNT          903
-#define BASE_TILE_THROW_AWAY_COUNT      903
-#define BASE_TILE_STANDARD_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
-#define BASE_TILE_MSG_BOX_FRAME         (BASE_TILE_STANDARD_WINDOW_FRAME - SCROLLING_MESSAGE_BOX_TILE_COUNT)
+#define BASE_TILE_ITEM_LIST         1
+#define BASE_TILE_ITEM_DESCRIPTION  (BASE_TILE_ITEM_LIST + (ITEM_LIST_WINDOW_WIDTH * ITEM_LIST_WINDOW_HEIGHT))
+#define BASE_TILE_POCKET_NAMES      (BASE_TILE_ITEM_DESCRIPTION + ITEM_DESCRIPTION_WINDOW_WIDTH * ITEM_DESCRIPTION_WINDOW_HEIGHT)
+#define BASE_TILE_MSG_BOX           (BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH * POCKET_NAMES_WINDOW_HEIGHT)
+#define BASE_TILE_MSG_BOX_NARROW    BASE_TILE_MSG_BOX
+#define BASE_TILE_POCKET_SELECTOR   (BASE_TILE_MSG_BOX + MSG_BOX_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
+#define BASE_TILE_MSG_BOX_WIDE      (BASE_TILE_POCKET_SELECTOR + POCKET_SELECTOR_WINDOW_WIDTH * POCKET_SELECTOR_WINDOW_HEIGHT)
+#define BASE_TILE_YES_NO            (BASE_TILE_MSG_BOX_WIDE + MSG_BOX_WIDE_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
+#define BASE_TILE_SELL_COUNT_VALUE  (BASE_TILE_YES_NO + YES_NO_WINDOW_WIDTH * YES_NO_WINDOW_HEIGHT)
+#define BASE_TILE_ITEM_ACTIONS_MENU BASE_TILE_SELL_COUNT_VALUE
+#define BASE_TILE_MONEY             (BASE_TILE_SELL_COUNT_VALUE + SELL_WINDOW_WIDTH * SELL_WINDOW_HEIGHT)
+#define BASE_TILE_POFFIN_COUNT      903
+#define BASE_TILE_THROW_AWAY_COUNT  903
+#define BASE_TILE_BAG_WINDOW_FRAME  (1024 - STANDARD_WINDOW_TILE_COUNT)
+#define BASE_TILE_MSG_BOX_FRAME     (BASE_TILE_BAG_WINDOW_FRAME - SCROLLING_MESSAGE_BOX_TILE_COUNT)
 
 #define DIGIT_WIDTH                 6
 #define ITEM_COUNT_X_OFFSET         7
@@ -455,7 +455,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_ScheduleCopyToVRAM(&controller->windows[msgBoxWindowIdx]);
     }
 
-    Window_DrawStandardFrame(&controller->itemActionsWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(&controller->itemActionsWindow, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
     Window_ScheduleCopyToVRAM(&controller->itemActionsWindow);
 }
 
@@ -502,7 +502,7 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
 
 void BagUI_ShowItemTrashWindows(BagController *controller)
 {
-    Window_DrawStandardFrame(&controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], 1, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(&controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], 1, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
     BagUI_PrintItemTrashCount(controller);
     Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
@@ -592,7 +592,7 @@ static BOOL BagUITextPrinterCallback(TextPrinterTemplate *template, u16 param1)
 
 void BagUI_ShowYesNoMenu(BagController *controller)
 {
-    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, HEAP_ID_BAG);
+    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14, HEAP_ID_BAG);
 }
 
 void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
@@ -600,7 +600,7 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
     Window *window = &controller->windows[BAG_UI_WINDOW_SELL_COUNT_VALUE];
 
     if (skipFrame == FALSE) {
-        Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
+        Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
     }
 
     Window_FillTilemap(window, 15);
@@ -630,7 +630,7 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
 
     if (skipLabel == FALSE) {
         Window_FillTilemap(window, 15);
-        Window_DrawStandardFrame(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
+        Window_DrawStandardFrame(window, 1, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
 
         Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoneyLabel);
 
@@ -656,7 +656,7 @@ void BagUI_DrawPoffinCountMsgBox(BagController *controller)
 {
     Window *window = &controller->windows[BAG_UI_WINDOW_POFFIN_COUNT];
     Window_FillTilemap(window, 15);
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
 
     Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);

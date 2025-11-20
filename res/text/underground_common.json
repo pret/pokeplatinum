@@ -2,7 +2,7 @@
   "key": 37978,
   "messages": [
     {
-      "id": "pl_msg_00000634_00000",
+      "id": "UndergroundCommon_Text_HeyThere",
       "en_US": [
         "Hey, there!\n",
         "What’s up?"
@@ -20,23 +20,23 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00003",
+      "id": "UndergroundCommon_Text_Greet",
       "en_US": "GREET"
     },
     {
-      "id": "pl_msg_00000634_00004",
+      "id": "UndergroundCommon_Text_Question",
       "en_US": "QUESTION"
     },
     {
-      "id": "pl_msg_00000634_00005",
+      "id": "UndergroundCommon_Text_GiveGoods",
       "en_US": "GIVE GOODS"
     },
     {
-      "id": "pl_msg_00000634_00006",
+      "id": "UndergroundCommon_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000634_00007",
+      "id": "UndergroundCommon_Text_IllShowTrainerCaseAsWell",
       "en_US": [
         "You’re going to show me your Trainer\n",
         "Case?\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00008",
+      "id": "UndergroundCommon_Text_CantFindMyTrainerCase",
       "en_US": [
         "Huh? I can’t seem to find my Trainer\n",
         "Case.\r",
@@ -54,32 +54,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00009",
+      "id": "UndergroundCommon_Text_DontBeAStranger",
       "en_US": [
         "Thank you!\n",
         "Please don’t be a stranger!\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00010",
+      "id": "UndergroundCommon_Text_DoSomethingElsePrompt",
       "en_US": "Would you like to do something else?"
     },
     {
-      "id": "pl_msg_00000634_00011",
+      "id": "UndergroundCommon_Text_NextTimeWillBeFine",
       "en_US": [
         "Oh, that’s OK.\n",
         "Next time will be fine."
       ]
     },
     {
-      "id": "pl_msg_00000634_00012",
+      "id": "UndergroundCommon_Text_YouWantToGiveMeGiftPrompt",
       "en_US": [
         "Huh? You want to give me your\n",
         "{STRVAR_1 25, 2, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00013",
+      "id": "UndergroundCommon_Text_ICantTakeThatFromYou",
       "en_US": [
         "Thanks, but no.\n",
         "I can’t take that from you.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00014",
+      "id": "UndergroundCommon_Text_GiftWasGiven",
       "en_US": [
         "Thank you!\r",
         "Your {STRVAR_1 25, 2, 0}\n",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00015",
+      "id": "UndergroundCommon_Text_OkSeeYou",
       "en_US": "OK, see you!"
     },
     {
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00022",
+      "id": "UndergroundCommon_Text_Hello",
       "en_US": "Hello!"
     },
     {
@@ -151,7 +151,7 @@
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000634_00024",
+      "id": "UndergroundCommon_Text_ExchangeTrainerCasePrompt",
       "en_US": [
         "I’ll let you see my Trainer Case.\r",
         "May I see your Trainer Case?"
@@ -165,18 +165,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00026",
+      "id": "UndergroundCommon_Text_GladToHaveMetYou",
       "en_US": [
         "Glad to have met you,\n",
         "{STRVAR_1 3, 0, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000634_00027",
+      "id": "UndergroundCommon_Text_So",
       "en_US": "So..."
     },
     {
-      "id": "pl_msg_00000634_00028",
+      "id": "UndergroundCommon_Text_YouCanHaveThisGift",
       "en_US": [
         "Oh, right! You can have this\n",
         "{STRVAR_1 25, 2, 0}!\r",
@@ -184,14 +184,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00029",
+      "id": "UndergroundCommon_Text_DoYouHaveOneAlready",
       "en_US": [
         "Oh?\n",
         "Do you have one already?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00030",
+      "id": "UndergroundCommon_Text_LinkDoesntHaveRoom",
       "en_US": [
         "Oh? You don’t have room for it in\n",
         "your Bag.\r",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00031",
+      "id": "UndergroundCommon_Text_YouReceivedGift",
       "en_US": [
         "OK, here you go!\n",
         "Take care of it!\r",
@@ -522,14 +522,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00086",
+      "id": "UndergroundCommon_Text_CantAcceptImportant",
       "en_US": [
         "I can’t accept anything that\n",
         "important!"
       ]
     },
     {
-      "id": "pl_msg_00000634_00087",
+      "id": "UndergroundCommon_Text_IllPass",
       "en_US": [
         "Thanks for the offer, but I’ll pass.\n",
         "See you again tomorrow."
@@ -774,35 +774,35 @@
       "en_US": "PUT IN BAG"
     },
     {
-      "id": "pl_msg_00000634_00136",
+      "id": "UndergroundCommon_Text_YouWantedToAskSomething_Male",
       "en_US": [
         "What’s that?\n",
         "You wanted to ask me something?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00137",
+      "id": "UndergroundCommon_Text_LetMeThink_Male",
       "en_US": [
         "{STRVAR_1 29, 5, 0}?\n",
         "Let me see..."
       ]
     },
     {
-      "id": "pl_msg_00000634_00138",
+      "id": "UndergroundCommon_Text_IHaveAnswerWhatsYours_Male",
       "en_US": [
         "Yeah, I guess I have an answer.\r",
         "What would your answer be?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00139",
+      "id": "UndergroundCommon_Text_ICantDecide_Male",
       "en_US": [
         "Hmm...\n",
         "I can’t really decide.\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00140",
+      "id": "UndergroundCommon_Text_ResponseAnswer_Male",
       "en_US": [
         "Oh, really?\n",
         "{STRVAR_1 30, 5, 0}?\r",
@@ -811,7 +811,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00141",
+      "id": "UndergroundCommon_Text_ResponseSameAnswer_Male",
       "en_US": [
         "Oh, really?\n",
         "{STRVAR_1 30, 5, 0}?\r",
@@ -822,32 +822,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00142",
+      "id": "UndergroundCommon_Text_ISee_Male",
       "en_US": "I see..."
     },
     {
-      "id": "pl_msg_00000634_00143",
+      "id": "UndergroundCommon_Text_MayIAskQuestion_Male",
       "en_US": [
         "Hi, may I ask you a question?\r",
         "Let’s see...\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00144",
+      "id": "UndergroundCommon_Text_WhatsYourChoice_Male",
       "en_US": [
         "How’s this? {STRVAR_1 29, 5, 0}!\n",
         "What’s your choice?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00145",
+      "id": "UndergroundCommon_Text_YouDontHaveToAnswer_Male",
       "en_US": [
         "Oh, don’t worry! You don’t have to\n",
         "answer if you don’t want to.\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00146",
+      "id": "UndergroundCommon_Text_YouveDecidedLetMeThink_Male",
       "en_US": [
         "You’ve decided?\r",
         "Well, let me see...\n",
@@ -855,7 +855,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00147",
+      "id": "UndergroundCommon_Text_Answer_Male",
       "en_US": [
         "{STRVAR_1 30, 5, 0} would be\n",
         "my answer, I guess.\r",
@@ -865,7 +865,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00148",
+      "id": "UndergroundCommon_Text_SameAnswer_Male",
       "en_US": [
         "{STRVAR_1 30, 5, 0} would be\n",
         "my answer, I guess.\r",
@@ -877,11 +877,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00149",
+      "id": "UndergroundCommon_Text_ISee2_Male",
       "en_US": "I see..."
     },
     {
-      "id": "pl_msg_00000634_00150",
+      "id": "UndergroundCommon_Text_ThanksForAnswering_Male",
       "en_US": [
         "Thanks for answering!\r",
         "I hope to see you around!\r"
@@ -904,21 +904,21 @@
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000634_00155",
+      "id": "UndergroundCommon_Text_YouWantedToAskSomething_Female",
       "en_US": [
         "Pardon me?\n",
         "You wanted to ask me something?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00156",
+      "id": "UndergroundCommon_Text_LetMeThink_Female",
       "en_US": [
         "{STRVAR_1 29, 5, 0}?\n",
         "Well, let me think..."
       ]
     },
     {
-      "id": "pl_msg_00000634_00157",
+      "id": "UndergroundCommon_Text_IHaveAnswerWhatsYours_Female",
       "en_US": [
         "Yes, I’ve decided!\r",
         "If it were you, what would you\n",
@@ -926,14 +926,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00158",
+      "id": "UndergroundCommon_Text_ICantDecide_Female",
       "en_US": [
         "I don’t know...\n",
         "I can’t really decide.\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00159",
+      "id": "UndergroundCommon_Text_ResponseAnswer_Female",
       "en_US": [
         "Is that right?\n",
         "{STRVAR_1 30, 5, 0}?\r",
@@ -942,7 +942,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00160",
+      "id": "UndergroundCommon_Text_ResponseSameAnswer_Female",
       "en_US": [
         "Is that right?\n",
         "{STRVAR_1 30, 5, 0}?\r",
@@ -953,32 +953,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00161",
+      "id": "UndergroundCommon_Text_ISee_Female",
       "en_US": "I see..."
     },
     {
-      "id": "pl_msg_00000634_00162",
+      "id": "UndergroundCommon_Text_MayIAskQuestion_Female",
       "en_US": [
         "Hi, may I ask you a question?\r",
         "Let’s see...\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00163",
+      "id": "UndergroundCommon_Text_WhatsYourChoice_Female",
       "en_US": [
         "How’s this? {STRVAR_1 29, 5, 0}!\n",
         "What’s your choice out of these?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00164",
+      "id": "UndergroundCommon_Text_YouDontHaveToAnswer_Female",
       "en_US": [
         "Not to worry! You don’t have to\n",
         "answer if you don’t want to.\r"
       ]
     },
     {
-      "id": "pl_msg_00000634_00165",
+      "id": "UndergroundCommon_Text_YouveDecidedLetMeThink_Female",
       "en_US": [
         "You’ve decided?\r",
         "Well, let me think...\n",
@@ -986,7 +986,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00166",
+      "id": "UndergroundCommon_Text_Answer_Female",
       "en_US": [
         "{STRVAR_1 30, 5, 0}, maybe?\r",
         "What did you choose?\r",
@@ -995,7 +995,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00167",
+      "id": "UndergroundCommon_Text_SameAnswer_Female",
       "en_US": [
         "{STRVAR_1 30, 5, 0}, maybe?\r",
         "What did you choose?\r",
@@ -1006,11 +1006,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00168",
+      "id": "UndergroundCommon_Text_ISee2_Female",
       "en_US": "I see..."
     },
     {
-      "id": "pl_msg_00000634_00169",
+      "id": "UndergroundCommon_Text_ThanksForAnswering_Female",
       "en_US": [
         "Thanks for answering!\r",
         "I hope to see you around!\r"

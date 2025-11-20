@@ -10,7 +10,6 @@
 
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"
-#include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224A1D0.h"
@@ -82,7 +81,7 @@ enum UndergroundMenuStates {
     UNDERGROUND_MENU_STATE_SPHERES,
     UNDERGROUND_MENU_STATE_TREASURES,
     UNDERGROUND_MENU_STATE_GOODS,
-    UNDERGROUND_MENU_STATE_9,
+    UNDERGROUND_MENU_STATE_GIVE_GIFT,
     UNDERGROUND_MENU_STATE_TRAINER_RECORDS,
     UNDERGROUND_MENU_STATE_GO_UP_SELECTED,
     UNDERGROUND_MENU_STATE_WAIT_FOR_CONFIRM,
@@ -159,7 +158,7 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
 static void ov23_02250B9C(SysTask *sysTask, void *param1);
 static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback);
 static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data);
-static BOOL ov23_022510F0(SysTask *sysTask, void *param1);
+static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *param1);
 static void UndergroundMenu_ConfirmReturnToSurface(SysTask *sysTask, void *data);
 static void UndergroundMenu_CheckForReturnYesNo(SysTask *sysTask, void *data);
 static void UndergroundMenu_Free(SysTask *sysTask, UndergroundMenu *menu, BOOL leaveFieldSystemPaused);
@@ -473,7 +472,7 @@ BOOL UndergroundInventory_TryAddGoodBag(int goodID)
     return Underground_TryAddGoodBag(ctx->underground, goodID);
 }
 
-void UndergroundMenu_Start(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
+void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
 {
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     CommManUnderground_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_START_MENU);
@@ -483,7 +482,7 @@ void UndergroundMenu_Start(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSy
     MI_CpuFill8(menu, 0, sizeof(UndergroundMenu));
 
     menu->fieldSystem = fieldSystem;
-    menu->unk_260 = param0;
+    menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
     menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
     menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
@@ -590,8 +589,8 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
     case UNDERGROUND_MENU_STATE_GOODS:
         UndergroundMenu_HandleGoodsMenu(sysTask, data);
         break;
-    case UNDERGROUND_MENU_STATE_9:
-        ov23_022510F0(sysTask, data);
+    case UNDERGROUND_MENU_STATE_GIVE_GIFT:
+        UndergroundMenu_HandleGiftMenu(sysTask, data);
         break;
     case UNDERGROUND_MENU_STATE_TRAINER_RECORDS:
         break;
@@ -819,7 +818,7 @@ void UndergroundMenu_RemoveSelectedTrap(int trapID)
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getTrap = menu->itemGetter;
+    GetItemFunc getTrap = menu->getItem;
     int bankEntry;
     int trapID = getTrap(index, menu);
 
@@ -834,8 +833,8 @@ void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onIn
 
 void ov23_0224FDBC(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetTrapCount;
-    menu->itemGetter = UndergroundMenu_GetTrapAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTrapCount;
+    menu->getItem = UndergroundMenu_GetTrapAtSlot;
     menu->printCallback = NULL;
 
     UndergroundMenu_InitTrapsMenu(menu, NULL);
@@ -845,8 +844,8 @@ void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_TRAPS);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_TRAPS);
-    menu->itemCountGetter = UndergroundMenu_GetTrapCount;
-    menu->itemGetter = UndergroundMenu_GetTrapAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTrapCount;
+    menu->getItem = UndergroundMenu_GetTrapAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintTrapDescription;
     menu->printCallback = NULL;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
@@ -856,8 +855,8 @@ void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getTrapCount = menu->itemCountGetter;
-    ItemGetter getTrap = menu->itemGetter;
+    GetItemCountFunc getTrapCount = menu->getItemCount;
+    GetItemFunc getTrap = menu->getItem;
     int trapCount = getTrapCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -999,7 +998,7 @@ void UndergroundMenu_RemoveSelectedSphere(int sphereType)
 static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getSphereType = menu->itemGetter;
+    GetItemFunc getSphereType = menu->getItem;
     int bankEntry;
     int sphereType = getSphereType(index, menu);
 
@@ -1014,9 +1013,9 @@ static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index
 
 void ov23_02250184(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetSphereCount;
-    menu->itemGetter = UndergroundMenu_GetSphereTypeAtSlot;
-    menu->sphereSizeGetter = UndergroundMenu_GetSphereSizeAtSlot;
+    menu->getItemCount = UndergroundMenu_GetSphereCount;
+    menu->getItem = UndergroundMenu_GetSphereTypeAtSlot;
+    menu->getSphereSize = UndergroundMenu_GetSphereSizeAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintSphereDescription;
 
     UndergroundMenu_InitSpheresMenu(menu, Underground_MoveSphereInInventory);
@@ -1026,9 +1025,9 @@ static void UndergroundMenu_OpenSpheresMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_SPHERES);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_SPHERES);
-    menu->itemCountGetter = UndergroundMenu_GetSphereCount;
-    menu->itemGetter = UndergroundMenu_GetSphereTypeAtSlot;
-    menu->sphereSizeGetter = UndergroundMenu_GetSphereSizeAtSlot;
+    menu->getItemCount = UndergroundMenu_GetSphereCount;
+    menu->getItem = UndergroundMenu_GetSphereTypeAtSlot;
+    menu->getSphereSize = UndergroundMenu_GetSphereSizeAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintSphereDescription;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
 
@@ -1037,9 +1036,9 @@ static void UndergroundMenu_OpenSpheresMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getSphereCount = menu->itemCountGetter;
-    ItemGetter getSphereType = menu->itemGetter;
-    SphereSizeGetter getSphereSize = menu->sphereSizeGetter;
+    GetItemCountFunc getSphereCount = menu->getItemCount;
+    GetItemFunc getSphereType = menu->getItem;
+    GetSphereSizeFunc getSphereSize = menu->getSphereSize;
     int sphereCount = getSphereCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -1171,7 +1170,7 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getTreasure = menu->itemGetter;
+    GetItemFunc getTreasure = menu->getItem;
     int bankEntry = index;
     int treasureID = getTreasure(index, menu);
 
@@ -1186,8 +1185,8 @@ void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 
 
 void ov23_02250578(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetTreasureCount;
-    menu->itemGetter = UndergroundMenu_GetTreasureAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTreasureCount;
+    menu->getItem = UndergroundMenu_GetTreasureAtSlot;
 
     UndergroundMenu_InitTreasuresMenu(menu, NULL);
 }
@@ -1196,8 +1195,8 @@ void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_TREASURES);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_TREASURES);
-    menu->itemCountGetter = UndergroundMenu_GetTreasureCount;
-    menu->itemGetter = UndergroundMenu_GetTreasureAtSlot;
+    menu->getItemCount = UndergroundMenu_GetTreasureCount;
+    menu->getItem = UndergroundMenu_GetTreasureAtSlot;
     menu->cursorCallback = UndergroundMenu_PrintTreasureDescription;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
 
@@ -1206,8 +1205,8 @@ void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitTreasuresMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getTreasureCount = menu->itemCountGetter;
-    ItemGetter getTreasure = menu->itemGetter;
+    GetItemCountFunc getTreasureCount = menu->getItemCount;
+    GetItemFunc getTreasure = menu->getItem;
     int treasureCount = getTreasureCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -1404,18 +1403,18 @@ static void UndergroundMenu_OpenTrainerRecords(UndergroundMenu *menu)
 {
     UndergroundMenu_EraseCurrentMenu(menu);
     ov23_02253968();
-    ov23_02253834(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), UndergroundMenu_ReturnToStartMenuCallback, menu, TRUE);
+    ov23_ShowTrainerRecord(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), UndergroundMenu_ReturnToStartMenuCallback, menu, TRUE);
     menu->state = UNDERGROUND_MENU_STATE_TRAINER_RECORDS;
 }
 
-void UndergroundMenu_StartHoldingFlag(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
+void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fieldSystem)
 {
     UndergroundMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
 
     MI_CpuFill8(menu, 0, sizeof(UndergroundMenu));
 
     menu->fieldSystem = fieldSystem;
-    menu->unk_260 = param0;
+    menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
     menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
     menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
@@ -1464,8 +1463,8 @@ static void UndergroundMenu_Free(SysTask *sysTask, UndergroundMenu *menu, BOOL l
     UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
     UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
 
-    if (menu->unk_260 != NULL) {
-        menu->unk_260(0);
+    if (menu->exitCallback != NULL) {
+        menu->exitCallback(0);
     }
 
     menu->sysTask = NULL;
@@ -1523,7 +1522,7 @@ static void ov23_02250B9C(SysTask *sysTask, void *data)
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit)
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
-    ItemGetter getGood = menu->itemGetter;
+    GetItemFunc getGood = menu->getItem;
     int bankEntry;
     int goodID = getGood(index, menu);
 
@@ -1550,8 +1549,8 @@ static void UndergroundMenu_ColorPlacedGoods(ListMenu *listMenu, u32 index, u8 y
 
 void ov23_02250CB0(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->printCallback = NULL;
 
     UndergroundMenu_InitGoodsMenu(menu, NULL);
@@ -1561,8 +1560,8 @@ void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu)
 {
     menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_GOODS);
     menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_GOODS);
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = NULL;
     menu->itemSelectedMenuCursorPos = menu->listMenuCursorPos;
@@ -1572,8 +1571,8 @@ void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu)
 
 void ov23_02250D2C(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountBag;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotBag;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = NULL;
 
@@ -1582,8 +1581,8 @@ void ov23_02250D2C(UndergroundMenu *menu)
 
 void ov23_02250D5C(UndergroundMenu *menu)
 {
-    menu->itemCountGetter = UndergroundMenu_GetGoodsCountPC;
-    menu->itemGetter = UndergroundMenu_GetGoodAtSlotPC;
+    menu->getItemCount = UndergroundMenu_GetGoodsCountPC;
+    menu->getItem = UndergroundMenu_GetGoodAtSlotPC;
     menu->cursorCallback = UndergroundMenu_PrintGoodDescription;
     menu->printCallback = UndergroundMenu_ColorPlacedGoods;
 
@@ -1592,8 +1591,8 @@ void ov23_02250D5C(UndergroundMenu *menu)
 
 static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback)
 {
-    ItemCountGetter getGoodsCount = menu->itemCountGetter;
-    ItemGetter getGood = menu->itemGetter;
+    GetItemCountFunc getGoodsCount = menu->getItemCount;
+    GetItemFunc getGood = menu->getItem;
     int goodsCount = getGoodsCount(menu);
     int maxDisplay = UNDERGROUND_MENU_MAX_DISPLAY;
 
@@ -1717,58 +1716,58 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
     return TRUE;
 }
 
-void ov23_02251044(void *param0, u32 param1)
+void UndergroundMenu_ExitGiftMenu(void *data, u32 input)
 {
-    UndergroundMenu *v0 = param0;
+    UndergroundMenu *menu = data;
 
-    UndergroundMenu_EraseCurrentMenu(v0);
+    UndergroundMenu_EraseCurrentMenu(menu);
     ov23_02242FBC();
     ov23_022535EC();
     TrapRadar_Exit();
     ov23_02241364();
     SphereRadar_Exit();
 
-    if (v0->unk_270) {
-        ov23_02253D10(v0->unk_270);
+    if (menu->unk_270) {
+        ov23_02253D10(menu->unk_270);
     }
 
-    if (v0->yesNoMenu) {
-        Menu_DestroyForExit(v0->yesNoMenu, HEAP_ID_FIELD1);
+    if (menu->yesNoMenu) {
+        Menu_DestroyForExit(menu->yesNoMenu, HEAP_ID_FIELD1);
     }
 
-    UndergroundMenu_CloseItemSelectedMenu(v0);
+    UndergroundMenu_CloseItemSelectedMenu(menu);
 
-    if (v0->scrollPrompts) {
-        ScrollPrompts_Free(v0->scrollPrompts);
+    if (menu->scrollPrompts) {
+        ScrollPrompts_Free(menu->scrollPrompts);
     }
 
-    if (v0->unk_260 != NULL) {
-        ctx->selectedSlot = param1;
-        ctx->selectedID = UndergroundMenu_GetGoodAtSlotBag(param1, v0);
-        v0->unk_260(0);
-        v0->unk_260 = NULL;
+    if (menu->exitCallback != NULL) {
+        ctx->selectedSlot = input;
+        ctx->selectedID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
+        menu->exitCallback(0);
+        menu->exitCallback = NULL;
     }
 
-    if (v0->strbuf) {
-        Strbuf_Free(v0->strbuf);
+    if (menu->strbuf) {
+        Strbuf_Free(menu->strbuf);
     }
 
-    if (v0->fmtString) {
-        Strbuf_Free(v0->fmtString);
+    if (menu->fmtString) {
+        Strbuf_Free(menu->fmtString);
     }
 
-    if (v0->template) {
-        StringTemplate_Free(v0->template);
+    if (menu->template) {
+        StringTemplate_Free(menu->template);
     }
 
-    if (v0->sysTask) {
-        SysTask_Done(v0->sysTask);
+    if (menu->sysTask) {
+        SysTask_Done(menu->sysTask);
     }
 
-    Heap_Free(v0);
+    Heap_Free(menu);
 }
 
-static BOOL ov23_022510F0(SysTask *sysTask, void *data)
+static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
     u32 input = UndergroundItemListMenu_ProcessInput(menu->itemListMenu);
@@ -1786,28 +1785,28 @@ static BOOL ov23_022510F0(SysTask *sysTask, void *data)
     case LIST_NOTHING_CHOSEN:
         return FALSE;
     case LIST_CANCEL:
-        if (menu->unk_260 != NULL) {
+        if (menu->exitCallback != NULL) {
             ctx->selectedSlot = input;
             ctx->selectedID = 0;
-            menu->unk_260(ctx->selectedID);
-            menu->unk_260 = NULL;
+            menu->exitCallback(ctx->selectedID);
+            menu->exitCallback = NULL;
         }
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
-        ov23_02251044(menu, input);
+        UndergroundMenu_ExitGiftMenu(menu, input);
         ov23_02243204();
         return TRUE;
     default:
 
-        if (menu->unk_260 != NULL) {
+        if (menu->exitCallback != NULL) {
             ctx->selectedSlot = input;
             ctx->selectedID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
-            menu->unk_260(ctx->selectedID);
-            menu->unk_260 = NULL;
+            menu->exitCallback(ctx->selectedID);
+            menu->exitCallback = NULL;
         }
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
-        ov23_02251044(menu, input);
+        UndergroundMenu_ExitGiftMenu(menu, input);
         ov23_02243204();
         return TRUE;
         break;
@@ -1816,29 +1815,29 @@ static BOOL ov23_022510F0(SysTask *sysTask, void *data)
     return TRUE;
 }
 
-void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
+void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fieldSystem)
 {
-    UndergroundMenu *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
+    UndergroundMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
 
-    MI_CpuFill8(v0, 0, sizeof(UndergroundMenu));
+    MI_CpuFill8(menu, 0, sizeof(UndergroundMenu));
 
-    v0->fieldSystem = fieldSystem;
-    v0->unk_260 = param0;
-    v0->state = UNDERGROUND_MENU_STATE_INIT;
-    v0->spriteCount = 0;
-    v0->unk_48 = NULL;
-    v0->cursorCallback = NULL;
-    v0->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
-    v0->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
-    v0->template = StringTemplate_Default(HEAP_ID_FIELD1);
+    menu->fieldSystem = fieldSystem;
+    menu->exitCallback = exitCallback;
+    menu->state = UNDERGROUND_MENU_STATE_INIT;
+    menu->spriteCount = 0;
+    menu->unk_48 = NULL;
+    menu->cursorCallback = NULL;
+    menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
-    UndergroundMenu_OpenGoodsMenu(v0);
+    UndergroundMenu_OpenGoodsMenu(menu);
 
-    v0->state = UNDERGROUND_MENU_STATE_9;
-    v0->sysTask = SysTask_Start(UndergroundMenu_Main, v0, 10000);
+    menu->state = UNDERGROUND_MENU_STATE_GIVE_GIFT;
+    menu->sysTask = SysTask_Start(UndergroundMenu_Main, menu, 10000);
 
-    ov23_022431EC(v0, v0->sysTask, ov23_02251270);
-    return v0;
+    ov23_022431EC(menu, menu->sysTask, ov23_02251270);
+    return menu;
 }
 
 void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDisplay, int count)
@@ -1863,5 +1862,5 @@ void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDis
 void ov23_02251270(SysTask *sysTask, void *param1)
 {
     BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-    ov23_02251044(param1, 0xfffffffe);
+    UndergroundMenu_ExitGiftMenu(param1, LIST_CANCEL);
 }
