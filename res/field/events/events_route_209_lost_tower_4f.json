@@ -26,12 +26,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_POKEFAN_F_1",
+            "id": "ROUTE_209_LOST_TOWER_4F_POKEFAN_REBEKAH",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3530,
+            "script": "TRAINER_POKEFAN_REBEKAH",
             "initial_dir": 3,
             "data": [
                 2
@@ -43,12 +43,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_POKEMON_BREEDER_M_2",
+            "id": "ROUTE_209_LOST_TOWER_4F_YOUNG_COUPLE_TRAINER_MIKE",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3533,
+            "script": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
+            "double_battle_id": 1,
             "initial_dir": 0,
             "data": [
                 1
@@ -60,12 +61,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_POKEMON_BREEDER_F_3",
+            "id": "ROUTE_209_LOST_TOWER_4F_YOUNG_COUPLE_TRAINER_NAT",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5533,
+            "script": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
+            "double_battle_id": 2,
             "initial_dir": 0,
             "data": [
                 1
@@ -77,12 +79,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_RANCHER_4",
+            "id": "ROUTE_209_LOST_TOWER_4F_PA_BOB",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3532,
+            "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
+            "double_battle_id": 1,
             "initial_dir": 2,
             "data": [
                 2
@@ -94,12 +97,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_COWGIRL_5",
+            "id": "ROUTE_209_LOST_TOWER_4F_BELLE_BETH",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5532,
+            "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
+            "double_battle_id": 2,
             "initial_dir": 2,
             "data": [
                 2

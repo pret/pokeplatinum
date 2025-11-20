@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6_ACE_TRAINER_F_0",
+            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6_ACE_TRAINER_CATHERINE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3283,
+            "script": "TRAINER_ACE_TRAINER_CATHERINE",
             "initial_dir": 1,
             "data": [
                 4

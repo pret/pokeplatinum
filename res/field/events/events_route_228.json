@@ -288,12 +288,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_M_15",
+            "id": "ROUTE_228_ACE_TRAINER_JOSE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3564,
+            "script": "TRAINER_ACE_TRAINER_JOSE",
             "initial_dir": 2,
             "data": [
                 3
@@ -305,12 +305,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_F_16",
+            "id": "ROUTE_228_ACE_TRAINER_MOIRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3573,
+            "script": "TRAINER_ACE_TRAINER_MOIRA",
             "initial_dir": 2,
             "data": [
                 2
@@ -322,12 +322,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_M_17",
+            "id": "ROUTE_228_RANGER_KYLER",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3590,
+            "script": "TRAINER_RANGER_KYLER",
             "initial_dir": 2,
             "data": [
                 2
@@ -339,12 +339,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_F_18",
+            "id": "ROUTE_228_RANGER_KRISTA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3595,
+            "script": "TRAINER_RANGER_KRISTA",
             "initial_dir": 3,
             "data": [
                 2
@@ -356,12 +356,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_M_19",
+            "id": "ROUTE_228_DRAGON_TAMER_KEEGAN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3558,
+            "script": "TRAINER_DRAGON_TAMER_KEEGAN",
             "initial_dir": 1,
             "data": [
                 4
@@ -373,12 +373,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_PSYCHIC_20",
+            "id": "ROUTE_228_PSYCHIC_CORBIN",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3582,
+            "script": "TRAINER_PSYCHIC_CORBIN",
             "initial_dir": 2,
             "data": [
                 5
@@ -390,12 +390,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_F_21",
+            "id": "ROUTE_228_ACE_TRAINER_MEAGAN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3576,
+            "script": "TRAINER_ACE_TRAINER_MEAGAN",
             "initial_dir": 2,
             "data": [
                 4
@@ -407,12 +407,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BLACK_BELT_22",
+            "id": "ROUTE_228_BLACK_BELT_DAVON",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SAND",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3586,
+            "script": "TRAINER_BLACK_BELT_DAVON",
             "initial_dir": 1,
             "data": [
                 1
@@ -524,4 +524,3 @@
     ],
     "coord_events": []
 }
-

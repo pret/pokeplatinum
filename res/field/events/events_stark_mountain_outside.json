@@ -32,12 +32,12 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_ACE_TRAINER_M_2",
+            "id": "STARK_MOUNTAIN_OUTSIDE_DRAGON_TAMER_DARIEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3557,
+            "script": "TRAINER_DRAGON_TAMER_DARIEN",
             "initial_dir": 3,
             "data": [
                 1

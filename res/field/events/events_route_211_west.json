@@ -19,12 +19,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_211_WEST_ACE_TRAINER_F_0",
+            "id": "ROUTE_211_WEST_BIRD_KEEPER_ALEXANDRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3075,
+            "script": "TRAINER_BIRD_KEEPER_ALEXANDRA",
             "initial_dir": 1,
             "data": [
                 2
@@ -36,12 +36,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_HIKER_1",
+            "id": "ROUTE_211_WEST_HIKER_LOUIS",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3325,
+            "script": "TRAINER_HIKER_LOUIS",
             "initial_dir": 1,
             "data": [
                 4
@@ -53,12 +53,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_NINJA_BOY_2",
+            "id": "ROUTE_211_WEST_NINJA_BOY_ZACH",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3077,
+            "script": "TRAINER_NINJA_BOY_ZACH",
             "initial_dir": 1,
             "data": [
                 1

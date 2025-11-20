@@ -11,12 +11,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_205_SOUTH_HIKER_0",
+            "id": "ROUTE_205_SOUTH_HIKER_DANIEL",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3017,
+            "script": "TRAINER_HIKER_DANIEL",
             "initial_dir": 2,
             "data": [
                 4
@@ -28,12 +28,12 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_POKEMON_BREEDER_F_1",
+            "id": "ROUTE_205_SOUTH_AROMA_LADY_ELIZABETH",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3020,
+            "script": "TRAINER_AROMA_LADY_ELIZABETH",
             "initial_dir": 2,
             "data": [
                 3
@@ -45,12 +45,12 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_CAMPER_2",
+            "id": "ROUTE_205_SOUTH_CAMPER_JACOB",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3015,
+            "script": "TRAINER_CAMPER_JACOB",
             "initial_dir": 3,
             "data": [
                 4
@@ -62,12 +62,12 @@
             "y": 6
         },
         {
-            "id": "ROUTE_205_SOUTH_PICNICKER_3",
+            "id": "ROUTE_205_SOUTH_PICNICKER_SIENA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3016,
+            "script": "TRAINER_PICNICKER_SIENA",
             "initial_dir": 2,
             "data": [
                 2
@@ -79,12 +79,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_HIKER_4",
+            "id": "ROUTE_205_SOUTH_HIKER_NICHOLAS",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3018,
+            "script": "TRAINER_HIKER_NICHOLAS",
             "initial_dir": 1,
             "data": [
                 2
@@ -96,12 +96,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_BATTLE_GIRL_5",
+            "id": "ROUTE_205_SOUTH_BATTLE_GIRL_KELSEY",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3019,
+            "script": "TRAINER_BATTLE_GIRL_KELSEY",
             "initial_dir": 1,
             "data": [
                 2
@@ -338,12 +338,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_PICNICKER_20",
+            "id": "ROUTE_205_SOUTH_PICNICKER_KARINA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3455,
+            "script": "TRAINER_PICNICKER_KARINA",
             "initial_dir": 1,
             "data": [
                 3
@@ -355,12 +355,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_CAMPER_21",
+            "id": "ROUTE_205_SOUTH_CAMPER_ZACKARY",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3376,
+            "script": "TRAINER_CAMPER_ZACKARY",
             "initial_dir": 3,
             "data": [
                 2
@@ -565,4 +565,3 @@
         }
     ]
 }
-

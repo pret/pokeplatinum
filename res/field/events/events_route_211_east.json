@@ -11,12 +11,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_211_EAST_ACE_TRAINER_F_0",
+            "id": "ROUTE_211_EAST_BIRD_KEEPER_KATHERINE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3080,
+            "script": "TRAINER_BIRD_KEEPER_KATHERINE",
             "initial_dir": 3,
             "data": [
                 2
@@ -28,12 +28,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_EAST_NINJA_BOY_1",
+            "id": "ROUTE_211_EAST_NINJA_BOY_NICK",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3079,
+            "script": "TRAINER_NINJA_BOY_NICK",
             "initial_dir": 1,
             "data": [
                 1
@@ -45,12 +45,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_EAST_BLACK_BELT_2",
+            "id": "ROUTE_211_EAST_BLACK_BELT_SEAN",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3078,
+            "script": "TRAINER_BLACK_BELT_SEAN",
             "initial_dir": 3,
             "data": [
                 2
@@ -312,12 +312,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_EAST_RUIN_MANIAC_19",
+            "id": "ROUTE_211_EAST_RUIN_MANIAC_HARRY",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3441,
+            "script": "TRAINER_RUIN_MANIAC_HARRY",
             "initial_dir": 1,
             "data": [
                 2
@@ -371,4 +371,3 @@
     ],
     "coord_events": []
 }
-

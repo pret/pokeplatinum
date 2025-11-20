@@ -195,12 +195,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_ACE_TRAINER_M_8",
+            "id": "ROUTE_224_ACE_TRAINER_RUBEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3281,
+            "script": "TRAINER_ACE_TRAINER_RUBEN",
             "initial_dir": 3,
             "data": [
                 3
@@ -212,12 +212,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_PSYCHIC_9",
+            "id": "ROUTE_224_PSYCHIC_MAXWELL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3287,
+            "script": "TRAINER_PSYCHIC_MAXWELL",
             "initial_dir": 0,
             "data": [
                 4
@@ -229,12 +229,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BLACK_BELT_10",
+            "id": "ROUTE_224_BLACK_BELT_CARL",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3312,
+            "script": "TRAINER_BLACK_BELT_CARL",
             "initial_dir": 3,
             "data": [
                 2
@@ -246,12 +246,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_EXPERT_M_11",
+            "id": "ROUTE_224_VETERAN_ARMANDO",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3361,
+            "script": "TRAINER_VETERAN_ARMANDO",
             "initial_dir": 1,
             "data": [
                 3
@@ -263,12 +263,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_PSYCHIC_12",
+            "id": "ROUTE_224_PSYCHIC_BRITTNEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3288,
+            "script": "TRAINER_PSYCHIC_BRITTNEY",
             "initial_dir": 3,
             "data": [
                 2
@@ -280,12 +280,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_ACE_TRAINER_F_13",
+            "id": "ROUTE_224_ACE_TRAINER_JAMIE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3285,
+            "script": "TRAINER_ACE_TRAINER_JAMIE",
             "initial_dir": 2,
             "data": [
                 6
@@ -297,12 +297,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_RUIN_MANIAC_14",
+            "id": "ROUTE_224_RUIN_MANIAC_LARRY",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3304,
+            "script": "TRAINER_RUIN_MANIAC_LARRY",
             "initial_dir": 3,
             "data": [
                 4
@@ -314,12 +314,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_ACE_TRAINER_M_15",
+            "id": "ROUTE_224_DRAGON_TAMER_HAYDEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3276,
+            "script": "TRAINER_DRAGON_TAMER_HAYDEN",
             "initial_dir": 3,
             "data": [
                 3
@@ -442,4 +442,3 @@
         }
     ]
 }
-

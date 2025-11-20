@@ -67,12 +67,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_212_SOUTH_FISHERMAN_0",
+            "id": "ROUTE_212_SOUTH_FISHERMAN_JUAN",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3090,
+            "script": "TRAINER_FISHERMAN_JUAN",
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
@@ -82,12 +82,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_FISHERMAN_1",
+            "id": "ROUTE_212_SOUTH_FISHERMAN_JOSH",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3091,
+            "script": "TRAINER_FISHERMAN_JOSH",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -97,12 +97,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_FISHERMAN_2",
+            "id": "ROUTE_212_SOUTH_FISHERMAN_TRAVIS",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3092,
+            "script": "TRAINER_FISHERMAN_TRAVIS",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -112,12 +112,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_ACE_TRAINER_M_3",
+            "id": "ROUTE_212_SOUTH_RANGER_TAYLOR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3093,
+            "script": "TRAINER_RANGER_TAYLOR",
             "initial_dir": 1,
             "data": [
                 2
@@ -129,12 +129,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_ACE_TRAINER_F_4",
+            "id": "ROUTE_212_SOUTH_RANGER_ALLISON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3095,
+            "script": "TRAINER_RANGER_ALLISON",
             "initial_dir": 1,
             "data": [
                 2
@@ -146,12 +146,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_ACE_TRAINER_M_5",
+            "id": "ROUTE_212_SOUTH_RANGER_JEFFREY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3094,
+            "script": "TRAINER_RANGER_JEFFREY",
             "initial_dir": 0,
             "data": [
                 2
@@ -163,12 +163,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_POLICEMAN_6",
+            "id": "ROUTE_212_SOUTH_POLICEMAN_DANNY",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0269",
-            "script": 3331,
+            "script": "TRAINER_POLICEMAN_DANNY",
             "initial_dir": 1,
             "data": [
                 2
@@ -180,12 +180,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_SCIENTIST_M_7",
+            "id": "ROUTE_212_SOUTH_SCIENTIST_STEFANO",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3098,
+            "script": "TRAINER_SCIENTIST_STEFANO",
             "initial_dir": 2,
             "data": [
                 3
@@ -197,12 +197,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_COLLECTOR_8",
+            "id": "ROUTE_212_SOUTH_COLLECTOR_DEAN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3380,
+            "script": "TRAINER_COLLECTOR_DEAN",
             "initial_dir": 0,
             "data": [
                 3
@@ -554,12 +554,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_SCIENTIST_M_31",
+            "id": "ROUTE_212_SOUTH_SCIENTIST_SHAUN",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3485,
+            "script": "TRAINER_SCIENTIST_SHAUN",
             "initial_dir": 3,
             "data": [
                 2
@@ -571,12 +571,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_PARASOL_LADY_32",
+            "id": "ROUTE_212_SOUTH_PARASOL_LADY_ALEXA",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3326,
+            "script": "TRAINER_PARASOL_LADY_ALEXA",
             "initial_dir": 1,
             "data": [
                 3
@@ -588,12 +588,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_SOUTH_PARASOL_LADY_33",
+            "id": "ROUTE_212_SOUTH_PARASOL_LADY_SABRINA",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3327,
+            "script": "TRAINER_PARASOL_LADY_SABRINA",
             "initial_dir": 1,
             "data": [
                 2
@@ -770,4 +770,3 @@
     ],
     "coord_events": []
 }
-

@@ -13,6 +13,7 @@ from generated import (
     movement_types,
     object_events,
     species,
+    trainers,
     trainer_classes,
     trainer_types,
     vars_flags
@@ -65,6 +66,12 @@ def from_trainer_type(s: str) -> int:
 
 def from_var_flag(v: str) -> int:
     return 0 if v == "0" else vars_flags.VarFlag[v].value
+
+def from_script(v: str, double_battle_id: int) -> int:
+    if v in trainers.TrainerID.__members__:
+        return trainers.TrainerID[v].value - 1 + (5000 if double_battle_id == 2 else 3000)
+    else:
+        return int(v)   
 
 def from_map_header(s: str) -> int:
     return map_headers.MapHeader[s].value

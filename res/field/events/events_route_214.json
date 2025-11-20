@@ -27,12 +27,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_214_RICH_BOY_0",
+            "id": "ROUTE_214_PI_CARLOS",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3120,
+            "script": "TRAINER_PI_CARLOS",
             "initial_dir": 0,
             "data": [
                 2
@@ -44,12 +44,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_COLLECTOR_1",
+            "id": "ROUTE_214_COLLECTOR_DOUGLAS",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3271,
+            "script": "TRAINER_COLLECTOR_DOUGLAS",
             "initial_dir": 0,
             "data": [
                 1
@@ -61,12 +61,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_COLLECTOR_2",
+            "id": "ROUTE_214_COLLECTOR_BRADY",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "0",
-            "script": 3272,
+            "script": "TRAINER_COLLECTOR_BRADY",
             "initial_dir": 0,
             "data": [
                 2,
@@ -79,12 +79,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_RUIN_MANIAC_3",
+            "id": "ROUTE_214_RUIN_MANIAC_BRYAN",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3112,
+            "script": "TRAINER_RUIN_MANIAC_BRYAN",
             "initial_dir": 3,
             "data": [
                 4
@@ -96,12 +96,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_RUIN_MANIAC_4",
+            "id": "ROUTE_214_RUIN_MANIAC_RONALD",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3113,
+            "script": "TRAINER_RUIN_MANIAC_RONALD",
             "initial_dir": 0,
             "data": [
                 3
@@ -113,12 +113,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_COLLECTOR_5",
+            "id": "ROUTE_214_COLLECTOR_JAMAL",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3381,
+            "script": "TRAINER_COLLECTOR_JAMAL",
             "initial_dir": 0,
             "data": [
                 3
@@ -130,12 +130,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_BEAUTY_6",
+            "id": "ROUTE_214_BEAUTY_DEVON",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3490,
+            "script": "TRAINER_BEAUTY_DEVON",
             "initial_dir": 3,
             "data": [
                 1
@@ -147,12 +147,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_PSYCHIC_7",
+            "id": "ROUTE_214_PSYCHIC_MITCHELL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
             "flag": "0",
-            "script": 3118,
+            "script": "TRAINER_PSYCHIC_MITCHELL",
             "initial_dir": 1,
             "data": [
                 1,
@@ -165,12 +165,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_PSYCHIC_8",
+            "id": "ROUTE_214_PSYCHIC_ABIGAIL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "0",
-            "script": 3119,
+            "script": "TRAINER_PSYCHIC_ABIGAIL",
             "initial_dir": 2,
             "data": [
                 5
@@ -513,4 +513,3 @@
     ],
     "coord_events": []
 }
-

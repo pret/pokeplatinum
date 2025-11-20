@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_YOUNGSTER_0",
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_YOUNGSTER_DONNY",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3356,
+            "script": "TRAINER_YOUNGSTER_DONNY",
             "initial_dir": 2,
             "data": [
                 2
@@ -19,12 +19,12 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_LASS_1",
+            "id": "HEARTHOME_CITY_GYM_TRAINER_ROOM_1_LASS_MOLLY",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3324,
+            "script": "TRAINER_LASS_MOLLY",
             "initial_dir": 3,
             "data": [
                 2

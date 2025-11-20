@@ -11,12 +11,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_216_ACE_TRAINER_SNOW_M_0",
+            "id": "ROUTE_216_ACE_TRAINER_BLAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3131,
+            "script": "TRAINER_ACE_TRAINER_BLAKE",
             "initial_dir": 1,
             "data": [
                 3
@@ -28,12 +28,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_SNOW_F_1",
+            "id": "ROUTE_216_ACE_TRAINER_LAURA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3133,
+            "script": "TRAINER_ACE_TRAINER_LAURA",
             "initial_dir": 0,
             "data": [
                 4
@@ -45,12 +45,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_BLACK_BELT_2",
+            "id": "ROUTE_216_BLACK_BELT_PHILIP",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3257,
+            "script": "TRAINER_BLACK_BELT_PHILIP",
             "initial_dir": 0,
             "data": [
                 3
@@ -62,12 +62,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_M_3",
+            "id": "ROUTE_216_SKIER_BRADLEY",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
             "flag": "0",
-            "script": 3135,
+            "script": "TRAINER_SKIER_BRADLEY",
             "initial_dir": 2,
             "data": [
                 2
@@ -79,12 +79,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_SNOW_M_4",
+            "id": "ROUTE_216_ACE_TRAINER_GARRETT",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3132,
+            "script": "TRAINER_ACE_TRAINER_GARRETT",
             "initial_dir": 1,
             "data": [
                 2
@@ -96,12 +96,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_SNOW_F_5",
+            "id": "ROUTE_216_ACE_TRAINER_MARIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3134,
+            "script": "TRAINER_ACE_TRAINER_MARIA",
             "initial_dir": 0,
             "data": [
                 2
@@ -113,12 +113,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_F_6",
+            "id": "ROUTE_216_SKIER_KAITLYN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3137,
+            "script": "TRAINER_SKIER_KAITLYN",
             "initial_dir": 3,
             "data": [
                 2
@@ -130,12 +130,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_M_7",
+            "id": "ROUTE_216_SKIER_EDWARD",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3136,
+            "script": "TRAINER_SKIER_EDWARD",
             "initial_dir": 1,
             "data": [
                 1
@@ -147,12 +147,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_F_8",
+            "id": "ROUTE_216_SKIER_ANDREA",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3138,
+            "script": "TRAINER_SKIER_ANDREA",
             "initial_dir": 3,
             "data": [
                 2
@@ -302,4 +302,3 @@
     ],
     "coord_events": []
 }
-

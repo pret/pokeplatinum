@@ -41,12 +41,12 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_PICNICKER_2",
+            "id": "IRON_ISLAND_B1F_RIGHT_ROOM_PICNICKER_SUMMER",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3456,
+            "script": "TRAINER_PICNICKER_SUMMER",
             "initial_dir": 0,
             "data": [
                 3

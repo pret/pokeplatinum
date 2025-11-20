@@ -49,12 +49,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_2",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_ANTON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3826,
+            "script": "TRAINER_ACE_TRAINER_ANTON",
             "initial_dir": 1,
             "data": [
                 1
@@ -66,12 +66,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_3",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SAVANNAH",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3269,
+            "script": "TRAINER_ACE_TRAINER_SAVANNAH",
             "initial_dir": 2,
             "data": [
                 1
@@ -83,12 +83,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_4",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_ALICIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3270,
+            "script": "TRAINER_ACE_TRAINER_ALICIA",
             "initial_dir": 3,
             "data": [
                 1
@@ -100,12 +100,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_5",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_ISAIAH",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3268,
+            "script": "TRAINER_ACE_TRAINER_ISAIAH",
             "initial_dir": 1,
             "data": [
                 1
@@ -117,12 +117,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_F_6",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_BRENNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3827,
+            "script": "TRAINER_ACE_TRAINER_BRENNA",
             "initial_dir": 0,
             "data": [
                 1
@@ -134,12 +134,12 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SNOW_M_7",
+            "id": "SNOWPOINT_CITY_GYM_ACE_TRAINER_SERGIO",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3267,
+            "script": "TRAINER_ACE_TRAINER_SERGIO",
             "initial_dir": 1,
             "data": [
                 1
@@ -446,4 +446,3 @@
     ],
     "coord_events": []
 }
-

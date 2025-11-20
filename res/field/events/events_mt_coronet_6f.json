@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "MT_CORONET_6F_GRUNT_F_0",
+            "id": "MT_CORONET_6F_GALACTIC_GRUNT",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x028F",
-            "script": 3525,
+            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_6F",
             "initial_dir": 2,
             "data": [
                 6

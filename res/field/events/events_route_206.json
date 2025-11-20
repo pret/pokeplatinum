@@ -19,12 +19,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_206_CYCLIST_M_0",
+            "id": "ROUTE_206_CYCLIST_AXEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3024,
+            "script": "TRAINER_CYCLIST_AXEL",
             "initial_dir": 3,
             "data": [
                 4
@@ -36,12 +36,12 @@
             "y": 9
         },
         {
-            "id": "ROUTE_206_CYCLIST_F_1",
+            "id": "ROUTE_206_CYCLIST_MEGAN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3028,
+            "script": "TRAINER_CYCLIST_MEGAN",
             "initial_dir": 0,
             "data": [
                 1
@@ -53,12 +53,12 @@
             "y": 8
         },
         {
-            "id": "ROUTE_206_CYCLIST_M_2",
+            "id": "ROUTE_206_CYCLIST_JAMES",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3025,
+            "script": "TRAINER_CYCLIST_JAMES",
             "initial_dir": 2,
             "data": [
                 5
@@ -70,12 +70,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_206_CYCLIST_F_3",
+            "id": "ROUTE_206_CYCLIST_NICOLE",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3029,
+            "script": "TRAINER_CYCLIST_NICOLE",
             "initial_dir": 3,
             "data": [
                 2
@@ -87,12 +87,12 @@
             "y": 7
         },
         {
-            "id": "ROUTE_206_CYCLIST_M_4",
+            "id": "ROUTE_206_CYCLIST_JOHN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3026,
+            "script": "TRAINER_CYCLIST_JOHN",
             "initial_dir": 3,
             "data": [
                 3
@@ -104,12 +104,12 @@
             "y": 6
         },
         {
-            "id": "ROUTE_206_CYCLIST_F_5",
+            "id": "ROUTE_206_CYCLIST_KAYLA",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3030,
+            "script": "TRAINER_CYCLIST_KAYLA",
             "initial_dir": 0,
             "data": [
                 1
@@ -121,12 +121,12 @@
             "y": 3
         },
         {
-            "id": "ROUTE_206_CYCLIST_M_6",
+            "id": "ROUTE_206_CYCLIST_RYAN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3027,
+            "script": "TRAINER_CYCLIST_RYAN",
             "initial_dir": 0,
             "data": [
                 1
@@ -138,12 +138,12 @@
             "y": 4
         },
         {
-            "id": "ROUTE_206_CYCLIST_F_7",
+            "id": "ROUTE_206_CYCLIST_RACHEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3031,
+            "script": "TRAINER_CYCLIST_RACHEL",
             "initial_dir": 3,
             "data": [
                 3
@@ -378,12 +378,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_HIKER_22",
+            "id": "ROUTE_206_HIKER_THEODORE",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3450,
+            "script": "TRAINER_HIKER_THEODORE",
             "initial_dir": 1,
             "data": [
                 2
@@ -498,4 +498,3 @@
     ],
     "coord_events": []
 }
-

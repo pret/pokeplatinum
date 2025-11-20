@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_GATE_B1F_EXPERT_M_0",
+            "id": "OREBURGH_GATE_B1F_VETERAN_GRANT",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3239,
+            "script": "TRAINER_VETERAN_GRANT",
             "initial_dir": 1,
             "data": [
                 3
@@ -269,4 +269,3 @@
     ],
     "coord_events": []
 }
-

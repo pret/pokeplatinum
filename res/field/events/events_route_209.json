@@ -67,12 +67,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_209_POKEMON_BREEDER_M_0",
+            "id": "ROUTE_209_BREEDER_ALBERT",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3045,
+            "script": "TRAINER_BREEDER_ALBERT",
             "initial_dir": 1,
             "data": [
                 3
@@ -84,12 +84,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_POKEMON_BREEDER_F_1",
+            "id": "ROUTE_209_BREEDER_JENNIFER",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3046,
+            "script": "TRAINER_BREEDER_JENNIFER",
             "initial_dir": 3,
             "data": [
                 5
@@ -101,12 +101,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_COWGIRL_2",
+            "id": "ROUTE_209_COWGIRL_SHELLEY",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3047,
+            "script": "TRAINER_COWGIRL_SHELLEY",
             "initial_dir": 3,
             "data": [
                 2
@@ -118,12 +118,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_JOGGER_3",
+            "id": "ROUTE_209_JOGGER_RICHARD",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x026D",
-            "script": 3048,
+            "script": "TRAINER_JOGGER_RICHARD",
             "initial_dir": 1,
             "data": [
                 4
@@ -135,12 +135,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_JOGGER_4",
+            "id": "ROUTE_209_JOGGER_RAUL",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x026F",
-            "script": 3307,
+            "script": "TRAINER_JOGGER_RAUL",
             "initial_dir": 2,
             "data": [
                 1
@@ -152,12 +152,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_PIKACHU_5",
+            "id": "ROUTE_209_POKE_KID_DANIELLE",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3052,
+            "script": "TRAINER_POKE_KID_DANIELLE",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -167,12 +167,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_TWIN_6",
+            "id": "ROUTE_209_TWIN_EMMA",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3293,
+            "script": "TRAINER_TWINS_EMMA_AND_LIL",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 4
@@ -184,12 +185,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_BEAUTY_7",
+            "id": "ROUTE_209_YOUNG_COUPLE_TRAINER_SUE",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_EAST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5054,
+            "script": "TRAINER_YOUNG_COUPLE_TY_AND_SUE",
+            "double_battle_id": 2,
             "initial_dir": 2,
             "data": [
                 2
@@ -201,12 +203,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_GUITARIST_8",
+            "id": "ROUTE_209_YOUNG_COUPLE_TRAINER_TY",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3054,
+            "script": "TRAINER_YOUNG_COUPLE_TY_AND_SUE",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 2
@@ -425,12 +428,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_TWIN_22",
+            "id": "ROUTE_209_TWIN_LIL",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5293,
+            "script": "TRAINER_TWINS_EMMA_AND_LIL",
+            "double_battle_id": 2,
             "initial_dir": 1,
             "data": [
                 4
@@ -621,4 +625,3 @@
     ],
     "coord_events": []
 }
-

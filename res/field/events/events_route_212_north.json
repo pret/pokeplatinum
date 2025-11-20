@@ -19,12 +19,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_212_NORTH_RICH_BOY_0",
+            "id": "ROUTE_212_NORTH_RICH_BOY_JASON",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3081,
+            "script": "TRAINER_RICH_BOY_JASON",
             "initial_dir": 3,
             "data": [
                 1
@@ -36,12 +36,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_LADY_1",
+            "id": "ROUTE_212_NORTH_LADY_MELISSA",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3082,
+            "script": "TRAINER_LADY_MELISSA",
             "initial_dir": 2,
             "data": [
                 1
@@ -53,12 +53,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_GENTLEMAN_2",
+            "id": "ROUTE_212_NORTH_GENTLEMAN_JEREMY",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3083,
+            "script": "TRAINER_GENTLEMAN_JEREMY",
             "initial_dir": 3,
             "data": [
                 2
@@ -70,12 +70,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_SOCIALITE_3",
+            "id": "ROUTE_212_NORTH_SOCIALITE_REINA",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3084,
+            "script": "TRAINER_SOCIALITE_REINA",
             "initial_dir": 2,
             "data": [
                 3
@@ -87,12 +87,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_4",
+            "id": "ROUTE_212_NORTH_POLICEMAN_BOBBY",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0261",
-            "script": 3087,
+            "script": "TRAINER_POLICEMAN_BOBBY",
             "initial_dir": 3,
             "data": [
                 3
@@ -104,12 +104,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_5",
+            "id": "ROUTE_212_NORTH_POLICEMAN_ALEX",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0263",
-            "script": 3088,
+            "script": "TRAINER_POLICEMAN_ALEX",
             "initial_dir": 2,
             "data": [
                 3
@@ -121,12 +121,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_6",
+            "id": "ROUTE_212_NORTH_POLICEMAN_DYLAN",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "FLAG_UNK_0x0265",
-            "script": 3089,
+            "script": "TRAINER_POLICEMAN_DYLAN",
             "initial_dir": 1,
             "data": [
                 2,
@@ -139,12 +139,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_7",
+            "id": "ROUTE_212_NORTH_POLICEMAN_CALEB",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0267",
-            "script": 3101,
+            "script": "TRAINER_POLICEMAN_CALEB",
             "initial_dir": 3,
             "data": [
                 2
@@ -527,4 +527,3 @@
     ],
     "coord_events": []
 }
-

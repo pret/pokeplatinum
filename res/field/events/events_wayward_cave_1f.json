@@ -126,12 +126,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_CAMPER_5",
+            "id": "WAYWARD_CAVE_1F_CAMPER_DIEGO",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3378,
+            "script": "TRAINER_CAMPER_DIEGO",
             "initial_dir": 3,
             "data": [
                 2
@@ -143,12 +143,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_PICNICKER_6",
+            "id": "WAYWARD_CAVE_1F_PICNICKER_TORI",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3457,
+            "script": "TRAINER_PICNICKER_TORI",
             "initial_dir": 2,
             "data": [
                 2
@@ -160,12 +160,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_LASS_7",
+            "id": "WAYWARD_CAVE_1F_LASS_CASSIDY",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3449,
+            "script": "TRAINER_LASS_CASSIDY",
             "initial_dir": 3,
             "data": [
                 2
@@ -177,12 +177,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_YOUNGSTER_8",
+            "id": "WAYWARD_CAVE_1F_YOUNGSTER_WAYNE",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3495,
+            "script": "TRAINER_YOUNGSTER_WAYNE",
             "initial_dir": 2,
             "data": [
                 2
@@ -194,12 +194,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_HIKER_9",
+            "id": "WAYWARD_CAVE_1F_HIKER_REGINALD",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3453,
+            "script": "TRAINER_HIKER_REGINALD",
             "initial_dir": 3,
             "data": [
                 2
@@ -211,12 +211,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_COLLECTOR_10",
+            "id": "WAYWARD_CAVE_1F_COLLECTOR_TERRY",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3382,
+            "script": "TRAINER_COLLECTOR_TERRY",
             "initial_dir": 3,
             "data": [
                 1
@@ -228,12 +228,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_PICNICKER_11",
+            "id": "WAYWARD_CAVE_1F_PICNICKER_ANA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3458,
+            "script": "TRAINER_PICNICKER_ANA",
             "initial_dir": 3,
             "data": [
                 3
@@ -245,12 +245,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_CAMPER_12",
+            "id": "WAYWARD_CAVE_1F_CAMPER_PARKER",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3379,
+            "script": "TRAINER_CAMPER_PARKER",
             "initial_dir": 2,
             "data": [
                 3
@@ -262,12 +262,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_RUIN_MANIAC_13",
+            "id": "WAYWARD_CAVE_1F_RUIN_MANIAC_GERALD",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3442,
+            "script": "TRAINER_RUIN_MANIAC_GERALD",
             "initial_dir": 2,
             "data": [
                 1
@@ -279,12 +279,12 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_HIKER_14",
+            "id": "WAYWARD_CAVE_1F_HIKER_LORENZO",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3454,
+            "script": "TRAINER_HIKER_LORENZO",
             "initial_dir": 2,
             "data": [
                 2
@@ -500,4 +500,3 @@
         }
     ]
 }
-

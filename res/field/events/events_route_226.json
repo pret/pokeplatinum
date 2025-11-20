@@ -173,12 +173,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_F_8",
+            "id": "ROUTE_226_SWIMMER_LYDIA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3603,
+            "script": "TRAINER_SWIMMER_LYDIA",
             "initial_dir": 1,
             "data": [
                 2
@@ -208,12 +208,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_M_10",
+            "id": "ROUTE_226_ACE_TRAINER_GRAHAM",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3567,
+            "script": "TRAINER_ACE_TRAINER_GRAHAM",
             "initial_dir": 2,
             "data": [
                 1
@@ -225,12 +225,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_F_11",
+            "id": "ROUTE_226_BIRD_KEEPER_GENEVA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3554,
+            "script": "TRAINER_BIRD_KEEPER_GENEVA",
             "initial_dir": 2,
             "data": [
                 2
@@ -242,12 +242,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_M_12",
+            "id": "ROUTE_226_DRAGON_TAMER_STANLEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3559,
+            "script": "TRAINER_DRAGON_TAMER_STANLEY",
             "initial_dir": 1,
             "data": [
                 1
@@ -292,12 +292,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_M_15",
+            "id": "ROUTE_226_SWIMMER_WADE",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3599,
+            "script": "TRAINER_SWIMMER_WADE",
             "initial_dir": 1,
             "data": [
                 2
@@ -331,4 +331,3 @@
     ],
     "coord_events": []
 }
-

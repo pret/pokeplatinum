@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_3_SCHOOL_KID_M_0",
+            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_3_SCHOOL_KID_CHANCE",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3339,
+            "script": "TRAINER_SCHOOL_KID_CHANCE",
             "initial_dir": 1,
             "data": [
                 4

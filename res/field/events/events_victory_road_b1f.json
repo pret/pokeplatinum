@@ -34,12 +34,13 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_ACE_TRAINER_M_1",
+            "id": "VICTORY_ROAD_B1F_DOUBLE_TEAM_TRAINER_PAT",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3235,
+            "script": "TRAINER_DOUBLE_TEAM_JO_AND_PAT",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 1
@@ -51,12 +52,13 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_ACE_TRAINER_F_2",
+            "id": "VICTORY_ROAD_B1F_DOUBLE_TEAM_TRAINER_JO",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_EAST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5235,
+            "script": "TRAINER_DOUBLE_TEAM_JO_AND_PAT",
+            "double_battle_id": 2,
             "initial_dir": 2,
             "data": [
                 1
@@ -68,12 +70,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_ACE_TRAINER_M_3",
+            "id": "VICTORY_ROAD_B1F_DRAGON_TAMER_ONDREJ",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3229,
+            "script": "TRAINER_DRAGON_TAMER_ONDREJ",
             "initial_dir": 0,
             "data": [
                 3
@@ -85,12 +87,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_PSYCHIC_4",
+            "id": "VICTORY_ROAD_B1F_PSYCHIC_VALENCIA",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3234,
+            "script": "TRAINER_PSYCHIC_VALENCIA",
             "initial_dir": 2,
             "data": [
                 4
@@ -102,12 +104,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_ACE_TRAINER_M_5",
+            "id": "VICTORY_ROAD_B1F_ACE_TRAINER_HENRY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3224,
+            "script": "TRAINER_ACE_TRAINER_HENRY",
             "initial_dir": 1,
             "data": [
                 2

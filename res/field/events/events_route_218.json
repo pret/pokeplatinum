@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_218_GUITARIST_0",
+            "id": "ROUTE_218_GUITARIST_TONY",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3299,
+            "script": "TRAINER_GUITARIST_TONY",
             "initial_dir": 1,
             "data": [
                 4
@@ -19,12 +19,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_SAILOR_1",
+            "id": "ROUTE_218_SAILOR_SKYLER",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3337,
+            "script": "TRAINER_SAILOR_SKYLER",
             "initial_dir": 3,
             "data": [
                 3
@@ -36,12 +36,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_FISHERMAN_2",
+            "id": "ROUTE_218_FISHERMAN_MIGUEL",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3152,
+            "script": "TRAINER_FISHERMAN_MIGUEL",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -51,12 +51,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_FISHERMAN_3",
+            "id": "ROUTE_218_FISHERMAN_LUC",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3153,
+            "script": "TRAINER_FISHERMAN_LUC",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -361,4 +361,3 @@
     ],
     "coord_events": []
 }
-

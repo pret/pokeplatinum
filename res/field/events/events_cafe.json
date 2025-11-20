@@ -32,12 +32,12 @@
             "y": 0
         },
         {
-            "id": "CAFE_COLLECTOR_2",
+            "id": "CAFE_COLLECTOR_FERNANDO",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3274,
+            "script": "TRAINER_COLLECTOR_FERNANDO",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -47,12 +47,12 @@
             "y": 0
         },
         {
-            "id": "CAFE_COLLECTOR_3",
+            "id": "CAFE_COLLECTOR_EDWIN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3275,
+            "script": "TRAINER_COLLECTOR_EDWIN",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -62,12 +62,12 @@
             "y": 0
         },
         {
-            "id": "CAFE_WAITRESS_4",
+            "id": "CAFE_WAITRESS_KATI",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3365,
+            "script": "TRAINER_WAITRESS_KATI",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,

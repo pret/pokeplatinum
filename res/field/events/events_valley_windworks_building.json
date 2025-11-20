@@ -64,12 +64,12 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_BUILDING_GRUNT_M_3",
+            "id": "VALLEY_WINDWORKS_BUILDING_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x01A5",
-            "script": 3297,
+            "script": "TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_2",
             "initial_dir": 2,
             "data": [
                 2
@@ -81,12 +81,12 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_BUILDING_GRUNT_M_4",
+            "id": "VALLEY_WINDWORKS_BUILDING_GALACTIC_GRUNT_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x01A5",
-            "script": 3298,
+            "script": "TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3",
             "initial_dir": 1,
             "data": [
                 2
@@ -113,7 +113,7 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_BUILDING_GRUNT_M_6",
+            "id": "VALLEY_WINDWORKS_BUILDING_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

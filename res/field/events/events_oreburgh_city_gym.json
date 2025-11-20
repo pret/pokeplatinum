@@ -49,12 +49,12 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_GYM_YOUNGSTER_2",
+            "id": "OREBURGH_CITY_GYM_YOUNGSTER_JONATHON",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3243,
+            "script": "TRAINER_YOUNGSTER_JONATHON",
             "initial_dir": 3,
             "data": [
                 3
@@ -66,12 +66,12 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_GYM_YOUNGSTER_3",
+            "id": "OREBURGH_CITY_GYM_YOUNGSTER_DARIUS",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3244,
+            "script": "TRAINER_YOUNGSTER_DARIUS",
             "initial_dir": 2,
             "data": [
                 4

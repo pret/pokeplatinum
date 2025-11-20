@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_2_PICNICKER_0",
+            "id": "HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_2_PICNICKER_CHEYENNE",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3329,
+            "script": "TRAINER_PICNICKER_CHEYENNE",
             "initial_dir": 1,
             "data": [
                 4

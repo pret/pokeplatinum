@@ -49,12 +49,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_TUBER_M_2",
+            "id": "PASTORIA_CITY_GYM_TUBER_JACKY",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3496,
+            "script": "TRAINER_TUBER_JACKY",
             "initial_dir": 1,
             "data": [
                 2
@@ -66,12 +66,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_SAILOR_3",
+            "id": "PASTORIA_CITY_GYM_SAILOR_DAMIAN",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3338,
+            "script": "TRAINER_SAILOR_DAMIAN",
             "initial_dir": 1,
             "data": [
                 2
@@ -83,12 +83,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_TUBER_F_4",
+            "id": "PASTORIA_CITY_GYM_TUBER_CAITLYN",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3497,
+            "script": "TRAINER_TUBER_CAITLYN",
             "initial_dir": 2,
             "data": [
                 2
@@ -100,12 +100,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_SAILOR_5",
+            "id": "PASTORIA_CITY_GYM_SAILOR_SAMSON",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3482,
+            "script": "TRAINER_SAILOR_SAMSON",
             "initial_dir": 2,
             "data": [
                 2
@@ -117,12 +117,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_FISHERMAN_6",
+            "id": "PASTORIA_CITY_GYM_FISHERMAN_ERICK",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3292,
+            "script": "TRAINER_FISHERMAN_ERICK",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -132,12 +132,12 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_FISHERMAN_7",
+            "id": "PASTORIA_CITY_GYM_FISHERMAN_WALTER",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3400,
+            "script": "TRAINER_FISHERMAN_WALTER",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,

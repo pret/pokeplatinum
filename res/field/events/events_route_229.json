@@ -231,12 +231,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_ACE_TRAINER_M_14",
+            "id": "ROUTE_229_RANGER_DESHAWN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3591,
+            "script": "TRAINER_RANGER_DESHAWN",
             "initial_dir": 0,
             "data": [
                 3
@@ -248,12 +248,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_ACE_TRAINER_M_15",
+            "id": "ROUTE_229_ACE_TRAINER_FELIX",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3565,
+            "script": "TRAINER_ACE_TRAINER_FELIX",
             "initial_dir": 3,
             "data": [
                 4
@@ -265,12 +265,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_ACE_TRAINER_F_16",
+            "id": "ROUTE_229_ACE_TRAINER_DANA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3574,
+            "script": "TRAINER_ACE_TRAINER_DANA",
             "initial_dir": 2,
             "data": [
                 4
@@ -282,12 +282,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_ACE_TRAINER_F_17",
+            "id": "ROUTE_229_ACE_TRAINER_SANDRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3577,
+            "script": "TRAINER_ACE_TRAINER_SANDRA",
             "initial_dir": 1,
             "data": [
                 3
@@ -320,4 +320,3 @@
     "warp_events": [],
     "coord_events": []
 }
-

@@ -104,12 +104,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_227_ACE_TRAINER_M_5",
+            "id": "ROUTE_227_ACE_TRAINER_SAUL",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3563,
+            "script": "TRAINER_ACE_TRAINER_SAUL",
             "initial_dir": 2,
             "data": [
                 2
@@ -121,12 +121,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_227_ACE_TRAINER_F_6",
+            "id": "ROUTE_227_RANGER_FELICIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3594,
+            "script": "TRAINER_RANGER_FELICIA",
             "initial_dir": 0,
             "data": [
                 2
@@ -138,12 +138,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_227_BLACK_BELT_7",
+            "id": "ROUTE_227_BLACK_BELT_GRIFFIN",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3587,
+            "script": "TRAINER_BLACK_BELT_GRIFFIN",
             "initial_dir": 1,
             "data": [
                 2
@@ -155,12 +155,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_227_ACE_TRAINER_F_8",
+            "id": "ROUTE_227_ACE_TRAINER_MIKAYLA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3575,
+            "script": "TRAINER_ACE_TRAINER_MIKAYLA",
             "initial_dir": 2,
             "data": [
                 2
@@ -263,4 +263,3 @@
         }
     ]
 }
-

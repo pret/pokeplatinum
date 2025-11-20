@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "SUNYSHORE_CITY_GYM_ROOM_2_SCHOOL_KID_M_0",
+            "id": "SUNYSHORE_CITY_GYM_ROOM_2_SCHOOL_KID_FORREST",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3340,
+            "script": "TRAINER_SCHOOL_KID_FORREST",
             "initial_dir": 0,
             "data": [
                 3
@@ -19,12 +19,12 @@
             "y": 0
         },
         {
-            "id": "SUNYSHORE_CITY_GYM_ROOM_2_GUITARIST_1",
+            "id": "SUNYSHORE_CITY_GYM_ROOM_2_GUITARIST_JERRY",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3300,
+            "script": "TRAINER_GUITARIST_JERRY",
             "initial_dir": 1,
             "data": [
                 2
@@ -36,12 +36,12 @@
             "y": 0
         },
         {
-            "id": "SUNYSHORE_CITY_GYM_ROOM_2_PIKACHU_2",
+            "id": "SUNYSHORE_CITY_GYM_ROOM_2_POKE_KID_MEGHAN",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3330,
+            "script": "TRAINER_POKE_KID_MEGHAN",
             "initial_dir": 1,
             "data": [
                 1
