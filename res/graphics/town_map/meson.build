@@ -1,12 +1,12 @@
 tilemaps_nscr = copy_gen.process(files(
     'top_screen_region_bg_tilemap.NSCR',
-    'hidden_locations_top_screen.NCSR',
+    'hidden_locations_top_screen.NSCR',
     'top_screen_region_map_tilemap.NSCR',
     'bottom_screen_region_bg_tilemap.NSCR',
     'bottom_screen_region_map_tilemap.NSCR',
     'zoom_button_states.NSCR',
     'bottom_screen_zoom_button_screen.NSCR',
-    'hidden_location_bottom_screen.NCSR',
+    'hidden_location_bottom_screen.NSCR',
 ))
 
 sprite_anims_nanr = nanr_gen.process(files(
@@ -66,7 +66,6 @@ tilesets_ncgr = ncgr_gen.process(
 palettes_nclr = nclr_gen.process(
     files(
         'top_screen_map.pal',
-        'bottom_screen_map.pal',
         'zoom_button_shockwave.png',
     ),
     extra_args: [
@@ -78,8 +77,8 @@ palettes_nclr = nclr_gen.process(
 
 top_screen_sprites_0_4_nclr = nclr_gen.process(
     files(
-        'cursor_lucas.pal',
-        'dawn.pal',
+        'cursor_player_male.pal',
+        'player_female.pal',
         'location_history_dot.png',
         'unknown.pal',
     ),
@@ -130,6 +129,32 @@ top_screen_sprites_nclr = custom_target('top_screen_sprites_nclr',
     ]
 )
 
+bottom_screen_bg_individual_nclr = nclr_gen.process(
+    files(
+        'bottom_screen_map.pal',
+        'zoom_button_screen.pal',
+    ),
+    extra_args: [
+        '-bitdepth', '4',
+        '-pcmp',
+        '-nopad'
+    ],
+)
+
+bottom_screen_bg_nclr = custom_target('bottom_screen_bg_nclr',
+    command: [
+        nclr_concat_py,
+        '--input', '@INPUT@',
+        '--output', '@OUTPUT@',
+    ],
+    input: [
+        bottom_screen_bg_individual_nclr,
+    ],
+    output: [
+        'bottom_screen_bg.NCLR'
+    ]
+)
+
 town_map_graphics_narc = custom_target('town_map_graphics.narc',
     command: [
         narc_exe, 'create',
@@ -147,6 +172,7 @@ town_map_graphics_narc = custom_target('town_map_graphics.narc',
         tilesets_ncgr,
         palettes_nclr,
         copy_gen.process(top_screen_sprites_nclr),
+        copy_gen.process(bottom_screen_bg_nclr),
     ],
     output: [
         'town_map_graphics.narc',
