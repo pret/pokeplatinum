@@ -17,7 +17,7 @@
 
 #include "savedata/save_table.h"
 
-#include "battle_regulation_data.h"
+#include "battle_regulation.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "game_options.h"

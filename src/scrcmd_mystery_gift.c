@@ -8,8 +8,6 @@
 #include "generated/items.h"
 #include "generated/mystery_gift_delivery_stages.h"
 
-#include "struct_defs/battle_regulation.h"
-
 #include "field/field_system.h"
 
 #include "bag.h"

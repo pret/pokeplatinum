@@ -12,14 +12,13 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/battle_regulation.h"
 
 #include "field/field_system.h"
 #include "overlay006/roamer_after_battle.h"
 #include "overlay006/wild_encounters.h"
 #include "savedata/save_table.h"
 
-#include "battle_regulation_data.h"
+#include "battle_regulation.h"
 #include "catching_show.h"
 #include "communication_information.h"
 #include "dexmode_checker.h"

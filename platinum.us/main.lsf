@@ -109,7 +109,6 @@ Static main
 	Object main.nef.p/src_save_player.c.o
 	Object main.nef.p/src_trainer_info.c.o
 	Object main.nef.p/src_battle_regulation.c.o
-	Object main.nef.p/src_battle_regulation_data.c.o
 	Object main.nef.p/src_daycare_save.c.o
 	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o

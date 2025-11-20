@@ -3,8 +3,7 @@
 
 #include <dwc.h>
 
-#include "struct_defs/battle_regulation.h"
-
+#include "battle_regulation.h"
 #include "savedata.h"
 #include "trainer_info.h"
 
