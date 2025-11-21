@@ -8,11 +8,10 @@
 #include "generated/items.h"
 #include "generated/mystery_gift_delivery_stages.h"
 
-#include "struct_defs/struct_0202610C.h"
-
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -29,7 +28,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
@@ -400,7 +398,7 @@ static void GiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy)
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     const BattleRegulation *battleReg = &giftData->battleReg;
 
-    sub_0202613C(fieldSystem->saveData, battleReg);
+    BattleRegulation_Save(fieldSystem->saveData, battleReg);
 }
 
 static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
@@ -413,7 +411,7 @@ static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTe
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 
-    Strbuf *battleRegName = sub_0202605C(battleReg, HEAP_ID_FIELD3);
+    Strbuf *battleRegName = BattleRegulation_GetNameStrbuf(battleReg, HEAP_ID_FIELD3);
     StringTemplate_SetStrbuf(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(battleRegName);
 }
