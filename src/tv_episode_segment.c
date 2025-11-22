@@ -834,7 +834,7 @@ static BOOL TVEpisodeSegment_IsEligible_WhatsFishing(FieldSystem *fieldSystem, U
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), whatsFishing->species);
 }
 
-static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
+static void sub_0206D3E4(FieldSystem *fieldSystem, int segmentID)
 {
     TVEpisodeSegment segments;
     UnkStruct_0206D43C *v1 = &segments.val4;
@@ -844,37 +844,37 @@ static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
     MI_CpuClearFast(&segments, 40);
 
     CharCode_CopyNumChars(v1->unk_00, RecordMixedRNG_GetEntryName(v2, 1, 0), 10 + 1);
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, param1, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, segmentID, v1);
 }
 
 void sub_0206D424(FieldSystem *fieldSystem)
 {
-    sub_0206D3E4(fieldSystem, 20);
+    sub_0206D3E4(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_NEW_GROUP);
 }
 
 void sub_0206D430(FieldSystem *fieldSystem)
 {
-    sub_0206D3E4(fieldSystem, 4);
+    sub_0206D3E4(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_SWITCH_GROUP);
 }
 
-static int sub_0206D43C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_LoveThatGroupCorner_SwitchGroup(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D43C *v0 = ov6_02246498(param2);
 
     sub_0206CD94(param1, 1, v0->unk_00, 0, ov6_02246490(param2), 1);
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
 
-    return 6;
+    return TVProgramTrainerSightings_Text_LoveThatGroupCorner_SwitchGroup;
 }
 
-static int sub_0206D474(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_LoveThatGroupCorner_NewGroup(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D43C *v0 = ov6_02246498(param2);
 
     sub_0206CD94(param1, 1, v0->unk_00, 0, ov6_02246490(param2), 1);
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
 
-    return 32;
+    return TVProgramTrainerSightings_Text_LoveThatGroupCorner_NewGroup;
 }
 
 void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1)
@@ -885,10 +885,10 @@ void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1)
     v1->unk_00 = param1;
     v1->unk_02 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 6, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HIDDEN_ITEM_BREAKING_NEWS, v1);
 }
 
-static int sub_0206D4D4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_HiddenItemBreakingNews(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D4D4 *v0 = ov6_02246498(param2);
 
@@ -896,7 +896,7 @@ static int sub_0206D4D4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplateTrainerName(param1, 1, param2);
     StringTemplate_SetItemName(param1, 2, v0->unk_00);
 
-    return 10;
+    return TVProgramTrainerSightings_Text_HiddenItemBreakingNews;
 }
 
 void sub_0206D504(SaveData *saveData, u16 param1, u8 param2)
@@ -912,11 +912,11 @@ void sub_0206D504(SaveData *saveData, u16 param1, u8 param2)
             v1->unk_02 = 999;
         }
 
-        SaveData_SaveTVEpisodeSegment(saveData, 2, 7, v1);
+        SaveData_SaveTVEpisodeSegment(saveData, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_SINNOH_SHOPPING_CHAMP_CORNER, v1);
     }
 }
 
-static int sub_0206D530(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_SinnohShoppingChampCorner(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D530 *v0 = ov6_02246498(param2);
 
@@ -925,7 +925,7 @@ static int sub_0206D530(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplateTrainerName(param1, 2, param2);
     StringTemplate_SetItemNamePlural(param1, 3, v0->unk_00);
 
-    return 11;
+    return TVProgramTrainerSightings_Text_SinnohShoppingChampCorner;
 }
 
 void sub_0206D578(FieldSystem *fieldSystem, Pokemon *param1)
@@ -935,10 +935,10 @@ void sub_0206D578(FieldSystem *fieldSystem, Pokemon *param1)
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     v1->unk_06 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 8, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HAPPY_HAPPY_EGG_CLUB, v1);
 }
 
-static int sub_0206D5B0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_HappyHappyEggClub(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D5B0 *v0 = ov6_02246498(param2);
 
@@ -946,10 +946,10 @@ static int sub_0206D5B0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
     TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
-    return 12;
+    return TVProgramTrainerSightings_Text_HappyHappyEggClub;
 }
 
-static BOOL sub_0206D5F0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_HappyHappyEggClub(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206D5B0 *v0 = ov6_02246498(param1);
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
@@ -962,10 +962,10 @@ void sub_0206D60C(FieldSystem *fieldSystem, Pokemon *mon)
 
     sub_0206CE38(mon, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CE08(HEAP_ID_FIELD1, v1->unk_06, mon);
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 10, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_RATE_THAT_NAME_CHANGE, v1);
 }
 
-static int sub_0206D644(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_RateThatNameChange(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D644 *v0 = ov6_02246498(param2);
 
@@ -973,10 +973,10 @@ static int sub_0206D644(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
     sub_0206CD94(param1, 2, v0->unk_06, v0->unk_02, v0->unk_03, 1);
 
-    return 17 + LCRNG_RandMod(5);
+    return TVProgramTrainerSightings_Text_RateThatNameChange_MoreAttractive + LCRNG_RandMod(5);
 }
 
-static BOOL sub_0206D6A8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_RateThatNameChange(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     UnkStruct_0206D644 *v1 = ov6_02246498(param1);
@@ -992,10 +992,10 @@ void sub_0206D6C8(FieldSystem *fieldSystem, int param1, int param2)
     v1->unk_00 = param1;
     v1->unk_02 = param2;
 
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 13, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_UNDERGROUND_TREASURES_CORNER, v1);
 }
 
-static int sub_0206D6E0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_UndergroundTreasuresCorner(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D6E0 *v0 = ov6_02246498(param2);
 
@@ -1003,7 +1003,7 @@ static int sub_0206D6E0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     StringTemplate_SetUndergroundItemName(param1, 1, v0->unk_00);
     StringTemplate_SetNumber(param1, 2, v0->unk_02, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    return 24;
+    return TVProgramTrainerSightings_Text_UndergroundTreasuresCorner;
 }
 
 void sub_0206D720(FieldSystem *fieldSystem)
@@ -1023,10 +1023,10 @@ void sub_0206D720(FieldSystem *fieldSystem)
     v1->unk_04 = v3->unk_06;
     v1->unk_05 = v3->unk_07;
 
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 15, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_SAFAR_GAME_SPECIAL_NEWS_BULLETIN, v1);
 }
 
-static int sub_0206D75C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_SafariGameSpecialNewsBulletin(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D75C *v0 = ov6_02246498(param2);
 
@@ -1034,10 +1034,10 @@ static int sub_0206D75C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
     StringTemplate_SetNumber(param1, 2, v0->unk_05, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    return 26;
+    return TVProgramTrainerSightings_Text_SafariGameSpecialNewsBulletin;
 }
 
-static BOOL sub_0206D7A4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_SafariGameSpecialNewsBulletin(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     UnkStruct_0206D75C *v1 = ov6_02246498(param1);
@@ -1080,18 +1080,18 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
         if ((v0 == 1) && (v1 == 0)) {
             pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
             sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
-            FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 16, v9);
+            FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_POKEMON_STORAGE_SPECIAL_NEWS_BULLETIN, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
             pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
             sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
-            FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 16, v9);
+            FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_POKEMON_STORAGE_SPECIAL_NEWS_BULLETIN, v9);
         }
     }
 
     return;
 }
 
-static int sub_0206D8B0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_PokemonStorageSpecialNewsBulletin(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D8B0 *v0 = ov6_02246498(param2);
 
@@ -1099,13 +1099,13 @@ static int sub_0206D8B0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
     if (v0->unk_02 == 0) {
-        return 27;
+        return TVProgramTrainerSightings_Text_PokemonStorageSpecialNewsBulletin_Male;
     }
 
-    return 28;
+    return TVProgramTrainerSightings_Text_PokemonStorageSpecialNewsBulletin_Female;
 }
 
-static BOOL sub_0206D8F0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_PokemonStorageSpecialNewsBulletin(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206D8B0 *v0 = ov6_02246498(param1);
 
@@ -1117,9 +1117,9 @@ void sub_0206D90C(TVBroadcast *broadcast, Pokemon *param1, u16 param2)
     return;
 }
 
-static BOOL sub_0206D910(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_TrainerSightingsDummy(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return 0;
+    return FALSE;
 }
 
 void FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount)
@@ -1134,13 +1134,13 @@ void FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(FieldSystem *field
     if (yieldRating == 5) {
         (void)0;
     } else if (yieldRating == 4) {
-        FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 18, v1);
+        FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_PLANTING_AND_WATERING_SHOW, v1);
     } else if (yieldRating == 0) {
-        FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 19, v1);
+        FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_PLANTING_AND_WATERING_SHOW_NO_BERRIES, v1);
     }
 }
 
-static int sub_0206D94C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_PlantingAndWateringShow(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D94C *v0 = ov6_02246498(param2);
 
@@ -1148,17 +1148,17 @@ static int sub_0206D94C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     StringTemplate_SetItemName(param1, 1, v0->unk_00);
     StringTemplate_SetNumber(param1, 2, v0->unk_04, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    return 30;
+    return TVProgramTrainerSightings_Text_PlantingAndWateringShow;
 }
 
-static int sub_0206D98C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_PlantingAndWateringShow_NoBerries(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D94C *v0 = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
     StringTemplate_SetItemName(param1, 1, v0->unk_00);
 
-    return 31;
+    return TVProgramTrainerSightings_Text_PlantingAndWateringShow_NoBerries;
 }
 
 void sub_0206D9B4(TVBroadcast *broadcast, Pokemon *param1, u8 param2)
@@ -1170,10 +1170,10 @@ void sub_0206D9B4(TVBroadcast *broadcast, Pokemon *param1, u8 param2)
     v1->unk_05 = MTRNG_Next() % 3;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    TVBroadcast_SaveSegmentData(broadcast, 2, 21, (const u8 *)v1);
+    TVBroadcast_SaveSegmentData(broadcast, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_SEAL_CLUB_SHOW, (const u8 *)v1);
 }
 
-static int sub_0206D9F4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_SealClubShow(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206D9F4 *v0 = ov6_02246498(param2);
 
@@ -1181,10 +1181,10 @@ static int sub_0206D9F4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     StringTemplate_SetBallSealName(param1, 1, v0->unk_06);
     TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
-    return 33 + LCRNG_RandMod(3);
+    return TVProgramTrainerSightings_Text_SealClubShow_CleverlyCalculated + LCRNG_RandMod(3);
 }
 
-static BOOL sub_0206DA50(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_SealClubShow(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206D9F4 *v0 = ov6_02246498(param1);
 
@@ -1214,7 +1214,7 @@ void sub_0206DAB8(FieldSystem *fieldSystem, const TrainerInfo *param1)
     UnkStruct_0206DA6C *v1 = &segments.val15;
 
     sub_0206DA6C(v1, param1);
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 22, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_CAPTURE_THE_FLAG_DIGEST_TAKE_FLAG, v1);
 }
 
 void sub_0206DAD4(FieldSystem *fieldSystem, const TrainerInfo *param1)
@@ -1223,22 +1223,22 @@ void sub_0206DAD4(FieldSystem *fieldSystem, const TrainerInfo *param1)
     UnkStruct_0206DA6C *v1 = &segments.val15;
 
     sub_0206DA6C(v1, param1);
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 23, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_CAPTURE_THE_FLAG_DIGEST_LOSE_FLAG, v1);
 }
 
-static int sub_0206DAF0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     sub_0206DA84(fieldSystem, param1, param2);
-    return 36;
+    return TVProgramTrainerSightings_Text_CaptureTheFlagDigest_TakeFlag;
 }
 
-static int sub_0206DAFC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_CaptureTheFlagDigest_LoseFlag(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     sub_0206DA84(fieldSystem, param1, param2);
-    return 37;
+    return TVProgramTrainerSightings_Text_CaptureTheFlagDigest_LoseFlag;
 }
 
-static BOOL sub_0206DB08(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_HasExplorerKit(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD3);
 }
@@ -1250,16 +1250,16 @@ void sub_0206DB20(FieldSystem *fieldSystem)
 
     v1->unk_00 = 1;
 
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 25, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HOME_AND_MANOR_NO_FURNITURE, v1);
 }
 
-static int sub_0206DB38(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_HomeAndManor_NoFurniture(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
-    return 38;
+    return TVProgramTrainerSightings_Text_HomeAndManor_NoFurniture;
 }
 
-static BOOL sub_0206DB48(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_HomeAndManor_NoFurniture(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
@@ -1271,20 +1271,20 @@ void sub_0206DB5C(FieldSystem *fieldSystem, u8 param1)
 
     v1->unk_00 = param1;
 
-    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, 26, v1);
+    FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HOME_AND_MANOR, v1);
 }
 
-static int sub_0206DB74(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_HomeAndManor(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     UnkStruct_0206DB74 *v0 = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
     StringTemplate_SetFurniture(param1, 1, v0->unk_00);
 
-    return 39;
+    return TVProgramTrainerSightings_Text_HomeAndManor;
 }
 
-static BOOL sub_0206DB9C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_HomeAndManor(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
@@ -2942,78 +2942,78 @@ static const TVProgramSegment sTrainerSightingsSegments[TV_PROGRAM_TYPE_TRAINER_
         TVEpisodeSegment_IsEligible_WhatsFishing,
     },
     {
-        sub_0206D43C,
+        TVEpisodeSegment_LoadMessage_LoveThatGroupCorner_SwitchGroup,
         NULL,
     },
     TV_PROGRAM_SEGMENT_NULL,
     {
-        sub_0206D4D4,
+        TVEpisodeSegment_LoadMessage_HiddenItemBreakingNews,
         NULL,
     },
     {
-        sub_0206D530,
+        TVEpisodeSegment_LoadMessage_SinnohShoppingChampCorner,
         NULL,
     },
     {
-        sub_0206D5B0,
-        sub_0206D5F0,
+        TVEpisodeSegment_LoadMessage_HappyHappyEggClub,
+        TVEpisodeSegment_IsEligible_HappyHappyEggClub,
     },
     TV_PROGRAM_SEGMENT_NULL,
     {
-        sub_0206D644,
-        sub_0206D6A8,
+        TVEpisodeSegment_LoadMessage_RateThatNameChange,
+        TVEpisodeSegment_IsEligible_RateThatNameChange,
     },
     TV_PROGRAM_SEGMENT_NULL,
     TV_PROGRAM_SEGMENT_NULL,
     {
-        sub_0206D6E0,
-        sub_0206DB08,
+        TVEpisodeSegment_LoadMessage_UndergroundTreasuresCorner,
+        TVEpisodeSegment_IsEligible_HasExplorerKit,
     },
     TV_PROGRAM_SEGMENT_NULL,
     {
-        sub_0206D75C,
-        sub_0206D7A4,
+        TVEpisodeSegment_LoadMessage_SafariGameSpecialNewsBulletin,
+        TVEpisodeSegment_IsEligible_SafariGameSpecialNewsBulletin,
     },
     {
-        sub_0206D8B0,
-        sub_0206D8F0,
+        TVEpisodeSegment_LoadMessage_PokemonStorageSpecialNewsBulletin,
+        TVEpisodeSegment_IsEligible_PokemonStorageSpecialNewsBulletin,
     },
     {
         NULL,
-        sub_0206D910,
+        TVEpisodeSegment_IsEligible_TrainerSightingsDummy,
     },
     {
-        sub_0206D94C,
+        TVEpisodeSegment_LoadMessage_PlantingAndWateringShow,
         NULL,
     },
     {
-        sub_0206D98C,
+        TVEpisodeSegment_LoadMessage_PlantingAndWateringShow_NoBerries,
         NULL,
     },
     {
-        sub_0206D474,
+        TVEpisodeSegment_LoadMessage_LoveThatGroupCorner_NewGroup,
         NULL,
     },
     {
-        sub_0206D9F4,
-        sub_0206DA50,
+        TVEpisodeSegment_LoadMessage_SealClubShow,
+        TVEpisodeSegment_IsEligible_SealClubShow,
     },
     {
-        sub_0206DAF0,
-        sub_0206DB08,
+        TVEpisodeSegment_LoadMessage_CaptureTheFlagDigest_TakeFlag,
+        TVEpisodeSegment_IsEligible_HasExplorerKit,
     },
     {
-        sub_0206DAFC,
-        sub_0206DB08,
+        TVEpisodeSegment_LoadMessage_CaptureTheFlagDigest_LoseFlag,
+        TVEpisodeSegment_IsEligible_HasExplorerKit,
     },
     TV_PROGRAM_SEGMENT_NULL,
     {
-        sub_0206DB38,
-        sub_0206DB48,
+        TVEpisodeSegment_LoadMessage_HomeAndManor_NoFurniture,
+        TVEpisodeSegment_IsEligible_HomeAndManor_NoFurniture,
     },
     {
-        sub_0206DB74,
-        sub_0206DB9C,
+        TVEpisodeSegment_LoadMessage_HomeAndManor,
+        TVEpisodeSegment_IsEligible_HomeAndManor,
     }
 };
 
