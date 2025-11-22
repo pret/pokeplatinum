@@ -1564,7 +1564,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartFatefulEncounter,
     ScrCmd_StartGiratinaOriginBattle,
     ScrCmd_WriteSpeciesSeen,
-    ScrCmd_31B,
+    ScrCmd_GetCurrentSafariGameCaughtNum,
     ScrCmd_FindPartySlotWithFatefulEncounterSpecies,
     ScrCmd_31D,
     ScrCmd_TryRevertPokemonForm,
@@ -6137,7 +6137,7 @@ static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx)
     switch (activeState) {
     case SAFARI_GAME_ACTIVE:
         SystemFlag_SetSafariGameActive(varsFlags);
-        sub_0206D000(broadcast);
+        TVBroadcast_ResetSafariGameData(broadcast);
         *safariBallCount = 30;
         *stepCount = 0;
         break;

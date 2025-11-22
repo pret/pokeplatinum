@@ -479,7 +479,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
             Pokemon *caughtMon = Party_GetPokemonBySlotIndex(encounter->dto->parties[1], 0);
 
-            sub_0206D018(broadcast, caughtMon);
+            TVBroadcast_UpdateSafariGameData(broadcast, caughtMon);
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);

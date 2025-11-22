@@ -151,7 +151,7 @@ _01F1:
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
     EndSafariGame
-    ScrCmd_31B VAR_MAP_LOCAL_2
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
     GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End
@@ -200,7 +200,7 @@ _0298:
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
-    ScrCmd_31B VAR_MAP_LOCAL_2
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
     GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End

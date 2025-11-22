@@ -4693,9 +4693,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31B arg0
+    .macro GetCurrentSafariGameCaughtNum destVar
     .short 795
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FindPartySlotWithFatefulEncounterSpecies destVar, species
