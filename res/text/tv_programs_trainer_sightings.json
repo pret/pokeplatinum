@@ -2,7 +2,7 @@
   "key": 33007,
   "messages": [
     {
-      "id": "pl_msg_00000416_00000",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_Nicknamed",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00001",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_NotNicknamed",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00002",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_Fainted",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00003",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_RanAway",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",

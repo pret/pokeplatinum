@@ -9,7 +9,6 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
@@ -69,7 +68,7 @@ struct BattleSystem {
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     Poketch *poketch;
-    UnkStruct_0206D140 *unk_9C;
+    CaptureAttempt *captureAttempt;
     u16 trainerIDs[MAX_BATTLERS];
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
@@ -121,7 +120,7 @@ struct BattleSystem {
     u32 unk_2418;
     u8 resultMask;
     u8 unk_241D;
-    u16 unk_241E;
+    u16 ballsThrown;
     enum EvolutionMethod mapEvolutionMethod;
     int unk_2424;
     int fieldWeather;

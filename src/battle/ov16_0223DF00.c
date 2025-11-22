@@ -1115,7 +1115,7 @@ void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 
 void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1)
 {
-    sub_0206D160(battleSystem->unk_9C, param1, battleSystem->resultMask, battleSystem->unk_241E, HEAP_ID_BATTLE);
+    CaptureAttempt_Init(battleSystem->captureAttempt, param1, battleSystem->resultMask, battleSystem->ballsThrown, HEAP_ID_BATTLE);
 }
 
 void ov16_0223EF8C(BattleSystem *battleSystem)

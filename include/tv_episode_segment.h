@@ -2,11 +2,11 @@
 #define POKEPLATINUM_TV_EPISODE_SEGMENT_H
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0206D140_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"
@@ -29,10 +29,10 @@ void sub_0206D0C8(TVBroadcast *broadcast, u16 param1);
 void sub_0206D0F0(TVBroadcast *broadcast);
 void sub_0206D104(TVBroadcast *broadcast);
 void sub_0206D12C(TVBroadcast *broadcast);
-UnkStruct_0206D140 *sub_0206D140(int heapID);
-void sub_0206D158(UnkStruct_0206D140 *param0);
-void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID);
-void sub_0206D1B8(FieldSystem *fieldSystem, const UnkStruct_0206D140 *param1, int param2);
+CaptureAttempt *CaptureAttempt_New(int heapID);
+void CaptureAttempt_Free(CaptureAttempt *captureAttempt);
+void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, u32 heapID);
+void FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask);
 void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 fishingRodItemID, Pokemon *mon);
 void sub_0206D424(FieldSystem *fieldSystem);
 void sub_0206D430(FieldSystem *fieldSystem);
