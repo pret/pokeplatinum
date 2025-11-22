@@ -44,7 +44,7 @@ UnkStruct_0202E7D8 *sub_0202E7D8(TVBroadcast *broadcast);
 UnkStruct_0202E7E4 *sub_0202E7E4(TVBroadcast *broadcast);
 UnkStruct_0202E7F0 *sub_0202E7F0(TVBroadcast *broadcast);
 UnkStruct_0202E7FC *sub_0202E7FC(TVBroadcast *broadcast);
-UnkStruct_0202E808 *sub_0202E808(TVBroadcast *broadcast);
+UnkStruct_0202E808 *TVBroadcast_GetSafariGameData(TVBroadcast *broadcast);
 UnkStruct_0202E810 *sub_0202E810(TVBroadcast *broadcast);
 UnkStruct_0202E81C *sub_0202E81C(TVBroadcast *broadcast);
 UnkStruct_0202E828 *sub_0202E828(TVBroadcast *broadcast);

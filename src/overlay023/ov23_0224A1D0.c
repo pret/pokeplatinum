@@ -476,7 +476,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
-                sub_0206DAB8(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);
+                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);
 
                 if (commPlayerMan->unk_2B2 != 0xffff) {
                     commPlayerMan->unk_2B2++;
@@ -497,7 +497,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
         if (commPlayerMan->unk_290[v1->unk_01]) {
             if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
-                sub_0206DAD4(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(v1->unk_01));
+                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_LoseFlag(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(v1->unk_01));
             }
         }
 

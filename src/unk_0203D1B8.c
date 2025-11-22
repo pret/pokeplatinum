@@ -1494,7 +1494,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     Pokemon *v2 = Party_GetFirstEgg(v1);
 
     GF_ASSERT(v2 != NULL);
-    sub_0206D578(fieldSystem, v2);
+    FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(fieldSystem, v2);
 
     v0.unk_00 = v2;
     v0.options = SaveData_GetOptions(fieldSystem->saveData);

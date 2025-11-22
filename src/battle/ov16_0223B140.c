@@ -731,7 +731,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->bagCursor = battleSystem->bagCursor;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
     v1->poketch = battleSystem->poketch;
-    v1->unk_10C = battleSystem->unk_9C;
+    v1->captureAttempt = battleSystem->captureAttempt;
     v1->countSafariBalls = battleSystem->safariBalls;
     v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
     v1->caughtBattlerIdx = battleSystem->unk_2438;
@@ -1084,7 +1084,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->unk_1BC = dto->subscreenCursorOn;
     battleSys->poketch = dto->poketch;
     battleSys->mapEvolutionMethod = dto->mapEvolutionMethod;
-    battleSys->unk_9C = dto->unk_10C;
+    battleSys->captureAttempt = dto->captureAttempt;
     battleSys->safariBalls = dto->countSafariBalls;
     battleSys->terrain = dto->terrain;
     battleSys->background = dto->background;

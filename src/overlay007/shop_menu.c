@@ -1216,7 +1216,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
-        sub_0206D504(shopMenu->saveData, shopMenu->itemId, shopMenu->itemAmount);
+        FieldSystem_SaveTVEpisodeSegment_SinnohShoppingChampCorner(shopMenu->saveData, shopMenu->itemId, shopMenu->itemAmount);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {

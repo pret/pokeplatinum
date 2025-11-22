@@ -75,7 +75,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         RecordMixedRNG_CopyEntry(v1, v12, 1);
 
         if (v13) {
-            sub_0206D430(param0->fieldSystem);
+            FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_SwitchGroup(param0->fieldSystem);
         }
     }
         return 0;
@@ -90,7 +90,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         RecordMixedRNG_SetEntrySeed(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);
         RecordMixedRNG_CopyEntry(v1, 0, 1);
-        sub_0206D424(param0->fieldSystem);
+        FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_NewGroup(param0->fieldSystem);
     } break;
     }
 

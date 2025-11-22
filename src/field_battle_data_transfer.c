@@ -104,7 +104,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
     dto->bag = Bag_New(heapID);
     dto->pokedex = Pokedex_New(heapID);
     dto->options = Options_New(heapID);
-    dto->unk_10C = sub_0206D140(heapID);
+    dto->captureAttempt = CaptureAttempt_New(heapID);
     dto->bagCursor = NULL;
     dto->subscreenCursorOn = NULL;
     dto->countSafariBalls = 0;
@@ -207,7 +207,7 @@ void FieldBattleDTO_Free(FieldBattleDTO *dto)
     Heap_Free(dto->bag);
     Heap_Free(dto->pokedex);
     Heap_Free(dto->options);
-    sub_0206D158(dto->unk_10C);
+    CaptureAttempt_Free(dto->captureAttempt);
     Heap_Free(dto);
 }
 
