@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00004",
+      "id": "TVProgramTrainerSightings_Text_WhatsFishing_Success",
       "en_US": [
         "MC: Welcome to another episode of\n",
         "What’s Fishing? Trainers with Rods.\r",
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00005",
+      "id": "TVProgramTrainerSightings_Text_WhatsFishing_Failure",
       "en_US": [
         "MC: Welcome to another episode of\n",
         "What’s Fishing? Trainers with Rods.\r",

@@ -33,7 +33,7 @@ CaptureAttempt *CaptureAttempt_New(int heapID);
 void CaptureAttempt_Free(CaptureAttempt *captureAttempt);
 void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, u32 heapID);
 void FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask);
-void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 fishingRodItemID, Pokemon *mon);
+void FieldSystem_SaveTVEpisodeSegment_WhatsFishing(FieldSystem *fieldSystem, BOOL caughtFish, u16 fishingRodItemID, Pokemon *mon);
 void sub_0206D424(FieldSystem *fieldSystem);
 void sub_0206D430(FieldSystem *fieldSystem);
 void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1);
