@@ -232,7 +232,7 @@ res/prebuilt/graphic/pst_gra.narc,/graphic/pst_gra.narc
 res/prebuilt/graphic/ranking.narc,/graphic/ranking.narc
 res/prebuilt/graphic/record.narc,/graphic/record.narc
 res/graphics/shop_menu/shop_gra.narc,/graphic/shop_gra.narc
-res/prebuilt/graphic/tmap_gra.narc,/graphic/tmap_gra.narc
+res/graphics/town_map/town_map_graphics.narc,/graphic/tmap_gra.narc
 res/prebuilt/graphic/touch_subwindow.narc,/graphic/touch_subwindow.narc
 res/prebuilt/graphic/trainer_case.narc,/graphic/trainer_case.narc
 res/prebuilt/graphic/unionobj2d_onlyfront.narc,/graphic/unionobj2d_onlyfront.narc

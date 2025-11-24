@@ -33,7 +33,6 @@ prebuilt_files = [
     'pst_gra.narc',
     'ranking.narc',
     'record.narc',
-    'tmap_gra.narc',
     'touch_subwindow.narc',
     'trainer_case.narc',
     'unionobj2d_onlyfront.narc',
