@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_203_YOUNGSTER_0",
+            "id": "ROUTE_203_YOUNGSTER_SEBASTIAN",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3355,
+            "script": "TRAINER_YOUNGSTER_SEBASTIAN",
             "initial_dir": 2,
             "data": [
                 5
@@ -19,12 +19,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_203_YOUNGSTER_1",
+            "id": "ROUTE_203_YOUNGSTER_MICHAEL",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3003,
+            "script": "TRAINER_YOUNGSTER_MICHAEL",
             "initial_dir": 2,
             "data": [
                 2
@@ -36,12 +36,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_203_LASS_2",
+            "id": "ROUTE_203_LASS_KAITLIN",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3322,
+            "script": "TRAINER_LASS_KAITLIN",
             "initial_dir": 0,
             "data": [
                 1
@@ -53,12 +53,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_203_YOUNGSTER_3",
+            "id": "ROUTE_203_YOUNGSTER_DALLAS",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3354,
+            "script": "TRAINER_YOUNGSTER_DALLAS",
             "initial_dir": 1,
             "data": [
                 4
@@ -70,12 +70,12 @@
             "y": 4
         },
         {
-            "id": "ROUTE_203_LASS_4",
+            "id": "ROUTE_203_LASS_MADELINE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3321,
+            "script": "TRAINER_LASS_MADELINE",
             "initial_dir": 1,
             "data": [
                 5
@@ -265,4 +265,3 @@
         }
     ]
 }
-

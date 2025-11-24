@@ -2,12 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_204_NORTH_BUG_CATCHER_0",
+            "id": "ROUTE_204_NORTH_BUG_CATCHER_BRANDON",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3012,
+            "script": "TRAINER_BUG_CATCHER_BRANDON",
             "initial_dir": 2,
             "data": [
                 1
@@ -19,12 +19,12 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_POKEMON_BREEDER_F_1",
+            "id": "ROUTE_204_NORTH_AROMA_LADY_TAYLOR",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3013,
+            "script": "TRAINER_AROMA_LADY_TAYLOR",
             "initial_dir": 1,
             "data": [
                 4
@@ -36,12 +36,13 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_TWIN_2",
+            "id": "ROUTE_204_NORTH_TWIN_LIV",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3014,
+            "script": "TRAINER_TWINS_LIV_AND_LIZ",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 3
@@ -53,12 +54,13 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_TWIN_3",
+            "id": "ROUTE_204_NORTH_TWIN_LIZ",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5014,
+            "script": "TRAINER_TWINS_LIV_AND_LIZ",
+            "double_battle_id": 2,
             "initial_dir": 1,
             "data": [
                 4
@@ -202,4 +204,3 @@
     ],
     "coord_events": []
 }
-

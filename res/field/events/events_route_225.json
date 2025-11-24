@@ -332,12 +332,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_M_19",
+            "id": "ROUTE_225_ACE_TRAINER_RODOLFO",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "0",
-            "script": 3562,
+            "script": "TRAINER_ACE_TRAINER_RODOLFO",
             "initial_dir": 3,
             "data": [
                 2,
@@ -350,12 +350,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_F_20",
+            "id": "ROUTE_225_RANGER_ASHLEE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3593,
+            "script": "TRAINER_RANGER_ASHLEE",
             "initial_dir": 1,
             "data": [
                 4
@@ -367,12 +367,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_F_21",
+            "id": "ROUTE_225_BIRD_KEEPER_AUDREY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3553,
+            "script": "TRAINER_BIRD_KEEPER_AUDREY",
             "initial_dir": 0,
             "data": [
                 4
@@ -384,12 +384,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_PSYCHIC_22",
+            "id": "ROUTE_225_PSYCHIC_DAISY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3584,
+            "script": "TRAINER_PSYCHIC_DAISY",
             "initial_dir": 2,
             "data": [
                 2
@@ -401,12 +401,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_M_23",
+            "id": "ROUTE_225_DRAGON_TAMER_GEOFFREY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3556,
+            "script": "TRAINER_DRAGON_TAMER_GEOFFREY",
             "initial_dir": 2,
             "data": [
                 3
@@ -418,12 +418,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_F_24",
+            "id": "ROUTE_225_ACE_TRAINER_DEANNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3572,
+            "script": "TRAINER_ACE_TRAINER_DEANNA",
             "initial_dir": 3,
             "data": [
                 4
@@ -453,12 +453,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_M_26",
+            "id": "ROUTE_225_RANGER_DWAYNE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3592,
+            "script": "TRAINER_RANGER_DWAYNE",
             "initial_dir": 3,
             "data": [
                 2
@@ -470,12 +470,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_225_ACE_TRAINER_M_27",
+            "id": "ROUTE_225_ACE_TRAINER_QUINN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3566,
+            "script": "TRAINER_ACE_TRAINER_QUINN",
             "initial_dir": 0,
             "data": [
                 3
@@ -554,4 +554,3 @@
     ],
     "coord_events": []
 }
-

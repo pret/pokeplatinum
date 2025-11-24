@@ -73,12 +73,12 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_2",
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_COLBY",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3308,
+            "script": "TRAINER_BLACK_BELT_COLBY",
             "initial_dir": 3,
             "data": [
                 3
@@ -90,12 +90,12 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_3",
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_DARREN",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3309,
+            "script": "TRAINER_BLACK_BELT_DARREN",
             "initial_dir": 2,
             "data": [
                 2
@@ -107,12 +107,12 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_4",
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_JEFFERY",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3311,
+            "script": "TRAINER_BLACK_BELT_JEFFERY",
             "initial_dir": 1,
             "data": [
                 2
@@ -124,12 +124,12 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_5",
+            "id": "VEILSTONE_CITY_GYM_BLACK_BELT_RAFAEL",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3310,
+            "script": "TRAINER_BLACK_BELT_RAFAEL",
             "initial_dir": 2,
             "data": [
                 4

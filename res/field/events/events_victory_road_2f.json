@@ -79,12 +79,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_M_4",
+            "id": "VICTORY_ROAD_2F_ACE_TRAINER_OMAR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3223,
+            "script": "TRAINER_ACE_TRAINER_OMAR",
             "initial_dir": 1,
             "data": [
                 4
@@ -96,12 +96,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_F_5",
+            "id": "VICTORY_ROAD_2F_ACE_TRAINER_SYDNEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3226,
+            "script": "TRAINER_ACE_TRAINER_SYDNEY",
             "initial_dir": 2,
             "data": [
                 4
@@ -113,12 +113,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_EXPERT_M_6",
+            "id": "VICTORY_ROAD_2F_VETERAN_CLAYTON",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3228,
+            "script": "TRAINER_VETERAN_CLAYTON",
             "initial_dir": 1,
             "data": [
                 4
@@ -130,12 +130,13 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_M_7",
+            "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_AL",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3236,
+            "script": "TRAINER_DOUBLE_TEAM_AL_AND_KAY",
+            "double_battle_id": 1,
             "initial_dir": 2,
             "data": [
                 2
@@ -147,12 +148,13 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_F_8",
+            "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_KAY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5236,
+            "script": "TRAINER_DOUBLE_TEAM_AL_AND_KAY",
+            "double_battle_id": 2,
             "initial_dir": 2,
             "data": [
                 2
@@ -531,4 +533,3 @@
     ],
     "coord_events": []
 }
-

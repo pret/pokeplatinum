@@ -19,12 +19,12 @@
     ],
     "object_events": [
         {
-            "id": "CANALAVE_CITY_GYM_BLACK_BELT_0",
+            "id": "CANALAVE_CITY_GYM_BLACK_BELT_DAVID",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3231,
+            "script": "TRAINER_BLACK_BELT_DAVID",
             "initial_dir": 1,
             "data": [
                 1
@@ -51,12 +51,12 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_GYM_WORKER_2",
+            "id": "CANALAVE_CITY_GYM_WORKER_JACKSON",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3255,
+            "script": "TRAINER_WORKER_JACKSON",
             "initial_dir": 1,
             "data": [
                 2
@@ -68,12 +68,12 @@
             "y": 10
         },
         {
-            "id": "CANALAVE_CITY_GYM_WORKER_3",
+            "id": "CANALAVE_CITY_GYM_WORKER_GARY",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3256,
+            "script": "TRAINER_WORKER_GARY",
             "initial_dir": 1,
             "data": [
                 4
@@ -100,12 +100,12 @@
             "y": 30
         },
         {
-            "id": "CANALAVE_CITY_GYM_BLACK_BELT_5",
+            "id": "CANALAVE_CITY_GYM_BLACK_BELT_RICKY",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3313,
+            "script": "TRAINER_BLACK_BELT_RICKY",
             "initial_dir": 2,
             "data": [
                 3
@@ -117,12 +117,12 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_M_6",
+            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_CESAR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3278,
+            "script": "TRAINER_ACE_TRAINER_CESAR",
             "initial_dir": 1,
             "data": [
                 2
@@ -134,12 +134,12 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_GYM_WORKER_7",
+            "id": "CANALAVE_CITY_GYM_WORKER_GERARDO",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3366,
+            "script": "TRAINER_WORKER_GERARDO",
             "initial_dir": 1,
             "data": [
                 1
@@ -151,12 +151,12 @@
             "y": 20
         },
         {
-            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_F_8",
+            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_BREANNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3282,
+            "script": "TRAINER_ACE_TRAINER_BREANNA",
             "initial_dir": 3,
             "data": [
                 3

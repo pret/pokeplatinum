@@ -157,12 +157,12 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GRUNT_M_6",
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x028F",
-            "script": 3516,
+            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2",
             "initial_dir": 0,
             "data": [
                 2,
@@ -175,12 +175,12 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GRUNT_M_7",
+            "id": "MT_CORONET_4F_ROOMS_1_AND_2_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "FLAG_UNK_0x028F",
-            "script": 3515,
+            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1",
             "initial_dir": 2,
             "data": [
                 4
@@ -256,4 +256,3 @@
     ],
     "coord_events": []
 }
-

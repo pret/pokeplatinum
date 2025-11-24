@@ -114,12 +114,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_2F_GRUNT_M_1",
+            "id": "GALACTIC_HQ_2F_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3509,
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1",
             "initial_dir": 0,
             "data": [
                 3
@@ -131,12 +131,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_2F_GRUNT_M_2",
+            "id": "GALACTIC_HQ_2F_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3512,
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2",
             "initial_dir": 0,
             "data": [
                 4
@@ -148,12 +148,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_2F_GRUNT_F_3",
+            "id": "GALACTIC_HQ_2F_GALACTIC_GRUNT_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3429,
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
             "initial_dir": 2,
             "data": [
                 4
@@ -165,12 +165,12 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_2F_SCIENTIST_M_4",
+            "id": "GALACTIC_HQ_2F_SCIENTIST_DARRIUS",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0237",
-            "script": 3828,
+            "script": "TRAINER_SCIENTIST_DARRIUS",
             "initial_dir": 0,
             "data": [
                 2

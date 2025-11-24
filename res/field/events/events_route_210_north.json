@@ -19,12 +19,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_M_0",
+            "id": "ROUTE_210_NORTH_ACE_TRAINER_ERNEST",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3065,
+            "script": "TRAINER_ACE_TRAINER_ERNEST",
             "initial_dir": 3,
             "data": [
                 4
@@ -36,12 +36,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_F_1",
+            "id": "ROUTE_210_NORTH_ACE_TRAINER_ALYSSA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3066,
+            "script": "TRAINER_ACE_TRAINER_ALYSSA",
             "initial_dir": 0,
             "data": [
                 2
@@ -53,12 +53,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_NINJA_BOY_2",
+            "id": "ROUTE_210_NORTH_NINJA_BOY_JOEL",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3069,
+            "script": "TRAINER_NINJA_BOY_JOEL",
             "initial_dir": 1,
             "data": [
                 1
@@ -70,12 +70,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_NINJA_BOY_3",
+            "id": "ROUTE_210_NORTH_NINJA_BOY_NATHAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3070,
+            "script": "TRAINER_NINJA_BOY_NATHAN",
             "initial_dir": 1,
             "data": [
                 1
@@ -87,12 +87,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_NINJA_BOY_4",
+            "id": "ROUTE_210_NORTH_NINJA_BOY_DAVIDO",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "flag": "0",
-            "script": 3071,
+            "script": "TRAINER_NINJA_BOY_DAVIDO",
             "initial_dir": 1,
             "data": [
                 1
@@ -104,12 +104,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_M_5",
+            "id": "ROUTE_210_NORTH_DRAGON_TAMER_PATRICK",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3072,
+            "script": "TRAINER_DRAGON_TAMER_PATRICK",
             "initial_dir": 2,
             "data": [
                 3
@@ -121,12 +121,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_F_6",
+            "id": "ROUTE_210_NORTH_BIRD_KEEPER_BRIANNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3073,
+            "script": "TRAINER_BIRD_KEEPER_BRIANNA",
             "initial_dir": 1,
             "data": [
                 2
@@ -138,12 +138,13 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_M_7",
+            "id": "ROUTE_210_NORTH_DOUBLE_TEAM_TRAINER_ZAC",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3074,
+            "script": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -153,12 +154,13 @@
             "y": 8
         },
         {
-            "id": "ROUTE_210_NORTH_ACE_TRAINER_F_8",
+            "id": "ROUTE_210_NORTH_DOUBLE_TEAM_TRAINER_JEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_NORTH_WEST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 5074,
+            "script": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
+            "double_battle_id": 2,
             "initial_dir": 3,
             "data": [
                 2
@@ -170,12 +172,12 @@
             "y": 8
         },
         {
-            "id": "ROUTE_210_NORTH_EXPERT_M_9",
+            "id": "ROUTE_210_NORTH_VETERAN_BRIAN",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3067,
+            "script": "TRAINER_VETERAN_BRIAN",
             "initial_dir": 1,
             "data": [
                 3
@@ -187,12 +189,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_BLACK_BELT_10",
+            "id": "ROUTE_210_NORTH_BLACK_BELT_ADAM",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "0",
-            "script": 3068,
+            "script": "TRAINER_BLACK_BELT_ADAM",
             "initial_dir": 3,
             "data": [
                 4,
@@ -450,4 +452,3 @@
     ],
     "coord_events": []
 }
-

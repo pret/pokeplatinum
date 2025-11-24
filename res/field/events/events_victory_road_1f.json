@@ -102,12 +102,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_PSYCHIC_5",
+            "id": "VICTORY_ROAD_1F_PSYCHIC_BRYCE",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3233,
+            "script": "TRAINER_PSYCHIC_BRYCE",
             "initial_dir": 0,
             "data": [
                 2
@@ -119,12 +119,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_BLACK_BELT_6",
+            "id": "VICTORY_ROAD_1F_BLACK_BELT_MILES",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": "0",
-            "script": 3443,
+            "script": "TRAINER_BLACK_BELT_MILES",
             "initial_dir": 1,
             "data": [
                 1
@@ -136,12 +136,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_ACE_TRAINER_F_7",
+            "id": "VICTORY_ROAD_1F_BIRD_KEEPER_HANA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3232,
+            "script": "TRAINER_BIRD_KEEPER_HANA",
             "initial_dir": 2,
             "data": [
                 3
@@ -153,12 +153,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_ACE_TRAINER_F_8",
+            "id": "VICTORY_ROAD_1F_ACE_TRAINER_MARIAH",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3225,
+            "script": "TRAINER_ACE_TRAINER_MARIAH",
             "initial_dir": 1,
             "data": [
                 2
@@ -170,12 +170,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_EXPERT_M_9",
+            "id": "VICTORY_ROAD_1F_VETERAN_EDGAR",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3227,
+            "script": "TRAINER_VETERAN_EDGAR",
             "initial_dir": 3,
             "data": [
                 2
@@ -187,12 +187,12 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_ACE_TRAINER_M_10",
+            "id": "VICTORY_ROAD_1F_DRAGON_TAMER_CLINTON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3230,
+            "script": "TRAINER_DRAGON_TAMER_CLINTON",
             "initial_dir": 2,
             "data": [
                 3
@@ -301,4 +301,3 @@
     ],
     "coord_events": []
 }
-

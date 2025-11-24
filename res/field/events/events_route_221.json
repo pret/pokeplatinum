@@ -43,12 +43,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_221_SWIMMER_M_0",
+            "id": "ROUTE_221_SWIMMER_DILLON",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3165,
+            "script": "TRAINER_SWIMMER_DILLON",
             "initial_dir": 1,
             "data": [
                 2
@@ -60,12 +60,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_SWIMMER_F_1",
+            "id": "ROUTE_221_SWIMMER_VANESSA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3166,
+            "script": "TRAINER_SWIMMER_VANESSA",
             "initial_dir": 0,
             "data": [
                 3
@@ -77,12 +77,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_FISHERMAN_2",
+            "id": "ROUTE_221_FISHERMAN_CORY",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3167,
+            "script": "TRAINER_FISHERMAN_CORY",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -92,12 +92,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_COLLECTOR_3",
+            "id": "ROUTE_221_COLLECTOR_IVAN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3273,
+            "script": "TRAINER_COLLECTOR_IVAN",
             "initial_dir": 0,
             "data": [
                 3
@@ -109,12 +109,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_ACE_TRAINER_M_4",
+            "id": "ROUTE_221_ACE_TRAINER_JAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3169,
+            "script": "TRAINER_ACE_TRAINER_JAKE",
             "initial_dir": 2,
             "data": [
                 3
@@ -126,12 +126,12 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_ACE_TRAINER_F_5",
+            "id": "ROUTE_221_ACE_TRAINER_SHANNON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3170,
+            "script": "TRAINER_ACE_TRAINER_SHANNON",
             "initial_dir": 2,
             "data": [
                 3
@@ -338,4 +338,3 @@
     ],
     "coord_events": []
 }
-

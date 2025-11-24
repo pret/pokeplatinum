@@ -27,12 +27,12 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_215_BLACK_BELT_0",
+            "id": "ROUTE_215_BLACK_BELT_DEREK",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3127,
+            "script": "TRAINER_BLACK_BELT_DEREK",
             "initial_dir": 2,
             "data": [
                 3
@@ -44,12 +44,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_BLACK_BELT_1",
+            "id": "ROUTE_215_BLACK_BELT_GREGORY",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3126,
+            "script": "TRAINER_BLACK_BELT_GREGORY",
             "initial_dir": 2,
             "data": [
                 3
@@ -61,12 +61,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_BLACK_BELT_2",
+            "id": "ROUTE_215_BLACK_BELT_NATHANIEL",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3128,
+            "script": "TRAINER_BLACK_BELT_NATHANIEL",
             "initial_dir": 2,
             "data": [
                 2
@@ -78,12 +78,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_JOGGER_3",
+            "id": "ROUTE_215_JOGGER_SCOTT",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0273",
-            "script": 3129,
+            "script": "TRAINER_JOGGER_SCOTT",
             "initial_dir": 1,
             "data": [
                 3
@@ -95,12 +95,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_RUIN_MANIAC_4",
+            "id": "ROUTE_215_RUIN_MANIAC_CALVIN",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3303,
+            "script": "TRAINER_RUIN_MANIAC_CALVIN",
             "initial_dir": 1,
             "data": [
                 3
@@ -112,12 +112,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_ACE_TRAINER_M_5",
+            "id": "ROUTE_215_ACE_TRAINER_DENNIS",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3277,
+            "script": "TRAINER_ACE_TRAINER_DENNIS",
             "initial_dir": 0,
             "data": [
                 2
@@ -129,12 +129,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_ACE_TRAINER_F_6",
+            "id": "ROUTE_215_ACE_TRAINER_MAYA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "0",
-            "script": 3286,
+            "script": "TRAINER_ACE_TRAINER_MAYA",
             "initial_dir": 1,
             "data": [
                 2
@@ -146,12 +146,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_JOGGER_7",
+            "id": "ROUTE_215_JOGGER_CRAIG",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_WEST_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": "FLAG_UNK_0x0275",
-            "script": 3306,
+            "script": "TRAINER_JOGGER_CRAIG",
             "initial_dir": 0,
             "data": [
                 3
@@ -510,4 +510,3 @@
     ],
     "coord_events": []
 }
-
