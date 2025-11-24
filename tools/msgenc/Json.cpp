@@ -215,6 +215,7 @@ void Json::ToFile(MessagesConverter &converter) {
         rapidjson::Value entry_name(rapidjson::kStringType);
         if (it != id_strings.cend()) {
             entry_name.SetString(it->c_str(), doc.GetAllocator());
+            it++;
         } else {
             sprintf(keybuf, "%s_%s", prefix.c_str(), row_no_buf);
             entry_name.SetString(keybuf, doc.GetAllocator());
@@ -246,7 +247,6 @@ void Json::ToFile(MessagesConverter &converter) {
 
         messages.PushBack(entry, doc.GetAllocator());
         IncRowNoBuf();
-        it++;
     }
 
     doc.AddMember("messages", messages, doc.GetAllocator());
