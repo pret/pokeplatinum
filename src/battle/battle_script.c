@@ -10129,7 +10129,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
         LoadStandardWindowTiles(bgl, 2, 1, 0, HEAP_ID_BATTLE);
         PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
-        Window_Add(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
+        Window_Add(bgl, window, 2, 0x11, 0x7, 14, 12, 11, 9 + 1);
         Window_FillTilemap(window, 0xFF);
         Window_DrawStandardFrame(window, 0, 1, 8);
 
@@ -10580,7 +10580,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->seqNum = 1;
 
                 Sound_PlayEffect(SEQ_SE_DP_NAGERU);
-                v2->battleSys->unk_241E++;
+                v2->battleSys->ballsThrown++;
                 ov12_022368C8(v2->ballRotation, 0);
             }
         } else {
@@ -10595,7 +10595,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v2->seqNum = 1;
 
                     Sound_PlayEffect(SEQ_SE_DP_NAGERU);
-                    v2->battleSys->unk_241E++;
+                    v2->battleSys->ballsThrown++;
                     ov12_022368C8(v2->ballRotation, 0);
                 }
             }
@@ -10707,12 +10707,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                     BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
                     PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 32;
                 } else if (BattleSystem_CaughtSpecies(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, 0x1 | 0x4, 0xffff, 1, 0, 16, 0x0);
                     PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 16;
                 } else {
@@ -10736,7 +10736,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->seqNum = 12;
-                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, 0x1 | 0x4, 0xffff, 1, 0, 16, 0x0);
                 PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
             }
@@ -10776,7 +10776,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             }
 
             if (v2->seqNum == 14) {
-                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, 0x1 | 0x4, 0xffff, 1, 0, 16, 0x0);
                 ov21_021E8E04(v2->tmpPtr[0], 0);
             }
         }
@@ -10796,7 +10796,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         ov21_021E8DD0(v2->tmpPtr[0]);
         CharTransfer_PushTaskManager(v2->tmpPtr[1]);
         ov16_0223B578(v2->battleSys);
-        PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
+        PaletteData_StartFade(v4, 0x1 | 0x4, 0xffff, 1, 16, 0, 0x0);
         v2->seqNum = 17;
         break;
     case 16:
@@ -10813,7 +10813,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 ov16_0223B578(v2->battleSys);
                 Pokemon_BuildSpriteTemplate(&v14, v3, 2);
                 PokemonSpriteManager_CreateSprite(v5, &v14, 128, 72, 0, 0, NULL, NULL);
-                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
+                PaletteData_StartFade(v4, 0x1 | 0x4, 0xffff, 1, 16, 0, 0x0);
                 PokemonSpriteManager_StartFadeAll(v5, 16, 0, 0, 0x0);
 
                 v2->seqNum = 17;
@@ -10843,7 +10843,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->seqNum = 22;
             } else {
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
                 PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                 v2->seqNum = 20;
             }
@@ -10910,7 +10910,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
 
                 if (v19->returnCode == NAMING_SCREEN_CODE_OK) {
                     Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRING_AND_FLAG, v19->textInputStr);
-                    ov16_0223F24C(v2->battleSys, (1 + 48));
+                    ov16_0223F24C(v2->battleSys, 1 + 48);
                 }
 
                 NamingScreenArgs_Free(v19);
@@ -10936,12 +10936,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                 ov16_0223EF48(v2->battleSys, v3);
                 ov16_0223EF68(v2->battleSys, v3);
-                BattleIO_IncrementRecord(v2->battleSys, 0, 0, (1 + 8));
+                BattleIO_IncrementRecord(v2->battleSys, 0, 0, 1 + 8);
 
                 if (Party_AddPokemon(v22, v3) == 1) {
                     if (v2->seqNum == 22) {
                         sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                        PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                        PaletteData_StartFade(v4, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
                         PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     }
 
@@ -11002,7 +11002,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             if (--v2->tmpData[1] == 0) {
                 {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
                     PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
 
                     v2->seqNum = 32;

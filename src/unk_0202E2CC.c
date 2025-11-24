@@ -449,9 +449,9 @@ UnkStruct_0202E7FC *sub_0202E7FC(TVBroadcast *broadcast)
     return &broadcast->unk_B04;
 }
 
-UnkStruct_0202E808 *sub_0202E808(TVBroadcast *broadcast)
+UnkStruct_0202E808 *TVBroadcast_GetSafariGameData(TVBroadcast *broadcast)
 {
-    return &broadcast->unk_B08;
+    return &broadcast->safariGame;
 }
 
 UnkStruct_0202E810 *sub_0202E810(TVBroadcast *broadcast)

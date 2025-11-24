@@ -7,7 +7,6 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 #include "struct_defs/wi_fi_history.h"
@@ -31,6 +30,18 @@ typedef struct BattleRecords {
     int totalDamage;
 } BattleRecords;
 
+typedef struct CaptureAttempt {
+    int resultMask;
+    u16 ballsThrown;
+    u16 species;
+    u8 gender;
+    u8 language;
+    u8 metGame;
+    u8 hasNickname;
+    u16 nickname[11];
+    u16 pokeballItemID;
+} CaptureAttempt;
+
 typedef struct FieldBattleDTO {
     u32 battleType;
     Party *parties[MAX_BATTLERS];
@@ -46,7 +57,7 @@ typedef struct FieldBattleDTO {
     Poketch *poketch;
     WiFiHistory *wiFiHistory;
     Options *options;
-    UnkStruct_0206D140 *unk_10C;
+    CaptureAttempt *captureAttempt;
     BattleRecords battleRecords;
     GameRecords *records;
     JournalEntry *journalEntry;

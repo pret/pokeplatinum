@@ -2,11 +2,11 @@
 #define POKEPLATINUM_TV_EPISODE_SEGMENT_H
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0206D140_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"
@@ -21,35 +21,35 @@ void sub_0206CF9C(TVBroadcast *broadcast, int param1);
 void sub_0206CFB4(TVBroadcast *broadcast, int param1);
 void sub_0206CFCC(TVBroadcast *broadcast, int param1);
 void sub_0206CFE4(TVBroadcast *broadcast, BOOL param1, u16 param2);
-void sub_0206D000(TVBroadcast *broadcast);
-void sub_0206D018(TVBroadcast *broadcast, Pokemon *param1);
+void TVBroadcast_ResetSafariGameData(TVBroadcast *broadcast);
+void TVBroadcast_UpdateSafariGameData(TVBroadcast *broadcast, Pokemon *param1);
 void sub_0206D048(TVBroadcast *broadcast, Pokemon *param1);
 void sub_0206D088(TVBroadcast *broadcast, u8 param1, const TrainerInfo *param2);
 void sub_0206D0C8(TVBroadcast *broadcast, u16 param1);
 void sub_0206D0F0(TVBroadcast *broadcast);
 void sub_0206D104(TVBroadcast *broadcast);
 void sub_0206D12C(TVBroadcast *broadcast);
-UnkStruct_0206D140 *sub_0206D140(int heapID);
-void sub_0206D158(UnkStruct_0206D140 *param0);
-void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID);
-void sub_0206D1B8(FieldSystem *fieldSystem, const UnkStruct_0206D140 *param1, int param2);
-void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 fishingRodItemID, Pokemon *mon);
-void sub_0206D424(FieldSystem *fieldSystem);
-void sub_0206D430(FieldSystem *fieldSystem);
-void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1);
-void sub_0206D504(SaveData *saveData, u16 param1, u8 param2);
-void sub_0206D578(FieldSystem *fieldSystem, Pokemon *param1);
-void sub_0206D60C(FieldSystem *fieldSystem, Pokemon *param1);
-void sub_0206D6C8(FieldSystem *fieldSystem, int param1, int param2);
-void sub_0206D720(FieldSystem *fieldSystem);
-void sub_0206D7C4(FieldSystem *fieldSystem);
-void sub_0206D90C(TVBroadcast *broadcast, Pokemon *param1, u16 param2);
-void sub_0206D914(FieldSystem *fieldSystem, u16 param1, u8 param2, u16 param3);
-void sub_0206D9B4(TVBroadcast *broadcast, Pokemon *param1, u8 param2);
-void sub_0206DAB8(FieldSystem *fieldSystem, const TrainerInfo *param1);
-void sub_0206DAD4(FieldSystem *fieldSystem, const TrainerInfo *param1);
-void sub_0206DB20(FieldSystem *fieldSystem);
-void sub_0206DB5C(FieldSystem *fieldSystem, u8 param1);
+CaptureAttempt *CaptureAttempt_New(int heapID);
+void CaptureAttempt_Free(CaptureAttempt *captureAttempt);
+void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, u32 heapID);
+void FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask);
+void FieldSystem_SaveTVEpisodeSegment_WhatsFishing(FieldSystem *fieldSystem, BOOL caughtFish, u16 fishingRodItemID, Pokemon *mon);
+void FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_NewGroup(FieldSystem *fieldSystem);
+void FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_SwitchGroup(FieldSystem *fieldSystem);
+void FieldSystem_SaveTVEpisodeSegment_HiddenItemBreakingNews(FieldSystem *fieldSystem, u16 item);
+void FieldSystem_SaveTVEpisodeSegment_SinnohShoppingChampCorner(SaveData *saveData, u16 item, u8 amount);
+void FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(FieldSystem *fieldSystem, Pokemon *mon);
+void FieldSystem_SaveTVEpisodeSegment_RateThatNameChange(FieldSystem *fieldSystem, Pokemon *mon);
+void FieldSystem_SaveTVEpisodeSegment_UndergroundTreasuresCorner(FieldSystem *fieldSystem, int item, int amount);
+void FieldSystem_SaveTVEpisodeSegment_SafariGameSpecialNewsBulletin(FieldSystem *fieldSystem);
+void FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(FieldSystem *fieldSystem);
+void FieldSystem_SaveTVEpisodeSegment_HerbalMedicineTrainerSightingDummy(TVBroadcast *broadcast, Pokemon *mon, u16 item);
+void FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount);
+void FieldSystem_SaveTVEpisodeSegment_SealClubShow(TVBroadcast *broadcast, Pokemon *mon, u8 ballSeal);
+void FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo);
+void FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_LoseFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo);
+void FieldSystem_SaveTVEpisodeSegment_HomeAndManor_NoFurniture(FieldSystem *fieldSystem);
+void FieldSystem_SaveTVEpisodeSegment_HomeAndManor(FieldSystem *fieldSystem, u8 furniture);
 void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3);
 void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2);
 void sub_0206DD38(FieldSystem *fieldSystem, u32 param1, u32 param2, u32 param3);
