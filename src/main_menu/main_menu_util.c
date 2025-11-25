@@ -45,6 +45,8 @@
 #include "versions.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+
 #define WONDER_CARD_ENCRYPTION_MAGIC 0xD679
 
 typedef struct MainMenuUtilManager MainMenuUtilManager;
@@ -592,7 +594,7 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
 
 static void LoadGiftBoxSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType giftType, WonderCard *wonderCard)
 {
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 35, 32, 34, 33, DS_SCREEN_SUB);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, giftbox_NCGR_lz, giftbox_NCLR, giftbox_cell_NCER_lz, giftbox_anim_NANR_lz, DS_SCREEN_SUB);
     MainMenuUtil_SetSubScreenViewRect(0 * FX32_ONE, 256 * FX32_ONE);
 
     utilMan->mysteryGiftSprite = MainMenuUtil_InitSprite(DS_SCREEN_SUB, utilMan->mysteryGiftSprite, HW_LCD_WIDTH / 2, 0, 0);
@@ -656,7 +658,7 @@ static void LoadItemSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType gi
 
 static void LoadMysteryGiftPalettes(MainMenuUtilManager *utilMan)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 29, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), 6 * PALETTE_SIZE_BYTES, utilMan->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, gift_reception_bg_tiles_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), 6 * PALETTE_SIZE_BYTES, utilMan->heapID);
 }
 
 void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
@@ -666,10 +668,10 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     enum MysteryGiftType giftType = wonderCard->pgt.type;
     int plttOffset = CalcPlttOffsetForGiftType(giftType);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 30, bgConfig, BG_LAYER_SUB_1, 0, 10 * 16 * TILE_SIZE_4BPP, TRUE, utilMan->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gift_reception_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_1, 0, 10 * 16 * TILE_SIZE_4BPP, TRUE, utilMan->heapID);
 
     NNSG2dScreenData *screenData;
-    void *nscr = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__MYSTERY, 31, TRUE, utilMan->heapID, TRUE);
+    void *nscr = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__MYSTERY, gift_reception_bg_NSCR_lz, TRUE, utilMan->heapID, TRUE);
 
     NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
