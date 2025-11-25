@@ -19,7 +19,6 @@ prebuilt_files = [
     'lobby_news.narc',
     'mail_gra.narc',
     'mysign.narc',
-    'mystery.narc',
     'ntag_gra.narc',
     'nutmixer.narc',
     'oekaki.narc',
