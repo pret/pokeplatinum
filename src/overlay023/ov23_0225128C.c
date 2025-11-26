@@ -656,8 +656,8 @@ static void ov23_02251BB4(SysTask *param0, UndergroundMenu *param1)
     Strbuf_Free(param1->fmtString);
     StringTemplate_Free(param1->template);
 
-    if (param1->unk_260 != NULL) {
-        param1->unk_260(0);
+    if (param1->exitCallback != NULL) {
+        param1->exitCallback(0);
     }
 
     if (param1->scrollPrompts) {

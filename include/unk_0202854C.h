@@ -125,8 +125,8 @@ int UndergroundRecord_GetNumTrapsTriggered(const UndergroundRecord *undergroundR
 void UndergroundRecord_IncrementNumTrapsTriggered(UndergroundRecord *undergroundRecord);
 int UndergroundRecord_GetNumPlayersHelped(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundRecord);
-int sub_02029774(const UndergroundRecord *param0);
-void sub_0202977C(UndergroundRecord *param0);
+int UndergroundRecord_GetGiftsReceived(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundRecord);
 int sub_020297AC(const UndergroundRecord *param0);
 void sub_020297B4(UndergroundRecord *param0);
 int sub_020297E4(const UndergroundRecord *param0);
