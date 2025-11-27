@@ -22,13 +22,13 @@
 
 #include "easy3d.h"
 #include "field_task.h"
+#include "goods.h"
 #include "heap.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "text.h"
 #include "unk_0202854C.h"
-#include "unk_020573FC.h"
 
 typedef struct {
     int unk_00;
@@ -172,8 +172,8 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
 
     v0 = &param2->unk_3C;
 
-    v0->unk_18 = sub_020573FC(param1);
-    v0->unk_1C = sub_0205740C(param1);
+    v0->unk_18 = Good_GetWidth(param1);
+    v0->unk_1C = Good_GetDepth(param1);
 
     v1.x = (FX32_ONE * 16) * ((0 * 32) + 16) + ((FX32_ONE * 8) * v0->unk_18);
     v1.y = FX32_ONE;
@@ -1191,8 +1191,8 @@ static void ov23_02255D1C(const int param0, const int param1, const int param2, 
     v0.unk_00.unk_00 = param2;
     v0.unk_00.unk_04 = param3;
 
-    v0.unk_18 = sub_020573FC(param1);
-    v0.unk_1C = sub_0205740C(param1);
+    v0.unk_18 = Good_GetWidth(param1);
+    v0.unk_1C = Good_GetDepth(param1);
 
     v0.unk_00.unk_08 = param2 + (v0.unk_18 - 1);
     v0.unk_00.unk_0C = param3 + (v0.unk_1C - 1);

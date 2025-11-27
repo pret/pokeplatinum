@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
+#include "constants/goods.h"
 
 
     ScriptEntry BattleTower_SingleDoubleBattleRoomGuide
@@ -147,19 +148,19 @@ _022E:
 
 _0239:
     BufferNumber 0, 20
-    SetVar VAR_0x8004, 85
+    SetVar VAR_0x8004, GOOD_BRONZE_TROPHY
     GoTo _0272
     End
 
 _024C:
     BufferNumber 0, 50
-    SetVar VAR_0x8004, 86
+    SetVar VAR_0x8004, GOOD_SILVER_TROPHY
     GoTo _0272
     End
 
 _025F:
     BufferNumber 0, 100
-    SetVar VAR_0x8004, 87
+    SetVar VAR_0x8004, GOOD_GOLD_TROPHY
     GoTo _0272
     End
 
