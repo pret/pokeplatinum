@@ -50,6 +50,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0695.h"
@@ -629,7 +630,7 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 43, 40, 42, 41, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, main_menu_scroll_arrows_NCGR_lz, main_menu_scroll_arrows_NCLR, main_menu_scroll_arrows_cell_NCER_lz, main_menu_scroll_arrows_anim_NANR_lz, DS_SCREEN_MAIN);
 
     appData->scrollUpArrowSprite = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->scrollUpArrowSprite, HW_LCD_WIDTH / 2, SCROLL_ARROWS_OFFSET, 0);
     Sprite_SetDrawFlag(appData->scrollUpArrowSprite, FALSE);
@@ -640,8 +641,8 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 
 static void LoadWirelessIconsGraphics(MainMenuAppData *appData)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCGR, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
 }
 
 static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type)

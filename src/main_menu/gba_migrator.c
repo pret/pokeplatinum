@@ -64,6 +64,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/migrate_from_gba.h"
 
 FS_EXTERN_OVERLAY(game_opening);
@@ -571,10 +572,10 @@ static void ov97_02233FA4(GBAMigrator *migrator)
         migrator->unk_1B8[i] = SpriteResourceCollection_New(3, i, HEAP_ID_MIGRATE_FROM_GBA);
     }
 
-    migrator->unk_1D0[0] = SpriteResourceCollection_AddTiles(migrator->unk_1B8[0], NARC_INDEX_GRAPHIC__MYSTERY, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[1] = SpriteResourceCollection_AddPalette(migrator->unk_1B8[1], NARC_INDEX_GRAPHIC__MYSTERY, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[2] = SpriteResourceCollection_Add(migrator->unk_1B8[2], NARC_INDEX_GRAPHIC__MYSTERY, 25, 1, 0, 2, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[3] = SpriteResourceCollection_Add(migrator->unk_1B8[3], NARC_INDEX_GRAPHIC__MYSTERY, 24, 1, 0, 3, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[0] = SpriteResourceCollection_AddTiles(migrator->unk_1B8[0], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCGR_lz, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[1] = SpriteResourceCollection_AddPalette(migrator->unk_1B8[1], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[2] = SpriteResourceCollection_Add(migrator->unk_1B8[2], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_cell_NCER_lz, 1, 0, 2, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[3] = SpriteResourceCollection_Add(migrator->unk_1B8[3], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_anim_NANR_lz, 1, 0, 3, HEAP_ID_MIGRATE_FROM_GBA);
 
     SpriteTransfer_RequestChar(migrator->unk_1D0[0]);
     SpriteTransfer_RequestPlttWholeRange(migrator->unk_1D0[1]);
@@ -1453,14 +1454,14 @@ static void ov97_02234DFC(GBAMigrator *migrator)
     Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, HEAP_ID_MIGRATE_FROM_GBA);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 19, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 22, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCLR, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCGR_lz, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_MIGRATE_FROM_GBA);
 }
 
 static void ov97_02234E7C(GBAMigrator *migrator)
 {
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 20, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_box_NSCR_lz, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, 2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
 }
@@ -1527,7 +1528,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
         ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->selectedMonIcons[i]);
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_confirm_NSCR_lz, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, BG_LAYER_MAIN_2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);

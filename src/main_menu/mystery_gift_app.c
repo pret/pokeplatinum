@@ -59,6 +59,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/mystery_gift_menu.h"
 #include "res/text/bank/unk_0695.h"
 
@@ -375,7 +376,7 @@ static void LoadDownloadArrowSpriteResources(MysteryGiftAppData *appData)
 {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 10, 7, 9, 8, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, download_arrow_NCGR_lz, download_arrow_NCLR, download_arrow_cell_NCER_lz, download_arrow_anim_NANR_lz, DS_SCREEN_MAIN);
 }
 
 static void SetDownloadArrowAnim(MysteryGiftAppData *appData, int animID)
@@ -854,18 +855,18 @@ static void SetupGraphics(BgConfig *bgConfig)
 
 static void LoadBottomScreenBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_SUB_1);
 }
 
 static void LoadBothScreensBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 
@@ -1194,10 +1195,10 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
 static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
 {
     enum NarcID narcID = NARC_INDEX_GRAPHIC__MYSTERY;
-    int tilesID = 39;
-    int paletteID = 36;
-    int cellsID = 38;
-    int animationID = 37;
+    int tilesID = mystery_gift_particles_NCGR_lz;
+    int paletteID = mystery_gift_particles_NCLR;
+    int cellsID = mystery_gift_particles_cell_NCER_lz;
+    int animationID = mystery_gift_particles_anim_NANR_lz;
     int compressed = TRUE;
     int vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     int resourceID = 20000 + vramType;
