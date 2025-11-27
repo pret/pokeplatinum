@@ -38,6 +38,7 @@
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "item.h"
 #include "item_use_pokemon.h"
 #include "journal.h"

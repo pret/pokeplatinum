@@ -4,7 +4,6 @@
 #include "constants/graphics.h"
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_0202440C.h"
@@ -24,6 +23,7 @@
 #include "menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"

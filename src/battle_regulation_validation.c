@@ -2,28 +2,12 @@
 
 #include <nitro.h>
 
-#include "constants/heap.h"
 #include "constants/pokemon.h"
-
-#include "struct_decls/struct_02098700_decl.h"
 
 #include "battle_regulation.h"
 #include "party.h"
 #include "pokedex_heightweight.h"
 #include "pokemon.h"
-
-HeightWeightData *HeightWeightData_Load(enum HeapID heapID)
-{
-    HeightWeightData *data = Pokedex_HeightWeightData(heapID);
-    Pokedex_HeightWeightData_Load(data, FALSE, heapID);
-    return data;
-}
-
-void HeightWeightData_Free(HeightWeightData *heightWeightData)
-{
-    Pokedex_HeightWeightData_Release(heightWeightData);
-    Pokedex_HeightWeightData_Free(heightWeightData);
-}
 
 BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *pokemon, const HeightWeightData *heightWeightData)
 {
@@ -40,7 +24,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
         return FALSE;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) != 0) {
+    if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL)) {
         return FALSE;
     }
 

@@ -5,8 +5,6 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02098700_decl.h"
-
 #include "field/field_system.h"
 
 #include "battle_regulation.h"
@@ -16,9 +14,11 @@
 #include "field_task.h"
 #include "font.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sound_playback.h"

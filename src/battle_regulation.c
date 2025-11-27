@@ -9,6 +9,8 @@
 #include "savedata.h"
 #include "strbuf.h"
 
+#include "res/text/bank/unk_0353.h"
+
 int BattleRegulation_Size(void)
 {
     return sizeof(BattleRegulation);
@@ -215,7 +217,7 @@ void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, Strbuf *strb
 
     if (index < NELEMS(BattleRegulation_PredefinedRules)) {
         messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, heapID);
-        MessageLoader_GetStrbuf(messageLoader, 70 + index, strbuf);
+        MessageLoader_GetStrbuf(messageLoader, pl_msg_00000353_00070 + index, strbuf);
         MessageLoader_Free(messageLoader);
     } else {
         BattleRegulation_GetName(BattleRegulation_Load(saveData, 0), strbuf);

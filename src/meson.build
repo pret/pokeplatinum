@@ -277,6 +277,7 @@ pokeplatinum_c = files(
     'pc_boxes.c',
     'pokemon_icon.c',
     'dexmode_checker.c',
+    'height_weight_data.c',
     'battle_regulation_validation.c',
     'unk_0207A6DC.c',
     'evolution.c',
