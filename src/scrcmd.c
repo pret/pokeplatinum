@@ -340,14 +340,14 @@ static BOOL ScrCmd_WaitMovement(ScriptContext *ctx);
 static BOOL ScrCmd_LockAll(ScriptContext *ctx);
 static BOOL sub_020410CC(ScriptContext *ctx);
 static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx);
-static BOOL SrcCmd_LockObject(ScriptContext *ctx);
-static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx);
+static BOOL ScrCmd_LockObject(ScriptContext *ctx);
+static BOOL ScrCmd_ReleaseObject(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
-static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
-static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx);
-static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx);
-static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
+static BOOL ScrCmd_AddFreeCamera(ScriptContext *ctx);
+static BOOL ScrCmd_RestoreCamera(ScriptContext *ctx);
+static BOOL ScrCmd_AddCameraOverrideObject(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
@@ -867,12 +867,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
     ScrCmd_ReleaseAll,
-    SrcCmd_LockObject,
-    SrcCmd_ReleaseObject,
+    ScrCmd_LockObject,
+    ScrCmd_ReleaseObject,
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
-    SrcCmd_AddFreeCamera,
-    SrcCmd_RestoreCamera,
+    ScrCmd_AddFreeCamera,
+    ScrCmd_RestoreCamera,
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
     ScrCmd_Unused_06A,
@@ -1545,8 +1545,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonForm2,
     ScrCmd_ShowListMenuRememberCursor,
     ScrCmd_GetEmptyPoffinCaseSlotCount,
-    SrcCmd_AddCameraOverrideObject,
-    SrcCmd_RemoveCameraOverrideObject,
+    ScrCmd_AddCameraOverrideObject,
+    ScrCmd_RemoveCameraOverrideObject,
     ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
@@ -3168,7 +3168,7 @@ static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL SrcCmd_LockObject(ScriptContext *ctx)
+static BOOL ScrCmd_LockObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3178,7 +3178,7 @@ static BOOL SrcCmd_LockObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx)
+static BOOL ScrCmd_ReleaseObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3217,7 +3217,7 @@ static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
+static BOOL ScrCmd_AddFreeCamera(ScriptContext *ctx)
 {
     u16 xPos = ScriptContext_GetVar(ctx);
     u16 zPos = ScriptContext_GetVar(ctx);
@@ -3238,7 +3238,7 @@ static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
+static BOOL ScrCmd_RestoreCamera(ScriptContext *ctx)
 {
     MapObject **freeCameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
@@ -3253,7 +3253,7 @@ static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
+static BOOL ScrCmd_AddCameraOverrideObject(ScriptContext *ctx)
 {
     u16 xPos = ScriptContext_GetVar(ctx);
     u16 zPos = ScriptContext_GetVar(ctx);
@@ -3268,7 +3268,7 @@ static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
 {
     MapObject **cameraOverrideObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
