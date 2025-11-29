@@ -135,7 +135,7 @@ enum ConfirmLearnMoveScreenWindow {
     CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION,
     CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL,
     CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY,
-    CONFIRM_LEARN_MOVE_SCREEN_WINDOW_FORGET_CANCEL,
+    CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM,
 };
 
 enum ConfirmLearnMoveContestStatsScreenWindow {
@@ -145,7 +145,7 @@ enum ConfirmLearnMoveContestStatsScreenWindow {
     CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP,
     CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS,
     CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT,
-    CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_FORGET_CANCEL,
+    CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM,
 };
 
 #define POKEMON_LEVEL_DIGITS              3
@@ -1077,7 +1077,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 309,
     },
-    [CONFIRM_LEARN_MOVE_SCREEN_WINDOW_FORGET_CANCEL] = {
+    [CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 7,
         .tilemapTop = 20,
@@ -1143,7 +1143,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 349,
     },
-    [CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_FORGET_CANCEL] = {
+    [CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 7,
         .tilemapTop = 20,
@@ -1898,7 +1898,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void PrintForgetMoveButton(BattleParty *battleParty, u32 windowIndex)
+static void PrintConfirmMoveButton(BattleParty *battleParty, u32 windowIndex)
 {
     Window *window = &battleParty->windows[windowIndex];
     Strbuf *strbuf;
@@ -2281,7 +2281,7 @@ static void RenderConfirmLearnMoveScreen(BattleParty *battleParty)
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL], 0);
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY], 0);
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION], 0);
-    Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_SCREEN_WINDOW_FORGET_CANCEL], 0);
+    Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM], 0);
 
     PrintPokemonNameHeader(battleParty, CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
     PrintPPLabel(battleParty, CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL, 0, 0);
@@ -2309,7 +2309,7 @@ static void RenderConfirmLearnMoveScreen(BattleParty *battleParty)
         PrintSummaryScreenMovePPStats(battleParty, CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP, pp, pp);
     }
 
-    PrintForgetMoveButton(battleParty, CONFIRM_LEARN_MOVE_SCREEN_WINDOW_FORGET_CANCEL);
+    PrintConfirmMoveButton(battleParty, CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM);
 }
 
 static void RenderRestoreMovePPScreen(BattleParty *battleParty)
@@ -2360,7 +2360,7 @@ static void RenderConfirmLearnMoveContestStatsScreen(BattleParty *battleParty)
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME], 0);
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], 0);
     Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT], 0);
-    Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_FORGET_CANCEL], 0);
+    Window_FillTilemap(&battleParty->windows[CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM], 0);
 
     PrintPokemonNameHeader(battleParty, CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
     PrintPPLabel(battleParty, CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL, 0, 0);
@@ -2386,7 +2386,7 @@ static void RenderConfirmLearnMoveContestStatsScreen(BattleParty *battleParty)
         PrintSummaryScreenMovePPStats(battleParty, CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, pp, pp);
     }
 
-    PrintForgetMoveButton(battleParty, CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_FORGET_CANCEL);
+    PrintConfirmMoveButton(battleParty, CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM);
 }
 
 void BattlePartyText_DisplayErrorMessage(BattleParty *battleParty)
