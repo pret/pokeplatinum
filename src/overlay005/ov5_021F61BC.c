@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
@@ -21,8 +19,8 @@
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04;
-    UnkStruct_02073B50 unk_18;
+    YA3DA_Model unk_04;
+    YA3DA_RenderObj unk_18;
 } UnkStruct_021F61E8;
 
 typedef struct {
@@ -72,12 +70,12 @@ void ov5_021F61D8(void *param0)
 static void ov5_021F61E8(UnkStruct_021F61E8 *param0)
 {
     ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 80, 0);
-    sub_02073B70(&param0->unk_18, &param0->unk_04);
+    YA3DA_BindModelToRenderObj(&param0->unk_18, &param0->unk_04);
 }
 
 static void ov5_021F620C(UnkStruct_021F61E8 *param0)
 {
-    sub_0207395C(&param0->unk_04);
+    YA3DA_FreeModel(&param0->unk_04);
 }
 
 void ov5_021F6218(PlayerAvatar *playerAvatar)
@@ -186,7 +184,7 @@ static void ov5_021F636C(OverworldAnimManager *param0, void *param1)
         u32 v1 = 0;
         MtxFx33 v2;
         VecFx32 v3, v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        UnkStruct_02073B50 *v5 = &v0->unk_24.unk_04->unk_18;
+        YA3DA_RenderObj *v5 = &v0->unk_24.unk_04->unk_18;
         const VecFx32 *v6 = &Unk_ov5_02200C24[v0->unk_04][v0->unk_20];
 
         switch (v0->unk_04) {
@@ -210,7 +208,7 @@ static void ov5_021F636C(OverworldAnimManager *param0, void *param1)
         v3.y += v6->y;
         v3.z += v6->z;
 
-        sub_02073BA4(v5, &v3, &v4, &v2);
+        YA3DA_DrawRenderObj(v5, &v3, &v4, &v2);
     }
 }
 

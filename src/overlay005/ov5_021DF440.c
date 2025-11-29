@@ -8,8 +8,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
@@ -705,18 +703,18 @@ static void ov5_021DFADC(SysTask *param0, void *param1)
     }
 }
 
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, YA3DA_Model *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
 {
-    sub_0207389C(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
-    sub_020738EC(param1);
+    YA3DA_LoadModelFromSet(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
+    YA3DA_ScheduleBindModelTexture(param1);
 }
 
-void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, u32 param2, u32 param3, u32 param4)
+void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, YA3DA_Animation *param1, u32 param2, u32 param3, u32 param4)
 {
-    sub_020739B4(param1, param2, param0->unk_18, param3, param0->heapID, param4);
+    YA3DA_LoadAnimFromOpenNARC(param1, param2, param0->unk_18, param3, param0->heapID, param4);
 }
 
-void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, const UnkStruct_02073838 *param2, UnkStruct_02073974 *param3, u32 param4)
+void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, YA3DA_Animation *param1, const YA3DA_Model *param2, YA3DA_Animation *param3, u32 param4)
 {
-    sub_02073A6C(param1, param2, param3, param4, param0->heapID);
+    YA3DA_ApplyAnimCopyToModel(param1, param2, param3, param4, param0->heapID);
 }

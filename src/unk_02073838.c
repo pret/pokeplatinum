@@ -3,12 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
-
-#include "overlay005/struct_ov5_02201C58.h"
-
 #include "easy3d.h"
 #include "fx_util.h"
 #include "graphics.h"
@@ -16,325 +10,329 @@
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "unk_02073838.h"
 
-static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
+enum YA3DAAnimationFlags {
+    ANIM_OWNS_SET = 1 << 0,
+    ANIM_REACHED_END = 1 << 1,
+};
 
-static const VecFx32 Unk_020F0544 = {
+static void LoadAnimFromSet(YA3DA_Animation *anim, void *animSet, u32 unused);
+static void LoadAnimFromSet_NewAlloc(YA3DA_Animation *anim, void *animSet, u32 unused);
+static void CreateAnimCopy(YA3DA_Animation *dest, YA3DA_Animation *src, u32 unused);
+static void ZeroOutModel(YA3DA_Model *model);
+static void LoadModelFromSet(YA3DA_Model *model, NNSG3dResFileHeader *modelSetHeader, u32 modelIndex);
+static void BindModelTexture(YA3DA_Model *model);
+static void FreeMdlSetHeader(YA3DA_Model *model);
+static void UnloadModelTexture(YA3DA_Model *model);
+static void BindAnimToModel(YA3DA_Animation *anim, const NNSG3dResMdl *model, u32 heapID);
+static void InitG3DAnimObject(YA3DA_Animation *anim, const NNSG3dResMdl *model, const NNSG3dResTex *texture);
+static void ZeroOutRenderObj(YA3DA_RenderObj *renderObj);
+static void BindModelToRenderObj(YA3DA_RenderObj *renderObj, NNSG3dResMdl *model);
+static void BindAnimToRenderObj(YA3DA_RenderObj *renderObj, NNSG3dAnmObj *anim);
+
+static const VecFx32 sVecOnes = {
     FX32_ONE,
     FX32_ONE,
     FX32_ONE,
 };
 
-static const MtxFx33 Unk_020F0550 = {
-    FX32_ONE,
-    0x0,
-    0x0,
-    0x0,
-    FX32_ONE,
-    0x0,
-    0x0,
-    0x0,
-    FX32_ONE,
+static const MtxFx33 sIdentity = {
+    // clang-format off
+    FX32_ONE, 0,        0,
+    0,        FX32_ONE, 0,
+    0,        0,        FX32_ONE,
+    // clang-format on
 };
 
-void sub_02073838(UnkStruct_02073838 *param0)
+static void ZeroOutModel(YA3DA_Model *model)
 {
-    memset(param0, 0, sizeof(UnkStruct_02073838));
+    memset(model, 0, sizeof(YA3DA_Model));
 }
 
-void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 param2)
+static void LoadModelFromSet(YA3DA_Model *dest, NNSG3dResFileHeader *modelSetHeader, u32 modelIndex)
 {
-    sub_02073838(param0);
+    ZeroOutModel(dest);
 
-    param0->unk_04 = param1;
-    param0->unk_00 = 0;
-    param0->unk_08 = NNS_G3dGetMdlSet(param1);
-    param0->unk_0C = NNS_G3dGetMdlByIdx(param0->unk_08, param2);
-    param0->unk_10 = NNS_G3dGetTex(param1);
+    dest->modelSetHeader = modelSetHeader;
+    dest->isTextureBound = FALSE;
+    dest->modelSet = NNS_G3dGetMdlSet(modelSetHeader);
+    dest->g3DModel = NNS_G3dGetMdlByIdx(dest->modelSet, modelIndex);
+    dest->texture = NNS_G3dGetTex(modelSetHeader);
 }
 
-void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *narc, u32 narcMemberIdx, u32 heapID, BOOL allocAtEnd)
+void YA3DA_LoadModelFromSet(YA3DA_Model *dest, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, u32 heapID, BOOL allocAtEnd)
 {
-    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(narc, narcMemberIdx, FALSE, heapID, allocAtEnd);
-    sub_02073848(param0, v0, param1);
+    NNSG3dResFileHeader *modelSetHeader = LoadMemberFromOpenNARC(narc, modelSetNarcIdx, FALSE, heapID, allocAtEnd);
+    LoadModelFromSet(dest, modelSetHeader, modelIdx);
 }
 
-void sub_020738C0(UnkStruct_02073838 *param0)
+static void BindModelTexture(YA3DA_Model *model)
 {
-    Easy3D_UploadTextureToVRAM(param0->unk_10);
-    NNS_G3dBindMdlSet(param0->unk_08, param0->unk_10);
-    param0->unk_00 = 1;
+    Easy3D_UploadTextureToVRAM(model->texture);
+    NNS_G3dBindMdlSet(model->modelSet, model->texture);
+    model->isTextureBound = TRUE;
 }
 
-static void sub_020738D8(SysTask *param0, void *param1)
+static void BindModelTextureSysTaskCB(SysTask *sysTask, void *_model)
 {
-    UnkStruct_02073838 *v0 = param1;
+    YA3DA_Model *model = _model;
 
-    sub_020738C0(v0);
-    SysTask_Done(param0);
+    BindModelTexture(model);
+    SysTask_Done(sysTask);
 }
 
-void sub_020738EC(UnkStruct_02073838 *param0)
+void YA3DA_ScheduleBindModelTexture(YA3DA_Model *model)
 {
-    {
-        SysTask *v0 = SysTask_ExecuteOnVBlank(sub_020738D8, param0, 0xffff);
-        GF_ASSERT(v0 != NULL);
+    SysTask *sysTask = SysTask_ExecuteOnVBlank(BindModelTextureSysTaskCB, model, 0xffff);
+    GF_ASSERT(sysTask != NULL);
+}
+
+static void FreeMdlSetHeader(YA3DA_Model *model)
+{
+    if (model->modelSetHeader) {
+        Heap_Free(model->modelSetHeader);
     }
 }
 
-void sub_0207390C(UnkStruct_02073838 *param0)
+static void UnloadModelTexture(YA3DA_Model *model)
 {
-    if (param0->unk_04) {
-        Heap_Free(param0->unk_04);
+    if (model->texture != NULL) {
+        NNSG3dTexKey texKey;
+        NNSG3dTexKey tex4x4Key;
+        NNSG3dPlttKey plttKey;
+
+        NNS_G3dTexReleaseTexKey(model->texture, &texKey, &tex4x4Key);
+        NNS_GfdFreeTexVram(texKey);
+        NNS_GfdFreeTexVram(tex4x4Key);
+
+        plttKey = NNS_G3dPlttReleasePlttKey(model->texture);
+        NNS_GfdFreePlttVram(plttKey);
+
+        model->texture = NULL;
     }
 }
 
-void sub_0207391C(UnkStruct_02073838 *param0)
+void YA3DA_FreeModel(YA3DA_Model *model)
 {
-    if (param0->unk_10 != NULL) {
-        NNSG3dTexKey v0;
-        NNSG3dTexKey v1;
-        NNSG3dPlttKey v2;
+    UnloadModelTexture(model);
+    FreeMdlSetHeader(model);
+    ZeroOutModel(model);
+}
 
-        NNS_G3dTexReleaseTexKey(param0->unk_10, &v0, &v1);
-        NNS_GfdFreeTexVram(v0);
-        NNS_GfdFreeTexVram(v1);
+void YA3DA_ZeroOutAnimation(YA3DA_Animation *anim)
+{
+    memset(anim, 0, sizeof(YA3DA_Animation));
+}
 
-        v2 = NNS_G3dPlttReleasePlttKey(param0->unk_10);
-        NNS_GfdFreePlttVram(v2);
+static void LoadAnimFromSet_NewAlloc(YA3DA_Animation *dest, void *animSet, u32 unused)
+{
+    LoadAnimFromSet(dest, animSet, unused);
+    dest->flags |= ANIM_OWNS_SET;
+}
 
-        param0->unk_10 = NULL;
+void YA3DA_LoadFromAllocatedSet(YA3DA_Animation *dest, void *animSet, u32 unused)
+{
+    LoadAnimFromSet(dest, animSet, unused);
+    dest->flags &= ~ANIM_OWNS_SET;
+}
+
+static void CreateAnimCopy(YA3DA_Animation *dest, YA3DA_Animation *src, u32 unused)
+{
+    void *v0 = src->animSet;
+    YA3DA_LoadFromAllocatedSet(dest, v0, unused);
+}
+
+void YA3DA_LoadAnimFromOpenNARC(YA3DA_Animation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, u32 heapID, BOOL allocAtEnd)
+{
+    void *v0 = LoadMemberFromOpenNARC(narc, animSetNarcIdx, FALSE, heapID, allocAtEnd);
+    LoadAnimFromSet_NewAlloc(anim, v0, unused);
+}
+
+static void LoadAnimFromSet(YA3DA_Animation *dest, void *animSet, u32 unused)
+{
+    YA3DA_ZeroOutAnimation(dest);
+
+    dest->animSet = animSet;
+    dest->g3DAnim = NNS_G3dGetAnmByIdx(dest->animSet, 0);
+}
+
+void YA3DA_FreeG3DAnimation(YA3DA_Animation *anim)
+{
+    if (anim->flags & ANIM_OWNS_SET) {
+        Heap_Free(anim->animSet);
+        anim->flags &= ~ANIM_OWNS_SET;
+    }
+
+    anim->animSet = NULL;
+    anim->g3DAnim = NULL;
+}
+
+static void BindAnimToModel(YA3DA_Animation *anim, const NNSG3dResMdl *model, u32 heapID)
+{
+    HeapExp_FndInitAllocator(&anim->allocator, heapID, 4);
+    anim->animObj = NNS_G3dAllocAnmObj(&anim->allocator, anim->g3DAnim, model);
+
+    GF_ASSERT(anim->animObj != NULL);
+}
+
+void YA3DA_BindAnimToModel(YA3DA_Animation *anim, const YA3DA_Model *model, u32 heapID)
+{
+    BindAnimToModel(anim, model->g3DModel, heapID);
+}
+
+static void InitG3DAnimObject(YA3DA_Animation *anim, const NNSG3dResMdl *model, const NNSG3dResTex *texture)
+{
+    NNS_G3dAnmObjInit(anim->animObj, anim->g3DAnim, model, texture);
+}
+
+void YA3DA_InitG3DAnimObject(YA3DA_Animation *anim, const YA3DA_Model *model)
+{
+    InitG3DAnimObject(anim, model->g3DModel, model->texture);
+}
+
+void YA3DA_ApplyAnimCopyToModel(YA3DA_Animation *dest, const YA3DA_Model *model, YA3DA_Animation *src, u32 unused, u32 heapID)
+{
+    CreateAnimCopy(dest, src, unused);
+    YA3DA_BindAnimToModel(dest, model, heapID);
+    YA3DA_InitG3DAnimObject(dest, model);
+}
+
+void YA3DA_FreeAnimObject(YA3DA_Animation *anim)
+{
+    if (anim->animObj) {
+        NNS_G3dFreeAnmObj(&anim->allocator, anim->animObj);
+        anim->animObj = NULL;
     }
 }
 
-void sub_0207395C(UnkStruct_02073838 *param0)
+void YA3DA_FreeAnimation(YA3DA_Animation *anim)
 {
-    sub_0207391C(param0);
-    sub_0207390C(param0);
-    sub_02073838(param0);
+    YA3DA_FreeAnimObject(anim);
+    YA3DA_FreeG3DAnimation(anim);
+    YA3DA_ZeroOutAnimation(anim);
 }
 
-void sub_02073974(UnkStruct_02073974 *param0)
+BOOL YA3DA_AdvanceAnim(YA3DA_Animation *anim, fx32 amount, BOOL loop)
 {
-    memset(param0, 0, sizeof(UnkStruct_02073974));
-}
+    u32 reachedEnd = FALSE;
+    fx32 animLength = NNS_G3dAnmObjGetNumFrame(anim->animObj);
 
-void sub_02073980(UnkStruct_02073974 *param0, void *param1, u32 param2)
-{
-    sub_020739D8(param0, param1, param2);
-    param0->unk_00 |= (1 << 0);
-}
+    anim->currFrame += amount;
 
-void sub_02073994(UnkStruct_02073974 *param0, void *param1, u32 param2)
-{
-    sub_020739D8(param0, param1, param2);
-    param0->unk_00 &= (~(1 << 0));
-}
+    if (amount > 0) {
+        if (anim->currFrame >= animLength) {
+            reachedEnd = TRUE;
 
-void sub_020739A8(UnkStruct_02073974 *param0, UnkStruct_02073974 *param1, u32 param2)
-{
-    void *v0 = param1->unk_08;
-    sub_02073994(param0, v0, param2);
-}
-
-void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 heapID, int param5)
-{
-    void *v0 = LoadMemberFromOpenNARC(param2, param3, 0, heapID, param5);
-    sub_02073980(param0, v0, param1);
-}
-
-static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2)
-{
-    sub_02073974(param0);
-
-    param0->unk_08 = param1;
-    param0->unk_0C = NNS_G3dGetAnmByIdx(param0->unk_08, 0);
-}
-
-void sub_020739F0(UnkStruct_02073974 *param0)
-{
-    if (param0->unk_00 & (1 << 0)) {
-        Heap_Free(param0->unk_08);
-        param0->unk_00 &= (~(1 << 0));
-    }
-
-    param0->unk_08 = NULL;
-    param0->unk_0C = NULL;
-}
-
-void sub_02073A14(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, u32 heapID)
-{
-    HeapExp_FndInitAllocator(&param0->unk_14, heapID, 4);
-    param0->unk_10 = NNS_G3dAllocAnmObj(&param0->unk_14, param0->unk_0C, param1);
-
-    GF_ASSERT(param0->unk_10 != NULL);
-}
-
-void sub_02073A3C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, u32 heapID)
-{
-    sub_02073A14(param0, param1->unk_0C, heapID);
-}
-
-void sub_02073A48(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, const NNSG3dResTex *param2)
-{
-    NNS_G3dAnmObjInit(param0->unk_10, param0->unk_0C, param1, param2);
-}
-
-void sub_02073A5C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1)
-{
-    sub_02073A48(param0, param1->unk_0C, param1->unk_10);
-}
-
-void sub_02073A6C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, UnkStruct_02073974 *param2, u32 param3, u32 heapID)
-{
-    sub_020739A8(param0, param2, param3);
-    sub_02073A3C(param0, param1, heapID);
-    sub_02073A5C(param0, param1);
-}
-
-void sub_02073A90(UnkStruct_02073974 *param0)
-{
-    if (param0->unk_10) {
-        NNS_G3dFreeAnmObj(&param0->unk_14, param0->unk_10);
-        param0->unk_10 = NULL;
-    }
-}
-
-void sub_02073AA8(UnkStruct_02073974 *param0)
-{
-    sub_02073A90(param0);
-    sub_020739F0(param0);
-    sub_02073974(param0);
-}
-
-BOOL sub_02073AC0(UnkStruct_02073974 *param0, fx32 param1, int param2)
-{
-    u32 v0 = 0;
-    fx32 v1 = NNS_G3dAnmObjGetNumFrame(param0->unk_10);
-
-    param0->unk_04 += param1;
-
-    if (param1 > 0) {
-        if (param0->unk_04 >= v1) {
-            v0 = 1;
-
-            if (param2 == 1) {
-                param0->unk_04 -= v1;
+            if (loop == TRUE) {
+                anim->currFrame -= animLength;
             } else {
-                param0->unk_04 = v1;
+                anim->currFrame = animLength;
             }
         }
     } else {
-        if (param0->unk_04 <= 0) {
-            v0 = 1;
+        if (anim->currFrame <= 0) {
+            reachedEnd = TRUE;
 
-            if (param2 == 1) {
-                param0->unk_04 += v1;
+            if (loop == TRUE) {
+                anim->currFrame += animLength;
             } else {
-                param0->unk_04 = 0;
+                anim->currFrame = 0;
             }
         }
     }
 
-    NNS_G3dAnmObjSetFrame(param0->unk_10, param0->unk_04);
+    NNS_G3dAnmObjSetFrame(anim->animObj, anim->currFrame);
 
-    if (v0 == 1) {
-        param0->unk_00 |= (1 << 1);
+    if (reachedEnd == TRUE) {
+        anim->flags |= ANIM_REACHED_END;
     } else {
-        param0->unk_00 &= (~(1 << 1));
+        anim->flags &= ~ANIM_REACHED_END;
     }
 
-    return v0;
+    return reachedEnd;
 }
 
-void sub_02073B20(UnkStruct_02073974 *param0, fx32 param1)
+void YA3DA_SetAnimFrame(YA3DA_Animation *anim, fx32 frame)
 {
-    param0->unk_04 = param1;
+    anim->currFrame = frame;
 }
 
-fx32 sub_02073B24(const UnkStruct_02073974 *param0)
+fx32 YA3DA_GetAnimFrame(const YA3DA_Animation *anim)
 {
-    return param0->unk_04;
+    return anim->currFrame;
 }
 
-fx32 sub_02073B28(const UnkStruct_02073974 *param0)
+fx32 YA3DA_GetAnimFrameCount(const YA3DA_Animation *anim)
 {
-    GF_ASSERT(param0->unk_10 != NULL);
-    {
-        fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_10);
-
-        return v0;
-    }
+    GF_ASSERT(anim->animObj != NULL);
+    return NNS_G3dAnmObjGetNumFrame(anim->animObj);
 }
 
-BOOL sub_02073B40(const UnkStruct_02073974 *param0)
+BOOL YA3DA_HasAnimationReachedEnd(const YA3DA_Animation *anim)
 {
-    if (param0->unk_00 & (1 << 1)) {
-        return 1;
-    }
-
-    return 0;
+    return (anim->flags & ANIM_REACHED_END) != 0;
 }
 
-void sub_02073B50(UnkStruct_02073B50 *param0)
+static void ZeroOutRenderObj(YA3DA_RenderObj *renderObj)
 {
-    memset(param0, 0, sizeof(UnkStruct_02073B50));
+    memset(renderObj, 0, sizeof(YA3DA_RenderObj));
 }
 
-void sub_02073B5C(UnkStruct_02073B50 *param0, NNSG3dResMdl *param1)
+static void BindModelToRenderObj(YA3DA_RenderObj *renderObj, NNSG3dResMdl *model)
 {
-    sub_02073B50(param0);
-    NNS_G3dRenderObjInit(&param0->unk_00, param1);
+    ZeroOutRenderObj(renderObj);
+    NNS_G3dRenderObjInit(&renderObj->g3DRenderObj, model);
 }
 
-void sub_02073B70(UnkStruct_02073B50 *param0, UnkStruct_02073838 *param1)
+void YA3DA_BindModelToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model)
 {
-    sub_02073B5C(param0, param1->unk_0C);
+    BindModelToRenderObj(renderObj, model->g3DModel);
 }
 
-void sub_02073B7C(UnkStruct_02073B50 *param0, NNSG3dAnmObj *param1)
+static void BindAnimToRenderObj(YA3DA_RenderObj *renderObj, NNSG3dAnmObj *anim)
 {
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param1);
+    NNS_G3dRenderObjAddAnmObj(&renderObj->g3DRenderObj, anim);
 }
 
-void sub_02073B84(UnkStruct_02073B50 *param0, UnkStruct_02073974 *param1)
+void YA3DA_BindAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Animation *anim)
 {
-    sub_02073B7C(param0, param1->unk_10);
+    BindAnimToRenderObj(renderObj, anim->animObj);
 }
 
-void sub_02073B90(UnkStruct_02073B50 *param0, UnkStruct_02073838 *param1, UnkStruct_02073974 *param2)
+void YA3DA_BindModelAndAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model, YA3DA_Animation *anim)
 {
-    sub_02073B70(param0, param1);
-    sub_02073B84(param0, param2);
+    YA3DA_BindModelToRenderObj(renderObj, model);
+    YA3DA_BindAnimToRenderObj(renderObj, anim);
 }
 
-void sub_02073BA4(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const MtxFx33 *param3)
+void YA3DA_DrawRenderObj(YA3DA_RenderObj *renderObj, const VecFx32 *pos, const VecFx32 *scale, const MtxFx33 *rot)
 {
-    Easy3D_DrawRenderObj(&param0->unk_00, param1, param3, param2);
+    Easy3D_DrawRenderObj(&renderObj->g3DRenderObj, pos, rot, scale);
 }
 
-void sub_02073BB4(UnkStruct_02073B50 *param0, const VecFx32 *param1)
+void YA3DA_DrawRenderObjWithPos(YA3DA_RenderObj *renderObj, const VecFx32 *pos)
 {
-    sub_02073BA4(param0, param1, &Unk_020F0544, &Unk_020F0550);
+    YA3DA_DrawRenderObj(renderObj, pos, &sVecOnes, &sIdentity);
 }
 
-void sub_02073BC8(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const UnkStruct_ov5_02201C58 *param3)
+void YA3DA_DrawRenderObjRotationAngles(YA3DA_RenderObj *renderObj, const VecFx32 *pos, const VecFx32 *scale, const YA3DA_RotationAngles *rotAngles)
 {
-    MtxFx33 v0;
+    MtxFx33 rotMatrix;
 
-    MTX_Rot33Angles(&v0, param3->unk_00, param3->unk_02, param3->unk_04);
-    sub_02073BA4(param0, param1, param2, &v0);
+    MTX_Rot33Angles(&rotMatrix, rotAngles->alpha, rotAngles->beta, rotAngles->gamma);
+    YA3DA_DrawRenderObj(renderObj, pos, scale, &rotMatrix);
 }
 
-void sub_02073BF0(UnkStruct_02073B50 *param0, const VecFx32 *param1, const UnkStruct_ov5_02201C58 *param2)
+void YA3DA_DrawRenderObjWithPosAndRotationAngles(YA3DA_RenderObj *renderObj, const VecFx32 *pos, const YA3DA_RotationAngles *rotAngles)
 {
-    MtxFx33 v0;
+    MtxFx33 rotMatrix;
 
-    MTX_Rot33Angles(&v0, param2->unk_00, param2->unk_02, param2->unk_04);
-    sub_02073BA4(param0, param1, &Unk_020F0544, &v0);
+    MTX_Rot33Angles(&rotMatrix, rotAngles->alpha, rotAngles->beta, rotAngles->gamma);
+    YA3DA_DrawRenderObj(renderObj, pos, &sVecOnes, &rotMatrix);
 }
 
-void sub_02073C1C(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const MtxFx33 *param3)
+void YA3DA_DrawRenderObjSimple(YA3DA_RenderObj *renderObj, const VecFx32 *pos, const VecFx32 *scale, const MtxFx33 *rot)
 {
-    Easy3D_DrawRenderObjSimple(&param0->unk_00, param1, param3, param2);
+    Easy3D_DrawRenderObjSimple(&renderObj->g3DRenderObj, pos, rot, scale);
 }

@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
@@ -19,8 +17,8 @@
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04[4];
-    UnkStruct_02073B50 unk_54[4];
+    YA3DA_Model unk_04[4];
+    YA3DA_RenderObj unk_54[4];
 } UnkStruct_ov5_021F3D2C;
 
 typedef struct {
@@ -28,7 +26,7 @@ typedef struct {
     UnkStruct_ov5_021DF47C *unk_04;
     UnkStruct_ov5_021F3D2C *unk_08;
     MapObject *unk_0C;
-    UnkStruct_02073B50 *unk_10;
+    YA3DA_RenderObj *unk_10;
 } UnkStruct_ov5_021F3D90;
 
 typedef struct {
@@ -41,7 +39,7 @@ typedef struct {
 
 static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0);
 static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0);
-static UnkStruct_02073B50 *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1);
+static YA3DA_RenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200688;
 static const u32 Unk_ov5_02200678[4];
@@ -69,7 +67,7 @@ static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021DFB00(param0->unk_00, &param0->unk_04[v0], 0, Unk_ov5_02200678[v0], 0);
-        sub_02073B70(&param0->unk_54[v0], &param0->unk_04[v0]);
+        YA3DA_BindModelToRenderObj(&param0->unk_54[v0], &param0->unk_04[v0]);
     }
 }
 
@@ -78,11 +76,11 @@ static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0207395C(&param0->unk_04[v0]);
+        YA3DA_FreeModel(&param0->unk_04[v0]);
     }
 }
 
-static UnkStruct_02073B50 *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1)
+static YA3DA_RenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1)
 {
     return &param0->unk_54[param1];
 }
@@ -159,7 +157,7 @@ static void ov5_021F3E54(OverworldAnimManager *param0, void *param1)
         VecFx32 v1;
 
         OverworldAnimManager_GetPosition(param0, &v1);
-        sub_02073BB4(v0->unk_10.unk_10, &v1);
+        YA3DA_DrawRenderObjWithPos(v0->unk_10.unk_10, &v1);
     }
 }
 

@@ -4,50 +4,60 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
-
-#include "overlay005/struct_ov5_02201C58.h"
-
 #include "narc.h"
 
-void sub_02073838(UnkStruct_02073838 *param0);
-void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 param2);
-void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *narc, u32 narcMemberIdx, u32 heapID, BOOL allocAtEnd);
-void sub_020738C0(UnkStruct_02073838 *param0);
-void sub_020738EC(UnkStruct_02073838 *param0);
-void sub_0207390C(UnkStruct_02073838 *param0);
-void sub_0207391C(UnkStruct_02073838 *param0);
-void sub_0207395C(UnkStruct_02073838 *param0);
-void sub_02073974(UnkStruct_02073974 *param0);
-void sub_02073980(UnkStruct_02073974 *param0, void *param1, u32 param2);
-void sub_02073994(UnkStruct_02073974 *param0, void *param1, u32 param2);
-void sub_020739A8(UnkStruct_02073974 *param0, UnkStruct_02073974 *param1, u32 param2);
-void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 heapID, int param5);
-void sub_020739F0(UnkStruct_02073974 *param0);
-void sub_02073A14(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, u32 param2);
-void sub_02073A3C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, u32 heapID);
-void sub_02073A48(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, const NNSG3dResTex *param2);
-void sub_02073A5C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1);
-void sub_02073A6C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, UnkStruct_02073974 *param2, u32 param3, u32 heapID);
-void sub_02073A90(UnkStruct_02073974 *param0);
-void sub_02073AA8(UnkStruct_02073974 *param0);
-BOOL sub_02073AC0(UnkStruct_02073974 *param0, fx32 param1, int param2);
-void sub_02073B20(UnkStruct_02073974 *param0, fx32 param1);
-fx32 sub_02073B24(const UnkStruct_02073974 *param0);
-fx32 sub_02073B28(const UnkStruct_02073974 *param0);
-BOOL sub_02073B40(const UnkStruct_02073974 *param0);
-void sub_02073B50(UnkStruct_02073B50 *param0);
-void sub_02073B5C(UnkStruct_02073B50 *param0, NNSG3dResMdl *param1);
-void sub_02073B70(UnkStruct_02073B50 *param0, UnkStruct_02073838 *param1);
-void sub_02073B7C(UnkStruct_02073B50 *param0, NNSG3dAnmObj *param1);
-void sub_02073B84(UnkStruct_02073B50 *param0, UnkStruct_02073974 *param1);
-void sub_02073B90(UnkStruct_02073B50 *param0, UnkStruct_02073838 *param1, UnkStruct_02073974 *param2);
-void sub_02073BA4(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const MtxFx33 *param3);
-void sub_02073BB4(UnkStruct_02073B50 *param0, const VecFx32 *param1);
-void sub_02073BC8(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const UnkStruct_ov5_02201C58 *param3);
-void sub_02073BF0(UnkStruct_02073B50 *param0, const VecFx32 *param1, const UnkStruct_ov5_02201C58 *param2);
-void sub_02073C1C(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx32 *param2, const MtxFx33 *param3);
+typedef struct {
+    u16 alpha;
+    u16 beta;
+    u16 gamma;
+    u8 padding_06[2];
+} YA3DA_RotationAngles;
+
+typedef struct {
+    BOOL isTextureBound;
+    NNSG3dResFileHeader *modelSetHeader;
+    NNSG3dResMdlSet *modelSet;
+    NNSG3dResMdl *g3DModel;
+    NNSG3dResTex *texture;
+} YA3DA_Model;
+
+typedef struct {
+    u32 flags;
+    fx32 currFrame;
+    void *animSet;
+    void *g3DAnim;
+    NNSG3dAnmObj *animObj;
+    NNSFndAllocator allocator;
+} YA3DA_Animation;
+
+typedef struct {
+    NNSG3dRenderObj g3DRenderObj;
+} YA3DA_RenderObj;
+
+void YA3DA_LoadModelFromSet(YA3DA_Model *model, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, u32 heapID, BOOL allocAtEnd);
+void YA3DA_ScheduleBindModelTexture(YA3DA_Model *model);
+void YA3DA_FreeModel(YA3DA_Model *model);
+void YA3DA_ZeroOutAnimation(YA3DA_Animation *anim);
+void YA3DA_LoadFromAllocatedSet(YA3DA_Animation *anim, void *animSet, u32 unused);
+void YA3DA_LoadAnimFromOpenNARC(YA3DA_Animation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, u32 heapID, BOOL allocAtEnd);
+void YA3DA_FreeG3DAnimation(YA3DA_Animation *anim);
+void YA3DA_BindAnimToModel(YA3DA_Animation *anim, const YA3DA_Model *model, u32 heapID);
+void YA3DA_InitG3DAnimObject(YA3DA_Animation *anim, const YA3DA_Model *model);
+void YA3DA_ApplyAnimCopyToModel(YA3DA_Animation *dest, const YA3DA_Model *model, YA3DA_Animation *src, u32 unused, u32 heapID);
+void YA3DA_FreeAnimObject(YA3DA_Animation *anim);
+void YA3DA_FreeAnimation(YA3DA_Animation *anim);
+BOOL YA3DA_AdvanceAnim(YA3DA_Animation *anim, fx32 amount, BOOL loop);
+void YA3DA_SetAnimFrame(YA3DA_Animation *anim, fx32 frame);
+fx32 YA3DA_GetAnimFrame(const YA3DA_Animation *anim);
+fx32 YA3DA_GetAnimFrameCount(const YA3DA_Animation *anim);
+BOOL YA3DA_HasAnimationReachedEnd(const YA3DA_Animation *anim);
+void YA3DA_BindModelToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model);
+void YA3DA_BindAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Animation *anim);
+void YA3DA_BindModelAndAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model, YA3DA_Animation *anim);
+void YA3DA_DrawRenderObj(YA3DA_RenderObj *renderObj, const VecFx32 *position, const VecFx32 *scale, const MtxFx33 *rotation);
+void YA3DA_DrawRenderObjWithPos(YA3DA_RenderObj *renderObj, const VecFx32 *position);
+void YA3DA_DrawRenderObjRotationAngles(YA3DA_RenderObj *renderObj, const VecFx32 *position, const VecFx32 *scale, const YA3DA_RotationAngles *rotation);
+void YA3DA_DrawRenderObjWithPosAndRotationAngles(YA3DA_RenderObj *renderObj, const VecFx32 *position, const YA3DA_RotationAngles *rotation);
+void YA3DA_DrawRenderObjSimple(YA3DA_RenderObj *renderObj, const VecFx32 *position, const VecFx32 *scale, const MtxFx33 *rotation);
 
 #endif // POKEPLATINUM_UNK_02073838_H

@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
@@ -24,8 +22,8 @@ typedef struct {
     int unk_08;
     SysTask *unk_0C;
     UnkStruct_ov5_021DF47C *unk_10;
-    UnkStruct_02073838 unk_14;
-    UnkStruct_02073B50 unk_28;
+    YA3DA_Model unk_14;
+    YA3DA_RenderObj unk_28;
 } UnkStruct_ov5_021F2874;
 
 typedef struct {
@@ -85,7 +83,7 @@ static void ov5_021F288C(UnkStruct_ov5_021F2874 *param0)
 {
     if (param0->unk_04 == 0) {
         ov5_021DFB00(param0->unk_10, &param0->unk_14, 0, 82, 1);
-        sub_02073B70(&param0->unk_28, &param0->unk_14);
+        YA3DA_BindModelToRenderObj(&param0->unk_28, &param0->unk_14);
         param0->unk_04 = 1;
     }
 }
@@ -94,7 +92,7 @@ static void ov5_021F28C0(UnkStruct_ov5_021F2874 *param0)
 {
     if (param0->unk_04 == 1) {
         param0->unk_04 = 0;
-        sub_0207395C(&param0->unk_14);
+        YA3DA_FreeModel(&param0->unk_14);
     }
 }
 
@@ -208,7 +206,7 @@ static void ov5_021F2A04(OverworldAnimManager *param0, void *param1)
         u32 v1 = 0;
         MtxFx33 v2;
         VecFx32 v3, v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        UnkStruct_02073B50 *v5 = &v0->unk_10.unk_0C->unk_28;
+        YA3DA_RenderObj *v5 = &v0->unk_10.unk_0C->unk_28;
 
         switch (v0->unk_04) {
         case 0:
@@ -226,7 +224,7 @@ static void ov5_021F2A04(OverworldAnimManager *param0, void *param1)
 
         MTX_Rot33Angles(&v2, 0, v1, 0);
         OverworldAnimManager_GetPosition(param0, &v3);
-        sub_02073BA4(v5, &v3, &v4, &v2);
+        YA3DA_DrawRenderObj(v5, &v3, &v4, &v2);
     }
 }
 

@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
@@ -19,8 +17,8 @@ typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_ov5_021DF47C *unk_08;
-    UnkStruct_02073838 unk_0C;
-    UnkStruct_02073B50 unk_20;
+    YA3DA_Model unk_0C;
+    YA3DA_RenderObj unk_20;
     MapObject *unk_74;
 } UnkStruct_021F52B0;
 
@@ -68,12 +66,12 @@ void ov5_021F52A0(void *param0)
 static void ov5_021F52B0(UnkStruct_021F52B0 *param0)
 {
     ov5_021DFB00(param0->unk_08, &param0->unk_0C, 0, 23, 0);
-    sub_02073B70(&param0->unk_20, &param0->unk_0C);
+    YA3DA_BindModelToRenderObj(&param0->unk_20, &param0->unk_0C);
 }
 
 static void ov5_021F52D8(UnkStruct_021F52B0 *param0)
 {
-    sub_0207395C(&param0->unk_0C);
+    YA3DA_FreeModel(&param0->unk_0C);
 }
 
 OverworldAnimManager *ov5_021F52E4(MapObject *param0)
@@ -164,7 +162,7 @@ static void ov5_021F53A8(OverworldAnimManager *param0, void *param1)
             MTX_Concat33(&v3, &v5, &v3);
         }
 
-        sub_02073C1C(&v0->unk_30.unk_04->unk_20, &v1, &v2, &v3);
+        YA3DA_DrawRenderObjSimple(&v0->unk_30.unk_04->unk_20, &v1, &v2, &v3);
     }
 }
 
