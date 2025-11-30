@@ -5,6 +5,7 @@
 
 #include "constants/flavor.h"
 #include "generated/natures.h"
+#include "generated/pokemon_data_params.h"
 
 #include "struct_defs/struct_02090800.h"
 
@@ -81,7 +82,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *mon, BOOL isMine, int heapID)
 {
     PokemonInfoDisplayStruct *ptr = Heap_Alloc(heapID, sizeof(PokemonInfoDisplayStruct));
     ptr->heapID = heapID;
-    ptr->msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, ptr->heapID);
+    ptr->msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, ptr->heapID);
     ptr->msgFmt = StringTemplate_New(9, 32, ptr->heapID);
     ptr->mon = mon;
     ptr->isMine = isMine;
@@ -317,15 +318,15 @@ static void FormatDateAndLocationMet(PokemonInfoDisplayStruct *infoDisplay, int 
     infoDisplay->metDateAndLocation.string = Strbuf_Init((((2 * 18) * 2) * 8), infoDisplay->heapID);
 
     MessageLoader_GetStrbuf(infoDisplay->msgData, msgNo, str);
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
     StringTemplate_SetNumber(infoDisplay->msgFmt, 3, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
-    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_LOCATION, NULL));
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
-    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LOCATION, NULL));
+    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LOCATION, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_LOCATION, NULL));
 
     StringTemplate_Format(infoDisplay->msgFmt, infoDisplay->metDateAndLocation.string, str);
     Strbuf_Free(str);
@@ -337,9 +338,9 @@ static void FormatDateAndLocation_Migrated(PokemonInfoDisplayStruct *infoDisplay
     infoDisplay->metDateAndLocation.string = Strbuf_Init((((2 * 18) * 2) * 4), infoDisplay->heapID);
 
     MessageLoader_GetStrbuf(infoDisplay->msgData, msgNo, str);
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
-    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
     StringTemplate_SetNumber(infoDisplay->msgFmt, 3, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
 
     switch (Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_GAME, NULL)) {
@@ -381,15 +382,15 @@ static void FormatDateAndLocation_Egg(PokemonInfoDisplayStruct *infoDisplay, int
     MessageLoader_GetStrbuf(infoDisplay->msgData, param1, str);
 
     if (param2 == 0) {
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_YEAR, NULL), 2, 2, 1);
+        StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_MONTH, NULL));
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_DAY, NULL), 2, 0, 1);
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_EGG_LOCATION, NULL));
+    } else {
         StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
         StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
         StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
         StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LOCATION, NULL));
-    } else {
-        StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-        StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
-        StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
-        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_LOCATION, NULL));
     }
 
     StringTemplate_Format(infoDisplay->msgFmt, infoDisplay->metDateAndLocation.string, str);
@@ -597,8 +598,8 @@ static enum MetCondition MonMetCondition(Pokemon *mon, BOOL param1, int param2)
     int v0 = 0;
 
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
-        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == 0) {
-            if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(0, 55))) {
+        if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(0, 55))) {
                 v0 = 15;
             } else if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
                 if (param1 == 1) {
@@ -606,7 +607,7 @@ static enum MetCondition MonMetCondition(Pokemon *mon, BOOL param1, int param2)
                 } else {
                     v0 = 8;
                 }
-            } else if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(1, 1))) {
+            } else if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(1, 1))) {
                 v0 = 2;
             } else {
                 if (param1 == 1) {
@@ -617,13 +618,13 @@ static enum MetCondition MonMetCondition(Pokemon *mon, BOOL param1, int param2)
             }
         } else {
             if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 2)) {
+                if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
                     } else {
                         v0 = 14;
                     }
-                } else if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
+                } else if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
                     if (param1 == 1) {
                         v0 = 11;
                     } else {
@@ -637,11 +638,11 @@ static enum MetCondition MonMetCondition(Pokemon *mon, BOOL param1, int param2)
                     }
                 }
             } else {
-                if ((Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 1))
-                    || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 0))
-                    || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 9))
-                    || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 10))
-                    || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 11))) {
+                if ((Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 1))
+                    || (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 0))
+                    || (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 9))
+                    || (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 10))
+                    || (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(1, 11))) {
                     if (param1 == 1) {
                         v0 = 5;
                     } else {
@@ -659,7 +660,7 @@ static enum MetCondition MonMetCondition(Pokemon *mon, BOOL param1, int param2)
     } else {
         if (param1 == 1) {
             if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(2, 1))) {
+                if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == (SpecialMetLoc_GetId(2, 1))) {
                     v0 = 20;
                 } else {
                     v0 = 18;
@@ -762,17 +763,17 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             {
                 int v0;
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_LOCATION, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_LOCATION, NULL);
+                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_YEAR, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_YEAR, NULL);
+                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_MONTH, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_MONTH, NULL);
+                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_DAY, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_DAY, NULL);
+                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &v0);
             }
         }
 
@@ -790,7 +791,7 @@ static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *train
 
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &v0);
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_GENDER, &v1);
-    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME_STRBUF, v2);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OT_NAME_STRING, v2);
     Strbuf_Free(v2);
 }
 
@@ -801,15 +802,15 @@ static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation
     GetCurrentDate(&date);
 
     if (isHatch == FALSE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &metLocation);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &date.year);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &date.month);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &date.day);
+    } else {
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &metLocation);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &date.year);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &date.month);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &date.day);
-    } else {
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &metLocation);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_YEAR, &date.year);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_MONTH, &date.month);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_DAY, &date.day);
     }
 }
 
@@ -818,15 +819,15 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
     int value = 0;
 
     if (isHatch == FALSE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &value);
+    } else {
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &value);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &value);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &value);
         BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &value);
-    } else {
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_YEAR, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_MONTH, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_DAY, &value);
     }
 }
 
