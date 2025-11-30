@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_B2F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 1,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_SCIENTIST_M_1",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x049A",
+            "hidden_flag": "FLAG_UNK_0x049A",
             "script": 7164,
             "initial_dir": 0,
             "data": [],
@@ -44,11 +47,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3506,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1",
             "initial_dir": 2,
             "data": [
                 5
@@ -60,11 +64,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3507,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2",
             "initial_dir": 1,
             "data": [
                 3
@@ -76,10 +81,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04E3",
+            "hidden_flag": "FLAG_UNK_0x04E3",
             "script": 7237,
             "initial_dir": 0,
             "data": [],
@@ -90,10 +96,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_HQ_DOOR_6",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0227",
+            "hidden_flag": "FLAG_UNK_0x0227",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -104,10 +111,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_GALACTIC_HQ_DOOR_7",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0227",
+            "hidden_flag": "FLAG_UNK_0x0227",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -118,10 +126,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_B2F_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04EA",
+            "hidden_flag": "FLAG_UNK_0x04EA",
             "script": 7244,
             "initial_dir": 0,
             "data": [],

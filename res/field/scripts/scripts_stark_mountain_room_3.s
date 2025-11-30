@@ -35,13 +35,13 @@ _0083:
     Return
 
 _0089:
-    GoToIfSet FLAG_UNK_0x008E, _0096
+    GoToIfSet FLAG_MAP_LOCAL, _0096
     End
 
 _0096:
     SetFlag FLAG_UNK_0x01DD
     RemoveObject 1
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 StarkMountainRoom3_UnusedMovement:
@@ -84,9 +84,9 @@ _00E6:
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_HEATRAN, 50
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _0168
     CheckLostBattle VAR_RESULT
@@ -233,7 +233,7 @@ _019C:
     SetFlag FLAG_UNK_0x0231
     SetVar VAR_UNK_0x409E, 1
     SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
-    ClearFlag FLAG_UNK_0x01A3
+    ClearFlag FLAG_HIDE_LOOKER_IN_GAME_CORNER
     ClearFlag FLAG_UNK_0x01D9
     ClearFlag FLAG_UNK_0x01D6
     ClearFlag FLAG_UNK_0x022B

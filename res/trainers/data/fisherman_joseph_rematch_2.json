@@ -19,15 +19,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Hey, you feisty tyke! I caught me\n",
-				"a big one! Let’s battle again!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Hey, you feisty tyke! I caught me\n",
+                "a big one! Let’s battle again!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I let a big win slip away...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I let a big win slip away...\n"
+        }
     ]
 }

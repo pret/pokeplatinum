@@ -3,20 +3,18 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_020711EC_decl.h"
-
 #include "overlay101/struct_ov101_021D148C.h"
 #include "overlay101/struct_ov101_021D1894.h"
 #include "overlay101/struct_ov101_021D2D88.h"
 #include "overlay101/struct_ov101_021D4714.h"
 #include "overlay101/struct_ov101_021D4764.h"
 #include "overlay101/struct_ov101_021D4F58.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D7E48_decl.h"
 
 #include "bg_window.h"
 #include "enums.h"
 #include "narc.h"
+#include "overworld_anim_manager.h"
 
 typedef struct UnkStruct_ov101_021D13C8_t {
     u32 unk_00;
@@ -65,9 +63,9 @@ typedef struct UnkStruct_ov101_021D13C8_t {
     NNSG2dScreenData *unk_440;
     NNSG2dCharacterData *unk_444;
     NNSG2dPaletteData *unk_448;
-    UnkStruct_020711EC *unk_44C;
+    OverworldAnimManagerList *unk_44C;
     UnkStruct_ov101_021D7E48 *unk_450;
-    UnkStruct_ov101_021D5D90 *unk_454;
+    OverworldAnimManager *unk_454;
     u32 unk_458;
     u32 unk_45C;
     u32 unk_460;

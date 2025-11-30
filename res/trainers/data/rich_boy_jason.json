@@ -21,37 +21,37 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Pokémon sleeps in a bed I got from\n",
-				"overseas.\r",
-				"I’m very well off, if you haven’t\n",
-				"noticed!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon sleeps in a bed I got from\n",
+                "overseas.\r",
+                "I’m very well off, if you haven’t\n",
+                "noticed!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What? Over already?\n",
-				"Well, that’s fine.\f",
-				"Rich people like me don’t fight.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What? Over already?\n",
+                "Well, that’s fine.\f",
+                "Rich people like me don’t fight.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Oh, no.\n",
-				"My Pokémon is worn out.\r",
-				"I’d better let it sleep it off in the\n",
-				"bed I had sent from overseas.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Oh, no.\n",
+                "My Pokémon is worn out.\r",
+                "I’d better let it sleep it off in the\n",
+                "bed I had sent from overseas.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I do this only because I love my\n",
-				"Pokémon. Winning isn’t that important.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I do this only because I love my\n",
+                "Pokémon. Winning isn’t that important.\r"
+            ]
+        }
     ]
 }

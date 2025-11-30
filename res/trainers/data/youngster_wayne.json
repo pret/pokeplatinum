@@ -37,22 +37,22 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Did you come to play, too?\n",
-				"Wanna play battle with me?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Did you come to play, too?\n",
+                "Wanna play battle with me?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You were just toying with me!"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You were just toying with me!"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m playing hide-and-seek here.\n",
-				"I like some underground tag, too.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m playing hide-and-seek here.\n",
+                "I like some underground tag, too.\n"
+            ]
+        }
     ]
 }

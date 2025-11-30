@@ -85,19 +85,19 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"Your team!\n",
-				"I sense your strong aura!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "Your team!\n",
+                "I sense your strong aura!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"At times we battle, and sometimes we\n",
-				"team up...\r",
-				"It’s great how Trainers can interact.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "At times we battle, and sometimes we\n",
+                "team up...\r",
+                "It’s great how Trainers can interact.\n"
+            ]
+        }
     ]
 }

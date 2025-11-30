@@ -19,10 +19,11 @@
     ],
     "object_events": [
         {
+            "id": "GREAT_MARSH_3_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x043C",
+            "hidden_flag": "FLAG_UNK_0x043C",
             "script": 7070,
             "initial_dir": 0,
             "data": [],
@@ -33,10 +34,11 @@
             "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_SIGNBOARD_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -47,10 +49,11 @@
             "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_COLLECTOR_2",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -61,10 +64,11 @@
             "y": 0
         },
         {
+            "id": "GREAT_MARSH_3_RUIN_MANIAC_3",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01F8",
+            "hidden_flag": "FLAG_UNK_0x01F8",
             "script": 65535,
             "initial_dir": 3,
             "data": [],
@@ -75,11 +79,12 @@
             "y": 0
         },
         {
-            "local_id": 2,
+            "id": "GREAT_MARSH_3_SIGNBOARD_4",
+            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FB",
+            "hidden_flag": "FLAG_UNK_0x01FB",
             "script": 65535,
             "initial_dir": 0,
             "data": [],

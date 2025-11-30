@@ -91,10 +91,11 @@
     ],
     "object_events": [
         {
+            "id": "FLOAROMA_MEADOW_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019F",
+            "hidden_flag": "FLAG_UNK_0x019F",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -105,10 +106,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01A0",
+            "hidden_flag": "FLAG_UNK_0x01A0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -119,10 +121,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEFAN_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -133,10 +136,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019E",
+            "hidden_flag": "FLAG_UNK_0x019E",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -147,10 +151,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0488",
+            "hidden_flag": "FLAG_UNK_0x0488",
             "script": 7146,
             "initial_dir": 0,
             "data": [],
@@ -161,10 +166,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04E0",
+            "hidden_flag": "FLAG_UNK_0x04E0",
             "script": 7234,
             "initial_dir": 0,
             "data": [],
@@ -175,10 +181,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0513",
+            "hidden_flag": "FLAG_UNK_0x0513",
             "script": 7284,
             "initial_dir": 0,
             "data": [],
@@ -189,10 +196,11 @@
             "y": 0
         },
         {
+            "id": "FLOAROMA_MEADOW_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0514",
+            "hidden_flag": "FLAG_UNK_0x0514",
             "script": 7285,
             "initial_dir": 0,
             "data": [],
@@ -243,7 +251,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16617,
+            "var": "VAR_UNK_0x40E9",
             "value": 0
         }
     ]

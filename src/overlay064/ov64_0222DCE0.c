@@ -846,9 +846,9 @@ static void ov64_0222E1A4(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_
     ov64_0222E6D8(param0, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
 static void ov64_0222E21C(UnkStruct_ov64_0222E21C *param0)
@@ -1011,7 +1011,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
 static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
     param0->unk_214 = StringTemplate_Default(heapID);
-    param0->unk_218 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, heapID);
+    param0->unk_218 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, heapID);
 }
 
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)

@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "UNION_ROOM_TEALA_0",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_1",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_3",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SOCIALITE_4",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_ROUGHNECK_5",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -86,10 +92,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_6",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -100,10 +107,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_7",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -114,10 +122,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_LASS_8",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -128,10 +137,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_9",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -142,10 +152,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_10",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -156,10 +167,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_11",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -170,10 +182,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_12",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -184,10 +197,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_13",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -198,10 +212,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_14",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -212,10 +227,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_15",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -226,10 +242,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_16",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -240,10 +257,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_17",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -254,10 +272,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_18",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -268,10 +287,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_19",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -282,10 +302,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_20",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -296,10 +317,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_21",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -310,10 +332,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_22",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -324,10 +347,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_ACE_TRAINER_F_23",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -338,10 +362,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_COWGIRL_24",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -352,10 +377,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_LADY_25",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -366,10 +392,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_IDOL_26",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -380,10 +407,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_BUG_CATCHER_27",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -394,10 +422,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_RUIN_MANIAC_28",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -408,10 +437,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_BLACK_BELT_29",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -422,10 +452,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_ACE_TRAINER_M_30",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -436,10 +467,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_31",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -450,10 +482,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_32",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -464,10 +497,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_33",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -478,10 +512,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_34",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -492,10 +527,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_35",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -506,10 +542,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_36",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -520,10 +557,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_37",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -534,10 +572,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_38",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -548,10 +587,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_RICH_BOY_39",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -562,10 +602,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_BATTLE_GIRL_40",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -576,10 +617,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_BEAUTY_41",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -590,10 +632,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_PSYCHIC_42",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -604,10 +647,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_43",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -618,10 +662,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_44",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -632,10 +677,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_45",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -646,10 +692,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_46",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -660,10 +707,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_47",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -674,10 +722,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_48",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -688,10 +737,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_49",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 3,
             "data": [],
@@ -702,10 +752,11 @@
             "y": 0
         },
         {
+            "id": "UNION_ROOM_SCHOOL_KID_M_50",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -726,3 +777,4 @@
     ],
     "coord_events": []
 }
+

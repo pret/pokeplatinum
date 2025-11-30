@@ -2,236 +2,236 @@
   "key": 705,
   "messages": [
     {
-      "id": "pl_msg_00000007_00000",
+      "id": "Bag_Text_Use",
       "en_US": "USE"
     },
     {
-      "id": "pl_msg_00000007_00001",
+      "id": "Bag_Text_Trash",
       "en_US": "TRASH"
     },
     {
-      "id": "pl_msg_00000007_00002",
+      "id": "Bag_Text_Register",
       "en_US": "REGISTER"
     },
     {
-      "id": "pl_msg_00000007_00003",
+      "id": "Bag_Text_Give",
       "en_US": "GIVE"
     },
     {
-      "id": "pl_msg_00000007_00004",
+      "id": "Bag_Text_CheckTag",
       "en_US": "CHECK TAG"
     },
     {
-      "id": "pl_msg_00000007_00005",
+      "id": "Bag_Text_Confirm",
       "en_US": "CONFIRM"
     },
     {
-      "id": "pl_msg_00000007_00006",
+      "id": "Bag_Text_Walk",
       "en_US": "WALK"
     },
     {
-      "id": "pl_msg_00000007_00007",
+      "id": "Bag_Text_Dummy1",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00008",
+      "id": "Bag_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000007_00009",
+      "id": "Bag_Text_Dummy2",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00010",
+      "id": "Bag_Text_Dummy3",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00011",
+      "id": "Bag_Text_Dummy4",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000007_00012",
+      "id": "Bag_Text_Dummy5",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00013",
+      "id": "Bag_Text_Dummy6",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00014",
+      "id": "Bag_Text_Dummy7",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00015",
+      "id": "Bag_Text_Dummy8",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00016",
+      "id": "Bag_Text_Check",
       "en_US": "CHECK"
     },
     {
-      "id": "pl_msg_00000007_00017",
+      "id": "Bag_Text_Dummy9",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000007_00018",
+      "id": "Bag_Text_Deselect",
       "en_US": "DESELECT"
     },
     {
-      "id": "pl_msg_00000007_00019",
+      "id": "Bag_Text_Dummy10",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00020",
+      "id": "Bag_Text_Dummy11",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000007_00021",
+      "id": "Bag_Text_Dummy12",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00022",
+      "id": "Bag_Text_Dummy13",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00023",
+      "id": "Bag_Text_Dummy14",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000007_00024",
+      "id": "Bag_Text_Not_Applicable",
       "en_US": "---"
     },
     {
-      "id": "pl_msg_00000007_00025",
+      "id": "Bag_Text_Dummy15",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00026",
+      "id": "Bag_Text_Dummy16",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00027",
+      "id": "Bag_Text_Dummy17",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000007_00028",
+      "id": "Bag_Text_Dummy18",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000007_00029",
+      "id": "Bag_Text_Dummy19",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00030",
+      "id": "Bag_Text_Dummy20",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000007_00031",
+      "id": "Bag_Text_Dummy21",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00032",
+      "id": "Bag_Text_Empty",
       "garbage": 0
     },
     {
-      "id": "pl_msg_00000007_00033",
+      "id": "Bag_Text_Dummy22",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00034",
+      "id": "Bag_Text_Dummy23",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000007_00035",
+      "id": "Bag_Text_Dummy24",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000007_00036",
+      "id": "Bag_Text_Dummy25",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000007_00037",
+      "id": "Bag_Text_ItemCountNum",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00038",
+      "id": "Bag_Text_ItemCountX",
       "en_US": "x"
     },
     {
-      "id": "pl_msg_00000007_00039",
+      "id": "Bag_Text_Dummy26",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000007_00040",
+      "id": "Bag_Text_Dummy27",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000007_00041",
+      "id": "Bag_Text_CloseBag",
       "en_US": "CLOSE BAG"
     },
     {
-      "id": "pl_msg_00000007_00042",
+      "id": "Bag_Text_ItemIsSelected",
       "en_US": [
         "{STRVAR_1 8, 0, 0} is\n",
         "selected."
       ]
     },
     {
-      "id": "pl_msg_00000007_00043",
+      "id": "Bag_Text_Dummy28",
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000007_00044",
+      "id": "Bag_Text_Dummy29",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000007_00045",
+      "id": "Bag_Text_MoveItemWhere",
       "en_US": "Move the {STRVAR_1 8, 0, 0} where?"
     },
     {
-      "id": "pl_msg_00000007_00046",
+      "id": "Bag_Text_ItemCantBeHeld",
       "en_US": "The {STRVAR_1 8, 0, 0} can’t be held."
     },
     {
-      "id": "pl_msg_00000007_00047",
+      "id": "Bag_Text_Dummy30",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000007_00048",
+      "id": "Bag_Text_Dummy31",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000007_00049",
+      "id": "Bag_Text_Dummy32",
       "garbage": 20
     },
     {
-      "id": "pl_msg_00000007_00050",
+      "id": "Bag_Text_Dummy33",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000007_00051",
+      "id": "Bag_Text_Dummy34",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000007_00052",
+      "id": "Bag_Text_ThrowAwayHowMany",
       "en_US": [
         "Throw away how many\n",
         "{STRVAR_1 8, 0, 0}(s)?"
       ]
     },
     {
-      "id": "pl_msg_00000007_00053",
+      "id": "Bag_Text_ThrewAwayItem",
       "en_US": "Threw away {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}."
     },
     {
-      "id": "pl_msg_00000007_00054",
+      "id": "Bag_Text_ThrowAwayOK",
       "en_US": [
         "Is it OK to throw away\n",
         "{STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000007_00055",
+      "id": "Bag_Text_Dummy35",
       "garbage": 41
     },
     {
@@ -243,15 +243,15 @@
       "en_US": "Your Coins: {STRVAR_1 54, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00058",
+      "id": "Bag_Text_BootedUpTM",
       "en_US": "Booted up a TM.{WAIT 3}{WAIT 4}\n"
     },
     {
-      "id": "pl_msg_00000007_00059",
+      "id": "Bag_Text_BootedUpHM",
       "en_US": "Booted up an HM.{WAIT 3}{WAIT 4}\n"
     },
     {
-      "id": "pl_msg_00000007_00060",
+      "id": "Bag_Text_TMHMContainedMove",
       "en_US": [
         "It contained\n",
         "{STRVAR_1 6, 0, 0}.\r",
@@ -260,21 +260,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00061",
+      "id": "Bag_Text_UsedRepel",
       "en_US": [
         "{STRVAR_1 3, 0, 0} used the\n",
         "{STRVAR_1 8, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000007_00062",
+      "id": "Bag_Text_RepelEffectsLinger",
       "en_US": [
         "Since a Repel’s effects still linger,\n",
         "you can’t use this now."
       ]
     },
     {
-      "id": "pl_msg_00000007_00063",
+      "id": "Bag_Text_UsedWhiteFlute",
       "en_US": [
         "{STRVAR_1 3, 0, 0} used the\n",
         "{STRVAR_1 8, 1, 0}.\r",
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00064",
+      "id": "Bag_Text_UsedBlackFlute",
       "en_US": [
         "{STRVAR_1 3, 0, 0} used the\n",
         "{STRVAR_1 8, 1, 0}.\r",
@@ -290,123 +290,123 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00065",
+      "id": "Bag_Text_BoxFull",
       "en_US": "The Box is full."
     },
     {
-      "id": "pl_msg_00000007_00066",
+      "id": "Bag_Text_Dummy36",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000007_00067",
+      "id": "Bag_Text_Unused1",
       "en_US": "No.{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
     },
     {
-      "id": "pl_msg_00000007_00068",
+      "id": "Bag_Text_Unused2",
       "en_US": "No.{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
     },
     {
-      "id": "pl_msg_00000007_00069",
+      "id": "Bag_Text_Unused3",
       "en_US": "{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
     },
     {
-      "id": "pl_msg_00000007_00070",
+      "id": "Bag_Text_Dummy37",
       "garbage": 6
     },
     {
-      "id": "pl_msg_00000007_00071",
+      "id": "Bag_Text_Dummy38",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000007_00072",
+      "id": "Bag_Text_Dummy39",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000007_00073",
+      "id": "Bag_Text_Dummy40",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000007_00074",
+      "id": "Bag_Text_CantSellItem",
       "en_US": [
         "{STRVAR_1 8, 0, 0}? Oh, no.\n",
         "I can’t buy that."
       ]
     },
     {
-      "id": "pl_msg_00000007_00075",
+      "id": "Bag_Text_SellHowMany",
       "en_US": [
         "{STRVAR_1 8, 0, 0}?\n",
         "How many would you like to sell?"
       ]
     },
     {
-      "id": "pl_msg_00000007_00076",
+      "id": "Bag_Text_ConfirmSellPrice",
       "en_US": [
         "I can pay ${STRVAR_1 55, 0, 0}.\n",
         "Would that be OK?"
       ]
     },
     {
-      "id": "pl_msg_00000007_00077",
+      "id": "Bag_Text_TurnedOverItems",
       "en_US": [
         "Turned over the {STRVAR_1 8, 0, 0}\n",
         "and received ${STRVAR_1 55, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000007_00078",
+      "id": "Bag_Text_MoneyLabel",
       "en_US": "MONEY"
     },
     {
-      "id": "pl_msg_00000007_00079",
+      "id": "Bag_Text_MoneyNum",
       "en_US": "${STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00080",
+      "id": "Bag_Text_SellNum",
       "en_US": "x{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00081",
+      "id": "Bag_Text_SellValue",
       "en_US": "${STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00082",
+      "id": "Bag_Text_Yes",
       "en_US": "Yes"
     },
     {
-      "id": "pl_msg_00000007_00083",
+      "id": "Bag_Text_No",
       "en_US": "No"
     },
     {
-      "id": "pl_msg_00000007_00084",
+      "id": "Bag_Text_ThrowAwayCount",
       "en_US": "x{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00085",
+      "id": "Bag_Text_Dummy41",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000007_00086",
+      "id": "Bag_Text_PP",
       "en_US": "PP"
     },
     {
-      "id": "pl_msg_00000007_00087",
+      "id": "Bag_Text_Power",
       "en_US": "POWER"
     },
     {
-      "id": "pl_msg_00000007_00088",
+      "id": "Bag_Text_Accuracy",
       "en_US": "ACCURACY"
     },
     {
-      "id": "pl_msg_00000007_00089",
+      "id": "Bag_Text_Category",
       "en_US": "CATEGORY"
     },
     {
-      "id": "pl_msg_00000007_00090",
+      "id": "Bag_Text_MaxPPNum",
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000007_00091",
+      "id": "Bag_Text_PowerAccuracyNum",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
@@ -421,15 +421,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00094",
+      "id": "Bag_Text_CloseBagDescription",
       "en_US": "Close Bag"
     },
     {
-      "id": "pl_msg_00000007_00095",
+      "id": "Bag_Text_Plant",
       "en_US": "PLANT"
     },
     {
-      "id": "pl_msg_00000007_00096",
+      "id": "Bag_Text_Open",
       "en_US": "OPEN"
     },
     {
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00098",
+      "id": "Bag_Text_Type",
       "en_US": "TYPE"
     },
     {
@@ -451,31 +451,31 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00100",
+      "id": "Bag_Text_Dummy42",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000007_00101",
+      "id": "Bag_Text_Dummy43",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000007_00102",
+      "id": "Bag_Text_Dummy44",
       "garbage": 20
     },
     {
-      "id": "pl_msg_00000007_00103",
+      "id": "Bag_Text_Dummy45",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000007_00104",
+      "id": "Bag_Text_Dummy46",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000007_00105",
+      "id": "Bag_Text_Dummy47",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000007_00106",
+      "id": "Bag_Text_BatteryHasRunDry",
       "en_US": [
         "The battery has run dry!\n",
         "For it to recharge, you need to walk\f",
@@ -483,19 +483,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000007_00107",
+      "id": "Bag_Text_GrassyPatchRemainedQuiet",
       "en_US": "The grassy patch remained quiet..."
     },
     {
-      "id": "pl_msg_00000007_00108",
+      "id": "Bag_Text_PoffinCountLabel",
       "en_US": "No. of Poffins:"
     },
     {
-      "id": "pl_msg_00000007_00109",
+      "id": "Bag_Text_PoffinCountNum",
       "en_US": "{STRVAR_1 52, 0, 0}/100"
     },
     {
-      "id": "pl_msg_00000007_00110",
+      "id": "Bag_Text_ChooseBerryToCook",
       "en_US": [
         "Please choose the Berry you want to\n",
         "cook from your Bag."

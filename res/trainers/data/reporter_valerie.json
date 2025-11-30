@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Hmm...\n",
-				"I should have expected this."
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Hmm...\n",
+                "I should have expected this."
+            ]
+        }
     ]
 }

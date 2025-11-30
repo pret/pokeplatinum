@@ -38,34 +38,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My quest for power brought me here.\r",
-				"It was beneath the desert sand that\n",
-				"I toughened my body and soul.\r",
-				"Accept my challenge! Uraah!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My quest for power brought me here.\r",
+                "It was beneath the desert sand that\n",
+                "I toughened my body and soul.\r",
+                "Accept my challenge! Uraah!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My spirit is broken...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My spirit is broken...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I thought I couldn’t win before it\n",
-				"became a fact...\r",
-				"I’ve let down my Pokémon...\r",
-				"They go to battle with faith in\n",
-				"their Trainer..."
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I thought I couldn’t win before it\n",
+                "became a fact...\r",
+                "I’ve let down my Pokémon...\r",
+                "They go to battle with faith in\n",
+                "their Trainer..."
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"This time! This time I will win!\n",
-				"My spirit is renewed and strong!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "This time! This time I will win!\n",
+                "My spirit is renewed and strong!\r"
+            ]
+        }
     ]
 }

@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_TEALA_0",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_CHERYL_1",
             "graphics_id": "OBJ_EVENT_GFX_CHERYL",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01EC",
+            "hidden_flag": "FLAG_UNK_0x01EC",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_MIRA_2",
             "graphics_id": "OBJ_EVENT_GFX_MIRA",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01ED",
+            "hidden_flag": "FLAG_UNK_0x01ED",
             "script": 3,
             "initial_dir": 3,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_RILEY_3",
             "graphics_id": "OBJ_EVENT_GFX_RILEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01EE",
+            "hidden_flag": "FLAG_UNK_0x01EE",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_MARLEY_4",
             "graphics_id": "OBJ_EVENT_GFX_MARLEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01EF",
+            "hidden_flag": "FLAG_UNK_0x01EF",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_TOWER_BATTLE_SALON_BUCK_5",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01F0",
+            "hidden_flag": "FLAG_UNK_0x01F0",
             "script": 6,
             "initial_dir": 0,
             "data": [],

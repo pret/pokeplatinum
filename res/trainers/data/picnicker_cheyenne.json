@@ -38,25 +38,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m not afraid of picnicking anywhere,\n",
-				"so I’ve learned all sorts of things.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m not afraid of picnicking anywhere,\n",
+                "so I’ve learned all sorts of things.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Your toughness...\n",
-				"It’s something new to me."
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your toughness...\n",
+                "It’s something new to me."
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ve learned that Pokémon are fun\n",
-				"’cause everyone plays with ’em!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ve learned that Pokémon are fun\n",
+                "’cause everyone plays with ’em!\n"
+            ]
+        }
     ]
 }

@@ -42,8 +42,7 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0088
+    GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -96,8 +95,8 @@ _00CC:
     GetLocalDexSeenCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
-    SetVar VAR_0x8004, 9
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

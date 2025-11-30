@@ -100,7 +100,7 @@ BattleParkExchangeServiceCorner_Unused8:
 BattleParkExchangeServiceCorner_Unused9:
     ScrCmd_29B VAR_MAP_LOCAL_0, VAR_0x8008, VAR_0x8000, VAR_0x8001
     BufferItemName 0, VAR_0x8000
-    ScrCmd_280 1, VAR_0x8001, 1, 3
+    BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 3
     AddListMenuEntry 231, VAR_0x8008
     AddVar VAR_0x8008, 1
     GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_Unused9

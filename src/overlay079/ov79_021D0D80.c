@@ -36,6 +36,8 @@
 #include "unk_02098FFC.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/poffin_case/poru_gra.naix.h"
+
 typedef int (*UnkFuncPtr_ov79_021D394C)(UnkStruct_ov79_021D0E1C *);
 
 int ov79_021D0D80(ApplicationManager *appMan, int *param1);
@@ -603,17 +605,17 @@ static void ov79_021D13A4(UnkStruct_ov79_021D0E1C *param0)
 
 static void ov79_021D13C4(UnkStruct_ov79_021D0E1C *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORU_GRA, param0->heapID);
+    NARC *poru_gra = NARC_ctor(NARC_INDEX_GRAPHIC__PORU_GRA, param0->heapID);
 
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 2, 0, 0, 0, 0);
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 3, 5, 0, 0, 0);
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 0, 0, 2, 0x20 * 0xC, 0);
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 0, 4, 2, 0x20 * 0xC, 0);
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 10, 3, 1, 0, 0);
-    sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 11, 5, 1, 0, 0);
-    NARC_dtor(v0);
-    Bg_ScheduleTilemapTransfer(param0->unk_24, 3);
-    Bg_ScheduleTilemapTransfer(param0->unk_24, 5);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, main_tiles_NCGR, BG_LAYER_MAIN_0, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, sub_tiles_NCGR, BG_LAYER_SUB_1, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, background_NCLR, BG_LAYER_MAIN_0, GRAPHICSMEMBER_PALETTE, 0x20 * 0xC, 0);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, background_NCLR, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, 0x20 * 0xC, 0);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, main_tilemap_NSCR, BG_LAYER_MAIN_3, GRAPHICSMEMBER_TILEMAP, 0, 0);
+    App_LoadGraphicMember(param0->unk_24, param0->heapID, poru_gra, NARC_INDEX_GRAPHIC__PORU_GRA, sub_tilemap_NSCR, BG_LAYER_SUB_1, GRAPHICSMEMBER_TILEMAP, 0, 0);
+    NARC_dtor(poru_gra);
+    Bg_ScheduleTilemapTransfer(param0->unk_24, BG_LAYER_MAIN_3);
+    Bg_ScheduleTilemapTransfer(param0->unk_24, BG_LAYER_SUB_1);
 }
 
 static void ov79_021D14A0(UnkStruct_ov79_021D0E1C *param0)
@@ -673,7 +675,7 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
 
     Font_InitManager(FONT_SUBSCREEN, param0->heapID);
 
-    param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0463, param0->heapID);
+    param0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0463, param0->heapID);
     param0->unk_28 = sub_020158A8(param0->heapID);
     param0->unk_30.unk_00 = StringTemplate_New(2, 64, param0->heapID);
     param0->unk_30.unk_04 = Strbuf_Init(64, param0->heapID);

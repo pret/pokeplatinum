@@ -10,7 +10,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_33C 4, 93
+    BufferItemNameWithArticle 4, ITEM_HEART_SCALE
     GoToIfUnset FLAG_UNK_0x00E9, _003D
     CheckItem ITEM_HEART_SCALE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _005F
@@ -44,14 +44,14 @@ _006A:
     GoToIfEq VAR_0x8005, 0xFF, _005F
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _011A
-    ScrCmd_21F VAR_RESULT, VAR_0x8005
-    GoToIfEq VAR_RESULT, 0, _010F
+    CheckHasLearnableReminderMoves VAR_RESULT, VAR_0x8005
+    GoToIfEq VAR_RESULT, FALSE, _010F
     Message 4
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_221 VAR_0x8005
-    ScrCmd_223 VAR_RESULT
+    OpenMoveReminderMenu VAR_0x8005
+    CheckLearnedReminderMove VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

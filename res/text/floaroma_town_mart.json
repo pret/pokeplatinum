@@ -2,7 +2,7 @@
   "key": 20273,
   "messages": [
     {
-      "id": "pl_msg_00000570_00000",
+      "id": "FloaromaTownMart_Text_DressUpPokemonWithAccessories",
       "en_US": [
         "I’m going to dress up my Pokémon with\n",
         "cute Accessories and take it to the\f",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000570_00001",
+      "id": "FloaromaTownMart_Text_CantBuyBerriesAtMarts",
       "en_US": [
         "You can’t buy Berries or Accessories\n",
         "at Poké Marts.\r",

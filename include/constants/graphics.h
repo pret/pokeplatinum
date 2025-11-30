@@ -18,6 +18,9 @@ enum DSScreen {
 #define TILE_SIZE_4BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_4BPP)
 #define TILE_SIZE_8BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_PIXELS)
 
+#define BG_TILE_FLIP_H (1 << 10)
+#define BG_TILE_FLIP_V (1 << 11)
+
 #define SLOTS_PER_PALETTE      16
 #define PALETTE_SIZE           (SLOTS_PER_PALETTE)
 #define PALETTE_SIZE_EXT       (SLOTS_PER_PALETTE * 16)
@@ -62,4 +65,5 @@ enum DSScreen {
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
 
 #define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
+
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H

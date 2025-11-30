@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_201_POKEMON_BREEDER_M_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9,
             "initial_dir": 2,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_201_CASHIER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_201_BARRY_2",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0172",
+            "hidden_flag": "FLAG_UNK_0x0172",
             "script": 9700,
             "initial_dir": 2,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_201_ARROW_SIGNPOST_3",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 0,
             "data": [
@@ -60,10 +64,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_201_ARROW_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [
@@ -76,10 +81,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_201_PROF_ROWAN_5",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0178",
+            "hidden_flag": "FLAG_UNK_0x0178",
             "script": 15,
             "initial_dir": 1,
             "data": [],
@@ -90,10 +96,11 @@
             "y": 0
         },
         {
-            "graphics_id": "OBJ_EVENT_GFX_UNK_101",
+            "id": "ROUTE_201_COUNTERPART_6",
+            "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0179",
+            "hidden_flag": "FLAG_UNK_0x0179",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -104,11 +111,12 @@
             "y": 0
         },
         {
-            "local_id": 5,
+            "id": "ROUTE_201_SIGNBOARD_7",
+            "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01A2",
+            "hidden_flag": "FLAG_UNK_0x01A2",
             "script": 65535,
             "initial_dir": 0,
             "data": [],
@@ -119,11 +127,12 @@
             "y": 0
         },
         {
-            "local_id": 3,
+            "id": "ROUTE_201_GUITARIST_8",
+            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019B",
+            "hidden_flag": "FLAG_UNK_0x019B",
             "script": 65535,
             "initial_dir": 2,
             "data": [],
@@ -134,10 +143,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_201_SCHOOL_KID_M_9",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 11,
             "initial_dir": 2,
             "data": [],
@@ -148,10 +158,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_201_TRAINER_TIPS_SIGNPOST_10",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
             "data": [],
@@ -162,10 +173,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_201_LASS_11",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 12,
             "initial_dir": 2,
             "data": [],
@@ -176,10 +188,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_201_BRIEFCASE_12",
             "graphics_id": "OBJ_EVENT_GFX_BRIEFCASE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017D",
+            "hidden_flag": "FLAG_UNK_0x017D",
             "script": 13,
             "initial_dir": 1,
             "data": [],
@@ -199,7 +212,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 0
         },
         {
@@ -209,7 +222,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 1
         },
         {
@@ -219,7 +232,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 3
         },
         {
@@ -229,7 +242,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 1
         },
         {
@@ -239,7 +252,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 3
         },
         {
@@ -249,8 +262,9 @@
             "y": 0,
             "width": 5,
             "length": 1,
-            "var": 16518,
+            "var": "VAR_FOLLOWER_RIVAL_STATE",
             "value": 2
         }
     ]
 }
+

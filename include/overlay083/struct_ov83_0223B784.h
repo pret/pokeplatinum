@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223B784_H
 #define POKEPLATINUM_STRUCT_OV83_0223B784_H
 
-#include "struct_decls/struct_02015064_decl.h"
-
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
 #include "overlay083/struct_ov83_0223D95C.h"
@@ -23,6 +21,7 @@
 #include "overlay083/struct_ov83_0223FE50.h"
 
 #include "bg_window.h"
+#include "software_sprite.h"
 
 typedef struct {
     int heapID;
@@ -42,7 +41,7 @@ typedef struct {
     UnkStruct_ov83_0223D784 unk_2C;
     UnkStruct_ov83_0223D95C unk_1CC[6];
     BOOL unk_31C;
-    UnkStruct_02015064 *unk_320;
+    SoftwareSpriteManager *unk_320;
     u32 unk_324;
     u32 unk_328;
     BOOL unk_32C;

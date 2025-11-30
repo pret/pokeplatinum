@@ -8,7 +8,7 @@
 #include "constants/savedata/save_table.h"
 #include "generated/items.h"
 
-#include "bag_system.h"
+#include "bag_context.h"
 #include "heap.h"
 #include "item.h"
 #include "savedata.h"
@@ -319,43 +319,43 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
     }
 }
 
-void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapID heapID)
+void *BagContext_CreateWithPockets(Bag *bag, const u8 *pockets, enum HeapID heapID)
 {
-    BagSystem *v0;
+    BagContext *bagContext;
     int i;
 
-    v0 = BagSystem_New(heapID);
+    bagContext = BagContext_New(heapID);
 
     for (i = 0; pockets[i] != 0xff; i++) {
         switch (pockets[i]) {
         case POCKET_KEY_ITEMS:
-            BagSystem_InitPocket(v0, bag->keyItems, POCKET_KEY_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->keyItems, POCKET_KEY_ITEMS, i);
             break;
         case POCKET_ITEMS:
-            BagSystem_InitPocket(v0, bag->items, POCKET_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->items, POCKET_ITEMS, i);
             break;
         case POCKET_BERRIES:
-            BagSystem_InitPocket(v0, bag->berries, POCKET_BERRIES, i);
+            BagContext_InitPocket(bagContext, bag->berries, POCKET_BERRIES, i);
             break;
         case POCKET_MEDICINE:
-            BagSystem_InitPocket(v0, bag->medicine, POCKET_MEDICINE, i);
+            BagContext_InitPocket(bagContext, bag->medicine, POCKET_MEDICINE, i);
             break;
         case POCKET_BALLS:
-            BagSystem_InitPocket(v0, bag->pokeballs, POCKET_BALLS, i);
+            BagContext_InitPocket(bagContext, bag->pokeballs, POCKET_BALLS, i);
             break;
         case POCKET_BATTLE_ITEMS:
-            BagSystem_InitPocket(v0, bag->battleItems, POCKET_BATTLE_ITEMS, i);
+            BagContext_InitPocket(bagContext, bag->battleItems, POCKET_BATTLE_ITEMS, i);
             break;
         case POCKET_MAIL:
-            BagSystem_InitPocket(v0, bag->mail, POCKET_MAIL, i);
+            BagContext_InitPocket(bagContext, bag->mail, POCKET_MAIL, i);
             break;
         case POCKET_TMHMS:
-            BagSystem_InitPocket(v0, bag->tmHms, POCKET_TMHMS, i);
+            BagContext_InitPocket(bagContext, bag->tmHms, POCKET_TMHMS, i);
             break;
         }
     }
 
-    return v0;
+    return bagContext;
 }
 
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot)

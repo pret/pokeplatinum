@@ -2,11 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_204_NORTH_BUG_CATCHER_BRANDON",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3012,
+            "hidden_flag": "0",
+            "script": "TRAINER_BUG_CATCHER_BRANDON",
             "initial_dir": 2,
             "data": [
                 1
@@ -18,11 +19,12 @@
             "y": 5
         },
         {
+            "id": "ROUTE_204_NORTH_AROMA_LADY_TAYLOR",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3013,
+            "hidden_flag": "0",
+            "script": "TRAINER_AROMA_LADY_TAYLOR",
             "initial_dir": 1,
             "data": [
                 4
@@ -34,11 +36,13 @@
             "y": 5
         },
         {
+            "id": "ROUTE_204_NORTH_TWIN_LIV",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3014,
+            "hidden_flag": "0",
+            "script": "TRAINER_TWINS_LIV_AND_LIZ",
+            "double_battle_id": 1,
             "initial_dir": 1,
             "data": [
                 3
@@ -50,11 +54,13 @@
             "y": 5
         },
         {
+            "id": "ROUTE_204_NORTH_TWIN_LIZ",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 5014,
+            "hidden_flag": "0",
+            "script": "TRAINER_TWINS_LIV_AND_LIZ",
+            "double_battle_id": 2,
             "initial_dir": 1,
             "data": [
                 4
@@ -66,10 +72,11 @@
             "y": 5
         },
         {
+            "id": "ROUTE_204_NORTH_YOUNGSTER_4",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 3,
             "data": [],
@@ -80,10 +87,11 @@
             "y": 5
         },
         {
+            "id": "ROUTE_204_NORTH_ARROW_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [
@@ -96,10 +104,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_SIGNBOARD_6",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -110,10 +119,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_YOUNGSTER_7",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -124,10 +134,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_CUT_TREE_8",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -138,10 +149,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0404",
+            "hidden_flag": "FLAG_UNK_0x0404",
             "script": 7014,
             "initial_dir": 0,
             "data": [],
@@ -152,10 +164,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_ACE_TRAINER_F_10",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -166,10 +179,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_204_NORTH_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04F4",
+            "hidden_flag": "FLAG_UNK_0x04F4",
             "script": 7254,
             "initial_dir": 0,
             "data": [],

@@ -19,10 +19,11 @@
     ],
     "object_events": [
         {
+            "id": "WAYWARD_CAVE_B1F_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0420",
+            "hidden_flag": "FLAG_UNK_0x0420",
             "script": 7042,
             "initial_dir": 0,
             "data": [],
@@ -33,10 +34,11 @@
             "y": 0
         },
         {
+            "id": "WAYWARD_CAVE_B1F_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x041E",
+            "hidden_flag": "FLAG_UNK_0x041E",
             "script": 7040,
             "initial_dir": 0,
             "data": [],
@@ -47,10 +49,11 @@
             "y": 0
         },
         {
+            "id": "WAYWARD_CAVE_B1F_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x041F",
+            "hidden_flag": "FLAG_UNK_0x041F",
             "script": 7041,
             "initial_dir": 0,
             "data": [],

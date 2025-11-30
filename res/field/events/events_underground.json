@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "UNDERGROUND_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_1",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_2",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_3",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_4",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_5",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -86,10 +92,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_6",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -100,10 +107,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -114,10 +122,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_8",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -128,10 +137,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_9",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -142,10 +152,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_10",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -156,10 +167,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_11",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -170,10 +182,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_12",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -184,10 +197,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_13",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -198,10 +212,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_14",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -212,10 +227,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_15",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -226,10 +242,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_ROARK_16",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01A7",
+            "hidden_flag": "FLAG_UNK_0x01A7",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -240,10 +257,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_17",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -254,10 +272,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_18",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -268,10 +287,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_19",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -282,10 +302,11 @@
             "y": 0
         },
         {
+            "id": "UNDERGROUND_HIKER_20",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -299,3 +320,4 @@
     "warp_events": [],
     "coord_events": []
 }
+

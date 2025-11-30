@@ -9,8 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar VAR_0x8007, 0
-    CallCommonScript 0x7D2
+    CallPokecenterNurse 0
     End
 
 _001E:
@@ -27,8 +26,7 @@ _0031:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0057
+    GoToIfBadgeAcquired BADGE_ID_BEACON, _0057
     Message 1
     WaitABXPadPress
     CloseMessage

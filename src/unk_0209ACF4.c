@@ -69,7 +69,7 @@ void sub_0209ACF4(FieldTask *param0)
     v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD3);
     v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD3);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
-    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
+    v1->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
     v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);
     v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
 
@@ -163,7 +163,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
         break;
     case 4:
         if (sub_0209B100(v0)) {
-            ov5_021D1744(0);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
             v0->unk_54 = 5;
         }
         break;
@@ -184,7 +184,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
         break;
     case 7:
         if (FieldSystem_IsRunningFieldMap(v0->fieldSystem)) {
-            ov5_021D1744(1);
+            FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
             v0->unk_54 = 8;
         }
         break;

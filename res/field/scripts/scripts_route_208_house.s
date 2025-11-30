@@ -37,7 +37,7 @@ _0067:
     End
 
 _0072:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -58,8 +58,8 @@ _007C:
 _00C7:
     Message 3
     SetVar VAR_MAP_LOCAL_0, 1
-    SetVar VAR_0x8004, 7
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
+    GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

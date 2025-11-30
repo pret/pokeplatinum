@@ -26,8 +26,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Oh, dear me!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Oh, dear me!\n"
+        }
     ]
 }

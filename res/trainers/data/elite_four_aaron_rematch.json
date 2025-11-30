@@ -85,23 +85,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"It’s not over yet!\n",
-				"A League Elite Four can’t give up!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "It’s not over yet!\n",
+                "A League Elite Four can’t give up!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I will now concede defeat.\r",
-				"But I think you came to see how\n",
-				"great Bug-type Pokémon can be.\r",
-				"I hope you also realized what you’re\n",
-				"up against in the Pokémon League.\r",
-				"Battling is a deep and complex\n",
-				"affair...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I will now concede defeat.\r",
+                "But I think you came to see how\n",
+                "great Bug-type Pokémon can be.\r",
+                "I hope you also realized what you’re\n",
+                "up against in the Pokémon League.\r",
+                "Battling is a deep and complex\n",
+                "affair...\n"
+            ]
+        }
     ]
 }

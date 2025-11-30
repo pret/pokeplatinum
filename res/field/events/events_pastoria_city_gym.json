@@ -19,10 +19,11 @@
     ],
     "object_events": [
         {
+            "id": "PASTORIA_CITY_GYM_CRASHER_WAKE_0",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x020F",
+            "hidden_flag": "FLAG_UNK_0x020F",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -33,10 +34,11 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_GYM_GUIDE_1",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -47,11 +49,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_TUBER_JACKY",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3496,
+            "hidden_flag": "0",
+            "script": "TRAINER_TUBER_JACKY",
             "initial_dir": 1,
             "data": [
                 2
@@ -63,11 +66,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_SAILOR_DAMIAN",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3338,
+            "hidden_flag": "0",
+            "script": "TRAINER_SAILOR_DAMIAN",
             "initial_dir": 1,
             "data": [
                 2
@@ -79,11 +83,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_TUBER_CAITLYN",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3497,
+            "hidden_flag": "0",
+            "script": "TRAINER_TUBER_CAITLYN",
             "initial_dir": 2,
             "data": [
                 2
@@ -95,11 +100,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_SAILOR_SAMSON",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3482,
+            "hidden_flag": "0",
+            "script": "TRAINER_SAILOR_SAMSON",
             "initial_dir": 2,
             "data": [
                 2
@@ -111,11 +117,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_FISHERMAN_ERICK",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3292,
+            "hidden_flag": "0",
+            "script": "TRAINER_FISHERMAN_ERICK",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -125,11 +132,12 @@
             "y": 0
         },
         {
+            "id": "PASTORIA_CITY_GYM_FISHERMAN_WALTER",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3400,
+            "hidden_flag": "0",
+            "script": "TRAINER_FISHERMAN_WALTER",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -155,7 +163,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16385,
+            "var": "VAR_MAP_LOCAL_1",
             "value": 0
         },
         {
@@ -165,7 +173,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16386,
+            "var": "VAR_MAP_LOCAL_2",
             "value": 0
         },
         {
@@ -175,7 +183,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16385,
+            "var": "VAR_MAP_LOCAL_1",
             "value": 0
         },
         {
@@ -185,7 +193,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16386,
+            "var": "VAR_MAP_LOCAL_2",
             "value": 0
         },
         {
@@ -195,7 +203,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16386,
+            "var": "VAR_MAP_LOCAL_2",
             "value": 0
         },
         {
@@ -205,7 +213,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16386,
+            "var": "VAR_MAP_LOCAL_2",
             "value": 0
         },
         {
@@ -215,7 +223,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16387,
+            "var": "VAR_MAP_LOCAL_3",
             "value": 0
         },
         {
@@ -225,7 +233,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16387,
+            "var": "VAR_MAP_LOCAL_3",
             "value": 0
         },
         {
@@ -235,7 +243,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16387,
+            "var": "VAR_MAP_LOCAL_3",
             "value": 0
         },
         {
@@ -245,7 +253,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16387,
+            "var": "VAR_MAP_LOCAL_3",
             "value": 0
         }
     ]

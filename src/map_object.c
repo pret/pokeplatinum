@@ -25,6 +25,7 @@
 #include "overlay005/struct_ov5_021FB0F0.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
+#include "berry_patch_graphics.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object_move.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
 #include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {
@@ -77,9 +77,9 @@ typedef struct MapObject {
     int y;
     int z;
     VecFx32 pos;
-    VecFx32 unk_7C;
+    VecFx32 spriteJumpOffset;
     VecFx32 unk_88;
-    VecFx32 unk_94;
+    VecFx32 spriteTerrainOffset;
     u32 unk_A0;
     enum MovementAction movementAction;
     int movementStep;
@@ -145,7 +145,7 @@ static MapObject *MapObjectMan_GetMapObjectStatic(const MapObjectManager *mapObj
 static MapObjectManager *sub_02062A48(const MapObject *mapObj);
 static const ObjectEvent *sub_020631A4(int param0, int param1, const ObjectEvent *objectEvent);
 static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent);
-static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent);
+static int ObjectEvent_GetHiddenFlagNoScript(const ObjectEvent *objectEvent);
 
 static const UnkStruct_020EDF0C *sub_0206320C(u32 param0);
 static UnkFuncPtr_020EDF0C sub_02063224(const UnkStruct_020EDF0C *param0);
@@ -241,7 +241,7 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
             return mapObj;
         }
     } else {
-        mapObj = sub_020624CC(mapObjMan, localID, ObjectEvent_GetFlagNoScript(v2));
+        mapObj = sub_020624CC(mapObjMan, localID, ObjectEvent_GetHiddenFlagNoScript(v2));
 
         if (mapObj != NULL) {
             sub_02062714(mapObj, mapID, v2);
@@ -276,7 +276,7 @@ MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, i
     ObjectEvent_SetGraphicsID(&objectEvent, graphicsID);
     ObjectEvent_SetMovementType(&objectEvent, movementType);
     ObjectEvent_SetTrainerType(&objectEvent, 0);
-    ObjectEvent_SetFlag(&objectEvent, 0);
+    ObjectEvent_SetHiddenFlag(&objectEvent, 0);
     ObjectEvent_SetScript(&objectEvent, 0);
     ObjectEvent_SetInitialDir(&objectEvent, initialDir);
     ObjectEvent_SetDataAt(&objectEvent, 0, 0);
@@ -299,10 +299,10 @@ MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMa
     const ObjectEvent *v1 = sub_020631A4(localID, objEventCount, objectEvent);
 
     if (v1 != NULL) {
-        int flag = ObjectEvent_GetFlag(v1);
+        int hiddenFlag = ObjectEvent_GetHiddenFlag(v1);
         FieldSystem *fieldSystem = MapObjectMan_FieldSystem(mapObjMan);
 
-        if (!FieldSystem_CheckFlag(fieldSystem, flag)) {
+        if (!FieldSystem_CheckFlag(fieldSystem, hiddenFlag)) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, v1, mapID);
         }
     }
@@ -625,7 +625,7 @@ static void sub_020620C4(UnkStruct_020620C4 *param0)
     objectEvent = param0->objectEvent;
 
     do {
-        if (ObjectEvent_HasNoScript(objectEvent) == TRUE || FieldSystem_CheckFlag(fieldSystem, objectEvent->flag) == FALSE) {
+        if (ObjectEvent_HasNoScript(objectEvent) == TRUE || FieldSystem_CheckFlag(fieldSystem, objectEvent->hiddenFlag) == FALSE) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(param0->mapObjMan, objectEvent, param0->unk_00);
             GF_ASSERT(mapObj != NULL);
         }
@@ -695,7 +695,7 @@ static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, Fiel
     MapObject_SetGraphicsID(mapObj, MapObject_GetFieldSystemGraphicsID(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
     MapObject_SetMovementType(mapObj, ObjectEvent_GetMovementType(objectEvent));
     MapObject_SetTrainerType(mapObj, ObjectEvent_GetTrainerType(objectEvent));
-    MapObject_SetFlag(mapObj, ObjectEvent_GetFlag(objectEvent));
+    MapObject_SetFlag(mapObj, ObjectEvent_GetHiddenFlag(objectEvent));
     MapObject_SetScript(mapObj, ObjectEvent_GetScript(objectEvent));
     MapObject_SetInitialDir(mapObj, ObjectEvent_GetInitialDir(objectEvent));
     MapObject_SetDataAt(mapObj, ObjectEvent_GetDataAt(objectEvent, 0), 0);
@@ -790,7 +790,7 @@ static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, 
 
         if (MapObject_GetLocalID(mapObj) == localID) {
             if (ObjectEvent_HasNoScript(objectEvent) == TRUE) {
-                flag = ObjectEvent_GetFlagNoScript(objectEvent);
+                flag = ObjectEvent_GetHiddenFlagNoScript(objectEvent);
 
                 if (sub_02062E94(mapObj) == TRUE) {
                     if (sub_02062C18(mapObj) == flag) {
@@ -967,7 +967,7 @@ static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int 
     sub_02062E78(mapObj, 0);
     sub_02062914(mapObj, mapID);
     MapObject_SetScript(mapObj, ObjectEvent_GetScript(objectEvent));
-    MapObject_SetFlag(mapObj, ObjectEvent_GetFlag(objectEvent));
+    MapObject_SetFlag(mapObj, ObjectEvent_GetHiddenFlag(objectEvent));
 }
 
 static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *objectEvent)
@@ -976,7 +976,7 @@ static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *object
 
     sub_02062E78(mapObj, 1);
     MapObject_SetScript(mapObj, ObjectEvent_GetScript(objectEvent));
-    MapObject_SetFlag(mapObj, ObjectEvent_GetFlagNoScript(objectEvent));
+    MapObject_SetFlag(mapObj, ObjectEvent_GetHiddenFlagNoScript(objectEvent));
     sub_02062914(mapObj, mapID);
 }
 
@@ -1017,7 +1017,7 @@ int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
         return 0;
     }
 
-    int v0 = sub_02062924(mapObj);
+    int v0 = MapObject_GetEffectiveGraphicsID(mapObj);
 
     if (v0 != param1) {
         return 0;
@@ -1236,12 +1236,12 @@ u32 MapObject_GetGraphicsID(const MapObject *mapObj)
     return mapObj->graphicsID;
 }
 
-u32 sub_02062924(const MapObject *mapObj)
+u32 MapObject_GetEffectiveGraphicsID(const MapObject *mapObj)
 {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
-    if (sub_020677F4(graphicsID) == TRUE) {
-        graphicsID = sub_02067800(mapObj);
+    if (BerryPatchGraphics_IsBerryPatch(graphicsID) == TRUE) {
+        graphicsID = BerryPatchGraphics_GetCurrentGraphicsResourceID(mapObj);
     }
 
     return graphicsID;
@@ -1896,18 +1896,18 @@ int sub_02062EC8(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062EE0(MapObject *mapObj, int param1)
+void MapObject_SetFlagDoNotSinkIntoTerrain(MapObject *mapObj, BOOL flag)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_27);
+    if (flag == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_27);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN);
     }
 }
 
-int sub_02062EFC(const MapObject *mapObj)
+int MapObject_CheckFlagDoNotSinkIntoTerrain(const MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_27)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN)) {
         return TRUE;
     }
 
@@ -1980,15 +1980,15 @@ int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj)
 void sub_02062FC4(MapObject *mapObj, int param1)
 {
     if (param1 == TRUE) {
-        sub_020628F0(mapObj, (1 << 2));
+        sub_020628F0(mapObj, 1 << 2);
     } else {
-        sub_020628F8(mapObj, (1 << 2));
+        sub_020628F8(mapObj, 1 << 2);
     }
 }
 
 int sub_02062FDC(const MapObject *mapObj)
 {
-    if (sub_02062904(mapObj, (1 << 2))) {
+    if (sub_02062904(mapObj, 1 << 2)) {
         return TRUE;
     }
 
@@ -2120,19 +2120,19 @@ fx32 MapObject_GetPosY(const MapObject *mapObj)
     return mapObj->pos.y;
 }
 
-void sub_02063078(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteJumpOffset(const MapObject *mapObj, VecFx32 *vec)
 {
-    *vec = mapObj->unk_7C;
+    *vec = mapObj->spriteJumpOffset;
 }
 
-void sub_02063088(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteJumpOffset(MapObject *mapObj, const VecFx32 *vec)
 {
-    mapObj->unk_7C = *vec;
+    mapObj->spriteJumpOffset = *vec;
 }
 
-VecFx32 *sub_02063098(MapObject *mapObj)
+VecFx32 *MapObject_GetSpriteJumpOffset1(MapObject *mapObj)
 {
-    return &mapObj->unk_7C;
+    return &mapObj->spriteJumpOffset;
 }
 
 void sub_0206309C(const MapObject *mapObj, VecFx32 *vec)
@@ -2145,14 +2145,14 @@ void sub_020630AC(MapObject *mapObj, const VecFx32 *vec)
     mapObj->unk_88 = *vec;
 }
 
-void sub_020630BC(const MapObject *mapObj, VecFx32 *vec)
+void MapObject_GetSpriteTerrainOffset(const MapObject *mapObj, VecFx32 *spriteOffset)
 {
-    *vec = mapObj->unk_94;
+    *spriteOffset = mapObj->spriteTerrainOffset;
 }
 
-void sub_020630CC(MapObject *mapObj, const VecFx32 *vec)
+void MapObject_SetSpriteTerrainOffset(MapObject *mapObj, const VecFx32 *spriteOffset)
 {
-    mapObj->unk_94 = *vec;
+    mapObj->spriteTerrainOffset = *spriteOffset;
 }
 
 int sub_020630DC(const MapObject *mapObj)
@@ -2203,14 +2203,14 @@ int ObjectEvent_GetTrainerType(const ObjectEvent *objectEvent)
     return objectEvent->trainerType;
 }
 
-void ObjectEvent_SetFlag(ObjectEvent *objectEvent, int flag)
+void ObjectEvent_SetHiddenFlag(ObjectEvent *objectEvent, int flag)
 {
-    objectEvent->flag = flag;
+    objectEvent->hiddenFlag = flag;
 }
 
-int ObjectEvent_GetFlag(const ObjectEvent *objectEvent)
+int ObjectEvent_GetHiddenFlag(const ObjectEvent *objectEvent)
 {
-    return objectEvent->flag;
+    return objectEvent->hiddenFlag;
 }
 
 void ObjectEvent_SetScript(ObjectEvent *objectEvent, int script)
@@ -2341,10 +2341,10 @@ static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent)
     return FALSE;
 }
 
-static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent)
+static int ObjectEvent_GetHiddenFlagNoScript(const ObjectEvent *objectEvent)
 {
     GF_ASSERT(ObjectEvent_HasNoScript(objectEvent) == TRUE);
-    return ObjectEvent_GetFlag(objectEvent);
+    return ObjectEvent_GetHiddenFlag(objectEvent);
 }
 
 static const UnkStruct_020EDF0C *sub_0206320C(u32 param0)

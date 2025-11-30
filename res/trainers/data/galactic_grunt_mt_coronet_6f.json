@@ -37,28 +37,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"You’ve worked so hard to get here.\n",
-				"You should be proud of yourself!\r",
-				"And now, I’ll send you packing home\n",
-				"with only that happy thought!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You’ve worked so hard to get here.\n",
+                "You should be proud of yourself!\r",
+                "And now, I’ll send you packing home\n",
+                "with only that happy thought!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Wh-- How dare you! That’s how you\n",
-				"respond to my generosity?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wh-- How dare you! That’s how you\n",
+                "respond to my generosity?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"We couldn’t stop you...\n",
-				"We’ll be discarded as useless...\r",
-				"Our boss is ruthless that way...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "We couldn’t stop you...\n",
+                "We’ll be discarded as useless...\r",
+                "Our boss is ruthless that way...\n"
+            ]
+        }
     ]
 }

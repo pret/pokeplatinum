@@ -30,32 +30,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I took great pains raising my partners.\n",
-				"I’ll show you how strong I made them!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I took great pains raising my partners.\n",
+                "I’ll show you how strong I made them!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "It needs to be leveled more?!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "It needs to be leveled more?!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"My Pokémon...\r",
-				"They’re the first friends I ever\n",
-				"caught. They mean everything to me!"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "My Pokémon...\r",
+                "They’re the first friends I ever\n",
+                "caught. They mean everything to me!"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"...When I close my eyes, I can picture\n",
-				"how we lost to you in vivid detail.\r",
-				"But, I’ve raised them since then! I’ll\n",
-				"throw their strength in your face!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "...When I close my eyes, I can picture\n",
+                "how we lost to you in vivid detail.\r",
+                "But, I’ve raised them since then! I’ll\n",
+                "throw their strength in your face!\r"
+            ]
+        }
     ]
 }

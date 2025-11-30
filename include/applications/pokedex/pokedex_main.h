@@ -71,7 +71,7 @@ PokedexGraphicData *PokedexMain_GetGraphicData(PokedexApp *pokedexApp);
 PokedexScreenManager *ov21_021D1410(PokedexApp *pokedexApp, int param1);
 PokedexScreenManager *ov21_021D1430(PokedexApp *pokedexApp, int param1);
 void ov21_021D144C(Sprite *param0, int param1);
-void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2);
+void PokedexMain_SetButtonY(Sprite *param0, PokedexTextData *textData, int setY);
 void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4);
 void PokedexMain_SetHitTableRect(TouchScreenHitTable *hitTable, int top, int bottom, int left, int right);
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration);

@@ -688,7 +688,7 @@ static void RowanIntro_FreeGraphics(RowanIntro *manager)
 static void RowanIntro_InitMessageStructs(RowanIntro *manager)
 {
     manager->msgLoader = MessageLoader_Init(
-        MESSAGE_LOADER_NARC_HANDLE,
+        MSG_LOADER_LOAD_ON_DEMAND,
         NARC_INDEX_MSGDATA__PL_MSG,
         TEXT_BANK_ROWAN_INTRO,
         manager->heapID);
@@ -990,7 +990,7 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
             0x400 - (18 + 12),
             4);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-        RenderControlFlags_SetAutoScrollFlags(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
         {
             Strbuf *tmpStrbuf = Strbuf_Init(0x400, manager->heapID);

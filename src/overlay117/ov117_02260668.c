@@ -226,7 +226,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_24), 0, (192 + 160) << FX32_SHIFT);
     ov117_02261574(v0);
 
-    v0->unk_80 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0009, HEAP_ID_110);
+    v0->unk_80 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0009, HEAP_ID_110);
     v0->unk_84 = StringTemplate_Default(HEAP_ID_110);
     v0->unk_88 = Strbuf_Init(2 * 160, HEAP_ID_110);
     v0->unk_90 = sub_02012744(2 * 6 + 6 + 1, HEAP_ID_110);
@@ -265,9 +265,9 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
-        RenderControlFlags_SetAutoScrollFlags(1);
-        RenderControlFlags_SetCanABSpeedUpPrint(0);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
+        RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     }
 
     v0->unk_1C = ov114_0225CAD4(SpriteManager_GetSpriteList(v0->unk_28), HEAP_ID_110);
@@ -477,9 +477,9 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     ov117_02260EB8(v0->unk_98);
     DisableTouchPad();
     ApplicationManager_FreeData(appMan);
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     NetworkIcon_Destroy();
 
     return 1;

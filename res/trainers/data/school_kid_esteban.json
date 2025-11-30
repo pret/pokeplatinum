@@ -27,8 +27,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Wow... You’re out there.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Wow... You’re out there.\n"
+        }
     ]
 }

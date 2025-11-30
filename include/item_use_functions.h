@@ -13,6 +13,14 @@
 #define USE_ITEM_TASK_FIELD 1
 #define USE_ITEM_TASK_CHECK 2
 
+enum ItemUseCheckResult {
+    ITEM_USE_CANNOT_USE_GENERIC = -1,
+    ITEM_USE_CAN_USE,
+    ITEM_USE_CANNOT_DISMOUNT,
+    ITEM_USE_CANNOT_USE_WITH_PARTNER,
+    ITEM_USE_CANNOT_FISH_HERE,
+};
+
 typedef void *(*FieldApplicationWorkCtor)(void *fieldSystem);
 
 typedef struct ItemUseContext {
@@ -21,7 +29,7 @@ typedef struct ItemUseContext {
     int playerState;
     u16 facingTileBehavior; // behavior of the tile the player is facing
     u16 currTileBehavior;
-    u16 unk_10;
+    u16 berryPatchFlags;
     u8 padding_12[2];
     PlayerAvatar *playerAvatar;
     FieldSystem *fieldSystem;
@@ -45,7 +53,7 @@ typedef struct ItemMenuUseContext {
 
 typedef BOOL (*ItemFieldUseFunc)(ItemFieldUseContext *);
 typedef void (*ItemMenuUseFunc)(ItemMenuUseContext *, const ItemUseContext *);
-typedef u32 (*ItemCheckUseFunc)(const ItemUseContext *);
+typedef enum ItemUseCheckResult (*ItemCheckUseFunc)(const ItemUseContext *);
 
 typedef struct UnkStruct_0206851C {
     u32 unk_00;
@@ -64,7 +72,7 @@ typedef struct UnkStruct_02068EFC {
 
 u32 GetItemUseFunction(u16 param0, u16 param1);
 void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *param1);
-BOOL sub_02068B50(const ItemUseContext *param0);
+BOOL BerryPatch_IsEmpty(const ItemUseContext *usageContext);
 BOOL sub_02069238(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_ITEM_USE_FUNCTIONS_H

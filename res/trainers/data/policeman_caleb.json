@@ -28,40 +28,40 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Whether there are problems or not, or\n",
-				"if crimes have been committed or not,\f",
-				"I still go out on patrol.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Whether there are problems or not, or\n",
+                "if crimes have been committed or not,\f",
+                "I still go out on patrol.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Big trouble! Officer in need\n",
-				"of assistance!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Big trouble! Officer in need\n",
+                "of assistance!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Your toughness is too much!\n",
-				"I’m in serious trouble!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Your toughness is too much!\n",
+                "I’m in serious trouble!\n"
+            ]
+        },
         {
-			"type": "TRMSG_NOT_NIGHT_UNUSED",
-			"en_US": [
-				"I don’t know how to say this, but\n",
-				"maybe we patrol too much.\n"
-			]
-		},
+            "type": "TRMSG_NOT_NIGHT_UNUSED",
+            "en_US": [
+                "I don’t know how to say this, but\n",
+                "maybe we patrol too much.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Let me ask you a question!\n",
-				"Are you tough enough to take me?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Let me ask you a question!\n",
+                "Are you tough enough to take me?\r"
+            ]
+        }
     ]
 }

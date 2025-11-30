@@ -71,14 +71,14 @@ _00C2:
     GoTo _00D2
 
 _00D2:
-    ScrCmd_168 0, 0, 6, 9, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 0, 0, 6, 9, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 2, _0130
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 2
     SetFlag FLAG_UNK_0x0162
     ReleaseAll

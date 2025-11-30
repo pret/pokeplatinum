@@ -19,11 +19,12 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_211_WEST_BIRD_KEEPER_ALEXANDRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3075,
+            "hidden_flag": "0",
+            "script": "TRAINER_BIRD_KEEPER_ALEXANDRA",
             "initial_dir": 1,
             "data": [
                 2
@@ -35,11 +36,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_HIKER_LOUIS",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3325,
+            "hidden_flag": "0",
+            "script": "TRAINER_HIKER_LOUIS",
             "initial_dir": 1,
             "data": [
                 4
@@ -51,11 +53,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_NINJA_BOY_ZACH",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
-            "flag": "0",
-            "script": 3077,
+            "hidden_flag": "0",
+            "script": "TRAINER_NINJA_BOY_ZACH",
             "initial_dir": 1,
             "data": [
                 1
@@ -67,10 +70,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_ARROW_SIGNPOST_3",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [
@@ -83,10 +87,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -97,10 +102,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0411",
+            "hidden_flag": "FLAG_UNK_0x0411",
             "script": 7027,
             "initial_dir": 0,
             "data": [],
@@ -111,11 +117,12 @@
             "y": 0
         },
         {
-            "local_id": 9,
+            "id": "ROUTE_211_WEST_MAP_SIGNPOST_6",
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0041",
+            "hidden_flag": "FLAG_UNK_0x0041",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -128,10 +135,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_211_WEST_ARROW_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [

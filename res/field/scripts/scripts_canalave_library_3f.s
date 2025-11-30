@@ -179,13 +179,13 @@ _0184:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     StopFanfare SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x4078, 4
+    SetVar VAR_CANALAVE_STATE, 4
     SetVar VAR_UNK_0x40B2, 2
     SetFlag FLAG_UNK_0x00A8
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x01B3
     ClearFlag FLAG_UNK_0x01B5
-    ClearFlag FLAG_UNK_0x01B2
+    ClearFlag FLAG_HIDE_CANALAVE_RIVAL
     ReleaseAll
     End
 

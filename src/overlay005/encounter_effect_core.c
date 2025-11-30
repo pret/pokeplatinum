@@ -2865,7 +2865,7 @@ static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
     Strbuf *result;
     Strbuf *message;
 
-    messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
+    messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
     template = StringTemplate_Default(heapID);
     result = Strbuf_Init(128, heapID);
     message = Strbuf_Init(128, heapID);

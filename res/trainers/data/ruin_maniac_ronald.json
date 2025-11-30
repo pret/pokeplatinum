@@ -21,36 +21,36 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I travel all over the world in search of\n",
-				"mysteries.\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I travel all over the world in search of\n",
+                "mysteries.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Gasp... One more... Gasp...\n",
-				"It’s like I went on a diet...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Gasp... One more... Gasp...\n",
+                "It’s like I went on a diet...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"There are mysteries waiting for me\n",
-				"to investigate around the world.\r",
-				"This is no time to be feeling sorry\n",
-				"for myself.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "There are mysteries waiting for me\n",
+                "to investigate around the world.\r",
+                "This is no time to be feeling sorry\n",
+                "for myself.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"There’s an endless supply of\n",
-				"mysteries around the world.\r",
-				"Running into you here just happens\n",
-				"to be one such mystery!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "There’s an endless supply of\n",
+                "mysteries around the world.\r",
+                "Running into you here just happens\n",
+                "to be one such mystery!\r"
+            ]
+        }
     ]
 }

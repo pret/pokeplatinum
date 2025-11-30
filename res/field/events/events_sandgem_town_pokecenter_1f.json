@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "SANDGEM_TOWN_POKECENTER_1F_POKEMON_BREEDER_M_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_POKECENTER_1F_EXPERT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 3,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_POKECENTER_1F_LASS_2",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 2,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
-            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
+            "id": "SANDGEM_TOWN_POKECENTER_1F_POKECENTER_NURSE_3",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "SANDGEM_TOWN_POKECENTER_1F_TEALA_4",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x023F",
+            "hidden_flag": "FLAG_HIDE_BLOCK_POKECENTER_BASEMENT",
             "script": 2035,
             "initial_dir": 2,
             "data": [],

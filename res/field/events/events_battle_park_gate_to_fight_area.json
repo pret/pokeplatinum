@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_MAID_0",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_MAID_1",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 3,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_MAID_2",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_MAID_3",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 2,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_COLLECTOR_4",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 0,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_PARK_GATE_TO_FIGHT_AREA_MAID_5",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 2,
             "data": [],

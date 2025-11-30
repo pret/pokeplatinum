@@ -52,8 +52,7 @@ _0090:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00C1
+    GoToIfBadgeAcquired BADGE_ID_COAL, _00C1
     GoToIfSet FLAG_UNK_0x007A, _00CC
     Message 8
     WaitABXPadPress
@@ -178,7 +177,7 @@ _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
     CallCommonScript 0x7FB
-    SetVar VAR_UNK_0x4079, 3
+    SetVar VAR_OREBURGH_STATE, 3
     ReleaseAll
     End
 
@@ -291,7 +290,7 @@ _0376:
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD
     End
@@ -304,7 +303,7 @@ _03BD:
     End
 
 _03C8:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -410,7 +409,7 @@ _0544:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x801
-    SetVar VAR_UNK_0x4079, 1
+    SetVar VAR_OREBURGH_STATE, 1
     ReleaseAll
     End
 

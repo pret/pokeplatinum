@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_IDOL_1",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_BEAUTY_2",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 2,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "CONTEST_HALL_STAGE_NO_CONTEST_BLACK_BELT_3",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],

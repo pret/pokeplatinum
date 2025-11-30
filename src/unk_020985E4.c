@@ -42,7 +42,7 @@ BOOL sub_0209862C(FieldTask *param0)
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         v1->unk_00++;
     case 1:
         if (IsScreenFadeDone() == FALSE) {

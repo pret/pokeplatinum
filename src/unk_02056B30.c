@@ -366,7 +366,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         break;
     case 2:
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
-        ov5_021D1744(0);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         (v1->unk_04)++;
         break;
     case 3:
@@ -542,7 +542,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
     switch (v1->unk_04) {
     case 0:
 
-        ov5_021D1744(1);
+        FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         v2 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (1) {

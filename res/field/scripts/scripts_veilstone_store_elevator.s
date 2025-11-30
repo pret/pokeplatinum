@@ -1,220 +1,221 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_elevator.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry VeilstoneStoreElevator_TalkElevatorOperator
     ScriptEntryEnd
 
-_0006:
+VeilstoneStoreElevator_TalkElevatorOperator:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFloorsAbove VAR_UNK_0x40CE
-    SetVar VAR_0x8008, VAR_UNK_0x40CE
-    GoToIfEq VAR_0x8008, 0, _0068
-    GoToIfEq VAR_0x8008, 1, _0072
-    GoToIfEq VAR_0x8008, 2, _007C
-    GoToIfEq VAR_0x8008, 3, _0086
-    GoToIfEq VAR_0x8008, 4, _0090
-    GoToIfEq VAR_0x8008, 5, _009A
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
+    GoToIfEq VAR_0x8008, 0, VeilstoneStoreElevator_CurrentFloor5
+    GoToIfEq VAR_0x8008, 1, VeilstoneStoreElevator_CurrentFloor4
+    GoToIfEq VAR_0x8008, 2, VeilstoneStoreElevator_CurrentFloor3
+    GoToIfEq VAR_0x8008, 3, VeilstoneStoreElevator_CurrentFloor2
+    GoToIfEq VAR_0x8008, 4, VeilstoneStoreElevator_CurrentFloor1
+    GoToIfEq VAR_0x8008, 5, VeilstoneStoreElevator_CurrentFloorB1
     End
 
-_0068:
-    ScrCmd_347 0, 5
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloor5:
+    BufferFloorNumber 0, 5
+    GoTo VeilstoneStoreElevator_SelectFloor
 
-_0072:
-    ScrCmd_347 0, 4
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloor4:
+    BufferFloorNumber 0, 4
+    GoTo VeilstoneStoreElevator_SelectFloor
 
-_007C:
-    ScrCmd_347 0, 3
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloor3:
+    BufferFloorNumber 0, 3
+    GoTo VeilstoneStoreElevator_SelectFloor
 
-_0086:
-    ScrCmd_347 0, 2
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloor2:
+    BufferFloorNumber 0, 2
+    GoTo VeilstoneStoreElevator_SelectFloor
 
-_0090:
-    ScrCmd_347 0, 1
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloor1:
+    BufferFloorNumber 0, 1
+    GoTo VeilstoneStoreElevator_SelectFloor
 
-_009A:
-    ScrCmd_347 0, 0
-    GoTo _00A6
+VeilstoneStoreElevator_CurrentFloorB1:
+    BufferFloorNumber 0, 0
+    GoTo VeilstoneStoreElevator_SelectFloor
     End
 
-_00A6:
-    ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
-    Message 0
+VeilstoneStoreElevator_SelectFloor:
+    ShowCurrentFloor 20, 1, VAR_ELEVATOR_FLOORS_ABOVE
+    Message VeilstoneStoreElevator_Text_Hello
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 120, 0
-    AddMenuEntryImm 119, 1
-    AddMenuEntryImm 118, 2
-    AddMenuEntryImm 117, 3
-    AddMenuEntryImm 116, 4
-    AddMenuEntryImm 121, 5
-    AddMenuEntryImm 124, 6
+    AddMenuEntryImm MenuEntries_Text_5F, 0
+    AddMenuEntryImm MenuEntries_Text_4F, 1
+    AddMenuEntryImm MenuEntries_Text_3F, 2
+    AddMenuEntryImm MenuEntries_Text_2F, 3
+    AddMenuEntryImm MenuEntries_Text_1F, 4
+    AddMenuEntryImm MenuEntries_Text_B1F, 5
+    AddMenuEntryImm MenuEntries_Text_ElevatorExit, 6
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _02BC
-    GoToIfEq VAR_0x8008, 1, _026D
-    GoToIfEq VAR_0x8008, 2, _021E
-    GoToIfEq VAR_0x8008, 3, _01CF
-    GoToIfEq VAR_0x8008, 4, _0180
-    GoToIfEq VAR_0x8008, 5, _0131
-    GoTo _03F6
+    GoToIfEq VAR_0x8008, 0, VeilstoneStoreElevator_SelectFloor5
+    GoToIfEq VAR_0x8008, 1, VeilstoneStoreElevator_SelectFloor4
+    GoToIfEq VAR_0x8008, 2, VeilstoneStoreElevator_SelectFloor3
+    GoToIfEq VAR_0x8008, 3, VeilstoneStoreElevator_SelectFloor2
+    GoToIfEq VAR_0x8008, 4, VeilstoneStoreElevator_SelectFloor1
+    GoToIfEq VAR_0x8008, 5, VeilstoneStoreElevator_SelectFloorB1
+    GoTo VeilstoneStoreElevator_SelectNoFloor
 
-_0131:
+VeilstoneStoreElevator_SelectFloorB1:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 0x236, 1, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 5, _03DF
-    CallIfGt VAR_UNK_0x40CE, 5, _030B
-    CallIfLt VAR_UNK_0x40CE, 5, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 5
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_B1F, 1, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 5, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 5
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_0180:
+VeilstoneStoreElevator_SelectFloor1:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 137, 2, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 4, _03DF
-    CallIfGt VAR_UNK_0x40CE, 4, _030B
-    CallIfLt VAR_UNK_0x40CE, 4, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 4
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_1F, 2, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 4, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 4
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_01CF:
+VeilstoneStoreElevator_SelectFloor2:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 138, 2, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 3, _03DF
-    CallIfGt VAR_UNK_0x40CE, 3, _030B
-    CallIfLt VAR_UNK_0x40CE, 3, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 3
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_2F, 2, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 3, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 3
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_021E:
+VeilstoneStoreElevator_SelectFloor3:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 139, 2, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 2, _03DF
-    CallIfGt VAR_UNK_0x40CE, 2, _030B
-    CallIfLt VAR_UNK_0x40CE, 2, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 2
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_3F, 2, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 2, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 2
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_026D:
+VeilstoneStoreElevator_SelectFloor4:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 140, 2, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 1, _03DF
-    CallIfGt VAR_UNK_0x40CE, 1, _030B
-    CallIfLt VAR_UNK_0x40CE, 1, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 1
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_4F, 2, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 1, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 1
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_02BC:
+VeilstoneStoreElevator_SelectFloor5:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 141, 1, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 0, _03DF
-    CallIfGt VAR_UNK_0x40CE, 0, _030B
-    CallIfLt VAR_UNK_0x40CE, 0, _0316
-    Call _0321
-    SetVar VAR_UNK_0x40CE, 0
-    GoTo _033F
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_VEILSTONE_STORE_5F, 1, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_SelectCurrentFloor
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 0, VeilstoneStoreElevator_GoingDownMessage
+    Call VeilstoneStoreElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 0
+    GoTo VeilstoneStoreElevator_ElevatorArrived
 
-_030B:
-    Message 2
-    SetVar VAR_0x8004, 0
+VeilstoneStoreElevator_GoingUpMessage:
+    Message VeilstoneStoreElevator_Text_GoingUp
+    SetVar VAR_0x8004, ELEVATOR_DIR_UP
     Return
 
-_0316:
-    Message 3
-    SetVar VAR_0x8004, 1
+VeilstoneStoreElevator_GoingDownMessage:
+    Message VeilstoneStoreElevator_Text_GoingDown
+    SetVar VAR_0x8004, ELEVATOR_DIR_DOWN
     Return
 
-_0321:
-    SetVar VAR_UNK_0x40CE, -1
+VeilstoneStoreElevator_ElevatorAnimation:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     CloseMessage
-    ApplyMovement 0, _0410
+    ApplyMovement 0, VeilstoneStoreElevator_LookDown
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
+    PlayElevatorAnimation VAR_0x8004, 4
     Return
 
-_033F:
-    SetVar VAR_0x8008, VAR_UNK_0x40CE
-    GoToIfEq VAR_0x8008, 0, _0395
-    GoToIfEq VAR_0x8008, 1, _03A0
-    GoToIfEq VAR_0x8008, 2, _03AB
-    GoToIfEq VAR_0x8008, 3, _03B6
-    GoToIfEq VAR_0x8008, 4, _03C1
-    GoToIfEq VAR_0x8008, 5, _03CC
+VeilstoneStoreElevator_ElevatorArrived:
+    SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
+    GoToIfEq VAR_0x8008, 0, VeilstoneStoreElevator_ArrivedFloor5
+    GoToIfEq VAR_0x8008, 1, VeilstoneStoreElevator_ArrivedFloor4
+    GoToIfEq VAR_0x8008, 2, VeilstoneStoreElevator_ArrivedFloor3
+    GoToIfEq VAR_0x8008, 3, VeilstoneStoreElevator_ArrivedFloor2
+    GoToIfEq VAR_0x8008, 4, VeilstoneStoreElevator_ArrivedFloor1
+    GoToIfEq VAR_0x8008, 5, VeilstoneStoreElevator_ArrivedFloorB1
     End
 
-_0395:
-    Message 9
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloor5:
+    Message VeilstoneStoreElevator_Text_Floor5
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03A0:
-    Message 8
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloor4:
+    Message VeilstoneStoreElevator_Text_Floor4
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03AB:
-    Message 7
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloor3:
+    Message VeilstoneStoreElevator_Text_Floor3
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03B6:
-    Message 6
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloor2:
+    Message VeilstoneStoreElevator_Text_Floor2
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03C1:
-    Message 5
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloor1:
+    Message VeilstoneStoreElevator_Text_Floor1
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03CC:
-    Message 10
-    GoTo _03D7
+VeilstoneStoreElevator_ArrivedFloorB1:
+    Message VeilstoneStoreElevator_Text_FloorB1
+    GoTo VeilstoneStoreElevator_ElevatorDone
     End
 
-_03D7:
+VeilstoneStoreElevator_ElevatorDone:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_03DF:
-    SetVar VAR_UNK_0x40CE, -1
+VeilstoneStoreElevator_SelectCurrentFloor:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
-    Message 4
+    Message VeilstoneStoreElevator_Text_SameFloor
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_03F6:
-    SetVar VAR_UNK_0x40CE, -1
+VeilstoneStoreElevator_SelectNoFloor:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
-    Message 1
+    Message VeilstoneStoreElevator_Text_LookForward
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0410:
+VeilstoneStoreElevator_LookDown:
     WalkOnSpotNormalSouth
     EndMovement

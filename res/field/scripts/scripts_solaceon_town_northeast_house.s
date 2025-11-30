@@ -11,8 +11,8 @@ _000A:
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_RESULT
-    ScrCmd_212 VAR_0x8004, VAR_RESULT
-    ScrCmd_17C 0, VAR_0x8004
+    GetPartyMonNature VAR_0x8004, VAR_RESULT
+    BufferNatureName 0, VAR_0x8004
     Message 0
     WaitABXPadPress
     CloseMessage

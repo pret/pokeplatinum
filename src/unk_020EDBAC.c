@@ -6,10 +6,10 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020EDF0C.h"
 
+#include "berry_patch_graphics.h"
 #include "map_object.h"
 #include "unk_0206450C.h"
 #include "unk_020655F4.h"
-#include "unk_020677F4.h"
 #include "unk_02069BE0.h"
 
 static const UnkStruct_020EDF0C Unk_020EDF0C = {
@@ -406,9 +406,9 @@ static const UnkStruct_020EDF0C Unk_020EDE1C = {
 
 static const UnkStruct_020EDF0C Unk_020EDE30 = {
     0x2f,
-    sub_02067840,
-    sub_02067850,
-    sub_0206786C,
+    BerryPatchGraphics_NewData,
+    BerryPatchGraphics_UpdateGrowthStage,
+    BerryPatchGraphics_NoOp,
     sub_020633EC
 };
 
@@ -728,10 +728,10 @@ BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_SOUTH] = gMovementActionFuncs_WalkEverSoSlightlyFastSouth,
     [MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_WEST] = gMovementActionFuncs_WalkEverSoSlightlyFastWest,
     [MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_EAST] = gMovementActionFuncs_WalkEverSoSlightlyFastEast,
-    [MOVEMENT_ACTION_NURSE_JOY_BOW] = gMovementActionFuncs_NurseJoyBow,
+    [MOVEMENT_ACTION_POKECENTER_NURSE_BOW] = gMovementActionFuncs_PokecenterNurseBow,
     [MOVEMENT_ACTION_REVEAL_TRAINER] = gMovementActionFuncs_RevealTrainer,
     [MOVEMENT_ACTION_PLAYER_GIVE] = gMovementActionFuncs_PlayerGive,
-    [MOVEMENT_ACTION_EMOTE_QUESTION_MARK] = gMovementActionFuncs_EmoteQuestionMark,
+    [MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK] = gMovementActionFuncs_EmoteDoubleExclamationMark,
     [MOVEMENT_ACTION_PLAYER_RECEIVE] = gMovementActionFuncs_PlayerReceive,
     [MOVEMENT_ACTION_105] = gMovementActionFuncs_105,
     [MOVEMENT_ACTION_106] = gMovementActionFuncs_106,

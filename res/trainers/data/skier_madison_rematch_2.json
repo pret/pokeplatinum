@@ -19,16 +19,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You really must like snow.\r",
-				"After all, if you didn’t, I doubt that\n",
-				"you’d come here so often!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You really must like snow.\r",
+                "After all, if you didn’t, I doubt that\n",
+                "you’d come here so often!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "The conditions weren’t very good.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "The conditions weren’t very good.\n"
+        }
     ]
 }

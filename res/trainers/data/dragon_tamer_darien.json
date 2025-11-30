@@ -21,28 +21,28 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "My Pokémon and I seek only victory!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "My Pokémon and I seek only victory!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Arrrgh! My Pokémon...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Arrrgh! My Pokémon...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I failed my Pokémon!\n",
-				"I wasn’t prepared enough to lead it!\r",
-				"I don’t ever want my precious Pokémon\n",
-				"to be humiliated again!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I failed my Pokémon!\n",
+                "I wasn’t prepared enough to lead it!\r",
+                "I don’t ever want my precious Pokémon\n",
+                "to be humiliated again!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You’ve beaten us once before, but we\n",
-				"won’t make the same mistake!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You’ve beaten us once before, but we\n",
+                "won’t make the same mistake!\r"
+            ]
+        }
     ]
 }

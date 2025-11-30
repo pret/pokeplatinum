@@ -2,14 +2,14 @@
   "key": 9219,
   "messages": [
     {
-      "id": "pl_msg_00000154_00000",
+      "id": "VeilstoneStoreB1F_Text_RageCandyBarsAreTooPopular",
       "en_US": [
         "Prof. Rowan: Hmm... Rage Candy Bars\n",
         "are too popular, it seems.\r"
       ]
     },
     {
-      "id": "pl_msg_00000154_00001",
+      "id": "VeilstoneStoreB1F_Text_DoesLifeContinueToThrillYou",
       "en_US": [
         "Ah, {STRVAR_1 3, 0, 0}, it’s you.\r",
         "Does life continue to thrill you?\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00002",
+      "id": "VeilstoneStoreB1F_Text_IBoughtAllTheRageCandyBars",
       "en_US": [
         "I didn’t expect to find paradise in the\n",
         "department store’s basement.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00003",
+      "id": "VeilstoneStoreB1F_Text_HopelessAtCookingPoffins",
       "en_US": [
         "I’m hopeless at cooking Poffins, so I\n",
         "buy them here.\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00004",
+      "id": "VeilstoneStoreB1F_Text_FlavorsOfPoffinsAffectConditionOfPokemon",
       "en_US": [
         "Pay attention, please.\r",
         "The flavors of Poffins affect the\n",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00005",
+      "id": "VeilstoneStoreB1F_Text_Welcome",
       "en_US": [
         "Welcome to the basement--the food and\n",
         "produce section.\r",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00006",
+      "id": "VeilstoneStoreB1F_Text_WeHaveBerriesOnSale",
       "en_US": [
         "Have you ever planted Berries, then\n",
         "promptly forgotten about them?\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00007",
+      "id": "VeilstoneStoreB1F_Text_AllSoldOut",
       "en_US": [
         "Hello!\n",
         "Rage Candy Bars...\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00008",
+      "id": "VeilstoneStoreB1F_Text_WouldYouLikeSomeLavaCookies",
       "en_US": [
         "Hello, there.\r",
         "Would you like some Lava Cookies?\n",
@@ -89,51 +89,51 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00009",
+      "id": "VeilstoneStoreB1F_Text_OneLavaCookie",
       "en_US": [
         "Here you go, one Lava Cookie.\n",
         "Thank you."
       ]
     },
     {
-      "id": "pl_msg_00000154_00010",
+      "id": "VeilstoneStoreB1F_Text_TenLavaCookies",
       "en_US": [
         "Here you go, ten Lava Cookies.\n",
         "Thank you very much."
       ]
     },
     {
-      "id": "pl_msg_00000154_00011",
+      "id": "VeilstoneStoreB1F_Text_NoMoreRoom",
       "en_US": [
         "I’m sorry, but you’ve got no more\n",
         "room."
       ]
     },
     {
-      "id": "pl_msg_00000154_00012",
+      "id": "VeilstoneStoreB1F_Text_LavaCookiesNotEnoughMoney",
       "en_US": [
         "I’m sorry, but you don’t have enough\n",
         "money."
       ]
     },
     {
-      "id": "pl_msg_00000154_00013",
+      "id": "VeilstoneStoreB1F_Text_LavaCookiesPleaseComeAgain",
       "en_US": "Please come again."
     },
     {
-      "id": "pl_msg_00000154_00014",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_One",
       "en_US": "1"
     },
     {
-      "id": "pl_msg_00000154_00015",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_Ten",
       "en_US": "10"
     },
     {
-      "id": "pl_msg_00000154_00016",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_LavaCookiesNoThanks",
       "en_US": "No, thanks."
     },
     {
-      "id": "pl_msg_00000154_00017",
+      "id": "VeilstoneStoreB1F_Text_ISellPoffins",
       "en_US": [
         "Hello!\n",
         "I sell Poffins.\r",
@@ -142,40 +142,40 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00018",
+      "id": "VeilstoneStoreB1F_Text_WhichPoffinWouldYouLike",
       "en_US": "Which Poffin would you like?"
     },
     {
-      "id": "pl_msg_00000154_00019",
+      "id": "VeilstoneStoreB1F_Text_Dummy1",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000154_00020",
+      "id": "VeilstoneStoreB1F_Text_ThankYouVeryMuch",
       "en_US": [
         "Thank you very much.\n",
         "Please do shop with us again."
       ]
     },
     {
-      "id": "pl_msg_00000154_00021",
+      "id": "VeilstoneStoreB1F_Text_PoffinsNotEnoughMoney",
       "en_US": [
         "I’m so sorry, but you don’t have\n",
         "enough money."
       ]
     },
     {
-      "id": "pl_msg_00000154_00022",
+      "id": "VeilstoneStoreB1F_Text_PoffinCaseIsFull",
       "en_US": [
         "Oh...\n",
         "Your Poffin Case is already full."
       ]
     },
     {
-      "id": "pl_msg_00000154_00023",
+      "id": "VeilstoneStoreB1F_Text_PoffinsPleaseComeAgain",
       "en_US": "Please come again."
     },
     {
-      "id": "pl_msg_00000154_00024",
+      "id": "VeilstoneStoreB1F_Text_YouNeedAPoffinCase",
       "en_US": [
         "I’m so sorry.\r",
         "We can’t sell Poffins if you don’t have\n",
@@ -183,55 +183,55 @@
       ]
     },
     {
-      "id": "pl_msg_00000154_00025",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SpicyDry",
       "en_US": "Spicy-Dry Poffin"
     },
     {
-      "id": "pl_msg_00000154_00026",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SpicySweet",
       "en_US": "Spicy-Sweet Poffin"
     },
     {
-      "id": "pl_msg_00000154_00027",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SpicyBitter",
       "en_US": "Spicy-Bitter Poffin"
     },
     {
-      "id": "pl_msg_00000154_00028",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SpicySour",
       "en_US": "Spicy-Sour Poffin"
     },
     {
-      "id": "pl_msg_00000154_00029",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_DrySweet",
       "en_US": "Dry-Sweet Poffin"
     },
     {
-      "id": "pl_msg_00000154_00030",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_DryBitter",
       "en_US": "Dry-Bitter Poffin"
     },
     {
-      "id": "pl_msg_00000154_00031",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_DrySour",
       "en_US": "Dry-Sour Poffin"
     },
     {
-      "id": "pl_msg_00000154_00032",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SweetBitter",
       "en_US": "Sweet-Bitter Poffin"
     },
     {
-      "id": "pl_msg_00000154_00033",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_SweetSour",
       "en_US": "Sweet-Sour Poffin"
     },
     {
-      "id": "pl_msg_00000154_00034",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_BitterSour",
       "en_US": "Bitter-Sour Poffin"
     },
     {
-      "id": "pl_msg_00000154_00035",
+      "id": "VeilstoneStoreB1F_Text_MenuEntry_PoffinsNoThanks",
       "en_US": "No, thanks."
     },
     {
-      "id": "pl_msg_00000154_00036",
+      "id": "VeilstoneStoreB1F_Text_Dummy2",
       "garbage": 64
     },
     {
-      "id": "pl_msg_00000154_00037",
+      "id": "VeilstoneStoreB1F_Text_Directory",
       "en_US": [
         "B1F: Food & Produce\r",
         "1F: Trainers’ Zone\r",

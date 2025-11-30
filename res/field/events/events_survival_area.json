@@ -19,10 +19,11 @@
     ],
     "object_events": [
         {
+            "id": "SURVIVAL_AREA_MAP_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 0,
             "data": [
@@ -35,10 +36,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -49,10 +51,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -63,10 +66,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_RUIN_MANIAC_3",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 3,
             "data": [],
@@ -77,10 +81,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_BATTLE_GIRL_4",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -91,10 +96,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_YOUNGSTER_5",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -105,11 +111,12 @@
             "y": 0
         },
         {
-            "local_id": 0,
+            "id": "SURVIVAL_AREA_ARROW_SIGNPOST_6",
+            "clone_id": 0,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01D5",
+            "hidden_flag": "FLAG_UNK_0x01D5",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -122,10 +129,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_CAMERAMAN_7",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 2,
             "data": [],
@@ -136,10 +144,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_BUCK_8",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022B",
+            "hidden_flag": "FLAG_UNK_0x022B",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -150,10 +159,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0531",
+            "hidden_flag": "FLAG_UNK_0x0531",
             "script": 7314,
             "initial_dir": 0,
             "data": [],
@@ -164,10 +174,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x052E",
+            "hidden_flag": "FLAG_UNK_0x052E",
             "script": 7311,
             "initial_dir": 0,
             "data": [],
@@ -178,10 +189,11 @@
             "y": 0
         },
         {
+            "id": "SURVIVAL_AREA_BARRY_11",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01D9",
+            "hidden_flag": "FLAG_UNK_0x01D9",
             "script": 10,
             "initial_dir": 1,
             "data": [],
@@ -226,3 +238,4 @@
     ],
     "coord_events": []
 }
+

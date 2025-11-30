@@ -75,7 +75,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
         param0->unk_14.unk_30 = 1;
 
         ov62_0222FF40(param0);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
     }
 
     SetVBlankCallback(ov62_0222F8E4, param0);
@@ -125,8 +125,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, HEAP_ID_102);
-        param0->unk_14.unk_34 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, HEAP_ID_102);
-        param0->unk_14.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0020, HEAP_ID_102);
+        param0->unk_14.unk_34 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, HEAP_ID_102);
+        param0->unk_14.unk_38 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0020, HEAP_ID_102);
     }
 
     ov62_022338A8(param0);
@@ -176,7 +176,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
         v1 = DisableTouchPad();
 
         TouchScreenActions_Free(param0->unk_14.unk_18);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     }
 
     {

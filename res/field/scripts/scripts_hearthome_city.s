@@ -344,7 +344,7 @@ _03F4:
 
 _0442:
     GoToIfSet FLAG_UNK_0x014C, _048A
-    GoToIfUnset FLAG_CONTEST_MASTER_BEAUTY, _048A
+    GoToIfUnset FLAG_CONTEST_MASTER_CUTE, _048A
     Message 35
     SetVar VAR_0x8004, 72
     SetVar VAR_0x8005, 1
@@ -372,7 +372,7 @@ _048A:
 
 _04D2:
     GoToIfSet FLAG_UNK_0x014E, _051A
-    GoToIfUnset FLAG_CONTEST_MASTER_CUTE, _051A
+    GoToIfUnset FLAG_CONTEST_MASTER_BEAUTY, _051A
     Message 37
     SetVar VAR_0x8004, 74
     SetVar VAR_0x8005, 1

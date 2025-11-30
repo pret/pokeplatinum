@@ -202,7 +202,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
 
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
 {
-    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_CORRUPTED, param0->heapID);
+    param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_CORRUPTED, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_0C = 0;
 

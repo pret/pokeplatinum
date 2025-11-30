@@ -2,11 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_GATE_B1F_VETERAN_GRANT",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3239,
+            "hidden_flag": "0",
+            "script": "TRAINER_VETERAN_GRANT",
             "initial_dir": 1,
             "data": [
                 3
@@ -18,10 +19,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -32,10 +34,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -46,10 +49,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -60,10 +64,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_UNK_0x0023",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -74,10 +79,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_UNK_0x0024",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -88,10 +94,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0025",
+            "hidden_flag": "FLAG_UNK_0x0025",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -102,10 +109,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0026",
+            "hidden_flag": "FLAG_UNK_0x0026",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -116,10 +124,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0027",
+            "hidden_flag": "FLAG_UNK_0x0027",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -130,10 +139,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0028",
+            "hidden_flag": "FLAG_UNK_0x0028",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -144,10 +154,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0029",
+            "hidden_flag": "FLAG_UNK_0x0029",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -158,10 +169,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03F9",
+            "hidden_flag": "FLAG_UNK_0x03F9",
             "script": 7003,
             "initial_dir": 0,
             "data": [],
@@ -172,10 +184,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03FC",
+            "hidden_flag": "FLAG_UNK_0x03FC",
             "script": 7006,
             "initial_dir": 0,
             "data": [],
@@ -186,10 +199,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03FA",
+            "hidden_flag": "FLAG_UNK_0x03FA",
             "script": 7004,
             "initial_dir": 0,
             "data": [],
@@ -200,10 +214,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03FB",
+            "hidden_flag": "FLAG_UNK_0x03FB",
             "script": 7005,
             "initial_dir": 0,
             "data": [],
@@ -214,10 +229,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_CYCLIST_F_15",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -228,10 +244,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_GATE_B1F_POKEBALL_16",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x049F",
+            "hidden_flag": "FLAG_UNK_0x049F",
             "script": 7169,
             "initial_dir": 0,
             "data": [],

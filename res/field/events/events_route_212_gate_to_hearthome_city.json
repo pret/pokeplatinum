@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_COLLECTOR_0",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_COWGIRL_1",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_REPORTER_2",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017E",
+            "hidden_flag": "FLAG_UNK_0x017E",
             "script": 1,
             "initial_dir": 2,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_212_GATE_TO_HEARTHOME_CITY_CAMERAMAN_3",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017E",
+            "hidden_flag": "FLAG_UNK_0x017E",
             "script": 2,
             "initial_dir": 3,
             "data": [],

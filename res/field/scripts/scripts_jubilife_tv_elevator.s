@@ -1,153 +1,154 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_elevator.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry JubilifeTVElevator_TalkElevatorOperator
     ScriptEntryEnd
 
-_0006:
+JubilifeTVElevator_TalkElevatorOperator:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFloorsAbove VAR_UNK_0x40CE
-    SetVar VAR_0x8008, VAR_UNK_0x40CE
-    GoToIfEq VAR_0x8008, 0, _004E
-    GoToIfEq VAR_0x8008, 1, _005A
-    GoToIfEq VAR_0x8008, 2, _0066
-    GoToIfEq VAR_0x8008, 3, _0072
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
+    GoToIfEq VAR_0x8008, 0, JubilifeTVElevator_CurrentFloor4
+    GoToIfEq VAR_0x8008, 1, JubilifeTVElevator_CurrentFloor3
+    GoToIfEq VAR_0x8008, 2, JubilifeTVElevator_CurrentFloor2
+    GoToIfEq VAR_0x8008, 3, JubilifeTVElevator_CurrentFloor1
     End
 
-_004E:
-    ScrCmd_347 0, 4
-    GoTo _007E
+JubilifeTVElevator_CurrentFloor4:
+    BufferFloorNumber 0, 4
+    GoTo JubilifeTVElevator_SelectFloor
     End
 
-_005A:
-    ScrCmd_347 0, 3
-    GoTo _007E
+JubilifeTVElevator_CurrentFloor3:
+    BufferFloorNumber 0, 3
+    GoTo JubilifeTVElevator_SelectFloor
     End
 
-_0066:
-    ScrCmd_347 0, 2
-    GoTo _007E
+JubilifeTVElevator_CurrentFloor2:
+    BufferFloorNumber 0, 2
+    GoTo JubilifeTVElevator_SelectFloor
     End
 
-_0072:
-    ScrCmd_347 0, 1
-    GoTo _007E
+JubilifeTVElevator_CurrentFloor1:
+    BufferFloorNumber 0, 1
+    GoTo JubilifeTVElevator_SelectFloor
     End
 
-_007E:
-    ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
-    Message 0
+JubilifeTVElevator_SelectFloor:
+    ShowCurrentFloor 20, 1, VAR_ELEVATOR_FLOORS_ABOVE
+    Message JubilifeTVElevator_Text_Hello
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 119, 0
-    AddMenuEntryImm 118, 1
-    AddMenuEntryImm 117, 2
-    AddMenuEntryImm 116, 3
-    AddMenuEntryImm 124, 4
+    AddMenuEntryImm MenuEntries_Text_4F, 0
+    AddMenuEntryImm MenuEntries_Text_3F, 1
+    AddMenuEntryImm MenuEntries_Text_2F, 2
+    AddMenuEntryImm MenuEntries_Text_1F, 3
+    AddMenuEntryImm MenuEntries_Text_ElevatorExit, 4
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01DC
-    GoToIfEq VAR_0x8008, 1, _018B
-    GoToIfEq VAR_0x8008, 2, _013A
-    GoToIfEq VAR_0x8008, 3, _00E9
-    GoTo _0283
+    GoToIfEq VAR_0x8008, 0, JubilifeTVElevator_SelectFloor4
+    GoToIfEq VAR_0x8008, 1, JubilifeTVElevator_SelectFloor3
+    GoToIfEq VAR_0x8008, 2, JubilifeTVElevator_SelectFloor2
+    GoToIfEq VAR_0x8008, 3, JubilifeTVElevator_SelectFloor1
+    GoTo JubilifeTVElevator_SelectNoFloor
     End
 
-_00E9:
+JubilifeTVElevator_SelectFloor1:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 11, 2, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 3, _026C
-    CallIfGt VAR_UNK_0x40CE, 3, _022D
-    CallIfLt VAR_UNK_0x40CE, 3, _0238
-    Call _0243
-    SetVar VAR_UNK_0x40CE, 3
-    GoTo _0261
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_1F, 2, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_SameFloorMessage
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 3, JubilifeTVElevator_GoingDownMessage
+    Call JubilifeTVElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 3
+    GoTo JubilifeTVElevator_HereWeAreMessage
     End
 
-_013A:
+JubilifeTVElevator_SelectFloor2:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 12, 3, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 2, _026C
-    CallIfGt VAR_UNK_0x40CE, 2, _022D
-    CallIfLt VAR_UNK_0x40CE, 2, _0238
-    Call _0243
-    SetVar VAR_UNK_0x40CE, 2
-    GoTo _0261
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_2F, 3, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_SameFloorMessage
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 2, JubilifeTVElevator_GoingDownMessage
+    Call JubilifeTVElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 2
+    GoTo JubilifeTVElevator_HereWeAreMessage
     End
 
-_018B:
+JubilifeTVElevator_SelectFloor3:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 13, 4, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 1, _026C
-    CallIfGt VAR_UNK_0x40CE, 1, _022D
-    CallIfLt VAR_UNK_0x40CE, 1, _0238
-    Call _0243
-    SetVar VAR_UNK_0x40CE, 1
-    GoTo _0261
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_3F, 4, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_SameFloorMessage
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 1, JubilifeTVElevator_GoingDownMessage
+    Call JubilifeTVElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 1
+    GoTo JubilifeTVElevator_HereWeAreMessage
     End
 
-_01DC:
+JubilifeTVElevator_SelectFloor4:
     WaitTime 1, VAR_RESULT
-    GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 14, 1, 18, 2, 1
-    GoToIfEq VAR_UNK_0x40CE, 0, _026C
-    CallIfGt VAR_UNK_0x40CE, 0, _022D
-    CallIfLt VAR_UNK_0x40CE, 0, _0238
-    Call _0243
-    SetVar VAR_UNK_0x40CE, 0
-    GoTo _0261
+    GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
+    SetSpecialLocation MAP_HEADER_JUBILIFE_TV_4F, 1, 18, 2, DIR_SOUTH
+    GoToIfEq VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_SameFloorMessage
+    CallIfGt VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_GoingUpMessage
+    CallIfLt VAR_ELEVATOR_FLOORS_ABOVE, 0, JubilifeTVElevator_GoingDownMessage
+    Call JubilifeTVElevator_ElevatorAnimation
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, 0
+    GoTo JubilifeTVElevator_HereWeAreMessage
     End
 
-_022D:
-    Message 2
-    SetVar VAR_0x8004, 0
+JubilifeTVElevator_GoingUpMessage:
+    Message JubilifeTVElevator_Text_GoingUp
+    SetVar VAR_0x8004, ELEVATOR_DIR_UP
     Return
 
-_0238:
-    Message 3
-    SetVar VAR_0x8004, 1
+JubilifeTVElevator_GoingDownMessage:
+    Message JubilifeTVElevator_Text_GoingDown
+    SetVar VAR_0x8004, ELEVATOR_DIR_DOWN
     Return
 
-_0243:
-    SetVar VAR_UNK_0x40CE, -1
+JubilifeTVElevator_ElevatorAnimation:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     CloseMessage
-    ApplyMovement 0, _029C
+    ApplyMovement 0, JubilifeTVElevator_LookDown
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
+    PlayElevatorAnimation VAR_0x8004, 4
     Return
 
-_0261:
-    Message 5
+JubilifeTVElevator_HereWeAreMessage:
+    Message JubilifeTVElevator_Text_HereWeAre
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_026C:
-    SetVar VAR_UNK_0x40CE, -1
+JubilifeTVElevator_SameFloorMessage:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
-    Message 4
+    Message JubilifeTVElevator_Text_SameFloor
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0283:
-    SetVar VAR_UNK_0x40CE, -1
+JubilifeTVElevator_SelectNoFloor:
+    SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
-    Message 1
+    Message JubilifeTVElevator_Text_LookForward
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_029C:
+JubilifeTVElevator_LookDown:
     WalkOnSpotNormalSouth
     EndMovement

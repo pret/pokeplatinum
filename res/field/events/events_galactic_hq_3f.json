@@ -35,10 +35,11 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_3F_GRUNT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -49,10 +50,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x049C",
+            "hidden_flag": "FLAG_UNK_0x049C",
             "script": 7166,
             "initial_dir": 0,
             "data": [],
@@ -63,11 +65,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3511,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2",
             "initial_dir": 3,
             "data": [
                 2,
@@ -80,11 +83,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3513,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3",
             "initial_dir": 0,
             "data": [
                 3
@@ -96,11 +100,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3521,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4",
             "initial_dir": 1,
             "data": [
                 3
@@ -112,10 +117,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_5",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0225",
+            "hidden_flag": "FLAG_UNK_0x0225",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -126,10 +132,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_6",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0225",
+            "hidden_flag": "FLAG_UNK_0x0225",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -140,11 +147,12 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "FLAG_UNK_0x0237",
-            "script": 3508,
+            "hidden_flag": "FLAG_UNK_0x0237",
+            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1",
             "initial_dir": 0,
             "data": [
                 3
@@ -156,10 +164,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x049E",
+            "hidden_flag": "FLAG_UNK_0x049E",
             "script": 7168,
             "initial_dir": 0,
             "data": [],
@@ -170,10 +179,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_3F_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x051E",
+            "hidden_flag": "FLAG_UNK_0x051E",
             "script": 7295,
             "initial_dir": 0,
             "data": [],

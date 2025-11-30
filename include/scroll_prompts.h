@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "sprite_system.h"
 
@@ -14,7 +14,7 @@ enum ScrollPromptArrows {
 };
 
 typedef struct ScrollPrompts {
-    UnkStruct_ov5_021D30A8 unk_00;
+    SpriteResourceManager spriteManager;
     ManagedSprite *arrowSprites[SCROLL_PROMPT_ARROW_COUNT];
 } ScrollPrompts;
 

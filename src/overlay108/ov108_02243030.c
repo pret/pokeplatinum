@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/party_menu/main.h"
 #include "overlay108/struct_ov108_02243030.h"
 
 #include "char_transfer.h"
@@ -17,7 +18,6 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0207E0B8.h"
 #include "vram_transfer.h"
 
 static const u8 Unk_ov108_02243760[4] = {

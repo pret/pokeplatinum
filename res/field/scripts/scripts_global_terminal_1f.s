@@ -42,13 +42,13 @@ _006B:
     End
 
 GlobalTerminal1f_GTS_WalkOut:
-    ScrCmd_168 0, 0, 8, 2, 77
+    LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
     Call _00C5
     ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
-    ScrCmd_168 0, 0, 8, 4, 77
+    LoadDoorAnimation 0, 0, 8, 4, ANIMATION_TAG_DOOR_1
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _00E8
     WaitMovement
@@ -57,14 +57,14 @@ GlobalTerminal1f_GTS_WalkOut:
     Return
 
 _00C5:
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _00CD:
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
     .balign 4, 0
@@ -146,7 +146,7 @@ _01DE:
     End
 
 GlobalTerminal1f_CheckPartyCount:
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, GlobalTerminal1f_GTS_Exit_NotEnoughPokemon
     GoTo GlobalTerminal1f_CheckFreePartySlot
     End
@@ -168,12 +168,12 @@ GlobalTerminal1f_BeginTrade:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0344
     WaitMovement
-    ScrCmd_168 0, 0, 8, 4, 77
+    LoadDoorAnimation 0, 0, 8, 4, ANIMATION_TAG_DOOR_1
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0358
     WaitMovement
     Call _00CD
-    ScrCmd_168 0, 0, 8, 2, 77
+    LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement

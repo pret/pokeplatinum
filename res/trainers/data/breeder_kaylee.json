@@ -37,11 +37,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You know, I had confidence before\n",
-				"heading into this.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You know, I had confidence before\n",
+                "heading into this.\n"
+            ]
+        }
     ]
 }

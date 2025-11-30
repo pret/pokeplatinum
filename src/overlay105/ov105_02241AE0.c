@@ -612,7 +612,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
     switch (param0->unk_08) {
     case 0:
         if (ov104_0223AED4(param0->unk_09) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(237);
         }
 
@@ -621,7 +621,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
     case 1:
         if (ov104_0223AED4(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(237) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
             }
         } else {
@@ -1250,14 +1250,14 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         if (ov105_02245620(param0, 8, 0) == 1) {
             param0->unk_10 = ov105_02244D14(param0, 2);
 
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(164);
             param0->unk_08++;
         }
         break;
     case 7:
         if (CommTiming_IsSyncState(164) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             return 1;
         }
         break;
@@ -2024,7 +2024,7 @@ static BOOL ov105_0224439C(UnkStruct_ov105_02241FF4 *param0)
     case 0:
         param0->unk_10 = ov105_02244D14(param0, 15);
 
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(165);
 
         param0->unk_08++;
@@ -2032,7 +2032,7 @@ static BOOL ov105_0224439C(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 1:
         if (CommTiming_IsSyncState(165) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             return 1;
         }
         break;
@@ -2710,7 +2710,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 
     Window_FillTilemap(param1, param6);
 
-    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_93);
+    v3 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_93);
     v4 = MessageLoader_GetNewStrbuf(v3, param8);
 
     MessageLoader_Free(v3);
@@ -2820,7 +2820,7 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
-    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0364, HEAP_ID_93);
+    param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
     param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
     param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);

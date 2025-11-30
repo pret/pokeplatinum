@@ -19,25 +19,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "I’m a Collector, and I love Honey!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "I’m a Collector, and I love Honey!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What’ve you done to my Pokémon?!\r",
-				"It took me forever to catch it using\n",
-				"Honey!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What’ve you done to my Pokémon?!\r",
+                "It took me forever to catch it using\n",
+                "Honey!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I went through a lot of bother to catch\n",
-				"my Pokémon.\r",
-				"But since I’ve not raised it, it’s\n",
-				"as weak as when I caught it.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I went through a lot of bother to catch\n",
+                "my Pokémon.\r",
+                "But since I’ve not raised it, it’s\n",
+                "as weak as when I caught it.\n"
+            ]
+        }
     ]
 }

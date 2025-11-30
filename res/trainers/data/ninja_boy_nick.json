@@ -28,29 +28,29 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Speed is a ninja’s best weapon!\n",
-				"Can you keep up?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Speed is a ninja’s best weapon!\n",
+                "Can you keep up?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I did a lot to conceal myself, too...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I did a lot to conceal myself, too...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’ll wait here for a weaker-looking\n",
-				"Trainer and then ambush them!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’ll wait here for a weaker-looking\n",
+                "Trainer and then ambush them!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I became even faster!\n",
-				"How can you hope to keep up?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I became even faster!\n",
+                "How can you hope to keep up?\r"
+            ]
+        }
     ]
 }

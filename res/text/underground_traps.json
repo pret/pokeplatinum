@@ -1,0 +1,380 @@
+{
+  "key": 1161,
+  "messages": [
+    {
+      "id": "UndergroundTraps_Text_Close2",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapUp",
+      "en_US": "Move Trap ↑"
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapRight",
+      "en_US": "Move Trap →"
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapDown",
+      "en_US": "Move Trap ↓"
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapLeft",
+      "en_US": "Move Trap ←"
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapUp",
+      "en_US": "Hurl Trap ↑"
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapRight",
+      "en_US": "Hurl Trap →"
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapDown",
+      "en_US": "Hurl Trap ↓"
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapLeft",
+      "en_US": "Hurl Trap ←"
+    },
+    {
+      "id": "UndergroundTraps_Text_WarpTrap_Unused",
+      "en_US": "Warp Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_HiWarpTrap_Unused",
+      "en_US": "Hi-Warp Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_HoleTrap",
+      "en_US": "Hole Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_PitTrap",
+      "en_US": "Pit Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_ReverseTrap",
+      "en_US": "Reverse Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_ConfuseTrap",
+      "en_US": "Confuse Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_RunTrap_Unused",
+      "en_US": "Run Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_FadeTrap_Unused",
+      "en_US": "Fade Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_SlowTrap_Unused",
+      "en_US": "Slow Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_SmokeTrap",
+      "en_US": "Smoke Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_BigSmokeTrap",
+      "en_US": "Big Smoke Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_RockTrap",
+      "en_US": "Rock Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_RockfallTrap",
+      "en_US": "Rockfall Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_FoamTrap",
+      "en_US": "Foam Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_BubbleTrap",
+      "en_US": "Bubble Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap1",
+      "en_US": "Alert Trap 1"
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap2",
+      "en_US": "Alert Trap 2"
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap3",
+      "en_US": "Alert Trap 3"
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap4",
+      "en_US": "Alert Trap 4"
+    },
+    {
+      "id": "UndergroundTraps_Text_LeafTrap",
+      "en_US": "Leaf Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_FlowerTrap",
+      "en_US": "Flower Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_EmberTrap",
+      "en_US": "Ember Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_FireTrap",
+      "en_US": "Fire Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_RadarTrap_Unused",
+      "en_US": "Radar Trap"
+    },
+    {
+      "id": "UndergroundTraps_Text_DiggerDrill",
+      "en_US": "Digger Drill"
+    },
+    {
+      "id": "UndergroundTraps_Text_Close",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapUpDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying upward."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapRightDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying to the right."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapDownDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying downward."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_MoveTrapLeftDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying to the left."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapUpDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far upward."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapRightDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far to the right."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapDownDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far downward."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HurlTrapLeftDescription",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far to the left."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_WarpTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this Trap warps the\n",
+        "victim far away."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HiWarpTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this Trap warps the\n",
+        "victim far, far away."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_HoleTrapDescription",
+      "en_US": [
+        "A pit opens up underneath the Trap\n",
+        "to immobilize the victim."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_PitTrapDescription",
+      "en_US": [
+        "A huge pit opens up underneath the\n",
+        "Trap to immobilize the victim."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_ReverseTrapDescription",
+      "en_US": [
+        "Stepping on this Trap reverses the\n",
+        "victim’s movements."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_ConfuseTrapDescription",
+      "en_US": [
+        "Stepping on this Trap scrambles the\n",
+        "victim’s movements."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_RunTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this Trap makes the\n",
+        "victim run."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_FadeTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this Trap makes the\n",
+        "victim invisible."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_SlowTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this Trap slows the\n",
+        "victim’s foot speed."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_SmokeTrapDescription",
+      "en_US": [
+        "A Trap that releases obscuring smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_BigSmokeTrapDescription",
+      "en_US": [
+        "A Trap that releases billowing smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_RockTrapDescription",
+      "en_US": [
+        "A Trap that makes blocking boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_RockfallTrapDescription",
+      "en_US": [
+        "A Trap that makes Big Boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_FoamTrapDescription",
+      "en_US": [
+        "A Trap that releases bubbles.\n",
+        "Pop the bubbles to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_BubbleTrapDescription",
+      "en_US": [
+        "A Trap that releases a mass of\n",
+        "bubbles. Pop them to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap1Description",
+      "en_US": [
+        "Stepping on this Trap sends \n",
+        "greetings to everyone near you."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap2Description",
+      "en_US": [
+        "Stepping on this Trap sends\n",
+        "farewells to everyone near you."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap3Description",
+      "en_US": [
+        "Stepping on this Trap tells all nearby\n",
+        "that you are going to the Union Room."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_AlertTrap4Description",
+      "en_US": [
+        "Stepping on this Trap alerts everyone\n",
+        "to gather around you."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_LeafTrapDescription",
+      "en_US": [
+        "This Trap releases immobilizing leaves.\n",
+        "Blow the leaves away to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_FlowerTrapDescription",
+      "en_US": [
+        "This Trap releases many flowers.\n",
+        "Blow the flowers away to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_EmberTrapDescription",
+      "en_US": [
+        "This Trap releases immobilizing embers.\n",
+        "Blow the embers away to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_FireTrapDescription",
+      "en_US": [
+        "This Trap releases billowing flames.\n",
+        "Blow the flames away to get free."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_RadarTrapDescription_Unused",
+      "en_US": [
+        "Stepping on this renders the Radar\n",
+        "useless for a while."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_DiggerDrillDescription",
+      "en_US": [
+        "A single-use drill to drill a hole in\n",
+        "the wall for your Secret Base."
+      ]
+    },
+    {
+      "id": "UndergroundTraps_Text_CloseDescription",
+      "en_US": "Close the Bag."
+    }
+  ]
+}

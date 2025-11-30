@@ -37,27 +37,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Huh? Are you lost too?\n",
-				"No? It doesn’t matter.\f",
-				"Let’s have a quick Pokémon battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Huh? Are you lost too?\n",
+                "No? It doesn’t matter.\f",
+                "Let’s have a quick Pokémon battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Lost?\n",
-				"There’s nothing lost about this kid!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Lost?\n",
+                "There’s nothing lost about this kid!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I got separated from my friends...\r",
-				"I’ve got my Pokémon with me, so I’m\n",
-				"OK, but...\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I got separated from my friends...\r",
+                "I’ve got my Pokémon with me, so I’m\n",
+                "OK, but...\n"
+            ]
+        }
     ]
 }

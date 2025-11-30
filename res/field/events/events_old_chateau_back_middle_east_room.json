@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04EE",
+            "hidden_flag": "FLAG_UNK_0x04EE",
             "script": 7248,
             "initial_dir": 0,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_1",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x027C",
+            "hidden_flag": "FLAG_UNK_0x027C",
             "script": 0,
             "initial_dir": 2,
             "data": [],

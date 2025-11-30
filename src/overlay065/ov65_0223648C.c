@@ -783,7 +783,7 @@ static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1)
 static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 heapID)
 {
     param0->unk_04 = StringTemplate_Default(heapID);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
+    param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
     param0->unk_0C = Strbuf_Init(256, heapID);
     param0->unk_10 = Strbuf_Init(256, heapID);
     param0->unk_14 = 0xff;
@@ -1905,7 +1905,7 @@ static BOOL ov65_02237DF8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 {
     if (CommTiming_IsSyncState(13)) {
         ov65_02237498(param0, param1);
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(14);
 
         param0->unk_00.unk_05 = 15;
@@ -2375,7 +2375,7 @@ static BOOL ov65_022383D0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     if (ov65_02237A10(param0) == 1) {
-        sub_020365F4();
+        CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(14);
 
         ov65_022378C4(param0, param1, param2);

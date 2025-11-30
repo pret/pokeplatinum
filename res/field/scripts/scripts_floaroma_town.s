@@ -126,7 +126,7 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPartyHasFatefulEncounter VAR_RESULT, SPECIES_SHAYMIN
+    FindPartySlotWithFatefulEncounterSpecies VAR_RESULT, SPECIES_SHAYMIN
     GoToIfEq VAR_RESULT, 0xFF, _019D
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SHAYMIN
     GoToIfEq VAR_RESULT, 0, _019D

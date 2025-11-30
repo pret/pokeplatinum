@@ -84,15 +84,6 @@ enum BattleAnimTrackingTask {
     BATTLE_ANIM_TRACKING_TASK_COUNT,
 };
 
-enum BattleAnimBg {
-    BATTLE_ANIM_BG_WINDOW = 0, // BG for windows
-    BATTLE_ANIM_BG_BASE, // BG for base battle BG
-    BATTLE_ANIM_BG_EFFECT, // BG for move anim BG switching
-    BATTLE_ANIM_BG_POKEMON, // BG for Pokemon sprites
-    BATTLE_ANIM_BG_COUNT, // Total number of battle BGs
-    BATTLE_ANIM_BG_NONE = 0xFF,
-};
-
 // Holds context information for the current move animation
 typedef struct BattleAnimContext {
     u8 unk_00;
@@ -273,7 +264,7 @@ BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id);
 int ov12_02223178(BattleAnimContext *param0);
 s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan);
 s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step);
-BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2);
+BOOL BattleAnimSystem_GetExtraParams(BattleAnimSystem *system, int params[], int count);
 SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *system);
 int BattleAnimSystem_GetBattlerType(BattleAnimSystem *system, int battler);
 int BattleAnimSystem_GetBattlerGender(BattleAnimSystem *system, int battler);
@@ -288,9 +279,9 @@ int BattleAnimSystem_GetBattlerSpriteOffset(BattleAnimSystem *system, int battle
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system);
 BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *system, int battler);
 int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system);
-enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAnimBg bg);
-int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg);
-int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg);
+enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, int bg); // See BATTLE_ANIM_BG_*
+int BattleAnimSystem_GetBgID(BattleAnimSystem *system, int bg); // See BATTLE_ANIM_BG_*
+int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, int bg); // See BATTLE_ANIM_BG_*
 void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer layer);
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system);
 BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole);

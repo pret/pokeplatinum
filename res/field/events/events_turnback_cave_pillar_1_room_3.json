@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_UNK_0x0023",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_UNK_0x0024",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0025",
+            "hidden_flag": "FLAG_UNK_0x0025",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -86,10 +92,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0026",
+            "hidden_flag": "FLAG_UNK_0x0026",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -100,10 +107,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0027",
+            "hidden_flag": "FLAG_UNK_0x0027",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -114,10 +122,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0028",
+            "hidden_flag": "FLAG_UNK_0x0028",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -128,10 +137,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0029",
+            "hidden_flag": "FLAG_UNK_0x0029",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -142,10 +152,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x002A",
+            "hidden_flag": "FLAG_UNK_0x002A",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -156,10 +167,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x002B",
+            "hidden_flag": "FLAG_UNK_0x002B",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -170,10 +182,11 @@
             "y": 0
         },
         {
+            "id": "TURNBACK_CAVE_PILLAR_1_ROOM_3_ROCK_SMASH_12",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x002C",
+            "hidden_flag": "FLAG_UNK_0x002C",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -212,3 +225,4 @@
     ],
     "coord_events": []
 }
+

@@ -8,6 +8,7 @@
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "global_trade.h"
+#include "hall_of_fame_entries.h"
 #include "journal.h"
 #include "mail.h"
 #include "mystery_gift.h"
@@ -33,7 +34,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
-#include "unk_0202DF8C.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
 #include "unk_0202EEC0.h"
@@ -78,7 +78,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_WIFI_LIST, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiList_SaveSize, (SaveEntryInitFunc)WiFiList_Init },
     { SAVE_TABLE_ENTRY_WIFI_HISTORY, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiHistory_SaveSize, (SaveEntryInitFunc)WiFiHistory_Init },
     { SAVE_TABLE_ENTRY_MYSTERY_GIFT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MysteryGift_SaveSize, (SaveEntryInitFunc)MysteryGift_Init },
-    { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PalParkTransfer_SaveSize, (SaveEntryInitFunc)PalParkTransfer_Init },
+    { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MigratedPokemon_SaveSize, (SaveEntryInitFunc)PalParkTransfer_Init },
     { SAVE_TABLE_ENTRY_CONTESTS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Contest_SaveSize, (SaveEntryInitFunc)Contest_Init },
     { SAVE_TABLE_ENTRY_SENTENCE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize, (SaveEntryInitFunc)Sentence_Init },
     { SAVE_TABLE_ENTRY_EMAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize, (SaveEntryInitFunc)Email_Init },
@@ -105,7 +105,7 @@ MysteryGift *SaveData_GetMysteryGift(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
-PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *saveData)
+MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
 }

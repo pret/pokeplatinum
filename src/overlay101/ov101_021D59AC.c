@@ -9,18 +9,16 @@
 #include "overlay101/ov101_021D7E48.h"
 #include "overlay101/struct_ov101_021D13C8.h"
 #include "overlay101/struct_ov101_021D4764.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D8544.h"
-#include "overlay101/struct_ov101_021D86B0.h"
 #include "overlay101/struct_ov101_021D93D4.h"
 
 #include "enums.h"
 #include "math_util.h"
+#include "overworld_anim_manager.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020711EC.h"
 
 typedef struct {
     UnkEnum_ov101_021D5D90 unk_00;
@@ -167,8 +165,8 @@ static void ov101_021D6410(UnkStruct_ov101_021D13C8 *param0, UnkStruct_ov101_021
 static void ov101_021D65F4(UnkStruct_ov101_021D65F4 *param0);
 static void ov101_021D7D94(UnkStruct_ov101_021D7D94 *param0);
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91DC;
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91F0;
+static const OverworldAnimManagerFuncs Unk_ov101_021D91DC;
+static const OverworldAnimManagerFuncs Unk_ov101_021D91F0;
 static const int Unk_ov101_021D927C[6];
 static const fx32 Unk_ov101_021D937C[10];
 static const fx32 Unk_ov101_021D9354[10];
@@ -179,7 +177,7 @@ void ov101_021D59AC(UnkStruct_ov101_021D13C8 *param0)
 {
     UnkEnum_ov101_021D2BDC v0;
     fx32 v1, v2;
-    UnkStruct_ov101_021D5D90 *v3;
+    OverworldAnimManager *v3;
     UnkStruct_ov101_021D5A0C v4;
     VecFx32 v5 = { 0, 0, 0 };
 
@@ -190,33 +188,33 @@ void ov101_021D59AC(UnkStruct_ov101_021D13C8 *param0)
             v5.x = v1;
             v4.unk_08 = v0;
             v4.unk_04 = v2;
-            v3 = sub_02071330(param0->unk_44C, &Unk_ov101_021D91DC, &v5, 0, &v4, 139);
+            v3 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D91DC, &v5, 0, &v4, 139);
         }
     }
 }
 
-static int ov101_021D5A0C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5A0C(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5A64 *v1 = param1;
-    const UnkStruct_ov101_021D5A0C *v2 = sub_020715BC(param0);
+    const UnkStruct_ov101_021D5A0C *v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_00 = *v2;
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v1->unk_00.unk_00->unk_450, &v1->unk_0C, &v0, (NNS_G2D_VRAM_TYPE_2DMAIN), 0, 0, 0, 0, 0, 3, 2);
     Sprite_SetAnimateFlag(v1->unk_0C.unk_04, 1);
 
     return 1;
 }
 
-static void ov101_021D5A64(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5A64(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5A64 *v0 = param1;
     ov101_021D8544(&v0->unk_0C);
 }
 
-static void ov101_021D5A70(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5A70(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     u32 v1;
@@ -228,7 +226,7 @@ static void ov101_021D5A70(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v2 = v4->unk_00.unk_00->unk_90[v0] + v4->unk_00.unk_04;
     v2 %= (FX32_ONE * 160);
 
-    sub_020715E4(param0, &v3);
+    OverworldAnimManager_GetPosition(param0, &v3);
     v3.y = v2 + (FX32_ONE * 16) + v4->unk_00.unk_00->unk_9C[v0];
     Sprite_SetPosition(v4->unk_0C.unk_04, &v3);
 
@@ -241,12 +239,12 @@ static void ov101_021D5A70(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D5AEC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5AEC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5A64 *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91DC = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D91DC = {
     sizeof(UnkStruct_ov101_021D5A64),
     ov101_021D5A0C,
     ov101_021D5A64,
@@ -260,33 +258,33 @@ void ov101_021D5AF0(UnkStruct_ov101_021D13C8 *param0)
     VecFx32 v1 = { (FX32_ONE * 108), (FX32_ONE * 180), 0 };
 
     for (v0 = 1; v0 < 100000; v0 *= 10, v1.x -= (FX32_ONE * 8)) {
-        sub_02071330(param0->unk_44C, &Unk_ov101_021D91F0, &v1, v0, param0, 141);
+        OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D91F0, &v1, v0, param0, 141);
     }
 }
 
-static int ov101_021D5B44(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5B44(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5B9C *v1 = param1;
 
-    v1->unk_04 = sub_020715B4(param0);
+    v1->unk_04 = OverworldAnimManager_GetID(param0);
     v1->unk_08 = v1->unk_04 * 10;
-    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v1->unk_00->unk_450, &v1->unk_0C, &v0, (NNS_G2D_VRAM_TYPE_2DMAIN), 0, 1, 1, 1, 1, 1, 1);
     Sprite_SetAnimateFlag(v1->unk_0C.unk_04, 1);
 
     return 1;
 }
 
-static void ov101_021D5B9C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5B9C(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5B9C *v0 = param1;
     ov101_021D8544(&v0->unk_0C);
 }
 
-static void ov101_021D5BA8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5BA8(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5B9C *v1 = param1;
@@ -307,17 +305,17 @@ static void ov101_021D5BA8(UnkStruct_ov101_021D5D90 *param0, void *param1)
         Sprite_RestartAnim(v1->unk_0C.unk_04);
     }
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     v0.x += Unk_ov101_021D937C[v2];
     Sprite_SetPosition(v1->unk_0C.unk_04, &v0);
 }
 
-static void ov101_021D5C24(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5C24(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5B9C *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91F0 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D91F0 = {
     sizeof(UnkStruct_ov101_021D5B9C),
     ov101_021D5B44,
     ov101_021D5B9C,
@@ -325,7 +323,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91F0 = {
     ov101_021D5C24
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9204;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9204;
 
 void ov101_021D5C28(UnkStruct_ov101_021D13C8 *param0)
 {
@@ -333,33 +331,33 @@ void ov101_021D5C28(UnkStruct_ov101_021D13C8 *param0)
     VecFx32 v1 = { (FX32_ONE * 180), (FX32_ONE * 180), 0 };
 
     for (v0 = 1; v0 < 100000; v0 *= 10, v1.x -= (FX32_ONE * 8)) {
-        sub_02071330(param0->unk_44C, &Unk_ov101_021D9204, &v1, v0, param0, 141);
+        OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9204, &v1, v0, param0, 141);
     }
 }
 
-static int ov101_021D5C7C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5C7C(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5CD4 *v1 = param1;
 
-    v1->unk_04 = sub_020715B4(param0);
+    v1->unk_04 = OverworldAnimManager_GetID(param0);
     v1->unk_08 = v1->unk_04 * 10;
-    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v1->unk_00->unk_450, &v1->unk_0C, &v0, (NNS_G2D_VRAM_TYPE_2DMAIN), 0, 1, 1, 1, 1, 1, 1);
     Sprite_SetAnimateFlag(v1->unk_0C.unk_04, 1);
 
     return 1;
 }
 
-static void ov101_021D5CD4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5CD4(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5CD4 *v0 = param1;
     ov101_021D8544(&v0->unk_0C);
 }
 
-static void ov101_021D5CE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5CE0(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5CD4 *v1 = param1;
@@ -380,17 +378,17 @@ static void ov101_021D5CE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
         Sprite_RestartAnim(v1->unk_0C.unk_04);
     }
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     v0.x += Unk_ov101_021D9354[v2];
     Sprite_SetPosition(v1->unk_0C.unk_04, &v0);
 }
 
-static void ov101_021D5D54(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5D54(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D5B9C *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9204 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9204 = {
     sizeof(UnkStruct_ov101_021D5CD4),
     ov101_021D5C7C,
     ov101_021D5CD4,
@@ -398,21 +396,21 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9204 = {
     ov101_021D5D54
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9218;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9218;
 static int (*const *const Unk_ov101_021D9294[UnkEnum_ov101_021D5D90_07])(UnkStruct_ov101_021D630C *);
 
-UnkStruct_ov101_021D5D90 *ov101_021D5D58(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D5814 param1)
+OverworldAnimManager *ov101_021D5D58(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D5814 param1)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 0), (FX32_ONE * 400), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9218, &v1, param1, param0, 134);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9218, &v1, param1, param0, 134);
     return v0;
 }
 
-void ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0, UnkEnum_ov101_021D5D90 param1)
+void ov101_021D5D90(OverworldAnimManager *param0, UnkEnum_ov101_021D5D90 param1)
 {
-    UnkStruct_ov101_021D630C *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D630C *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     v0->unk_00 = param1;
     v0->unk_04 = 0;
@@ -420,9 +418,9 @@ void ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0, UnkEnum_ov101_021D5D90 par
     v0->unk_30 = 0;
 }
 
-void ov101_021D5DA4(UnkStruct_ov101_021D5D90 *param0, int param1)
+void ov101_021D5DA4(OverworldAnimManager *param0, int param1)
 {
-    UnkStruct_ov101_021D630C *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D630C *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     if (param1 == 1) {
         Sprite_SetDrawFlag(v0->unk_3C.unk_04, FALSE);
@@ -431,23 +429,23 @@ void ov101_021D5DA4(UnkStruct_ov101_021D5D90 *param0, int param1)
     }
 }
 
-int ov101_021D5DC4(UnkStruct_ov101_021D5D90 *param0)
+int ov101_021D5DC4(OverworldAnimManager *param0)
 {
-    UnkStruct_ov101_021D630C *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D630C *v0 = OverworldAnimManager_GetFuncsContext(param0);
     return v0->unk_08;
 }
 
-static int ov101_021D5DD0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D5DD0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D630C *v0 = param1;
 
-    v0->unk_38 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
-    v0->unk_10 = sub_020715B4(param0);
+    v0->unk_38 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
+    v0->unk_10 = OverworldAnimManager_GetID(param0);
 
     return 1;
 }
 
-static void ov101_021D5DE8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5DE8(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D630C *v0 = param1;
 
@@ -457,7 +455,7 @@ static void ov101_021D5DE8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D5E04(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5E04(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D630C *v1 = param1;
@@ -470,12 +468,12 @@ static void ov101_021D5E04(UnkStruct_ov101_021D5D90 *param0, void *param1)
     } while (v0 == 1);
 }
 
-static void ov101_021D5E24(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D5E24(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D630C *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9218 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9218 = {
     sizeof(UnkStruct_ov101_021D630C),
     ov101_021D5DD0,
     ov101_021D5DE8,
@@ -851,28 +849,28 @@ static void ov101_021D6410(UnkStruct_ov101_021D13C8 *param0, UnkStruct_ov101_021
     Sprite_SetAnimateFlag(param1->unk_04, 1);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9150;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9150;
 
-UnkStruct_ov101_021D5D90 *ov101_021D6484(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D6484(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 128), ((FX32_ONE * 192) + (FX32_ONE * (160 - 16))), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9150, &v1, 0, param0, 135);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9150, &v1, 0, param0, 135);
     return v0;
 }
 
-static int ov101_021D64BC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D64BC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D65F4 *v0 = param1;
 
-    v0->unk_10 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v0->unk_10 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
     ov101_021D65F4(v0);
 
     return 1;
 }
 
-static void ov101_021D64D0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D64D0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D65F4 *v0 = param1;
 
@@ -882,7 +880,7 @@ static void ov101_021D64D0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D64FC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D64FC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D65F4 *v0 = param1;
 
@@ -895,7 +893,7 @@ static void ov101_021D64FC(UnkStruct_ov101_021D5D90 *param0, void *param1)
         {
             VecFx32 v1;
 
-            sub_020715E4(param0, &v1);
+            OverworldAnimManager_GetPosition(param0, &v1);
             ov101_021D84A4(v0->unk_10->unk_450, &v0->unk_14, &v1, (NNS_G2D_VRAM_TYPE_2DSUB), 1, 3, 3, 3, 3, 2, 5);
             Sprite_SetAnimateFlag(v0->unk_14.unk_04, 1);
 
@@ -920,12 +918,12 @@ static void ov101_021D64FC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D659C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D659C(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D65F4 *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9150 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9150 = {
     sizeof(UnkStruct_ov101_021D65F4),
     ov101_021D64BC,
     ov101_021D64D0,
@@ -975,7 +973,7 @@ static void ov101_021D65F4(UnkStruct_ov101_021D65F4 *param0)
     GF_ASSERT(v0 != NULL);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9164;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9164;
 static int (*const *const Unk_ov101_021D9330[UnkEnum_ov101_021D679C_09])(UnkStruct_ov101_021D66D0 *);
 
 static void ov101_021D667C(SysTask *param0, void *param1)
@@ -1021,19 +1019,19 @@ static void ov101_021D66D0(UnkStruct_ov101_021D66D0 *param0)
     GF_ASSERT(v0 != NULL);
 }
 
-UnkStruct_ov101_021D5D90 *ov101_021D6764(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D6764 param1)
+OverworldAnimManager *ov101_021D6764(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D6764 param1)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 128), (FX32_ONE * 160), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9164, &v1, param1, param0, 137);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9164, &v1, param1, param0, 137);
 
     return v0;
 }
 
-void ov101_021D679C(UnkStruct_ov101_021D5D90 *param0, UnkEnum_ov101_021D679C param1)
+void ov101_021D679C(OverworldAnimManager *param0, UnkEnum_ov101_021D679C param1)
 {
-    UnkStruct_ov101_021D66D0 *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D66D0 *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     v0->unk_04 = param1;
     v0->unk_08 = 0;
@@ -1041,25 +1039,25 @@ void ov101_021D679C(UnkStruct_ov101_021D5D90 *param0, UnkEnum_ov101_021D679C par
     v0->unk_14 = 0;
 }
 
-int ov101_021D67B0(UnkStruct_ov101_021D5D90 *param0)
+int ov101_021D67B0(OverworldAnimManager *param0)
 {
-    UnkStruct_ov101_021D66D0 *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D66D0 *v0 = OverworldAnimManager_GetFuncsContext(param0);
     return v0->unk_0C;
 }
 
-static int ov101_021D67BC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D67BC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D66D0 *v0 = param1;
 
-    v0->unk_20 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
-    v0->unk_18 = sub_020715B4(param0);
+    v0->unk_20 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
+    v0->unk_18 = OverworldAnimManager_GetID(param0);
 
     ov101_021D66D0(v0);
 
     return 1;
 }
 
-static void ov101_021D67DC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D67DC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D66D0 *v0 = param1;
 
@@ -1071,7 +1069,7 @@ static void ov101_021D67DC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D6808(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D6808(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D66D0 *v1 = param1;
@@ -1084,12 +1082,12 @@ static void ov101_021D6808(UnkStruct_ov101_021D5D90 *param0, void *param1)
     } while (v0 == 1);
 }
 
-static void ov101_021D6828(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D6828(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D66D0 *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9164 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9164 = {
     sizeof(UnkStruct_ov101_021D66D0),
     ov101_021D67BC,
     ov101_021D67DC,
@@ -1390,7 +1388,7 @@ static int (*const *const Unk_ov101_021D9330[UnkEnum_ov101_021D679C_09])(UnkStru
     Unk_ov101_021D8E80, Unk_ov101_021D910C, Unk_ov101_021D9064, Unk_ov101_021D8E58, Unk_ov101_021D8E88, Unk_ov101_021D8E78, Unk_ov101_021D8E70, Unk_ov101_021D8E60, Unk_ov101_021D8ED8
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9178;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9178;
 
 static void ov101_021D6D10(SysTask *param0, void *param1)
 {
@@ -1433,32 +1431,32 @@ static void ov101_021D6D68(UnkStruct_ov101_021D6D10 *param0)
     GF_ASSERT(v0 != NULL);
 }
 
-UnkStruct_ov101_021D5D90 *ov101_021D6DF0(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D6DF0(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { 0, 0, 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9178, &v1, 0, param0, 136);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9178, &v1, 0, param0, 136);
     return v0;
 }
 
-int ov101_021D6E1C(UnkStruct_ov101_021D5D90 *param0)
+int ov101_021D6E1C(OverworldAnimManager *param0)
 {
-    UnkStruct_ov101_021D6D10 *v0 = sub_02071598(param0);
+    UnkStruct_ov101_021D6D10 *v0 = OverworldAnimManager_GetFuncsContext(param0);
 
     return v0->unk_04;
 }
 
-static int ov101_021D6E28(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D6E28(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D6D10 *v0 = param1;
 
-    v0->unk_2C = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v0->unk_2C = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
     ov101_021D6D68(v0);
     return 1;
 }
 
-static void ov101_021D6E3C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D6E3C(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D6D10 *v0 = param1;
 
@@ -1472,14 +1470,14 @@ static void ov101_021D6E3C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D6E78(UnkStruct_ov101_021D5D90 *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, Sprite *param5, int param6)
+static void ov101_021D6E78(OverworldAnimManager *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, Sprite *param5, int param6)
 {
     VecFx32 v0, v1;
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     v0.x += param3;
     v0.y += param4;
-    sub_020715D4(param0, &v0);
+    OverworldAnimManager_SetPosition(param0, &v0);
 
     if (param6 == 0) {
         v1.x = param1 + v0.x;
@@ -1491,7 +1489,7 @@ static void ov101_021D6E78(UnkStruct_ov101_021D5D90 *param0, fx32 param1, fx32 p
     Sprite_SetPosition(param5, &v1);
 }
 
-static void ov101_021D6EC8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D6EC8(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D6D10 *v0 = param1;
 
@@ -1513,7 +1511,7 @@ static void ov101_021D6EC8(UnkStruct_ov101_021D5D90 *param0, void *param1)
         int v2 = 0;
         VecFx32 v3, v4;
 
-        sub_020715E4(param0, &v3);
+        OverworldAnimManager_GetPosition(param0, &v3);
 
         v3.x += (FX32_ONE * 8);
         v3.y += (FX32_ONE * 8);
@@ -1528,7 +1526,7 @@ static void ov101_021D6EC8(UnkStruct_ov101_021D5D90 *param0, void *param1)
             v2++;
         }
 
-        sub_020715D4(param0, &v3);
+        OverworldAnimManager_SetPosition(param0, &v3);
 
         v4.x = (FX32_ONE * -32) + v3.x;
         v4.y = ((FX32_ONE * 192) + (FX32_ONE * 228)) - v3.y;
@@ -1657,12 +1655,12 @@ static void ov101_021D6EC8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D7224(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7224(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D6D10 *v0 = param1;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9178 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9178 = {
     sizeof(UnkStruct_ov101_021D6D10),
     ov101_021D6E28,
     ov101_021D6E3C,
@@ -1670,38 +1668,38 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9178 = {
     ov101_021D7224
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D918C;
+static const OverworldAnimManagerFuncs Unk_ov101_021D918C;
 
-UnkStruct_ov101_021D5D90 *ov101_021D7228(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D7228(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 24), ((FX32_ONE * 192) + (FX32_ONE * 8)), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D918C, &v1, 0, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D918C, &v1, 0, param0, 142);
     return v0;
 }
 
-static int ov101_021D7260(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7260(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D72AC *v1 = param1;
 
-    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v1->unk_00->unk_450, &v1->unk_04, &v0, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 6, 6, 6, 6, 2, 3);
     Sprite_SetAnimateFlag(v1->unk_04.unk_04, 1);
 
     return 1;
 }
 
-static void ov101_021D72AC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D72AC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D72AC *v0 = param1;
     ov101_021D8544(&v0->unk_04);
 }
 
-static void ov101_021D72B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D72B8(OverworldAnimManager *param0, void *param1)
 {
     int v0 = 1;
     UnkStruct_ov101_021D72AC *v1 = param1;
@@ -1714,38 +1712,38 @@ static void ov101_021D72B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     Sprite_SetDrawFlag(v1->unk_04.unk_04, v0);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D918C = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D918C = {
     sizeof(UnkStruct_ov101_021D72AC),
     ov101_021D7260,
     ov101_021D72AC,
     ov101_021D72B8,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91C8;
+static const OverworldAnimManagerFuncs Unk_ov101_021D91C8;
 
-UnkStruct_ov101_021D5D90 *ov101_021D72D4(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D72D4(UnkStruct_ov101_021D13C8 *param0)
 {
     VecFx32 v0;
-    UnkStruct_ov101_021D5D90 *v1;
+    OverworldAnimManager *v1;
 
     v0.x = (FX32_ONE * (128 - (((6 + 5) * 8) / 2)));
     v0.y = ((FX32_ONE * 192) + (FX32_ONE * (96 + 16)));
-    v1 = sub_02071330(param0->unk_44C, &Unk_ov101_021D91C8, &v0, 0, param0, 142);
+    v1 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D91C8, &v0, 0, param0, 142);
 
     return v1;
 }
 
-static int ov101_021D7304(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7304(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     VecFx32 v1 = { 0, 0, 0 };
     VecFx32 v2 = { 0x2000, 0x2000, 0 };
     UnkStruct_ov101_021D7394 *v3 = param1;
 
-    v3->unk_04 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v3->unk_04 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v3->unk_04->unk_450, &v3->unk_08, &v0, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 6, 6, 6, 6, 2, 3);
 
     Sprite_SetAffineOverwriteMode(v3->unk_08.unk_04, 2);
@@ -1757,13 +1755,13 @@ static int ov101_021D7304(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7394(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7394(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D7394 *v0 = param1;
     ov101_021D8544(&v0->unk_08);
 }
 
-static void ov101_021D73A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D73A0(OverworldAnimManager *param0, void *param1)
 {
     int v0 = 1;
     UnkStruct_ov101_021D7394 *v1 = param1;
@@ -1771,50 +1769,50 @@ static void ov101_021D73A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_00++;
 
     if (v1->unk_00 >= 45) {
-        sub_0207136C(param0);
+        OverworldAnimManager_Finish(param0);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91C8 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D91C8 = {
     sizeof(UnkStruct_ov101_021D7394),
     ov101_021D7304,
     ov101_021D7394,
     ov101_021D73A0,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D922C;
+static const OverworldAnimManagerFuncs Unk_ov101_021D922C;
 
-UnkStruct_ov101_021D5D90 *ov101_021D73B4(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D73B4(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 200), ((FX32_ONE * 192) + (FX32_ONE * 184)), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D922C, &v1, 0, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D922C, &v1, 0, param0, 142);
     return v0;
 }
 
-static int ov101_021D73EC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D73EC(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D72AC *v1 = param1;
 
-    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v1->unk_00->unk_450, &v1->unk_04, &v0, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 7, 6, 7, 7, 2, 3);
     Sprite_SetAnimateFlag(v1->unk_04.unk_04, 1);
 
     return 1;
 }
 
-static void ov101_021D7438(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7438(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D7438 *v0 = param1;
     ov101_021D8544(&v0->unk_04);
 }
 
-static void ov101_021D7444(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7444(OverworldAnimManager *param0, void *param1)
 {
     int v0 = 1;
     UnkStruct_ov101_021D7438 *v1 = param1;
@@ -1827,38 +1825,38 @@ static void ov101_021D7444(UnkStruct_ov101_021D5D90 *param0, void *param1)
     Sprite_SetDrawFlag(v1->unk_04.unk_04, v0);
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D922C = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D922C = {
     sizeof(UnkStruct_ov101_021D7438),
     ov101_021D73EC,
     ov101_021D7438,
     ov101_021D7444,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9254;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9254;
 
-UnkStruct_ov101_021D5D90 *ov101_021D7460(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D7460(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 200), ((FX32_ONE * 192) + (FX32_ONE * 184)), 0 };
 
     v1.x = (FX32_ONE * (128 - (((10 + 5) * 8) / 2)));
     v1.y = ((FX32_ONE * 192) + (FX32_ONE * (96 - 16)));
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9254, &v1, 0, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9254, &v1, 0, param0, 142);
 
     return v0;
 }
 
-static int ov101_021D74A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D74A0(OverworldAnimManager *param0, void *param1)
 {
     VecFx32 v0;
     VecFx32 v1 = { 0, 0, 0 };
     VecFx32 v2 = { 0x2000, 0x2000, 0 };
     UnkStruct_ov101_021D7530 *v3 = param1;
 
-    v3->unk_04 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v3->unk_04 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    sub_020715E4(param0, &v0);
+    OverworldAnimManager_GetPosition(param0, &v0);
     ov101_021D84A4(v3->unk_04->unk_450, &v3->unk_08, &v0, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 7, 6, 7, 7, 2, 3);
 
     Sprite_SetAffineOverwriteMode(v3->unk_08.unk_04, 2);
@@ -1870,13 +1868,13 @@ static int ov101_021D74A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7530(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7530(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D7530 *v0 = param1;
     ov101_021D8544(&v0->unk_08);
 }
 
-static void ov101_021D753C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D753C(OverworldAnimManager *param0, void *param1)
 {
     int v0 = 1;
     UnkStruct_ov101_021D7530 *v1 = param1;
@@ -1884,37 +1882,37 @@ static void ov101_021D753C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_00++;
 
     if (v1->unk_00 >= 45) {
-        sub_0207136C(param0);
+        OverworldAnimManager_Finish(param0);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9254 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9254 = {
     sizeof(UnkStruct_ov101_021D7530),
     ov101_021D74A0,
     ov101_021D7530,
     ov101_021D753C,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D913C;
+static const OverworldAnimManagerFuncs Unk_ov101_021D913C;
 
-UnkStruct_ov101_021D5D90 *ov101_021D7550(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D7550(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 14), ((FX32_ONE * 192) + (FX32_ONE * 8)), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D913C, &v1, 0, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D913C, &v1, 0, param0, 142);
     return v0;
 }
 
-static int ov101_021D7588(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7588(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     VecFx32 v1;
     UnkStruct_ov101_021D75F0 *v2 = param1;
 
-    v2->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
-    sub_020715E4(param0, &v1);
+    v2->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
+    OverworldAnimManager_GetPosition(param0, &v1);
 
     for (v0 = 0; v0 < 2; v0++) {
         ov101_021D84A4(v2->unk_00->unk_450, &v2->unk_04[v0], &v1, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 8, 6, 8, 8, 2, 3);
@@ -1925,7 +1923,7 @@ static int ov101_021D7588(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D75F0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D75F0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D75F0 *v0 = param1;
 
@@ -1933,7 +1931,7 @@ static void ov101_021D75F0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     ov101_021D8544(&v0->unk_04[1]);
 }
 
-static void ov101_021D7604(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7604(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D75F0 *v0 = param1;
     UnkStruct_ov101_021D4764 *v1 = &v0->unk_00->unk_13C;
@@ -1975,32 +1973,32 @@ static void ov101_021D7604(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D913C = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D913C = {
     sizeof(UnkStruct_ov101_021D5B9C),
     ov101_021D7588,
     ov101_021D75F0,
     ov101_021D7604,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91A0;
+static const OverworldAnimManagerFuncs Unk_ov101_021D91A0;
 
-UnkStruct_ov101_021D5D90 *ov101_021D76B4(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D76B4(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 14), ((FX32_ONE * 192) + (FX32_ONE * 8)), 0 };
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D91A0, &v1, 0, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D91A0, &v1, 0, param0, 142);
     return v0;
 }
 
-static int ov101_021D76EC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D76EC(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     VecFx32 v1 = { (FX32_ONE * 220), ((FX32_ONE * 192) + (FX32_ONE * 184)), 0 };
     UnkStruct_ov101_021D7754 *v2 = param1;
 
-    v2->unk_00 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v2->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
     for (v0 = 0; v0 < 5; v0++, v1.x += (FX32_ONE * 8)) {
         ov101_021D84A4(v2->unk_00->unk_450, &v2->unk_04[v0], &v1, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 8, 6, 8, 8, 2, 3);
@@ -2009,7 +2007,7 @@ static int ov101_021D76EC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7754(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7754(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D7754 *v0 = param1;
     int v1;
@@ -2019,7 +2017,7 @@ static void ov101_021D7754(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D776C(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D776C(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D7754 *v1 = param1;
@@ -2059,37 +2057,37 @@ static void ov101_021D776C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91A0 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D91A0 = {
     sizeof(UnkStruct_ov101_021D7754),
     ov101_021D76EC,
     ov101_021D7754,
     ov101_021D776C,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9240;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9240;
 
-UnkStruct_ov101_021D5D90 *ov101_021D77E4(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D77E4 param1)
+OverworldAnimManager *ov101_021D77E4(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D77E4 param1)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { 0, 0, 0 };
     u32 v2;
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9240, &v1, param1, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9240, &v1, param1, param0, 142);
 
     return v0;
 }
 
-static int ov101_021D7810(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7810(OverworldAnimManager *param0, void *param1)
 {
     int v0, v1, v2;
     VecFx32 v3;
     VecFx32 v4 = { 0, 0, 0 };
     VecFx32 v5 = { 0x2000, 0x2000, 0 };
     UnkStruct_ov101_021D7984 *v6 = param1;
-    UnkStruct_ov101_021D13C8 *v7 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    UnkStruct_ov101_021D13C8 *v7 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    v6->unk_00 = sub_020715B4(param0);
+    v6->unk_00 = OverworldAnimManager_GetID(param0);
     v6->unk_14 = v7;
 
     if (v6->unk_00 == UnkEnum_ov101_021D77E4_00) {
@@ -2150,7 +2148,7 @@ static int ov101_021D7810(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7984(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7984(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D7984 *v1 = param1;
@@ -2160,7 +2158,7 @@ static void ov101_021D7984(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D79A8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D79A8(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D7984 *v1 = param1;
@@ -2168,44 +2166,44 @@ static void ov101_021D79A8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_0C++;
 
     if (v1->unk_0C >= 45) {
-        sub_0207136C(param0);
+        OverworldAnimManager_Finish(param0);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9240 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9240 = {
     sizeof(UnkStruct_ov101_021D7984),
     ov101_021D7810,
     ov101_021D7984,
     ov101_021D79A8,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9268;
+static const OverworldAnimManagerFuncs Unk_ov101_021D9268;
 
-UnkStruct_ov101_021D5D90 *ov101_021D79BC(UnkStruct_ov101_021D13C8 *param0, u32 param1)
+OverworldAnimManager *ov101_021D79BC(UnkStruct_ov101_021D13C8 *param0, u32 param1)
 {
-    UnkStruct_ov101_021D5D90 *v0;
+    OverworldAnimManager *v0;
     VecFx32 v1 = { (FX32_ONE * 128), ((FX32_ONE * 192) + (FX32_ONE * 32)), 0 };
 
     if (param1 > 999) {
         param1 = 999;
     }
 
-    v0 = sub_02071330(param0->unk_44C, &Unk_ov101_021D9268, &v1, param1, param0, 142);
+    v0 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D9268, &v1, param1, param0, 142);
     return v0;
 }
 
-static int ov101_021D7A00(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7A00(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     u32 v1, v2, v3;
     VecFx32 v4;
     UnkStruct_ov101_021D7A00 *v5 = param1;
 
-    v5->unk_08 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
-    v1 = sub_020715B4(param0);
+    v5->unk_08 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
+    v1 = OverworldAnimManager_GetID(param0);
 
-    sub_020715E4(param0, &v4);
+    OverworldAnimManager_GetPosition(param0, &v4);
 
     if (v1 >= 100) {
         v2 = 100;
@@ -2230,7 +2228,7 @@ static int ov101_021D7A00(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7AD0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7AD0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov101_021D7A00 *v0 = param1;
     int v1;
@@ -2240,7 +2238,7 @@ static void ov101_021D7AD0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D7AF4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7AF4(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D7A00 *v1 = param1;
@@ -2248,24 +2246,24 @@ static void ov101_021D7AF4(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1->unk_00++;
 
     if (v1->unk_00 >= 60) {
-        sub_0207136C(param0);
+        OverworldAnimManager_Finish(param0);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9268 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D9268 = {
     sizeof(UnkStruct_ov101_021D7A00),
     ov101_021D7A00,
     ov101_021D7AD0,
     ov101_021D7AF4,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91B4;
+static const OverworldAnimManagerFuncs Unk_ov101_021D91B4;
 
-UnkStruct_ov101_021D5D90 *ov101_021D7B08(UnkStruct_ov101_021D13C8 *param0)
+OverworldAnimManager *ov101_021D7B08(UnkStruct_ov101_021D13C8 *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
-    UnkStruct_ov101_021D5D90 *v1 = sub_02071330(param0->unk_44C, &Unk_ov101_021D91B4, &v0, 0, param0, 140);
+    OverworldAnimManager *v1 = OverworldAnimManagerList_InitManager(param0->unk_44C, &Unk_ov101_021D91B4, &v0, 0, param0, 140);
 
     return v1;
 }
@@ -2298,12 +2296,12 @@ static const VecFx32 Unk_ov101_021D9424[UnkEnum_ov101_021D4F58_05][3] = {
     },
 };
 
-static int ov101_021D7B34(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ov101_021D7B34(OverworldAnimManager *param0, void *param1)
 {
     u32 v0;
     UnkStruct_ov101_021D7D94 *v1 = param1;
 
-    v1->unk_44 = (UnkStruct_ov101_021D13C8 *)sub_020715BC(param0);
+    v1->unk_44 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
     v1->unk_18 = v1->unk_44->unk_44;
 
     v0 = v1->unk_44->unk_48;
@@ -2323,7 +2321,7 @@ static int ov101_021D7B34(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov101_021D7B74(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7B74(OverworldAnimManager *param0, void *param1)
 {
     int v0;
     UnkStruct_ov101_021D7D94 *v1 = param1;
@@ -2339,7 +2337,7 @@ static void ov101_021D7B74(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov101_021D7BB4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ov101_021D7BB4(OverworldAnimManager *param0, void *param1)
 {
     int v0, v1;
     VecFx32 v2;
@@ -2429,12 +2427,12 @@ static void ov101_021D7BB4(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91B4 = {
+static const OverworldAnimManagerFuncs Unk_ov101_021D91B4 = {
     sizeof(UnkStruct_ov101_021D7D94),
     ov101_021D7B34,
     ov101_021D7B74,
     ov101_021D7BB4,
-    UnkStruct_ov101_021D5D90_DoNothing2
+    OverworldAnimManager_DummyRenderFunc
 };
 
 static void ov101_021D7D4C(SysTask *param0, void *param1)

@@ -1,0 +1,216 @@
+{
+  "key": 37835,
+  "messages": [
+    {
+      "id": "MoveReminder_Text_Reminder_AskTeachWhichToMon",
+      "en_US": [
+        "Teach which move to\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_AskShouldTeachMove",
+      "en_US": [
+        "Teach the move\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_AskGiveUpTeachingMon",
+      "en_US": [
+        "Give up trying to teach a new\n",
+        "move to {STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_LearnedMoveNoFanfare",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_AskMoreThanFourMoves",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_12AndPoof",
+      "en_US": [
+        "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!{WAIT 3}{WAIT 5}\r",
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And...\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_LearnedMoveFanfare",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}.{WAIT 4}{WAIT 2}\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_AskStopTryingToTeachMove",
+      "en_US": [
+        "Stop trying to teach\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_MonDidNotLearnMove",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_Payment",
+      "garbage": 30
+    },
+    {
+      "id": "MoveReminder_Text_Reminder_AskForgetThisMove",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} is the move that\n",
+        "you want forgotten?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskTeachWhichToMon",
+      "en_US": [
+        "Which move should {STRVAR_1 1, 0, 0}\n",
+        "remember?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskShouldTeachMove",
+      "en_US": [
+        "Should the move {STRVAR_1 6, 1, 0}\n",
+        "be remembered?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskGiveUpTeachingMon",
+      "en_US": [
+        "Give up trying to make\n",
+        "{STRVAR_1 1, 0, 0} remember a move?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_LearnedMoveNoFanfare",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} remembered the move\n",
+        "{STRVAR_1 6, 1, 0} it had forgotten!\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskMoreThanFourMoves",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} wants to remember\n",
+        "the move {STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an existing move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_12AndPoof",
+      "en_US": [
+        "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!{WAIT 3}{WAIT 5}\r",
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And...\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_LearnedMoveFanfare",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} remembered the move\n",
+        "{STRVAR_1 6, 1, 0}.{WAIT 4}{WAIT 2}\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskStopTryingToTeachMove",
+      "en_US": [
+        "Give up making the Pokémon\n",
+        "remember {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_MonDidNotLearnMove",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not remember the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_Payment",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} handed over one\n",
+        "Heart Scale in exchange.\r"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Tutor_AskForgetThisMove",
+      "en_US": [
+        "Is it OK to make this Pokémon\n",
+        "forget the move {STRVAR_1 6, 0, 0}?"
+      ]
+    },
+    {
+      "id": "MoveReminder_Text_Category",
+      "en_US": "CATEGORY"
+    },
+    {
+      "id": "MoveReminder_Text_Power",
+      "en_US": "POWER"
+    },
+    {
+      "id": "MoveReminder_Text_Accuracy",
+      "en_US": "ACCURACY"
+    },
+    {
+      "id": "MoveReminder_Text_Pp",
+      "en_US": "PP"
+    },
+    {
+      "id": "MoveReminder_Text_BattleMoves",
+      "en_US": "BATTLE MOVES"
+    },
+    {
+      "id": "MoveReminder_Text_AppealPts",
+      "en_US": "APPEAL PTS"
+    },
+    {
+      "id": "MoveReminder_Text_ContestMoves",
+      "en_US": "CONTEST MOVES"
+    },
+    {
+      "id": "MoveReminder_Text_PowerValue",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "MoveReminder_Text_AccuracyValue",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "MoveReminder_Text_PpValue",
+      "en_US": "{STRVAR_1 51, 0, 0}/{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "MoveReminder_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "MoveReminder_Text_Dashes",
+      "en_US": "---"
+    }
+  ]
+}

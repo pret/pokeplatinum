@@ -20,32 +20,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"May I please trouble you for a\n",
-				"battle?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "May I please trouble you for a\n",
+                "battle?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh...\n",
-				"You’re so strong...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh...\n",
+                "You’re so strong...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Maybe I could have won if my Pokémon\n",
-				"was holding a Berry...\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Maybe I could have won if my Pokémon\n",
+                "was holding a Berry...\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Excuse me, may I please trouble you to\n",
-				"have one more battle?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Excuse me, may I please trouble you to\n",
+                "have one more battle?\r"
+            ]
+        }
     ]
 }

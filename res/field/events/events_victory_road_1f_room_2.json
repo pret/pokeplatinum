@@ -43,10 +43,11 @@
     ],
     "object_events": [
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04B7",
+            "hidden_flag": "FLAG_UNK_0x04B7",
             "script": 7193,
             "initial_dir": 0,
             "data": [],
@@ -57,10 +58,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04B5",
+            "hidden_flag": "FLAG_UNK_0x04B5",
             "script": 7191,
             "initial_dir": 0,
             "data": [],
@@ -71,10 +73,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04B6",
+            "hidden_flag": "FLAG_UNK_0x04B6",
             "script": 7192,
             "initial_dir": 0,
             "data": [],
@@ -85,10 +88,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04BB",
+            "hidden_flag": "FLAG_UNK_0x04BB",
             "script": 7197,
             "initial_dir": 0,
             "data": [],
@@ -99,11 +103,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_ACE_TRAINER_MICAH",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3388,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_MICAH",
             "initial_dir": 2,
             "data": [
                 3
@@ -115,11 +120,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_ACE_TRAINER_BRANDI",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3392,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_BRANDI",
             "initial_dir": 3,
             "data": [
                 3
@@ -131,11 +137,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_PSYCHIC_DESIREE",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3398,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_DESIREE",
             "initial_dir": 1,
             "data": [
                 4
@@ -147,11 +154,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_PSYCHIC_LANDON",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3395,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_LANDON",
             "initial_dir": 3,
             "data": [
                 1
@@ -163,11 +171,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_BLACK_BELT_EDDIE",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3445,
+            "hidden_flag": "0",
+            "script": "TRAINER_BLACK_BELT_EDDIE",
             "initial_dir": 0,
             "data": [
                 1
@@ -179,11 +188,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_VETERAN_TERRELL",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3498,
+            "hidden_flag": "0",
+            "script": "TRAINER_VETERAN_TERRELL",
             "initial_dir": 1,
             "data": [
                 1
@@ -195,11 +205,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_ACE_TRAINER_ARTHUR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3389,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_ARTHUR",
             "initial_dir": 2,
             "data": [
                 1
@@ -211,11 +222,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_ACE_TRAINER_CLARICE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3393,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_CLARICE",
             "initial_dir": 3,
             "data": [
                 1
@@ -227,11 +239,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_PSYCHIC_DEANDRE",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3396,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_DEANDRE",
             "initial_dir": 2,
             "data": [
                 1
@@ -243,11 +256,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_PSYCHIC_KENDRA",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3399,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_KENDRA",
             "initial_dir": 3,
             "data": [
                 1
@@ -259,11 +273,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_BIRD_KEEPER_AUTUMN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3372,
+            "hidden_flag": "0",
+            "script": "TRAINER_BIRD_KEEPER_AUTUMN",
             "initial_dir": 0,
             "data": [
                 1
@@ -275,11 +290,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_DRAGON_TAMER_JOE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3385,
+            "hidden_flag": "0",
+            "script": "TRAINER_DRAGON_TAMER_JOE",
             "initial_dir": 1,
             "data": [
                 1
@@ -291,11 +307,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_BLACK_BELT_WILLIE",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3446,
+            "hidden_flag": "0",
+            "script": "TRAINER_BLACK_BELT_WILLIE",
             "initial_dir": 0,
             "data": [
                 1
@@ -307,11 +324,12 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_VETERAN_BRENDEN",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3499,
+            "hidden_flag": "0",
+            "script": "TRAINER_VETERAN_BRENDEN",
             "initial_dir": 1,
             "data": [
                 1
@@ -323,10 +341,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_18",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -337,10 +356,11 @@
             "y": 0
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_19",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -351,10 +371,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_20",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -365,10 +386,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_21",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_UNK_0x0023",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -379,10 +401,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_22",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_UNK_0x0024",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -393,10 +416,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_23",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0025",
+            "hidden_flag": "FLAG_UNK_0x0025",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -407,10 +431,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_24",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0026",
+            "hidden_flag": "FLAG_UNK_0x0026",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -421,10 +446,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_25",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0027",
+            "hidden_flag": "FLAG_UNK_0x0027",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -435,10 +461,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_26",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0028",
+            "hidden_flag": "FLAG_UNK_0x0028",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -449,10 +476,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_STRENGTH_BOULDER_27",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0029",
+            "hidden_flag": "FLAG_UNK_0x0029",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -463,10 +491,11 @@
             "y": 1
         },
         {
+            "id": "VICTORY_ROAD_1F_ROOM_2_MARLEY_28",
             "graphics_id": "OBJ_EVENT_GFX_MARLEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01E6",
+            "hidden_flag": "FLAG_UNK_0x01E6",
             "script": 9705,
             "initial_dir": 3,
             "data": [],
@@ -499,7 +528,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": 16528,
+            "var": "VAR_UNK_0x4090",
             "value": 1
         },
         {
@@ -509,7 +538,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": 16528,
+            "var": "VAR_UNK_0x4090",
             "value": 1
         },
         {
@@ -519,7 +548,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": 16528,
+            "var": "VAR_UNK_0x4090",
             "value": 0
         }
     ]

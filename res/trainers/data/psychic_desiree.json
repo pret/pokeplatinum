@@ -39,30 +39,30 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Allow me to demonstrate how a true\n",
-				"Psychic conducts a battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Allow me to demonstrate how a true\n",
+                "Psychic conducts a battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Did I get to show you anything...?\n",
-				"Anything at all?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Did I get to show you anything...?\n",
+                "Anything at all?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"What can psychic power be used for?\r",
-				"Well, one mustn’t use it for committing\n",
-				"crimes.\r",
-				"But, I don’t use it for doing good,\n",
-				"either.\r",
-				"Using psychic power leaves me too worn\n",
-				"out!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "What can psychic power be used for?\r",
+                "Well, one mustn’t use it for committing\n",
+                "crimes.\r",
+                "But, I don’t use it for doing good,\n",
+                "either.\r",
+                "Using psychic power leaves me too worn\n",
+                "out!\n"
+            ]
+        }
     ]
 }

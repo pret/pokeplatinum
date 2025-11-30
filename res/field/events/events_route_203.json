@@ -2,11 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_203_YOUNGSTER_SEBASTIAN",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3355,
+            "hidden_flag": "0",
+            "script": "TRAINER_YOUNGSTER_SEBASTIAN",
             "initial_dir": 2,
             "data": [
                 5
@@ -18,11 +19,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_MICHAEL",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3003,
+            "hidden_flag": "0",
+            "script": "TRAINER_YOUNGSTER_MICHAEL",
             "initial_dir": 2,
             "data": [
                 2
@@ -34,11 +36,12 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_LASS_KAITLIN",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3322,
+            "hidden_flag": "0",
+            "script": "TRAINER_LASS_KAITLIN",
             "initial_dir": 0,
             "data": [
                 1
@@ -50,11 +53,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_YOUNGSTER_DALLAS",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3354,
+            "hidden_flag": "0",
+            "script": "TRAINER_YOUNGSTER_DALLAS",
             "initial_dir": 1,
             "data": [
                 4
@@ -66,11 +70,12 @@
             "y": 4
         },
         {
+            "id": "ROUTE_203_LASS_MADELINE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3321,
+            "hidden_flag": "0",
+            "script": "TRAINER_LASS_MADELINE",
             "initial_dir": 1,
             "data": [
                 5
@@ -82,10 +87,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_BARRY_5",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017B",
+            "hidden_flag": "FLAG_UNK_0x017B",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -96,10 +102,11 @@
             "y": 1
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [
@@ -112,10 +119,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_ARROW_SIGNPOST_7",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [
@@ -128,10 +136,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_8",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -142,10 +151,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_TRAINER_TIPS_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -156,10 +166,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "flag": "FLAG_UNK_0x03F7",
+            "hidden_flag": "FLAG_UNK_0x03F7",
             "script": 7001,
             "initial_dir": 0,
             "data": [],
@@ -170,10 +181,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "flag": "FLAG_UNK_0x03F8",
+            "hidden_flag": "FLAG_UNK_0x03F8",
             "script": 7002,
             "initial_dir": 0,
             "data": [],
@@ -184,10 +196,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_LASS_12",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -198,11 +211,12 @@
             "y": 0
         },
         {
-            "local_id": 9,
+            "id": "ROUTE_203_MAP_SIGNPOST_13",
+            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0003",
+            "hidden_flag": "FLAG_UNK_0x0003",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -215,10 +229,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_203_POKEBALL_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "flag": "FLAG_UNK_0x04F6",
+            "hidden_flag": "FLAG_UNK_0x04F6",
             "script": 7255,
             "initial_dir": 0,
             "data": [],
@@ -245,7 +260,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16520,
+            "var": "VAR_UNK_0x4088",
             "value": 0
         }
     ]

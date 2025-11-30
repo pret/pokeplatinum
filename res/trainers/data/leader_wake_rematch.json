@@ -85,18 +85,18 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_LAST_BATTLER_HALF_HP",
-			"en_US": [
-				"If we turn it around here, the\n",
-				"spectators will be stoked!\n"
-			]
-		},
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "If we turn it around here, the\n",
+                "spectators will be stoked!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"That puts a grin on my face!\n",
-				"Guhahaha! That was a blast!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "That puts a grin on my face!\n",
+                "Guhahaha! That was a blast!\n"
+            ]
+        }
     ]
 }

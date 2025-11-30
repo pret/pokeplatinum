@@ -24,8 +24,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "sound.h"
+#include "tv_episode_segment.h"
 #include "unk_02030108.h"
-#include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
@@ -256,7 +256,7 @@ BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
         v4 = sub_020301E0(v3->unk_6F5, &v3->unk_704[v3->unk_04][0]);
 
         if (v4 < 10) {
-            sub_02030204(v3->unk_6F5, &v3->unk_704[v3->unk_04][0], (v4 + 1));
+            sub_02030204(v3->unk_6F5, &v3->unk_704[v3->unk_04][0], v4 + 1);
         }
         break;
     case 29:

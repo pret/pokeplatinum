@@ -28,21 +28,21 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "I’ll knock your Pokémon into orbit!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "I’ll knock your Pokémon into orbit!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My mind is going orbital!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My mind is going orbital!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The Pokémon here has already been\n",
-				"taken to our HQ in Veilstone.\r",
-				"So, you see?\n",
-				"A child like you can’t touch us!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The Pokémon here has already been\n",
+                "taken to our HQ in Veilstone.\r",
+                "So, you see?\n",
+                "A child like you can’t touch us!\n"
+            ]
+        }
     ]
 }

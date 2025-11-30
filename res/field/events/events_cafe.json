@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "CAFE_RANCHER_0",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "CAFE_WAITRESS_1",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 2,
             "data": [],
@@ -30,11 +32,12 @@
             "y": 0
         },
         {
+            "id": "CAFE_COLLECTOR_FERNANDO",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3274,
+            "hidden_flag": "0",
+            "script": "TRAINER_COLLECTOR_FERNANDO",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -44,11 +47,12 @@
             "y": 0
         },
         {
+            "id": "CAFE_COLLECTOR_EDWIN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3275,
+            "hidden_flag": "0",
+            "script": "TRAINER_COLLECTOR_EDWIN",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -58,11 +62,12 @@
             "y": 0
         },
         {
+            "id": "CAFE_WAITRESS_KATI",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3365,
+            "hidden_flag": "0",
+            "script": "TRAINER_WAITRESS_KATI",
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "CAFE_OLD_MAN_5",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 2,
             "data": [],

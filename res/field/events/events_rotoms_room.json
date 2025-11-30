@@ -43,10 +43,11 @@
     ],
     "object_events": [
         {
+            "id": "ROTOMS_ROOM_ROTOM_HEAT_0",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_HEAT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN",
+            "hidden_flag": "FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -57,10 +58,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_FAN_1",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN",
+            "hidden_flag": "FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -71,10 +73,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_FROST_2",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_FROST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR",
+            "hidden_flag": "FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -85,10 +88,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_WASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_WASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE",
+            "hidden_flag": "FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -99,10 +103,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_ROTOM_MOW_4",
             "graphics_id": "OBJ_EVENT_GFX_ROTOM_MOW",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER",
+            "hidden_flag": "FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -113,10 +118,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_BOOK_5",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -127,10 +133,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_PROF_ROWAN_6",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02C0",
+            "hidden_flag": "FLAG_UNK_0x02C0",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -141,10 +148,11 @@
             "y": 0
         },
         {
+            "id": "ROTOMS_ROOM_BOOK_7",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10,
             "initial_dir": 0,
             "data": [],

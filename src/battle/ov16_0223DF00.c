@@ -68,9 +68,9 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
-#include "unk_0206CCB0.h"
 
 BgConfig *BattleSystem_BGL(BattleSystem *battleSystem);
 u32 BattleSystem_BattleType(BattleSystem *battleSystem);
@@ -586,10 +586,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     int friendship = 0;
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_SLEEP, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_SLEEP) {
             param &= ~MON_CONDITION_SLEEP;
-            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -606,10 +606,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_POISON, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_ANY_POISON) {
             param &= ~MON_CONDITION_ANY_POISON;
-            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -622,10 +622,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_BURN, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_BURN) {
             param &= ~MON_CONDITION_BURN;
-            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -638,10 +638,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_FREEZE, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_FREEZE) {
             param &= ~MON_CONDITION_FREEZE;
-            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -654,10 +654,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_PARALYSIS, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_PARALYSIS) {
             param &= ~MON_CONDITION_PARALYSIS;
-            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -757,8 +757,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     if (Item_LoadParam(item, ITEM_PARAM_PP_RESTORE, HEAP_ID_BATTLE)) {
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
-        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, param);
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
             // Don't permit restoring PP on copied moves
             if ((selectedSlot == partySlot || targetSlot == partySlot)
@@ -775,8 +775,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
         for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
-            if (Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, param);
+            if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
                 if ((selectedSlot == partySlot || targetSlot == partySlot)
                     && (BattleMon_Get(battleCtx, battler, BATTLEMON_VOLATILE_STATUS, NULL) & VOLATILE_CONDITION_TRANSFORM) == FALSE
@@ -793,14 +793,14 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = 0;
 
         if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE)) {
-            if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
                 param = 1;
             }
         } else {
-            param = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+            param = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
         }
 
-        if (param && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
+        if (param && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
             param = Item_LoadParam(item, ITEM_PARAM_HP_RESTORED, HEAP_ID_BATTLE);
 
             switch (param) {
@@ -828,7 +828,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 break;
             }
 
-            Pokemon_IncreaseValue(mon, MON_DATA_CURRENT_HP, param);
+            Pokemon_IncreaseValue(mon, MON_DATA_HP, param);
 
             if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE) == FALSE) {
                 if (Battler_Side(battleSys, battler)) {
@@ -867,7 +867,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 friendship++;
             }
 
-            if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
+            if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
                 friendship++;
             }
 
@@ -1064,7 +1064,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
 
     for (i = 0; i < BattleSystem_PartyCount(battleSys, 0); i++) {
         Pokemon *mon = BattleSystem_PartyPokemon(battleSys, 0, i);
-        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
+        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species == SPECIES_BURMY && (battleSys->unk_2414[0] & FlagIndex(i))) {
             switch (BattleSystem_Terrain(battleSys)) {
@@ -1115,7 +1115,7 @@ void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 
 void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1)
 {
-    sub_0206D160(battleSystem->unk_9C, param1, battleSystem->resultMask, battleSystem->unk_241E, HEAP_ID_BATTLE);
+    CaptureAttempt_Init(battleSystem->captureAttempt, param1, battleSystem->resultMask, battleSystem->ballsThrown, HEAP_ID_BATTLE);
 }
 
 void ov16_0223EF8C(BattleSystem *battleSystem)
@@ -1686,7 +1686,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     }
 
     if (((battlerType & BATTLER_THEM) == FALSE)
-        && (Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) == SPECIES_BURMY)) {
+        && (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_BURMY)) {
         Pokedex_Capture(battleSystem->pokedex, mon);
     }
 }
@@ -1742,16 +1742,15 @@ u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum Traine
             }
         } else {
             {
-                MessageLoader *v3;
                 Strbuf *v4;
-                int v5;
-                u32 v6;
+                int entryID;
+                u32 bankID;
                 int v7;
 
                 if (msgType == TRMSG_WIN) {
-                    v5 = trainerID * 3 + 1;
+                    entryID = trainerID * 3 + 1;
                 } else {
-                    v5 = trainerID * 3 + 2;
+                    entryID = trainerID * 3 + 2;
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
@@ -1761,19 +1760,19 @@ u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum Traine
                 }
 
                 if (v7 == 4) {
-                    v6 = 614;
+                    bankID = TEXT_BANK_FRONTIER_TRAINER_MESSAGES;
                 } else {
-                    v6 = 613;
+                    bankID = TEXT_BANK_UNK_0613;
                 }
 
-                v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v6, HEAP_ID_BATTLE);
-                v4 = MessageLoader_GetNewStrbuf(v3, v5);
+                MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_BATTLE);
+                v4 = MessageLoader_GetNewStrbuf(loader, entryID);
 
                 Window_FillTilemap(v0, 0xff);
 
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
-                MessageLoader_Free(v3);
+                MessageLoader_Free(loader);
             }
         }
     } else {

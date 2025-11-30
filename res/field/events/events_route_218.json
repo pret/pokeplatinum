@@ -2,11 +2,12 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_218_GUITARIST_TONY",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3299,
+            "hidden_flag": "0",
+            "script": "TRAINER_GUITARIST_TONY",
             "initial_dir": 1,
             "data": [
                 4
@@ -18,11 +19,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_SAILOR_SKYLER",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3337,
+            "hidden_flag": "0",
+            "script": "TRAINER_SAILOR_SKYLER",
             "initial_dir": 3,
             "data": [
                 3
@@ -34,11 +36,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_MIGUEL",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3152,
+            "hidden_flag": "0",
+            "script": "TRAINER_FISHERMAN_MIGUEL",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -48,11 +51,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_LUC",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3153,
+            "hidden_flag": "0",
+            "script": "TRAINER_FISHERMAN_LUC",
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
@@ -62,10 +66,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_ARROW_SIGNPOST_4",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [
@@ -78,10 +83,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_ARROW_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
             "data": [
@@ -94,10 +100,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x047A",
+            "hidden_flag": "FLAG_UNK_0x047A",
             "script": 7132,
             "initial_dir": 0,
             "data": [],
@@ -108,10 +115,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x047B",
+            "hidden_flag": "FLAG_UNK_0x047B",
             "script": 7133,
             "initial_dir": 0,
             "data": [],
@@ -122,10 +130,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_8",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -138,10 +147,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_9",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -154,10 +164,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_10",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -170,10 +181,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_UNK_100_11",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -186,10 +198,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_VENT_12",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -200,10 +213,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_VENT_13",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -214,10 +228,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_GUITARIST_14",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -228,10 +243,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_CLEFAIRY_15",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -242,10 +258,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_CLEFAIRY_16",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -256,10 +273,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_PIKACHU_17",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -270,10 +288,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_PIKACHU_18",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -284,10 +303,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_FISHERMAN_19",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0299",
+            "hidden_flag": "FLAG_UNK_0x0299",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -298,10 +318,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_218_POKEBALL_20",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04F7",
+            "hidden_flag": "FLAG_UNK_0x04F7",
             "script": 7256,
             "initial_dir": 0,
             "data": [],

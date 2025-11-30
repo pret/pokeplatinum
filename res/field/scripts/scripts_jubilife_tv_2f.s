@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_238 9, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _002B
     ClearFlag FLAG_UNK_0x0215
     End
@@ -38,10 +38,10 @@ _0044:
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _00BC
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, _00C4
     SetVar VAR_UNK_0x410A, VAR_0x8004
-    ScrCmd_343 0, VAR_0x8004
+    BufferAccessoryNameWithArticle 0, VAR_0x8004
     Message 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DF
+    GiveAccessoryWaitForConfirm
     SetFlag FLAG_UNK_0x013D
     CloseMessage
     ReleaseAll

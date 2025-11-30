@@ -1,6 +1,10 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/battle_tower_modes.h"
+#include "generated/battle_tower_functions.h"
+#include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
@@ -23,17 +27,22 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
+#include "generated/string_padding_mode.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/animation_tags.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
+#include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
+#include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
 #include "macros/movement.inc"
@@ -289,14 +298,19 @@
     .short \messageVar
     .endm
 
-    .macro ScrCmd_02E arg0
+    .macro MessageNoSkip messageID
     .short 46
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro ScrCmd_02F arg0
+    /*
+     * Used in multi-player contexts to show a message such that it takes
+     * a predictable amount of time, to keep connected games in sync.
+     * In single-player, this behaves like the Message script command.
+     */
+    .macro MessageSynchronized messageID
     .short 47
-    .byte \arg0
+    .byte \messageID
     .endm
 
     .macro WaitABPress
@@ -575,7 +589,7 @@
     .byte \paused
     .endm
 
-    .macro ScrCmd_057 seqID
+    .macro SetBGM seqID
     .short 87
     .short \seqID
     .endm
@@ -957,11 +971,11 @@
     .short \eggGiverTextId
     .endm
 
-    .macro ScrCmd_098 arg0, arg1, arg2
+    .macro ResetPartyMonMoveSlot_Unused partySlot, moveSlot, moveID 
     .short 152
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \moveSlot
+    .short \moveID
     .endm
 
     .macro CheckPartyMonHasMove destVar, move, partySlot
@@ -977,10 +991,10 @@
     .short \move
     .endm
 
-    .macro ScrCmd_09B arg0, arg1
+    .macro GetRematchTrainerID trainerID, destVar
     .short 155
-    .short \arg0
-    .short \arg1
+    .short \trainerID
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_09C
@@ -999,7 +1013,7 @@
     .short 159
     .endm
 
-    .macro ScrCmd_0A0
+    .macro Dummy0A0
     .short 160
     .endm
 
@@ -1047,7 +1061,7 @@
     .short 169
     .endm
 
-    .macro ScrCmd_0AA
+    .macro OpenRegionMap
     .short 170
     .endm
 
@@ -1300,9 +1314,9 @@
     .short \trainerClass
     .endm
 
-    .macro ScrCmd_0D9 arg0
+    .macro BufferTrainerClassFromAppearance templateArg
     .short 217
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro BufferSpeciesNameFromVar templateArg, var, unused1, unused2
@@ -1351,10 +1365,10 @@
     .short \item
     .endm
 
-    .macro ScrCmd_0E2 arg0, arg1
+    .macro BufferMapName templateArg, mapID
     .short 226
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \mapID
     .endm
 
     .macro GetSwarmMapAndSpecies arg0, arg1
@@ -1436,20 +1450,20 @@
     .long \offset-.-4
     .endm
 
-    .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
+    .macro StartBattleClient commType, arg1, arg2, destVarID
     .short 242
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0F3 arg0, arg1, arg2, arg3
+    .macro StartBattleServer commType, arg1, arg2, destVarID
     .short 243
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
     .macro ScrCmd_Unused_0F4 arg0
@@ -1644,19 +1658,19 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_11A arg0, arg1
+    .macro GetPartyMonGender_Unused slot, destVar
     .short 282
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
-    .macro ScrCmd_11B arg0, arg1, arg2, arg3, arg4
+    .macro SetSpecialLocation mapId, warpId, x, z, dir
     .short 283
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \mapId
+    .short \warpId
+    .short \x
+    .short \z
+    .short \dir
     .endm
 
     /*
@@ -1701,10 +1715,18 @@
     .short 290
     .endm
 
-    .macro ScrCmd_123 arg0, arg1
+    .macro LoadPokedexRating hasNationalDex, destVar
     .short 291
-    .byte \arg0
-    .short \arg1
+    .byte \hasNationalDex
+    .short \destVar
+    .endm
+
+    .macro LoadLocalDexRating destVar
+    LoadPokedexRating FALSE, \destVar
+    .endm
+
+    .macro LoadNationalDexRating destVar
+    LoadPokedexRating TRUE, \destVar
     .endm
 
     .macro StartWildBattle species, level
@@ -1790,12 +1812,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_135 arg0
+    .macro ScrCmd_135 syncNo
     .short 309
-    .short \arg0
+    .short \syncNo
     .endm
 
-    .macro ScrCmd_136
+    .macro ClearReceivedTempDataAllPlayers
     .short 310
     .endm
 
@@ -1897,7 +1919,7 @@
     .short \martID
     .endm
 
-    .macro ScrCmd_14B
+    .macro BlackOutFromBattle2
     .short 331
     .endm
 
@@ -1919,7 +1941,7 @@
     .short 335
     .endm
 
-    .macro ScrCmd_150
+    .macro EndCommunication
     .short 336
     .endm
 
@@ -1990,6 +2012,11 @@
     .short \destVarID
     .endm
 
+    .macro GoToIfBadgeAcquired badge label
+    CheckBadgeAcquired \badge, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, \label
+    .endm
+
     .macro GiveBag
     .short 351
     .endm
@@ -2029,33 +2056,33 @@
     .short 359
     .endm
 
-    .macro ScrCmd_168 arg0, arg1, arg2, arg3, arg4
+    .macro LoadDoorAnimation mapX, mapZ, tileX, tileZ, tag
     .short 360
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .byte \arg4
+    .short \mapX
+    .short \mapZ
+    .short \tileX
+    .short \tileZ
+    .byte \tag
     .endm
 
-    .macro ScrCmd_169 arg0
+    .macro WaitForAnimation tag
     .short 361
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16A arg0
+    .macro UnloadAnimation tag
     .short 362
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16B arg0
+    .macro PlayDoorOpenAnimation tag
     .short 363
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_16C arg0
+    .macro PlayDoorCloseAnimation tag
     .short 364
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro BufferDaycareMonNicknames
@@ -2071,7 +2098,7 @@
     .short 367
     .endm
 
-    .macro ScrCmd_170
+    .macro PressPastoriaGymButton
     .short 368
     .endm
 
@@ -2096,7 +2123,7 @@
     .byte \floorID
     .endm
 
-    .macro ScrCmd_176 arg0
+    .macro SunyshoreGymButton arg0
     .short 374
     .byte \arg0
     .endm
@@ -2106,76 +2133,84 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_178 arg0
+    .macro OpenBag pocketType
     .short 376
-    .byte \arg0
+    .byte \pocketType
     .endm
 
-    .macro ScrCmd_179 arg0
+    .macro OpenItemsBag
+    OpenBag 0
+    .endm
+
+    .macro OpenBerriesBag
+    OpenBag 1
+    .endm
+
+    .macro GetSelectedItem destVar
     .short 377
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17A arg0, arg1
+    .macro CheckPocketHasItems pocketID, destVar
     .short 378
-    .short \arg0
-    .short \arg1
+    .short \pocketID
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17B arg0, arg1, arg2
+    .macro BufferBerryName templateArg, item, unused=VAR_0x8001
     .short 379
-    .byte \arg0
-    .short \arg1
-    .short \arg2
+    .byte \templateArg
+    .short \item
+    .short \unused
     .endm
 
-    .macro ScrCmd_17C arg0, arg1
+    .macro BufferNatureName templateArg, nature
     .short 380
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \nature
     .endm
 
-    .macro ScrCmd_17D arg0
+    .macro GetBerryGrowthStage destVar
     .short 381
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17E arg0
+    .macro GetBerryItemID destVar
     .short 382
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_17F arg0
+    .macro GetBerryMulchType destVar
     .short 383
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_180 arg0
+    .macro GetBerryMoisture destVar
     .short 384
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_181 arg0
+    .macro GetBerryYield destVar
     .short 385
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_182 arg0
+    .macro SetBerryMulch mulchItemID
     .short 386
-    .short \arg0
+    .short \mulchItemID
     .endm
 
-    .macro ScrCmd_183 arg0
+    .macro PlantBerry berryItemID
     .short 387
-    .short \arg0
+    .short \berryItemID
     .endm
 
-    .macro ScrCmd_184 arg0
+    .macro SetBerryWateringState direction
     .short 388
-    .short \arg0
+    .short \direction
     .endm
 
-    .macro ScrCmd_185
+    .macro HarvestBerry
     .short 389
     .endm
 
@@ -2249,8 +2284,13 @@
     .short 401
     .endm
 
-    .macro ScrCmd_192
+    .macro OpenPartyMenuForUnionRoomBattle
     .short 402
+    .endm
+
+    .macro SelectPokemonForUnionRoomBattle
+    OpenPartyMenuForUnionRoomBattle
+    ReturnToField
     .endm
 
     .macro GetSelectedPartySlot destVar
@@ -2258,11 +2298,11 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_194 arg0, arg1, arg2, arg3
+    .macro OpenPartyMenuForContest partySlot, contestRank, contestType, arg3
     .short 404
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \contestRank
+    .short \contestType
     .short \arg3
     .endm
 
@@ -2288,13 +2328,13 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_199 arg0, arg1
+    .macro CheckIsPartyMonOutsider slot, destVar
     .short 409
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
-    .macro GetPartyCountHatched destVarID
+    .macro CountPartyNonEggs destVarID
     .short 410
     .short \destVarID
     .endm
@@ -2307,14 +2347,14 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_19C arg0
+    .macro CountAliveMonsAndBoxMons destVar
     .short 412
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_19D arg0
+    .macro CountPartyEggs destVar
     .short 413
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_19E arg0, arg1
@@ -2468,16 +2508,16 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1BA arg0, arg1
+    .macro IncreasePartyMonFriendship value, slot
     .short 442
-    .short \arg0
-    .short \arg1
+    .short \value
+    .short \slot
     .endm
 
-    .macro ScrCmd_1BB arg0, arg1
+    .macro DecreasePartyMonFriendship_Unused value, slot
     .short 443
-    .short \arg0
-    .short \arg1
+    .short \value
+    .short \slot
     .endm
 
     .macro BufferDaycareNicknameLevelGender templateArgNickname, templateArgLevel, templateArgGender, daycareSlot
@@ -2556,10 +2596,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1C9 arg0, arg1
+    .macro ClearPartyMonMoveSlot partySlot, moveSlot
     .short 457
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro GetPartyMonMove destVar, partySlot, moveSlot
@@ -2569,11 +2609,11 @@
     .short \moveSlot
     .endm
 
-    .macro ScrCmd_1CB arg0, arg1, arg2
+    .macro BufferPartyMoveName templateArg, partySlot, moveSlot
     .short 459
-    .byte \arg0
-    .short \arg1
-    .short \arg2
+    .byte \templateArg
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro GiveJournal
@@ -2617,10 +2657,10 @@
     .endif
     .endm
 
-    .macro ScrCmd_1D2 arg0, arg1
+    .macro AddAccessory accessoryID, amount
     .short 466
-    .short \arg0
-    .short \arg1
+    .short \accessoryID
+    .short \amount
     .endm
 
     // destVarID will be set to TRUE if the player has space for at least 'count' accessories of the specified type in their bag
@@ -2631,6 +2671,22 @@
     .short \destVarID
     .endm
 
+    .macro GivePoketchApp
+    CallCommonScript 0x7D9
+    .endm
+
+    .macro GiveAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
+    .endm
+
+    .macro MessageBagIsFull
+    CallCommonScript 0x7E1
+    .endm
+
+    .macro GiveItemQuantity
+    CallCommonScript 0x7FC
+    .endm
+
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0
@@ -2638,9 +2694,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1D5 arg0
+    .macro AddContestBackdrop backdropID
     .short 469
-    .short \arg0
+    .short \backdropID
     .endm
 
     // destVarID will be set to TRUE if the player has the specified backdrop
@@ -2666,25 +2722,25 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1DA
+    .macro SetBattleTowerNull
     .short 474
     .endm
 
-    .macro ScrCmd_1DB arg0, arg1
+    .macro InitBattleTower arg0, challengeMode
     .short 475
     .short \arg0
-    .short \arg1
+    .short \challengeMode
     .endm
 
-    .macro ScrCmd_1DC
+    .macro FreeBattleTower
     .short 476
     .endm
 
-    .macro ScrCmd_1DD arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 477
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro ScrCmd_1DE arg0, arg1, arg2, arg3
@@ -2759,11 +2815,11 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1EA
+    .macro ShowDiplomaSinnoh
     .short 490
     .endm
 
-    .macro ScrCmd_1EB
+    .macro ShowDiplomaNationalDex
     .short 491
     .endm
 
@@ -2776,7 +2832,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1EE arg0, arg1
+    .macro GetPartyMonHeldItem_Unused destVar, slot
     .short 494
     .short \arg0
     .short \arg1
@@ -2787,41 +2843,41 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1F0 arg0
+    .macro DeletePartyMonHeldItem_Unused slot
     .short 496
-    .short \arg0
+    .short \slot
     .endm
 
-    .macro ScrCmd_1F1 arg0
+    .macro GetFossilCount destVar
     .short 497
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1F2
+    .macro ScrCmd_Dummy_1F2
     .short 498
     .endm
 
-    .macro ScrCmd_1F3
+    .macro ScrCmd_Dummy_1F3
     .short 499
     .endm
 
-    .macro ScrCmd_1F4 arg0, arg1
+    .macro GetSpeciesFromFossil speciesVar, itemVar
     .short 500
-    .short \arg0
-    .short \arg1
+    .short \speciesVar
+    .short \itemVar
     .endm
 
-    .macro ScrCmd_1F5 arg0, arg1, arg2
+    .macro FindFossilAtThreshold itemVar, thresholdVar, thresholdValue
     .short 501
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \itemVar
+    .short \thresholdVar
+    .short \thresholdValue
     .endm
 
-    .macro ScrCmd_1F6 arg0, arg1
+    .macro CountPartyMonsBelowLevelThreshold destVar, threshold
     .short 502
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \threshold
     .endm
 
     .macro SurvivePoison destVarID, partySlot
@@ -2840,32 +2896,32 @@
     .short \dummy
     .endm
 
-    .macro ScrCmd_Unused_1FA arg0, arg1
+    .macro MessageFromBankInstant bankID, messageID
     .short 506
-    .short \arg0
-    .short \arg1
+    .short \bankID
+    .short \messageID
     .endm
 
-    .macro ScrCmd_1FB arg0, arg1
+    .macro MessageFromBank bankID, messageID
     .short 507
-    .short \arg0
-    .short \arg1
+    .short \bankID
+    .short \messageID
     .endm
 
-    .macro ScrCmd_Unused_1FC arg0, arg1, arg2, arg3
+    .macro SentenceInstant sentenceType, sentenceID, word1, word2
     .short 508
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \sentenceType
+    .short \sentenceID
+    .short \word1
+    .short \word2
     .endm
 
-    .macro ScrCmd_Unused_1FD arg0, arg1, arg2, arg3
+    .macro Sentence sentenceType, sentenceID, word1, word2
     .short 509
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \sentenceType
+    .short \sentenceID
+    .short \word1
+    .short \word2
     .endm
 
     .macro ScrCmd_1FE arg0
@@ -2873,12 +2929,12 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_1FF arg0, arg1, arg2, arg3
+    .macro MessageSeenBanlistSpecies banlistMsgStartIdx, numPokemonRequired
     .short 511
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \banlistMsgStartIdx
+    .short \numPokemonRequired
+    .short 0
+    .byte 0
     .endm
 
     .macro GetPreviousMapID destVarID
@@ -2891,9 +2947,17 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_202 arg0
+    .macro StartEndSafariGame activeState
     .short 514
-    .byte \arg0
+    .byte \activeState
+    .endm
+
+    .macro StartSafariGame
+    StartEndSafariGame SAFARI_GAME_ACTIVE
+    .endm
+
+    .macro EndSafariGame
+    StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
     .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
@@ -2917,9 +2981,9 @@
     .short 518
     .endm
 
-    .macro ScrCmd_207 arg0
+    .macro GetCurNetID destVarID
     .short 519
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro DrawPokemonPreview species, gender
@@ -2941,7 +3005,7 @@
     .short 523
     .endm
 
-    .macro ScrCmd_20C
+    .macro MessageFromTrainerType
     .short 524
     .endm
 
@@ -2951,20 +3015,20 @@
     .short \arg1
     .endm
 
-    .macro InitPersistedMapFeaturesForGreatMarsh
+    .macro InitGreatMarshTram
     .short 526
     .endm
 
-    .macro ScrCmd_20F arg0, arg1
+    .macro MoveGreatMarshTram location, movementType
     .short 527
-    .short \arg0
-    .short \arg1
+    .short \location
+    .short \movementType
     .endm
 
-    .macro ScrCmd_210 arg0, arg1
+    .macro CheckGreatMarshTramLocation location, destVar
     .short 528
-    .short \arg0
-    .short \arg1
+    .short \location
+    .short \destVar
     .endm
 
     .macro SetPlayerHeightCalculationEnabled heightCalculationEnabled
@@ -2972,16 +3036,16 @@
     .byte \heightCalculationEnabled
     .endm
 
-    .macro ScrCmd_212 arg0, arg1
+    .macro GetPartyMonNature destVar, slot
     .short 530
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
-    .macro ScrCmd_213 arg0, arg1
+    .macro FindPartySlotWithNature destVar, nature
     .short 531
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \nature
     .endm
 
     .macro GetSpiritombCounter destVarID
@@ -3045,39 +3109,39 @@
     .short 542
     .endm
 
-    .macro ScrCmd_21F arg0, arg1
+    .macro CheckHasLearnableReminderMoves destVar, partySlot
     .short 543
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_220
     .short 544
     .endm
 
-    .macro ScrCmd_221 arg0
+    .macro OpenMoveReminderMenu partySlot
     .short 545
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_222
     .short 546
     .endm
 
-    .macro ScrCmd_223 arg0
+    .macro CheckLearnedReminderMove destVar
     .short 547
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_224 arg0, arg1
+    .macro OpenMoveTutorMenu partySlot, move
     .short 548
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \move
     .endm
 
-    .macro ScrCmd_225 arg0
+    .macro CheckLearnedTutorMove destVar
     .short 549
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro StartNpcTrade npcTradeID
@@ -3126,15 +3190,15 @@
     GetSetNationalDexEnabled 2, \destVar
     .endm
 
-    .macro ScrCmd_22E arg0, arg1
+    .macro CountPartyMonRibbons_Unused destVar, slot
     .short 558
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
-    .macro ScrCmd_22F arg0
+    .macro CountPartyRibbons destVar
     .short 559
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro GetPartyMonRibbon destVar, partySlot, ribbonID
@@ -3150,10 +3214,10 @@
     .short \ribbonID
     .endm
 
-    .macro ScrCmd_232 arg0, arg1
+    .macro BufferRibbonName templateArg, ribbonID
     .short 562
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ribbonID
     .endm
 
     .macro GetPartyMonEVTotal destVar, partySlot
@@ -3167,22 +3231,72 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_235 arg0, arg1=0, arg2=0, arg3=0
+    .macro CallTVBroadcast callID, arg1=0, arg2=0, arg3=0
     .short 565
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 6
+    .short \callID
+    .if \callID == 0 || \callID == 6
         .short \arg1
     .else
-        .if \arg0 == 1 || \arg0 == 3 || \arg0 == 5
+        .if \callID == 1 || \callID == 3 || \callID == 5
             .short \arg1
             .short \arg2
             .short \arg3
         .else
-            .if \arg0 == 4
+            .if \callID == 4
                 .short \arg1
                 .short \arg2
             .endif
         .endif
+    .endif
+    .endm
+
+    .macro CheckBroadcastStatus destVar
+    CallTVBroadcast TV_BROADCAST_CALL_CHECK_STATUS, \destVar
+    .endm
+
+    .macro LoadTVCommercial bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_COMMERCIAL, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFramingMessage framingMessageType, bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegment segmentID, bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_SEGMENT \segmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVGreeting bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_GREETING \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegmentIntro bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_SEGMENT_INTRO \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewell bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewellExtended bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL_EXTENDED \bankDestVar, \messageDestVar
+    .endm
+
+    .macro GetNextTVSegmentID destVar
+    CallTVBroadcast TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID, \destVar
+    .endm
+
+    .macro FinishTVProgram
+    CallTVBroadcast TV_BROADCAST_CALL_FINISH_PROGRAM
+    .endm
+
+    .macro TVBroadcastDummy arg0, arg1, arg2
+    Dummy1F9 \arg0
+    .ifnb \arg1
+        Dummy1F9 \arg1
+    .endif
+    .ifnb \arg2
+        Dummy1F9 \arg2
     .endif
     .endm
 
@@ -3191,18 +3305,26 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_237 arg0, arg1, arg2, arg3
+    .macro CallTVInterview callID, interviewSegmentID, arg2, arg3
     .short 567
-    .short \arg0
-    .short \arg1
+    .short \callID
+    .short \interviewSegmentID
     .short \arg2
     .short \arg3
     .endm
 
-    .macro ScrCmd_238 arg0, arg1
+    .macro LoadTVInterviewMessage interviewSegmentID, bankDestVar, messageDestVar
+    CallTVInterview TV_INTERVIEW_CALL_LOAD_MESSAGE, \interviewSegmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro SaveTVInterviewResponse interviewSegmentID, customWordMessage, unused=VAR_0x8005
+    CallTVInterview TV_INTERVIEW_CALL_SAVE_RESPONSE, \interviewSegmentID, \customWordMessage, \unused
+    .endm
+
+    .macro CheckTVInterviewEligible interviewSegmentID, destVar
     .short 568
-    .short \arg0
-    .short \arg1
+    .short \interviewSegmentID
+    .short \destVar
     .endm
 
     .macro ScrCmd_239 arg0
@@ -3217,15 +3339,24 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_23B arg0
+    .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
-    .short \arg0
+    .short \pokeballCount
     .endm
 
-    .macro ScrCmd_23C arg0, arg1
+    .macro CallPokecenterNurse nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript 0x7D2
+    .endm
+
+    .macro VendorGreeting
+    CallCommonScript 0x7E3
+    .endm
+
+    .macro PlayElevatorAnimation elevatorDir, loopCount
     .short 572
-    .short \arg0
-    .short \arg1
+    .short \elevatorDir
+    .short \loopCount
     .endm
 
     .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
@@ -3360,11 +3491,11 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_248 arg0, arg1, arg2
+    .macro GetPartyMonType type1DestVar, type2DestVar, slot
     .short 584
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \type1DestVar
+    .short \type2DestVar
+    .short \slot
     .endm
 
     .macro ScrCmd_249 arg0, arg1, arg2, arg3, arg4
@@ -3381,19 +3512,19 @@
     .short \destFlagCount
     .endm
 
-    .macro ScrCmd_24B arg0
+    .macro LoadPCAnimation tag
     .short 587
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_24C arg0
+    .macro PlayPCBootUpAnimation tag
     .short 588
-    .byte \arg0
+    .byte \tag
     .endm
 
-    .macro ScrCmd_24D arg0
+    .macro PlayPCShutDownAnimation tag
     .short 589
-    .byte \arg0
+    .byte \tag
     .endm
 
     .macro GetJubilifeLotteryTrainerID destVarID
@@ -3465,9 +3596,9 @@
     .short 601
     .endm
 
-    .macro ScrCmd_25A arg0
+    .macro PlayHallOfFameHealingAnimation pokeballCount
     .short 602
-    .short \arg0
+    .short \pokeballCount
     .endm
 
     .macro InitPersistedMapFeaturesForPlatformLift
@@ -3564,9 +3695,9 @@
     .short \destAccessoryID
     .endm
 
-    .macro ScrCmd_26D arg0
+    .macro MessageUnown messageID
     .short 621
-    .short \arg0
+    .short \messageID
     .endm
 
     .macro GetGBACartridgeVersion destVarID
@@ -3597,12 +3728,12 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_272 arg0
+    .macro BufferTabletName templateArg
     .short 626
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro ScrCmd_273 arg0, arg1
+    .macro BufferContestBackdropName arg0, arg1
     .short 627
     .byte \arg0
     .short \arg1
@@ -3629,10 +3760,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_278 arg0, arg1
+    .macro GetPartyMonLevel destVar, slot
     .short 632
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \slot
     .endm
 
     .macro ScrCmd_Unused_279 arg0, arg1
@@ -3672,24 +3803,24 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_280 arg0, arg1, arg2, arg3
+    .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits
     .short 640
-    .byte \arg0
-    .short \arg1
-    .byte \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \varID
+    .byte \paddingMode
+    .byte \maxDigits
     .endm
 
-    .macro ScrCmd_281 arg0, arg1, arg2
+    .macro GetPartyMonContestStat slot, contestType, destVar
     .short 641
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \slot
+    .short \contestType
+    .short \destVar
     .endm
 
-    .macro ScrCmd_282 arg0
+    .macro CheckIsTodayPlayerBirthday destVar
     .short 642
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro SetInitialVolumeForSequence seqID, volume
@@ -3766,9 +3897,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_290 arg0
+    .macro OpenPartyMenuForDaycare partySlot
     .short 656
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_291 arg0, arg1
@@ -3883,8 +4014,14 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2A5
+    .macro OpenPartyMenuForTrade
     .short 677
+    .endm
+
+    .macro SelectPokemonToTrade
+    OpenPartyMenuForTrade
+    GetSelectedPartySlot VAR_RESULT
+    ReturnToField
     .endm
 
     .macro GetGameCornerPrizeData index, item, price
@@ -3894,10 +4031,10 @@
     .short \price
     .endm
 
-    .macro ScrCmd_2A7 arg0, arg1
+    .macro CheckItemIsPlate item, destVar
     .short 679
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVar
     .endm
 
     .macro SubtractCoins valueOrVarID
@@ -3940,10 +4077,10 @@
     .short 684
     .endm
 
-    .macro ScrCmd_2AD arg0, arg1
+    .macro GetMovementType destVar, localID
     .short 685
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \localID
     .endm
 
     .macro IsSequencePlaying seqID, destVar
@@ -3969,10 +4106,10 @@
     .short 690
     .endm
 
-    .macro ScrCmd_2B3 arg0, arg1
+    .macro BufferBallSealName templateArg, ballSeal
     .short 691
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ballSeal
     .endm
 
     /* this is unused, but the underlying function is called from LockAll */
@@ -4027,18 +4164,18 @@
     .short \level
     .endm
 
-    .macro ScrCmd_2BE arg0
+    .macro GetTrainerCardLevel destVar
     .short 702
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2BF
     .short 703
     .endm
 
-    .macro ScrCmd_2C0 arg0
+    .macro MessageAutoScroll messageID
     .short 704
-    .short \arg0
+    .short \messageID
     .endm
 
     .macro OpenSaveInfo
@@ -4085,7 +4222,7 @@
     .short 713
     .endm
 
-    .macro ScrCmd_2CA
+    .macro AdvanceEternaGymClock
     .short 714
     .endm
 
@@ -4306,10 +4443,10 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_2EF arg0, arg1
+    .macro BufferStatName templateArg, stat
     .short 751
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \stat
     .endm
 
     .macro InitPersistedMapFeaturesForVilla
@@ -4326,10 +4463,10 @@
     .short 754
     .endm
 
-    .macro ScrCmd_2F3 arg0, arg1
+    .macro BufferTrainerName templateArg, trainerID
     .short 755
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerID
     .endm
 
     .macro ScrCmd_2F4 arg0, arg1, arg2, arg3
@@ -4340,7 +4477,7 @@
     .short \arg3
     .endm
 
-    .macro BufferNumberPaddingDigits templateArg, value, paddingMode, maxDigits
+    .macro BufferValuePaddingDigits templateArg, value, paddingMode, maxDigits
     .short 757
     .byte \templateArg
     .long \value
@@ -4383,10 +4520,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2FD arg0, arg1
+    .macro BufferTypeName templateArg, type
     .short 765
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \type
     .endm
 
     .macro GetItemQuantity item, destVar
@@ -4556,12 +4693,12 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31B arg0
+    .macro GetCurrentSafariGameCaughtNum destVar
     .short 795
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro CheckPartyHasFatefulEncounter destVar, species
+    .macro FindPartySlotWithFatefulEncounterSpecies destVar, species
     .short 796
     .short \destVar
     .short \species
@@ -4670,7 +4807,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_330
+    .macro LogLinkInfoInWiFiHistory
     .short 816
     .endm
 
@@ -4745,10 +4882,10 @@
     SetMenuYOriginSide TRUE
     .endm
 
-    .macro ScrCmd_33C arg0, arg1
+    .macro BufferItemNameWithArticle templateArg, item
     .short 828
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro BufferItemNamePlural templateArg, item
@@ -4757,30 +4894,30 @@
     .short \item
     .endm
 
-    .macro ScrCmd_33E arg0, arg1
+    .macro BufferUndergroundGoodsNameWithArticle templateArg, goods
     .short 830
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \goods
     .endm
 
-    .macro ScrCmd_33F arg0, arg1
+    .macro BufferUndergroundTrapNameWithArticle templateArg, trap
     .short 831
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trap
     .endm
 
-    .macro ScrCmd_340 arg0, arg1
+    .macro BufferUndergroundItemNameWithArticle templateArg, item
     .short 832
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro ScrCmd_341 arg0, arg1, arg2, arg3
+    .macro BufferSpeciesNameWithArticle templateArg, species
     .short 833
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \species
+    .short 0
+    .byte 0
     .endm
 
     .macro BufferPlayerCounterpartStarterSpeciesNameWithArticle templateArg
@@ -4788,33 +4925,33 @@
     .byte \templateArg
     .endm
 
-    .macro ScrCmd_343 arg0, arg1
+    .macro BufferAccessoryNameWithArticle templateArg, accessory
     .short 835
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \accessory
     .endm
 
-    .macro ScrCmd_344 arg0, arg1
+    .macro BufferTrainerClassNameWithArticle templateArg, trainerClass
     .short 836
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerClass
     .endm
 
-    .macro ScrCmd_345 arg0, arg1
+    .macro BufferBallSealNamePlural templateArg, ballSeal
     .short 837
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \ballSeal
     .endm
 
-    .macro ScrCmd_346 arg0
+    .macro CapitalizeFirstLetter templateArg
     .short 838
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro ScrCmd_347 arg0, arg1
+    .macro BufferFloorNumber templateArg, floor
     .short 839
-    .byte \arg0
-    .byte \arg1
+    .byte \templateArg
+    .byte \floor
     .endm
 
 
@@ -4927,6 +5064,74 @@
     .macro ScriptEntryEnd
     .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
+    .endm
+    
+    .set F_INIT_SCRIPT_FRAME_TABLE_OPENED, FALSE
+    .set F_INIT_SCRIPT_FRAME_TABLE_CLOSED, FALSE
+
+    .macro InitScriptEntry_Fixed type, scriptID
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .byte \type
+        .short \scriptID, 0
+    .else
+        .error "cannot specify InitScriptEntry after InitScriptEntryEnd"
+    .endif
+    .endm
+
+    .macro InitScriptEntry_OnFrameTable checksLabel
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .set F_INIT_SCRIPT_FRAME_TABLE_OPENED, TRUE
+        .byte INIT_SCRIPT_ON_FRAME_TABLE
+        ScriptEntry \checksLabel
+    .else
+        .error "cannot specify InitScriptEntry after InitScriptEntryEnd"
+    .endif
+    .endm
+
+    .macro InitScriptEntry_OnTransition scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_TRANSITION, \scriptID
+    .endm
+
+    .macro InitScriptEntry_OnResume scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_RESUME, \scriptID
+    .endm
+
+    .macro InitScriptEntry_OnLoad scriptID
+    InitScriptEntry_Fixed INIT_SCRIPT_ON_LOAD, \scriptID
+    .endm
+
+    .macro InitScriptEntryEnd
+    .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
+    .byte 0
+    .endm
+
+    .macro InitScriptGoToIfEqual var1, var2, scriptID
+    .if F_INIT_SCRIPT_FRAME_TABLE_OPENED == TRUE
+        .if F_INIT_SCRIPT_FRAME_TABLE_CLOSED == FALSE
+            .short \var1, \var2, \scriptID
+        .else
+            .error "cannot specify InitScriptGoToIfEqual after InitScriptFrameTableEnd"
+        .endif
+    .else
+        .error "cannot specify InitScriptGoToIfEqual before InitScriptEntry_OnFrameTable"
+    .endif
+    .endm
+
+    .macro InitScriptFrameTableEnd
+    .set F_INIT_SCRIPT_FRAME_TABLE_CLOSED, TRUE
+    .short 0
+    .endm
+
+    .macro InitScriptEnd
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .error "cannot specify InitScriptEnd before InitScriptEntryEnd"
+    .endif
+    .if F_INIT_SCRIPT_FRAME_TABLE_OPENED == TRUE
+        .if F_INIT_SCRIPT_FRAME_TABLE_CLOSED == FALSE
+            .error "must close InitScriptEntry_OnFrameTable with InitScriptFrameTableEnd before InitScriptEnd"
+        .endif
+    .endif
+    .balign 4, 0
     .endm
 
     .macro GoToIfCannotFitItem item, count, destVarID, offset

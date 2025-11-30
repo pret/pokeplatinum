@@ -127,7 +127,7 @@ int ov75_021D0D80(ApplicationManager *appMan, int *param1)
     v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->options);
     v1->unk_0A = Options_Frame(v1->unk_1C->options);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     return 1;
 }
 
@@ -147,7 +147,7 @@ int ov75_021D0E10(ApplicationManager *appMan, int *param1)
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
     int heapID;
 
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
     heapID = v0->heapID;
 
@@ -819,7 +819,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
         Strbuf *v2;
         int v3;
 
-        param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
+        param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
 
         v2 = Strbuf_Init(8 * 2, param0->heapID);
 

@@ -611,7 +611,7 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
 static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID)
 {
     param0->unk_00 = StringTemplate_Default(heapID);
-    param0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
+    param0->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
     param0->unk_18 = Strbuf_Init(256, heapID);
     param0->unk_1C = Strbuf_Init(256, heapID);
     param0->unk_20 = param2;

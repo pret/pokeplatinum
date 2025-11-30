@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_CITY_NORTH_HOUSE_4F_COLLECTOR_0",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
             "data": [],

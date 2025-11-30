@@ -107,8 +107,8 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     v0->heapID = heapID;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
 
-    PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
-    PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
+    PokemonSprite_LoadCryDelay(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
+    PokemonSprite_LoadCryDelay(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
 
     v0->unk_14 = PaletteData_New(heapID);
 
@@ -135,7 +135,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     v0->unk_44 = sub_02015F84(heapID, 1, 0);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
-    v0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
+    v0->unk_08 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
     v0->unk_0C = StringTemplate_Default(heapID);
     v0->unk_10 = Strbuf_Init(2 * 160, heapID);
     v0->unk_3C = Heap_Alloc(heapID, sizeof(PokemonSummary));
@@ -158,7 +158,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
 
     sub_02015738(v0->unk_58, 1);
     SysTask_Start(sub_0207B0A0, v0, 0);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     sub_02039734();
 
     return v0;
@@ -208,7 +208,7 @@ void sub_0207B0E0(EvolutionData *param0)
     Heap_Free(param0->unk_00);
     NARC_dtor(param0->unk_80);
     Heap_Free(param0);
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 }
 
 static void sub_0207B180(EvolutionData *param0)
@@ -275,11 +275,11 @@ static void sub_0207B180(EvolutionData *param0)
     case 4:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             {
-                SpriteAnimationFrame v0[10];
+                SpriteAnimFrame v0[10];
 
-                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
-                PokeSprite_LoadAnimationFrames(param0->unk_80, &v0[0], param0->unk_60, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[0], &v0[0]);
+                PokemonSprite_LoadAnim(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
+                PokemonSprite_LoadAnimFrames(param0->unk_80, &v0[0], param0->unk_60, 1);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[0], &v0[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
@@ -379,11 +379,11 @@ static void sub_0207B180(EvolutionData *param0)
     case 10:
         if ((PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) && (sub_0207C8E0(param0->unk_30) == 0)) {
             {
-                SpriteAnimationFrame v2[10];
+                SpriteAnimFrame v2[10];
 
-                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
-                PokeSprite_LoadAnimationFrames(param0->unk_80, &v2[0], param0->unk_62, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[1], &v2[0]);
+                PokemonSprite_LoadAnim(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
+                PokemonSprite_LoadAnimFrames(param0->unk_80, &v2[0], param0->unk_62, 1);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[1], &v2[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[1], NULL);
             }
 
@@ -641,11 +641,11 @@ static void sub_0207B180(EvolutionData *param0)
     case 42:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             {
-                SpriteAnimationFrame v4[10];
+                SpriteAnimFrame v4[10];
 
-                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
-                PokeSprite_LoadAnimationFrames(param0->unk_80, &v4[0], param0->unk_60, 1);
-                PokemonSprite_SetAnim(param0->unk_1C[0], &v4[0]);
+                PokemonSprite_LoadAnim(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
+                PokemonSprite_LoadAnimFrames(param0->unk_80, &v4[0], param0->unk_60, 1);
+                PokemonSprite_SetAnimFrames(param0->unk_1C[0], &v4[0]);
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
@@ -702,23 +702,23 @@ static void sub_0207C028(EvolutionData *param0)
 
                 value = 0;
                 Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_MARKS, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_MARKINGS, &value);
 
-                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_UNUSED_RIBBON_53 + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (i = MON_DATA_HOENN_COOL_RIBBON; i < MON_DATA_HOENN_WORLD_RIBBON + 1; i++) {
+                for (i = MON_DATA_COOL_RIBBON; i < MON_DATA_WORLD_RIBBON + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_SUPER_COOL_RIBBON; i < MON_DATA_UNUSED_RIBBON_143 + 1; i++) {
                     Pokemon_SetValue(shedinja, i, &value);
                 }
 
                 Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
                 Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_STATUS_CONDITION, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_STATUS, &value);
 
                 mail = Mail_New(param0->heapID);
                 Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);

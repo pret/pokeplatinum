@@ -19,15 +19,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’ve been lounging here all this\n",
-				"time!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’ve been lounging here all this\n",
+                "time!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I lost, and now I feel hungry.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I lost, and now I feel hungry.\n"
+        }
     ]
 }

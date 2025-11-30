@@ -19,11 +19,12 @@
     ],
     "object_events": [
         {
+            "id": "CANALAVE_CITY_GYM_BLACK_BELT_DAVID",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3231,
+            "hidden_flag": "0",
+            "script": "TRAINER_BLACK_BELT_DAVID",
             "initial_dir": 1,
             "data": [
                 1
@@ -35,10 +36,11 @@
             "y": 20
         },
         {
+            "id": "CANALAVE_CITY_GYM_GYM_GUIDE_1",
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -49,11 +51,12 @@
             "y": 0
         },
         {
+            "id": "CANALAVE_CITY_GYM_WORKER_JACKSON",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3255,
+            "hidden_flag": "0",
+            "script": "TRAINER_WORKER_JACKSON",
             "initial_dir": 1,
             "data": [
                 2
@@ -65,11 +68,12 @@
             "y": 10
         },
         {
+            "id": "CANALAVE_CITY_GYM_WORKER_GARY",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3256,
+            "hidden_flag": "0",
+            "script": "TRAINER_WORKER_GARY",
             "initial_dir": 1,
             "data": [
                 4
@@ -81,10 +85,11 @@
             "y": 0
         },
         {
-            "graphics_id": "OBJ_EVENT_GFX_BRYON",
+            "id": "CANALAVE_CITY_GYM_BYRON_4",
+            "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -95,11 +100,12 @@
             "y": 30
         },
         {
+            "id": "CANALAVE_CITY_GYM_BLACK_BELT_RICKY",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3313,
+            "hidden_flag": "0",
+            "script": "TRAINER_BLACK_BELT_RICKY",
             "initial_dir": 2,
             "data": [
                 3
@@ -111,11 +117,12 @@
             "y": 0
         },
         {
+            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_CESAR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3278,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_CESAR",
             "initial_dir": 1,
             "data": [
                 2
@@ -127,11 +134,12 @@
             "y": 0
         },
         {
+            "id": "CANALAVE_CITY_GYM_WORKER_GERARDO",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3366,
+            "hidden_flag": "0",
+            "script": "TRAINER_WORKER_GERARDO",
             "initial_dir": 1,
             "data": [
                 1
@@ -143,11 +151,12 @@
             "y": 20
         },
         {
+            "id": "CANALAVE_CITY_GYM_ACE_TRAINER_BREANNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3282,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_BREANNA",
             "initial_dir": 3,
             "data": [
                 3

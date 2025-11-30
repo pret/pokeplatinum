@@ -20,26 +20,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’ll pound the fear of my fists into\n",
-				"you all karate style, punk!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’ll pound the fear of my fists into\n",
+                "you all karate style, punk!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m so sorry...\n",
-				"I got a bit mouthy there, didn’t I?\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m so sorry...\n",
+                "I got a bit mouthy there, didn’t I?\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"So, I’m gonna try and shatter steel!\r",
-				"I wonder how many more years it\n",
-				"would take for me to do that?\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "So, I’m gonna try and shatter steel!\r",
+                "I wonder how many more years it\n",
+                "would take for me to do that?\n"
+            ]
+        }
     ]
 }

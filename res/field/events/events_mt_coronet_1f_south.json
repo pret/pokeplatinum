@@ -27,10 +27,11 @@
     ],
     "object_events": [
         {
+            "id": "MT_CORONET_1F_SOUTH_ROCK_SMASH_0",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -41,10 +42,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -55,10 +57,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -69,10 +72,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_UNK_0x0023",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -83,10 +87,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0424",
+            "hidden_flag": "FLAG_UNK_0x0424",
             "script": 7046,
             "initial_dir": 0,
             "data": [],
@@ -97,10 +102,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0425",
+            "hidden_flag": "FLAG_UNK_0x0425",
             "script": 7047,
             "initial_dir": 0,
             "data": [],
@@ -111,10 +117,11 @@
             "y": 0
         },
         {
+            "id": "MT_CORONET_1F_SOUTH_CYRUS_6",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01AB",
+            "hidden_flag": "FLAG_UNK_0x01AB",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -153,7 +160,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16534,
+            "var": "VAR_UNK_0x4096",
             "value": 0
         }
     ]

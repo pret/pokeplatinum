@@ -28,32 +28,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"That Bike you’ve got there...it’s the\n",
-				"type that can change gears!\r",
-				"You gotta love that!\n",
-				"Sure, I’ll give you a battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "That Bike you’ve got there...it’s the\n",
+                "type that can change gears!\r",
+                "You gotta love that!\n",
+                "Sure, I’ll give you a battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Crash! Tinkle...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Crash! Tinkle...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The 3-speed makes for easy turning,\n",
-				"and the 4-speed’s for going fast.\r",
-				"I love them both!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The 3-speed makes for easy turning,\n",
+                "and the 4-speed’s for going fast.\r",
+                "I love them both!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Is your bicycle geared to 3-speed now?\n",
-				"Or do you have it set to 4-speed?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Is your bicycle geared to 3-speed now?\n",
+                "Or do you have it set to 4-speed?\r"
+            ]
+        }
     ]
 }

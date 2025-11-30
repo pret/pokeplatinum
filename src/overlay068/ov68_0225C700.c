@@ -317,9 +317,9 @@ int ov68_0225C700(ApplicationManager *appMan, int *param1)
     UnkStruct_ov68_0225C700 *v0;
     UnkStruct_ov66_02231374 *v1 = ApplicationManager_Args(appMan);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_122, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU2, 0x50000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_122);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_PARTY_MENU2);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
     ov68_0225C91C(&v0->unk_00, v1->saveData, 122);
@@ -346,7 +346,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_122);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_PARTY_MENU2);
         ov66_0222E31C(v1->unk_04, 1);
         (*param1)++;
         break;
@@ -378,7 +378,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_122);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_PARTY_MENU2);
         (*param1)++;
         break;
     case 4:
@@ -410,7 +410,7 @@ int ov68_0225C8A8(ApplicationManager *appMan, int *param1)
     ov68_0225C960(&v0->unk_00);
 
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_122);
+    Heap_Destroy(HEAP_ID_PARTY_MENU2);
     Sound_StopAllEffects(0);
 
     return 1;
@@ -552,7 +552,7 @@ static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DF
     param0->unk_30 = param1;
 
     for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_00[v0] = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
+        param0->unk_00[v0] = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
     }
 
     param0->unk_24 = StringTemplate_Default(heapID);

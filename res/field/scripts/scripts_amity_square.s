@@ -397,7 +397,7 @@ AmitySquare_FollowerMon_PickUp_GiveAccessory:
     WaitCry
     ScrCmd_27C 2, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
-    CallCommonScript 0x7DF
+    GiveAccessoryWaitForConfirm
     CloseMessage
     ReleaseAll
     End
@@ -1002,7 +1002,7 @@ AmitySquare_GiftMan_AccessoryGift:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
     SetVar LOCALID_COUNT, 1
-    CallCommonScript 0x7DF
+    GiveAccessoryWaitForConfirm
     GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
@@ -1019,7 +1019,7 @@ AmitySquare_Unused2:
     End
 
 AmitySquare_GiftMan_CannotFitItem:
-    CallCommonScript 0x7E1
+    MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

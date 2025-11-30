@@ -54,20 +54,20 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I’ll battle against people who’ve\n",
-				"beaten me again and again.\r",
-				"By doing that, we both grow a little\n",
-				"as Trainers.\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I’ll battle against people who’ve\n",
+                "beaten me again and again.\r",
+                "By doing that, we both grow a little\n",
+                "as Trainers.\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You won and I lost, but the both of\n",
-				"us gained something from this.\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You won and I lost, but the both of\n",
+                "us gained something from this.\n"
+            ]
+        }
     ]
 }

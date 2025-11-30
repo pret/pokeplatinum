@@ -11,10 +11,11 @@
     ],
     "object_events": [
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_MARS_0",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022F",
+            "hidden_flag": "FLAG_UNK_0x022F",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -25,10 +26,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -39,10 +41,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_UNK_0x0024",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -53,10 +56,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -67,10 +71,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_JUPITER_4",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022F",
+            "hidden_flag": "FLAG_UNK_0x022F",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -81,10 +86,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_5",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0025",
+            "hidden_flag": "FLAG_UNK_0x0025",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -95,10 +101,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_6",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0026",
+            "hidden_flag": "FLAG_UNK_0x0026",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -109,10 +116,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_7",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0027",
+            "hidden_flag": "FLAG_UNK_0x0027",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -123,10 +131,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_8",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0028",
+            "hidden_flag": "FLAG_UNK_0x0028",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -137,10 +146,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_STRENGTH_BOULDER_9",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0029",
+            "hidden_flag": "FLAG_UNK_0x0029",
             "script": 10002,
             "initial_dir": 0,
             "data": [],
@@ -151,10 +161,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04CA",
+            "hidden_flag": "FLAG_UNK_0x04CA",
             "script": 7212,
             "initial_dir": 0,
             "data": [],
@@ -165,10 +176,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04CB",
+            "hidden_flag": "FLAG_UNK_0x04CB",
             "script": 7213,
             "initial_dir": 0,
             "data": [],
@@ -179,10 +191,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04CC",
+            "hidden_flag": "FLAG_UNK_0x04CC",
             "script": 7214,
             "initial_dir": 0,
             "data": [],
@@ -193,10 +206,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_13",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04CD",
+            "hidden_flag": "FLAG_UNK_0x04CD",
             "script": 7215,
             "initial_dir": 0,
             "data": [],
@@ -207,10 +221,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_CHARON_14",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022F",
+            "hidden_flag": "FLAG_UNK_0x022F",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -221,10 +236,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_GRUNT_M_15",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022F",
+            "hidden_flag": "FLAG_UNK_0x022F",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -235,10 +251,11 @@
             "y": 0
         },
         {
+            "id": "STARK_MOUNTAIN_ROOM_1_GRUNT_M_16",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x022F",
+            "hidden_flag": "FLAG_UNK_0x022F",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -265,3 +282,4 @@
     ],
     "coord_events": []
 }
+

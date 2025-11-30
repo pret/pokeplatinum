@@ -500,8 +500,8 @@
     .short \length
     .endm
 
-    .macro NurseJoyBow length=1
-    .short MOVEMENT_ACTION_NURSE_JOY_BOW
+    .macro PokecenterNurseBow length=1
+    .short MOVEMENT_ACTION_POKECENTER_NURSE_BOW
     .short \length
     .endm
 
@@ -515,8 +515,8 @@
     .short \length
     .endm
 
-    .macro EmoteQuestionMark length=1
-    .short MOVEMENT_ACTION_EMOTE_QUESTION_MARK
+    .macro EmoteDoubleExclamationMark length=1
+    .short MOVEMENT_ACTION_EMOTE_DOUBLE_EXCLAMATION_MARK
     .short \length
     .endm
 

@@ -21,9 +21,7 @@ _003B:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2A5
-    GetSelectedPartySlot VAR_RESULT
-    ReturnToField
+    SelectPokemonToTrade
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _00AC

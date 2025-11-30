@@ -107,10 +107,11 @@
     ],
     "object_events": [
         {
+            "id": "GAME_CORNER_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 13,
             "initial_dir": 1,
             "data": [],
@@ -121,10 +122,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_BEAUTY_1",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 14,
             "initial_dir": 2,
             "data": [],
@@ -135,10 +137,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_POKEFAN_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 15,
             "initial_dir": 3,
             "data": [],
@@ -149,10 +152,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_COLLECTOR_3",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 16,
             "initial_dir": 3,
             "data": [],
@@ -163,10 +167,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_GUITARIST_4",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 19,
             "initial_dir": 3,
             "data": [],
@@ -177,10 +182,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_WORKER_5",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 17,
             "initial_dir": 2,
             "data": [],
@@ -191,10 +197,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_BEAUTY_6",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 18,
             "initial_dir": 3,
             "data": [],
@@ -205,10 +212,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_POKEFAN_M_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 20,
             "initial_dir": 2,
             "data": [],
@@ -219,10 +227,11 @@
             "y": 0
         },
         {
+            "id": "GAME_CORNER_LOOKER_8",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01A3",
+            "hidden_flag": "FLAG_HIDE_LOOKER_IN_GAME_CORNER",
             "script": 22,
             "initial_dir": 2,
             "data": [],

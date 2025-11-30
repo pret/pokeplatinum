@@ -11,10 +11,11 @@
     ],
     "object_events": [
         {
+            "id": "ETERNA_FOREST_CHERYL_0",
             "graphics_id": "OBJ_EVENT_GFX_CHERYL",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x019B",
+            "hidden_flag": "FLAG_UNK_0x019B",
             "script": 9702,
             "initial_dir": 1,
             "data": [],
@@ -25,10 +26,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 3,
             "data": [],
@@ -39,11 +41,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_JACK",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3200,
+            "hidden_flag": "0",
+            "script": "TRAINER_BUG_CATCHER_JACK",
             "initial_dir": 3,
             "data": [
                 2
@@ -55,11 +58,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_PHILLIP",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3201,
+            "hidden_flag": "0",
+            "script": "TRAINER_BUG_CATCHER_PHILLIP",
             "initial_dir": 0,
             "data": [
                 3
@@ -71,11 +75,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_KODY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3394,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_KODY",
             "initial_dir": 3,
             "data": [
                 2
@@ -87,11 +92,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_LINDSEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3205,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_LINDSEY",
             "initial_dir": 3,
             "data": [
                 4
@@ -103,11 +109,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_LASS_BRIANA",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3203,
+            "hidden_flag": "0",
+            "script": "TRAINER_LASS_BRIANA",
             "initial_dir": 2,
             "data": [
                 2
@@ -119,11 +126,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_BUG_CATCHER_DONALD",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3202,
+            "hidden_flag": "0",
+            "script": "TRAINER_BUG_CATCHER_DONALD",
             "initial_dir": 1,
             "data": [
                 3
@@ -135,10 +143,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0408",
+            "hidden_flag": "FLAG_UNK_0x0408",
             "script": 7018,
             "initial_dir": 0,
             "data": [],
@@ -149,10 +158,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0409",
+            "hidden_flag": "FLAG_UNK_0x0409",
             "script": 7019,
             "initial_dir": 0,
             "data": [],
@@ -163,10 +173,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x040A",
+            "hidden_flag": "FLAG_UNK_0x040A",
             "script": 7020,
             "initial_dir": 0,
             "data": [],
@@ -177,10 +188,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x040B",
+            "hidden_flag": "FLAG_UNK_0x040B",
             "script": 7021,
             "initial_dir": 0,
             "data": [],
@@ -191,10 +203,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_SIGNBOARD_12",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
             "data": [],
@@ -205,10 +218,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_TRAINER_TIPS_SIGNPOST_13",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9,
             "initial_dir": 0,
             "data": [],
@@ -219,11 +233,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_ELIJAH",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3204,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_ELIJAH",
             "initial_dir": 2,
             "data": [
                 4
@@ -235,11 +250,12 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_PSYCHIC_RACHAEL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3397,
+            "hidden_flag": "0",
+            "script": "TRAINER_PSYCHIC_RACHAEL",
             "initial_dir": 2,
             "data": [
                 2
@@ -251,10 +267,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_MOSS_ROCK_16",
             "graphics_id": "OBJ_EVENT_GFX_MOSS_ROCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10,
             "initial_dir": 0,
             "data": [],
@@ -265,10 +282,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_17",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x044B",
+            "hidden_flag": "FLAG_UNK_0x044B",
             "script": 7085,
             "initial_dir": 0,
             "data": [],
@@ -279,10 +297,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_POKEBALL_18",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04EF",
+            "hidden_flag": "FLAG_UNK_0x04EF",
             "script": 7249,
             "initial_dir": 0,
             "data": [],
@@ -293,10 +312,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_19",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -307,10 +327,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_20",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -321,10 +342,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_21",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_UNK_0x0022",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -335,10 +357,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_22",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_UNK_0x0023",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -349,10 +372,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_CUT_TREE_23",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_UNK_0x0024",
             "script": 10000,
             "initial_dir": 0,
             "data": [],
@@ -363,10 +387,11 @@
             "y": 0
         },
         {
+            "id": "ETERNA_FOREST_GARDENIA_24",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FC",
+            "hidden_flag": "FLAG_UNK_0x01FC",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -417,7 +442,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16561,
+            "var": "VAR_UNK_0x40B1",
             "value": 0
         },
         {
@@ -427,7 +452,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16561,
+            "var": "VAR_UNK_0x40B1",
             "value": 1
         },
         {
@@ -437,7 +462,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": 16561,
+            "var": "VAR_UNK_0x40B1",
             "value": 1
         }
     ]

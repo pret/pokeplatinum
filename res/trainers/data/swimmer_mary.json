@@ -28,35 +28,35 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Hello, there!\n",
-				"Aren’t you going to swim?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hello, there!\n",
+                "Aren’t you going to swim?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What’s saltier?\n",
-				"My tears or the sea...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What’s saltier?\n",
+                "My tears or the sea...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"There aren’t many sea routes that\n",
-				"you can swim in Sinnoh.\r",
-				"It makes me want to take a vacation\n",
-				"in the Hoenn region.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "There aren’t many sea routes that\n",
+                "you can swim in Sinnoh.\r",
+                "It makes me want to take a vacation\n",
+                "in the Hoenn region.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"When I see people surfing, I don’t\n",
-				"feel jealous or anything.\r",
-				"I just simply love to swim!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "When I see people surfing, I don’t\n",
+                "feel jealous or anything.\r",
+                "I just simply love to swim!\r"
+            ]
+        }
     ]
 }

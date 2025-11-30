@@ -28,16 +28,16 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I got a nifty-keen Gym Badge from\n",
-				"the Gym Leader in Oreburgh City!\r",
-				"...Did I show you already?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I got a nifty-keen Gym Badge from\n",
+                "the Gym Leader in Oreburgh City!\r",
+                "...Did I show you already?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Oh, I lost! Lalala!\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Oh, I lost! Lalala!\n"
+        }
     ]
 }

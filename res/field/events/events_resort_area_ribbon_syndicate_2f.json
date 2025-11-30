@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "RESORT_AREA_RIBBON_SYNDICATE_2F_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_RIBBON_SYNDICATE_2F_RECEPTIONIST_1",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_RIBBON_SYNDICATE_2F_RECEPTIONIST_2",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 2,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "RESORT_AREA_RIBBON_SYNDICATE_2F_RECEPTIONIST_3",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],

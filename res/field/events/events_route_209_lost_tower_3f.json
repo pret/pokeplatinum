@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "ROUTE_209_LOST_TOWER_3F_POKEBALL_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0453",
+            "hidden_flag": "FLAG_UNK_0x0453",
             "script": 7093,
             "initial_dir": 0,
             "data": [],
@@ -16,11 +17,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_209_LOST_TOWER_3F_POKEFAN_LEONARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3529,
+            "hidden_flag": "0",
+            "script": "TRAINER_POKEFAN_LEONARD",
             "initial_dir": 2,
             "data": [
                 1
@@ -32,11 +34,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_209_LOST_TOWER_3F_ROUGHNECK_KIRBY",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3528,
+            "hidden_flag": "0",
+            "script": "TRAINER_ROUGHNECK_KIRBY",
             "initial_dir": 3,
             "data": [
                 2

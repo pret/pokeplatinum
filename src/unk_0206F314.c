@@ -8,8 +8,7 @@
 #include "struct_defs/struct_0202EE10_sub1.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D2F14.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "field_task.h"
@@ -97,7 +96,7 @@ typedef struct {
     Window unk_E4;
     Window unk_F4;
     Window unk_104[3];
-    UnkStruct_ov5_021D30A8 unk_134;
+    SpriteResourceManager spriteManager;
     ManagedSprite *unk_2FC[2];
     UnkStruct_0202E8C0 *unk_304;
     UnkStruct_0202EE10 *unk_308[7];
@@ -519,7 +518,7 @@ static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
 {
     int v0;
 
-    param0->unk_2C.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
+    param0->unk_2C.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
     param0->unk_2C.unk_04 = StringTemplate_New(2, (38 * 2), param0->heapID);
     param0->unk_2C.unk_08 = Strbuf_Init((38 * 2), param0->heapID);
     param0->unk_2C.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 13);
@@ -634,23 +633,23 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
         },
     };
 
-    ov5_021D3190(&param0->unk_134, &v1, 2, param0->heapID);
+    SpriteResourceManager_SetCapacities(&param0->spriteManager, &v1, 2, param0->heapID);
 
     {
         NARC *v3;
 
         v3 = NARC_ctor(NARC_INDEX_GRAPHIC__RANKING, param0->heapID);
 
-        ov5_021D32E8(&param0->unk_134, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
-        ov5_021D3374(&param0->unk_134, v3, 2, 0, 13528);
-        ov5_021D339C(&param0->unk_134, v3, 3, 0, 13528);
-        ov5_021D3414(&param0->unk_134, v3, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+        SpriteResourceManager_LoadPalette(&param0->spriteManager, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+        SpriteResourceManager_LoadCell(&param0->spriteManager, v3, 2, 0, 13528);
+        SpriteResourceManager_LoadAnimation(&param0->spriteManager, v3, 3, 0, 13528);
+        SpriteResourceManager_LoadTiles(&param0->spriteManager, v3, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
 
         NARC_dtor(v3);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_2FC[v0] = ov5_021D3584(&param0->unk_134, &v2[v0]);
+        param0->unk_2FC[v0] = SpriteResourceManager_CreateManagedSprite(&param0->spriteManager, &v2[v0]);
     }
 
     ManagedSprite_SetDrawFlag(param0->unk_2FC[1], 0);
@@ -666,7 +665,7 @@ static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
         }
     }
 
-    ov5_021D375C(&param0->unk_134);
+    SpriteResourceManager_Cleanup(&param0->spriteManager);
 }
 
 static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
@@ -850,31 +849,31 @@ static BOOL sub_020702D0(FieldTask *param0)
         break;
     case 2:
         v1->unk_00 = sub_0206F488(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 3:
         v1->unk_00 = sub_0206F498(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 4:
         v1->unk_00 = sub_0206F508(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 5:
         v1->unk_00 = sub_0206F514(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 6:
         v1->unk_00 = sub_0206F554(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 7:
         v1->unk_00 = sub_0206F658(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 8:
         v1->unk_00 = sub_0206F748(v2);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 9:
         if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {

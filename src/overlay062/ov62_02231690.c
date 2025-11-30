@@ -2512,7 +2512,7 @@ void ov62_0223454C(UnkStruct_0208C06C *param0, UnkStruct_ov62_022312B0 *param1, 
     ov62_0223118C(param1, &param0->unk_14, param2);
     ov62_0223124C(param1, &param0->unk_14, param3);
     ManagedSprite_SetPositionXY(param1->unk_08, param4, param5);
-    sub_020128C4(param1->unk_0C, param6, param7);
+    FontOAM_SetXY(param1->unk_0C, param6, param7);
     sub_020129D0(param1->unk_0C, param9);
     ManagedSprite_SetAnim(param1->unk_08, param8);
 }
@@ -2921,7 +2921,7 @@ static void ov62_022349E4(Strbuf *param0, int heapID)
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);

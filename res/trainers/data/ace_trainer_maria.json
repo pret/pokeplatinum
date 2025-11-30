@@ -54,34 +54,34 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"To be ready to answer any call!\n",
-				"To be ready to accept any challenge!\r",
-				"That is the way of a Trainer!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "To be ready to answer any call!\n",
+                "To be ready to accept any challenge!\r",
+                "That is the way of a Trainer!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, yeah?\n",
-				"Eat snowball, punk!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, yeah?\n",
+                "Eat snowball, punk!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You can make all the preparations in\n",
-				"the world, but if it doesn’t work, it\f",
-				"doesn’t work.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You can make all the preparations in\n",
+                "the world, but if it doesn’t work, it\f",
+                "doesn’t work.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I got everything ready so we could\n",
-				"have a rematch whenever you come.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I got everything ready so we could\n",
+                "have a rematch whenever you come.\r"
+            ]
+        }
     ]
 }

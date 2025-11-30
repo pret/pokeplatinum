@@ -389,7 +389,7 @@ static BOOL ov107_02246170(UnkStruct_ov107_02246170 *param0)
     switch (param0->unk_08) {
     case 0:
         if (ov104_0223BA14(param0->unk_09) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(216);
         }
 
@@ -398,7 +398,7 @@ static BOOL ov107_02246170(UnkStruct_ov107_02246170 *param0)
     case 1:
         if (ov104_0223BA14(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(216) == 1) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
             }
         } else {
@@ -955,7 +955,7 @@ static BOOL ov107_02246BDC(UnkStruct_ov107_02246170 *param0)
         param0->unk_16--;
 
         if (param0->unk_16 == 0) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(133);
             param0->unk_08++;
             break;
@@ -970,7 +970,7 @@ static BOOL ov107_02246BDC(UnkStruct_ov107_02246170 *param0)
         v0 = ov107_02249C9C(param0->unk_15, param0->unk_11);
 
         if (ov107_02248674(param0, v0, param0->unk_13) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTool_Init(100);
             param0->unk_11 = 0xff;
             param0->unk_436 = 0;
@@ -999,14 +999,14 @@ static BOOL ov107_02246CD0(UnkStruct_ov107_02246170 *param0)
         }
 
         if (param0->unk_16 == 0) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(134);
             param0->unk_08++;
         }
         break;
     case 2:
         if (CommTiming_IsSyncState(134) == 1) {
-            sub_020365F4();
+            CommTool_ClearReceivedTempDataAllPlayers();
             ov107_02248860(&param0->unk_50[7]);
             return 1;
         }
@@ -1112,7 +1112,7 @@ static void ov107_02246EE4(UnkStruct_ov107_02246170 *param0)
     ov107_02247220(param0);
     ov107_02247280(param0);
 
-    param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0201, HEAP_ID_100);
+    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0201, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
@@ -1612,7 +1612,7 @@ static void ov107_02247B78(UnkStruct_ov107_02246170 *param0, Window *param1)
 
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
 
-        FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v0 + (64 * v2), 1);
+        FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_HP, NULL), 3, 1, param1, v0 + (64 * v2), 1);
         FontSpecialChars_DrawPartyScreenLevelText(param0->unk_144, 0, param1, 24 + v0 + (64 * v2), 1);
         FontSpecialChars_DrawPartyScreenHPText(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
     }
@@ -2891,15 +2891,15 @@ static void ov107_022490E8(UnkStruct_ov107_02246170 *param0, u8 param1, u8 param
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 50);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 55);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 45);
-        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
         Pokemon_CalcLevelAndStats(v1);
     }
 
@@ -2947,7 +2947,7 @@ static void ov107_022492A8(UnkStruct_ov107_02246170 *param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
+        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
 
         if (param0->unk_368[v0] != NULL) {
             ov107_02249C1C(param0->unk_368[v0], v2);

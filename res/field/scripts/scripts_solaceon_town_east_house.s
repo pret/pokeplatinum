@@ -44,11 +44,11 @@ _00B3:
     SetVar VAR_MAP_LOCAL_0, VAR_0x8006
     SetFlag FLAG_UNK_0x0001
     GoToIfEq VAR_0x8000, 1, _00DB
-    ScrCmd_345 0, VAR_0x8007
+    BufferBallSealNamePlural 0, VAR_0x8007
     GoTo _00E0
 
 _00DB:
-    ScrCmd_2B3 0, VAR_0x8007
+    BufferBallSealName 0, VAR_0x8007
 _00E0:
     Message 4
     WaitABXPadPress
@@ -80,9 +80,9 @@ _0109:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0117, _0144
     Message 5
-    SetVar VAR_0x8004, 0x1B2
+    SetVar VAR_0x8004, ITEM_SEAL_CASE
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x0117
     Call _014F
     Message 7

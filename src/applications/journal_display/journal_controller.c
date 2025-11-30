@@ -300,7 +300,7 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
 
 static void JournalController_InitStringUtil(JournalManager *journalManager)
 {
-    journalManager->loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
+    journalManager->loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
     journalManager->template = StringTemplate_Default(HEAP_ID_JOURNAL);
     journalManager->strbuf = Strbuf_Init(128, HEAP_ID_JOURNAL);
 }

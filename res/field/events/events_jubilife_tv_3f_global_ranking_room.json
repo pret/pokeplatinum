@@ -27,10 +27,11 @@
     ],
     "object_events": [
         {
+            "id": "JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_FISHERMAN_0",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 0,
             "data": [],
@@ -41,10 +42,11 @@
             "y": 0
         },
         {
+            "id": "JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_ACE_TRAINER_F_1",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -55,10 +57,11 @@
             "y": 0
         },
         {
+            "id": "JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_COLLECTOR_2",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -69,10 +72,11 @@
             "y": 0
         },
         {
+            "id": "JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_WORKER_3",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0290",
+            "hidden_flag": "FLAG_UNK_0x0290",
             "script": 7,
             "initial_dir": 1,
             "data": [],

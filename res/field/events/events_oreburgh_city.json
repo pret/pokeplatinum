@@ -35,10 +35,11 @@
     ],
     "object_events": [
         {
+            "id": "OREBURGH_CITY_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -49,10 +50,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_SCHOOL_KID_F_1",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 11,
             "initial_dir": 1,
             "data": [],
@@ -63,10 +65,11 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_POKEFAN_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 13,
             "initial_dir": 3,
             "data": [],
@@ -77,10 +80,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_BARRY_3",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x017C",
+            "hidden_flag": "FLAG_UNK_0x017C",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -91,10 +95,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_YOUNGSTER_4",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -105,10 +110,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_MAP_SIGNPOST_5",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 15,
             "initial_dir": 0,
             "data": [
@@ -121,10 +127,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_GYM_SIGNPOST_6",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 16,
             "initial_dir": 0,
             "data": [],
@@ -135,10 +142,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_SIGNBOARD_7",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 17,
             "initial_dir": 0,
             "data": [],
@@ -149,10 +157,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_SIGNBOARD_8",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 18,
             "initial_dir": 0,
             "data": [],
@@ -163,10 +172,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_MAP_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 15,
             "initial_dir": 0,
             "data": [
@@ -179,10 +189,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_10",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -193,10 +204,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_11",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -207,10 +219,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_12",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -221,10 +234,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_13",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -235,10 +249,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_VENT_14",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
             "data": [],
@@ -249,10 +264,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_WORKER_15",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -263,10 +279,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_WORKER_16",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -277,10 +294,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_CAMPER_17",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 14,
             "initial_dir": 3,
             "data": [],
@@ -291,10 +309,11 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_WORKER_18",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
             "data": [],
@@ -305,10 +324,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_WORKER_19",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9,
             "initial_dir": 0,
             "data": [],
@@ -319,10 +339,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_GUITARIST_20",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 12,
             "initial_dir": 3,
             "data": [],
@@ -333,10 +354,11 @@
             "y": 3
         },
         {
+            "id": "OREBURGH_CITY_BATTLE_GIRL_21",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10,
             "initial_dir": 2,
             "data": [],
@@ -347,10 +369,11 @@
             "y": 5
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_22",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 19,
             "initial_dir": 2,
             "data": [],
@@ -361,10 +384,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_POKEBALL_23",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04FA",
+            "hidden_flag": "FLAG_UNK_0x04FA",
             "script": 7259,
             "initial_dir": 0,
             "data": [],
@@ -375,10 +399,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_POKEBALL_24",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04FB",
+            "hidden_flag": "FLAG_UNK_0x04FB",
             "script": 7260,
             "initial_dir": 0,
             "data": [],
@@ -389,10 +414,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_25",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 21,
             "initial_dir": 2,
             "data": [],
@@ -403,10 +429,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_MACHOP_26",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 22,
             "initial_dir": 2,
             "data": [],
@@ -417,10 +444,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_CITY_BATTLE_GIRL_27",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 20,
             "initial_dir": 0,
             "data": [],
@@ -531,13 +559,13 @@
     ],
     "coord_events": [
         {
-            "script": 3,
+            "script": 3, 
             "x": 266,
             "z": 748,
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16505,
+            "var": "VAR_OREBURGH_STATE",
             "value": 0
         },
         {
@@ -547,8 +575,9 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": 16505,
+            "var": "VAR_OREBURGH_STATE",
             "value": 2
         }
     ]
 }
+

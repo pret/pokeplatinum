@@ -35,10 +35,11 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_SATURN_0",
             "graphics_id": "OBJ_EVENT_GFX_SATURN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -49,10 +50,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_AZELF_1",
             "graphics_id": "OBJ_EVENT_GFX_AZELF",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_UNK_0x0236",
             "script": 13,
             "initial_dir": 1,
             "data": [],
@@ -63,10 +65,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_MESPRIT_2",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_UNK_0x0236",
             "script": 12,
             "initial_dir": 1,
             "data": [],
@@ -77,10 +80,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_UXIE_3",
             "graphics_id": "OBJ_EVENT_GFX_UXIE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_UNK_0x0236",
             "script": 11,
             "initial_dir": 1,
             "data": [],
@@ -91,10 +95,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_CONTROL_ROOM_CHARON_4",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x029E",
+            "hidden_flag": "FLAG_UNK_0x029E",
             "script": 15,
             "initial_dir": 0,
             "data": [],
@@ -121,7 +126,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": 16653,
+            "var": "VAR_UNK_0x410D",
             "value": 1
         }
     ]

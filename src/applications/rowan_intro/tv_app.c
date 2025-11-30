@@ -411,7 +411,7 @@ static void RowanIntroTv_FreeGraphics(RowanIntroTv *tv)
 static void RowanIntroTv_InitMessageStructs(RowanIntroTv *tv)
 {
     tv->msgLoader = MessageLoader_Init(
-        MESSAGE_LOADER_NARC_HANDLE,
+        MSG_LOADER_LOAD_ON_DEMAND,
         NARC_INDEX_MSGDATA__PL_MSG,
         TEXT_BANK_ROWAN_INTRO_TV_APP,
         tv->heapID);

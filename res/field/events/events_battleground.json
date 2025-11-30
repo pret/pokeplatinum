@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "BATTLEGROUND_EXPERT_M_0",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 2,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "BATTLEGROUND_BUCK_1",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01D6",
+            "hidden_flag": "FLAG_UNK_0x01D6",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "BATTLEGROUND_UNK_102_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02A2",
+            "hidden_flag": "FLAG_UNK_0x02A2",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "BATTLEGROUND_UNK_103_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02A3",
+            "hidden_flag": "FLAG_UNK_0x02A3",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "BATTLEGROUND_UNK_104_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02A4",
+            "hidden_flag": "FLAG_UNK_0x02A4",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -72,10 +77,11 @@
             "y": 0
         },
         {
+            "id": "BATTLEGROUND_UNK_105_5",
             "graphics_id": "OBJ_EVENT_GFX_UNK_105",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02A5",
+            "hidden_flag": "FLAG_UNK_0x02A5",
             "script": 8,
             "initial_dir": 0,
             "data": [],

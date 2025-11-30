@@ -19,11 +19,12 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_220_SWIMMER_ERIK",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
-            "flag": "0",
-            "script": 3159,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_ERIK",
             "initial_dir": 0,
             "data": [
                 5
@@ -35,11 +36,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_VINCENT",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
-            "flag": "0",
-            "script": 3160,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_VINCENT",
             "initial_dir": 2,
             "data": [
                 1,
@@ -52,11 +54,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_JESSICA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3161,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_JESSICA",
             "initial_dir": 2,
             "data": [
                 3
@@ -68,11 +71,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_ERICA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3162,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_ERICA",
             "initial_dir": 3,
             "data": [
                 3
@@ -84,11 +88,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_ADRIAN",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3158,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_ADRIAN",
             "initial_dir": 2,
             "data": [
                 3
@@ -100,11 +105,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_KATELYN",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_NORTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3163,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_KATELYN",
             "initial_dir": 1,
             "data": [
                 2
@@ -116,11 +122,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_SWIMMER_CLAIRE",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3493,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_CLAIRE",
             "initial_dir": 1,
             "data": [
                 5
@@ -132,10 +139,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_POKEBALL_7",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0475",
+            "hidden_flag": "FLAG_UNK_0x0475",
             "script": 7127,
             "initial_dir": 0,
             "data": [],
@@ -146,10 +154,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_POKEBALL_8",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0473",
+            "hidden_flag": "FLAG_UNK_0x0473",
             "script": 7125,
             "initial_dir": 0,
             "data": [],
@@ -160,10 +169,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_220_POKEBALL_9",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0476",
+            "hidden_flag": "FLAG_UNK_0x0476",
             "script": 7128,
             "initial_dir": 0,
             "data": [],

@@ -125,7 +125,7 @@ _019E:
     Message 21
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SMILE
-    ScrCmd_232 3, 65
+    BufferRibbonName 3, RIBBON_SMILE
     GoTo _010E
 
 _01F2:
@@ -143,7 +143,7 @@ _01F2:
     Message 3
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_ALERT
-    ScrCmd_232 3, 59
+    BufferRibbonName 3, RIBBON_ALERT
     GoTo _010E
 
 _0246:
@@ -161,7 +161,7 @@ _0246:
     Message 11
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SHOCK
-    ScrCmd_232 3, 60
+    BufferRibbonName 3, RIBBON_SHOCK
     GoTo _010E
 
 _029A:
@@ -179,7 +179,7 @@ _029A:
     Message 13
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_DOWNCAST
-    ScrCmd_232 3, 61
+    BufferRibbonName 3, RIBBON_DOWNCAST
     GoTo _010E
 
 _02EE:
@@ -197,7 +197,7 @@ _02EE:
     Message 15
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_CARELESS
-    ScrCmd_232 3, 62
+    BufferRibbonName 3, RIBBON_CARELESS
     GoTo _010E
 
 _0342:
@@ -215,7 +215,7 @@ _0342:
     Message 17
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_RELAX
-    ScrCmd_232 3, 63
+    BufferRibbonName 3, RIBBON_RELAX
     GoTo _010E
 
 _0396:
@@ -233,7 +233,7 @@ _0396:
     Message 19
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SNOOZE
-    ScrCmd_232 3, 64
+    BufferRibbonName 3, RIBBON_SNOOZE
     GoTo _010E
 
 _03EA:

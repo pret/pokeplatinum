@@ -21,32 +21,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’d like to begin now.\n",
-				"Are you quite prepared?\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’d like to begin now.\n",
+                "Are you quite prepared?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh!\n",
-				"How terrible of you...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh!\n",
+                "How terrible of you...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You... You must have one fantastic\n",
-				"teacher to be so good.\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You... You must have one fantastic\n",
+                "teacher to be so good.\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"We meet again.\n",
-				"Are you quite prepared?\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "We meet again.\n",
+                "Are you quite prepared?\r"
+            ]
+        }
     ]
 }

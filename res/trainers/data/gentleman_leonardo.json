@@ -26,12 +26,12 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Ack! I lost...\n",
-				"Check, please!\n",
-				"\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ack! I lost...\n",
+                "Check, please!\n",
+                "\n"
+            ]
+        }
     ]
 }

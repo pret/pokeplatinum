@@ -69,7 +69,7 @@ _00B6:
     SetFlag FLAG_UNK_0x0AA9
     Message 4
     GetJubilifeLotteryTrainerID VAR_0x8000
-    ScrCmd_280 0, VAR_0x8000, 2, 5
+    BufferVarPaddingDigits 0, VAR_0x8000, PADDING_MODE_ZEROES, 5
     Message 5
     CheckForJubilifeLotteryWinner VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8000
     GoToIfEq VAR_0x8002, 0, _00F5
@@ -157,7 +157,7 @@ _021B:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0246
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     GoTo _0269
 
 _0246:

@@ -21,32 +21,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"It’s a long way between Floaroma\n",
-				"and Eterna City. So, let’s battle!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "It’s a long way between Floaroma\n",
+                "and Eterna City. So, let’s battle!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Wawawaah!\n",
-				"I’m out of Pokémon that can go!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wawawaah!\n",
+                "I’m out of Pokémon that can go!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Camping with Pokémon!\n",
-				"Do you have any idea how fun that is?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Camping with Pokémon!\n",
+                "Do you have any idea how fun that is?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"While I was enjoying camping, my\n",
-				"Pokémon got all buffed up!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "While I was enjoying camping, my\n",
+                "Pokémon got all buffed up!\r"
+            ]
+        }
     ]
 }

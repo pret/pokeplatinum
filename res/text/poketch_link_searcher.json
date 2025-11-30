@@ -1,0 +1,56 @@
+{
+  "key": 3928,
+  "messages": [
+    {
+      "id": "LinkSearcher_Text_Title",
+      "en_US": "LINK SEARCHER"
+    },
+    {
+      "id": "LinkSearcher_Text_Searching",
+      "en_US": [
+        "Searching for wireless\n",
+        "communications activity\n",
+        "Please wait."
+      ]
+    },
+    {
+      "id": "LinkSearcher_Text_Error",
+      "en_US": "Error!"
+    },
+    {
+      "id": "LinkSearcher_Text_Unusable",
+      "en_US": "Search is unusable here."
+    },
+    {
+      "id": "LinkSearcher_Text_DontMove",
+      "en_US": [
+        "Please don’t move\n",
+        "while searching."
+      ]
+    },
+    {
+      "id": "LinkSearcher_Text_Status",
+      "en_US": "LINK STATUS"
+    },
+    {
+      "id": "LinkSearcher_Text_UnionRoom",
+      "en_US": "Union Room"
+    },
+    {
+      "id": "LinkSearcher_Text_Underground",
+      "en_US": "Underground"
+    },
+    {
+      "id": "LinkSearcher_Text_Colosseum",
+      "en_US": "Colosseum"
+    },
+    {
+      "id": "LinkSearcher_Text_OtherLinks",
+      "en_US": "Other Links"
+    },
+    {
+      "id": "LinkSearcher_Text_TouchToBegin",
+      "en_US": "Touch to begin communication!"
+    }
+  ]
+}

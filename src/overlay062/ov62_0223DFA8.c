@@ -224,8 +224,8 @@ static void ov62_0223E01C(UnkStruct_0208C06C *param0)
     ManagedSprite_SetAnim(v0->unk_114[1].unk_08, 3);
     ManagedSprite_SetPositionXY(v0->unk_114[0].unk_08, 32, 232);
     ManagedSprite_SetPositionXY(v0->unk_114[1].unk_08, 128, 232);
-    sub_020128C4(v0->unk_114[0].unk_0C, 36, -8);
-    sub_020128C4(v0->unk_114[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_114[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_114[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_114[0].unk_0C, 1);
     sub_020129D0(v0->unk_114[1].unk_0C, 1);
 
@@ -870,7 +870,7 @@ static void ov62_0223EF60(UnkStruct_0208C06C *param0)
 
         ManagedSprite_SetPositionXY(v0->unk_114[v1].unk_08, 42 + 8, (25 + (36 * (v1)) + (16 * (5 - 4))) + 64);
         ManagedSprite_SetAnim(v0->unk_114[v1].unk_08, v3[v1]);
-        sub_020128C4(v0->unk_114[v1].unk_0C, 36, -8);
+        FontOAM_SetXY(v0->unk_114[v1].unk_0C, 36, -8);
         sub_020129D0(v0->unk_114[v1].unk_0C, 1);
     }
 }
@@ -913,8 +913,8 @@ static void ov62_0223F0A8(UnkStruct_0208C06C *param0, int param1)
         ManagedSprite_SetPositionXY(v0->unk_114[0].unk_08, 80, 232);
     }
 
-    sub_020128C4(v0->unk_114[0].unk_0C, 36, -8);
-    sub_020128C4(v0->unk_114[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_114[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_114[1].unk_0C, 36, -8);
 }
 
 static void ov62_0223F124(UnkStruct_0208C06C *param0)

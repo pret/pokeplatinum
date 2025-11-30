@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA",
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_1",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x029C",
+            "hidden_flag": "FLAG_HIDE_HEARTHOME_GYM_BOLLARDS",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_2",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x029C",
+            "hidden_flag": "FLAG_HIDE_HEARTHOME_GYM_BOLLARDS",
             "script": 0,
             "initial_dir": 0,
             "data": [],

@@ -115,15 +115,15 @@ _010E:
     CallIfEq VAR_0x8004, 13, _01C6
     RemoveObject 3
     Message 7
-    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x009F
     Message 8
     SetVar VAR_0x8004, ITEM_HONEY
     SetVar VAR_0x8005, 10
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01AD
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 9
     GoTo _01B0
 
@@ -235,9 +235,9 @@ _0306:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     CloseMessage
     SetFlag FLAG_UNK_0x009F
     RemoveObject 3

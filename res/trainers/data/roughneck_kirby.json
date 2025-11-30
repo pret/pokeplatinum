@@ -19,26 +19,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"My Pokémon were taken from me...\n",
-				"Team Galactic did it...\r",
-				"Ever since, I’ve never forgiven\n",
-				"their faces...\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "My Pokémon were taken from me...\n",
+                "Team Galactic did it...\r",
+                "Ever since, I’ve never forgiven\n",
+                "their faces...\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Gwaaaaaah!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Gwaaaaaah!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I’m not doing my Pokémon any favors\n",
-				"by ruining its memory like this...\r",
-				"I can’t be wallowing around forever.\n",
-				"I gotta move on and turn the page."
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I’m not doing my Pokémon any favors\n",
+                "by ruining its memory like this...\r",
+                "I can’t be wallowing around forever.\n",
+                "I gotta move on and turn the page."
+            ]
+        }
     ]
 }

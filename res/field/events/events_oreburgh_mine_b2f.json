@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
+            "id": "OREBURGH_MINE_B2F_ROARK_0",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x018A",
+            "hidden_flag": "FLAG_UNK_0x018A",
             "script": 1,
             "initial_dir": 3,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_UNK_0x0020",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B2F_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_UNK_0x0021",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B2F_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03FD",
+            "hidden_flag": "FLAG_UNK_0x03FD",
             "script": 7007,
             "initial_dir": 0,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B2F_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x03FE",
+            "hidden_flag": "FLAG_UNK_0x03FE",
             "script": 7008,
             "initial_dir": 0,
             "data": [],
@@ -72,11 +77,12 @@
             "y": 0
         },
         {
+            "id": "OREBURGH_MINE_B2F_WORKER_COLIN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3194,
+            "hidden_flag": "0",
+            "script": "TRAINER_WORKER_COLIN",
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
@@ -86,11 +92,12 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_WORKER_MASON",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3195,
+            "hidden_flag": "0",
+            "script": "TRAINER_WORKER_MASON",
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
@@ -100,10 +107,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_WORKER_7",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -114,10 +122,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_MACHOP_8",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -128,10 +137,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_MACHOP_9",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -142,10 +152,11 @@
             "y": 1
         },
         {
+            "id": "OREBURGH_MINE_B2F_MACHOP_10",
             "graphics_id": "OBJ_EVENT_GFX_MACHOP",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [],

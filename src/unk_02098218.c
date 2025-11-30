@@ -117,7 +117,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
 
             v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
-            PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
+            PokemonSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
             if (v1 == SPECIES_MANAPHY) {
                 v0->unk_5C = 1;
@@ -243,13 +243,13 @@ static BOOL sub_0209843C(FieldTask *param0)
     } break;
     case 4:
         if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->textInputStr);
+            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
                 GameRecords *v11 = SaveData_GetGameRecords(FieldSystem_GetSaveData(fieldSystem));
 
-                GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
+                GameRecords_IncrementRecordValue(v11, RECORD_POKEMON_NICKNAMED);
             }
         }
 

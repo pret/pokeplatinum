@@ -83,11 +83,12 @@
     ],
     "object_events": [
         {
+            "id": "ROUTE_217_SKIER_SHAWN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3141,
+            "hidden_flag": "0",
+            "script": "TRAINER_SKIER_SHAWN",
             "initial_dir": 1,
             "data": [
                 3
@@ -99,11 +100,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_SKIER_LEXIE",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_WEST_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3143,
+            "hidden_flag": "0",
+            "script": "TRAINER_SKIER_LEXIE",
             "initial_dir": 0,
             "data": [
                 4
@@ -115,11 +117,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_SKIER_BJORN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
-            "flag": "0",
-            "script": 3142,
+            "hidden_flag": "0",
+            "script": "TRAINER_SKIER_BJORN",
             "initial_dir": 3,
             "data": [
                 2
@@ -131,11 +134,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_SKIER_MADISON",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3144,
+            "hidden_flag": "0",
+            "script": "TRAINER_SKIER_MADISON",
             "initial_dir": 1,
             "data": [
                 3
@@ -147,11 +151,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_NINJA_BOY_MATTHEW",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
-            "flag": "0",
-            "script": 3145,
+            "hidden_flag": "0",
+            "script": "TRAINER_NINJA_BOY_MATTHEW",
             "initial_dir": 1,
             "data": [
                 1
@@ -163,11 +168,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_NINJA_BOY_ETHAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
-            "flag": "0",
-            "script": 3146,
+            "hidden_flag": "0",
+            "script": "TRAINER_NINJA_BOY_ETHAN",
             "initial_dir": 1,
             "data": [
                 1
@@ -179,11 +185,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_BLACK_BELT_LUKE",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
-            "flag": "0",
-            "script": 3147,
+            "hidden_flag": "0",
+            "script": "TRAINER_BLACK_BELT_LUKE",
             "initial_dir": 1,
             "data": [
                 2
@@ -195,11 +202,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_ACE_TRAINER_DALTON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3139,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_DALTON",
             "initial_dir": 2,
             "data": [
                 3
@@ -211,11 +219,12 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_ACE_TRAINER_OLIVIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3140,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_OLIVIA",
             "initial_dir": 3,
             "data": [
                 5
@@ -227,10 +236,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_ARROW_SIGNPOST_9",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [
@@ -243,10 +253,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_10",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0497",
+            "hidden_flag": "FLAG_UNK_0x0497",
             "script": 7161,
             "initial_dir": 0,
             "data": [],
@@ -257,10 +268,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0498",
+            "hidden_flag": "FLAG_UNK_0x0498",
             "script": 7162,
             "initial_dir": 0,
             "data": [],
@@ -271,10 +283,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_12",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0496",
+            "hidden_flag": "FLAG_UNK_0x0496",
             "script": 7160,
             "initial_dir": 0,
             "data": [],
@@ -285,10 +298,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_ICE_ROCK_13",
             "graphics_id": "OBJ_EVENT_GFX_ICE_ROCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -299,10 +313,11 @@
             "y": 0
         },
         {
-            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "id": "ROUTE_217_SNOWPOINT_NPC_F_14",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -313,10 +328,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_MAYLENE_15",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0297",
+            "hidden_flag": "FLAG_UNK_0x0297",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -327,10 +343,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_16",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x051B",
+            "hidden_flag": "FLAG_UNK_0x051B",
             "script": 7292,
             "initial_dir": 0,
             "data": [],
@@ -341,10 +358,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_17",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x051C",
+            "hidden_flag": "FLAG_UNK_0x051C",
             "script": 7293,
             "initial_dir": 0,
             "data": [],
@@ -355,10 +373,11 @@
             "y": 0
         },
         {
+            "id": "ROUTE_217_POKEBALL_18",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x051D",
+            "hidden_flag": "FLAG_UNK_0x051D",
             "script": 7294,
             "initial_dir": 0,
             "data": [],
@@ -391,7 +410,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16552,
+            "var": "VAR_UNK_0x40A8",
             "value": 0
         }
     ]

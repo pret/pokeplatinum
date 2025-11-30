@@ -19,32 +19,32 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Can’t you see I’m fishing?\n",
-				"Don’t talk! You’ll spook the fish!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Can’t you see I’m fishing?\n",
+                "Don’t talk! You’ll spook the fish!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"How do you like that?\n",
-				"Both my catch and the win got away!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How do you like that?\n",
+                "Both my catch and the win got away!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Fishing and battling are delicate\n",
-				"things--as am I. Is that wrong?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Fishing and battling are delicate\n",
+                "things--as am I. Is that wrong?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"You can see I’m fishing, can’t you?\n",
-				"Then don’t talk to me! Geez!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "You can see I’m fishing, can’t you?\n",
+                "Then don’t talk to me! Geez!\r"
+            ]
+        }
     ]
 }

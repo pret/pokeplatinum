@@ -8,6 +8,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay010/struct_ov10_0221F800.h"
 
@@ -54,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -674,7 +674,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
-        param0->unk_BA0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->unk_00->heapID);
+        param0->unk_BA0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->unk_00->heapID);
         param0->unk_BA4 = StringTemplate_Default(param0->unk_00->heapID);
         param0->unk_BA8 = Strbuf_Init(2 * 160, param0->unk_00->heapID);
         param0->unk_BB0 = 1;
@@ -1590,7 +1590,7 @@ static void ov10_022213B8(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02221440(UnkStruct_ov10_0221FB28 *param0, u32 param1, s16 param2, s16 param3)
 {
-    sub_020128C4(param0->unk_B3C[param1], param0->unk_B60[param1] + param2, param0->unk_B64[param1] + param3);
+    FontOAM_SetXY(param0->unk_B3C[param1], param0->unk_B60[param1] + param2, param0->unk_B64[param1] + param3);
 }
 
 static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)
@@ -1908,7 +1908,7 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
         Heap_Free(v2);
     }
 
-    LoadScreenDataFromNARC(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
+    PartyMenu_LoadMemberPanelTilemaps(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 
@@ -2009,14 +2009,14 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
         }
 
         param0->unk_214[v1 + param2].unk_0F = (u16)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetValue(v0, MON_DATA_HP, NULL);
         param0->unk_214[v1 + param2].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
         param0->unk_214[v1 + param2].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
         param0->unk_214[v1 + param2].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
         param0->unk_214[v1 + param2].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
         param0->unk_214[v1 + param2].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-        if (Pokemon_GetValue(v0, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
+        if (Pokemon_GetValue(v0, MON_DATA_NO_PRINT_GENDER, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
         } else {
             param0->unk_214[v1 + param2].unk_0E = 1;
@@ -2329,7 +2329,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     Strbuf *v3;
     u32 v4;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, param0->unk_00->heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->unk_00->heapID);
     v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
     v2 = StringTemplate_Default(param0->unk_00->heapID);
     v3 = Strbuf_Init(32, param0->unk_00->heapID);

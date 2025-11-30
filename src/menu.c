@@ -1,8 +1,5 @@
 #include "menu.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "font.h"
@@ -354,7 +351,7 @@ static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos)
 Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate *winTemplate, u16 borderTileStart, u8 borderPalette, u8 cursorStart, u32 heapID)
 {
     MenuTemplate menuTemplate;
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
     StringList *choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00041, 0);
@@ -410,72 +407,7 @@ void Menu_DestroyForExit(Menu *menu, u32 heapID)
     Menu_Free(menu, NULL);
 }
 
-static const u8 sArrowCursorBitmap[] = {
-    0xff,
-    0xff,
-    0xff,
-    0x0,
-    0xff,
-    0xff,
-    0xff,
-    0x0,
-    0x21,
-    0xff,
-    0xff,
-    0x0,
-    0x11,
-    0xf2,
-    0xff,
-    0x0,
-    0x11,
-    0x21,
-    0xff,
-    0x0,
-    0x11,
-    0x11,
-    0xf2,
-    0x0,
-    0x11,
-    0x11,
-    0x21,
-    0x0,
-    0x11,
-    0x11,
-    0x22,
-    0x0,
-    0x11,
-    0x21,
-    0xf2,
-    0x0,
-    0x11,
-    0x22,
-    0xff,
-    0x0,
-    0x21,
-    0xf2,
-    0xff,
-    0x0,
-    0x22,
-    0xff,
-    0xff,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0
-};
+#include "res/fonts/arrow_cursor.4bpp.h"
 
 void Window_DrawMenuCursor(Window *window, u32 x, u32 y)
 {

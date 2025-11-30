@@ -40,20 +40,20 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Last time, you beat me before I had\n",
-				"a chance to show you my skill.\r",
-				"This time, I’ll shows you why they\n",
-				"consider me an ace!\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Last time, you beat me before I had\n",
+                "a chance to show you my skill.\r",
+                "This time, I’ll shows you why they\n",
+                "consider me an ace!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"I’m burning with jealousy over your\n",
-				"talent!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I’m burning with jealousy over your\n",
+                "talent!\n"
+            ]
+        }
     ]
 }

@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Does this mean I’m only talented as\n",
-				"an Artist?\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Does this mean I’m only talented as\n",
+                "an Artist?\n"
+            ]
+        }
     ]
 }

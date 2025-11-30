@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "overworld_anim_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
@@ -37,7 +38,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020711EC.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -139,7 +139,7 @@ int ov101_021D0E40(ApplicationManager *appMan, int *param1)
         }
     }
 
-    sub_020713D0(v1->unk_44C);
+    OverworldAnimManagerList_Render(v1->unk_44C);
     ov101_021D80D4(v1->unk_450);
 
     return 0;
@@ -429,7 +429,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     LoadMessageBoxGraphics(param0->unk_43C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, param0->msgBoxFrame, HEAP_ID_79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 
-    v1->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);
+    v1->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);
     v1->unk_04 = StringTemplate_Default(HEAP_ID_79);
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -566,12 +566,12 @@ static void ov101_021D1868(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D186C(UnkStruct_ov101_021D13C8 *param0)
 {
-    param0->unk_44C = sub_020711EC(HEAP_ID_79, 128);
+    param0->unk_44C = OverworldAnimManagerList_New(HEAP_ID_79, 128);
 }
 
 static void ov101_021D1884(UnkStruct_ov101_021D13C8 *param0)
 {
-    sub_0207121C(param0->unk_44C);
+    OverworldAnimManagerList_FinishAndFree(param0->unk_44C);
 }
 
 void ov101_021D1894(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D1894 param1)

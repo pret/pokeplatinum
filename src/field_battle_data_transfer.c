@@ -50,6 +50,7 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_0202602C.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
@@ -57,7 +58,6 @@
 #include "unk_020366A0.h"
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
-#include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/location_names.h"
@@ -104,7 +104,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
     dto->bag = Bag_New(heapID);
     dto->pokedex = Pokedex_New(heapID);
     dto->options = Options_New(heapID);
-    dto->unk_10C = sub_0206D140(heapID);
+    dto->captureAttempt = CaptureAttempt_New(heapID);
     dto->bagCursor = NULL;
     dto->subscreenCursorOn = NULL;
     dto->countSafariBalls = 0;
@@ -152,7 +152,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 
@@ -207,7 +207,7 @@ void FieldBattleDTO_Free(FieldBattleDTO *dto)
     Heap_Free(dto->bag);
     Heap_Free(dto->pokedex);
     Heap_Free(dto->options);
-    sub_0206D158(dto->unk_10C);
+    CaptureAttempt_Free(dto->captureAttempt);
     Heap_Free(dto);
 }
 
@@ -309,7 +309,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
 
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != level && level != 0) {
             levelBaseExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
-            Pokemon_SetValue(mon, MON_DATA_EXP, &levelBaseExp);
+            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
             Pokemon_CalcLevelAndStats(mon);
         }
 

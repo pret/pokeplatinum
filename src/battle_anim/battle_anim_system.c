@@ -156,7 +156,7 @@ static void BattleAnimScriptCmd_SetDefaultAlphaBlending(BattleAnimSystem *param0
 static void BattleAnimScriptCmd_Call(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Return(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *param0);
-static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_ResetVars(BattleAnimSystem *param0);
 static void ov12_022206A4(BattleAnimSystem *param0);
 static void ov12_022206E8(BattleAnimSystem *param0);
 static void ov12_02220F30(BattleAnimSystem *param0);
@@ -214,7 +214,7 @@ static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *param0);
-static void ov12_022230CC(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetExtraParams(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Nop11(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *param0);
@@ -489,7 +489,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
         }
     }
 
-    if (moveID == MOVE_NONE || moveID > MOVE_SHADOW_FORCE) {
+    if (moveID == MOVE_NONE || moveID > NUM_VALID_MOVES) {
         moveID = MOVE_POUND;
     }
 
@@ -843,7 +843,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     [52] = BattleAnimScriptCmd_LoadDebugParticleSystem,
     [53] = BattleAnimScriptCmd_UnloadParticleSystem,
     [54] = BattleAnimScriptCmd_Nop11,
-    [55] = ov12_022230CC,
+    [55] = BattleAnimScriptCmd_SetExtraParams,
     [56] = BattleAnimScriptCmd_InitPokemonSpriteManager,
     [57] = BattleAnimScriptCmd_LoadPokemonSpriteDummyResources,
     [58] = BattleAnimScriptCmd_AddPokemonSprite,
@@ -855,7 +855,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     [64] = BattleAnimScriptCmd_JumpIfBattlerSide,
     [65] = BattleAnimScriptCmd_PlayPokemonCry,
     [66] = BattleAnimScriptCmd_WaitForPokemonCries,
-    [67] = BattleAnimScriptCmd_ResetVar,
+    [67] = BattleAnimScriptCmd_ResetVars,
     [68] = ov12_022206A4,
     [69] = ov12_022206E8,
     [70] = BattleAnimScriptCmd_JumpIfWeather,
@@ -877,7 +877,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
 
 void BattleAnimSystem_SetDefaultAlphaBlending(void)
 {
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 8, 8);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, BATTLE_BG_BLENDMASK_ALL | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 8, 8);
 }
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system)
@@ -949,7 +949,7 @@ static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_ResetVars(BattleAnimSystem *system)
 {
     BattleAnimScript_Next(system);
 
@@ -2993,7 +2993,7 @@ static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *system)
 {
     BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
-    bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, 4);
+    bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, BATTLE_ANIM_VAR_BG_FADE_TYPE);
     BattleAnimScript_Next(system);
 
     bgSwitch->bgID = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3582,7 +3582,7 @@ static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *system
     ManagedSprite_SetDrawFlag(system->pokemonSprites[spriteID], flag);
 }
 
-static void ov12_022230CC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SetExtraParams(BattleAnimSystem *system)
 {
     GF_ASSERT(FALSE);
 }
@@ -3692,26 +3692,24 @@ s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step)
     return adjustedStep;
 }
 
-BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
+BOOL BattleAnimSystem_GetExtraParams(BattleAnimSystem *system, int params[], int count)
 {
-    int v0, v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int available = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    if (v0 != param2) {
-        GF_ASSERT(v0 == param2);
-        return 0;
+    if (available != count) {
+        GF_ASSERT(available == count);
+        return FALSE;
     }
 
-    for (v1 = 0; v1 < param2; v1++) {
-        param1[v1] = BattleAnimScript_ReadWord(param0->scriptPtr);
-        param0->scriptPtr += 1;
+    for (int i = 0; i < count; i++) {
+        params[i] = BattleAnimScript_ReadWord(system->scriptPtr);
+        BattleAnimScript_Next(system);
     }
 
-    return 1;
+    return TRUE;
 }
 
 SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *system)
@@ -3796,7 +3794,7 @@ int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system)
     }
 }
 
-enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAnimBg bg)
+enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, int bg)
 {
     enum BgLayer bgLayers[][3] = {
         { BATTLE_BG_WINDOW, BATTLE_BG_BASE, BATTLE_BG_EFFECT },
@@ -3810,11 +3808,11 @@ enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAn
     }
 }
 
-int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
+int BattleAnimSystem_GetBgID(BattleAnimSystem *system, int bg)
 {
     int bgIDs[][3] = {
-        { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT },
-        { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT }
+        { BATTLE_BG_INTERNAL_ID_WINDOW, BATTLE_BG_INTERNAL_ID_BASE, BATTLE_BG_INTERNAL_ID_EFFECT },
+        { BATTLE_BG_INTERNAL_ID_WINDOW, BATTLE_BG_INTERNAL_ID_BASE, BATTLE_BG_INTERNAL_ID_EFFECT }
     };
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {
@@ -3824,7 +3822,7 @@ int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
     }
 }
 
-int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg)
+int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, int bg)
 {
     switch (bg) {
     case BATTLE_ANIM_BG_WINDOW:

@@ -28,31 +28,31 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": "Look at these beautiful wings!\r"
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": "Look at these beautiful wings!\r"
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh, you!\n",
-				"I’m going to peck you for that!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh, you!\n",
+                "I’m going to peck you for that!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"There’s a bird Pokémon that can learn\n",
-				"human speech! Did you know that?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "There’s a bird Pokémon that can learn\n",
+                "human speech! Did you know that?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"My bird Pokémon has such gorgeous\n",
-				"wings.\r",
-				"It must have been some sort of a\n",
-				"mistake that we lost last time!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "My bird Pokémon has such gorgeous\n",
+                "wings.\r",
+                "It must have been some sort of a\n",
+                "mistake that we lost last time!\r"
+            ]
+        }
     ]
 }

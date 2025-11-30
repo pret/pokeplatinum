@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "bg_window.h"
 #include "narc.h"
 
@@ -13,6 +15,12 @@ enum BarColor {
     BARCOLOR_GREEN,
 
     BARCOLOR_MAX,
+};
+
+enum GraphicMemberType {
+    GRAPHICSMEMBER_TILES = 0,
+    GRAPHICSMEMBER_TILEMAP,
+    GRAPHICSMEMBER_PALETTE,
 };
 
 int sub_0208C098(int param0);
@@ -49,7 +57,7 @@ u8 App_BarColor(u32 cur, u32 max);
 u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize);
 void App_StartScreenFade(u8 fadeOut, u32 heapID);
 u8 sub_0208C15C(s16 *param0, u16 param1);
-void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8);
-void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID);
+void App_LoadGraphicMember(BgConfig *bgConfig, int heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset);
+void *App_LoadScreenData(NARC *narc, enum NarcID unused, int memberIdx, NNSG2dScreenData **dst, enum HeapID heapID);
 
 #endif // POKEPLATINUM_UNK_0208C098_H

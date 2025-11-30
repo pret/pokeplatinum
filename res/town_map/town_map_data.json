@@ -1,0 +1,3156 @@
+{
+  "text_bank": {
+    "key": 54564,
+    "messages": [
+      {
+        "id": "TownMap_Text_FlyToWhere",
+        "en_US": "Fly to where?"
+      },
+      {
+        "id": "TownMap_Text_GuideMap",
+        "en_US": "GUIDE MAP"
+      }
+    ]
+  },
+  "areas": {
+    "route_201": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A small path through a lush, green,\n",
+          "wooded area. The densely grown trees\n",
+          "give off a thick aroma."
+        ]
+      }
+    },
+    "route_202": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A winding path that twists through\n",
+          "grassy fields. Young Trainers like to\n",
+          "test their battle skills here."
+        ]
+      }
+    },
+    "route_203": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Despite being so close to a big town,\n",
+          "this path retains its relaxed, natural\n",
+          "atmosphere."
+        ]
+      }
+    },
+    "route_204": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A charmingly natural path that wanders\n",
+          "past many ponds and groves of trees."
+        ]
+      }
+    },
+    "route_205_north": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A wide, wooden walkway spans a large\n",
+          "pond. Fishermen idle their time away\n",
+          "dangling lines from the walkway."
+        ]
+      }
+    },
+    "route_205_south": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A quietly flowing stream and hilly\n",
+          "terrain with one-way ledges make this\n",
+          "a fun area for adventure."
+        ]
+      }
+    },
+    "route_206": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Smoothly paved in asphalt, the Cycling\n",
+          "Road is heavenly for bicycle lovers."
+        ]
+      }
+    },
+    "route_207": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Located at the foot of Mt. Coronet,\n",
+          "this road is carved into the rugged,\n",
+          "rocky terrain."
+        ]
+      }
+    },
+    "route_208": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A lush field of grass spreads from\n",
+          "Mt. Coronet’s sheer rock face,\n",
+          "creating a vista of contrasts."
+        ]
+      }
+    },
+    "route_209": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The streams forded by this path wind\n",
+          "past copses and grassy patches in\n",
+          "a serene and soothing manner."
+        ]
+      }
+    },
+    "route_210_north": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A canyon covered in untamed nature.\n",
+          "It is always shrouded by a dense fog."
+        ]
+      }
+    },
+    "route_210_south": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "This narrow route is lined with deep,\n",
+          "tall grass that tickles the noses of\n",
+          "people straying off the path."
+        ]
+      }
+    },
+    "route_211": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A mountain path that tunnels through\n",
+          "Mt. Coronet, one of the tallest\n",
+          "mountains in Sinnoh."
+        ]
+      }
+    },
+    "route_212_north": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A tall, sturdy wall surrounds an\n",
+          "expansive estate that takes up nearly\n",
+          "half of the road space."
+        ]
+      }
+    },
+    "route_212_south": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "This path weaves among deep puddles\n",
+          "made by the unending rainfall. It is\n",
+          "wet and miserable for Trainers."
+        ]
+      }
+    },
+    "route_213": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Offshore boulders form a jetty that\n",
+          "becalms waves reaching the beach.\n",
+          "A resort hotel overlooks the water."
+        ]
+      }
+    },
+    "route_214": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The road joining Veilstone City and a\n",
+          "lake is described as either “wildly\n",
+          "natural” or simply “a mess.”"
+        ]
+      }
+    },
+    "route_215": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "This area is always inundated by heavy\n",
+          "rainfall. Only hardy Trainers that can\n",
+          "take the rain gather here."
+        ]
+      }
+    },
+    "route_216": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "This mountainous road leads from Mt.\n",
+          "Coronet. Its constant snowfall and\n",
+          "deep snowdrifts impede travelers."
+        ]
+      }
+    },
+    "route_217": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Snow blows down from Mt. Coronet and\n",
+          "grows into a harsh, ceaseless blizzard.\n",
+          "Be prepared for the worst."
+        ]
+      }
+    },
+    "route_218": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Despite its shortness, this road is\n",
+          "revered by fishing enthusiasts as a\n",
+          "great, yet little known, fishing spot."
+        ]
+      }
+    },
+    "route_219": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A beautiful white-sand beach only five\n",
+          "seconds on foot from Sandgem Town.\n",
+          "A pleasant breeze blows from the sea."
+        ]
+      }
+    },
+    "route_220": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The sea here is perfect for swimming,\n",
+          "with gentle winds and tides. There are\n",
+          "sandbars for resting, too."
+        ]
+      }
+    },
+    "route_221": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A straight path hemmed by green grass\n",
+          "and sparse stands of trees."
+        ]
+      }
+    },
+    "route_222": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A sandy beach extends from the road.\n",
+          "The beach is busy with avid Fishermen\n",
+          "happily casting at the water’s edge."
+        ]
+      }
+    },
+    "route_223": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A marine route that requires travelers\n",
+          "to navigate around jutting rocks and\n",
+          "sandbars."
+        ]
+      }
+    },
+    "route_224": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "With grass fields, rocky outcroppings,\n",
+          "the sea, and sandbars, this area is\n",
+          "like a miniature of the Sinnoh region."
+        ]
+      }
+    },
+    "route_225": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The path makes its way up and down\n",
+          "among rocky outcroppings. It is\n",
+          "physically challenging."
+        ]
+      }
+    },
+    "route_226": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A path that winds precariously along\n",
+          "sheer cliffs that go right to the edge\n",
+          "of the sea’s pounding waves."
+        ]
+      }
+    },
+    "route_227": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A rugged and steep mountain path\n",
+          "where vision is limited by steadily\n",
+          "falling volcanic ash."
+        ]
+      }
+    },
+    "route_228": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "This rough path is harshly raked by\n",
+          "a horizontally blowing sandstorm\n",
+          "driven by strong winds off the sea."
+        ]
+      }
+    },
+    "route_229": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A seaside path that makes its way\n",
+          "through wildly growing trees and\n",
+          "plants."
+        ]
+      }
+    },
+    "route_230": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A sea route that stretches from west\n",
+          "to east. There is an island that is\n",
+          "rich with plant life along the way."
+        ]
+      }
+    },
+    "seabreak_path": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A straight path bounded by the sea on\n",
+          "both sides. It leads to the Flower\n",
+          "Paradise."
+        ]
+      }
+    },
+    "twinleaf_town": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_TWINLEAF_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "A small town with the fresh scent\n",
+          "of new leaves in the air. It feels\n",
+          "like a place where adventures start."
+        ]
+      }
+    },
+    "sandgem_town": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SANDGEM_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "A sandy town that is located right\n",
+          "next to a beach. It is redolent with\n",
+          "the salty scent of the sea."
+        ]
+      }
+    },
+    "floaroma_town": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FLOAROMA_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "A town of flower lovers, Floaroma Town\n",
+          "is always perfumed with the sweet\n",
+          "scent of flowers."
+        ]
+      }
+    },
+    "solaceon_town": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SOLACEON_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "The temperate climate makes this town\n",
+          "a relaxed and casual place for people\n",
+          "and Pokémon to live in."
+        ]
+      }
+    },
+    "celestic_town": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_CELESTIC_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "A tiny town that preserves the history\n",
+          "of Sinnoh and the old ways of life."
+        ]
+      }
+    },
+    "survival_area": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SURVIVAL_AREA"
+      },
+      "description": {
+        "en_US": [
+          "A town where hot-blooded Trainers\n",
+          "gather to work out and hone their\n",
+          "battling skills."
+        ]
+      }
+    },
+    "resort_area": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_RESORT_AREA"
+      },
+      "description": {
+        "en_US": [
+          "A town that attracts Trainers who\n",
+          "know there are other ways of enjoying\n",
+          "Pokémon than battling."
+        ]
+      }
+    },
+    "jubilife_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_JUBILIFE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The most modernized city in the Sinnoh\n",
+          "region. It is bustling with people on\n",
+          "the go."
+        ]
+      }
+    },
+    "canalave_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_CANALAVE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A port city that is bisected by a\n",
+          "canal. It has a distinctly exotic air\n",
+          "of foreign culture."
+        ]
+      }
+    },
+    "oreburgh_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OREBURGH_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A vibrant and energetic mining town\n",
+          "that is blessed with a precious natural\n",
+          "resource."
+        ]
+      }
+    },
+    "eternia_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ETERNA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "An old city that shows fading and\n",
+          "almost-forgotten vestiges of ancient\n",
+          "history."
+        ]
+      }
+    },
+    "hearthome_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_HEARTHOME_CITY"
+      },
+      "description": {
+        "en_US": [
+          "This friendly city started as a place\n",
+          "where people and Pokémon gathered,\n",
+          "then grew into a center of commerce."
+        ]
+      }
+    },
+    "pastoria_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_PASTORIA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "This city was originally founded to\n",
+          "protect the Great Marsh. It has grown\n",
+          "naturally over the years."
+        ]
+      }
+    },
+    "veilstone_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VEILSTONE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "This city was made by carving out\n",
+          "steep, rocky mountains. Its isolation\n",
+          "limits its contact with other cities."
+        ]
+      }
+    },
+    "sunyshore_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SUNYSHORE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A port city that was built around the\n",
+          "bay portion of the cape. It is criss-\n",
+          "crossed by elevated walkways."
+        ]
+      }
+    },
+    "snowpoint_city": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SNOWPOINT_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A winter wonderland of a city where\n",
+          "stout trees and buildings are blanketed\n",
+          "in thick snow."
+        ]
+      }
+    },
+    "victory_road": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD"
+      },
+      "copy_description": "pokemon_league"
+    },
+    "pokemon_league": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_POKEMON_LEAGUE"
+      },
+      "description": {
+        "en_US": [
+          "Trainers seeking to become the best\n",
+          "arrive here after enduring a long and\n",
+          "grueling journey."
+        ]
+      }
+    },
+    "fight_area": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FIGHT_AREA"
+      },
+      "description": {
+        "en_US": [
+          "A tiny port city where Trainers who\n",
+          "love battling more than eating gather."
+        ]
+      }
+    },
+    "verity_lakefront": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "One of the lakes that is symbolic of\n",
+          "the water-rich Sinnoh region. There is\n",
+          "an odd legend associated with it."
+        ]
+      }
+    },
+    "valor_lakefront": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "One of the lakes that is symbolic of\n",
+          "the water-rich Sinnoh region. There is\n",
+          "an odd legend associated with it."
+        ]
+      }
+    },
+    "acuity_lakefront": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "One of the lakes that is symbolic of\n",
+          "the water-rich Sinnoh region. There is\n",
+          "an odd legend associated with it."
+        ]
+      }
+    },
+    "spring_path": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The fourth lake of Sinnoh that was\n",
+          "kept secret."
+        ]
+      }
+    },
+    "valley_windworks": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Numerous wind turbines stand in the\n",
+          "vicinity of the Valley Windworks."
+        ]
+      }
+    },
+    "eterna_forest": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A forest enveloped in chilly air.\n",
+          "Thick stands of trees turn the forest\n",
+          "into a natural maze."
+        ]
+      }
+    },
+    "fuego_ironworks": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "The sprawling ironworks is located\n",
+          "with the forest at its back."
+        ]
+      }
+    },
+    "mount_coronet": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A sacred mountain that is capped the\n",
+          "year round with snow. A gigantic maze\n",
+          "sprawls inside it."
+        ]
+      }
+    },
+    "fullmoon_island": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A small, crescent-shaped pond that\n",
+          "lies inside a closed-off forest."
+        ]
+      }
+    },
+    "stark_mountain": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A rugged, seemingly indestructible rock\n",
+          "mountain that is thickly blanketed by\n",
+          "the volcanic ash it spews."
+        ]
+      }
+    },
+    "flower_paradise": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A speck of an island far from any\n",
+          "civilization. It is covered in an\n",
+          "abundance of flowers."
+        ]
+      }
+    },
+    "iron_island": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A small, ore-rich island that is\n",
+          "off the coast of Eterna City."
+        ]
+      }
+    },
+    "newmoon_island": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "A small, round pond that lies\n",
+          "inside a closed-off forest."
+        ]
+      }
+    },
+    "battle_frontier": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_BATTLE_PARK"
+      },
+      "description": {
+        "en_US": [
+          "The Battle Frontier--where the best of\n",
+          "the best Trainers gather to test\n",
+          "their skill--is located here."
+        ]
+      }
+    }
+  },
+  "landmarks": {
+    "oreburgh_gate": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OREBURGH_GATE"
+      },
+      "description": {
+        "en_US": [
+          "Once one gets through the tunnel,\n",
+          "the city of Oreburgh is just a stone’s\n",
+          "throw away."
+        ]
+      }
+    },
+    "ravaged_path": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_RAVAGED_PATH"
+      },
+      "description": {
+        "en_US": [
+          "The Ravaged Path was hewn through\n",
+          "a rocky outcropping. It is a shortcut\n",
+          "that leads straight to Floaroma Town."
+        ]
+      }
+    },
+    "route_205_cabin": {
+      "condition": null,
+      "description": {
+        "en_US": [
+          "Near the entrance of Eterna Forest\n",
+          "is a cabin whose keepers offer rest\n",
+          "to weary travelers that stop by."
+        ]
+      }
+    },
+    "wayward_cave": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_WAYWARD_CAVE"
+      },
+      "description": {
+        "en_US": [
+          "Below the Cycling Road, one can see\n",
+          "the entrance to Wayward Cave."
+        ]
+      }
+    },
+    "berry_masters_house": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_BERRY_MASTERS_HOUSE"
+      },
+      "description": {
+        "en_US": [
+          "The Berry Master, an old man who loves\n",
+          "nature, Pokémon, and Berries, makes\n",
+          "his home here."
+        ]
+      }
+    },
+    "lost_tower": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_LOST_TOWER"
+      },
+      "description": {
+        "en_US": [
+          "The Lost Tower is where Pokémon are\n",
+          "laid to rest when their lives come\n",
+          "to an end."
+        ]
+      }
+    },
+    "dragon_masters_house": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_DRAGON_MASTERS_HOUSE"
+      },
+      "description": {
+        "en_US": [
+          "Grandma Wilma’s house stands alone in an\n",
+          "isolated spot deep among mountains."
+        ]
+      }
+    },
+    "route_210_coffee_shop": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ROUTE_210_COFFEE_SHOP"
+      },
+      "description": {
+        "en_US": [
+          "The Café Cabin stands in a wood.\n",
+          "The house special is freshly milked\n",
+          "Moomoo Milk."
+        ]
+      }
+    },
+    "pokemon_mansion": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_POKEMON_MANSION"
+      },
+      "description": {
+        "en_US": [
+          "Beyond the wall, one can see the\n",
+          "stately Pokémon Mansion and the\n",
+          "owner’s prized garden behind it.\n"
+        ]
+      }
+    },
+    "route_212_move_tutor": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ROUTE_212_MOVE_TUTOR"
+      },
+      "description": {
+        "en_US": [
+          "There is a house here whose residents\n",
+          "offer to trade TMs for Red, Blue,\n",
+          "Yellow, or Green Shards."
+        ]
+      }
+    },
+    "doctor_footsteps_house": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_DOCTOR_FOOTSTEPS_HOUSE"
+      },
+      "description": {
+        "en_US": [
+          "In a small house on the beach lives\n",
+          "a single man who refers to himself as\n",
+          "Dr. Footstep."
+        ]
+      }
+    },
+    "ruin_maniac_cave": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_RUIN_MANIAC_CAVE"
+      },
+      "description": {
+        "en_US": [
+          "There is a cave hewn into the sheer\n",
+          "rock wall at the roadside. The hole\n",
+          "was made by a Ruin Maniac."
+        ]
+      }
+    },
+    "pal_park_front_gate": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_POKE_PARK_FRONT_GATE"
+      },
+      "description": {
+        "en_US": [
+          "At the end of the path stands the\n",
+          "gateway to Pal Park."
+        ]
+      }
+    },
+    "pokemon_size_judge": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_POKEMON_SIZE_JUDGE"
+      },
+      "description": {
+        "en_US": [
+          "A man who loves fishing lives near\n",
+          "here. There is also a man who will\n",
+          "compare sizes of caught fish."
+        ]
+      }
+    },
+    "the_meisters_house": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_THE_MEISTERS_HOUSE"
+      },
+      "description": {
+        "en_US": [
+          "There is a small island in the bay.\n",
+          "An odd man who speaks foreign\n",
+          "languages lives there."
+        ]
+      }
+    },
+    "protagonists_homes": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_TWINLEAF_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "Your own home and your best friend’s\n",
+          "house are located here."
+        ]
+      }
+    },
+    "prof_rowans_lab": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SANDGEM_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "Prof. Rowan’s lab is the town’s\n",
+          "landmark. He conducts his\n",
+          "studies on Pokémon here."
+        ]
+      }
+    },
+    "floaroma_meadow": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FLOAROMA_MEADOW"
+      },
+      "description": {
+        "en_US": [
+          "A short, floral pathway opens up to\n",
+          "a sprawling sea of flowers in bloom."
+        ]
+      }
+    },
+    "flower_shop": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FLOAROMA_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "In the center of town is the flower\n",
+          "shop called Pick a Peck of Colors."
+        ]
+      }
+    },
+    "pokemon_day_care": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SOLACEON_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "There is a Pokémon Day Care and\n",
+          "a Pokémon Center here."
+        ]
+      }
+    },
+    "solaceon_ruins": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SOLACEON_RUINS"
+      },
+      "description": {
+        "en_US": [
+          "Beyond a path hemmed by stands of\n",
+          "trees, one can find the entrance\n",
+          "to the Solaceon Ruins."
+        ]
+      }
+    },
+    "celestic_town_shrine": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_CELESTIC_TOWN"
+      },
+      "description": {
+        "en_US": [
+          "In the center of the town is a small\n",
+          "shrine that dates to ancient times."
+        ]
+      }
+    },
+    "poketch_company": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_JUBILIFE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Pokétch Company, the developer\n",
+          "and manufacturer of the Pokétch, is\n",
+          "located here."
+        ]
+      }
+    },
+    "jubilife_tv": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_JUBILIFE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "Jubilife TV, Sinnoh’s TV network, is\n",
+          "located here. It is an entertaining\n",
+          "place to visit."
+        ]
+      }
+    },
+    "global_terminal": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_JUBILIFE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Global Terminal is located here.\n",
+          "It is your connection to the entire\n",
+          "world."
+        ]
+      }
+    },
+    "trainers_school": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_JUBILIFE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "Located here is the Trainers’ School.\n",
+          "Drop in to study up on the basics of\n",
+          "Pokémon."
+        ]
+      }
+    },
+    "canalave_library_and_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_CANALAVE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "Head to the library if you want a\n",
+          "workout for the mind. Head to the Gym\n",
+          "if you just want to work out."
+        ]
+      }
+    },
+    "canalave_piers": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_CANALAVE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "Large ships can always be seen\n",
+          "moored at the town’s piers."
+        ]
+      }
+    },
+    "oreburgh_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OREBURGH_CITY"
+      },
+      "description": {
+        "en_US": [
+          "There is a Gym where mine workers\n",
+          "take breaks in between their\n",
+          "exhausting work shifts."
+        ]
+      }
+    },
+    "oreburgh_museum": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OREBURGH_CITY"
+      },
+      "description": {
+        "en_US": [
+          "There is a museum that specializes in\n",
+          "exhibits related to the town’s coal\n",
+          "mine."
+        ]
+      }
+    },
+    "oreburgh_mine": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OREBURGH_MINE"
+      },
+      "description": {
+        "en_US": [
+          "Huge deposits of coal still sleep\n",
+          "underneath the ground. The entrance\n",
+          "to the Oreburgh Mine is here."
+        ]
+      }
+    },
+    "cycle_shop": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ETERNA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Cycle Shop is located here.\n",
+          "There is also a big building with\n",
+          "a slightly sinister atmosphere."
+        ]
+      }
+    },
+    "eterna_statue": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ETERNA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A statue of an ancient Pokémon is\n",
+          "prominently and reverentially displayed."
+        ]
+      }
+    },
+    "eterna_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ETERNA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A Gym is indispensable in any town that\n",
+          "has many people coming and going.\n",
+          "This city is no exception."
+        ]
+      }
+    },
+    "amity_square": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_AMITY_SQUARE"
+      },
+      "description": {
+        "en_US": [
+          "The entrance to Amity Square is here.\n",
+          "The square is a place where Trainers\n",
+          "can stroll peacefully with Pokémon."
+        ]
+      }
+    },
+    "hearthome_contest_hall_and_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_HEARTHOME_CITY"
+      },
+      "description": {
+        "en_US": [
+          "If you care about the looks of your\n",
+          "Pokémon, head for the Contest Hall.\n",
+          "For toughness, go to the Gym."
+        ]
+      }
+    },
+    "landmark_36": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_HEARTHOME_CITY"
+      },
+      "description": {
+        "en_US": [
+          "There is a building here that is\n",
+          "symbolic of the city’s status as a\n",
+          "place where different cultures meet."
+        ]
+      }
+    },
+    "pokemon_fan_club": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_HEARTHOME_CITY"
+      },
+      "description": {
+        "en_US": [
+          "A nice fountain with benches, as well\n",
+          "as the Pokémon Fan Club, are among\n",
+          "the city’s amenities."
+        ]
+      }
+    },
+    "pastoria_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_PASTORIA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Gym is a good example of the\n",
+          "abundant water resources available to\n",
+          "the city."
+        ]
+      }
+    },
+    "great_marsh": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_PASTORIA_CITY"
+      },
+      "description": {
+        "en_US": [
+          "There is a lookout that affords views\n",
+          "of the Great Marsh. The gates to\n",
+          "the Safari Zone are also here."
+        ]
+      }
+    },
+    "department_store": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VEILSTONE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "There are warehouses for storing a\n",
+          "variety of goods. There is also a\n",
+          "major department store."
+        ]
+      }
+    },
+    "team_galactic_hq": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_GALACTIC_HQ"
+      },
+      "description": {
+        "en_US": [
+          "At the highest point in the city is\n",
+          "Team Galactic’s headquarters."
+        ]
+      }
+    },
+    "veilstone_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VEILSTONE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The city puts effort into providing\n",
+          "entertainment. Naturally, one can find\n",
+          "a Gym here."
+        ]
+      }
+    },
+    "game_corner": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VEILSTONE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "Conveniently located right next door\n",
+          "to the Game Corner is the Prize\n",
+          "Exchange."
+        ]
+      }
+    },
+    "sunyshore_gym_and_bazaar": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SUNYSHORE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Gym is located atop a rocky\n",
+          "outcropping. Down on the beach is\n",
+          "a festive bazaar."
+        ]
+      }
+    },
+    "vista_lighthouse": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SUNYSHORE_CITY"
+      },
+      "description": {
+        "en_US": [
+          "The Vista Lighthouse’s bright beacon\n",
+          "illuminates the Sinnoh region."
+        ]
+      }
+    },
+    "snowpoint_temple_and_gym": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SNOWPOINT_TEMPLE"
+      },
+      "description": {
+        "en_US": [
+          "The Gym is at the heart of the city.\n",
+          "To the north is the Snowpoint Temple."
+        ]
+      }
+    },
+    "pokemon_league": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_POKEMON_LEAGUE"
+      },
+      "description": {
+        "en_US": [
+          "The Pokémon League reception counter\n",
+          "is located here. Only those who have\n",
+          "beaten all the Gyms may enter."
+        ]
+      }
+    },
+    "victory_road": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VICTORY_ROAD"
+      },
+      "description": {
+        "en_US": [
+          "Victory Road is the last and toughest\n",
+          "of the challenges leading up to the\n",
+          "Pokémon League."
+        ]
+      }
+    },
+    "fight_area_pier": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FIGHT_AREA"
+      },
+      "description": {
+        "en_US": [
+          "Moored at the pier is the ferry to\n",
+          "Snowpoint City."
+        ]
+      }
+    },
+    "battle_frontier_gateway": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FIGHT_AREA"
+      },
+      "description": {
+        "en_US": [
+          "The gateway to the Battle Frontier is\n",
+          "located here."
+        ]
+      }
+    },
+    "verity_cavern": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VERITY_CAVERN"
+      },
+      "description": {
+        "en_US": [
+          "It is possible to enter the cave\n",
+          "underneath the lake from the\n",
+          "island in the middle."
+        ]
+      }
+    },
+    "valor_cavern": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VALOR_CAVERN"
+      },
+      "description": {
+        "en_US": [
+          "It is possible to enter the cave\n",
+          "underneath the lake from the\n",
+          "island in the middle."
+        ]
+      }
+    },
+    "valor_lakefront_restaurant": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VALOR_LAKEFRONT_RESTAURANT"
+      },
+      "description": {
+        "en_US": [
+          "A high-class restaurant is located\n",
+          "on a hill overlooking the lake."
+        ]
+      }
+    },
+    "acuity_cavern": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_ACUITY_CAVERN"
+      },
+      "description": {
+        "en_US": [
+          "It is possible to enter the cave\n",
+          "underneath the lake from the\n",
+          "island in the middle."
+        ]
+      }
+    },
+    "turnback_cave": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_TURNBACK_CAVE"
+      },
+      "description": {
+        "en_US": [
+          "Beneath the lake’s surface is a cave\n",
+          "where dimensions are distorted."
+        ]
+      }
+    },
+    "valley_windworks": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_VALLEY_WINDWORKS"
+      },
+      "description": {
+        "en_US": [
+          "Winds blowing through the canyon feed\n",
+          "the wind turbines to generate clean\n",
+          "electricity."
+        ]
+      }
+    },
+    "old_chateau": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_OLD_CHATEAU"
+      },
+      "description": {
+        "en_US": [
+          "Deep in the forest is the Old Chateau.\n",
+          "It is falling into disrepair after\n",
+          "being abandoned by its owner."
+        ]
+      }
+    },
+    "fuego_ironworks": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_FUEGO_IRONWORKS"
+      },
+      "description": {
+        "en_US": [
+          "The ironworks refines iron ore mined\n",
+          "from Mt. Coronet to make iron and\n",
+          "to manufacture mechanical parts."
+        ]
+      }
+    },
+    "spear_pillar": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_SPEAR_PILLAR"
+      },
+      "description": {
+        "en_US": [
+          "There is an ancient ruin named the\n",
+          "Spear Pillar located here."
+        ]
+      }
+    },
+    "stark_mountain": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_STARK_MOUNTAIN_INTERIOR"
+      },
+      "description": {
+        "en_US": [
+          "Inside the mountain, fissures in spilled\n",
+          "and hardened lava form enormous\n",
+          "caverns."
+        ]
+      }
+    },
+    "iron_island": {
+      "condition": {
+        "type": "TOWN_MAP_DESC_FLAG_FIRST_ARRIVAL",
+        "flag": "FIRST_ARRIVAL_IRON_ISLAND_INTERIOR"
+      },
+      "description": {
+        "en_US": [
+          "Inside the island are remnants of an\n",
+          "iron ore mining operation from the\n",
+          "past."
+        ]
+      }
+    }
+  },
+  "blocks": [
+    {
+      "x": 3,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_20_NCGR",
+      "hidden_location": null,
+      "area": "route_201",
+      "landmark": null
+    },
+    {
+      "x": 4,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_201",
+      "landmark": null
+    },
+    {
+      "x": 5,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_202",
+      "landmark": null
+    },
+    {
+      "x": 6,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_203",
+      "landmark": null
+    },
+    {
+      "x": 7,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_203",
+      "landmark": "oreburgh_gate"
+    },
+    {
+      "x": 5,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_204",
+      "landmark": null
+    },
+    {
+      "x": 5,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_204",
+      "landmark": "ravaged_path"
+    },
+    {
+      "x": 8,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_205_north",
+      "landmark": null
+    },
+    {
+      "x": 6,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_17_NCGR",
+      "hidden_location": null,
+      "area": "route_205_south",
+      "landmark": "route_205_cabin"
+    },
+    {
+      "x": 6,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_205_south",
+      "landmark": null
+    },
+    {
+      "x": 6,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_18_NCGR",
+      "hidden_location": null,
+      "area": "route_205_south",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_206",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_206",
+      "landmark": "wayward_cave"
+    },
+    {
+      "x": 9,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_206",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_206",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_19_NCGR",
+      "hidden_location": null,
+      "area": "route_207",
+      "landmark": null
+    },
+    {
+      "x": 10,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_207",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_208",
+      "landmark": null
+    },
+    {
+      "x": 13,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_208",
+      "landmark": "berry_masters_house"
+    },
+    {
+      "x": 17,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_209",
+      "landmark": "lost_tower"
+    },
+    {
+      "x": 16,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_209",
+      "landmark": null
+    },
+    {
+      "x": 17,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "route_209",
+      "landmark": null
+    },
+    {
+      "x": 15,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_210_north",
+      "landmark": null
+    },
+    {
+      "x": 16,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_210_north",
+      "landmark": null
+    },
+    {
+      "x": 17,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_05_NCGR",
+      "hidden_location": null,
+      "area": "route_210_north",
+      "landmark": "dragon_masters_house"
+    },
+    {
+      "x": 17,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_210_south",
+      "landmark": null
+    },
+    {
+      "x": 17,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_16_NCGR",
+      "hidden_location": null,
+      "area": "route_210_south",
+      "landmark": "route_210_coffee_shop"
+    },
+    {
+      "x": 17,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_210_south",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_211",
+      "landmark": null
+    },
+    {
+      "x": 13,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_211",
+      "landmark": null
+    },
+    {
+      "x": 14,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_212_north",
+      "landmark": null
+    },
+    {
+      "x": 14,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_212_north",
+      "landmark": "pokemon_mansion"
+    },
+    {
+      "x": 14,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_212_north",
+      "landmark": null
+    },
+    {
+      "x": 14,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_07_NCGR",
+      "hidden_location": null,
+      "area": "route_212_south",
+      "landmark": null
+    },
+    {
+      "x": 15,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_212_south",
+      "landmark": null
+    },
+    {
+      "x": 16,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_212_south",
+      "landmark": "route_212_move_tutor"
+    },
+    {
+      "x": 17,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_212_south",
+      "landmark": null
+    },
+    {
+      "x": 20,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_22_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": null
+    },
+    {
+      "x": 21,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_27_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_21_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": null
+    },
+    {
+      "x": 20,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_07_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": "doctor_footsteps_house"
+    },
+    {
+      "x": 21,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_24_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "route_213",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_214",
+      "landmark": "ruin_maniac_cave"
+    },
+    {
+      "x": 22,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_214",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_214",
+      "landmark": null
+    },
+    {
+      "x": 18,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_215",
+      "landmark": null
+    },
+    {
+      "x": 19,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_215",
+      "landmark": null
+    },
+    {
+      "x": 20,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_215",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_11_NCGR",
+      "hidden_location": null,
+      "area": "route_216",
+      "landmark": null
+    },
+    {
+      "x": 10,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_216",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_216",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 8,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_217",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 9,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_217",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_217",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 11,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_217",
+      "landmark": null
+    },
+    {
+      "x": 2,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_218",
+      "landmark": null
+    },
+    {
+      "x": 3,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_218",
+      "landmark": null
+    },
+    {
+      "x": 5,
+      "z": 27,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_219",
+      "landmark": null
+    },
+    {
+      "x": 5,
+      "z": 28,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_07_NCGR",
+      "hidden_location": null,
+      "area": "route_220",
+      "landmark": null
+    },
+    {
+      "x": 6,
+      "z": 28,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_220",
+      "landmark": null
+    },
+    {
+      "x": 7,
+      "z": 28,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_221",
+      "landmark": null
+    },
+    {
+      "x": 8,
+      "z": 28,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_221",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 28,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_00_NCGR",
+      "hidden_location": null,
+      "area": "route_221",
+      "landmark": "pal_park_front_gate"
+    },
+    {
+      "x": 23,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_222",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_222",
+      "landmark": null
+    },
+    {
+      "x": 25,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_222",
+      "landmark": "pokemon_size_judge"
+    },
+    {
+      "x": 26,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_223",
+      "landmark": null
+    },
+    {
+      "x": 26,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_223",
+      "landmark": null
+    },
+    {
+      "x": 26,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_223",
+      "landmark": null
+    },
+    {
+      "x": 26,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_223",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 15,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_02_NCGR",
+      "hidden_location": null,
+      "area": "route_224",
+      "landmark": null
+    },
+    {
+      "x": 27,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "route_224",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "route_224",
+      "landmark": null
+    },
+    {
+      "x": 27,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_10_NCGR",
+      "hidden_location": null,
+      "area": "route_224",
+      "landmark": null
+    },
+    {
+      "x": 19,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "route_225",
+      "landmark": null
+    },
+    {
+      "x": 19,
+      "z": 11,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_225",
+      "landmark": null
+    },
+    {
+      "x": 19,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_225",
+      "landmark": null
+    },
+    {
+      "x": 21,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_226",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_226",
+      "landmark": null
+    },
+    {
+      "x": 23,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_18_NCGR",
+      "hidden_location": null,
+      "area": "route_226",
+      "landmark": "the_meisters_house"
+    },
+    {
+      "x": 23,
+      "z": 8,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_227",
+      "landmark": null
+    },
+    {
+      "x": 23,
+      "z": 9,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_227",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_05_NCGR",
+      "hidden_location": null,
+      "area": "route_228",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 11,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_228",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "route_228",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_18_NCGR",
+      "hidden_location": null,
+      "area": "route_229",
+      "landmark": null
+    },
+    {
+      "x": 25,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_09_NCGR",
+      "hidden_location": null,
+      "area": "route_229",
+      "landmark": null
+    },
+    {
+      "x": 21,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_230",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_230",
+      "landmark": null
+    },
+    {
+      "x": 23,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "route_230",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 7,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 8,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 9,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 11,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 28,
+      "z": 14,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "seabreak_path",
+      "landmark": null
+    },
+    {
+      "x": 3,
+      "z": 27,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "signpost_NCLR",
+      "hidden_location": null,
+      "area": "twinleaf_town",
+      "landmark": "protagonists_homes"
+    },
+    {
+      "x": 5,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_00_NCGR",
+      "hidden_location": null,
+      "area": "sandgem_town",
+      "landmark": "prof_rowans_lab"
+    },
+    {
+      "x": 5,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_01_NCGR",
+      "hidden_location": null,
+      "area": "floaroma_town",
+      "landmark": "floaroma_meadow"
+    },
+    {
+      "x": 5,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_01_NCGR",
+      "hidden_location": null,
+      "area": "floaroma_town",
+      "landmark": "flower_shop"
+    },
+    {
+      "x": 17,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_02_NCGR",
+      "hidden_location": null,
+      "area": "solaceon_town",
+      "landmark": "pokemon_day_care"
+    },
+    {
+      "x": 18,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_02_NCGR",
+      "hidden_location": null,
+      "area": "solaceon_town",
+      "landmark": "solaceon_ruins"
+    },
+    {
+      "x": 14,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_03_NCGR",
+      "hidden_location": null,
+      "area": "celestic_town",
+      "landmark": "celestic_town_shrine"
+    },
+    {
+      "x": 20,
+      "z": 10,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_04_NCGR",
+      "hidden_location": null,
+      "area": "survival_area",
+      "landmark": null
+    },
+    {
+      "x": 25,
+      "z": 14,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_05_NCGR",
+      "hidden_location": null,
+      "area": "resort_area",
+      "landmark": null
+    },
+    {
+      "x": 4,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_06_NCGR",
+      "hidden_location": null,
+      "area": "jubilife_city",
+      "landmark": "poketch_company"
+    },
+    {
+      "x": 5,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_06_NCGR",
+      "hidden_location": null,
+      "area": "jubilife_city",
+      "landmark": "jubilife_tv"
+    },
+    {
+      "x": 4,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_06_NCGR",
+      "hidden_location": null,
+      "area": "jubilife_city",
+      "landmark": "global_terminal"
+    },
+    {
+      "x": 5,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_06_NCGR",
+      "hidden_location": null,
+      "area": "jubilife_city",
+      "landmark": "trainers_school"
+    },
+    {
+      "x": 1,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_07_NCGR",
+      "hidden_location": null,
+      "area": "canalave_city",
+      "landmark": "canalave_library_and_gym"
+    },
+    {
+      "x": 1,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_07_NCGR",
+      "hidden_location": null,
+      "area": "canalave_city",
+      "landmark": "canalave_piers"
+    },
+    {
+      "x": 8,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "oreburgh_city",
+      "landmark": "oreburgh_gym"
+    },
+    {
+      "x": 9,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "oreburgh_city",
+      "landmark": "oreburgh_museum"
+    },
+    {
+      "x": 9,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_08_NCGR",
+      "hidden_location": null,
+      "area": "oreburgh_city",
+      "landmark": "oreburgh_mine"
+    },
+    {
+      "x": 9,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_09_NCGR",
+      "hidden_location": null,
+      "area": "eternia_city",
+      "landmark": "cycle_shop"
+    },
+    {
+      "x": 10,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_09_NCGR",
+      "hidden_location": null,
+      "area": "eternia_city",
+      "landmark": "eterna_statue"
+    },
+    {
+      "x": 9,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_09_NCGR",
+      "hidden_location": null,
+      "area": "eternia_city",
+      "landmark": "eterna_gym"
+    },
+    {
+      "x": 14,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_10_NCGR",
+      "hidden_location": null,
+      "area": "hearthome_city",
+      "landmark": "amity_square"
+    },
+    {
+      "x": 15,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_10_NCGR",
+      "hidden_location": null,
+      "area": "hearthome_city",
+      "landmark": "hearthome_contest_hall_and_gym"
+    },
+    {
+      "x": 14,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_10_NCGR",
+      "hidden_location": null,
+      "area": "hearthome_city",
+      "landmark": "landmark_36"
+    },
+    {
+      "x": 15,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_10_NCGR",
+      "hidden_location": null,
+      "area": "hearthome_city",
+      "landmark": "pokemon_fan_club"
+    },
+    {
+      "x": 18,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_11_NCGR",
+      "hidden_location": null,
+      "area": "pastoria_city",
+      "landmark": "pastoria_gym"
+    },
+    {
+      "x": 19,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_11_NCGR",
+      "hidden_location": null,
+      "area": "pastoria_city",
+      "landmark": "great_marsh"
+    },
+    {
+      "x": 18,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_11_NCGR",
+      "hidden_location": null,
+      "area": "pastoria_city",
+      "landmark": null
+    },
+    {
+      "x": 19,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_11_NCGR",
+      "hidden_location": null,
+      "area": "pastoria_city",
+      "landmark": null
+    },
+    {
+      "x": 21,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "veilstone_city",
+      "landmark": "department_store"
+    },
+    {
+      "x": 22,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "veilstone_city",
+      "landmark": "team_galactic_hq"
+    },
+    {
+      "x": 21,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "veilstone_city",
+      "landmark": "veilstone_gym"
+    },
+    {
+      "x": 22,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_12_NCGR",
+      "hidden_location": null,
+      "area": "veilstone_city",
+      "landmark": "game_corner"
+    },
+    {
+      "x": 26,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_13_NCGR",
+      "hidden_location": null,
+      "area": "sunyshore_city",
+      "landmark": "sunyshore_gym_and_bazaar"
+    },
+    {
+      "x": 27,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_13_NCGR",
+      "hidden_location": null,
+      "area": "sunyshore_city",
+      "landmark": null
+    },
+    {
+      "x": 26,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_13_NCGR",
+      "hidden_location": null,
+      "area": "sunyshore_city",
+      "landmark": null
+    },
+    {
+      "x": 27,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_13_NCGR",
+      "hidden_location": null,
+      "area": "sunyshore_city",
+      "landmark": "vista_lighthouse"
+    },
+    {
+      "x": 11,
+      "z": 6,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_14_NCGR",
+      "hidden_location": null,
+      "area": "snowpoint_city",
+      "landmark": "snowpoint_temple_and_gym"
+    },
+    {
+      "x": 11,
+      "z": 7,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_14_NCGR",
+      "hidden_location": null,
+      "area": "snowpoint_city",
+      "landmark": null
+    },
+    {
+      "x": 26,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_15_NCGR",
+      "hidden_location": null,
+      "area": "pokemon_league",
+      "landmark": "pokemon_league"
+    },
+    {
+      "x": 26,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_15_NCGR",
+      "hidden_location": null,
+      "area": "victory_road",
+      "landmark": "victory_road"
+    },
+    {
+      "x": 19,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_16_NCGR",
+      "hidden_location": null,
+      "area": "fight_area",
+      "landmark": "fight_area_pier"
+    },
+    {
+      "x": 20,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_MAP",
+      "signpost_narc_member_idx": "route_map_16_NCGR",
+      "hidden_location": null,
+      "area": "fight_area",
+      "landmark": "battle_frontier_gateway"
+    },
+    {
+      "x": 1,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "verity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 2,
+      "z": 25,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "verity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 1,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "verity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 2,
+      "z": 26,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "verity_lakefront",
+      "landmark": "verity_cavern"
+    },
+    {
+      "x": 21,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "valor_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 23,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "valor_lakefront",
+      "landmark": "valor_cavern"
+    },
+    {
+      "x": 21,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "valor_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 22,
+      "z": 24,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "valor_lakefront",
+      "landmark": "valor_lakefront_restaurant"
+    },
+    {
+      "x": 9,
+      "z": 6,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "acuity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 10,
+      "z": 6,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "acuity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 9,
+      "z": 7,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "acuity_lakefront",
+      "landmark": null
+    },
+    {
+      "x": 10,
+      "z": 7,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "acuity_lakefront",
+      "landmark": "acuity_cavern"
+    },
+    {
+      "x": 23,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SPRING_PATH",
+      "area": "spring_path",
+      "landmark": null
+    },
+    {
+      "x": 24,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SPRING_PATH",
+      "area": "spring_path",
+      "landmark": null
+    },
+    {
+      "x": 23,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SPRING_PATH",
+      "area": "spring_path",
+      "landmark": "turnback_cave"
+    },
+    {
+      "x": 24,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SPRING_PATH",
+      "area": "spring_path",
+      "landmark": null
+    },
+    {
+      "x": 7,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "valley_windworks",
+      "landmark": "valley_windworks"
+    },
+    {
+      "x": 6,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "eterna_forest",
+      "landmark": null
+    },
+    {
+      "x": 7,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "eterna_forest",
+      "landmark": "old_chateau"
+    },
+    {
+      "x": 6,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "eterna_forest",
+      "landmark": null
+    },
+    {
+      "x": 7,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_ARROW",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "eterna_forest",
+      "landmark": null
+    },
+    {
+      "x": 5,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "fuego_ironworks",
+      "landmark": "fuego_ironworks"
+    },
+    {
+      "x": 12,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 13,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 14,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 15,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 16,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 17,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 12,
+      "z": 18,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": "spear_pillar"
+    },
+    {
+      "x": 12,
+      "z": 19,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 20,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 21,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 11,
+      "z": 22,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "mount_coronet",
+      "landmark": null
+    },
+    {
+      "x": 1,
+      "z": 8,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_FULLMOON_ISLAND",
+      "area": "fullmoon_island",
+      "landmark": null
+    },
+    {
+      "x": 23,
+      "z": 7,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "stark_mountain",
+      "landmark": "stark_mountain"
+    },
+    {
+      "x": 28,
+      "z": 6,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_SEABREAK_PATH",
+      "area": "flower_paradise",
+      "landmark": null
+    },
+    {
+      "x": 3,
+      "z": 15,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "iron_island",
+      "landmark": "iron_island"
+    },
+    {
+      "x": 4,
+      "z": 8,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": "HIDDEN_LOCATION_NEWMOON_ISLAND",
+      "area": "newmoon_island",
+      "landmark": null
+    },
+    {
+      "x": 20,
+      "z": 12,
+      "signpost_type": "SIGNPOST_TYPE_LANDMARK",
+      "signpost_narc_member_idx": "signpost_frame_NCGR",
+      "hidden_location": null,
+      "area": "battle_frontier",
+      "landmark": null
+    }
+  ]
+}

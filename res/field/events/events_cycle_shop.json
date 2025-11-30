@@ -35,10 +35,11 @@
     ],
     "object_events": [
         {
+            "id": "CYCLE_SHOP_POKEFAN_M_0",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0192",
+            "hidden_flag": "FLAG_UNK_0x0192",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -49,10 +50,11 @@
             "y": 0
         },
         {
+            "id": "CYCLE_SHOP_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 2,
             "data": [],
@@ -63,10 +65,11 @@
             "y": 0
         },
         {
+            "id": "CYCLE_SHOP_CLEFAIRY_2",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0200",
+            "hidden_flag": "FLAG_UNK_0x0200",
             "script": 2,
             "initial_dir": 3,
             "data": [],

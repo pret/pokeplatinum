@@ -25,36 +25,36 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Go do it, my Pokémon!\n",
-				"I’ll work hard, too!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Go do it, my Pokémon!\n",
+                "I’ll work hard, too!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"Oh...\n",
-				"We lost..."
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh...\n",
+                "We lost..."
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"I think we’ll visit the TV station in\n",
-				"Jubilife City next.\r",
-				"Or maybe we should go to the Global\n",
-				"Terminal?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "I think we’ll visit the TV station in\n",
+                "Jubilife City next.\r",
+                "Or maybe we should go to the Global\n",
+                "Terminal?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Umm, aren’t you that Trainer who beat\n",
-				"us before?\r",
-				"We feel good today, so we’ll be happy\n",
-				"to face you again!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Umm, aren’t you that Trainer who beat\n",
+                "us before?\r",
+                "We feel good today, so we’ll be happy\n",
+                "to face you again!\r"
+            ]
+        }
     ]
 }

@@ -23,8 +23,8 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "My luck’s run out...\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "My luck’s run out...\n"
+        }
     ]
 }

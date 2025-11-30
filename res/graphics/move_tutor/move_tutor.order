@@ -1,0 +1,13 @@
+select_box_anim.NANR
+select_box_cell.NCER
+select_box.NCGR
+view_change_arrows_anim.NANR
+view_change_arrows_cell.NCER
+view_change_arrows.NCGR
+scroll_arrows_anim.NANR
+scroll_arrows_cell.NCER
+scroll_arrows.NCGR
+sprites.NCLR
+move_tutor_bg_tiles.NCGR
+move_tutor_background.NSCR
+move_tutor_bg_tiles.NCLR

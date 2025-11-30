@@ -3,11 +3,49 @@
 
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "overworld_anim_manager.h"
+
+enum FloorTextures {
+    FLOOR_TEXTURE_TRAP_MOVE_UP = 0,
+    FLOOR_TEXTURE_TRAP_MOVE_RIGHT,
+    FLOOR_TEXTURE_TRAP_MOVE_DOWN,
+    FLOOR_TEXTURE_TRAP_MOVE_LEFT,
+    FLOOR_TEXTURE_TRAP_HURL_UP,
+    FLOOR_TEXTURE_TRAP_HURL_RIGHT,
+    FLOOR_TEXTURE_TRAP_HURL_DOWN,
+    FLOOR_TEXTURE_TRAP_HURL_LEFT,
+    FLOOR_TEXTURE_TRAP_WARP_UNUSED,
+    FLOOR_TEXTURE_TRAP_HI_WARP_UNUSED,
+    FLOOR_TEXTURE_TRAP_HOLE,
+    FLOOR_TEXTURE_TRAP_PIT,
+    FLOOR_TEXTURE_TRAP_REVERSE,
+    FLOOR_TEXTURE_TRAP_CONFUSE,
+    FLOOR_TEXTURE_TRAP_RUN_UNUSED,
+    FLOOR_TEXTURE_TRAP_FADE_UNUSED,
+    FLOOR_TEXTURE_TRAP_SLOW_UNUSED,
+    FLOOR_TEXTURE_TRAP_SMOKE,
+    FLOOR_TEXTURE_TRAP_BIG_SMOKE,
+    FLOOR_TEXTURE_TRAP_ROCK,
+    FLOOR_TEXTURE_TRAP_ROCKFALL,
+    FLOOR_TEXTURE_TRAP_FOAM,
+    FLOOR_TEXTURE_TRAP_BUBBLE,
+    FLOOR_TEXTURE_TRAP_ALERT_1,
+    FLOOR_TEXTURE_TRAP_ALERT_2,
+    FLOOR_TEXTURE_TRAP_ALERT_3,
+    FLOOR_TEXTURE_TRAP_ALERT_4,
+    FLOOR_TEXTURE_TRAP_LEAF,
+    FLOOR_TEXTURE_TRAP_FLOWER,
+    FLOOR_TEXTURE_TRAP_EMBER,
+    FLOOR_TEXTURE_TRAP_FIRE,
+    FLOOR_TEXTURE_TRAP_RADAR_UNUSED,
+    FLOOR_TEXTURE_BLACK_CIRCLE,
+    FLOOR_TEXTURE_COUNT,
+};
 
 void *ov5_021F4E08(UnkStruct_ov5_021DF47C *param0);
 void ov5_021F4E28(void *param0);
-UnkStruct_ov101_021D5D90 *ov5_021F4EAC(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4);
-UnkStruct_ov101_021D5D90 *ov5_021F4F18(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4);
+OverworldAnimManager *ov5_DrawFloorTexture(FieldSystem *fieldSystem, int x, int z, int size, int textureIdx);
+OverworldAnimManager *ov5_DrawGrowingFloorTexture(FieldSystem *fieldSystem, int x, int z, int finalSize, int textureIdx);
 
 #endif // POKEPLATINUM_OV5_021F4E08_H

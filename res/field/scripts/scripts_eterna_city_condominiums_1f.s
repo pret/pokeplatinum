@@ -32,8 +32,8 @@ _0032:
     SetVar VAR_0x8005, VAR_RESULT
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00BE
-    ScrCmd_199 VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00C9
+    CheckIsPartyMonOutsider VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C9
     BufferPartyMonNickname 0, VAR_0x8005
     Message 2
     ShowYesNoMenu VAR_RESULT
@@ -75,7 +75,7 @@ _00D9:
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0129
     ScrCmd_2B8 VAR_0x8005
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     BufferPartyMonNickname 0, VAR_0x8005
     Message 4
     WaitABXPadPress
@@ -106,9 +106,7 @@ _0168:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2A5
-    GetSelectedPartySlot VAR_RESULT
-    ReturnToField
+    SelectPokemonToTrade
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _01D9

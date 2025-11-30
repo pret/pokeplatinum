@@ -28,33 +28,33 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I’m a rookie breeder, but I’ll do\n",
-				"my very best!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I’m a rookie breeder, but I’ll do\n",
+                "my very best!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"It’s all right!\n",
-				"I’m still a rookie!\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "It’s all right!\n",
+                "I’m still a rookie!\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"The best way to raise Pokémon?\r",
-				"...Hmm, when it comes right down to it,\n",
-				"isn’t it all about love?\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The best way to raise Pokémon?\r",
+                "...Hmm, when it comes right down to it,\n",
+                "isn’t it all about love?\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"I can’t be a rookie forever.\n",
-				"I’ve learned a lot since we last met.\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "I can’t be a rookie forever.\n",
+                "I’ve learned a lot since we last met.\r"
+            ]
+        }
     ]
 }

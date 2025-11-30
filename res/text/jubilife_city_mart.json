@@ -2,7 +2,7 @@
   "key": 51888,
   "messages": [
     {
-      "id": "pl_msg_00000024_00000",
+      "id": "JubilifeCityMart_Text_WastedMoneyOnPokeBalls",
       "en_US": [
         "Aww, man.\n",
         "I wasted money on some Poké Balls.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000024_00001",
+      "id": "JubilifeCityMart_Text_PackSomePotions",
       "en_US": [
         "The one thing you must remember is to\n",
         "pack some Potions.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000024_00002",
+      "id": "JubilifeCityMart_Text_JustUseARepel",
       "en_US": [
         "Potions are important, but sometimes,\n",
         "it’s better to simply avoid battles.\r",

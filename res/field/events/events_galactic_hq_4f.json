@@ -27,10 +27,11 @@
     ],
     "object_events": [
         {
+            "id": "GALACTIC_HQ_4F_CYRUS_0",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01BE",
+            "hidden_flag": "FLAG_UNK_0x01BE",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -41,10 +42,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_GALACTIC_HQ_DOOR_1",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0226",
+            "hidden_flag": "FLAG_UNK_0x0226",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -55,10 +57,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_GALACTIC_HQ_DOOR_2",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0226",
+            "hidden_flag": "FLAG_UNK_0x0226",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -69,10 +72,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_BOLLARD_3",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -83,10 +87,11 @@
             "y": 0
         },
         {
+            "id": "GALACTIC_HQ_4F_BOLLARD_4",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_UNK_0x0237",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -131,7 +136,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": 16598,
+            "var": "VAR_UNK_0x40D6",
             "value": 0
         }
     ]

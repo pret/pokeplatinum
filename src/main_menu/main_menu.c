@@ -50,6 +50,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0695.h"
@@ -65,10 +66,10 @@ FS_EXTERN_OVERLAY(overlay98);
 #define COLORS_LIST_END 0
 
 #define UNFOCUSED_OPTION_FRAME_BASE_TILE 1
-#define FOCUSED_OPTION_FRAME_BASE_TILE   (UNFOCUSED_OPTION_FRAME_BASE_TILE + NUM_TILES_STANDARD_WINDOW_FRAME)
-#define OPTION_WINDOWS_BASE_TILE_START   (FOCUSED_OPTION_FRAME_BASE_TILE + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define FOCUSED_OPTION_FRAME_BASE_TILE   (UNFOCUSED_OPTION_FRAME_BASE_TILE + STANDARD_WINDOW_TILE_COUNT)
+#define OPTION_WINDOWS_BASE_TILE_START   (FOCUSED_OPTION_FRAME_BASE_TILE + STANDARD_WINDOW_TILE_COUNT)
 #define ALERT_WINDOW_FRAME_BASE_TILE     1
-#define ALERT_WINDOW_CONTENT_BASE_TILE   (ALERT_WINDOW_FRAME_BASE_TILE + 2 * NUM_TILES_STANDARD_WINDOW_FRAME)
+#define ALERT_WINDOW_CONTENT_BASE_TILE   (ALERT_WINDOW_FRAME_BASE_TILE + 2 * STANDARD_WINDOW_TILE_COUNT)
 
 #define WIRELESS_ICONS_TILES_OFFS     0x380
 #define WIRELESS_ICONS_TILES_ID_START ((4 << 12) + WIRELESS_ICONS_TILES_OFFS)
@@ -629,7 +630,7 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 43, 40, 42, 41, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, main_menu_scroll_arrows_NCGR_lz, main_menu_scroll_arrows_NCLR, main_menu_scroll_arrows_cell_NCER_lz, main_menu_scroll_arrows_anim_NANR_lz, DS_SCREEN_MAIN);
 
     appData->scrollUpArrowSprite = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->scrollUpArrowSprite, HW_LCD_WIDTH / 2, SCROLL_ARROWS_OFFSET, 0);
     Sprite_SetDrawFlag(appData->scrollUpArrowSprite, FALSE);
@@ -640,8 +641,8 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 
 static void LoadWirelessIconsGraphics(MainMenuAppData *appData)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCGR, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
 }
 
 static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type)
@@ -719,7 +720,7 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
 {
     StringTemplate *strTemplate; // Forward-declaration required to match.
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
     strTemplate = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
     TextColor textColor;

@@ -406,15 +406,15 @@ static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1)
 static void ov22_0225A2F4(UnkStruct_ov22_0225A154 *param0, int param1)
 {
     if (param1 == 0) {
-        sub_020128C4(param0->unk_10, 0, 15);
+        FontOAM_SetXY(param0->unk_10, 0, 15);
         sub_02012A60(param0->unk_10, 4);
     } else {
         if (param1 == 1) {
-            sub_020128C4(param0->unk_10, 0, 19);
+            FontOAM_SetXY(param0->unk_10, 0, 19);
         }
 
         if (param1 == 3) {
-            sub_020128C4(param0->unk_10, 0, 19);
+            FontOAM_SetXY(param0->unk_10, 0, 19);
             sub_02012A60(param0->unk_10, 3);
         }
     }
@@ -433,7 +433,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

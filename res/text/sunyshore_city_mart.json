@@ -2,7 +2,7 @@
   "key": 52112,
   "messages": [
     {
-      "id": "pl_msg_00000163_00000",
+      "id": "SunyshoreCityMart_Text_VictoryRoadIsHarrowing",
       "en_US": [
         "I’ve heard about Victory Road, which\n",
         "leads to the Pokémon League.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000163_00001",
+      "id": "SunyshoreCityMart_Text_BuyBallSealsAtSunyshoreMarket",
       "en_US": [
         "I shall buy Seals for decorating Poké\n",
         "Balls at the Sunyshore Market.\r",

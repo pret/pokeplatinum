@@ -12,7 +12,6 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay006/wild_encounters.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "encounter.h"
@@ -24,6 +23,7 @@
 #include "map_object.h"
 #include "math_util.h"
 #include "message.h"
+#include "overworld_anim_manager.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -35,9 +35,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "tv_episode_segment.h"
 #include "unk_020655F4.h"
-#include "unk_0206CCB0.h"
-#include "unk_020711EC.h"
 
 #include "res/text/bank/common_strings.h"
 
@@ -81,7 +80,7 @@ typedef struct {
     int fishHookedCounter;
     enum EncounterFishingRodType rodType;
     FieldSystem *fieldSystem;
-    UnkStruct_ov101_021D5D90 *unk_24;
+    OverworldAnimManager *unk_24;
     u8 printerID;
     Strbuf *formattedFishingMessage;
     Strbuf *fishingMessage;
@@ -139,7 +138,7 @@ BOOL FieldTask_Fishing(FieldTask *taskMan)
 
             if (caughtFish == TRUE) {
                 Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishingContext->fishEncounterDTO->parties[1], 0);
-                sub_0206D340(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
+                FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
 
                 GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_CAUGHT_FISH);
 
@@ -315,7 +314,7 @@ static BOOL FishingTask_ReelFishIn(FishingTask *fishingTask, PlayerAvatar *playe
     fishingTask->counter++;
 
     if (fishingTask->unk_24 != NULL) {
-        sub_0207136C(fishingTask->unk_24);
+        OverworldAnimManager_Finish(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 
@@ -367,7 +366,7 @@ static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *play
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fishingTask->fieldSystem->saveData), RECORD_FISH_GOT_AWAY);
 
-    sub_0206D340(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
+    FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
 
     return TRUE;
 }
@@ -455,7 +454,7 @@ static BOOL FishingTask_DelayBeforeFishFishing(FishingTask *fishingTask, PlayerA
 static BOOL FishingTask_FinishFishing(FishingTask *fishingTask, PlayerAvatar *playerAvatar, MapObject *playerMapObject)
 {
     if (fishingTask->unk_24 != NULL) {
-        sub_0207136C(fishingTask->unk_24);
+        OverworldAnimManager_Finish(fishingTask->unk_24);
         fishingTask->unk_24 = NULL;
     }
 
@@ -514,7 +513,7 @@ static int TryPressAOrB(void)
 
 static void FishingTask_Init(FishingTask *fishingTask)
 {
-    fishingTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
+    fishingTask->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
     fishingTask->formattedFishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
     fishingTask->fishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
     fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD1);

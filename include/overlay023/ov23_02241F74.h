@@ -13,6 +13,35 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+enum UndergroundStoredPosKeys {
+    UNDERGROUND_STORED_POS_NONE = 0,
+    UNDERGROUND_STORED_POS_KEY_1,
+    UNDERGROUND_STORED_POS_KEY_START_MENU,
+    UNDERGROUND_STORED_POS_KEY_3,
+};
+
+enum UndergroundMenuKeys {
+    UNDERGROUND_MENU_KEY_2 = 2,
+    UNDERGROUND_MENU_KEY_6 = 6,
+    UNDERGROUND_MENU_KEY_TRAPS = 8,
+    UNDERGROUND_MENU_KEY_SPHERES,
+    UNDERGROUND_MENU_KEY_GOODS,
+    UNDERGROUND_MENU_KEY_TREASURES,
+    UNDERGROUND_MENU_KEY_12,
+    UNDERGROUND_MENU_KEY_13,
+    UNDERGROUND_MENU_KEY_14,
+    UNDERGROUND_MENU_KEY_15,
+    UNDERGROUND_MENU_KEY_16,
+    UNDERGROUND_MENU_KEY_17,
+    UNDERGROUND_MENU_KEY_18,
+    UNDERGROUND_MENU_KEY_19,
+    UNDERGROUND_MENU_KEY_22 = 22,
+    UNDERGROUND_MENU_KEY_23
+};
+
+#define BIT_TRAPS_FULL             1 << 4
+#define BIT_BURIED_SPHERE_IN_FRONT 1 << 5
+
 typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
 
 UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void);
@@ -21,9 +50,9 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
-BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3);
-BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3);
-BOOL ov23_0224240C(int param0, int param1);
+BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, Strbuf *dest);
+BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, Strbuf *dest);
+BOOL ov23_0224240C(int x, int z);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void *param2, void *param3);
 void ov23_02242624(int param0, int param1, void *param2, void *param3);
@@ -59,10 +88,10 @@ void ov23_0224300C(int param0, int param1);
 void ov23_02243020(int param0);
 void UndergroundMan_SetReturnLog(int param0);
 void ov23_022430B8(int param0);
-void ov23_022430D0(u16 param0);
-void ov23_022430E0(u16 param0, u16 param1, u16 param2);
-u16 ov23_02243154(u16 param0);
-u16 ov23_0224318C(u16 param0);
+void CommManUnderground_SetStoredPosKey(u16 menuKey);
+void CommManUnderground_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPos);
+u16 CommManUnderground_GetStoredListPos(u16 menuKey);
+u16 CommManUnderground_GetStoredCursorPos(u16 menuKey);
 void ov23_022431C4(int param0, int param1, void *param2, void *param3);
 void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2);
 void ov23_02243204(void);

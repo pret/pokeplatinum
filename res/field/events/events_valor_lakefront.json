@@ -35,10 +35,11 @@
     ],
     "object_events": [
         {
+            "id": "VALOR_LAKEFRONT_CYNTHIA_0",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01AD",
+            "hidden_flag": "FLAG_UNK_0x01AD",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -49,10 +50,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_CAMERAMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01AE",
+            "hidden_flag": "FLAG_UNK_0x01AE",
             "script": 6,
             "initial_dir": 3,
             "data": [],
@@ -63,10 +65,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_CAMERAMAN_2",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01AE",
+            "hidden_flag": "FLAG_UNK_0x01AE",
             "script": 4,
             "initial_dir": 3,
             "data": [],
@@ -77,10 +80,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_POKEBALL_3",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0449",
+            "hidden_flag": "FLAG_UNK_0x0449",
             "script": 7083,
             "initial_dir": 0,
             "data": [],
@@ -91,10 +95,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x044A",
+            "hidden_flag": "FLAG_UNK_0x044A",
             "script": 7084,
             "initial_dir": 0,
             "data": [],
@@ -105,10 +110,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_GRUNT_M_5",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x021B",
+            "hidden_flag": "FLAG_UNK_0x021B",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -119,11 +125,12 @@
             "y": 0
         },
         {
-            "local_id": 31,
+            "id": "VALOR_LAKEFRONT_BEAUTY_6",
+            "clone_id": 31,
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0175",
+            "hidden_flag": "FLAG_UNK_0x0175",
             "script": 65535,
             "initial_dir": 2,
             "data": [],
@@ -134,10 +141,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_SIGNBOARD_7",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -148,10 +156,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_BEAUTY_8",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x025D",
+            "hidden_flag": "FLAG_UNK_0x025D",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -162,10 +171,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_COLLECTOR_9",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x027D",
+            "hidden_flag": "FLAG_UNK_0x027D",
             "script": 8,
             "initial_dir": 2,
             "data": [],
@@ -176,10 +186,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_BARRY_10",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01D5",
+            "hidden_flag": "FLAG_UNK_0x01D5",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -190,10 +201,11 @@
             "y": 0
         },
         {
+            "id": "VALOR_LAKEFRONT_POKEBALL_11",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0532",
+            "hidden_flag": "FLAG_UNK_0x0532",
             "script": 7315,
             "initial_dir": 0,
             "data": [],
@@ -256,8 +268,9 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": 16658,
+            "var": "VAR_UNK_0x4112",
             "value": 0
         }
     ]
 }
+

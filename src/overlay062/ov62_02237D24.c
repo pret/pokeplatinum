@@ -1311,8 +1311,8 @@ static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1)
         ManagedSprite_SetPositionXY(v0->unk_198[0].unk_08, 80, 232);
     }
 
-    sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
-    sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_198[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_198[1].unk_0C, 36, -8);
 }
 
 static void ov62_02239608(UnkStruct_0208C06C *param0)
@@ -1333,8 +1333,8 @@ static void ov62_02239608(UnkStruct_0208C06C *param0)
     ManagedSprite_SetAnim(v0->unk_198[1].unk_08, 4);
     ManagedSprite_SetPositionXY(v0->unk_198[0].unk_08, 32, 232);
     ManagedSprite_SetPositionXY(v0->unk_198[1].unk_08, 128, 232);
-    sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
-    sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_198[0].unk_0C, 36, -8);
+    FontOAM_SetXY(v0->unk_198[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_198[0].unk_0C, 1);
     sub_020129D0(v0->unk_198[1].unk_0C, 1);
 
@@ -1554,7 +1554,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
     v4->unk_1D4.unk_10 = 1;
 }
 

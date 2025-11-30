@@ -429,7 +429,7 @@ static u8 TryUseItem(BattleBag *battleBag)
                 UseBagItem(context->battleSystem, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
                 return TASK_STATE_EXIT;
             } else {
-                MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, context->heapID);
+                MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, context->heapID);
                 Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, CommonStrings_Text_CantDoThatRightNow);
                 StringTemplate_SetPlayerName(battleBag->stringTemplate, 0, context->trainerInfo);
                 StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
@@ -733,13 +733,13 @@ static void LoadGraphicsData(BattleBag *battleBag)
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
 
     int optionsFrame = ov16_0223EDE0(battleBag->context->battleSystem);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - NUM_TILES_MESSAGE_BOX_FRAME, 0, FALSE, battleBag->context->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - SCROLLING_MESSAGE_BOX_TILE_COUNT, 0, FALSE, battleBag->context->heapID);
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
 }
 
 static void InitializeMessageLoader(BattleBag *battleBagTask)
 {
-    battleBagTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
+    battleBagTask->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
     battleBagTask->unk_0C = FontSpecialChars_Init(15, 14, 0, battleBagTask->context->heapID);
     battleBagTask->stringTemplate = StringTemplate_Default(battleBagTask->context->heapID);
     battleBagTask->strbuf = Strbuf_Init(512, battleBagTask->context->heapID);

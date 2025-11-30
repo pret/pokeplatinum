@@ -19,11 +19,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"How is this madness possible?\n",
-				"The two of us, losing to children?\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "How is this madness possible?\n",
+                "The two of us, losing to children?\n"
+            ]
+        }
     ]
 }

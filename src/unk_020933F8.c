@@ -50,11 +50,11 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "trainer_info.h"
+#include "tv_episode_segment.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
-#include "unk_0206CCB0.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
 #include "vars_flags.h"
@@ -403,7 +403,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     int v1 = 4 - 1;
     int v2;
 
-    Heap_Create(HEAP_ID_FIELD2, HEAP_ID_20, (0x3000 + 0x1000));
+    Heap_Create(HEAP_ID_FIELD2, HEAP_ID_20, 0x3000 + 0x1000);
 
     v0 = sub_020937C4();
     v0->unk_19A4 = LCRNG_GetSeed();
@@ -499,7 +499,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
             param0->unk_00.unk_D8[v1] = Strbuf_Init(8, HEAP_ID_20);
         }
 
-        Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OTNAME_STRBUF, param0->unk_00.unk_D8[v1]);
+        Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OT_NAME_STRING, param0->unk_00.unk_D8[v1]);
     }
 
     for (v1 = 1; v1 < 4; v1++) {
@@ -548,19 +548,19 @@ static int sub_02093B2C(Pokemon *param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SUPER_COOL_RIBBON + v1, NULL);
             break;
         case 1:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SUPER_BEAUTY_RIBBON + v1, NULL);
             break;
         case 2:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SUPER_CUTE_RIBBON + v1, NULL);
             break;
         case 3:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SUPER_SMART_RIBBON + v1, NULL);
             break;
         case 4:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SUPER_TOUGH_RIBBON + v1, NULL);
             break;
         default:
             GF_ASSERT(0);
@@ -1506,7 +1506,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
         v1->unk_08++;
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
-            BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(6, 0, 4, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
             Sound_PlayEffect(SEQ_SE_DP_CON_014);
             v1->unk_0A++;
             v1->unk_08 = 0;

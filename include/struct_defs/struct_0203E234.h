@@ -5,10 +5,10 @@
 #include "play_time.h"
 #include "trainer_info.h"
 
-typedef struct {
-    const TrainerInfo *unk_00;
-    const Party *unk_04;
+typedef struct HallOfFameDisplayData {
+    const TrainerInfo *trainerInfo;
+    const Party *party;
     const PlayTime *playTime;
-} UnkStruct_0203E234;
+} HallOfFameDisplayData;
 
 #endif // POKEPLATINUM_STRUCT_0203E234_H

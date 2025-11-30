@@ -1,0 +1,30 @@
+{
+	"labelEnabled":	true,
+	"uaatEnabled":	false,
+	"sequenceCount":	1,
+	"frameCount":	2,
+	"sequences":	[{
+			"frameCount":	2,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	1,
+			"frameData":	[{
+					"frameDelay":	1,
+					"resultId":	0
+				}, {
+					"frameDelay":	1,
+					"resultId":	1
+				}]
+		}],
+	"animationResults":	[{
+			"resultType":	0,
+			"index":	0
+		}, {
+			"resultType":	0,
+			"index":	1
+		}],
+	"resultCount":	2,
+	"labels":	["HeroIconAnime"],
+	"labelCount":	1
+}

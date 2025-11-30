@@ -21,25 +21,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_FIRST_DAMAGE",
-			"en_US": [
-				"What in the...?!\n",
-				"That one hurt, you!\n"
-			]
-		},
+            "type": "TRMSG_FIRST_DAMAGE",
+            "en_US": [
+                "What in the...?!\n",
+                "That one hurt, you!\n"
+            ]
+        },
         {
-			"type": "TRMSG_ACTIVE_BATTLER_HALF_HP",
-			"en_US": [
-				"No way! We can keep going!\n",
-				"This is where we hit our stride!\n"
-			]
-		},
+            "type": "TRMSG_ACTIVE_BATTLER_HALF_HP",
+            "en_US": [
+                "No way! We can keep going!\n",
+                "This is where we hit our stride!\n"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"What are you saying?!\n",
-				"We ended up losing?!\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "What are you saying?!\n",
+                "We ended up losing?!\n"
+            ]
+        }
     ]
 }

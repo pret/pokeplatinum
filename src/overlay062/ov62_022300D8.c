@@ -325,7 +325,7 @@ void ov62_022307C0(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         ov62_02230E68(v1->unk_00[v0].unk_00, 42 + 8, (25 + (36 * 4) + (16 * (5 - (param0->unk_534.unk_1AC)))) + 48);
-        sub_020128C4(param0->unk_534.unk_00[v0].unk_14, 36, -8);
+        FontOAM_SetXY(param0->unk_534.unk_00[v0].unk_14, 36, -8);
     }
 
     v0 = 0;
@@ -477,7 +477,7 @@ void ov62_02230AF0(UnkStruct_0208C06C *param0)
     for (v0 = 0; v0 < param0->unk_534.unk_1A4; v0++) {
         ManagedSprite_SetAnim(param0->unk_534.unk_00[v0].unk_00, param0->unk_534.unk_190[v0]->unk_0C);
         ov62_02230FC8(param0, &param0->unk_534.unk_00[v0], param0->unk_534.unk_190[v0]->unk_08, param0->unk_534.unk_190[v0]);
-        sub_020128C4(param0->unk_534.unk_00[v0].unk_14, 36, -8);
+        FontOAM_SetXY(param0->unk_534.unk_00[v0].unk_14, 36, -8);
         sub_020129D0(param0->unk_534.unk_00[v0].unk_14, 1);
         ManagedSprite_SetDrawFlag(param0->unk_534.unk_00[v0].unk_00, 1);
     }

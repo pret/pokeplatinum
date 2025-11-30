@@ -54,11 +54,11 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"...You, my friend, are tough!\n",
-				"I can see why you defy us so...\n"
-			]
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...You, my friend, are tough!\n",
+                "I can see why you defy us so...\n"
+            ]
+        }
     ]
 }

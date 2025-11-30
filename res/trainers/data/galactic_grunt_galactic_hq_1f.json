@@ -19,27 +19,27 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Who do you think you are?\n",
-				"Desecrating the halls of our HQ?!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Who do you think you are?\n",
+                "Desecrating the halls of our HQ?!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"A tough little Trainer is what you\n",
-				"are...\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "A tough little Trainer is what you\n",
+                "are...\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"In our HQ, we get around by taking\n",
-				"warp panels.\r",
-				"I’d like to see you figure out how\n",
-				"they connect.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "In our HQ, we get around by taking\n",
+                "warp panels.\r",
+                "I’d like to see you figure out how\n",
+                "they connect.\n"
+            ]
+        }
     ]
 }

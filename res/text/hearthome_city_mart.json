@@ -2,7 +2,7 @@
   "key": 18993,
   "messages": [
     {
-      "id": "pl_msg_00000107_00000",
+      "id": "HearthomeCityMart_Text_CantBuyRevivesWithTwoBadges",
       "en_US": [
         "The item Revive is something I could\n",
         "use now.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000107_00001",
+      "id": "HearthomeCityMart_Text_FindAccessoriesInAmitySquare",
       "en_US": [
         "Do you know Amity Square?\n",
         "It’s a happy and cheerful place.\r",

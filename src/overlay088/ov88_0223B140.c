@@ -292,7 +292,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
+    v0->unk_184 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
     v0->appMan = NULL;
 
     ov88_0223C370(v0, appMan);
@@ -563,7 +563,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
 
-            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (species == SPECIES_SHAYMIN) {
                 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -1138,7 +1138,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
     param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
 
-    sub_02038F8C(v0->wiFiHistory);
+    WiFiHistory_FlagGeonetLinkInfo(v0->wiFiHistory);
 }
 
 static void ov88_0223C44C(BgConfig *param0)
@@ -1268,7 +1268,7 @@ static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3,
 {
     Strbuf *v0 = Strbuf_Init(20, HEAP_ID_26);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
+    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRING, v0);
     Window_FillTilemap(param0, 0);
     ov88_0223EC78(param0, v0, param3, TEXT_SPEED_INSTANT, param4, 1);
     Strbuf_Free(v0);
@@ -2025,7 +2025,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
+    param0->unk_36D0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
     param0->unk_36EC = SaveData_GetWiFiList(param0->saveData);
     param0->unk_226C = ov88_0223D854;
 
@@ -2465,7 +2465,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v2 = SaveData_GetVarsFlags(param4->saveData);
 
             if (SystemVars_GetArceusEventState(v2) == 0) {
@@ -2573,7 +2573,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 1;
         }
     }
@@ -2583,7 +2583,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 2;
         }
     }

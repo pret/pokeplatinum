@@ -1,0 +1,41 @@
+{
+	"labelEnabled":	true,
+	"sequenceCount":	1,
+	"frameCount":	4,
+	"sequences":	[{
+			"frameCount":	4,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	16,
+					"resultId":	0
+				}, {
+					"frameDelay":	16,
+					"resultId":	1
+				}, {
+					"frameDelay":	16,
+					"resultId":	2
+				}, {
+					"frameDelay":	16,
+					"resultId":	3
+				}]
+		}],
+	"animationResults":	[{
+			"resultType":	0,
+			"index":	0
+		}, {
+			"resultType":	0,
+			"index":	1
+		}, {
+			"resultType":	0,
+			"index":	2
+		}, {
+			"resultType":	0,
+			"index":	3
+		}],
+	"resultCount":	4,
+	"labels":	["CellAnime0"],
+	"labelCount":	1
+}

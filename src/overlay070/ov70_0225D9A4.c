@@ -594,9 +594,9 @@ int ov70_0225D9A4(ApplicationManager *appMan, int *param1)
 
     GF_ASSERT(ov66_0222E338(v0->unk_34) != 0xffffffff);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     v0->unk_458 = SaveData_GetTrainerInfo(v1->saveData);
     ov70_0225E4EC(&v0->unk_3C, v1->saveData, HEAP_ID_112);
@@ -1945,7 +1945,7 @@ static void ov70_0225F208(UnkStruct_ov70_0225F208 *param0, u32 heapID)
     param0->unk_00 = StringTemplate_New(8, 64, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
+        param0->unk_04[v0] = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
     }
 
     param0->unk_14 = Strbuf_Init(480, heapID);

@@ -189,9 +189,9 @@ _0286:
     CallIfEq VAR_0x8005, 0x20A, _0377
     CallIfNe VAR_0x8005, 0x20A, _0383
     Message 7
-    SetVar VAR_0x8004, 0x1A4
+    SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     Message 8
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -439,7 +439,7 @@ _056E:
     End
 
 _057F:
-    GoToIfSet FLAG_UNK_0x0079, _059D
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _059D
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -744,15 +744,15 @@ _08FC:
     CloseMessage
     ApplyMovement 31, _0944
     WaitMovement
-    ScrCmd_168 9, 17, 24, 18, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 9, 17, 24, 18, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 31, _094C
     WaitMovement
     RemoveObject 31
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     ReleaseAll
     End
 

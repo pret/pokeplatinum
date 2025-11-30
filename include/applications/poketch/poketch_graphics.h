@@ -8,6 +8,14 @@
 
 #include "bg_window.h"
 
+#define POKETCH_WIDTH_TILES  32
+#define POKETCH_HEIGHT_TILES 24
+
+#define POKETCH_SCREEN_TILE_OFFSET_X 2
+#define POKETCH_SCREEN_TILE_OFFSET_Y 2
+
+#define POKETCH_DIGITS_NCGR_NUM_TILES 80
+
 enum PoketchGraphicsTask {
     TASK_SETUP_BACKGROUND = 0,
     TASK_REVEAL_SCREEN_1,

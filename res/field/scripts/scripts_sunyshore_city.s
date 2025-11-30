@@ -26,7 +26,7 @@
 _004E:
     CallIfEq VAR_UNK_0x40A6, 2, _0077
     CallIfEq VAR_UNK_0x40A6, 3, _0077
-    GoToIfEq VAR_UNK_0x407E, 0, _0083
+    GoToIfEq VAR_SUNYSHORE_STATE, 0, _0083
     End
 
 _0077:
@@ -125,7 +125,7 @@ _017C:
     CallIfEq VAR_0x8004, 0x357, _03AA
     CallIfEq VAR_0x8004, 0x358, _03B6
     CallIfEq VAR_0x8004, 0x359, _03C2
-    SetVar VAR_UNK_0x407E, 3
+    SetVar VAR_SUNYSHORE_STATE, 3
     ReleaseAll
     End
 
@@ -438,9 +438,9 @@ _056C:
 
 _0577:
     Message 6
-    SetVar VAR_0x8004, 0x1AA
+    SetVar VAR_0x8004, ITEM_HM07
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    GiveItemQuantity
     SetFlag FLAG_UNK_0x009A
     Message 7
     Return
@@ -482,7 +482,7 @@ _05D7:
     SetObjectEventDir 18, DIR_SOUTH
     ClearFlag FLAG_UNK_0x0239
     AddObject 18
-    SetVar VAR_UNK_0x407E, 1
+    SetVar VAR_SUNYSHORE_STATE, 1
     ReleaseAll
     End
 
@@ -610,7 +610,7 @@ _0791:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    VendorGreeting
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT

@@ -251,7 +251,7 @@ static void Task_StartBattleClient(void)
         return;
     }
 
-    ov7_0224B450();
+    CommClub_PrintChooseJoinMsg();
     FieldCommMan_SetTask(Task_ClientWait, 0);
 }
 

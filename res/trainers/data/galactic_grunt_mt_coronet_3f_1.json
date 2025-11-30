@@ -19,23 +19,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Our time has come!\n",
-				"It’s Team Galactic’s time now!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Our time has come!\n",
+                "It’s Team Galactic’s time now!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "When’s it gonna be my turn...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "When’s it gonna be my turn...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"It’s too late!\r",
-				"No amount of desperation from a kid\n",
-				"like you will make a difference!\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "It’s too late!\r",
+                "No amount of desperation from a kid\n",
+                "like you will make a difference!\n"
+            ]
+        }
     ]
 }

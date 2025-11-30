@@ -11,7 +11,7 @@ BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx);
 BOOL ScrCmd_FadeOutBGM(ScriptContext *ctx);
 BOOL ScrCmd_FadeInBGM(ScriptContext *ctx);
 BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx);
-BOOL ScrCmd_057(ScriptContext *ctx);
+BOOL ScrCmd_SetBGM(ScriptContext *ctx);
 BOOL ScrCmd_SetBGMFixed(ScriptContext *ctx);
 BOOL ScrCmd_PlayFanfare(ScriptContext *ctx);
 BOOL ScrCmd_StopFanfare(ScriptContext *ctx);

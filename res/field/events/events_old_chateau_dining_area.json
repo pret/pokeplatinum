@@ -11,10 +11,11 @@
     ],
     "object_events": [
         {
+            "id": "OLD_CHATEAU_DINING_AREA_OLD_MAN_0",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x027B",
+            "hidden_flag": "FLAG_UNK_0x027B",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -25,10 +26,11 @@
             "y": 0
         },
         {
+            "id": "OLD_CHATEAU_DINING_AREA_POKEBALL_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0501",
+            "hidden_flag": "FLAG_UNK_0x0501",
             "script": 7266,
             "initial_dir": 0,
             "data": [],
@@ -39,10 +41,11 @@
             "y": 0
         },
         {
+            "id": "OLD_CHATEAU_DINING_AREA_POKEBALL_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0502",
+            "hidden_flag": "FLAG_UNK_0x0502",
             "script": 7267,
             "initial_dir": 0,
             "data": [],

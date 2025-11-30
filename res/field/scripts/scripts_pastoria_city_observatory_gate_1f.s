@@ -64,8 +64,8 @@ _00F2:
 
 _0102:
     SetVar VAR_UNK_0x40DA, 1
-    ScrCmd_202 0
-    ScrCmd_11B 125, 2, 5, 2, 1
+    StartSafariGame
+    SetSpecialLocation MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 2, 5, 2, DIR_SOUTH
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
@@ -150,8 +150,8 @@ _01F1:
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
-    ScrCmd_202 1
-    ScrCmd_31B VAR_MAP_LOCAL_2
+    EndSafariGame
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
     GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End
@@ -161,8 +161,8 @@ _021E:
     ApplyMovement 2, _0334
     WaitMovement
     Message 18
-    SetVar VAR_0x8004, 22
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER
+    GivePoketchApp
     SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll
@@ -200,7 +200,7 @@ _0298:
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
-    ScrCmd_31B VAR_MAP_LOCAL_2
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
     GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End

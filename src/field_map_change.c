@@ -285,7 +285,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
         }
     }
 
-    FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_2);
+    FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_TRANSITION);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
     fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
@@ -1142,7 +1142,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (mapChangeUndergroundData->state) {
     case 0:
-        MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD2);
 
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
         MessageLoader_Free(msgLoader);
@@ -1362,7 +1362,7 @@ static BOOL sub_02054494(FieldTask *task)
         break;
     case 1:
         FieldMapChange_SetNewLocation(fieldSystem, &mapChangeSub->nextLocation);
-        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIXED_UNK_2);
+        FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_TRANSITION);
         mapChangeSub->state++;
         break;
     case 2:

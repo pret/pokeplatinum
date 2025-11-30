@@ -34,7 +34,7 @@ typedef struct UndergroundTextPrinter {
 const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void);
 UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int strbufSize);
 void UndergroundTextPrinter_Free(UndergroundTextPrinter *textPrinter);
-void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderType loaderType);
+void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderMode loaderMode);
 void UndergroundTextPrinter_SetBackground(UndergroundTextPrinter *textPrinter, BgConfig *bgConfig, u16 messageBoxBaseTile, u16 windowBaseTile);
 MessageLoader *UndergroundTextPrinter_GetMessageLoader(UndergroundTextPrinter *textPrinter);
 int UndergroundTextPrinter_PrintText(UndergroundTextPrinter *textPrinter, int entryID, BOOL sysTaskManaged, UndergroundTextPrinterCallback callback);

@@ -11,10 +11,11 @@
     ],
     "object_events": [
         {
+            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_0",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 2,
             "data": [],
@@ -25,10 +26,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_1",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
             "data": [],
@@ -39,10 +41,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9,
             "initial_dir": 1,
             "data": [],
@@ -53,10 +56,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_SOCIALITE_3",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -67,10 +71,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_4",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -81,10 +86,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_5",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 11,
             "initial_dir": 1,
             "data": [],
@@ -95,10 +101,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_CASHIER_F_6",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 2,
             "data": [],
@@ -109,10 +116,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_SOCIALITE_7",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -123,10 +131,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_GENTLEMAN_8",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 2,
             "data": [],
@@ -137,10 +146,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_STORE_B1F_PROF_ROWAN_9",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0185",
+            "hidden_flag": "FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -167,3 +177,4 @@
     ],
     "coord_events": []
 }
+

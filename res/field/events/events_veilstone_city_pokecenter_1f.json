@@ -2,10 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
+            "id": "VEILSTONE_CITY_POKECENTER_1F_POKECENTER_NURSE_0",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -16,10 +17,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_POKECENTER_1F_SOCIALITE_1",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -30,10 +32,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_POKECENTER_1F_SCHOOL_KID_M_2",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -44,10 +47,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_POKECENTER_1F_UNK_111_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_111",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0183",
+            "hidden_flag": "FLAG_UNK_0x0183",
             "script": 10401,
             "initial_dir": 1,
             "data": [],
@@ -58,10 +62,11 @@
             "y": 0
         },
         {
+            "id": "VEILSTONE_CITY_POKECENTER_1F_UNK_112_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_112",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0184",
+            "hidden_flag": "FLAG_UNK_0x0184",
             "script": 10402,
             "initial_dir": 1,
             "data": [],

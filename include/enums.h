@@ -44,11 +44,6 @@ typedef enum {
 } UnkEnum_0202F510;
 
 typedef enum {
-    UnkEnum_ov87_021D12C0_0,
-    UnkEnum_ov87_021D12C0_1,
-} UnkEnum_ov87_021D12C0;
-
-typedef enum {
     UnkEnum_02098EAC_0,
     UnkEnum_02098EAC_1,
     UnkEnum_02098EAC_2,

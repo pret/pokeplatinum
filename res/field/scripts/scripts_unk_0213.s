@@ -47,7 +47,7 @@ _0075:
 
 _008F:
     LockAll
-    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, ANIMATION_TAG_DOOR_1
     Call _050B
     ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00F0
@@ -55,7 +55,7 @@ _008F:
     Call _0513
     ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
-    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, 77
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, ANIMATION_TAG_DOOR_1
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
@@ -133,7 +133,7 @@ Unk213_Unused:
 
 _01F2:
     SetVar VAR_0x8004, 2
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 2, _020F
     GoTo _026A
 
@@ -146,7 +146,7 @@ _020F:
 
 _021A:
     SetVar VAR_0x8004, 3
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _0237
     GoTo _0290
 
@@ -159,7 +159,7 @@ _0237:
 
 _0242:
     SetVar VAR_0x8004, 4
-    GetPartyCountHatched VAR_RESULT
+    CountPartyNonEggs VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _025F
     GoTo _0290
 
@@ -245,20 +245,20 @@ _0384:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F2 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03D3
-    GoToIfEq VAR_RESULT, 3, _03DD
-    GoToIfEq VAR_RESULT, 4, _03EA
+    StartBattleClient VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _03D3
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _03DD
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_4, _03EA
     GoTo _046A
     End
 
 _03D3:
-    ScrCmd_150
+    EndCommunication
     GoTo _0305
     End
 
 _03DD:
-    ScrCmd_150
+    EndCommunication
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -266,7 +266,7 @@ _03DD:
     End
 
 _03EA:
-    ScrCmd_150
+    EndCommunication
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -278,20 +278,20 @@ _03F7:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F3 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0446
-    GoToIfEq VAR_RESULT, 3, _0450
-    GoToIfEq VAR_RESULT, 4, _045D
+    StartBattleServer VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0446
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _0450
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_4, _045D
     GoTo _046A
     End
 
 _0446:
-    ScrCmd_150
+    EndCommunication
     GoTo _0305
     End
 
 _0450:
-    ScrCmd_150
+    EndCommunication
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -299,7 +299,7 @@ _0450:
     End
 
 _045D:
-    ScrCmd_150
+    EndCommunication
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -309,43 +309,43 @@ _045D:
 _046A:
     SetVar VAR_UNK_0x40D5, 1
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    ScrCmd_02E 52
+    MessageNoSkip 52
     WaitABPressTime 45
     ScrCmd_135 96
     CloseMessage
-    ScrCmd_168 0, 0, 13, 5, 77
+    LoadDoorAnimation 0, 0, 13, 5, ANIMATION_TAG_DOOR_1
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0524
     WaitMovement
     Call _0513
     ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
-    ScrCmd_168 0, 0, 13, 2, 77
+    LoadDoorAnimation 0, 0, 13, 2, ANIMATION_TAG_DOOR_1
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0538
     WaitMovement
     Call _0513
     GoToIfEq VAR_0x8004, 4, _04F3
-    ScrCmd_207 VAR_RESULT
+    GetCurNetID VAR_RESULT
     AddVar VAR_RESULT, 7
     ScrCmd_203 0x14C, 0, VAR_RESULT, 11, 0
     End
 
 _04F3:
-    ScrCmd_207 VAR_RESULT
+    GetCurNetID VAR_RESULT
     AddVar VAR_RESULT, 6
     ScrCmd_203 0x14D, 0, VAR_RESULT, 11, 0
     End
 
 _050B:
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _0513:
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _051E:
@@ -422,14 +422,14 @@ _062D:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 63
     CloseMessage
-    ScrCmd_168 0, 0, 8, 5, 77
+    LoadDoorAnimation 0, 0, 8, 5, ANIMATION_TAG_DOOR_1
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0524
     WaitMovement
     Call _0513
     ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
-    ScrCmd_168 0, 0, 8, 2, 77
+    LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0538
     WaitMovement

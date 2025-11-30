@@ -533,11 +533,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
     for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
         v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-        v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
+        v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if ((v5) && (v5 != SPECIES_EGG)) {
-            if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
+            if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                     v0.unk_08[0][v6] = 3;
                 } else {
                     v0.unk_08[0][v6] = 1;
@@ -571,11 +571,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -599,11 +599,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -622,11 +622,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -1631,11 +1631,11 @@ static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData 
 {
     for (int i = 0; i < Party_GetCurrentCount(party); i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleCtx->partyOrder[battler][i]);
-        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
+        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species && species != SPECIES_EGG) {
-            if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
-                if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL)) {
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL)) {
                     partyGauge->status[slot] = BALL_STATUS_HAS_STATUS_CONDITION;
                 } else {
                     partyGauge->status[slot] = BALL_STATUS_MON_ALIVE;

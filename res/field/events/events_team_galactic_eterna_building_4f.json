@@ -11,10 +11,11 @@
     ],
     "object_events": [
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_JUPITER_0",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FD",
+            "hidden_flag": "FLAG_UNK_0x01FD",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -25,10 +26,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_CLEFAIRY_1",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FF",
+            "hidden_flag": "FLAG_UNK_0x01FF",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -39,10 +41,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEFAN_M_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FF",
+            "hidden_flag": "FLAG_UNK_0x01FF",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -53,10 +56,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_BUNEARY_3",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01FF",
+            "hidden_flag": "FLAG_UNK_0x01FF",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -67,10 +71,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_4",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x050C",
+            "hidden_flag": "FLAG_UNK_0x050C",
             "script": 7277,
             "initial_dir": 0,
             "data": [],
@@ -81,10 +86,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_5",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04FF",
+            "hidden_flag": "FLAG_UNK_0x04FF",
             "script": 7264,
             "initial_dir": 0,
             "data": [],
@@ -95,10 +101,11 @@
             "y": 0
         },
         {
+            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_6",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0500",
+            "hidden_flag": "FLAG_UNK_0x0500",
             "script": 7265,
             "initial_dir": 0,
             "data": [],

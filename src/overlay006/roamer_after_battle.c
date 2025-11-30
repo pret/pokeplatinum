@@ -35,8 +35,8 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
     roamer = GetBattledRoamer(specialEncounter, wildSpecies);
 
     if (roamer != NULL) {
-        roamerHP = (u16)(Pokemon_GetValue(enemyMon, MON_DATA_CURRENT_HP, NULL));
-        roamerStatus = (u8)(Pokemon_GetValue(enemyMon, MON_DATA_STATUS_CONDITION, NULL));
+        roamerHP = (u16)(Pokemon_GetValue(enemyMon, MON_DATA_HP, NULL));
+        roamerStatus = (u8)(Pokemon_GetValue(enemyMon, MON_DATA_STATUS, NULL));
 
         if ((battleParams->resultMask == BATTLE_RESULT_WIN) && (roamerHP == 0)) {
             SpecialEncounter_ZeroRoamerData(&roamer);

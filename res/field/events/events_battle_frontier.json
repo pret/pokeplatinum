@@ -163,10 +163,11 @@
     ],
     "object_events": [
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_0",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 27,
             "initial_dir": 0,
             "data": [],
@@ -177,10 +178,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_1",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 26,
             "initial_dir": 0,
             "data": [],
@@ -191,10 +193,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 18,
             "initial_dir": 1,
             "data": [],
@@ -205,10 +208,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_EXPERT_F_3",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9,
             "initial_dir": 1,
             "data": [],
@@ -219,10 +223,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_EXPERT_M_4",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 8,
             "initial_dir": 1,
             "data": [],
@@ -233,10 +238,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TWIN_5",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -247,10 +253,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_SCHOOL_KID_M_6",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 20,
             "initial_dir": 2,
             "data": [],
@@ -261,10 +268,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_NINJA_BOY_7",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -275,10 +283,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_IDOL_8",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -289,10 +298,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ROUGHNECK_9",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 12,
             "initial_dir": 3,
             "data": [],
@@ -303,10 +313,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_BLACK_BELT_10",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -317,10 +328,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_11",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 23,
             "initial_dir": 3,
             "data": [],
@@ -331,10 +343,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_12",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10490,
             "initial_dir": 3,
             "data": [],
@@ -345,10 +358,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FRONTIER_BOOTH_ATTENDANT_13",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 25,
             "initial_dir": 2,
             "data": [],
@@ -359,10 +373,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_POKEFAN_M_14",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 13,
             "initial_dir": 0,
             "data": [],
@@ -373,10 +388,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_COLLECTOR_15",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 14,
             "initial_dir": 1,
             "data": [],
@@ -387,10 +403,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_GENTLEMAN_16",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 15,
             "initial_dir": 1,
             "data": [],
@@ -401,10 +418,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TUBER_M_17",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 22,
             "initial_dir": 3,
             "data": [],
@@ -415,10 +433,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_M_18",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 19,
             "initial_dir": 1,
             "data": [],
@@ -429,10 +448,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_COWGIRL_19",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 11,
             "initial_dir": 3,
             "data": [],
@@ -443,10 +463,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_FISHERMAN_20",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 21,
             "initial_dir": 3,
             "data": [],
@@ -457,10 +478,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_PICNICKER_21",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 17,
             "initial_dir": 3,
             "data": [],
@@ -471,10 +493,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_PARASOL_LADY_22",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
             "data": [],
@@ -485,10 +508,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_WAITRESS_23",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 10,
             "initial_dir": 0,
             "data": [],
@@ -499,10 +523,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_24",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 28,
             "initial_dir": 0,
             "data": [],
@@ -513,10 +538,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_25",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 29,
             "initial_dir": 0,
             "data": [],
@@ -527,10 +553,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_TRAINER_TIPS_SIGNPOST_26",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 30,
             "initial_dir": 0,
             "data": [],
@@ -541,10 +568,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_M_27",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 16,
             "initial_dir": 1,
             "data": [],
@@ -555,10 +583,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_ACE_TRAINER_SNOW_F_28",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
             "data": [],
@@ -569,10 +598,11 @@
             "y": 0
         },
         {
+            "id": "BATTLE_FRONTIER_REPORTER_29",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x02C3",
+            "hidden_flag": "FLAG_UNK_0x02C3",
             "script": 10168,
             "initial_dir": 0,
             "data": [],
@@ -689,7 +719,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16501,
+            "var": "VAR_UNK_0x4075",
             "value": 0
         },
         {
@@ -699,7 +729,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16501,
+            "var": "VAR_UNK_0x4075",
             "value": 0
         },
         {
@@ -709,7 +739,7 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16501,
+            "var": "VAR_UNK_0x4075",
             "value": 0
         },
         {
@@ -719,8 +749,9 @@
             "y": 0,
             "width": 1,
             "length": 2,
-            "var": 16501,
+            "var": "VAR_UNK_0x4075",
             "value": 0
         }
     ]
 }
+

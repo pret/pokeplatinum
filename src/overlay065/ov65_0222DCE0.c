@@ -648,7 +648,7 @@ static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
     for (v3 = 0; v3 < v2; v3++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v3);
 
-        if (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
+        if (Pokemon_GetValue(v1, MON_DATA_HP, NULL) == 0) {
             continue;
         }
 
@@ -697,8 +697,8 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     param0->unk_15C = BgConfig_New(HEAP_ID_54);
     param0->unk_164 = StringTemplate_Default(HEAP_ID_54);
-    param0->unk_168 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_54);
-    param0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_54);
+    param0->unk_168 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_54);
+    param0->unk_16C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);
@@ -738,13 +738,13 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
             case 6:
             case 12:
             case 7:
-                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
                 break;
             default:
                 break;
             }
         } else {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
         }
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
@@ -909,7 +909,7 @@ int ov65_0222E548(ApplicationManager *appMan, int *param1)
     case 6:
     case 12:
     case 7:
-        Heap_Destroy(HEAP_ID_121);
+        Heap_Destroy(HEAP_ID_PARTY_MENU1);
         break;
     default:
         break;
@@ -4156,7 +4156,7 @@ static int ov65_022321F4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     } else {
         if (param0->unk_3BC == 0) {
             if (CommTiming_IsSyncState(13)) {
-                sub_020365F4();
+                CommTool_ClearReceivedTempDataAllPlayers();
                 CommTiming_StartSync(14);
 
                 param0->unk_3E4 = 0;
@@ -4682,8 +4682,8 @@ static void ov65_02232B58(UnkStruct_ov65_0222EBE0 *param0, int param1, BOOL para
     StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
     Window_FillTilemap(&param0->unk_330, 15);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_330, 1, 512 - (18 + 12), 10);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
     param0->unk_180 = Text_AddPrinterWithParams(&param0->unk_330, FONT_MESSAGE, param0->unk_174, 0, 0, v0, NULL);
 
@@ -6042,7 +6042,7 @@ static void ov65_02234E50(UnkStruct_ov65_02234E50 *param0, u32 param1)
     Sprite_SetAnimFrame(param0->unk_21C[param1], 5 - 1);
 
     if (param1 == 1) {
-        sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[0]);
+        FontOAM_SetXY(param0->unk_234, -18, Unk_ov65_0223893C[0]);
     }
 }
 
@@ -6065,7 +6065,7 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
                 v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
-                    sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
+                    FontOAM_SetXY(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
                 }
 
                 if (v1 >= 3) {
@@ -6121,9 +6121,9 @@ static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
-        ov4_021D2618(1, HEAP_ID_121);
+        ov4_021D2618(1, HEAP_ID_PARTY_MENU1);
     } else {
-        ov4_021D2618(0, HEAP_ID_121);
+        ov4_021D2618(0, HEAP_ID_PARTY_MENU1);
     }
 
     sub_0209C3AC();

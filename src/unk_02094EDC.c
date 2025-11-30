@@ -628,12 +628,12 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, heapID);
+        v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v3);
-        Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v4);
+        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v3);
+        Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
@@ -998,21 +998,21 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
 void sub_020959F4(int param0)
 {
     if (param0 == 0) {
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        RenderControlFlags_SetAutoScrollFlags(3);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
     } else {
-        RenderControlFlags_SetAutoScrollFlags(1);
-        RenderControlFlags_SetCanABSpeedUpPrint(0);
-        RenderControlFlags_SetSpeedUpOnTouch(0);
+        RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
+        RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+        RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     }
 }
 
 void sub_02095A24(void)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+    RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
 u32 sub_02095A3C(int param0, int param1)
@@ -1021,23 +1021,23 @@ u32 sub_02095A3C(int param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON + param0;
+        v0 = MON_DATA_SUPER_COOL_RIBBON + param0;
         break;
     case 1:
-        v0 = MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + param0;
+        v0 = MON_DATA_SUPER_BEAUTY_RIBBON + param0;
         break;
     case 2:
-        v0 = MON_DATA_SINNOH_SUPER_CUTE_RIBBON + param0;
+        v0 = MON_DATA_SUPER_CUTE_RIBBON + param0;
         break;
     case 3:
-        v0 = MON_DATA_SINNOH_SUPER_SMART_RIBBON + param0;
+        v0 = MON_DATA_SUPER_SMART_RIBBON + param0;
         break;
     case 4:
-        v0 = MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + param0;
+        v0 = MON_DATA_SUPER_TOUGH_RIBBON + param0;
         break;
     default:
         GF_ASSERT(0);
-        return MON_DATA_SINNOH_SUPER_COOL_RIBBON;
+        return MON_DATA_SUPER_COOL_RIBBON;
     }
 
     return v0;

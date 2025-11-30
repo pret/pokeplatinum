@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/great_marsh_tram.h"
 
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
@@ -15,7 +16,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay006/struct_ov6_02242AF0.h"
+#include "overlay006/ov6_02242AF0.h"
 #include "overlay009/ov9_02249960.h"
 
 #include "field_system.h"
@@ -174,7 +175,7 @@ void PersistedMapFeatures_InitForGreatMarsh(FieldSystem *fieldSystem)
 
     if (dynamicMapFeaturesID != DYNAMIC_MAP_FEATURES_GREAT_MARSH) {
         PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
-        UnkStruct_ov6_02242AF0 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
-        data->unk_00 = 2;
+        GreatMarshTramState *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+        data->location = GREAT_MARSH_TRAM_LOCATION_AREA_5_6;
     }
 }

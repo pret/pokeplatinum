@@ -19,23 +19,23 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Hush now, lost little Pokémon, don’t\n",
-				"you cry.\r",
-				"I’m here to take care of you!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hush now, lost little Pokémon, don’t\n",
+                "you cry.\r",
+                "I’m here to take care of you!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Sniffle... W-who’s crying now?\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Sniffle... W-who’s crying now?\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"Speaking of crying, I’m positive I\n",
-				"heard crying from deeper in the cave.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "Speaking of crying, I’m positive I\n",
+                "heard crying from deeper in the cave.\n"
+            ]
+        }
     ]
 }

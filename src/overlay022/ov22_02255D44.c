@@ -253,7 +253,7 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
         break;
     case 3:
         if (v2->unk_1C == 1) {
-            RenderControlFlags_SetSpeedUpOnTouch(1);
+            RenderControlFlags_SetSpeedUpOnTouch(TRUE);
 
             v0->unk_73C = ov22_0225A660(&v0->unk_5C4, 26, 385, 47);
             (*param1)++;
@@ -270,7 +270,7 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
     case 5:
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gSystem.touchPressed)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
-            RenderControlFlags_SetSpeedUpOnTouch(0);
+            RenderControlFlags_SetSpeedUpOnTouch(FALSE);
             (*param1)++;
         }
         break;
@@ -1330,7 +1330,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1347,7 +1347,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
     v1 = Strbuf_Init(256, HEAP_ID_13);
 
@@ -1370,7 +1370,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
     param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
 

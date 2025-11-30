@@ -2,11 +2,11 @@
   "key": 18219,
   "messages": [
     {
-      "id": "pl_msg_00000554_00000",
+      "id": "TwinleafTown_Text_BigThud",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000554_00001",
+      "id": "TwinleafTown_Text_GoingToSeeProfRowan",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What was that about?!\r",
         "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
@@ -15,14 +15,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00002",
+      "id": "TwinleafTown_Text_OhJeezForgotSomething",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, jeez!\n",
         "Forgot something!\r"
       ]
     },
     {
-      "id": "pl_msg_00000554_00003",
+      "id": "TwinleafTown_Text_RivalWasLookingForYou1",
       "en_US": [
         "Hiya, {STRVAR_1 3, 0, 0}.\n",
         "{STRVAR_1 3, 1, 0} was looking for you.\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00004",
+      "id": "TwinleafTown_Text_RivalWasLookingForYou2",
       "en_US": [
         "Hiya, {STRVAR_1 3, 0, 0}.\n",
         "{STRVAR_1 3, 1, 0} was looking for you.\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00005",
+      "id": "TwinleafTown_Text_RivalWentTearingOff",
       "en_US": [
         "Hiya, {STRVAR_1 3, 0, 0}.\n",
         "You’re looking for {STRVAR_1 3, 1, 0}?\r",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00006",
+      "id": "TwinleafTown_Text_RivalWentTearingOffOuch",
       "en_US": [
         "{STRVAR_1 3, 0, 0}? He went tearing off\n",
         "in a huge rush a while ago.\r",
@@ -61,14 +61,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00007",
+      "id": "TwinleafTown_Text_EveryoneGoesOnAdventures",
       "en_US": [
         "Everyone goes off on adventures,\n",
         "and then they gradually grow up..."
       ]
     },
     {
-      "id": "pl_msg_00000554_00008",
+      "id": "TwinleafTown_Text_WildPokemonAttack",
       "en_US": [
         "It’s true that wild Pokémon do attack\n",
         "people sometimes...\r",
@@ -77,14 +77,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00009",
+      "id": "TwinleafTown_Text_PokemonYouLookGoodTogether",
       "en_US": [
         "Oh! A Pokémon!\n",
         "You look good together!"
       ]
     },
     {
-      "id": "pl_msg_00000554_00010",
+      "id": "TwinleafTown_Text_HelpingPutTogetherPokedex",
       "en_US": [
         "Oh, you’re helping put together\n",
         "a Pokédex?\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00011",
+      "id": "TwinleafTown_Text_TechnologyBlowsMeAway",
       "en_US": [
         "Technology just blows me away!\r",
         "I mean, now you can play with people\n",
@@ -103,18 +103,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000554_00012",
+      "id": "TwinleafTown_Text_MapSign",
       "en_US": [
         "Twinleaf Town\n",
         "Fresh and Free!"
       ]
     },
     {
-      "id": "pl_msg_00000554_00013",
+      "id": "TwinleafTown_Text_PlayerMailbox",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     },
     {
-      "id": "pl_msg_00000554_00014",
+      "id": "TwinleafTown_Text_RivalMailbox",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     }
   ]

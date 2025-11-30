@@ -37,25 +37,25 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"Hey there, little Trainer!\n",
-				"You’re famous among Team Galactic.\r",
-				"The order has been issued--we get\n",
-				"a promotion if we put you down!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Hey there, little Trainer!\n",
+                "You’re famous among Team Galactic.\r",
+                "The order has been issued--we get\n",
+                "a promotion if we put you down!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "I just blew my promotion...\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "I just blew my promotion...\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"What’s so special about you anyway?\r",
-				"You’re just like any other little kid\n",
-				"Trainer you can find anywhere!"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "What’s so special about you anyway?\r",
+                "You’re just like any other little kid\n",
+                "Trainer you can find anywhere!"
+            ]
+        }
     ]
 }

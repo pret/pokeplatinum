@@ -19,15 +19,15 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Pal Park, huh? I wonder what kinds\n",
-				"of Pokémon you can see there?\r"
-			]
-		},
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Pal Park, huh? I wonder what kinds\n",
+                "of Pokémon you can see there?\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "You’re one enthusiastic Trainer.\n"
-		}
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You’re one enthusiastic Trainer.\n"
+        }
     ]
 }

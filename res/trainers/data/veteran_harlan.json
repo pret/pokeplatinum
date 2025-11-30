@@ -54,26 +54,26 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"What do you expect to achieve here?\n",
-				"I’ll be the one to make that call!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "What do you expect to achieve here?\n",
+                "I’ll be the one to make that call!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": [
-				"You’ve earned the right to be here.\n",
-				"Both you and your Pokémon.\n"
-			]
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You’ve earned the right to be here.\n",
+                "Both you and your Pokémon.\n"
+            ]
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"You may find it odd, but the stink\n",
-				"of sulfur from the volcanic gas\f",
-				"is what draws me here.\n"
-			]
-		}
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "You may find it odd, but the stink\n",
+                "of sulfur from the volcanic gas\f",
+                "is what draws me here.\n"
+            ]
+        }
     ]
 }

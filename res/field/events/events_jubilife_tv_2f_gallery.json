@@ -91,10 +91,11 @@
     ],
     "object_events": [
         {
+            "id": "JUBILIFE_TV_2F_GALLERY_HIKER_0",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -105,10 +106,11 @@
             "y": 0
         },
         {
+            "id": "JUBILIFE_TV_2F_GALLERY_POKEMON_BREEDER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 13,
             "initial_dir": 0,
             "data": [],
@@ -119,10 +121,11 @@
             "y": 0
         },
         {
+            "id": "JUBILIFE_TV_2F_GALLERY_TWIN_2",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 14,
             "initial_dir": 0,
             "data": [],

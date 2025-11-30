@@ -37,31 +37,31 @@
     ],
     "messages": [
         {
-			"type": "TRMSG_PRE_BATTLE",
-			"en_US": [
-				"I like fishing, no question.\n",
-				"But battling? That’s what I love!\r"
-			]
-		},
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "I like fishing, no question.\n",
+                "But battling? That’s what I love!\r"
+            ]
+        },
         {
-			"type": "TRMSG_DEFEAT",
-			"en_US": "Sploosh!\n"
-		},
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Sploosh!\n"
+        },
         {
-			"type": "TRMSG_POST_BATTLE",
-			"en_US": [
-				"If you don’t know how to fish, you’re\n",
-				"missing half of life’s enjoyment.\r",
-				"If you don’t know Pokémon...\n",
-				"You’re missing out on all of it!\n"
-			]
-		},
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "If you don’t know how to fish, you’re\n",
+                "missing half of life’s enjoyment.\r",
+                "If you don’t know Pokémon...\n",
+                "You’re missing out on all of it!\n"
+            ]
+        },
         {
-			"type": "TRMSG_REMATCH",
-			"en_US": [
-				"Come on, battle me again!\n",
-				"You know I love to fish and battle!\r"
-			]
-		}
+            "type": "TRMSG_REMATCH",
+            "en_US": [
+                "Come on, battle me again!\n",
+                "You know I love to fish and battle!\r"
+            ]
+        }
     ]
 }

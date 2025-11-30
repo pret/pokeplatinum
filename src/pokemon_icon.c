@@ -8,23 +8,12 @@
 
 #include "pokemon.h"
 
+#include "res/pokemon/pl_poke_icon.naix.h"
 #include "res/pokemon/species_icon_palettes.h"
-
-enum PokeIconSharedResourceIndex {
-    POKEICON_SHARED_PALETTES = 0,
-    POKEICON_SHARED_ANIMATION,
-    POKEICON_SHARED_CELLS,
-    POKEICON_SHARED_32K_ANIMATION,
-    POKEICON_SHARED_32K_CELLS,
-    POKEICON_SHARED_64K_ANIMATION,
-    POKEICON_SHARED_64K_CELLS,
-
-    POKEICON_ICON_TILES_START,
-};
 
 static inline u32 IconTilesIndex(u32 icon)
 {
-    return icon + POKEICON_ICON_TILES_START;
+    return icon + icon_00000_NCGR;
 }
 
 u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
@@ -104,7 +93,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
 
 u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
 {
-    u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
+    u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
 
     switch (speciesOrEgg) {
     case SPECIES_UNOWN:
@@ -178,35 +167,35 @@ const u8 Pokemon_IconPaletteIndex(Pokemon *mon)
 
 u32 PokeIconPalettesFileIndex(void)
 {
-    return POKEICON_SHARED_PALETTES;
+    return shared_pals_NCLR;
 }
 
 u32 PokeIconCellsFileIndex(void)
 {
-    return POKEICON_SHARED_CELLS;
+    return shared_cell_NCER;
 }
 
 u32 PokeIcon32KCellsFileIndex(void)
 {
-    return POKEICON_SHARED_32K_CELLS;
+    return shared_cell_32k_NCER;
 }
 
 u32 PokeIcon64KCellsFileIndex(void)
 {
-    return POKEICON_SHARED_64K_CELLS;
+    return shared_cell_64k_NCER;
 }
 
 u32 PokeIconAnimationFileIndex(void)
 {
-    return POKEICON_SHARED_ANIMATION;
+    return shared_anim_NANR;
 }
 
 u32 PokeIcon32KAnimationFileIndex(void)
 {
-    return POKEICON_SHARED_32K_ANIMATION;
+    return shared_anim_32k_NANR;
 }
 
 u32 PokeIcon64KAnimationFileIndex(void)
 {
-    return POKEICON_SHARED_64K_ANIMATION;
+    return shared_anim_64k_NANR;
 }

@@ -1,0 +1,591 @@
+{
+  "key": 50512,
+  "messages": [
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodMorning",
+      "en_US": [
+        "MC: Good morning!\n",
+        "Is everyone raising Pokémon?\r",
+        "It’s time for the Battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodDay",
+      "en_US": [
+        "MC: Good day!\n",
+        "Is everyone raising Pokémon?\r",
+        "It’s time for the Battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_GoodEvening",
+      "en_US": [
+        "MC: Good evening!\n",
+        "Is everyone raising Pokémon?\r",
+        "It’s time for the Battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_LeadSegment",
+      "en_US": [
+        "OK, let’s get with it and check in\n",
+        "on our Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_NextSegment",
+      "en_US": [
+        "MC: All righty!\n",
+        "What’s next on Battling Trainers?\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_Farewell",
+      "en_US": [
+        "MC: I hope you enjoyed this\n",
+        "showing of Battling Trainers.\r",
+        "Until the next broadcast...\n",
+        "Good-bye, and good battling!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattlingTrainers_FarewellExtended",
+      "en_US": [
+        "MC: On Battling Trainers, we’re\n",
+        "always on the hunt for news.\r",
+        "Our interviewers have scattered\n",
+        "throughout Sinnoh.\r",
+        "We look forward to hearing about\n",
+        "you, Trainers!\r",
+        "That’s all the time we have today!\n",
+        "Good-bye, and good battling!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_GoodMorning",
+      "en_US": [
+        "MC: Good morning.\n",
+        "It’s time for Trainer Research.\r",
+        "We examine the latest Pokémon trends\n",
+        "by going directly to the Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_GoodDay",
+      "en_US": [
+        "MC: Good day.\n",
+        "It’s time for Trainer Research.\r",
+        "We examine the latest Pokémon trends\n",
+        "by going directly to the Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_GoodEvening",
+      "en_US": [
+        "MC: Good evening.\n",
+        "It’s time for Trainer Research.\r",
+        "We examine the latest Pokémon trends\n",
+        "by going directly to the Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_LeadSegment",
+      "en_US": [
+        "OK, let’s take a look at the first\n",
+        "piece of research we conducted.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_NextSegment",
+      "en_US": [
+        "MC: Next up is this piece of\n",
+        "research.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_Farewell",
+      "en_US": [
+        "MC: We hope you enjoyed this edition\n",
+        "of Trainer Research.\r",
+        "Who knows, you may be the subject\n",
+        "of our research next time.\r",
+        "That’s it for this show today.\n",
+        "Farewell!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainerResearch_FarewellExtended",
+      "en_US": [
+        "MC: On Trainer Research, we always\n",
+        "seek Trainers willing to be interviewed\f",
+        "for the show.\r",
+        "If you spot an interviewer anywhere,\n",
+        "please stop by to say hello and grant\f",
+        "us an interview.\r",
+        "That’s all today. Farewell."
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_GoodMorning",
+      "en_US": [
+        "MC: Pokémon! Battle! Watch!\r",
+        "Good morning!\n",
+        "Everyone keeping up the good battle?\r",
+        "It’s time for Pokémon Battle Watch,\n",
+        "where we do in-depth analyses of\f",
+        "hot-blooded battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_GoodDay",
+      "en_US": [
+        "MC: Pokémon! Battle! Watch!\r",
+        "Good day!\n",
+        "Everyone keeping up the good battle?\r",
+        "It’s time for Pokémon Battle Watch,\n",
+        "where we do in-depth analyses of\f",
+        "hot-blooded battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_GoodEvening",
+      "en_US": [
+        "MC: Pokémon! Battle! Watch!\r",
+        "Good evening!\n",
+        "Everyone keeping up the good battle?\r",
+        "It’s time for Pokémon Battle Watch,\n",
+        "where we do in-depth analyses of\f",
+        "hot-blooded battling Trainers!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_LeadSegment",
+      "en_US": [
+        "Let’s get on with the show!\n",
+        "Battle! Watch!\r"
+       ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_NextSegment",
+      "en_US": [
+        "MC: Let’s move to the next segment!\n",
+        "Battle! Watch!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_Farewell",
+      "en_US": [
+        "MC: Oops, looks like we’re all out\n",
+        "of time!\r",
+        "Let’s meet again here!\n",
+        "Battle! Watch!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_BattleWatch_FarewellExtended",
+      "en_US": [
+        "MC: Pokémon Battle Watch needs\n",
+        "your help!\r",
+        "We’re always after news about your\n",
+        "hot Pokémon battles.\r",
+        "We’d also love it if you’d mix records\n",
+        "with friends in a Union Room.\r",
+        "That way, we can get battle news\n",
+        "about your friends, too.\r",
+        "Let’s meet again here!\n",
+        "Battle! Watch!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_GoodMorning",
+      "en_US": [
+        "MC: A Trainer’s Day!\r",
+        "This program offers unique looks into\n",
+        "the daily lives of Trainers.\r",
+        "We cover a variety of topics that\n",
+        "affect and concern Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_GoodDay",
+      "en_US": [
+        "MC: A Trainer’s Day!\r",
+        "This program offers unique looks into\n",
+        "the daily lives of Trainers.\r",
+        "We cover a variety of topics that\n",
+        "affect and concern Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_GoodEvening",
+      "en_US": [
+        "MC: A Trainer’s Day!\r",
+        "This program offers unique looks into\n",
+        "the daily lives of Trainers.\r",
+        "We cover a variety of topics that\n",
+        "affect and concern Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_LeadSegment",
+      "en_US": [
+        "Let’s examine one aspect of\n",
+        "a Trainer’s day.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_NextSegment",
+      "en_US": [
+        "MC: Let’s take a look at a Trainer’s\n",
+        "day from another perspective.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_Farewell",
+      "en_US": [
+        "MC: This brings us to the conclusion\n",
+        "of today’s A Trainer’s Day.\r",
+        "We hope you found it informative\n",
+        "and entertaining.\r",
+        "In even seemingly ordinary daily\n",
+        "routines, there is so much drama.\r",
+        "We’ll keep bringing you more looks\n",
+        "into the days of Trainers.\r",
+        "Good-bye, but just for now!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrainersDay_FarewellExtended",
+      "en_US": [
+        "MC: We seek tips on Trainer-related\n",
+        "news for coverage on the show.\r",
+        "Please also consider mixing records\n",
+        "with friends in a Union Room.\r",
+        "That will allow us to check the\n",
+        "routines of your friends, too.\r",
+        "Please tune in again next time.\n",
+        "Good-bye, but just for now!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodMorning",
+      "en_US": [
+        "MC: Sinnoh News Net.\r",
+        "Good morning.\n",
+        "This is Sinnoh News Net.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodDay",
+      "en_US": [
+        "MC: Sinnoh News Net.\r",
+        "Hello.\n",
+        "This is Sinnoh News Net.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_GoodEvening",
+      "en_US": [
+        "MC: Sinnoh News Net.\r",
+        "Good evening.\n",
+        "This is Sinnoh News Net.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_LeadSegment",
+      "en_US": "This is today’s lead story.\r"
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_NextSegment",
+      "en_US": "We now bring you this news story.\r"
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_Farewell",
+      "en_US": [
+        "MC: That’s all the news today.\n",
+        "Thank you for watching."
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNewsNet_FarewellExtended",
+      "en_US": [
+        "MC: Sinnoh News Net has crews\n",
+        "gathering news all over Sinnoh.\r",
+        "Help our news-gathering efforts by\n",
+        "mixing records at any Union Room.\r",
+        "That will allow us to get news that\n",
+        "concerns your friends, too.\r",
+        "Please join us for the next showing\n",
+        "of the Sinnoh News Net.\r",
+        "Thank you for watching."
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodMorning",
+      "en_US": [
+        "MC: Good morning!\r",
+        "It’s now time for Rack ’Em Up\n",
+        "Records!\r",
+        "Like always, we look at a variety\n",
+        "of cool records set by Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodDay",
+      "en_US": [
+        "MC: Hello!\r",
+        "It’s now time for Rack ’Em Up\n",
+        "Records!\r",
+        "Like always, we look at a variety\n",
+        "of cool records set by Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_GoodEvening",
+      "en_US": [
+        "MC: Good evening!\r",
+        "It’s now time for Rack ’Em Up\n",
+        "Records!\r",
+        "Like always, we look at a variety\n",
+        "of cool records set by Trainers.\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_LeadSegment",
+      "en_US": [
+        "All right, let’s have our experts\n",
+        "Serge and Tanya take over.\r",
+        "Here’s hoping they have some\n",
+        "interesting records to cover!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_NextSegment",
+      "en_US": [
+        "MC: Let’s have our experts examine\n",
+        "another eyebrow-raising record!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_Farewell",
+      "en_US": [
+        "MC: We hope you enjoyed today’s\n",
+        "Rack ’Em Up Records as we did.\r",
+        "That’s all for today!\n",
+        "Bye-bye!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_RackEmUpRecords_FarewellExtended",
+      "en_US": [
+        "MC: Rack ’Em Up Records wants to\n",
+        "hear from you!\r",
+        "Don’t be shy about telling us if you\n",
+        "set any new records.\r",
+        "Please also mix records with friends\n",
+        "at any Union Room.\r",
+        "That will let us examine the records\n",
+        "of your friends as well as yours.\r",
+        "We hope to catch the record-setting\n",
+        "moments of you, our loyal viewers!\r",
+        "That’s all for today!\n",
+        "Bye-bye!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_GoodMorning",
+      "en_US": [
+        "MC: Sinnoh! Now!\r",
+        "This is it!\n",
+        "The one you’ve all been waiting for!\r",
+        "It’s time for Sinnoh Now, your portal\n",
+        "to what’s hip and happening in Sinnoh!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_GoodDay",
+      "en_US": [
+        "MC: Sinnoh! Now!\r",
+        "This is it!\n",
+        "The one you’ve all been waiting for!\r",
+        "It’s time for Sinnoh Now, your portal\n",
+        "to what’s hip and happening in Sinnoh!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_GoodEvening",
+      "en_US": [
+        "MC: Sinnoh! Now!\r",
+        "This is it!\n",
+        "The one you’ve all been waiting for!\r",
+        "It’s time for Sinnoh Now, your portal\n",
+        "to what’s hip and happening in Sinnoh!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_LeadSegment",
+      "en_US": [
+        "Here’s the first story on the cutting\n",
+        "edge of Sinnoh trends!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_NextSegment",
+      "en_US": [
+        "MC: Here’s another story on the\n",
+        "cutting edge!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_Farewell",
+      "en_US": [
+        "MC: Did you enjoy this edition of\n",
+        "Sinnoh Now?\r",
+        "You can always count on us to keep\n",
+        "bringing you the information you want!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_SinnohNow_FarewellExtended",
+      "en_US": [
+        "MC: Sinnoh Now goes the extra\n",
+        "distance to bring you news.\r",
+        "We promise to do our best to keep\n",
+        "you informed with the news you want!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_GoodMorning",
+      "en_US": [
+        "MC: Good morning!\r",
+        "Tune in to this show and you’ll always\n",
+        "be on the cutting edge of fashion!\r",
+        "You guessed it!\n",
+        "It’s the Trend Tracker Show!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_GoodDay",
+      "en_US": [
+        "MC: Hello!\r",
+        "Tune in to this show and you’ll always\n",
+        "be on the cutting edge of fashion!\r",
+        "You guessed it!\n",
+        "It’s the Trend Tracker Show!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_GoodEvening",
+      "en_US": [
+        "MC: Good evening!\r",
+        "Tune in to this show and you’ll always\n",
+        "be on the cutting edge of fashion!\r",
+        "You guessed it!\n",
+        "It’s the Trend Tracker Show!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_LeadSegment",
+      "en_US": [
+        "Let’s go to our latest trendy news\n",
+        "story. Take it away!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_NextSegment",
+      "en_US": [
+        "Don’t go away, we have another\n",
+        "trendy news story next!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_Farewell",
+      "en_US": [
+        "MC: We do hope you found the Trend\n",
+        "Tracker Show informative.\r",
+        "Please tune in on our next\n",
+        "broadcast!\r",
+        "Over and out!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_TrendTracker_FarewellExtended",
+      "en_US": [
+        "MC: We do hope you found the Trend\n",
+        "Tracker Show informative.\r",
+        "We’ll be sure to keep you informed\n",
+        "about what’s in and not out!\r",
+        "Please tune in on our next\n",
+        "broadcast!\r",
+        "Over and out!"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_GoodMorning",
+      "en_US": [
+        "MC: Good morning, everyone!\n",
+        "Feeling groovy like GROVYLE?\f",
+        "The Pokémon Variety Hour’s here!\r",
+        "Let’s spend an exciting, dreamy time\n",
+        "together!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_GoodDay",
+      "en_US": [
+        "MC: Hey there, everyone!\n",
+        "Everyone feel happy like HAPPINY?\f",
+        "The Pokémon Variety Hour’s here!\r",
+        "Let’s spend an exciting, dreamy time\n",
+        "together!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_GoodEvening",
+      "en_US": [
+        "MC: Good evening, everyone!\n",
+        "Ready to buzz through like ELECTABUZZ?\f",
+        "The Pokémon Variety Hour’s here!\r",
+        "Let’s spend an exciting, dreamy time\n",
+        "together!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_LeadSegment",
+      "en_US": [
+        "So, what do our hosts have in store\n",
+        "for you today?\r",
+        "Let’s get to it and see!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_NextSegment",
+      "en_US": [
+        "MC: No time to waste!\n",
+        "Here’s the next show!\r"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_Farewell",
+      "en_US": [
+        "MC: OK, everyone! Hope you enjoyed\n",
+        "the Pokémon Variety Hour!\r",
+        "See you again!\n",
+        "Can you DIGLETT?"
+      ]
+    },
+    {
+      "id": "TVBroadcast_Text_VarietyHour_FarewellExtended",
+      "en_US": [
+        "MC: The Pokémon Variety Hour will bring\n",
+        "you all sorts of hot programs!\r",
+        "Be sure to tune in and check us out\n",
+        "as often as you can!\r",
+        "See you LATIAS, amigos!\n",
+        "Keep it mellow like SWELLOW!"
+      ]
+    }
+  ]
+}
