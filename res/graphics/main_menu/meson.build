@@ -1,4 +1,4 @@
-palettes_nclr = nclr_gen.process(
+main_menu_palettes_nclr = nclr_gen.process(
     files(
         'mystery_gift_bg_tiles.png',
         'wonder_card_tiles.png',
@@ -13,13 +13,13 @@ palettes_nclr = nclr_gen.process(
         'mystery_gift_particles.png',
         'main_menu_scroll_arrows.png',
         'wireless_icons.png',
-    ), 
+    ),
     extra_args: [
         '-bitdepth', '4'
     ]
 )
 
-tiles_sopc_ncgr = ncgr_lz_gen.process(
+main_menu_tiles_sopc_ncgr = ncgr_lz_gen.process(
     files(
         'mystery_gift_bg_tiles.png',
         'wonder_card_tiles.png',
@@ -33,7 +33,7 @@ tiles_sopc_ncgr = ncgr_lz_gen.process(
     ]
 )
 
-tiles_convert_4bpp_ncgr = ncgr_lz_gen.process(
+main_menu_tiles_convert_4bpp_ncgr = ncgr_lz_gen.process(
     files(
         'gba_migration_bg_tiles.png',
         'gift_reception_bg_tiles.png',
@@ -46,12 +46,12 @@ tiles_convert_4bpp_ncgr = ncgr_lz_gen.process(
     ]
 )
 
-wireless_icons_ncgr = ncgr_gen.process(
+main_menu_wireless_icons_ncgr = ncgr_gen.process(
     files('wireless_icons.png'),
     extra_args: ['-version101', '-sopc']
 )
 
-tiles_clobbersize_cell_ncgr = ncgr_cell_lz_gen.process(
+main_menu_tiles_clobbersize_cell_ncgr = ncgr_cell_lz_gen.process(
     files(
         'wonder_card_share_buttons.png',
         'mystery_gift_particles.png',
@@ -64,7 +64,7 @@ tiles_clobbersize_cell_ncgr = ncgr_cell_lz_gen.process(
     ]
 )
 
-giftbox_ncgr = ncgr_cell_lz_gen.process(
+main_menu_giftbox_ncgr = ncgr_cell_lz_gen.process(
     files(
         'giftbox.png',
     ),
@@ -76,7 +76,7 @@ giftbox_ncgr = ncgr_cell_lz_gen.process(
     ]
 )
 
-download_arrow_ncgr = ncgr_lz_gen.process(
+main_menu_download_arrow_ncgr = ncgr_lz_gen.process(
     files(
         'download_arrow.png',
     ),
@@ -87,7 +87,7 @@ download_arrow_ncgr = ncgr_lz_gen.process(
     ]
 )
 
-gba_migration_sprites_ncgr = ncgr_lz_gen.process(
+main_menu_gba_migration_sprites_ncgr = ncgr_lz_gen.process(
     files(
         'gba_migration_sprites.png',
     ),
@@ -100,7 +100,7 @@ gba_migration_sprites_ncgr = ncgr_lz_gen.process(
     ],
 )
 
-tilemaps_nscr = lz_gen.process(
+main_menu_tilemaps_nscr = lz_gen.process(
     files(
         'mystery_gift_bg.NSCR',
         'wonder_card_front.NSCR',
@@ -114,7 +114,7 @@ tilemaps_nscr = lz_gen.process(
     extra_args: ['-nopad']
 )
 
-nanr = nanr_lz_gen.process(
+main_menu_nanr = nanr_lz_gen.process(
     files(
         'download_arrow_anim.json',
         'wonder_card_share_buttons_anim.json',
@@ -126,7 +126,7 @@ nanr = nanr_lz_gen.process(
     extra_args: ['-nopad'],
 )
 
-ncer = ncer_lz_gen.process(
+main_menu_ncer = ncer_lz_gen.process(
     files(
         'download_arrow_cell.json',
         'wonder_card_share_buttons_cell.json',
@@ -143,20 +143,20 @@ main_menu_graphics_order = files('main_menu_graphics.order')
 main_menu_graphics_narc = custom_target('main_menu_graphics.narc',
     output: [
         'main_menu_graphics.narc',
-        'main_menu_graphics.naix',
+        'main_menu_graphics.naix.h',
     ],
     input: [
-        palettes_nclr,
-        tiles_sopc_ncgr,
-        tiles_convert_4bpp_ncgr,
-        wireless_icons_ncgr,
-        tiles_clobbersize_cell_ncgr,
-        giftbox_ncgr,
-        download_arrow_ncgr,
-        gba_migration_sprites_ncgr,
-        tilemaps_nscr,
-        nanr,
-        ncer,
+        main_menu_palettes_nclr,
+        main_menu_tiles_sopc_ncgr,
+        main_menu_tiles_convert_4bpp_ncgr,
+        main_menu_wireless_icons_ncgr,
+        main_menu_tiles_clobbersize_cell_ncgr,
+        main_menu_giftbox_ncgr,
+        main_menu_download_arrow_ncgr,
+        main_menu_gba_migration_sprites_ncgr,
+        main_menu_tilemaps_nscr,
+        main_menu_nanr,
+        main_menu_ncer,
         main_menu_graphics_order,
     ],
     command: [
