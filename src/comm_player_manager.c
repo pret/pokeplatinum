@@ -264,11 +264,11 @@ void CommPlayer_CopyPersonal(int netJd)
     sCommPlayerManager->playerLocationServer[netId].x = sCommPlayerManager->playerLocationServer[netJd].x;
     sCommPlayerManager->playerLocationServer[netId].z = sCommPlayerManager->playerLocationServer[netJd].z;
     sCommPlayerManager->playerLocationServer[netId].dir = sCommPlayerManager->playerLocationServer[netJd].dir;
-    sCommPlayerManager->unk_290[netId] = sCommPlayerManager->unk_290[netJd];
-    sCommPlayerManager->unk_290[netJd] = NULL;
+    sCommPlayerManager->heldFlagOwnerInfo[netId] = sCommPlayerManager->heldFlagOwnerInfo[netJd];
+    sCommPlayerManager->heldFlagOwnerInfo[netJd] = NULL;
 
-    if (sCommPlayerManager->unk_290[netId]) {
-        TrainerInfo_Copy(sCommPlayerManager->unk_290[netId], (TrainerInfo *)&sCommPlayerManager->unk_14A[netId].unk_00);
+    if (sCommPlayerManager->heldFlagOwnerInfo[netId]) {
+        TrainerInfo_Copy(sCommPlayerManager->heldFlagOwnerInfo[netId], (TrainerInfo *)&sCommPlayerManager->unk_14A[netId].unk_00);
     }
 
     sCommPlayerManager->unk_14A[netJd].unk_20 = 0xff;

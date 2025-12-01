@@ -81,7 +81,7 @@ static void ov23_0224A204(int param0)
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
     if (param0 == CommSys_CurNetId()) {
-        if (commPlayerMan->unk_290[param0] != NULL) {
+        if (commPlayerMan->heldFlagOwnerInfo[param0] != NULL) {
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_CAPTURE_FLAG);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
@@ -92,10 +92,10 @@ static void ov23_0224A204(int param0)
                 commPlayerMan->unk_27C[v0] = commPlayerMan->unk_27C[v0 - 1];
             }
 
-            commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(SaveData_GetUnderground(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
+            commPlayerMan->unk_27C[0] = commPlayerMan->heldFlagOwnerInfo[param0];
+            sub_02028830(SaveData_GetUnderground(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->heldFlagOwnerInfo[param0]);
 
-            commPlayerMan->unk_290[param0] = NULL;
+            commPlayerMan->heldFlagOwnerInfo[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;
         }
     } else {
@@ -107,14 +107,14 @@ static BOOL ov23_0224A294(int param0, int param1)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
-    if ((v0->unk_290[param0] == NULL) && (v0->unk_290[param1] != NULL)) {
-        v0->unk_290[param0] = v0->unk_290[param1];
-        v0->unk_290[param1] = NULL;
+    if ((v0->heldFlagOwnerInfo[param0] == NULL) && (v0->heldFlagOwnerInfo[param1] != NULL)) {
+        v0->heldFlagOwnerInfo[param0] = v0->heldFlagOwnerInfo[param1];
+        v0->heldFlagOwnerInfo[param1] = NULL;
         v0->emote[param0] = EMOTE_FLAG;
         v0->emote[param1] = EMOTE_NONE;
         v0->unk_14A[param0].unk_20 = param0;
         v0->unk_14A[param1].unk_20 = 0xff;
-        TrainerInfo_Copy(v0->unk_290[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
+        TrainerInfo_Copy(v0->heldFlagOwnerInfo[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
         return 1;
     }
 
@@ -164,7 +164,7 @@ void ov23_0224A348(int param0, int param1, void *param2, void *param3)
     v0.unk_01 = param0;
 
     if (commPlayerMan->unk_E2[param0] && !ov23_0224ACC0(param0)) {
-        if (ov23_0224AEA4(param0)) {
+        if (ov23_IsPlayerHoldingFlag(param0)) {
             v0.unk_00 = 3;
         } else {
             v0.unk_00 = 1;
@@ -327,12 +327,12 @@ BOOL ov23_0224A658(int param0, int param1, BOOL param2)
 
     if (param2 & 0x1) {
         v0.unk_00 = 11;
-    } else if (ov23_0224AEA4(param0)) {
+    } else if (ov23_IsPlayerHoldingFlag(param0)) {
         v0.unk_00 = 11;
     } else {
         if (param1 == 0xff) {
             return 0;
-        } else if (!ov23_0224AEA4(param1)) {
+        } else if (!ov23_IsPlayerHoldingFlag(param1)) {
             return 0;
         } else {
             v0.unk_00 = 5;
@@ -353,7 +353,7 @@ BOOL ov23_0224A6B8(int param0)
 {
     UnkStruct_ov23_0224A570 v0;
 
-    if (ov23_0224AEA4(param0)) {
+    if (ov23_IsPlayerHoldingFlag(param0)) {
         v0.unk_00 = 12;
     } else {
         return 0;
@@ -399,7 +399,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
     switch (v1->unk_00) {
     case 0:
-        if (commPlayerMan->unk_290[v1->unk_01]) {
+        if (commPlayerMan->heldFlagOwnerInfo[v1->unk_01]) {
             ov23_0224AE60(v1->unk_01);
             ov23_ClearEmote(v1->unk_01);
 
@@ -416,7 +416,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             return;
         }
 
-        if (commPlayerMan->unk_290[v1->unk_02] == NULL) {
+        if (commPlayerMan->heldFlagOwnerInfo[v1->unk_02] == NULL) {
             if (v1->unk_01 == CommSys_CurNetId()) {
                 CommPlayerMan_ResumeFieldSystem();
             }
@@ -424,7 +424,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             return;
         }
 
-        if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_02], CommInfo_TrainerInfo(v1->unk_01)) == 1) {
+        if (TrainerInfo_Equals(commPlayerMan->heldFlagOwnerInfo[v1->unk_02], CommInfo_TrainerInfo(v1->unk_01)) == 1) {
             ov23_0224AE60(v1->unk_02);
 
             if (v1->unk_01 == CommSys_CurNetId()) {
@@ -475,8 +475,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             UndergroundRecord_IncrementCapturedFlagCount(undergroundRecord);
             SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
-            if (commPlayerMan->unk_290[v1->unk_01]) {
-                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);
+            if (commPlayerMan->heldFlagOwnerInfo[v1->unk_01]) {
+                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->heldFlagOwnerInfo[v1->unk_01]);
 
                 if (commPlayerMan->unk_2B2 != 0xffff) {
                     commPlayerMan->unk_2B2++;
@@ -495,8 +495,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
         }
 
-        if (commPlayerMan->unk_290[v1->unk_01]) {
-            if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
+        if (commPlayerMan->heldFlagOwnerInfo[v1->unk_01]) {
+            if (TrainerInfo_Equals(commPlayerMan->heldFlagOwnerInfo[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
                 FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_LoseFlag(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(v1->unk_01));
             }
         }
@@ -528,8 +528,8 @@ void ov23_0224AAB0(void)
 
     commPlayerMan->unk_2B9 = 0;
 
-    if (commPlayerMan->unk_290[CommSys_CurNetId()]) {
-        CommSys_SendDataFixedSize(91, commPlayerMan->unk_290[CommSys_CurNetId()]);
+    if (commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]) {
+        CommSys_SendDataFixedSize(91, commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]);
     } else {
         TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_COMMUNICATION);
         Strbuf *v1 = Strbuf_Init(20, HEAP_ID_COMMUNICATION);
@@ -591,12 +591,12 @@ void ov23_0224ABC4(int param0, int param1, void *param2, void *param3)
     if (commPlayerMan) {
         v3 = v1->unk_20;
 
-        if (commPlayerMan->unk_290[v3]) {
-            Heap_Free(commPlayerMan->unk_290[v3]);
+        if (commPlayerMan->heldFlagOwnerInfo[v3]) {
+            Heap_Free(commPlayerMan->heldFlagOwnerInfo[v3]);
         }
 
-        commPlayerMan->unk_290[v3] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
-        TrainerInfo_Copy((TrainerInfo *)v1->unk_00, commPlayerMan->unk_290[v3]);
+        commPlayerMan->heldFlagOwnerInfo[v3] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
+        TrainerInfo_Copy((TrainerInfo *)v1->unk_00, commPlayerMan->heldFlagOwnerInfo[v3]);
         commPlayerMan->emote[v3] = EMOTE_FLAG;
     }
 }
@@ -631,9 +631,9 @@ void ov23_0224AC4C(void)
     int v3 = CommSys_CurNetId();
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (commPlayerMan->unk_290[v3]) {
-        v0 = commPlayerMan->unk_290[v3];
-        commPlayerMan->unk_290[v3] = NULL;
+    if (commPlayerMan->heldFlagOwnerInfo[v3]) {
+        v0 = commPlayerMan->heldFlagOwnerInfo[v3];
+        commPlayerMan->heldFlagOwnerInfo[v3] = NULL;
         commPlayerMan->emote[v3] = EMOTE_NONE;
         commPlayerMan->unk_14A[v3].unk_20 = 0xff;
     }
@@ -643,7 +643,7 @@ void ov23_0224AC4C(void)
     }
 
     if (v0) {
-        commPlayerMan->unk_290[0] = v0;
+        commPlayerMan->heldFlagOwnerInfo[0] = v0;
         commPlayerMan->emote[0] = EMOTE_FLAG;
 
         TrainerInfo_Copy(v0, (TrainerInfo *)&commPlayerMan->unk_14A[0].unk_00);
@@ -764,10 +764,10 @@ BOOL ov23_0224AE60(int param0)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
-    if (v0->unk_290[param0] != NULL) {
-        Heap_Free(v0->unk_290[param0]);
+    if (v0->heldFlagOwnerInfo[param0] != NULL) {
+        Heap_Free(v0->heldFlagOwnerInfo[param0]);
 
-        v0->unk_290[param0] = NULL;
+        v0->heldFlagOwnerInfo[param0] = NULL;
         v0->emote[param0] = EMOTE_NONE;
         v0->unk_14A[param0].unk_20 = 0xff;
 
@@ -777,43 +777,43 @@ BOOL ov23_0224AE60(int param0)
     return 0;
 }
 
-BOOL ov23_0224AEA4(int param0)
+BOOL ov23_IsPlayerHoldingFlag(int netID)
 {
-    CommPlayerManager *v0 = CommPlayerMan_Get();
+    CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (v0->unk_290[param0] != NULL) {
-        return 1;
+    if (commPlayerMan->heldFlagOwnerInfo[netID] != NULL) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov23_0224AEC4(int param0, int param1)
+BOOL ov23_TryTakeFlag(int flagTakerNetID, int flagOwnerNetID)
 {
-    CommPlayerManager *v0 = CommPlayerMan_Get();
+    CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (v0->unk_290[param0] == NULL) {
-        TrainerInfo *v1 = CommInfo_TrainerInfo(param1);
+    if (commPlayerMan->heldFlagOwnerInfo[flagTakerNetID] == NULL) {
+        TrainerInfo *trainerInfo = CommInfo_TrainerInfo(flagOwnerNetID);
 
-        if (v1) {
-            v0->unk_290[param0] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
-            TrainerInfo_Copy(v1, v0->unk_290[param0]);
+        if (trainerInfo) {
+            commPlayerMan->heldFlagOwnerInfo[flagTakerNetID] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
+            TrainerInfo_Copy(trainerInfo, commPlayerMan->heldFlagOwnerInfo[flagTakerNetID]);
 
-            v0->emote[param0] = EMOTE_FLAG;
-            v0->unk_14A[param0].unk_20 = param0;
+            commPlayerMan->emote[flagTakerNetID] = EMOTE_FLAG;
+            commPlayerMan->unk_14A[flagTakerNetID].unk_20 = flagTakerNetID;
 
-            TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
+            TrainerInfo_Copy(trainerInfo, (TrainerInfo *)&commPlayerMan->unk_14A[flagTakerNetID].unk_00);
 
-            if (param1 == CommSys_CurNetId()) {
-                UndergroundRecord *v2 = SaveData_UndergroundRecord(v0->fieldSystem->saveData);
-                sub_020297B4(v2);
+            if (flagOwnerNetID == CommSys_CurNetId()) {
+                UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(commPlayerMan->fieldSystem->saveData);
+                UndergroundRecord_IncrementTimesFlagTaken(undergroundRecord);
             }
 
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov23_0224AF4C(int netID)

@@ -116,7 +116,7 @@ void ov23_02249A74(void)
 
 static void ov23_02249A88(void)
 {
-    if (!sub_02033DFC()) {
+    if (!CommServerClient_IsInClosedSecretBase()) {
         ov23_0224C198();
         ov23_02249C24(ov23_02249C34, 0);
     }

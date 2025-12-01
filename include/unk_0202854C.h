@@ -127,8 +127,8 @@ int UndergroundRecord_GetNumPlayersHelped(const UndergroundRecord *undergroundRe
 void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundRecord);
 int UndergroundRecord_GetGiftsReceived(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundRecord);
-int sub_020297AC(const UndergroundRecord *param0);
-void sub_020297B4(UndergroundRecord *param0);
+int UndergroundRecord_GetTimesFlagTaken(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementTimesFlagTaken(UndergroundRecord *undergroundRecord);
 int sub_020297E4(const UndergroundRecord *param0);
 void sub_020297EC(UndergroundRecord *param0);
 int sub_0202981C(const UndergroundRecord *param0);

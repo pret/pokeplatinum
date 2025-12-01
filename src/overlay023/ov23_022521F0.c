@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/underground.h"
 
@@ -553,32 +555,32 @@ static void ov23_02252D1C(UndergroundMenu *param0)
     Window_CopyToVRAM(&param0->secondaryWindow);
 }
 
-void ov23_02252D74(UndergroundMenu *param0, int param1)
+void UndergroundMenu_PrintMenuDescription(UndergroundMenu *menu, int bankEntry)
 {
-    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
-    Window_DrawStandardFrame(&param0->unk_30, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->menuDescriptionWindow, BG_LAYER_MAIN_3, 1, 1, 7, 4, 13, 51);
+    Window_DrawStandardFrame(&menu->menuDescriptionWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
-    Window_FillTilemap(&param0->unk_30, 15);
-    Window_CopyToVRAM(&param0->unk_30);
+    Window_FillTilemap(&menu->menuDescriptionWindow, 15);
+    Window_CopyToVRAM(&menu->menuDescriptionWindow);
 
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->strbuf);
-    Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
-    Window_ScheduleCopyToVRAM(&param0->unk_30);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), bankEntry, menu->strbuf);
+    Text_AddPrinterWithParams(&menu->menuDescriptionWindow, FONT_SYSTEM, menu->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    Window_ScheduleCopyToVRAM(&menu->menuDescriptionWindow);
 }
 
-void ov23_02252DF4(UndergroundMenu *param0)
+void UndergroundMenu_RemoveDescriptionWindow(UndergroundMenu *menu)
 {
-    if (Window_IsInUse(&param0->unk_30)) {
-        Window_EraseStandardFrame(&param0->unk_30, 1);
-        Window_Remove(&param0->unk_30);
+    if (Window_IsInUse(&menu->menuDescriptionWindow)) {
+        Window_EraseStandardFrame(&menu->menuDescriptionWindow, TRUE);
+        Window_Remove(&menu->menuDescriptionWindow);
     }
 }
 
-void ov23_02252E18(UndergroundMenu *param0)
+void UndergroundMenu_RemoveDescriptionWindowInstant(UndergroundMenu *menu)
 {
-    if (Window_IsInUse(&param0->unk_30)) {
-        Window_EraseStandardFrame(&param0->unk_30, 0);
-        Window_Remove(&param0->unk_30);
+    if (Window_IsInUse(&menu->menuDescriptionWindow)) {
+        Window_EraseStandardFrame(&menu->menuDescriptionWindow, FALSE);
+        Window_Remove(&menu->menuDescriptionWindow);
     }
 }
 
@@ -723,7 +725,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->listMenuListPos = CommManUnderground_GetStoredListPos(12);
 
         ov23_02250184(v0);
-        ov23_02252D74(v0, 19);
+        UndergroundMenu_PrintMenuDescription(v0, 19);
 
         if (v0->unk_2AC == 1) {
             ov23_02252CF4(2, v0->unk_274[v0->unk_2A8]);
@@ -747,13 +749,13 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             case 0xffffffff:
                 break;
             case 0xfffffffe:
-                ov23_02252DF4(v0);
+                UndergroundMenu_RemoveDescriptionWindow(v0);
                 v0->state = 4;
                 break;
             default:
                 v1 = ov23_02252404(v0, v0->unk_2A8, v1);
                 ov23_02252B90(v0, 1);
-                ov23_02252DF4(v0);
+                UndergroundMenu_RemoveDescriptionWindow(v0);
 
                 if (v1 == 0xfffc) {
                     ov23_02252C9C(3);
@@ -810,13 +812,13 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
         if (v0->unk_2AC == 1) {
             ov23_0224FDBC(v0);
-            ov23_02252D74(v0, 20);
+            UndergroundMenu_PrintMenuDescription(v0, 20);
         } else if (v0->unk_2AC == 0) {
             ov23_02250CB0(v0);
-            ov23_02252D74(v0, 21);
+            UndergroundMenu_PrintMenuDescription(v0, 21);
         } else {
             ov23_02250578(v0);
-            ov23_02252D74(v0, 29);
+            UndergroundMenu_PrintMenuDescription(v0, 29);
         }
 
         v0->state = 13;
@@ -830,7 +832,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         case 0xfffffffe:
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             ov23_02252B90(v0, 1);
-            ov23_02252DF4(v0);
+            UndergroundMenu_RemoveDescriptionWindow(v0);
             v0->state = 2;
             break;
         case 0xffffffff:
@@ -840,7 +842,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
                 v0->unk_2A8 = v1;
                 ov23_02252B90(v0, 1);
-                ov23_02252DF4(v0);
+                UndergroundMenu_RemoveDescriptionWindow(v0);
                 ov23_02252BB8(v1, v0);
                 v0->state = 14;
             }
@@ -896,7 +898,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_02252CD4();
                 ov23_02252C78(v0);
-                ov23_02243204();
+                CommManUnderground_ClearCurrentSysTaskInfo();
                 SysTask_Done(param0);
                 CommPlayerMan_ResumeFieldSystem();
             }
@@ -933,7 +935,7 @@ void ov23_022534A0(FieldSystem *fieldSystem)
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     v4->sysTask = SysTask_Start(ov23_02252E70, v4, 10000);
-    ov23_022431EC(v4, v4->sysTask, ov23_02251270);
+    CommManUnderground_SetCurrentSysTask(v4, v4->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 
     {
         int objEventCount, i;

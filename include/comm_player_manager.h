@@ -21,7 +21,7 @@ enum PauseBit {
     PAUSE_BIT_3 = 1 << 3,
     PAUSE_BIT_TRAPS = 1 << 4,
     PAUSE_BIT_5 = 1 << 5,
-    PAUSE_BIT_6 = 1 << 6,
+    PAUSE_BIT_LINK_PC = 1 << 6,
     PAUSE_BIT_RADAR = 1 << 7,
 };
 
@@ -59,7 +59,7 @@ typedef struct CommPlayerManager {
     u8 moveTimer[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];
     TrainerInfo *unk_27C[5];
-    TrainerInfo *unk_290[MAX_CONNECTED_PLAYERS];
+    TrainerInfo *heldFlagOwnerInfo[MAX_CONNECTED_PLAYERS];
     u16 unk_2B0;
     u16 unk_2B2;
     u8 unk_2B4[4];
