@@ -12,7 +12,6 @@
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
@@ -26,6 +25,7 @@
 #include "field_move_tasks.h"
 #include "field_task.h"
 #include "item_use_functions.h"
+#include "move_reminder_data.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
@@ -94,7 +94,7 @@ void sub_0203E224(FieldSystem *fieldSystem);
 void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData);
 void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem);
 void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1);
-void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1);
+void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);
 void sub_0203E2FC(FieldSystem *fieldSystem);

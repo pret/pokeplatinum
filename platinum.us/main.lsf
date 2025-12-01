@@ -208,7 +208,7 @@ Static main
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_scrcmd_item.c.o
 	Object main.nef.p/src_scrcmd_underground_inventory.c.o
-	Object main.nef.p/src_unk_0204EDA4.c.o
+	Object main.nef.p/src_scrcmd_party_mon_moves.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_unk_0204F13C.c.o
@@ -350,7 +350,7 @@ Static main
 	Object main.nef.p/src_unk_02099550.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
-	Object main.nef.p/src_unk_020997B8.c.o
+	Object main.nef.p/src_move_reminder_data.c.o
 	Object main.nef.p/src_unk_020998EC.c.o
 	Object main.nef.p/src_poketch_memory.c.o
 	Object main.nef.p/src_unk_02099DFC.c.o
@@ -468,7 +468,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_fieldmap.c.o
 	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
 	Object main.nef.p/src_overlay005_field_control.c.o
-	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
+	Object main.nef.p/src_overlay005_sprite_resource_manager.c.o
 	Object main.nef.p/src_overlay005_map_prop_animation.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
 	Object main.nef.p/src_overlay005_area_light.c.o
@@ -477,7 +477,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_model_attributes.c.o
 	Object main.nef.p/src_overlay005_field_camera.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5BC0.c.o
-	Object main.nef.p/src_overlay005_ov5_021D5CB0.c.o
+	Object main.nef.p/src_overlay005_texture_resource_manager.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5EB8.c.o
 	Object main.nef.p/src_overlay005_vs_seeker.c.o
 	Object main.nef.p/src_overlay005_field_menu.c.o
@@ -635,10 +635,10 @@ Overlay battle_anim
 	After overlay11
 	Object main.nef.p/src_battle_anim_battle_anim_system.c.o
 	Object main.nef.p/src_battle_anim_battle_particle_util.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222389C.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222421C.c.o
-	Object main.nef.p/src_battle_anim_ov12_02225104.c.o
-	Object main.nef.p/src_battle_anim_ov12_02225640.c.o
+	Object main.nef.p/src_battle_anim_emitter_callbacks.c.o
+	Object main.nef.p/src_battle_anim_generic_emitter_callback.c.o
+	Object main.nef.p/src_battle_anim_generic_emitter_callback_behavior.c.o
+	Object main.nef.p/src_battle_anim_generic_emitter_callback_camera.c.o
 	Object main.nef.p/src_battle_anim_battle_anim_helpers.c.o
 	Object main.nef.p/src_battle_anim_script_func_tables.c.o
 	Object main.nef.p/src_battle_anim_script_func_examples.c.o
@@ -849,7 +849,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_022499E4.c.o
 	Object main.nef.p/src_overlay023_ov23_0224A1D0.c.o
 	Object main.nef.p/src_overlay023_ov23_0224B05C.c.o
-	Object main.nef.p/src_overlay023_ov23_0224DC40.c.o
+	Object main.nef.p/src_overlay023_underground_player_talk.c.o
 	Object main.nef.p/src_overlay023_underground_menu.c.o
 	Object main.nef.p/src_overlay023_ov23_0225128C.c.o
 	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
@@ -1075,11 +1075,11 @@ Overlay poketch_trainer_counter
 	Object main.nef.p/src_applications_poketch_trainer_counter_graphics.c.o
 }
 
-Overlay overlay54
+Overlay poketch_pokemon_history
 {
 	After overlay25
-	Object main.nef.p/src_overlay054_ov54_022561C0.c.o
-	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
+	Object main.nef.p/src_applications_poketch_pokemon_history_main.c.o
+	Object main.nef.p/src_applications_poketch_pokemon_history_graphics.c.o
 }
 
 Overlay poketch_unused_4
@@ -1394,10 +1394,10 @@ Overlay overlay90
 	Object main.nef.p/src_overlay090_ov90_021D0D80.c.o
 }
 
-Overlay overlay91
+Overlay move_reminder
 {
 	After main
-	Object main.nef.p/src_overlay091_ov91_021D0D80.c.o
+	Object main.nef.p/src_applications_move_reminder.c.o
 }
 
 Overlay overlay92

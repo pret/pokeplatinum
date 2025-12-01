@@ -12,7 +12,7 @@ L_0:
     PlayDelayedSoundEffectC SEQ_SE_DP_W103, 15
     PlayDelayedSoundEffectC SEQ_SE_DP_W103, 20
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     WaitForAllEmitters
     UnloadParticleSystem 0

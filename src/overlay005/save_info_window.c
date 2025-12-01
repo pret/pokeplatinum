@@ -169,7 +169,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapID heapID,
     saveInfoWin->bgLayer = bgLayer;
     saveInfoWin->bgConfig = fieldSystem->bgConfig;
     saveInfoWin->strTemplate = StringTemplate_Default(heapID);
-    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_INFO_WINDOW, heapID);
+    saveInfoWin->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_INFO_WINDOW, heapID);
 
     SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
     SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);

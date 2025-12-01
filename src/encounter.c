@@ -189,7 +189,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         if (encounter->dto->battleType == BATTLE_TYPE_WILD_MON
             || encounter->dto->battleType == BATTLE_TYPE_ROAMER
             || encounter->dto->battleType == BATTLE_TYPE_AI_PARTNER) {
-            sub_0206D1B8(fieldSystem, encounter->dto->unk_10C, encounter->dto->resultMask);
+            FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
         }
 
         if (CheckPlayerWonEncounter(encounter) == FALSE) {
@@ -389,7 +389,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        sub_0206D1B8(fieldSystem, encounter->dto->unk_10C, encounter->dto->resultMask);
+        FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
 
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);
@@ -479,7 +479,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
             Pokemon *caughtMon = Party_GetPokemonBySlotIndex(encounter->dto->parties[1], 0);
 
-            sub_0206D018(broadcast, caughtMon);
+            TVBroadcast_UpdateSafariGameData(broadcast, caughtMon);
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);

@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, heal_bell_spa
     PlaySoundEffectL SEQ_SE_DP_W234
-    CreateEmitter 0, 0, 19
-    CreateEmitter 0, 1, 19
-    CreateEmitter 0, 2, 19
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE
     BeginLoop 1
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_LIGHT_CYAN
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 8, 8

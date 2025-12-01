@@ -174,7 +174,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
+        v5 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
         {
             Strbuf *v8;
@@ -406,7 +406,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         int v10;
         u8 v11;
 
-        v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
+        v6 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
 
         {
             MessageLoader *v12;
@@ -415,7 +415,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
+            v12 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
             Window_FillTilemap(&param0->unk_18, 15);
 
@@ -459,7 +459,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         MessageLoader_Free(v6);
     }
 
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     v1 = Unk_ov23_02256B3C;
     v1.printCallback = ov23_02254564;

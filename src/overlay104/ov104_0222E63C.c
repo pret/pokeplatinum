@@ -162,7 +162,7 @@ static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int 
     int v1 = ov104_0222EA90(param2, 2);
 
     *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, heapID);
-    *param1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, heapID);
+    *param1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v1, heapID);
 }
 
 void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
@@ -179,7 +179,7 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
         return;
     }
 
-    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v3, heapID);
+    v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v3, heapID);
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = param0->unk_04[v0];

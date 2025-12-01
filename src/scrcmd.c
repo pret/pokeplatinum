@@ -157,6 +157,7 @@
 #include "scrcmd_money.h"
 #include "scrcmd_mystery_gift.h"
 #include "scrcmd_party.h"
+#include "scrcmd_party_mon_moves.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_sound.h"
 #include "scrcmd_strings.h"
@@ -196,7 +197,6 @@
 #include "unk_02048BD0.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
-#include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -340,14 +340,14 @@ static BOOL ScrCmd_WaitMovement(ScriptContext *ctx);
 static BOOL ScrCmd_LockAll(ScriptContext *ctx);
 static BOOL sub_020410CC(ScriptContext *ctx);
 static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx);
-static BOOL SrcCmd_LockObject(ScriptContext *ctx);
-static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx);
+static BOOL ScrCmd_LockObject(ScriptContext *ctx);
+static BOOL ScrCmd_ReleaseObject(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
-static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
-static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx);
-static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx);
-static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
+static BOOL ScrCmd_AddFreeCamera(ScriptContext *ctx);
+static BOOL ScrCmd_RestoreCamera(ScriptContext *ctx);
+static BOOL ScrCmd_AddCameraOverrideObject(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
@@ -867,12 +867,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
     ScrCmd_ReleaseAll,
-    SrcCmd_LockObject,
-    SrcCmd_ReleaseObject,
+    ScrCmd_LockObject,
+    ScrCmd_ReleaseObject,
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
-    SrcCmd_AddFreeCamera,
-    SrcCmd_RestoreCamera,
+    ScrCmd_AddFreeCamera,
+    ScrCmd_RestoreCamera,
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
     ScrCmd_Unused_06A,
@@ -1312,13 +1312,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ActivateRoamingPokemon,
     ScrCmd_21D,
     ScrCmd_Dummy21E,
-    ScrCmd_21F,
+    ScrCmd_CheckHasLearnableReminderMoves,
     ScrCmd_220,
-    ScrCmd_221,
+    ScrCmd_OpenMoveReminderMenu,
     ScrCmd_222,
-    ScrCmd_223,
-    ScrCmd_224,
-    ScrCmd_225,
+    ScrCmd_CheckLearnedReminderMove,
+    ScrCmd_OpenMoveTutorMenu,
+    ScrCmd_CheckLearnedTutorMove,
     ScrCmd_StartNpcTrade,
     ScrCmd_GetNpcTradeSpecies,
     ScrCmd_GetNpcTradeRequestedSpecies,
@@ -1545,8 +1545,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonForm2,
     ScrCmd_ShowListMenuRememberCursor,
     ScrCmd_GetEmptyPoffinCaseSlotCount,
-    SrcCmd_AddCameraOverrideObject,
-    SrcCmd_RemoveCameraOverrideObject,
+    ScrCmd_AddCameraOverrideObject,
+    ScrCmd_RemoveCameraOverrideObject,
     ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
@@ -1564,7 +1564,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartFatefulEncounter,
     ScrCmd_StartGiratinaOriginBattle,
     ScrCmd_WriteSpeciesSeen,
-    ScrCmd_31B,
+    ScrCmd_GetCurrentSafariGameCaughtNum,
     ScrCmd_FindPartySlotWithFatefulEncounterSpecies,
     ScrCmd_31D,
     ScrCmd_TryRevertPokemonForm,
@@ -2044,7 +2044,7 @@ static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx)
     u16 bankID = ScriptContext_GetVar(ctx);
     u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
     ScriptMessage_ShowInstant(ctx, msgLoader, messageID);
     MessageLoader_Free(msgLoader);
@@ -2057,7 +2057,7 @@ static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx)
     u16 bankID = ScriptContext_GetVar(ctx);
     u16 messageID = ScriptContext_GetVar(ctx);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
     ScriptMessage_Show(ctx, msgLoader, messageID, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
@@ -2103,7 +2103,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     u16 *v0 = battleTower->unk_78[v3].trDataDTO.unk_18;
 
     if (v0[0] == 0xFFFF) {
-        MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
         ScriptMessage_Show(ctx, msgLoader, v0[1], TRUE, NULL);
         MessageLoader_Free(msgLoader);
     } else {
@@ -3168,7 +3168,7 @@ static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL SrcCmd_LockObject(ScriptContext *ctx)
+static BOOL ScrCmd_LockObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3178,7 +3178,7 @@ static BOOL SrcCmd_LockObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx)
+static BOOL ScrCmd_ReleaseObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3217,7 +3217,7 @@ static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
+static BOOL ScrCmd_AddFreeCamera(ScriptContext *ctx)
 {
     u16 xPos = ScriptContext_GetVar(ctx);
     u16 zPos = ScriptContext_GetVar(ctx);
@@ -3238,7 +3238,7 @@ static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
+static BOOL ScrCmd_RestoreCamera(ScriptContext *ctx)
 {
     MapObject **freeCameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
@@ -3253,7 +3253,7 @@ static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
+static BOOL ScrCmd_AddCameraOverrideObject(ScriptContext *ctx)
 {
     u16 xPos = ScriptContext_GetVar(ctx);
     u16 zPos = ScriptContext_GetVar(ctx);
@@ -3268,7 +3268,7 @@ static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
 {
     MapObject **cameraOverrideObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
@@ -6137,13 +6137,13 @@ static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx)
     switch (activeState) {
     case SAFARI_GAME_ACTIVE:
         SystemFlag_SetSafariGameActive(varsFlags);
-        sub_0206D000(broadcast);
+        TVBroadcast_ResetSafariGameData(broadcast);
         *safariBallCount = 30;
         *stepCount = 0;
         break;
     case SAFARI_GAME_INACTIVE:
         SystemFlag_ClearSafariGameActive(varsFlags);
-        sub_0206D720(ctx->fieldSystem);
+        FieldSystem_SaveTVEpisodeSegment_SafariGameSpecialNewsBulletin(ctx->fieldSystem);
         void *journalEntryLocationEvent = JournalEntry_CreateEventSafariGame(HEAP_ID_FIELD1);
 
         JournalEntry_SaveData(ctx->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
@@ -7289,7 +7289,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     StringTemplate *v6 = StringTemplate_Default(HEAP_ID_FIELD3);
-    MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD3);
+    MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD3);
 
     StringTemplate_SetCustomMessageWord(v6, 0, v2);
     StringTemplate_SetCustomMessageWord(v6, 1, v3);

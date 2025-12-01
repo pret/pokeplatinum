@@ -608,8 +608,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     EnableTouchPad();
     InitializeTouchPad(4);
 
-    battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
-    battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
+    battleSys->unk_0C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
+    battleSys->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init(2 * 160, HEAP_ID_BATTLE);
 
@@ -731,7 +731,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->bagCursor = battleSystem->bagCursor;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
     v1->poketch = battleSystem->poketch;
-    v1->unk_10C = battleSystem->unk_9C;
+    v1->captureAttempt = battleSystem->captureAttempt;
     v1->countSafariBalls = battleSystem->safariBalls;
     v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
     v1->caughtBattlerIdx = battleSystem->unk_2438;
@@ -1084,7 +1084,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->unk_1BC = dto->subscreenCursorOn;
     battleSys->poketch = dto->poketch;
     battleSys->mapEvolutionMethod = dto->mapEvolutionMethod;
-    battleSys->unk_9C = dto->unk_10C;
+    battleSys->captureAttempt = dto->captureAttempt;
     battleSys->safariBalls = dto->countSafariBalls;
     battleSys->terrain = dto->terrain;
     battleSys->background = dto->background;
@@ -1147,7 +1147,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     for (v1 = 0; v1 < Party_GetCurrentCount(battleSys->parties[i]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i], v1);
 
-                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                             break;
                         }
                     }
@@ -1174,7 +1174,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     for (v1 = 0; v1 < Party_GetCurrentCount(battleSys->parties[i]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i], v1);
 
-                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                             break;
                         }
                     }
@@ -1202,11 +1202,11 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i & 1], v1);
 
                         if (i > 1) {
-                            if ((BattleContext_Get(battleSys, battleSys->battleCtx, 2, i & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                            if ((BattleContext_Get(battleSys, battleSys->battleCtx, 2, i & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                                 break;
                             }
                         } else {
-                            if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                            if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                                 break;
                             }
                         }
@@ -1230,7 +1230,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     for (v1 = 0; v1 < Party_GetCurrentCount(battleSys->parties[i]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i], v1);
 
-                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                             break;
                         }
                     }
@@ -1262,11 +1262,11 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     v3 = BattleSystem_PartyPokemon(battleSys, i, v1);
 
                     if (i == 2) {
-                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v8 != v1)) {
+                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL)) && (v8 != v1)) {
                             break;
                         }
                     } else {
-                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                        if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                             break;
                         }
                     }
@@ -1299,7 +1299,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             for (v1 = 0; v1 < Party_GetCurrentCount(battleSys->parties[i]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i], v1);
 
-                if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                     break;
                 }
             }
@@ -1328,11 +1328,11 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i & 1], v1);
 
                 if (i > 1) {
-                    if ((BattleContext_Get(battleSys, battleSys->battleCtx, 2, i & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                    if ((BattleContext_Get(battleSys, battleSys->battleCtx, 2, i & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                         break;
                     }
                 } else {
-                    if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                    if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                         break;
                     }
                 }
@@ -1359,7 +1359,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             for (v1 = 0; v1 < Party_GetCurrentCount(battleSys->parties[i]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[i], v1);
 
-                if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL))) {
                     break;
                 }
             }
@@ -1373,7 +1373,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
 
     if (battleSys->battleType & BATTLE_TYPE_PAL_PARK) {
         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[1], 0);
-        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&battleSys->trainers[1].name);
+        Pokemon_GetValue(v3, MON_DATA_OT_NAME, (u8 *)&battleSys->trainers[1].name);
     }
 
     if (battleSys->battleType & BATTLE_TYPE_TRAINER) {
@@ -1728,7 +1728,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
         MessageLoader *v5;
         Strbuf *v6;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
+        v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
         v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetStrbuf(v5, 923, v6);

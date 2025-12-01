@@ -11,10 +11,10 @@
 #include "struct_decls/struct_0202E794_decl.h"
 
 #include "field/field_system.h"
-#include "overlay006/struct_ov6_022465F4_decl.h"
 #include "savedata/save_table.h"
 
 #include "charcode_util.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "save_player.h"
 #include "trainer_info.h"

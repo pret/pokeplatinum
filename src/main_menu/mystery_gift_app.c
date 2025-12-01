@@ -59,6 +59,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/mystery_gift_menu.h"
 #include "res/text/bank/unk_0695.h"
 
@@ -98,8 +99,8 @@ FS_EXTERN_OVERLAY(main_menu);
 #define NUM_TILES_YES_NO_MENU            (YES_NO_MENU_WIDTH * YES_NO_MENU_HEIGHT)
 
 #define BASE_TILE_MESSAGE_BOX_FRAME      1
-#define BASE_TILE_STANDARD_WINDOW_FRAME  (BASE_TILE_MESSAGE_BOX_FRAME + SCROLLING_MESSAGE_BOX_TILE_COUNT)
-#define BASE_TILE_MAIN_APP_MENU_MSG_BOX  (BASE_TILE_STANDARD_WINDOW_FRAME + STANDARD_WINDOW_TILE_COUNT)
+#define BASE_TILE_MG_WINDOW_FRAME        (BASE_TILE_MESSAGE_BOX_FRAME + SCROLLING_MESSAGE_BOX_TILE_COUNT)
+#define BASE_TILE_MAIN_APP_MENU_MSG_BOX  (BASE_TILE_MG_WINDOW_FRAME + STANDARD_WINDOW_TILE_COUNT)
 #define BASE_TILE_MAIN_APP_MENU          (BASE_TILE_MAIN_APP_MENU_MSG_BOX + NUM_TILES_MAIN_MG_MENU_MSG_BOX)
 #define BASE_TILE_RECEPTION_METHODS_MENU (BASE_TILE_MAIN_APP_MENU + NUM_TILES_MAIN_MG_MENU)
 #define BASE_TILE_YES_NO_MENU            (BASE_TILE_RECEPTION_METHODS_MENU + NUM_TILES_RECEPTION_METHODS_MENU)
@@ -375,7 +376,7 @@ static void LoadDownloadArrowSpriteResources(MysteryGiftAppData *appData)
 {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 10, 7, 9, 8, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, download_arrow_NCGR_lz, download_arrow_NCLR, download_arrow_cell_NCER_lz, download_arrow_anim_NANR_lz, DS_SCREEN_MAIN);
 }
 
 static void SetDownloadArrowAnim(MysteryGiftAppData *appData, int animID)
@@ -496,7 +497,7 @@ static BOOL ShouldPlayAnimation(WonderCard *wonderCard)
     case MYST_GIFT_POKEMON:
     case MYST_GIFT_EGG: {
         Pokemon *pokemon = &wonderCard->pgt.data.pokemonGiftData.pokemon;
-        int metLocation = Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL);
+        int metLocation = Pokemon_GetValue(pokemon, MON_DATA_EGG_LOCATION, NULL);
 
         if ((metLocation >= EVENT_LOCATION_MOVIES_START && metLocation <= EVENT_LOCATION_MOVIES_END)
             || (metLocation >= EVENT_LOCATION_POKEMON_EVENT_09 && metLocation <= EVENT_LOCATION_POKEMON_EVENT_16)) {
@@ -577,7 +578,7 @@ static void ShowConfirmReceiveGiftMenu(ApplicationManager *appMan, BOOL hideMsgB
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions, NELEMS(sConfirmReceiveGiftOptions), window, msgBoxTextId);
 }
 
@@ -616,7 +617,7 @@ static enum MysteryGiftAppState AskConfirmWireless_FriendOrGBA(ApplicationManage
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOptions_FriendOrGBA, NELEMS(sStartWirelessCommsOptions_FriendOrGBA), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -637,7 +638,7 @@ static enum MysteryGiftAppState AskConfirmConnectToWFC(ApplicationManager *appMa
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmConnectToWFCOptions, NELEMS(sConfirmConnectToWFCOptions), window, MysteryGiftMenu_Text_ConnectToWFC);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -657,7 +658,7 @@ static enum MysteryGiftAppState AskConfirmWireless_WirelessDistribution(Applicat
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOption_WirelessDistribution, NELEMS(sStartWirelessCommsOption_WirelessDistribution), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched2);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -673,7 +674,7 @@ static void ShowConfirmReceiveGiftMenu_LocalWireless(ApplicationManager *appMan)
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions_WirelessDistribution, NELEMS(sConfirmReceiveGiftOptions_WirelessDistribution), window, MysteryGiftMenu_Text_ReceiveThisGift);
 }
 
@@ -778,7 +779,7 @@ static enum MysteryGiftAppState ShowMysteryGiftReceptionMethodsMenu(ApplicationM
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 15, 9, 16, TEXT_LINES_TILES(NUM_RECEPTION_METHODS), PLTT_0, BASE_TILE_RECEPTION_METHODS_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sMysteryGiftReceiveOptions, NELEMS(sMysteryGiftReceiveOptions), window, MysteryGiftMenu_Text_ChooseHowToReceiveGift);
 
     return MG_APP_STATE_WAIT_RECEPTION_METHOD_CHOICE;
@@ -854,18 +855,18 @@ static void SetupGraphics(BgConfig *bgConfig)
 
 static void LoadBottomScreenBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_SUB_1);
 }
 
 static void LoadBothScreensBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 
@@ -881,7 +882,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(ApplicationManager *appMan
     }
 
     appData->listMenuOptions = StringList_New(numEntries, HEAP_ID_MYSTERY_GIFT_APP);
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
 
     for (int i = 0; i < numEntries; i++) {
         StringList_AddFromMessageBank(appData->listMenuOptions, appData->msgLoader, entries[i].textEntryId, (u32)entries[i].stateTransitionFuncPtr);
@@ -926,7 +927,7 @@ static void ShowMysteryGiftMenuOptions(ApplicationManager *appMan, int windowBas
         Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 8, 7, 16, TEXT_LINES_TILES(numEntries), PLTT_0, windowBaseTile);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, entries, numEntries, window, textEntryId);
 }
 
@@ -934,7 +935,7 @@ static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entry
 {
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
     appData->strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -963,7 +964,7 @@ static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, cha
     Strbuf_CopyNumChars(strBuf, title, WONDERCARD_TITLE_LENGTH);
     Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(window, FALSE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, FALSE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     Strbuf_Free(strBuf);
 }
 
@@ -1012,7 +1013,7 @@ static BOOL ShowAppMainMenu(ApplicationManager *appMan, MysteryGiftAppData *appD
     int frameType = Options_Frame(appData->options);
 
     LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2, frameType, HEAP_ID_MYSTERY_GIFT_APP);
-    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3, STANDARD_WINDOW_FIELD, HEAP_ID_MYSTERY_GIFT_APP);
+    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MG_WINDOW_FRAME, PLTT_3, STANDARD_WINDOW_FIELD, HEAP_ID_MYSTERY_GIFT_APP);
 
     *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = GX_RGB(12, 12, 31);
 
@@ -1071,7 +1072,7 @@ void MysteryGiftApp_ShowWiFiCommError(MysteryGiftAppData *appData)
     StringTemplate_SetNumber(strTemplate, 0, appData->wifiCommErrorCode, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
     MainMenuWindow window;
-    MainMenuUtil_InitWindow(&window, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MainMenuUtil_InitWindow(&window, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
     MainMenuWindow_SetDimensionsAndBasetile(&window, 24, TEXT_LINES_TILES(8), BASE_TILE_WIFI_COMM_ERROR_WINDOW);
     MainMenuWindow_SetScrollableAndFont(&window, FALSE, FONT_MESSAGE);
 
@@ -1114,7 +1115,7 @@ static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window 
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     if (window && textEntryId) {
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
         strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
         appData->strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryId, HEAP_ID_MYSTERY_GIFT_APP);
         appData->msgBoxPrinterDelay = TEXT_SPEED_FAST;
@@ -1194,10 +1195,10 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
 static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
 {
     enum NarcID narcID = NARC_INDEX_GRAPHIC__MYSTERY;
-    int tilesID = 39;
-    int paletteID = 36;
-    int cellsID = 38;
-    int animationID = 37;
+    int tilesID = mystery_gift_particles_NCGR_lz;
+    int paletteID = mystery_gift_particles_NCLR;
+    int cellsID = mystery_gift_particles_cell_NCER_lz;
+    int animationID = mystery_gift_particles_anim_NANR_lz;
     int compressed = TRUE;
     int vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     int resourceID = 20000 + vramType;

@@ -138,7 +138,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
-    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
+    errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
     errorString = Strbuf_Init(0x180, heapID);
 
     Text_ResetAllPrinters();

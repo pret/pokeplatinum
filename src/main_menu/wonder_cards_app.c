@@ -51,6 +51,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/mystery_gift_menu.h"
 
 FS_EXTERN_OVERLAY(main_menu);
@@ -623,7 +624,7 @@ static void LoadWcShareScreenButtonsGraphics(WonderCardsAppData *appData)
     ResetAllSprites(appData);
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_buttons_NCGR_lz, wonder_card_share_buttons_NCLR, wonder_card_share_buttons_cell_NCER_lz, wonder_card_share_buttons_anim_NANR_lz, DS_SCREEN_MAIN);
 }
 
 static void ResetAllSprites(WonderCardsAppData *appData)
@@ -689,7 +690,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
     }
 
     appData->strList = StringList_New(numEntries, HEAP_ID_WONDER_CARDS_APP);
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
 
     for (int i = 0; i < numEntries; i++) {
         StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, entries[i].stateChange.asU32);
@@ -708,7 +709,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
 
 static void PrintTextEntryToWindow(Window *window, int textEntryID)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -724,10 +725,10 @@ static void PrintTextEntryToWindow(Window *window, int textEntryID)
 
 static void LoadWcShareScreenBackground(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 11, PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 16, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 17, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 18, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_cards_text_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, WC_SHARE_SCREEN_TILEMAP_WIDTH, WC_SHARE_SCREEN_TILEMAP_HEIGHT, PLTT_12);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
@@ -959,7 +960,7 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
 
     WonderCardsAppWindowTemplate *windowTemplates = sWonderCardsAppWindows;
 
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
     appData->strTemplate = StringTemplate_Default(appData->heapID);
     appData->currentScreen = screen;
 
@@ -1023,7 +1024,7 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     Window_FillTilemap(window, windowTemplate->bgColor.colorIndex);
 
     if (windowTemplate->entryID) {
-        appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+        appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
         appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
     }
 
@@ -1090,24 +1091,24 @@ static void LoadTilemapBufferFromNarc(WonderCardsAppData *appData, u32 narcMembe
 
 static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 3, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 8 * PALETTE_SIZE_BYTES, appData->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 6, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_BACK_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 8 * PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_tiles_NCGR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_BACK_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
     switch (screen) {
     case WC_SCREEN_WONDERCARD_FRONT:
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 4, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_TILEMAP_WIDTH * WC_FRONT_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_front_NSCR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_TILEMAP_WIDTH * WC_FRONT_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
     case WC_SCREEN_WONDERCARD_BACK:
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 5, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_back_NSCR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
     default:
         break;
     }
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, appData->bgConfig, BG_LAYER_MAIN_3, 0, WC_APP_BG_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, appData->bgConfig, BG_LAYER_MAIN_3, 0, WC_APP_BG_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
-    LoadTilemapBufferFromNarc(appData, 2, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
+    LoadTilemapBufferFromNarc(appData, mystery_gift_bg_NSCR_lz, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
 
     Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_3, 0, 0, WC_APP_BG_TILEMAP_WIDTH, WC_APP_BG_TILEMAP_HEIGHT, PLTT_11);
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_3);
@@ -1165,7 +1166,7 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 
         MainMenuUtil_InitCharPlttTransferBuffers();
         MainMenuUtil_InitSpriteLoader();
-        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, DS_SCREEN_MAIN);
+        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCGR_lz, gba_migration_sprites_NCLR, gba_migration_sprites_cell_NCER_lz, gba_migration_sprites_anim_NANR_lz, DS_SCREEN_MAIN);
 
         Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(3), 0, appData->heapID);
     }
@@ -1737,7 +1738,7 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
     connectedPlayersNetIds[3] = PopEarliestReturnNetId(orderNumbers);
 
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     int trainerInfoYOffset = 0;
 
     Window_FillTilemap(window, 0);
@@ -1782,7 +1783,7 @@ static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *win
     Strbuf *strBuf;
 
     appData->connectedPlayersCount = newCount;
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, 0);

@@ -18,7 +18,7 @@ L_1:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     PlaySoundEffectC SEQ_SE_PL_W097
-    CreateEmitter 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_NONE
     WaitForBgSwitch
     Delay 19
     Delay 1
@@ -50,7 +50,7 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     PlaySoundEffectC SEQ_SE_PL_W097
-    CreateEmitter 0, 1, 0
+    CreateEmitter 0, 1, EMITTER_CB_NONE
     WaitForBgSwitch
     Delay 19
     Delay 1

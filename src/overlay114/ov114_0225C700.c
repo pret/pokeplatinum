@@ -1401,7 +1401,7 @@ static void ov114_0225D07C(UnkStruct_ov114_0225CFCC *param0)
 
 static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
 {
-    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, heapID);
+    param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);
     param0->unk_08 = Strbuf_Init(128, heapID);
     param0->unk_0C = Strbuf_Init(128, heapID);

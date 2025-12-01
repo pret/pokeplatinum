@@ -2,7 +2,7 @@
   "key": 33007,
   "messages": [
     {
-      "id": "pl_msg_00000416_00000",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_Nicknamed",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00001",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_NotNicknamed",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00002",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_Fainted",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00003",
+      "id": "TVProgramTrainerSightings_Text_CatchThatPokemonShow_RanAway",
       "en_US": [
         "DJ: Gotta catch ’em all!\n",
         "It’s the Catch That Pokémon Show!\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00004",
+      "id": "TVProgramTrainerSightings_Text_WhatsFishing_Success",
       "en_US": [
         "MC: Welcome to another episode of\n",
         "What’s Fishing? Trainers with Rods.\r",
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00005",
+      "id": "TVProgramTrainerSightings_Text_WhatsFishing_Failure",
       "en_US": [
         "MC: Welcome to another episode of\n",
         "What’s Fishing? Trainers with Rods.\r",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00006",
+      "id": "TVProgramTrainerSightings_Text_LoveThatGroupCorner_SwitchGroup",
       "en_US": [
         "MC: It’s time for the Love That Group\n",
         "Corner.\r",
@@ -214,7 +214,7 @@
       "garbage": 268
     },
     {
-      "id": "pl_msg_00000416_00010",
+      "id": "TVProgramTrainerSightings_Text_HiddenItemBreakingNews",
       "en_US": [
         "Newscaster: We bring you this\n",
         "breaking news story.\r",
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00011",
+      "id": "TVProgramTrainerSightings_Text_SinnohShoppingChampCorner",
       "en_US": [
         "MC: Your wait is over!\n",
         "It’s the Sinnoh Shopping Champ Corner!\r",
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00012",
+      "id": "TVProgramTrainerSightings_Text_HappyHappyEggClub",
       "en_US": [
         "MC: It’s time for the Happy-Happy\n",
         "Egg Club.\r",
@@ -288,7 +288,7 @@
       "garbage": 317
     },
     {
-      "id": "pl_msg_00000416_00017",
+      "id": "TVProgramTrainerSightings_Text_RateThatNameChange_MoreAttractive",
       "en_US": [
         "MC: Does changing nicknames change\n",
         "attributes? We decide for you!\r",
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00018",
+      "id": "TVProgramTrainerSightings_Text_RateThatNameChange_Speedier",
       "en_US": [
         "MC: Does changing nicknames change\n",
         "attributes? We decide for you!\r",
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00019",
+      "id": "TVProgramTrainerSightings_Text_RateThatNameChange_MoreAromatic",
       "en_US": [
         "MC: Does changing nicknames change\n",
         "attributes? We decide for you!\r",
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00020",
+      "id": "TVProgramTrainerSightings_Text_RateThatNameChange_Stronger",
       "en_US": [
         "MC: Does changing nicknames change\n",
         "attributes? We decide for you!\r",
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00021",
+      "id": "TVProgramTrainerSightings_Text_RateThatNameChange_Happier",
       "en_US": [
         "MC: Does changing nicknames change\n",
         "attributes? We decide for you!\r",
@@ -446,7 +446,7 @@
       "garbage": 102
     },
     {
-      "id": "pl_msg_00000416_00024",
+      "id": "TVProgramTrainerSightings_Text_UndergroundTreasuresCorner",
       "en_US": [
         "MC: You’ve just tuned in to the\n",
         "Underground Treasures Corner.\r",
@@ -477,7 +477,7 @@
       "garbage": 201
     },
     {
-      "id": "pl_msg_00000416_00026",
+      "id": "TVProgramTrainerSightings_Text_SafariGameSpecialNewsBulletin",
       "en_US": [
         "Newscaster: We bring you this special\n",
         "news bulletin.\r",
@@ -496,7 +496,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00027",
+      "id": "TVProgramTrainerSightings_Text_PokemonStorageSpecialNewsBulletin_Male",
       "en_US": [
         "Newscaster: We bring you this special\n",
         "news bulletin.\r",
@@ -513,7 +513,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00028",
+      "id": "TVProgramTrainerSightings_Text_PokemonStorageSpecialNewsBulletin_Female",
       "en_US": [
         "Newscaster: We bring you this special\n",
         "news bulletin.\r",
@@ -534,7 +534,7 @@
       "garbage": 173
     },
     {
-      "id": "pl_msg_00000416_00030",
+      "id": "TVProgramTrainerSightings_Text_PlantingAndWateringShow",
       "en_US": [
         "MC: It’s time for the Planting and\n",
         "Watering Show for Berry Gardeners.\r",
@@ -555,7 +555,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00031",
+      "id": "TVProgramTrainerSightings_Text_PlantingAndWateringShow_NoBerries",
       "en_US": [
         "MC: It’s time for the Planting and\n",
         "Watering Show for Berry Gardeners.\r",
@@ -579,7 +579,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00032",
+      "id": "TVProgramTrainerSightings_Text_LoveThatGroupCorner_NewGroup",
       "en_US": [
         "MC: It’s time for the Love That Group\n",
         "Corner.\r",
@@ -597,7 +597,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00033",
+      "id": "TVProgramTrainerSightings_Text_SealClubShow_CleverlyCalculated",
       "en_US": [
         "MC: It’s now time for the Seal Club\n",
         "Show.\r",
@@ -630,7 +630,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00034",
+      "id": "TVProgramTrainerSightings_Text_SealClubShow_ObscuredBeauty",
       "en_US": [
         "MC: It’s now time for the Seal Club\n",
         "Show.\r",
@@ -669,7 +669,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00035",
+      "id": "TVProgramTrainerSightings_Text_SealClubShow_MeticulousCraftsmanship",
       "en_US": [
         "MC: It’s now time for the Seal Club\n",
         "Show.\r",
@@ -696,7 +696,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00036",
+      "id": "TVProgramTrainerSightings_Text_CaptureTheFlagDigest_TakeFlag",
       "en_US": [
         "Newscaster: The time has come!\n",
         "It’s the Capture-the-Flag Digest!\r",
@@ -719,7 +719,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00037",
+      "id": "TVProgramTrainerSightings_Text_CaptureTheFlagDigest_LoseFlag",
       "en_US": [
         "Newscaster: The time has come!\n",
         "It’s the Capture-the-Flag Digest!\r",
@@ -744,7 +744,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00038",
+      "id": "TVProgramTrainerSightings_Text_HomeAndManor_NoFurniture",
       "en_US": [
         "Reporter: Good day, ladies and\n",
         "gentlemen.\r",
@@ -772,7 +772,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000416_00039",
+      "id": "TVProgramTrainerSightings_Text_HomeAndManor",
       "en_US": [
         "Reporter: Good day, ladies and\n",
         "gentlemen.\r",

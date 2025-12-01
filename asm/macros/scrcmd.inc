@@ -3110,39 +3110,39 @@
     .short 542
     .endm
 
-    .macro ScrCmd_21F arg0, arg1
+    .macro CheckHasLearnableReminderMoves destVar, partySlot
     .short 543
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_220
     .short 544
     .endm
 
-    .macro ScrCmd_221 arg0
+    .macro OpenMoveReminderMenu partySlot
     .short 545
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_222
     .short 546
     .endm
 
-    .macro ScrCmd_223 arg0
+    .macro CheckLearnedReminderMove destVar
     .short 547
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_224 arg0, arg1
+    .macro OpenMoveTutorMenu partySlot, move
     .short 548
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \move
     .endm
 
-    .macro ScrCmd_225 arg0
+    .macro CheckLearnedTutorMove destVar
     .short 549
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro StartNpcTrade npcTradeID
@@ -4694,9 +4694,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31B arg0
+    .macro GetCurrentSafariGameCaughtNum destVar
     .short 795
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FindPartySlotWithFatefulEncounterSpecies destVar, species

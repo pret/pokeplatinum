@@ -89,9 +89,9 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_BCC = StringTemplate_New(11, 32, HEAP_ID_68);
-        v0->unk_BD0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
-        v0->unk_BD4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
-        v0->unk_BD8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
+        v0->unk_BD0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
+        v0->unk_BD4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
+        v0->unk_BD8 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
 
         SetAutorepeat(4, 8);
         ov96_0223B980(v0, appMan);

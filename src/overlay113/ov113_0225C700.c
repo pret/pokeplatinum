@@ -379,7 +379,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
     v0->unk_2C = StringTemplate_Default(HEAP_ID_118);
-    v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0650, HEAP_ID_118);
+    v0->unk_30 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0650, HEAP_ID_118);
     v0->unk_10 = sub_02012744(4, HEAP_ID_118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, HEAP_ID_118);
     v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, HEAP_ID_118);
@@ -1317,7 +1317,7 @@ static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260
 
     for (v3 = 0; v3 < v1; v3++) {
         v2 = Party_GetPokemonBySlotIndex(v0, v3);
-        param2[v3].unk_02 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
+        param2[v3].unk_02 = Pokemon_GetValue(v2, MON_DATA_SPECIES_OR_EGG, NULL);
         param2[v3].unk_04 = Pokemon_GetValue(v2, MON_DATA_PERSONALITY, NULL);
         param2[v3].unk_08 = Pokemon_GetValue(v2, MON_DATA_FORM, NULL);
         param2[v3].unk_00 = ov113_0226072C(param0, Pokemon_GetValue(v2, MON_DATA_OT_ID, NULL));

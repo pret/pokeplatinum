@@ -233,7 +233,7 @@ MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
     MapNamePopUp_CreateWindow(mapPopUp);
 
-    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, HEAP_ID_FIELD1);
+    mapPopUp->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, HEAP_ID_FIELD1);
     return mapPopUp;
 }
 

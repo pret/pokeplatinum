@@ -317,7 +317,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
         pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
-    moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD3);
+    moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD3);
     moveTutorManager = MoveTutorManager_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(scriptContext->fieldSystem, SCRIPT_MANAGER_WINDOW), moveNamesLoader);
 
     for (i = 0; i < NELEMS(sTeachableMoves); i++) {
@@ -364,7 +364,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
         MoveTutorManager_AddMenuEntry(moveTutorManager, learnableMoves[i], 0xff, learnableMoves[i]);
     }
 
-    miscMessageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
+    miscMessageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, miscMessageLoader);
     MoveTutorManager_AddMenuEntry(moveTutorManager, MenuEntries_Text_Exit, 0xff, (u16)LIST_CANCEL); // cast required to match

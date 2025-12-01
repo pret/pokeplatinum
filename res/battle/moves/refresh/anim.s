@@ -5,8 +5,8 @@ L_0:
     PlaySoundEffectL SEQ_SE_DP_W287
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 30
     PlaySoundEffectL SEQ_SE_DP_W234
     WaitForAllEmitters

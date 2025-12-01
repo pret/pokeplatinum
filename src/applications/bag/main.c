@@ -59,8 +59,8 @@
 #define DIAL_RADIUS        80
 #define DIAL_BUTTON_RADIUS 24
 
-#define BASE_TILE_STANDARD_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
-#define BASE_TILE_MSG_BOX_FRAME         (BASE_TILE_STANDARD_WINDOW_FRAME - SCROLLING_MESSAGE_BOX_TILE_COUNT)
+#define BASE_TILE_BAG_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
+#define BASE_TILE_MSG_BOX_FRAME    (BASE_TILE_BAG_WINDOW_FRAME - SCROLLING_MESSAGE_BOX_TILE_COUNT)
 
 #define ITEM_LIST_EMPTY_ENTRY -3
 
@@ -832,7 +832,7 @@ static void LoadGraphics(BagController *controller)
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, bag_ui_main_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pocket_selector_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_BAG);
     Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(11), HEAP_ID_BAG);
-    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
+    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
     LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, PLTT_12, Options_Frame(controller->options), HEAP_ID_BAG);
     Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_tileset_NCGR, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
@@ -845,11 +845,11 @@ static void LoadGraphics(BagController *controller)
 
 static void SetupTextLoaders(BagController *controller)
 {
-    controller->bagStringsLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, HEAP_ID_BAG);
+    controller->bagStringsLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, HEAP_ID_BAG);
     controller->specialChars = FontSpecialChars_Init(1, 2, 0, HEAP_ID_BAG);
     controller->strTemplate = StringTemplate_Default(HEAP_ID_BAG);
-    controller->itemNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BAG);
-    controller->moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BAG);
+    controller->itemNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BAG);
+    controller->moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BAG);
     controller->strBuffer = Strbuf_Init(256, HEAP_ID_BAG);
 }
 

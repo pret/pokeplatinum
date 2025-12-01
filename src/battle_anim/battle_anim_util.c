@@ -18,6 +18,23 @@
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 
+enum WorldPosType {
+    WORLD_POS_TYPE_NORMAL = 0,
+    WORLD_POS_TYPE_BEAM1,
+    WORLD_POS_TYPE_BEAM2,
+    WORLD_POS_TYPE_BEAM3,
+    WORLD_POS_TYPE_HYPNOSIS,
+    WORLD_POS_TYPE_TRI_ATTACK,
+    WORLD_POS_TYPE_HYDRO_CANNON,
+    WORLD_POS_TYPE_HYPER_VOICE,
+    WORLD_POS_TYPE_GRASS_WHISTLE,
+    WORLD_POS_TYPE_DRAGON_PULSE,
+    WORLD_POS_TYPE_CAMERA_LOOKAT,
+    WORLD_POS_TYPE_HYDRO_PUMP,
+
+    WORLD_POS_TYPE_COUNT,
+};
+
 void ov17_022413D8(void);
 void include_unk_ov12_0223A218(VecFx32 *dummy);
 
@@ -27,7 +44,7 @@ static const VecFx32 Unk_ov12_0223A218 = {
     -0x1000
 };
 
-static const VecFx32 Unk_ov12_0223A224 = {
+static const VecFx32 sUnitDown = {
     0x0,
     -FX32_ONE,
     0x0
@@ -171,216 +188,219 @@ void BattleAnimUtil_GetBattlerDefaultPos(BattleAnimSystem *system, int battler, 
     BattleAnimUtil_GetBattlerTypeDefaultPos(battlerType, isContest, pos);
 }
 
-static void BattleAnimUtil_GetBattlerTypeWorldPosInternal(int battlerType, VecFx32 *outPos, int isContest, int projection, int posType)
+#define PERSP(type) (type * CAMERA_PROJECTION_COUNT)
+#define ORTHO(type) (PERSP(type) + 1)
+
+static void BattleAnimUtil_GetBattlerTypeWorldPosInternal(int battlerType, VecFx32 *outPos, int isContest, int projection, enum WorldPosType posType)
 {
-    const VecFx32 particlePositions[][12 * CAMERA_PROJECTION_COUNT] = {
+    const VecFx32 positions[BATTLER_TYPE_MAX + CONTESTANT_TYPE_COUNT][WORLD_POS_TYPE_COUNT * CAMERA_PROJECTION_COUNT] = {
         [BATTLER_TYPE_SOLO_PLAYER] = {
-            VEC_FX32(-2.3477, -1.334, 0.0156),
-            VEC_FX32(-2.5, -1.5625, 0.0156),
-            VEC_FX32(-0.9688, -0.8125, 0.0156),
-            VEC_FX32(-1.6035, -0.9766, 0.0156),
-            VEC_FX32(-0.9688, -0.8125, 0.0156),
-            VEC_FX32(-1.6406, -1.414, 0.0156),
-            VEC_FX32(-2.1074, -1.6934, 0),
-            VEC_FX32(-2.1074, -1.6934, 0),
-            VEC_FX32(-3.0625, -0.9375, 0),
-            VEC_FX32(-3.0625, -0.9375, 0),
-            VEC_FX32(-2.3516, -1.4297, 0),
-            VEC_FX32(-2.3516, -1.4297, 0),
-            VEC_FX32(-1.0117, -1.2695, 0),
-            VEC_FX32(-1.0117, -1.2695, 0),
-            VEC_FX32(-3.0469, -1.0469, 0),
-            VEC_FX32(-3.0469, -1.0469, 0),
-            VEC_FX32(-0.4375, -1.0312, 0),
-            VEC_FX32(-0.4375, -1.0312, 0),
-            VEC_FX32(-2.0312, -1.0156, 0),
-            VEC_FX32(-2.0312, -1.0156, 0),
-            VEC_FX32(2.2168, 1.3516, 0),
-            VEC_FX32(2.2168, 1.3516, 0),
-            VEC_FX32(-1.5254, -0.7188, 0),
-            VEC_FX32(-1.5254, -0.7188, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-2.3477, -1.334, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-2.5, -1.5625, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-0.9688, -0.8125, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-1.6035, -0.9766, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-0.9688, -0.8125, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-1.6406, -1.414, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-2.1074, -1.6934, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-2.1074, -1.6934, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-3.0625, -0.9375, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-3.0625, -0.9375, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-2.3516, -1.4297, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-2.3516, -1.4297, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-1.0117, -1.2695, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-1.0117, -1.2695, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-3.0469, -1.0469, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-3.0469, -1.0469, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(-0.4375, -1.0312, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(-0.4375, -1.0312, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-2.0312, -1.0156, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-2.0312, -1.0156, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(2.2168, 1.3516, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(2.2168, 1.3516, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-1.5254, -0.7188, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-1.5254, -0.7188, 0),
         },
         [BATTLER_TYPE_SOLO_ENEMY] = {
-            VEC_FX32(2.6992, 1.0742, -1.2812),
-            VEC_FX32(2.5, 0.75, -1.2812),
-            VEC_FX32(2.2812, 0.5312, -1.2812),
-            VEC_FX32(2.1484, 1.5781, -1.2812),
-            VEC_FX32(2.2812, 0.5312, -1.2812),
-            VEC_FX32(3.5469, 1.961, -1.2812),
-            VEC_FX32(3.1504, 1.247, 0),
-            VEC_FX32(3.1504, 1.247, 0),
-            VEC_FX32(1.3262, 1.6309, 0),
-            VEC_FX32(1.3262, 1.6309, 0),
-            VEC_FX32(3.209, 2.752, 0),
-            VEC_FX32(3.209, 2.752, 0),
-            VEC_FX32(4.0508, 1.2617, 0),
-            VEC_FX32(4.0508, 1.2617, 0),
-            VEC_FX32(3.2188, 1.8594, 0),
-            VEC_FX32(3.2188, 1.8594, 0),
-            VEC_FX32(4.125, 0.8125, 0),
-            VEC_FX32(4.125, 0.8125, 0),
-            VEC_FX32(2.6562, 1.0938, 0),
-            VEC_FX32(2.6562, 1.0938, 0),
-            VEC_FX32(-1.6934, -1.1797, 0),
-            VEC_FX32(-1.6934, -1.1797, 0),
-            VEC_FX32(2.0215, 1.3262, 0),
-            VEC_FX32(2.0215, 1.3262, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(2.6992, 1.0742, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(2.5, 0.75, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(2.2812, 0.5312, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(2.1484, 1.5781, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(2.2812, 0.5312, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(3.5469, 1.961, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.1504, 1.247, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.1504, 1.247, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.3262, 1.6309, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.3262, 1.6309, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.209, 2.752, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.209, 2.752, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(4.0508, 1.2617, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(4.0508, 1.2617, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.2188, 1.8594, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.2188, 1.8594, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(4.125, 0.8125, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(4.125, 0.8125, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(2.6562, 1.0938, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(2.6562, 1.0938, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-1.6934, -1.1797, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-1.6934, -1.1797, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(2.0215, 1.3262, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(2.0215, 1.3262, 0),
         },
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
-            VEC_FX32(-3.6465, -1.2285, 0.0156),
-            VEC_FX32(-3.75, -1.5312, 0.0156),
-            VEC_FX32(-2.4062, -0.7812, 0.0156),
-            VEC_FX32(-2.7832, -0.7188, 0.0156),
-            VEC_FX32(-2.4062, -0.7812, 0.0156),
-            VEC_FX32(-2.4062, -0.7812, 0.0156),
-            VEC_FX32(-2.3086, -0.7578, 0),
-            VEC_FX32(-2.3086, -0.7578, 0),
-            VEC_FX32(-4.3594, -0.8848, 0),
-            VEC_FX32(-4.3594, -0.8848, 0),
-            VEC_FX32(-3.0742, -0.7266, 0),
-            VEC_FX32(-3.0742, -0.7266, 0),
-            VEC_FX32(-1.5542, -0.9219, 0),
-            VEC_FX32(-1.5542, -0.9219, 0),
-            VEC_FX32(-3.6406, -0.5312, 0),
-            VEC_FX32(-3.6406, -0.5312, 0),
-            VEC_FX32(-1.4844, -1.3438, 0),
-            VEC_FX32(-1.4844, -1.3438, 0),
-            VEC_FX32(-2.9375, -0.7812, 0),
-            VEC_FX32(-2.9375, -0.7812, 0),
-            VEC_FX32(2.6426, 1.8281, 0),
-            VEC_FX32(2.6426, 1.8281, 0),
-            VEC_FX32(-2.4062, -0.7812, 0),
-            VEC_FX32(-2.4062, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-3.6465, -1.2285, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-3.75, -1.5312, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-2.4062, -0.7812, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-2.7832, -0.7188, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-2.4062, -0.7812, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-2.4062, -0.7812, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-2.3086, -0.7578, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-2.3086, -0.7578, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-4.3594, -0.8848, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-4.3594, -0.8848, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-3.0742, -0.7266, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-3.0742, -0.7266, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-1.5542, -0.9219, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-1.5542, -0.9219, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-3.6406, -0.5312, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-3.6406, -0.5312, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(-1.4844, -1.3438, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(-1.4844, -1.3438, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-2.9375, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-2.9375, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(2.6426, 1.8281, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(2.6426, 1.8281, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-2.4062, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-2.4062, -0.7812, 0),
         },
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
-            VEC_FX32(1.7988, 1.455, -1.2812),
-            VEC_FX32(3.3125, 0.7188, -1.2812),
-            VEC_FX32(3.3125, 0.7188, -1.2812),
-            VEC_FX32(3.0898, 1.4004, -1.2812),
-            VEC_FX32(3.3125, 0.7188, -1.2812),
-            VEC_FX32(3.3125, 0.7188, -1.2812),
-            VEC_FX32(4.3906, 1.5469, 0),
-            VEC_FX32(4.3906, 1.5469, 0),
-            VEC_FX32(1.959, 1.4668, 0),
-            VEC_FX32(1.959, 1.4668, 0),
-            VEC_FX32(3.1914, 1.5156, 0),
-            VEC_FX32(3.1914, 1.5156, 0),
-            VEC_FX32(4.25, 1.2656, 0),
-            VEC_FX32(4.25, 1.2656, 0),
-            VEC_FX32(3.9375, 1.7969, 0),
-            VEC_FX32(3.9375, 1.7969, 0),
-            VEC_FX32(5.0469, 0.8496, 0),
-            VEC_FX32(5.0469, 0.8496, 0),
-            VEC_FX32(3.2812, 1.3203, 0),
-            VEC_FX32(3.2812, 1.3203, 0),
-            VEC_FX32(-2.3281, -0.7617, 0.666),
-            VEC_FX32(-2.3281, -0.7617, 0.666),
-            VEC_FX32(3.3125, 0.7188, 0),
-            VEC_FX32(3.3125, 0.7188, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(1.7988, 1.455, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(3.3125, 0.7188, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(3.3125, 0.7188, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(3.0898, 1.4004, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(3.3125, 0.7188, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(3.3125, 0.7188, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(4.3906, 1.5469, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(4.3906, 1.5469, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.959, 1.4668, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.959, 1.4668, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.1914, 1.5156, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.1914, 1.5156, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(4.25, 1.2656, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(4.25, 1.2656, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.9375, 1.7969, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.9375, 1.7969, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(5.0469, 0.8496, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(5.0469, 0.8496, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(3.2812, 1.3203, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(3.2812, 1.3203, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-2.3281, -0.7617, 0.666),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-2.3281, -0.7617, 0.666),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(3.3125, 0.7188, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(3.3125, 0.7188, 0),
         },
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
-            VEC_FX32(-1.3096, -1.6035, -0.25),
-            VEC_FX32(-1.8438, -1.6875, -0.25),
-            VEC_FX32(-0.5635, -1.375, -0.25),
-            VEC_FX32(-0.7285, -1.287, -0.25),
-            VEC_FX32(-0.5635, -1.375, -0.25),
-            VEC_FX32(-0.5635, -1.375, -0.25),
-            VEC_FX32(-0.6055, -1.3594, 0),
-            VEC_FX32(-0.6055, -1.3594, 0),
-            VEC_FX32(-2.002, -1.166, 0),
-            VEC_FX32(-2.002, -1.166, 0),
-            VEC_FX32(-1.3672, -1.582, 0),
-            VEC_FX32(-1.3672, -1.582, 0),
-            VEC_FX32(-0.1543, -1.2637, 0),
-            VEC_FX32(-0.1543, -1.2637, 0),
-            VEC_FX32(-2.0625, -2.0469, 0),
-            VEC_FX32(-2.0625, -2.0469, 0),
-            VEC_FX32(0.125, -1.5938, 0),
-            VEC_FX32(0.125, -1.5938, 0),
-            VEC_FX32(-1.6719, -1.5, 0),
-            VEC_FX32(-1.6719, -1.5, 0),
-            VEC_FX32(1.2578, 1.8281, 0),
-            VEC_FX32(1.2578, 1.8281, 0),
-            VEC_FX32(-0.5635, -1.375, 0),
-            VEC_FX32(-0.5635, -1.375, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-1.3096, -1.6035, -0.25),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-1.8438, -1.6875, -0.25),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-0.5635, -1.375, -0.25),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-0.7285, -1.287, -0.25),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-0.5635, -1.375, -0.25),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-0.5635, -1.375, -0.25),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-0.6055, -1.3594, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-0.6055, -1.3594, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-2.002, -1.166, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-2.002, -1.166, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-1.3672, -1.582, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-1.3672, -1.582, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-0.1543, -1.2637, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-0.1543, -1.2637, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-2.0625, -2.0469, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-2.0625, -2.0469, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(0.125, -1.5938, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(0.125, -1.5938, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-1.6719, -1.5, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-1.6719, -1.5, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(1.2578, 1.8281, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(1.2578, 1.8281, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-0.5635, -1.375, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-0.5635, -1.375, 0),
         },
         [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
-            VEC_FX32(3.707, 1.08, -1.793),
-            VEC_FX32(1.6875, 1.0, -1.793),
-            VEC_FX32(1.6875, 1.0, -1.793),
-            VEC_FX32(1.6855, 2.0176, -1.793),
-            VEC_FX32(1.6875, 1.0, -1.793),
-            VEC_FX32(1.6875, 1.0, -1.793),
-            VEC_FX32(3.129, 1.3672, 0),
-            VEC_FX32(3.129, 1.3672, 0),
-            VEC_FX32(0.4902, 1.1465, 0),
-            VEC_FX32(0.4902, 1.1465, 0),
-            VEC_FX32(1.959, 1.541, 0),
-            VEC_FX32(1.959, 1.541, 0),
-            VEC_FX32(2.877, 1.502, 0),
-            VEC_FX32(2.877, 1.502, 0),
-            VEC_FX32(2.4375, 2.3125, 0),
-            VEC_FX32(2.4375, 2.3125, 0),
-            VEC_FX32(3.3906, 0.8496, 0),
-            VEC_FX32(3.3906, 0.8496, 0),
-            VEC_FX32(1.5156, 1.3281, 0),
-            VEC_FX32(1.5156, 1.3281, 0),
-            VEC_FX32(-1.3203, -1.4648, 0),
-            VEC_FX32(-1.3203, -1.4648, 0),
-            VEC_FX32(1.6875, 1.0, 0),
-            VEC_FX32(1.6875, 1.0, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(3.707, 1.08, -1.793),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(1.6875, 1.0, -1.793),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(1.6875, 1.0, -1.793),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(1.6855, 2.0176, -1.793),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(1.6875, 1.0, -1.793),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(1.6875, 1.0, -1.793),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.129, 1.3672, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.129, 1.3672, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(0.4902, 1.1465, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(0.4902, 1.1465, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(1.959, 1.541, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(1.959, 1.541, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(2.877, 1.502, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(2.877, 1.502, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(2.4375, 2.3125, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(2.4375, 2.3125, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(3.3906, 0.8496, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(3.3906, 0.8496, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(1.5156, 1.3281, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(1.5156, 1.3281, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-1.3203, -1.4648, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-1.3203, -1.4648, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(1.6875, 1.0, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(1.6875, 1.0, 0),
         },
         [CONTESTANT_TYPE_PLAYER] = {
-            VEC_FX32(1.7988, -1.2285, 0.0156),
-            VEC_FX32(3.3125, -1.5312, 0.0156),
-            VEC_FX32(3.3125, -0.7812, 0.0156),
-            VEC_FX32(3.0898, -0.7188, 0.0156),
-            VEC_FX32(3.3125, -0.7812, 0.0156),
-            VEC_FX32(3.3125, -0.7812, 0.0156),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(1.8477, -0.7812, 0),
-            VEC_FX32(1.8477, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(-2.3281, 1.8281, 0),
-            VEC_FX32(-2.3281, 1.8281, 0),
-            VEC_FX32(3.3125, -0.7812, 0),
-            VEC_FX32(3.3125, -0.7188, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(1.7988, -1.2285, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(3.3125, -1.5312, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(3.3125, -0.7812, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(3.0898, -0.7188, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(3.3125, -0.7812, 0.0156),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(3.3125, -0.7812, 0.0156),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.8477, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(1.8477, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(3.3125, -0.7812, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-2.3281, 1.8281, 0),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(-2.3281, 1.8281, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(3.3125, -0.7812, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(3.3125, -0.7188, 0),
         },
         [CONTESTANT_TYPE_ENEMY] = {
-            VEC_FX32(-1.3096, 1.08, -1.2812),
-            VEC_FX32(-1.8438, 1.0, -1.2812),
-            VEC_FX32(-0.5635, 1.0, -1.2812),
-            VEC_FX32(-0.7285, 2.0176, -1.2812),
-            VEC_FX32(-0.5635, 1.0, -1.2812),
-            VEC_FX32(-0.5635, 1.0, -1.2812),
-            VEC_FX32(-0.6055, 1.3672, 0),
-            VEC_FX32(-0.6055, 1.3672, 0),
-            VEC_FX32(-2.002, 1.1465, 0),
-            VEC_FX32(-2.002, 1.1465, 0),
-            VEC_FX32(-1.3672, 1.541, 0),
-            VEC_FX32(-1.3672, 1.541, 0),
-            VEC_FX32(-0.1543, 1.502, 0),
-            VEC_FX32(-0.1543, 1.502, 0),
-            VEC_FX32(-2.0625, 2.3125, 0),
-            VEC_FX32(-2.0625, 2.3125, 0),
-            VEC_FX32(0.125, 0.8496, 0),
-            VEC_FX32(0.125, 0.8496, 0),
-            VEC_FX32(-1.6719, 1.3281, 0),
-            VEC_FX32(-1.6719, 1.3281, 0),
-            VEC_FX32(1.2578, -1.4648, 0.666),
-            VEC_FX32(1.2578, -1.3203, 0.666),
-            VEC_FX32(-0.5635, 1.0, 0),
-            VEC_FX32(-0.7285, 2.0176, 0),
+            [PERSP(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-1.3096, 1.08, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_NORMAL)] = VEC_FX32(-1.8438, 1.0, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-0.5635, 1.0, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM1)] = VEC_FX32(-0.7285, 2.0176, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-0.5635, 1.0, -1.2812),
+            [ORTHO(WORLD_POS_TYPE_BEAM2)] = VEC_FX32(-0.5635, 1.0, -1.2812),
+            [PERSP(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-0.6055, 1.3672, 0),
+            [ORTHO(WORLD_POS_TYPE_BEAM3)] = VEC_FX32(-0.6055, 1.3672, 0),
+            [PERSP(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-2.002, 1.1465, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPNOSIS)] = VEC_FX32(-2.002, 1.1465, 0),
+            [PERSP(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-1.3672, 1.541, 0),
+            [ORTHO(WORLD_POS_TYPE_TRI_ATTACK)] = VEC_FX32(-1.3672, 1.541, 0),
+            [PERSP(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-0.1543, 1.502, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_CANNON)] = VEC_FX32(-0.1543, 1.502, 0),
+            [PERSP(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-2.0625, 2.3125, 0),
+            [ORTHO(WORLD_POS_TYPE_HYPER_VOICE)] = VEC_FX32(-2.0625, 2.3125, 0),
+            [PERSP(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(0.125, 0.8496, 0),
+            [ORTHO(WORLD_POS_TYPE_GRASS_WHISTLE)] = VEC_FX32(0.125, 0.8496, 0),
+            [PERSP(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-1.6719, 1.3281, 0),
+            [ORTHO(WORLD_POS_TYPE_DRAGON_PULSE)] = VEC_FX32(-1.6719, 1.3281, 0),
+            [PERSP(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(1.2578, -1.4648, 0.666),
+            [ORTHO(WORLD_POS_TYPE_CAMERA_LOOKAT)] = VEC_FX32(1.2578, -1.3203, 0.666),
+            [PERSP(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-0.5635, 1.0, 0),
+            [ORTHO(WORLD_POS_TYPE_HYDRO_PUMP)] = VEC_FX32(-0.7285, 2.0176, 0),
         },
     };
 
@@ -399,211 +419,144 @@ static void BattleAnimUtil_GetBattlerTypeWorldPosInternal(int battlerType, VecFx
     }
 
     int index = projection + (posType * CAMERA_PROJECTION_COUNT);
-    const VecFx32 *pos = &particlePositions[battlerType][index];
+    const VecFx32 *pos = &positions[battlerType][index];
 
     VEC_Set(outPos, pos->x, pos->y, pos->z);
 }
 
+#undef PERSP
+#undef ORTHO
+
+#define CALL_INTERNAL_GETTER(TYPE) \
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, TYPE)
+
+#define CALL_TYPE_GETTER(NAME)                                                                 \
+    do {                                                                                       \
+        ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);                \
+        enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);             \
+        int battlerType = BattleAnimUtil_GetBattlerType(system, battler);                      \
+        BOOL isContest = BattleAnimSystem_IsContest(system);                                   \
+        BattleAnimUtil_GetBattlerTypeWorldPos_##NAME(battlerType, pos, isContest, projection); \
+    } while (FALSE)
+
 void BattleAnimUtil_GetBattlerTypeWorldPos_Normal(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, 0);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_NORMAL);
 }
 
-void ov12_02235458(int battlerType, VecFx32 *pos, int isContest, int projection)
+void BattleAnimUtil_GetBattlerTypeWorldPos_Beam1(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, 1);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_BEAM1);
 }
 
-void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_Beam2(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 2);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_BEAM2);
 }
 
-void ov12_02235478(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_Beam3(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 3);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_BEAM3);
 }
 
-void ov12_02235488(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_Hypnosis(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 4);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_HYPNOSIS);
 }
 
-void ov12_02235498(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_TriAttack(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 5);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_TRI_ATTACK);
 }
 
-void ov12_022354A8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_HydroCannon(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 6);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_HYDRO_CANNON);
 }
 
-void ov12_022354B8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_HyperVoice(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 7);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_HYPER_VOICE);
 }
 
-void ov12_022354C8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_GrassWhistle(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 8);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_GRASS_WHISTLE);
 }
 
-void ov12_022354D8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_DragonPulse(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 9);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_DRAGON_PULSE);
 }
 
-void ov12_022354E8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_CameraLookAt(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 10);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_CAMERA_LOOKAT);
 }
 
-void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_HydroPump(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 11);
+    CALL_INTERNAL_GETTER(WORLD_POS_TYPE_HYDRO_PUMP);
 }
 
 void BattleAnimUtil_GetBattlerWorldPos_Normal(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
-    enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);
-    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
-    BOOL isContest = BattleAnimSystem_IsContest(system);
-
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, isContest, projection);
+    CALL_TYPE_GETTER(Normal);
 }
 
-void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_Beam1(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_02235458(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(Beam1);
 }
 
-void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_Beam2(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_02235468(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(Beam2);
 }
 
-void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_Beam3(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_02235478(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(Beam3);
 }
 
-void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_Hypnosis(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_02235488(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(Hypnosis);
 }
 
-void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_TriAttack(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_02235498(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(TriAttack);
 }
 
-void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_HydroCannon(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354A8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(HydroCannon);
 }
 
-void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_HyperVoice(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354B8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(HyperVoice);
 }
 
-void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_GrassWhistle(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354C8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(GrassWhistle);
 }
 
-void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_DragonPulse(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354D8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(DragonPulse);
 }
 
-void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354E8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(CameraLookAt);
 }
 
-void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_HydroPump(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
-
-    ov12_022354F8(v0, param2, v1, v2);
+    CALL_TYPE_GETTER(HydroPump);
 }
 
 void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos)
@@ -618,12 +571,15 @@ void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)
     BattleAnimUtil_GetBattlerTypeWorldPos_Normal(param0, param1, param2, param3);
 }
 
-void ov12_02235760(int param0, VecFx32 *param1)
+// Gets the "up" vector for a given battler to apply to a particle system camera.
+// This is so animations can be created only from the perspective of the player side
+// and still look correct when used on the enemy side.
+void BattleAnimUtil_GetUpVectorForBattler(int battler, VecFx32 *up)
 {
-    if (param0 == 0) {
-        ParticleSystem_GetDefaultCameraUp(param1);
+    if (battler == BATTLER_PLAYER_1) {
+        ParticleSystem_GetDefaultCameraUp(up);
     } else {
-        *param1 = Unk_ov12_0223A224;
+        *up = sUnitDown;
     }
 }
 

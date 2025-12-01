@@ -105,7 +105,7 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
 
 BOOL ScrCmd_236(ScriptContext *param0)
 {
-    sub_0206D4AC(param0->fieldSystem, ScriptContext_GetVar(param0));
+    FieldSystem_SaveTVEpisodeSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
     return 0;
 }
 
@@ -114,19 +114,19 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
-    sub_0206D60C(param0->fieldSystem, v1);
+    FieldSystem_SaveTVEpisodeSegment_RateThatNameChange(param0->fieldSystem, v1);
     return 0;
 }
 
 BOOL ScrCmd_30B(ScriptContext *param0)
 {
-    sub_0206D7C4(param0->fieldSystem);
+    FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
     return 0;
 }
 
 BOOL ScrCmd_30C(ScriptContext *param0)
 {
-    sub_0206DB20(param0->fieldSystem);
+    FieldSystem_SaveTVEpisodeSegment_HomeAndManor_NoFurniture(param0->fieldSystem);
     return 0;
 }
 
@@ -134,7 +134,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
-    sub_0206DB5C(param0->fieldSystem, v0);
+    FieldSystem_SaveTVEpisodeSegment_HomeAndManor(param0->fieldSystem, v0);
     return 0;
 }
 
@@ -377,17 +377,17 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
     { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
 };
 
-BOOL ScrCmd_31B(ScriptContext *param0)
+BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx)
 {
     TVBroadcast *broadcast;
-    UnkStruct_0202E808 *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    UnkStruct_0202E808 *safariGame;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
-    v1 = sub_0202E808(broadcast);
-    *v2 = v1->unk_07;
+    broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
+    safariGame = TVBroadcast_GetSafariGameData(broadcast);
+    *destVar = safariGame->numPokemonCaught;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_329(ScriptContext *param0)

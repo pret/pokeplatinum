@@ -388,7 +388,7 @@ static BOOL sub_02097F38(FieldTask *param0)
             v12 = sub_02098164(v12);
             broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-            sub_0206D9B4(broadcast, v8, v12);
+            FieldSystem_SaveTVEpisodeSegment_SealClubShow(broadcast, v8, v12);
         }
     }
         v0->unk_14 = 1;

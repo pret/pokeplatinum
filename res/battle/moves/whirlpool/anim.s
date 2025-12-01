@@ -8,10 +8,10 @@ L_0:
     WaitForPartialBgSwitch
     Func_ScrollSwitchedBg 100
     WaitForBgSwitch
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 3, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_W250
     Delay 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

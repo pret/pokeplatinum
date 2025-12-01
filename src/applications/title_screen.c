@@ -1318,7 +1318,7 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapID heapID, TitleS
     Bg_ClearTilesRange(TITLE_SCREEN_LAYER_PRESS_START, 32, 0, heapID);
 
     MessageLoader *msgLoader = MessageLoader_Init(
-        MESSAGE_LOADER_NARC_HANDLE,
+        MSG_LOADER_LOAD_ON_DEMAND,
         NARC_INDEX_MSGDATA__PL_MSG,
         TEXT_BANK_TITLE_SCREEN,
         heapID);

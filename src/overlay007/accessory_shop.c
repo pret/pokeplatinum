@@ -97,7 +97,7 @@ AccessoryShop *AccessoryShop_New(enum HeapID heapID, SaveData *saveData, BgConfi
     shop->saveData = saveData;
     shop->unk_0C = sub_02029D04(sub_0202A750(shop->saveData));
     shop->bag = SaveData_GetBag(saveData);
-    shop->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FLOWER_SHOP, shop->heapID);
+    shop->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FLOWER_SHOP, shop->heapID);
 
     AccessoryShop_LoadOptions(shop);
     AccessoryShop_LoadGraphics(shop);

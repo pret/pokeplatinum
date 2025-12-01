@@ -489,7 +489,7 @@ static int sub_020855C4(void *applicationPtr)
     Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
     if (application->partyMembers[application->currPartySlot].curHP == 0) {
         strBuf = MessageLoader_GetNewStrbuf(application->messageLoader, 70);
@@ -526,7 +526,7 @@ static int PokemonSummaryScreen_UpdateHPBar(PartyMenuApplication *param0)
     u32 curHP;
 
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
     if (application->partyMembers[application->currPartySlot].curHP != curHP) {
         application->partyMembers[application->currPartySlot].curHP++;
@@ -600,7 +600,7 @@ int sub_02085804(PartyMenuApplication *application)
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
         Pokemon_ApplyItemEffects(mon, application->partyMenu->usedItemID, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
-        curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+        curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
         strBuf = MessageLoader_GetNewStrbuf(application->messageLoader, 70);
 
         StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
@@ -619,7 +619,7 @@ int sub_02085804(PartyMenuApplication *application)
         break;
     case 2:
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-        curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+        curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
         application->partyMembers[application->currPartySlot].curHP++;
 
@@ -681,7 +681,7 @@ static int sub_02085A70(void *applicationPtr)
     Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
     application->partyMembers[application->currPartySlot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    application->partyMembers[application->currPartySlot].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    application->partyMembers[application->currPartySlot].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     application->partyMembers[application->currPartySlot].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
 
     strBuf = MessageLoader_GetNewStrbuf(application->messageLoader, 193);
@@ -1119,7 +1119,7 @@ static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveS
     Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &tempVar);
 
     tempVar = MoveTable_CalcMaxPP(application->partyMenu->learnedMove, 0);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &tempVar);
+    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &tempVar);
 
     if (application->partyMenu->usedItemID != 0) {
         if (Item_IsHMMove(application->partyMenu->learnedMove) == FALSE) {

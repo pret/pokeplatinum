@@ -64,7 +64,7 @@ UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgCon
     textPrinter->formatStrbuf = Strbuf_Init(size, heapID);
     textPrinter->template = StringTemplate_Default(heapID);
     textPrinter->bankID = bankID;
-    textPrinter->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    textPrinter->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
     textPrinter->heapID = heapID;
     textPrinter->bgConfig = bgConfig;
 
@@ -89,13 +89,13 @@ void UndergroundTextPrinter_Free(UndergroundTextPrinter *textPrinter)
     Heap_Free(textPrinter);
 }
 
-void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderType loaderType)
+void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderMode loaderMode)
 {
     if (textPrinter->bankID != bankID) {
         textPrinter->bankID = bankID;
         MessageLoader_Free(textPrinter->msgLoader);
 
-        textPrinter->msgLoader = MessageLoader_Init(loaderType, NARC_INDEX_MSGDATA__PL_MSG, bankID, textPrinter->heapID);
+        textPrinter->msgLoader = MessageLoader_Init(loaderMode, NARC_INDEX_MSGDATA__PL_MSG, bankID, textPrinter->heapID);
         GF_ASSERT(textPrinter->msgLoader != NULL);
     }
 }

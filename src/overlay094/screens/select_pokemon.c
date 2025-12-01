@@ -1214,16 +1214,16 @@ static BOOL ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3)
 }
 
 static const u16 sUnusedRibbons[] = {
-    MON_DATA_HOENN_MARINE_RIBBON,
-    MON_DATA_HOENN_LAND_RIBBON,
-    MON_DATA_HOENN_SKY_RIBBON,
-    MON_DATA_SINNOH_RED_RIBBON,
-    MON_DATA_SINNOH_GREEN_RIBBON,
-    MON_DATA_SINNOH_BLUE_RIBBON,
-    MON_DATA_SINNOH_FESTIVAL_RIBBON,
-    MON_DATA_SINNOH_CARNIVAL_RIBBON,
-    MON_DATA_SINNOH_CLASSIC_RIBBON,
-    MON_DATA_SINNOH_PREMIER_RIBBON,
+    MON_DATA_MARINE_RIBBON,
+    MON_DATA_LAND_RIBBON,
+    MON_DATA_SKY_RIBBON,
+    MON_DATA_RED_RIBBON,
+    MON_DATA_GREEN_RIBBON,
+    MON_DATA_BLUE_RIBBON,
+    MON_DATA_FESTIVAL_RIBBON,
+    MON_DATA_CARNIVAL_RIBBON,
+    MON_DATA_CLASSIC_RIBBON,
+    MON_DATA_PREMIER_RIBBON,
 };
 
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
@@ -1291,7 +1291,7 @@ static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3
         return 0;
     }
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL)) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
         return 2;
     }
 

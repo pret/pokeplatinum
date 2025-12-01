@@ -301,7 +301,7 @@ static void Diploma_InitWindows(Diploma *data)
 
     Text_ResetAllPrinters();
 
-    data->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DIPLOMA, data->heapID);
+    data->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DIPLOMA, data->heapID);
     data->stringTemplate = StringTemplate_Default(data->heapID);
 
     template.bgLayer = BG_LAYER_MAIN_0;

@@ -308,7 +308,7 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
     hallOfFameMan = ApplicationManager_NewData(appMan, sizeof(HallOfFameMan), HEAP_ID_HALL_OF_FAME);
 
     hallOfFameMan->displayData = ApplicationManager_Args(appMan);
-    hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strbuf_1C30 = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strbuf_1C4C = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strTemplate = StringTemplate_Default(HEAP_ID_HALL_OF_FAME);
@@ -1305,7 +1305,7 @@ static void HallOfFame_LoadMetString(HallOfFamePokemonTextAdder *textAdder)
     switch (metStringIndex) {
     case HallOfFame_Text_MetAt - HallOfFame_Text_MetAt:
     case HallOfFame_Text_HatchedAt - HallOfFame_Text_MetAt:
-        StringTemplate_SetLocationName(textAdder->strTemplate, 0, Pokemon_GetValue(textAdder->mon, MON_DATA_HATCH_LOCATION, NULL));
+        StringTemplate_SetLocationName(textAdder->strTemplate, 0, Pokemon_GetValue(textAdder->mon, MON_DATA_MET_LOCATION, NULL));
         break;
     }
 
@@ -1331,7 +1331,7 @@ static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
         textAdder->state++;
         break;
     case 1:
-        Pokemon_GetValue(textAdder->mon, MON_DATA_NICKNAME_STRBUF, textAdder->strbuf_1C);
+        Pokemon_GetValue(textAdder->mon, MON_DATA_NICKNAME_STRING, textAdder->strbuf_1C);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 3);
         HallOfFame_LoadPokemonText(textAdder);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 4);
@@ -1901,18 +1901,18 @@ static int HallOfFame_GetMetStringIndex(HallOfFameMan *hallOfFameMan, Pokemon *m
         }
 
         TrainerInfo_NameStrbuf(trainerInfo, hallOfFameMan->strbuf_1C30);
-        Pokemon_GetValue(mon, MON_DATA_OTNAME_STRBUF, hallOfFameMan->strbuf_1C4C);
+        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, hallOfFameMan->strbuf_1C4C);
 
         if (Strbuf_Compare(hallOfFameMan->strbuf_1C30, hallOfFameMan->strbuf_1C4C)) {
             metStringIndex = HallOfFame_Text_ObtainedInLinkTrade - HallOfFame_Text_MetAt;
             break;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) >= 2000) {
+        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) >= 2000) {
             metStringIndex = HallOfFame_Text_ObtainedInFatefulEncounter - HallOfFame_Text_MetAt;
             ;
         } else {
-            if (Pokemon_GetValue(mon, MON_DATA_MET_MONTH, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_EGG_MONTH, NULL) == 0) {
                 metStringIndex = HallOfFame_Text_MetAt - HallOfFame_Text_MetAt;
             } else {
                 metStringIndex = HallOfFame_Text_HatchedAt - HallOfFame_Text_MetAt;

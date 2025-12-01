@@ -9,9 +9,9 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/underground_player_talk.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_traps.h"
 
@@ -97,16 +97,16 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_02243390, ov23_022433B8, NULL },
     { ov23_022413A0, sub_0203294C, NULL },
     { ov23_0224142C, ov23_022414D0, NULL },
-    { ov23_0224F0F0, ov23_0224F174, NULL },
-    { ov23_0224F0FC, ov23_0224F174, NULL },
-    { ov23_0224F108, ov23_0224F174, NULL },
-    { ov23_0224F138, ov23_0224F174, NULL },
-    { ov23_0224F178, ov23_0224F1F8, NULL },
-    { ov23_0224F184, ov23_0224F1F8, NULL },
-    { ov23_0224F1FC, ov23_0224F248, NULL },
-    { ov23_0224F208, ov23_0224F248, NULL },
-    { ov23_02253998, sub_02032944, NULL },
-    { ov23_022539A8, sub_02032944, NULL },
+    { UndergroundTalk_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
+    { UndergroundTalkResponse_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
+    { UndergroundTalkResponse_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
+    { UndergroundTalk_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
+    { UndergroundTalk_SendGiftServer, CommPacketSizeOf_Gift, NULL },
+    { UndergroundTalkResponse_ReceiveGiftOffer, CommPacketSizeOf_Gift, NULL },
+    { UndergroundTalk_SendTalkMessageServer, CommPacketSizeOf_TalkMessage, NULL },
+    { UndergroundTalk_ReceiveTalkMessage, CommPacketSizeOf_TalkMessage, NULL },
+    { ov23_SendRecordServer, sub_02032944, NULL },
+    { ov23_ReceiveRecord, sub_02032944, NULL },
     { ov23_022513B0, ov23_02251414, NULL },
     { ov23_0224A570, CommPacketSizeOf_NetId, NULL },
     { ov23_0224A77C, ov23_0224A56C, NULL },

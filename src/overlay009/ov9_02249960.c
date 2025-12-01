@@ -7172,7 +7172,7 @@ static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkS
 
         *param1 = v0;
     } else {
-        if ((ov9_0224EF30(param0, param2, param4) == 0) || (FieldSystem_CheckFlag(param0->fieldSystem, param2->unk_08.flag) != 0)) {
+        if ((ov9_0224EF30(param0, param2, param4) == 0) || (FieldSystem_CheckFlag(param0->fieldSystem, param2->unk_08.hiddenFlag) != 0)) {
             return 0;
         }
 

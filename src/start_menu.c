@@ -24,8 +24,8 @@
 #include "applications/town_map/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
-#include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -519,7 +519,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
 
     if (menu->unk_20 != NULL) {
         sub_0203B520(menu);
-        SpriteList_Update(menu->unk_38.unk_00);
+        SpriteList_Update(menu->spriteManager.spriteList);
     }
 
     return FALSE;
@@ -541,7 +541,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 1, HEAP_ID_FIELD2);
     Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
+    v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
 
     menu->unk_24 = StringList_New(optionCount, HEAP_ID_FIELD2);
     menu->unk_28 = 0;
@@ -683,7 +683,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&menu->unk_10, 15);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
+    v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELD2);
 
     if (v6 == 0) {
         v5 = MessageLoader_GetNewStrbuf(v2, 9);
@@ -790,22 +790,22 @@ static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gende
     };
     u32 i;
 
-    ov5_021D3190(&menu->unk_38, &v0, (7 + 1), HEAP_ID_FIELD2);
+    SpriteResourceManager_SetCapacities(&menu->spriteManager, &v0, (7 + 1), HEAP_ID_FIELD2);
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
 
-    ov5_021D32E8(&menu->unk_38, narc, menu_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
-    ov5_021D3374(&menu->unk_38, narc, cursor_cell_NCER, 0, 13528);
-    ov5_021D339C(&menu->unk_38, narc, cursor_anim_NANR, 0, 13528);
-    ov5_021D3414(&menu->unk_38, narc, cursor_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+    SpriteResourceManager_LoadPalette(&menu->spriteManager, narc, menu_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+    SpriteResourceManager_LoadCell(&menu->spriteManager, narc, cursor_cell_NCER, 0, 13528);
+    SpriteResourceManager_LoadAnimation(&menu->spriteManager, narc, cursor_anim_NANR, 0, 13528);
+    SpriteResourceManager_LoadTiles(&menu->spriteManager, narc, cursor_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
 
-    menu->unk_200[0] = ov5_021D3584(&menu->unk_38, &Unk_020EA0A4[0]);
+    menu->unk_200[0] = SpriteResourceManager_CreateManagedSprite(&menu->spriteManager, &Unk_020EA0A4[0]);
 
     sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
 
-    ov5_021D3374(&menu->unk_38, narc, icons_cell_NCER, 0, 13529);
-    ov5_021D339C(&menu->unk_38, narc, icons_anim_NANR, 0, 13529);
-    ov5_021D3414(&menu->unk_38, narc, icons_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
+    SpriteResourceManager_LoadCell(&menu->spriteManager, narc, icons_cell_NCER, 0, 13529);
+    SpriteResourceManager_LoadAnimation(&menu->spriteManager, narc, icons_anim_NANR, 0, 13529);
+    SpriteResourceManager_LoadTiles(&menu->spriteManager, narc, icons_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
 
     for (i = 0; i < optionCount; i++) {
         SpriteTemplate v3;
@@ -819,7 +819,7 @@ static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gende
             v3.animIdx = options[i] * 3;
         }
 
-        menu->unk_200[1 + i] = ov5_021D3584(&menu->unk_38, &v3);
+        menu->unk_200[1 + i] = SpriteResourceManager_CreateManagedSprite(&menu->spriteManager, &v3);
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -843,7 +843,7 @@ static void sub_0203B4E8(StartMenu *menu)
         Sprite_DeleteAndFreeResources(menu->unk_200[i]);
     }
 
-    ov5_021D375C(&menu->unk_38);
+    SpriteResourceManager_Cleanup(&menu->spriteManager);
 }
 
 static void sub_0203B520(StartMenu *menu)

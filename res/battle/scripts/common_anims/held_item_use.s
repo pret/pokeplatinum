@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, 28
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     BeginLoop 2

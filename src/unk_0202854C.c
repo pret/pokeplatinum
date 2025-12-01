@@ -1262,15 +1262,15 @@ void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundR
     }
 }
 
-int sub_02029774(const UndergroundRecord *param0)
+int UndergroundRecord_GetGiftsReceived(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_28_0;
+    return undergroundRecord->numGiftsReceived;
 }
 
-void sub_0202977C(UndergroundRecord *param0)
+void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_28_0 < 999999) {
-        param0->unk_28_0++;
+    if (undergroundRecord->numGiftsReceived < 999999) {
+        undergroundRecord->numGiftsReceived++;
     }
 }
 

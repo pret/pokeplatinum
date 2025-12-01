@@ -4,12 +4,12 @@ L_0:
     LoadParticleResource 0, gravity_spa
     Delay 10
     PlaySoundEffectL SEQ_SE_DP_W356
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 0, 0, 0, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 1, 2, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 2, 0, 0, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 0, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 2, 0, 0, 0
     Delay 10
     StopSoundEffect SEQ_SE_DP_W356
     PlaySoundEffectC SEQ_SE_DP_205

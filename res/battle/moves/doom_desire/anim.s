@@ -20,14 +20,14 @@ L_2:
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 16, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     PlaySoundEffectC SEQ_SE_DP_W466
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 0, 0, 0, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 0, 0, 0, 0
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 0, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 0, 0, 0, 0
     Delay 30
     PlayLoopedSoundEffectR SEQ_SE_DP_W120, 6, 5
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     Func_Shake 4, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

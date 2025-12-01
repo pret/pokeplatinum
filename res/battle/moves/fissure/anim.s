@@ -7,10 +7,10 @@ L_0:
     LoadPlttRes 0, fissure_NCLR, 1
     LoadCellResObj 0, fissure_cell_NCER_lz
     LoadAnimResObj 0, fissure_anim_NANR_lz
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 3, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SwitchBg 53, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch

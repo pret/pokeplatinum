@@ -138,7 +138,7 @@ BOOL FieldTask_Fishing(FieldTask *taskMan)
 
             if (caughtFish == TRUE) {
                 Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishingContext->fishEncounterDTO->parties[1], 0);
-                sub_0206D340(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
+                FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
 
                 GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_CAUGHT_FISH);
 
@@ -366,7 +366,7 @@ static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *play
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fishingTask->fieldSystem->saveData), RECORD_FISH_GOT_AWAY);
 
-    sub_0206D340(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
+    FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
 
     return TRUE;
 }
@@ -513,7 +513,7 @@ static int TryPressAOrB(void)
 
 static void FishingTask_Init(FishingTask *fishingTask)
 {
-    fishingTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
+    fishingTask->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
     fishingTask->formattedFishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
     fishingTask->fishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
     fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD1);

@@ -478,7 +478,7 @@ static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
 {
     int v0 = 0;
 
-    param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0462, param0->heapID);
+    param0->unk_18 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0462, param0->heapID);
     param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->heapID);
     param0->unk_1C.unk_04 = Strbuf_Init(64, param0->heapID);
 
@@ -509,7 +509,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
     param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = Strbuf_Init(12, param0->heapID);
 
-    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
+    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRING, param0->unk_30.unk_0C);
 
     param0->unk_30.unk_09 = sub_02098EAC(param0->unk_10->unk_04, param0->unk_30.unk_06);
 }

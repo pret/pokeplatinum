@@ -4,12 +4,12 @@ L_0:
     LoadParticleResource 0, meteor_mash_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W112, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 15
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 7
     PlaySoundEffectR SEQ_SE_DP_030
     Delay 8

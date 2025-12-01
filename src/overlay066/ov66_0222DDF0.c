@@ -1014,7 +1014,7 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
         MessageLoader *v4;
         Strbuf *v5;
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
+        v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
         v5 = MessageLoader_GetNewStrbuf(v4, 64);
 
         TrainerInfo_SetNameFromStrbuf(param1, v5);

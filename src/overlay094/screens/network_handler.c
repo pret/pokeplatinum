@@ -1258,7 +1258,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         u8 friendship = BASE_FRIENDSHIP_VALUE;
 
         if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
                 VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
                 if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1303,7 +1303,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     }
 
     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {

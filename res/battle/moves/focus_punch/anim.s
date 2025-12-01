@@ -7,18 +7,18 @@ L_0:
 L_1:
     LoadParticleResource 0, focus_punch_spa
     PlaySoundEffectL SEQ_SE_DP_W082
-    CreateEmitter 0, 2, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
 
 L_2:
     LoadParticleResource 0, focus_punch_spa
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 4, 4
-    CreateEmitter 0, 5, 4
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_W025B
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1

@@ -69,7 +69,7 @@ enum HeapID {
     HEAP_ID_64,
     HEAP_ID_65,
     HEAP_ID_66,
-    HEAP_ID_67,
+    HEAP_ID_MOVE_REMINDER,
     HEAP_ID_68,
     HEAP_ID_69,
     HEAP_ID_70,

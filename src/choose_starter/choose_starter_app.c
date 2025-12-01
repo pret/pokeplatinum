@@ -1270,7 +1270,7 @@ static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, Text
     Strbuf *v1;
     u8 v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
@@ -1291,7 +1291,7 @@ static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 
 
     GF_ASSERT((*param6) == NULL);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
 
     *param6 = MessageLoader_GetNewStrbuf(v0, param3);
@@ -1748,7 +1748,7 @@ static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, Te
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

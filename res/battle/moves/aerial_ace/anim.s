@@ -15,10 +15,10 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
     Func_QuickAttack
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 3, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

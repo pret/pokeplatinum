@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, supersonic_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitterEx 0, 1, 0, 3
+    CreateEmitterEx 0, 1, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 14, 64
     Delay 10
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

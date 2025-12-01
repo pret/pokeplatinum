@@ -11,7 +11,7 @@ L_0:
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 5
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_030
     Func_Shake 4, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 8

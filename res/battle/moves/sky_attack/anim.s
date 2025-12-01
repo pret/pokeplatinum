@@ -6,7 +6,7 @@ L_0:
 
 L_1:
     LoadParticleResource 0, sky_attack_spa
-    CreateEmitter 0, 2, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     JumpIfFriendlyFire L_3
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
@@ -86,14 +86,14 @@ L_2:
     End
 
 L_7:
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    CreateEmitter 0, 6, 4
+    CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
@@ -115,14 +115,14 @@ L_7:
     End
 
 L_6:
-    CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 0, 2, 1, 1, 0, 0
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 5, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    CreateEmitter 0, 6, 4
+    CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
@@ -144,14 +144,14 @@ L_6:
     End
 
 L_8:
-    CreateEmitter 0, 4, 17
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 4, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    CreateEmitter 0, 6, 4
+    CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
