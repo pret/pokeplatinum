@@ -73,6 +73,10 @@
     CallCommonScript 0x7E3
     .endm
 
+    .macro ObtainContestBackdropWaitForConfirm
+    CallCommonScript 0x7F4
+    .endm
+
     .macro SetCounterpartBGM
     CallCommonScript 0x7F8
     .endm
@@ -91,6 +95,10 @@
 
     .macro GiveItemQuantity
     CallCommonScript 0x7FC
+    .endm
+
+    .macro ObtainContestBackdrop
+    CallCommonScript 0x7FD
     .endm
 
     .macro SendToUndergroundPCWithLinefeed

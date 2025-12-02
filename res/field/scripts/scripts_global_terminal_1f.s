@@ -550,7 +550,7 @@ _06A1:
 
 _06D3:
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FD
+    ObtainContestBackdrop
     Message pl_msg_00000046_00028
     Call _0710
     SetFlag FLAG_UNK_0x0AC3
