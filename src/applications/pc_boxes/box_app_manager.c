@@ -865,7 +865,7 @@ static void BoxAppMan_InitSummary(BoxApplicationManager *boxAppMan)
     boxAppMan->monSummary.chatotCry = NULL;
     boxAppMan->monSummary.dexMode = SaveData_GetDexMode(boxAppMan->saveData);
     boxAppMan->monSummary.showContest = PokemonSummaryScreen_ShowContestData(boxAppMan->saveData);
-    boxAppMan->monSummary.specialRibbons = sub_0202D79C(boxAppMan->saveData);
+    boxAppMan->monSummary.specialRibbons = SaveData_GetRibbons(boxAppMan->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&boxAppMan->monSummary, summaryPages);
     PokemonSummaryScreen_SetPlayerProfile(&boxAppMan->monSummary, SaveData_GetTrainerInfo(boxAppMan->saveData));
