@@ -17,6 +17,7 @@
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 
+#include "applications/bag/application.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/pokedex/pokedex_main.h"
