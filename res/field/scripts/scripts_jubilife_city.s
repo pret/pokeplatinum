@@ -1541,7 +1541,7 @@ _1356:
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_1
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1580,7 +1580,7 @@ _13CD:
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_2
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1621,7 +1621,7 @@ _1451:
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_3
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

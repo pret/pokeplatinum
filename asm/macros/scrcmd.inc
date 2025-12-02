@@ -2683,6 +2683,10 @@
     CallCommonScript 0x7DF
     .endm
 
+    .macro GiveItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
+    .endm
+
     .macro MessageBagIsFull
     CallCommonScript 0x7E1
     .endm
