@@ -274,7 +274,7 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     End
 
 BattleTower_SaveGame:
-    CallCommonScript 0x7D6 @ CommonScript_SaveGame
+    SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 

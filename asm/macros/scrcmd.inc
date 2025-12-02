@@ -2671,6 +2671,10 @@
     .short \destVarID
     .endm
 
+    .macro SaveGame
+    CallCommonScript 0x7D6
+    .endm
+
     .macro GivePoketchApp
     CallCommonScript 0x7D9
     .endm
