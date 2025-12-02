@@ -2054,75 +2054,75 @@ static BOOL TVEpisodeSegment_IsEligible_BattleFrontierFrontlineNews_Multi(FieldS
 }
 
 static const u8 Unk_020EFD34[] = {
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5
+    RECORD_MIXED_RNG_PLAYER_OVERRIDE,
+    RECORD_MIXED_RNG_QUEUE_0,
+    RECORD_MIXED_RNG_QUEUE_1,
+    RECORD_MIXED_RNG_QUEUE_2,
+    RECORD_MIXED_RNG_QUEUE_3,
 };
 
-static int sub_0206E848(RecordMixedRNG *param0)
+static int RecordMixedRNG_CountValidEntries(RecordMixedRNG *rngCollection)
 {
-    int v0, v1;
+    int i, count;
 
-    for (v0 = 0, v1 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (RecordMixedRNG_IsEntryValid(param0, Unk_020EFD34[v0])) {
-            v1++;
+    for (i = 0, count = 0; i < NELEMS(Unk_020EFD34); i++) {
+        if (RecordMixedRNG_IsEntryValid(rngCollection, Unk_020EFD34[i])) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
-static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int MsgFunc_DiscoveringGroups(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
-    int v0, v1, v2;
-    int v3;
-    RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
+    int i, validEntries, entry;
+    enum PokemonType type;
+    RecordMixedRNG *rngCollection = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
-    v1 = sub_0206E848(v4);
-    GF_ASSERT(v1 > 0);
+    validEntries = RecordMixedRNG_CountValidEntries(rngCollection);
+    GF_ASSERT(validEntries > 0);
 
-    if (v1 > 1) {
-        v1 = MTRNG_Next() % v1;
+    if (validEntries > 1) {
+        validEntries = MTRNG_Next() % validEntries;
     } else {
-        v1 = 0;
+        validEntries = 0;
     }
 
-    for (v0 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (RecordMixedRNG_IsEntryValid(v4, Unk_020EFD34[v0])) {
-            if (v1 == 0) {
-                v2 = Unk_020EFD34[v0];
+    for (i = 0; i < NELEMS(Unk_020EFD34); i++) {
+        if (RecordMixedRNG_IsEntryValid(rngCollection, Unk_020EFD34[i])) {
+            if (validEntries == 0) {
+                entry = Unk_020EFD34[i];
                 break;
             } else {
-                v1--;
+                validEntries--;
             }
         }
     }
 
-    GF_ASSERT(v1 == 0);
+    GF_ASSERT(validEntries == 0);
 
-    v3 = LCRNG_RandMod(17);
+    type = LCRNG_RandMod(NUM_POKEMON_TYPES - 1);
 
-    if (v3 >= 9) {
-        v3++;
+    if (type >= TYPE_MYSTERY) {
+        type++;
     }
 
-    StringTemplate_SetUnionGroupName(param1, fieldSystem->saveData, v2, 0, 1);
-    StringTemplate_SetUnionGroupName(param1, fieldSystem->saveData, v2, 1, 0);
-    StringTemplate_SetPokemonTypeName(param1, 2, v3);
+    StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 0, 1);
+    StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 1, 0);
+    StringTemplate_SetPokemonTypeName(template, 2, type);
 
-    return 0;
+    return pl_msg_00000418_00000;
 }
 
-static BOOL sub_0206E928(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_RecordMixedRNGHasValidEntries(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
+    RecordMixedRNG *rngCollection = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
-    if (sub_0206E848(v0) != 0) {
-        return 1;
+    if (RecordMixedRNG_CountValidEntries(rngCollection) != 0) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -3011,7 +3011,7 @@ static const TVProgramSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM
 };
 
 static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS] = {
-    { sub_0206E870, sub_0206E928 },
+    { MsgFunc_DiscoveringGroups, FieldSystem_RecordMixedRNGHasValidEntries },
     { MsgFunc_OnTheSpotWeather, FieldSystem_AlwaysTrue },
     { MsgFunc_YourTownsBestThree, NULL },
     TV_PROGRAM_SEGMENT_NULL,
