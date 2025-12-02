@@ -229,7 +229,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     Message 12
     Message 13
     CloseMessage
@@ -1678,7 +1678,7 @@ JubilifeCity_Looker_AfterOneBadgeObtained:
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement

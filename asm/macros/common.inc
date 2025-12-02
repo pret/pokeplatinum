@@ -105,6 +105,10 @@
     CallCommonScript 0x806
     .endm
 
+    .macro SetLookerBGM
+    CallCommonScript 0x807
+    .endm
+
     .macro FadeToDefaultMusic4
     CallCommonScript 0x808
     .endm

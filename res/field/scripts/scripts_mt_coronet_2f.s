@@ -38,7 +38,7 @@ _0036:
     AddObject 5
     ApplyMovement 5, _0148
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     CallIfEq VAR_0x8005, 24, _0109
     CallIfEq VAR_0x8005, 25, _011D
     CallIfEq VAR_0x8005, 26, _0131

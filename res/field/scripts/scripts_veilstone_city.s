@@ -537,7 +537,7 @@ _0656:
     ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 26, _0A7C
     WaitMovement
     Message 29
@@ -1134,7 +1134,7 @@ _0E34:
     ApplyMovement LOCALID_PLAYER, _0F48
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 26, _0F80
     WaitMovement
     GoTo _0ECC
@@ -1143,7 +1143,7 @@ _0E34:
 _0E5C:
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 26, _0F70
     WaitMovement
     GoTo _0ECC
@@ -1153,7 +1153,7 @@ _0E7C:
     ApplyMovement LOCALID_PLAYER, _0F58
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 26, _0F90
     WaitMovement
     GoTo _0ECC
@@ -1163,7 +1163,7 @@ _0EA4:
     ApplyMovement LOCALID_PLAYER, _0F64
     ApplyMovement 23, _0F38
     WaitMovement
-    CallCommonScript 0x807
+    SetLookerBGM
     ApplyMovement 26, _0FA0
     WaitMovement
     GoTo _0ECC
@@ -1273,7 +1273,7 @@ _0FB0:
     WaitMovement
     BufferPlayerName 0
     Message 41
-    CallCommonScript 0x807
+    SetLookerBGM
     GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
     End

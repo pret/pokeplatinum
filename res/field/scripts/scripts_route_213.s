@@ -117,7 +117,7 @@ _019A:
     SetFlag FLAG_UNK_0x0104
     ClearFlag FLAG_UNK_0x01E8
     AddObject 33
-    CallCommonScript 0x807
+    SetLookerBGM
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     CallIfEq VAR_0x8004, 2, _0267
