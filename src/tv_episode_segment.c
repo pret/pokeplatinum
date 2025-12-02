@@ -2126,58 +2126,58 @@ static BOOL sub_0206E928(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     }
 }
 
-static u16 Unk_02100BA4[] = {
-    0x173,
-    0x175,
-    0x17F,
-    0x154,
-    0xA5
+static u16 sOnTheSpotWeatherLocations[] = {
+    MAP_HEADER_ROUTE_212_SOUTH,
+    MAP_HEADER_ROUTE_213,
+    MAP_HEADER_ROUTE_216,
+    MAP_HEADER_ACUITY_LAKEFRONT,
+    MAP_HEADER_SNOWPOINT_CITY
 };
 
-static int sub_0206E940(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int MsgFunc_OnTheSpotWeather(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
-    int mapHeaderID = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
+    int mapHeaderID = sOnTheSpotWeatherLocations[LCRNG_RandMod(NELEMS(sOnTheSpotWeatherLocations))];
     int weather = FieldSystem_GetWeather(fieldSystem, mapHeaderID);
-    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(mapHeaderID));
+    StringTemplate_SetLocationName(template, 0, MapHeader_GetMapLabelTextID(mapHeaderID));
 
     switch (weather) {
     case OVERWORLD_WEATHER_CLEAR:
         switch (LCRNG_RandMod(4)) {
         case 0:
-            return 1;
+            return pl_msg_00000418_00001;
         case 1:
-            return 2;
+            return pl_msg_00000418_00002;
         case 2:
-            return 3;
+            return pl_msg_00000418_00003;
         case 3:
-            return 4;
+            return pl_msg_00000418_00004;
         }
     case OVERWORLD_WEATHER_CLOUDY:
-        return 5;
+        return pl_msg_00000418_00005;
     case OVERWORLD_WEATHER_RAINING:
-        return 6;
+        return pl_msg_00000418_00006;
     case OVERWORLD_WEATHER_HEAVY_RAIN:
-        return 7;
+        return pl_msg_00000418_00007;
     case OVERWORLD_WEATHER_SNOWING:
-        return 8;
+        return pl_msg_00000418_00008;
     case OVERWORLD_WEATHER_HEAVY_SNOW:
-        return 9;
+        return pl_msg_00000418_00009;
     case OVERWORLD_WEATHER_BLIZZARD:
-        return 10;
+        return pl_msg_00000418_00010;
     case OVERWORLD_WEATHER_THUNDERSTORM:
-        return 11;
+        return pl_msg_00000418_00011;
     case OVERWORLD_WEATHER_HAILING:
-        return 12;
+        return pl_msg_00000418_00012;
     default:
         GF_ASSERT(0);
     }
 
-    return 1;
+    return pl_msg_00000418_00001;
 }
 
-static BOOL sub_0206EA0C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_AlwaysTrue(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return 1;
+    return TRUE;
 }
 
 // Skips Marts, Gyms and Pokémon Centers
@@ -2269,9 +2269,9 @@ static BOOL FieldSystem_IsSwarmEnabled(FieldSystem *fieldSystem, UnkStruct_ov6_0
     return SpecialEncounter_IsSwarmEnabled(speEnc);
 }
 
-static BOOL sub_0206EBE4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_AlwaysFalse(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return 0;
+    return FALSE;
 }
 
 enum BerryLookoutArrival {
@@ -2490,9 +2490,9 @@ static BOOL FieldSystem_HasVisitedOreburghCity(FieldSystem *fieldSystem, UnkStru
     return SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
-static BOOL sub_0206ED10(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_AlwaysFalse2(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return 0;
+    return FALSE;
 }
 
 static int MsgFunc_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -3012,16 +3012,16 @@ static const TVProgramSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM
 
 static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS] = {
     { sub_0206E870, sub_0206E928 },
-    { sub_0206E940, sub_0206EA0C },
+    { MsgFunc_OnTheSpotWeather, FieldSystem_AlwaysTrue },
     { MsgFunc_YourTownsBestThree, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     { MsgFunc_SwarmNewsFlash, FieldSystem_IsSwarmEnabled },
     TV_PROGRAM_SEGMENT_NULL,
-    { NULL, sub_0206EBE4 },
+    { NULL, FieldSystem_AlwaysFalse },
     TV_PROGRAM_SEGMENT_NULL,
     { MsgFunc_BerryLookout, FieldSystem_HasVisitedOreburghCity },
     TV_PROGRAM_SEGMENT_NULL,
-    { NULL, sub_0206ED10 },
+    { NULL, FieldSystem_AlwaysFalse2 },
     { MsgFunc_RichBoyNatureCorner, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     TV_PROGRAM_SEGMENT_NULL,
