@@ -2536,49 +2536,49 @@ static int MsgFunc_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate 
     return pl_msg_00000418_00044;
 }
 
-static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int MsgFunc_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
-    Roamer *v0;
-    SpecialEncounter *v1;
-    u16 v2, v3;
-    u32 v4, v5;
-    Strbuf *v6 = Strbuf_Init(22, HEAP_ID_FIELD1);
-    TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+    Roamer *roamer;
+    SpecialEncounter *speEnc;
+    u16 roamingRouteIndex, i;
+    u32 species, personality;
+    Strbuf *string = Strbuf_Init(22, HEAP_ID_FIELD1);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
-    v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-    v2 = (LCRNG_Next() % 29);
+    speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    roamingRouteIndex = (LCRNG_Next() % RI_MAX);
 
-    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(v2), HEAP_ID_FIELD1, v6);
-    StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(v6);
+    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(roamingRouteIndex), HEAP_ID_FIELD1, string);
+    StringTemplate_SetStrbuf(template, 0, string, 0, 1, GAME_LANGUAGE);
+    Strbuf_Free(string);
 
-    for (v3 = 0; v3 < 6; v3++) {
-        if (SpecialEncounter_IsRoamerActive(v1, v3)) {
-            v0 = SpecialEncounter_GetRoamer(v1, v3);
+    for (i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
+            roamer = SpecialEncounter_GetRoamer(speEnc, i);
 
-            v4 = Roamer_GetData(v0, ROAMER_DATA_SPECIES);
-            v5 = Roamer_GetData(v0, ROAMER_DATA_PERSONALITY);
+            species = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
+            personality = Roamer_GetData(roamer, ROAMER_DATA_PERSONALITY);
 
-            TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
+            TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, species, Pokemon_GetGenderOf(species, personality), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
             break;
         }
     }
 
-    return 49;
+    return pl_msg_00000418_00049;
 }
 
-static BOOL sub_0206EE74(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_IsRoamerActive(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    int v0;
-    SpecialEncounter *v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    int i;
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (SpecialEncounter_IsRoamerActive(v1, v0)) {
-            return 1;
+    for (i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int sub_0206EE9C(UnkStruct_0202A750 *param0)
@@ -3025,7 +3025,7 @@ static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_
     { MsgFunc_RichBoyNatureCorner, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     TV_PROGRAM_SEGMENT_NULL,
-    { sub_0206EDAC, sub_0206EE74 },
+    { MsgFunc_RoamerNewsFlash, FieldSystem_IsRoamerActive },
     TV_PROGRAM_SEGMENT_NULL,
     { sub_0206EEBC, sub_0206EF64 }
 };
