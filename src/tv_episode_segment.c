@@ -2250,16 +2250,16 @@ static int sub_0206EA10(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 27;
 }
 
-static int sub_0206EB94(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int MsgFunc_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     u16 mapID, species;
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
     Swarm_GetMapIdAndSpecies(SpecialEncounter_GetDailyMon(speEnc, DAILY_SWARM), &mapID, &species);
-    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(mapID));
-    TVEpisodeSegment_SetTemplateOwnPokemonSpecies(param1, 1, species);
+    StringTemplate_SetLocationName(template, 0, MapHeader_GetMapLabelTextID(mapID));
+    TVEpisodeSegment_SetTemplateOwnPokemonSpecies(template, 1, species);
 
-    return 29;
+    return pl_msg_00000418_00029;
 }
 
 static BOOL FieldSystem_IsSwarmEnabled(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
@@ -3014,7 +3014,7 @@ static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_
     { sub_0206E940, sub_0206EA0C },
     { sub_0206EA10, NULL },
     TV_PROGRAM_SEGMENT_NULL,
-    { sub_0206EB94, FieldSystem_IsSwarmEnabled },
+    { MsgFunc_SwarmNewsFlash, FieldSystem_IsSwarmEnabled },
     TV_PROGRAM_SEGMENT_NULL,
     { NULL, sub_0206EBE4 },
     TV_PROGRAM_SEGMENT_NULL,
