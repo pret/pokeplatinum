@@ -105,6 +105,10 @@
     CallCommonScript 0x7FE
     .endm
 
+    .macro GiveAccessory
+    CallCommonScript 0x7FF
+    .endm
+
     .macro SetFollowMeBGM
     CallCommonScript 0x800
     .endm

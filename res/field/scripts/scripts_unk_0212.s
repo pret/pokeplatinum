@@ -792,7 +792,7 @@ _0BF2:
     BufferAccessoryName 1, VAR_0x8004
     Message 80
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FF
+    GiveAccessory
 _0C3E:
     Message 82
     WaitABXPadPress
