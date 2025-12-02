@@ -1024,7 +1024,7 @@ _114C:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CheckAllFrontierGoldPrintsObtained
     Return
 
 _1167:

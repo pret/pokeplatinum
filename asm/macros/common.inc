@@ -65,6 +65,10 @@
     CallCommonScript 0x7FC
     .endm
 
+    .macro CheckAllFrontierGoldPrintsObtained
+    CallCommonScript 0x806
+    .endm
+
     .macro GriseousOrbCouldNotBeRemoved
     CallCommonScript 0x809
     .endm

@@ -616,7 +616,7 @@ _0955:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CheckAllFrontierGoldPrintsObtained
     Return
 
 _0970:
