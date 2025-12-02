@@ -409,7 +409,7 @@ _064F:
     End
 
 _0667:
-    CallCommonScript 0x7F6
+    PrintPlateObtainedMessage
     Return
 
     .balign 4, 0

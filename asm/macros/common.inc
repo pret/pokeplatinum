@@ -81,6 +81,10 @@
     CallCommonScript 0x7F4
     .endm
 
+    .macro PrintPlateObtainedMessage
+    CallCommonScript 0x7F6
+    .endm
+
     .macro SetCounterpartBGM
     CallCommonScript 0x7F8
     .endm

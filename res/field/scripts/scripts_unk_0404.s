@@ -2424,5 +2424,5 @@ _20C0:
     Return
 
 _20C6:
-    CallCommonScript 0x7F6
+    PrintPlateObtainedMessage
     Return
