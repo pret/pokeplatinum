@@ -79,7 +79,7 @@ _00F6:
     CallIfEq VAR_0x8004, GENDER_MALE, _0297
     CallIfEq VAR_0x8004, GENDER_FEMALE, _029F
     CloseMessage
-    CallCommonScript 0x7F9
+    FadeToDefaultMusic
     LoadDoorAnimation 21, 19, 12, 3, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
@@ -1186,7 +1186,7 @@ _0EF4:
     SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     ReleaseAll
     End
 
@@ -1194,7 +1194,7 @@ _0F0B:
     Message 40
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     ReleaseAll
     End
 

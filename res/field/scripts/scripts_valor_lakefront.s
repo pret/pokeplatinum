@@ -219,7 +219,7 @@ _0248:
     ApplyMovement 10, _058C
     WaitMovement
     RemoveObject 10
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     Message 8
     CloseMessage
     CallIfEq VAR_0x8000, 0, _0414

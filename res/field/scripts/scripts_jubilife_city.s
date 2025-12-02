@@ -270,7 +270,7 @@ _03C0:
     WaitMovement
     SetPosition 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     Return
 
 _041B:
@@ -1687,7 +1687,7 @@ JubilifeCity_Looker_AfterOneBadgeObtained:
     ApplyMovement 31, _154C
     WaitMovement
     RemoveObject 31
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     ReleaseAll
     End

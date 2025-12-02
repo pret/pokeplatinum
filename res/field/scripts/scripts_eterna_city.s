@@ -850,7 +850,7 @@ _0AB6:
     BufferRivalName 0
     Message 2
     CloseMessage
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     ScrCmd_32E
     ScrCmd_332
     AddFreeCamera 0x143, 0x20C

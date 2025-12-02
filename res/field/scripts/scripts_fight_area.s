@@ -72,7 +72,7 @@ _00D8:
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    CallCommonScript 0x801
+    FadeToDefaultMusic3
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1

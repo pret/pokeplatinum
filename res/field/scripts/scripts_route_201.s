@@ -265,7 +265,7 @@ _03DE:
     Message 34
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x7F9
+    FadeToDefaultMusic
     SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_LEFT
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll

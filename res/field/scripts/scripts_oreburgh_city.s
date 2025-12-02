@@ -176,7 +176,7 @@ _026D:
 _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     SetVar VAR_OREBURGH_STATE, 3
     ReleaseAll
     End
@@ -408,7 +408,7 @@ _0544:
     Message 7
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x801
+    FadeToDefaultMusic3
     SetVar VAR_OREBURGH_STATE, 1
     ReleaseAll
     End

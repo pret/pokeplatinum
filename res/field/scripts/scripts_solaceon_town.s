@@ -155,7 +155,7 @@ _0168:
     ApplyMovement 18, _0210
     WaitMovement
     RemoveObject 18
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     SetVar VAR_UNK_0x4073, 1
     ReleaseAll
     End

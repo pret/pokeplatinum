@@ -419,7 +419,7 @@ _04D0:
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject TWINLEAF_TOWN_RIVAL
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     SetVar VAR_UNK_0x4070, 1
     SetVar VAR_UNK_0x40E6, 1
     ReleaseAll

@@ -54,7 +54,7 @@ _0036:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F2
     GiveItemQuantity
     Call _00E5
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     ReleaseAll
     End
 
@@ -67,7 +67,7 @@ _00E5:
 
 _00F2:
     Call _0100
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     ReleaseAll
     End
 

@@ -65,12 +65,28 @@
     CallCommonScript 0x7F8
     .endm
 
+    .macro FadeToDefaultMusic
+    CallCommonScript 0x7F9
+    .endm
+
+    .macro FadeToDefaultMusic2
+    CallCommonScript 0x7FB
+    .endm
+
     .macro GiveItemQuantity
     CallCommonScript 0x7FC
     .endm
 
+    .macro FadeToDefaultMusic3
+    CallCommonScript 0x801
+    .endm
+
     .macro CheckAllFrontierGoldPrintsObtained
     CallCommonScript 0x806
+    .endm
+
+    .macro FadeToDefaultMusic4
+    CallCommonScript 0x808
     .endm
 
     .macro GriseousOrbCouldNotBeRemoved

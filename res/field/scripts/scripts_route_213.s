@@ -135,7 +135,7 @@ _019A:
     CallIfEq VAR_0x8004, 0, _02DF
     CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
-    CallCommonScript 0x808
+    FadeToDefaultMusic4
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     ClearFlag FLAG_UNK_0x0211
