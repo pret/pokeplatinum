@@ -64,3 +64,7 @@
     .macro GiveItemQuantity
     CallCommonScript 0x7FC
     .endm
+
+    .macro GriseousOrbCouldNotBeRemoved
+    CallCommonScript 0x809
+    .endm

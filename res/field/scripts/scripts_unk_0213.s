@@ -439,7 +439,7 @@ _062D:
     End
 
 _068E:
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
 _0694:

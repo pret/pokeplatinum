@@ -182,7 +182,7 @@ _0277:
     End
 
 _02A9:
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
 _02AF:

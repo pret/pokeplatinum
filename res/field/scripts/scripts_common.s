@@ -64,7 +64,7 @@
     ScriptEntry CommonScript_Frontier_CheckAllFrontierGoldPrintsObtained @ 0x806
     ScriptEntry CommonScript_SetLookerBGM @ 0x807
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
-    ScriptEntry _170A @ 0x809
+    ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntryEnd
 
 CommonScript_EmptyScript1:
@@ -1691,8 +1691,8 @@ CommonScript_Frontier_End:
     ReturnCommonScript
     End
 
-_170A:
-    Message pl_msg_00000213_00130
+CommonScript_GriseousOrbCouldNotBeRemoved:
+    Message CommonStrings_Text_GriseousOrbCouldNotBeRemoved
     WaitABXPadPress
     CloseMessage
     ReleaseAll

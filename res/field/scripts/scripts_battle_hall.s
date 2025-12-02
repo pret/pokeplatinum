@@ -466,7 +466,7 @@ _07B4:
 
 _07C8:
     SetVar VAR_UNK_0x40BA, 0
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0

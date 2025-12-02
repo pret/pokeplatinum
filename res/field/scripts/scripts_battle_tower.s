@@ -1255,7 +1255,7 @@ BattleTower_Pikachu2:
 _13CE:
     Call _07B5
     Call _07B9
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
 BattleTower_StatsJudge:
