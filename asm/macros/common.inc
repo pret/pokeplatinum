@@ -61,6 +61,10 @@
     CallCommonScript 0x7E3
     .endm
 
+    .macro SetCounterpartBGM
+    CallCommonScript 0x7F8
+    .endm
+
     .macro GiveItemQuantity
     CallCommonScript 0x7FC
     .endm

@@ -69,7 +69,7 @@ _00F6:
     LockAll
     ApplyMovement 6, _0444
     WaitMovement
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 0x2A9, _02E1
     CallIfEq VAR_0x8004, 0x2AA, _02ED

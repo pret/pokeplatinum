@@ -92,7 +92,7 @@ JubilifeCity_Counterpart_Init:
     WaitMovement
     ApplyMovement JUBILIFE_CITY_COUNTERPART, _044C
     WaitMovement
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_Dawn
     GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_Lucas
