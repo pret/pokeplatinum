@@ -3,11 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/flavor.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "constants/tv_broadcast.h"
 #include "generated/first_arrival_to_zones.h"
+#include "generated/natures.h"
+#include "generated/pokemon_stats.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -66,6 +69,7 @@
 #include "vars_flags.h"
 
 #include "res/text/bank/tv_programs_interviews.h"
+#include "res/text/bank/tv_programs_sinnoh_now.h"
 #include "res/text/bank/tv_programs_trainer_sightings.h"
 
 static void FieldSystem_SaveTVEpisodeSegment(FieldSystem *fieldSystem, int programTypeID, int segmentID, const void *segment);
@@ -2584,44 +2588,45 @@ static BOOL sub_0206ED10(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return 0;
 }
 
-static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int MsgFunc_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
-    u32 v0, v1;
-    u8 v2;
-    Pokemon *v3;
-    BoxPokemon *v4;
-    int v5 = 0xff, v6;
-    v6 = 0xff;
-    v0 = (LCRNG_Next() % 0xffff);
-    v2 = Pokemon_GetNatureOf(v0);
+    u32 personality, i;
+    u8 nature;
+    int flavor = 0xff, stat = 0xff;
+    personality = (LCRNG_Next() % 0xffff);
+    nature = Pokemon_GetNatureOf(personality);
 
-    StringTemplate_SetNatureName(param1, 0, v2);
+    StringTemplate_SetNatureName(template, 0, nature);
 
-    if ((v2 == 0) || (v2 == 6) || (v2 == 12) || (v2 == 18) || (v2 == 24)) {
-        return 46;
+    if (nature == NATURE_HARDY
+        || nature == NATURE_DOCILE
+        || nature == NATURE_SERIOUS
+        || nature == NATURE_BASHFUL
+        || nature == NATURE_QUIRKY) {
+        return pl_msg_00000418_00046;
     }
 
-    if ((v0 % 2) == 0) {
-        for (v1 = 0; v1 < 5; v1++) {
-            if (Pokemon_GetFlavorAffinityOf(v0, v1) == 1) {
-                v5 = v1;
+    if ((personality % 2) == 0) {
+        for (i = 0; i < FLAVOR_MAX; i++) {
+            if (Pokemon_GetFlavorAffinityOf(personality, i) == 1) {
+                flavor = i;
                 break;
             }
         }
 
-        StringTemplate_SetFlavorName(param1, 2, v5);
-        return 45;
+        StringTemplate_SetFlavorName(template, 2, flavor);
+        return pl_msg_00000418_00045;
     }
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (Pokemon_GetStatAffinityOf(v2, 1 + v1) > 0) {
-            v6 = v1;
+    for (i = 0; i < STAT_MAX - 1; i++) {
+        if (Pokemon_GetStatAffinityOf(nature, 1 + i) > 0) {
+            stat = i;
             break;
         }
     }
 
-    StringTemplate_SetPokemonStatName(param1, 1, 1 + v6);
-    return 44;
+    StringTemplate_SetPokemonStatName(template, 1, 1 + stat);
+    return pl_msg_00000418_00044;
 }
 
 static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
@@ -3110,7 +3115,7 @@ static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_
     { sub_0206EC90, sub_0206ECFC },
     TV_PROGRAM_SEGMENT_NULL,
     { NULL, sub_0206ED10 },
-    { sub_0206ED14, NULL },
+    { MsgFunc_RichBoyNatureCorner, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     TV_PROGRAM_SEGMENT_NULL,
     { sub_0206EDAC, sub_0206EE74 },
