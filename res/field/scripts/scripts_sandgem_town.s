@@ -500,7 +500,7 @@ _066B:
 
 _067A:
     CloseMessage
-    CallCommonScript 0x800
+    SetFollowMeBGM
     ApplyMovement 4, _0808
     ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement

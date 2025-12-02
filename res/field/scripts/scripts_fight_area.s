@@ -68,7 +68,7 @@ _00D8:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    CallCommonScript 0x800
+    SetFollowMeBGM
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement

@@ -55,7 +55,7 @@
     ScriptEntry CommonScript_ObtainContestBackdrop @ 0x7FD
     ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed @ 0x7FE
     ScriptEntry CommonScript_ObtainAccessory @ 0x7FF
-    ScriptEntry _15BF @ 0x800
+    ScriptEntry CommonScript_SetFollowMeBGM @ 0x800
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x801
     ScriptEntry _15E7 @ 0x802
     ScriptEntry _1636 @ 0x803
@@ -1599,7 +1599,7 @@ CommonScript_SetRivalBGM:
     ReturnCommonScript
     End
 
-_15BF:
+CommonScript_SetFollowMeBGM:
     StopMusic 0
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript

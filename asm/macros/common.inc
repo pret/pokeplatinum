@@ -105,6 +105,10 @@
     CallCommonScript 0x7FE
     .endm
 
+    .macro SetFollowMeBGM
+    CallCommonScript 0x800
+    .endm
+
     .macro FadeToDefaultMusic3
     CallCommonScript 0x801
     .endm
