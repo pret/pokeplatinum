@@ -25,7 +25,6 @@
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
-#include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/string_padding_mode.h"
 #include "generated/trainer_score_events.h"
@@ -45,6 +44,7 @@
 #include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
+#include "macros/common.inc"
 #include "macros/movement.inc"
 
     .set FALSE, 0
@@ -338,38 +338,6 @@
 
     .macro CloseMessageWithoutErasing
     .short 53
-    .endm
-
-    .macro ShowMapSign messageID
-    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
-    .endm
-
-    .macro ShowArrowSign messageID
-    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
-    .endm
-
-    .macro ShowLandmarkSign messageID
-    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
-    .endm
-
-    .macro ShowScrollingSign messageID
-    DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostScrollingMessage \messageID, VAR_RESULT
-    CallCommonScript 0x7D0
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
@@ -2671,30 +2639,6 @@
     .short \destVarID
     .endm
 
-    .macro SaveGame
-    CallCommonScript 0x7D6
-    .endm
-
-    .macro GivePoketchApp
-    CallCommonScript 0x7D9
-    .endm
-
-    .macro GiveAccessoryWaitForConfirm
-    CallCommonScript 0x7DF
-    .endm
-
-    .macro GiveItemQuantityNoLineFeed
-    CallCommonScript 0x7E0
-    .endm
-
-    .macro MessageBagIsFull
-    CallCommonScript 0x7E1
-    .endm
-
-    .macro GiveItemQuantity
-    CallCommonScript 0x7FC
-    .endm
-
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0
@@ -3350,15 +3294,6 @@
     .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
     .short \pokeballCount
-    .endm
-
-    .macro CallPokecenterNurse nurseLocalID
-    SetVar VAR_0x8007, \nurseLocalID
-    CallCommonScript 0x7D2
-    .endm
-
-    .macro VendorGreeting
-    CallCommonScript 0x7E3
     .endm
 
     .macro PlayElevatorAnimation elevatorDir, loopCount
