@@ -2180,74 +2180,75 @@ static BOOL sub_0206EA0C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return 1;
 }
 
-static int sub_0206EA10(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+// Skips Marts, Gyms and Pokémon Centers
+static int MsgFunc_YourTownsBestThree(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = fieldSystem->location->mapId;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+    int mapID = fieldSystem->location->mapId;
 
-    if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
-        StringTemplate_SetPlayerName(param1, 0, v0);
-        StringTemplate_SetRivalName(param1, 1, fieldSystem->saveData);
-        return 13;
+    if (mapID == MAP_HEADER_TWINLEAF_TOWN || (mapID >= MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F && mapID <= MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE)) {
+        StringTemplate_SetPlayerName(template, 0, trainerInfo);
+        StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
+        return pl_msg_00000418_00013;
     }
 
-    if ((v1 == 418) || ((v1 >= 422) && (v1 <= 425))) {
-        StringTemplate_SetCounterpartName(param1, 1, fieldSystem->saveData);
-        return 14;
+    if (mapID == MAP_HEADER_SANDGEM_TOWN || (mapID >= MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB && mapID <= MAP_HEADER_SANDGEM_TOWN_HOUSE)) {
+        StringTemplate_SetCounterpartName(template, 1, fieldSystem->saveData);
+        return pl_msg_00000418_00014;
     }
 
-    if ((v1 == 426) || ((v1 >= 430) && (v1 <= 432)) || (v1 == 257)) {
-        return 15;
+    if (mapID == MAP_HEADER_FLOAROMA_TOWN || (mapID >= MAP_HEADER_FLOWER_SHOP && mapID <= MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE) || mapID == MAP_HEADER_FLOAROMA_MEADOW_HOUSE) {
+        return pl_msg_00000418_00015;
     }
 
-    if ((v1 == 433) || ((v1 >= 437) && (v1 <= 441))) {
-        return 16;
+    if (mapID == MAP_HEADER_SOLACEON_TOWN || (mapID >= MAP_HEADER_POKEMON_DAY_CARE && mapID <= MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE)) {
+        return pl_msg_00000418_00016;
     }
 
-    if ((v1 == 442) || ((v1 >= 445) && (v1 <= 449))) {
-        return 17;
+    if (mapID == MAP_HEADER_CELESTIC_TOWN || (mapID >= MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE && mapID <= MAP_HEADER_CELESTIC_TOWN_CAVE)) {
+        return pl_msg_00000418_00017;
     }
 
-    if ((v1 == 3) || ((v1 >= 8) && (v1 <= 32))) {
-        return 18;
+    if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4)) {
+        return pl_msg_00000418_00018;
     }
 
-    if ((v1 == 33) || ((v1 >= 38) && (v1 <= 44)) || (v1 == 491)) {
-        return 19;
+    if (mapID == MAP_HEADER_CANALAVE_CITY || (mapID >= MAP_HEADER_CANALAVE_LIBRARY_1F && mapID <= MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE) || mapID == MAP_HEADER_CANALAVE_CITY_WEST_HOUSE) {
+        return pl_msg_00000418_00019;
     }
 
-    if ((v1 == 45) || ((v1 >= 50) && (v1 <= 64))) {
-        return 20;
+    if (mapID == MAP_HEADER_OREBURGH_CITY || (mapID >= MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F && mapID <= MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE)) {
+        return pl_msg_00000418_00020;
     }
 
-    if ((v1 == 65) || ((v1 >= 71) && (v1 <= 85))) {
-        return 21;
+    if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE)) {
+        return pl_msg_00000418_00021;
     }
 
-    if ((v1 == 86) || ((v1 >= 103) && (v1 <= 119))) {
-        return 22;
+    if (mapID == MAP_HEADER_HEARTHOME_CITY || (mapID >= MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F && mapID <= MAP_HEADER_FOREIGN_BUILDING)) {
+        return pl_msg_00000418_00022;
     }
 
-    if ((v1 == 120) || ((v1 >= 125) && (v1 <= 131))) {
-        return 23;
+    if (mapID == MAP_HEADER_PASTORIA_CITY || (mapID >= MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F && mapID <= MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE)) {
+        return pl_msg_00000418_00023;
     }
 
-    if ((v1 == 132) || ((v1 >= 136) && (v1 <= 149)) || ((v1 >= 305) && (v1 <= 310))) {
-        return 24;
+    if (mapID == MAP_HEADER_VEILSTONE_CITY || (mapID >= MAP_HEADER_GAME_CORNER && mapID <= MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY) || (mapID >= MAP_HEADER_GALACTIC_HQ_1F && mapID <= MAP_HEADER_GALACTIC_HQ_B2F)) {
+        return pl_msg_00000418_00024;
     }
 
-    if ((v1 == 150) || ((v1 >= 157) && (v1 <= 164)) || (v1 == 516)) {
-        return 25;
+    if (mapID == MAP_HEADER_SUNYSHORE_CITY || (mapID >= MAP_HEADER_SUNYSHORE_MARKET && mapID <= MAP_HEADER_VISTA_LIGHTHOUSE) || mapID == MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR) {
+        return pl_msg_00000418_00025;
     }
 
-    if ((v1 == 165) || ((v1 >= 170) && (v1 <= 171))) {
-        return 26;
+    if (mapID == MAP_HEADER_SNOWPOINT_CITY || (mapID >= MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE && mapID <= MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE)) {
+        return pl_msg_00000418_00026;
     }
 
-    StringTemplate_SetPlayerName(param1, 0, v0);
-    StringTemplate_SetRivalName(param1, 1, fieldSystem->saveData);
+    StringTemplate_SetPlayerName(template, 0, trainerInfo);
+    StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
 
-    return 27;
+    return pl_msg_00000418_00027;
 }
 
 static int MsgFunc_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -3012,7 +3013,7 @@ static const TVProgramSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM
 static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS] = {
     { sub_0206E870, sub_0206E928 },
     { sub_0206E940, sub_0206EA0C },
-    { sub_0206EA10, NULL },
+    { MsgFunc_YourTownsBestThree, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     { MsgFunc_SwarmNewsFlash, FieldSystem_IsSwarmEnabled },
     TV_PROGRAM_SEGMENT_NULL,
