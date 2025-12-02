@@ -81,6 +81,10 @@
     CallCommonScript 0x7F9
     .endm
 
+    .macro SetRivalBGM
+    CallCommonScript 0x7FA
+    .endm
+
     .macro FadeToDefaultMusic2
     CallCommonScript 0x7FB
     .endm

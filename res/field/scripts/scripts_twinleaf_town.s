@@ -399,7 +399,7 @@ _04D0:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
-    CallCommonScript 0x7FA
+    SetRivalBGM
     ApplyMovement TWINLEAF_TOWN_RIVAL, _059C
     WaitMovement
     BufferRivalName 0

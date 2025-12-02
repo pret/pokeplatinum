@@ -805,7 +805,7 @@ _09EB:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     CloseMessage
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message 1

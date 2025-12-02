@@ -14,7 +14,7 @@ _000E:
     CloseMessage
     ApplyMovement 0, _0060
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferPlayerName 0
     Message 1
     CloseMessage

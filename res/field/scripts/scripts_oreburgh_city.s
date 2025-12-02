@@ -126,7 +126,7 @@ _01B6:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 2
     CloseMessage
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message 3

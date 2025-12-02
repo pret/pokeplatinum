@@ -428,7 +428,7 @@ _04C8:
     AddObject PASTORIA_CITY_RIVAL
     ApplyMovement PASTORIA_CITY_RIVAL, _05B0
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     ApplyMovement PASTORIA_CITY_RIVAL, _05C0
     ApplyMovement LOCALID_PLAYER, _05A4
     WaitMovement

@@ -175,7 +175,7 @@ _02B5:
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message 5

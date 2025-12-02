@@ -92,7 +92,7 @@ _00E0:
     AddObject 0
     ApplyMovement 0, _0394
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     Message 6
     CloseMessage
