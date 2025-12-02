@@ -45,6 +45,10 @@
     CallCommonScript 0x7D9
     .endm
 
+    .macro SendToUndergroundPC
+    CallCommonScript 0x7DC
+    .endm
+
     .macro GiveAccessoryWaitForConfirm
     CallCommonScript 0x7DF
     .endm
@@ -75,6 +79,10 @@
 
     .macro GiveItemQuantity
     CallCommonScript 0x7FC
+    .endm
+
+    .macro SendToUndergroundPCWithLinefeed
+    CallCommonScript 0x7FE
     .endm
 
     .macro FadeToDefaultMusic3

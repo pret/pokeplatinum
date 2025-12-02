@@ -166,7 +166,7 @@ _025F:
 _0272:
     Message BattleTower_Text_CongratulationsOnAchievingWinStreak
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Message BattleTower_Text_WeHopeToSeeYouAgain2
     GoTo _020B
     End
