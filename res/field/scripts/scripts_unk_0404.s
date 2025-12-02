@@ -2312,7 +2312,7 @@ _1EEA:
     End
 
 _1EF0:
-    CallCommonScript 0x7D1
+    CheckBagPocketForItem
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     TrySetUnusedUndergroundField VAR_0x8004

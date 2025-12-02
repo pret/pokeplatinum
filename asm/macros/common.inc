@@ -32,6 +32,10 @@
     CallCommonScript 0x7D0
     .endm
 
+    .macro CheckBagPocketForItem
+    CallCommonScript 0x7D1
+    .endm
+
     .macro CallPokecenterNurse nurseLocalID
     SetVar VAR_0x8007, \nurseLocalID
     CallCommonScript 0x7D2

@@ -303,7 +303,7 @@ _04AC:
     End
 
 _04B0:
-    CallCommonScript 0x7D1
+    CheckBagPocketForItem
     ScrCmd_236 VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
