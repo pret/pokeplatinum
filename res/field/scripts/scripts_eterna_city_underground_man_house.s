@@ -171,13 +171,13 @@ _01DF:
     Message 6
     SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_BUBBLE
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_LEAF
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -192,13 +192,13 @@ _023D:
     Message 10
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     SetVar VAR_0x8004, 3
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     SetVar VAR_0x8004, 4
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -213,7 +213,7 @@ _029B:
     Message 14
     SetVar VAR_0x8004, TRAP_DIGGER_DRILL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     Message 15
     WaitABXPadPress
     CloseMessage

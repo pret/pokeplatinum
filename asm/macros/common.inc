@@ -49,6 +49,14 @@
     CallCommonScript 0x7DC
     .endm
 
+    .macro ObtainUndergroundTrap
+    CallCommonScript 0x7DD
+    .endm
+
+    .macro ObtainUndergroundSphere
+    CallCommonScript 0x7DE
+    .endm
+
     .macro GiveAccessoryWaitForConfirm
     CallCommonScript 0x7DF
     .endm
