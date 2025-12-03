@@ -1120,7 +1120,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
 
         StartMenu_SetCallback(menu, StartMenu_ExitMail);
     } break;
-    case PARTY_MENU_EXIT_CODE_GIVE_ITEM: { //give item
+    case PARTY_MENU_EXIT_CODE_GIVE_ITEM: { // give item
         u32 *v13 = (u32 *)Heap_Alloc(HEAP_ID_FIELD2, 4);
         *v13 = partyMenu->selectedMonSlot;
         menu->unk_260 = (void *)v13;
@@ -1157,7 +1157,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
         menu->taskData = v15;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
     } break;
-    case PARTY_MENU_EXIT_CODE_ROCK_SMASH: // fieldMoveTaskOrError: 
+    case PARTY_MENU_EXIT_CODE_ROCK_SMASH: // fieldMoveTaskOrError:
     case PARTY_MENU_EXIT_CODE_CUT:
     case PARTY_MENU_EXIT_CODE_FLY:
     case PARTY_MENU_EXIT_CODE_DEFOG:

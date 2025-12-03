@@ -684,7 +684,7 @@ static int sub_02085A70(void *applicationPtr)
     application->partyMembers[application->currPartySlot].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     application->partyMembers[application->currPartySlot].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
 
-    strBuf = MessageLoader_GetNewStrbuf(application->messageLoader, 193); // pl_msg_00000453_00193: 
+    strBuf = MessageLoader_GetNewStrbuf(application->messageLoader, 193); // pl_msg_00000453_00193:
 
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
     StringTemplate_SetNumber(application->template, 1, application->partyMembers[application->currPartySlot].level, 3, 0, 1);
