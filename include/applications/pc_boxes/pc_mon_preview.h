@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_PC_MON_PREVIEW_H
 #define POKEPLATINUM_STRUCT_PC_MON_PREVIEW_H
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     void *mon;
@@ -15,11 +15,11 @@ typedef struct {
     u8 gender;
     u8 isEgg;
     u8 padding_10[4];
-    Strbuf *nickname;
-    Strbuf *speciesName;
-    Strbuf *heldItemName;
-    Strbuf *nature;
-    Strbuf *ability;
+    String *nickname;
+    String *speciesName;
+    String *heldItemName;
+    String *nature;
+    String *ability;
 } PCMonPreview;
 
 #endif // POKEPLATINUM_STRUCT_PC_MON_PREVIEW_H

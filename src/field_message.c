@@ -11,7 +11,7 @@
 #include "game_options.h"
 #include "render_text.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 resetPrinters)
@@ -45,23 +45,23 @@ void FieldMessage_ClearWindow(Window *window)
     Window_FillTilemap(window, 15);
 }
 
-u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay)
+u8 FieldMessage_Print(Window *window, String *string, const Options *options, u8 canSkipDelay)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
-    return Text_AddPrinterWithParams(window, FONT_MESSAGE, strBuf, 0, 0, Options_TextFrameDelay(options), NULL);
+    return Text_AddPrinterWithParams(window, FONT_MESSAGE, string, 0, 0, Options_TextFrameDelay(options), NULL);
 }
 
 // used only in one instance
-u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll)
+u8 FieldMessage_PrintWithParams(Window *window, String *string, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
-    return Text_AddPrinterWithParams(window, fontID, strBuf, 0, 0, renderDelay, NULL);
+    return Text_AddPrinterWithParams(window, fontID, string, 0, 0, renderDelay, NULL);
 }
 
 u8 FieldMessage_FinishedPrinting(u8 printerID)

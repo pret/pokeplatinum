@@ -35,7 +35,7 @@
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02030494.h"
@@ -296,7 +296,7 @@ BOOL ov104_02237734(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
 {
-    Strbuf *v0;
+    String *v0;
     Pokemon *v1;
     Party *v2;
     UnkStruct_ov104_0223BFFC *v3;

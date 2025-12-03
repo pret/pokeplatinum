@@ -9,7 +9,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_card.h"
 
 enum TrainerCardWindows {
@@ -82,8 +82,8 @@ typedef struct TrainerCardScreen {
     void *trainerScreenDataNSCRBuffer;
     NNSG2dScreenData *trainerScreenData;
     BadgePolishingState badgePolishingState;
-    Strbuf *unusedStrbuf;
-    Strbuf *colonStrbuf;
+    String *unusedString;
+    String *colonString;
     u8 polishingProgress[MAX_BADGES];
     u8 badgeCaseOpenState;
     u8 badgeCaseTransitionIndex;

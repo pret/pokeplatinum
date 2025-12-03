@@ -40,7 +40,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -179,10 +179,10 @@ typedef struct NamingScreen {
     MessageLoader *namingScreenMsgLoader;
     MessageLoader *genericNamesMsgLoader;
     MessageLoader *battleStringsMsgLoader;
-    Strbuf *promptString;
-    Strbuf *unkJapaneseString;
-    Strbuf *battleMessageStrbuf;
-    Strbuf *groupTextStrbuf;
+    String *promptString;
+    String *unkJapaneseString;
+    String *battleMessageString;
+    String *groupTextString;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
     SpriteResourceCollection *spriteResourceCollections[4];
@@ -296,7 +296,7 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
     Window *window,
     const charcode_t *tmpBuf,
     u8 *pixelBuf,
-    Strbuf *string);
+    String *string);
 static void NamingScreen_LoadKeyboardLayout(charcode_t out[][13], const int index);
 static void NamingScreen_PrintLastCharOfEntryBuf(
     Window *windows,
@@ -304,7 +304,7 @@ static void NamingScreen_PrintLastCharOfEntryBuf(
     int srcCharIdx,
     charcode_t *charCodeBuf,
     u8 *pixelBuf,
-    Strbuf *string);
+    String *string);
 static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charcode_t charCode, BOOL isButtonInput);
 static BOOL NamingScreen_JPFlipDiacritic(
     int tableStart,
@@ -337,7 +337,7 @@ static void NamingScreen_ToggleEngineLayers(BOOL enable);
 static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, ApplicationManager *appMan);
 static void NamingScreen_InitIconSprite(NamingScreen *namingScreen, AffineSpriteListTemplate *template);
 static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreenArgs *args);
-static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, Strbuf *str);
+static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, String *str);
 static void NamingScreen_PlaceCursorSprite(NamingScreen *namingScreen);
 static enum NamingScreenAppState NamingScreen_ProcessInputs(
     NamingScreen *namingScreen,
@@ -345,7 +345,7 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
 static BOOL NamingScreen_IsRawStringAllSpaces(charcode_t *rawChars);
 static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
     Window *window,
-    Strbuf *string,
+    String *string,
     u8 fontId,
     TextColor color);
 static BOOL NamingScreen_ProcessTouchInputs(NamingScreen *namingScreen);
@@ -1217,7 +1217,7 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
             namingScreen->battleMessagePrinter = Text_AddPrinterWithParams(
                 &namingScreen->windows[NMS_WINDOW_PROMPT],
                 FONT_MESSAGE,
-                namingScreen->battleMessageStrbuf,
+                namingScreen->battleMessageString,
                 0,
                 0,
                 TEXT_SPEED_FAST,
@@ -1341,31 +1341,31 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
 static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreenArgs *args)
 {
     if (namingScreen->type == NAMING_SCREEN_TYPE_PLAYER) {
-        Strbuf *strbuf;
+        String *string;
 
         if (namingScreen->playerGenderOrMonSpecies == GENDER_MALE) {
-            strbuf = MessageLoader_GetNewStrbuf(
+            string = MessageLoader_GetNewString(
                 namingScreen->genericNamesMsgLoader,
                 RANDOM_NAME(GenericNames_PlayerMale));
         } else if (namingScreen->playerGenderOrMonSpecies == GENDER_FEMALE) {
-            strbuf = MessageLoader_GetNewStrbuf(
+            string = MessageLoader_GetNewString(
                 namingScreen->genericNamesMsgLoader,
                 RANDOM_NAME(GenericNames_PlayerFemale));
         }
 
-        Strbuf_Copy(args->textInputStr, strbuf);
-        Strbuf_Free(strbuf);
-        Strbuf_ToChars(args->textInputStr, args->nameInputRaw, 10);
+        String_Copy(args->textInputStr, string);
+        String_Free(string);
+        String_ToChars(args->textInputStr, args->nameInputRaw, 10);
     } else if (namingScreen->type == NAMING_SCREEN_TYPE_RIVAL) {
-        Strbuf *strbuf;
+        String *string;
 
-        strbuf = MessageLoader_GetNewStrbuf(
+        string = MessageLoader_GetNewString(
             namingScreen->genericNamesMsgLoader,
             RANDOM_NAME(GenericNames_Rival));
 
-        Strbuf_Copy(args->textInputStr, strbuf);
-        Strbuf_Free(strbuf);
-        Strbuf_ToChars(args->textInputStr, args->nameInputRaw, 10);
+        String_Copy(args->textInputStr, string);
+        String_Free(string);
+        String_ToChars(args->textInputStr, args->nameInputRaw, 10);
     } else {
         args->returnCode = NAMING_SCREEN_CODE_NO_INPUT;
     }
@@ -1414,10 +1414,10 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
     } else {
         CharCode_Copy(namingScreen->entryBufBak, namingScreen->entryBuf);
         CharCode_Copy(namingScreenArgs->nameInputRaw, namingScreen->entryBuf);
-        Strbuf_CopyChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
+        String_CopyChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
     }
 
-    Strbuf_Free(namingScreen->groupTextStrbuf);
+    String_Free(namingScreen->groupTextString);
 
     for (i = 0; i < NMS_SPRITE_OVERLAY; i++) {
         SysTask_FinishAndFreeParam(namingScreen->spriteFollowTasks[i]);
@@ -1451,12 +1451,12 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
 
     Font_Free(FONT_SUBSCREEN);
 
-    if (namingScreen->battleMessageStrbuf) {
-        Strbuf_Free(namingScreen->battleMessageStrbuf);
+    if (namingScreen->battleMessageString) {
+        String_Free(namingScreen->battleMessageString);
     }
 
-    Strbuf_Free(namingScreen->promptString);
-    Strbuf_Free(namingScreen->unkJapaneseString);
+    String_Free(namingScreen->promptString);
+    String_Free(namingScreen->unkJapaneseString);
     MessageLoader_Free(namingScreen->battleStringsMsgLoader);
     MessageLoader_Free(namingScreen->genericNamesMsgLoader);
     MessageLoader_Free(namingScreen->namingScreenMsgLoader);
@@ -1485,7 +1485,7 @@ NamingScreenArgs *NamingScreenArgs_Init(
     args->maxChars = maxChars;
     args->returnCode = NAMING_SCREEN_CODE_OK;
     args->nameInputRaw[0] = CHAR_EOS;
-    args->textInputStr = Strbuf_Init(32, heapID);
+    args->textInputStr = String_Init(32, heapID);
     args->battleMsgID = 0;
     args->pcBoxes = NULL;
     args->monGender = GENDER_MALE;
@@ -1500,7 +1500,7 @@ void NamingScreenArgs_Free(NamingScreenArgs *args)
     GF_ASSERT(args->textInputStr != NULL);
     GF_ASSERT(args != NULL);
 
-    Strbuf_Free(args->textInputStr);
+    String_Free(args->textInputStr);
     Heap_Free(args);
 }
 
@@ -1677,7 +1677,7 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
     namingScreen->entryBufBak[0] = CHAR_EOS;
 
     if (namingScreenArgs->textInputStr) {
-        Strbuf_ToChars(namingScreenArgs->textInputStr, namingScreen->entryBufBak, 32);
+        String_ToChars(namingScreenArgs->textInputStr, namingScreen->entryBufBak, 32);
     }
 
     MI_CpuFill16(namingScreen->entryBuf, 1, 32 * 2);
@@ -1695,17 +1695,17 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
         namingScreen->printedFromBattleGMM = TRUE;
     }
 
-    namingScreen->promptString = MessageUtil_ExpandedStrbuf(
+    namingScreen->promptString = MessageUtil_ExpandedString(
         namingScreen->strTemplate,
         namingScreen->namingScreenMsgLoader,
         sPromptTextIndices[namingScreen->type],
         HEAP_ID_NAMING_SCREEN_APP);
-    namingScreen->unkJapaneseString = MessageUtil_ExpandedStrbuf(
+    namingScreen->unkJapaneseString = MessageUtil_ExpandedString(
         namingScreen->strTemplate,
         namingScreen->namingScreenMsgLoader,
         NamingScreen_Text_Xs,
         HEAP_ID_NAMING_SCREEN_APP);
-    namingScreen->groupTextStrbuf = MessageLoader_GetNewStrbuf(
+    namingScreen->groupTextString = MessageLoader_GetNewString(
         namingScreen->namingScreenMsgLoader,
         NamingScreen_Text_Group);
     namingScreen->textCursorPos = CharCode_Length(namingScreen->entryBufBak);
@@ -1735,14 +1735,14 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
 
 static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, ApplicationManager *appMan)
 {
-    Strbuf *strbuf = NULL;
+    String *string = NULL;
     NamingScreenArgs *args = (NamingScreenArgs *)ApplicationManager_Args(appMan);
 
     if (args->battleMsgID != 0) {
         int boxID, nextBoxID;
 
-        strbuf = Strbuf_Init(200, HEAP_ID_NAMING_SCREEN_APP);
-        namingScreen->battleMessageStrbuf = NULL;
+        string = String_Init(200, HEAP_ID_NAMING_SCREEN_APP);
+        namingScreen->battleMessageString = NULL;
         boxID = PCBoxes_GetCurrentBoxID(args->pcBoxes);
         nextBoxID = PCBoxes_FirstEmptyBox(args->pcBoxes);
 
@@ -1763,18 +1763,18 @@ static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, Applic
             Heap_Free(mon);
         } else {
             namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
-            Strbuf_CopyChars(strbuf, namingScreen->entryBuf);
-            StringTemplate_SetStrbuf(namingScreen->strTemplate, 0, strbuf, 0, 0, 0);
+            String_CopyChars(string, namingScreen->entryBuf);
+            StringTemplate_SetString(namingScreen->strTemplate, 0, string, 0, 0, 0);
         }
 
-        namingScreen->battleMessageStrbuf = MessageUtil_ExpandedStrbuf(
+        namingScreen->battleMessageString = MessageUtil_ExpandedString(
             namingScreen->strTemplate,
             namingScreen->battleStringsMsgLoader,
             args->battleMsgID,
             HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->printedFromBattleGMM = TRUE;
 
-        Strbuf_Free(strbuf);
+        String_Free(string);
     }
 }
 
@@ -2270,17 +2270,17 @@ static void NamingScreen_AnimateChangeChars(
     }
 }
 
-static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, Strbuf *str)
+static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, String *str)
 {
     Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, PLTT_10);
     Text_AddPrinterWithParams(window, FONT_MESSAGE, str, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(window);
 }
 
-static void NamingScreen_PrintMessageOnWindow(Window *window, int param1, Strbuf *str)
+static void NamingScreen_PrintMessageOnWindow(Window *window, int param1, String *str)
 {
     int xOffset = 16;
-    int v1 = Font_CalcStrbufWidth(FONT_SYSTEM, str, 0);
+    int v1 = Font_CalcStringWidth(FONT_SYSTEM, str, 0);
 
     if (v1 > 130) {
         xOffset = 0;
@@ -2391,7 +2391,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         NamingScreen_PrintMessageOnWindow(
             &namingScreen->windows[NMS_WINDOW_GROUP_TEXT],
             namingScreen->type,
-            namingScreen->groupTextStrbuf);
+            namingScreen->groupTextString);
         Window_CopyToVRAM(&namingScreen->windows[NMS_WINDOW_GROUP_TEXT]);
     }
 
@@ -2654,7 +2654,7 @@ static void NamingScreen_PrintChars(
 {
     int i = 0, charWidth, charXOffset;
     u16 charBuffer[2];
-    Strbuf *strBuf = Strbuf_Init(2, HEAP_ID_NAMING_SCREEN_APP);
+    String *string = String_Init(2, HEAP_ID_NAMING_SCREEN_APP);
 
     while (charCodes[i] != CHAR_EOS) {
         if (charCodes[i] == NMS_CONTROL_DAKU
@@ -2681,14 +2681,14 @@ static void NamingScreen_PrintChars(
             charBuffer[0] = charCodes[i];
             charBuffer[1] = CHAR_EOS;
 
-            charWidth = Font_CalcStringWidth(FONT_SYSTEM, charBuffer, 0);
+            charWidth = Font_CalcCharArrayWidth(FONT_SYSTEM, charBuffer, 0);
             charXOffset = baseXOffset + i * charSpacing + ((charSpacing - charWidth) / 2);
 
-            Strbuf_CopyChars(strBuf, charBuffer);
+            String_CopyChars(string, charBuffer);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,
-                strBuf,
+                string,
                 charXOffset,
                 yOffset,
                 renderDelay,
@@ -2699,7 +2699,7 @@ static void NamingScreen_PrintChars(
         i++;
     }
 
-    Strbuf_Free(strBuf);
+    String_Free(string);
 }
 
 static const u8 sUnkGXObjOffsets1[] = {
@@ -2711,7 +2711,7 @@ static const u8 sUnkGXObjOffsets1[] = {
 
 static void *NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
     Window *window,
-    Strbuf *string,
+    String *string,
     u8 fontId,
     const TextColor color)
 {
@@ -2723,12 +2723,12 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
     Window *windows,
     const charcode_t *tmpBuf,
     u8 *pixelBuf,
-    Strbuf *string)
+    String *string)
 {
     charcode_t curCharBuf[20 + 1];
     u16 i;
     void *ptr;
-    Strbuf *string2;
+    String *string2;
 
     Window_FillTilemap(&windows[3], 0);
     ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(&windows[3], string, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
@@ -2740,14 +2740,14 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
         GXS_LoadOBJ(pixelBuf, sUnkGXObjOffsets1[i] * 0x20, 0x20 * 4 * 2);
     }
 
-    string2 = Strbuf_Init(20 + 1, HEAP_ID_NAMING_SCREEN_APP);
+    string2 = String_Init(20 + 1, HEAP_ID_NAMING_SCREEN_APP);
 
     for (i = 0; i < 3; i++) {
         curCharBuf[0] = tmpBuf[i];
         curCharBuf[1] = CHAR_EOS;
 
         Window_FillTilemap(&windows[i], 0);
-        Strbuf_CopyChars(string2, curCharBuf);
+        String_CopyChars(string2, curCharBuf);
 
         ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
             &windows[i],
@@ -2759,7 +2759,7 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
         GXS_LoadOBJ(ptr, sUnkGXObjOffsets0[i] * 0x20, 0x20 * 4);
     }
 
-    Strbuf_Free(string2);
+    String_Free(string2);
 }
 
 static void NamingScreen_PrintLastCharOfEntryBuf(
@@ -2768,7 +2768,7 @@ static void NamingScreen_PrintLastCharOfEntryBuf(
     int srcCharIdx,
     charcode_t *charCodeBuf,
     u8 *pixelBuf,
-    Strbuf *string)
+    String *string)
 {
     int i, j;
     const u16 *dummy = NULL;

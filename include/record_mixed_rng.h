@@ -5,7 +5,7 @@
 
 #include "charcode.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 enum RecordMixedRNGEntry {
     RECORD_MIXED_RNG_PLAYER_ORIGINAL,
@@ -43,7 +43,7 @@ u32 RecordMixedRNG_GetEntrySeed(RecordMixedRNG *rngCollection, enum RecordMixedR
 void RecordMixedRNG_SetEntrySeed(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, u32 seed);
 u32 RecordMixedRNG_GetRand(RecordMixedRNG *rngCollection);
 const charcode_t *RecordMixedRNG_GetEntryName(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice);
-void RecordMixedRNG_GetEntryNameAsStrbuf(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, Strbuf *outStrbuf);
+void RecordMixedRNG_GetEntryNameAsString(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, String *outString);
 void RecordMixedRNG_SetEntryGender(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int gender);
 int RecordMixedRNG_GetEntryGender(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
 int RecordMixedRNG_GetEntryCountryCode(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);

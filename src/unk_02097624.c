@@ -20,7 +20,7 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_02014A84.h"
 #include "unk_0209747C.h"
 
@@ -205,9 +205,9 @@ UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
 
     v1->unk_00 = 0;
     v1->unk_08 = Mail_GetTrainerID(mail);
-    v1->unk_10 = Strbuf_Init(8, heapID);
+    v1->unk_10 = String_Init(8, heapID);
 
-    Strbuf_CopyChars(v1->unk_10, Mail_GetTrainerName((Mail *)mail));
+    String_CopyChars(v1->unk_10, Mail_GetTrainerName((Mail *)mail));
 
     v1->mailType = Mail_GetMailType(mail);
     v1->language = Mail_GetLanguage(mail);
@@ -227,7 +227,7 @@ UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
 void sub_020978D8(UnkStruct_020978D8 *param0)
 {
     if (param0->unk_10 != NULL) {
-        Strbuf_Free(param0->unk_10);
+        String_Free(param0->unk_10);
     }
 
     Heap_Free(param0);

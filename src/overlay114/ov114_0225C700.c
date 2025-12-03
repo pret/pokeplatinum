@@ -43,7 +43,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -98,14 +98,14 @@ typedef struct {
 typedef struct {
     MessageLoader *unk_00;
     StringTemplate *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
+    String *unk_08;
+    String *unk_0C;
 } UnkStruct_ov114_0225D084;
 
 typedef struct {
     Window unk_00[2];
     u16 unk_20[2];
-    Strbuf *unk_24[2];
+    String *unk_24[2];
     void *unk_2C[2];
     BOOL unk_34;
 } UnkStruct_ov114_0225D338;
@@ -138,7 +138,7 @@ typedef struct {
 typedef struct {
     Window unk_00;
     u32 unk_10;
-    Strbuf *unk_14;
+    String *unk_14;
     UnkStruct_ov114_0225CBF0 unk_18;
     s16 unk_2C;
     s16 unk_2E;
@@ -289,10 +289,10 @@ static void ov114_0225D138(UnkStruct_ov114_0225D084 *param0, u32 param1, u32 par
 static void ov114_0225D154(UnkStruct_ov114_0225D084 *param0, u32 param1);
 static void ov114_0225D170(UnkStruct_ov114_0225D084 *param0, u32 param1);
 static void ov114_0225D180(UnkStruct_ov114_0225D084 *param0, u32 param1);
-static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, Strbuf *param1, u32 param2);
+static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, String *param1, u32 param2);
 static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
-static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4);
+static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, String *param3, u32 param4);
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5);
 static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 param4);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0);
@@ -1403,8 +1403,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
 {
     param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);
-    param0->unk_08 = Strbuf_Init(128, heapID);
-    param0->unk_0C = Strbuf_Init(128, heapID);
+    param0->unk_08 = String_Init(128, heapID);
+    param0->unk_0C = String_Init(128, heapID);
 
     Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, heapID);
     Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, heapID);
@@ -1412,8 +1412,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
 
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 *param0)
 {
-    Strbuf_Free(param0->unk_0C);
-    Strbuf_Free(param0->unk_08);
+    String_Free(param0->unk_0C);
+    String_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_04);
     MessageLoader_Free(param0->unk_00);
 }
@@ -1458,9 +1458,9 @@ static void ov114_0225D180(UnkStruct_ov114_0225D084 *param0, u32 param1)
     StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, param1);
 }
 
-static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, Strbuf *param1, u32 param2)
+static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, String *param1, u32 param2)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, param2, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, param2, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param1, param0->unk_0C);
 }
 
@@ -1474,10 +1474,10 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     u32 v0;
     s32 v1;
 
-    MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_08, 0);
+    v0 = Font_CalcStringWidth(FONT_SYSTEM, param0->unk_08, 0);
     v1 = param3 - v0;
 
     if (v1 < 0) {
@@ -1487,9 +1487,9 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, v1, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 }
 
-static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4)
+static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, String *param3, u32 param4)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param3, param0->unk_0C);
 
     return Text_AddPrinterWithParamsAndColor(param2, FONT_MESSAGE, param3, 0, 0, param4, TEXT_COLOR(1, 2, 15), NULL);
@@ -1497,7 +1497,7 @@ static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *
 
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, param3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
 }
@@ -1525,7 +1525,7 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
         Window_Add(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, 1 + (18 + 12));
         Window_FillTilemap(&param0->unk_00[v2], 0);
 
-        param0->unk_24[v2] = Strbuf_Init(128, heapID);
+        param0->unk_24[v2] = String_Init(128, heapID);
     }
 
     param0->unk_34 = param3;
@@ -1537,7 +1537,7 @@ static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         ov114_0225D400(param0, v0);
-        Strbuf_Free(param0->unk_24[v0]);
+        String_Free(param0->unk_24[v0]);
         Window_Remove(&param0->unk_00[v0]);
     }
 
@@ -2269,7 +2269,7 @@ static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     Window_Add(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
     Window_FillTilemap(&param0->unk_00, 0);
 
-    param0->unk_14 = Strbuf_Init(128, heapID);
+    param0->unk_14 = String_Init(128, heapID);
     ov114_0225D180(param2, param3);
     ov114_0225D190(param2, param0->unk_14, 16);
     param0->unk_10 = param3;
@@ -2282,7 +2282,7 @@ static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
 static void ov114_0225E234(UnkStruct_ov114_0225E1A4 *param0)
 {
     Window_Remove(&param0->unk_00);
-    Strbuf_Free(param0->unk_14);
+    String_Free(param0->unk_14);
 }
 
 static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, u32 heapID)
@@ -2297,7 +2297,7 @@ static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     ov114_0225E4B0(param0, param1, param0->unk_18.unk_00 >> FX32_SHIFT);
     Font_InitManager(FONT_SUBSCREEN, heapID);
 
-    v0 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_14, 0);
+    v0 = Font_CalcStringWidth(FONT_SUBSCREEN, param0->unk_14, 0);
     v1 = ((20 * 8) / 2) - (v0 / 2);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SUBSCREEN, param0->unk_14, v1, 0, TEXT_SPEED_INSTANT, Unk_ov114_022600F8[param0->unk_10], NULL);

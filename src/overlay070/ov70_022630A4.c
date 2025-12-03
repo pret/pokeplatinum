@@ -37,7 +37,7 @@
 #include "list_menu.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 
 typedef struct {
@@ -653,7 +653,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_0225CC54 *v1;
     UnkStruct_ov70_0225CA20 *v2;
     UnkStruct_ov66_0222DFF8 *v3;
-    Strbuf *v4;
+    String *v4;
 
     v3 = ov70_0225DEE8(param1);
     v2 = ov70_0225DEF0(param1);
@@ -999,7 +999,7 @@ static BOOL ov70_02263910(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 3: {
-        Strbuf *v5;
+        String *v5;
 
         ov70_0225E27C(param1, v2->unk_08, 0);
 
@@ -1082,7 +1082,7 @@ static BOOL ov70_02263A58(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 3: {
-        Strbuf *v7;
+        String *v7;
 
         ov70_0225E27C(param1, v3->unk_08, 0);
         v7 = ov70_0225E20C(param1, 0, 8);
@@ -1152,7 +1152,7 @@ static BOOL ov70_02263BA4(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     } break;
 
     case 3: {
-        Strbuf *v5;
+        String *v5;
 
         v5 = ov70_0225E20C(param1, 1, 91);
 
@@ -1438,7 +1438,7 @@ static BOOL ov70_02264150(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         {
-            Strbuf *v2;
+            String *v2;
 
             v2 = ov70_0225E20C(param1, 1, 65);
 
@@ -1452,7 +1452,7 @@ static BOOL ov70_02264150(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 2: {
-        Strbuf *v3;
+        String *v3;
 
         v3 = ov70_0225E20C(param1, 2, 25);
 
@@ -1794,7 +1794,7 @@ static BOOL ov70_02264324(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         v4->unk_00--;
 
         if (v4->unk_00 <= 0) {
-            Strbuf *v27;
+            String *v27;
 
             ov70_0225E27C(param1, v4->unk_08, 0);
             v27 = ov70_0225E20C(param1, v4->unk_06, v4->unk_04);
@@ -1957,7 +1957,7 @@ static BOOL ov70_022646C8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 5: {
-        Strbuf *v16;
+        String *v16;
         u32 v17;
         BOOL v18 = 1;
 
@@ -2029,7 +2029,7 @@ static BOOL ov70_02264974(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_0225CA20 *v2;
     UnkStruct_ov70_0225CC54 *v3;
     UnkStruct_ov66_0222DFF8 *v4;
-    Strbuf *v5;
+    String *v5;
 
     v0 = ov70_02262E80(param0);
     v1 = ov70_0225DF10(param1);
@@ -2291,7 +2291,7 @@ static BOOL ov70_02264C9C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 {
     switch (ov70_02262E84(param0)) {
     case 0: {
-        Strbuf *v0;
+        String *v0;
         UnkStruct_ov66_0222DFF8 *v1;
 
         v1 = ov70_0225DEE8(param1);
@@ -2339,7 +2339,7 @@ static BOOL ov70_02264D38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_02260AD4 *v3;
     UnkStruct_ov66_0222DFF8 *v4;
     BOOL v5;
-    Strbuf *v6;
+    String *v6;
 
     v2 = ov70_0225DEF0(param1);
     v1 = ov70_0225DEF8(param1);
@@ -2666,7 +2666,7 @@ static void ov70_02265370(UnkStruct_ov70_02265104 *param0, UnkStruct_ov70_02261E
 static void ov70_022653DC(UnkStruct_ov70_022653DC *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
     int v0;
-    const Strbuf *v1;
+    const String *v1;
 
     ov70_0225E00C(param1, 18);
 

@@ -4,7 +4,7 @@
 #include "charcode.h"
 #include "graphics.h"
 #include "render_text.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define MAX_LETTER_HEIGHT       16
 #define MAX_LETTER_HEIGHT_TILES ((MAX_LETTER_HEIGHT + 7) / 8)
@@ -52,14 +52,14 @@ void Font_UseLazyGlyphAccess(enum Font font);
 void Font_Free(enum Font font);
 const TextGlyph *Font_TryLoadGlyph(enum Font font, charcode_t c);
 enum RenderResult Font_RenderText(enum Font font, TextPrinter *printer);
-u32 Font_CalcStringWidth(enum Font font, const charcode_t *str, u32 letterSpacing);
-u32 Font_CalcStrbufWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
-u32 Font_AreAllCharsValid(enum Font font, Strbuf *strbuf, Strbuf *tmpbuf);
+u32 Font_CalcCharArrayWidth(enum Font font, const charcode_t *str, u32 letterSpacing);
+u32 Font_CalcStringWidth(enum Font font, const String *string, u32 letterSpacing);
+u32 Font_AreAllCharsValid(enum Font font, String *string, String *tmpbuf);
 u8 Font_GetAttribute(u8 font, u8 attribute);
 void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
 void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
-u32 Font_CalcMaxLineWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
-u32 Font_CalcCenterAlignment(enum Font font, const Strbuf *strbuf, u32 letterSpacing, u32 windowWidth);
-u32 Font_CalcStringWidthWithCursorControl(enum Font font, const Strbuf *strbuf);
+u32 Font_CalcMaxLineWidth(enum Font font, const String *string, u32 letterSpacing);
+u32 Font_CalcCenterAlignment(enum Font font, const String *string, u32 letterSpacing, u32 windowWidth);
+u32 Font_CalcStringWidthWithCursorControl(enum Font font, const String *string);
 
 #endif // POKEPLATINUM_FONT_H

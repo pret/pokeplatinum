@@ -46,7 +46,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -1782,7 +1782,7 @@ void UndergroundTraps_ProcessTriggeredTrapBits(int unused0, int unused1, void *d
     }
 }
 
-BOOL UndergroundTraps_GetQueuedMessage(Strbuf *dest)
+BOOL UndergroundTraps_GetQueuedMessage(String *dest)
 {
     if (!trapsEnv) {
         return FALSE;
@@ -1795,14 +1795,14 @@ BOOL UndergroundTraps_GetQueuedMessage(Strbuf *dest)
             if (trapsEnv->triggeredTraps[netID].setterNetID >= MAX_CONNECTED_PLAYERS) {
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatStrbufWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
+                if (CommManUnderground_FormatStringWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
                     return TRUE;
                 }
             } else {
                 TrainerInfo *trapSetterInfo = CommInfo_TrainerInfo(trapsEnv->triggeredTraps[netID].setterNetID);
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatStrbufWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
+                if (CommManUnderground_FormatStringWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
                     return TRUE;
                 }
             }
@@ -1814,7 +1814,7 @@ BOOL UndergroundTraps_GetQueuedMessage(Strbuf *dest)
 
             trapsEnv->helpedNetIDs[netID] = 0xFF;
 
-            if (CommManUnderground_FormatStrbufWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
+            if (CommManUnderground_FormatStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
                 return TRUE;
             }
         }
@@ -1823,7 +1823,7 @@ BOOL UndergroundTraps_GetQueuedMessage(Strbuf *dest)
     return FALSE;
 }
 
-BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest)
+BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
 {
     TrainerInfo *trainerInfo;
 
@@ -1837,7 +1837,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest)
             trapsEnv->queuedAlertMessages[netID] = 0;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
+            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
                 return TRUE;
             }
         }
@@ -1846,7 +1846,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest)
             trapsEnv->queuedDisengageMessages[netID] = FALSE;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
+            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
                 return TRUE;
             }
         }
@@ -1855,7 +1855,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest)
             trainerInfo = CommInfo_TrainerInfo(netID);
             trapsEnv->queuedEscapeMessages[netID] = FALSE;
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
+            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
                 return TRUE;
             }
         }

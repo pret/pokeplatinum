@@ -25,7 +25,7 @@
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
@@ -33,7 +33,7 @@
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
-static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID);
+static String *GetSpeciesNameString(u16 speciesId, u32 heapID);
 
 BOOL ScrCmd_BufferStatName(ScriptContext *ctx)
 {
@@ -261,18 +261,18 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     u16 species = ScriptContext_GetVar(ctx);
     u16 unused1 = ScriptContext_ReadHalfWord(ctx);
     u8 unused2 = ScriptContext_ReadByte(ctx);
-    Strbuf *buffer = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD1);
+    String *buffer = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetStrbuf(*template, bufferId, buffer, unused1, unused2, 2);
-    Strbuf_Free(buffer);
+    StringTemplate_SetString(*template, bufferId, buffer, unused1, unused2, 2);
+    String_Free(buffer);
 
     return FALSE;
 }
 
-static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID)
+static String *GetSpeciesNameString(u16 speciesId, u32 heapID)
 {
     MessageLoader *speciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
-    Strbuf *buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
+    String *buffer = MessageLoader_GetNewString(speciesNames, speciesId);
 
     MessageLoader_Free(speciesNames);
     return buffer;
@@ -283,10 +283,10 @@ BOOL ScrCmd_BufferPlayerStarterSpeciesName(ScriptContext *ctx)
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
-    Strbuf *speciesName = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD1);
+    String *speciesName = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetStrbuf(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(speciesName);
+    StringTemplate_SetString(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
+    String_Free(speciesName);
 
     return FALSE;
 }
@@ -296,10 +296,10 @@ BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx)
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetRivalStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
-    Strbuf *speciesName = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD1);
+    String *speciesName = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetStrbuf(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(speciesName);
+    StringTemplate_SetString(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
+    String_Free(speciesName);
 
     return FALSE;
 }
@@ -309,10 +309,10 @@ BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesName(ScriptContext *ctx)
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
-    Strbuf *speciesName = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD1);
+    String *speciesName = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetStrbuf(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(speciesName);
+    StringTemplate_SetString(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
+    String_Free(speciesName);
 
     return FALSE;
 }
@@ -352,14 +352,14 @@ BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx)
 
 BOOL ScrCmd_BufferMapName(ScriptContext *ctx)
 {
-    Strbuf *mapName = Strbuf_Init(22, HEAP_ID_FIELD1);
+    String *mapName = String_Init(22, HEAP_ID_FIELD1);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 mapHeaderID = ScriptContext_GetVar(ctx);
 
     MapHeader_LoadName(mapHeaderID, HEAP_ID_FIELD1, mapName);
-    StringTemplate_SetStrbuf(*strTemplate, templateArg, mapName, 0, 1, 2);
-    Strbuf_Free(mapName);
+    StringTemplate_SetString(*strTemplate, templateArg, mapName, 0, 1, 2);
+    String_Free(mapName);
 
     return FALSE;
 }
@@ -370,10 +370,10 @@ BOOL ScrCmd_BufferBerryName(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 item = ScriptContext_GetVar(ctx);
     u16 unused = ScriptContext_GetVar(ctx);
-    Strbuf *berryName = BerryData_AllocAndGetName(item - FIRST_BERRY_IDX, HEAP_ID_FIELD3);
+    String *berryName = BerryData_AllocAndGetName(item - FIRST_BERRY_IDX, HEAP_ID_FIELD3);
 
-    StringTemplate_SetStrbuf(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), 2);
-    Strbuf_Free(berryName);
+    StringTemplate_SetString(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), 2);
+    String_Free(berryName);
 
     return FALSE;
 }
@@ -401,16 +401,16 @@ BOOL ScrCmd_BufferAccessoryName(ScriptContext *ctx)
 
 BOOL ScrCmd_BufferTabletName(ScriptContext *ctx)
 {
-    Strbuf *tabletName;
+    String *tabletName;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    tabletName = Strbuf_Init(11, HEAP_ID_FIELD2);
+    tabletName = String_Init(11, HEAP_ID_FIELD2);
 
-    Strbuf_CopyChars(tabletName, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(ctx->fieldSystem->saveData)));
-    StringTemplate_SetStrbuf(*strTemplate, templateArg, tabletName, 0, 0, gGameLanguage);
-    Strbuf_Free(tabletName);
+    String_CopyChars(tabletName, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(ctx->fieldSystem->saveData)));
+    StringTemplate_SetString(*strTemplate, templateArg, tabletName, 0, 0, gGameLanguage);
+    String_Free(tabletName);
 
     return FALSE;
 }

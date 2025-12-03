@@ -15,7 +15,7 @@
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_020298BC.h"
@@ -137,29 +137,29 @@ static u32 GetNumBattlePoints(SaveData *saveData)
     return sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 item, u32 heapID)
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, u32 heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
-    Strbuf *templateString;
+    String *templateString;
 
     msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
     template = StringTemplate_Default(heapID);
 
     if (item == ITEM_NONE) {
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, Bag_Text_KeyItemInfo);
+        templateString = MessageLoader_GetNewString(msgLoader, Bag_Text_KeyItemInfo);
     } else if (item == ITEM_POINT_CARD) {
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, Bag_Text_PointCardMessage);
+        templateString = MessageLoader_GetNewString(msgLoader, Bag_Text_PointCardMessage);
         StringTemplate_SetNumber(template, 0, GetNumBattlePoints(saveData), 4, PADDING_MODE_NONE, CHARSET_MODE_EN);
     } else if (item == ITEM_SEAL_CASE) {
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, Bag_Text_SealCaseMessage);
+        templateString = MessageLoader_GetNewString(msgLoader, Bag_Text_SealCaseMessage);
         StringTemplate_SetNumber(template, 0, CalcTotalBallSeals(saveData), 4, PADDING_MODE_NONE, CHARSET_MODE_EN);
     } else if (item == ITEM_FASHION_CASE) {
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, Bag_Text_FashionCaseMessage);
+        templateString = MessageLoader_GetNewString(msgLoader, Bag_Text_FashionCaseMessage);
         StringTemplate_SetNumber(template, 0, GetNumAccessories(saveData), 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_SetNumber(template, 1, GetNumBackdrops(saveData), 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     } else if (item == ITEM_COIN_CASE) {
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, Bag_Text_CoinCaseMessage);
+        templateString = MessageLoader_GetNewString(msgLoader, Bag_Text_CoinCaseMessage);
         StringTemplate_SetNumber(template, 0, GetNumCoins(saveData), 5, PADDING_MODE_NONE, CHARSET_MODE_EN);
     } else {
         StringTemplate_Free(template);
@@ -168,44 +168,44 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 it
     }
 
     StringTemplate_Format(template, dstString, templateString);
-    Strbuf_Free(templateString);
+    String_Free(templateString);
     StringTemplate_Free(template);
     MessageLoader_Free(msgLoader);
     return TRUE;
 }
 
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID)
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
-    Strbuf *templateString;
+    String *templateString;
 
     switch (error) {
     case ITEM_USE_CANNOT_DISMOUNT:
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
-        MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotDismount, dstString);
+        MessageLoader_GetString(msgLoader, Bag_Text_CannotDismount, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     case ITEM_USE_CANNOT_USE_WITH_PARTNER:
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
-        MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseWithPartner, dstString);
+        MessageLoader_GetString(msgLoader, Bag_Text_CannotUseWithPartner, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     case ITEM_USE_CANNOT_FISH_HERE:
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, heapID);
-        MessageLoader_GetStrbuf(msgLoader, Bag_Text_CannotUseNoFishing, dstString);
+        MessageLoader_GetString(msgLoader, Bag_Text_CannotUseNoFishing, dstString);
         MessageLoader_Free(msgLoader);
         break;
 
     default:
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, heapID);
         template = StringTemplate_Default(heapID);
-        templateString = MessageLoader_GetNewStrbuf(msgLoader, CommonStrings_Text_CantDoThatRightNow);
+        templateString = MessageLoader_GetNewString(msgLoader, CommonStrings_Text_CantDoThatRightNow);
         StringTemplate_SetPlayerName(template, 0, playerInfo);
         StringTemplate_Format(template, dstString, templateString);
-        Strbuf_Free(templateString);
+        String_Free(templateString);
         StringTemplate_Free(template);
         MessageLoader_Free(msgLoader);
         break;

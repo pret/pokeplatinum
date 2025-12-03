@@ -26,7 +26,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 #include "res/graphics/pokedex/zukan.naix.h"
@@ -678,13 +678,13 @@ static void DescriptionMessage(PokedexGraphicData **param0, int filterMethod, en
         break;
     }
 
-    Strbuf *descriptionMessage = PokedexMain_GetMessage(entryID, heapID);
+    String *descriptionMessage = PokedexMain_GetMessage(entryID, heapID);
 
     u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, descriptionMessage, 0)) / 2;
-    u32 yOffset = 8 + (32 - Strbuf_NumLines(descriptionMessage) * 16) / 2;
+    u32 yOffset = 8 + (32 - String_NumLines(descriptionMessage) * 16) / 2;
     Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, descriptionMessage, xOffset, yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    Strbuf_Free(descriptionMessage);
+    String_Free(descriptionMessage);
 }
 
 static void EmptyDexMessage(PokedexGraphicData **param0, enum HeapID heapID)
@@ -693,15 +693,15 @@ static void EmptyDexMessage(PokedexGraphicData **param0, enum HeapID heapID)
 
     Window_FillRectWithColor(&v0->window, 0, 24, 8, 208, 32);
 
-    Strbuf *noneMessage = PokedexMain_GetMessage(pl_msg_pokedex_nonefound, heapID);
+    String *noneMessage = PokedexMain_GetMessage(pl_msg_pokedex_nonefound, heapID);
 
     {
         u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, noneMessage, 0)) / 2;
-        u32 yOffset = 8 + (32 - Strbuf_NumLines(noneMessage) * 16) / 2;
+        u32 yOffset = 8 + (32 - String_NumLines(noneMessage) * 16) / 2;
         Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, noneMessage, xOffset, yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    Strbuf_Free(noneMessage);
+    String_Free(noneMessage);
 }
 
 static void UpdateSelectionDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapID heapID)
@@ -801,12 +801,12 @@ static void SortOrderMessage(PokedexGraphicData **param0, int sortOrder, enum He
     Window_FillRectWithColor(&v0->window, 0, 88, 52, 80, 16);
 
     int entryID = pl_msg_pokedex_numerical + sortOrder;
-    Strbuf *sortMessage = PokedexMain_GetMessage(entryID, heapID);
+    String *sortMessage = PokedexMain_GetMessage(entryID, heapID);
 
     u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, sortMessage, 0, 80);
     Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, sortMessage, xOffset, 52, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
 
-    Strbuf_Free(sortMessage);
+    String_Free(sortMessage);
 }
 
 static void FilterNameMessage(PokedexGraphicData **param0, int filterName, enum HeapID heapID)
@@ -849,14 +849,14 @@ static void FilterNameMessage(PokedexGraphicData **param0, int filterName, enum 
         break;
     }
 
-    Strbuf *filterMessage = PokedexMain_GetMessage(entryID, heapID);
+    String *filterMessage = PokedexMain_GetMessage(entryID, heapID);
 
     {
         u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
         Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, filterMessage, xOffset, 77, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
-    Strbuf_Free(filterMessage);
+    String_Free(filterMessage);
 }
 
 static void FilterTypeMessage(PokedexGraphicData **param0, int typeFilter, enum HeapID heapID, int y)
@@ -923,14 +923,14 @@ static void FilterTypeMessage(PokedexGraphicData **param0, int typeFilter, enum 
         break;
     }
 
-    Strbuf *filterMessage = PokedexMain_GetMessage(entryID, heapID);
+    String *filterMessage = PokedexMain_GetMessage(entryID, heapID);
 
     {
         u32 x = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
         Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, filterMessage, x, y, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
-    Strbuf_Free(filterMessage);
+    String_Free(filterMessage);
 }
 
 static void FilterType1Message(PokedexGraphicData **param0, int typeFilter1, enum HeapID heapID)
@@ -1038,13 +1038,13 @@ static void SearchingMessage(PokedexGraphicData **param0, enum HeapID heapID)
 
     Window_FillTilemap(&(*param0)->window, 0);
 
-    Strbuf *searchingMessage = PokedexMain_GetMessage(pl_msg_pokedex_searching, heapID);
+    String *searchingMessage = PokedexMain_GetMessage(pl_msg_pokedex_searching, heapID);
 
     u32 xOffset = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, searchingMessage, 0)) / 2;
 
     Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, searchingMessage, xOffset, 128, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    Strbuf_Free(searchingMessage);
+    String_Free(searchingMessage);
     Bg_SetPriority(BG_LAYER_MAIN_1, 0);
     Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 }

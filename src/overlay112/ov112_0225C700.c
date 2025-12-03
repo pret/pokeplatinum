@@ -34,7 +34,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "unk_020393C8.h"
@@ -85,7 +85,7 @@ typedef struct {
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
-    Strbuf *unk_08;
+    String *unk_08;
     Window unk_0C;
     UnkStruct_ov112_0225D180 unk_1C;
 } UnkStruct_ov112_0225D44C;
@@ -93,7 +93,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov112_0225D44C unk_00[3];
     Window unk_60[3];
-    Strbuf *unk_90;
+    String *unk_90;
     void *unk_94;
     NNSG2dPaletteData *unk_98;
 } UnkStruct_ov112_0225D2D0;
@@ -165,7 +165,7 @@ static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223
 static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 *param0);
 static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u32 param3);
 static void ov112_0225D44C(UnkStruct_ov112_0225D44C *param0);
-static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4);
+static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const String *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4);
 static void ov112_0225D4DC(UnkStruct_ov112_0225D44C *param0);
 static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C *param0);
 static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C *param0, Window *param1);
@@ -949,7 +949,7 @@ static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_022
         Window_ScheduleCopyToVRAM(&param0->unk_60[v0]);
     }
 
-    param0->unk_90 = Strbuf_Init(256, heapID);
+    param0->unk_90 = String_Init(256, heapID);
     param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, heapID);
 
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
@@ -962,7 +962,7 @@ static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0)
     int v0;
 
     Heap_Free(param0->unk_94);
-    Strbuf_Free(param0->unk_90);
+    String_Free(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {
         Window_Remove(&param0->unk_60[v0]);
@@ -1028,7 +1028,7 @@ static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_022
 {
     param0->unk_00 = 0;
     param0->unk_02 = 0;
-    param0->unk_08 = Strbuf_Init(256, heapID);
+    param0->unk_08 = String_Init(256, heapID);
     param0->unk_01 = 7 + param2;
 
     Window_Add(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
@@ -1036,18 +1036,18 @@ static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_022
 
 static void ov112_0225D44C(UnkStruct_ov112_0225D44C *param0)
 {
-    Strbuf_Free(param0->unk_08);
+    String_Free(param0->unk_08);
     Window_Remove(&param0->unk_0C);
 }
 
-static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4)
+static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const String *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4)
 {
-    Strbuf_Copy(param0->unk_08, param1);
+    String_Copy(param0->unk_08, param1);
 
     param0->unk_00 = 1;
     param0->unk_02 = 0;
     param0->unk_04 = param2;
-    param0->unk_06 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
+    param0->unk_06 = Font_CalcStringWidth(FONT_MESSAGE, param1, 0);
     param0->unk_06 += 256;
 
     GF_ASSERT((180 * 8) >= param0->unk_06);
@@ -1109,16 +1109,16 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 {
     int v0;
     MessageLoader *v1;
-    Strbuf *v2;
+    String *v2;
     u32 v3;
-    Strbuf *v4;
+    String *v4;
     u32 v5;
     u32 v6, v7;
 
     memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
 
     v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
-    v2 = Strbuf_Init(128, heapID);
+    v2 = String_Init(128, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov112_0225D73C(&param0->unk_40[v0], Unk_ov112_0225D960[v0], Unk_ov112_0225D968[v0]);
@@ -1127,13 +1127,13 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
         Window_FillTilemap(&param0->unk_00[v0], 0);
 
-        MessageLoader_GetStrbuf(v1, 0 + v0, v2);
+        MessageLoader_GetString(v1, 0 + v0, v2);
 
-        v3 = Strbuf_NumLines(v2);
+        v3 = String_NumLines(v2);
         v7 = Unk_ov112_0225D880[v0].unk_08;
-        v4 = Strbuf_Init(Strbuf_Length(v2) + 1, heapID);
+        v4 = String_Init(String_Length(v2) + 1, heapID);
         for (v5 = 0; v5 < v3; v5++) {
-            Strbuf_CopyLineNum(v4, v2, v5);
+            String_CopyLineNum(v4, v2, v5);
             switch (Unk_ov112_0225D880[v0].unk_09) {
             case 0:
                 v6 = Unk_ov112_0225D880[v0].unk_07;
@@ -1148,11 +1148,11 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
             Text_AddPrinterWithParamsAndColor(&param0->unk_00[v0], FONT_SYSTEM, v4, v6, v7, TEXT_SPEED_NO_TRANSFER, Unk_ov112_0225D880[v0].unk_0C, NULL);
             v7 += 16;
         }
-        Strbuf_Free(v4);
+        String_Free(v4);
 
         Window_ScheduleCopyToVRAM(&param0->unk_00[v0]);
     }
-    Strbuf_Free(v2);
+    String_Free(v2);
     MessageLoader_Free(v1);
 }
 

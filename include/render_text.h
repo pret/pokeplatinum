@@ -3,7 +3,7 @@
 
 #include "bg_window.h"
 #include "charcode.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define COLOR_CACHE_OFFSET                100
 #define COLOR_CACHE_RANGE                 7
@@ -19,7 +19,7 @@ typedef struct TextGlyph {
 
 union StringToPrint {
     const charcode_t *raw;
-    const Strbuf *strbuf;
+    const String *string;
 };
 
 typedef struct TextPrinterTemplate {

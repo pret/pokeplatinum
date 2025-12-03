@@ -52,7 +52,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -3059,7 +3059,7 @@ static void ov23_022414D4(void)
     }
 }
 
-BOOL ov23_022415B8(Strbuf *param0)
+BOOL ov23_022415B8(String *param0)
 {
     int v0;
     TrainerInfo *v1;
@@ -3074,7 +3074,7 @@ BOOL ov23_022415B8(Strbuf *param0)
             v1 = CommInfo_TrainerInfo(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(v1, 0, 105, param0)) {
+            if (CommManUnderground_FormatStringWithTrainerName(v1, 0, 105, param0)) {
                 return 1;
             }
         }

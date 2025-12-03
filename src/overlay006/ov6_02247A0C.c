@@ -14,7 +14,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -37,7 +37,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov6_02247A0C;
 
-static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3);
+static int ov6_02247CF4(const String *param0, int param1, int param2, int param3);
 static BOOL ov6_02247A34(FieldTask *param0);
 
 static const UnkStruct_ov6_022496F4 Unk_ov6_022496F4[] = {
@@ -124,7 +124,7 @@ void *ov6_02247A90(void *param0)
 {
     UnkStruct_ov6_02247A90 *v0;
     BgConfig *v1;
-    Strbuf *v2, *v3;
+    String *v2, *v3;
     int v4, v5, v6, v7;
     SaveData *saveData;
 
@@ -142,8 +142,8 @@ void *ov6_02247A90(void *param0)
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 
-    v3 = Strbuf_Init(100, HEAP_ID_FIELD2);
-    v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
+    v3 = String_Init(100, HEAP_ID_FIELD2);
+    v2 = MessageLoader_GetNewString(v0->unk_10, 0);
 
     StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(saveData));
     StringTemplate_Format(v0->unk_14, v3, v2);
@@ -151,41 +151,41 @@ void *ov6_02247A90(void *param0)
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
 
     Text_AddPrinterWithParams(&v0->unk_00, FONT_SYSTEM, v3, v4, (8 * 0), TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
 
-    v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 1);
+    v2 = MessageLoader_GetNewString(v0->unk_10, 1);
     v4 = ov6_02247CF4(v2, 0, 1, (15 * 8));
 
     Text_AddPrinterWithParams(&v0->unk_00, FONT_SYSTEM, v2, v4, (8 * 2), TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
 
     for (v6 = 0; v6 < 5; v6++) {
-        v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
+        v2 = MessageLoader_GetNewString(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 0, Unk_ov6_022496F4[v6].unk_04);
         Text_AddPrinterWithParams(&v0->unk_00, FONT_SYSTEM, v2, v4, Unk_ov6_022496F4[v6].unk_06, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     for (v6 = 0; v6 < 4; v6++) {
-        v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
+        v2 = MessageLoader_GetNewString(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 2, Unk_ov6_022496D4[v6].unk_04);
         Text_AddPrinterWithParams(&v0->unk_00, FONT_SYSTEM, v2, v4, Unk_ov6_022496D4[v6].unk_06, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     for (v7 = 0; v7 < 5; v7++) {
         for (v6 = 0; v6 < 4; v6++) {
             v5 = sub_0202F160(saveData, v7, v6);
-            v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
+            v2 = MessageLoader_GetNewString(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
             StringTemplate_SetNumber(v0->unk_14, 0, v5, 4, 1, 1);
             StringTemplate_Format(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
             Text_AddPrinterWithParams(&v0->unk_00, FONT_SYSTEM, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, TEXT_SPEED_NO_TRANSFER, NULL);
-            Strbuf_Free(v2);
+            String_Free(v2);
         }
     }
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     Window_CopyToVRAM(&v0->unk_00);
 
     return v0;
@@ -203,7 +203,7 @@ void ov6_02247CC8(void *param0)
     Heap_Free(v0);
 }
 
-static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3)
+static int ov6_02247CF4(const String *param0, int param1, int param2, int param3)
 {
     int v0, v1;
 
@@ -211,7 +211,7 @@ static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3
         return param3;
     }
 
-    v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    v0 = Font_CalcStringWidth(param1, param0, 0);
 
     switch (param2) {
     case 1:

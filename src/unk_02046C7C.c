@@ -16,7 +16,7 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
@@ -90,7 +90,7 @@ static BOOL sub_02046CE0(ScriptContext *param0)
 
 BOOL ScrCmd_0FA(ScriptContext *param0)
 {
-    Strbuf *v0;
+    String *v0;
     Pokemon *v1;
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
@@ -101,7 +101,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     UnkStruct_02093800 v8;
 
     v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v7);
-    v0 = TrainerInfo_NameNewStrbuf(v3, 4);
+    v0 = TrainerInfo_NameNewString(v3, 4);
 
     v8.unk_00 = v5;
     v8.unk_01 = v4;
@@ -119,7 +119,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
 
     *v2 = sub_02093800(&v8);
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 0;
 }

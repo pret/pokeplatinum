@@ -168,7 +168,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "special_encounter.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -2409,8 +2409,8 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
 static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 signpostType;
     u8 messageID = ScriptContext_ReadByte(ctx);
@@ -2428,7 +2428,7 @@ static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
     Signpost_SetCommand(fieldSystem->signpost, SIGNPOST_CMD_DRAW);
     Signpost_DoCurrentCommand(fieldSystem);
 
-    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    MessageLoader_GetString(ctx->loader, messageID, *tempBuf);
     StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
     Text_AddPrinterWithParams(Signpost_GetWindow(fieldSystem->signpost), FONT_MESSAGE, *msgBuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
@@ -2484,13 +2484,13 @@ static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 messageID = ScriptContext_ReadByte(ctx);
     u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    MessageLoader_GetString(ctx->loader, messageID, *tempBuf);
     StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
 
     *printerID = FieldMessage_Print(Signpost_GetWindow(fieldSystem->signpost), *msgBuf, SaveData_GetOptions(ctx->fieldSystem->saveData), 1);
@@ -4636,16 +4636,16 @@ static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *unused = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    Strbuf **strbuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **string = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     u8 *unused2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
     u16 trainerID = ScriptContext_GetVar(ctx);
     u16 msgType = ScriptContext_GetVar(ctx);
 
-    Trainer_LoadMessage(trainerID, msgType, *strbuf, HEAP_ID_FIELD2);
+    Trainer_LoadMessage(trainerID, msgType, *string, HEAP_ID_FIELD2);
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *strbuf, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
+    *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *string, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
@@ -7296,12 +7296,12 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    Strbuf *v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, HEAP_ID_FIELD3);
-    Strbuf *v9 = MessageLoader_GetNewStrbuf(v7, 0);
-    *v1 = (Strbuf_Compare(v8, v9) == 0);
+    String *v8 = MessageUtil_ExpandedString(v6, v7, 1, HEAP_ID_FIELD3);
+    String *v9 = MessageLoader_GetNewString(v7, 0);
+    *v1 = (String_Compare(v8, v9) == 0);
 
-    Strbuf_Free(v8);
-    Strbuf_Free(v9);
+    String_Free(v8);
+    String_Free(v9);
     MessageLoader_Free(v7);
     StringTemplate_Free(v6);
 
@@ -7451,7 +7451,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
 static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
 
     ov8_0224B67C(fieldSystem, window, ctx->loader, *msgBuf);

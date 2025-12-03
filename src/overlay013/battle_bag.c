@@ -408,12 +408,12 @@ static u8 TryUseItem(BattleBag *battleBag)
 
         if (context->embargoRemainingTurns != 0 && context->selectedBattleBagItem != ITEM_GUARD_SPEC && itemBattleUse != 3) {
             Pokemon *pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, partySlot);
-            Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_EmbargoBlockingItemUse);
+            String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_EmbargoBlockingItemUse);
 
             StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
             StringTemplate_SetMoveName(battleBag->stringTemplate, 1, MOVE_EMBARGO);
-            StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
-            Strbuf_Free(strbuf);
+            StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
+            String_Free(string);
 
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
@@ -430,38 +430,38 @@ static u8 TryUseItem(BattleBag *battleBag)
                 return TASK_STATE_EXIT;
             } else {
                 MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, context->heapID);
-                Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, CommonStrings_Text_CantDoThatRightNow);
+                String *string = MessageLoader_GetNewString(messageLoader, CommonStrings_Text_CantDoThatRightNow);
                 StringTemplate_SetPlayerName(battleBag->stringTemplate, 0, context->trainerInfo);
-                StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
-                Strbuf_Free(strbuf);
+                StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
+                String_Free(string);
                 MessageLoader_Free(messageLoader);
                 BattleBagText_DisplayMessage(battleBag);
                 battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
                 return TASK_STATE_AWAITING_TEXT_FINISH;
             }
         } else {
-            MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_ItemHasNoUse, battleBag->strbuf);
+            MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_ItemHasNoUse, battleBag->string);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
     } else if (battleBag->currentBattlePocket == ITEM_BATTLE_CATEGORY_POKE_BALLS) {
         if (context->hasTwoOpponents == TRUE) {
-            MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallTwoPokemon, battleBag->strbuf);
+            MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_CantUseBallTwoPokemon, battleBag->string);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
         if (context->opponentHidden == TRUE) {
-            MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonHidden, battleBag->strbuf);
+            MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonHidden, battleBag->string);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
         if (context->opponentSubstituted == TRUE) {
-            MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonSubstituted, battleBag->strbuf);
+            MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonSubstituted, battleBag->string);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -471,7 +471,7 @@ static u8 TryUseItem(BattleBag *battleBag)
         PCBoxes *pcBoxes = BattleSystem_PCBoxes(context->battleSystem);
 
         if (Party_GetCurrentCount(party) == MAX_PARTY_SIZE && PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES) {
-            MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallNoRoomLeft, battleBag->strbuf);
+            MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_CantUseBallNoRoomLeft, battleBag->string);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -742,7 +742,7 @@ static void InitializeMessageLoader(BattleBag *battleBagTask)
     battleBagTask->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
     battleBagTask->unk_0C = FontSpecialChars_Init(15, 14, 0, battleBagTask->context->heapID);
     battleBagTask->stringTemplate = StringTemplate_Default(battleBagTask->context->heapID);
-    battleBagTask->strbuf = Strbuf_Init(512, battleBagTask->context->heapID);
+    battleBagTask->string = String_Init(512, battleBagTask->context->heapID);
 }
 
 static void CleanupMessageLoader(BattleBag *battleBag)
@@ -750,7 +750,7 @@ static void CleanupMessageLoader(BattleBag *battleBag)
     MessageLoader_Free(battleBag->messageLoader);
     FontSpecialChars_Free(battleBag->unk_0C);
     StringTemplate_Free(battleBag->stringTemplate);
-    Strbuf_Free(battleBag->strbuf);
+    String_Free(battleBag->string);
 }
 
 static void SetupBackgroundScroll(BattleBag *battleBag, enum BattleBagScreen screen)

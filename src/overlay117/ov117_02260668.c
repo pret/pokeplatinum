@@ -41,7 +41,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -228,7 +228,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
 
     v0->unk_80 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0009, HEAP_ID_110);
     v0->unk_84 = StringTemplate_Default(HEAP_ID_110);
-    v0->unk_88 = Strbuf_Init(2 * 160, HEAP_ID_110);
+    v0->unk_88 = String_Init(2 * 160, HEAP_ID_110);
     v0->unk_90 = sub_02012744(2 * 6 + 6 + 1, HEAP_ID_110);
 
     ov117_02265210(v0, &v0->unk_1468);
@@ -464,7 +464,7 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_8C, 2);
     PaletteData_FreeBuffer(v0->unk_8C, 3);
     PaletteData_Free(v0->unk_8C);
-    Strbuf_Free(v0->unk_88);
+    String_Free(v0->unk_88);
     StringTemplate_Free(v0->unk_84);
     MessageLoader_Free(v0->unk_80);
     Heap_Free(v0->unk_2C);
@@ -821,13 +821,13 @@ static void ov117_02261280(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261368(UnkStruct_ov117_02261280 *param0)
 {
-    Strbuf *v0;
+    String *v0;
 
     Window_DrawStandardFrame(&param0->unk_30[4], 1, (((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2), 6);
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 3);
+    v0 = MessageLoader_GetNewString(param0->unk_80, 3);
     Text_AddPrinterWithParamsAndColor(&param0->unk_30[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     Window_ScheduleCopyToVRAM(&param0->unk_30[4]);
 }
@@ -842,7 +842,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
 {
     int v0, v1;
     TrainerInfo *v2;
-    Strbuf *v3;
+    String *v3;
     int v4;
     TextColor v5;
     int v6, v7;
@@ -852,7 +852,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
     for (v0 = 0; v0 < param0->unk_00->unk_30; v0++) {
         if (v4 != param0->unk_00->unk_2C[v0]) {
             v2 = ov114_0225C7CC(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]);
-            v3 = TrainerInfo_NameNewStrbuf(v2, 110);
+            v3 = TrainerInfo_NameNewString(v2, 110);
             v1 = ov117_022622C4(param0, param0->unk_00->unk_2C[v0]);
 
             if (ov114_0225C7A4(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]) == 1) {
@@ -861,7 +861,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
                 v5 = TEXT_COLOR(1, 2, 15);
             }
 
-            v6 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
+            v6 = Font_CalcStringWidth(FONT_SYSTEM, v3, 0);
             v7 = 8 * 10 / 2 - v6 / 2;
 
             if (v6 & 1) {
@@ -964,24 +964,24 @@ static u32 ov117_02261668(u32 param0, BOOL param1)
 static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     int v0;
-    Strbuf *v1, *v2;
+    String *v1, *v2;
     int v3;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
 
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 2);
-    v0 = 6 + ((30 - Font_CalcStrbufWidth(0, v1, 0)) / 2);
+    v1 = MessageLoader_GetNewString(param0->unk_80, 2);
+    v0 = 6 + ((30 - Font_CalcStringWidth(0, v1, 0)) / 2);
     ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_F4, v1, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v0 + 6 * 6, 168, 0, 1, 12, 2);
-    Strbuf_Free(v1);
+    String_Free(v1);
 
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 0);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_80, 1);
+    v1 = MessageLoader_GetNewString(param0->unk_80, 0);
+    v2 = MessageLoader_GetNewString(param0->unk_80, 1);
     for (v3 = 0; v3 < 6; v3++) {
         ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_04[v3][0], v1, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v0 + 6 * v3, 168, 0, 3, 12, 2 * 5);
         ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_04[v3][1], v2, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v0 + 6 * v3, 168, 0, 3, 12, 2 * 5);
     }
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
 
     ov117_02265EC8(&param0->unk_15A8);
 

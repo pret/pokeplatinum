@@ -11,7 +11,7 @@
 #include "message.h"
 #include "narc.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -118,16 +118,16 @@ struct BagController {
     StringTemplate *strTemplate;
     MessageLoader *itemNamesLoader;
     MessageLoader *moveNamesLoader;
-    Strbuf *itemActionStrings[NUM_ITEM_ACTIONS];
+    String *itemActionStrings[NUM_ITEM_ACTIONS];
     StringList *itemActionChoices;
     Menu *menu;
     ListMenu *itemList;
     StringList *itemListEntries;
-    Strbuf *itemNames[LARGEST_POCKET_SIZE];
-    Strbuf *strBuffer;
-    Strbuf *itemCountX;
-    Strbuf *itemCountNumberFmt;
-    Strbuf *pocketNames[POCKET_MAX];
+    String *itemNames[LARGEST_POCKET_SIZE];
+    String *stringBuffer;
+    String *itemCountX;
+    String *itemCountNumberFmt;
+    String *pocketNames[POCKET_MAX];
     u8 numPockets;
     u8 trainerGender;
     u8 msgBoxPrinterID;

@@ -32,7 +32,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -436,7 +436,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
         Window_AddFromTemplate(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
     }
 
-    v1->unk_18 = Strbuf_Init(256, HEAP_ID_79);
+    v1->unk_18 = String_Init(256, HEAP_ID_79);
 }
 
 void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0)
@@ -451,7 +451,7 @@ void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0)
 
     MessageLoader_Free(v1->unk_00);
     StringTemplate_Free(v1->unk_04);
-    Strbuf_Free(v1->unk_18);
+    String_Free(v1->unk_18);
 }
 
 void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1)
@@ -460,7 +460,7 @@ void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1)
 
     Window_DrawMessageBoxWithScrollCursor(&v0->unk_08[0], 1, 1 + (18 + 12), 14);
     Window_FillTilemap(&v0->unk_08[0], 15);
-    MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
+    MessageLoader_GetString(v0->unk_00, param1, v0->unk_18);
     Text_AddPrinterWithParams(&v0->unk_08[0], FONT_MESSAGE, v0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&v0->unk_08[0]);
 }

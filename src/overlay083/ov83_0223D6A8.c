@@ -45,7 +45,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -86,7 +86,7 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0);
 static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0);
-static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3);
+static void ov83_0223E21C(Window *param0, String *param1, int param2, int param3);
 static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0);
 static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2);
@@ -106,9 +106,9 @@ static void ov83_0223F670(UnkStruct_ov83_0223F670 *param0);
 static void ov83_0223F6B4(UnkStruct_ov83_0223F670 *param0);
 static void ov83_0223F6CC(UnkStruct_ov83_0223F670 *param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7);
 
-static int ov83_0223D6A8(int param0, const Strbuf *param1, int param2)
+static int ov83_0223D6A8(int param0, const String *param1, int param2)
 {
-    u32 v0 = Font_CalcStrbufWidth(param2, param1, 0);
+    u32 v0 = Font_CalcStringWidth(param2, param1, 0);
     v0 /= 2;
     param0 -= v0;
 
@@ -662,7 +662,7 @@ static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0)
     Heap_Free(param0->unk_28);
 }
 
-static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3)
+static void ov83_0223E21C(Window *param0, String *param1, int param2, int param3)
 {
     Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
 }
@@ -1235,7 +1235,7 @@ void ov83_0223EC70(UnkStruct_ov83_0223E824 *param0)
 
 void ov83_0223EC8C(UnkStruct_ov83_0223E824 *param0, u32 param1)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     ov83_0223E9D0(param0);

@@ -41,7 +41,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -248,7 +248,7 @@ typedef struct {
     FontOAM *unk_48;
     UnkStruct_02012B20 *unk_4C;
     CharTransferAllocation unk_50;
-    Strbuf *unk_5C;
+    String *unk_5C;
     SpriteResource *unk_60;
     UnkStruct_ov115_02261304 unk_64;
     UnkStruct_ov115_02261304 unk_7C;
@@ -269,8 +269,8 @@ typedef struct {
     BgConfig *unk_00;
     StringTemplate *unk_04;
     MessageLoader *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10;
+    String *unk_0C;
+    String *unk_10;
     u16 unk_14;
     u16 unk_16;
     G3DPipelineBuffers *unk_18;
@@ -1409,7 +1409,7 @@ static void ov115_022617D8(UnkStruct_ov115_022615B0 *param0, u32 param1)
 
 static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 heapID)
 {
-    Strbuf *v0;
+    String *v0;
     AffineSpriteListTemplate v1;
 
     memset(param0, 0, sizeof(UnkStruct_ov115_022617E8));
@@ -1417,11 +1417,11 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, 1 + 9);
     Window_FillRectWithColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
-    v0 = Strbuf_Init(128, heapID);
+    v0 = String_Init(128, heapID);
 
-    MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
+    MessageLoader_GetString(param1->unk_08, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, heapID);
     Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, heapID);
@@ -1431,7 +1431,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
         s32 v3, v4;
         Window v5;
         u32 v6;
-        Strbuf *v7;
+        String *v7;
         TextColor v8;
         u32 v9;
         u32 v10;
@@ -1440,7 +1440,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
         Window_Add(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;
-        v7 = Strbuf_Init(128, heapID);
+        v7 = String_Init(128, heapID);
 
         for (v2 = 0; v2 < param3; v2++) {
             if (v2 != param4) {
@@ -1456,19 +1456,19 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
                     v8 = TEXT_COLOR(1, 2, 15);
                 }
 
-                TrainerInfo_NameStrbuf(param2->unk_08[v2], v7);
+                TrainerInfo_NameString(param2->unk_08[v2], v7);
                 Window_SetXPos(&v5, v3);
                 Window_SetYPos(&v5, v4);
 
                 v5.baseTile = v6;
-                v9 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
+                v9 = Font_CalcStringWidth(FONT_SYSTEM, v7, 0);
                 v10 = ((8 * 8) - v9) / 2;
                 Text_AddPrinterWithParamsAndColor(&v5, FONT_SYSTEM, v7, v10, 0, TEXT_SPEED_INSTANT, v8, NULL);
                 v6 += (8 * 2);
             }
         }
 
-        Strbuf_Free(v7);
+        String_Free(v7);
         Window_Remove(&v5);
     }
 
@@ -3224,14 +3224,14 @@ static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
     param0->unk_04 = StringTemplate_Default(heapID);
     param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, heapID);
-    param0->unk_0C = Strbuf_Init(128, heapID);
-    param0->unk_10 = Strbuf_Init(128, heapID);
+    param0->unk_0C = String_Init(128, heapID);
+    param0->unk_10 = String_Init(128, heapID);
 }
 
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0)
 {
-    Strbuf_Free(param0->unk_10);
-    Strbuf_Free(param0->unk_0C);
+    String_Free(param0->unk_10);
+    String_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_04);
 }
@@ -4400,7 +4400,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         BOOL v3;
         UnkStruct_020127E8 v4;
 
-        param0->unk_5C = Strbuf_Init(16, heapID);
+        param0->unk_5C = String_Init(16, heapID);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         param0->unk_4C = sub_02012B20(&param0->unk_38, heapID);
 
@@ -4448,7 +4448,7 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_60);
         CharTransfer_ClearRange(&param0->unk_50);
         sub_02012B48(param0->unk_4C);
-        Strbuf_Free(param0->unk_5C);
+        String_Free(param0->unk_5C);
     }
 
     Sprite_Delete(param0->unk_34);
@@ -4466,7 +4466,7 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
 static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, u32 param2)
 {
     {
-        Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
+        String_FormatInt(param0->unk_5C, param2, 2, 2, 1);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
@@ -4495,7 +4495,7 @@ static void ov115_022657A8(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
 {
     if (param0->unk_98 != 3) {
         {
-            Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
+            String_FormatInt(param0->unk_5C, param2, 2, 2, 1);
             Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);

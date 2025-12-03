@@ -45,7 +45,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -89,9 +89,9 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_1E;
     MessageLoader *unk_20;
     StringTemplate *unk_24;
-    Strbuf *unk_28;
-    Strbuf *unk_2C;
-    Strbuf *unk_30[3];
+    String *unk_28;
+    String *unk_2C;
+    String *unk_30[3];
     u16 unk_3C[8];
     BgConfig *unk_4C;
     Window unk_50[12];
@@ -1070,12 +1070,12 @@ static void ov107_02246D84(UnkStruct_ov107_02246170 *param0)
 
     MessageLoader_Free(param0->unk_20);
     StringTemplate_Free(param0->unk_24);
-    Strbuf_Free(param0->unk_28);
-    Strbuf_Free(param0->unk_2C);
+    String_Free(param0->unk_28);
+    String_Free(param0->unk_2C);
     FontSpecialChars_Free(param0->unk_144);
 
     for (v1 = 0; v1 < 3; v1++) {
-        Strbuf_Free(param0->unk_30[v1]);
+        String_Free(param0->unk_30[v1]);
     }
 
     ov107_02249D5C(param0->unk_50, 1);
@@ -1114,11 +1114,11 @@ static void ov107_02246EE4(UnkStruct_ov107_02246170 *param0)
 
     param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0201, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
-    param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
-    param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
+    param0->unk_28 = String_Init(600, HEAP_ID_100);
+    param0->unk_2C = String_Init(600, HEAP_ID_100);
 
     for (v13 = 0; v13 < 3; v13++) {
-        param0->unk_30[v13] = Strbuf_Init(32, HEAP_ID_100);
+        param0->unk_30[v13] = String_Init(32, HEAP_ID_100);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
@@ -1462,15 +1462,15 @@ static u8 ov107_02247680(UnkStruct_ov107_02246170 *param0, Window *param1, int p
 {
     u8 v0;
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
 
@@ -1488,15 +1488,15 @@ static u8 ov107_02247714(UnkStruct_ov107_02246170 *param0, Window *param1, int p
 static u8 ov107_02247744(UnkStruct_ov107_02246170 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
     u8 v0;
-    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
 
@@ -1679,7 +1679,7 @@ static void ov107_02247D68(UnkStruct_ov107_02246170 *param0, u8 param1, u8 param
     int v0;
     void *v1;
 
-    MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
+    MessageLoader_GetString(param0->unk_20, param3, param0->unk_30[param1]);
 
     param0->unk_120[param1].entry = (const void *)param0->unk_30[param1];
     param0->unk_120[param1].index = param2;
@@ -1923,12 +1923,12 @@ static void ov107_0224812C(UnkStruct_ov107_02246170 *param0, Window *param1, u32
 {
     TextColor v0;
     const TrainerInfo *v1;
-    Strbuf *v2;
+    String *v2;
 
     v1 = SaveData_GetTrainerInfo(param0->saveData);
-    v2 = Strbuf_Init(7 + 1, HEAP_ID_100);
+    v2 = String_Init(7 + 1, HEAP_ID_100);
 
-    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
@@ -1937,7 +1937,7 @@ static void ov107_0224812C(UnkStruct_ov107_02246170 *param0, Window *param1, u32
     }
 
     Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
 
     return;
 }

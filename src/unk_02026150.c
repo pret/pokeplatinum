@@ -9,7 +9,7 @@
 
 #include "message.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_0202602C.h"
 
 BattleRegulation Unk_02100880[] = {
@@ -106,14 +106,14 @@ const BattleRegulation *sub_02026150(SaveData *saveData, int param1)
     return &v0->unk_00[0];
 }
 
-void sub_0202616C(SaveData *saveData, int param1, Strbuf *param2, int heapID)
+void sub_0202616C(SaveData *saveData, int param1, String *param2, int heapID)
 {
     MessageLoader *v0;
     UnkStruct_02026030 *v1 = NULL;
 
     if (param1 < NELEMS(Unk_02100880)) {
         v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, heapID);
-        MessageLoader_GetStrbuf(v0, 70 + param1, param2);
+        MessageLoader_GetString(v0, 70 + param1, param2);
         MessageLoader_Free(v0);
     } else {
         sub_0202604C(sub_0202610C(saveData, 0), param2);

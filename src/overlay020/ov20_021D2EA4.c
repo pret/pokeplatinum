@@ -20,7 +20,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02014D38.h"
@@ -31,7 +31,7 @@ typedef struct {
 } UnkStruct_ov20_021D34CC;
 
 typedef struct {
-    Strbuf *unk_00;
+    String *unk_00;
     const u16 *unk_04;
     int unk_08;
 } UnkStruct_ov20_021D33C8;
@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     Sprite *unk_40;
     Sprite *unk_44;
     MessageLoader *unk_48;
-    Strbuf *unk_4C;
+    String *unk_4C;
     ColoredArrow *unk_50;
     UnkStruct_ov20_021D34CC unk_54[2];
     u32 unk_5C;
@@ -63,7 +63,7 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0);
 static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0);
 static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30F8 *param1);
 static void ov20_021D33F4(UnkStruct_ov20_021D33C8 *param0);
-static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1);
+static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, String *param1);
 static void ov20_021D34CC(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1);
 static void ov20_021D34E0(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1);
 static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1);
@@ -80,7 +80,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_3C = NULL;
     v0->unk_40 = NULL;
     v0->unk_44 = NULL;
-    v0->unk_4C = Strbuf_Init(128, HEAP_ID_35);
+    v0->unk_4C = String_Init(128, HEAP_ID_35);
     v0->unk_48 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
     v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
 
@@ -110,7 +110,7 @@ void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
     }
 
     if (param0->unk_4C) {
-        Strbuf_Free(param0->unk_4C);
+        String_Free(param0->unk_4C);
     }
 
     Window_Remove(&param0->unk_0C);
@@ -260,7 +260,7 @@ void ov20_021D3228(UnkStruct_ov20_021D30F8 *param0)
 
 static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
 {
-    Strbuf *v0 = ov20_021D1FC0(param0->unk_04, 35);
+    String *v0 = ov20_021D1FC0(param0->unk_04, 35);
     int v1, v2, v3;
     BOOL v4;
     u16 v5;
@@ -274,7 +274,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
         switch (ov20_021D3400(&(param0->unk_64), v0)) {
         case 0:
             Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_MESSAGE, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 13), NULL);
-            v1 += Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
+            v1 += Font_CalcStringWidth(FONT_MESSAGE, v0, 0);
             break;
         case 1:
             v1 += 2;
@@ -301,7 +301,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
     }
 
     ov20_021D33F4(&param0->unk_64);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return v3;
 }
@@ -309,7 +309,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
 static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30F8 *param1)
 {
     param0->unk_00 = ov20_021D1FC0(param1->unk_04, 35);
-    param0->unk_04 = Strbuf_GetData(param0->unk_00);
+    param0->unk_04 = String_GetData(param0->unk_00);
 
     if (*(param0->unk_04) == 0xfffe) {
         param0->unk_08 = 1;
@@ -320,10 +320,10 @@ static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30
 
 static void ov20_021D33F4(UnkStruct_ov20_021D33C8 *param0)
 {
-    Strbuf_Free(param0->unk_00);
+    String_Free(param0->unk_00);
 }
 
-static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1)
+static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, String *param1)
 {
     const u16 *v0 = param0->unk_04;
     int v1;
@@ -347,7 +347,7 @@ static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1)
             }
         }
 
-        Strbuf_CopyNumChars(param1, v0, (param0->unk_04 - v0) + 1);
+        String_CopyNumChars(param1, v0, (param0->unk_04 - v0) + 1);
         return 0;
     case 1:
         param0->unk_04 = CharCode_SkipFormatArg(param0->unk_04);
@@ -409,7 +409,7 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
         ov20_021D34CC(param2, &v0);
         sub_02014DB8(param3, param0->unk_4C);
 
-        v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStrbufWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
+        v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStringWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
 
         Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, param0->unk_4C, v0.unk_00, v0.unk_02, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 14), NULL);
     }
@@ -429,26 +429,26 @@ void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
 
     {
         StringTemplate *v0 = StringTemplate_New(2, 60, HEAP_ID_SYSTEM);
-        Strbuf *v1 = Strbuf_Init(300, HEAP_ID_SYSTEM);
+        String *v1 = String_Init(300, HEAP_ID_SYSTEM);
 
         StringTemplate_SetBagPocketName(v0, 0, 0);
-        MessageLoader_GetStrbuf(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
+        MessageLoader_GetString(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
         StringTemplate_Format(v0, v1, param0->unk_4C);
         Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
-        Strbuf_Free(v1);
+        String_Free(v1);
         StringTemplate_Free(v0);
     } break;
     case 2:
-        MessageLoader_GetStrbuf(param0->unk_48, 6, param0->unk_4C);
+        MessageLoader_GetString(param0->unk_48, 6, param0->unk_4C);
         Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_4C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
         break;
     case 1:
-        MessageLoader_GetStrbuf(param0->unk_48, 7, param0->unk_4C);
+        MessageLoader_GetString(param0->unk_48, 7, param0->unk_4C);
         Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_4C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
         break;
     case 3:
-        MessageLoader_GetStrbuf(param0->unk_48, 8, param0->unk_4C);
+        MessageLoader_GetString(param0->unk_48, 8, param0->unk_4C);
         Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_4C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
         break;
     }
@@ -535,10 +535,10 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
 {
     Window_FillTilemap(&param0->unk_2C, 9);
 
-    MessageLoader_GetStrbuf(param0->unk_48, 9, param0->unk_4C);
+    MessageLoader_GetString(param0->unk_48, 9, param0->unk_4C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_2C, FONT_SYSTEM, param0->unk_4C, 14, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
-    MessageLoader_GetStrbuf(param0->unk_48, 10, param0->unk_4C);
+    MessageLoader_GetString(param0->unk_48, 10, param0->unk_4C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_2C, FONT_SYSTEM, param0->unk_4C, 14, 0 + 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
     Window_DrawStandardFrame(&param0->unk_2C, 0, param0->unk_60, 14);

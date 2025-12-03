@@ -21,7 +21,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02012744.h"
@@ -37,7 +37,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0);
 
 static void ov62_02234A10(UnkStruct_0208C06C *param0)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
     Window *v2 = &param0->unk_8A4;
 
@@ -45,11 +45,11 @@ static void ov62_02234A10(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
     Window_FillTilemap(v2, 0x0);
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
+    v0 = MessageLoader_GetNewString(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
     Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, v0, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 14, 0), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_ScheduleCopyToVRAM(v2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
