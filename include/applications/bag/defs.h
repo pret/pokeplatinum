@@ -124,7 +124,7 @@ struct BagController {
     ListMenu *itemList;
     StringList *itemListEntries;
     String *itemNames[LARGEST_POCKET_SIZE];
-    String *string;
+    String *stringBuffer;
     String *itemCountX;
     String *itemCountNumberFmt;
     String *pocketNames[POCKET_MAX];
