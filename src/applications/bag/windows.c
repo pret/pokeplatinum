@@ -261,9 +261,9 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     u16 moveStat = MoveTable_CalcMaxPP(move, 0);
     string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MaxPPNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->string, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
@@ -274,9 +274,9 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->string, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
     if (moveStat == 0) {
@@ -286,9 +286,9 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->string, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 }
 
 void BagUI_LoadItemCountStrings(BagController *controller)
@@ -527,8 +527,8 @@ void BagUI_PrintItemTrashCount(BagController *controller)
     String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayCount);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 3, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->string, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
     String_Free(string);
 }
@@ -558,7 +558,7 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 1, controller->selectedItemCount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
     String_Free(string);
 
     controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -568,7 +568,7 @@ u8 BagUI_PrintStringToWideMsgBox(BagController *interface)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
-    u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->stringBuffer, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
+    u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->string, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
 
     return textPrinterID;
 }
@@ -608,18 +608,18 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
     String *sellCount = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SellNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, sellCount);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_Format(controller->strTemplate, controller->string, sellCount);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->string, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     String_Free(sellCount);
 
     String *sellValue = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SellValue);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->soldItemPrice * controller->selectedItemCount, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, sellValue);
+    StringTemplate_Format(controller->strTemplate, controller->string, sellValue);
 
-    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->string, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, SELL_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->string, SELL_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
     String_Free(sellValue);
 }
@@ -643,11 +643,11 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
     String *amount = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoneyNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, TrainerInfo_Money(controller->trainerInfo), 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, amount);
+    StringTemplate_Format(controller->strTemplate, controller->string, amount);
 
-    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->string, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, TEXT_LINES(1), TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->string, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, TEXT_LINES(1), TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
     String_Free(amount);
 }
@@ -664,10 +664,10 @@ void BagUI_DrawPoffinCountMsgBox(BagController *controller)
 
     String *count = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PoffinCountNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(controller->bagCtx->saveData)), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, count);
+    StringTemplate_Format(controller->strTemplate, controller->string, count);
     String_Free(count);
 
-    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, POFFIN_COUNT_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->string, 0);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->string, POFFIN_COUNT_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
 }

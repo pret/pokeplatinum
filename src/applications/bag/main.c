@@ -610,7 +610,7 @@ int BagApplication_Exit(ApplicationManager *appMan, int *state)
     BagUI_FreeItemCountStrings(controller);
     FreeItemNameBuffers(controller);
 
-    String_Free(controller->stringBuffer);
+    String_Free(controller->string);
     MessageLoader_Free(controller->moveNamesLoader);
     MessageLoader_Free(controller->itemNamesLoader);
     MessageLoader_Free(controller->bagStringsLoader);
@@ -850,7 +850,7 @@ static void SetupTextLoaders(BagController *controller)
     controller->strTemplate = StringTemplate_Default(HEAP_ID_BAG);
     controller->itemNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BAG);
     controller->moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BAG);
-    controller->stringBuffer = String_Init(256, HEAP_ID_BAG);
+    controller->string = String_Init(256, HEAP_ID_BAG);
 }
 
 static void CountAccessiblePockets(BagController *controller)
@@ -2079,7 +2079,7 @@ static int ItemActionFunc_Use(BagController *controller)
         enum ItemUseCheckResult checkResult = checkFunc(controller->bagCtx->itemUseCtx);
 
         if (checkResult != 0) {
-            BagContext_FormatErrorMessage(controller->trainerInfo, controller->stringBuffer, controller->bagCtx->selectedItem, checkResult, HEAP_ID_BAG);
+            BagContext_FormatErrorMessage(controller->trainerInfo, controller->string, controller->bagCtx->selectedItem, checkResult, HEAP_ID_BAG);
             Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
             Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
             controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -2121,7 +2121,7 @@ static int HandleItemUsed(BagController *interface)
         return BAG_APP_STATE_RUN_ITEM_USE_TASK;
     }
 
-    if (BagContext_FormatUsageMessage(interface->bagCtx->saveData, interface->stringBuffer, interface->bagCtx->selectedItem, HEAP_ID_BAG) == TRUE) {
+    if (BagContext_FormatUsageMessage(interface->bagCtx->saveData, interface->string, interface->bagCtx->selectedItem, HEAP_ID_BAG) == TRUE) {
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
         Window_DrawMessageBoxWithScrollCursor(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
         interface->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(interface);
@@ -2153,9 +2153,9 @@ static int TMHMUseTask(BagController *controller)
         StringTemplate_SetMoveName(controller->strTemplate, 0, move);
 
         if (Item_IsHMMove(move) == TRUE) {
-            MessageLoader_GetString(controller->bagStringsLoader, Bag_Text_BootedUpHM, controller->stringBuffer);
+            MessageLoader_GetString(controller->bagStringsLoader, Bag_Text_BootedUpHM, controller->string);
         } else {
-            MessageLoader_GetString(controller->bagStringsLoader, Bag_Text_BootedUpTM, controller->stringBuffer);
+            MessageLoader_GetString(controller->bagStringsLoader, Bag_Text_BootedUpTM, controller->string);
         }
     }
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
@@ -2173,7 +2173,7 @@ static int TMHMUseTask(BagController *controller)
             String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_TMHMContainedMove);
 
             Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-            StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+            StringTemplate_Format(controller->strTemplate, controller->string, string);
             String_Free(string);
 
             controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -2250,7 +2250,7 @@ static BOOL UseItemInBag(BagController *controller, u16 item)
         return FALSE;
     }
 
-    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    StringTemplate_Format(controller->strTemplate, controller->string, string);
     String_Free(string);
     return TRUE;
 }
@@ -2430,7 +2430,7 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
         }
 
         StringTemplate_SetNumber(controller->strTemplate, 1, controller->selectedItemCount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-        StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+        StringTemplate_Format(controller->strTemplate, controller->string, string);
         String_Free(string);
     }
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
@@ -2546,7 +2546,7 @@ static int ProcessItemListInput_GiveToMon(BagController *controller)
 
                 string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemCantBeHeld);
 
-                StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+                StringTemplate_Format(controller->strTemplate, controller->string, string);
                 String_Free(string);
                 controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
                 BagUI_SetHighlightSpritesPalette(controller, PLTT_2);
@@ -2613,7 +2613,7 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             if (Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_BAG) != 0
                 || controller->soldItemPrice == 0) {
                 string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CantSellItem);
-                StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+                StringTemplate_Format(controller->strTemplate, controller->string, string);
                 String_Free(string);
 
                 controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -2626,7 +2626,7 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_BAG) == 1) {
                 string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ConfirmSellPrice);
                 StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount * controller->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
-                StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+                StringTemplate_Format(controller->strTemplate, controller->string, string);
                 String_Free(string);
 
                 controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -2634,7 +2634,7 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             }
 
             string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SellHowMany);
-            StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+            StringTemplate_Format(controller->strTemplate, controller->string, string);
             String_Free(string);
 
             controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
@@ -2676,7 +2676,7 @@ static int ProcessItemCountInput_SellCount(BagController *interface)
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
         string = MessageLoader_GetNewString(interface->bagStringsLoader, Bag_Text_ConfirmSellPrice);
         StringTemplate_SetNumber(interface->strTemplate, 0, interface->selectedItemCount * interface->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
-        StringTemplate_Format(interface->strTemplate, interface->stringBuffer, string);
+        StringTemplate_Format(interface->strTemplate, interface->string, string);
         String_Free(string);
         interface->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(interface);
         interface->dialButtonAnimStep = 1;
@@ -2708,7 +2708,7 @@ static int ProcessItemCountInput_SellCount(BagController *interface)
         string = MessageLoader_GetNewString(interface->bagStringsLoader, Bag_Text_ConfirmSellPrice);
 
         StringTemplate_SetNumber(interface->strTemplate, 0, interface->selectedItemCount * interface->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
-        StringTemplate_Format(interface->strTemplate, interface->stringBuffer, string);
+        StringTemplate_Format(interface->strTemplate, interface->string, string);
         String_Free(string);
         interface->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(interface);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -2768,7 +2768,7 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
         }
 
         StringTemplate_SetNumber(interface->strTemplate, 1, interface->selectedItemCount * interface->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
-        StringTemplate_Format(interface->strTemplate, interface->stringBuffer, string);
+        StringTemplate_Format(interface->strTemplate, interface->string, string);
         String_Free(string);
     }
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
@@ -2863,7 +2863,7 @@ static int ProcessItemListInput_Gardening(BagController *controller)
             if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_ITEMS
                 && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG) != ITEM_USE_FUNC_MULCH) {
 
-                BagContext_FormatErrorMessage(controller->trainerInfo, controller->stringBuffer, controller->bagCtx->selectedItem, ITEM_USE_CANNOT_USE_GENERIC, HEAP_ID_BAG);
+                BagContext_FormatErrorMessage(controller->trainerInfo, controller->string, controller->bagCtx->selectedItem, ITEM_USE_CANNOT_USE_GENERIC, HEAP_ID_BAG);
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
                 Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
 
