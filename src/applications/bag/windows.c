@@ -561,10 +561,10 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
     StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
     String_Free(string);
 
-    controller->msgBoxPrinterID = BagUI_PrintStringToWideMsgBox(controller);
+    controller->msgBoxPrinterID = BagUI_PrintStringBufferToWideMsgBox(controller);
 }
 
-u8 BagUI_PrintStringToWideMsgBox(BagController *interface)
+u8 BagUI_PrintStringBufferToWideMsgBox(BagController *interface)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);

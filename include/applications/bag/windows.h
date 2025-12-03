@@ -32,7 +32,7 @@ void BagUI_ShowItemTrashWindows(BagController *controller);
 void BagUI_PrintItemTrashCount(BagController *controller);
 void BagUI_CloseItemTrashWindows(BagController *controller);
 void BagUI_PrintConfirmItemTrashMsg(BagController *controller);
-u8 BagUI_PrintStringToWideMsgBox(BagController *controller);
+u8 BagUI_PrintStringBufferToWideMsgBox(BagController *controller);
 void BagUI_ShowYesNoMenu(BagController *controller);
 void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame);
 void BagUI_PrintMoney(BagController *controller, u8 skipLabel);
