@@ -5,19 +5,20 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02098700_decl.h"
-#include "struct_defs/struct_0202610C.h"
-
 #include "field/field_system.h"
 
+#include "battle_regulation.h"
+#include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sound_playback.h"
@@ -26,9 +27,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202602C.h"
-#include "unk_02026150.h"
-#include "unk_0207A2A8.h"
 
 typedef struct {
     ListMenu *unk_00;
@@ -111,7 +109,7 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 
 static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
-    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD1);
+    BattleRegulation_GetNameByIndex(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD1);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
@@ -119,7 +117,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
 {
     ListMenuTemplate v0;
     Window *v1 = &(param0->unk_34);
-    BattleRegulation *v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
+    BattleRegulation *v2 = BattleRegulation_Load(param0->fieldSystem->saveData, 0);
     int v3 = 5;
 
     if (v2) {
@@ -200,7 +198,7 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
         return -1;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
+        param0->fieldSystem->unk_B0 = BattleRegulation_GetByIndex(param0->fieldSystem->saveData, v0);
         break;
     }
 
@@ -347,7 +345,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     }
 
     for (v5 = 0; v5 < 9; v5++) {
-        v6 = sub_02026074(param0->fieldSystem->unk_B0, Unk_ov7_0224F4C0[v5]);
+        v6 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, Unk_ov7_0224F4C0[v5]);
         v7 = Unk_ov7_0224F4CC[v5];
 
         switch (Unk_ov7_0224F4C0[v5]) {
@@ -424,7 +422,7 @@ static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 {
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
-    int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
+    int v1 = BattleRegulation_SelectValidPokemon(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 
     switch (v1) {
@@ -433,7 +431,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        v2 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_TEAM_SIZE);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
         ov7_0224B4E8(param0, 107);
         break;
@@ -441,7 +439,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 1:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
+        v2 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);
         ov7_0224B4E8(param0, 121);
         break;
@@ -539,7 +537,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         Strbuf_Free(v1->unk_18);
         Strbuf_Free(v1->unk_1C);
         Strbuf_Free(v1->unk_20);
-        sub_0207A2C0(v1->unk_6C);
+        HeightWeightData_Free(v1->unk_6C);
         Heap_Free(v1);
         return 1;
     default:

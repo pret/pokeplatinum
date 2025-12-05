@@ -6,17 +6,16 @@
 #include "constants/net.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_02034168.h"
 
+#include "battle_regulation.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "unk_0202602C.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
@@ -82,8 +81,8 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
     sCommServerClient->unk_14E8 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_02031C50());
     MI_CpuClear8(sCommServerClient->unk_14E8, sub_02031C50());
 
-    sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_0202602C());
-    MI_CpuClear8(sCommServerClient->unk_1500, sub_0202602C());
+    sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, BattleRegulation_Size());
+    MI_CpuClear8(sCommServerClient->unk_1500, BattleRegulation_Size());
 
     sCommServerClient->unk_1508 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
     sCommServerClient->unk_150C = (u16 *)(32 - (sCommServerClient->unk_1508 % 32) + sCommServerClient->unk_1508);
@@ -610,12 +609,12 @@ static void sub_02033AA8(void)
     if (v4 != 15) {
         v2 = (UnkStruct_0203330C *)sCommServerClient->unk_150C;
 
-        GF_ASSERT(32 >= sub_0202602C());
+        GF_ASSERT(32 >= BattleRegulation_Size());
         GF_ASSERT(32 == TrainerInfo_Size());
         GF_ASSERT(WM_SIZE_USER_GAMEINFO >= MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 
         MI_CpuCopy8(v1, v2->unk_10, TrainerInfo_Size());
-        MI_CpuCopy8(sCommServerClient->unk_1500, v2->unk_30, sub_0202602C());
+        MI_CpuCopy8(sCommServerClient->unk_1500, v2->unk_30, BattleRegulation_Size());
 
         v2->unk_00 = TrainerInfo_ID(v1);
         v2->unk_04 = sub_0203895C();
@@ -945,7 +944,7 @@ void sub_020340A8(Sentence *param0)
 
 void sub_020340C4(void *param0)
 {
-    MI_CpuCopy8(param0, sCommServerClient->unk_1500, sub_0202602C());
+    MI_CpuCopy8(param0, sCommServerClient->unk_1500, BattleRegulation_Size());
 }
 
 void *sub_020340E8(void)

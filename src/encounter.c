@@ -12,13 +12,13 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
 #include "overlay006/roamer_after_battle.h"
 #include "overlay006/wild_encounters.h"
 #include "savedata/save_table.h"
 
+#include "battle_regulation.h"
 #include "catching_show.h"
 #include "communication_information.h"
 #include "dexmode_checker.h"
@@ -47,7 +47,6 @@
 #include "system_vars.h"
 #include "trainer_data.h"
 #include "tv_episode_segment.h"
-#include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
@@ -774,7 +773,7 @@ void Encounter_NewVsLink(FieldTask *task, const u8 *partyOrder, int battleType)
 static int sub_020516C8(const BattleRegulation *regulation, int battleType)
 {
     int v0;
-    int v1 = sub_020261B0(regulation);
+    int v1 = BattleRegulation_GetIndex(regulation);
 
     if (battleType & BATTLE_TYPE_2vs2) {
         v0 = (UnkEnum_0202F510_14);

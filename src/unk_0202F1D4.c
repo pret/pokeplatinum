@@ -17,6 +17,7 @@
 
 #include "savedata/save_table.h"
 
+#include "battle_regulation.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "game_options.h"
@@ -30,7 +31,6 @@
 #include "sound_chatot.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;
 
@@ -315,32 +315,32 @@ static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const U
     switch (param3) {
     case (UnkEnum_0202F510_01):
     case (UnkEnum_0202F510_08):
-        param1->unk_28 = *(sub_02026150(saveData, 0));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 0));
         break;
     case (UnkEnum_0202F510_02):
     case (UnkEnum_0202F510_09):
-        param1->unk_28 = *(sub_02026150(saveData, 1));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 1));
         break;
     case (UnkEnum_0202F510_03):
     case (UnkEnum_0202F510_10):
-        param1->unk_28 = *(sub_02026150(saveData, 2));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 2));
         break;
     case (UnkEnum_0202F510_04):
     case (UnkEnum_0202F510_11):
-        param1->unk_28 = *(sub_02026150(saveData, 3));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 3));
         break;
     case (UnkEnum_0202F510_05):
     case (UnkEnum_0202F510_12):
-        param1->unk_28 = *(sub_02026150(saveData, 4));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 4));
         break;
     case (UnkEnum_0202F510_06):
     case (UnkEnum_0202F510_13):
-        param1->unk_28 = *(sub_02026150(saveData, 5));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 5));
         break;
     case (UnkEnum_0202F510_00):
     case (UnkEnum_0202F510_07):
     default:
-        param1->unk_28 = *(sub_020261A8());
+        param1->battleRegulation = *(BattleRegulation_GetDefault());
         break;
     }
 

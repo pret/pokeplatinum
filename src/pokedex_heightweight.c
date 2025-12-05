@@ -8,15 +8,6 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 
-typedef struct HeightWeightData {
-    int *height;
-    int *weight;
-    short *trainerPos;
-    short *pokemonPos;
-    short *trainerScale;
-    short *pokemonScale;
-} HeightWeightData;
-
 static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int heapID);
 static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int heapID);
 static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int heapID);

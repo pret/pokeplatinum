@@ -15,7 +15,6 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"

@@ -15,7 +15,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/trainer.h"
 
@@ -24,6 +23,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "charcode_util.h"
 #include "communication_system.h"
 #include "field_overworld_state.h"
@@ -51,8 +51,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202602C.h"
-#include "unk_0202C858.h"
 #include "unk_0202CC64.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
@@ -378,7 +376,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     }
 
     if (regulation) {
-        if (sub_02026074(regulation, 12)) {
+        if (BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MOVE_RESTRICTIONS)) {
             dto->rulesetMask = 1;
         }
     }
