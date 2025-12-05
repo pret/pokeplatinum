@@ -107,7 +107,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     UndergroundRecord_GetNumTrapsTriggered,
     UndergroundRecord_GetNumPlayersHelped,
     UndergroundRecord_GetGiftsReceived,
-    sub_020297AC,
+    UndergroundRecord_GetTimesFlagTaken,
     sub_020297E4,
     sub_0202981C,
     UndergroundRecord_GetCapturedFlagCount
@@ -406,7 +406,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *undergro
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
+    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_PC, HEAP_ID_FIELD1);
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->record;

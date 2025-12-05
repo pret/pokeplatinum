@@ -391,7 +391,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00067",
+      "id": "UndergroundCommon_Text_TakeFlagPrompt",
       "en_US": [
         "This appears to be {STRVAR_1 3, 0, 0}’s\n",
         "Secret Base.\r",

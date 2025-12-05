@@ -360,8 +360,8 @@ static void UndergroundTalk_Exit(SysTask *sysTask, TalkMenu *menu)
     }
 
     if (menu->giftMenu) {
-        UndergroundMenu_ExitGiftMenu(menu->giftMenu, LIST_CANCEL);
-        ov23_02243204();
+        UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+        CommManUnderground_ClearCurrentSysTaskInfo();
     }
 
     UndergroundTalk_CloseTalkMenu(sysTask, menu);
@@ -908,8 +908,8 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
 
         if (menu->giftMenu) {
-            UndergroundMenu_ExitGiftMenu(menu->giftMenu, LIST_CANCEL);
-            ov23_02243204();
+            UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+            CommManUnderground_ClearCurrentSysTaskInfo();
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             menu->giftMenu = NULL;
         }
@@ -1456,12 +1456,10 @@ void UndergroundTalk_ExitConversation(void)
 
 static void UndergroundTalk_UpdateCursorPos(TalkMenu *menu)
 {
-    u16 pos = menu->cursorPos;
+    u16 prevPos = menu->cursorPos;
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
-    if (pos != menu->cursorPos) {
+    if (prevPos != menu->cursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
-
-    return;
 }

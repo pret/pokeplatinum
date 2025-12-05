@@ -779,7 +779,7 @@ static int sub_02033DDC(void)
     return v0;
 }
 
-BOOL sub_02033DFC(void)
+BOOL CommServerClient_IsInClosedSecretBase(void)
 {
     if (sCommServerClient && (sCommServerClient->unk_1516 == 3)) {
         return 1;

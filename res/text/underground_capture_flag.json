@@ -48,14 +48,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000638_00008",
+      "id": "UndergroundCaptureFlag_Text_YouObtainedFlag",
       "en_US": [
         "You’ve obtained the Flag\n",
         "from {STRVAR_1 1, 0, 0}’s Base!"
       ]
     },
     {
-      "id": "pl_msg_00000638_00009",
+      "id": "UndergroundCaptureFlag_Text_YouAlreadyHaveFlag",
       "en_US": "You already have a Flag!"
     },
     {

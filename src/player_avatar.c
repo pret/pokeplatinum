@@ -270,11 +270,11 @@ int Player_MoveState(const PlayerAvatar *playerAvatar)
     return playerAvatar->unk_18;
 }
 
-void PlayerAvatar_SetHidden(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (param1 == 1) {
+    if (visible == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE);
     } else {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE);
