@@ -7,7 +7,7 @@ BOOL ScrCmd_InitBattleTower(ScriptContext *ctx);
 BOOL ScrCmd_SetBattleTowerNull(ScriptContext *ctx);
 BOOL ScrCmd_FreeBattleTower(ScriptContext *ctx);
 BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx);
-BOOL ScrCmd_1DE(ScriptContext *ctx);
+BOOL ScrCmd_GetBattleTowerPartnerSpeciesAndMove(ScriptContext *ctx);
 BOOL ScrCmd_1DF(ScriptContext *ctx);
 BOOL ScrCmd_1E0(ScriptContext *ctx);
 BOOL ScrCmd_1E1(ScriptContext *ctx);

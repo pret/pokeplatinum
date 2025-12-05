@@ -66,7 +66,7 @@ _00D9:
     WaitFadeScreen
     SetVar VAR_MAP_LOCAL_3, 1
     Warp 0x405C, 0, 5, 2, 1
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F7 VAR_0x8004

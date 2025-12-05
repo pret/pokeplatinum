@@ -1,5 +1,7 @@
-#ifndef POKEPLATINUM_STRUCT_0204AFC4_H
-#define POKEPLATINUM_STRUCT_0204AFC4_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_TOWER_H
+#define POKEPLATINUM_STRUCT_BATTLE_TOWER_H
+
+#include "constants/battle_tower.h"
 
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
@@ -21,9 +23,9 @@ typedef struct BattleTower {
     u8 unk_10_1 : 2;
     u8 unk_10_3 : 1;
     u8 unk_10_4 : 1;
-    u8 unk_10_5 : 3;
-    u8 unk_11;
-    u8 unk_12;
+    u8 partnerID : 3;
+    u8 playerGender;
+    u8 partnerGender;
     u16 unk_14;
     u16 unk_16[2];
     u16 unk_1A;
@@ -39,10 +41,10 @@ typedef struct BattleTower {
     Location unk_5C;
     UnkStruct_0202D060 *unk_70;
     UnkStruct_0202D750 *unk_74;
-    UnkStruct_ov104_0223A348 unk_78[2];
-    UnkStruct_ov104_0223A348 unk_298[5];
-    UnkStruct_0204B404 unk_7E8[5];
-    u8 unk_838[5];
+    FrontierDataDTO unk_78[2];
+    FrontierDataDTO partnersDataDTO[BT_PARTNERS_COUNT];
+    UnkStruct_0204B404 unk_7E8[BT_PARTNERS_COUNT];
+    u8 unk_838[BT_PARTNERS_COUNT];
     u16 unk_83E[35];
     u16 unk_884[35];
     int unk_8CC;
@@ -55,4 +57,4 @@ typedef struct BattleTower {
     u16 unk_8DA;
 } BattleTower;
 
-#endif // POKEPLATINUM_STRUCT_0204AFC4_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_TOWER_H

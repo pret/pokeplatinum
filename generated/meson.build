@@ -54,6 +54,7 @@ metang_generators = {
     'fade_types': { 'type': 'enum', 'tag': 'FadeType' },
     'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
+    'frontier_trainers': { 'type': 'enum', 'tag': 'FrontierTrainerID' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
@@ -159,6 +160,7 @@ species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainer_classes_txt = files('trainer_classes.txt')
 trainers_txt = files('trainers.txt')
+frontier_trainers_txt = files('frontier_trainers.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())

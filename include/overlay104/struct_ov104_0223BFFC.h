@@ -44,7 +44,7 @@ typedef struct {
     u32 unk_C4[4];
     u32 unk_D4[4];
     u32 unk_E4[4];
-    UnkStruct_ov104_0223A348 unk_F4[2];
+    FrontierDataDTO unk_F4[2];
     u16 unk_314[4];
     u8 unk_31C[4];
     u32 unk_320[4];
