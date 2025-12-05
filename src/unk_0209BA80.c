@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
+
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "overlay104/ov104_0222ECE8.h"
@@ -113,11 +115,11 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    battleTower->unk_12 = (u8)v3[0];
+    battleTower->partnerGender = (u8)v3[0];
     battleTower->unk_16[0] = v3[1];
     battleTower->unk_16[1] = v3[2];
     battleTower->unk_14 = v3[3];
-    battleTower->unk_10_5 = 5 + battleTower->unk_12;
+    battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
     if ((battleTower->unk_2E[0] == battleTower->unk_16[0]) || (battleTower->unk_2E[0] == battleTower->unk_16[1])) {
         v0 += 1;

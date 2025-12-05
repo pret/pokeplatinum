@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/object_events.h"
 
 
     ScriptEntry BattleTowerElevator_Init
@@ -10,30 +11,30 @@
 BattleTowerElevator_Init:
     CallIfNe VAR_UNK_0x40DB, 0, _008A
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
-    Call _008E
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, _009E
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_LINK_MULTI, _009E
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_SINGLE, _008E
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_DOUBLE, _008E
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_WIFI, _0096
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_5, _0096
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_6, _0096
+    Call BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_SINGLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_DOUBLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_5, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_6, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
     End
 
 _008A:
     HidePoketch
     Return
 
-_008E:
-    SetVar VAR_OBJ_GFX_ID_A, 231
+BattleTowerElevator_SetSingleAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT
     Return
 
-_0096:
-    SetVar VAR_OBJ_GFX_ID_A, 235
+BattleTowerElevator_SetWiFiPlazaAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F
     Return
 
-_009E:
-    SetVar VAR_OBJ_GFX_ID_A, 232
+BattleTowerElevator_SetMultiAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT
     Return
 
 BattleTowerElevator_BattleRoomCheckWiFi:
@@ -42,7 +43,7 @@ BattleTowerElevator_BattleRoomCheckWiFi:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2C4 5
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
@@ -51,7 +52,7 @@ BattleTowerElevator_BattleRoomCheckWiFi:
 BattleTowerElevator_MultiBattleRoom:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2C4 6
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
@@ -136,7 +137,7 @@ BattleTowerElevator_PlayerExitMovement:
     EndMovement
 
 BattleTowerElevator_WiFiBattleRoom:
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2C4 5
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 19, 6, 0

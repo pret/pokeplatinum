@@ -25,7 +25,7 @@ void ov104_0222E1C0(SaveData *saveData, Party *param1, Pokemon *param2);
 void ov104_0222E1D8(Sprite *param0, u8 param1);
 void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3);
+void ov104_0222E278(FrontierDataDTO *param0, u16 param1, int heapID, int param3);
 void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int param3, int param4);
 u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6);
 void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7);
