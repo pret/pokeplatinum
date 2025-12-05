@@ -197,7 +197,7 @@ _0293:
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     HideMoney
     CloseMessage
     ReleaseAll

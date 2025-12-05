@@ -36,7 +36,7 @@ _002E:
     Message 4
     SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FF
+    GiveAccessory
     Message 5
     ApplyMovement 6, _0158
     ApplyMovement 5, _017C

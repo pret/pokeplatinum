@@ -156,7 +156,7 @@ _0161:
     End
 
 _0167:
-    CallCommonScript 0x7D6
+    SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0161
     CloseMessage
@@ -196,7 +196,7 @@ _01EB:
     End
 
 _01F1:
-    CallCommonScript 0x7D6
+    SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _01EB
     CloseMessage
