@@ -13,8 +13,8 @@
 #include "berry_patch_manager.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
+#include "simple3d.h"
 #include "unk_02020AEC.h"
-#include "unk_02073838.h"
 
 // Berry patch moisture effect resource IDs
 #define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3
@@ -24,8 +24,8 @@
 
 typedef struct BerryPatchGraphicsManager {
     UnkStruct_ov5_021DF47C *renderManager;
-    YA3DA_RenderObj resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
-    YA3DA_Model resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    Simple3DRenderObj resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    Simple3DModel resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 } BerryPatchGraphicsManager;
 
 typedef struct BerryPatchMoistureEffectContext {
@@ -100,7 +100,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
     do {
         ov5_021DFB00(
             manager->renderManager, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
-        YA3DA_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
+        Simple3D_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
@@ -110,7 +110,7 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
     int i = 0;
 
     do {
-        YA3DA_FreeModel(&manager->resources[i]);
+        Simple3D_FreeModel(&manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
@@ -183,7 +183,7 @@ static void BerryPatchMoistureEffect_Render(OverworldAnimManager *effectTask, vo
         VecFx32 effectPosition;
 
         OverworldAnimManager_GetPosition(effectTask, &effectPosition);
-        YA3DA_DrawRenderObjWithPos(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
+        Simple3D_DrawRenderObjWithPos(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
     }
 }
 

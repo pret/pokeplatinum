@@ -12,9 +12,9 @@
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "rtc.h"
+#include "simple3d.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02073838.h"
 
 typedef struct {
     int unk_00;
@@ -25,8 +25,8 @@ typedef struct {
     VecFx32 unk_14;
     UnkStruct_ov5_021DF47C *unk_20;
     SysTask *unk_24;
-    YA3DA_Model unk_28[3];
-    YA3DA_RenderObj unk_64[3];
+    Simple3DModel unk_28[3];
+    Simple3DRenderObj unk_64[3];
 } UnkStruct_ov5_021F1388;
 
 typedef struct {
@@ -172,7 +172,7 @@ static void ov5_021F14FC(UnkStruct_ov5_021F1388 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         ov5_021DFB00(param0->unk_20, &param0->unk_28[v0], 0, Unk_ov5_02200278[v0], 0);
-        YA3DA_CreateRenderObject(&param0->unk_64[v0], &param0->unk_28[v0]);
+        Simple3D_CreateRenderObject(&param0->unk_64[v0], &param0->unk_28[v0]);
     }
 }
 
@@ -181,7 +181,7 @@ static void ov5_021F153C(UnkStruct_ov5_021F1388 *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        YA3DA_FreeModel(&param0->unk_28[v0]);
+        Simple3D_FreeModel(&param0->unk_28[v0]);
     }
 }
 
@@ -276,7 +276,7 @@ static void ov5_021F1670(OverworldAnimManager *param0, void *param1)
     if (v0->unk_0C == 0) {
         VecFx32 v1, v2;
         MtxFx33 v3 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
-        YA3DA_RenderObj *v4 = &v0->unk_14.unk_04->unk_64[0];
+        Simple3DRenderObj *v4 = &v0->unk_14.unk_04->unk_64[0];
 
         ov5_021F13B8(v0->unk_14.unk_04, &v2);
         OverworldAnimManager_GetPosition(param0, &v1);
@@ -285,7 +285,7 @@ static void ov5_021F1670(OverworldAnimManager *param0, void *param1)
         v1.y += (FX32_ONE * -4);
         v1.z += (FX32_ONE * 1);
 
-        YA3DA_DrawRenderObj(v4, &v1, &v2, &v3);
+        Simple3D_DrawRenderObj(v4, &v1, &v2, &v3);
     }
 }
 
@@ -352,13 +352,13 @@ static void ov5_021F176C(OverworldAnimManager *param0, void *param1)
     {
         int v1 = OverworldAnimManager_GetID(param0);
         VecFx32 v2;
-        YA3DA_RenderObj *v3 = &v0->unk_14.unk_04->unk_64[v1];
+        Simple3DRenderObj *v3 = &v0->unk_14.unk_04->unk_64[v1];
 
         OverworldAnimManager_GetPosition(param0, &v2);
         v2.x += (FX32_ONE * -1) / 2;
         v2.y += (FX32_ONE * -4);
         v2.z += (FX32_ONE * 1);
-        YA3DA_DrawRenderObjWithPos(v3, &v2);
+        Simple3D_DrawRenderObjWithPos(v3, &v2);
     }
 }
 

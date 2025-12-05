@@ -11,14 +11,14 @@
 #include "fx_util.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_ov5_021DF47C *unk_08;
-    YA3DA_Model unk_0C;
-    YA3DA_RenderObj unk_20;
+    Simple3DModel unk_0C;
+    Simple3DRenderObj unk_20;
     MapObject *unk_74;
 } UnkStruct_ov5_021F5454;
 
@@ -66,12 +66,12 @@ void ov5_021F5444(void *param0)
 static void ov5_021F5454(UnkStruct_ov5_021F5454 *param0)
 {
     ov5_021DFB00(param0->unk_08, &param0->unk_0C, 0, 24, 0);
-    YA3DA_CreateRenderObject(&param0->unk_20, &param0->unk_0C);
+    Simple3D_CreateRenderObject(&param0->unk_20, &param0->unk_0C);
 }
 
 static void ov5_021F547C(UnkStruct_ov5_021F5454 *param0)
 {
-    YA3DA_FreeModel(&param0->unk_0C);
+    Simple3D_FreeModel(&param0->unk_0C);
 }
 
 OverworldAnimManager *ov5_021F5488(MapObject *param0)
@@ -170,7 +170,7 @@ static void ov5_021F554C(OverworldAnimManager *param0, void *param1)
             MTX_Concat33(&v3, &v5, &v3);
         }
 
-        YA3DA_DrawRenderObjSimple(&v0->unk_34.unk_04->unk_20, &v1, &v2, &v3);
+        Simple3D_DrawRenderObjSimple(&v0->unk_34.unk_04->unk_20, &v1, &v2, &v3);
     }
 }
 

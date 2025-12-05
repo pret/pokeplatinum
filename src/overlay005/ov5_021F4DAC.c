@@ -6,12 +6,12 @@
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04;
-    YA3DA_RenderObj unk_18;
+    Simple3DModel unk_04;
+    Simple3DRenderObj unk_18;
 } UnkStruct_ov5_021F4DD8;
 
 static void ov5_021F4DD8(UnkStruct_ov5_021F4DD8 *param0);
@@ -38,10 +38,10 @@ void ov5_021F4DC8(void *param0)
 static void ov5_021F4DD8(UnkStruct_ov5_021F4DD8 *param0)
 {
     ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 17, 0);
-    YA3DA_CreateRenderObject(&param0->unk_18, &param0->unk_04);
+    Simple3D_CreateRenderObject(&param0->unk_18, &param0->unk_04);
 }
 
 static void ov5_021F4DFC(UnkStruct_ov5_021F4DD8 *param0)
 {
-    YA3DA_FreeModel(&param0->unk_04);
+    Simple3D_FreeModel(&param0->unk_04);
 }

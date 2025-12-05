@@ -12,13 +12,13 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
+#include "simple3d.h"
 #include "unk_02069BE0.h"
-#include "unk_02073838.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04[4];
-    YA3DA_RenderObj unk_54[4];
+    Simple3DModel unk_04[4];
+    Simple3DRenderObj unk_54[4];
 } UnkStruct_ov5_021F3D2C;
 
 typedef struct {
@@ -26,7 +26,7 @@ typedef struct {
     UnkStruct_ov5_021DF47C *unk_04;
     UnkStruct_ov5_021F3D2C *unk_08;
     MapObject *unk_0C;
-    YA3DA_RenderObj *unk_10;
+    Simple3DRenderObj *unk_10;
 } UnkStruct_ov5_021F3D90;
 
 typedef struct {
@@ -39,7 +39,7 @@ typedef struct {
 
 static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0);
 static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0);
-static YA3DA_RenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1);
+static Simple3DRenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200688;
 static const u32 Unk_ov5_02200678[4];
@@ -67,7 +67,7 @@ static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021DFB00(param0->unk_00, &param0->unk_04[v0], 0, Unk_ov5_02200678[v0], 0);
-        YA3DA_CreateRenderObject(&param0->unk_54[v0], &param0->unk_04[v0]);
+        Simple3D_CreateRenderObject(&param0->unk_54[v0], &param0->unk_04[v0]);
     }
 }
 
@@ -76,11 +76,11 @@ static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        YA3DA_FreeModel(&param0->unk_04[v0]);
+        Simple3D_FreeModel(&param0->unk_04[v0]);
     }
 }
 
-static YA3DA_RenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1)
+static Simple3DRenderObj *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1)
 {
     return &param0->unk_54[param1];
 }
@@ -157,7 +157,7 @@ static void ov5_021F3E54(OverworldAnimManager *param0, void *param1)
         VecFx32 v1;
 
         OverworldAnimManager_GetPosition(param0, &v1);
-        YA3DA_DrawRenderObjWithPos(v0->unk_10.unk_10, &v1);
+        Simple3D_DrawRenderObjWithPos(v0->unk_10.unk_10, &v1);
     }
 }
 

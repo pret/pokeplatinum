@@ -8,12 +8,12 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04[33];
-    YA3DA_RenderObj unk_298[33];
+    Simple3DModel unk_04[33];
+    Simple3DRenderObj unk_298[33];
 } UnkStruct_ov5_021F4E38;
 
 typedef struct {
@@ -64,11 +64,11 @@ static void ov5_LoadFloorTextures(UnkStruct_ov5_021F4E38 *param0)
 
     for (i = 0; i < FLOOR_TEXTURE_COUNT - 1; i++) {
         ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 26 + i, FALSE);
-        YA3DA_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
+        Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
     }
 
     ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 25, FALSE);
-    YA3DA_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
+    Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
 }
 
 static void ov5_021F4E94(UnkStruct_ov5_021F4E38 *param0)
@@ -76,7 +76,7 @@ static void ov5_021F4E94(UnkStruct_ov5_021F4E38 *param0)
     int v0;
 
     for (v0 = 0; v0 < FLOOR_TEXTURE_COUNT; v0++) {
-        YA3DA_FreeModel(&param0->unk_04[v0]);
+        Simple3D_FreeModel(&param0->unk_04[v0]);
     }
 }
 
@@ -163,7 +163,7 @@ static void ov5_021F4FB8(OverworldAnimManager *param0, void *param1)
         VecFx32 v1;
         VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
         MtxFx33 v3 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
-        YA3DA_RenderObj *v4 = &v0->unk_6C.unk_10->unk_298[v0->unk_54];
+        Simple3DRenderObj *v4 = &v0->unk_6C.unk_10->unk_298[v0->unk_54];
 
         OverworldAnimManager_GetPosition(param0, &v1);
 
@@ -174,7 +174,7 @@ static void ov5_021F4FB8(OverworldAnimManager *param0, void *param1)
         v1.y += -(FX32_ONE * 1);
         v1.z += (FX32_ONE * 5);
 
-        YA3DA_DrawRenderObj(v4, &v1, &v2, &v3);
+        Simple3D_DrawRenderObj(v4, &v1, &v2, &v3);
     }
 }
 

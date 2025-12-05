@@ -8,13 +8,13 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     int unk_00;
     UnkStruct_ov5_021DF47C *unk_04;
-    YA3DA_Model unk_08;
-    YA3DA_Animation unk_1C;
+    Simple3DModel unk_08;
+    Simple3DAnimation unk_1C;
 } UnkStruct_021F5788;
 
 typedef struct {
@@ -23,8 +23,8 @@ typedef struct {
 } UnkStruct_ov5_021F57C8;
 
 typedef struct {
-    YA3DA_Animation unk_00;
-    YA3DA_RenderObj unk_24;
+    Simple3DAnimation unk_00;
+    Simple3DRenderObj unk_24;
     UnkStruct_ov5_021F57C8 unk_78;
 } UnkStruct_ov5_021F580C;
 
@@ -58,8 +58,8 @@ static void ov5_021F5788(UnkStruct_021F5788 *param0)
 
 static void ov5_021F57B4(UnkStruct_021F5788 *param0)
 {
-    YA3DA_FreeModel(&param0->unk_08);
-    YA3DA_FreeAnimation(&param0->unk_1C);
+    Simple3D_FreeModel(&param0->unk_08);
+    Simple3D_FreeAnimation(&param0->unk_1C);
 }
 
 void ov5_DisplayBuriedSphereSparkle(FieldSystem *fieldSystem, int x, int z)
@@ -85,7 +85,7 @@ static int ov5_021F580C(OverworldAnimManager *param0, void *param1)
     v0->unk_78 = *v1;
 
     ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_08, &v0->unk_78.unk_04->unk_1C, 0);
-    YA3DA_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_08, &v0->unk_00);
+    Simple3D_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_08, &v0->unk_00);
 
     return 1;
 }
@@ -93,19 +93,19 @@ static int ov5_021F580C(OverworldAnimManager *param0, void *param1)
 static void ov5_021F5844(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F580C *v0 = param1;
-    YA3DA_FreeAnimation(&v0->unk_00);
+    Simple3D_FreeAnimation(&v0->unk_00);
 }
 
 static void ov5_021F5850(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F580C *v0 = param1;
 
-    if (YA3DA_HasAnimationReachedEnd(&v0->unk_00) == 1) {
+    if (Simple3D_HasAnimationReachedEnd(&v0->unk_00) == 1) {
         ov5_021DF74C(param0);
         return;
     }
 
-    YA3DA_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
+    Simple3D_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
 }
 
 static void ov5_021F5878(OverworldAnimManager *param0, void *param1)
@@ -114,7 +114,7 @@ static void ov5_021F5878(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F580C *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    YA3DA_DrawRenderObjWithPos(&v1->unk_24, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_24, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200B54 = {

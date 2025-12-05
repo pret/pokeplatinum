@@ -11,20 +11,20 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04[10];
-    YA3DA_Model unk_CC[10];
-    YA3DA_RenderObj unk_194[10];
-    YA3DA_RenderObj unk_4DC[10];
+    Simple3DModel unk_04[10];
+    Simple3DModel unk_CC[10];
+    Simple3DRenderObj unk_194[10];
+    Simple3DRenderObj unk_4DC[10];
 } UnkStruct_021F1CF8;
 
 typedef struct {
     int unk_00;
-    YA3DA_Model *unk_04;
-    YA3DA_RenderObj *unk_08;
+    Simple3DModel *unk_04;
+    Simple3DRenderObj *unk_08;
 } UnkStruct_021F1FB8;
 
 typedef struct {
@@ -33,14 +33,14 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    YA3DA_Model *unk_14;
-    YA3DA_RenderObj *unk_18;
+    Simple3DModel *unk_14;
+    Simple3DRenderObj *unk_18;
 } UnkStruct_021F1FE4;
 
 static void ov5_021F1CF8(UnkStruct_021F1CF8 *param0);
 static void ov5_021F1D80(UnkStruct_021F1CF8 *param0);
-static YA3DA_RenderObj *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
-static YA3DA_Model *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
+static Simple3DRenderObj *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
+static Simple3DModel *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3);
 static OverworldAnimManager *ov5_021F1ECC(const MapObject *param0, int param1);
 
 static const u32 Unk_ov5_0220039C[10];
@@ -72,11 +72,11 @@ static void ov5_021F1CF8(UnkStruct_021F1CF8 *param0)
     for (v0 = 0; v0 < 10; v0++) {
         v1 = Unk_ov5_0220039C[v0];
         ov5_021DFB00(param0->unk_00, &param0->unk_04[v0], 0, v1, 0);
-        YA3DA_CreateRenderObject(&param0->unk_194[v0], &param0->unk_04[v0]);
+        Simple3D_CreateRenderObject(&param0->unk_194[v0], &param0->unk_04[v0]);
 
         v1 = Unk_ov5_02200374[v0];
         ov5_021DFB00(param0->unk_00, &param0->unk_CC[v0], 0, v1, 0);
-        YA3DA_CreateRenderObject(&param0->unk_4DC[v0], &param0->unk_CC[v0]);
+        Simple3D_CreateRenderObject(&param0->unk_4DC[v0], &param0->unk_CC[v0]);
     }
 }
 
@@ -85,15 +85,15 @@ static void ov5_021F1D80(UnkStruct_021F1CF8 *param0)
     int v0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        YA3DA_FreeModel(&param0->unk_04[v0]);
-        YA3DA_FreeModel(&param0->unk_CC[v0]);
+        Simple3D_FreeModel(&param0->unk_04[v0]);
+        Simple3D_FreeModel(&param0->unk_CC[v0]);
     }
 }
 
-static YA3DA_RenderObj *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3)
+static Simple3DRenderObj *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3)
 {
     int v0;
-    YA3DA_RenderObj *v1 = NULL;
+    Simple3DRenderObj *v1 = NULL;
 
     switch (param1) {
     case 0:
@@ -119,10 +119,10 @@ static YA3DA_RenderObj *ov5_021F1DA4(UnkStruct_021F1CF8 *param0, int param1, int
     return v1;
 }
 
-static YA3DA_Model *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3)
+static Simple3DModel *ov5_021F1E24(UnkStruct_021F1CF8 *param0, int param1, int param2, int param3)
 {
     int v0 = 0;
-    YA3DA_Model *v1 = NULL;
+    Simple3DModel *v1 = NULL;
 
     switch (param1) {
     case 0:
@@ -285,7 +285,7 @@ static void ov5_021F2014(OverworldAnimManager *param0, void *param1)
         NNS_G3dMdlUseMdlAlpha(v0->unk_14->g3DModel);
         NNS_G3dMdlSetMdlAlphaAll(v0->unk_14->g3DModel, v0->unk_0C);
 
-        YA3DA_DrawRenderObjWithPos(v0->unk_18, &v1);
+        Simple3D_DrawRenderObjWithPos(v0->unk_18, &v1);
     }
 }
 

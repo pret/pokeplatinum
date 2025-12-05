@@ -8,12 +8,12 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 void *ov5_021F8560(UnkStruct_ov5_021DF47C *param0);
 void ov5_021F857C(void *param0);
 OverworldAnimManager *ov5_021F85BC(PlayerAvatar *playerAvatar, int param1, int param2, int param3, int param4, int param5, int param6);
-YA3DA_RotationAngles *ov5_021F88A8(OverworldAnimManager *param0);
+Simple3DRotationAngles *ov5_021F88A8(OverworldAnimManager *param0);
 void ov5_021F88B4(OverworldAnimManager *param0, int param1, int param2);
 void ov5_021F88CC(OverworldAnimManager *param0, int param1);
 void ov5_021F88DC(OverworldAnimManager *param0, int param1);

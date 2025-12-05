@@ -56,6 +56,7 @@
 #include "resource_collection.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "simple3d.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -68,7 +69,6 @@
 #include "unk_02020AEC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02073838.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
@@ -357,7 +357,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    YA3DA_Model unk_04;
+    Simple3DModel unk_04;
 } UnkStruct_ov9_0224D744_sub1;
 
 typedef struct {
@@ -368,8 +368,8 @@ typedef struct {
 typedef struct {
     u16 unk_00;
     u16 unk_02;
-    YA3DA_RenderObj unk_04;
-    YA3DA_Animation unk_58;
+    Simple3DRenderObj unk_04;
+    Simple3DAnimation unk_58;
 } UnkStruct_ov9_0224D928;
 
 typedef struct {
@@ -727,7 +727,7 @@ typedef struct {
     u16 unk_2E;
     int unk_30;
     int unk_34;
-    YA3DA_RotationAngles unk_38;
+    Simple3DRotationAngles unk_38;
 } UnkStruct_ov9_0224E964;
 
 typedef struct {
@@ -1079,12 +1079,12 @@ static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0);
 static void ov9_0224D744(DistWorldSystem *param0);
 static void ov9_0224D780(DistWorldSystem *param0, u32 param1);
 static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1);
-static YA3DA_Model *ov9_0224D7EC(DistWorldSystem *param0, u32 param1);
+static Simple3DModel *ov9_0224D7EC(DistWorldSystem *param0, u32 param1);
 static void ov9_0224D814(DistWorldSystem *param0, u32 param1);
 static void ov9_0224D874(DistWorldSystem *param0, u32 param1);
 static void ov9_0224D994(DistWorldSystem *param0);
-static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_RenderObj *param3, YA3DA_Animation *param4);
-static void ov9_0224DA48(DistWorldSystem *param0, int param1, YA3DA_RenderObj *param2, YA3DA_Animation *param3);
+static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, Simple3DRenderObj *param3, Simple3DAnimation *param4);
+static void ov9_0224DA48(DistWorldSystem *param0, int param1, Simple3DRenderObj *param2, Simple3DAnimation *param3);
 static void ov9_0224DA64(DistWorldSystem *param0, int param1, int param2, int param3);
 static void ov9_0224DAAC(DistWorldSystem *param0, int param1, int param2);
 static void ov9_0224DAB8(DistWorldSystem *param0, int param1, int param2);
@@ -3343,7 +3343,7 @@ static void ov9_0224BA48(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_28;
 
     if (ov9_0224DAEC(v1->unk_08.unk_04) == 1) {
-        YA3DA_FreeAnimation(&v0->unk_40->unk_58);
+        Simple3D_FreeAnimation(&v0->unk_40->unk_58);
     }
 
     ov9_0224D938(v1->unk_14, v0->unk_40);
@@ -3452,7 +3452,7 @@ static void ov9_0224BBDC(OverworldAnimManager *param0, void *param1)
         UnkStruct_ov9_0224B708 *v1 = &v0->unk_28;
 
         ov9_0224DAAC(v1->unk_14, v1->unk_08.unk_04, v0->unk_00);
-        YA3DA_DrawRenderObjWithPos(&v0->unk_40->unk_04, &v0->unk_1C);
+        Simple3D_DrawRenderObjWithPos(&v0->unk_40->unk_04, &v0->unk_1C);
     }
 }
 
@@ -3495,7 +3495,7 @@ static int ov9_0224BC08(OverworldAnimManager *param0, void *param1)
             v2->unk_00 = 0;
         } else {
             v2->unk_00 = 31;
-            YA3DA_SetAnimFrame(&v2->unk_38->unk_58, YA3DA_GetAnimFrameCount(&v2->unk_38->unk_58));
+            Simple3D_SetAnimFrame(&v2->unk_38->unk_58, Simple3D_GetAnimFrameCount(&v2->unk_38->unk_58));
         }
     }
 
@@ -3520,7 +3520,7 @@ static void ov9_0224BCF4(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
 
     if (ov9_0224DAEC(v1->unk_08.unk_04) == 1) {
-        YA3DA_FreeAnimation(&v0->unk_38->unk_58);
+        Simple3D_FreeAnimation(&v0->unk_38->unk_58);
     }
 
     ov9_0224D938(v1->unk_14, v0->unk_38);
@@ -3544,8 +3544,8 @@ static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
         if (v3 == 1) {
             fx32 v4;
 
-            YA3DA_UpdateAnim(&v0->unk_38->unk_58, -FX32_ONE * 2, 0);
-            v4 = YA3DA_GetAnimFrame(&v0->unk_38->unk_58);
+            Simple3D_UpdateAnim(&v0->unk_38->unk_58, -FX32_ONE * 2, 0);
+            v4 = Simple3D_GetAnimFrame(&v0->unk_38->unk_58);
 
             if (v0->unk_00 >= ((v4) / FX32_ONE)) {
                 if (v0->unk_00 > 0) {
@@ -3579,7 +3579,7 @@ static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
                 v0->unk_00 = 31;
             }
 
-            YA3DA_UpdateAnim(&v0->unk_38->unk_58, FX32_ONE * 2, 0);
+            Simple3D_UpdateAnim(&v0->unk_38->unk_58, FX32_ONE * 2, 0);
         }
     }
 
@@ -3601,7 +3601,7 @@ static void ov9_0224BDE8(OverworldAnimManager *param0, void *param1)
         UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
 
         ov9_0224DAAC(v1->unk_14, v1->unk_08.unk_04, v0->unk_00);
-        YA3DA_DrawRenderObjWithPos(&v0->unk_38->unk_04, &v0->unk_08);
+        Simple3D_DrawRenderObjWithPos(&v0->unk_38->unk_04, &v0->unk_08);
     }
 }
 
@@ -5418,11 +5418,11 @@ static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1)
 
     if (v0->unk_00[param1].unk_00 != 25) {
         v0->unk_00[param1].unk_00 = 25;
-        YA3DA_FreeModel(&v0->unk_00[param1].unk_04);
+        Simple3D_FreeModel(&v0->unk_00[param1].unk_04);
     }
 }
 
-static YA3DA_Model *ov9_0224D7EC(DistWorldSystem *param0, u32 param1)
+static Simple3DModel *ov9_0224D7EC(DistWorldSystem *param0, u32 param1)
 {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
@@ -5533,7 +5533,7 @@ static void ov9_0224D994(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_RenderObj *param3, YA3DA_Animation *param4)
+static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, Simple3DRenderObj *param3, Simple3DAnimation *param4)
 {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
@@ -5542,7 +5542,7 @@ static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_
             ov9_0224D780(param0, param1);
         }
 
-        YA3DA_CreateRenderObject(param3, &v0->unk_00[param1].unk_04);
+        Simple3D_CreateRenderObject(param3, &v0->unk_00[param1].unk_04);
     }
 
     if (param2 != 5) {
@@ -5550,14 +5550,14 @@ static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_
             ov9_0224D814(param0, param2);
         }
 
-        YA3DA_LoadFromAllocatedSet(param4, v0->unk_258[param2].unk_04, 0);
-        YA3DA_BindModelToAnim(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD1);
-        YA3DA_InitG3DAnimObject(param4, &v0->unk_00[param1].unk_04);
-        YA3DA_BindAnimToRenderObj(param3, param4);
+        Simple3D_LoadFromAllocatedSet(param4, v0->unk_258[param2].unk_04, 0);
+        Simple3D_BindModelToAnim(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD1);
+        Simple3D_InitG3DAnimObject(param4, &v0->unk_00[param1].unk_04);
+        Simple3D_BindAnimToRenderObj(param3, param4);
     }
 }
 
-static void ov9_0224DA48(DistWorldSystem *param0, int param1, YA3DA_RenderObj *param2, YA3DA_Animation *param3)
+static void ov9_0224DA48(DistWorldSystem *param0, int param1, Simple3DRenderObj *param2, Simple3DAnimation *param3)
 {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param1];
     ov9_0224D9BC(param0, v0->unk_00, v0->unk_02, param2, param3);
@@ -5650,7 +5650,7 @@ static BOOL ov9_0224DBE4(DistWorldSystem *param0, int param1, VecFx32 *param2)
 
     {
         const UnkStruct_ov9_022531D0 *v1 = &Unk_ov9_022531D0[param1];
-        YA3DA_Model *v2 = ov9_0224D7EC(param0, v1->unk_00);
+        Simple3DModel *v2 = ov9_0224D7EC(param0, v1->unk_00);
         MtxFx33 v3;
 
         MTX_Identity33(&v3);
@@ -6089,7 +6089,7 @@ static void ov9_0224E274(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224E1CC *v0 = param1;
 
     if (ov9_0224DAEC(v0->unk_10.unk_06) == 1) {
-        YA3DA_FreeAnimation(&v0->unk_20->unk_58);
+        Simple3D_FreeAnimation(&v0->unk_20->unk_58);
     }
 
     ov9_0224D938(v0->unk_10.unk_0C, v0->unk_20);
@@ -6133,12 +6133,12 @@ static void ov9_0224E2E4(OverworldAnimManager *param0, void *param1)
             const UnkStruct_ov9_0224DFA0 *v1 = &v0->unk_10;
 
             ov9_0224DA64(v1->unk_0C, v1->unk_06, v0->unk_02, 1);
-            YA3DA_DrawRenderObjWithPos(&v0->unk_20->unk_04, &v0->unk_04);
+            Simple3D_DrawRenderObjWithPos(&v0->unk_20->unk_04, &v0->unk_04);
 
             ov9_0224DAB8(v1->unk_0C, v1->unk_06, 0);
             ov9_0224DAAC(v1->unk_0C, v1->unk_06, 31);
         } else {
-            YA3DA_DrawRenderObjWithPos(&v0->unk_20->unk_04, &v0->unk_04);
+            Simple3D_DrawRenderObjWithPos(&v0->unk_20->unk_04, &v0->unk_04);
         }
     }
 }
@@ -6702,7 +6702,7 @@ static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1)
     return 0;
 }
 
-static const YA3DA_RotationAngles Unk_ov9_022529F8[5] = {
+static const Simple3DRotationAngles Unk_ov9_022529F8[5] = {
     { 0x0, 0x0, 0x0 },
     { 0x0, 0xB4, 0x0 },
     { 0x0, 0x5A, 0x0 },
@@ -6740,7 +6740,7 @@ static int ov9_0224EA0C(OverworldAnimManager *param0, void *param1)
 static void ov9_0224EA88(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov9_0224E964 *v0 = param1;
-    YA3DA_FreeAnimObject(&v0->unk_00.unk_04->unk_58);
+    Simple3D_FreeAnimObject(&v0->unk_00.unk_04->unk_58);
 }
 
 static void ov9_0224EA94(OverworldAnimManager *param0, void *param1)
@@ -6783,7 +6783,7 @@ static void ov9_0224EA94(OverworldAnimManager *param0, void *param1)
     }
 
     if (v1->unk_2E == 0) {
-        YA3DA_UpdateAnim(&v1->unk_00.unk_04->unk_58, FX32_ONE, 1);
+        Simple3D_UpdateAnim(&v1->unk_00.unk_04->unk_58, FX32_ONE, 1);
     }
 }
 
@@ -6799,7 +6799,7 @@ static void ov9_0224EB34(OverworldAnimManager *param0, void *param1)
         v2 = &v0->unk_00.unk_08.unk_08;
 
         ov9_0224DAB8(v0->unk_00.unk_00, 20, (1 * 8));
-        YA3DA_DrawRenderObjRotationAngles(&v0->unk_00.unk_04->unk_04, &v1, v2, &v0->unk_38);
+        Simple3D_DrawRenderObjRotationAngles(&v0->unk_00.unk_04->unk_04, &v1, v2, &v0->unk_38);
     }
 }
 
@@ -7037,7 +7037,7 @@ static void ov9_0224EDD8(OverworldAnimManager *param0, void *param1)
     const UnkStruct_ov9_0224EC10 *v2 = &v1->unk_1C.unk_04->unk_08;
 
     if (ov9_0224DAEC(v2->unk_04) == 1) {
-        YA3DA_FreeAnimation(&v1->unk_24->unk_58);
+        Simple3D_FreeAnimation(&v1->unk_24->unk_58);
     }
 
     ov9_0224D938(v1->unk_1C.unk_00, v1->unk_24);
@@ -7049,7 +7049,7 @@ static void ov9_0224EDFC(OverworldAnimManager *param0, void *param1)
     int v1 = v0->unk_1C.unk_04->unk_08.unk_04;
 
     if (ov9_0224DAEC(v1) == 1) {
-        YA3DA_UpdateAnim(&v0->unk_24->unk_58, FX32_ONE, 1);
+        Simple3D_UpdateAnim(&v0->unk_24->unk_58, FX32_ONE, 1);
     }
 
     v0->unk_02 = ov9_0224DBE4(v0->unk_1C.unk_00, v1, &v0->unk_04);
@@ -7060,7 +7060,7 @@ static void ov9_0224EE2C(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov9_0224ED58 *v0 = param1;
 
     if (v0->unk_02 == 1) {
-        YA3DA_DrawRenderObjWithPos(&v0->unk_24->unk_04, &v0->unk_04);
+        Simple3D_DrawRenderObjWithPos(&v0->unk_24->unk_04, &v0->unk_04);
     }
 }
 
@@ -8049,7 +8049,7 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     {
         VecFx32 *v7;
         OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
-        YA3DA_RotationAngles *v9 = ov5_021F88A8(v8);
+        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 2, 5);
         ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
@@ -8092,7 +8092,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
 
         {
-            YA3DA_RotationAngles *v4 = ov5_021F88A8(v3);
+            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
 
             ov9_02250F1C(&v1->unk_0C.x, v1->unk_18.x);
             ov9_02250F1C(&v1->unk_0C.y, v1->unk_18.y);
@@ -8242,7 +8242,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 *v5;
-        YA3DA_RotationAngles *v6 = ov5_021F88A8(v1);
+        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
 
         ov9_02250F1C(&v3->unk_0C.x, v3->unk_18.x);
         ov9_02250F1C(&v3->unk_0C.y, v3->unk_18.y);
@@ -8391,7 +8391,7 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     {
         VecFx32 *v7;
         OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
-        YA3DA_RotationAngles *v9 = ov5_021F88A8(v8);
+        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 3, 1);
         ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
@@ -8434,7 +8434,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
 
         {
-            YA3DA_RotationAngles *v4 = ov5_021F88A8(v3);
+            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
 
             ov9_02250F1C(&v1->unk_08.x, v1->unk_14.x);
             ov9_02250F1C(&v1->unk_08.y, v1->unk_14.y);
@@ -8558,7 +8558,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 *v5;
-        YA3DA_RotationAngles *v6 = ov5_021F88A8(v1);
+        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
 
         ov9_02250F1C(&v3->unk_08.x, v3->unk_14.x);
         ov9_02250F1C(&v3->unk_08.y, v3->unk_14.y);

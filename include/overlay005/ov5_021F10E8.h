@@ -8,13 +8,13 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 void *ov5_021F10E8(UnkStruct_ov5_021DF47C *param0);
 void ov5_021F10FC(void *param0);
 void ov5_021F1188(UnkStruct_ov5_021DF47C *param0, u32 param1);
 void ov5_021F11C0(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2);
-YA3DA_RenderObj *ov5_021F11FC(UnkStruct_ov5_021DF47C *param0, u32 param1);
+Simple3DRenderObj *ov5_021F11FC(UnkStruct_ov5_021DF47C *param0, u32 param1);
 OverworldAnimManager *ov5_021F121C(const MapObject *param0, const VecFx32 *param1);
 void FieldEffect_InitRenderObject(UnkStruct_ov5_021DF47C *param0);
 

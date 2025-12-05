@@ -10,12 +10,12 @@
 
 #include "map_object.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     u32 unk_00;
-    YA3DA_Model unk_04;
-    YA3DA_RenderObj unk_18;
+    Simple3DModel unk_04;
+    Simple3DRenderObj unk_18;
 } UnkStruct_021F1118;
 
 typedef struct {
@@ -35,7 +35,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     VecFx32 unk_0C;
-    YA3DA_RenderObj *unk_18;
+    Simple3DRenderObj *unk_18;
     UnkStruct_021F121C unk_1C;
 } UnkStruct_021F1258;
 
@@ -89,13 +89,13 @@ static void ov5_021F1118(UnkStruct_021F1118 *param0, u32 param1, u32 param2, Unk
     param0->unk_00 = param1;
 
     ov5_021DFB00(param3, &param0->unk_04, 0, param2, 0);
-    YA3DA_CreateRenderObject(&param0->unk_18, &param0->unk_04);
+    Simple3D_CreateRenderObject(&param0->unk_18, &param0->unk_04);
 }
 
 static void ov5_021F113C(UnkStruct_021F1118 *param0)
 {
     param0->unk_00 = 0xffff;
-    YA3DA_FreeModel(&param0->unk_04);
+    Simple3D_FreeModel(&param0->unk_04);
 }
 
 static void ov5_021F114C(UnkStruct_021F114C *param0)
@@ -169,7 +169,7 @@ void ov5_021F11C0(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2)
     ov5_021F1118(v0, param1, param2, param0);
 }
 
-YA3DA_RenderObj *ov5_021F11FC(UnkStruct_ov5_021DF47C *param0, u32 param1)
+Simple3DRenderObj *ov5_021F11FC(UnkStruct_ov5_021DF47C *param0, u32 param1)
 {
     UnkStruct_021F114C *v0 = ov5_021DF55C(param0, 29);
     UnkStruct_021F1118 *v1 = ov5_021F1174(v0, param1);
@@ -249,7 +249,7 @@ static void ov5_021F1310(OverworldAnimManager *param0, void *param1)
     VecFx32 v1;
 
     OverworldAnimManager_GetPosition(param0, &v1);
-    YA3DA_DrawRenderObjWithPos(v0->unk_18, &v1);
+    Simple3D_DrawRenderObjWithPos(v0->unk_18, &v1);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220021C = {

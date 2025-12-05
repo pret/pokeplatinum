@@ -9,13 +9,13 @@
 
 #include "fx_util.h"
 #include "overworld_anim_manager.h"
+#include "simple3d.h"
 #include "sound_playback.h"
-#include "unk_02073838.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04;
-    YA3DA_Animation unk_18;
+    Simple3DModel unk_04;
+    Simple3DAnimation unk_18;
 } UnkStruct_ov5_021F55F8;
 
 typedef struct {
@@ -24,8 +24,8 @@ typedef struct {
 } UnkStruct_ov5_021F5634;
 
 typedef struct {
-    YA3DA_Animation unk_00;
-    YA3DA_RenderObj unk_24;
+    Simple3DAnimation unk_00;
+    Simple3DRenderObj unk_24;
     UnkStruct_ov5_021F5634 unk_78;
 } UnkStruct_ov5_021F5684;
 
@@ -59,8 +59,8 @@ static void ov5_021F55F8(UnkStruct_ov5_021F55F8 *param0)
 
 static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0)
 {
-    YA3DA_FreeModel(&param0->unk_04);
-    YA3DA_FreeAnimation(&param0->unk_18);
+    Simple3D_FreeModel(&param0->unk_04);
+    Simple3D_FreeAnimation(&param0->unk_18);
 }
 
 void ov5_021F5634(FieldSystem *fieldSystem, int x, int unused, int z)
@@ -87,7 +87,7 @@ static int ov5_021F5684(OverworldAnimManager *param0, void *param1)
     v0->unk_78 = *v1;
 
     ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
-    YA3DA_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
+    Simple3D_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
 
     return 1;
 }
@@ -95,19 +95,19 @@ static int ov5_021F5684(OverworldAnimManager *param0, void *param1)
 static void ov5_021F56BC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5684 *v0 = param1;
-    YA3DA_FreeAnimation(&v0->unk_00);
+    Simple3D_FreeAnimation(&v0->unk_00);
 }
 
 static void ov5_021F56C8(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5684 *v0 = param1;
 
-    if (YA3DA_HasAnimationReachedEnd(&v0->unk_00) == 1) {
+    if (Simple3D_HasAnimationReachedEnd(&v0->unk_00) == 1) {
         ov5_021DF74C(param0);
         return;
     }
 
-    YA3DA_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
+    Simple3D_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
 }
 
 static void ov5_021F56F0(OverworldAnimManager *param0, void *param1)
@@ -126,7 +126,7 @@ static void ov5_021F56F0(OverworldAnimManager *param0, void *param1)
         MTX_Concat33(&v3, &v5, &v3);
 
         OverworldAnimManager_GetPosition(param0, &v1);
-        YA3DA_DrawRenderObj(&v0->unk_24, &v1, &v2, &v3);
+        Simple3D_DrawRenderObj(&v0->unk_24, &v1, &v2, &v3);
     }
 }
 

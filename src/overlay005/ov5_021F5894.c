@@ -10,12 +10,12 @@
 
 #include "map_object.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    YA3DA_Model unk_04;
-    YA3DA_Animation unk_18;
+    Simple3DModel unk_04;
+    Simple3DAnimation unk_18;
 } UnkStruct_021F58C0;
 
 typedef struct {
@@ -24,8 +24,8 @@ typedef struct {
 } UnkStruct_021F58FC;
 
 typedef struct {
-    YA3DA_Animation unk_00;
-    YA3DA_RenderObj unk_24;
+    Simple3DAnimation unk_00;
+    Simple3DRenderObj unk_24;
     UnkStruct_021F58FC unk_78;
 } UnkStruct_021F5988;
 
@@ -59,8 +59,8 @@ static void ov5_021F58C0(UnkStruct_021F58C0 *param0)
 
 static void ov5_021F58E8(UnkStruct_021F58C0 *param0)
 {
-    YA3DA_FreeModel(&param0->unk_04);
-    YA3DA_FreeAnimation(&param0->unk_18);
+    Simple3D_FreeModel(&param0->unk_04);
+    Simple3D_FreeAnimation(&param0->unk_18);
 }
 
 void ov5_021F58FC(MapObject *param0, int param1, int param2, int param3)
@@ -105,7 +105,7 @@ static int ov5_021F5988(OverworldAnimManager *param0, void *param1)
     v0->unk_78 = *v1;
 
     ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
-    YA3DA_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
+    Simple3D_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
 
     return 1;
 }
@@ -114,19 +114,19 @@ static void ov5_021F59C0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F5988 *v0 = param1;
 
-    YA3DA_FreeAnimation(&v0->unk_00);
+    Simple3D_FreeAnimation(&v0->unk_00);
 }
 
 static void ov5_021F59CC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F5988 *v0 = param1;
 
-    if (YA3DA_HasAnimationReachedEnd(&v0->unk_00) == 1) {
+    if (Simple3D_HasAnimationReachedEnd(&v0->unk_00) == 1) {
         ov5_021DF74C(param0);
         return;
     }
 
-    YA3DA_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
+    Simple3D_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
 }
 
 static void ov5_021F59F4(OverworldAnimManager *param0, void *param1)
@@ -135,7 +135,7 @@ static void ov5_021F59F4(OverworldAnimManager *param0, void *param1)
     UnkStruct_021F5988 *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    YA3DA_DrawRenderObjWithPos(&v1->unk_24, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_24, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200B68 = {
