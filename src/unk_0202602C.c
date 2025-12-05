@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 int sub_0202602C(void)
 {
@@ -30,16 +30,16 @@ void RegulationBattles_Init(UnkStruct_02026030 *param0)
     memset(param0, 0, sizeof(UnkStruct_02026030));
 }
 
-void sub_0202604C(const BattleRegulation *param0, Strbuf *param1)
+void sub_0202604C(const BattleRegulation *param0, String *param1)
 {
-    Strbuf_CopyNumChars(param1, param0->unk_00, (11 + 1));
+    String_CopyNumChars(param1, param0->unk_00, (11 + 1));
 }
 
-Strbuf *sub_0202605C(const BattleRegulation *param0, int heapID)
+String *sub_0202605C(const BattleRegulation *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init((11 + 1) * 2, heapID);
+    String *v0 = String_Init((11 + 1) * 2, heapID);
 
-    Strbuf_CopyChars(v0, param0->unk_00);
+    String_CopyChars(v0, param0->unk_00);
     return v0;
 }
 

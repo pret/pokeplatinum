@@ -20,7 +20,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -30,23 +30,23 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
 {
     int v0;
     MessageLoader *v1;
-    Strbuf *v2;
-    Strbuf *v3 = Strbuf_Init(511, HEAP_ID_111);
+    String *v2;
+    String *v3 = String_Init(511, HEAP_ID_111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
-    v2 = MessageLoader_GetNewStrbuf(v1, param2);
+    v2 = MessageLoader_GetNewString(v1, param2);
 
     if (param2 == 22) {
-        Strbuf *v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
+        String *v5 = TrainerInfo_NameNewString(param1->unk_08, 111);
         StringTemplate *v6 = StringTemplate_Default(HEAP_ID_111);
 
-        StringTemplate_SetStrbuf(v6, 0, v5, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetString(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v6, v3, v2);
-        Strbuf_Free(v5);
+        String_Free(v5);
         StringTemplate_Free(v6);
     } else {
-        Strbuf_Copy(v3, v2);
+        String_Copy(v3, v2);
     }
 
     v4 = Options_TextFrameDelay(param1->options);
@@ -56,8 +56,8 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     Window_CopyToVRAM(&param0->unk_30);
 
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_30, 0, 500, 15);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v2);
+    String_Free(v3);
 
     param0->unk_40 = v0;
 

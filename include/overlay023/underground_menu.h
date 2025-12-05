@@ -12,7 +12,7 @@
 #include "menu.h"
 #include "scroll_prompts.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -51,8 +51,8 @@ typedef struct UndergroundMenu {
     Menu *yesNoMenu;
     CursorCallback cursorCallback;
     PrintCallback printCallback;
-    Strbuf *strbuf;
-    Strbuf *fmtString;
+    String *string;
+    String *fmtString;
     StringTemplate *template;
     SpriteResourceManager spriteManager;
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];

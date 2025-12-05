@@ -16,7 +16,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -386,23 +386,23 @@ static void Diploma_LoadGraphics(Diploma *data)
 
 static void Diploma_LoadText(Diploma *data)
 {
-    Strbuf *strbuf = Strbuf_Init(512, data->heapID);
-    Strbuf *formatString = Strbuf_Init(512, data->heapID);
+    String *string = String_Init(512, data->heapID);
+    String *formatString = String_Init(512, data->heapID);
 
-    MessageLoader_GetStrbuf(data->messageLoader, Diploma_Text_Player, formatString);
+    MessageLoader_GetString(data->messageLoader, Diploma_Text_Player, formatString);
     StringTemplate_SetPlayerName(data->stringTemplate, 0, data->trainerInfo);
-    StringTemplate_Format(data->stringTemplate, strbuf, formatString);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(formatString);
+    StringTemplate_Format(data->stringTemplate, string, formatString);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(formatString);
 
-    MessageLoader_GetStrbuf(data->messageLoader, (data->isNatDex == FALSE) ? Diploma_Text_Sinnoh : Diploma_Text_NationalDex, strbuf);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    MessageLoader_GetString(data->messageLoader, (data->isNatDex == FALSE) ? Diploma_Text_Sinnoh : Diploma_Text_NationalDex, string);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    MessageLoader_GetStrbuf(data->messageLoader, Diploma_Text_GameFreak, strbuf);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, strbuf, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    MessageLoader_GetString(data->messageLoader, Diploma_Text_GameFreak, string);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }

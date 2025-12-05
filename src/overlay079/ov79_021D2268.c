@@ -30,7 +30,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -44,8 +44,8 @@
 
 typedef struct {
     StringTemplate *unk_00;
-    Strbuf *unk_04;
-    Strbuf *unk_08[3];
+    String *unk_04;
+    String *unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;
 
 typedef struct {
@@ -480,10 +480,10 @@ static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
 
     param0->unk_18 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0462, param0->heapID);
     param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->heapID);
-    param0->unk_1C.unk_04 = Strbuf_Init(64, param0->heapID);
+    param0->unk_1C.unk_04 = String_Init(64, param0->heapID);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_1C.unk_08[v0] = MessageLoader_GetNewStrbuf(param0->unk_18, v0);
+        param0->unk_1C.unk_08[v0] = MessageLoader_GetNewString(param0->unk_18, v0);
     }
 }
 
@@ -492,10 +492,10 @@ static void ov79_021D27AC(UnkStruct_ov79_021D2928 *param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        Strbuf_Free(param0->unk_1C.unk_08[v0]);
+        String_Free(param0->unk_1C.unk_08[v0]);
     }
 
-    Strbuf_Free(param0->unk_1C.unk_04);
+    String_Free(param0->unk_1C.unk_04);
     StringTemplate_Free(param0->unk_1C.unk_00);
     MessageLoader_Free(param0->unk_18);
 }
@@ -507,7 +507,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
     param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
     param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
-    param0->unk_30.unk_0C = Strbuf_Init(12, param0->heapID);
+    param0->unk_30.unk_0C = String_Init(12, param0->heapID);
 
     Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRING, param0->unk_30.unk_0C);
 
@@ -516,7 +516,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 {
-    Strbuf_Free(param0->unk_30.unk_0C);
+    String_Free(param0->unk_30.unk_0C);
 }
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
@@ -721,8 +721,8 @@ static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
 {
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_6C, 1, 1, 14);
     Window_FillTilemap(&param0->unk_6C, (15 << 4) | 15);
-    Strbuf_Clear(param0->unk_1C.unk_04);
-    StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
+    String_Clear(param0->unk_1C.unk_04);
+    StringTemplate_SetString(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
     param0->unk_0C = Text_AddPrinterWithParamsAndColor(&param0->unk_6C, FONT_MESSAGE, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, TEXT_COLOR(1, 2, 15), NULL);

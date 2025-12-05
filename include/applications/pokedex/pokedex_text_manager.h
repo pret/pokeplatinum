@@ -12,7 +12,7 @@
 #include "char_transfer.h"
 #include "heap.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct PokedexTextData {
     FontOAM *fontOAM;
@@ -58,6 +58,6 @@ Window *PokedexTextManager_NewWindow(PokedexTextManager *textMan, int width, int
 void PokedexTextManager_FreeWindow(Window *window);
 u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset);
 void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID);
-void PokedexTextManager_DisplayStrbuf(PokedexTextManager *textMan, Window *window, Strbuf *strbuf, int xOffset, int yOffset);
+void PokedexTextManager_DisplayString(PokedexTextManager *textMan, Window *window, String *string, int xOffset, int yOffset);
 
 #endif // POKEPLATINUM_POKEDEX_TEXT_MANAGER_H

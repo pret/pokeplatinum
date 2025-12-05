@@ -25,7 +25,7 @@
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
@@ -98,8 +98,8 @@ typedef struct TouchRectangleSet {
     const TouchScreenRect *touchRectangles[BADGE_CASE_OPEN_CLOSE_STATE_COUNT];
 } TouchRectangleSet;
 
-static void TrainerCard_InitStrBufs(TrainerCardScreen *trainerCardScreen);
-static void TrainerCard_FreeStrBufs(TrainerCardScreen *trainerCardScreen);
+static void TrainerCard_InitStrings(TrainerCardScreen *trainerCardScreen);
+static void TrainerCard_FreeStrings(TrainerCardScreen *trainerCardScreen);
 static void TrainerCard_SetVRAMBanks(void);
 static void TrainerCard_InitBackgrounds(BgConfig *bgConfig);
 static void TrainerCard_DrawTrainerCard(TrainerCardScreen *trainerCardScreen, NARC *narc);
@@ -221,7 +221,7 @@ BOOL TrainerCardScreen_Init(ApplicationManager *appMan, int *state)
     trainerCardScreen->trainerCard = ApplicationManager_Args(appMan);
     trainerCardScreen->bgConfig = BgConfig_New(HEAP_ID_TRAINER_CARD_SCREEN);
 
-    TrainerCard_InitStrBufs(trainerCardScreen);
+    TrainerCard_InitStrings(trainerCardScreen);
     TrainerCard_SetVRAMBanks();
     TrainerCard_InitBackgrounds(trainerCardScreen->bgConfig);
     TrainerCard_DrawTrainerCard(trainerCardScreen, narc);
@@ -259,7 +259,7 @@ BOOL TrainerCardScreen_Init(ApplicationManager *appMan, int *state)
     TrainerCard_DrawFrontText(trainerCardScreen->windows, trainerCardScreen->trainerCard);
 
     if (trainerCardScreen->trainerCard->liveTimeDisplay) {
-        TrainerCard_BlinkPlaytimeColon(&trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME], TRUE, trainerCardScreen->colonStrbuf);
+        TrainerCard_BlinkPlaytimeColon(&trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME], TRUE, trainerCardScreen->colonString);
     }
 
     trainerCardScreen->viewingBack = FALSE;
@@ -424,7 +424,7 @@ BOOL TrainerCardScreen_Exit(ApplicationManager *appMan, int *state)
     TrainerCardScreen *trainerCardScreen = ApplicationManager_Data(appMan);
 
     TrainerCard_ResetAffineTransforms();
-    TrainerCard_FreeStrBufs(trainerCardScreen);
+    TrainerCard_FreeStrings(trainerCardScreen);
     TrainerCard_FreeSprites(&trainerCardScreen->spriteData);
 
     Heap_Free(trainerCardScreen->trainerSprite);
@@ -442,21 +442,21 @@ BOOL TrainerCardScreen_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void TrainerCard_InitStrBufs(TrainerCardScreen *trainerCardScreen)
+static void TrainerCard_InitStrings(TrainerCardScreen *trainerCardScreen)
 {
-    trainerCardScreen->unusedStrbuf = Strbuf_Init(4, HEAP_ID_TRAINER_CARD_SCREEN);
-    trainerCardScreen->colonStrbuf = Strbuf_Init(5, HEAP_ID_TRAINER_CARD_SCREEN);
+    trainerCardScreen->unusedString = String_Init(4, HEAP_ID_TRAINER_CARD_SCREEN);
+    trainerCardScreen->colonString = String_Init(5, HEAP_ID_TRAINER_CARD_SCREEN);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
 
-    MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Colon, trainerCardScreen->colonStrbuf);
+    MessageLoader_GetString(messageLoader, TrainerCard_Text_Colon, trainerCardScreen->colonString);
     MessageLoader_Free(messageLoader);
 }
 
-static void TrainerCard_FreeStrBufs(TrainerCardScreen *trainerCardScreen)
+static void TrainerCard_FreeStrings(TrainerCardScreen *trainerCardScreen)
 {
-    Strbuf_Free(trainerCardScreen->unusedStrbuf);
-    Strbuf_Free(trainerCardScreen->colonStrbuf);
+    String_Free(trainerCardScreen->unusedString);
+    String_Free(trainerCardScreen->colonString);
 }
 
 static void TrainerCard_SetVRAMBanks(void)
@@ -1274,11 +1274,11 @@ static void TrainerCard_UpdatePlayTime(TrainerCardScreen *trainerCardScreen, u8 
 
     if (!trainerCardScreen->viewingBack) {
         if (trainerCardScreen->timer == 15) {
-            TrainerCard_DrawUpdatedTime(trainerCardScreen->windows, trainerCardScreen->trainerCard, trainerCardScreen->unusedStrbuf);
+            TrainerCard_DrawUpdatedTime(trainerCardScreen->windows, trainerCardScreen->trainerCard, trainerCardScreen->unusedString);
 
-            TrainerCard_BlinkPlaytimeColon(&(trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME]), TRUE, trainerCardScreen->colonStrbuf);
+            TrainerCard_BlinkPlaytimeColon(&(trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME]), TRUE, trainerCardScreen->colonString);
         } else if (trainerCardScreen->timer == 0) {
-            TrainerCard_BlinkPlaytimeColon(&(trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME]), FALSE, trainerCardScreen->colonStrbuf);
+            TrainerCard_BlinkPlaytimeColon(&(trainerCardScreen->windows[TRAINER_CARD_WINDOW_TIME]), FALSE, trainerCardScreen->colonString);
         }
     }
 

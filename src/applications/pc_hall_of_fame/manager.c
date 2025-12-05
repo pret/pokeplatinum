@@ -5,7 +5,7 @@
 
 #include "heap.h"
 #include "overlay_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 
 static void PCHallOfFame_HandleTransition(PCHallOfFameMan *pcHallOfFameMan, int transition);
@@ -153,8 +153,8 @@ static void PCHallOfFame_LoadFirstEntry(PCHallOfFameScreen *pcHallOfFameScreen, 
     int i;
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
-        pcHallOfFameScreen->pokemon[i].nickname = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_60);
-        pcHallOfFameScreen->pokemon[i].OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_60);
+        pcHallOfFameScreen->pokemon[i].nickname = String_Init(MON_NAME_LEN + 2, HEAP_ID_60);
+        pcHallOfFameScreen->pokemon[i].OTName = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_60);
     }
 
     pcHallOfFameScreen->textState = PC_HALL_OF_FAME_TEXT_GENERAL;
@@ -167,8 +167,8 @@ static void PCHallOfFame_FreeNames(PCHallOfFameScreen *pcHallOfFameScreen)
     int i;
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
-        Strbuf_Free(pcHallOfFameScreen->pokemon[i].nickname);
-        Strbuf_Free(pcHallOfFameScreen->pokemon[i].OTName);
+        String_Free(pcHallOfFameScreen->pokemon[i].nickname);
+        String_Free(pcHallOfFameScreen->pokemon[i].OTName);
     }
 }
 

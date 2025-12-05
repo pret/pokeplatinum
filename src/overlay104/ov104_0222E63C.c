@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "unk_0209B6F8.h"
 
@@ -42,8 +42,8 @@ UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int heapID,
     ov104_0222E830(&v0->unk_40, &v0->unk_3C, param2, heapID);
 
     v0->unk_44 = StringTemplate_New(8, 64, heapID);
-    v0->unk_48 = Strbuf_Init(1024, heapID);
-    v0->unk_4C = Strbuf_Init(1024, heapID);
+    v0->unk_48 = String_Init(1024, heapID);
+    v0->unk_4C = String_Init(1024, heapID);
 
     ov104_0222E82C(v0, param2, NULL, NULL);
 
@@ -91,8 +91,8 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
     GF_ASSERT(param0->unk_51 == 0);
 
     StringTemplate_Free(param0->unk_44);
-    Strbuf_Free(param0->unk_48);
-    Strbuf_Free(param0->unk_4C);
+    String_Free(param0->unk_48);
+    String_Free(param0->unk_4C);
     Heap_Free(param0->unk_40);
     MessageLoader_Free(param0->unk_3C);
 

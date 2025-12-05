@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_PC_COMPARE_MON_H
 #define POKEPLATINUM_STRUCT_PC_COMPARE_MON_H
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     void *mon;
@@ -21,7 +21,7 @@ typedef struct {
     u16 smart;
     u16 tough;
     u16 moves[4];
-    Strbuf *monName;
-    Strbuf *nature;
+    String *monName;
+    String *nature;
 } PCCompareMon;
 #endif // POKEPLATINUM_STRUCT_PC_COMPARE_MON_H

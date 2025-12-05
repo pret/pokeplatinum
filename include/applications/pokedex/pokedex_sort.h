@@ -8,7 +8,7 @@
 #include "applications/pokedex/pokedex_sort_data.h"
 #include "applications/pokedex/species_caught_status.h"
 
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 
 enum SortOrder {
@@ -132,7 +132,7 @@ int PokedexSort_DisplayIndexToStatusIndex(const PokedexSortData *param0, int par
 void PokedexSort_UpdateCurrentValues(PokedexSortData *param0);
 int PokedexSort_NumEncountered(const PokedexSortData *param0);
 int PokedexSort_NumCaught(const PokedexSortData *param0);
-Strbuf *PokedexSort_TrainerName(const PokedexSortData *param0);
+String *PokedexSort_TrainerName(const PokedexSortData *param0);
 u32 PokedexSort_TrainerGender(const PokedexSortData *param0);
 BOOL ov21_021D392C(const PokedexSortData *param0, int param1);
 BOOL PokedexSort_CanDetectForms(const PokedexSortData *param0);

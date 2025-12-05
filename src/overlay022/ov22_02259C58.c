@@ -28,7 +28,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
@@ -430,12 +430,12 @@ static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param
 static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID, u32 bankID, u32 param3, int param4, int param5)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
     Window *v2;
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
-    v1 = MessageLoader_GetNewStrbuf(v0, param3);
+    v1 = MessageLoader_GetNewString(v0, param3);
 
     v2 = Window_New(HEAP_ID_14, 1);
     Window_Init(v2);
@@ -446,7 +446,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID
         Text_AddPrinterWithParamsAndColor(v2, FONT_SUBSCREEN, v1, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 3), NULL);
     }
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 
     return v2;

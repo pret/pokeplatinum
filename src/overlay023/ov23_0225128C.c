@@ -38,7 +38,7 @@
 #include "screen_fade.h"
 #include "scroll_prompts.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -652,8 +652,8 @@ static BOOL ov23_02251ACC(FieldTask *param0)
 
 static void ov23_02251BB4(SysTask *param0, UndergroundMenu *param1)
 {
-    Strbuf_Free(param1->strbuf);
-    Strbuf_Free(param1->fmtString);
+    String_Free(param1->string);
+    String_Free(param1->fmtString);
     StringTemplate_Free(param1->template);
 
     if (param1->exitCallback != NULL) {
@@ -842,8 +842,8 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_BASE_PC, MSG_LOADER_LOAD_ON_DEMAND);
 
     v1->state = 0;
-    v1->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
-    v1->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v1->string = String_Init((50 * 2), HEAP_ID_FIELD1);
+    v1->fmtString = String_Init((50 * 2), HEAP_ID_FIELD1);
     v1->template = StringTemplate_Default(HEAP_ID_FIELD1);
     v1->scrollPrompts = ScrollPrompts_New(HEAP_ID_FIELD1);
 

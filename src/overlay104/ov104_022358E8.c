@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
@@ -282,7 +282,7 @@ BOOL ov104_02235BAC(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
 {
-    Strbuf *v0;
+    String *v0;
     Pokemon *v1;
     Party *v2;
     UnkStruct_ov104_0223BA10 *v3;

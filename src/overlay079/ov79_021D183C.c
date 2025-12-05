@@ -17,7 +17,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -78,7 +78,7 @@ static void ov79_021D183C(UnkStruct_020989DC *param0)
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3)
+static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, String *param1, u8 param2, u8 param3)
 {
     u32 v0 = TEXT_COLOR(1, 2, 15);
 
@@ -155,13 +155,13 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
         v2 = &(param0->unk_20->unk_1C[v0]);
         v1 = v2->unk_06;
 
-        StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
         StringTemplate_SetNumber(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
         StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
-        StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
+        StringList_AddFromString(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
 
-    StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
+    StringList_AddFromString(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
     MI_CpuCopy8(&Unk_ov79_021D3BB0, &param0->unk_84, sizeof(ListMenuTemplate));
 
     param0->unk_82 = param0->unk_20->unk_06;
@@ -275,7 +275,7 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
         return;
     }
 
-    v0 = (20 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], 0);
+    v0 = (20 * 8) - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], 0);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, TEXT_SPEED_INSTANT, v1, NULL);
 }
@@ -348,7 +348,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     }
 
     ov79_021D1D20(v0, &v0->unk_20->unk_1C[param1]);
-    Strbuf_Clear(v0->unk_30.unk_04);
+    String_Clear(v0->unk_30.unk_04);
 
     v4 = v0->unk_20->unk_1C[param1].unk_03;
 
@@ -408,8 +408,8 @@ static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2)
 
 void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0)
 {
-    Strbuf_Clear(param0->unk_30.unk_04);
-    StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
+    String_Clear(param0->unk_30.unk_04);
+    StringTemplate_SetString(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
@@ -417,8 +417,8 @@ void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0)
 
 void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
 {
-    Strbuf_Clear(param0->unk_30.unk_04);
-    StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
+    String_Clear(param0->unk_30.unk_04);
+    StringTemplate_SetString(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);
@@ -444,7 +444,7 @@ void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
     for (v1 = 0; v1 < 6; v1++) {
         static const u8 v4[] = { 2, 10, 4, 6, 10, 6 };
 
-        v0 = (8 * 8) - Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_30.unk_20[v1], 0);
+        v0 = (8 * 8) - Font_CalcStringWidth(FONT_SUBSCREEN, param0->unk_30.unk_20[v1], 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_E8[7 + v1], FONT_SUBSCREEN, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], TEXT_SPEED_INSTANT, v3, NULL);
     }
 }

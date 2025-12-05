@@ -33,7 +33,7 @@
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -288,8 +288,8 @@ void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, in
 int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 {
     int v0;
-    Strbuf *v1;
-    Strbuf *v2;
+    String *v1;
+    String *v2;
     StringTemplate *v3;
     BoxPokemon *v4;
     MessageLoader *v5;
@@ -298,8 +298,8 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 
     v5 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
     v3 = StringTemplate_Default(HEAP_ID_71);
-    v1 = MessageLoader_GetNewStrbuf(v5, param1);
-    v2 = Strbuf_Init(255, HEAP_ID_71);
+    v1 = MessageLoader_GetNewString(v5, param1);
+    v2 = String_Init(255, HEAP_ID_71);
     v4 = Pokemon_GetBoxPokemon(param2);
 
     StringTemplate_SetSpeciesName(v3, 0, v4);
@@ -308,8 +308,8 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     v0 = Text_AddPrinterWithParams(param0, FONT_MESSAGE, v2, 0, 0, param3, NULL);
 
     MessageLoader_Free(v5);
-    Strbuf_Free(v2);
-    Strbuf_Free(v1);
+    String_Free(v2);
+    String_Free(v1);
     StringTemplate_Free(v3);
 
     return v0;
@@ -326,13 +326,13 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
 
     {
         int v1;
-        Strbuf *v2;
+        String *v2;
         MessageLoader *v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
 
         for (v1 = 0; v1 < 2; v1++) {
-            v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
-            StringList_AddFromStrbuf(param0->unk_04.unk_44, v2, v1);
-            Strbuf_Free(v2);
+            v2 = MessageLoader_GetNewString(v3, 2 + v1);
+            StringList_AddFromString(param0->unk_04.unk_44, v2, v1);
+            String_Free(v2);
         }
 
         MessageLoader_Free(v3);

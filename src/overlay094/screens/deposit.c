@@ -34,7 +34,7 @@
 #include "render_window.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -316,15 +316,15 @@ int GTSApplication_Deposit_Exit(GTSApplicationState *appState, int unused1)
 
 static void ov94_0224158C(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(appState->gtsMessageLoader, messageId);
+    String *string = MessageLoader_GetNewString(appState->gtsMessageLoader, messageId);
 
-    StringTemplate_Format(appState->stringTemplate, appState->genericMessageBuffer, strbuf);
+    StringTemplate_Format(appState->stringTemplate, appState->genericMessageBuffer, string);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->bottomInstructionWindow, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }
 
 static void ov94_022415F8(BgConfig *bgConfig)
@@ -480,8 +480,8 @@ static void ov94_02241880(GTSApplicationState *appState)
 
 static void ov94_022418B8(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
-    appState->title = MessageLoader_GetNewStrbuf(appState->gtsMessageLoader, GTS_Text_DepositPokemon);
+    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_DepositPokemon);
     appState->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
     MI_CpuClearFast(appState->unk_10E4, sizeof(GTSApplicationState_sub3));
@@ -497,8 +497,8 @@ static void ov94_02241920(GTSApplicationState *appState)
     Heap_Free(appState->unk_10E4->unk_14);
     Heap_Free(appState->unk_10E4->unk_18);
     Heap_Free(appState->unk_10E4);
-    Strbuf_Free(appState->genericMessageBuffer);
-    Strbuf_Free(appState->title);
+    String_Free(appState->genericMessageBuffer);
+    String_Free(appState->title);
 }
 
 static int ov94_0224195C(GTSApplicationState *appState)
@@ -817,24 +817,24 @@ static TextColor sGenderTextColors[] = {
 void ov94_02242158(Window *window, MessageLoader *speciesMessageLoader, int messageId, int centered, int y, TextColor textColor)
 {
     if (messageId != 0) {
-        Strbuf *strbuf = MessageLoader_GetNewStrbuf(speciesMessageLoader, messageId);
-        ov94_02245900(window, strbuf, 0, y, centered, textColor);
-        Strbuf_Free(strbuf);
+        String *string = MessageLoader_GetNewString(speciesMessageLoader, messageId);
+        ov94_02245900(window, string, 0, y, centered, textColor);
+        String_Free(string);
     }
 }
 
 void ov94_0224218C(Window *window, MessageLoader *countryMessageLoader, MessageLoader *gtsMessageLoader, int messageId, int centered, int y, TextColor textColor)
 {
-    Strbuf *strbuf;
+    String *string;
 
     if (messageId != 0) {
-        strbuf = MessageLoader_GetNewStrbuf(countryMessageLoader, messageId);
-        ov94_02245900(window, strbuf, 0, y, centered, textColor);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(countryMessageLoader, messageId);
+        ov94_02245900(window, string, 0, y, centered, textColor);
+        String_Free(string);
     } else {
-        strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Any);
-        ov94_02245900(window, strbuf, 0, y, centered, textColor);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Any);
+        ov94_02245900(window, string, 0, y, centered, textColor);
+        String_Free(string);
     }
 }
 
@@ -862,15 +862,15 @@ void ov94_02242204(Window *window, MessageLoader *gtsMessageLoader, int gender, 
         return;
     }
 
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, gGTSGenderPreferenceMessages[gender]);
+    String *string = MessageLoader_GetNewString(gtsMessageLoader, gGTSGenderPreferenceMessages[gender]);
 
     if (x > 3) {
-        ov94_02245900(window, strbuf, x, y, 0, ov94_022421E8(gender, fallback));
+        ov94_02245900(window, string, x, y, 0, ov94_022421E8(gender, fallback));
     } else {
-        ov94_02245900(window, strbuf, 0, y, x, ov94_022421E8(gender, fallback));
+        ov94_02245900(window, string, 0, y, x, ov94_022421E8(gender, fallback));
     }
 
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }
 
 void ov94_0224226C(Window *window, MessageLoader *gtsMessageLoader, int messageIndex, int centered, int y, TextColor textColor, BOOL isRange, int x)
@@ -884,9 +884,9 @@ void ov94_0224226C(Window *window, MessageLoader *gtsMessageLoader, int messageI
             messages = gtsLevelRangeMessages;
         }
 
-        Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, messages[messageIndex].unk_00);
-        ov94_02245900(window, strbuf, x, y, centered, textColor);
-        Strbuf_Free(strbuf);
+        String *string = MessageLoader_GetNewString(gtsMessageLoader, messages[messageIndex].unk_00);
+        ov94_02245900(window, string, x, y, centered, textColor);
+        String_Free(string);
     }
 }
 
@@ -897,8 +897,8 @@ void ov94_022422B8(Window *window, MessageLoader *gtsMessageLoader, int messageI
 
 void ov94_022422D4(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, StringTemplate *param2, Window windows[], int species, int gender, int levelRange)
 {
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Setup_Wanted);
-    ov94_02245900(&windows[0], strbuf, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    String *string = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Setup_Wanted);
+    ov94_02245900(&windows[0], string, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     for (int i = 1; i < 3; i++) {
         Window_FillTilemap(&windows[i], 0x0);
@@ -911,13 +911,13 @@ void ov94_022422D4(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessag
     }
 
     ov94_022422B8(&windows[2], gtsMessageLoader, levelRange, 2, 0, TEXT_COLOR(15, 2, 0), 0);
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }
 
 void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, StringTemplate *param2, Window windows[], int species, int gender, int levelRange)
 {
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Setup_Wanted);
-    ov94_02245900(&windows[0], strbuf, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    String *string = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Setup_Wanted);
+    ov94_02245900(&windows[0], string, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     for (int i = 1; i < 3; i++) {
         Window_FillTilemap(&windows[i], 0x0);
@@ -930,48 +930,48 @@ void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessag
     }
 
     ov94_022422B8(&windows[2], gtsMessageLoader, levelRange, 2, 0, TEXT_COLOR(15, 2, 0), 0);
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }
 
 static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *template, Window windows[], BoxPokemon *boxMon, GTSPokemonCriteria *criteria)
 {
-    Strbuf *offerStrbuf, *levelStrbuf; // compiler
-    Strbuf *nicknameStrbuf = Strbuf_Init(10 + 1, HEAP_ID_62);
-    Strbuf *genderStrbuf = Strbuf_Init(10 + 1, HEAP_ID_62);
+    String *offerString, *levelString; // compiler
+    String *nicknameString = String_Init(10 + 1, HEAP_ID_62);
+    String *genderString = String_Init(10 + 1, HEAP_ID_62);
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameStrbuf);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
 
     int gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
     int level = BoxPokemon_GetLevel(boxMon);
-    offerStrbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_OfferPokemonHeader);
+    offerString = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_OfferPokemonHeader);
 
     StringTemplate_SetNumber(template, 3, level, 3, 0, 1);
-    levelStrbuf = MessageUtil_ExpandedStrbuf(template, gtsMessageLoader, GTS_Text_LevelTemplate, HEAP_ID_62);
+    levelString = MessageUtil_ExpandedString(template, gtsMessageLoader, GTS_Text_LevelTemplate, HEAP_ID_62);
 
     if (gender != GENDER_NONE + 1) {
-        MessageLoader_GetStrbuf(gtsMessageLoader, gGTSGenderPreferenceMessages[gender], genderStrbuf);
+        MessageLoader_GetString(gtsMessageLoader, gGTSGenderPreferenceMessages[gender], genderString);
     }
 
     for (int i = 0; i < 3; i++) {
         Window_FillTilemap(&windows[i], 0x0);
     }
 
-    ov94_02245900(&windows[0], offerStrbuf, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[1], nicknameStrbuf, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[2], levelStrbuf, 0, 0, 2, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&windows[0], offerString, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&windows[1], nicknameString, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&windows[2], levelString, 0, 0, 2, TEXT_COLOR(15, 2, 0));
 
     if (gender != GENDER_NONE + 1) {
-        ov94_02245900(&windows[1], genderStrbuf, 70, 0, 0, sGenderTextColors[gender - 1]);
+        ov94_02245900(&windows[1], genderString, 70, 0, 0, sGenderTextColors[gender - 1]);
     }
 
     criteria->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     criteria->gender = gender;
     criteria->level = level;
 
-    Strbuf_Free(levelStrbuf);
-    Strbuf_Free(genderStrbuf);
-    Strbuf_Free(nicknameStrbuf);
-    Strbuf_Free(offerStrbuf);
+    String_Free(levelString);
+    String_Free(genderString);
+    String_Free(nicknameString);
+    String_Free(offerString);
 }
 
 u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)

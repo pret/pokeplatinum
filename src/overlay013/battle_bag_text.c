@@ -9,7 +9,7 @@
 #include "message.h"
 #include "render_text.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 
@@ -430,12 +430,12 @@ void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen scree
 static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, enum Font font, u32 yOffset, TextColor color)
 {
     Window *window = &battleBag->windows[windowIndex];
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, textID);
-    u32 stringWidth = Font_CalcStrbufWidth(font, strbuf, 0);
+    String *string = MessageLoader_GetNewString(battleBag->messageLoader, textID);
+    u32 stringWidth = Font_CalcStringWidth(font, string, 0);
     u32 xOffset = (Window_GetWidth(window) * 8 - stringWidth) / 2;
 
-    Text_AddPrinterWithParamsAndColor(window, font, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParamsAndColor(window, font, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -453,17 +453,17 @@ static void RenderMenuScreen(BattleBag *battleBag)
     PrintTextToWindow(battleBag, BATTLE_BAG_MENU_WINDOW_BATTLE_ITEMS, BattleBag_Text_MenuTitleBattleItems, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
 
     if (battleBag->context->lastUsedItem != ITEM_NONE) {
-        Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_ItemUsedLast);
+        String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_ItemUsedLast);
 
-        Text_AddPrinterWithParamsAndColor(&battleBag->windows[BATTLE_BAG_MENU_WINDOW_LAST_USED_ITEM], FONT_SUBSCREEN, strbuf, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-        Strbuf_Free(strbuf);
+        Text_AddPrinterWithParamsAndColor(&battleBag->windows[BATTLE_BAG_MENU_WINDOW_LAST_USED_ITEM], FONT_SUBSCREEN, string, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+        String_Free(string);
         Window_ScheduleCopyToVRAM(&battleBag->windows[BATTLE_BAG_MENU_WINDOW_LAST_USED_ITEM]);
     }
 }
 
 static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, TextColor color)
 {
-    Strbuf *strbuf;
+    String *string;
     u32 width;
     u32 xOffset;
     Window *window = &battleBag->windows[windowIndex];
@@ -471,16 +471,16 @@ static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32
     Window_FillTilemap(window, 0);
 
     if (battleBag->items[battleBag->currentBattlePocket][itemIndex].item != ITEM_NONE) {
-        strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, sPocketSlotTextIDs[slot].name);
+        string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].name);
 
         StringTemplate_SetItemName(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].item);
-        StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+        StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
 
-        width = Font_CalcStrbufWidth(font, battleBag->strbuf, 0);
+        width = Font_CalcStringWidth(font, battleBag->string, 0);
         xOffset = (Window_GetWidth(window) * 8 - width) / 2;
 
-        Text_AddPrinterWithParamsAndColor(window, font, battleBag->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
-        Strbuf_Free(strbuf);
+        Text_AddPrinterWithParamsAndColor(window, font, battleBag->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        String_Free(string);
     }
 
     Window_ScheduleCopyToVRAM(window);
@@ -488,18 +488,18 @@ static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32
 
 static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, u32 yOffset, TextColor color)
 {
-    Strbuf *strbuf;
+    String *string;
     Window *window = &battleBag->windows[windowIndex];
 
     Window_FillTilemap(window, 0);
 
     if (battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity != ITEM_NONE) {
-        strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, sPocketSlotTextIDs[slot].amount);
+        string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].amount);
 
         StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity, 3, 0, CHARSET_MODE_EN);
-        StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
-        Text_AddPrinterWithParamsAndColor(window, font, battleBag->strbuf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
+        Text_AddPrinterWithParamsAndColor(window, font, battleBag->string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        String_Free(string);
     }
 
     Window_ScheduleCopyToVRAM(window);
@@ -536,26 +536,26 @@ void BattleBagText_PrintPocketPageNums(BattleBag *battleBag)
     Window_FillTilemap(&battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_PAGE_NUMS], 0);
 
     Window *window = &battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_PAGE_NUMS];
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketPageDivider);
-    u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketPageDivider);
+    u32 width = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     u32 xOffset = (Window_GetWidth(window) * 8 - width) / 2;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
 
-    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketCurrentPage);
+    string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketCurrentPage);
     StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->numBattlePocketPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
-    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, xOffset + width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(strbuf);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->string, xOffset + width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
 
-    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketPageNum);
+    string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketPageNum);
     StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
-    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
 
-    width = Font_CalcStrbufWidth(FONT_SYSTEM, battleBag->strbuf, 0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, xOffset - width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(strbuf);
+    width = Font_CalcStringWidth(FONT_SYSTEM, battleBag->string, 0);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->string, xOffset - width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -591,24 +591,24 @@ static void RenderPocketMenuScreen(BattleBag *battleBag)
 static void PrintUseItemName(BattleBag *battleBag, u32 slot)
 {
     Window *window = &battleBag->windows[BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_NAME];
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, sPocketSlotTextIDs[0].name);
+    String *string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[0].name);
 
     StringTemplate_SetItemName(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][slot].item);
-    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
     Window_FillTilemap(window, 0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
 static void PrintUseItemDesc(BattleBag *battleBag, u32 slot)
 {
     Window *window = &battleBag->windows[BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_DESC];
-    Strbuf *strbuf = Strbuf_Init(130, battleBag->context->heapID);
+    String *string = String_Init(130, battleBag->context->heapID);
 
-    Item_LoadDescription(strbuf, battleBag->items[battleBag->currentBattlePocket][slot].item, battleBag->context->heapID);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(strbuf);
+    Item_LoadDescription(string, battleBag->items[battleBag->currentBattlePocket][slot].item, battleBag->context->heapID);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -638,5 +638,5 @@ void BattleBagText_DisplayMessage(BattleBag *battleBag)
 void BattleBagText_PrintToMessageBox(BattleBag *battleBag)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->strbuf, 0, 0, BattleSystem_TextSpeed(battleBag->context->battleSystem), NULL);
+    battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->string, 0, 0, BattleSystem_TextSpeed(battleBag->context->battleSystem), NULL);
 }

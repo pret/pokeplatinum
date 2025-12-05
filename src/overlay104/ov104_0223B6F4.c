@@ -20,7 +20,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 

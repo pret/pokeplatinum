@@ -53,7 +53,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
@@ -121,7 +121,7 @@ typedef struct MapChangeUndergroundData {
     u16 unk_1C;
     SaveInfoWindow *saveInfoWin;
     Window unk_24;
-    Strbuf *unk_34;
+    String *unk_34;
     u8 unk_38;
     Menu *unk_3C;
 } MapChangeUndergroundData;
@@ -1144,7 +1144,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
     case 0:
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD2);
 
-        mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
+        mapChangeUndergroundData->unk_34 = MessageLoader_GetNewString(msgLoader, 124);
         MessageLoader_Free(msgLoader);
 
         FieldMessage_AddWindow(fieldSystem->bgConfig, &mapChangeUndergroundData->unk_24, 3);
@@ -1154,7 +1154,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 1:
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
-            Strbuf_Free(mapChangeUndergroundData->unk_34);
+            String_Free(mapChangeUndergroundData->unk_34);
             LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD2);
             mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;

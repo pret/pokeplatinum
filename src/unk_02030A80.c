@@ -14,7 +14,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
@@ -73,11 +73,11 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(saveData, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
 
-Strbuf *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID)
+String *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init((7 * 2) + 1, heapID);
+    String *v0 = String_Init((7 * 2) + 1, heapID);
 
-    Strbuf_CopyNumChars(v0, param0->unk_00, (7 * 2) + 1);
+    String_CopyNumChars(v0, param0->unk_00, (7 * 2) + 1);
     return v0;
 }
 
@@ -139,7 +139,7 @@ int sub_02030C08(const UnkStruct_02030A80 *param0)
     return param0->unk_18;
 }
 
-Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int heapID)
+String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int heapID)
 {
     int v0 = 0;
 
@@ -167,9 +167,9 @@ Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int hea
 
         return NULL;
     } else {
-        Strbuf *v3 = Strbuf_Init(40, heapID);
+        String *v3 = String_Init(40, heapID);
 
-        Strbuf_CopyNumChars(v3, param0->unk_20_val2, 40);
+        String_CopyNumChars(v3, param0->unk_20_val2, 40);
         return v3;
     }
 }

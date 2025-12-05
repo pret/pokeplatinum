@@ -56,7 +56,7 @@
 #include "savedata.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
@@ -991,20 +991,20 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
         TrainerInfo_SetName(param1, param0->unk_08);
 
         {
-            Strbuf *v2;
-            Strbuf *v3;
+            String *v2;
+            String *v3;
 
-            v3 = Strbuf_Init((7 + 1) * 4, heapID);
-            v2 = Strbuf_Init((7 + 1) * 4, heapID);
-            TrainerInfo_NameStrbuf(param1, v2);
+            v3 = String_Init((7 + 1) * 4, heapID);
+            v2 = String_Init((7 + 1) * 4, heapID);
+            TrainerInfo_NameString(param1, v2);
             v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 
             if (v0 == 0) {
                 v1 = 1;
             }
 
-            Strbuf_Free(v3);
-            Strbuf_Free(v2);
+            String_Free(v3);
+            String_Free(v2);
         }
     } else {
         v1 = 1;
@@ -1012,13 +1012,13 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
 
     if (v1) {
         MessageLoader *v4;
-        Strbuf *v5;
+        String *v5;
 
         v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
-        v5 = MessageLoader_GetNewStrbuf(v4, 64);
+        v5 = MessageLoader_GetNewString(v4, 64);
 
-        TrainerInfo_SetNameFromStrbuf(param1, v5);
-        Strbuf_Free(v5);
+        TrainerInfo_SetNameFromString(param1, v5);
+        String_Free(v5);
         MessageLoader_Free(v4);
     }
 
@@ -2290,13 +2290,13 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
     }
 
     {
-        Strbuf *v5;
+        String *v5;
 
-        v5 = TrainerInfo_NameNewStrbuf(v0, heapID);
+        v5 = TrainerInfo_NameNewString(v0, heapID);
 
-        Strbuf_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
-        Strbuf_ToChars(v5, param0->unk_00, 7 + 1);
-        Strbuf_Free(v5);
+        String_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
+        String_ToChars(v5, param0->unk_00, 7 + 1);
+        String_Free(v5);
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;

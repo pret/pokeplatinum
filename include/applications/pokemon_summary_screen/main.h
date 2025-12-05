@@ -21,7 +21,7 @@
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -354,9 +354,9 @@ typedef struct PokemonSummary {
 } PokemonSummary;
 
 typedef struct PokemonSummaryMonData {
-    Strbuf *speciesName;
-    Strbuf *nickname;
-    Strbuf *OTName;
+    String *speciesName;
+    String *nickname;
+    String *OTName;
 
     u16 species;
     u16 heldItem;
@@ -440,8 +440,8 @@ typedef struct PokemonSummaryScreen {
     MessageLoader *msgLoader;
     MessageLoader *ribbonLoader;
     StringTemplate *strFormatter;
-    Strbuf *strbuf;
-    Strbuf *playerName;
+    String *string;
+    String *playerName;
     MessageLoader *moveNameLoader;
     NARC *narcPlPokeData;
 

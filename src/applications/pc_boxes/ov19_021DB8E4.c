@@ -26,7 +26,7 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -117,7 +117,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
     param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), HEAP_ID_BOX_GRAPHICS);
     param0->unk_44 = FontSpecialChars_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_4BFC = Strbuf_Init(500, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_4BFC = String_Init(500, HEAP_ID_BOX_GRAPHICS);
     param0->unk_10 = NULL;
     param0->unk_3C.pixels = param0->unk_18->pRawData;
     param0->unk_3C.width = 32;
@@ -181,7 +181,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
     }
 
     if (param0->unk_4BFC) {
-        Strbuf_Free(param0->unk_4BFC);
+        String_Free(param0->unk_4BFC);
     }
 
     if (param0->unk_10) {
@@ -431,7 +431,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
 
     PCBoxes_BufferBoxName(pcBoxes, param0->unk_E0, param0->unk_4BFC);
 
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
+    v2 = Font_CalcStringWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
     v3 = 48 - (v2 / 2);
 
     Window_FillTilemap(v1, 7);
@@ -600,7 +600,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
         Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
         Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         Window_FillTilemap(&param0->unk_10[2], 4);
-        MessageLoader_GetStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
+        MessageLoader_GetString(param0->unk_4BF8, v1, param0->unk_4BFC);
         Text_AddPrinterWithParamsAndColor(&param0->unk_10[2], FONT_SYSTEM, param0->unk_4BFC, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 4), NULL);
         Window_CopyToVRAM(&param0->unk_10[2]);
 

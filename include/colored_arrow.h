@@ -2,12 +2,12 @@
 #define POKEPLATINUM_COLORED_ARROW_H
 
 #include "bg_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 typedef struct ColoredArrow {
     TextColor color;
-    Strbuf *strbuf;
+    String *string;
 } ColoredArrow;
 
 ColoredArrow *ColoredArrow_New(u32 heapID);

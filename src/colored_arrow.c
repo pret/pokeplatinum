@@ -8,7 +8,7 @@
 #include "bg_window.h"
 #include "charcode.h"
 #include "heap.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 ColoredArrow *ColoredArrow_New(u32 heapID)
@@ -21,8 +21,8 @@ ColoredArrow *ColoredArrow_New(u32 heapID)
 
     if (arrow) {
         arrow->color = TEXT_COLOR(1, 2, 15);
-        arrow->strbuf = Strbuf_Init(4, heapID);
-        Strbuf_CopyChars(arrow->strbuf, chars);
+        arrow->string = String_Init(4, heapID);
+        String_CopyChars(arrow->string, chars);
     }
 
     return arrow;
@@ -33,8 +33,8 @@ void ColoredArrow_Free(ColoredArrow *arrow)
     GF_ASSERT(arrow != NULL);
 
     if (arrow) {
-        if (arrow->strbuf) {
-            Strbuf_Free(arrow->strbuf);
+        if (arrow->string) {
+            String_Free(arrow->string);
         }
 
         Heap_Free(arrow);
@@ -52,6 +52,6 @@ void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color)
 
 void ColoredArrow_Print(const ColoredArrow *arrow, Window *window, u32 xOffset, u32 yOffset)
 {
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, arrow->strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, arrow->color, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, arrow->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, arrow->color, NULL);
     Window_LoadTiles(window);
 }

@@ -16,7 +16,7 @@
 #include "message.h"
 #include "savedata.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -102,7 +102,7 @@ typedef struct {
     u8 itemsCount;
     u8 unused[2];
     u8 state;
-    Strbuf *strbuf;
+    String *string;
     u8 bgPriorities[4];
     int engineALayers;
     u8 fieldMsgPrinterId;

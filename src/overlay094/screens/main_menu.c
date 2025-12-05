@@ -22,7 +22,7 @@
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -326,14 +326,14 @@ static void GTSApplication_MainMenu_CleanupWindows(GTSApplicationState *appState
 
 static void GTS_MainMenu_LoadTitle(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
-    appState->title = MessageLoader_GetNewStrbuf(appState->gtsMessageLoader, GTS_Text_MainMenu_Title);
+    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_MainMenu_Title);
 }
 
 static void GTSApplication_MainMenu_CleanupStrings(GTSApplicationState *appState)
 {
-    Strbuf_Free(appState->genericMessageBuffer);
-    Strbuf_Free(appState->title);
+    String_Free(appState->genericMessageBuffer);
+    String_Free(appState->title);
 }
 
 static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *appState)
@@ -553,7 +553,7 @@ static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *appSt
 
 static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
+    MessageLoader_GetString(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, FALSE, 1, 10);
 
@@ -562,7 +562,7 @@ static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *app
 
 static void ov94_0223CFD8(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
+    MessageLoader_GetString(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->unk_109C, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->unk_109C, FALSE, 1, 10);
 
@@ -571,11 +571,11 @@ static void ov94_0223CFD8(GTSApplicationState *appState, int messageId, int text
 
 void GTSApplication_MainMenu_RenderButton(Window *window, MessageLoader *gtsMessageLoader, int messageId, u16 tile)
 {
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, messageId);
+    String *string = MessageLoader_GetNewString(gtsMessageLoader, messageId);
 
     Window_FillTilemap(window, tile);
-    Text_AddPrinterWithParams(window, FONT_MESSAGE, strbuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParams(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    String_Free(string);
 }
 
 void ov94_0223D068(GTSApplicationState *appState)

@@ -22,7 +22,7 @@ typedef struct TradeSequenceData {
     BgConfig *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
-    Strbuf *unk_14;
+    String *unk_14;
     SpriteList *unk_18;
     G2dRenderer unk_1C;
     SysTask *unk_1A8;

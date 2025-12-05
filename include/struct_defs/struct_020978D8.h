@@ -5,7 +5,7 @@
 #include "struct_defs/union_02028328.h"
 
 #include "game_options.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     u16 unk_00;
@@ -17,7 +17,7 @@ typedef struct {
     u8 language;
     u8 gameVersion;
     u8 mailType;
-    Strbuf *unk_10;
+    String *unk_10;
     UnkUnion_02028328 unk_14[3];
     Sentence unk_1A[3];
 } UnkStruct_020978D8;

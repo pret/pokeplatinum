@@ -24,7 +24,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -48,8 +48,8 @@ typedef struct {
     Window unk_10[16];
     MessageLoader *unk_110;
     StringTemplate *unk_114;
-    Strbuf *unk_118;
-    Strbuf *unk_11C;
+    String *unk_118;
+    String *unk_11C;
     PaletteData *unk_120;
     const Options *options;
     SaveData *saveData;
@@ -124,8 +124,8 @@ int ov110_021D0D80(ApplicationManager *appMan, int *param1)
 
     v1->unk_110 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0016, HEAP_ID_114);
     v1->unk_114 = StringTemplate_Default(HEAP_ID_114);
-    v1->unk_118 = Strbuf_Init(800, HEAP_ID_114);
-    v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
+    v1->unk_118 = String_Init(800, HEAP_ID_114);
+    v1->unk_11C = String_Init(800, HEAP_ID_114);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_114);
@@ -173,8 +173,8 @@ int ov110_021D0EF0(ApplicationManager *appMan, int *param1)
 
     MessageLoader_Free(v1->unk_110);
     StringTemplate_Free(v1->unk_114);
-    Strbuf_Free(v1->unk_118);
-    Strbuf_Free(v1->unk_11C);
+    String_Free(v1->unk_118);
+    String_Free(v1->unk_11C);
 
     ov110_021D216C(v1->unk_10, ov110_021D1208(v1->unk_06));
     ov110_021D11CC(v1->unk_0C);
@@ -471,15 +471,15 @@ static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 *param0, Window *param1, int p
     if (param9) {
         Window_FillTilemap(param1, param7);
     }
-    MessageLoader_GetStrbuf(param0->unk_110, param2, param0->unk_11C);
+    MessageLoader_GetString(param0->unk_110, param2, param0->unk_11C);
     StringTemplate_Format(param0->unk_114, param0->unk_118, param0->unk_11C);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_118, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_118, 0);
         break;
     }
 
@@ -679,14 +679,14 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
 static void ov110_021D19B0(UnkStruct_ov110_021D0F78 *param0)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_114);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
+    v1 = MessageLoader_GetNewString(v0, param0->unk_08);
 
     MessageLoader_Free(v0);
-    StringTemplate_SetStrbuf(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
-    Strbuf_Free(v1);
+    StringTemplate_SetString(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
+    String_Free(v1);
 
     return;
 }

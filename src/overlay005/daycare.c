@@ -25,7 +25,7 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
@@ -250,7 +250,7 @@ int DaycareMon_GiveExperience(DaycareMon *daycareMon)
 static u8 DaycareMon_BufferGainedLevels(DaycareMon *daycareMon, StringTemplate *template)
 {
     int levelsGained;
-    Strbuf *strBuf;
+    String *string;
     charcode_t nickname[MON_NAME_LEN + 1];
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
 
@@ -670,7 +670,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     u8 metLvl, isEgg;
     u16 ball;
     u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
-    Strbuf *eggName;
+    String *eggName;
 
     Pokemon_InitWith(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
 
@@ -690,17 +690,17 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
 
     eggName = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
     Pokemon_SetValue(egg, MON_DATA_NICKNAME_STRING, eggName);
-    Strbuf_Free(eggName);
+    String_Free(eggName);
 
     if (param4 == 4) {
         u32 trainerId = TrainerInfo_ID(trainerInfo);
         u32 gender = TrainerInfo_Gender(trainerInfo);
-        Strbuf *otName = TrainerInfo_NameNewStrbuf(trainerInfo, 32);
+        String *otName = TrainerInfo_NameNewString(trainerInfo, 32);
 
         Pokemon_SetValue(egg, MON_DATA_OT_NAME_STRING, otName);
         Pokemon_SetValue(egg, MON_DATA_OT_ID, &trainerId);
         Pokemon_SetValue(egg, MON_DATA_OT_GENDER, &gender);
-        Strbuf_Free(otName);
+        String_Free(otName);
     }
 
     UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
@@ -711,7 +711,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     u8 level;
     u16 ball;
     u32 personality;
-    Strbuf *strBuf;
+    String *string;
     u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
 
     personality = Daycare_GetOffspringPersonality(daycare);
@@ -742,10 +742,10 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     Pokemon_SetValue(mon, MON_DATA_MET_LEVEL, &level);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
-    strBuf = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
+    string = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
 
-    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, strBuf);
-    Strbuf_Free(strBuf);
+    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);
+    String_Free(string);
 }
 
 void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
@@ -1097,7 +1097,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     u32 personality, otID;
     u8 ivs[STAT_MAX], pokerus;
     u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender;
-    Strbuf *strBuf = Strbuf_Init(7 + 1, heapID);
+    String *string = String_Init(7 + 1, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
     species = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);
@@ -1119,7 +1119,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     pokerus = Pokemon_GetValue(egg, MON_DATA_POKERUS, NULL);
     fatefulEncounter = Pokemon_GetValue(egg, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
-    Pokemon_GetValue(egg, MON_DATA_OT_NAME_STRING, strBuf);
+    Pokemon_GetValue(egg, MON_DATA_OT_NAME_STRING, string);
 
     gender = Pokemon_GetValue(egg, MON_DATA_OT_GENDER, NULL);
     otID = Pokemon_GetValue(egg, MON_DATA_OT_ID, NULL);
@@ -1153,7 +1153,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
     Pokemon_SetValue(mon, MON_DATA_POKERUS, &pokerus);
     Pokemon_SetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
-    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, strBuf);
+    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, string);
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &gender);
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &otID);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
@@ -1179,7 +1179,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     Pokemon_SetValue(mon, MON_DATA_MET_DAY, &day);
 
     Pokemon_Copy(mon, egg);
-    Strbuf_Free(strBuf);
+    String_Free(string);
     Heap_Free(mon);
 }
 

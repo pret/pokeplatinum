@@ -31,7 +31,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
@@ -372,8 +372,8 @@ static void ov94_0223E9B8(GTSApplicationState *param0)
 {
     int v0;
 
-    param0->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
-    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_SeekPokemon);
+    param0->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    param0->title = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_SeekPokemon);
     param0->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(GTSApplicationState_sub3));
@@ -389,8 +389,8 @@ static void ov94_0223EA20(GTSApplicationState *param0)
     Heap_Free(param0->unk_10E4->unk_14);
     Heap_Free(param0->unk_10E4->unk_18);
     Heap_Free(param0->unk_10E4);
-    Strbuf_Free(param0->genericMessageBuffer);
-    Strbuf_Free(param0->title);
+    String_Free(param0->genericMessageBuffer);
+    String_Free(param0->title);
 }
 
 static int ov94_0223EA5C(GTSApplicationState *param0)
@@ -1064,9 +1064,9 @@ static int ov94_0223F970(GTSApplicationState *param0)
 
 static void ov94_0223F9A4(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
 {
-    Strbuf *v0;
+    String *v0;
 
-    MessageLoader_GetStrbuf(param0->gtsMessageLoader, param1, param0->genericMessageBuffer);
+    MessageLoader_GetString(param0->gtsMessageLoader, param1, param0->genericMessageBuffer);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
@@ -1075,41 +1075,41 @@ static void ov94_0223F9A4(GTSApplicationState *param0, int param1, int param2, i
 
 static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *gtsMessageLoader)
 {
-    Strbuf *v0, *v1, *v2;
+    String *v0, *v1, *v2;
 
-    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Pokemon);
+    v0 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Pokemon);
     ov94_02245900(&param0[0], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    Strbuf_Free(v0);
+    String_Free(v0);
 
-    v2 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Gender);
+    v2 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Gender);
     ov94_02245900(&param0[2], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    Strbuf_Free(v2);
+    String_Free(v2);
 
-    v1 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Level);
+    v1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Level);
     ov94_02245900(&param0[4], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    Strbuf_Free(v1);
+    String_Free(v1);
 
-    v1 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Location);
+    v1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Location);
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    Strbuf_Free(v1);
+    String_Free(v1);
 
-    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Search);
+    v0 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Search);
 
     {
         int v3 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[6].width * 8);
         ov94_02245900(&param0[6], v0, v3, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 
-    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Criteria_Back);
+    v0 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Back);
 
     {
         int v4 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[7].width * 8);
         ov94_02245900(&param0[7], v0, v4, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static int ov94_0223FB0C(const GTSPokemonRequirements *param0, const GTSPokemonRequirements *param1, int param2, int param3)

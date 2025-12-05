@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 static const struct {
     u16 unk_00;
@@ -50,10 +50,10 @@ u32 ov20_021D5044(void)
     return NELEMS(Unk_ov20_021D5320);
 }
 
-void ov20_021D5048(u32 param0, Strbuf *param1)
+void ov20_021D5048(u32 param0, String *param1)
 {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
-    Strbuf_CopyNumChars(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
+    String_CopyNumChars(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
 }
 
 void ov20_021D506C(u32 param0, u32 *param1, u32 *param2)

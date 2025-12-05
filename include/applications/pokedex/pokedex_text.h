@@ -3,12 +3,12 @@
 
 #include "constants/heap.h"
 
-#include "strbuf.h"
+#include "string_gf.h"
 
-void PokedexText_Free(Strbuf *strbuf);
+void PokedexText_Free(String *string);
 int PokedexText_ForeignLanguage(int languageIndex);
-Strbuf *PokedexText_NameNumber(int species, int language, enum HeapID heapID);
-Strbuf *PokedexText_Category(int species, int language, enum HeapID heapID);
-Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapID heapID);
+String *PokedexText_NameNumber(int species, int language, enum HeapID heapID);
+String *PokedexText_Category(int species, int language, enum HeapID heapID);
+String *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapID heapID);
 
 #endif // POKEPLATINUM_POKEDEX_TEXT_H

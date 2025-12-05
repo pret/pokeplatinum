@@ -29,7 +29,7 @@
 #include "render_window.h"
 #include "savedata.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -266,14 +266,14 @@ static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
     u32 v1 = param1;
 
     Window_FillTilemap(&v0->secondaryWindow, 15);
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->strbuf);
-    Text_AddPrinterWithParams(&v0->secondaryWindow, FONT_SYSTEM, v0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->string);
+    Text_AddPrinterWithParams(&v0->secondaryWindow, FONT_SYSTEM, v0->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param1 != 0xfffffffe) {
         StringTemplate_SetUndergroundItemName(v0->template, 2, v0->unk_279[v1]);
         StringTemplate_SetNumber(v0->template, 6, v0->unk_27E[v1], 2, 1, 1);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->strbuf);
-        StringTemplate_Format(v0->template, v0->fmtString, v0->strbuf);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->string);
+        StringTemplate_Format(v0->template, v0->fmtString, v0->string);
         Text_AddPrinterWithParams(&v0->secondaryWindow, FONT_SYSTEM, v0->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         (void)0;
@@ -346,16 +346,16 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
         }
     }
 
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->strbuf);
-    Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->string);
+    Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (index == 0xfffffffe) {
         (void)0;
     } else if (v7 != 0) {
         StringTemplate_SetUndergroundItemName(v1->template, 2, v7);
         StringTemplate_SetNumber(v1->template, 6, v8, 2, 1, 1);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->strbuf);
-        StringTemplate_Format(v1->template, v1->fmtString, v1->strbuf);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->string);
+        StringTemplate_Format(v1->template, v1->fmtString, v1->string);
         Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
 
         v1->unk_279[0] = v7;
@@ -363,8 +363,8 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
     } else {
         v1->unk_279[0] = v7;
 
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->strbuf);
-        Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->strbuf, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->string);
+        Text_AddPrinterWithParams(&v1->secondaryWindow, FONT_SYSTEM, v1->string, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Window_ScheduleCopyToVRAM(&v1->secondaryWindow);
@@ -502,8 +502,8 @@ int ov23_02252C70(void *param0)
 
 static void ov23_02252C78(UndergroundMenu *param0)
 {
-    Strbuf_Free(param0->strbuf);
-    Strbuf_Free(param0->fmtString);
+    String_Free(param0->string);
+    String_Free(param0->fmtString);
     StringTemplate_Free(param0->template);
     Heap_Free(param0);
 }
@@ -561,8 +561,8 @@ void ov23_02252D74(UndergroundMenu *param0, int param1)
     Window_FillTilemap(&param0->unk_30, 15);
     Window_CopyToVRAM(&param0->unk_30);
 
-    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->strbuf);
-    Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->strbuf, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->string);
+    Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_30);
 }
 
@@ -926,8 +926,8 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->fieldSystem = fieldSystem;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
-    v4->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
-    v4->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v4->string = String_Init((50 * 2), HEAP_ID_FIELD1);
+    v4->fmtString = String_Init((50 * 2), HEAP_ID_FIELD1);
     v4->template = StringTemplate_Default(HEAP_ID_FIELD1);
     v4->state = 0;
 

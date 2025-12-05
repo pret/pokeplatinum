@@ -22,7 +22,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -1148,7 +1148,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     NNSG2dImageProxy *imgProxy;
     Window window;
     MessageLoader *msgLoader;
-    Strbuf *nickname, *template;
+    String *nickname, *template;
     Pokemon *mon;
     BoxPokemon *boxMon;
     StringTemplate *strFormatter;
@@ -1157,8 +1157,8 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
     strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
-    nickname = Strbuf_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
-    template = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00964);
+    nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
+    template = MessageLoader_GetNewString(msgLoader, pl_msg_00000368_00964);
 
     mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
     boxMon = Pokemon_GetBoxPokemon(mon);
@@ -1192,8 +1192,8 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     }
 
     Window_Remove(&window);
-    Strbuf_Free(nickname);
-    Strbuf_Free(template);
+    String_Free(nickname);
+    String_Free(template);
 }
 
 static void Healthbar_DrawLevelText(Healthbar *param0)
@@ -1366,15 +1366,15 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     NNSG2dImageProxy *v2;
     Window v3;
     MessageLoader *v4;
-    Strbuf *v5;
+    String *v5;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
 
     if (param1 & (1 << 10)) {
-        v5 = MessageLoader_GetNewStrbuf(v4, 950);
+        v5 = MessageLoader_GetNewString(v4, 950);
     } else {
-        v5 = MessageLoader_GetNewStrbuf(v4, 1220);
+        v5 = MessageLoader_GetNewString(v4, 1220);
     }
 
     Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
@@ -1399,7 +1399,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     }
 
     Window_Remove(&v3);
-    Strbuf_Free(v5);
+    String_Free(v5);
 }
 
 static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
@@ -1409,18 +1409,18 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     NNSG2dImageProxy *v2;
     Window v3;
     MessageLoader *v4;
-    Strbuf *v5, *v6;
+    String *v5, *v6;
     StringTemplate *v7;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
-    v5 = Strbuf_Init(30, HEAP_ID_BATTLE);
+    v5 = String_Init(30, HEAP_ID_BATTLE);
 
     if (param1 & (1 << 10)) {
-        v6 = MessageLoader_GetNewStrbuf(v4, 951);
+        v6 = MessageLoader_GetNewString(v4, 951);
     } else {
-        v6 = MessageLoader_GetNewStrbuf(v4, 1221);
+        v6 = MessageLoader_GetNewString(v4, 1221);
     }
 
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
@@ -1446,8 +1446,8 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     }
 
     Window_Remove(&v3);
-    Strbuf_Free(v5);
-    Strbuf_Free(v6);
+    String_Free(v5);
+    String_Free(v6);
 }
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType)

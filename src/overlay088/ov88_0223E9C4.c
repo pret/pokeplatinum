@@ -12,7 +12,7 @@
 #include "message_util.h"
 #include "render_window.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "text.h"
 
@@ -108,14 +108,14 @@ void ov88_0223EC04(Window *param0)
     Window_Remove(&param0[25]);
 }
 
-void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
+void ov88_0223EC78(Window *param0, String *param1, int param2, u32 param3, int param4, int param5)
 {
     int v0 = 0;
 
     if (param4 == 1) {
         int v1;
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
+        v1 = Font_CalcStringWidth(FONT_SYSTEM, param1, 0);
         v0 = ((param0->width * 8) - v1) / 2;
     } else {
         v0 = param4;
@@ -126,10 +126,10 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
 
 int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
-    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, HEAP_ID_26);
+    v0 = MessageUtil_ExpandedString(param4, param3, param1, HEAP_ID_26);
 
     if (param2 == 1) {
         Window_DrawMessageBoxWithScrollCursor(param0, 0, (512 - (9 + (18 + 12))), 10);
@@ -139,7 +139,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
 
     Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return v1;
 }

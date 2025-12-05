@@ -12,7 +12,7 @@
 #include "system.h"
 #include "text.h"
 
-static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset);
+static void PrintEntry(ListMenu *menu, void *string, u8 xOffset, u8 yOffset);
 static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lineCount);
 static void PrintCursor(ListMenu *menu);
 static void EraseCursor(ListMenu *menu, u16 atLine);
@@ -306,16 +306,16 @@ void ListMenu_SetChoices(ListMenu *menu, StringList *choices)
     menu->template.choices = choices;
 }
 
-static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
+static void PrintEntry(ListMenu *menu, void *string, u8 xOffset, u8 yOffset)
 {
-    if (strbuf == NULL) {
+    if (string == NULL) {
         return;
     }
 
     if (menu->altFont.prefer) {
         Text_AddPrinterWithParamsColorAndSpacing(menu->template.window,
             menu->altFont.fontID,
-            strbuf,
+            string,
             xOffset,
             yOffset,
             TEXT_SPEED_NO_TRANSFER,
@@ -326,7 +326,7 @@ static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
     } else {
         Text_AddPrinterWithParamsColorAndSpacing(menu->template.window,
             menu->template.fontID,
-            strbuf,
+            string,
             xOffset,
             yOffset,
             TEXT_SPEED_NO_TRANSFER,

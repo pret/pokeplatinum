@@ -35,7 +35,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -240,7 +240,7 @@ typedef struct RowanIntro {
     enum DisplayMessageState displayMessageState;
     enum DisplayTextBlockState displayTextBlockState;
     int textPrinterID;
-    Strbuf *strbuf;
+    String *string;
     UnkStruct_020157E4 *unk_60;
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
@@ -434,7 +434,7 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
     Heap_Free(manager->bunearyPalette);
     Heap_Free(manager->bunearyBlendedPalette);
 
-    TrainerInfo_SetNameFromStrbuf(
+    TrainerInfo_SetNameFromString(
         SaveData_GetTrainerInfo(manager->saveData),
         manager->playerNamingScreenArgs->textInputStr);
     TrainerInfo_SetGender(
@@ -993,19 +993,19 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
         {
-            Strbuf *tmpStrbuf = Strbuf_Init(0x400, manager->heapID);
+            String *tmpString = String_Init(0x400, manager->heapID);
 
-            manager->strbuf = Strbuf_Init(0x400, manager->heapID);
+            manager->string = String_Init(0x400, manager->heapID);
 
-            MessageLoader_GetStrbuf(manager->msgLoader, textID, tmpStrbuf);
-            StringTemplate_SetStrbuf(
+            MessageLoader_GetString(manager->msgLoader, textID, tmpString);
+            StringTemplate_SetString(
                 manager->strFormatter,
                 0,
                 manager->playerNamingScreenArgs->textInputStr,
                 manager->playerGender,
                 1,
                 GAME_LANGUAGE);
-            StringTemplate_SetStrbuf(
+            StringTemplate_SetString(
                 manager->strFormatter,
                 1,
                 manager->rivalNamingScreenArgs->textInputStr,
@@ -1014,15 +1014,15 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
                 GAME_LANGUAGE);
             StringTemplate_Format(
                 manager->strFormatter,
-                manager->strbuf,
-                tmpStrbuf);
-            Strbuf_Free(tmpStrbuf);
+                manager->string,
+                tmpString);
+            String_Free(tmpString);
         }
 
         manager->textPrinterID = Text_AddPrinterWithParams(
             &manager->textWindow,
             FONT_MESSAGE,
-            manager->strbuf,
+            manager->string,
             0,
             0,
             Options_TextFrameDelay(manager->options),
@@ -1031,7 +1031,7 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
         break;
     case DM_STATE_PRINT:
         if (!(Text_IsPrinterActive(manager->textPrinterID))) {
-            Strbuf_Free(manager->strbuf);
+            String_Free(manager->string);
             manager->displayMessageState = DM_STATE_END;
         }
         break;
@@ -1162,14 +1162,14 @@ static BOOL RowanIntro_DisplayTextBlock(
     switch (manager->displayTextBlockState) {
     case DTB_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
-        manager->strbuf = Strbuf_Init(0x400, manager->heapID);
-        MessageLoader_GetStrbuf(manager->msgLoader, textID, manager->strbuf);
+        manager->string = String_Init(0x400, manager->heapID);
+        MessageLoader_GetString(manager->msgLoader, textID, manager->string);
 
         if (whichCase == DTBC_ADVENTURE_INFO) {
             windowTemplate = sAdventureInfoTextWindow;
 
             {
-                u32 numLines = Strbuf_NumLines(manager->strbuf);
+                u32 numLines = String_NumLines(manager->string);
 
                 windowTemplate.tilemapTop = 12 - numLines;
                 windowTemplate.height = numLines * 2;
@@ -1189,7 +1189,7 @@ static BOOL RowanIntro_DisplayTextBlock(
             Text_AddPrinterWithParamsAndColor(
                 &manager->textWindow,
                 FONT_SYSTEM,
-                manager->strbuf,
+                manager->string,
                 0,
                 0,
                 TEXT_SPEED_INSTANT,
@@ -1199,7 +1199,7 @@ static BOOL RowanIntro_DisplayTextBlock(
             windowTemplate = sControlInfoTextWindow;
 
             if (whichCase == DTBC_CONTROL_INFO_1) {
-                u32 numLines = Strbuf_NumLines(manager->strbuf);
+                u32 numLines = String_NumLines(manager->string);
 
                 windowTemplate.tilemapTop = param3 + param4 / 2 - numLines;
                 windowTemplate.height = numLines * 2;
@@ -1222,7 +1222,7 @@ static BOOL RowanIntro_DisplayTextBlock(
             Text_AddPrinterWithParamsAndColor(
                 &manager->textWindow,
                 FONT_SYSTEM,
-                manager->strbuf,
+                manager->string,
                 0,
                 0,
                 TEXT_SPEED_INSTANT,
@@ -1230,7 +1230,7 @@ static BOOL RowanIntro_DisplayTextBlock(
                 NULL);
         }
 
-        Strbuf_Free(manager->strbuf);
+        String_Free(manager->string);
         manager->displayTextBlockState = DTB_STATE_COPY_WINDOW_TO_VRAM;
         break;
     case DTB_STATE_COPY_WINDOW_TO_VRAM:
@@ -2773,7 +2773,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 break;
             case 2:
             case LIST_CANCEL:
-                Strbuf_Clear(manager->playerNamingScreenArgs->textInputStr);
+                String_Clear(manager->playerNamingScreenArgs->textInputStr);
                 manager->bufferedState = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
                 manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
                 break;
@@ -2856,10 +2856,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 }
 
                 {
-                    Strbuf *tmpStrbuf = MessageLoader_GetNewStrbuf(manager->msgLoader, rivalNameTextID);
+                    String *tmpString = MessageLoader_GetNewString(manager->msgLoader, rivalNameTextID);
 
-                    Strbuf_Copy(manager->rivalNamingScreenArgs->textInputStr, tmpStrbuf);
-                    Strbuf_Free(tmpStrbuf);
+                    String_Copy(manager->rivalNamingScreenArgs->textInputStr, tmpString);
+                    String_Free(tmpString);
                 }
             }
                 manager->state = RI_STATE_MOVE_RIVAL_LEFT_AFTER_NAME;
@@ -2919,7 +2919,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 break;
             case 2:
             case LIST_CANCEL:
-                Strbuf_Clear(manager->rivalNamingScreenArgs->textInputStr);
+                String_Clear(manager->rivalNamingScreenArgs->textInputStr);
                 manager->state = RI_STATE_RIVAL_NAME_DIALOGUE;
                 break;
             }

@@ -5,7 +5,7 @@
 
 #include "message.h"
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 NARC *BerryData_NARC_ctor(u32 heapID)
 {
@@ -62,18 +62,18 @@ u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID)
     return 0;
 }
 
-Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID)
+String *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_NAMES, heapID);
-    Strbuf *name = MessageLoader_GetNewStrbuf(loader, memberIdx);
+    String *name = MessageLoader_GetNewString(loader, memberIdx);
     MessageLoader_Free(loader);
     return name;
 }
 
-Strbuf *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID)
+String *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_DESCRIPTIONS, heapID);
-    Strbuf *desc = MessageLoader_GetNewStrbuf(loader, memberIdx);
+    String *desc = MessageLoader_GetNewString(loader, memberIdx);
     MessageLoader_Free(loader);
     return desc;
 }

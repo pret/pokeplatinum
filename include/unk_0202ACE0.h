@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 int WiFiList_SaveSize(void);
 void WiFiList_Init(WiFiList *param0);
@@ -15,9 +15,9 @@ u32 sub_0202AD2C(WiFiList *param0, int param1, int param2);
 void sub_0202AE2C(WiFiList *param0, int param1, int param2, u32 param3);
 DWCFriendData *sub_0202AED8(WiFiList *param0, int param1);
 u16 *sub_0202AEF0(WiFiList *param0, int param1);
-void sub_0202AF0C(WiFiList *param0, int param1, Strbuf *param2);
+void sub_0202AF0C(WiFiList *param0, int param1, String *param2);
 u16 *sub_0202AF34(WiFiList *param0, int param1);
-void sub_0202AF50(WiFiList *param0, int param1, Strbuf *param2);
+void sub_0202AF50(WiFiList *param0, int param1, String *param2);
 BOOL sub_0202AF78(WiFiList *param0, int param1);
 int sub_0202AF94(WiFiList *param0);
 int sub_0202AFB4(WiFiList *param0);

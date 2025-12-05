@@ -18,7 +18,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
@@ -159,7 +159,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
-    v1->unk_1C = Strbuf_Init(param1 + 1, heapID);
+    v1->unk_1C = String_Init(param1 + 1, heapID);
     v1->options = options;
 
     for (i = 0; i < 4; i++) {
@@ -196,7 +196,7 @@ void sub_02089438(UnkStruct_02089438 *param0)
     GF_ASSERT(param0->unk_1C != NULL);
     GF_ASSERT(param0 != NULL);
 
-    Strbuf_Free(param0->unk_1C);
+    String_Free(param0->unk_1C);
     Heap_Free(param0);
 }
 

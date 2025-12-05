@@ -26,7 +26,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "text.h"
 #include "unk_02095AF0.h"
@@ -37,9 +37,9 @@ static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int par
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0);
 static void ov22_0225A7C0(Window *param0);
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
-static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
+static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, String **param7);
 static s32 ov22_0225A860(Window *param0, enum NarcID narcID, int param2, int param3, int param4, int param5, TextColor param6, u32 param7);
-static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
+static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int param2, int param3, int param4, int param5, u32 param6, u32 param7, String **param8);
 static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
@@ -149,7 +149,7 @@ s32 ov22_0225A660(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int p
 
 void ov22_0225A6A0(UnkStruct_ov22_0225A428 *param0)
 {
-    Strbuf_Free(param0->unk_144);
+    String_Free(param0->unk_144);
     param0->unk_144 = NULL;
 }
 
@@ -237,7 +237,7 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
     return v0;
 }
 
-static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7)
+static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, String **param7)
 {
     s32 v0;
 
@@ -253,22 +253,22 @@ static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int par
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(msgLoader);
 
-    Strbuf *v1 = MessageLoader_GetNewStrbuf(msgLoader, param3);
+    String *v1 = MessageLoader_GetNewString(msgLoader, param3);
     s32 v2 = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, v1, param4, param5, param7, param6, NULL);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(msgLoader);
 
     return v2;
 }
 
-static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
+static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, String **param8)
 {
     GF_ASSERT(*param8 == NULL);
 
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
-    *param8 = MessageLoader_GetNewStrbuf(v0, param3);
+    *param8 = MessageLoader_GetNewString(v0, param3);
     s32 v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);
 
     MessageLoader_Free(v0);

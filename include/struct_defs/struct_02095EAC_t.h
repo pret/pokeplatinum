@@ -13,7 +13,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 
@@ -23,9 +23,9 @@ struct UnkStruct_02095EAC_t {
     UnkStruct_0203DDFC *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
-    Strbuf *unk_14[5];
-    Strbuf *unk_28;
-    Strbuf *unk_2C;
+    String *unk_14[5];
+    String *unk_28;
+    String *unk_2C;
     int unk_30;
     SpriteList *unk_34;
     G2dRenderer unk_38;

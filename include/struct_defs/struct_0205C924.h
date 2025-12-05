@@ -3,12 +3,12 @@
 
 #include "struct_defs/sentence.h"
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
-    Strbuf *unk_00;
-    Strbuf *unk_04;
-    Strbuf *unk_08;
+    String *unk_00;
+    String *unk_04;
+    String *unk_08;
     u32 unk_0C;
     int unk_10;
     Sentence unk_14;

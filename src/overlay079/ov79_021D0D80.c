@@ -25,7 +25,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -678,22 +678,22 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0463, param0->heapID);
     param0->unk_28 = sub_020158A8(param0->heapID);
     param0->unk_30.unk_00 = StringTemplate_New(2, 64, param0->heapID);
-    param0->unk_30.unk_04 = Strbuf_Init(64, param0->heapID);
-    param0->unk_30.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_2C, 6);
-    param0->unk_30.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C, 22);
-    param0->unk_30.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_2C, 4);
-    param0->unk_30.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_2C, 7);
-    param0->unk_30.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_2C, 8);
-    param0->unk_30.unk_1C = MessageLoader_GetNewStrbuf(param0->unk_2C, 0);
+    param0->unk_30.unk_04 = String_Init(64, param0->heapID);
+    param0->unk_30.unk_08 = MessageLoader_GetNewString(param0->unk_2C, 6);
+    param0->unk_30.unk_0C = MessageLoader_GetNewString(param0->unk_2C, 22);
+    param0->unk_30.unk_10 = MessageLoader_GetNewString(param0->unk_2C, 4);
+    param0->unk_30.unk_14 = MessageLoader_GetNewString(param0->unk_2C, 7);
+    param0->unk_30.unk_18 = MessageLoader_GetNewString(param0->unk_2C, 8);
+    param0->unk_30.unk_1C = MessageLoader_GetNewString(param0->unk_2C, 0);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_30.unk_20[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C, 11 + v0);
+        param0->unk_30.unk_20[v0] = MessageLoader_GetNewString(param0->unk_2C, 11 + v0);
 
         if (v0 >= 5) {
             break;
         }
 
-        param0->unk_30.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C, 17 + v0);
+        param0->unk_30.unk_38[v0] = MessageLoader_GetNewString(param0->unk_2C, 17 + v0);
     }
 
     param0->unk_30.unk_4C = Options_TextFrameDelay(param0->unk_20->options);
@@ -704,22 +704,22 @@ static void ov79_021D1618(UnkStruct_ov79_021D0E1C *param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        Strbuf_Free(param0->unk_30.unk_20[v0]);
+        String_Free(param0->unk_30.unk_20[v0]);
 
         if (v0 >= 5) {
             break;
         }
 
-        Strbuf_Free(param0->unk_30.unk_38[v0]);
+        String_Free(param0->unk_30.unk_38[v0]);
     }
 
-    Strbuf_Free(param0->unk_30.unk_1C);
-    Strbuf_Free(param0->unk_30.unk_18);
-    Strbuf_Free(param0->unk_30.unk_14);
-    Strbuf_Free(param0->unk_30.unk_10);
-    Strbuf_Free(param0->unk_30.unk_0C);
-    Strbuf_Free(param0->unk_30.unk_08);
-    Strbuf_Free(param0->unk_30.unk_04);
+    String_Free(param0->unk_30.unk_1C);
+    String_Free(param0->unk_30.unk_18);
+    String_Free(param0->unk_30.unk_14);
+    String_Free(param0->unk_30.unk_10);
+    String_Free(param0->unk_30.unk_0C);
+    String_Free(param0->unk_30.unk_08);
+    String_Free(param0->unk_30.unk_04);
     StringTemplate_Free(param0->unk_30.unk_00);
     sub_020158F4(param0->unk_28);
     MessageLoader_Free(param0->unk_2C);

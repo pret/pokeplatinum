@@ -41,7 +41,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -82,9 +82,9 @@ struct UnkStruct_ov106_02243118_t {
     u8 unk_1F;
     MessageLoader *unk_20;
     StringTemplate *unk_24;
-    Strbuf *unk_28;
-    Strbuf *unk_2C;
-    Strbuf *unk_30[2];
+    String *unk_28;
+    String *unk_2C;
+    String *unk_30[2];
     u16 unk_38[8];
     BgConfig *unk_48;
     Window unk_4C[4];
@@ -747,12 +747,12 @@ static void ov106_022423E8(UnkStruct_ov106_02243118 *param0)
 
     MessageLoader_Free(param0->unk_20);
     StringTemplate_Free(param0->unk_24);
-    Strbuf_Free(param0->unk_28);
-    Strbuf_Free(param0->unk_2C);
+    String_Free(param0->unk_28);
+    String_Free(param0->unk_2C);
     FontSpecialChars_Free(param0->unk_B0);
 
     for (v0 = 0; v0 < 2; v0++) {
-        Strbuf_Free(param0->unk_30[v0]);
+        String_Free(param0->unk_30[v0]);
     }
 
     ov106_02243710(param0->unk_4C);
@@ -803,11 +803,11 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
 
     param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0549, HEAP_ID_98);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_98);
-    param0->unk_28 = Strbuf_Init(600, HEAP_ID_98);
-    param0->unk_2C = Strbuf_Init(600, HEAP_ID_98);
+    param0->unk_28 = String_Init(600, HEAP_ID_98);
+    param0->unk_2C = String_Init(600, HEAP_ID_98);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_30[v0] = Strbuf_Init(32, HEAP_ID_98);
+        param0->unk_30[v0] = String_Init(32, HEAP_ID_98);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_98);
@@ -1047,7 +1047,7 @@ static void ov106_022428B8(UnkStruct_ov106_02243118 *param0, u32 param1)
 static u8 ov106_02242918(UnkStruct_ov106_02243118 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
@@ -1087,7 +1087,7 @@ static void ov106_02242A28(UnkStruct_ov106_02243118 *param0, u8 param1, u8 param
     int v0;
     void *v1;
 
-    MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
+    MessageLoader_GetString(param0->unk_20, param3, param0->unk_30[param1]);
 
     param0->unk_9C[param1].entry = (const void *)param0->unk_30[param1];
     param0->unk_9C[param1].index = param2;
@@ -1118,7 +1118,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
 {
     u8 v0;
     u32 v1, v2, v3;
-    Strbuf *v4;
+    String *v4;
     Pokemon *v5;
     u16 v6[(10 + 1)];
 
@@ -1126,10 +1126,10 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param6);
 
-    v4 = Strbuf_Init(10 + 1, HEAP_ID_98);
-    Strbuf_CopyChars(v4, v6);
+    v4 = String_Init(10 + 1, HEAP_ID_98);
+    String_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(param4, param5, param6), NULL);
-    Strbuf_Free(v4);
+    String_Free(v4);
     Window_CopyToVRAM(param1);
 
     return;
@@ -1138,25 +1138,25 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
 static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     int v0, v1;
-    Strbuf *v2;
+    String *v2;
     MessageLoader *v3;
 
     Window_FillTilemap(param1, param4);
 
     v3 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_98);
-    v2 = Strbuf_Init(10 + 1, HEAP_ID_98);
+    v2 = String_Init(10 + 1, HEAP_ID_98);
 
     for (v0 = 0; v0 < 5; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
             if (ov104_0223B5A4(v0 * 4 + v1) != 0xfe) {
-                Strbuf_Clear(v2);
-                MessageLoader_GetStrbuf(v3, ov104_0223B5A4(v0 * 4 + v1), v2);
+                String_Clear(v2);
+                MessageLoader_GetString(v3, ov104_0223B5A4(v0 * 4 + v1), v2);
                 Text_AddPrinterWithParamsAndColor(param1, param5, v2, 1 + (64 * v1), 16 + (36 * v0), TEXT_SPEED_INSTANT, TEXT_COLOR(param2, param3, param4), NULL);
             }
         }
     }
 
-    Strbuf_Free(v2);
+    String_Free(v2);
     MessageLoader_Free(v3);
     Window_CopyToVRAM(param1);
 

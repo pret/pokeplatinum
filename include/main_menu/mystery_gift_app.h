@@ -13,7 +13,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 
@@ -113,7 +113,7 @@ struct MysteryGiftAppData {
     Options *options;
     StringTemplate *strTemplate;
     MessageLoader *msgLoader;
-    Strbuf *strBuf;
+    String *string;
     Window messageBox;
     Window menuWindows[MG_APP_NUM_MENU_WINDOWS];
     Window wonderCardTitleWindow;

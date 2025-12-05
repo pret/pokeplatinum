@@ -31,7 +31,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
@@ -773,25 +773,25 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
     MessageLoader *v0;
-    Strbuf *v1 = Strbuf_Init((10 * 2), param0->heapID);
-    Strbuf *v2 = Strbuf_Init((10 * 2), param0->heapID);
+    String *v1 = String_Init((10 * 2), param0->heapID);
+    String *v2 = String_Init((10 * 2), param0->heapID);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
 
     StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
-    MessageLoader_GetStrbuf(v0, 2, v1);
+    MessageLoader_GetString(v0, 2, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
     StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
 
-    MessageLoader_GetStrbuf(v0, 0, v1);
+    MessageLoader_GetString(v0, 0, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
     MessageLoader_Free(v0);
 
     Window_CopyToVRAM(param1);

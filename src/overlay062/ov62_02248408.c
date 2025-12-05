@@ -17,11 +17,11 @@
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "unk_0202F1D4.h"
 
-static void ov62_0224856C(Strbuf *param0, int param1);
+static void ov62_0224856C(String *param0, int param1);
 
 extern BattleRecording *Unk_021C07A4;
 
@@ -30,15 +30,15 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
     UnkStruct_0202F298 *v0 = &param0->unk_E8;
     UnkStruct_0202F41C *v1 = &param0->unk_84;
     int v2, v3, v4, v5;
-    Strbuf *v6, *v7;
+    String *v6, *v7;
     u16 *v8;
     int v9 = 64;
     int v10, v11, v12;
     Pokemon *v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
-    v6 = Strbuf_Init(v9, heapID);
-    v7 = Strbuf_Init(v9, heapID);
+    v6 = String_Init(v9, heapID);
+    v7 = String_Init(v9, heapID);
     v8 = Heap_Alloc(heapID, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {
@@ -50,16 +50,16 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
         if (v10 == -1) {
             ov62_0224856C(v7, heapID);
-            Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
+            String_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
 
-        Strbuf_Clear(v6);
-        Strbuf_CopyChars(v6, param1->trainer[v4].name);
+        String_Clear(v6);
+        String_CopyChars(v6, param1->trainer[v4].name);
 
         if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
             ov62_0224856C(v7, heapID);
-            Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
+            String_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
     }
@@ -77,8 +77,8 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
             Pokemon_GetValue(v13, MON_DATA_NICKNAME, v8);
-            Strbuf_Clear(v6);
-            Strbuf_CopyChars(v6, v8);
+            String_Clear(v6);
+            String_CopyChars(v6, v8);
 
             if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
                 Pokemon_SetValue(v13, MON_DATA_SPECIES_NAME, NULL);
@@ -87,20 +87,20 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
         }
     }
 
-    Strbuf_Free(v6);
-    Strbuf_Free(v7);
+    String_Free(v6);
+    String_Free(v7);
     Heap_Free(v8);
 }
 
-static void ov62_0224856C(Strbuf *param0, int heapID)
+static void ov62_0224856C(String *param0, int heapID)
 {
     MessageLoader *v0;
 
-    Strbuf_Clear(param0);
+    String_Clear(param0);
 
     v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
-    MessageLoader_GetStrbuf(v0, 332, param0);
+    MessageLoader_GetString(v0, 332, param0);
     MessageLoader_Free(v0);
 }
 

@@ -5,7 +5,7 @@
 
 #include "game_options.h"
 #include "overlay_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 enum NamingScreenType {
     NAMING_SCREEN_TYPE_PLAYER,
@@ -30,7 +30,7 @@ typedef struct NamingScreenArgs {
     int maxChars;
     int monGender;
     enum NamingScreenReturnCode returnCode;
-    Strbuf *textInputStr;
+    String *textInputStr;
     charcode_t nameInputRaw[20];
     int battleMsgID;
     PCBoxes *pcBoxes;

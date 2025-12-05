@@ -30,7 +30,7 @@
 #include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 
@@ -1061,7 +1061,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
-        Strbuf *v1;
+        String *v1;
         int v2;
 
         param0->unk_24 = Window_New(HEAP_ID_75, 1);
@@ -1070,12 +1070,12 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Window_FillTilemap(param0->unk_24, 15);
         Window_PutToTilemap(param0->unk_24);
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
-        v2 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
+        v1 = MessageLoader_GetNewString(param0->unk_20, ov99_021D4130());
+        v2 = (256 - Font_CalcStringWidth(FONT_SYSTEM, v1, 0)) / 2;
 
         Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, FONT_SYSTEM, v1, v2, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
         Window_LoadTiles(param0->unk_24);
-        Strbuf_Free(v1);
+        String_Free(v1);
     }
 
     Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);

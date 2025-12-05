@@ -10,7 +10,7 @@
 #include "font_special_chars.h"
 #include "message.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 
 typedef struct {
@@ -40,7 +40,7 @@ typedef struct {
     u8 unk_4BE4[18];
     u8 padding_4BF6[2];
     MessageLoader *unk_4BF8;
-    Strbuf *unk_4BFC;
+    String *unk_4BFC;
 } UnkStruct_ov19_021DBA9C;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DBA9C_H

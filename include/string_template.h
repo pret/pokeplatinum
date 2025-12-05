@@ -10,7 +10,7 @@
 
 #include "enums.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 
 #define STRING_TEMPLATE_DEFAULT_MAX_ARGS   8
@@ -25,20 +25,20 @@ typedef struct StringTemplateArgHeader {
 
 typedef struct StringTemplateArg {
     StringTemplateArgHeader header;
-    Strbuf *strbuf;
+    String *string;
 } StringTemplateArg;
 
 typedef struct StringTemplate {
     u32 maxArgs;
     u32 heapID;
     StringTemplateArg *args;
-    Strbuf *templateBuf;
+    String *templateBuf;
 } StringTemplate;
 
 StringTemplate *StringTemplate_Default(u32 heapID);
 StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID);
 void StringTemplate_Free(StringTemplate *template);
-void StringTemplate_SetStrbuf(StringTemplate *template, u32 idx, const Strbuf *argVal, u32 unused3, BOOL unused4, u32 unused5);
+void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused3, BOOL unused4, u32 unused5);
 void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const TrainerInfo *playerInfo);
 void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *saveData);
 void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const SaveData *saveData);
@@ -107,7 +107,7 @@ void StringTemplate_SetFurniture(StringTemplate *template, u32 idx, u32 furnitur
 void StringTemplate_SetMonthName(StringTemplate *template, u32 idx, u32 month);
 void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor);
 void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx);
-void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const Strbuf *fmtString);
+void StringTemplate_Format(const StringTemplate *template, String *dst, const String *fmtString);
 void StringTemplate_ClearArgs(StringTemplate *template);
 
 #endif // POKEPLATINUM_STRING_TEMPLATE_H

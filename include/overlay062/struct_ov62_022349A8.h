@@ -11,7 +11,7 @@
 
 #include "message.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 typedef struct {
@@ -42,7 +42,7 @@ typedef struct {
     int unk_3F0;
     MessageLoader *unk_3F4;
     StringTemplate *unk_3F8;
-    Strbuf *unk_3FC;
+    String *unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;
     u8 unk_40D;
     u8 unk_40E;

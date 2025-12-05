@@ -42,7 +42,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -67,7 +67,7 @@ struct UnkStruct_ov5_021F6704_t {
     SysTask *unk_04;
     Window unk_08;
     Window *unk_18;
-    Strbuf *unk_1C[120];
+    String *unk_1C[120];
     MessageLoader *unk_1FC;
     StringTemplate *unk_200;
     u8 unk_204;
@@ -240,7 +240,7 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     }
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
+        param1->unk_1C[v0] = String_Init(40 * 2, HEAP_ID_FIELD1);
     }
 
     *param1->unk_210 = 0xeeee;
@@ -294,12 +294,12 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init(40 * 2, HEAP_ID_FIELD1);
+        String *v2 = String_Init(40 * 2, HEAP_ID_FIELD1);
 
-        MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
+        MessageLoader_GetString(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
         param0->unk_244[param0->unk_20B].entry = (const void *)param0->unk_1C[param0->unk_20B];
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     if (param3 == 0xfa) {
@@ -419,7 +419,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 120; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+        String_Free(param0->unk_1C[v0]);
     }
 
     if (param0->unk_207_1 == 1) {

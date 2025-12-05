@@ -20,7 +20,7 @@
 #include "palette.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0202419C.h"
@@ -393,13 +393,13 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
 
     {
         MessageLoader *v0;
-        Strbuf *v1;
+        String *v1;
 
         v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0410, HEAP_ID_106);
-        v1 = MessageLoader_GetNewStrbuf(v0, 0);
+        v1 = MessageLoader_GetNewString(v0, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1FC8, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
-        Strbuf_Free(v1);
+        String_Free(v1);
         MessageLoader_Free(v0);
     }
 
@@ -455,9 +455,9 @@ void ov116_02262034(UnkStruct_ov116_0226139C *param0, int param1)
     }
 }
 
-static int ov116_0226208C(Window *param0, Strbuf *param1)
+static int ov116_0226208C(Window *param0, String *param1)
 {
-    int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
+    int v0 = Font_CalcStringWidth(FONT_SYSTEM, param1, 0);
     int v1 = (Window_GetWidth(param0) * 8 - v0) / 2;
 
     return v1;
@@ -525,10 +525,10 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         Window_FillTilemap(v3, 0xFF);
 
         {
-            Strbuf *v11;
+            String *v11;
             int v12;
 
-            v11 = TrainerInfo_NameNewStrbuf(v9, 106);
+            v11 = TrainerInfo_NameNewString(v9, 106);
             v12 = ov116_0226208C(v3, v11);
 
             if (v10) {
@@ -537,7 +537,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
                 Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), 0, 0, NULL);
             }
 
-            Strbuf_Free(v11);
+            String_Free(v11);
         }
 
         Window_CopyToVRAM(v3);

@@ -11,7 +11,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "render_text.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
@@ -96,11 +96,11 @@ void Text_RemovePrinter(u8 printerID)
     Text_DestroyPrinterTask(printerID);
 }
 
-u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
 {
     TextPrinterTemplate template;
 
-    template.toPrint.strbuf = strbuf;
+    template.toPrint.string = string;
     template.window = window;
     template.fontID = fontID;
     template.x = xOffset;
@@ -120,11 +120,11 @@ u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback)
 {
     TextPrinterTemplate template;
 
-    template.toPrint.strbuf = strbuf;
+    template.toPrint.string = string;
     template.window = window;
     template.fontID = fontID;
     template.x = xOffset;
@@ -144,11 +144,11 @@ u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *s
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
 {
     TextPrinterTemplate template;
 
-    template.toPrint.strbuf = strbuf;
+    template.toPrint.string = string;
     template.window = window;
     template.fontID = fontID;
     template.x = xOffset;
@@ -188,7 +188,7 @@ u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPri
     }
 
     printer->template = *template;
-    printer->template.toPrint.raw = Strbuf_GetData(printer->template.toPrint.strbuf);
+    printer->template.toPrint.raw = String_GetData(printer->template.toPrint.string);
     printer->callback = callback;
 
     sPausePrinter = FALSE;

@@ -25,7 +25,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -732,7 +732,7 @@ void PartyMenu_RemoveWindows(PartyMenuApplication *application)
 
 void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *application)
 {
-#define LoadMenuString(__bankEntry, __arrEntry) MessageLoader_GetStrbuf(application->messageLoader, __bankEntry, application->menuStrings[__arrEntry])
+#define LoadMenuString(__bankEntry, __arrEntry) MessageLoader_GetString(application->messageLoader, __bankEntry, application->menuStrings[__arrEntry])
 
     LoadMenuString(PartyMenu_Text_Switch, PARTY_MENU_STR_SWITCH);
     LoadMenuString(PartyMenu_Text_Summary, PARTY_MENU_STR_SUMMARY);
@@ -756,10 +756,10 @@ void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *application)
 
 void PartyMenu_SetKnownFieldMove(PartyMenuApplication *application, u16 move, u8 menuEntry)
 {
-    Strbuf *string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_FieldMove0 + menuEntry);
+    String *string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_FieldMove0 + menuEntry);
     StringTemplate_SetMoveName(application->template, 0, move);
     StringTemplate_Format(application->template, application->menuStrings[PARTY_MENU_STR_MOVE0 + menuEntry], string);
-    Strbuf_Free(string);
+    String_Free(string);
 }
 
 void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entries, u8 numEntries)
@@ -779,13 +779,13 @@ void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entr
     u16 numFieldMoves = 0;
     for (u16 i = 0; i < numEntries; i++) {
         if (entries[i] >= PARTY_MENU_STR_MOVE0) {
-            StringList_AddFromStrbuf(
+            StringList_AddFromString(
                 application->contextMenuChoices,
                 application->menuStrings[PARTY_MENU_STR_MOVE0 + numFieldMoves],
                 sub_02083370(entries[i]));
             numFieldMoves++;
         } else {
-            StringList_AddFromStrbuf(
+            StringList_AddFromString(
                 application->contextMenuChoices,
                 application->menuStrings[entries[i]],
                 sub_02083370(entries[i]));
@@ -814,16 +814,16 @@ void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entr
 void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
-        MessageLoader_GetStrbuf(application->messageLoader, PartyMenu_Text_PromptCustomBall, application->tmpString);
+        MessageLoader_GetString(application->messageLoader, PartyMenu_Text_PromptCustomBall, application->tmpString);
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG && application->partyMembers[application->currPartySlot].isEgg == TRUE) {
-        MessageLoader_GetStrbuf(application->messageLoader, PartyMenu_Text_PromptEgg, application->tmpString);
+        MessageLoader_GetString(application->messageLoader, PartyMenu_Text_PromptEgg, application->tmpString);
     } else {
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-        Strbuf *fmtString = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_PromptPokemon);
+        String *fmtString = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_PromptPokemon);
 
         StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(application->template, application->tmpString, fmtString);
-        Strbuf_Free(fmtString);
+        String_Free(fmtString);
     }
 }
 
@@ -853,10 +853,10 @@ static void PartyMenu_PrintMemberHPSlash(PartyMenuApplication *application, u8 s
 
 void PartyMenu_SetMemberName(PartyMenuApplication *application, Pokemon *mon, u32 partySlot)
 {
-    Strbuf *fmt = MessageLoader_GetNewStrbuf(application->messageLoader, sPartySlotNicknameTemplates[partySlot].bankEntry);
+    String *fmt = MessageLoader_GetNewString(application->messageLoader, sPartySlotNicknameTemplates[partySlot].bankEntry);
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
     StringTemplate_Format(application->template, application->partyMembers[partySlot].name, fmt);
-    Strbuf_Free(fmt);
+    String_Free(fmt);
 }
 
 void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
@@ -879,7 +879,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
 
     if (application->partyMembers[slot].hideGenderMarker == FALSE) {
         if (application->partyMembers[slot].gender == GENDER_MALE) {
-            MessageLoader_GetStrbuf(application->messageLoader, PartyMenu_Text_MaleSymbol, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, PartyMenu_Text_MaleSymbol, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,
@@ -890,7 +890,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
                 TEXT_COLOR(3, 4, 0),
                 NULL);
         } else if (application->partyMembers[slot].gender == GENDER_FEMALE) {
-            MessageLoader_GetStrbuf(application->messageLoader, PartyMenu_Text_FemaleSymbol, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, PartyMenu_Text_FemaleSymbol, application->tmpFormat);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,
@@ -1127,9 +1127,9 @@ void PartyMenu_PrintSelectionEligibility(PartyMenuApplication *application, u8 s
     PrintMemberSelectionComment(application, slot, SELECTION_COMMENT_NOT_ENTERED);
 }
 
-static u32 CalcCenterXPos(enum Font font, const Strbuf *string, u32 winWidth)
+static u32 CalcCenterXPos(enum Font font, const String *string, u32 winWidth)
 {
-    u32 width = Font_CalcStrbufWidth(font, string, 0);
+    u32 width = Font_CalcStringWidth(font, string, 0);
     return (winWidth - width) >> 1;
 }
 
@@ -1142,7 +1142,7 @@ void PartyMenu_PrintButtonText(PartyMenuApplication *application, u8 flags)
 
 #define LoadAndPrintToWindow(__bankEntry, __window)                                                        \
     do {                                                                                                   \
-        MessageLoader_GetStrbuf(application->messageLoader, __bankEntry, application->tmpFormat);          \
+        MessageLoader_GetString(application->messageLoader, __bankEntry, application->tmpFormat);          \
         x = CalcCenterXPos(FONT_SYSTEM, application->tmpFormat, application->windows[__window].width * 8); \
         Text_AddPrinterWithParamsAndColor(                                                                 \
             &application->windows[__window],                                                               \
@@ -1175,7 +1175,7 @@ static void PrintPartyMenuMessage(PartyMenuApplication *application, Window *win
 
     Window_FillTilemap(window, 15);
     if (bankEntry != PRINT_MESSAGE_PRELOADED) {
-        MessageLoader_GetStrbuf(application->messageLoader, bankEntry, application->tmpString);
+        MessageLoader_GetString(application->messageLoader, bankEntry, application->tmpString);
     }
 
     Text_AddPrinterWithParams(window, FONT_MESSAGE, application->tmpString, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -1201,7 +1201,7 @@ void PartyMenu_PrintLongMessage(PartyMenuApplication *application, u32 bankEntry
 
     Window_FillTilemap(window, 15);
     if (bankEntry != PRINT_MESSAGE_PRELOADED) {
-        MessageLoader_GetStrbuf(application->messageLoader, bankEntry, application->tmpString);
+        MessageLoader_GetString(application->messageLoader, bankEntry, application->tmpString);
     }
 
     PartyMenu_AddLongMessagePrinter(application);
@@ -1251,13 +1251,13 @@ static void PrintMemberEvoComment(PartyMenuApplication *application, u8 slot, u8
     Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * PARTY_MENU_WIN_NUM_PER_MEMBER];
     Window_FillTilemap(window, 0);
 
-    Strbuf *string;
+    String *string;
     switch (which) {
     case EVO_COMMENT_ABLE:
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_AbleToEvolve);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_AbleToEvolve);
         break;
     case EVO_COMMENT_UNABLE:
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_UnableToEvolve);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_UnableToEvolve);
         break;
     }
 
@@ -1270,7 +1270,7 @@ static void PrintMemberEvoComment(PartyMenuApplication *application, u8 slot, u8
         TEXT_SPEED_NO_TRANSFER,
         TEXT_COLOR(15, 14, 0),
         NULL);
-    Strbuf_Free(string);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -1279,16 +1279,16 @@ static void PrintMemberMoveComment(PartyMenuApplication *application, u8 slot, u
     Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * PARTY_MENU_WIN_NUM_PER_MEMBER];
     Window_FillTilemap(window, 0);
 
-    Strbuf *string;
+    String *string;
     switch (which) {
     case MOVE_COMMENT_ABLE:
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_AbleToLearn);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_AbleToLearn);
         break;
     case MOVE_COMMENT_UNABLE:
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_UnableToLearn);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_UnableToLearn);
         break;
     case MOVE_COMMENT_LEARNED:
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_AlreadyLearned);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_AlreadyLearned);
         break;
     }
 
@@ -1301,7 +1301,7 @@ static void PrintMemberMoveComment(PartyMenuApplication *application, u8 slot, u
         TEXT_SPEED_NO_TRANSFER,
         TEXT_COLOR(15, 14, 0),
         NULL);
-    Strbuf_Free(string);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -1310,11 +1310,11 @@ static void PrintMemberContestComment(PartyMenuApplication *application, u8 slot
     Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * PARTY_MENU_WIN_NUM_PER_MEMBER];
     Window_FillTilemap(window, 0);
 
-    Strbuf *string;
+    String *string;
     if (isEligible == FALSE) {
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_IneligibleForContest);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_IneligibleForContest);
     } else {
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_EligibleForContest);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_EligibleForContest);
     }
 
     Text_AddPrinterWithParamsAndColor(
@@ -1326,7 +1326,7 @@ static void PrintMemberContestComment(PartyMenuApplication *application, u8 slot
         TEXT_SPEED_NO_TRANSFER,
         TEXT_COLOR(15, 14, 0),
         NULL);
-    Strbuf_Free(string);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -1335,13 +1335,13 @@ static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 sl
     Window *window = &application->windows[PARTY_MENU_WIN_COMMENT_MEMB0 + slot * PARTY_MENU_WIN_NUM_PER_MEMBER];
     Window_FillTilemap(window, 0);
 
-    Strbuf *string;
+    String *string;
     if (comment < MAX_PARTY_SIZE) {
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_EnteredFirst + comment);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_EnteredFirst + comment);
     } else if (comment == SELECTION_COMMENT_NOT_ENTERED) {
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_NotEntered);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_NotEntered);
     } else {
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_Banned);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_Banned);
     }
 
     Text_AddPrinterWithParamsAndColor(
@@ -1353,7 +1353,7 @@ static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 sl
         TEXT_SPEED_NO_TRANSFER,
         TEXT_COLOR(15, 14, 0),
         NULL);
-    Strbuf_Free(string);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -1374,16 +1374,16 @@ void PartyMenu_DrawLevelUpStatIncreases(PartyMenuApplication *application)
     Window_FillTilemap(&application->menuWindows[0], 15);
 
     for (u32 stat = 0; stat < STAT_MAX; stat++) {
-        Strbuf *string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_LevelUpMaxHP + stat);
+        String *string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_LevelUpMaxHP + stat);
         Text_AddPrinterWithParams(&application->menuWindows[0], FONT_SYSTEM, string, 0, MAX_LETTER_HEIGHT * stat, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(string);
+        String_Free(string);
 
-        string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_LevelUpStatIncrease);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_LevelUpStatIncrease);
         StringTemplate_SetNumber(application->template, 0, stats[stat] - application->monStats[stat], 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(application->template, application->tmpString, string);
-        Strbuf_Free(string);
+        String_Free(string);
 
-        u32 justified = 13 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, application->tmpString, 0);
+        u32 justified = 13 * 8 - Font_CalcStringWidth(FONT_SYSTEM, application->tmpString, 0);
         Text_AddPrinterWithParams(
             &application->menuWindows[0],
             FONT_SYSTEM,
@@ -1401,13 +1401,13 @@ void PartyMenu_DrawLevelUpStatIncreases(PartyMenuApplication *application)
 void PartyMenu_DrawLevelUpNewStatValues(PartyMenuApplication *application)
 {
     Window_FillRectWithColor(&application->menuWindows[0], 15, 80, 0, 32, 14 * 8);
-    Strbuf *string = MessageLoader_GetNewStrbuf(application->messageLoader, PartyMenu_Text_LevelUpNewStatValue);
+    String *string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_LevelUpNewStatValue);
 
     for (u32 stat = 0; stat < STAT_MAX; stat++) {
         StringTemplate_SetNumber(application->template, 0, application->monStats[stat], 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(application->template, application->tmpString, string);
 
-        u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, application->tmpString, 0);
+        u32 width = Font_CalcStringWidth(FONT_SYSTEM, application->tmpString, 0);
         Text_AddPrinterWithParams(
             &application->menuWindows[0],
             0,
@@ -1418,7 +1418,7 @@ void PartyMenu_DrawLevelUpNewStatValues(PartyMenuApplication *application)
             NULL);
     }
 
-    Strbuf_Free(string);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(&application->menuWindows[0]);
 }
 

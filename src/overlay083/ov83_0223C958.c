@@ -20,7 +20,7 @@
 #include "render_oam.h"
 #include "software_sprite.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "unk_0202419C.h"
@@ -380,25 +380,25 @@ static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
 
     param0->unk_15E0.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_MAKING, param0->heapID);
     param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->heapID);
-    param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->heapID);
-    param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
-    param0->unk_15E0.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 1);
-    param0->unk_15E0.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 2);
-    param0->unk_15E0.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 20);
-    param0->unk_15E0.unk_1C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 21);
-    param0->unk_15E0.unk_20 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 22);
-    param0->unk_15E0.unk_24 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 23);
-    param0->unk_15E0.unk_28 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 24);
-    param0->unk_15E0.unk_2C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 25);
-    param0->unk_15E0.unk_30 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 8);
-    param0->unk_15E0.unk_34 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 9);
+    param0->unk_15E0.unk_08 = String_Init(64, param0->heapID);
+    param0->unk_15E0.unk_0C = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 0);
+    param0->unk_15E0.unk_10 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 1);
+    param0->unk_15E0.unk_14 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 2);
+    param0->unk_15E0.unk_18 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 20);
+    param0->unk_15E0.unk_1C = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 21);
+    param0->unk_15E0.unk_20 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 22);
+    param0->unk_15E0.unk_24 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 23);
+    param0->unk_15E0.unk_28 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 24);
+    param0->unk_15E0.unk_2C = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 25);
+    param0->unk_15E0.unk_30 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 8);
+    param0->unk_15E0.unk_34 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 9);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_15E0.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 3 + v0);
+        param0->unk_15E0.unk_38[v0] = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 3 + v0);
     }
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_15E0.unk_4C[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 10 + v0);
+        param0->unk_15E0.unk_4C[v0] = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 10 + v0);
     }
 }
 
@@ -406,27 +406,27 @@ static void ov83_0223D068(UnkStruct_ov83_0223B784 *param0)
 {
     int v0;
 
-    Strbuf_Free(param0->unk_15E0.unk_34);
-    Strbuf_Free(param0->unk_15E0.unk_30);
-    Strbuf_Free(param0->unk_15E0.unk_20);
-    Strbuf_Free(param0->unk_15E0.unk_1C);
-    Strbuf_Free(param0->unk_15E0.unk_18);
-    Strbuf_Free(param0->unk_15E0.unk_14);
-    Strbuf_Free(param0->unk_15E0.unk_10);
-    Strbuf_Free(param0->unk_15E0.unk_0C);
-    Strbuf_Free(param0->unk_15E0.unk_24);
-    Strbuf_Free(param0->unk_15E0.unk_28);
-    Strbuf_Free(param0->unk_15E0.unk_2C);
+    String_Free(param0->unk_15E0.unk_34);
+    String_Free(param0->unk_15E0.unk_30);
+    String_Free(param0->unk_15E0.unk_20);
+    String_Free(param0->unk_15E0.unk_1C);
+    String_Free(param0->unk_15E0.unk_18);
+    String_Free(param0->unk_15E0.unk_14);
+    String_Free(param0->unk_15E0.unk_10);
+    String_Free(param0->unk_15E0.unk_0C);
+    String_Free(param0->unk_15E0.unk_24);
+    String_Free(param0->unk_15E0.unk_28);
+    String_Free(param0->unk_15E0.unk_2C);
 
     for (v0 = 0; v0 < 5; v0++) {
-        Strbuf_Free(param0->unk_15E0.unk_38[v0]);
+        String_Free(param0->unk_15E0.unk_38[v0]);
     }
 
     for (v0 = 0; v0 < 10; v0++) {
-        Strbuf_Free(param0->unk_15E0.unk_4C[v0]);
+        String_Free(param0->unk_15E0.unk_4C[v0]);
     }
 
-    Strbuf_Free(param0->unk_15E0.unk_08);
+    String_Free(param0->unk_15E0.unk_08);
     StringTemplate_Free(param0->unk_15E0.unk_04);
     MessageLoader_Free(param0->unk_15E0.unk_00);
 }

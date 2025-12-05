@@ -16,7 +16,7 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -51,9 +51,9 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
 {
     const UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *v1;
-    Strbuf *v2;
-    Strbuf *v3;
-    Strbuf *v4;
+    String *v2;
+    String *v3;
+    String *v4;
     int v5 = 64;
     int v6;
     u32 v7, v8;
@@ -85,13 +85,13 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     v1 = TrainerInfo_New(HEAP_ID_118);
     ov66_0222E640(v0, v1, HEAP_ID_118);
 
-    v4 = TrainerInfo_NameNewStrbuf(v1, HEAP_ID_118);
+    v4 = TrainerInfo_NameNewString(v1, HEAP_ID_118);
     v6 = TrainerInfo_Gender(v1);
 
-    StringTemplate_SetStrbuf(param1, 0, v4, v6, 1, GAME_LANGUAGE);
+    StringTemplate_SetString(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
-    v2 = MessageLoader_GetNewStrbuf(param0, 0);
-    v3 = Strbuf_Init(v5, HEAP_ID_118);
+    v2 = MessageLoader_GetNewString(param0, 0);
+    v3 = String_Init(v5, HEAP_ID_118);
 
     StringTemplate_Format(param1, v3, v2);
     Window_FillTilemap(&param2[v7], 0x0);
@@ -104,9 +104,9 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
 
     Text_AddPrinterWithParamsAndColor(&param2[v7], FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, v9, NULL);
     Window_CopyToVRAM(&param2[v7]);
-    Strbuf_Free(v4);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v4);
+    String_Free(v2);
+    String_Free(v3);
     Heap_Free(v1);
 }
 

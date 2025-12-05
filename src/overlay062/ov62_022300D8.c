@@ -24,7 +24,7 @@
 #include "palette.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -642,7 +642,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    Strbuf *v3;
+    String *v3;
     int v4;
     MessageLoader *v5;
     Window v6;
@@ -688,56 +688,56 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
 
 void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *param1, int param2, const UnkStruct_020F3DCC *param3)
 {
-    Strbuf *v0;
+    String *v0;
     MessageLoader *v1;
     Window v2;
     StringTemplate *v3;
-    Strbuf *v4;
-    Strbuf *v5;
+    String *v4;
+    String *v5;
 
     v1 = param0->unk_14.unk_34;
 
     if (param2 == 8) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
-            v0 = MessageLoader_GetNewStrbuf(v1, param2);
+            v0 = MessageLoader_GetNewString(v1, param2);
         } else {
             v3 = ov62_02231690(HEAP_ID_102);
-            v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
+            v4 = MessageLoader_GetNewString(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], HEAP_ID_102);
             ov62_022349A8(param0, v5);
-            v0 = Strbuf_Init(255, HEAP_ID_102);
+            v0 = String_Init(255, HEAP_ID_102);
 
-            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetString(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v3, v0, v4);
-            Strbuf_Free(v4);
-            Strbuf_Free(v5);
+            String_Free(v4);
+            String_Free(v5);
             StringTemplate_Free(v3);
         }
     } else if (param2 == 41) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
-            v0 = MessageLoader_GetNewStrbuf(v1, param2);
+            v0 = MessageLoader_GetNewString(v1, param2);
         } else {
             v3 = ov62_02231690(HEAP_ID_102);
-            v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
+            v4 = MessageLoader_GetNewString(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], HEAP_ID_102);
             ov62_022349A8(param0, v5);
-            v0 = Strbuf_Init(255, HEAP_ID_102);
+            v0 = String_Init(255, HEAP_ID_102);
 
-            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetString(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v3, v0, v4);
-            Strbuf_Free(v4);
-            Strbuf_Free(v5);
+            String_Free(v4);
+            String_Free(v5);
             StringTemplate_Free(v3);
         }
     } else {
-        v0 = MessageLoader_GetNewStrbuf(v1, param2);
+        v0 = MessageLoader_GetNewString(v1, param2);
     }
 
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, HEAP_ID_102);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_Remove(&v2);
 }
 
@@ -762,7 +762,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    Strbuf *v3;
+    String *v3;
     int v4;
     MessageLoader *v5;
     Window v6;
@@ -803,18 +803,18 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
 
 void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *param1, int param2)
 {
-    Strbuf *v0;
+    String *v0;
     MessageLoader *v1;
     Window v2;
 
     v1 = param1->unk_34;
-    v0 = MessageLoader_GetNewStrbuf(v1, param2);
+    v0 = MessageLoader_GetNewString(v1, param2);
 
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param1->unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, HEAP_ID_102);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_Remove(&v2);
 }
 

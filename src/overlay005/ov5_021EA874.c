@@ -23,7 +23,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -35,8 +35,8 @@
 typedef struct {
     StringList *unk_00;
     ListMenu *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
+    String *unk_08;
+    String *unk_0C;
     Window unk_10;
     Window unk_20;
     FieldSystem *fieldSystem;
@@ -139,7 +139,7 @@ static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 {
     DWCFriendData *v0;
-    Strbuf *v1;
+    String *v1;
     int v2;
     int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
 
@@ -180,7 +180,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
 {
     TrainerInfo *v0;
     DWCFriendData *v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
@@ -212,7 +212,7 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
 {
     TrainerInfo *v0;
     DWCFriendData *v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
@@ -268,8 +268,8 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
-                Strbuf_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
-                StringList_AddFromStrbuf(param0->unk_00, param0->unk_08, v5);
+                String_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
+                StringList_AddFromString(param0->unk_00, param0->unk_08, v5);
             }
         }
 
@@ -346,7 +346,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     WiFiList *v0 = SaveData_GetWiFiList(param0->saveData);
     TrainerInfo *v1;
     DWCFriendData *v2;
-    Strbuf *v3;
+    String *v3;
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
 
     if (v4 == 0xffffffff) {
@@ -428,7 +428,7 @@ static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
         Window_Remove(&param0->unk_10);
     }
 
-    MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
+    MessageLoader_GetString(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
     FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_10, 3);
     FieldMessage_DrawWindow(&param0->unk_10, SaveData_GetOptions(param0->fieldSystem->saveData));
@@ -442,16 +442,16 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD1);
     param0->unk_3C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD1);
-    param0->unk_0C = Strbuf_Init(110, HEAP_ID_FIELD1);
-    param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD1);
+    param0->unk_0C = String_Init(110, HEAP_ID_FIELD1);
+    param0->unk_08 = String_Init(110, HEAP_ID_FIELD1);
 }
 
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
 {
     MessageLoader_Free(param0->unk_3C);
     StringTemplate_Free(param0->unk_38);
-    Strbuf_Free(param0->unk_0C);
-    Strbuf_Free(param0->unk_08);
+    String_Free(param0->unk_0C);
+    String_Free(param0->unk_08);
 
     if (Window_IsInUse(&param0->unk_10)) {
         Window_Remove(&param0->unk_10);

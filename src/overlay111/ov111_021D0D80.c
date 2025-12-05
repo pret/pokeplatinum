@@ -36,7 +36,7 @@
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -74,8 +74,8 @@ struct UnkStruct_ov111_021D0F7C_t {
     UnkStruct_020157E4 *unk_34;
     MessageLoader *unk_38;
     StringTemplate *unk_3C;
-    Strbuf *unk_40;
-    Strbuf *unk_44;
+    String *unk_40;
+    String *unk_44;
     u16 unk_48[8];
     BgConfig *unk_58;
     Window unk_5C[16];
@@ -1111,8 +1111,8 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
     sub_02015760(param0->unk_34);
     MessageLoader_Free(param0->unk_38);
     StringTemplate_Free(param0->unk_3C);
-    Strbuf_Free(param0->unk_40);
-    Strbuf_Free(param0->unk_44);
+    String_Free(param0->unk_40);
+    String_Free(param0->unk_44);
     FontSpecialChars_Free(param0->unk_160);
     Heap_Free(param0->unk_3F0);
     Heap_Free(param0->unk_3F8);
@@ -1148,8 +1148,8 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     param0->unk_38 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0540, HEAP_ID_115);
     param0->unk_3C = StringTemplate_Default(HEAP_ID_115);
-    param0->unk_40 = Strbuf_Init(600, HEAP_ID_115);
-    param0->unk_44 = Strbuf_Init(600, HEAP_ID_115);
+    param0->unk_40 = String_Init(600, HEAP_ID_115);
+    param0->unk_44 = String_Init(600, HEAP_ID_115);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_115);
     Font_LoadTextPalette(4, 13 * 32, HEAP_ID_115);
@@ -1513,7 +1513,7 @@ static void ov111_021D2380(UnkStruct_ov111_021D0F7C *param0, u32 param1)
 static u8 ov111_021D23C4(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
+    MessageLoader_GetString(param0->unk_38, param2, param0->unk_44);
     StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
 
     return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
@@ -1522,9 +1522,9 @@ static u8 ov111_021D23C4(UnkStruct_ov111_021D0F7C *param0, Window *param1, int p
 static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
+    MessageLoader_GetString(param0->unk_38, param2, param0->unk_44);
     StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
-    param3 -= (Font_CalcStrbufWidth(param9, param0->unk_40, 0) + 1) / 2;
+    param3 -= (Font_CalcStringWidth(param9, param0->unk_40, 0) + 1) / 2;
     return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
 }
 

@@ -37,7 +37,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -237,19 +237,19 @@ static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
                 strTemplate = window->strTemplate;
             }
 
-            Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, window->textEntryID, utilMan->heapID);
+            String *string = MessageUtil_ExpandedString(strTemplate, msgLoader, window->textEntryID, utilMan->heapID);
 
             if (window->textRightAligned == FALSE) {
-                printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, strBuf, window->textXOffset, window->textYOffset, window->renderDelay, window->textColor, NULL);
+                printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, string, window->textXOffset, window->textYOffset, window->renderDelay, window->textColor, NULL);
             } else {
-                int textWidth = Font_CalcStrbufWidth(window->font, strBuf, Font_GetAttribute(window->font, FONTATTR_LETTER_SPACING));
+                int textWidth = Font_CalcStringWidth(window->font, string, Font_GetAttribute(window->font, FONTATTR_LETTER_SPACING));
                 int windowWidth = Window_GetWidth(window->window) * TILE_WIDTH_PIXELS - textWidth;
-                printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, strBuf, windowWidth, window->textYOffset, window->renderDelay, window->textColor, NULL);
+                printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, string, windowWidth, window->textYOffset, window->renderDelay, window->textColor, NULL);
 
                 window->textRightAligned = FALSE;
             }
 
-            Strbuf_Free(strBuf);
+            String_Free(string);
 
             if (window->strTemplate == NULL) {
                 StringTemplate_Free(strTemplate);

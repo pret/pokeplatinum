@@ -36,7 +36,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -1490,7 +1490,7 @@ void ov17_02242DA8(UnkStruct_ov17_02246F24 *param0)
 
 static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 *param4, const void *param5, int param6)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
 
     if (param6 == 1) {
@@ -1503,7 +1503,7 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
         }
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    v0 = MessageLoader_GetNewString(param1, param2);
     ov17_0224290C(param0, param3, param4, param5);
 
     StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
@@ -1520,7 +1520,7 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
         (void)0;
     }
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, u32 param1, const UnkStruct_ov17_022449B8 *param2, const void *param3)
@@ -1555,10 +1555,10 @@ int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0)
 
 void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
 {
-    Strbuf *v0;
+    String *v0;
     TextColor v1;
 
-    v0 = Strbuf_Init(12, HEAP_ID_21);
+    v0 = String_Init(12, HEAP_ID_21);
 
     Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRING, v0);
 
@@ -1571,7 +1571,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
     ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
     ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 void ov17_02242FA4(UnkStruct_ov17_02246F24 *param0)

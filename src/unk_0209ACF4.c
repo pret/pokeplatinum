@@ -19,7 +19,7 @@
 #include "save_player.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -30,8 +30,8 @@
 
 typedef struct {
     FieldSystem *fieldSystem;
-    Strbuf *unk_04;
-    Strbuf *unk_08;
+    String *unk_04;
+    String *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
     ColoredArrow *unk_14;
@@ -66,8 +66,8 @@ void sub_0209ACF4(FieldTask *param0)
     UnkStruct_0209AD84 *v1 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
-    v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD3);
-    v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD3);
+    v1->unk_04 = String_Init(400, HEAP_ID_FIELD3);
+    v1->unk_08 = String_Init(400, HEAP_ID_FIELD3);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
     v1->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
     v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);
@@ -87,8 +87,8 @@ static void sub_0209AD84(UnkStruct_0209AD84 *param0)
 {
     sub_020974EC(param0->unk_50);
     ColoredArrow_Free(param0->unk_14);
-    Strbuf_Free(param0->unk_04);
-    Strbuf_Free(param0->unk_08);
+    String_Free(param0->unk_04);
+    String_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_10);
     sub_0209ADBC(param0);
@@ -258,10 +258,10 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
     Window *v0 = &(param0->unk_18);
 
     if (param2) {
-        MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_04);
+        MessageLoader_GetString(param0->unk_10, param1, param0->unk_04);
         StringTemplate_Format(param0->unk_0C, param0->unk_08, param0->unk_04);
     } else {
-        MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
+        MessageLoader_GetString(param0->unk_10, param1, param0->unk_08);
     }
 
     if (Window_IsInUse(v0) == 0) {
@@ -301,7 +301,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
-            MessageLoader_GetStrbuf(param0->unk_10, 9 + v1, param0->unk_08);
+            MessageLoader_GetString(param0->unk_10, 9 + v1, param0->unk_08);
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
@@ -333,7 +333,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {
-            MessageLoader_GetStrbuf(param0->unk_10, v1 + 14, param0->unk_08);
+            MessageLoader_GetString(param0->unk_10, v1 + 14, param0->unk_08);
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 

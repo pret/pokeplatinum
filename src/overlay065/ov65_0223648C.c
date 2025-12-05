@@ -48,7 +48,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -97,8 +97,8 @@ typedef struct {
     BgConfig *unk_00;
     StringTemplate *unk_04;
     MessageLoader *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10;
+    String *unk_0C;
+    String *unk_10;
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
@@ -784,16 +784,16 @@ static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 {
     param0->unk_04 = StringTemplate_Default(heapID);
     param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
-    param0->unk_0C = Strbuf_Init(256, heapID);
-    param0->unk_10 = Strbuf_Init(256, heapID);
+    param0->unk_0C = String_Init(256, heapID);
+    param0->unk_10 = String_Init(256, heapID);
     param0->unk_14 = 0xff;
     param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->saveData));
 }
 
 static void ov65_02236C5C(UnkStruct_ov65_02236840 *param0)
 {
-    Strbuf_Free(param0->unk_10);
-    Strbuf_Free(param0->unk_0C);
+    String_Free(param0->unk_10);
+    String_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_04);
 }
@@ -814,12 +814,12 @@ static void ov65_02236C7C(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
         break;
     }
 
-    MessageLoader_GetStrbuf(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
+    MessageLoader_GetString(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, param0->unk_10);
     Text_AddPrinterWithParamsAndColor(&param0->unk_200, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_200);
     Window_ScheduleCopyToVRAM(&param0->unk_220);
-    MessageLoader_GetStrbuf(param0->unk_08, 128, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_08, 128, param0->unk_0C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_210, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_210);
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
@@ -882,7 +882,7 @@ static void ov65_02236E44(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
 static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2, u8 param3, u32 heapID)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     if (param0->unk_14 != 0xff) {
@@ -893,15 +893,15 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     }
 
     Window_FillTilemap(&param0->unk_1F0, 15);
-    v0 = Strbuf_Init(256, heapID);
+    v0 = String_Init(256, heapID);
 
-    MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
+    MessageLoader_GetString(param0->unk_08, param2, v0);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, v0);
 
     param0->unk_14 = Text_AddPrinterWithParamsAndColor(&param0->unk_1F0, FONT_MESSAGE, param0->unk_0C, 0, 0, param0->unk_16, TEXT_COLOR(1, 2, 15), NULL);
 
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     v1 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
@@ -950,13 +950,13 @@ static void ov65_02236F38(UnkStruct_ov65_02236840 *param0)
 
 static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 heapID)
 {
-    Strbuf *v0 = Strbuf_Init(256, heapID);
-    Strbuf *v1 = Strbuf_Init(256, heapID);
+    String *v0 = String_Init(256, heapID);
+    String *v1 = String_Init(256, heapID);
 
     ov65_0223726C(param0, param1, param2, 0, heapID);
     ov65_02237284(param0, param1, param2, 1, heapID);
 
-    MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
+    MessageLoader_GetString(param0->unk_08, 131, v0);
     StringTemplate_Format(param0->unk_04, v1, v0);
 
     Window_FillTilemap(&param0->unk_230, 15);
@@ -964,8 +964,8 @@ static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     Window_DrawStandardFrame(&param0->unk_230, 1, 1 + (18 + 12), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_230);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
 }
 
 static void ov65_02237018(UnkStruct_ov65_02236840 *param0)
@@ -998,24 +998,24 @@ static void ov65_02237034(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
 
 static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02236840 *param1, const UnkStruct_0207DE04 *param2, int param3, u32 heapID)
 {
-    Strbuf *v0;
-    Strbuf *v1;
+    String *v0;
+    String *v1;
     u8 v2;
     u8 v3;
 
-    v0 = Strbuf_Init(256, heapID);
-    v1 = Strbuf_Init(256, heapID);
+    v0 = String_Init(256, heapID);
+    v1 = String_Init(256, heapID);
 
     ov65_0223726C(param1, param2, param3, 0, heapID);
 
-    MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
+    MessageLoader_GetString(param1->unk_08, 129, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);
     Window_FillRectWithColor(&param1->unk_220, 15, 0, param3 * (2 * 8), 20 * 8, 2 * 8);
     Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 0, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
 
     ov65_02237284(param1, param2, param3, 0, heapID);
 
-    MessageLoader_GetStrbuf(param1->unk_08, 130, v0);
+    MessageLoader_GetString(param1->unk_08, 130, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);
     Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 72, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_ScheduleCopyToVRAM(&param1->unk_220);
@@ -1039,8 +1039,8 @@ static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_022368
     Bg_CopyToTilemapRect(param1->unk_00, 2, 18, 5 + (param3 * 2), 2, 2, param1->unk_248->rawData, v2 * 2, 0, param1->unk_248->screenWidth / 8, param1->unk_248->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param1->unk_00, 2, 18, 5 + (param3 * 2), 2, 2, 5);
     Bg_ScheduleTilemapTransfer(param1->unk_00, 2);
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
 }
 
 static void ov65_022371FC(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 param3)

@@ -41,7 +41,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -118,7 +118,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     GXBG0As unk_B9C;
     MessageLoader *unk_BA0;
     StringTemplate *unk_BA4;
-    Strbuf *unk_BA8;
+    String *unk_BA8;
     int unk_BAC;
     int unk_BB0;
     Menu *unk_BB4;
@@ -460,7 +460,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 1:
         ov10_022229D4(param0);
-        MessageLoader_GetStrbuf(param0->unk_BA0, 0, param0->unk_BA8);
+        MessageLoader_GetString(param0->unk_BA0, 0, param0->unk_BA8);
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B7C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 2;
@@ -474,9 +474,9 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 3:
         if (param0->unk_BC0 == 1) {
-            MessageLoader_GetStrbuf(param0->unk_BA0, 2, param0->unk_BA8);
+            MessageLoader_GetString(param0->unk_BA0, 2, param0->unk_BA8);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_BA0, 1, param0->unk_BA8);
+            MessageLoader_GetString(param0->unk_BA0, 1, param0->unk_BA8);
         }
 
         Window_FillRectWithColor(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
@@ -504,7 +504,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
     } break;
     case 5:
         ov10_022229D4(param0);
-        MessageLoader_GetStrbuf(param0->unk_BA0, 5, param0->unk_BA8);
+        MessageLoader_GetString(param0->unk_BA0, 5, param0->unk_BA8);
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B7C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 6;
@@ -676,7 +676,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_B68 = 12;
         param0->unk_BA0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->unk_00->heapID);
         param0->unk_BA4 = StringTemplate_Default(param0->unk_00->heapID);
-        param0->unk_BA8 = Strbuf_Init(2 * 160, param0->unk_00->heapID);
+        param0->unk_BA8 = String_Init(2 * 160, param0->unk_00->heapID);
         param0->unk_BB0 = 1;
 
         return 1;
@@ -1000,7 +1000,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
     switch (param0->unk_B76) {
     case 0:
         ov10_022229D4(param0);
-        MessageLoader_GetStrbuf(param0->unk_BA0, 8, param0->unk_BA8);
+        MessageLoader_GetString(param0->unk_BA0, 8, param0->unk_BA8);
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B7C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
         ov10_02222A28(param0);
         param0->unk_B76++;
@@ -1011,10 +1011,10 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
         v0 = sub_0202F41C(param0->unk_00->unk_00->saveData, param0->unk_00->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
 
         if (v0 == 2) {
-            MessageLoader_GetStrbuf(param0->unk_BA0, 6, param0->unk_BA8);
+            MessageLoader_GetString(param0->unk_BA0, 6, param0->unk_BA8);
             Sound_PlayEffect(SEQ_SE_DP_SAVE);
         } else if (v0 == 3) {
-            MessageLoader_GetStrbuf(param0->unk_BA0, 7, param0->unk_BA8);
+            MessageLoader_GetString(param0->unk_BA0, 7, param0->unk_BA8);
         } else {
             break;
         }
@@ -1053,7 +1053,7 @@ static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0)
     switch (param0->unk_B76) {
     case 0:
         ov10_022229D4(param0);
-        MessageLoader_GetStrbuf(param0->unk_BA0, 9, param0->unk_BA8);
+        MessageLoader_GetString(param0->unk_BA0, 9, param0->unk_BA8);
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B7C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
         CommTiming_StartSync(62);
 
@@ -1381,7 +1381,7 @@ static void ov10_02220DCC(UnkStruct_ov10_0221FB28 *param0)
 static void ov10_02220DFC(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_BA8 != NULL) {
-        Strbuf_Free(param0->unk_BA8);
+        String_Free(param0->unk_BA8);
     }
 
     if (param0->unk_BA4 != NULL) {
@@ -1540,7 +1540,7 @@ static void ov10_022212AC(UnkStruct_ov10_0221FB28 *param0)
     }
 }
 
-static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, Strbuf *param2)
+static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, String *param2)
 {
     Window *v0;
     UnkStruct_020127E8 v1;
@@ -2207,11 +2207,11 @@ static void ov10_022223E8(UnkStruct_ov10_0221FB28 *param0)
     }
 }
 
-static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, String *param4, u32 param5)
 {
     Pokemon *v0;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
 
     v1 = &param0->unk_10[param5 * 4 + 0];
 
@@ -2221,38 +2221,38 @@ static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
         v0 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_04[2], param5 - 3);
     }
 
-    v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
+    v2 = MessageLoader_GetNewString(param1, 8 + param5);
 
     StringTemplate_SetNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
     StringTemplate_Format(param3, param4, v2);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     if (param0->unk_214[param5].unk_0E == 0) {
         if (param0->unk_214[param5].unk_0D == 0) {
-            MessageLoader_GetStrbuf(param1, 27, param4);
+            MessageLoader_GetString(param1, 27, param4);
             Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
         } else if (param0->unk_214[param5].unk_0D == 1) {
-            MessageLoader_GetStrbuf(param1, 28, param4);
+            MessageLoader_GetString(param1, 28, param4);
             Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
         }
     }
 }
 
-static void ov10_022224F0(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_022224F0(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, String *param4, u32 param5)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = &param0->unk_10[param5 * 4 + 1];
 
     FontSpecialChars_DrawPartyScreenText(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
 }
 
-static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, String *param4, u32 param5)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
     u32 v2;
     int v3 = 28 - 28;
     int v4 = 0 + 2;
@@ -2296,11 +2296,11 @@ static void ov10_02222594(UnkStruct_ov10_0221FB28 *param0, u32 param1)
     Window_FillRectWithColor(v0, 10, 0, 5, v1, 1);
 }
 
-static void ov10_02222684(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222684(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, String *param4, u32 param5)
 {
     Pokemon *v0;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     u32 v3;
 
     v1 = &param0->unk_10[param5 * 4];
@@ -2326,13 +2326,13 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     MessageLoader *v0;
     FontSpecialCharsContext *v1;
     StringTemplate *v2;
-    Strbuf *v3;
+    String *v3;
     u32 v4;
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->unk_00->heapID);
     v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
     v2 = StringTemplate_Default(param0->unk_00->heapID);
-    v3 = Strbuf_Init(32, param0->unk_00->heapID);
+    v3 = String_Init(32, param0->unk_00->heapID);
 
     for (v4 = 0; v4 < 6; v4++) {
         if (param0->unk_214[v4].unk_04 == 0) {
@@ -2342,7 +2342,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
         ov10_02222684(param0, v0, v1, v2, v3, v4);
     }
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v0);
     FontSpecialChars_Free(v1);
     StringTemplate_Free(v2);
@@ -2369,7 +2369,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
         opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-        Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+        String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
         journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
         Heap_Free(opponentName1);
     } else {
@@ -2378,7 +2378,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2387,7 +2387,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2396,7 +2396,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2409,14 +2409,14 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
                 opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[1].header.trainerType);
                 opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[3].header.trainerType);
 
-                Strbuf_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
-                Strbuf_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
+                String_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
+                String_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
                 opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[0].header.trainerType);
                 opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[2].header.trainerType);
 
-                Strbuf_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
-                Strbuf_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
+                String_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
+                String_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
             }
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, param0->heapID);

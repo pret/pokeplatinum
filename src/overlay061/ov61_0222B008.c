@@ -31,7 +31,7 @@
 #include "message.h"
 #include "play_time.h"
 #include "save_player.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "unk_0202F1D4.h"
@@ -46,7 +46,7 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
 static int ov61_0222B6D8(UnkStruct_ov62_022349A8 *param0);
 static int ov61_0222B860(UnkStruct_ov62_022349A8 *param0);
 static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0);
-static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1);
+static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1);
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2);
 static int ov61_0222B960(UnkStruct_ov62_022349A8 *param0);
 static void *ov61_0222BBF0(int heapID);
@@ -96,7 +96,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
 
     param0->unk_3F4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->heapID);
     param0->unk_3F8 = StringTemplate_Default(param1->heapID);
-    param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->heapID);
+    param0->unk_3FC = String_Init((16 * 8 * 2), param1->heapID);
     param0->unk_18C = ov61_0222BBF0(param1->heapID);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;
@@ -117,7 +117,7 @@ void ov61_0222B0F0(UnkStruct_ov62_022349A8 *param0)
 
     param0->unk_3C4 = 0;
 
-    Strbuf_Free(param0->unk_3FC);
+    String_Free(param0->unk_3FC);
     StringTemplate_Free(param0->unk_3F8);
     MessageLoader_Free(param0->unk_3F4);
     Heap_Free(param0->unk_3B4);
@@ -739,7 +739,7 @@ BOOL ov61_0222BB48(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov62_0223CAA4 **pa
     return param0->unk_17C.unk_00;
 }
 
-static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1)
+static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1)
 {
     param0->unk_04(param0->unk_08, param1);
 }
@@ -747,7 +747,7 @@ static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1)
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2)
 {
     int v0;
-    Strbuf *v1;
+    String *v1;
 
     if (param1 != -1) {
         v0 = 0 + param1;
@@ -756,9 +756,9 @@ static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_3F8, 0, param2, 5, 2, 1);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
+    v1 = MessageLoader_GetNewString(param0->unk_3F4, v0);
     StringTemplate_Format(param0->unk_3F8, param0->unk_3FC, v1);
-    Strbuf_Free(v1);
+    String_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);
 }
 

@@ -29,7 +29,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -115,7 +115,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
-static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
+static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
 static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 *param0);
@@ -747,10 +747,10 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
     Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
+static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
 {
-    Strbuf *v0 = NULL;
-    Strbuf *v1;
+    String *v0 = NULL;
+    String *v1;
     int v2 = 0;
 
     if (param1 != TrainerInfo_ID(param4)) {
@@ -763,14 +763,14 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = Strbuf_Init(10, HEAP_ID_89);
+            v1 = String_Init(10, HEAP_ID_89);
 
-            Strbuf_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
-            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
-            Strbuf_Free(v1);
+            String_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
+            StringTemplate_SetString(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
+            String_Free(v1);
         }
 
-        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, HEAP_ID_89);
+        v0 = MessageUtil_ExpandedString(param2, param3, 208, HEAP_ID_89);
     }
 
     return v0;
@@ -789,14 +789,14 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     }
 
     if (v0->unk_00[*v2].unk_04 != NULL) {
-        Strbuf_Free(v0->unk_00[*v2].unk_04);
+        String_Free(v0->unk_00[*v2].unk_04);
     }
 
     if (v0->unk_00[*v2].unk_08 != NULL) {
-        Strbuf_Free(v0->unk_00[*v2].unk_08);
+        String_Free(v0->unk_00[*v2].unk_08);
     }
 
-    Strbuf_CopyChars(v0->unk_00[*v2].unk_00, TrainerInfo_Name(param3));
+    String_CopyChars(v0->unk_00[*v2].unk_00, TrainerInfo_Name(param3));
 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;

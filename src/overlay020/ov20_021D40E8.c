@@ -17,7 +17,7 @@
 #include "enums.h"
 #include "heap.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 typedef struct UnkStruct_ov20_021D4210_t {
@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov20_021D4210_t {
     Sprite *unk_30;
     Sprite *unk_34;
     Sprite *unk_38;
-    Strbuf *unk_3C;
+    String *unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;
     u32 unk_80;
@@ -53,7 +53,7 @@ UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_04 = param1;
     v0->unk_08 = param2;
     v0->unk_0C = ov20_021D2E04(param0);
-    v0->unk_3C = Strbuf_Init(32, HEAP_ID_35);
+    v0->unk_3C = String_Init(32, HEAP_ID_35);
 
     Window_Add(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
     Window_Add(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
@@ -80,7 +80,7 @@ void ov20_021D4164(UnkStruct_ov20_021D4210 *param0)
     }
 
     if (param0->unk_3C) {
-        Strbuf_Free(param0->unk_3C);
+        String_Free(param0->unk_3C);
     }
 
     Window_Remove(&(param0->unk_20));
