@@ -4,21 +4,18 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "map_object.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04;
-    UnkStruct_02073974 unk_18;
+    Simple3DModel unk_04;
+    Simple3DAnimation unk_18;
 } UnkStruct_ov5_021F23FC;
 
 typedef struct {
@@ -33,8 +30,8 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_ov5_021F2438 unk_10;
-    UnkStruct_02073974 unk_1C;
-    UnkStruct_02073B50 unk_40;
+    Simple3DAnimation unk_1C;
+    Simple3DRenderObj unk_40;
 } UnkStruct_ov5_021F247C;
 
 static void ov5_021F23FC(UnkStruct_ov5_021F23FC *param0);
@@ -67,8 +64,8 @@ static void ov5_021F23FC(UnkStruct_ov5_021F23FC *param0)
 
 static void ov5_021F2424(UnkStruct_ov5_021F23FC *param0)
 {
-    sub_0207395C(&param0->unk_04);
-    sub_02073AA8(&param0->unk_18);
+    Simple3D_FreeModel(&param0->unk_04);
+    Simple3D_FreeAnimation(&param0->unk_18);
 }
 
 OverworldAnimManager *ov5_021F2438(MapObject *param0)
@@ -113,7 +110,7 @@ static int ov5_021F2488(OverworldAnimManager *param0, void *param1)
     v0->unk_10 = *v1;
 
     ov5_021DFB40(v0->unk_10.unk_00, &v0->unk_1C, &v0->unk_10.unk_04->unk_04, &v0->unk_10.unk_04->unk_18, 0);
-    sub_02073B90(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
+    Simple3D_CreateRenderObjectWithAnim(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
 
     v0->unk_04 = MapObject_GetLocalID(v0->unk_10.unk_08);
     v0->unk_08 = sub_02062918(v0->unk_10.unk_08);
@@ -138,7 +135,7 @@ static int ov5_021F2488(OverworldAnimManager *param0, void *param1)
 static void ov5_021F2510(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F247C *v0 = param1;
-    sub_02073AA8(&v0->unk_1C);
+    Simple3D_FreeAnimation(&v0->unk_1C);
 }
 
 static void ov5_021F251C(OverworldAnimManager *param0, void *param1)
@@ -152,12 +149,12 @@ static void ov5_021F251C(OverworldAnimManager *param0, void *param1)
             return;
         }
     } else {
-        if (sub_02073B40(&v0->unk_1C) == 1) {
+        if (Simple3D_HasAnimationReachedEnd(&v0->unk_1C) == 1) {
             ov5_021DF74C(param0);
             return;
         }
 
-        sub_02073AC0(&v0->unk_1C, FX32_ONE, 0);
+        Simple3D_UpdateAnim(&v0->unk_1C, FX32_ONE, 0);
     }
 
     if (v0->unk_0C == 0) {
@@ -180,7 +177,7 @@ static void ov5_021F25A4(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F247C *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_02073BB4(&v1->unk_40, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_40, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200464 = {

@@ -3,20 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04[33];
-    UnkStruct_02073B50 unk_298[33];
+    Simple3DModel unk_04[33];
+    Simple3DRenderObj unk_298[33];
 } UnkStruct_ov5_021F4E38;
 
 typedef struct {
@@ -67,11 +64,11 @@ static void ov5_LoadFloorTextures(UnkStruct_ov5_021F4E38 *param0)
 
     for (i = 0; i < FLOOR_TEXTURE_COUNT - 1; i++) {
         ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 26 + i, FALSE);
-        sub_02073B70(&param0->unk_298[i], &param0->unk_04[i]);
+        Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
     }
 
     ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 25, FALSE);
-    sub_02073B70(&param0->unk_298[i], &param0->unk_04[i]);
+    Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
 }
 
 static void ov5_021F4E94(UnkStruct_ov5_021F4E38 *param0)
@@ -79,7 +76,7 @@ static void ov5_021F4E94(UnkStruct_ov5_021F4E38 *param0)
     int v0;
 
     for (v0 = 0; v0 < FLOOR_TEXTURE_COUNT; v0++) {
-        sub_0207395C(&param0->unk_04[v0]);
+        Simple3D_FreeModel(&param0->unk_04[v0]);
     }
 }
 
@@ -166,7 +163,7 @@ static void ov5_021F4FB8(OverworldAnimManager *param0, void *param1)
         VecFx32 v1;
         VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
         MtxFx33 v3 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
-        UnkStruct_02073B50 *v4 = &v0->unk_6C.unk_10->unk_298[v0->unk_54];
+        Simple3DRenderObj *v4 = &v0->unk_6C.unk_10->unk_298[v0->unk_54];
 
         OverworldAnimManager_GetPosition(param0, &v1);
 
@@ -177,7 +174,7 @@ static void ov5_021F4FB8(OverworldAnimManager *param0, void *param1)
         v1.y += -(FX32_ONE * 1);
         v1.z += (FX32_ONE * 5);
 
-        sub_02073BA4(v4, &v1, &v2, &v3);
+        Simple3D_DrawRenderObj(v4, &v1, &v2, &v3);
     }
 }
 

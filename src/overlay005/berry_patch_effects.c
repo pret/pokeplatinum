@@ -5,8 +5,6 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -15,8 +13,8 @@
 #include "berry_patch_manager.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
+#include "simple3d.h"
 #include "unk_02020AEC.h"
-#include "unk_02073838.h"
 
 // Berry patch moisture effect resource IDs
 #define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3
@@ -26,8 +24,8 @@
 
 typedef struct BerryPatchGraphicsManager {
     UnkStruct_ov5_021DF47C *renderManager;
-    UnkStruct_02073B50 resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
-    UnkStruct_02073838 resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    Simple3DRenderObj resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    Simple3DModel resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 } BerryPatchGraphicsManager;
 
 typedef struct BerryPatchMoistureEffectContext {
@@ -102,7 +100,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
     do {
         ov5_021DFB00(
             manager->renderManager, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
-        sub_02073B70(&manager->resourceData[i], &manager->resources[i]);
+        Simple3D_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
@@ -112,7 +110,7 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
     int i = 0;
 
     do {
-        sub_0207395C(&manager->resources[i]);
+        Simple3D_FreeModel(&manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }
@@ -185,7 +183,7 @@ static void BerryPatchMoistureEffect_Render(OverworldAnimManager *effectTask, vo
         VecFx32 effectPosition;
 
         OverworldAnimManager_GetPosition(effectTask, &effectPosition);
-        sub_02073BB4(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
+        Simple3D_DrawRenderObjWithPos(&berryPatchEffect->context.graphicsManager->resourceData[berryPatchEffect->moistureLevel], &effectPosition);
     }
 }
 

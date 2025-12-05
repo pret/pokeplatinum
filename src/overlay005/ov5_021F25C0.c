@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
@@ -15,12 +13,12 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04;
-    UnkStruct_02073B50 unk_18;
+    Simple3DModel unk_04;
+    Simple3DRenderObj unk_18;
 } UnkStruct_ov5_021F25EC;
 
 typedef struct {
@@ -68,12 +66,12 @@ void ov5_021F25DC(void *param0)
 static void ov5_021F25EC(UnkStruct_ov5_021F25EC *param0)
 {
     ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 81, 0);
-    sub_02073B70(&param0->unk_18, &param0->unk_04);
+    Simple3D_CreateRenderObject(&param0->unk_18, &param0->unk_04);
 }
 
 static void ov5_021F2610(UnkStruct_ov5_021F25EC *param0)
 {
-    sub_0207395C(&param0->unk_04);
+    Simple3D_FreeModel(&param0->unk_04);
 }
 
 OverworldAnimManager *ov5_021F261C(MapObject *param0, int param1, int param2, int param3, int param4)
@@ -200,7 +198,7 @@ static void ov5_021F27B4(OverworldAnimManager *param0, void *param1)
         u32 v1 = 0;
         MtxFx33 v2;
         VecFx32 v3, v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        UnkStruct_02073B50 *v5 = &v0->unk_24.unk_08->unk_18;
+        Simple3DRenderObj *v5 = &v0->unk_24.unk_08->unk_18;
 
         switch (v0->unk_08) {
         case 0:
@@ -218,7 +216,7 @@ static void ov5_021F27B4(OverworldAnimManager *param0, void *param1)
 
         MTX_Rot33Angles(&v2, 0, v1, 0);
         OverworldAnimManager_GetPosition(param0, &v3);
-        sub_02073BA4(v5, &v3, &v4, &v2);
+        Simple3D_DrawRenderObj(v5, &v3, &v4, &v2);
     }
 }
 
