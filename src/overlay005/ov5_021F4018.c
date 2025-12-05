@@ -142,7 +142,7 @@ void ov5_021F416C(FieldSystem *fieldSystem, int param1)
         YA3DA_FreeAnimObject(&v5->unk_04);
         YA3DA_ZeroOutAnimation(&v5->unk_04);
         ov5_021DFB40(v2, &v5->unk_04, &v5->unk_7C.unk_04->unk_04, &v5->unk_7C.unk_04->unk_3C, 0);
-        YA3DA_BindModelAndAnimToRenderObj(&v5->unk_28, &v5->unk_7C.unk_04->unk_04, &v5->unk_04);
+        YA3DA_CreateRenderObjectWithAnim(&v5->unk_28, &v5->unk_7C.unk_04->unk_04, &v5->unk_04);
     }
 }
 
@@ -154,7 +154,7 @@ static int ov5_021F41F0(OverworldAnimManager *param0, void *param1)
     v0->unk_7C = *v1;
 
     ov5_021DFB40(v0->unk_7C.unk_00, &v0->unk_04, &v0->unk_7C.unk_04->unk_04, &v0->unk_7C.unk_04->unk_18, 0);
-    YA3DA_BindModelAndAnimToRenderObj(&v0->unk_28, &v0->unk_7C.unk_04->unk_04, &v0->unk_04);
+    YA3DA_CreateRenderObjectWithAnim(&v0->unk_28, &v0->unk_7C.unk_04->unk_04, &v0->unk_04);
 
     return 1;
 }
@@ -179,7 +179,7 @@ static void ov5_021F4240(OverworldAnimManager *param0, void *param1)
         v0 = 0;
     }
 
-    YA3DA_AdvanceAnim(&v1->unk_04, FX32_ONE, v0);
+    YA3DA_UpdateAnim(&v1->unk_04, FX32_ONE, v0);
 }
 
 static void ov5_021F4270(OverworldAnimManager *param0, void *param1)

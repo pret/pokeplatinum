@@ -100,7 +100,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
     do {
         ov5_021DFB00(
             manager->renderManager, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
-        YA3DA_BindModelToRenderObj(&manager->resourceData[i], &manager->resources[i]);
+        YA3DA_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
 }

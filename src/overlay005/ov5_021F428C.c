@@ -221,7 +221,7 @@ void ov5_021F44A4(OverworldAnimManager *param0)
     v2->unk_00 = 1;
     v2->unk_74 = ov5_021DF53C(v1->unk_08, sizeof(UnkStruct_ov5_021F45F8), 1, 0);
 
-    YA3DA_BindModelToRenderObj(&v2->unk_0C, &v2->unk_60.unk_0C->unk_0C[0]);
+    YA3DA_CreateRenderObject(&v2->unk_0C, &v2->unk_60.unk_0C->unk_0C[0]);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021DFB40(v1->unk_08, &v2->unk_74->unk_04[v0], &v1->unk_0C[0], &v1->unk_48[Unk_ov5_022006E8[v0]], 0);
@@ -258,7 +258,7 @@ static int ov5_021F4560(OverworldAnimManager *param0, void *param1)
     v0.y += (FX32_ONE * 6) + v1->unk_60.unk_08;
 
     OverworldAnimManager_SetPosition(param0, &v0);
-    YA3DA_BindModelToRenderObj(&v1->unk_0C, &v1->unk_60.unk_0C->unk_0C[1]);
+    YA3DA_CreateRenderObject(&v1->unk_0C, &v1->unk_60.unk_0C->unk_0C[1]);
 
     return 1;
 }
@@ -293,7 +293,7 @@ static void ov5_021F45F8(OverworldAnimManager *param0, void *param1)
         v2 = v0->unk_74;
 
         for (v1 = 0; v1 < 4; v1++) {
-            if (YA3DA_AdvanceAnim(&v2->unk_04[v1], FX32_ONE, 0)) {
+            if (YA3DA_UpdateAnim(&v2->unk_04[v1], FX32_ONE, 0)) {
                 v2->unk_00 |= 1 << v1;
             }
         }
@@ -358,7 +358,7 @@ void ov5_021F4698(OverworldAnimManager *param0, int param1, BOOL param2)
     }
 
     ov5_021DFB40(v1->unk_08, &v2->unk_0C, &v1->unk_0C[2], &v1->unk_48[param1], 0);
-    YA3DA_BindModelAndAnimToRenderObj(&v2->unk_30, &v1->unk_0C[2], &v2->unk_0C);
+    YA3DA_CreateRenderObjectWithAnim(&v2->unk_30, &v1->unk_0C[2], &v2->unk_0C);
 }
 
 void ov5_021F4714(OverworldAnimManager *param0, fx32 param1)
@@ -380,7 +380,7 @@ static int ov5_021F4730(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F4698 *v0 = param1;
 
     ov5_021F440C(param0, v0);
-    YA3DA_BindModelToRenderObj(&v0->unk_30, &v0->unk_84.unk_0C->unk_0C[2]);
+    YA3DA_CreateRenderObject(&v0->unk_30, &v0->unk_84.unk_0C->unk_0C[2]);
 
     return 1;
 }
@@ -402,7 +402,7 @@ static void ov5_021F4760(OverworldAnimManager *param0, void *param1)
     case 0:
         break;
     case 1:
-        if (YA3DA_AdvanceAnim(&v0->unk_0C, v0->unk_08, 0)) {
+        if (YA3DA_UpdateAnim(&v0->unk_0C, v0->unk_08, 0)) {
             v0->unk_00_0 = 0;
             v0->unk_00_7 = 1;
         }

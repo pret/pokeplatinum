@@ -2251,7 +2251,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
 
     YA3DA_LoadModelFromSet(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
     YA3DA_ScheduleBindModelTexture(&v2->unk_54);
-    YA3DA_BindModelToRenderObj(&v2->unk_68, &v2->unk_54);
+    YA3DA_CreateRenderObject(&v2->unk_68, &v2->unk_54);
 
     v2->unk_3C = (FX32_ONE * 0);
     v2->unk_44 = Unk_ov109_021D5A98[v0];
@@ -2351,7 +2351,7 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
         YA3DA_LoadModelFromSet(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
         YA3DA_ScheduleBindModelTexture(&v3->unk_28[v0]);
         YA3DA_LoadAnimFromOpenNARC(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
-        YA3DA_BindAnimToModel(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
+        YA3DA_BindModelToAnim(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
         YA3DA_InitG3DAnimObject(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }
@@ -2366,7 +2366,7 @@ static void ov109_021D2BD4(UnkStruct_ov109_021D0F70 *param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         YA3DA_FreeModel(&v1->unk_28[v0]);
-        YA3DA_FreeG3DAnimation(&v1->unk_8C[v0]);
+        YA3DA_FreeAnimationSet(&v1->unk_8C[v0]);
     }
 }
 
@@ -2374,7 +2374,7 @@ static void ov109_021D2C0C(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
 {
     UnkStruct_ov109_021D1334 *v0 = &param0->unk_190;
 
-    YA3DA_BindModelToRenderObj(&param1->unk_5C, &v0->unk_00);
+    YA3DA_CreateRenderObject(&param1->unk_5C, &v0->unk_00);
     param1->unk_04 = 1;
 
     ov109_021D2EC0(param0, param1);
@@ -2510,7 +2510,7 @@ static void ov109_021D2EC0(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
 
     v1->unk_00 = 1;
     v1->unk_78 = param1;
-    YA3DA_BindModelToRenderObj(&v1->unk_24, &v0->unk_14);
+    YA3DA_CreateRenderObject(&v1->unk_24, &v0->unk_14);
     ov109_021D2EF4(param0, v1);
 }
 
@@ -2552,7 +2552,7 @@ static void ov109_021D2F68(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
     v1->unk_00 = 1;
     v1->unk_64 = param1;
 
-    YA3DA_BindModelAndAnimToRenderObj(&v1->unk_10, &v0->unk_28[param1->unk_10], &v0->unk_8C[param1->unk_10]);
+    YA3DA_CreateRenderObjectWithAnim(&v1->unk_10, &v0->unk_28[param1->unk_10], &v0->unk_8C[param1->unk_10]);
 }
 
 static void ov109_021D2FA4(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021D2FA4 *param1)
@@ -2562,7 +2562,7 @@ static void ov109_021D2FA4(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
     param1->unk_04 = param1->unk_64->unk_44;
     param1->unk_04.y += (FX32_ONE * 20);
 
-    YA3DA_AdvanceAnim(&v0->unk_8C[param1->unk_64->unk_10], FX32_ONE, 1);
+    YA3DA_UpdateAnim(&v0->unk_8C[param1->unk_64->unk_10], FX32_ONE, 1);
 }
 
 static SysTask *ov109_021D2FE0(UnkStruct_ov109_021D0F70 *param0, int param1, int param2, int param3, int param4, int param5, UnkStruct_ov109_021D2D78 *param6)

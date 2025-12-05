@@ -134,7 +134,7 @@ static int ov5_021F487C(OverworldAnimManager *param0, void *param1)
     v0->unk_00 = MapObject_GetFacingDir(v1->unk_0C);
     v0->unk_88 = ov5_021DF528(v1->unk_04, sizeof(YA3DA_Animation), 0);
 
-    YA3DA_BindModelToRenderObj(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
+    YA3DA_CreateRenderObject(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
     ov5_021DFB40(v0->unk_24.unk_04, v0->unk_88, &v0->unk_24.unk_08->unk_04[0], &v0->unk_24.unk_08->unk_B8[0], 0);
     YA3DA_BindAnimToRenderObj(&v0->unk_34, v0->unk_88);
     ov5_021F4A24(param0, v0);
@@ -173,7 +173,7 @@ static void ov5_021F4908(OverworldAnimManager *param0, void *param1)
         ov5_021F49D0(param0, v4);
     }
 
-    YA3DA_AdvanceAnim(v4->unk_88, FX32_ONE, 1);
+    YA3DA_UpdateAnim(v4->unk_88, FX32_ONE, 1);
 }
 
 static void ov5_021F4974(OverworldAnimManager *param0, void *param1)
@@ -385,7 +385,7 @@ static int ov5_021F4D50(OverworldAnimManager *param0, void *param1)
     v0->unk_04 = (UnkStruct_ov5_021DF47C *)OverworldAnimManager_GetUserData(param0);
     v0->unk_08 = ov5_021DF55C(v0->unk_04, 32);
 
-    YA3DA_BindModelToRenderObj(&v0->unk_0C, &v0->unk_08->unk_04[1 + v0->unk_00]);
+    YA3DA_CreateRenderObject(&v0->unk_0C, &v0->unk_08->unk_04[1 + v0->unk_00]);
     return 1;
 }
 

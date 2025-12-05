@@ -64,11 +64,11 @@ static void ov5_LoadFloorTextures(UnkStruct_ov5_021F4E38 *param0)
 
     for (i = 0; i < FLOOR_TEXTURE_COUNT - 1; i++) {
         ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 26 + i, FALSE);
-        YA3DA_BindModelToRenderObj(&param0->unk_298[i], &param0->unk_04[i]);
+        YA3DA_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
     }
 
     ov5_021DFB00(param0->unk_00, &param0->unk_04[i], 0, 25, FALSE);
-    YA3DA_BindModelToRenderObj(&param0->unk_298[i], &param0->unk_04[i]);
+    YA3DA_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
 }
 
 static void ov5_021F4E94(UnkStruct_ov5_021F4E38 *param0)

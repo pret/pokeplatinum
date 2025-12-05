@@ -85,7 +85,7 @@ static int ov5_021F580C(OverworldAnimManager *param0, void *param1)
     v0->unk_78 = *v1;
 
     ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_08, &v0->unk_78.unk_04->unk_1C, 0);
-    YA3DA_BindModelAndAnimToRenderObj(&v0->unk_24, &v0->unk_78.unk_04->unk_08, &v0->unk_00);
+    YA3DA_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_08, &v0->unk_00);
 
     return 1;
 }
@@ -105,7 +105,7 @@ static void ov5_021F5850(OverworldAnimManager *param0, void *param1)
         return;
     }
 
-    YA3DA_AdvanceAnim(&v0->unk_00, FX32_ONE, 0);
+    YA3DA_UpdateAnim(&v0->unk_00, FX32_ONE, 0);
 }
 
 static void ov5_021F5878(OverworldAnimManager *param0, void *param1)

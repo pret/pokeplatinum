@@ -157,7 +157,7 @@ static void LoadAnimFromSet(YA3DA_Animation *dest, void *animSet, u32 unused)
     dest->g3DAnim = NNS_G3dGetAnmByIdx(dest->animSet, 0);
 }
 
-void YA3DA_FreeG3DAnimation(YA3DA_Animation *anim)
+void YA3DA_FreeAnimationSet(YA3DA_Animation *anim)
 {
     if (anim->flags & ANIM_OWNS_SET) {
         Heap_Free(anim->animSet);
@@ -176,7 +176,7 @@ static void BindAnimToModel(YA3DA_Animation *anim, const NNSG3dResMdl *model, u3
     GF_ASSERT(anim->animObj != NULL);
 }
 
-void YA3DA_BindAnimToModel(YA3DA_Animation *anim, const YA3DA_Model *model, u32 heapID)
+void YA3DA_BindModelToAnim(YA3DA_Animation *anim, const YA3DA_Model *model, u32 heapID)
 {
     BindAnimToModel(anim, model->g3DModel, heapID);
 }
@@ -194,7 +194,7 @@ void YA3DA_InitG3DAnimObject(YA3DA_Animation *anim, const YA3DA_Model *model)
 void YA3DA_ApplyAnimCopyToModel(YA3DA_Animation *dest, const YA3DA_Model *model, YA3DA_Animation *src, u32 unused, u32 heapID)
 {
     CreateAnimCopy(dest, src, unused);
-    YA3DA_BindAnimToModel(dest, model, heapID);
+    YA3DA_BindModelToAnim(dest, model, heapID);
     YA3DA_InitG3DAnimObject(dest, model);
 }
 
@@ -209,18 +209,18 @@ void YA3DA_FreeAnimObject(YA3DA_Animation *anim)
 void YA3DA_FreeAnimation(YA3DA_Animation *anim)
 {
     YA3DA_FreeAnimObject(anim);
-    YA3DA_FreeG3DAnimation(anim);
+    YA3DA_FreeAnimationSet(anim);
     YA3DA_ZeroOutAnimation(anim);
 }
 
-BOOL YA3DA_AdvanceAnim(YA3DA_Animation *anim, fx32 amount, BOOL loop)
+BOOL YA3DA_UpdateAnim(YA3DA_Animation *anim, fx32 frameDelta, BOOL loop)
 {
     u32 reachedEnd = FALSE;
     fx32 animLength = NNS_G3dAnmObjGetNumFrame(anim->animObj);
 
-    anim->currFrame += amount;
+    anim->currFrame += frameDelta;
 
-    if (amount > 0) {
+    if (frameDelta > 0) {
         if (anim->currFrame >= animLength) {
             reachedEnd = TRUE;
 
@@ -285,7 +285,7 @@ static void BindModelToRenderObj(YA3DA_RenderObj *renderObj, NNSG3dResMdl *model
     NNS_G3dRenderObjInit(&renderObj->g3DRenderObj, model);
 }
 
-void YA3DA_BindModelToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model)
+void YA3DA_CreateRenderObject(YA3DA_RenderObj *renderObj, YA3DA_Model *model)
 {
     BindModelToRenderObj(renderObj, model->g3DModel);
 }
@@ -300,9 +300,9 @@ void YA3DA_BindAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Animation *anim
     BindAnimToRenderObj(renderObj, anim->animObj);
 }
 
-void YA3DA_BindModelAndAnimToRenderObj(YA3DA_RenderObj *renderObj, YA3DA_Model *model, YA3DA_Animation *anim)
+void YA3DA_CreateRenderObjectWithAnim(YA3DA_RenderObj *renderObj, YA3DA_Model *model, YA3DA_Animation *anim)
 {
-    YA3DA_BindModelToRenderObj(renderObj, model);
+    YA3DA_CreateRenderObject(renderObj, model);
     YA3DA_BindAnimToRenderObj(renderObj, anim);
 }
 

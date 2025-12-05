@@ -110,7 +110,7 @@ static int ov5_021F2488(OverworldAnimManager *param0, void *param1)
     v0->unk_10 = *v1;
 
     ov5_021DFB40(v0->unk_10.unk_00, &v0->unk_1C, &v0->unk_10.unk_04->unk_04, &v0->unk_10.unk_04->unk_18, 0);
-    YA3DA_BindModelAndAnimToRenderObj(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
+    YA3DA_CreateRenderObjectWithAnim(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
 
     v0->unk_04 = MapObject_GetLocalID(v0->unk_10.unk_08);
     v0->unk_08 = sub_02062918(v0->unk_10.unk_08);
@@ -154,7 +154,7 @@ static void ov5_021F251C(OverworldAnimManager *param0, void *param1)
             return;
         }
 
-        YA3DA_AdvanceAnim(&v0->unk_1C, FX32_ONE, 0);
+        YA3DA_UpdateAnim(&v0->unk_1C, FX32_ONE, 0);
     }
 
     if (v0->unk_0C == 0) {

@@ -66,7 +66,7 @@ void ov5_021F52A0(void *param0)
 static void ov5_021F52B0(UnkStruct_021F52B0 *param0)
 {
     ov5_021DFB00(param0->unk_08, &param0->unk_0C, 0, 23, 0);
-    YA3DA_BindModelToRenderObj(&param0->unk_20, &param0->unk_0C);
+    YA3DA_CreateRenderObject(&param0->unk_20, &param0->unk_0C);
 }
 
 static void ov5_021F52D8(UnkStruct_021F52B0 *param0)

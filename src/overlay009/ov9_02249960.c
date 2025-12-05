@@ -3544,7 +3544,7 @@ static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
         if (v3 == 1) {
             fx32 v4;
 
-            YA3DA_AdvanceAnim(&v0->unk_38->unk_58, -FX32_ONE * 2, 0);
+            YA3DA_UpdateAnim(&v0->unk_38->unk_58, -FX32_ONE * 2, 0);
             v4 = YA3DA_GetAnimFrame(&v0->unk_38->unk_58);
 
             if (v0->unk_00 >= ((v4) / FX32_ONE)) {
@@ -3579,7 +3579,7 @@ static void ov9_0224BD18(OverworldAnimManager *param0, void *param1)
                 v0->unk_00 = 31;
             }
 
-            YA3DA_AdvanceAnim(&v0->unk_38->unk_58, FX32_ONE * 2, 0);
+            YA3DA_UpdateAnim(&v0->unk_38->unk_58, FX32_ONE * 2, 0);
         }
     }
 
@@ -5542,7 +5542,7 @@ static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_
             ov9_0224D780(param0, param1);
         }
 
-        YA3DA_BindModelToRenderObj(param3, &v0->unk_00[param1].unk_04);
+        YA3DA_CreateRenderObject(param3, &v0->unk_00[param1].unk_04);
     }
 
     if (param2 != 5) {
@@ -5551,7 +5551,7 @@ static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, YA3DA_
         }
 
         YA3DA_LoadFromAllocatedSet(param4, v0->unk_258[param2].unk_04, 0);
-        YA3DA_BindAnimToModel(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD1);
+        YA3DA_BindModelToAnim(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD1);
         YA3DA_InitG3DAnimObject(param4, &v0->unk_00[param1].unk_04);
         YA3DA_BindAnimToRenderObj(param3, param4);
     }
@@ -6783,7 +6783,7 @@ static void ov9_0224EA94(OverworldAnimManager *param0, void *param1)
     }
 
     if (v1->unk_2E == 0) {
-        YA3DA_AdvanceAnim(&v1->unk_00.unk_04->unk_58, FX32_ONE, 1);
+        YA3DA_UpdateAnim(&v1->unk_00.unk_04->unk_58, FX32_ONE, 1);
     }
 }
 
@@ -7049,7 +7049,7 @@ static void ov9_0224EDFC(OverworldAnimManager *param0, void *param1)
     int v1 = v0->unk_1C.unk_04->unk_08.unk_04;
 
     if (ov9_0224DAEC(v1) == 1) {
-        YA3DA_AdvanceAnim(&v0->unk_24->unk_58, FX32_ONE, 1);
+        YA3DA_UpdateAnim(&v0->unk_24->unk_58, FX32_ONE, 1);
     }
 
     v0->unk_02 = ov9_0224DBE4(v0->unk_1C.unk_00, v1, &v0->unk_04);
