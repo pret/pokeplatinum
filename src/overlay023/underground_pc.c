@@ -963,6 +963,4 @@ static void UndergroundPC_UpdateCursorPos(UndergroundMenu *menu)
     if (prevPos != menu->unk_2AE) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
-
-    return;
 }

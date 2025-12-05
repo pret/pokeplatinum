@@ -1456,12 +1456,10 @@ void UndergroundTalk_ExitConversation(void)
 
 static void UndergroundTalk_UpdateCursorPos(TalkMenu *menu)
 {
-    u16 pos = menu->cursorPos;
+    u16 prevPos = menu->cursorPos;
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
-    if (pos != menu->cursorPos) {
+    if (prevPos != menu->cursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
-
-    return;
 }
