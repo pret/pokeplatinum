@@ -1592,7 +1592,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     Heap_Free(v9);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
 
-    Heap_Free(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleTower_GetTrainerData(&v10, param0->unk_18[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
@@ -1634,7 +1634,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v8->trainerInfo[2]);
 
-        Heap_Free(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(BattleTower_GetTrainerData(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v8, &v10, v5, 3, 11);
         Party_InitWithCapacity(v8->parties[3], v5);

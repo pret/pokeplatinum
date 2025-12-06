@@ -2925,9 +2925,9 @@
     .short \word2
     .endm
 
-    .macro ScrCmd_1FE arg0
+    .macro PrintBattleTowerIntroMessage opponentID
     .short 510
-    .byte \arg0
+    .byte \opponentID
     .endm
 
     .macro MessageSeenBanlistSpecies banlistMsgStartIdx, numPokemonRequired

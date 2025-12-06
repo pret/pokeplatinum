@@ -290,7 +290,7 @@ static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx);
 static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx);
 static BOOL ScrCmd_SentenceInstant(ScriptContext *ctx);
 static BOOL ScrCmd_Sentence(ScriptContext *ctx);
-static BOOL ScrCmd_1FE(ScriptContext *ctx);
+static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx);
 static BOOL ScrCmd_MessageSeenBanlistSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_MessageUnown(ScriptContext *ctx);
 static BOOL ScrCmd_Message(ScriptContext *ctx);
@@ -1279,7 +1279,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_MessageFromBank,
     ScrCmd_SentenceInstant,
     ScrCmd_Sentence,
-    ScrCmd_1FE,
+    ScrCmd_PrintBattleTowerIntroMessage,
     ScrCmd_MessageSeenBanlistSpecies,
     ScrCmd_GetPreviousMapID,
     ScrCmd_GetCurrentMapID,
@@ -2090,9 +2090,9 @@ static BOOL ScrCmd_Sentence(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1FE(ScriptContext *ctx)
+static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
 {
-    u16 v3 = ScriptContext_ReadByte(ctx);
+    u16 opponentID = ScriptContext_ReadByte(ctx);
 
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
@@ -2100,7 +2100,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *v0 = battleTower->unk_78[v3].trDataDTO.unk_18;
+    u16 *v0 = battleTower->opponentsDataDTO[opponentID].trDataDTO.unk_18;
 
     if (v0[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);

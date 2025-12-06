@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/game_records.h"
@@ -26,6 +27,7 @@
 #include "inlines.h"
 #include "journal.h"
 #include "location.h"
+#include "main.h"
 #include "math_util.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -208,9 +210,9 @@ BOOL sub_02049EC4(u16 param0, SaveData *saveData, u8 param2)
     return sub_02049DB4(v8, param0, v2, (v2 - param0) + 1);
 }
 
-void sub_02049F8C(void)
+void BattleTower_ResetSystem(void)
 {
-    OS_ResetSystem(0);
+    OS_ResetSystem(RESET_CLEAN);
 }
 
 void sub_02049F98(UnkStruct_0202D060 *param0)
@@ -334,15 +336,15 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
     if (param1 == 0) {
         battleTower->challengeMode = challengeMode;
         battleTower->partySize = (u8)BattleTower_GetPartySizeForChallengeMode(battleTower->challengeMode);
-        battleTower->unk_0C = 1;
+        battleTower->nextOpponentNum = 1;
         battleTower->unk_0D = 0;
 
         for (v1 = 0; v1 < 4; v1++) {
             battleTower->unk_2A[v1] = 0xFF;
         }
 
-        for (v1 = 0; v1 < 14; v1++) {
-            battleTower->unk_3E[v1] = 0xFFFF;
+        for (v1 = 0; v1 < BT_OPPONENTS_COUNT * 2; v1++) {
+            battleTower->trainerIDs[v1] = 0xFFFF;
         }
 
         sub_0202D060(battleTower->unk_70);
@@ -350,12 +352,12 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
         sub_0202D140(battleTower->unk_70, 0, &v0);
     } else {
         battleTower->challengeMode = (u8)sub_0202D0BC(battleTower->unk_70, 0, NULL);
-        battleTower->unk_0C = (u8)sub_0202D0BC(battleTower->unk_70, 1, NULL);
-        battleTower->unk_0D = battleTower->unk_0C - 1;
+        battleTower->nextOpponentNum = (u8)sub_0202D0BC(battleTower->unk_70, 1, NULL);
+        battleTower->unk_0D = battleTower->nextOpponentNum - 1;
         battleTower->partySize = (u8)BattleTower_GetPartySizeForChallengeMode(battleTower->challengeMode);
 
         sub_0202D0BC(battleTower->unk_70, 5, battleTower->unk_2A);
-        sub_0202D0BC(battleTower->unk_70, 8, battleTower->unk_3E);
+        sub_0202D0BC(battleTower->unk_70, 8, battleTower->trainerIDs);
 
         battleTower->unk_08 = sub_0202D0BC(battleTower->unk_70, 10, NULL);
 
@@ -388,14 +390,14 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
                     frontier, 1 + battleTower->challengeMode * 2, 0xff);
             }
 
-            battleTower->unk_1C = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
+            battleTower->roomNum = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
         }
 
         battleTower->unk_20 = GameRecords_GetRecordValue(v5, RECORD_UNK_029);
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        battleTower->unk_1C = sub_0202D3FC(battleTower->unk_74, 6, battleTower->unk_1A / 7);
+        battleTower->roomNum = sub_0202D3FC(battleTower->unk_74, BATTLE_TOWER_MODE_6, battleTower->unk_1A / 7);
     }
 
     return battleTower;
@@ -476,66 +478,66 @@ int BattleTower_CheckDuplicateSpeciesAndHeldItems(BattleTower *battleTower, Save
     return 0;
 }
 
-static BOOL sub_0204A4A0(u16 *param0, u16 param1, u16 param2)
+static BOOL BattleTower_IsTrainerAlreadyUsed(u16 *trainerIDs, u16 trainerID, u16 currOpponentNum)
 {
-    u16 v0;
+    u16 opponentNum;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        if (param0[v0] == param1) {
-            return 1;
+    for (opponentNum = 0; opponentNum < currOpponentNum; opponentNum++) {
+        if (trainerIDs[opponentNum] == trainerID) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0204A4C8(BattleTower *battleTower, SaveData *saveData)
 {
-    int v0;
-    u16 v1, v2;
+    int opponentNum;
+    u16 trainerID, roomNum;
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_MULTI || battleTower->challengeMode == BATTLE_TOWER_MODE_6 || battleTower->challengeMode == BATTLE_TOWER_MODE_LINK_MULTI) {
-        if ((battleTower->challengeMode == BATTLE_TOWER_MODE_LINK_MULTI && battleTower->unk_14 > battleTower->unk_1C) || (battleTower->challengeMode == BATTLE_TOWER_MODE_6 && battleTower->unk_14 > battleTower->unk_1C)) {
-            v2 = battleTower->unk_14;
+        if ((battleTower->challengeMode == BATTLE_TOWER_MODE_LINK_MULTI && battleTower->unk_14 > battleTower->roomNum) || (battleTower->challengeMode == BATTLE_TOWER_MODE_6 && battleTower->unk_14 > battleTower->roomNum)) {
+            roomNum = battleTower->unk_14;
         } else {
-            v2 = battleTower->unk_1C;
+            roomNum = battleTower->roomNum;
         }
 
-        for (v0 = 0; v0 < 14; v0++) {
+        for (opponentNum = 0; opponentNum < BT_OPPONENTS_COUNT * 2; opponentNum++) {
             do {
-                v1 = sub_0204B0F0(battleTower, v2, v0 / 2, battleTower->challengeMode);
-            } while (sub_0204A4A0(battleTower->unk_3E, v1, v0));
+                trainerID = BattleTower_GetTrainerIDForRoomAndOpponentNum(battleTower, roomNum, opponentNum / 2, battleTower->challengeMode);
+            } while (BattleTower_IsTrainerAlreadyUsed(battleTower->trainerIDs, trainerID, opponentNum));
 
-            battleTower->unk_3E[v0] = v1;
+            battleTower->trainerIDs[opponentNum] = trainerID;
         }
     } else {
-        for (v0 = 0; v0 < (14 / 2); v0++) {
+        for (opponentNum = 0; opponentNum < BT_OPPONENTS_COUNT; opponentNum++) {
             do {
-                v1 = sub_0204B0F0(battleTower, battleTower->unk_1C, v0, battleTower->challengeMode);
-            } while (sub_0204A4A0(battleTower->unk_3E, v1, v0));
+                trainerID = BattleTower_GetTrainerIDForRoomAndOpponentNum(battleTower, battleTower->roomNum, opponentNum, battleTower->challengeMode);
+            } while (BattleTower_IsTrainerAlreadyUsed(battleTower->trainerIDs, trainerID, opponentNum));
 
-            battleTower->unk_3E[v0] = v1;
+            battleTower->trainerIDs[opponentNum] = trainerID;
         }
     }
 }
 
-u16 sub_0204A578(BattleTower *battleTower)
+u16 BattleTower_GetNextOpponentNum(BattleTower *battleTower)
 {
-    return battleTower->unk_0C;
+    return battleTower->nextOpponentNum;
 }
 
-BOOL sub_0204A57C(BattleTower *battleTower)
+BOOL BattleTower_HasDefeatedSevenTrainers(BattleTower *battleTower)
 {
-    if (battleTower->unk_10_0) {
-        return 1;
+    if (battleTower->defeatedSevenTrainers) {
+        return TRUE;
     }
 
-    if (battleTower->unk_0C > 7) {
-        battleTower->unk_10_0 = 1;
-        return 1;
+    if (battleTower->nextOpponentNum > 7) {
+        battleTower->defeatedSevenTrainers = TRUE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void sub_0204A5A0(BattleTower *battleTower, SaveData *saveData, u16 param2)
@@ -574,7 +576,7 @@ static void sub_0204A5EC(BattleTower *battleTower, SaveData *saveData, u8 param2
         v0 = battleTower->challengeMode;
         sub_0202D140(battleTower->unk_70, 0, &v0);
 
-        v0 = battleTower->unk_0C;
+        v0 = battleTower->nextOpponentNum;
         sub_0202D140(battleTower->unk_70, 1, &v0);
         sub_0202D334(battleTower->unk_74, battleTower->unk_70);
         break;
@@ -583,7 +585,7 @@ static void sub_0204A5EC(BattleTower *battleTower, SaveData *saveData, u8 param2
     }
 }
 
-void sub_0204A660(BattleTower *battleTower, SaveData *saveData)
+void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
 {
     u32 v0 = 0;
     int v1;
@@ -642,7 +644,7 @@ void sub_0204A660(BattleTower *battleTower, SaveData *saveData)
     sub_0204A5EC(battleTower, saveData, 0, v0);
 }
 
-void sub_0204A7A4(BattleTower *battleTower, SaveData *saveData, JournalEntry *journalEntry)
+void BattleTower_UpdateGameRecordsAndJournal(BattleTower *battleTower, SaveData *saveData, JournalEntry *journalEntry)
 {
     u32 v0 = 0;
     int v1;
@@ -706,12 +708,12 @@ void sub_0204A8C8(BattleTower *battleTower)
     v1[0] = battleTower->challengeMode;
     sub_0202D140(battleTower->unk_70, 0, v1);
 
-    v1[0] = battleTower->unk_0C;
+    v1[0] = battleTower->nextOpponentNum;
     sub_0202D140(battleTower->unk_70, 1, v1);
 
     sub_0202D140(battleTower->unk_70, 5, battleTower->unk_2A);
     sub_0202D1E8(battleTower->unk_70, battleTower->unk_28, battleTower->unk_24, battleTower->unk_26);
-    sub_0202D140(battleTower->unk_70, 8, battleTower->unk_3E);
+    sub_0202D140(battleTower->unk_70, 8, battleTower->trainerIDs);
     sub_0202D140(battleTower->unk_70, 10, &(battleTower->unk_08));
     sub_0202D21C(battleTower->unk_70, 1);
 
@@ -735,7 +737,7 @@ void sub_0204A97C(BattleTower *battleTower)
 
 u16 BattleTower_GetObjectIDFromOpponentID(BattleTower *battleTower, u16 opponentID)
 {
-    return BattleFrontier_GetObjectIDFromTrainerClass(battleTower->unk_78[opponentID].trDataDTO.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trDataDTO.trainerType);
 }
 
 u16 BattleTower_GetChallengeMode(BattleTower *battleTower)
@@ -1055,7 +1057,7 @@ u8 BattleTower_GetIVsFromTrainerID(u16 battleTowerID)
     return ivs;
 }
 
-u16 sub_0204AEC0(BattleTower *battleTower)
+u16 BattleTower_GetRandom(BattleTower *battleTower)
 {
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         return LCRNG_Next();

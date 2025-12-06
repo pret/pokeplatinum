@@ -610,15 +610,15 @@
       "en_US": "DOUBLE"
     },
     {
-      "id": "pl_msg_00000361_00146",
+      "id": "MenuEntries_Text_BattleTowerBattleRoom_KeepGoing",
       "en_US": "KEEP GOING"
     },
     {
-      "id": "pl_msg_00000361_00147",
+      "id": "MenuEntries_Text_BattleTowerBattleRoom_Rest",
       "en_US": "REST"
     },
     {
-      "id": "pl_msg_00000361_00148",
+      "id": "MenuEntries_Text_BattleTowerBattleRoom_Retire",
       "en_US": "RETIRE"
     },
     {

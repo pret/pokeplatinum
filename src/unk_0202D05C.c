@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
+
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
@@ -75,7 +77,7 @@ u32 sub_0202D0BC(UnkStruct_0202D060 *param0, int param1, void *param2)
     case 7:
         return param0->unk_00_0;
     case 8:
-        MI_CpuCopy8(param0->unk_0C, param2, 2 * 14);
+        MI_CpuCopy8(param0->unk_0C, param2, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
         return 0;
     case 9:
         return param0->unk_00_5;

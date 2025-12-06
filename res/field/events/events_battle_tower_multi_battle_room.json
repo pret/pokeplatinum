@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_TEALA_0",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_TEALA_1",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_COUNTERPART_2",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_102_3",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_104_4",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01EB",
+            "hidden_flag": "FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_UNK_103_5",
+            "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1",
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01EA",
+            "hidden_flag": "FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1",
             "script": 0,
             "initial_dir": 1,
             "data": [],

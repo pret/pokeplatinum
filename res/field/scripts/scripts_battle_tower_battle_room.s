@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_room.h"
+#include "res/text/bank/menu_entries.h"
 #include "constants/map_object.h"
 
 
@@ -87,9 +88,9 @@ _012C:
     End
 
 _015D:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
     Call _045C
-    ScrCmd_1FE 0
+    PrintBattleTowerIntroMessage 0
     WaitABPress
     CloseMessage
     Call _047E
@@ -99,12 +100,12 @@ _015D:
     Return
 
 _018C:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_37, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS, 0, 0
     GoTo _007D
     End
 
 _019C:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_38, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0
     GoTo _007D
     End
 
@@ -121,7 +122,7 @@ _01AC:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0
     End
 
 _01E7:
@@ -130,14 +131,14 @@ _01E7:
 
 _01EF:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_34, 0, VAR_RESULT
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     Return
 
 _0201:
     Call _015D
     GoToIfEq VAR_0x8004, FALSE, _018C
     Call _01EF
-    GoToIfEq VAR_RESULT, 1, _019C
+    GoToIfEq VAR_RESULT, TRUE, _019C
     Call _0492
     Call _04A6
     Call _0070
@@ -145,14 +146,14 @@ _0201:
     End
 
 _0241:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_33, 0, VAR_0x8004
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 1
     InitGlobalTextListMenu 31, 11, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 146, 0
-    AddListMenuEntry 147, 1
-    AddListMenuEntry 148, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 0
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 2
     ShowListMenu
     CloseMessage
     SetVar VAR_0x8008, VAR_RESULT
@@ -196,9 +197,9 @@ _0336:
     Message 14
     InitGlobalTextListMenu 31, 11, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 146, 0
-    AddListMenuEntry 147, 1
-    AddListMenuEntry 148, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 0
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 2
     ShowListMenu
     CloseMessage
     SetVar VAR_0x8008, VAR_RESULT
@@ -210,7 +211,7 @@ _0336:
 
 _0395:
     Call _04BA
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
     Call _04CE
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, _041E

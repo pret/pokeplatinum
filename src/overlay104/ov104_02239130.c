@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "generated/battle_tower_functions.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
 #include "generated/object_events.h"
@@ -48,71 +49,69 @@ static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, BattleTower *battle
 BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
 {
     TVBroadcast *broadcast;
-    Pokemon *v1;
     BattleTower *battleTower;
-    int v3, v4;
-    u16 v5, v6;
+    u16 functionIndex, v6;
     u16 *v7;
     UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(param0->unk_00->unk_00);
 
-    v5 = ov104_0222EA48(param0);
+    functionIndex = ov104_0222EA48(param0);
     v6 = ov104_0222FC00(param0);
     v7 = ov104_0222FBE4(param0);
     battleTower = sub_0209B978(param0->unk_00->unk_00);
 
-    switch (v5) {
-    case 2:
-        sub_02049F8C();
+    switch (functionIndex) {
+    case BATTLE_TOWER_FUNCTION_RESET_SYSTEM:
+        BattleTower_ResetSystem();
         break;
-    case (30 + 16):
+    case BATTLE_TOWER_FUNCTION_UNK_46:
         *v7 = sub_0204AA04(battleTower);
         broadcast = SaveData_GetTVBroadcast(v8->saveData);
         sub_0206D0C8(broadcast, *v7);
         GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *v7);
         break;
-    case (30 + 25):
+    case BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM:
         *v7 = ov104_0223927C(battleTower, v6);
         break;
-    case (30 + 3):
-        *v7 = sub_0204A578(battleTower);
+    case BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM:
+        *v7 = BattleTower_GetNextOpponentNum(battleTower);
         break;
-    case (30 + 4):
+    case BATTLE_TOWER_FUNCTION_UNK_34:
         *v7 = ov104_022395B4(battleTower);
         break;
-    case (30 + 5):
-        *v7 = sub_0204A57C(battleTower);
+    case BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS:
+        *v7 = BattleTower_HasDefeatedSevenTrainers(battleTower);
         break;
-    case (30 + 6):
+    case BATTLE_TOWER_FUNCTION_UNK_36:
         *v7 = ov104_022395D8(battleTower);
         break;
-    case (30 + 13):
+    case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
         *v7 = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
-    case (30 + 10):
-        ov104_022394A4(battleTower, v8->saveData);
+    case BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS:
+        BattleTower_CreateOpponentParties(battleTower, v8->saveData);
         break;
-    case (30 + 11):
+    case BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID:
         *v7 = ov104_02239588(battleTower, v6);
         break;
-    case (30 + 14):
+    case BATTLE_TOWER_FUNCTION_UNK_44:
         ov104_022395A0(battleTower, v6);
         break;
-    case (30 + 7):
-        sub_0204A660(battleTower, v8->saveData);
+    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS:
+        BattleTower_UpdateGameRecords(battleTower, v8->saveData);
         break;
-    case (30 + 8):
-        sub_0204A7A4(battleTower, v8->saveData, v8->journalEntry);
+    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL:
+        BattleTower_UpdateGameRecordsAndJournal(battleTower, v8->saveData, v8->journalEntry);
         break;
-    case (30 + 9):
+    case BATTLE_TOWER_FUNCTION_UNK_39:
         sub_0204A8C8(battleTower);
         break;
-    case (30 + 28):
+    case BATTLE_TOWER_FUNCTION_UNK_58:
         MI_CpuClear8(battleTower->unk_884, 70);
         break;
-    case (30 + 29):
+    case BATTLE_TOWER_FUNCTION_UNK_59:
         battleTower->unk_8D6 = 1;
         break;
-    case 100:
+    case BATTLE_TOWER_FUNCTION_CHECK_IS_NULL:
         if (battleTower == NULL) {
             *v7 = 1;
         } else {
@@ -124,7 +123,7 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u16 ov104_0223927C(BattleTower *battleTower, u8 param)
@@ -174,9 +173,9 @@ BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0)
         return 0;
     }
 
-    v1 = battleTower->unk_78[v4].trDataDTO.unk_18;
+    v1 = battleTower->opponentsDataDTO[v4].trDataDTO.unk_18;
 
-    ov104_0223310C(param0, v1, ov104_0223A790(battleTower->challengeMode));
+    ov104_0223310C(param0, v1, BattleTower_GetTrainerMessagesBankID(battleTower->challengeMode));
     return 1;
 }
 

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "generated/battle_tower_modes.h"
 
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_tower.h"
@@ -326,10 +327,10 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
     v4 = *v3;
     ov104_02239C7C(v3);
 
-    battleTower = BattleTower_Init(v2->saveData, 0, 6);
+    battleTower = BattleTower_Init(v2->saveData, 0, BATTLE_TOWER_MODE_6);
     sub_0209B980(param0->unk_00->unk_00, battleTower);
 
-    if (battleTower->challengeMode == 6) {
+    if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         ov104_0222E630(v2->saveData);
     }
 
