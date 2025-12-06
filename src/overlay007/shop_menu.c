@@ -23,6 +23,7 @@
 #include "font_special_chars.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "goods.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -56,7 +57,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020573FC.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "vars_flags.h"
@@ -1328,7 +1328,7 @@ static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         return Shop_GetItemBPPrice(shopMenu, itemId);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        return sub_0205745C(itemId);
+        return Good_GetMoneyPrice(itemId);
     }
 
     return sub_020981D0(itemId);
