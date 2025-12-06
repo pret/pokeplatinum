@@ -14,7 +14,6 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_item_list_menu.h"
@@ -489,7 +488,7 @@ void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->sysTask = SysTask_Start(UndergroundMenu_Main, menu, 10000);
 
-    ov23_022431EC(menu, menu->sysTask, ov23_02251270);
+    CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 }
 
 #define ADD_OPTION(__menuOption)          \
@@ -569,12 +568,12 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
         break;
     case UNDERGROUND_MENU_STATE_CLOSE:
         UndergroundMenu_EraseCurrentMenu(menu);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, menu, FALSE);
         return;
     case UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED:
         UndergroundMenu_EraseCurrentMenu(menu);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, menu, TRUE);
         return;
     case UNDERGROUND_MENU_STATE_TRAPS:
@@ -605,7 +604,7 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
             if (JOY_NEW(PAD_BUTTON_A)) {
                 UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
                 UndergroundMenu_Free(sysTask, menu, FALSE);
-                ov23_02243204();
+                CommManUnderground_ClearCurrentSysTaskInfo();
                 return;
             }
         }
@@ -623,7 +622,7 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
     case UNDERGROUND_MENU_STATE_RETURN_TO_SURFACE:
         UndergroundMenu_EraseCurrentMenu(menu);
         UndergroundMenu_Free(sysTask, menu, TRUE);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         FieldTask_SetUndergroundMapChange(menu->fieldSystem);
         return;
     case UNDERGROUND_MENU_STATE_TRAP_SELECTED:
@@ -711,7 +710,7 @@ void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu)
         Bg_ScheduleTilemapTransfer(menu->primaryWindow.bgConfig, menu->primaryWindow.bgLayer);
         Window_Remove(&menu->primaryWindow);
         StringList_Free(menu->menuOptions);
-        ov23_02252DF4(menu);
+        UndergroundMenu_RemoveDescriptionWindow(menu);
     }
 }
 
@@ -1424,7 +1423,7 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
 
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PromptThrowAwayFlag, FALSE, NULL);
     menu->sysTask = SysTask_Start(ov23_02250B9C, menu, 10000);
-    ov23_022431EC(menu, menu->sysTask, ov23_02251270);
+    CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 }
 
 static void UndergroundMenu_ConfirmThrowAwayFlag(UndergroundMenu *menu)
@@ -1486,7 +1485,7 @@ static void ov23_02250B9C(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
-    if (!ov23_0224AEA4(CommSys_CurNetId())) {
+    if (!ov23_IsPlayerHoldingFlag(CommSys_CurNetId())) {
         if (menu->state == UNDERGROUND_MENU_STATE_INIT || menu->state == UNDERGROUND_MENU_STATE_START) {
             menu->state = UNDERGROUND_MENU_STATE_CLOSE;
         }
@@ -1500,11 +1499,11 @@ static void ov23_02250B9C(SysTask *sysTask, void *data)
         UndergroundMenu_CheckForThrowAwayYesNo(data);
         break;
     case UNDERGROUND_MENU_STATE_CLOSE:
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, data, FALSE);
         return;
     case UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED:
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, data, TRUE);
         u8 buffer = 0;
         CommSys_SendDataFixedSize(84, &buffer);
@@ -1569,7 +1568,7 @@ void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu)
     UndergroundMenu_InitGoodsMenu(menu, Underground_MoveGoodBag);
 }
 
-void ov23_02250D2C(UndergroundMenu *menu)
+void UndergroundMenu_OpenStoreGoodsMenu(UndergroundMenu *menu)
 {
     menu->getItemCount = UndergroundMenu_GetGoodsCountBag;
     menu->getItem = UndergroundMenu_GetGoodAtSlotBag;
@@ -1579,7 +1578,7 @@ void ov23_02250D2C(UndergroundMenu *menu)
     UndergroundMenu_InitGoodsMenu(menu, Underground_MoveGoodBag);
 }
 
-void ov23_02250D5C(UndergroundMenu *menu)
+void UndergroundMenu_OpenWithdrawGoodsMenu(UndergroundMenu *menu)
 {
     menu->getItemCount = UndergroundMenu_GetGoodsCountPC;
     menu->getItem = UndergroundMenu_GetGoodAtSlotPC;
@@ -1716,7 +1715,7 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
     return TRUE;
 }
 
-void UndergroundMenu_ExitGiftMenu(void *data, u32 input)
+void UndergroundMenu_Exit(void *data, u32 input)
 {
     UndergroundMenu *menu = data;
 
@@ -1793,11 +1792,10 @@ static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data)
         }
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
-        UndergroundMenu_ExitGiftMenu(menu, input);
-        ov23_02243204();
+        UndergroundMenu_Exit(menu, input);
+        CommManUnderground_ClearCurrentSysTaskInfo();
         return TRUE;
     default:
-
         if (menu->exitCallback != NULL) {
             ctx->selectedSlot = input;
             ctx->selectedID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
@@ -1806,8 +1804,8 @@ static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data)
         }
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
-        UndergroundMenu_ExitGiftMenu(menu, input);
-        ov23_02243204();
+        UndergroundMenu_Exit(menu, input);
+        CommManUnderground_ClearCurrentSysTaskInfo();
         return TRUE;
         break;
     }
@@ -1836,7 +1834,7 @@ void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fiel
     menu->state = UNDERGROUND_MENU_STATE_GIVE_GIFT;
     menu->sysTask = SysTask_Start(UndergroundMenu_Main, menu, 10000);
 
-    ov23_022431EC(menu, menu->sysTask, ov23_02251270);
+    CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
     return menu;
 }
 
@@ -1859,8 +1857,29 @@ void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDis
     }
 }
 
-void ov23_02251270(SysTask *sysTask, void *param1)
+void UndergroundMenu_ResetBrightnessAndExit(SysTask *sysTask, void *data)
 {
     BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-    UndergroundMenu_ExitGiftMenu(param1, LIST_CANCEL);
+    UndergroundMenu_Exit(data, LIST_CANCEL);
+}
+
+void UndergroundMenu_UpdateScrollPrompts(UndergroundMenu *menu, int listPos, int count, int maxDisplay)
+{
+    if (count <= maxDisplay) {
+        return;
+    }
+
+    if (listPos != 0) {
+        ScrollPrompts_SetDrawFlag(menu->scrollPrompts, SCROLL_PROMPT_TOP_ARROW, TRUE);
+    } else {
+        ScrollPrompts_SetDrawFlag(menu->scrollPrompts, SCROLL_PROMPT_TOP_ARROW, FALSE);
+    }
+
+    if (listPos + maxDisplay != count) {
+        ScrollPrompts_SetDrawFlag(menu->scrollPrompts, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
+    } else {
+        ScrollPrompts_SetDrawFlag(menu->scrollPrompts, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
+    }
+
+    ScrollPrompts_UpdateAnim(menu->scrollPrompts);
 }

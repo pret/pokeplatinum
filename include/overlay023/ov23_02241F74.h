@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02029894_decl.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/underground_defs.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -13,16 +12,18 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+typedef void (*EndSysTaskFunc)(SysTask *sysTask, void *ctx);
+
 enum UndergroundStoredPosKeys {
     UNDERGROUND_STORED_POS_NONE = 0,
-    UNDERGROUND_STORED_POS_KEY_1,
+    UNDERGROUND_STORED_POS_KEY_PC,
     UNDERGROUND_STORED_POS_KEY_START_MENU,
     UNDERGROUND_STORED_POS_KEY_3,
 };
 
 enum UndergroundMenuKeys {
-    UNDERGROUND_MENU_KEY_2 = 2,
-    UNDERGROUND_MENU_KEY_6 = 6,
+    UNDERGROUND_MENU_KEY_STORE_GOODS = 2,
+    UNDERGROUND_MENU_KEY_WITHDRAW_GOODS = 6,
     UNDERGROUND_MENU_KEY_TRAPS = 8,
     UNDERGROUND_MENU_KEY_SPHERES,
     UNDERGROUND_MENU_KEY_GOODS,
@@ -35,8 +36,8 @@ enum UndergroundMenuKeys {
     UNDERGROUND_MENU_KEY_17,
     UNDERGROUND_MENU_KEY_18,
     UNDERGROUND_MENU_KEY_19,
-    UNDERGROUND_MENU_KEY_22 = 22,
-    UNDERGROUND_MENU_KEY_23
+    UNDERGROUND_MENU_KEY_PC_RADAR = 22,
+    UNDERGROUND_MENU_KEY_PC
 };
 
 #define BIT_TRAPS_FULL             1 << 4
@@ -81,9 +82,9 @@ int ov23_02242EE0(int param0);
 int ov23_02242F48(int param0);
 void ov23_02242FA8(void);
 void ov23_02242FBC(void);
-void ov23_02242FD0(void);
-void ov23_02242FE4(void);
-void ov23_02242FF8(void);
+void CommManUnderground_SetSphereRadarActive(void);
+void CommManUnderground_SetTrapRadarActive(void);
+void CommManUnderground_SetTreasureRadarActive(void);
 void ov23_0224300C(int param0, int param1);
 void ov23_02243020(int param0);
 void UndergroundMan_SetReturnLog(int param0);
@@ -93,8 +94,8 @@ void CommManUnderground_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 li
 u16 CommManUnderground_GetStoredListPos(u16 menuKey);
 u16 CommManUnderground_GetStoredCursorPos(u16 menuKey);
 void ov23_022431C4(int param0, int param1, void *param2, void *param3);
-void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2);
-void ov23_02243204(void);
+void CommManUnderground_SetCurrentSysTask(void *ctx, SysTask *sysTask, EndSysTaskFunc endFunc);
+void CommManUnderground_ClearCurrentSysTaskInfo(void);
 BOOL ov23_0224321C(void);
 BOOL ov23_02243298(int param0);
 void ov23_02243360(void);

@@ -292,7 +292,7 @@ static void ov23_0224B0DC(int param0, UnkStruct_ov23_0224B098 *param1)
     const int v1 = 32;
     int v2;
 
-    if (sub_02033DFC()) {
+    if (CommServerClient_IsInClosedSecretBase()) {
         param1->unk_00 = v0.unk_00;
         param1->unk_02 = v0.unk_02;
         return;
@@ -810,7 +810,7 @@ static void ov23_0224BA48(SysTask *param0, void *param1)
     SysTask_Done(param0);
     Heap_Free(v0);
 
-    ov23_02243204();
+    CommManUnderground_ClearCurrentSysTaskInfo();
 }
 
 static void ov23_0224BA6C(SysTask *param0, void *param1)
@@ -830,7 +830,7 @@ static void ov23_0224BA6C(SysTask *param0, void *param1)
     SysTask_Done(param0);
     Heap_Free(v0);
 
-    ov23_02243204();
+    CommManUnderground_ClearCurrentSysTaskInfo();
     ov23_0224DC24();
 }
 
@@ -844,7 +844,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        if (sub_02033DFC()) {
+        if (CommServerClient_IsInClosedSecretBase()) {
             v5 = 47;
             v0->unk_0C = 3;
         } else {
@@ -918,7 +918,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         return;
     }
 
-    if (!sub_02033DFC()) {
+    if (!CommServerClient_IsInClosedSecretBase()) {
         if ((v0->unk_2C < (7 + 1)) && !CommSys_IsPlayerConnected(v0->unk_2C) && (CommSys_CurNetId() != 0)) {
             v7 = 1;
         }
@@ -950,7 +950,7 @@ static void ov23_0224BC5C(FieldSystem *fieldSystem, int param1, int param2, int 
     v0->fieldSystem = fieldSystem;
     v0->unk_08 = SysTask_Start(ov23_0224BAAC, v0, 100);
 
-    ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
+    CommManUnderground_SetCurrentSysTask(v0, v0->unk_08, ov23_0224BA6C);
     CommPlayerMan_PauseFieldSystem();
 }
 
@@ -1086,7 +1086,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         if (v6 == 0) {
             v0->unk_04 = NULL;
 
-            if (ov23_0224AEA4(v0->unk_2C) || (ov23_0224BD1C(v0->unk_2C, 0) > 0)) {
+            if (ov23_IsPlayerHoldingFlag(v0->unk_2C) || (ov23_0224BD1C(v0->unk_2C, 0) > 0)) {
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 44, FALSE, NULL);
                 v0->unk_0C = 3;
             } else {
@@ -1126,7 +1126,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         }
         break;
     case 9:
-        if (sub_02033DFC() && (CommSys_CurNetId() == 0)) {
+        if (CommServerClient_IsInClosedSecretBase() && (CommSys_CurNetId() == 0)) {
             u8 v9 = 1;
 
             CommSys_SendDataFixedSize(86, &v9);
@@ -1182,7 +1182,7 @@ static void ov23_0224C090(FieldSystem *fieldSystem, int param1, int param2, int 
 
     ov23_0224DC08();
     v0->unk_08 = SysTask_Start(ov23_0224BE28, v0, 100);
-    ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
+    CommManUnderground_SetCurrentSysTask(v0, v0->unk_08, ov23_0224BA6C);
 
     CommPlayerMan_PauseFieldSystem();
 }
@@ -1623,7 +1623,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
             break;
         }
 
-        if (sub_02033DFC() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
+        if (CommServerClient_IsInClosedSecretBase() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             v1->unk_2E = 0;
         } else {
             v1->unk_2E = 1;
@@ -1655,7 +1655,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         v1->unk_29++;
 
         if (v1->unk_29 > 10) {
-            if (!sub_02033DFC() || !v1->unk_2E) {
+            if (!CommServerClient_IsInClosedSecretBase() || !v1->unk_2E) {
                 v1->unk_0C = 13;
             } else {
                 v1->unk_0C = 11;
@@ -1680,7 +1680,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         }
         break;
     case 13:
-        if (sub_02033DFC() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
+        if (CommServerClient_IsInClosedSecretBase() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             ov23_02249AA4();
         } else {
             ov23_02249B60();
@@ -1690,7 +1690,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommPlayerMan_ResumeFieldSystem();
         Heap_Free(v1);
 
-        if (sub_02033DFC() && Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
+        if (CommServerClient_IsInClosedSecretBase() && Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             ov23_02242FA8();
         } else {
             ov23_02242FBC();
@@ -1827,7 +1827,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         v0->unk_0C = 10;
         break;
     case 10:
-        if (sub_02033DFC() && (CommSys_CurNetId() == 0)) {
+        if (CommServerClient_IsInClosedSecretBase() && (CommSys_CurNetId() == 0)) {
             u8 v10 = 2;
 
             if (v0->unk_12) {
@@ -1840,7 +1840,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
             SysTask_Done(param0);
             Heap_Free(v0);
 
-            ov23_02243204();
+            CommManUnderground_ClearCurrentSysTaskInfo();
             return;
         }
         break;
@@ -1860,7 +1860,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         SysTask_Done(param0);
         Heap_Free(v0);
 
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         ov23_0224DC24();
     }
 }
@@ -1951,7 +1951,7 @@ static void ov23_0224CE94(SysTask *param0, void *param1)
     SysTask_Done(param0);
     Heap_Free(v0);
 
-    ov23_02243204();
+    CommManUnderground_ClearCurrentSysTaskInfo();
     CommPlayerMan_ResumeFieldSystem();
     ov23_0224DC24();
 }
@@ -1970,7 +1970,7 @@ static void ov23_0224CEC8(void)
     v0->fieldSystem = Unk_ov23_022577AC->fieldSystem;
     v0->unk_04 = SysTask_Start(ov23_0224CB1C, v0, 100);
 
-    ov23_022431EC(v0, v0->unk_04, ov23_0224CE94);
+    CommManUnderground_SetCurrentSysTask(v0, v0->unk_04, ov23_0224CE94);
 }
 
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
@@ -2383,7 +2383,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
     case 4:
         Heap_Free(param1);
         SysTask_Done(param0);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
         break;
     }
 }
@@ -2414,7 +2414,7 @@ void ov23_0224D6AC(int param0, int param1, void *param2, void *param3)
         v3->unk_05 = v1[1];
         v2 = SysTask_Start(ov23_0224D5BC, v3, 100);
 
-        ov23_022431EC(v3, v2, ov23_0224D5A8);
+        CommManUnderground_SetCurrentSysTask(v3, v2, ov23_0224D5A8);
     } else {
         (void)0;
     }
@@ -2678,7 +2678,7 @@ void ov23_0224DAD0(int param0)
             return;
         }
 
-        if (sub_02033DFC()) {
+        if (CommServerClient_IsInClosedSecretBase()) {
             return;
         }
     }

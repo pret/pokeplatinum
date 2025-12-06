@@ -9,8 +9,8 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/underground_pc.h"
 #include "overlay023/underground_player_talk.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_traps.h"
@@ -49,7 +49,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { CommPlayer_RecvLocation, CommPacketSizeOf_RecvLocation, NULL },
     { CommPlayer_RecvLocationAndInit, CommPacketSizeOf_RecvLocationAndInit, NULL },
     { ov23_022431C4, CommPacketSizeOf_NetId, NULL },
-    { ov23_0224ACE8, sub_0203294C, NULL },
+    { ov23_0224ACE8, sub_0203294C, NULL }, // 25
     { ov23_0224ACF8, CommPacketSizeOf_NetId, NULL },
     { ov23_0224A348, sub_0203294C, NULL },
     { ov23_022428D8, ov23_022428D4, NULL },
@@ -74,7 +74,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundTraps_ReceiveTrapRadarResults, CommPacketSizeOf_TrapRadarResult, NULL },
     { ov23_022425F8, CommPacketSizeOf_Coordinates, NULL },
     { ov23_02242624, sub_02032944, NULL },
-    { ov23_02242654, sub_02032944, NULL },
+    { ov23_02242654, sub_02032944, NULL }, // 50
     { UndergroundTraps_ProcessDisengagedTrap, CommPacketSizeOf_TriggeredTrap, NULL },
     { CommPlayer_RecvDelete, CommPacketSizeOf_NetId, NULL },
     { ov23_0224C384, ov23_0224C41C, NULL },
@@ -99,7 +99,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0224142C, ov23_022414D0, NULL },
     { UndergroundTalk_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
     { UndergroundTalkResponse_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
-    { UndergroundTalkResponse_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
+    { UndergroundTalkResponse_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL }, // 75
     { UndergroundTalk_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
     { UndergroundTalk_SendGiftServer, CommPacketSizeOf_Gift, NULL },
     { UndergroundTalkResponse_ReceiveGiftOffer, CommPacketSizeOf_Gift, NULL },
@@ -107,14 +107,14 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundTalk_ReceiveTalkMessage, CommPacketSizeOf_TalkMessage, NULL },
     { ov23_SendRecordServer, sub_02032944, NULL },
     { ov23_ReceiveRecord, sub_02032944, NULL },
-    { ov23_022513B0, ov23_02251414, NULL },
+    { UndergroundPC_ProcessPCInteraction, CommPacketSizeOf_PCInteraction, NULL }, // 83
     { ov23_0224A570, CommPacketSizeOf_NetId, NULL },
     { ov23_0224A77C, ov23_0224A56C, NULL },
     { ov23_0224CD80, CommPacketSizeOf_NetId, NULL },
     { ov23_0224CF18, ov23_0224CD7C, NULL },
     { sub_02059EAC, CommPacketSizeOf_TrainerCard, sub_02059EBC },
-    { ov23_0225215C, ov23_02251414, NULL },
-    { ov23_02252178, ov23_02251414, NULL },
+    { UndergroundPC_ProcessTakeFlagAttempt, CommPacketSizeOf_PCInteraction, NULL },
+    { UndergroundPC_ProcessTakenFlag, CommPacketSizeOf_PCInteraction, NULL },
     { ov23_0224AB30, ov23_0224AB2C, NULL },
     { ov23_0224ABC4, ov23_0224AC0C, ov23_0224AAA0 },
     { ov23_0224AC10, CommPacketSizeOf_NetId, NULL },

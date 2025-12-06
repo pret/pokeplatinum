@@ -1274,15 +1274,15 @@ void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundReco
     }
 }
 
-int sub_020297AC(const UndergroundRecord *param0)
+int UndergroundRecord_GetTimesFlagTaken(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_2C_0;
+    return undergroundRecord->timesFlagTaken;
 }
 
-void sub_020297B4(UndergroundRecord *param0)
+void UndergroundRecord_IncrementTimesFlagTaken(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_2C_0 < 999999) {
-        param0->unk_2C_0++;
+    if (undergroundRecord->timesFlagTaken < 999999) {
+        undergroundRecord->timesFlagTaken++;
     }
 }
 
