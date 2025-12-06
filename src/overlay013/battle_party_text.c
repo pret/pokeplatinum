@@ -2231,6 +2231,8 @@ static void RenderMoveSummaryScreen(BattleParty *battleParty)
 
 static void RenderLearnMoveScreen(BattleParty *battleParty)
 {
+    BattlePartyPokemonMove moveToLearn;
+
     Window_FillTilemap(&battleParty->windows[LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME], 0);
     Window_FillTilemap(&battleParty->windows[LEARN_MOVE_SCREEN_WINDOW_MOVE_1], 0);
     Window_FillTilemap(&battleParty->windows[LEARN_MOVE_SCREEN_WINDOW_MOVE_2], 0);
@@ -2252,14 +2254,11 @@ static void RenderLearnMoveScreen(BattleParty *battleParty)
     }
 
     PrintMoveName(battleParty, battleParty->context->moveToLearn, LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN, sMoveNameTextIDs[MOVE_TO_LEARN_SLOT], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
-    {
-        BattlePartyPokemonMove move;
 
-        move.currentPP = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
-        move.maxPP = move.currentPP;
+    moveToLearn.currentPP = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
+    moveToLearn.maxPP = moveToLearn.currentPP;
 
-        PrintMovesScreenMovePPStats(battleParty, &move, LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN);
-    }
+    PrintMovesScreenMovePPStats(battleParty, &moveToLearn, LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN);
 
     Window_ScheduleCopyToVRAM(&battleParty->windows[LEARN_MOVE_SCREEN_WINDOW_MOVE_1]);
     Window_ScheduleCopyToVRAM(&battleParty->windows[LEARN_MOVE_SCREEN_WINDOW_MOVE_2]);
