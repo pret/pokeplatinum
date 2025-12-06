@@ -2,60 +2,60 @@
   "key": 9886,
   "messages": [
     {
-      "id": "pl_msg_00000639_00000",
+      "id": "UndergroundPC_Text_Decorate",
       "en_US": "DECORATE"
     },
     {
-      "id": "pl_msg_00000639_00001",
+      "id": "UndergroundPC_Text_StoreGoods",
       "en_US": "STORE GOODS"
     },
     {
-      "id": "pl_msg_00000639_00002",
+      "id": "UndergroundPC_Text_ReceiveGoods",
       "en_US": "RECEIVE GOODS"
     },
     {
-      "id": "pl_msg_00000639_00003",
+      "id": "UndergroundPC_Text_CheckFlags",
       "en_US": "CHECK FLAGS"
     },
     {
-      "id": "pl_msg_00000639_00004",
+      "id": "UndergroundPC_Text_UseRadar",
       "en_US": "USE RADAR"
     },
     {
-      "id": "pl_msg_00000639_00005",
+      "id": "UndergroundPC_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000639_00006",
+      "id": "UndergroundPC_Text_DecorateDescription",
       "en_US": [
         "Decoration goods stored on the PC\n",
         "can be brought out and displayed."
       ]
     },
     {
-      "id": "pl_msg_00000639_00007",
+      "id": "UndergroundPC_Text_StoreGoodsDescription",
       "en_US": "Store decoration goods on the PC."
     },
     {
-      "id": "pl_msg_00000639_00008",
+      "id": "UndergroundPC_Text_ReceiveGoodsDescription",
       "en_US": [
         "Take out stored decoration goods\n",
         "from the PC."
       ]
     },
     {
-      "id": "pl_msg_00000639_00009",
+      "id": "UndergroundPC_Text_CheckFlagsDescription",
       "en_US": "Check your collection of Flags."
     },
     {
-      "id": "pl_msg_00000639_00010",
+      "id": "UndergroundPC_Text_UseRadarDescription",
       "en_US": [
         "Search for hidden things in the\n",
         "underground passages."
       ]
     },
     {
-      "id": "pl_msg_00000639_00011",
+      "id": "UndergroundPC_Text_ExitDescription",
       "en_US": "Switch off the PC."
     },
     {
@@ -123,7 +123,7 @@
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000639_00028",
+      "id": "UndergroundPC_Text_GoodsOnHand",
       "en_US": [
         "Goods on\n",
         "hand"
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00032",
+      "id": "UndergroundPC_Text_GoodsInPC",
       "en_US": [
         "Goods in\n",
         "PC"
@@ -179,73 +179,73 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00036",
+      "id": "UndergroundPC_Text_GoodWasWithdrawn",
       "en_US": [
         "The {STRVAR_1 25, 2, 0} was withdrawn\n",
         "from the PC."
       ]
     },
     {
-      "id": "pl_msg_00000639_00037",
+      "id": "UndergroundPC_Text_GoodWasStored",
       "en_US": [
         "The {STRVAR_1 25, 2, 0} was stored\n",
         "on the PC."
       ]
     },
     {
-      "id": "pl_msg_00000639_00038",
+      "id": "UndergroundPC_Text_PCIsFull",
       "en_US": "Your PC is full."
     },
     {
-      "id": "pl_msg_00000639_00039",
+      "id": "UndergroundPC_Text_BagIsFull",
       "en_US": [
         "You can’t carry any more\n",
         "goods with you."
       ]
     },
     {
-      "id": "pl_msg_00000639_00040",
+      "id": "UndergroundPC_Text_TreasureSearch",
       "en_US": "TREASURE SEARCH"
     },
     {
-      "id": "pl_msg_00000639_00041",
+      "id": "UndergroundPC_Text_SphereSearch",
       "en_US": "SPHERE SEARCH"
     },
     {
-      "id": "pl_msg_00000639_00042",
+      "id": "UndergroundPC_Text_TrapSearch",
       "en_US": "TRAP SEARCH"
     },
     {
-      "id": "pl_msg_00000639_00043",
+      "id": "UndergroundPC_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000639_00044",
+      "id": "UndergroundPC_Text_TreasureSearchDescription",
       "en_US": [
         "Scan for Treasure hidden in the\n",
         "underground passages."
       ]
     },
     {
-      "id": "pl_msg_00000639_00045",
+      "id": "UndergroundPC_Text_SphereSearchDescription",
       "en_US": [
         "Scan for Spheres you buried\n",
         "yourself."
       ]
     },
     {
-      "id": "pl_msg_00000639_00046",
+      "id": "UndergroundPC_Text_TrapSearchDescription",
       "en_US": [
         "Scan for Traps hidden in the\n",
         "underground passages."
       ]
     },
     {
-      "id": "pl_msg_00000639_00047",
+      "id": "UndergroundPC_Text_CancelDescription",
       "en_US": "Turns off the Radar."
     },
     {
-      "id": "pl_msg_00000639_00048",
+      "id": "UndergroundPC_Text_TreasureRadarBootedUp",
       "en_US": [
         "The Treasure Search System was\n",
         "booted up.\r",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00049",
+      "id": "UndergroundPC_Text_SphereRadarBootedUp",
       "en_US": [
         "The Sphere Search System was\n",
         "booted up.\r",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00050",
+      "id": "UndergroundPC_Text_TrapRadarBootedUp",
       "en_US": [
         "The Trap Search System was\n",
         "booted up.\r",
@@ -288,14 +288,14 @@
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000639_00055",
+      "id": "UndergroundPC_Text_CantWithdrawDisplayedGood",
       "en_US": [
         "Displayed decoration goods can’t\n",
         "be withdrawn."
       ]
     },
     {
-      "id": "pl_msg_00000639_00056",
+      "id": "UndergroundPC_Text_CantDecorateWithEntranceOpen",
       "en_US": [
         "It’s unsafe if you get a visitor\n",
         "while you are decorating.\r",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00057",
+      "id": "UndergroundPC_Text_TreasureRadarEntranceClosed",
       "en_US": [
         "The Treasure Search System was\n",
         "booted up.\r",
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00058",
+      "id": "UndergroundPC_Text_SphereRadarEntranceClosed",
       "en_US": [
         "The Sphere Search System was\n",
         "booted up.\r",
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00059",
+      "id": "UndergroundPC_Text_TrapRadarEntranceClosed",
       "en_US": [
         "The Trap Search System was\n",
         "booted up.\r",
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00060",
+      "id": "UndergroundPC_Text_StoreGoodsBeforeDecorating",
       "en_US": [
         "Please store goods in the PC before\n",
         "decorating."

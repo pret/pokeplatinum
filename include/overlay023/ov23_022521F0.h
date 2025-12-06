@@ -11,9 +11,9 @@ void ov23_02252CD4(void);
 void ov23_02252CE0(int param0, int param1);
 void ov23_02252CF4(int param0, int param1);
 void ov23_02252D08(int param0, int param1);
-void ov23_02252D74(UndergroundMenu *param0, int param1);
-void ov23_02252DF4(UndergroundMenu *param0);
-void ov23_02252E18(UndergroundMenu *param0);
+void UndergroundMenu_PrintMenuDescription(UndergroundMenu *param0, int param1);
+void UndergroundMenu_RemoveDescriptionWindow(UndergroundMenu *param0);
+void UndergroundMenu_RemoveDescriptionWindowInstant(UndergroundMenu *param0);
 void ov23_022534A0(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_OV23_022521F0_H

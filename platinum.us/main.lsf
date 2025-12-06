@@ -851,7 +851,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_0224B05C.c.o
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
 	Object main.nef.p/src_overlay023_underground_menu.c.o
-	Object main.nef.p/src_overlay023_ov23_0225128C.c.o
+	Object main.nef.p/src_overlay023_underground_pc.c.o
 	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
 	Object main.nef.p/src_overlay023_ov23_02253598.c.o
 	Object main.nef.p/src_overlay023_underground_text_printer.c.o

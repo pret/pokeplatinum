@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_object.h"
+
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/underground.h"
@@ -10,17 +12,16 @@
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
-#include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_pc.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -61,9 +62,9 @@ typedef struct StoredListMenuPos {
 } StoredListMenuPos;
 
 typedef struct {
-    void *unk_00;
-    SysTask *unk_04;
-    UnkFuncPtr_ov23_022431EC unk_08;
+    void *currentSysTaskCtx;
+    SysTask *currentSysTask;
+    EndSysTaskFunc endCurrentSysTask;
     FieldSystem *fieldSystem;
     UnkStruct_ov23_02253598 *unk_10;
     SysTask *unk_14;
@@ -91,7 +92,7 @@ typedef struct {
     u8 unk_13D[8];
     u8 unk_145;
     u8 unk_146;
-    u8 unk_147;
+    u8 activeRadar;
     u8 unk_148;
     u8 unk_149;
     u8 unk_14A;
@@ -135,7 +136,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.x = 0;
     sCommManUnderground->unk_1C.z = 0;
     sCommManUnderground->unk_14B = 0;
-    sCommManUnderground->unk_147 = 1;
+    sCommManUnderground->activeRadar = 1;
     sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
     sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
@@ -324,7 +325,7 @@ BOOL ov23_0224240C(int x, int z)
         return TRUE;
     }
 
-    if (ov23_022512D4(&coordinates, -1) != 0xff) {
+    if (UndergroundPC_GetPCAtCoordinates(&coordinates, DIR_NONE) != PC_NONE) {
         return TRUE;
     }
 
@@ -682,7 +683,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_02251324(param0, &v2)) {
+    if (UndergroundPC_TryUsePC(param0, &v2)) {
         sub_02059058(param0, 0);
         return;
     }
@@ -910,7 +911,7 @@ int ov23_02242E78(int param0)
         if (param0 < 16) {
             v1 = param0;
 
-            switch (sCommManUnderground->unk_147) {
+            switch (sCommManUnderground->activeRadar) {
             case 0:
                 return 0;
             case 1:
@@ -941,7 +942,7 @@ int ov23_02242EE0(int param0)
         if (param0 < 16) {
             v1 = param0;
 
-            switch (sCommManUnderground->unk_147) {
+            switch (sCommManUnderground->activeRadar) {
             case 0:
                 return 0;
             case 1:
@@ -969,7 +970,7 @@ int ov23_02242F48(int param0)
 {
     if (sCommManUnderground) {
         if (param0 < 16) {
-            switch (sCommManUnderground->unk_147) {
+            switch (sCommManUnderground->activeRadar) {
             case 1:
                 if (param0 < 8) {
                     return 12;
@@ -995,27 +996,27 @@ int ov23_02242F48(int param0)
 
 void ov23_02242FA8(void)
 {
-    sCommManUnderground->unk_147 = 0;
+    sCommManUnderground->activeRadar = 0;
 }
 
 void ov23_02242FBC(void)
 {
-    sCommManUnderground->unk_147 = 1;
+    sCommManUnderground->activeRadar = 1;
 }
 
-void ov23_02242FD0(void)
+void CommManUnderground_SetSphereRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 2;
+    sCommManUnderground->activeRadar = 2;
 }
 
-void ov23_02242FE4(void)
+void CommManUnderground_SetTrapRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 4;
+    sCommManUnderground->activeRadar = 4;
 }
 
-void ov23_02242FF8(void)
+void CommManUnderground_SetTreasureRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 3;
+    sCommManUnderground->activeRadar = 3;
 }
 
 void ov23_0224300C(int param0, int param1)
@@ -1132,27 +1133,27 @@ void ov23_022431C4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2)
+void CommManUnderground_SetCurrentSysTask(void *ctx, SysTask *sysTask, EndSysTaskFunc endFunc)
 {
-    sCommManUnderground->unk_00 = param0;
-    sCommManUnderground->unk_04 = param1;
-    sCommManUnderground->unk_08 = param2;
+    sCommManUnderground->currentSysTaskCtx = ctx;
+    sCommManUnderground->currentSysTask = sysTask;
+    sCommManUnderground->endCurrentSysTask = endFunc;
 }
 
-void ov23_02243204(void)
+void CommManUnderground_ClearCurrentSysTaskInfo(void)
 {
-    sCommManUnderground->unk_00 = NULL;
-    sCommManUnderground->unk_04 = NULL;
-    sCommManUnderground->unk_08 = NULL;
+    sCommManUnderground->currentSysTaskCtx = NULL;
+    sCommManUnderground->currentSysTask = NULL;
+    sCommManUnderground->endCurrentSysTask = NULL;
 }
 
 BOOL ov23_0224321C(void)
 {
     BOOL v0 = 0;
 
-    if (sCommManUnderground->unk_04) {
-        sCommManUnderground->unk_08(sCommManUnderground->unk_04, sCommManUnderground->unk_00);
-        ov23_02243204();
+    if (sCommManUnderground->currentSysTask) {
+        sCommManUnderground->endCurrentSysTask(sCommManUnderground->currentSysTask, sCommManUnderground->currentSysTaskCtx);
+        CommManUnderground_ClearCurrentSysTaskInfo();
         v0 = 1;
     }
 
@@ -1171,7 +1172,7 @@ BOOL ov23_02243298(int param0)
 {
     int v0, v1;
 
-    if (sCommManUnderground->unk_04) {
+    if (sCommManUnderground->currentSysTask) {
         return 0;
     }
 

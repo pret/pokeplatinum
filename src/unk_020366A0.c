@@ -2478,7 +2478,7 @@ void sub_02038A20(int param0)
 
 BOOL sub_02038AB8(void)
 {
-    if (sub_02033DFC() || !CommMan_IsInitialized()) {
+    if (CommServerClient_IsInClosedSecretBase() || !CommMan_IsInitialized()) {
         return 1;
     }
 

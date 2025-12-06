@@ -1006,7 +1006,7 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
         Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallIsBulging, FALSE, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
-        ov23_022431EC(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
+        CommManUnderground_SetCurrentSysTask(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
         CommPlayerMan_PauseFieldSystem();
     }
 }
@@ -1037,7 +1037,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         SysTask_Done(param0);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
 
         Unk_ov23_02257740->unk_8C8 = NULL;
     }
