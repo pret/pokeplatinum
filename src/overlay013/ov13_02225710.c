@@ -475,16 +475,16 @@ static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2)
     }
 
     if ((param1 >= 14) && (param1 <= 17)) {
-        Window_Scroll(&param0->unk_206C[v0[param0->unk_2071]], v2, v3, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_206C[v0[param0->unk_2071]]);
+        Window_Scroll(&param0->windows[v0[param0->useAltSummaryWindows]], v2, v3, 0);
+        Window_ScheduleCopyToVRAM(&param0->windows[v0[param0->useAltSummaryWindows]]);
     } else {
         for (v1 = 0; v1 < 8; v1++) {
             if (v0[v1] == 0xff) {
                 break;
             }
 
-            Window_Scroll(&param0->unk_206C[v0[v1]], v2, v3, 0);
-            Window_ScheduleCopyToVRAM(&param0->unk_206C[v0[v1]]);
+            Window_Scroll(&param0->windows[v0[v1]], v2, v3, 0);
+            Window_ScheduleCopyToVRAM(&param0->windows[v0[v1]]);
         }
     }
 }

@@ -8,7 +8,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/battle_party.h"
-#include "overlay013/ov13_02221A88.h"
+#include "overlay013/battle_party_text.h"
 #include "overlay013/ov13_02224500.h"
 #include "overlay013/ov13_02225710.h"
 
@@ -70,7 +70,6 @@
 #define TASK_STATE_FINISH_TASK                         26
 
 #define NO_SELECTION_PARTY_SLOT MAX_PARTY_SIZE
-#define MOVE_TO_LEARN_SLOT      LEARNED_MOVES_MAX
 
 #define NO_BUTTON_PRESSED     255
 #define NO_PARTY_INDEX_CHANGE 255
@@ -438,8 +437,8 @@ static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
     ov13_02226444(battleParty, battleParty->currentScreen);
     ov13_02224500(battleParty);
     ov13_02224B7C(battleParty, battleParty->currentScreen);
-    ov13_02221A88(battleParty);
-    ov13_02221BF8(battleParty, battleParty->currentScreen);
+    BattlePartyText_InitializeWindows(battleParty);
+    BattlePartyText_ChangeScreen(battleParty, battleParty->currentScreen);
 
     if (battleParty->context->isCursorEnabled != FALSE) {
         SetBattleSubMenuCursorVisibility(battleParty->cursor, TRUE);
@@ -492,8 +491,8 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
     BattlePartyContext *context = battleParty->context;
 
     if (context->selectedPartyIndex == 0 && context->embargoRemainingTurns[0] != 0 || context->selectedPartyIndex == 1 && context->embargoRemainingTurns[1] != 0) {
-        ov13_0222449C(battleParty);
-        BattlePartyText_DisplayMessage(battleParty);
+        BattlePartyText_PrintEmbargoPreventingItemUse(battleParty);
+        BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->context->selectedPartyIndex = NO_SELECTION_PARTY_SLOT;
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -525,7 +524,7 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
         return TASK_STATE_SCREEN_TRANSITION;
     } else {
         MessageLoader_GetStrbuf(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->strbuf);
-        BattlePartyText_DisplayMessage(battleParty);
+        BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->context->selectedPartyIndex = NO_SELECTION_PARTY_SLOT;
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -784,7 +783,7 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
         }
 
         if (CheckSelectedMoveIsHM(battleParty) == TRUE) {
-            ov13_02223118(battleParty);
+            BattlePartyText_PrintHMMovesCantBeForgottenText(battleParty);
 
             if (battleParty->displayingContestStats == FALSE) {
                 ClearMoveStats(battleParty);
@@ -854,7 +853,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
             return TASK_STATE_SCREEN_TRANSITION;
         } else {
             MessageLoader_GetStrbuf(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->strbuf);
-            BattlePartyText_DisplayMessage(battleParty);
+            BattlePartyText_DisplayErrorMessage(battleParty);
             battleParty->context->selectedPartyIndex = NO_SELECTION_PARTY_SLOT;
             battleParty->queuedState = TASK_STATE_EXIT;
             return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -938,7 +937,7 @@ static u8 BattlePartyTask_SetupRestoreMovePPScreen(BattleParty *battleParty)
 static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty)
 {
     ov13_02224B7C(battleParty, battleParty->currentScreen);
-    ov13_02221BF8(battleParty, battleParty->currentScreen);
+    BattlePartyText_ChangeScreen(battleParty, battleParty->currentScreen);
     ov13_022260EC(battleParty, battleParty->currentScreen);
     DrawXPBar(battleParty, battleParty->currentScreen);
 
@@ -951,7 +950,7 @@ static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty)
 
 static u8 BattlePartyTask_DisplayCantSwitchMessage(BattleParty *battleParty)
 {
-    BattlePartyText_DisplayMessage(battleParty);
+    BattlePartyText_DisplayErrorMessage(battleParty);
     battleParty->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
     return TASK_STATE_AWAITING_TEXT_FINISH;
 }
@@ -996,7 +995,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
     switch (battleParty->useItemState) {
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_INITIALISING:
         battleParty->partyPokemon[context->selectedPartyIndex].pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
-        ov13_02224144(battleParty);
+        BattlePartyText_PrintUseItemEffect(battleParty);
 
         if (battleParty->currentScreen == BATTLE_PARTY_SCREEN_RESTORE_MOVE_PP) {
             battleParty->selectedPokemonCurrentMovePPs[0] = (u16)Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_MOVE1_PP + context->selectedMoveSlot, NULL);
@@ -1006,7 +1005,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
 
             if (battleParty->partyPokemon[context->selectedPartyIndex].summaryStatus == SUMMARY_CONDITION_NONE) {
                 ManagedSprite_SetDrawFlag(battleParty->unk_1FB4[13 + context->selectedPartyIndex], FALSE);
-                ov13_022234A8(battleParty, context->selectedPartyIndex);
+                BattlePartyText_PrintPartyPokemonLevel(battleParty, context->selectedPartyIndex);
             }
 
             battleParty->selectedPokemonCurrentHP = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_HP, NULL);
@@ -1018,7 +1017,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_RESTORING_HP:
         if (battleParty->partyPokemon[context->selectedPartyIndex].curHP != battleParty->selectedPokemonCurrentHP) {
             battleParty->partyPokemon[context->selectedPartyIndex].curHP++;
-            ov13_02223448(battleParty, context->selectedPartyIndex);
+            BattlePartyText_RenderPartyPokemonStats(battleParty, context->selectedPartyIndex);
             break;
         }
 
@@ -1027,7 +1026,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_RESTORING_PP:
         if (battleParty->partyPokemon[context->selectedPartyIndex].moves[context->selectedMoveSlot].currentPP != battleParty->selectedPokemonCurrentMovePPs[0]) {
             battleParty->partyPokemon[context->selectedPartyIndex].moves[context->selectedMoveSlot].currentPP++;
-            ov13_02223F5C(battleParty, 1 + context->selectedMoveSlot, context->selectedMoveSlot);
+            BattlePartyText_PrintSelectedMoveCurrentPP(battleParty, 1 + context->selectedMoveSlot, context->selectedMoveSlot);
             break;
         }
 
@@ -1035,13 +1034,13 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
         break;
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_FINISHING:
         UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
-        BattlePartyText_DisplayMessage(battleParty);
+        BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_START_RESTORING_HP:
         if (battleParty->partyPokemon[context->selectedPartyIndex].curHP != battleParty->selectedPokemonCurrentHP) {
             battleParty->partyPokemon[context->selectedPartyIndex].curHP++;
-            ov13_02223448(battleParty, context->selectedPartyIndex);
+            BattlePartyText_RenderPartyPokemonStats(battleParty, context->selectedPartyIndex);
             ov13_022264C4(battleParty);
         }
 
@@ -1069,7 +1068,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
             battleParty->selectedPokemonCurrentMovePPs[i] = (u16)Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_MOVE1_PP + i, NULL);
         }
 
-        ov13_02224144(battleParty);
+        BattlePartyText_PrintUseItemEffect(battleParty);
         Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         battleParty->useItemState = BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_RESTORING_PP;
         break;
@@ -1084,7 +1083,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
 
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].currentPP != battleParty->selectedPokemonCurrentMovePPs[i]) {
                 battleParty->partyPokemon[context->selectedPartyIndex].moves[i].currentPP++;
-                ov13_02223F5C(battleParty, 1 + i, i);
+                BattlePartyText_PrintSelectedMoveCurrentPP(battleParty, 1 + i, i);
             } else {
                 restoredMoves++;
             }
@@ -1096,7 +1095,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
     } break;
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_FINISHING:
         UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
-        BattlePartyText_DisplayMessage(battleParty);
+        BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
     }
@@ -1118,7 +1117,7 @@ static BOOL BattlePartyTask_FinishTask(SysTask *task, BattleParty *battleParty)
 
     CleanupMessageLoader(battleParty);
     ov13_02224970(battleParty);
-    ov13_02221BC8(battleParty);
+    BattlePartyText_ClearWindows(battleParty);
     CleanupBackground(battleParty->background);
 
     battleParty->context->isCursorEnabled = IsBattleSubMenuCursorVisible(battleParty->cursor);
@@ -1650,9 +1649,9 @@ static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen)
     Bg_ScheduleFillTilemap(battleParty->background, BG_LAYER_SUB_1, 0);
 
     ov13_02224B7C(battleParty, screen);
-    ov13_02221BB0(battleParty);
-    ov13_02221AC4(battleParty, screen);
-    ov13_02221BF8(battleParty, screen);
+    BattlePartyText_ClearScreenWindows(battleParty);
+    BattlePartyText_InitializeScreenWindows(battleParty, screen);
+    BattlePartyText_ChangeScreen(battleParty, screen);
     DrawXPBar(battleParty, screen);
     DrawMoveContestStats(battleParty, screen);
     ov13_0222563C(battleParty, screen);
@@ -1812,9 +1811,9 @@ static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty)
 static void ClearMoveStats(BattleParty *battleParty)
 {
     ManagedSprite_SetDrawFlag(battleParty->unk_1FB4[26], FALSE);
-    Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[10]);
-    Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[6]);
-    Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[7]);
+    Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[10]);
+    Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[7]);
 }
 
 static void ClearMoveContestStats(BattleParty *battleParty)

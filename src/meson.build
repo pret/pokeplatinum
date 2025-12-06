@@ -515,7 +515,7 @@ pokeplatinum_c = files(
     'battle_anim/ov12_02237EFC.c',
     'battle_anim/ov12_022380BC.c',
     'overlay013/battle_party.c',
-    'overlay013/ov13_02221A88.c',
+    'overlay013/battle_party_text.c',
     'overlay013/ov13_02224500.c',
     'overlay013/ov13_02225710.c',
     'overlay013/battle_bag.c',

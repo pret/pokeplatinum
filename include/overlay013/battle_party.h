@@ -100,6 +100,8 @@ typedef struct BattlePartyContext {
     u8 battlePartyExited;
 } BattlePartyContext;
 
+#define NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS 2
+
 typedef struct BattleParty {
     BattlePartyContext *context;
     BattlePartyPokemon partyPokemon[6];
@@ -129,10 +131,10 @@ typedef struct BattleParty {
     Strbuf *strbuf;
     SpriteManager *spriteMan;
     ManagedSprite *unk_1FB4[38];
-    Window messageBoxWindows[2];
-    Window *unk_206C;
-    u8 unk_2070;
-    u8 unk_2071;
+    Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];
+    Window *windows;
+    u8 numWindows;
+    u8 useAltSummaryWindows;
     u8 partySlotLearningMove;
     u8 displayingContestStats : 4;
     u8 hasVisitedContestHall : 4;
@@ -153,6 +155,8 @@ typedef struct BattleParty {
 
 #define PARTY_SLOT_SELECTABLE_IN_BATTLE     1
 #define PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE 2
+
+#define MOVE_TO_LEARN_SLOT LEARNED_MOVES_MAX
 
 void BattlePartyTask_Start(BattlePartyContext *context);
 u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot);
